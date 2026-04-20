@@ -1131,8 +1131,10 @@ type xxx_PrepareScriptOperation struct {
 	Return     uint32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DSAPrepareScript operation.
 func (o *xxx_PrepareScriptOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of IDL_DSAPrepareScript operation.
 func (o *xxx_PrepareScriptOperation) OpName() string { return "/dsaop/v1/IDL_DSAPrepareScript" }
 
 func (o *xxx_PrepareScriptOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1302,6 +1304,17 @@ func (o *PrepareScriptRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakePrepareScriptRequest build a response structure from the given request structure.
+func (o *PrepareScriptRequest) MakeResponse() *PrepareScriptResponse {
+	return &PrepareScriptResponse{}
+}
+
+// OpNum returns the operation number of IDL_DSAPrepareScript operation.
+func (o *PrepareScriptRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of IDL_DSAPrepareScript operation.
+func (o *PrepareScriptRequest) OpName() string { return "/dsaop/v1/IDL_DSAPrepareScript" }
+
 // PrepareScriptResponse structure represents the IDL_DSAPrepareScript operation response
 type PrepareScriptResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message.
@@ -1354,8 +1367,10 @@ type xxx_ExecuteScriptOperation struct {
 	Return     uint32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DSAExecuteScript operation.
 func (o *xxx_ExecuteScriptOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of IDL_DSAExecuteScript operation.
 func (o *xxx_ExecuteScriptOperation) OpName() string { return "/dsaop/v1/IDL_DSAExecuteScript" }
 
 func (o *xxx_ExecuteScriptOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1530,6 +1545,17 @@ func (o *ExecuteScriptRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeExecuteScriptRequest build a response structure from the given request structure.
+func (o *ExecuteScriptRequest) MakeResponse() *ExecuteScriptResponse {
+	return &ExecuteScriptResponse{}
+}
+
+// OpNum returns the operation number of IDL_DSAExecuteScript operation.
+func (o *ExecuteScriptRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of IDL_DSAExecuteScript operation.
+func (o *ExecuteScriptRequest) OpName() string { return "/dsaop/v1/IDL_DSAExecuteScript" }
 
 // ExecuteScriptResponse structure represents the IDL_DSAExecuteScript operation response
 type ExecuteScriptResponse struct {

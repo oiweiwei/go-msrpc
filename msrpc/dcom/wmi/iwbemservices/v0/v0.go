@@ -812,8 +812,10 @@ type xxx_OpenNamespaceOperation struct {
 	Return           int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OpenNamespace operation.
 func (o *xxx_OpenNamespaceOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of OpenNamespace operation.
 func (o *xxx_OpenNamespaceOperation) OpName() string { return "/IWbemServices/v0/OpenNamespace" }
 
 func (o *xxx_OpenNamespaceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1382,6 +1384,17 @@ func (o *OpenNamespaceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeOpenNamespaceRequest build a response structure from the given request structure.
+func (o *OpenNamespaceRequest) MakeResponse() *OpenNamespaceResponse {
+	return &OpenNamespaceResponse{}
+}
+
+// OpNum returns the operation number of OpenNamespace operation.
+func (o *OpenNamespaceRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of OpenNamespace operation.
+func (o *OpenNamespaceRequest) OpName() string { return "/IWbemServices/v0/OpenNamespace" }
+
 // OpenNamespaceResponse structure represents the OpenNamespace operation response
 type OpenNamespaceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1464,8 +1477,10 @@ type xxx_CancelAsyncCallOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CancelAsyncCall operation.
 func (o *xxx_CancelAsyncCallOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of CancelAsyncCall operation.
 func (o *xxx_CancelAsyncCallOperation) OpName() string { return "/IWbemServices/v0/CancelAsyncCall" }
 
 func (o *xxx_CancelAsyncCallOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1661,6 +1676,17 @@ func (o *CancelAsyncCallRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeCancelAsyncCallRequest build a response structure from the given request structure.
+func (o *CancelAsyncCallRequest) MakeResponse() *CancelAsyncCallResponse {
+	return &CancelAsyncCallResponse{}
+}
+
+// OpNum returns the operation number of CancelAsyncCall operation.
+func (o *CancelAsyncCallRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of CancelAsyncCall operation.
+func (o *CancelAsyncCallRequest) OpName() string { return "/IWbemServices/v0/CancelAsyncCall" }
+
 // CancelAsyncCallResponse structure represents the CancelAsyncCall operation response
 type CancelAsyncCallResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1709,8 +1735,10 @@ type xxx_QueryObjectSinkOperation struct {
 	Return          int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryObjectSink operation.
 func (o *xxx_QueryObjectSinkOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of QueryObjectSink operation.
 func (o *xxx_QueryObjectSinkOperation) OpName() string { return "/IWbemServices/v0/QueryObjectSink" }
 
 func (o *xxx_QueryObjectSinkOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1916,6 +1944,17 @@ func (o *QueryObjectSinkRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeQueryObjectSinkRequest build a response structure from the given request structure.
+func (o *QueryObjectSinkRequest) MakeResponse() *QueryObjectSinkResponse {
+	return &QueryObjectSinkResponse{}
+}
+
+// OpNum returns the operation number of QueryObjectSink operation.
+func (o *QueryObjectSinkRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of QueryObjectSink operation.
+func (o *QueryObjectSinkRequest) OpName() string { return "/IWbemServices/v0/QueryObjectSink" }
+
 // QueryObjectSinkResponse structure represents the QueryObjectSink operation response
 type QueryObjectSinkResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1973,8 +2012,10 @@ type xxx_GetObjectOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetObject operation.
 func (o *xxx_GetObjectOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of GetObject operation.
 func (o *xxx_GetObjectOperation) OpName() string { return "/IWbemServices/v0/GetObject" }
 
 func (o *xxx_GetObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2555,6 +2596,17 @@ func (o *GetObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetObjectRequest build a response structure from the given request structure.
+func (o *GetObjectRequest) MakeResponse() *GetObjectResponse {
+	return &GetObjectResponse{}
+}
+
+// OpNum returns the operation number of GetObject operation.
+func (o *GetObjectRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of GetObject operation.
+func (o *GetObjectRequest) OpName() string { return "/IWbemServices/v0/GetObject" }
+
 // GetObjectResponse structure represents the GetObject operation response
 type GetObjectResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2639,8 +2691,10 @@ type xxx_GetObjectAsyncOperation struct {
 	Return          int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetObjectAsync operation.
 func (o *xxx_GetObjectAsyncOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetObjectAsync operation.
 func (o *xxx_GetObjectAsyncOperation) OpName() string { return "/IWbemServices/v0/GetObjectAsync" }
 
 func (o *xxx_GetObjectAsyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2981,6 +3035,17 @@ func (o *GetObjectAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetObjectAsyncRequest build a response structure from the given request structure.
+func (o *GetObjectAsyncRequest) MakeResponse() *GetObjectAsyncResponse {
+	return &GetObjectAsyncResponse{}
+}
+
+// OpNum returns the operation number of GetObjectAsync operation.
+func (o *GetObjectAsyncRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetObjectAsync operation.
+func (o *GetObjectAsyncRequest) OpName() string { return "/IWbemServices/v0/GetObjectAsync" }
+
 // GetObjectAsyncResponse structure represents the GetObjectAsync operation response
 type GetObjectAsyncResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3031,8 +3096,10 @@ type xxx_PutClassOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PutClass operation.
 func (o *xxx_PutClassOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of PutClass operation.
 func (o *xxx_PutClassOperation) OpName() string { return "/IWbemServices/v0/PutClass" }
 
 func (o *xxx_PutClassOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3482,6 +3549,17 @@ func (o *PutClassRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakePutClassRequest build a response structure from the given request structure.
+func (o *PutClassRequest) MakeResponse() *PutClassResponse {
+	return &PutClassResponse{}
+}
+
+// OpNum returns the operation number of PutClass operation.
+func (o *PutClassRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of PutClass operation.
+func (o *PutClassRequest) OpName() string { return "/IWbemServices/v0/PutClass" }
+
 // PutClassResponse structure represents the PutClass operation response
 type PutClassResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3552,8 +3630,10 @@ type xxx_PutClassAsyncOperation struct {
 	Return          int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PutClassAsync operation.
 func (o *xxx_PutClassAsyncOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of PutClassAsync operation.
 func (o *xxx_PutClassAsyncOperation) OpName() string { return "/IWbemServices/v0/PutClassAsync" }
 
 func (o *xxx_PutClassAsyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3908,6 +3988,17 @@ func (o *PutClassAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakePutClassAsyncRequest build a response structure from the given request structure.
+func (o *PutClassAsyncRequest) MakeResponse() *PutClassAsyncResponse {
+	return &PutClassAsyncResponse{}
+}
+
+// OpNum returns the operation number of PutClassAsync operation.
+func (o *PutClassAsyncRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of PutClassAsync operation.
+func (o *PutClassAsyncRequest) OpName() string { return "/IWbemServices/v0/PutClassAsync" }
+
 // PutClassAsyncResponse structure represents the PutClassAsync operation response
 type PutClassAsyncResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3958,8 +4049,10 @@ type xxx_DeleteClassOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteClass operation.
 func (o *xxx_DeleteClassOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of DeleteClass operation.
 func (o *xxx_DeleteClassOperation) OpName() string { return "/IWbemServices/v0/DeleteClass" }
 
 func (o *xxx_DeleteClassOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4380,6 +4473,17 @@ func (o *DeleteClassRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeDeleteClassRequest build a response structure from the given request structure.
+func (o *DeleteClassRequest) MakeResponse() *DeleteClassResponse {
+	return &DeleteClassResponse{}
+}
+
+// OpNum returns the operation number of DeleteClass operation.
+func (o *DeleteClassRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of DeleteClass operation.
+func (o *DeleteClassRequest) OpName() string { return "/IWbemServices/v0/DeleteClass" }
+
 // DeleteClassResponse structure represents the DeleteClass operation response
 type DeleteClassResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4448,8 +4552,10 @@ type xxx_DeleteClassAsyncOperation struct {
 	Return          int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteClassAsync operation.
 func (o *xxx_DeleteClassAsyncOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of DeleteClassAsync operation.
 func (o *xxx_DeleteClassAsyncOperation) OpName() string { return "/IWbemServices/v0/DeleteClassAsync" }
 
 func (o *xxx_DeleteClassAsyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4776,6 +4882,17 @@ func (o *DeleteClassAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeDeleteClassAsyncRequest build a response structure from the given request structure.
+func (o *DeleteClassAsyncRequest) MakeResponse() *DeleteClassAsyncResponse {
+	return &DeleteClassAsyncResponse{}
+}
+
+// OpNum returns the operation number of DeleteClassAsync operation.
+func (o *DeleteClassAsyncRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of DeleteClassAsync operation.
+func (o *DeleteClassAsyncRequest) OpName() string { return "/IWbemServices/v0/DeleteClassAsync" }
+
 // DeleteClassAsyncResponse structure represents the DeleteClassAsync operation response
 type DeleteClassAsyncResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4826,8 +4943,10 @@ type xxx_CreateClassEnumOperation struct {
 	Return     int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateClassEnum operation.
 func (o *xxx_CreateClassEnumOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of CreateClassEnum operation.
 func (o *xxx_CreateClassEnumOperation) OpName() string { return "/IWbemServices/v0/CreateClassEnum" }
 
 func (o *xxx_CreateClassEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5162,6 +5281,17 @@ func (o *CreateClassEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeCreateClassEnumRequest build a response structure from the given request structure.
+func (o *CreateClassEnumRequest) MakeResponse() *CreateClassEnumResponse {
+	return &CreateClassEnumResponse{}
+}
+
+// OpNum returns the operation number of CreateClassEnum operation.
+func (o *CreateClassEnumRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of CreateClassEnum operation.
+func (o *CreateClassEnumRequest) OpName() string { return "/IWbemServices/v0/CreateClassEnum" }
+
 // CreateClassEnumResponse structure represents the CreateClassEnum operation response
 type CreateClassEnumResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -5217,8 +5347,10 @@ type xxx_CreateClassEnumAsyncOperation struct {
 	Return          int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateClassEnumAsync operation.
 func (o *xxx_CreateClassEnumAsyncOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of CreateClassEnumAsync operation.
 func (o *xxx_CreateClassEnumAsyncOperation) OpName() string {
 	return "/IWbemServices/v0/CreateClassEnumAsync"
 }
@@ -5563,6 +5695,19 @@ func (o *CreateClassEnumAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeCreateClassEnumAsyncRequest build a response structure from the given request structure.
+func (o *CreateClassEnumAsyncRequest) MakeResponse() *CreateClassEnumAsyncResponse {
+	return &CreateClassEnumAsyncResponse{}
+}
+
+// OpNum returns the operation number of CreateClassEnumAsync operation.
+func (o *CreateClassEnumAsyncRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of CreateClassEnumAsync operation.
+func (o *CreateClassEnumAsyncRequest) OpName() string {
+	return "/IWbemServices/v0/CreateClassEnumAsync"
+}
+
 // CreateClassEnumAsyncResponse structure represents the CreateClassEnumAsync operation response
 type CreateClassEnumAsyncResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -5613,8 +5758,10 @@ type xxx_PutInstanceOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PutInstance operation.
 func (o *xxx_PutInstanceOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of PutInstance operation.
 func (o *xxx_PutInstanceOperation) OpName() string { return "/IWbemServices/v0/PutInstance" }
 
 func (o *xxx_PutInstanceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6085,6 +6232,17 @@ func (o *PutInstanceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakePutInstanceRequest build a response structure from the given request structure.
+func (o *PutInstanceRequest) MakeResponse() *PutInstanceResponse {
+	return &PutInstanceResponse{}
+}
+
+// OpNum returns the operation number of PutInstance operation.
+func (o *PutInstanceRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of PutInstance operation.
+func (o *PutInstanceRequest) OpName() string { return "/IWbemServices/v0/PutInstance" }
+
 // PutInstanceResponse structure represents the PutInstance operation response
 type PutInstanceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -6155,8 +6313,10 @@ type xxx_PutInstanceAsyncOperation struct {
 	Return          int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PutInstanceAsync operation.
 func (o *xxx_PutInstanceAsyncOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of PutInstanceAsync operation.
 func (o *xxx_PutInstanceAsyncOperation) OpName() string { return "/IWbemServices/v0/PutInstanceAsync" }
 
 func (o *xxx_PutInstanceAsyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6530,6 +6690,17 @@ func (o *PutInstanceAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakePutInstanceAsyncRequest build a response structure from the given request structure.
+func (o *PutInstanceAsyncRequest) MakeResponse() *PutInstanceAsyncResponse {
+	return &PutInstanceAsyncResponse{}
+}
+
+// OpNum returns the operation number of PutInstanceAsync operation.
+func (o *PutInstanceAsyncRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of PutInstanceAsync operation.
+func (o *PutInstanceAsyncRequest) OpName() string { return "/IWbemServices/v0/PutInstanceAsync" }
+
 // PutInstanceAsyncResponse structure represents the PutInstanceAsync operation response
 type PutInstanceAsyncResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -6580,8 +6751,10 @@ type xxx_DeleteInstanceOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteInstance operation.
 func (o *xxx_DeleteInstanceOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of DeleteInstance operation.
 func (o *xxx_DeleteInstanceOperation) OpName() string { return "/IWbemServices/v0/DeleteInstance" }
 
 func (o *xxx_DeleteInstanceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7009,6 +7182,17 @@ func (o *DeleteInstanceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeDeleteInstanceRequest build a response structure from the given request structure.
+func (o *DeleteInstanceRequest) MakeResponse() *DeleteInstanceResponse {
+	return &DeleteInstanceResponse{}
+}
+
+// OpNum returns the operation number of DeleteInstance operation.
+func (o *DeleteInstanceRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of DeleteInstance operation.
+func (o *DeleteInstanceRequest) OpName() string { return "/IWbemServices/v0/DeleteInstance" }
+
 // DeleteInstanceResponse structure represents the DeleteInstance operation response
 type DeleteInstanceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -7079,8 +7263,10 @@ type xxx_DeleteInstanceAsyncOperation struct {
 	Return          int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteInstanceAsync operation.
 func (o *xxx_DeleteInstanceAsyncOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of DeleteInstanceAsync operation.
 func (o *xxx_DeleteInstanceAsyncOperation) OpName() string {
 	return "/IWbemServices/v0/DeleteInstanceAsync"
 }
@@ -7411,6 +7597,17 @@ func (o *DeleteInstanceAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeDeleteInstanceAsyncRequest build a response structure from the given request structure.
+func (o *DeleteInstanceAsyncRequest) MakeResponse() *DeleteInstanceAsyncResponse {
+	return &DeleteInstanceAsyncResponse{}
+}
+
+// OpNum returns the operation number of DeleteInstanceAsync operation.
+func (o *DeleteInstanceAsyncRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of DeleteInstanceAsync operation.
+func (o *DeleteInstanceAsyncRequest) OpName() string { return "/IWbemServices/v0/DeleteInstanceAsync" }
+
 // DeleteInstanceAsyncResponse structure represents the DeleteInstanceAsync operation response
 type DeleteInstanceAsyncResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -7461,8 +7658,10 @@ type xxx_CreateInstanceEnumOperation struct {
 	Return     int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateInstanceEnum operation.
 func (o *xxx_CreateInstanceEnumOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of CreateInstanceEnum operation.
 func (o *xxx_CreateInstanceEnumOperation) OpName() string {
 	return "/IWbemServices/v0/CreateInstanceEnum"
 }
@@ -7805,6 +8004,17 @@ func (o *CreateInstanceEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeCreateInstanceEnumRequest build a response structure from the given request structure.
+func (o *CreateInstanceEnumRequest) MakeResponse() *CreateInstanceEnumResponse {
+	return &CreateInstanceEnumResponse{}
+}
+
+// OpNum returns the operation number of CreateInstanceEnum operation.
+func (o *CreateInstanceEnumRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of CreateInstanceEnum operation.
+func (o *CreateInstanceEnumRequest) OpName() string { return "/IWbemServices/v0/CreateInstanceEnum" }
+
 // CreateInstanceEnumResponse structure represents the CreateInstanceEnum operation response
 type CreateInstanceEnumResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -7861,8 +8071,10 @@ type xxx_CreateInstanceEnumAsyncOperation struct {
 	Return          int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateInstanceEnumAsync operation.
 func (o *xxx_CreateInstanceEnumAsyncOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of CreateInstanceEnumAsync operation.
 func (o *xxx_CreateInstanceEnumAsyncOperation) OpName() string {
 	return "/IWbemServices/v0/CreateInstanceEnumAsync"
 }
@@ -8210,6 +8422,19 @@ func (o *CreateInstanceEnumAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeCreateInstanceEnumAsyncRequest build a response structure from the given request structure.
+func (o *CreateInstanceEnumAsyncRequest) MakeResponse() *CreateInstanceEnumAsyncResponse {
+	return &CreateInstanceEnumAsyncResponse{}
+}
+
+// OpNum returns the operation number of CreateInstanceEnumAsync operation.
+func (o *CreateInstanceEnumAsyncRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of CreateInstanceEnumAsync operation.
+func (o *CreateInstanceEnumAsyncRequest) OpName() string {
+	return "/IWbemServices/v0/CreateInstanceEnumAsync"
+}
+
 // CreateInstanceEnumAsyncResponse structure represents the CreateInstanceEnumAsync operation response
 type CreateInstanceEnumAsyncResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -8261,8 +8486,10 @@ type xxx_ExecQueryOperation struct {
 	Return        int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExecQuery operation.
 func (o *xxx_ExecQueryOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of ExecQuery operation.
 func (o *xxx_ExecQueryOperation) OpName() string { return "/IWbemServices/v0/ExecQuery" }
 
 func (o *xxx_ExecQueryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8651,6 +8878,17 @@ func (o *ExecQueryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeExecQueryRequest build a response structure from the given request structure.
+func (o *ExecQueryRequest) MakeResponse() *ExecQueryResponse {
+	return &ExecQueryResponse{}
+}
+
+// OpNum returns the operation number of ExecQuery operation.
+func (o *ExecQueryRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of ExecQuery operation.
+func (o *ExecQueryRequest) OpName() string { return "/IWbemServices/v0/ExecQuery" }
+
 // ExecQueryResponse structure represents the ExecQuery operation response
 type ExecQueryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -8708,8 +8946,10 @@ type xxx_ExecQueryAsyncOperation struct {
 	Return          int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExecQueryAsync operation.
 func (o *xxx_ExecQueryAsyncOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of ExecQueryAsync operation.
 func (o *xxx_ExecQueryAsyncOperation) OpName() string { return "/IWbemServices/v0/ExecQueryAsync" }
 
 func (o *xxx_ExecQueryAsyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9103,6 +9343,17 @@ func (o *ExecQueryAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeExecQueryAsyncRequest build a response structure from the given request structure.
+func (o *ExecQueryAsyncRequest) MakeResponse() *ExecQueryAsyncResponse {
+	return &ExecQueryAsyncResponse{}
+}
+
+// OpNum returns the operation number of ExecQueryAsync operation.
+func (o *ExecQueryAsyncRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of ExecQueryAsync operation.
+func (o *ExecQueryAsyncRequest) OpName() string { return "/IWbemServices/v0/ExecQueryAsync" }
+
 // ExecQueryAsyncResponse structure represents the ExecQueryAsync operation response
 type ExecQueryAsyncResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -9154,8 +9405,10 @@ type xxx_ExecNotificationQueryOperation struct {
 	Return        int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExecNotificationQuery operation.
 func (o *xxx_ExecNotificationQueryOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of ExecNotificationQuery operation.
 func (o *xxx_ExecNotificationQueryOperation) OpName() string {
 	return "/IWbemServices/v0/ExecNotificationQuery"
 }
@@ -9538,6 +9791,19 @@ func (o *ExecNotificationQueryRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeExecNotificationQueryRequest build a response structure from the given request structure.
+func (o *ExecNotificationQueryRequest) MakeResponse() *ExecNotificationQueryResponse {
+	return &ExecNotificationQueryResponse{}
+}
+
+// OpNum returns the operation number of ExecNotificationQuery operation.
+func (o *ExecNotificationQueryRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of ExecNotificationQuery operation.
+func (o *ExecNotificationQueryRequest) OpName() string {
+	return "/IWbemServices/v0/ExecNotificationQuery"
+}
+
 // ExecNotificationQueryResponse structure represents the ExecNotificationQuery operation response
 type ExecNotificationQueryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -9595,8 +9861,10 @@ type xxx_ExecNotificationQueryAsyncOperation struct {
 	Return          int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExecNotificationQueryAsync operation.
 func (o *xxx_ExecNotificationQueryAsyncOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of ExecNotificationQueryAsync operation.
 func (o *xxx_ExecNotificationQueryAsyncOperation) OpName() string {
 	return "/IWbemServices/v0/ExecNotificationQueryAsync"
 }
@@ -9980,6 +10248,19 @@ func (o *ExecNotificationQueryAsyncRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeExecNotificationQueryAsyncRequest build a response structure from the given request structure.
+func (o *ExecNotificationQueryAsyncRequest) MakeResponse() *ExecNotificationQueryAsyncResponse {
+	return &ExecNotificationQueryAsyncResponse{}
+}
+
+// OpNum returns the operation number of ExecNotificationQueryAsync operation.
+func (o *ExecNotificationQueryAsyncRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of ExecNotificationQueryAsync operation.
+func (o *ExecNotificationQueryAsyncRequest) OpName() string {
+	return "/IWbemServices/v0/ExecNotificationQueryAsync"
+}
+
 // ExecNotificationQueryAsyncResponse structure represents the ExecNotificationQueryAsync operation response
 type ExecNotificationQueryAsyncResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -10033,8 +10314,10 @@ type xxx_ExecMethodOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExecMethod operation.
 func (o *xxx_ExecMethodOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of ExecMethod operation.
 func (o *xxx_ExecMethodOperation) OpName() string { return "/IWbemServices/v0/ExecMethod" }
 
 func (o *xxx_ExecMethodOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10710,6 +10993,17 @@ func (o *ExecMethodRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeExecMethodRequest build a response structure from the given request structure.
+func (o *ExecMethodRequest) MakeResponse() *ExecMethodResponse {
+	return &ExecMethodResponse{}
+}
+
+// OpNum returns the operation number of ExecMethod operation.
+func (o *ExecMethodRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of ExecMethod operation.
+func (o *ExecMethodRequest) OpName() string { return "/IWbemServices/v0/ExecMethod" }
+
 // ExecMethodResponse structure represents the ExecMethod operation response
 type ExecMethodResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -10799,8 +11093,10 @@ type xxx_ExecMethodAsyncOperation struct {
 	Return          int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExecMethodAsync operation.
 func (o *xxx_ExecMethodAsyncOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of ExecMethodAsync operation.
 func (o *xxx_ExecMethodAsyncOperation) OpName() string { return "/IWbemServices/v0/ExecMethodAsync" }
 
 func (o *xxx_ExecMethodAsyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11232,6 +11528,17 @@ func (o *ExecMethodAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeExecMethodAsyncRequest build a response structure from the given request structure.
+func (o *ExecMethodAsyncRequest) MakeResponse() *ExecMethodAsyncResponse {
+	return &ExecMethodAsyncResponse{}
+}
+
+// OpNum returns the operation number of ExecMethodAsync operation.
+func (o *ExecMethodAsyncRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of ExecMethodAsync operation.
+func (o *ExecMethodAsyncRequest) OpName() string { return "/IWbemServices/v0/ExecMethodAsync" }
 
 // ExecMethodAsyncResponse structure represents the ExecMethodAsync operation response
 type ExecMethodAsyncResponse struct {

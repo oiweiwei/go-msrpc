@@ -161,8 +161,10 @@ type xxx_GetICFEnabledOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetIcfEnabled operation.
 func (o *xxx_GetICFEnabledOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetIcfEnabled operation.
 func (o *xxx_GetICFEnabledOperation) OpName() string { return "/IRemoteICFICSConfig/v0/GetIcfEnabled" }
 
 func (o *xxx_GetICFEnabledOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -326,6 +328,17 @@ func (o *GetICFEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetICFEnabledRequest build a response structure from the given request structure.
+func (o *GetICFEnabledRequest) MakeResponse() *GetICFEnabledResponse {
+	return &GetICFEnabledResponse{}
+}
+
+// OpNum returns the operation number of GetIcfEnabled operation.
+func (o *GetICFEnabledRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetIcfEnabled operation.
+func (o *GetICFEnabledRequest) OpName() string { return "/IRemoteICFICSConfig/v0/GetIcfEnabled" }
+
 // GetICFEnabledResponse structure represents the GetIcfEnabled operation response
 type GetICFEnabledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -376,8 +389,10 @@ type xxx_GetICSEnabledOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetIcsEnabled operation.
 func (o *xxx_GetICSEnabledOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetIcsEnabled operation.
 func (o *xxx_GetICSEnabledOperation) OpName() string { return "/IRemoteICFICSConfig/v0/GetIcsEnabled" }
 
 func (o *xxx_GetICSEnabledOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -540,6 +555,17 @@ func (o *GetICSEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetICSEnabledRequest build a response structure from the given request structure.
+func (o *GetICSEnabledRequest) MakeResponse() *GetICSEnabledResponse {
+	return &GetICSEnabledResponse{}
+}
+
+// OpNum returns the operation number of GetIcsEnabled operation.
+func (o *GetICSEnabledRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetIcsEnabled operation.
+func (o *GetICSEnabledRequest) OpName() string { return "/IRemoteICFICSConfig/v0/GetIcsEnabled" }
 
 // GetICSEnabledResponse structure represents the GetIcsEnabled operation response
 type GetICSEnabledResponse struct {

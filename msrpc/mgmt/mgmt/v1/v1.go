@@ -139,8 +139,10 @@ type xxx_InquireInterfaceIDsOperation struct {
 	Status            uint32                      `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of rpc__mgmt_inq_if_ids operation.
 func (o *xxx_InquireInterfaceIDsOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of rpc__mgmt_inq_if_ids operation.
 func (o *xxx_InquireInterfaceIDsOperation) OpName() string { return "/mgmt/v1/rpc__mgmt_inq_if_ids" }
 
 func (o *xxx_InquireInterfaceIDsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -272,6 +274,17 @@ func (o *InquireInterfaceIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeInquireInterfaceIDsRequest build a response structure from the given request structure.
+func (o *InquireInterfaceIDsRequest) MakeResponse() *InquireInterfaceIDsResponse {
+	return &InquireInterfaceIDsResponse{}
+}
+
+// OpNum returns the operation number of rpc__mgmt_inq_if_ids operation.
+func (o *InquireInterfaceIDsRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of rpc__mgmt_inq_if_ids operation.
+func (o *InquireInterfaceIDsRequest) OpName() string { return "/mgmt/v1/rpc__mgmt_inq_if_ids" }
+
 // InquireInterfaceIDsResponse structure represents the rpc__mgmt_inq_if_ids operation response
 type InquireInterfaceIDsResponse struct {
 	InterfaceIDVector *dcetypes.InterfaceIDVector `idl:"name:if_id_vector" json:"interface_id_vector"`
@@ -316,8 +329,10 @@ type xxx_InquireStatsOperation struct {
 	Status     uint32   `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of rpc__mgmt_inq_stats operation.
 func (o *xxx_InquireStatsOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of rpc__mgmt_inq_stats operation.
 func (o *xxx_InquireStatsOperation) OpName() string { return "/mgmt/v1/rpc__mgmt_inq_stats" }
 
 func (o *xxx_InquireStatsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -478,6 +493,17 @@ func (o *InquireStatsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeInquireStatsRequest build a response structure from the given request structure.
+func (o *InquireStatsRequest) MakeResponse() *InquireStatsResponse {
+	return &InquireStatsResponse{}
+}
+
+// OpNum returns the operation number of rpc__mgmt_inq_stats operation.
+func (o *InquireStatsRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of rpc__mgmt_inq_stats operation.
+func (o *InquireStatsRequest) OpName() string { return "/mgmt/v1/rpc__mgmt_inq_stats" }
+
 // InquireStatsResponse structure represents the rpc__mgmt_inq_stats operation response
 type InquireStatsResponse struct {
 	Count      uint32   `idl:"name:count" json:"count"`
@@ -524,8 +550,10 @@ type xxx_IsServerListeningOperation struct {
 	Return bool   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of rpc__mgmt_is_server_listening operation.
 func (o *xxx_IsServerListeningOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of rpc__mgmt_is_server_listening operation.
 func (o *xxx_IsServerListeningOperation) OpName() string {
 	return "/mgmt/v1/rpc__mgmt_is_server_listening"
 }
@@ -633,6 +661,17 @@ func (o *IsServerListeningRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeIsServerListeningRequest build a response structure from the given request structure.
+func (o *IsServerListeningRequest) MakeResponse() *IsServerListeningResponse {
+	return &IsServerListeningResponse{}
+}
+
+// OpNum returns the operation number of rpc__mgmt_is_server_listening operation.
+func (o *IsServerListeningRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of rpc__mgmt_is_server_listening operation.
+func (o *IsServerListeningRequest) OpName() string { return "/mgmt/v1/rpc__mgmt_is_server_listening" }
+
 // IsServerListeningResponse structure represents the rpc__mgmt_is_server_listening operation response
 type IsServerListeningResponse struct {
 	Status uint32 `idl:"name:status" json:"status"`
@@ -676,8 +715,10 @@ type xxx_StopServerListeningOperation struct {
 	Status uint32 `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of rpc__mgmt_stop_server_listening operation.
 func (o *xxx_StopServerListeningOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of rpc__mgmt_stop_server_listening operation.
 func (o *xxx_StopServerListeningOperation) OpName() string {
 	return "/mgmt/v1/rpc__mgmt_stop_server_listening"
 }
@@ -765,6 +806,19 @@ func (o *StopServerListeningRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeStopServerListeningRequest build a response structure from the given request structure.
+func (o *StopServerListeningRequest) MakeResponse() *StopServerListeningResponse {
+	return &StopServerListeningResponse{}
+}
+
+// OpNum returns the operation number of rpc__mgmt_stop_server_listening operation.
+func (o *StopServerListeningRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of rpc__mgmt_stop_server_listening operation.
+func (o *StopServerListeningRequest) OpName() string {
+	return "/mgmt/v1/rpc__mgmt_stop_server_listening"
+}
+
 // StopServerListeningResponse structure represents the rpc__mgmt_stop_server_listening operation response
 type StopServerListeningResponse struct {
 	Status uint32 `idl:"name:status" json:"status"`
@@ -807,8 +861,10 @@ type xxx_InquirePrincNameOperation struct {
 	Status        uint32 `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of rpc__mgmt_inq_princ_name operation.
 func (o *xxx_InquirePrincNameOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of rpc__mgmt_inq_princ_name operation.
 func (o *xxx_InquirePrincNameOperation) OpName() string { return "/mgmt/v1/rpc__mgmt_inq_princ_name" }
 
 func (o *xxx_InquirePrincNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -997,6 +1053,22 @@ func (o *InquirePrincNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeInquirePrincNameRequest build a response structure from the given request structure.
+func (o *InquirePrincNameRequest) MakeResponse() *InquirePrincNameResponse {
+	if o == nil {
+		return &InquirePrincNameResponse{}
+	}
+	return &InquirePrincNameResponse{
+		PrincNameSize: o.PrincNameSize,
+	}
+}
+
+// OpNum returns the operation number of rpc__mgmt_inq_princ_name operation.
+func (o *InquirePrincNameRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of rpc__mgmt_inq_princ_name operation.
+func (o *InquirePrincNameRequest) OpName() string { return "/mgmt/v1/rpc__mgmt_inq_princ_name" }
 
 // InquirePrincNameResponse structure represents the rpc__mgmt_inq_princ_name operation response
 type InquirePrincNameResponse struct {

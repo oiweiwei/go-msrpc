@@ -209,8 +209,10 @@ type xxx_RequestOperation struct {
 	Return             int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Request operation.
 func (o *xxx_RequestOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Request operation.
 func (o *xxx_RequestOperation) OpName() string { return "/ICertRequestD/v0/Request" }
 
 func (o *xxx_RequestOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -620,6 +622,17 @@ func (o *RequestRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeRequestRequest build a response structure from the given request structure.
+func (o *RequestRequest) MakeResponse() *RequestResponse {
+	return &RequestResponse{}
+}
+
+// OpNum returns the operation number of Request operation.
+func (o *RequestRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Request operation.
+func (o *RequestRequest) OpName() string { return "/ICertRequestD/v0/Request" }
+
 // RequestResponse structure represents the Request operation response
 type RequestResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -708,8 +721,10 @@ type xxx_GetCACertOperation struct {
 	Return    int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCACert operation.
 func (o *xxx_GetCACertOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetCACert operation.
 func (o *xxx_GetCACertOperation) OpName() string { return "/ICertRequestD/v0/GetCACert" }
 
 func (o *xxx_GetCACertOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -940,6 +955,17 @@ func (o *GetCACertRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetCACertRequest build a response structure from the given request structure.
+func (o *GetCACertRequest) MakeResponse() *GetCACertResponse {
+	return &GetCACertResponse{}
+}
+
+// OpNum returns the operation number of GetCACert operation.
+func (o *GetCACertRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetCACert operation.
+func (o *GetCACertRequest) OpName() string { return "/ICertRequestD/v0/GetCACert" }
+
 // GetCACertResponse structure represents the GetCACert operation response
 type GetCACertResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -992,8 +1018,10 @@ type xxx_PingOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Ping operation.
 func (o *xxx_PingOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of Ping operation.
 func (o *xxx_PingOperation) OpName() string { return "/ICertRequestD/v0/Ping" }
 
 func (o *xxx_PingOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1182,6 +1210,17 @@ func (o *PingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakePingRequest build a response structure from the given request structure.
+func (o *PingRequest) MakeResponse() *PingResponse {
+	return &PingResponse{}
+}
+
+// OpNum returns the operation number of Ping operation.
+func (o *PingRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of Ping operation.
+func (o *PingRequest) OpName() string { return "/ICertRequestD/v0/Ping" }
 
 // PingResponse structure represents the Ping operation response
 type PingResponse struct {

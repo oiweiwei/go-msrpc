@@ -144,8 +144,10 @@ type xxx_GetDiskObjectOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetDiskObject operation.
 func (o *xxx_GetDiskObjectOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetDiskObject operation.
 func (o *xxx_GetDiskObjectOperation) OpName() string { return "/IVdsServiceSw/v0/GetDiskObject" }
 
 func (o *xxx_GetDiskObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -351,6 +353,17 @@ func (o *GetDiskObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetDiskObjectRequest build a response structure from the given request structure.
+func (o *GetDiskObjectRequest) MakeResponse() *GetDiskObjectResponse {
+	return &GetDiskObjectResponse{}
+}
+
+// OpNum returns the operation number of GetDiskObject operation.
+func (o *GetDiskObjectRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetDiskObject operation.
+func (o *GetDiskObjectRequest) OpName() string { return "/IVdsServiceSw/v0/GetDiskObject" }
 
 // GetDiskObjectResponse structure represents the GetDiskObject operation response
 type GetDiskObjectResponse struct {

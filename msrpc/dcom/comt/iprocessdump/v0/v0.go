@@ -172,8 +172,10 @@ type xxx_IsSupportedOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsSupported operation.
 func (o *xxx_IsSupportedOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of IsSupported operation.
 func (o *xxx_IsSupportedOperation) OpName() string { return "/IProcessDump/v0/IsSupported" }
 
 func (o *xxx_IsSupportedOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -317,6 +319,17 @@ func (o *IsSupportedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeIsSupportedRequest build a response structure from the given request structure.
+func (o *IsSupportedRequest) MakeResponse() *IsSupportedResponse {
+	return &IsSupportedResponse{}
+}
+
+// OpNum returns the operation number of IsSupported operation.
+func (o *IsSupportedRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of IsSupported operation.
+func (o *IsSupportedRequest) OpName() string { return "/IProcessDump/v0/IsSupported" }
+
 // IsSupportedResponse structure represents the IsSupported operation response
 type IsSupportedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -367,8 +380,10 @@ type xxx_DumpProcessOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DumpProcess operation.
 func (o *xxx_DumpProcessOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of DumpProcess operation.
 func (o *xxx_DumpProcessOperation) OpName() string { return "/IProcessDump/v0/DumpProcess" }
 
 func (o *xxx_DumpProcessOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -682,6 +697,17 @@ func (o *DumpProcessRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeDumpProcessRequest build a response structure from the given request structure.
+func (o *DumpProcessRequest) MakeResponse() *DumpProcessResponse {
+	return &DumpProcessResponse{}
+}
+
+// OpNum returns the operation number of DumpProcess operation.
+func (o *DumpProcessRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of DumpProcess operation.
+func (o *DumpProcessRequest) OpName() string { return "/IProcessDump/v0/DumpProcess" }
 
 // DumpProcessResponse structure represents the DumpProcess operation response
 type DumpProcessResponse struct {

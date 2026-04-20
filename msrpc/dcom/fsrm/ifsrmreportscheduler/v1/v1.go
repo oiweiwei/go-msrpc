@@ -285,8 +285,10 @@ type xxx_VerifyNamespacesOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of VerifyNamespaces operation.
 func (o *xxx_VerifyNamespacesOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of VerifyNamespaces operation.
 func (o *xxx_VerifyNamespacesOperation) OpName() string {
 	return "/IFsrmReportScheduler/v1/VerifyNamespaces"
 }
@@ -486,6 +488,17 @@ func (o *VerifyNamespacesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeVerifyNamespacesRequest build a response structure from the given request structure.
+func (o *VerifyNamespacesRequest) MakeResponse() *VerifyNamespacesResponse {
+	return &VerifyNamespacesResponse{}
+}
+
+// OpNum returns the operation number of VerifyNamespaces operation.
+func (o *VerifyNamespacesRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of VerifyNamespaces operation.
+func (o *VerifyNamespacesRequest) OpName() string { return "/IFsrmReportScheduler/v1/VerifyNamespaces" }
+
 // VerifyNamespacesResponse structure represents the VerifyNamespaces operation response
 type VerifyNamespacesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -535,8 +548,10 @@ type xxx_CreateScheduleTaskOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateScheduleTask operation.
 func (o *xxx_CreateScheduleTaskOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of CreateScheduleTask operation.
 func (o *xxx_CreateScheduleTaskOperation) OpName() string {
 	return "/IFsrmReportScheduler/v1/CreateScheduleTask"
 }
@@ -835,6 +850,19 @@ func (o *CreateScheduleTaskRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeCreateScheduleTaskRequest build a response structure from the given request structure.
+func (o *CreateScheduleTaskRequest) MakeResponse() *CreateScheduleTaskResponse {
+	return &CreateScheduleTaskResponse{}
+}
+
+// OpNum returns the operation number of CreateScheduleTask operation.
+func (o *CreateScheduleTaskRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of CreateScheduleTask operation.
+func (o *CreateScheduleTaskRequest) OpName() string {
+	return "/IFsrmReportScheduler/v1/CreateScheduleTask"
+}
+
 // CreateScheduleTaskResponse structure represents the CreateScheduleTask operation response
 type CreateScheduleTaskResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -884,8 +912,10 @@ type xxx_ModifyScheduleTaskOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ModifyScheduleTask operation.
 func (o *xxx_ModifyScheduleTaskOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ModifyScheduleTask operation.
 func (o *xxx_ModifyScheduleTaskOperation) OpName() string {
 	return "/IFsrmReportScheduler/v1/ModifyScheduleTask"
 }
@@ -1184,6 +1214,19 @@ func (o *ModifyScheduleTaskRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeModifyScheduleTaskRequest build a response structure from the given request structure.
+func (o *ModifyScheduleTaskRequest) MakeResponse() *ModifyScheduleTaskResponse {
+	return &ModifyScheduleTaskResponse{}
+}
+
+// OpNum returns the operation number of ModifyScheduleTask operation.
+func (o *ModifyScheduleTaskRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ModifyScheduleTask operation.
+func (o *ModifyScheduleTaskRequest) OpName() string {
+	return "/IFsrmReportScheduler/v1/ModifyScheduleTask"
+}
+
 // ModifyScheduleTaskResponse structure represents the ModifyScheduleTask operation response
 type ModifyScheduleTaskResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1231,8 +1274,10 @@ type xxx_DeleteScheduleTaskOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteScheduleTask operation.
 func (o *xxx_DeleteScheduleTaskOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of DeleteScheduleTask operation.
 func (o *xxx_DeleteScheduleTaskOperation) OpName() string {
 	return "/IFsrmReportScheduler/v1/DeleteScheduleTask"
 }
@@ -1426,6 +1471,19 @@ func (o *DeleteScheduleTaskRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeDeleteScheduleTaskRequest build a response structure from the given request structure.
+func (o *DeleteScheduleTaskRequest) MakeResponse() *DeleteScheduleTaskResponse {
+	return &DeleteScheduleTaskResponse{}
+}
+
+// OpNum returns the operation number of DeleteScheduleTask operation.
+func (o *DeleteScheduleTaskRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of DeleteScheduleTask operation.
+func (o *DeleteScheduleTaskRequest) OpName() string {
+	return "/IFsrmReportScheduler/v1/DeleteScheduleTask"
 }
 
 // DeleteScheduleTaskResponse structure represents the DeleteScheduleTask operation response

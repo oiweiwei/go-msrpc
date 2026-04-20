@@ -205,8 +205,10 @@ type xxx_GetUpdatesOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetUpdates operation.
 func (o *xxx_GetUpdatesOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetUpdates operation.
 func (o *xxx_GetUpdatesOperation) OpName() string { return "/IClusterUpdate/v0/GetUpdates" }
 
 func (o *xxx_GetUpdatesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -408,6 +410,17 @@ func (o *GetUpdatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetUpdatesRequest build a response structure from the given request structure.
+func (o *GetUpdatesRequest) MakeResponse() *GetUpdatesResponse {
+	return &GetUpdatesResponse{}
+}
+
+// OpNum returns the operation number of GetUpdates operation.
+func (o *GetUpdatesRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetUpdates operation.
+func (o *GetUpdatesRequest) OpName() string { return "/IClusterUpdate/v0/GetUpdates" }
+
 // GetUpdatesResponse structure represents the GetUpdates operation response
 type GetUpdatesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -503,8 +516,10 @@ type xxx_CountOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Count operation.
 func (o *xxx_CountOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Count operation.
 func (o *xxx_CountOperation) OpName() string { return "/IClusterUpdate/v0/Count" }
 
 func (o *xxx_CountOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -659,6 +674,17 @@ func (o *CountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCountRequest build a response structure from the given request structure.
+func (o *CountRequest) MakeResponse() *CountResponse {
+	return &CountResponse{}
+}
+
+// OpNum returns the operation number of Count operation.
+func (o *CountRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Count operation.
+func (o *CountRequest) OpName() string { return "/IClusterUpdate/v0/Count" }
 
 // CountResponse structure represents the Count operation response
 type CountResponse struct {

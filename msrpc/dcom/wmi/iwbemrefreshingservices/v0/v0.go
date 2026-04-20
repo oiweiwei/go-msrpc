@@ -299,8 +299,10 @@ type xxx_AddObjectToRefresherOperation struct {
 	Return                 int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddObjectToRefresher operation.
 func (o *xxx_AddObjectToRefresherOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of AddObjectToRefresher operation.
 func (o *xxx_AddObjectToRefresherOperation) OpName() string {
 	return "/IWbemRefreshingServices/v0/AddObjectToRefresher"
 }
@@ -620,6 +622,19 @@ func (o *AddObjectToRefresherRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeAddObjectToRefresherRequest build a response structure from the given request structure.
+func (o *AddObjectToRefresherRequest) MakeResponse() *AddObjectToRefresherResponse {
+	return &AddObjectToRefresherResponse{}
+}
+
+// OpNum returns the operation number of AddObjectToRefresher operation.
+func (o *AddObjectToRefresherRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of AddObjectToRefresher operation.
+func (o *AddObjectToRefresherRequest) OpName() string {
+	return "/IWbemRefreshingServices/v0/AddObjectToRefresher"
+}
+
 // AddObjectToRefresherResponse structure represents the AddObjectToRefresher operation response
 type AddObjectToRefresherResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -684,8 +699,10 @@ type xxx_AddObjectToRefresherByTemplateOperation struct {
 	Return                 int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddObjectToRefresherByTemplate operation.
 func (o *xxx_AddObjectToRefresherByTemplateOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of AddObjectToRefresherByTemplate operation.
 func (o *xxx_AddObjectToRefresherByTemplateOperation) OpName() string {
 	return "/IWbemRefreshingServices/v0/AddObjectToRefresherByTemplate"
 }
@@ -1040,6 +1057,19 @@ func (o *AddObjectToRefresherByTemplateRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeAddObjectToRefresherByTemplateRequest build a response structure from the given request structure.
+func (o *AddObjectToRefresherByTemplateRequest) MakeResponse() *AddObjectToRefresherByTemplateResponse {
+	return &AddObjectToRefresherByTemplateResponse{}
+}
+
+// OpNum returns the operation number of AddObjectToRefresherByTemplate operation.
+func (o *AddObjectToRefresherByTemplateRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of AddObjectToRefresherByTemplate operation.
+func (o *AddObjectToRefresherByTemplateRequest) OpName() string {
+	return "/IWbemRefreshingServices/v0/AddObjectToRefresherByTemplate"
+}
+
 // AddObjectToRefresherByTemplateResponse structure represents the AddObjectToRefresherByTemplate operation response
 type AddObjectToRefresherByTemplateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1104,8 +1134,10 @@ type xxx_AddEnumToRefresherOperation struct {
 	Return                 int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddEnumToRefresher operation.
 func (o *xxx_AddEnumToRefresherOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of AddEnumToRefresher operation.
 func (o *xxx_AddEnumToRefresherOperation) OpName() string {
 	return "/IWbemRefreshingServices/v0/AddEnumToRefresher"
 }
@@ -1425,6 +1457,19 @@ func (o *AddEnumToRefresherRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeAddEnumToRefresherRequest build a response structure from the given request structure.
+func (o *AddEnumToRefresherRequest) MakeResponse() *AddEnumToRefresherResponse {
+	return &AddEnumToRefresherResponse{}
+}
+
+// OpNum returns the operation number of AddEnumToRefresher operation.
+func (o *AddEnumToRefresherRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of AddEnumToRefresher operation.
+func (o *AddEnumToRefresherRequest) OpName() string {
+	return "/IWbemRefreshingServices/v0/AddEnumToRefresher"
+}
+
 // AddEnumToRefresherResponse structure represents the AddEnumToRefresher operation response
 type AddEnumToRefresherResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1487,8 +1532,10 @@ type xxx_RemoveObjectFromRefresherOperation struct {
 	Return                 int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoveObjectFromRefresher operation.
 func (o *xxx_RemoveObjectFromRefresherOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of RemoveObjectFromRefresher operation.
 func (o *xxx_RemoveObjectFromRefresherOperation) OpName() string {
 	return "/IWbemRefreshingServices/v0/RemoveObjectFromRefresher"
 }
@@ -1729,6 +1776,19 @@ func (o *RemoveObjectFromRefresherRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeRemoveObjectFromRefresherRequest build a response structure from the given request structure.
+func (o *RemoveObjectFromRefresherRequest) MakeResponse() *RemoveObjectFromRefresherResponse {
+	return &RemoveObjectFromRefresherResponse{}
+}
+
+// OpNum returns the operation number of RemoveObjectFromRefresher operation.
+func (o *RemoveObjectFromRefresherRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of RemoveObjectFromRefresher operation.
+func (o *RemoveObjectFromRefresherRequest) OpName() string {
+	return "/IWbemRefreshingServices/v0/RemoveObjectFromRefresher"
+}
+
 // RemoveObjectFromRefresherResponse structure represents the RemoveObjectFromRefresher operation response
 type RemoveObjectFromRefresherResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1786,8 +1846,10 @@ type xxx_GetRemoteRefresherOperation struct {
 	Return                 int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetRemoteRefresher operation.
 func (o *xxx_GetRemoteRefresherOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetRemoteRefresher operation.
 func (o *xxx_GetRemoteRefresherOperation) OpName() string {
 	return "/IWbemRefreshingServices/v0/GetRemoteRefresher"
 }
@@ -2078,6 +2140,19 @@ func (o *GetRemoteRefresherRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetRemoteRefresherRequest build a response structure from the given request structure.
+func (o *GetRemoteRefresherRequest) MakeResponse() *GetRemoteRefresherResponse {
+	return &GetRemoteRefresherResponse{}
+}
+
+// OpNum returns the operation number of GetRemoteRefresher operation.
+func (o *GetRemoteRefresherRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetRemoteRefresher operation.
+func (o *GetRemoteRefresherRequest) OpName() string {
+	return "/IWbemRefreshingServices/v0/GetRemoteRefresher"
+}
+
 // GetRemoteRefresherResponse structure represents the GetRemoteRefresher operation response
 type GetRemoteRefresherResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2147,8 +2222,10 @@ type xxx_ReconnectRemoteRefresherOperation struct {
 	Return                 int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ReconnectRemoteRefresher operation.
 func (o *xxx_ReconnectRemoteRefresherOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ReconnectRemoteRefresher operation.
 func (o *xxx_ReconnectRemoteRefresherOperation) OpName() string {
 	return "/IWbemRefreshingServices/v0/ReconnectRemoteRefresher"
 }
@@ -2573,6 +2650,24 @@ func (o *ReconnectRemoteRefresherRequest) UnmarshalNDR(ctx context.Context, r nd
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeReconnectRemoteRefresherRequest build a response structure from the given request structure.
+func (o *ReconnectRemoteRefresherRequest) MakeResponse() *ReconnectRemoteRefresherResponse {
+	if o == nil {
+		return &ReconnectRemoteRefresherResponse{}
+	}
+	return &ReconnectRemoteRefresherResponse{
+		ObjectsLength: o.ObjectsLength,
+	}
+}
+
+// OpNum returns the operation number of ReconnectRemoteRefresher operation.
+func (o *ReconnectRemoteRefresherRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ReconnectRemoteRefresher operation.
+func (o *ReconnectRemoteRefresherRequest) OpName() string {
+	return "/IWbemRefreshingServices/v0/ReconnectRemoteRefresher"
 }
 
 // ReconnectRemoteRefresherResponse structure represents the ReconnectRemoteRefresher operation response

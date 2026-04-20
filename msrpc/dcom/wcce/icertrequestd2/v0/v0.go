@@ -232,8 +232,10 @@ type xxx_Request2Operation struct {
 	Return             int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Request2 operation.
 func (o *xxx_Request2Operation) OpNum() int { return 6 }
 
+// OpName returns the operation name of Request2 operation.
 func (o *xxx_Request2Operation) OpName() string { return "/ICertRequestD2/v0/Request2" }
 
 func (o *xxx_Request2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -685,6 +687,17 @@ func (o *Request2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeRequest2Request build a response structure from the given request structure.
+func (o *Request2Request) MakeResponse() *Request2Response {
+	return &Request2Response{}
+}
+
+// OpNum returns the operation number of Request2 operation.
+func (o *Request2Request) OpNum() int { return 6 }
+
+// OpName returns the operation name of Request2 operation.
+func (o *Request2Request) OpName() string { return "/ICertRequestD2/v0/Request2" }
+
 // Request2Response structure represents the Request2 operation response
 type Request2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -761,8 +774,10 @@ type xxx_GetCAPropertyOperation struct {
 	Return        int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCAProperty operation.
 func (o *xxx_GetCAPropertyOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetCAProperty operation.
 func (o *xxx_GetCAPropertyOperation) OpName() string { return "/ICertRequestD2/v0/GetCAProperty" }
 
 func (o *xxx_GetCAPropertyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1180,6 +1195,17 @@ func (o *GetCAPropertyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetCAPropertyRequest build a response structure from the given request structure.
+func (o *GetCAPropertyRequest) MakeResponse() *GetCAPropertyResponse {
+	return &GetCAPropertyResponse{}
+}
+
+// OpNum returns the operation number of GetCAProperty operation.
+func (o *GetCAPropertyRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetCAProperty operation.
+func (o *GetCAPropertyRequest) OpName() string { return "/ICertRequestD2/v0/GetCAProperty" }
+
 // GetCAPropertyResponse structure represents the GetCAProperty operation response
 type GetCAPropertyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1235,8 +1261,10 @@ type xxx_GetCAPropertyInfoOperation struct {
 	Return        int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCAPropertyInfo operation.
 func (o *xxx_GetCAPropertyInfoOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of GetCAPropertyInfo operation.
 func (o *xxx_GetCAPropertyInfoOperation) OpName() string {
 	return "/ICertRequestD2/v0/GetCAPropertyInfo"
 }
@@ -1465,6 +1493,17 @@ func (o *GetCAPropertyInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetCAPropertyInfoRequest build a response structure from the given request structure.
+func (o *GetCAPropertyInfoRequest) MakeResponse() *GetCAPropertyInfoResponse {
+	return &GetCAPropertyInfoResponse{}
+}
+
+// OpNum returns the operation number of GetCAPropertyInfo operation.
+func (o *GetCAPropertyInfoRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GetCAPropertyInfo operation.
+func (o *GetCAPropertyInfoRequest) OpName() string { return "/ICertRequestD2/v0/GetCAPropertyInfo" }
+
 // GetCAPropertyInfoResponse structure represents the GetCAPropertyInfo operation response
 type GetCAPropertyInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1522,8 +1561,10 @@ type xxx_Ping2Operation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Ping2 operation.
 func (o *xxx_Ping2Operation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Ping2 operation.
 func (o *xxx_Ping2Operation) OpName() string { return "/ICertRequestD2/v0/Ping2" }
 
 func (o *xxx_Ping2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1710,6 +1751,17 @@ func (o *Ping2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakePing2Request build a response structure from the given request structure.
+func (o *Ping2Request) MakeResponse() *Ping2Response {
+	return &Ping2Response{}
+}
+
+// OpNum returns the operation number of Ping2 operation.
+func (o *Ping2Request) OpNum() int { return 9 }
+
+// OpName returns the operation name of Ping2 operation.
+func (o *Ping2Request) OpName() string { return "/ICertRequestD2/v0/Ping2" }
 
 // Ping2Response structure represents the Ping2 operation response
 type Ping2Response struct {

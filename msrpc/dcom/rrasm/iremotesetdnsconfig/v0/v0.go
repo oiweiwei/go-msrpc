@@ -139,8 +139,10 @@ type xxx_SetDNSConfigOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetDnsConfig operation.
 func (o *xxx_SetDNSConfigOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SetDnsConfig operation.
 func (o *xxx_SetDNSConfigOperation) OpName() string { return "/IRemoteSetDnsConfig/v0/SetDnsConfig" }
 
 func (o *xxx_SetDNSConfigOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -313,6 +315,17 @@ func (o *SetDNSConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetDNSConfigRequest build a response structure from the given request structure.
+func (o *SetDNSConfigRequest) MakeResponse() *SetDNSConfigResponse {
+	return &SetDNSConfigResponse{}
+}
+
+// OpNum returns the operation number of SetDnsConfig operation.
+func (o *SetDNSConfigRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SetDnsConfig operation.
+func (o *SetDNSConfigRequest) OpName() string { return "/IRemoteSetDnsConfig/v0/SetDnsConfig" }
 
 // SetDNSConfigResponse structure represents the SetDnsConfig operation response
 type SetDNSConfigResponse struct {

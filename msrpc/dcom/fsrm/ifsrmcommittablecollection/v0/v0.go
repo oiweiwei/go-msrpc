@@ -141,8 +141,10 @@ type xxx_CommitOperation struct {
 	Return  int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Commit operation.
 func (o *xxx_CommitOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of Commit operation.
 func (o *xxx_CommitOperation) OpName() string { return "/IFsrmCommittableCollection/v0/Commit" }
 
 func (o *xxx_CommitOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -346,6 +348,17 @@ func (o *CommitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCommitRequest build a response structure from the given request structure.
+func (o *CommitRequest) MakeResponse() *CommitResponse {
+	return &CommitResponse{}
+}
+
+// OpNum returns the operation number of Commit operation.
+func (o *CommitRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of Commit operation.
+func (o *CommitRequest) OpName() string { return "/IFsrmCommittableCollection/v0/Commit" }
 
 // CommitResponse structure represents the Commit operation response
 type CommitResponse struct {

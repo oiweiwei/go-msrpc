@@ -1005,8 +1005,10 @@ type xxx_GetServerPortOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_GetServerPort operation.
 func (o *xxx_GetServerPortOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of R_GetServerPort operation.
 func (o *xxx_GetServerPortOperation) OpName() string { return "/RemoteRead/v1/R_GetServerPort" }
 
 func (o *xxx_GetServerPortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1092,6 +1094,17 @@ func (o *GetServerPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetServerPortRequest build a response structure from the given request structure.
+func (o *GetServerPortRequest) MakeResponse() *GetServerPortResponse {
+	return &GetServerPortResponse{}
+}
+
+// OpNum returns the operation number of R_GetServerPort operation.
+func (o *GetServerPortRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of R_GetServerPort operation.
+func (o *GetServerPortRequest) OpName() string { return "/RemoteRead/v1/R_GetServerPort" }
+
 // GetServerPortResponse structure represents the R_GetServerPort operation response
 type GetServerPortResponse struct {
 	// Return: The R_GetServerPort return value.
@@ -1141,8 +1154,10 @@ type xxx_OpenQueueOperation struct {
 	Context          *QueueSerialize   `idl:"name:pphContext" json:"context"`
 }
 
+// OpNum returns the operation number of R_OpenQueue operation.
 func (o *xxx_OpenQueueOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of R_OpenQueue operation.
 func (o *xxx_OpenQueueOperation) OpName() string { return "/RemoteRead/v1/R_OpenQueue" }
 
 func (o *xxx_OpenQueueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1476,6 +1491,17 @@ func (o *OpenQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeOpenQueueRequest build a response structure from the given request structure.
+func (o *OpenQueueRequest) MakeResponse() *OpenQueueResponse {
+	return &OpenQueueResponse{}
+}
+
+// OpNum returns the operation number of R_OpenQueue operation.
+func (o *OpenQueueRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of R_OpenQueue operation.
+func (o *OpenQueueRequest) OpName() string { return "/RemoteRead/v1/R_OpenQueue" }
+
 // OpenQueueResponse structure represents the R_OpenQueue operation response
 type OpenQueueResponse struct {
 	// pphContext: MUST be set by the server to a QUEUE_CONTEXT_HANDLE_SERIALIZE handle.
@@ -1517,8 +1543,10 @@ type xxx_CloseQueueOperation struct {
 	Return  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_CloseQueue operation.
 func (o *xxx_CloseQueueOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of R_CloseQueue operation.
 func (o *xxx_CloseQueueOperation) OpName() string { return "/RemoteRead/v1/R_CloseQueue" }
 
 func (o *xxx_CloseQueueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1654,6 +1682,17 @@ func (o *CloseQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeCloseQueueRequest build a response structure from the given request structure.
+func (o *CloseQueueRequest) MakeResponse() *CloseQueueResponse {
+	return &CloseQueueResponse{}
+}
+
+// OpNum returns the operation number of R_CloseQueue operation.
+func (o *CloseQueueRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of R_CloseQueue operation.
+func (o *CloseQueueRequest) OpName() string { return "/RemoteRead/v1/R_CloseQueue" }
+
 // CloseQueueResponse structure represents the R_CloseQueue operation response
 type CloseQueueResponse struct {
 	// pphContext: MUST be set by the client to the QUEUE_CONTEXT_HANDLE_SERIALIZE handle
@@ -1704,8 +1743,10 @@ type xxx_CreateCursorOperation struct {
 	Return  int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_CreateCursor operation.
 func (o *xxx_CreateCursorOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of R_CreateCursor operation.
 func (o *xxx_CreateCursorOperation) OpName() string { return "/RemoteRead/v1/R_CreateCursor" }
 
 func (o *xxx_CreateCursorOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1833,6 +1874,17 @@ func (o *CreateCursorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCreateCursorRequest build a response structure from the given request structure.
+func (o *CreateCursorRequest) MakeResponse() *CreateCursorResponse {
+	return &CreateCursorResponse{}
+}
+
+// OpNum returns the operation number of R_CreateCursor operation.
+func (o *CreateCursorRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of R_CreateCursor operation.
+func (o *CreateCursorRequest) OpName() string { return "/RemoteRead/v1/R_CreateCursor" }
+
 // CreateCursorResponse structure represents the R_CreateCursor operation response
 type CreateCursorResponse struct {
 	// phCursor: MUST be set by the server to a handle for the created cursor.
@@ -1879,8 +1931,10 @@ type xxx_CloseCursorOperation struct {
 	Return  int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_CloseCursor operation.
 func (o *xxx_CloseCursorOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of R_CloseCursor operation.
 func (o *xxx_CloseCursorOperation) OpName() string { return "/RemoteRead/v1/R_CloseCursor" }
 
 func (o *xxx_CloseCursorOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2014,6 +2068,17 @@ func (o *CloseCursorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCloseCursorRequest build a response structure from the given request structure.
+func (o *CloseCursorRequest) MakeResponse() *CloseCursorResponse {
+	return &CloseCursorResponse{}
+}
+
+// OpNum returns the operation number of R_CloseCursor operation.
+func (o *CloseCursorRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of R_CloseCursor operation.
+func (o *CloseCursorRequest) OpName() string { return "/RemoteRead/v1/R_CloseCursor" }
+
 // CloseCursorResponse structure represents the R_CloseCursor operation response
 type CloseCursorResponse struct {
 	// Return: The R_CloseCursor return value.
@@ -2055,8 +2120,10 @@ type xxx_PurgeQueueOperation struct {
 	Return  int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_PurgeQueue operation.
 func (o *xxx_PurgeQueueOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of R_PurgeQueue operation.
 func (o *xxx_PurgeQueueOperation) OpName() string { return "/RemoteRead/v1/R_PurgeQueue" }
 
 func (o *xxx_PurgeQueueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2172,6 +2239,17 @@ func (o *PurgeQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakePurgeQueueRequest build a response structure from the given request structure.
+func (o *PurgeQueueRequest) MakeResponse() *PurgeQueueResponse {
+	return &PurgeQueueResponse{}
+}
+
+// OpNum returns the operation number of R_PurgeQueue operation.
+func (o *PurgeQueueRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of R_PurgeQueue operation.
+func (o *PurgeQueueRequest) OpName() string { return "/RemoteRead/v1/R_PurgeQueue" }
+
 // PurgeQueueResponse structure represents the R_PurgeQueue operation response
 type PurgeQueueResponse struct {
 	// Return: The R_PurgeQueue return value.
@@ -2224,8 +2302,10 @@ type xxx_StartReceiveOperation struct {
 	Return                 int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_StartReceive operation.
 func (o *xxx_StartReceiveOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of R_StartReceive operation.
 func (o *xxx_StartReceiveOperation) OpName() string { return "/RemoteRead/v1/R_StartReceive" }
 
 func (o *xxx_StartReceiveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2677,6 +2757,17 @@ func (o *StartReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeStartReceiveRequest build a response structure from the given request structure.
+func (o *StartReceiveRequest) MakeResponse() *StartReceiveResponse {
+	return &StartReceiveResponse{}
+}
+
+// OpNum returns the operation number of R_StartReceive operation.
+func (o *StartReceiveRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of R_StartReceive operation.
+func (o *StartReceiveRequest) OpName() string { return "/RemoteRead/v1/R_StartReceive" }
+
 // StartReceiveResponse structure represents the R_StartReceive operation response
 type StartReceiveResponse struct {
 	// pdwArriveTime: The server MUST set this value to the time that the message was added
@@ -2804,8 +2895,10 @@ type xxx_CancelReceiveOperation struct {
 	Return    int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_CancelReceive operation.
 func (o *xxx_CancelReceiveOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of R_CancelReceive operation.
 func (o *xxx_CancelReceiveOperation) OpName() string { return "/RemoteRead/v1/R_CancelReceive" }
 
 func (o *xxx_CancelReceiveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2940,6 +3033,17 @@ func (o *CancelReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeCancelReceiveRequest build a response structure from the given request structure.
+func (o *CancelReceiveRequest) MakeResponse() *CancelReceiveResponse {
+	return &CancelReceiveResponse{}
+}
+
+// OpNum returns the operation number of R_CancelReceive operation.
+func (o *CancelReceiveRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of R_CancelReceive operation.
+func (o *CancelReceiveRequest) OpName() string { return "/RemoteRead/v1/R_CancelReceive" }
+
 // CancelReceiveResponse structure represents the R_CancelReceive operation response
 type CancelReceiveResponse struct {
 	// Return: The R_CancelReceive return value.
@@ -2983,8 +3087,10 @@ type xxx_EndReceiveOperation struct {
 	Return    int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_EndReceive operation.
 func (o *xxx_EndReceiveOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of R_EndReceive operation.
 func (o *xxx_EndReceiveOperation) OpName() string { return "/RemoteRead/v1/R_EndReceive" }
 
 func (o *xxx_EndReceiveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3154,6 +3260,17 @@ func (o *EndReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeEndReceiveRequest build a response structure from the given request structure.
+func (o *EndReceiveRequest) MakeResponse() *EndReceiveResponse {
+	return &EndReceiveResponse{}
+}
+
+// OpNum returns the operation number of R_EndReceive operation.
+func (o *EndReceiveRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of R_EndReceive operation.
+func (o *EndReceiveRequest) OpName() string { return "/RemoteRead/v1/R_EndReceive" }
+
 // EndReceiveResponse structure represents the R_EndReceive operation response
 type EndReceiveResponse struct {
 	// Return: The R_EndReceive return value.
@@ -3198,8 +3315,10 @@ type xxx_MoveMessageOperation struct {
 	Return        int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_MoveMessage operation.
 func (o *xxx_MoveMessageOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of R_MoveMessage operation.
 func (o *xxx_MoveMessageOperation) OpName() string { return "/RemoteRead/v1/R_MoveMessage" }
 
 func (o *xxx_MoveMessageOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3382,6 +3501,17 @@ func (o *MoveMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeMoveMessageRequest build a response structure from the given request structure.
+func (o *MoveMessageRequest) MakeResponse() *MoveMessageResponse {
+	return &MoveMessageResponse{}
+}
+
+// OpNum returns the operation number of R_MoveMessage operation.
+func (o *MoveMessageRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of R_MoveMessage operation.
+func (o *MoveMessageRequest) OpName() string { return "/RemoteRead/v1/R_MoveMessage" }
+
 // MoveMessageResponse structure represents the R_MoveMessage operation response
 type MoveMessageResponse struct {
 	// Return: The R_MoveMessage return value.
@@ -3432,8 +3562,10 @@ type xxx_OpenQueueForMoveOperation struct {
 	Context          *QueueSerialize   `idl:"name:pphContext" json:"context"`
 }
 
+// OpNum returns the operation number of R_OpenQueueForMove operation.
 func (o *xxx_OpenQueueForMoveOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of R_OpenQueueForMove operation.
 func (o *xxx_OpenQueueForMoveOperation) OpName() string { return "/RemoteRead/v1/R_OpenQueueForMove" }
 
 func (o *xxx_OpenQueueForMoveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3748,6 +3880,17 @@ func (o *OpenQueueForMoveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeOpenQueueForMoveRequest build a response structure from the given request structure.
+func (o *OpenQueueForMoveRequest) MakeResponse() *OpenQueueForMoveResponse {
+	return &OpenQueueForMoveResponse{}
+}
+
+// OpNum returns the operation number of R_OpenQueueForMove operation.
+func (o *OpenQueueForMoveRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of R_OpenQueueForMove operation.
+func (o *OpenQueueForMoveRequest) OpName() string { return "/RemoteRead/v1/R_OpenQueueForMove" }
+
 // OpenQueueForMoveResponse structure represents the R_OpenQueueForMove operation response
 type OpenQueueForMoveResponse struct {
 	// pMoveContext: The server MUST set this parameter to a pointer to a QUEUE_CONTEXT_HANDLE_SERIALIZE
@@ -3804,8 +3947,10 @@ type xxx_EnlistRemoteTransactionOperation struct {
 	Return                 int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMEnlistRemoteTransaction operation.
 func (o *xxx_EnlistRemoteTransactionOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of R_QMEnlistRemoteTransaction operation.
 func (o *xxx_EnlistRemoteTransactionOperation) OpName() string {
 	return "/RemoteRead/v1/R_QMEnlistRemoteTransaction"
 }
@@ -4025,6 +4170,19 @@ func (o *EnlistRemoteTransactionRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeEnlistRemoteTransactionRequest build a response structure from the given request structure.
+func (o *EnlistRemoteTransactionRequest) MakeResponse() *EnlistRemoteTransactionResponse {
+	return &EnlistRemoteTransactionResponse{}
+}
+
+// OpNum returns the operation number of R_QMEnlistRemoteTransaction operation.
+func (o *EnlistRemoteTransactionRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of R_QMEnlistRemoteTransaction operation.
+func (o *EnlistRemoteTransactionRequest) OpName() string {
+	return "/RemoteRead/v1/R_QMEnlistRemoteTransaction"
+}
+
 // EnlistRemoteTransactionResponse structure represents the R_QMEnlistRemoteTransaction operation response
 type EnlistRemoteTransactionResponse struct {
 	// Return: The R_QMEnlistRemoteTransaction return value.
@@ -4078,8 +4236,10 @@ type xxx_StartTransactionalReceiveOperation struct {
 	Return                 int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_StartTransactionalReceive operation.
 func (o *xxx_StartTransactionalReceiveOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of R_StartTransactionalReceive operation.
 func (o *xxx_StartTransactionalReceiveOperation) OpName() string {
 	return "/RemoteRead/v1/R_StartTransactionalReceive"
 }
@@ -4561,6 +4721,19 @@ func (o *StartTransactionalReceiveRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeStartTransactionalReceiveRequest build a response structure from the given request structure.
+func (o *StartTransactionalReceiveRequest) MakeResponse() *StartTransactionalReceiveResponse {
+	return &StartTransactionalReceiveResponse{}
+}
+
+// OpNum returns the operation number of R_StartTransactionalReceive operation.
+func (o *StartTransactionalReceiveRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of R_StartTransactionalReceive operation.
+func (o *StartTransactionalReceiveRequest) OpName() string {
+	return "/RemoteRead/v1/R_StartTransactionalReceive"
+}
+
 // StartTransactionalReceiveResponse structure represents the R_StartTransactionalReceive operation response
 type StartTransactionalReceiveResponse struct {
 	// pdwArriveTime: The server MUST set this value to the time that the message was added
@@ -4687,8 +4860,10 @@ type xxx_SetUserAcknowledgementClassOperation struct {
 	Return   int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_SetUserAcknowledgementClass operation.
 func (o *xxx_SetUserAcknowledgementClassOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of R_SetUserAcknowledgementClass operation.
 func (o *xxx_SetUserAcknowledgementClassOperation) OpName() string {
 	return "/RemoteRead/v1/R_SetUserAcknowledgementClass"
 }
@@ -4852,6 +5027,19 @@ func (o *SetUserAcknowledgementClassRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeSetUserAcknowledgementClassRequest build a response structure from the given request structure.
+func (o *SetUserAcknowledgementClassRequest) MakeResponse() *SetUserAcknowledgementClassResponse {
+	return &SetUserAcknowledgementClassResponse{}
+}
+
+// OpNum returns the operation number of R_SetUserAcknowledgementClass operation.
+func (o *SetUserAcknowledgementClassRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of R_SetUserAcknowledgementClass operation.
+func (o *SetUserAcknowledgementClassRequest) OpName() string {
+	return "/RemoteRead/v1/R_SetUserAcknowledgementClass"
+}
+
 // SetUserAcknowledgementClassResponse structure represents the R_SetUserAcknowledgementClass operation response
 type SetUserAcknowledgementClassResponse struct {
 	// Return: The R_SetUserAcknowledgementClass return value.
@@ -4895,8 +5083,10 @@ type xxx_EndTransactionalReceiveOperation struct {
 	Return    int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_EndTransactionalReceive operation.
 func (o *xxx_EndTransactionalReceiveOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of R_EndTransactionalReceive operation.
 func (o *xxx_EndTransactionalReceiveOperation) OpName() string {
 	return "/RemoteRead/v1/R_EndTransactionalReceive"
 }
@@ -5067,6 +5257,19 @@ func (o *EndTransactionalReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeEndTransactionalReceiveRequest build a response structure from the given request structure.
+func (o *EndTransactionalReceiveRequest) MakeResponse() *EndTransactionalReceiveResponse {
+	return &EndTransactionalReceiveResponse{}
+}
+
+// OpNum returns the operation number of R_EndTransactionalReceive operation.
+func (o *EndTransactionalReceiveRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of R_EndTransactionalReceive operation.
+func (o *EndTransactionalReceiveRequest) OpName() string {
+	return "/RemoteRead/v1/R_EndTransactionalReceive"
 }
 
 // EndTransactionalReceiveResponse structure represents the R_EndTransactionalReceive operation response

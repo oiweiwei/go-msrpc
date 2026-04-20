@@ -148,8 +148,10 @@ type xxx_SetCOMCatalogBehaviourOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetCOMCatalogBehaviour operation.
 func (o *xxx_SetCOMCatalogBehaviourOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SetCOMCatalogBehaviour operation.
 func (o *xxx_SetCOMCatalogBehaviourOperation) OpName() string {
 	return "/IEventSystemInitialize/v0/SetCOMCatalogBehaviour"
 }
@@ -318,6 +320,19 @@ func (o *SetCOMCatalogBehaviourRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetCOMCatalogBehaviourRequest build a response structure from the given request structure.
+func (o *SetCOMCatalogBehaviourRequest) MakeResponse() *SetCOMCatalogBehaviourResponse {
+	return &SetCOMCatalogBehaviourResponse{}
+}
+
+// OpNum returns the operation number of SetCOMCatalogBehaviour operation.
+func (o *SetCOMCatalogBehaviourRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SetCOMCatalogBehaviour operation.
+func (o *SetCOMCatalogBehaviourRequest) OpName() string {
+	return "/IEventSystemInitialize/v0/SetCOMCatalogBehaviour"
 }
 
 // SetCOMCatalogBehaviourResponse structure represents the SetCOMCatalogBehaviour operation response

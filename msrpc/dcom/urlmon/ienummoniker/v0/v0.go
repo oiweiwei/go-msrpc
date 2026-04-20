@@ -211,8 +211,10 @@ type xxx_NextOperation struct {
 	Return  int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Next operation.
 func (o *xxx_NextOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Next operation.
 func (o *xxx_NextOperation) OpName() string { return "/IEnumMoniker/v0/Next" }
 
 func (o *xxx_NextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -462,6 +464,22 @@ func (o *NextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeNextRequest build a response structure from the given request structure.
+func (o *NextRequest) MakeResponse() *NextResponse {
+	if o == nil {
+		return &NextResponse{}
+	}
+	return &NextResponse{
+		Count: o.Count,
+	}
+}
+
+// OpNum returns the operation number of Next operation.
+func (o *NextRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Next operation.
+func (o *NextRequest) OpName() string { return "/IEnumMoniker/v0/Next" }
+
 // NextResponse structure represents the Next operation response
 type NextResponse struct {
 	// XXX: celt is an implicit input depedency for output parameters
@@ -526,8 +544,10 @@ type xxx_SkipOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Skip operation.
 func (o *xxx_SkipOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Skip operation.
 func (o *xxx_SkipOperation) OpName() string { return "/IEnumMoniker/v0/Skip" }
 
 func (o *xxx_SkipOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -686,6 +706,17 @@ func (o *SkipRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSkipRequest build a response structure from the given request structure.
+func (o *SkipRequest) MakeResponse() *SkipResponse {
+	return &SkipResponse{}
+}
+
+// OpNum returns the operation number of Skip operation.
+func (o *SkipRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Skip operation.
+func (o *SkipRequest) OpName() string { return "/IEnumMoniker/v0/Skip" }
+
 // SkipResponse structure represents the Skip operation response
 type SkipResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -732,8 +763,10 @@ type xxx_ResetOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Reset operation.
 func (o *xxx_ResetOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of Reset operation.
 func (o *xxx_ResetOperation) OpName() string { return "/IEnumMoniker/v0/Reset" }
 
 func (o *xxx_ResetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -877,6 +910,17 @@ func (o *ResetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeResetRequest build a response structure from the given request structure.
+func (o *ResetRequest) MakeResponse() *ResetResponse {
+	return &ResetResponse{}
+}
+
+// OpNum returns the operation number of Reset operation.
+func (o *ResetRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of Reset operation.
+func (o *ResetRequest) OpName() string { return "/IEnumMoniker/v0/Reset" }
+
 // ResetResponse structure represents the Reset operation response
 type ResetResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -924,8 +968,10 @@ type xxx_CloneOperation struct {
 	Return int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Clone operation.
 func (o *xxx_CloneOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of Clone operation.
 func (o *xxx_CloneOperation) OpName() string { return "/IEnumMoniker/v0/Clone" }
 
 func (o *xxx_CloneOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1114,6 +1160,17 @@ func (o *CloneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCloneRequest build a response structure from the given request structure.
+func (o *CloneRequest) MakeResponse() *CloneResponse {
+	return &CloneResponse{}
+}
+
+// OpNum returns the operation number of Clone operation.
+func (o *CloneRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of Clone operation.
+func (o *CloneRequest) OpName() string { return "/IEnumMoniker/v0/Clone" }
 
 // CloneResponse structure represents the Clone operation response
 type CloneResponse struct {

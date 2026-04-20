@@ -141,8 +141,10 @@ type xxx_OnNewTrackingInfoOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OnNewTrackingInfo operation.
 func (o *xxx_OnNewTrackingInfoOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of OnNewTrackingInfo operation.
 func (o *xxx_OnNewTrackingInfoOperation) OpName() string {
 	return "/IComTrackingInfoEvents/v0/OnNewTrackingInfo"
 }
@@ -420,6 +422,19 @@ func (o *OnNewTrackingInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeOnNewTrackingInfoRequest build a response structure from the given request structure.
+func (o *OnNewTrackingInfoRequest) MakeResponse() *OnNewTrackingInfoResponse {
+	return &OnNewTrackingInfoResponse{}
+}
+
+// OpNum returns the operation number of OnNewTrackingInfo operation.
+func (o *OnNewTrackingInfoRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of OnNewTrackingInfo operation.
+func (o *OnNewTrackingInfoRequest) OpName() string {
+	return "/IComTrackingInfoEvents/v0/OnNewTrackingInfo"
 }
 
 // OnNewTrackingInfoResponse structure represents the OnNewTrackingInfo operation response

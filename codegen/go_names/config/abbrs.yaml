@@ -580,6 +580,7 @@ abbr:
   uuid: UUID
   v6: V6
   val: Value
+  vals: Values
   vcs: VCS
   vds: VDS
   vec: Vector

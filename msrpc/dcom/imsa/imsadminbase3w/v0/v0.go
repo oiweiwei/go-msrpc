@@ -184,8 +184,10 @@ type xxx_GetChildPathsOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetChildPaths operation.
 func (o *xxx_GetChildPathsOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of GetChildPaths operation.
 func (o *xxx_GetChildPathsOperation) OpName() string { return "/IMSAdminBase3W/v0/GetChildPaths" }
 
 func (o *xxx_GetChildPathsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -635,6 +637,22 @@ func (o *GetChildPathsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetChildPathsRequest build a response structure from the given request structure.
+func (o *GetChildPathsRequest) MakeResponse() *GetChildPathsResponse {
+	if o == nil {
+		return &GetChildPathsResponse{}
+	}
+	return &GetChildPathsResponse{
+		BufferSize: o.BufferSize,
+	}
+}
+
+// OpNum returns the operation number of GetChildPaths operation.
+func (o *GetChildPathsRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of GetChildPaths operation.
+func (o *GetChildPathsRequest) OpName() string { return "/IMSAdminBase3W/v0/GetChildPaths" }
 
 // GetChildPathsResponse structure represents the GetChildPaths operation response
 type GetChildPathsResponse struct {

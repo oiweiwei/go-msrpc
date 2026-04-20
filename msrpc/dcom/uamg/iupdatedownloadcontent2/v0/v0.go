@@ -151,8 +151,10 @@ type xxx_GetIsDeltaCompressedContentOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsDeltaCompressedContent operation.
 func (o *xxx_GetIsDeltaCompressedContentOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of IsDeltaCompressedContent operation.
 func (o *xxx_GetIsDeltaCompressedContentOperation) OpName() string {
 	return "/IUpdateDownloadContent2/v0/IsDeltaCompressedContent"
 }
@@ -308,6 +310,19 @@ func (o *GetIsDeltaCompressedContentRequest) UnmarshalNDR(ctx context.Context, r
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetIsDeltaCompressedContentRequest build a response structure from the given request structure.
+func (o *GetIsDeltaCompressedContentRequest) MakeResponse() *GetIsDeltaCompressedContentResponse {
+	return &GetIsDeltaCompressedContentResponse{}
+}
+
+// OpNum returns the operation number of IsDeltaCompressedContent operation.
+func (o *GetIsDeltaCompressedContentRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of IsDeltaCompressedContent operation.
+func (o *GetIsDeltaCompressedContentRequest) OpName() string {
+	return "/IUpdateDownloadContent2/v0/IsDeltaCompressedContent"
 }
 
 // GetIsDeltaCompressedContentResponse structure represents the IsDeltaCompressedContent operation response

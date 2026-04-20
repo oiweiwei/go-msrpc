@@ -212,8 +212,10 @@ type xxx_QueryOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Query operation.
 func (o *xxx_QueryOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Query operation.
 func (o *xxx_QueryOperation) OpName() string { return "/IDataFactory/v0/Query" }
 
 func (o *xxx_QueryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -516,6 +518,17 @@ func (o *QueryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeQueryRequest build a response structure from the given request structure.
+func (o *QueryRequest) MakeResponse() *QueryResponse {
+	return &QueryResponse{}
+}
+
+// OpNum returns the operation number of Query operation.
+func (o *QueryRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Query operation.
+func (o *QueryRequest) OpName() string { return "/IDataFactory/v0/Query" }
+
 // QueryResponse structure represents the Query operation response
 type QueryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -567,8 +580,10 @@ type xxx_SubmitChangesOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SubmitChanges operation.
 func (o *xxx_SubmitChangesOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of SubmitChanges operation.
 func (o *xxx_SubmitChangesOperation) OpName() string { return "/IDataFactory/v0/SubmitChanges" }
 
 func (o *xxx_SubmitChangesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -810,6 +825,17 @@ func (o *SubmitChangesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSubmitChangesRequest build a response structure from the given request structure.
+func (o *SubmitChangesRequest) MakeResponse() *SubmitChangesResponse {
+	return &SubmitChangesResponse{}
+}
+
+// OpNum returns the operation number of SubmitChanges operation.
+func (o *SubmitChangesRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of SubmitChanges operation.
+func (o *SubmitChangesRequest) OpName() string { return "/IDataFactory/v0/SubmitChanges" }
+
 // SubmitChangesResponse structure represents the SubmitChanges operation response
 type SubmitChangesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -858,8 +884,10 @@ type xxx_ConvertToStringOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ConvertToString operation.
 func (o *xxx_ConvertToStringOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of ConvertToString operation.
 func (o *xxx_ConvertToStringOperation) OpName() string { return "/IDataFactory/v0/ConvertToString" }
 
 func (o *xxx_ConvertToStringOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1098,6 +1126,17 @@ func (o *ConvertToStringRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeConvertToStringRequest build a response structure from the given request structure.
+func (o *ConvertToStringRequest) MakeResponse() *ConvertToStringResponse {
+	return &ConvertToStringResponse{}
+}
+
+// OpNum returns the operation number of ConvertToString operation.
+func (o *ConvertToStringRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of ConvertToString operation.
+func (o *ConvertToStringRequest) OpName() string { return "/IDataFactory/v0/ConvertToString" }
+
 // ConvertToStringResponse structure represents the ConvertToString operation response
 type ConvertToStringResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1149,8 +1188,10 @@ type xxx_CreateRecordSetOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateRecordSet operation.
 func (o *xxx_CreateRecordSetOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of CreateRecordSet operation.
 func (o *xxx_CreateRecordSetOperation) OpName() string { return "/IDataFactory/v0/CreateRecordSet" }
 
 func (o *xxx_CreateRecordSetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1369,6 +1410,17 @@ func (o *CreateRecordSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCreateRecordSetRequest build a response structure from the given request structure.
+func (o *CreateRecordSetRequest) MakeResponse() *CreateRecordSetResponse {
+	return &CreateRecordSetResponse{}
+}
+
+// OpNum returns the operation number of CreateRecordSet operation.
+func (o *CreateRecordSetRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of CreateRecordSet operation.
+func (o *CreateRecordSetRequest) OpName() string { return "/IDataFactory/v0/CreateRecordSet" }
 
 // CreateRecordSetResponse structure represents the CreateRecordSet operation response
 type CreateRecordSetResponse struct {

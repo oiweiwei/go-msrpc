@@ -120,8 +120,10 @@ type xxx_DoAsyncWaitExOperation struct {
 	Return       int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EcDoAsyncWaitEx operation.
 func (o *xxx_DoAsyncWaitExOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of EcDoAsyncWaitEx operation.
 func (o *xxx_DoAsyncWaitExOperation) OpName() string { return "/asyncemsmdb/v0.1/EcDoAsyncWaitEx" }
 
 func (o *xxx_DoAsyncWaitExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -264,6 +266,17 @@ func (o *DoAsyncWaitExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeDoAsyncWaitExRequest build a response structure from the given request structure.
+func (o *DoAsyncWaitExRequest) MakeResponse() *DoAsyncWaitExResponse {
+	return &DoAsyncWaitExResponse{}
+}
+
+// OpNum returns the operation number of EcDoAsyncWaitEx operation.
+func (o *DoAsyncWaitExRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of EcDoAsyncWaitEx operation.
+func (o *DoAsyncWaitExRequest) OpName() string { return "/asyncemsmdb/v0.1/EcDoAsyncWaitEx" }
 
 // DoAsyncWaitExResponse structure represents the EcDoAsyncWaitEx operation response
 type DoAsyncWaitExResponse struct {

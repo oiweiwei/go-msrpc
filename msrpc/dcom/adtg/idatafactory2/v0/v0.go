@@ -171,8 +171,10 @@ type xxx_Execute21Operation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Execute21 operation.
 func (o *xxx_Execute21Operation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Execute21 operation.
 func (o *xxx_Execute21Operation) OpName() string { return "/IDataFactory2/v0/Execute21" }
 
 func (o *xxx_Execute21Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -694,6 +696,17 @@ func (o *Execute21Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeExecute21Request build a response structure from the given request structure.
+func (o *Execute21Request) MakeResponse() *Execute21Response {
+	return &Execute21Response{}
+}
+
+// OpNum returns the operation number of Execute21 operation.
+func (o *Execute21Request) OpNum() int { return 7 }
+
+// OpName returns the operation name of Execute21 operation.
+func (o *Execute21Request) OpName() string { return "/IDataFactory2/v0/Execute21" }
+
 // Execute21Response structure represents the Execute21 operation response
 type Execute21Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -752,8 +765,10 @@ type xxx_Synchronize21Operation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Synchronize21 operation.
 func (o *xxx_Synchronize21Operation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Synchronize21 operation.
 func (o *xxx_Synchronize21Operation) OpName() string { return "/IDataFactory2/v0/Synchronize21" }
 
 func (o *xxx_Synchronize21Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1245,6 +1260,17 @@ func (o *Synchronize21Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSynchronize21Request build a response structure from the given request structure.
+func (o *Synchronize21Request) MakeResponse() *Synchronize21Response {
+	return &Synchronize21Response{}
+}
+
+// OpNum returns the operation number of Synchronize21 operation.
+func (o *Synchronize21Request) OpNum() int { return 8 }
+
+// OpName returns the operation name of Synchronize21 operation.
+func (o *Synchronize21Request) OpName() string { return "/IDataFactory2/v0/Synchronize21" }
 
 // Synchronize21Response structure represents the Synchronize21 operation response
 type Synchronize21Response struct {

@@ -255,8 +255,10 @@ type xxx_GetPathOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Path operation.
 func (o *xxx_GetPathOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of Path operation.
 func (o *xxx_GetPathOperation) OpName() string { return "/IFsrmFileScreen/v0/Path" }
 
 func (o *xxx_GetPathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -446,6 +448,17 @@ func (o *GetPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetPathRequest build a response structure from the given request structure.
+func (o *GetPathRequest) MakeResponse() *GetPathResponse {
+	return &GetPathResponse{}
+}
+
+// OpNum returns the operation number of Path operation.
+func (o *GetPathRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of Path operation.
+func (o *GetPathRequest) OpName() string { return "/IFsrmFileScreen/v0/Path" }
+
 // GetPathResponse structure represents the Path operation response
 type GetPathResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -496,8 +509,10 @@ type xxx_GetSourceTemplateNameOperation struct {
 	Return                 int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SourceTemplateName operation.
 func (o *xxx_GetSourceTemplateNameOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of SourceTemplateName operation.
 func (o *xxx_GetSourceTemplateNameOperation) OpName() string {
 	return "/IFsrmFileScreen/v0/SourceTemplateName"
 }
@@ -689,6 +704,19 @@ func (o *GetSourceTemplateNameRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetSourceTemplateNameRequest build a response structure from the given request structure.
+func (o *GetSourceTemplateNameRequest) MakeResponse() *GetSourceTemplateNameResponse {
+	return &GetSourceTemplateNameResponse{}
+}
+
+// OpNum returns the operation number of SourceTemplateName operation.
+func (o *GetSourceTemplateNameRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of SourceTemplateName operation.
+func (o *GetSourceTemplateNameRequest) OpName() string {
+	return "/IFsrmFileScreen/v0/SourceTemplateName"
+}
+
 // GetSourceTemplateNameResponse structure represents the SourceTemplateName operation response
 type GetSourceTemplateNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -739,8 +767,10 @@ type xxx_GetMatchesSourceTemplateOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MatchesSourceTemplate operation.
 func (o *xxx_GetMatchesSourceTemplateOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of MatchesSourceTemplate operation.
 func (o *xxx_GetMatchesSourceTemplateOperation) OpName() string {
 	return "/IFsrmFileScreen/v0/MatchesSourceTemplate"
 }
@@ -898,6 +928,19 @@ func (o *GetMatchesSourceTemplateRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeGetMatchesSourceTemplateRequest build a response structure from the given request structure.
+func (o *GetMatchesSourceTemplateRequest) MakeResponse() *GetMatchesSourceTemplateResponse {
+	return &GetMatchesSourceTemplateResponse{}
+}
+
+// OpNum returns the operation number of MatchesSourceTemplate operation.
+func (o *GetMatchesSourceTemplateRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of MatchesSourceTemplate operation.
+func (o *GetMatchesSourceTemplateRequest) OpName() string {
+	return "/IFsrmFileScreen/v0/MatchesSourceTemplate"
+}
+
 // GetMatchesSourceTemplateResponse structure represents the MatchesSourceTemplate operation response
 type GetMatchesSourceTemplateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -948,8 +991,10 @@ type xxx_GetUserSIDOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UserSid operation.
 func (o *xxx_GetUserSIDOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of UserSid operation.
 func (o *xxx_GetUserSIDOperation) OpName() string { return "/IFsrmFileScreen/v0/UserSid" }
 
 func (o *xxx_GetUserSIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1139,6 +1184,17 @@ func (o *GetUserSIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetUserSIDRequest build a response structure from the given request structure.
+func (o *GetUserSIDRequest) MakeResponse() *GetUserSIDResponse {
+	return &GetUserSIDResponse{}
+}
+
+// OpNum returns the operation number of UserSid operation.
+func (o *GetUserSIDRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of UserSid operation.
+func (o *GetUserSIDRequest) OpName() string { return "/IFsrmFileScreen/v0/UserSid" }
+
 // GetUserSIDResponse structure represents the UserSid operation response
 type GetUserSIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1189,8 +1245,10 @@ type xxx_GetUserAccountOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UserAccount operation.
 func (o *xxx_GetUserAccountOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of UserAccount operation.
 func (o *xxx_GetUserAccountOperation) OpName() string { return "/IFsrmFileScreen/v0/UserAccount" }
 
 func (o *xxx_GetUserAccountOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1380,6 +1438,17 @@ func (o *GetUserAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetUserAccountRequest build a response structure from the given request structure.
+func (o *GetUserAccountRequest) MakeResponse() *GetUserAccountResponse {
+	return &GetUserAccountResponse{}
+}
+
+// OpNum returns the operation number of UserAccount operation.
+func (o *GetUserAccountRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of UserAccount operation.
+func (o *GetUserAccountRequest) OpName() string { return "/IFsrmFileScreen/v0/UserAccount" }
+
 // GetUserAccountResponse structure represents the UserAccount operation response
 type GetUserAccountResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1430,8 +1499,10 @@ type xxx_ApplyTemplateOperation struct {
 	Return                 int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApplyTemplate operation.
 func (o *xxx_ApplyTemplateOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of ApplyTemplate operation.
 func (o *xxx_ApplyTemplateOperation) OpName() string { return "/IFsrmFileScreen/v0/ApplyTemplate" }
 
 func (o *xxx_ApplyTemplateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1623,6 +1694,17 @@ func (o *ApplyTemplateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeApplyTemplateRequest build a response structure from the given request structure.
+func (o *ApplyTemplateRequest) MakeResponse() *ApplyTemplateResponse {
+	return &ApplyTemplateResponse{}
+}
+
+// OpNum returns the operation number of ApplyTemplate operation.
+func (o *ApplyTemplateRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of ApplyTemplate operation.
+func (o *ApplyTemplateRequest) OpName() string { return "/IFsrmFileScreen/v0/ApplyTemplate" }
 
 // ApplyTemplateResponse structure represents the ApplyTemplate operation response
 type ApplyTemplateResponse struct {

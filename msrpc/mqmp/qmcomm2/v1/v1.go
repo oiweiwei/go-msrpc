@@ -198,8 +198,10 @@ type xxx_QMSendMessageInternalExOperation struct {
 	Return      int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QMSendMessageInternalEx operation.
 func (o *xxx_QMSendMessageInternalExOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of QMSendMessageInternalEx operation.
 func (o *xxx_QMSendMessageInternalExOperation) OpName() string {
 	return "/qmcomm2/v1/QMSendMessageInternalEx"
 }
@@ -451,6 +453,19 @@ func (o *QMSendMessageInternalExRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeQMSendMessageInternalExRequest build a response structure from the given request structure.
+func (o *QMSendMessageInternalExRequest) MakeResponse() *QMSendMessageInternalExResponse {
+	return &QMSendMessageInternalExResponse{}
+}
+
+// OpNum returns the operation number of QMSendMessageInternalEx operation.
+func (o *QMSendMessageInternalExRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of QMSendMessageInternalEx operation.
+func (o *QMSendMessageInternalExRequest) OpName() string {
+	return "/qmcomm2/v1/QMSendMessageInternalEx"
+}
+
 // QMSendMessageInternalExResponse structure represents the QMSendMessageInternalEx operation response
 type QMSendMessageInternalExResponse struct {
 	// pMessageID: An OBJECTID as defined in [MS-MQMQ] section 2.2.8. See the identical
@@ -499,8 +514,10 @@ type xxx_SendMessageExOperation struct {
 	Return    int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of rpc_ACSendMessageEx operation.
 func (o *xxx_SendMessageExOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of rpc_ACSendMessageEx operation.
 func (o *xxx_SendMessageExOperation) OpName() string { return "/qmcomm2/v1/rpc_ACSendMessageEx" }
 
 func (o *xxx_SendMessageExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -929,6 +946,17 @@ func (o *SendMessageExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSendMessageExRequest build a response structure from the given request structure.
+func (o *SendMessageExRequest) MakeResponse() *SendMessageExResponse {
+	return &SendMessageExResponse{}
+}
+
+// OpNum returns the operation number of rpc_ACSendMessageEx operation.
+func (o *SendMessageExRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of rpc_ACSendMessageEx operation.
+func (o *SendMessageExRequest) OpName() string { return "/qmcomm2/v1/rpc_ACSendMessageEx" }
+
 // SendMessageExResponse structure represents the rpc_ACSendMessageEx operation response
 type SendMessageExResponse struct {
 	// pMessageID: An OBJECTID as defined in [MS-MQMQ] section 2.2.8. This value can be
@@ -977,8 +1005,10 @@ type xxx_ReceiveMessageExOperation struct {
 	Return     int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of rpc_ACReceiveMessageEx operation.
 func (o *xxx_ReceiveMessageExOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of rpc_ACReceiveMessageEx operation.
 func (o *xxx_ReceiveMessageExOperation) OpName() string { return "/qmcomm2/v1/rpc_ACReceiveMessageEx" }
 
 func (o *xxx_ReceiveMessageExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1404,6 +1434,17 @@ func (o *ReceiveMessageExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeReceiveMessageExRequest build a response structure from the given request structure.
+func (o *ReceiveMessageExRequest) MakeResponse() *ReceiveMessageExResponse {
+	return &ReceiveMessageExResponse{}
+}
+
+// OpNum returns the operation number of rpc_ACReceiveMessageEx operation.
+func (o *ReceiveMessageExRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of rpc_ACReceiveMessageEx operation.
+func (o *ReceiveMessageExRequest) OpName() string { return "/qmcomm2/v1/rpc_ACReceiveMessageEx" }
+
 // ReceiveMessageExResponse structure represents the rpc_ACReceiveMessageEx operation response
 type ReceiveMessageExResponse struct {
 	// ptb: MUST NOT be NULL. The ptb parameter points to a CACTransferBufferV2 (section
@@ -1712,8 +1753,10 @@ type xxx_CreateCursorExOperation struct {
 	Return int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of rpc_ACCreateCursorEx operation.
 func (o *xxx_CreateCursorExOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of rpc_ACCreateCursorEx operation.
 func (o *xxx_CreateCursorExOperation) OpName() string { return "/qmcomm2/v1/rpc_ACCreateCursorEx" }
 
 func (o *xxx_CreateCursorExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1873,6 +1916,17 @@ func (o *CreateCursorExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCreateCursorExRequest build a response structure from the given request structure.
+func (o *CreateCursorExRequest) MakeResponse() *CreateCursorExResponse {
+	return &CreateCursorExResponse{}
+}
+
+// OpNum returns the operation number of rpc_ACCreateCursorEx operation.
+func (o *CreateCursorExRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of rpc_ACCreateCursorEx operation.
+func (o *CreateCursorExRequest) OpName() string { return "/qmcomm2/v1/rpc_ACCreateCursorEx" }
 
 // CreateCursorExResponse structure represents the rpc_ACCreateCursorEx operation response
 type CreateCursorExResponse struct {

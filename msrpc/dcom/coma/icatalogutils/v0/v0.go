@@ -231,8 +231,10 @@ type xxx_ValidateUserOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ValidateUser operation.
 func (o *xxx_ValidateUserOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ValidateUser operation.
 func (o *xxx_ValidateUserOperation) OpName() string { return "/ICatalogUtils/v0/ValidateUser" }
 
 func (o *xxx_ValidateUserOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -458,6 +460,17 @@ func (o *ValidateUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeValidateUserRequest build a response structure from the given request structure.
+func (o *ValidateUserRequest) MakeResponse() *ValidateUserResponse {
+	return &ValidateUserResponse{}
+}
+
+// OpNum returns the operation number of ValidateUser operation.
+func (o *ValidateUserRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ValidateUser operation.
+func (o *ValidateUserRequest) OpName() string { return "/ICatalogUtils/v0/ValidateUser" }
+
 // ValidateUserResponse structure represents the ValidateUser operation response
 type ValidateUserResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -504,8 +517,10 @@ type xxx_WaitForEndWritesOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WaitForEndWrites operation.
 func (o *xxx_WaitForEndWritesOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of WaitForEndWrites operation.
 func (o *xxx_WaitForEndWritesOperation) OpName() string { return "/ICatalogUtils/v0/WaitForEndWrites" }
 
 func (o *xxx_WaitForEndWritesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -649,6 +664,17 @@ func (o *WaitForEndWritesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeWaitForEndWritesRequest build a response structure from the given request structure.
+func (o *WaitForEndWritesRequest) MakeResponse() *WaitForEndWritesResponse {
+	return &WaitForEndWritesResponse{}
+}
+
+// OpNum returns the operation number of WaitForEndWrites operation.
+func (o *WaitForEndWritesRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of WaitForEndWrites operation.
+func (o *WaitForEndWritesRequest) OpName() string { return "/ICatalogUtils/v0/WaitForEndWrites" }
+
 // WaitForEndWritesResponse structure represents the WaitForEndWrites operation response
 type WaitForEndWritesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -700,8 +726,10 @@ type xxx_GetEventClassesForIIDOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetEventClassesForIID operation.
 func (o *xxx_GetEventClassesForIIDOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of GetEventClassesForIID operation.
 func (o *xxx_GetEventClassesForIIDOperation) OpName() string {
 	return "/ICatalogUtils/v0/GetEventClassesForIID"
 }
@@ -1176,6 +1204,19 @@ func (o *GetEventClassesForIIDRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetEventClassesForIIDRequest build a response structure from the given request structure.
+func (o *GetEventClassesForIIDRequest) MakeResponse() *GetEventClassesForIIDResponse {
+	return &GetEventClassesForIIDResponse{}
+}
+
+// OpNum returns the operation number of GetEventClassesForIID operation.
+func (o *GetEventClassesForIIDRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of GetEventClassesForIID operation.
+func (o *GetEventClassesForIIDRequest) OpName() string {
+	return "/ICatalogUtils/v0/GetEventClassesForIID"
 }
 
 // GetEventClassesForIIDResponse structure represents the GetEventClassesForIID operation response

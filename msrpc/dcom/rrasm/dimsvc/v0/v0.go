@@ -2096,8 +2096,10 @@ type xxx_ServerGetInfoOperation struct {
 	Return uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RMprAdminServerGetInfo operation.
 func (o *xxx_ServerGetInfoOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RMprAdminServerGetInfo operation.
 func (o *xxx_ServerGetInfoOperation) OpName() string { return "/dimsvc/v0/RMprAdminServerGetInfo" }
 
 func (o *xxx_ServerGetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2242,6 +2244,17 @@ func (o *ServerGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeServerGetInfoRequest build a response structure from the given request structure.
+func (o *ServerGetInfoRequest) MakeResponse() *ServerGetInfoResponse {
+	return &ServerGetInfoResponse{}
+}
+
+// OpNum returns the operation number of RMprAdminServerGetInfo operation.
+func (o *ServerGetInfoRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RMprAdminServerGetInfo operation.
+func (o *ServerGetInfoRequest) OpName() string { return "/dimsvc/v0/RMprAdminServerGetInfo" }
+
 // ServerGetInfoResponse structure represents the RMprAdminServerGetInfo operation response
 type ServerGetInfoResponse struct {
 	// pInfoStruct: This is a pointer of type DIM_INFORMATION_CONTAINER. DIM_INFORMATION_CONTAINER.dwBufferSize
@@ -2295,8 +2308,10 @@ type xxx_ConnectionEnumOperation struct {
 	Return                 uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminConnectionEnum operation.
 func (o *xxx_ConnectionEnumOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RRasAdminConnectionEnum operation.
 func (o *xxx_ConnectionEnumOperation) OpName() string { return "/dimsvc/v0/RRasAdminConnectionEnum" }
 
 func (o *xxx_ConnectionEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2606,6 +2621,17 @@ func (o *ConnectionEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeConnectionEnumRequest build a response structure from the given request structure.
+func (o *ConnectionEnumRequest) MakeResponse() *ConnectionEnumResponse {
+	return &ConnectionEnumResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminConnectionEnum operation.
+func (o *ConnectionEnumRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RRasAdminConnectionEnum operation.
+func (o *ConnectionEnumRequest) OpName() string { return "/dimsvc/v0/RRasAdminConnectionEnum" }
+
 // ConnectionEnumResponse structure represents the RRasAdminConnectionEnum operation response
 type ConnectionEnumResponse struct {
 	// pInfoStruct: This is a pointer of type DIM_INFORMATION_CONTAINER, and DIM_INFORMATION_CONTAINER.dwBufferSize
@@ -2681,8 +2707,10 @@ type xxx_ConnectionGetInfoOperation struct {
 	Return     uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminConnectionGetInfo operation.
 func (o *xxx_ConnectionGetInfoOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of RRasAdminConnectionGetInfo operation.
 func (o *xxx_ConnectionGetInfoOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminConnectionGetInfo"
 }
@@ -2852,6 +2880,17 @@ func (o *ConnectionGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeConnectionGetInfoRequest build a response structure from the given request structure.
+func (o *ConnectionGetInfoRequest) MakeResponse() *ConnectionGetInfoResponse {
+	return &ConnectionGetInfoResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminConnectionGetInfo operation.
+func (o *ConnectionGetInfoRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of RRasAdminConnectionGetInfo operation.
+func (o *ConnectionGetInfoRequest) OpName() string { return "/dimsvc/v0/RRasAdminConnectionGetInfo" }
+
 // ConnectionGetInfoResponse structure represents the RRasAdminConnectionGetInfo operation response
 type ConnectionGetInfoResponse struct {
 	// pInfoStruct: This is a pointer of type DIM_INFORMATION_CONTAINER, and DIM_INFORMATION_CONTAINER.dwBufferSize
@@ -2900,8 +2939,10 @@ type xxx_ConnectionClearStatsOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminConnectionClearStats operation.
 func (o *xxx_ConnectionClearStatsOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RRasAdminConnectionClearStats operation.
 func (o *xxx_ConnectionClearStatsOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminConnectionClearStats"
 }
@@ -3009,6 +3050,19 @@ func (o *ConnectionClearStatsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeConnectionClearStatsRequest build a response structure from the given request structure.
+func (o *ConnectionClearStatsRequest) MakeResponse() *ConnectionClearStatsResponse {
+	return &ConnectionClearStatsResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminConnectionClearStats operation.
+func (o *ConnectionClearStatsRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RRasAdminConnectionClearStats operation.
+func (o *ConnectionClearStatsRequest) OpName() string {
+	return "/dimsvc/v0/RRasAdminConnectionClearStats"
+}
+
 // ConnectionClearStatsResponse structure represents the RRasAdminConnectionClearStats operation response
 type ConnectionClearStatsResponse struct {
 	// Return: The RRasAdminConnectionClearStats return value.
@@ -3056,8 +3110,10 @@ type xxx_PortEnumOperation struct {
 	Return                 uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminPortEnum operation.
 func (o *xxx_PortEnumOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RRasAdminPortEnum operation.
 func (o *xxx_PortEnumOperation) OpName() string { return "/dimsvc/v0/RRasAdminPortEnum" }
 
 func (o *xxx_PortEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3374,6 +3430,17 @@ func (o *PortEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakePortEnumRequest build a response structure from the given request structure.
+func (o *PortEnumRequest) MakeResponse() *PortEnumResponse {
+	return &PortEnumResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminPortEnum operation.
+func (o *PortEnumRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RRasAdminPortEnum operation.
+func (o *PortEnumRequest) OpName() string { return "/dimsvc/v0/RRasAdminPortEnum" }
+
 // PortEnumResponse structure represents the RRasAdminPortEnum operation response
 type PortEnumResponse struct {
 	// pInfoStruct: This is a pointer of type DIM_INFORMATION_CONTAINER (section 2.2.1.2.1),
@@ -3444,8 +3511,10 @@ type xxx_PortGetInfoOperation struct {
 	Return uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminPortGetInfo operation.
 func (o *xxx_PortGetInfoOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of RRasAdminPortGetInfo operation.
 func (o *xxx_PortGetInfoOperation) OpName() string { return "/dimsvc/v0/RRasAdminPortGetInfo" }
 
 func (o *xxx_PortGetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3608,6 +3677,17 @@ func (o *PortGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakePortGetInfoRequest build a response structure from the given request structure.
+func (o *PortGetInfoRequest) MakeResponse() *PortGetInfoResponse {
+	return &PortGetInfoResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminPortGetInfo operation.
+func (o *PortGetInfoRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of RRasAdminPortGetInfo operation.
+func (o *PortGetInfoRequest) OpName() string { return "/dimsvc/v0/RRasAdminPortGetInfo" }
+
 // PortGetInfoResponse structure represents the RRasAdminPortGetInfo operation response
 type PortGetInfoResponse struct {
 	// pInfoStruct: This is a pointer of type DIM_INFORMATION_CONTAINER, and DIM_INFORMATION_CONTAINER.dwBufferSize
@@ -3655,8 +3735,10 @@ type xxx_PortClearStatsOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminPortClearStats operation.
 func (o *xxx_PortClearStatsOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of RRasAdminPortClearStats operation.
 func (o *xxx_PortClearStatsOperation) OpName() string { return "/dimsvc/v0/RRasAdminPortClearStats" }
 
 func (o *xxx_PortClearStatsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3761,6 +3843,17 @@ func (o *PortClearStatsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakePortClearStatsRequest build a response structure from the given request structure.
+func (o *PortClearStatsRequest) MakeResponse() *PortClearStatsResponse {
+	return &PortClearStatsResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminPortClearStats operation.
+func (o *PortClearStatsRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of RRasAdminPortClearStats operation.
+func (o *PortClearStatsRequest) OpName() string { return "/dimsvc/v0/RRasAdminPortClearStats" }
+
 // PortClearStatsResponse structure represents the RRasAdminPortClearStats operation response
 type PortClearStatsResponse struct {
 	// Return: The RRasAdminPortClearStats return value.
@@ -3802,8 +3895,10 @@ type xxx_PortResetOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminPortReset operation.
 func (o *xxx_PortResetOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of RRasAdminPortReset operation.
 func (o *xxx_PortResetOperation) OpName() string { return "/dimsvc/v0/RRasAdminPortReset" }
 
 func (o *xxx_PortResetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3909,6 +4004,17 @@ func (o *PortResetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakePortResetRequest build a response structure from the given request structure.
+func (o *PortResetRequest) MakeResponse() *PortResetResponse {
+	return &PortResetResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminPortReset operation.
+func (o *PortResetRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of RRasAdminPortReset operation.
+func (o *PortResetRequest) OpName() string { return "/dimsvc/v0/RRasAdminPortReset" }
+
 // PortResetResponse structure represents the RRasAdminPortReset operation response
 type PortResetResponse struct {
 	// Return: The RRasAdminPortReset return value.
@@ -3950,8 +4056,10 @@ type xxx_PortDisconnectOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminPortDisconnect operation.
 func (o *xxx_PortDisconnectOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RRasAdminPortDisconnect operation.
 func (o *xxx_PortDisconnectOperation) OpName() string { return "/dimsvc/v0/RRasAdminPortDisconnect" }
 
 func (o *xxx_PortDisconnectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4056,6 +4164,17 @@ func (o *PortDisconnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakePortDisconnectRequest build a response structure from the given request structure.
+func (o *PortDisconnectRequest) MakeResponse() *PortDisconnectResponse {
+	return &PortDisconnectResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminPortDisconnect operation.
+func (o *PortDisconnectRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of RRasAdminPortDisconnect operation.
+func (o *PortDisconnectRequest) OpName() string { return "/dimsvc/v0/RRasAdminPortDisconnect" }
+
 // PortDisconnectResponse structure represents the RRasAdminPortDisconnect operation response
 type PortDisconnectResponse struct {
 	// Return: The RRasAdminPortDisconnect return value.
@@ -4098,8 +4217,10 @@ type xxx_RouterInterfaceTransportSetGlobalInfoOperation struct {
 	Return      uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceTransportSetGlobalInfo operation.
 func (o *xxx_RouterInterfaceTransportSetGlobalInfoOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RRouterInterfaceTransportSetGlobalInfo operation.
 func (o *xxx_RouterInterfaceTransportSetGlobalInfoOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceTransportSetGlobalInfo"
 }
@@ -4255,6 +4376,19 @@ func (o *RouterInterfaceTransportSetGlobalInfoRequest) UnmarshalNDR(ctx context.
 	return nil
 }
 
+// MakeRouterInterfaceTransportSetGlobalInfoRequest build a response structure from the given request structure.
+func (o *RouterInterfaceTransportSetGlobalInfoRequest) MakeResponse() *RouterInterfaceTransportSetGlobalInfoResponse {
+	return &RouterInterfaceTransportSetGlobalInfoResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceTransportSetGlobalInfo operation.
+func (o *RouterInterfaceTransportSetGlobalInfoRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RRouterInterfaceTransportSetGlobalInfo operation.
+func (o *RouterInterfaceTransportSetGlobalInfoRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceTransportSetGlobalInfo"
+}
+
 // RouterInterfaceTransportSetGlobalInfoResponse structure represents the RRouterInterfaceTransportSetGlobalInfo operation response
 type RouterInterfaceTransportSetGlobalInfoResponse struct {
 	// Return: The RRouterInterfaceTransportSetGlobalInfo return value.
@@ -4297,8 +4431,10 @@ type xxx_RouterInterfaceTransportGetGlobalInfoOperation struct {
 	Return      uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceTransportGetGlobalInfo operation.
 func (o *xxx_RouterInterfaceTransportGetGlobalInfoOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of RRouterInterfaceTransportGetGlobalInfo operation.
 func (o *xxx_RouterInterfaceTransportGetGlobalInfoOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceTransportGetGlobalInfo"
 }
@@ -4528,6 +4664,19 @@ func (o *RouterInterfaceTransportGetGlobalInfoRequest) UnmarshalNDR(ctx context.
 	return nil
 }
 
+// MakeRouterInterfaceTransportGetGlobalInfoRequest build a response structure from the given request structure.
+func (o *RouterInterfaceTransportGetGlobalInfoRequest) MakeResponse() *RouterInterfaceTransportGetGlobalInfoResponse {
+	return &RouterInterfaceTransportGetGlobalInfoResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceTransportGetGlobalInfo operation.
+func (o *RouterInterfaceTransportGetGlobalInfoRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of RRouterInterfaceTransportGetGlobalInfo operation.
+func (o *RouterInterfaceTransportGetGlobalInfoRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceTransportGetGlobalInfo"
+}
+
 // RouterInterfaceTransportGetGlobalInfoResponse structure represents the RRouterInterfaceTransportGetGlobalInfo operation response
 type RouterInterfaceTransportGetGlobalInfoResponse struct {
 	// pInfoStruct: Pointer to DIM_INTERFACE_CONTAINER (section 2.2.1.2.1). This pointer
@@ -4629,8 +4778,10 @@ type xxx_RouterInterfaceGetHandleOperation struct {
 	Return                  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceGetHandle operation.
 func (o *xxx_RouterInterfaceGetHandleOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RRouterInterfaceGetHandle operation.
 func (o *xxx_RouterInterfaceGetHandleOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceGetHandle"
 }
@@ -4787,6 +4938,19 @@ func (o *RouterInterfaceGetHandleRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeRouterInterfaceGetHandleRequest build a response structure from the given request structure.
+func (o *RouterInterfaceGetHandleRequest) MakeResponse() *RouterInterfaceGetHandleResponse {
+	return &RouterInterfaceGetHandleResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceGetHandle operation.
+func (o *RouterInterfaceGetHandleRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RRouterInterfaceGetHandle operation.
+func (o *RouterInterfaceGetHandleRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceGetHandle"
+}
+
 // RouterInterfaceGetHandleResponse structure represents the RRouterInterfaceGetHandle operation response
 type RouterInterfaceGetHandleResponse struct {
 	// phInterface: This is a pointer to a DWORD that receives the unique identifier of
@@ -4835,8 +4999,10 @@ type xxx_RouterInterfaceCreateOperation struct {
 	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceCreate operation.
 func (o *xxx_RouterInterfaceCreateOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of RRouterInterfaceCreate operation.
 func (o *xxx_RouterInterfaceCreateOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceCreate"
 }
@@ -5068,6 +5234,17 @@ func (o *RouterInterfaceCreateRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeRouterInterfaceCreateRequest build a response structure from the given request structure.
+func (o *RouterInterfaceCreateRequest) MakeResponse() *RouterInterfaceCreateResponse {
+	return &RouterInterfaceCreateResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceCreate operation.
+func (o *RouterInterfaceCreateRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of RRouterInterfaceCreate operation.
+func (o *RouterInterfaceCreateRequest) OpName() string { return "/dimsvc/v0/RRouterInterfaceCreate" }
+
 // RouterInterfaceCreateResponse structure represents the RRouterInterfaceCreate operation response
 type RouterInterfaceCreateResponse struct {
 	// phInterface: This is a pointer to a DWORD that specifies the unique identifier of
@@ -5117,8 +5294,10 @@ type xxx_RouterInterfaceGetInfoOperation struct {
 	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceGetInfo operation.
 func (o *xxx_RouterInterfaceGetInfoOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of RRouterInterfaceGetInfo operation.
 func (o *xxx_RouterInterfaceGetInfoOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceGetInfo"
 }
@@ -5337,6 +5516,17 @@ func (o *RouterInterfaceGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeRouterInterfaceGetInfoRequest build a response structure from the given request structure.
+func (o *RouterInterfaceGetInfoRequest) MakeResponse() *RouterInterfaceGetInfoResponse {
+	return &RouterInterfaceGetInfoResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceGetInfo operation.
+func (o *RouterInterfaceGetInfoRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of RRouterInterfaceGetInfo operation.
+func (o *RouterInterfaceGetInfoRequest) OpName() string { return "/dimsvc/v0/RRouterInterfaceGetInfo" }
+
 // RouterInterfaceGetInfoResponse structure represents the RRouterInterfaceGetInfo operation response
 type RouterInterfaceGetInfoResponse struct {
 	// pInfoStruct: This is a pointer of type DIM_INFORMATION_CONTAINER (section 2.2.1.2.1),
@@ -5402,8 +5592,10 @@ type xxx_RouterInterfaceSetInfoOperation struct {
 	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceSetInfo operation.
 func (o *xxx_RouterInterfaceSetInfoOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of RRouterInterfaceSetInfo operation.
 func (o *xxx_RouterInterfaceSetInfoOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceSetInfo"
 }
@@ -5606,6 +5798,17 @@ func (o *RouterInterfaceSetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeRouterInterfaceSetInfoRequest build a response structure from the given request structure.
+func (o *RouterInterfaceSetInfoRequest) MakeResponse() *RouterInterfaceSetInfoResponse {
+	return &RouterInterfaceSetInfoResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceSetInfo operation.
+func (o *RouterInterfaceSetInfoRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of RRouterInterfaceSetInfo operation.
+func (o *RouterInterfaceSetInfoRequest) OpName() string { return "/dimsvc/v0/RRouterInterfaceSetInfo" }
+
 // RouterInterfaceSetInfoResponse structure represents the RRouterInterfaceSetInfo operation response
 type RouterInterfaceSetInfoResponse struct {
 	// Return: The RRouterInterfaceSetInfo return value.
@@ -5647,8 +5850,10 @@ type xxx_RouterInterfaceDeleteOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceDelete operation.
 func (o *xxx_RouterInterfaceDeleteOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of RRouterInterfaceDelete operation.
 func (o *xxx_RouterInterfaceDeleteOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceDelete"
 }
@@ -5755,6 +5960,17 @@ func (o *RouterInterfaceDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeRouterInterfaceDeleteRequest build a response structure from the given request structure.
+func (o *RouterInterfaceDeleteRequest) MakeResponse() *RouterInterfaceDeleteResponse {
+	return &RouterInterfaceDeleteResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceDelete operation.
+func (o *RouterInterfaceDeleteRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of RRouterInterfaceDelete operation.
+func (o *RouterInterfaceDeleteRequest) OpName() string { return "/dimsvc/v0/RRouterInterfaceDelete" }
+
 // RouterInterfaceDeleteResponse structure represents the RRouterInterfaceDelete operation response
 type RouterInterfaceDeleteResponse struct {
 	// Return: The RRouterInterfaceDelete return value.
@@ -5797,8 +6013,10 @@ type xxx_RouterInterfaceTransportRemoveOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceTransportRemove operation.
 func (o *xxx_RouterInterfaceTransportRemoveOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of RRouterInterfaceTransportRemove operation.
 func (o *xxx_RouterInterfaceTransportRemoveOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceTransportRemove"
 }
@@ -5936,6 +6154,19 @@ func (o *RouterInterfaceTransportRemoveRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeRouterInterfaceTransportRemoveRequest build a response structure from the given request structure.
+func (o *RouterInterfaceTransportRemoveRequest) MakeResponse() *RouterInterfaceTransportRemoveResponse {
+	return &RouterInterfaceTransportRemoveResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceTransportRemove operation.
+func (o *RouterInterfaceTransportRemoveRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of RRouterInterfaceTransportRemove operation.
+func (o *RouterInterfaceTransportRemoveRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceTransportRemove"
+}
+
 // RouterInterfaceTransportRemoveResponse structure represents the RRouterInterfaceTransportRemove operation response
 type RouterInterfaceTransportRemoveResponse struct {
 	// Return: The RRouterInterfaceTransportRemove return value.
@@ -5979,8 +6210,10 @@ type xxx_RouterInterfaceTransportAddOperation struct {
 	Return      uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceTransportAdd operation.
 func (o *xxx_RouterInterfaceTransportAddOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of RRouterInterfaceTransportAdd operation.
 func (o *xxx_RouterInterfaceTransportAddOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceTransportAdd"
 }
@@ -6224,6 +6457,19 @@ func (o *RouterInterfaceTransportAddRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeRouterInterfaceTransportAddRequest build a response structure from the given request structure.
+func (o *RouterInterfaceTransportAddRequest) MakeResponse() *RouterInterfaceTransportAddResponse {
+	return &RouterInterfaceTransportAddResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceTransportAdd operation.
+func (o *RouterInterfaceTransportAddRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of RRouterInterfaceTransportAdd operation.
+func (o *RouterInterfaceTransportAddRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceTransportAdd"
+}
+
 // RouterInterfaceTransportAddResponse structure represents the RRouterInterfaceTransportAdd operation response
 type RouterInterfaceTransportAddResponse struct {
 	// Return: The RRouterInterfaceTransportAdd return value.
@@ -6267,8 +6513,10 @@ type xxx_RouterInterfaceTransportGetInfoOperation struct {
 	Return      uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceTransportGetInfo operation.
 func (o *xxx_RouterInterfaceTransportGetInfoOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of RRouterInterfaceTransportGetInfo operation.
 func (o *xxx_RouterInterfaceTransportGetInfoOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceTransportGetInfo"
 }
@@ -6466,6 +6714,19 @@ func (o *RouterInterfaceTransportGetInfoRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeRouterInterfaceTransportGetInfoRequest build a response structure from the given request structure.
+func (o *RouterInterfaceTransportGetInfoRequest) MakeResponse() *RouterInterfaceTransportGetInfoResponse {
+	return &RouterInterfaceTransportGetInfoResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceTransportGetInfo operation.
+func (o *RouterInterfaceTransportGetInfoRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of RRouterInterfaceTransportGetInfo operation.
+func (o *RouterInterfaceTransportGetInfoRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceTransportGetInfo"
+}
+
 // RouterInterfaceTransportGetInfoResponse structure represents the RRouterInterfaceTransportGetInfo operation response
 type RouterInterfaceTransportGetInfoResponse struct {
 	// pInfoStruct: This is a pointer of type DIM_INTERFACE_CONTAINER. It MUST NOT be NULL.
@@ -6515,8 +6776,10 @@ type xxx_RouterInterfaceTransportSetInfoOperation struct {
 	Return      uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceTransportSetInfo operation.
 func (o *xxx_RouterInterfaceTransportSetInfoOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of RRouterInterfaceTransportSetInfo operation.
 func (o *xxx_RouterInterfaceTransportSetInfoOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceTransportSetInfo"
 }
@@ -6763,6 +7026,19 @@ func (o *RouterInterfaceTransportSetInfoRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeRouterInterfaceTransportSetInfoRequest build a response structure from the given request structure.
+func (o *RouterInterfaceTransportSetInfoRequest) MakeResponse() *RouterInterfaceTransportSetInfoResponse {
+	return &RouterInterfaceTransportSetInfoResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceTransportSetInfo operation.
+func (o *RouterInterfaceTransportSetInfoRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of RRouterInterfaceTransportSetInfo operation.
+func (o *RouterInterfaceTransportSetInfoRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceTransportSetInfo"
+}
+
 // RouterInterfaceTransportSetInfoResponse structure represents the RRouterInterfaceTransportSetInfo operation response
 type RouterInterfaceTransportSetInfoResponse struct {
 	// Return: The RRouterInterfaceTransportSetInfo return value.
@@ -6809,8 +7085,10 @@ type xxx_RouterInterfaceEnumOperation struct {
 	Return                 uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceEnum operation.
 func (o *xxx_RouterInterfaceEnumOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of RRouterInterfaceEnum operation.
 func (o *xxx_RouterInterfaceEnumOperation) OpName() string { return "/dimsvc/v0/RRouterInterfaceEnum" }
 
 func (o *xxx_RouterInterfaceEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7091,6 +7369,17 @@ func (o *RouterInterfaceEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeRouterInterfaceEnumRequest build a response structure from the given request structure.
+func (o *RouterInterfaceEnumRequest) MakeResponse() *RouterInterfaceEnumResponse {
+	return &RouterInterfaceEnumResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceEnum operation.
+func (o *RouterInterfaceEnumRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of RRouterInterfaceEnum operation.
+func (o *RouterInterfaceEnumRequest) OpName() string { return "/dimsvc/v0/RRouterInterfaceEnum" }
+
 // RouterInterfaceEnumResponse structure represents the RRouterInterfaceEnum operation response
 type RouterInterfaceEnumResponse struct {
 	// pInfoStruct: This is a pointer of type DIM_INFORMATION_CONTAINER. pInfoStruct.dwBufferSize
@@ -7164,8 +7453,10 @@ type xxx_RouterInterfaceConnectOperation struct {
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceConnect operation.
 func (o *xxx_RouterInterfaceConnectOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of RRouterInterfaceConnect operation.
 func (o *xxx_RouterInterfaceConnectOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceConnect"
 }
@@ -7321,6 +7612,17 @@ func (o *RouterInterfaceConnectRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeRouterInterfaceConnectRequest build a response structure from the given request structure.
+func (o *RouterInterfaceConnectRequest) MakeResponse() *RouterInterfaceConnectResponse {
+	return &RouterInterfaceConnectResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceConnect operation.
+func (o *RouterInterfaceConnectRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of RRouterInterfaceConnect operation.
+func (o *RouterInterfaceConnectRequest) OpName() string { return "/dimsvc/v0/RRouterInterfaceConnect" }
+
 // RouterInterfaceConnectResponse structure represents the RRouterInterfaceConnect operation response
 type RouterInterfaceConnectResponse struct {
 	// Return: The RRouterInterfaceConnect return value.
@@ -7362,8 +7664,10 @@ type xxx_RouterInterfaceDisconnectOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceDisconnect operation.
 func (o *xxx_RouterInterfaceDisconnectOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of RRouterInterfaceDisconnect operation.
 func (o *xxx_RouterInterfaceDisconnectOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceDisconnect"
 }
@@ -7470,6 +7774,19 @@ func (o *RouterInterfaceDisconnectRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeRouterInterfaceDisconnectRequest build a response structure from the given request structure.
+func (o *RouterInterfaceDisconnectRequest) MakeResponse() *RouterInterfaceDisconnectResponse {
+	return &RouterInterfaceDisconnectResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceDisconnect operation.
+func (o *RouterInterfaceDisconnectRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of RRouterInterfaceDisconnect operation.
+func (o *RouterInterfaceDisconnectRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceDisconnect"
+}
+
 // RouterInterfaceDisconnectResponse structure represents the RRouterInterfaceDisconnect operation response
 type RouterInterfaceDisconnectResponse struct {
 	// Return: The RRouterInterfaceDisconnect return value.
@@ -7514,8 +7831,10 @@ type xxx_RouterInterfaceUpdateRoutesOperation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceUpdateRoutes operation.
 func (o *xxx_RouterInterfaceUpdateRoutesOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of RRouterInterfaceUpdateRoutes operation.
 func (o *xxx_RouterInterfaceUpdateRoutesOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceUpdateRoutes"
 }
@@ -7684,6 +8003,19 @@ func (o *RouterInterfaceUpdateRoutesRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeRouterInterfaceUpdateRoutesRequest build a response structure from the given request structure.
+func (o *RouterInterfaceUpdateRoutesRequest) MakeResponse() *RouterInterfaceUpdateRoutesResponse {
+	return &RouterInterfaceUpdateRoutesResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceUpdateRoutes operation.
+func (o *RouterInterfaceUpdateRoutesRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of RRouterInterfaceUpdateRoutes operation.
+func (o *RouterInterfaceUpdateRoutesRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceUpdateRoutes"
+}
+
 // RouterInterfaceUpdateRoutesResponse structure represents the RRouterInterfaceUpdateRoutes operation response
 type RouterInterfaceUpdateRoutesResponse struct {
 	// Return: The RRouterInterfaceUpdateRoutes return value.
@@ -7727,8 +8059,10 @@ type xxx_RouterInterfaceQueryUpdateResultOperation struct {
 	Return       uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceQueryUpdateResult operation.
 func (o *xxx_RouterInterfaceQueryUpdateResultOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of RRouterInterfaceQueryUpdateResult operation.
 func (o *xxx_RouterInterfaceQueryUpdateResultOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceQueryUpdateResult"
 }
@@ -7875,6 +8209,19 @@ func (o *RouterInterfaceQueryUpdateResultRequest) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
+// MakeRouterInterfaceQueryUpdateResultRequest build a response structure from the given request structure.
+func (o *RouterInterfaceQueryUpdateResultRequest) MakeResponse() *RouterInterfaceQueryUpdateResultResponse {
+	return &RouterInterfaceQueryUpdateResultResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceQueryUpdateResult operation.
+func (o *RouterInterfaceQueryUpdateResultRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of RRouterInterfaceQueryUpdateResult operation.
+func (o *RouterInterfaceQueryUpdateResultRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceQueryUpdateResult"
+}
+
 // RouterInterfaceQueryUpdateResultResponse structure represents the RRouterInterfaceQueryUpdateResult operation response
 type RouterInterfaceQueryUpdateResultResponse struct {
 	// pUpdateResult: A pointer to a DWORD variable. This variable receives the result of
@@ -7921,8 +8268,10 @@ type xxx_RouterInterfaceUpdatePhonebookInfoOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceUpdatePhonebookInfo operation.
 func (o *xxx_RouterInterfaceUpdatePhonebookInfoOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of RRouterInterfaceUpdatePhonebookInfo operation.
 func (o *xxx_RouterInterfaceUpdatePhonebookInfoOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceUpdatePhonebookInfo"
 }
@@ -8029,6 +8378,19 @@ func (o *RouterInterfaceUpdatePhonebookInfoRequest) UnmarshalNDR(ctx context.Con
 	return nil
 }
 
+// MakeRouterInterfaceUpdatePhonebookInfoRequest build a response structure from the given request structure.
+func (o *RouterInterfaceUpdatePhonebookInfoRequest) MakeResponse() *RouterInterfaceUpdatePhonebookInfoResponse {
+	return &RouterInterfaceUpdatePhonebookInfoResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceUpdatePhonebookInfo operation.
+func (o *RouterInterfaceUpdatePhonebookInfoRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of RRouterInterfaceUpdatePhonebookInfo operation.
+func (o *RouterInterfaceUpdatePhonebookInfoRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceUpdatePhonebookInfo"
+}
+
 // RouterInterfaceUpdatePhonebookInfoResponse structure represents the RRouterInterfaceUpdatePhonebookInfo operation response
 type RouterInterfaceUpdatePhonebookInfoResponse struct {
 	// Return: The RRouterInterfaceUpdatePhonebookInfo return value.
@@ -8072,8 +8434,10 @@ type xxx_MIBEntryCreateOperation struct {
 	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RMIBEntryCreate operation.
 func (o *xxx_MIBEntryCreateOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of RMIBEntryCreate operation.
 func (o *xxx_MIBEntryCreateOperation) OpName() string { return "/dimsvc/v0/RMIBEntryCreate" }
 
 func (o *xxx_MIBEntryCreateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8301,6 +8665,17 @@ func (o *MIBEntryCreateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeMIBEntryCreateRequest build a response structure from the given request structure.
+func (o *MIBEntryCreateRequest) MakeResponse() *MIBEntryCreateResponse {
+	return &MIBEntryCreateResponse{}
+}
+
+// OpNum returns the operation number of RMIBEntryCreate operation.
+func (o *MIBEntryCreateRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of RMIBEntryCreate operation.
+func (o *MIBEntryCreateRequest) OpName() string { return "/dimsvc/v0/RMIBEntryCreate" }
+
 // MIBEntryCreateResponse structure represents the RMIBEntryCreate operation response
 type MIBEntryCreateResponse struct {
 	// Return: The RMIBEntryCreate return value.
@@ -8344,8 +8719,10 @@ type xxx_MIBEntryDeleteOperation struct {
 	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RMIBEntryDelete operation.
 func (o *xxx_MIBEntryDeleteOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of RMIBEntryDelete operation.
 func (o *xxx_MIBEntryDeleteOperation) OpName() string { return "/dimsvc/v0/RMIBEntryDelete" }
 
 func (o *xxx_MIBEntryDeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8531,6 +8908,17 @@ func (o *MIBEntryDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeMIBEntryDeleteRequest build a response structure from the given request structure.
+func (o *MIBEntryDeleteRequest) MakeResponse() *MIBEntryDeleteResponse {
+	return &MIBEntryDeleteResponse{}
+}
+
+// OpNum returns the operation number of RMIBEntryDelete operation.
+func (o *MIBEntryDeleteRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of RMIBEntryDelete operation.
+func (o *MIBEntryDeleteRequest) OpName() string { return "/dimsvc/v0/RMIBEntryDelete" }
+
 // MIBEntryDeleteResponse structure represents the RMIBEntryDelete operation response
 type MIBEntryDeleteResponse struct {
 	// Return: The RMIBEntryDelete return value.
@@ -8574,8 +8962,10 @@ type xxx_MIBEntrySetOperation struct {
 	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RMIBEntrySet operation.
 func (o *xxx_MIBEntrySetOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of RMIBEntrySet operation.
 func (o *xxx_MIBEntrySetOperation) OpName() string { return "/dimsvc/v0/RMIBEntrySet" }
 
 func (o *xxx_MIBEntrySetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8782,6 +9172,17 @@ func (o *MIBEntrySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeMIBEntrySetRequest build a response structure from the given request structure.
+func (o *MIBEntrySetRequest) MakeResponse() *MIBEntrySetResponse {
+	return &MIBEntrySetResponse{}
+}
+
+// OpNum returns the operation number of RMIBEntrySet operation.
+func (o *MIBEntrySetRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of RMIBEntrySet operation.
+func (o *MIBEntrySetRequest) OpName() string { return "/dimsvc/v0/RMIBEntrySet" }
+
 // MIBEntrySetResponse structure represents the RMIBEntrySet operation response
 type MIBEntrySetResponse struct {
 	// Return: The RMIBEntrySet return value.
@@ -8825,8 +9226,10 @@ type xxx_MIBEntryGetOperation struct {
 	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RMIBEntryGet operation.
 func (o *xxx_MIBEntryGetOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of RMIBEntryGet operation.
 func (o *xxx_MIBEntryGetOperation) OpName() string { return "/dimsvc/v0/RMIBEntryGet" }
 
 func (o *xxx_MIBEntryGetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9164,6 +9567,17 @@ func (o *MIBEntryGetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeMIBEntryGetRequest build a response structure from the given request structure.
+func (o *MIBEntryGetRequest) MakeResponse() *MIBEntryGetResponse {
+	return &MIBEntryGetResponse{}
+}
+
+// OpNum returns the operation number of RMIBEntryGet operation.
+func (o *MIBEntryGetRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of RMIBEntryGet operation.
+func (o *MIBEntryGetRequest) OpName() string { return "/dimsvc/v0/RMIBEntryGet" }
+
 // MIBEntryGetResponse structure represents the RMIBEntryGet operation response
 type MIBEntryGetResponse struct {
 	// pInfoStuct: This MUST be a pointer to the structure DIM_MIB_ENTRY_CONTAINER (section
@@ -9229,8 +9643,10 @@ type xxx_MIBEntryGetFirstOperation struct {
 	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RMIBEntryGetFirst operation.
 func (o *xxx_MIBEntryGetFirstOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of RMIBEntryGetFirst operation.
 func (o *xxx_MIBEntryGetFirstOperation) OpName() string { return "/dimsvc/v0/RMIBEntryGetFirst" }
 
 func (o *xxx_MIBEntryGetFirstOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9550,6 +9966,17 @@ func (o *MIBEntryGetFirstRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeMIBEntryGetFirstRequest build a response structure from the given request structure.
+func (o *MIBEntryGetFirstRequest) MakeResponse() *MIBEntryGetFirstResponse {
+	return &MIBEntryGetFirstResponse{}
+}
+
+// OpNum returns the operation number of RMIBEntryGetFirst operation.
+func (o *MIBEntryGetFirstRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of RMIBEntryGetFirst operation.
+func (o *MIBEntryGetFirstRequest) OpName() string { return "/dimsvc/v0/RMIBEntryGetFirst" }
+
 // MIBEntryGetFirstResponse structure represents the RMIBEntryGetFirst operation response
 type MIBEntryGetFirstResponse struct {
 	// pInfoStuct: The same as in RMIBEntryGet (section 3.1.4.30).
@@ -9597,8 +10024,10 @@ type xxx_MIBEntryGetNextOperation struct {
 	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RMIBEntryGetNext operation.
 func (o *xxx_MIBEntryGetNextOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of RMIBEntryGetNext operation.
 func (o *xxx_MIBEntryGetNextOperation) OpName() string { return "/dimsvc/v0/RMIBEntryGetNext" }
 
 func (o *xxx_MIBEntryGetNextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9774,6 +10203,17 @@ func (o *MIBEntryGetNextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeMIBEntryGetNextRequest build a response structure from the given request structure.
+func (o *MIBEntryGetNextRequest) MakeResponse() *MIBEntryGetNextResponse {
+	return &MIBEntryGetNextResponse{}
+}
+
+// OpNum returns the operation number of RMIBEntryGetNext operation.
+func (o *MIBEntryGetNextRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of RMIBEntryGetNext operation.
+func (o *MIBEntryGetNextRequest) OpName() string { return "/dimsvc/v0/RMIBEntryGetNext" }
+
 // MIBEntryGetNextResponse structure represents the RMIBEntryGetNext operation response
 type MIBEntryGetNextResponse struct {
 	// pInfoStuct: The same as in RMIBEntryGet (section 3.1.4.30).
@@ -9821,8 +10261,10 @@ type xxx_MIBGetTrapInfoOperation struct {
 	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RMIBGetTrapInfo operation.
 func (o *xxx_MIBGetTrapInfoOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of RMIBGetTrapInfo operation.
 func (o *xxx_MIBGetTrapInfoOperation) OpName() string { return "/dimsvc/v0/RMIBGetTrapInfo" }
 
 func (o *xxx_MIBGetTrapInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10015,6 +10457,17 @@ func (o *MIBGetTrapInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeMIBGetTrapInfoRequest build a response structure from the given request structure.
+func (o *MIBGetTrapInfoRequest) MakeResponse() *MIBGetTrapInfoResponse {
+	return &MIBGetTrapInfoResponse{}
+}
+
+// OpNum returns the operation number of RMIBGetTrapInfo operation.
+func (o *MIBGetTrapInfoRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of RMIBGetTrapInfo operation.
+func (o *MIBGetTrapInfoRequest) OpName() string { return "/dimsvc/v0/RMIBGetTrapInfo" }
+
 // MIBGetTrapInfoResponse structure represents the RMIBGetTrapInfo operation response
 type MIBGetTrapInfoResponse struct {
 	// pInfoStruct: Pointer to an opaque data structure DIM_MIB_ENTRY_CONTAINER (section
@@ -10067,8 +10520,10 @@ type xxx_MIBSetTrapInfoOperation struct {
 	Return          uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RMIBSetTrapInfo operation.
 func (o *xxx_MIBSetTrapInfoOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of RMIBSetTrapInfo operation.
 func (o *xxx_MIBSetTrapInfoOperation) OpName() string { return "/dimsvc/v0/RMIBSetTrapInfo" }
 
 func (o *xxx_MIBSetTrapInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10283,6 +10738,17 @@ func (o *MIBSetTrapInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeMIBSetTrapInfoRequest build a response structure from the given request structure.
+func (o *MIBSetTrapInfoRequest) MakeResponse() *MIBSetTrapInfoResponse {
+	return &MIBSetTrapInfoResponse{}
+}
+
+// OpNum returns the operation number of RMIBSetTrapInfo operation.
+func (o *MIBSetTrapInfoRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of RMIBSetTrapInfo operation.
+func (o *MIBSetTrapInfoRequest) OpName() string { return "/dimsvc/v0/RMIBSetTrapInfo" }
+
 // MIBSetTrapInfoResponse structure represents the RMIBSetTrapInfo operation response
 type MIBSetTrapInfoResponse struct {
 	// pInfoStruct: Pointer to an opaque data structure DIM_MIB_ENTRY_CONTAINER (section
@@ -10333,8 +10799,10 @@ type xxx_ConnectionNotificationOperation struct {
 	Return            uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminConnectionNotification operation.
 func (o *xxx_ConnectionNotificationOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of RRasAdminConnectionNotification operation.
 func (o *xxx_ConnectionNotificationOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminConnectionNotification"
 }
@@ -10476,6 +10944,19 @@ func (o *ConnectionNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeConnectionNotificationRequest build a response structure from the given request structure.
+func (o *ConnectionNotificationRequest) MakeResponse() *ConnectionNotificationResponse {
+	return &ConnectionNotificationResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminConnectionNotification operation.
+func (o *ConnectionNotificationRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of RRasAdminConnectionNotification operation.
+func (o *ConnectionNotificationRequest) OpName() string {
+	return "/dimsvc/v0/RRasAdminConnectionNotification"
+}
+
 // ConnectionNotificationResponse structure represents the RRasAdminConnectionNotification operation response
 type ConnectionNotificationResponse struct {
 	// Return: The RRasAdminConnectionNotification return value.
@@ -10518,8 +10999,10 @@ type xxx_SendUserMessageOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminSendUserMessage operation.
 func (o *xxx_SendUserMessageOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of RRasAdminSendUserMessage operation.
 func (o *xxx_SendUserMessageOperation) OpName() string { return "/dimsvc/v0/RRasAdminSendUserMessage" }
 
 func (o *xxx_SendUserMessageOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10642,6 +11125,17 @@ func (o *SendUserMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSendUserMessageRequest build a response structure from the given request structure.
+func (o *SendUserMessageRequest) MakeResponse() *SendUserMessageResponse {
+	return &SendUserMessageResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminSendUserMessage operation.
+func (o *SendUserMessageRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of RRasAdminSendUserMessage operation.
+func (o *SendUserMessageRequest) OpName() string { return "/dimsvc/v0/RRasAdminSendUserMessage" }
+
 // SendUserMessageResponse structure represents the RRasAdminSendUserMessage operation response
 type SendUserMessageResponse struct {
 	// Return: The RRasAdminSendUserMessage return value.
@@ -10685,8 +11179,10 @@ type xxx_RouterDeviceEnumOperation struct {
 	Return       uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterDeviceEnum operation.
 func (o *xxx_RouterDeviceEnumOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of RRouterDeviceEnum operation.
 func (o *xxx_RouterDeviceEnumOperation) OpName() string { return "/dimsvc/v0/RRouterDeviceEnum" }
 
 func (o *xxx_RouterDeviceEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10889,6 +11385,17 @@ func (o *RouterDeviceEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeRouterDeviceEnumRequest build a response structure from the given request structure.
+func (o *RouterDeviceEnumRequest) MakeResponse() *RouterDeviceEnumResponse {
+	return &RouterDeviceEnumResponse{}
+}
+
+// OpNum returns the operation number of RRouterDeviceEnum operation.
+func (o *RouterDeviceEnumRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of RRouterDeviceEnum operation.
+func (o *RouterDeviceEnumRequest) OpName() string { return "/dimsvc/v0/RRouterDeviceEnum" }
+
 // RouterDeviceEnumResponse structure represents the RRouterDeviceEnum operation response
 type RouterDeviceEnumResponse struct {
 	// pInfoStruct: This is a pointer of type DIM_INFORMATION_CONTAINER (section 2.2.1.2.1),
@@ -10945,8 +11452,10 @@ type xxx_RouterInterfaceTransportCreateOperation struct {
 	Return        uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceTransportCreate operation.
 func (o *xxx_RouterInterfaceTransportCreateOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of RRouterInterfaceTransportCreate operation.
 func (o *xxx_RouterInterfaceTransportCreateOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceTransportCreate"
 }
@@ -11153,6 +11662,19 @@ func (o *RouterInterfaceTransportCreateRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeRouterInterfaceTransportCreateRequest build a response structure from the given request structure.
+func (o *RouterInterfaceTransportCreateRequest) MakeResponse() *RouterInterfaceTransportCreateResponse {
+	return &RouterInterfaceTransportCreateResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceTransportCreate operation.
+func (o *RouterInterfaceTransportCreateRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of RRouterInterfaceTransportCreate operation.
+func (o *RouterInterfaceTransportCreateRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceTransportCreate"
+}
+
 // RouterInterfaceTransportCreateResponse structure represents the RRouterInterfaceTransportCreate operation response
 type RouterInterfaceTransportCreateResponse struct {
 	// Return: The RRouterInterfaceTransportCreate return value.
@@ -11197,8 +11719,10 @@ type xxx_RouterInterfaceDeviceGetInfoOperation struct {
 	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceDeviceGetInfo operation.
 func (o *xxx_RouterInterfaceDeviceGetInfoOperation) OpNum() int { return 38 }
 
+// OpName returns the operation name of RRouterInterfaceDeviceGetInfo operation.
 func (o *xxx_RouterInterfaceDeviceGetInfoOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceDeviceGetInfo"
 }
@@ -11412,6 +11936,19 @@ func (o *RouterInterfaceDeviceGetInfoRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeRouterInterfaceDeviceGetInfoRequest build a response structure from the given request structure.
+func (o *RouterInterfaceDeviceGetInfoRequest) MakeResponse() *RouterInterfaceDeviceGetInfoResponse {
+	return &RouterInterfaceDeviceGetInfoResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceDeviceGetInfo operation.
+func (o *RouterInterfaceDeviceGetInfoRequest) OpNum() int { return 38 }
+
+// OpName returns the operation name of RRouterInterfaceDeviceGetInfo operation.
+func (o *RouterInterfaceDeviceGetInfoRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceDeviceGetInfo"
+}
+
 // RouterInterfaceDeviceGetInfoResponse structure represents the RRouterInterfaceDeviceGetInfo operation response
 type RouterInterfaceDeviceGetInfoResponse struct {
 	// pInfoStruct: This is a pointer of type DIM_INFORMATION_CONTAINER (section 2.2.1.2.1)
@@ -11463,8 +12000,10 @@ type xxx_RouterInterfaceDeviceSetInfoOperation struct {
 	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceDeviceSetInfo operation.
 func (o *xxx_RouterInterfaceDeviceSetInfoOperation) OpNum() int { return 39 }
 
+// OpName returns the operation name of RRouterInterfaceDeviceSetInfo operation.
 func (o *xxx_RouterInterfaceDeviceSetInfoOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceDeviceSetInfo"
 }
@@ -11668,6 +12207,19 @@ func (o *RouterInterfaceDeviceSetInfoRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeRouterInterfaceDeviceSetInfoRequest build a response structure from the given request structure.
+func (o *RouterInterfaceDeviceSetInfoRequest) MakeResponse() *RouterInterfaceDeviceSetInfoResponse {
+	return &RouterInterfaceDeviceSetInfoResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceDeviceSetInfo operation.
+func (o *RouterInterfaceDeviceSetInfoRequest) OpNum() int { return 39 }
+
+// OpName returns the operation name of RRouterInterfaceDeviceSetInfo operation.
+func (o *RouterInterfaceDeviceSetInfoRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceDeviceSetInfo"
+}
+
 // RouterInterfaceDeviceSetInfoResponse structure represents the RRouterInterfaceDeviceSetInfo operation response
 type RouterInterfaceDeviceSetInfoResponse struct {
 	// Return: The RRouterInterfaceDeviceSetInfo return value.
@@ -11711,8 +12263,10 @@ type xxx_RouterInterfaceSetCredentialsExOperation struct {
 	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceSetCredentialsEx operation.
 func (o *xxx_RouterInterfaceSetCredentialsExOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of RRouterInterfaceSetCredentialsEx operation.
 func (o *xxx_RouterInterfaceSetCredentialsExOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceSetCredentialsEx"
 }
@@ -11875,6 +12429,19 @@ func (o *RouterInterfaceSetCredentialsExRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeRouterInterfaceSetCredentialsExRequest build a response structure from the given request structure.
+func (o *RouterInterfaceSetCredentialsExRequest) MakeResponse() *RouterInterfaceSetCredentialsExResponse {
+	return &RouterInterfaceSetCredentialsExResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceSetCredentialsEx operation.
+func (o *RouterInterfaceSetCredentialsExRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of RRouterInterfaceSetCredentialsEx operation.
+func (o *RouterInterfaceSetCredentialsExRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceSetCredentialsEx"
+}
+
 // RouterInterfaceSetCredentialsExResponse structure represents the RRouterInterfaceSetCredentialsEx operation response
 type RouterInterfaceSetCredentialsExResponse struct {
 	// Return: The RRouterInterfaceSetCredentialsEx return value.
@@ -11918,8 +12485,10 @@ type xxx_RouterInterfaceGetCredentialsExOperation struct {
 	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceGetCredentialsEx operation.
 func (o *xxx_RouterInterfaceGetCredentialsExOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of RRouterInterfaceGetCredentialsEx operation.
 func (o *xxx_RouterInterfaceGetCredentialsExOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceGetCredentialsEx"
 }
@@ -12111,6 +12680,19 @@ func (o *RouterInterfaceGetCredentialsExRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeRouterInterfaceGetCredentialsExRequest build a response structure from the given request structure.
+func (o *RouterInterfaceGetCredentialsExRequest) MakeResponse() *RouterInterfaceGetCredentialsExResponse {
+	return &RouterInterfaceGetCredentialsExResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceGetCredentialsEx operation.
+func (o *RouterInterfaceGetCredentialsExRequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of RRouterInterfaceGetCredentialsEx operation.
+func (o *RouterInterfaceGetCredentialsExRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceGetCredentialsEx"
+}
+
 // RouterInterfaceGetCredentialsExResponse structure represents the RRouterInterfaceGetCredentialsEx operation response
 type RouterInterfaceGetCredentialsExResponse struct {
 	// pInfoStruct: Pointer to a MPR_CREDENTIALSEX_1 structure that contains the preshared
@@ -12159,8 +12741,10 @@ type xxx_ConnectionRemoveQuarantineOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminConnectionRemoveQuarantine operation.
 func (o *xxx_ConnectionRemoveQuarantineOperation) OpNum() int { return 42 }
 
+// OpName returns the operation name of RRasAdminConnectionRemoveQuarantine operation.
 func (o *xxx_ConnectionRemoveQuarantineOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminConnectionRemoveQuarantine"
 }
@@ -12295,6 +12879,19 @@ func (o *ConnectionRemoveQuarantineRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeConnectionRemoveQuarantineRequest build a response structure from the given request structure.
+func (o *ConnectionRemoveQuarantineRequest) MakeResponse() *ConnectionRemoveQuarantineResponse {
+	return &ConnectionRemoveQuarantineResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminConnectionRemoveQuarantine operation.
+func (o *ConnectionRemoveQuarantineRequest) OpNum() int { return 42 }
+
+// OpName returns the operation name of RRasAdminConnectionRemoveQuarantine operation.
+func (o *ConnectionRemoveQuarantineRequest) OpName() string {
+	return "/dimsvc/v0/RRasAdminConnectionRemoveQuarantine"
+}
+
 // ConnectionRemoveQuarantineResponse structure represents the RRasAdminConnectionRemoveQuarantine operation response
 type ConnectionRemoveQuarantineResponse struct {
 	// Return: The RRasAdminConnectionRemoveQuarantine return value.
@@ -12337,8 +12934,10 @@ type xxx_ServerSetInfoOperation struct {
 	Return uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RMprAdminServerSetInfo operation.
 func (o *xxx_ServerSetInfoOperation) OpNum() int { return 43 }
 
+// OpName returns the operation name of RMprAdminServerSetInfo operation.
 func (o *xxx_ServerSetInfoOperation) OpName() string { return "/dimsvc/v0/RMprAdminServerSetInfo" }
 
 func (o *xxx_ServerSetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12494,6 +13093,17 @@ func (o *ServerSetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeServerSetInfoRequest build a response structure from the given request structure.
+func (o *ServerSetInfoRequest) MakeResponse() *ServerSetInfoResponse {
+	return &ServerSetInfoResponse{}
+}
+
+// OpNum returns the operation number of RMprAdminServerSetInfo operation.
+func (o *ServerSetInfoRequest) OpNum() int { return 43 }
+
+// OpName returns the operation name of RMprAdminServerSetInfo operation.
+func (o *ServerSetInfoRequest) OpName() string { return "/dimsvc/v0/RMprAdminServerSetInfo" }
+
 // ServerSetInfoResponse structure represents the RMprAdminServerSetInfo operation response
 type ServerSetInfoResponse struct {
 	// Return: The RMprAdminServerSetInfo return value.
@@ -12535,8 +13145,10 @@ type xxx_ServerGetInfoExOperation struct {
 	Return       uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RMprAdminServerGetInfoEx operation.
 func (o *xxx_ServerGetInfoExOperation) OpNum() int { return 44 }
 
+// OpName returns the operation name of RMprAdminServerGetInfoEx operation.
 func (o *xxx_ServerGetInfoExOperation) OpName() string { return "/dimsvc/v0/RMprAdminServerGetInfoEx" }
 
 func (o *xxx_ServerGetInfoExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12682,6 +13294,17 @@ func (o *ServerGetInfoExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeServerGetInfoExRequest build a response structure from the given request structure.
+func (o *ServerGetInfoExRequest) MakeResponse() *ServerGetInfoExResponse {
+	return &ServerGetInfoExResponse{}
+}
+
+// OpNum returns the operation number of RMprAdminServerGetInfoEx operation.
+func (o *ServerGetInfoExRequest) OpNum() int { return 44 }
+
+// OpName returns the operation name of RMprAdminServerGetInfoEx operation.
+func (o *ServerGetInfoExRequest) OpName() string { return "/dimsvc/v0/RMprAdminServerGetInfoEx" }
+
 // ServerGetInfoExResponse structure represents the RMprAdminServerGetInfoEx operation response
 type ServerGetInfoExResponse struct {
 	// pServerConfig: A valid pointer to an MPR_SERVER_EX_IDL structure (section 2.2.1.2.143).
@@ -12734,8 +13357,10 @@ type xxx_ConnectionEnumExOperation struct {
 	Return              uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminConnectionEnumEx operation.
 func (o *xxx_ConnectionEnumExOperation) OpNum() int { return 45 }
 
+// OpName returns the operation name of RRasAdminConnectionEnumEx operation.
 func (o *xxx_ConnectionEnumExOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminConnectionEnumEx"
 }
@@ -13054,6 +13679,17 @@ func (o *ConnectionEnumExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeConnectionEnumExRequest build a response structure from the given request structure.
+func (o *ConnectionEnumExRequest) MakeResponse() *ConnectionEnumExResponse {
+	return &ConnectionEnumExResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminConnectionEnumEx operation.
+func (o *ConnectionEnumExRequest) OpNum() int { return 45 }
+
+// OpName returns the operation name of RRasAdminConnectionEnumEx operation.
+func (o *ConnectionEnumExRequest) OpName() string { return "/dimsvc/v0/RRasAdminConnectionEnumEx" }
+
 // ConnectionEnumExResponse structure represents the RRasAdminConnectionEnumEx operation response
 type ConnectionEnumExResponse struct {
 	// lpdwEntriesRead: This is a pointer to type DWORD. Upon a successful function call
@@ -13125,8 +13761,10 @@ type xxx_ConnectionGetInfoExOperation struct {
 	Return        uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminConnectionGetInfoEx operation.
 func (o *xxx_ConnectionGetInfoExOperation) OpNum() int { return 46 }
 
+// OpName returns the operation name of RRasAdminConnectionGetInfoEx operation.
 func (o *xxx_ConnectionGetInfoExOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminConnectionGetInfoEx"
 }
@@ -13283,6 +13921,19 @@ func (o *ConnectionGetInfoExRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeConnectionGetInfoExRequest build a response structure from the given request structure.
+func (o *ConnectionGetInfoExRequest) MakeResponse() *ConnectionGetInfoExResponse {
+	return &ConnectionGetInfoExResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminConnectionGetInfoEx operation.
+func (o *ConnectionGetInfoExRequest) OpNum() int { return 46 }
+
+// OpName returns the operation name of RRasAdminConnectionGetInfoEx operation.
+func (o *ConnectionGetInfoExRequest) OpName() string {
+	return "/dimsvc/v0/RRasAdminConnectionGetInfoEx"
+}
+
 // ConnectionGetInfoExResponse structure represents the RRasAdminConnectionGetInfoEx operation response
 type ConnectionGetInfoExResponse struct {
 	// pRasConnection: Upon successful return, this is a pointer to a RAS_CONNECTION_EX_IDL
@@ -13329,8 +13980,10 @@ type xxx_ServerSetInfoExOperation struct {
 	Return       uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RMprAdminServerSetInfoEx operation.
 func (o *xxx_ServerSetInfoExOperation) OpNum() int { return 47 }
 
+// OpName returns the operation name of RMprAdminServerSetInfoEx operation.
 func (o *xxx_ServerSetInfoExOperation) OpName() string { return "/dimsvc/v0/RMprAdminServerSetInfoEx" }
 
 func (o *xxx_ServerSetInfoExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13448,6 +14101,17 @@ func (o *ServerSetInfoExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeServerSetInfoExRequest build a response structure from the given request structure.
+func (o *ServerSetInfoExRequest) MakeResponse() *ServerSetInfoExResponse {
+	return &ServerSetInfoExResponse{}
+}
+
+// OpNum returns the operation number of RMprAdminServerSetInfoEx operation.
+func (o *ServerSetInfoExRequest) OpNum() int { return 47 }
+
+// OpName returns the operation name of RMprAdminServerSetInfoEx operation.
+func (o *ServerSetInfoExRequest) OpName() string { return "/dimsvc/v0/RMprAdminServerSetInfoEx" }
+
 // ServerSetInfoExResponse structure represents the RMprAdminServerSetInfoEx operation response
 type ServerSetInfoExResponse struct {
 	// Return: The RMprAdminServerSetInfoEx return value.
@@ -13490,8 +14154,10 @@ type xxx_UpdateConnectionOperation struct {
 	Return       uint32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRasAdminUpdateConnection operation.
 func (o *xxx_UpdateConnectionOperation) OpNum() int { return 48 }
 
+// OpName returns the operation name of RRasAdminUpdateConnection operation.
 func (o *xxx_UpdateConnectionOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminUpdateConnection"
 }
@@ -13624,6 +14290,17 @@ func (o *UpdateConnectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeUpdateConnectionRequest build a response structure from the given request structure.
+func (o *UpdateConnectionRequest) MakeResponse() *UpdateConnectionResponse {
+	return &UpdateConnectionResponse{}
+}
+
+// OpNum returns the operation number of RRasAdminUpdateConnection operation.
+func (o *UpdateConnectionRequest) OpNum() int { return 48 }
+
+// OpName returns the operation name of RRasAdminUpdateConnection operation.
+func (o *UpdateConnectionRequest) OpName() string { return "/dimsvc/v0/RRasAdminUpdateConnection" }
+
 // UpdateConnectionResponse structure represents the RRasAdminUpdateConnection operation response
 type UpdateConnectionResponse struct {
 	// Return: The RRasAdminUpdateConnection return value.
@@ -13668,8 +14345,10 @@ type xxx_RouterInterfaceSetCredentialsLocalOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceSetCredentialsLocal operation.
 func (o *xxx_RouterInterfaceSetCredentialsLocalOperation) OpNum() int { return 49 }
 
+// OpName returns the operation name of RRouterInterfaceSetCredentialsLocal operation.
 func (o *xxx_RouterInterfaceSetCredentialsLocalOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceSetCredentialsLocal"
 }
@@ -13829,6 +14508,19 @@ func (o *RouterInterfaceSetCredentialsLocalRequest) UnmarshalNDR(ctx context.Con
 	return nil
 }
 
+// MakeRouterInterfaceSetCredentialsLocalRequest build a response structure from the given request structure.
+func (o *RouterInterfaceSetCredentialsLocalRequest) MakeResponse() *RouterInterfaceSetCredentialsLocalResponse {
+	return &RouterInterfaceSetCredentialsLocalResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceSetCredentialsLocal operation.
+func (o *RouterInterfaceSetCredentialsLocalRequest) OpNum() int { return 49 }
+
+// OpName returns the operation name of RRouterInterfaceSetCredentialsLocal operation.
+func (o *RouterInterfaceSetCredentialsLocalRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceSetCredentialsLocal"
+}
+
 // RouterInterfaceSetCredentialsLocalResponse structure represents the RRouterInterfaceSetCredentialsLocal operation response
 type RouterInterfaceSetCredentialsLocalResponse struct {
 	// Return: The RRouterInterfaceSetCredentialsLocal return value.
@@ -13873,8 +14565,10 @@ type xxx_RouterInterfaceGetCredentialsLocalOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceGetCredentialsLocal operation.
 func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) OpNum() int { return 50 }
 
+// OpName returns the operation name of RRouterInterfaceGetCredentialsLocal operation.
 func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceGetCredentialsLocal"
 }
@@ -14092,6 +14786,19 @@ func (o *RouterInterfaceGetCredentialsLocalRequest) UnmarshalNDR(ctx context.Con
 	return nil
 }
 
+// MakeRouterInterfaceGetCredentialsLocalRequest build a response structure from the given request structure.
+func (o *RouterInterfaceGetCredentialsLocalRequest) MakeResponse() *RouterInterfaceGetCredentialsLocalResponse {
+	return &RouterInterfaceGetCredentialsLocalResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceGetCredentialsLocal operation.
+func (o *RouterInterfaceGetCredentialsLocalRequest) OpNum() int { return 50 }
+
+// OpName returns the operation name of RRouterInterfaceGetCredentialsLocal operation.
+func (o *RouterInterfaceGetCredentialsLocalRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceGetCredentialsLocal"
+}
+
 // RouterInterfaceGetCredentialsLocalResponse structure represents the RRouterInterfaceGetCredentialsLocal operation response
 type RouterInterfaceGetCredentialsLocalResponse struct {
 	// lpwsUserName: A pointer to a null-terminated Unicode string that contains the name
@@ -14152,8 +14859,10 @@ type xxx_RouterInterfaceGetCustomInfoExOperation struct {
 	Return                uint32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceGetCustomInfoEx operation.
 func (o *xxx_RouterInterfaceGetCustomInfoExOperation) OpNum() int { return 51 }
 
+// OpName returns the operation name of RRouterInterfaceGetCustomInfoEx operation.
 func (o *xxx_RouterInterfaceGetCustomInfoExOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceGetCustomInfoEx"
 }
@@ -14321,6 +15030,19 @@ func (o *RouterInterfaceGetCustomInfoExRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeRouterInterfaceGetCustomInfoExRequest build a response structure from the given request structure.
+func (o *RouterInterfaceGetCustomInfoExRequest) MakeResponse() *RouterInterfaceGetCustomInfoExResponse {
+	return &RouterInterfaceGetCustomInfoExResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceGetCustomInfoEx operation.
+func (o *RouterInterfaceGetCustomInfoExRequest) OpNum() int { return 51 }
+
+// OpName returns the operation name of RRouterInterfaceGetCustomInfoEx operation.
+func (o *RouterInterfaceGetCustomInfoExRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceGetCustomInfoEx"
+}
+
 // RouterInterfaceGetCustomInfoExResponse structure represents the RRouterInterfaceGetCustomInfoEx operation response
 type RouterInterfaceGetCustomInfoExResponse struct {
 	// pIfCustomConfig: A valid pointer to an MPR_IF_CUSTOMINFOEX_IDL (section 2.2.1.2.245)
@@ -14370,8 +15092,10 @@ type xxx_RouterInterfaceSetCustomInfoExOperation struct {
 	Return                uint32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRouterInterfaceSetCustomInfoEx operation.
 func (o *xxx_RouterInterfaceSetCustomInfoExOperation) OpNum() int { return 52 }
 
+// OpName returns the operation name of RRouterInterfaceSetCustomInfoEx operation.
 func (o *xxx_RouterInterfaceSetCustomInfoExOperation) OpName() string {
 	return "/dimsvc/v0/RRouterInterfaceSetCustomInfoEx"
 }
@@ -14536,6 +15260,19 @@ func (o *RouterInterfaceSetCustomInfoExRequest) UnmarshalNDR(ctx context.Context
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeRouterInterfaceSetCustomInfoExRequest build a response structure from the given request structure.
+func (o *RouterInterfaceSetCustomInfoExRequest) MakeResponse() *RouterInterfaceSetCustomInfoExResponse {
+	return &RouterInterfaceSetCustomInfoExResponse{}
+}
+
+// OpNum returns the operation number of RRouterInterfaceSetCustomInfoEx operation.
+func (o *RouterInterfaceSetCustomInfoExRequest) OpNum() int { return 52 }
+
+// OpName returns the operation name of RRouterInterfaceSetCustomInfoEx operation.
+func (o *RouterInterfaceSetCustomInfoExRequest) OpName() string {
+	return "/dimsvc/v0/RRouterInterfaceSetCustomInfoEx"
 }
 
 // RouterInterfaceSetCustomInfoExResponse structure represents the RRouterInterfaceSetCustomInfoEx operation response

@@ -142,8 +142,10 @@ type xxx_CheckInterfaceCertificateAllowedRROperation struct {
 	Return        int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CheckIfCertificateAllowedRR operation.
 func (o *xxx_CheckInterfaceCertificateAllowedRROperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CheckIfCertificateAllowedRR operation.
 func (o *xxx_CheckInterfaceCertificateAllowedRROperation) OpName() string {
 	return "/IRemoteSstpCertCheck/v0/CheckIfCertificateAllowedRR"
 }
@@ -416,6 +418,19 @@ func (o *CheckInterfaceCertificateAllowedRRRequest) UnmarshalNDR(ctx context.Con
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeCheckInterfaceCertificateAllowedRRRequest build a response structure from the given request structure.
+func (o *CheckInterfaceCertificateAllowedRRRequest) MakeResponse() *CheckInterfaceCertificateAllowedRRResponse {
+	return &CheckInterfaceCertificateAllowedRRResponse{}
+}
+
+// OpNum returns the operation number of CheckIfCertificateAllowedRR operation.
+func (o *CheckInterfaceCertificateAllowedRRRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of CheckIfCertificateAllowedRR operation.
+func (o *CheckInterfaceCertificateAllowedRRRequest) OpName() string {
+	return "/IRemoteSstpCertCheck/v0/CheckIfCertificateAllowedRR"
 }
 
 // CheckInterfaceCertificateAllowedRRResponse structure represents the CheckIfCertificateAllowedRR operation response

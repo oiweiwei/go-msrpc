@@ -4750,8 +4750,10 @@ type xxx_GetRemoteQueueNameOperation struct {
 	Return          int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMGetRemoteQueueName operation.
 func (o *xxx_GetRemoteQueueNameOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of R_QMGetRemoteQueueName operation.
 func (o *xxx_GetRemoteQueueNameOperation) OpName() string { return "/qmcomm/v1/R_QMGetRemoteQueueName" }
 
 func (o *xxx_GetRemoteQueueNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4972,6 +4974,17 @@ func (o *GetRemoteQueueNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetRemoteQueueNameRequest build a response structure from the given request structure.
+func (o *GetRemoteQueueNameRequest) MakeResponse() *GetRemoteQueueNameResponse {
+	return &GetRemoteQueueNameResponse{}
+}
+
+// OpNum returns the operation number of R_QMGetRemoteQueueName operation.
+func (o *GetRemoteQueueNameRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of R_QMGetRemoteQueueName operation.
+func (o *GetRemoteQueueNameRequest) OpName() string { return "/qmcomm/v1/R_QMGetRemoteQueueName" }
+
 // GetRemoteQueueNameResponse structure represents the R_QMGetRemoteQueueName operation response
 type GetRemoteQueueNameResponse struct {
 	// lplpRemoteQueueName:  A pointer to a buffer to receive the null-terminated name
@@ -5027,8 +5040,10 @@ type xxx_OpenRemoteQueueOperation struct {
 	Return           int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMOpenRemoteQueue operation.
 func (o *xxx_OpenRemoteQueueOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of R_QMOpenRemoteQueue operation.
 func (o *xxx_OpenRemoteQueueOperation) OpName() string { return "/qmcomm/v1/R_QMOpenRemoteQueue" }
 
 func (o *xxx_OpenRemoteQueueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5364,6 +5379,17 @@ func (o *OpenRemoteQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeOpenRemoteQueueRequest build a response structure from the given request structure.
+func (o *OpenRemoteQueueRequest) MakeResponse() *OpenRemoteQueueResponse {
+	return &OpenRemoteQueueResponse{}
+}
+
+// OpNum returns the operation number of R_QMOpenRemoteQueue operation.
+func (o *OpenRemoteQueueRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of R_QMOpenRemoteQueue operation.
+func (o *OpenRemoteQueueRequest) OpName() string { return "/qmcomm/v1/R_QMOpenRemoteQueue" }
+
 // OpenRemoteQueueResponse structure represents the R_QMOpenRemoteQueue operation response
 type OpenRemoteQueueResponse struct {
 	// pphContext:  A pointer to a variable to receive the PCTX_OPENREMOTE_HANDLE_TYPE
@@ -5427,8 +5453,10 @@ type xxx_CloseRemoteQueueContextOperation struct {
 	Context *Context `idl:"name:pphContext" json:"context"`
 }
 
+// OpNum returns the operation number of R_QMCloseRemoteQueueContext operation.
 func (o *xxx_CloseRemoteQueueContextOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of R_QMCloseRemoteQueueContext operation.
 func (o *xxx_CloseRemoteQueueContextOperation) OpName() string {
 	return "/qmcomm/v1/R_QMCloseRemoteQueueContext"
 }
@@ -5552,6 +5580,19 @@ func (o *CloseRemoteQueueContextRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeCloseRemoteQueueContextRequest build a response structure from the given request structure.
+func (o *CloseRemoteQueueContextRequest) MakeResponse() *CloseRemoteQueueContextResponse {
+	return &CloseRemoteQueueContextResponse{}
+}
+
+// OpNum returns the operation number of R_QMCloseRemoteQueueContext operation.
+func (o *CloseRemoteQueueContextRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of R_QMCloseRemoteQueueContext operation.
+func (o *CloseRemoteQueueContextRequest) OpName() string {
+	return "/qmcomm/v1/R_QMCloseRemoteQueueContext"
+}
+
 // CloseRemoteQueueContextResponse structure represents the R_QMCloseRemoteQueueContext operation response
 type CloseRemoteQueueContextResponse struct {
 	// pphContext:  An RPC context handle as defined in [MS-RPCE] section 2. This handle
@@ -5597,8 +5638,10 @@ type xxx_CreateRemoteCursorOperation struct {
 	Return  int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMCreateRemoteCursor operation.
 func (o *xxx_CreateRemoteCursorOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of R_QMCreateRemoteCursor operation.
 func (o *xxx_CreateRemoteCursorOperation) OpName() string { return "/qmcomm/v1/R_QMCreateRemoteCursor" }
 
 func (o *xxx_CreateRemoteCursorOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5746,6 +5789,17 @@ func (o *CreateRemoteCursorRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeCreateRemoteCursorRequest build a response structure from the given request structure.
+func (o *CreateRemoteCursorRequest) MakeResponse() *CreateRemoteCursorResponse {
+	return &CreateRemoteCursorResponse{}
+}
+
+// OpNum returns the operation number of R_QMCreateRemoteCursor operation.
+func (o *CreateRemoteCursorRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of R_QMCreateRemoteCursor operation.
+func (o *CreateRemoteCursorRequest) OpName() string { return "/qmcomm/v1/R_QMCreateRemoteCursor" }
+
 // CreateRemoteCursorResponse structure represents the R_QMCreateRemoteCursor operation response
 type CreateRemoteCursorResponse struct {
 	// phCursor: A pointer to a DWORD to receive the value of the Handle attribute of the
@@ -5799,8 +5853,10 @@ type xxx_CreateObjectInternalOperation struct {
 	Return                 int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMCreateObjectInternal operation.
 func (o *xxx_CreateObjectInternalOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of R_QMCreateObjectInternal operation.
 func (o *xxx_CreateObjectInternalOperation) OpName() string {
 	return "/qmcomm/v1/R_QMCreateObjectInternal"
 }
@@ -6173,6 +6229,17 @@ func (o *CreateObjectInternalRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeCreateObjectInternalRequest build a response structure from the given request structure.
+func (o *CreateObjectInternalRequest) MakeResponse() *CreateObjectInternalResponse {
+	return &CreateObjectInternalResponse{}
+}
+
+// OpNum returns the operation number of R_QMCreateObjectInternal operation.
+func (o *CreateObjectInternalRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of R_QMCreateObjectInternal operation.
+func (o *CreateObjectInternalRequest) OpName() string { return "/qmcomm/v1/R_QMCreateObjectInternal" }
+
 // CreateObjectInternalResponse structure represents the R_QMCreateObjectInternal operation response
 type CreateObjectInternalResponse struct {
 	// Return: The R_QMCreateObjectInternal return value.
@@ -6217,8 +6284,10 @@ type xxx_SetObjectSecurityInternalOperation struct {
 	Return                 int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMSetObjectSecurityInternal operation.
 func (o *xxx_SetObjectSecurityInternalOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of R_QMSetObjectSecurityInternal operation.
 func (o *xxx_SetObjectSecurityInternalOperation) OpName() string {
 	return "/qmcomm/v1/R_QMSetObjectSecurityInternal"
 }
@@ -6456,6 +6525,19 @@ func (o *SetObjectSecurityInternalRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeSetObjectSecurityInternalRequest build a response structure from the given request structure.
+func (o *SetObjectSecurityInternalRequest) MakeResponse() *SetObjectSecurityInternalResponse {
+	return &SetObjectSecurityInternalResponse{}
+}
+
+// OpNum returns the operation number of R_QMSetObjectSecurityInternal operation.
+func (o *SetObjectSecurityInternalRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of R_QMSetObjectSecurityInternal operation.
+func (o *SetObjectSecurityInternalRequest) OpName() string {
+	return "/qmcomm/v1/R_QMSetObjectSecurityInternal"
+}
+
 // SetObjectSecurityInternalResponse structure represents the R_QMSetObjectSecurityInternal operation response
 type SetObjectSecurityInternalResponse struct {
 	// Return: The R_QMSetObjectSecurityInternal return value.
@@ -6501,8 +6583,10 @@ type xxx_GetObjectSecurityInternalOperation struct {
 	Return               int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMGetObjectSecurityInternal operation.
 func (o *xxx_GetObjectSecurityInternalOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of R_QMGetObjectSecurityInternal operation.
 func (o *xxx_GetObjectSecurityInternalOperation) OpName() string {
 	return "/qmcomm/v1/R_QMGetObjectSecurityInternal"
 }
@@ -6720,6 +6804,24 @@ func (o *GetObjectSecurityInternalRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeGetObjectSecurityInternalRequest build a response structure from the given request structure.
+func (o *GetObjectSecurityInternalRequest) MakeResponse() *GetObjectSecurityInternalResponse {
+	if o == nil {
+		return &GetObjectSecurityInternalResponse{}
+	}
+	return &GetObjectSecurityInternalResponse{
+		Length: o.Length,
+	}
+}
+
+// OpNum returns the operation number of R_QMGetObjectSecurityInternal operation.
+func (o *GetObjectSecurityInternalRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of R_QMGetObjectSecurityInternal operation.
+func (o *GetObjectSecurityInternalRequest) OpName() string {
+	return "/qmcomm/v1/R_QMGetObjectSecurityInternal"
+}
+
 // GetObjectSecurityInternalResponse structure represents the R_QMGetObjectSecurityInternal operation response
 type GetObjectSecurityInternalResponse struct {
 	// XXX: nLength is an implicit input depedency for output parameters
@@ -6788,8 +6890,10 @@ type xxx_DeleteObjectOperation struct {
 	Return       int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMDeleteObject operation.
 func (o *xxx_DeleteObjectOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of R_QMDeleteObject operation.
 func (o *xxx_DeleteObjectOperation) OpName() string { return "/qmcomm/v1/R_QMDeleteObject" }
 
 func (o *xxx_DeleteObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6908,6 +7012,17 @@ func (o *DeleteObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeDeleteObjectRequest build a response structure from the given request structure.
+func (o *DeleteObjectRequest) MakeResponse() *DeleteObjectResponse {
+	return &DeleteObjectResponse{}
+}
+
+// OpNum returns the operation number of R_QMDeleteObject operation.
+func (o *DeleteObjectRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of R_QMDeleteObject operation.
+func (o *DeleteObjectRequest) OpName() string { return "/qmcomm/v1/R_QMDeleteObject" }
+
 // DeleteObjectResponse structure represents the R_QMDeleteObject operation response
 type DeleteObjectResponse struct {
 	// Return: The R_QMDeleteObject return value.
@@ -6952,8 +7067,10 @@ type xxx_GetObjectPropertiesOperation struct {
 	Return          int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMGetObjectProperties operation.
 func (o *xxx_GetObjectPropertiesOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of R_QMGetObjectProperties operation.
 func (o *xxx_GetObjectPropertiesOperation) OpName() string {
 	return "/qmcomm/v1/R_QMGetObjectProperties"
 }
@@ -7283,6 +7400,22 @@ func (o *GetObjectPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetObjectPropertiesRequest build a response structure from the given request structure.
+func (o *GetObjectPropertiesRequest) MakeResponse() *GetObjectPropertiesResponse {
+	if o == nil {
+		return &GetObjectPropertiesResponse{}
+	}
+	return &GetObjectPropertiesResponse{
+		CreatePartition: o.CreatePartition,
+	}
+}
+
+// OpNum returns the operation number of R_QMGetObjectProperties operation.
+func (o *GetObjectPropertiesRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of R_QMGetObjectProperties operation.
+func (o *GetObjectPropertiesRequest) OpName() string { return "/qmcomm/v1/R_QMGetObjectProperties" }
+
 // GetObjectPropertiesResponse structure represents the R_QMGetObjectProperties operation response
 type GetObjectPropertiesResponse struct {
 	// XXX: cp is an implicit input depedency for output parameters
@@ -7347,8 +7480,10 @@ type xxx_SetObjectPropertiesOperation struct {
 	Return          int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMSetObjectProperties operation.
 func (o *xxx_SetObjectPropertiesOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of R_QMSetObjectProperties operation.
 func (o *xxx_SetObjectPropertiesOperation) OpName() string {
 	return "/qmcomm/v1/R_QMSetObjectProperties"
 }
@@ -7663,6 +7798,17 @@ func (o *SetObjectPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeSetObjectPropertiesRequest build a response structure from the given request structure.
+func (o *SetObjectPropertiesRequest) MakeResponse() *SetObjectPropertiesResponse {
+	return &SetObjectPropertiesResponse{}
+}
+
+// OpNum returns the operation number of R_QMSetObjectProperties operation.
+func (o *SetObjectPropertiesRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of R_QMSetObjectProperties operation.
+func (o *SetObjectPropertiesRequest) OpName() string { return "/qmcomm/v1/R_QMSetObjectProperties" }
+
 // SetObjectPropertiesResponse structure represents the R_QMSetObjectProperties operation response
 type SetObjectPropertiesResponse struct {
 	// Return: The R_QMSetObjectProperties return value.
@@ -7705,8 +7851,10 @@ type xxx_ObjectPathToObjectFormatOperation struct {
 	Return       int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMObjectPathToObjectFormat operation.
 func (o *xxx_ObjectPathToObjectFormatOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of R_QMObjectPathToObjectFormat operation.
 func (o *xxx_ObjectPathToObjectFormatOperation) OpName() string {
 	return "/qmcomm/v1/R_QMObjectPathToObjectFormat"
 }
@@ -7874,6 +8022,19 @@ func (o *ObjectPathToObjectFormatRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeObjectPathToObjectFormatRequest build a response structure from the given request structure.
+func (o *ObjectPathToObjectFormatRequest) MakeResponse() *ObjectPathToObjectFormatResponse {
+	return &ObjectPathToObjectFormatResponse{}
+}
+
+// OpNum returns the operation number of R_QMObjectPathToObjectFormat operation.
+func (o *ObjectPathToObjectFormatRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of R_QMObjectPathToObjectFormat operation.
+func (o *ObjectPathToObjectFormatRequest) OpName() string {
+	return "/qmcomm/v1/R_QMObjectPathToObjectFormat"
+}
+
 // ObjectPathToObjectFormatResponse structure represents the R_QMObjectPathToObjectFormat operation response
 type ObjectPathToObjectFormatResponse struct {
 	// pObjectFormat:  MUST be a pointer to an OBJECT_FORMAT structure, as specified in
@@ -7925,8 +8086,10 @@ type xxx_GetTMWhereaboutsOperation struct {
 	Return            int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMGetTmWhereabouts operation.
 func (o *xxx_GetTMWhereaboutsOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of R_QMGetTmWhereabouts operation.
 func (o *xxx_GetTMWhereaboutsOperation) OpName() string { return "/qmcomm/v1/R_QMGetTmWhereabouts" }
 
 func (o *xxx_GetTMWhereaboutsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8089,6 +8252,22 @@ func (o *GetTMWhereaboutsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetTMWhereaboutsRequest build a response structure from the given request structure.
+func (o *GetTMWhereaboutsRequest) MakeResponse() *GetTMWhereaboutsResponse {
+	if o == nil {
+		return &GetTMWhereaboutsResponse{}
+	}
+	return &GetTMWhereaboutsResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of R_QMGetTmWhereabouts operation.
+func (o *GetTMWhereaboutsRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of R_QMGetTmWhereabouts operation.
+func (o *GetTMWhereaboutsRequest) OpName() string { return "/qmcomm/v1/R_QMGetTmWhereabouts" }
+
 // GetTMWhereaboutsResponse structure represents the R_QMGetTmWhereabouts operation response
 type GetTMWhereaboutsResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
@@ -8155,8 +8334,10 @@ type xxx_EnlistTransactionOperation struct {
 	Return       int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMEnlistTransaction operation.
 func (o *xxx_EnlistTransactionOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of R_QMEnlistTransaction operation.
 func (o *xxx_EnlistTransactionOperation) OpName() string { return "/qmcomm/v1/R_QMEnlistTransaction" }
 
 func (o *xxx_EnlistTransactionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8341,6 +8522,17 @@ func (o *EnlistTransactionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeEnlistTransactionRequest build a response structure from the given request structure.
+func (o *EnlistTransactionRequest) MakeResponse() *EnlistTransactionResponse {
+	return &EnlistTransactionResponse{}
+}
+
+// OpNum returns the operation number of R_QMEnlistTransaction operation.
+func (o *EnlistTransactionRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of R_QMEnlistTransaction operation.
+func (o *EnlistTransactionRequest) OpName() string { return "/qmcomm/v1/R_QMEnlistTransaction" }
+
 // EnlistTransactionResponse structure represents the R_QMEnlistTransaction operation response
 type EnlistTransactionResponse struct {
 	// Return: The R_QMEnlistTransaction return value.
@@ -8383,8 +8575,10 @@ type xxx_EnlistInternalTransactionOperation struct {
 	Return              int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMEnlistInternalTransaction operation.
 func (o *xxx_EnlistInternalTransactionOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of R_QMEnlistInternalTransaction operation.
 func (o *xxx_EnlistInternalTransactionOperation) OpName() string {
 	return "/qmcomm/v1/R_QMEnlistInternalTransaction"
 }
@@ -8519,6 +8713,19 @@ func (o *EnlistInternalTransactionRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeEnlistInternalTransactionRequest build a response structure from the given request structure.
+func (o *EnlistInternalTransactionRequest) MakeResponse() *EnlistInternalTransactionResponse {
+	return &EnlistInternalTransactionResponse{}
+}
+
+// OpNum returns the operation number of R_QMEnlistInternalTransaction operation.
+func (o *EnlistInternalTransactionRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of R_QMEnlistInternalTransaction operation.
+func (o *EnlistInternalTransactionRequest) OpName() string {
+	return "/qmcomm/v1/R_QMEnlistInternalTransaction"
+}
+
 // EnlistInternalTransactionResponse structure represents the R_QMEnlistInternalTransaction operation response
 type EnlistInternalTransactionResponse struct {
 	// phIntXact:  A pointer to receive the new RPC_INT_XACT_HANDLE which represents the
@@ -8565,8 +8772,10 @@ type xxx_CommitTransactionOperation struct {
 	Return              int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMCommitTransaction operation.
 func (o *xxx_CommitTransactionOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of R_QMCommitTransaction operation.
 func (o *xxx_CommitTransactionOperation) OpName() string { return "/qmcomm/v1/R_QMCommitTransaction" }
 
 func (o *xxx_CommitTransactionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8701,6 +8910,17 @@ func (o *CommitTransactionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeCommitTransactionRequest build a response structure from the given request structure.
+func (o *CommitTransactionRequest) MakeResponse() *CommitTransactionResponse {
+	return &CommitTransactionResponse{}
+}
+
+// OpNum returns the operation number of R_QMCommitTransaction operation.
+func (o *CommitTransactionRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of R_QMCommitTransaction operation.
+func (o *CommitTransactionRequest) OpName() string { return "/qmcomm/v1/R_QMCommitTransaction" }
+
 // CommitTransactionResponse structure represents the R_QMCommitTransaction operation response
 type CommitTransactionResponse struct {
 	// phIntXact:  MUST be an RPC_INT_XACT_HANDLE (section 2.2.1.1.1) identifying the internal
@@ -8749,8 +8969,10 @@ type xxx_AbortTransactionOperation struct {
 	Return              int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMAbortTransaction operation.
 func (o *xxx_AbortTransactionOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of R_QMAbortTransaction operation.
 func (o *xxx_AbortTransactionOperation) OpName() string { return "/qmcomm/v1/R_QMAbortTransaction" }
 
 func (o *xxx_AbortTransactionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8884,6 +9106,17 @@ func (o *AbortTransactionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeAbortTransactionRequest build a response structure from the given request structure.
+func (o *AbortTransactionRequest) MakeResponse() *AbortTransactionResponse {
+	return &AbortTransactionResponse{}
+}
+
+// OpNum returns the operation number of R_QMAbortTransaction operation.
+func (o *AbortTransactionRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of R_QMAbortTransaction operation.
+func (o *AbortTransactionRequest) OpName() string { return "/qmcomm/v1/R_QMAbortTransaction" }
+
 // AbortTransactionResponse structure represents the R_QMAbortTransaction operation response
 type AbortTransactionResponse struct {
 	// phIntXact:  MUST be an RPC_INT_XACT_HANDLE identifying the internal transaction
@@ -8942,8 +9175,10 @@ type xxx_OpenQueueInternalOperation struct {
 	Return          int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of rpc_QMOpenQueueInternal operation.
 func (o *xxx_OpenQueueInternalOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of rpc_QMOpenQueueInternal operation.
 func (o *xxx_OpenQueueInternalOperation) OpName() string { return "/qmcomm/v1/rpc_QMOpenQueueInternal" }
 
 func (o *xxx_OpenQueueInternalOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9427,6 +9662,17 @@ func (o *OpenQueueInternalRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeOpenQueueInternalRequest build a response structure from the given request structure.
+func (o *OpenQueueInternalRequest) MakeResponse() *OpenQueueInternalResponse {
+	return &OpenQueueInternalResponse{}
+}
+
+// OpNum returns the operation number of rpc_QMOpenQueueInternal operation.
+func (o *OpenQueueInternalRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of rpc_QMOpenQueueInternal operation.
+func (o *OpenQueueInternalRequest) OpName() string { return "/qmcomm/v1/rpc_QMOpenQueueInternal" }
+
 // OpenQueueInternalResponse structure represents the rpc_QMOpenQueueInternal operation response
 type OpenQueueInternalResponse struct {
 	// lplpRemoteQueueName:  On input, the server MUST ignore lplpRemoteQueueName. If hRemoteQueue
@@ -9493,8 +9739,10 @@ type xxx_CloseHandleOperation struct {
 	Return int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of rpc_ACCloseHandle operation.
 func (o *xxx_CloseHandleOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of rpc_ACCloseHandle operation.
 func (o *xxx_CloseHandleOperation) OpName() string { return "/qmcomm/v1/rpc_ACCloseHandle" }
 
 func (o *xxx_CloseHandleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9628,6 +9876,17 @@ func (o *CloseHandleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCloseHandleRequest build a response structure from the given request structure.
+func (o *CloseHandleRequest) MakeResponse() *CloseHandleResponse {
+	return &CloseHandleResponse{}
+}
+
+// OpNum returns the operation number of rpc_ACCloseHandle operation.
+func (o *CloseHandleRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of rpc_ACCloseHandle operation.
+func (o *CloseHandleRequest) OpName() string { return "/qmcomm/v1/rpc_ACCloseHandle" }
+
 // CloseHandleResponse structure represents the rpc_ACCloseHandle operation response
 type CloseHandleResponse struct {
 	// phQueue:  MUST be a context handle acquired from the phQueue out-parameter of the
@@ -9676,8 +9935,10 @@ type xxx_CloseCursorOperation struct {
 	Return int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of rpc_ACCloseCursor operation.
 func (o *xxx_CloseCursorOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of rpc_ACCloseCursor operation.
 func (o *xxx_CloseCursorOperation) OpName() string { return "/qmcomm/v1/rpc_ACCloseCursor" }
 
 func (o *xxx_CloseCursorOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9806,6 +10067,17 @@ func (o *CloseCursorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCloseCursorRequest build a response structure from the given request structure.
+func (o *CloseCursorRequest) MakeResponse() *CloseCursorResponse {
+	return &CloseCursorResponse{}
+}
+
+// OpNum returns the operation number of rpc_ACCloseCursor operation.
+func (o *CloseCursorRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of rpc_ACCloseCursor operation.
+func (o *CloseCursorRequest) OpName() string { return "/qmcomm/v1/rpc_ACCloseCursor" }
+
 // CloseCursorResponse structure represents the rpc_ACCloseCursor operation response
 type CloseCursorResponse struct {
 	// Return: The rpc_ACCloseCursor return value.
@@ -9849,8 +10121,10 @@ type xxx_SetCursorPropertiesOperation struct {
 	Return       int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of rpc_ACSetCursorProperties operation.
 func (o *xxx_SetCursorPropertiesOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of rpc_ACSetCursorProperties operation.
 func (o *xxx_SetCursorPropertiesOperation) OpName() string {
 	return "/qmcomm/v1/rpc_ACSetCursorProperties"
 }
@@ -9998,6 +10272,17 @@ func (o *SetCursorPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeSetCursorPropertiesRequest build a response structure from the given request structure.
+func (o *SetCursorPropertiesRequest) MakeResponse() *SetCursorPropertiesResponse {
+	return &SetCursorPropertiesResponse{}
+}
+
+// OpNum returns the operation number of rpc_ACSetCursorProperties operation.
+func (o *SetCursorPropertiesRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of rpc_ACSetCursorProperties operation.
+func (o *SetCursorPropertiesRequest) OpName() string { return "/qmcomm/v1/rpc_ACSetCursorProperties" }
+
 // SetCursorPropertiesResponse structure represents the rpc_ACSetCursorProperties operation response
 type SetCursorPropertiesResponse struct {
 	// Return: The rpc_ACSetCursorProperties return value.
@@ -10042,8 +10327,10 @@ type xxx_HandleToFormatNameOperation struct {
 	Return                    int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of rpc_ACHandleToFormatName operation.
 func (o *xxx_HandleToFormatNameOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of rpc_ACHandleToFormatName operation.
 func (o *xxx_HandleToFormatNameOperation) OpName() string {
 	return "/qmcomm/v1/rpc_ACHandleToFormatName"
 }
@@ -10418,6 +10705,22 @@ func (o *HandleToFormatNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeHandleToFormatNameRequest build a response structure from the given request structure.
+func (o *HandleToFormatNameRequest) MakeResponse() *HandleToFormatNameResponse {
+	if o == nil {
+		return &HandleToFormatNameResponse{}
+	}
+	return &HandleToFormatNameResponse{
+		FormatNameRPCBufferLength: o.FormatNameRPCBufferLength,
+	}
+}
+
+// OpNum returns the operation number of rpc_ACHandleToFormatName operation.
+func (o *HandleToFormatNameRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of rpc_ACHandleToFormatName operation.
+func (o *HandleToFormatNameRequest) OpName() string { return "/qmcomm/v1/rpc_ACHandleToFormatName" }
+
 // HandleToFormatNameResponse structure represents the rpc_ACHandleToFormatName operation response
 type HandleToFormatNameResponse struct {
 	// XXX: dwFormatNameRPCBufferLen is an implicit input depedency for output parameters
@@ -10487,8 +10790,10 @@ type xxx_PurgeQueueOperation struct {
 	Return int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of rpc_ACPurgeQueue operation.
 func (o *xxx_PurgeQueueOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of rpc_ACPurgeQueue operation.
 func (o *xxx_PurgeQueueOperation) OpName() string { return "/qmcomm/v1/rpc_ACPurgeQueue" }
 
 func (o *xxx_PurgeQueueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10602,6 +10907,17 @@ func (o *PurgeQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakePurgeQueueRequest build a response structure from the given request structure.
+func (o *PurgeQueueRequest) MakeResponse() *PurgeQueueResponse {
+	return &PurgeQueueResponse{}
+}
+
+// OpNum returns the operation number of rpc_ACPurgeQueue operation.
+func (o *PurgeQueueRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of rpc_ACPurgeQueue operation.
+func (o *PurgeQueueRequest) OpName() string { return "/qmcomm/v1/rpc_ACPurgeQueue" }
+
 // PurgeQueueResponse structure represents the rpc_ACPurgeQueue operation response
 type PurgeQueueResponse struct {
 	// Return: The rpc_ACPurgeQueue return value.
@@ -10644,8 +10960,10 @@ type xxx_QueryQMRegistryInternalOperation struct {
 	Return     int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMQueryQMRegistryInternal operation.
 func (o *xxx_QueryQMRegistryInternalOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of R_QMQueryQMRegistryInternal operation.
 func (o *xxx_QueryQMRegistryInternalOperation) OpName() string {
 	return "/qmcomm/v1/R_QMQueryQMRegistryInternal"
 }
@@ -10823,6 +11141,19 @@ func (o *QueryQMRegistryInternalRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeQueryQMRegistryInternalRequest build a response structure from the given request structure.
+func (o *QueryQMRegistryInternalRequest) MakeResponse() *QueryQMRegistryInternalResponse {
+	return &QueryQMRegistryInternalResponse{}
+}
+
+// OpNum returns the operation number of R_QMQueryQMRegistryInternal operation.
+func (o *QueryQMRegistryInternalRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of R_QMQueryQMRegistryInternal operation.
+func (o *QueryQMRegistryInternalRequest) OpName() string {
+	return "/qmcomm/v1/R_QMQueryQMRegistryInternal"
+}
+
 // QueryQMRegistryInternalResponse structure represents the R_QMQueryQMRegistryInternal operation response
 type QueryQMRegistryInternalResponse struct {
 	// lplpMQISServer:  On success, the server returns the string indicated by dwQueryType
@@ -10870,8 +11201,10 @@ type xxx_GetRTQMServerPortOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMGetRTQMServerPort operation.
 func (o *xxx_GetRTQMServerPortOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of R_QMGetRTQMServerPort operation.
 func (o *xxx_GetRTQMServerPortOperation) OpName() string { return "/qmcomm/v1/R_QMGetRTQMServerPort" }
 
 func (o *xxx_GetRTQMServerPortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10993,6 +11326,17 @@ func (o *GetRTQMServerPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetRTQMServerPortRequest build a response structure from the given request structure.
+func (o *GetRTQMServerPortRequest) MakeResponse() *GetRTQMServerPortResponse {
+	return &GetRTQMServerPortResponse{}
+}
+
+// OpNum returns the operation number of R_QMGetRTQMServerPort operation.
+func (o *GetRTQMServerPortRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of R_QMGetRTQMServerPort operation.
+func (o *GetRTQMServerPortRequest) OpName() string { return "/qmcomm/v1/R_QMGetRTQMServerPort" }
 
 // GetRTQMServerPortResponse structure represents the R_QMGetRTQMServerPort operation response
 type GetRTQMServerPortResponse struct {

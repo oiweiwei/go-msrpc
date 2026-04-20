@@ -228,8 +228,10 @@ type xxx_GetMessageOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Message operation.
 func (o *xxx_GetMessageOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Message operation.
 func (o *xxx_GetMessageOperation) OpName() string { return "/IUpdateException/v0/Message" }
 
 func (o *xxx_GetMessageOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -419,6 +421,17 @@ func (o *GetMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetMessageRequest build a response structure from the given request structure.
+func (o *GetMessageRequest) MakeResponse() *GetMessageResponse {
+	return &GetMessageResponse{}
+}
+
+// OpNum returns the operation number of Message operation.
+func (o *GetMessageRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Message operation.
+func (o *GetMessageRequest) OpName() string { return "/IUpdateException/v0/Message" }
+
 // GetMessageResponse structure represents the Message operation response
 type GetMessageResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -471,8 +484,10 @@ type xxx_GetHResultOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of HResult operation.
 func (o *xxx_GetHResultOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of HResult operation.
 func (o *xxx_GetHResultOperation) OpName() string { return "/IUpdateException/v0/HResult" }
 
 func (o *xxx_GetHResultOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -628,6 +643,17 @@ func (o *GetHResultRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetHResultRequest build a response structure from the given request structure.
+func (o *GetHResultRequest) MakeResponse() *GetHResultResponse {
+	return &GetHResultResponse{}
+}
+
+// OpNum returns the operation number of HResult operation.
+func (o *GetHResultRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of HResult operation.
+func (o *GetHResultRequest) OpName() string { return "/IUpdateException/v0/HResult" }
+
 // GetHResultResponse structure represents the HResult operation response
 type GetHResultResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -686,8 +712,10 @@ type xxx_GetContextOperation struct {
 	Return      int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Context operation.
 func (o *xxx_GetContextOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Context operation.
 func (o *xxx_GetContextOperation) OpName() string { return "/IUpdateException/v0/Context" }
 
 func (o *xxx_GetContextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -842,6 +870,17 @@ func (o *GetContextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetContextRequest build a response structure from the given request structure.
+func (o *GetContextRequest) MakeResponse() *GetContextResponse {
+	return &GetContextResponse{}
+}
+
+// OpNum returns the operation number of Context operation.
+func (o *GetContextRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Context operation.
+func (o *GetContextRequest) OpName() string { return "/IUpdateException/v0/Context" }
 
 // GetContextResponse structure represents the Context operation response
 type GetContextResponse struct {

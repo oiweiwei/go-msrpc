@@ -173,8 +173,10 @@ type xxx_GetImportTargetOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetImportTarget operation.
 func (o *xxx_GetImportTargetOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetImportTarget operation.
 func (o *xxx_GetImportTargetOperation) OpName() string {
 	return "/IVdsSubSystemImportTarget/v0/GetImportTarget"
 }
@@ -357,6 +359,19 @@ func (o *GetImportTargetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetImportTargetRequest build a response structure from the given request structure.
+func (o *GetImportTargetRequest) MakeResponse() *GetImportTargetResponse {
+	return &GetImportTargetResponse{}
+}
+
+// OpNum returns the operation number of GetImportTarget operation.
+func (o *GetImportTargetRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetImportTarget operation.
+func (o *GetImportTargetRequest) OpName() string {
+	return "/IVdsSubSystemImportTarget/v0/GetImportTarget"
+}
+
 // GetImportTargetResponse structure represents the GetImportTarget operation response
 type GetImportTargetResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -410,8 +425,10 @@ type xxx_SetImportTargetOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetImportTarget operation.
 func (o *xxx_SetImportTargetOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of SetImportTarget operation.
 func (o *xxx_SetImportTargetOperation) OpName() string {
 	return "/IVdsSubSystemImportTarget/v0/SetImportTarget"
 }
@@ -596,6 +613,19 @@ func (o *SetImportTargetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetImportTargetRequest build a response structure from the given request structure.
+func (o *SetImportTargetRequest) MakeResponse() *SetImportTargetResponse {
+	return &SetImportTargetResponse{}
+}
+
+// OpNum returns the operation number of SetImportTarget operation.
+func (o *SetImportTargetRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of SetImportTarget operation.
+func (o *SetImportTargetRequest) OpName() string {
+	return "/IVdsSubSystemImportTarget/v0/SetImportTarget"
 }
 
 // SetImportTargetResponse structure represents the SetImportTarget operation response

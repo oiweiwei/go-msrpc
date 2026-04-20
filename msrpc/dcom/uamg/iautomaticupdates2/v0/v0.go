@@ -153,8 +153,10 @@ type xxx_GetResultsOperation struct {
 	Return      int32                         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Results operation.
 func (o *xxx_GetResultsOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of Results operation.
 func (o *xxx_GetResultsOperation) OpName() string { return "/IAutomaticUpdates2/v0/Results" }
 
 func (o *xxx_GetResultsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -343,6 +345,17 @@ func (o *GetResultsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetResultsRequest build a response structure from the given request structure.
+func (o *GetResultsRequest) MakeResponse() *GetResultsResponse {
+	return &GetResultsResponse{}
+}
+
+// OpNum returns the operation number of Results operation.
+func (o *GetResultsRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of Results operation.
+func (o *GetResultsRequest) OpName() string { return "/IAutomaticUpdates2/v0/Results" }
 
 // GetResultsResponse structure represents the Results operation response
 type GetResultsResponse struct {

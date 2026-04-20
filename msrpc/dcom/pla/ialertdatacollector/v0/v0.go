@@ -485,8 +485,10 @@ type xxx_GetAlertThresholdsOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AlertThresholds operation.
 func (o *xxx_GetAlertThresholdsOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of AlertThresholds operation.
 func (o *xxx_GetAlertThresholdsOperation) OpName() string {
 	return "/IAlertDataCollector/v0/AlertThresholds"
 }
@@ -678,6 +680,17 @@ func (o *GetAlertThresholdsRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetAlertThresholdsRequest build a response structure from the given request structure.
+func (o *GetAlertThresholdsRequest) MakeResponse() *GetAlertThresholdsResponse {
+	return &GetAlertThresholdsResponse{}
+}
+
+// OpNum returns the operation number of AlertThresholds operation.
+func (o *GetAlertThresholdsRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of AlertThresholds operation.
+func (o *GetAlertThresholdsRequest) OpName() string { return "/IAlertDataCollector/v0/AlertThresholds" }
+
 // GetAlertThresholdsResponse structure represents the AlertThresholds operation response
 type GetAlertThresholdsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -728,8 +741,10 @@ type xxx_SetAlertThresholdsOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AlertThresholds operation.
 func (o *xxx_SetAlertThresholdsOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of AlertThresholds operation.
 func (o *xxx_SetAlertThresholdsOperation) OpName() string {
 	return "/IAlertDataCollector/v0/AlertThresholds"
 }
@@ -924,6 +939,17 @@ func (o *SetAlertThresholdsRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetAlertThresholdsRequest build a response structure from the given request structure.
+func (o *SetAlertThresholdsRequest) MakeResponse() *SetAlertThresholdsResponse {
+	return &SetAlertThresholdsResponse{}
+}
+
+// OpNum returns the operation number of AlertThresholds operation.
+func (o *SetAlertThresholdsRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of AlertThresholds operation.
+func (o *SetAlertThresholdsRequest) OpName() string { return "/IAlertDataCollector/v0/AlertThresholds" }
+
 // SetAlertThresholdsResponse structure represents the AlertThresholds operation response
 type SetAlertThresholdsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -971,8 +997,10 @@ type xxx_GetEventLogOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EventLog operation.
 func (o *xxx_GetEventLogOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of EventLog operation.
 func (o *xxx_GetEventLogOperation) OpName() string { return "/IAlertDataCollector/v0/EventLog" }
 
 func (o *xxx_GetEventLogOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1128,6 +1156,17 @@ func (o *GetEventLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetEventLogRequest build a response structure from the given request structure.
+func (o *GetEventLogRequest) MakeResponse() *GetEventLogResponse {
+	return &GetEventLogResponse{}
+}
+
+// OpNum returns the operation number of EventLog operation.
+func (o *GetEventLogRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of EventLog operation.
+func (o *GetEventLogRequest) OpName() string { return "/IAlertDataCollector/v0/EventLog" }
+
 // GetEventLogResponse structure represents the EventLog operation response
 type GetEventLogResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1178,8 +1217,10 @@ type xxx_SetEventLogOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EventLog operation.
 func (o *xxx_SetEventLogOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of EventLog operation.
 func (o *xxx_SetEventLogOperation) OpName() string { return "/IAlertDataCollector/v0/EventLog" }
 
 func (o *xxx_SetEventLogOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1338,6 +1379,17 @@ func (o *SetEventLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeSetEventLogRequest build a response structure from the given request structure.
+func (o *SetEventLogRequest) MakeResponse() *SetEventLogResponse {
+	return &SetEventLogResponse{}
+}
+
+// OpNum returns the operation number of EventLog operation.
+func (o *SetEventLogRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of EventLog operation.
+func (o *SetEventLogRequest) OpName() string { return "/IAlertDataCollector/v0/EventLog" }
+
 // SetEventLogResponse structure represents the EventLog operation response
 type SetEventLogResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1385,8 +1437,10 @@ type xxx_GetSampleIntervalOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SampleInterval operation.
 func (o *xxx_GetSampleIntervalOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of SampleInterval operation.
 func (o *xxx_GetSampleIntervalOperation) OpName() string {
 	return "/IAlertDataCollector/v0/SampleInterval"
 }
@@ -1544,6 +1598,17 @@ func (o *GetSampleIntervalRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetSampleIntervalRequest build a response structure from the given request structure.
+func (o *GetSampleIntervalRequest) MakeResponse() *GetSampleIntervalResponse {
+	return &GetSampleIntervalResponse{}
+}
+
+// OpNum returns the operation number of SampleInterval operation.
+func (o *GetSampleIntervalRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of SampleInterval operation.
+func (o *GetSampleIntervalRequest) OpName() string { return "/IAlertDataCollector/v0/SampleInterval" }
+
 // GetSampleIntervalResponse structure represents the SampleInterval operation response
 type GetSampleIntervalResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1594,8 +1659,10 @@ type xxx_SetSampleIntervalOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SampleInterval operation.
 func (o *xxx_SetSampleIntervalOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of SampleInterval operation.
 func (o *xxx_SetSampleIntervalOperation) OpName() string {
 	return "/IAlertDataCollector/v0/SampleInterval"
 }
@@ -1756,6 +1823,17 @@ func (o *SetSampleIntervalRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetSampleIntervalRequest build a response structure from the given request structure.
+func (o *SetSampleIntervalRequest) MakeResponse() *SetSampleIntervalResponse {
+	return &SetSampleIntervalResponse{}
+}
+
+// OpNum returns the operation number of SampleInterval operation.
+func (o *SetSampleIntervalRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of SampleInterval operation.
+func (o *SetSampleIntervalRequest) OpName() string { return "/IAlertDataCollector/v0/SampleInterval" }
+
 // SetSampleIntervalResponse structure represents the SampleInterval operation response
 type SetSampleIntervalResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1803,8 +1881,10 @@ type xxx_GetTaskOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Task operation.
 func (o *xxx_GetTaskOperation) OpNum() int { return 38 }
 
+// OpName returns the operation name of Task operation.
 func (o *xxx_GetTaskOperation) OpName() string { return "/IAlertDataCollector/v0/Task" }
 
 func (o *xxx_GetTaskOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1994,6 +2074,17 @@ func (o *GetTaskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetTaskRequest build a response structure from the given request structure.
+func (o *GetTaskRequest) MakeResponse() *GetTaskResponse {
+	return &GetTaskResponse{}
+}
+
+// OpNum returns the operation number of Task operation.
+func (o *GetTaskRequest) OpNum() int { return 38 }
+
+// OpName returns the operation name of Task operation.
+func (o *GetTaskRequest) OpName() string { return "/IAlertDataCollector/v0/Task" }
+
 // GetTaskResponse structure represents the Task operation response
 type GetTaskResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2044,8 +2135,10 @@ type xxx_SetTaskOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Task operation.
 func (o *xxx_SetTaskOperation) OpNum() int { return 39 }
 
+// OpName returns the operation name of Task operation.
 func (o *xxx_SetTaskOperation) OpName() string { return "/IAlertDataCollector/v0/Task" }
 
 func (o *xxx_SetTaskOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2238,6 +2331,17 @@ func (o *SetTaskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetTaskRequest build a response structure from the given request structure.
+func (o *SetTaskRequest) MakeResponse() *SetTaskResponse {
+	return &SetTaskResponse{}
+}
+
+// OpNum returns the operation number of Task operation.
+func (o *SetTaskRequest) OpNum() int { return 39 }
+
+// OpName returns the operation name of Task operation.
+func (o *SetTaskRequest) OpName() string { return "/IAlertDataCollector/v0/Task" }
+
 // SetTaskResponse structure represents the Task operation response
 type SetTaskResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2285,8 +2389,10 @@ type xxx_GetTaskRunAsSelfOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TaskRunAsSelf operation.
 func (o *xxx_GetTaskRunAsSelfOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of TaskRunAsSelf operation.
 func (o *xxx_GetTaskRunAsSelfOperation) OpName() string {
 	return "/IAlertDataCollector/v0/TaskRunAsSelf"
 }
@@ -2444,6 +2550,17 @@ func (o *GetTaskRunAsSelfRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetTaskRunAsSelfRequest build a response structure from the given request structure.
+func (o *GetTaskRunAsSelfRequest) MakeResponse() *GetTaskRunAsSelfResponse {
+	return &GetTaskRunAsSelfResponse{}
+}
+
+// OpNum returns the operation number of TaskRunAsSelf operation.
+func (o *GetTaskRunAsSelfRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of TaskRunAsSelf operation.
+func (o *GetTaskRunAsSelfRequest) OpName() string { return "/IAlertDataCollector/v0/TaskRunAsSelf" }
+
 // GetTaskRunAsSelfResponse structure represents the TaskRunAsSelf operation response
 type GetTaskRunAsSelfResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2494,8 +2611,10 @@ type xxx_SetTaskRunAsSelfOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TaskRunAsSelf operation.
 func (o *xxx_SetTaskRunAsSelfOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of TaskRunAsSelf operation.
 func (o *xxx_SetTaskRunAsSelfOperation) OpName() string {
 	return "/IAlertDataCollector/v0/TaskRunAsSelf"
 }
@@ -2656,6 +2775,17 @@ func (o *SetTaskRunAsSelfRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetTaskRunAsSelfRequest build a response structure from the given request structure.
+func (o *SetTaskRunAsSelfRequest) MakeResponse() *SetTaskRunAsSelfResponse {
+	return &SetTaskRunAsSelfResponse{}
+}
+
+// OpNum returns the operation number of TaskRunAsSelf operation.
+func (o *SetTaskRunAsSelfRequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of TaskRunAsSelf operation.
+func (o *SetTaskRunAsSelfRequest) OpName() string { return "/IAlertDataCollector/v0/TaskRunAsSelf" }
+
 // SetTaskRunAsSelfResponse structure represents the TaskRunAsSelf operation response
 type SetTaskRunAsSelfResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2703,8 +2833,10 @@ type xxx_GetTaskArgumentsOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TaskArguments operation.
 func (o *xxx_GetTaskArgumentsOperation) OpNum() int { return 42 }
 
+// OpName returns the operation name of TaskArguments operation.
 func (o *xxx_GetTaskArgumentsOperation) OpName() string {
 	return "/IAlertDataCollector/v0/TaskArguments"
 }
@@ -2896,6 +3028,17 @@ func (o *GetTaskArgumentsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetTaskArgumentsRequest build a response structure from the given request structure.
+func (o *GetTaskArgumentsRequest) MakeResponse() *GetTaskArgumentsResponse {
+	return &GetTaskArgumentsResponse{}
+}
+
+// OpNum returns the operation number of TaskArguments operation.
+func (o *GetTaskArgumentsRequest) OpNum() int { return 42 }
+
+// OpName returns the operation name of TaskArguments operation.
+func (o *GetTaskArgumentsRequest) OpName() string { return "/IAlertDataCollector/v0/TaskArguments" }
+
 // GetTaskArgumentsResponse structure represents the TaskArguments operation response
 type GetTaskArgumentsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2946,8 +3089,10 @@ type xxx_SetTaskArgumentsOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TaskArguments operation.
 func (o *xxx_SetTaskArgumentsOperation) OpNum() int { return 43 }
 
+// OpName returns the operation name of TaskArguments operation.
 func (o *xxx_SetTaskArgumentsOperation) OpName() string {
 	return "/IAlertDataCollector/v0/TaskArguments"
 }
@@ -3142,6 +3287,17 @@ func (o *SetTaskArgumentsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetTaskArgumentsRequest build a response structure from the given request structure.
+func (o *SetTaskArgumentsRequest) MakeResponse() *SetTaskArgumentsResponse {
+	return &SetTaskArgumentsResponse{}
+}
+
+// OpNum returns the operation number of TaskArguments operation.
+func (o *SetTaskArgumentsRequest) OpNum() int { return 43 }
+
+// OpName returns the operation name of TaskArguments operation.
+func (o *SetTaskArgumentsRequest) OpName() string { return "/IAlertDataCollector/v0/TaskArguments" }
+
 // SetTaskArgumentsResponse structure represents the TaskArguments operation response
 type SetTaskArgumentsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3189,8 +3345,10 @@ type xxx_GetTaskUserTextArgumentsOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TaskUserTextArguments operation.
 func (o *xxx_GetTaskUserTextArgumentsOperation) OpNum() int { return 44 }
 
+// OpName returns the operation name of TaskUserTextArguments operation.
 func (o *xxx_GetTaskUserTextArgumentsOperation) OpName() string {
 	return "/IAlertDataCollector/v0/TaskUserTextArguments"
 }
@@ -3382,6 +3540,19 @@ func (o *GetTaskUserTextArgumentsRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeGetTaskUserTextArgumentsRequest build a response structure from the given request structure.
+func (o *GetTaskUserTextArgumentsRequest) MakeResponse() *GetTaskUserTextArgumentsResponse {
+	return &GetTaskUserTextArgumentsResponse{}
+}
+
+// OpNum returns the operation number of TaskUserTextArguments operation.
+func (o *GetTaskUserTextArgumentsRequest) OpNum() int { return 44 }
+
+// OpName returns the operation name of TaskUserTextArguments operation.
+func (o *GetTaskUserTextArgumentsRequest) OpName() string {
+	return "/IAlertDataCollector/v0/TaskUserTextArguments"
+}
+
 // GetTaskUserTextArgumentsResponse structure represents the TaskUserTextArguments operation response
 type GetTaskUserTextArgumentsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3432,8 +3603,10 @@ type xxx_SetTaskUserTextArgumentsOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TaskUserTextArguments operation.
 func (o *xxx_SetTaskUserTextArgumentsOperation) OpNum() int { return 45 }
 
+// OpName returns the operation name of TaskUserTextArguments operation.
 func (o *xxx_SetTaskUserTextArgumentsOperation) OpName() string {
 	return "/IAlertDataCollector/v0/TaskUserTextArguments"
 }
@@ -3628,6 +3801,19 @@ func (o *SetTaskUserTextArgumentsRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeSetTaskUserTextArgumentsRequest build a response structure from the given request structure.
+func (o *SetTaskUserTextArgumentsRequest) MakeResponse() *SetTaskUserTextArgumentsResponse {
+	return &SetTaskUserTextArgumentsResponse{}
+}
+
+// OpNum returns the operation number of TaskUserTextArguments operation.
+func (o *SetTaskUserTextArgumentsRequest) OpNum() int { return 45 }
+
+// OpName returns the operation name of TaskUserTextArguments operation.
+func (o *SetTaskUserTextArgumentsRequest) OpName() string {
+	return "/IAlertDataCollector/v0/TaskUserTextArguments"
+}
+
 // SetTaskUserTextArgumentsResponse structure represents the TaskUserTextArguments operation response
 type SetTaskUserTextArgumentsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3675,8 +3861,10 @@ type xxx_GetTriggerDataCollectorSetOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TriggerDataCollectorSet operation.
 func (o *xxx_GetTriggerDataCollectorSetOperation) OpNum() int { return 46 }
 
+// OpName returns the operation name of TriggerDataCollectorSet operation.
 func (o *xxx_GetTriggerDataCollectorSetOperation) OpName() string {
 	return "/IAlertDataCollector/v0/TriggerDataCollectorSet"
 }
@@ -3868,6 +4056,19 @@ func (o *GetTriggerDataCollectorSetRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeGetTriggerDataCollectorSetRequest build a response structure from the given request structure.
+func (o *GetTriggerDataCollectorSetRequest) MakeResponse() *GetTriggerDataCollectorSetResponse {
+	return &GetTriggerDataCollectorSetResponse{}
+}
+
+// OpNum returns the operation number of TriggerDataCollectorSet operation.
+func (o *GetTriggerDataCollectorSetRequest) OpNum() int { return 46 }
+
+// OpName returns the operation name of TriggerDataCollectorSet operation.
+func (o *GetTriggerDataCollectorSetRequest) OpName() string {
+	return "/IAlertDataCollector/v0/TriggerDataCollectorSet"
+}
+
 // GetTriggerDataCollectorSetResponse structure represents the TriggerDataCollectorSet operation response
 type GetTriggerDataCollectorSetResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3918,8 +4119,10 @@ type xxx_SetTriggerDataCollectorSetOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TriggerDataCollectorSet operation.
 func (o *xxx_SetTriggerDataCollectorSetOperation) OpNum() int { return 47 }
 
+// OpName returns the operation name of TriggerDataCollectorSet operation.
 func (o *xxx_SetTriggerDataCollectorSetOperation) OpName() string {
 	return "/IAlertDataCollector/v0/TriggerDataCollectorSet"
 }
@@ -4112,6 +4315,19 @@ func (o *SetTriggerDataCollectorSetRequest) UnmarshalNDR(ctx context.Context, r 
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetTriggerDataCollectorSetRequest build a response structure from the given request structure.
+func (o *SetTriggerDataCollectorSetRequest) MakeResponse() *SetTriggerDataCollectorSetResponse {
+	return &SetTriggerDataCollectorSetResponse{}
+}
+
+// OpNum returns the operation number of TriggerDataCollectorSet operation.
+func (o *SetTriggerDataCollectorSetRequest) OpNum() int { return 47 }
+
+// OpName returns the operation name of TriggerDataCollectorSet operation.
+func (o *SetTriggerDataCollectorSetRequest) OpName() string {
+	return "/IAlertDataCollector/v0/TriggerDataCollectorSet"
 }
 
 // SetTriggerDataCollectorSetResponse structure represents the TriggerDataCollectorSet operation response

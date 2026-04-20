@@ -278,8 +278,10 @@ type xxx_GetRegistrationStateOperation struct {
 	Return      int32                               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RegistrationState operation.
 func (o *xxx_GetRegistrationStateOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of RegistrationState operation.
 func (o *xxx_GetRegistrationStateOperation) OpName() string {
 	return "/IUpdateServiceRegistration/v0/RegistrationState"
 }
@@ -437,6 +439,19 @@ func (o *GetRegistrationStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetRegistrationStateRequest build a response structure from the given request structure.
+func (o *GetRegistrationStateRequest) MakeResponse() *GetRegistrationStateResponse {
+	return &GetRegistrationStateResponse{}
+}
+
+// OpNum returns the operation number of RegistrationState operation.
+func (o *GetRegistrationStateRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of RegistrationState operation.
+func (o *GetRegistrationStateRequest) OpName() string {
+	return "/IUpdateServiceRegistration/v0/RegistrationState"
+}
+
 // GetRegistrationStateResponse structure represents the RegistrationState operation response
 type GetRegistrationStateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -489,8 +504,10 @@ type xxx_GetServiceIDOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ServiceID operation.
 func (o *xxx_GetServiceIDOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ServiceID operation.
 func (o *xxx_GetServiceIDOperation) OpName() string {
 	return "/IUpdateServiceRegistration/v0/ServiceID"
 }
@@ -682,6 +699,17 @@ func (o *GetServiceIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetServiceIDRequest build a response structure from the given request structure.
+func (o *GetServiceIDRequest) MakeResponse() *GetServiceIDResponse {
+	return &GetServiceIDResponse{}
+}
+
+// OpNum returns the operation number of ServiceID operation.
+func (o *GetServiceIDRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ServiceID operation.
+func (o *GetServiceIDRequest) OpName() string { return "/IUpdateServiceRegistration/v0/ServiceID" }
+
 // GetServiceIDResponse structure represents the ServiceID operation response
 type GetServiceIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -741,8 +769,10 @@ type xxx_GetIsPendingRegistrationWithAUOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsPendingRegistrationWithAU operation.
 func (o *xxx_GetIsPendingRegistrationWithAUOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of IsPendingRegistrationWithAU operation.
 func (o *xxx_GetIsPendingRegistrationWithAUOperation) OpName() string {
 	return "/IUpdateServiceRegistration/v0/IsPendingRegistrationWithAU"
 }
@@ -900,6 +930,19 @@ func (o *GetIsPendingRegistrationWithAURequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeGetIsPendingRegistrationWithAURequest build a response structure from the given request structure.
+func (o *GetIsPendingRegistrationWithAURequest) MakeResponse() *GetIsPendingRegistrationWithAUResponse {
+	return &GetIsPendingRegistrationWithAUResponse{}
+}
+
+// OpNum returns the operation number of IsPendingRegistrationWithAU operation.
+func (o *GetIsPendingRegistrationWithAURequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of IsPendingRegistrationWithAU operation.
+func (o *GetIsPendingRegistrationWithAURequest) OpName() string {
+	return "/IUpdateServiceRegistration/v0/IsPendingRegistrationWithAU"
+}
+
 // GetIsPendingRegistrationWithAUResponse structure represents the IsPendingRegistrationWithAU operation response
 type GetIsPendingRegistrationWithAUResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -952,8 +995,10 @@ type xxx_GetServiceOperation struct {
 	Return      int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Service operation.
 func (o *xxx_GetServiceOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of Service operation.
 func (o *xxx_GetServiceOperation) OpName() string { return "/IUpdateServiceRegistration/v0/Service" }
 
 func (o *xxx_GetServiceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1142,6 +1187,17 @@ func (o *GetServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetServiceRequest build a response structure from the given request structure.
+func (o *GetServiceRequest) MakeResponse() *GetServiceResponse {
+	return &GetServiceResponse{}
+}
+
+// OpNum returns the operation number of Service operation.
+func (o *GetServiceRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of Service operation.
+func (o *GetServiceRequest) OpName() string { return "/IUpdateServiceRegistration/v0/Service" }
 
 // GetServiceResponse structure represents the Service operation response
 type GetServiceResponse struct {

@@ -334,8 +334,10 @@ type xxx_GetNTMSObjectSecurityOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsObjectSecurity operation.
 func (o *xxx_GetNTMSObjectSecurityOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of GetNtmsObjectSecurity operation.
 func (o *xxx_GetNTMSObjectSecurityOperation) OpName() string {
 	return "/INtmsObjectManagement1/v0/GetNtmsObjectSecurity"
 }
@@ -613,6 +615,24 @@ func (o *GetNTMSObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetNTMSObjectSecurityRequest build a response structure from the given request structure.
+func (o *GetNTMSObjectSecurityRequest) MakeResponse() *GetNTMSObjectSecurityResponse {
+	if o == nil {
+		return &GetNTMSObjectSecurityResponse{}
+	}
+	return &GetNTMSObjectSecurityResponse{
+		Length: o.Length,
+	}
+}
+
+// OpNum returns the operation number of GetNtmsObjectSecurity operation.
+func (o *GetNTMSObjectSecurityRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of GetNtmsObjectSecurity operation.
+func (o *GetNTMSObjectSecurityRequest) OpName() string {
+	return "/INtmsObjectManagement1/v0/GetNtmsObjectSecurity"
+}
+
 // GetNTMSObjectSecurityResponse structure represents the GetNtmsObjectSecurity operation response
 type GetNTMSObjectSecurityResponse struct {
 	// XXX: nLength is an implicit input depedency for output parameters
@@ -706,8 +726,10 @@ type xxx_SetNTMSObjectSecurityOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetNtmsObjectSecurity operation.
 func (o *xxx_SetNTMSObjectSecurityOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of SetNtmsObjectSecurity operation.
 func (o *xxx_SetNTMSObjectSecurityOperation) OpName() string {
 	return "/INtmsObjectManagement1/v0/SetNtmsObjectSecurity"
 }
@@ -1001,6 +1023,19 @@ func (o *SetNTMSObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeSetNTMSObjectSecurityRequest build a response structure from the given request structure.
+func (o *SetNTMSObjectSecurityRequest) MakeResponse() *SetNTMSObjectSecurityResponse {
+	return &SetNTMSObjectSecurityResponse{}
+}
+
+// OpNum returns the operation number of SetNtmsObjectSecurity operation.
+func (o *SetNTMSObjectSecurityRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of SetNtmsObjectSecurity operation.
+func (o *SetNTMSObjectSecurityRequest) OpName() string {
+	return "/INtmsObjectManagement1/v0/SetNtmsObjectSecurity"
+}
+
 // SetNTMSObjectSecurityResponse structure represents the SetNtmsObjectSecurity operation response
 type SetNTMSObjectSecurityResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1053,8 +1088,10 @@ type xxx_GetNTMSObjectAttributeAOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsObjectAttributeA operation.
 func (o *xxx_GetNTMSObjectAttributeAOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of GetNtmsObjectAttributeA operation.
 func (o *xxx_GetNTMSObjectAttributeAOperation) OpName() string {
 	return "/INtmsObjectManagement1/v0/GetNtmsObjectAttributeA"
 }
@@ -1358,6 +1395,24 @@ func (o *GetNTMSObjectAttributeARequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeGetNTMSObjectAttributeARequest build a response structure from the given request structure.
+func (o *GetNTMSObjectAttributeARequest) MakeResponse() *GetNTMSObjectAttributeAResponse {
+	if o == nil {
+		return &GetNTMSObjectAttributeAResponse{}
+	}
+	return &GetNTMSObjectAttributeAResponse{
+		AttributeBufferSize: o.AttributeBufferSize,
+	}
+}
+
+// OpNum returns the operation number of GetNtmsObjectAttributeA operation.
+func (o *GetNTMSObjectAttributeARequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of GetNtmsObjectAttributeA operation.
+func (o *GetNTMSObjectAttributeARequest) OpName() string {
+	return "/INtmsObjectManagement1/v0/GetNtmsObjectAttributeA"
+}
+
 // GetNTMSObjectAttributeAResponse structure represents the GetNtmsObjectAttributeA operation response
 type GetNTMSObjectAttributeAResponse struct {
 	// XXX: lpdwAttributeBufferSize is an implicit input depedency for output parameters
@@ -1457,8 +1512,10 @@ type xxx_GetNTMSObjectAttributeWOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsObjectAttributeW operation.
 func (o *xxx_GetNTMSObjectAttributeWOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetNtmsObjectAttributeW operation.
 func (o *xxx_GetNTMSObjectAttributeWOperation) OpName() string {
 	return "/INtmsObjectManagement1/v0/GetNtmsObjectAttributeW"
 }
@@ -1762,6 +1819,24 @@ func (o *GetNTMSObjectAttributeWRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeGetNTMSObjectAttributeWRequest build a response structure from the given request structure.
+func (o *GetNTMSObjectAttributeWRequest) MakeResponse() *GetNTMSObjectAttributeWResponse {
+	if o == nil {
+		return &GetNTMSObjectAttributeWResponse{}
+	}
+	return &GetNTMSObjectAttributeWResponse{
+		AttributeBufferSize: o.AttributeBufferSize,
+	}
+}
+
+// OpNum returns the operation number of GetNtmsObjectAttributeW operation.
+func (o *GetNTMSObjectAttributeWRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetNtmsObjectAttributeW operation.
+func (o *GetNTMSObjectAttributeWRequest) OpName() string {
+	return "/INtmsObjectManagement1/v0/GetNtmsObjectAttributeW"
+}
+
 // GetNTMSObjectAttributeWResponse structure represents the GetNtmsObjectAttributeW operation response
 type GetNTMSObjectAttributeWResponse struct {
 	// XXX: lpdwAttributeBufferSize is an implicit input depedency for output parameters
@@ -1858,8 +1933,10 @@ type xxx_SetNTMSObjectAttributeAOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetNtmsObjectAttributeA operation.
 func (o *xxx_SetNTMSObjectAttributeAOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of SetNtmsObjectAttributeA operation.
 func (o *xxx_SetNTMSObjectAttributeAOperation) OpName() string {
 	return "/INtmsObjectManagement1/v0/SetNtmsObjectAttributeA"
 }
@@ -2157,6 +2234,19 @@ func (o *SetNTMSObjectAttributeARequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeSetNTMSObjectAttributeARequest build a response structure from the given request structure.
+func (o *SetNTMSObjectAttributeARequest) MakeResponse() *SetNTMSObjectAttributeAResponse {
+	return &SetNTMSObjectAttributeAResponse{}
+}
+
+// OpNum returns the operation number of SetNtmsObjectAttributeA operation.
+func (o *SetNTMSObjectAttributeARequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of SetNtmsObjectAttributeA operation.
+func (o *SetNTMSObjectAttributeARequest) OpName() string {
+	return "/INtmsObjectManagement1/v0/SetNtmsObjectAttributeA"
+}
+
 // SetNTMSObjectAttributeAResponse structure represents the SetNtmsObjectAttributeA operation response
 type SetNTMSObjectAttributeAResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2208,8 +2298,10 @@ type xxx_SetNTMSObjectAttributeWOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetNtmsObjectAttributeW operation.
 func (o *xxx_SetNTMSObjectAttributeWOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of SetNtmsObjectAttributeW operation.
 func (o *xxx_SetNTMSObjectAttributeWOperation) OpName() string {
 	return "/INtmsObjectManagement1/v0/SetNtmsObjectAttributeW"
 }
@@ -2507,6 +2599,19 @@ func (o *SetNTMSObjectAttributeWRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeSetNTMSObjectAttributeWRequest build a response structure from the given request structure.
+func (o *SetNTMSObjectAttributeWRequest) MakeResponse() *SetNTMSObjectAttributeWResponse {
+	return &SetNTMSObjectAttributeWResponse{}
+}
+
+// OpNum returns the operation number of SetNtmsObjectAttributeW operation.
+func (o *SetNTMSObjectAttributeWRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of SetNtmsObjectAttributeW operation.
+func (o *SetNTMSObjectAttributeWRequest) OpName() string {
+	return "/INtmsObjectManagement1/v0/SetNtmsObjectAttributeW"
+}
+
 // SetNTMSObjectAttributeWResponse structure represents the SetNtmsObjectAttributeW operation response
 type SetNTMSObjectAttributeWResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2559,8 +2664,10 @@ type xxx_EnumerateNTMSObjectOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumerateNtmsObject operation.
 func (o *xxx_EnumerateNTMSObjectOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of EnumerateNtmsObject operation.
 func (o *xxx_EnumerateNTMSObjectOperation) OpName() string {
 	return "/INtmsObjectManagement1/v0/EnumerateNtmsObject"
 }
@@ -2913,6 +3020,24 @@ func (o *EnumerateNTMSObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeEnumerateNTMSObjectRequest build a response structure from the given request structure.
+func (o *EnumerateNTMSObjectRequest) MakeResponse() *EnumerateNTMSObjectResponse {
+	if o == nil {
+		return &EnumerateNTMSObjectResponse{}
+	}
+	return &EnumerateNTMSObjectResponse{
+		ListBufferSize: o.ListBufferSize,
+	}
+}
+
+// OpNum returns the operation number of EnumerateNtmsObject operation.
+func (o *EnumerateNTMSObjectRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of EnumerateNtmsObject operation.
+func (o *EnumerateNTMSObjectRequest) OpName() string {
+	return "/INtmsObjectManagement1/v0/EnumerateNtmsObject"
+}
+
 // EnumerateNTMSObjectResponse structure represents the EnumerateNtmsObject operation response
 type EnumerateNTMSObjectResponse struct {
 	// XXX: lpdwListBufferSize is an implicit input depedency for output parameters
@@ -2980,8 +3105,10 @@ type xxx_DisableNTMSObjectOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DisableNtmsObject operation.
 func (o *xxx_DisableNTMSObjectOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of DisableNtmsObject operation.
 func (o *xxx_DisableNTMSObjectOperation) OpName() string {
 	return "/INtmsObjectManagement1/v0/DisableNtmsObject"
 }
@@ -3191,6 +3318,19 @@ func (o *DisableNTMSObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeDisableNTMSObjectRequest build a response structure from the given request structure.
+func (o *DisableNTMSObjectRequest) MakeResponse() *DisableNTMSObjectResponse {
+	return &DisableNTMSObjectResponse{}
+}
+
+// OpNum returns the operation number of DisableNtmsObject operation.
+func (o *DisableNTMSObjectRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of DisableNtmsObject operation.
+func (o *DisableNTMSObjectRequest) OpName() string {
+	return "/INtmsObjectManagement1/v0/DisableNtmsObject"
+}
+
 // DisableNTMSObjectResponse structure represents the DisableNtmsObject operation response
 type DisableNTMSObjectResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3239,8 +3379,10 @@ type xxx_EnableNTMSObjectOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnableNtmsObject operation.
 func (o *xxx_EnableNTMSObjectOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of EnableNtmsObject operation.
 func (o *xxx_EnableNTMSObjectOperation) OpName() string {
 	return "/INtmsObjectManagement1/v0/EnableNtmsObject"
 }
@@ -3448,6 +3590,19 @@ func (o *EnableNTMSObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeEnableNTMSObjectRequest build a response structure from the given request structure.
+func (o *EnableNTMSObjectRequest) MakeResponse() *EnableNTMSObjectResponse {
+	return &EnableNTMSObjectResponse{}
+}
+
+// OpNum returns the operation number of EnableNtmsObject operation.
+func (o *EnableNTMSObjectRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of EnableNtmsObject operation.
+func (o *EnableNTMSObjectRequest) OpName() string {
+	return "/INtmsObjectManagement1/v0/EnableNtmsObject"
 }
 
 // EnableNTMSObjectResponse structure represents the EnableNtmsObject operation response

@@ -149,8 +149,10 @@ type xxx_SetClientInfoOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetClientInfo operation.
 func (o *xxx_SetClientInfoOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SetClientInfo operation.
 func (o *xxx_SetClientInfoOperation) OpName() string { return "/IWbemLoginClientID/v0/SetClientInfo" }
 
 func (o *xxx_SetClientInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -367,6 +369,17 @@ func (o *SetClientInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetClientInfoRequest build a response structure from the given request structure.
+func (o *SetClientInfoRequest) MakeResponse() *SetClientInfoResponse {
+	return &SetClientInfoResponse{}
+}
+
+// OpNum returns the operation number of SetClientInfo operation.
+func (o *SetClientInfoRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SetClientInfo operation.
+func (o *SetClientInfoRequest) OpName() string { return "/IWbemLoginClientID/v0/SetClientInfo" }
 
 // SetClientInfoResponse structure represents the SetClientInfo operation response
 type SetClientInfoResponse struct {

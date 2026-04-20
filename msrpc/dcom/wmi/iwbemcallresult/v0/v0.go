@@ -237,8 +237,10 @@ type xxx_GetResultObjectOperation struct {
 	Return       int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetResultObject operation.
 func (o *xxx_GetResultObjectOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetResultObject operation.
 func (o *xxx_GetResultObjectOperation) OpName() string { return "/IWbemCallResult/v0/GetResultObject" }
 
 func (o *xxx_GetResultObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -451,6 +453,17 @@ func (o *GetResultObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetResultObjectRequest build a response structure from the given request structure.
+func (o *GetResultObjectRequest) MakeResponse() *GetResultObjectResponse {
+	return &GetResultObjectResponse{}
+}
+
+// OpNum returns the operation number of GetResultObject operation.
+func (o *GetResultObjectRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetResultObject operation.
+func (o *GetResultObjectRequest) OpName() string { return "/IWbemCallResult/v0/GetResultObject" }
+
 // GetResultObjectResponse structure represents the GetResultObject operation response
 type GetResultObjectResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -508,8 +521,10 @@ type xxx_GetResultStringOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetResultString operation.
 func (o *xxx_GetResultStringOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetResultString operation.
 func (o *xxx_GetResultStringOperation) OpName() string { return "/IWbemCallResult/v0/GetResultString" }
 
 func (o *xxx_GetResultStringOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -718,6 +733,17 @@ func (o *GetResultStringRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetResultStringRequest build a response structure from the given request structure.
+func (o *GetResultStringRequest) MakeResponse() *GetResultStringResponse {
+	return &GetResultStringResponse{}
+}
+
+// OpNum returns the operation number of GetResultString operation.
+func (o *GetResultStringRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetResultString operation.
+func (o *GetResultStringRequest) OpName() string { return "/IWbemCallResult/v0/GetResultString" }
+
 // GetResultStringResponse structure represents the GetResultString operation response
 type GetResultStringResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -775,8 +801,10 @@ type xxx_GetResultServicesOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetResultServices operation.
 func (o *xxx_GetResultServicesOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of GetResultServices operation.
 func (o *xxx_GetResultServicesOperation) OpName() string {
 	return "/IWbemCallResult/v0/GetResultServices"
 }
@@ -986,6 +1014,17 @@ func (o *GetResultServicesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetResultServicesRequest build a response structure from the given request structure.
+func (o *GetResultServicesRequest) MakeResponse() *GetResultServicesResponse {
+	return &GetResultServicesResponse{}
+}
+
+// OpNum returns the operation number of GetResultServices operation.
+func (o *GetResultServicesRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of GetResultServices operation.
+func (o *GetResultServicesRequest) OpName() string { return "/IWbemCallResult/v0/GetResultServices" }
+
 // GetResultServicesResponse structure represents the GetResultServices operation response
 type GetResultServicesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1042,8 +1081,10 @@ type xxx_GetCallStatusOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCallStatus operation.
 func (o *xxx_GetCallStatusOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of GetCallStatus operation.
 func (o *xxx_GetCallStatusOperation) OpName() string { return "/IWbemCallResult/v0/GetCallStatus" }
 
 func (o *xxx_GetCallStatusOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1216,6 +1257,17 @@ func (o *GetCallStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetCallStatusRequest build a response structure from the given request structure.
+func (o *GetCallStatusRequest) MakeResponse() *GetCallStatusResponse {
+	return &GetCallStatusResponse{}
+}
+
+// OpNum returns the operation number of GetCallStatus operation.
+func (o *GetCallStatusRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of GetCallStatus operation.
+func (o *GetCallStatusRequest) OpName() string { return "/IWbemCallResult/v0/GetCallStatus" }
 
 // GetCallStatusResponse structure represents the GetCallStatus operation response
 type GetCallStatusResponse struct {

@@ -174,8 +174,10 @@ type xxx_RemoteDispatchAutoDoneOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteDispatchAutoDone operation.
 func (o *xxx_RemoteDispatchAutoDoneOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of RemoteDispatchAutoDone operation.
 func (o *xxx_RemoteDispatchAutoDoneOperation) OpName() string {
 	return "/IRemoteDispatch/v0/RemoteDispatchAutoDone"
 }
@@ -420,6 +422,19 @@ func (o *RemoteDispatchAutoDoneRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeRemoteDispatchAutoDoneRequest build a response structure from the given request structure.
+func (o *RemoteDispatchAutoDoneRequest) MakeResponse() *RemoteDispatchAutoDoneResponse {
+	return &RemoteDispatchAutoDoneResponse{}
+}
+
+// OpNum returns the operation number of RemoteDispatchAutoDone operation.
+func (o *RemoteDispatchAutoDoneRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of RemoteDispatchAutoDone operation.
+func (o *RemoteDispatchAutoDoneRequest) OpName() string {
+	return "/IRemoteDispatch/v0/RemoteDispatchAutoDone"
+}
+
 // RemoteDispatchAutoDoneResponse structure represents the RemoteDispatchAutoDone operation response
 type RemoteDispatchAutoDoneResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -475,8 +490,10 @@ type xxx_RemoteDispatchNotAutoDoneOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteDispatchNotAutoDone operation.
 func (o *xxx_RemoteDispatchNotAutoDoneOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RemoteDispatchNotAutoDone operation.
 func (o *xxx_RemoteDispatchNotAutoDoneOperation) OpName() string {
 	return "/IRemoteDispatch/v0/RemoteDispatchNotAutoDone"
 }
@@ -719,6 +736,19 @@ func (o *RemoteDispatchNotAutoDoneRequest) UnmarshalNDR(ctx context.Context, r n
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeRemoteDispatchNotAutoDoneRequest build a response structure from the given request structure.
+func (o *RemoteDispatchNotAutoDoneRequest) MakeResponse() *RemoteDispatchNotAutoDoneResponse {
+	return &RemoteDispatchNotAutoDoneResponse{}
+}
+
+// OpNum returns the operation number of RemoteDispatchNotAutoDone operation.
+func (o *RemoteDispatchNotAutoDoneRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of RemoteDispatchNotAutoDone operation.
+func (o *RemoteDispatchNotAutoDoneRequest) OpName() string {
+	return "/IRemoteDispatch/v0/RemoteDispatchNotAutoDone"
 }
 
 // RemoteDispatchNotAutoDoneResponse structure represents the RemoteDispatchNotAutoDone operation response

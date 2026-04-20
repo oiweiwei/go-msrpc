@@ -192,8 +192,10 @@ type xxx_CreateUpdateServiceManagerOperation struct {
 	Return      int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateUpdateServiceManager operation.
 func (o *xxx_CreateUpdateServiceManagerOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of CreateUpdateServiceManager operation.
 func (o *xxx_CreateUpdateServiceManagerOperation) OpName() string {
 	return "/IUpdateSession3/v0/CreateUpdateServiceManager"
 }
@@ -385,6 +387,19 @@ func (o *CreateUpdateServiceManagerRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeCreateUpdateServiceManagerRequest build a response structure from the given request structure.
+func (o *CreateUpdateServiceManagerRequest) MakeResponse() *CreateUpdateServiceManagerResponse {
+	return &CreateUpdateServiceManagerResponse{}
+}
+
+// OpNum returns the operation number of CreateUpdateServiceManager operation.
+func (o *CreateUpdateServiceManagerRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of CreateUpdateServiceManager operation.
+func (o *CreateUpdateServiceManagerRequest) OpName() string {
+	return "/IUpdateSession3/v0/CreateUpdateServiceManager"
+}
+
 // CreateUpdateServiceManagerResponse structure represents the CreateUpdateServiceManager operation response
 type CreateUpdateServiceManagerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -439,8 +454,10 @@ type xxx_QueryHistoryOperation struct {
 	Return      int32                              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryHistory operation.
 func (o *xxx_QueryHistoryOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of QueryHistory operation.
 func (o *xxx_QueryHistoryOperation) OpName() string { return "/IUpdateSession3/v0/QueryHistory" }
 
 func (o *xxx_QueryHistoryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -717,6 +734,17 @@ func (o *QueryHistoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeQueryHistoryRequest build a response structure from the given request structure.
+func (o *QueryHistoryRequest) MakeResponse() *QueryHistoryResponse {
+	return &QueryHistoryResponse{}
+}
+
+// OpNum returns the operation number of QueryHistory operation.
+func (o *QueryHistoryRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of QueryHistory operation.
+func (o *QueryHistoryRequest) OpName() string { return "/IUpdateSession3/v0/QueryHistory" }
 
 // QueryHistoryResponse structure represents the QueryHistory operation response
 type QueryHistoryResponse struct {

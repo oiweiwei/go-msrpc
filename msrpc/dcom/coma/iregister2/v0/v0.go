@@ -247,8 +247,10 @@ type xxx_CreateFullConfigurationOperation struct {
 	Return                 int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateFullConfiguration operation.
 func (o *xxx_CreateFullConfigurationOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CreateFullConfiguration operation.
 func (o *xxx_CreateFullConfigurationOperation) OpName() string {
 	return "/IRegister2/v0/CreateFullConfiguration"
 }
@@ -447,6 +449,19 @@ func (o *CreateFullConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeCreateFullConfigurationRequest build a response structure from the given request structure.
+func (o *CreateFullConfigurationRequest) MakeResponse() *CreateFullConfigurationResponse {
+	return &CreateFullConfigurationResponse{}
+}
+
+// OpNum returns the operation number of CreateFullConfiguration operation.
+func (o *CreateFullConfigurationRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of CreateFullConfiguration operation.
+func (o *CreateFullConfigurationRequest) OpName() string {
+	return "/IRegister2/v0/CreateFullConfiguration"
+}
+
 // CreateFullConfigurationResponse structure represents the CreateFullConfiguration operation response
 type CreateFullConfigurationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -496,8 +511,10 @@ type xxx_CreateLegacyConfigurationOperation struct {
 	Return                 int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateLegacyConfiguration operation.
 func (o *xxx_CreateLegacyConfigurationOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of CreateLegacyConfiguration operation.
 func (o *xxx_CreateLegacyConfigurationOperation) OpName() string {
 	return "/IRegister2/v0/CreateLegacyConfiguration"
 }
@@ -697,6 +714,19 @@ func (o *CreateLegacyConfigurationRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeCreateLegacyConfigurationRequest build a response structure from the given request structure.
+func (o *CreateLegacyConfigurationRequest) MakeResponse() *CreateLegacyConfigurationResponse {
+	return &CreateLegacyConfigurationResponse{}
+}
+
+// OpNum returns the operation number of CreateLegacyConfiguration operation.
+func (o *CreateLegacyConfigurationRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of CreateLegacyConfiguration operation.
+func (o *CreateLegacyConfigurationRequest) OpName() string {
+	return "/IRegister2/v0/CreateLegacyConfiguration"
+}
+
 // CreateLegacyConfigurationResponse structure represents the CreateLegacyConfiguration operation response
 type CreateLegacyConfigurationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -746,8 +776,10 @@ type xxx_PromoteLegacyConfigurationOperation struct {
 	Return                 int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PromoteLegacyConfiguration operation.
 func (o *xxx_PromoteLegacyConfigurationOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of PromoteLegacyConfiguration operation.
 func (o *xxx_PromoteLegacyConfigurationOperation) OpName() string {
 	return "/IRegister2/v0/PromoteLegacyConfiguration"
 }
@@ -946,6 +978,19 @@ func (o *PromoteLegacyConfigurationRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakePromoteLegacyConfigurationRequest build a response structure from the given request structure.
+func (o *PromoteLegacyConfigurationRequest) MakeResponse() *PromoteLegacyConfigurationResponse {
+	return &PromoteLegacyConfigurationResponse{}
+}
+
+// OpNum returns the operation number of PromoteLegacyConfiguration operation.
+func (o *PromoteLegacyConfigurationRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of PromoteLegacyConfiguration operation.
+func (o *PromoteLegacyConfigurationRequest) OpName() string {
+	return "/IRegister2/v0/PromoteLegacyConfiguration"
+}
+
 // PromoteLegacyConfigurationResponse structure represents the PromoteLegacyConfiguration operation response
 type PromoteLegacyConfigurationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1005,8 +1050,10 @@ type xxx_RegisterModule2Operation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RegisterModule2 operation.
 func (o *xxx_RegisterModule2Operation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RegisterModule2 operation.
 func (o *xxx_RegisterModule2Operation) OpName() string { return "/IRegister2/v0/RegisterModule2" }
 
 func (o *xxx_RegisterModule2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1832,6 +1879,22 @@ func (o *RegisterModule2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeRegisterModule2Request build a response structure from the given request structure.
+func (o *RegisterModule2Request) MakeResponse() *RegisterModule2Response {
+	if o == nil {
+		return &RegisterModule2Response{}
+	}
+	return &RegisterModule2Response{
+		ModulesCount: o.ModulesCount,
+	}
+}
+
+// OpNum returns the operation number of RegisterModule2 operation.
+func (o *RegisterModule2Request) OpNum() int { return 8 }
+
+// OpName returns the operation name of RegisterModule2 operation.
+func (o *RegisterModule2Request) OpName() string { return "/IRegister2/v0/RegisterModule2" }
 
 // RegisterModule2Response structure represents the RegisterModule2 operation response
 type RegisterModule2Response struct {

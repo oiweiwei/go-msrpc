@@ -162,8 +162,10 @@ type xxx_CreateVirtualSmartCardWithPINPolicyOperation struct {
 	Return           int32                                         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateVirtualSmartCardWithPinPolicy operation.
 func (o *xxx_CreateVirtualSmartCardWithPINPolicyOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of CreateVirtualSmartCardWithPinPolicy operation.
 func (o *xxx_CreateVirtualSmartCardWithPINPolicyOperation) OpName() string {
 	return "/ITpmVirtualSmartCardManager2/v0/CreateVirtualSmartCardWithPinPolicy"
 }
@@ -885,6 +887,19 @@ func (o *CreateVirtualSmartCardWithPINPolicyRequest) UnmarshalNDR(ctx context.Co
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeCreateVirtualSmartCardWithPINPolicyRequest build a response structure from the given request structure.
+func (o *CreateVirtualSmartCardWithPINPolicyRequest) MakeResponse() *CreateVirtualSmartCardWithPINPolicyResponse {
+	return &CreateVirtualSmartCardWithPINPolicyResponse{}
+}
+
+// OpNum returns the operation number of CreateVirtualSmartCardWithPinPolicy operation.
+func (o *CreateVirtualSmartCardWithPINPolicyRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of CreateVirtualSmartCardWithPinPolicy operation.
+func (o *CreateVirtualSmartCardWithPINPolicyRequest) OpName() string {
+	return "/ITpmVirtualSmartCardManager2/v0/CreateVirtualSmartCardWithPinPolicy"
 }
 
 // CreateVirtualSmartCardWithPINPolicyResponse structure represents the CreateVirtualSmartCardWithPinPolicy operation response

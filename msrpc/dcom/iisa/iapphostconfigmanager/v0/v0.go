@@ -232,8 +232,10 @@ type xxx_GetConfigFileOperation struct {
 	Return     int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetConfigFile operation.
 func (o *xxx_GetConfigFileOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetConfigFile operation.
 func (o *xxx_GetConfigFileOperation) OpName() string {
 	return "/IAppHostConfigManager/v0/GetConfigFile"
 }
@@ -475,6 +477,17 @@ func (o *GetConfigFileRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetConfigFileRequest build a response structure from the given request structure.
+func (o *GetConfigFileRequest) MakeResponse() *GetConfigFileResponse {
+	return &GetConfigFileResponse{}
+}
+
+// OpNum returns the operation number of GetConfigFile operation.
+func (o *GetConfigFileRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetConfigFile operation.
+func (o *GetConfigFileRequest) OpName() string { return "/IAppHostConfigManager/v0/GetConfigFile" }
+
 // GetConfigFileResponse structure represents the GetConfigFile operation response
 type GetConfigFileResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -527,8 +540,10 @@ type xxx_GetUniqueConfigPathOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetUniqueConfigPath operation.
 func (o *xxx_GetUniqueConfigPathOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetUniqueConfigPath operation.
 func (o *xxx_GetUniqueConfigPathOperation) OpName() string {
 	return "/IAppHostConfigManager/v0/GetUniqueConfigPath"
 }
@@ -768,6 +783,19 @@ func (o *GetUniqueConfigPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetUniqueConfigPathRequest build a response structure from the given request structure.
+func (o *GetUniqueConfigPathRequest) MakeResponse() *GetUniqueConfigPathResponse {
+	return &GetUniqueConfigPathResponse{}
+}
+
+// OpNum returns the operation number of GetUniqueConfigPath operation.
+func (o *GetUniqueConfigPathRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetUniqueConfigPath operation.
+func (o *GetUniqueConfigPathRequest) OpName() string {
+	return "/IAppHostConfigManager/v0/GetUniqueConfigPath"
 }
 
 // GetUniqueConfigPathResponse structure represents the GetUniqueConfigPath operation response

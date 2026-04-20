@@ -193,8 +193,10 @@ type xxx_InitializeSessionOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of InitializeSession operation.
 func (o *xxx_InitializeSessionOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of InitializeSession operation.
 func (o *xxx_InitializeSessionOperation) OpName() string {
 	return "/ICatalogSession/v0/InitializeSession"
 }
@@ -399,6 +401,17 @@ func (o *InitializeSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeInitializeSessionRequest build a response structure from the given request structure.
+func (o *InitializeSessionRequest) MakeResponse() *InitializeSessionResponse {
+	return &InitializeSessionResponse{}
+}
+
+// OpNum returns the operation number of InitializeSession operation.
+func (o *InitializeSessionRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of InitializeSession operation.
+func (o *InitializeSessionRequest) OpName() string { return "/ICatalogSession/v0/InitializeSession" }
+
 // InitializeSessionResponse structure represents the InitializeSession operation response
 type InitializeSessionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -456,8 +469,10 @@ type xxx_GetServerInformationOperation struct {
 	Return                   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetServerInformation operation.
 func (o *xxx_GetServerInformationOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of GetServerInformation operation.
 func (o *xxx_GetServerInformationOperation) OpName() string {
 	return "/ICatalogSession/v0/GetServerInformation"
 }
@@ -688,6 +703,19 @@ func (o *GetServerInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetServerInformationRequest build a response structure from the given request structure.
+func (o *GetServerInformationRequest) MakeResponse() *GetServerInformationResponse {
+	return &GetServerInformationResponse{}
+}
+
+// OpNum returns the operation number of GetServerInformation operation.
+func (o *GetServerInformationRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GetServerInformation operation.
+func (o *GetServerInformationRequest) OpName() string {
+	return "/ICatalogSession/v0/GetServerInformation"
 }
 
 // GetServerInformationResponse structure represents the GetServerInformation operation response

@@ -173,8 +173,10 @@ type xxx_ExecuteOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Execute operation.
 func (o *xxx_ExecuteOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Execute operation.
 func (o *xxx_ExecuteOperation) OpName() string { return "/IDataFactory3/v0/Execute" }
 
 func (o *xxx_ExecuteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -806,6 +808,17 @@ func (o *ExecuteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeExecuteRequest build a response structure from the given request structure.
+func (o *ExecuteRequest) MakeResponse() *ExecuteResponse {
+	return &ExecuteResponse{}
+}
+
+// OpNum returns the operation number of Execute operation.
+func (o *ExecuteRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Execute operation.
+func (o *ExecuteRequest) OpName() string { return "/IDataFactory3/v0/Execute" }
+
 // ExecuteResponse structure represents the Execute operation response
 type ExecuteResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -869,8 +882,10 @@ type xxx_SynchronizeOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Synchronize operation.
 func (o *xxx_SynchronizeOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of Synchronize operation.
 func (o *xxx_SynchronizeOperation) OpName() string { return "/IDataFactory3/v0/Synchronize" }
 
 func (o *xxx_SynchronizeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1472,6 +1487,17 @@ func (o *SynchronizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSynchronizeRequest build a response structure from the given request structure.
+func (o *SynchronizeRequest) MakeResponse() *SynchronizeResponse {
+	return &SynchronizeResponse{}
+}
+
+// OpNum returns the operation number of Synchronize operation.
+func (o *SynchronizeRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of Synchronize operation.
+func (o *SynchronizeRequest) OpName() string { return "/IDataFactory3/v0/Synchronize" }
 
 // SynchronizeResponse structure represents the Synchronize operation response
 type SynchronizeResponse struct {

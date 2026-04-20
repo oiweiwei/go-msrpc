@@ -922,8 +922,10 @@ type xxx_PokeOperation struct {
 	Return     int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Poke operation.
 func (o *xxx_PokeOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of Poke operation.
 func (o *xxx_PokeOperation) OpName() string { return "/IXnRemote/v1/Poke" }
 
 func (o *xxx_PokeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1177,6 +1179,17 @@ func (o *PokeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakePokeRequest build a response structure from the given request structure.
+func (o *PokeRequest) MakeResponse() *PokeResponse {
+	return &PokeResponse{}
+}
+
+// OpNum returns the operation number of Poke operation.
+func (o *PokeRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of Poke operation.
+func (o *PokeRequest) OpName() string { return "/IXnRemote/v1/Poke" }
+
 // PokeResponse structure represents the Poke operation response
 type PokeResponse struct {
 	// Return: The Poke return value.
@@ -1228,8 +1241,10 @@ type xxx_BuildContextOperation struct {
 	Return          int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BuildContext operation.
 func (o *xxx_BuildContextOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of BuildContext operation.
 func (o *xxx_BuildContextOperation) OpName() string { return "/IXnRemote/v1/BuildContext" }
 
 func (o *xxx_BuildContextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1640,6 +1655,17 @@ func (o *BuildContextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeBuildContextRequest build a response structure from the given request structure.
+func (o *BuildContextRequest) MakeResponse() *BuildContextResponse {
+	return &BuildContextResponse{}
+}
+
+// OpNum returns the operation number of BuildContext operation.
+func (o *BuildContextRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of BuildContext operation.
+func (o *BuildContextRequest) OpName() string { return "/IXnRemote/v1/BuildContext" }
+
 // BuildContextResponse structure represents the BuildContext operation response
 type BuildContextResponse struct {
 	// pszGuidOut: A string form of a GUID that represents a global identifier for this
@@ -1705,8 +1731,10 @@ type xxx_NegotiateResourcesOperation struct {
 	Return         int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NegotiateResources operation.
 func (o *xxx_NegotiateResourcesOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of NegotiateResources operation.
 func (o *xxx_NegotiateResourcesOperation) OpName() string { return "/IXnRemote/v1/NegotiateResources" }
 
 func (o *xxx_NegotiateResourcesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1892,6 +1920,17 @@ func (o *NegotiateResourcesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeNegotiateResourcesRequest build a response structure from the given request structure.
+func (o *NegotiateResourcesRequest) MakeResponse() *NegotiateResourcesResponse {
+	return &NegotiateResourcesResponse{}
+}
+
+// OpNum returns the operation number of NegotiateResources operation.
+func (o *NegotiateResourcesRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of NegotiateResources operation.
+func (o *NegotiateResourcesRequest) OpName() string { return "/IXnRemote/v1/NegotiateResources" }
+
 // NegotiateResourcesResponse structure represents the NegotiateResources operation response
 type NegotiateResourcesResponse struct {
 	// pdwcAccepted: A pointer to an unsigned 32-bit integer that receives the number of
@@ -1943,8 +1982,10 @@ type xxx_SendReceiveOperation struct {
 	Return        int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SendReceive operation.
 func (o *xxx_SendReceiveOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SendReceive operation.
 func (o *xxx_SendReceiveOperation) OpName() string { return "/IXnRemote/v1/SendReceive" }
 
 func (o *xxx_SendReceiveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2146,6 +2187,17 @@ func (o *SendReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeSendReceiveRequest build a response structure from the given request structure.
+func (o *SendReceiveRequest) MakeResponse() *SendReceiveResponse {
+	return &SendReceiveResponse{}
+}
+
+// OpNum returns the operation number of SendReceive operation.
+func (o *SendReceiveRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SendReceive operation.
+func (o *SendReceiveRequest) OpName() string { return "/IXnRemote/v1/SendReceive" }
+
 // SendReceiveResponse structure represents the SendReceive operation response
 type SendReceiveResponse struct {
 	// Return: The SendReceive return value.
@@ -2189,8 +2241,10 @@ type xxx_TearDownContextOperation struct {
 	Return        int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TearDownContext operation.
 func (o *xxx_TearDownContextOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of TearDownContext operation.
 func (o *xxx_TearDownContextOperation) OpName() string { return "/IXnRemote/v1/TearDownContext" }
 
 func (o *xxx_TearDownContextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2386,6 +2440,17 @@ func (o *TearDownContextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeTearDownContextRequest build a response structure from the given request structure.
+func (o *TearDownContextRequest) MakeResponse() *TearDownContextResponse {
+	return &TearDownContextResponse{}
+}
+
+// OpNum returns the operation number of TearDownContext operation.
+func (o *TearDownContextRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of TearDownContext operation.
+func (o *TearDownContextRequest) OpName() string { return "/IXnRemote/v1/TearDownContext" }
+
 // TearDownContextResponse structure represents the TearDownContext operation response
 type TearDownContextResponse struct {
 	// contextHandle: An RPC context handle, returned by a call to BuildContext or BuildContextW,
@@ -2435,8 +2500,10 @@ type xxx_BeginTearDownOperation struct {
 	Return        int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BeginTearDown operation.
 func (o *xxx_BeginTearDownOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of BeginTearDown operation.
 func (o *xxx_BeginTearDownOperation) OpName() string { return "/IXnRemote/v1/BeginTearDown" }
 
 func (o *xxx_BeginTearDownOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2573,6 +2640,17 @@ func (o *BeginTearDownRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeBeginTearDownRequest build a response structure from the given request structure.
+func (o *BeginTearDownRequest) MakeResponse() *BeginTearDownResponse {
+	return &BeginTearDownResponse{}
+}
+
+// OpNum returns the operation number of BeginTearDown operation.
+func (o *BeginTearDownRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of BeginTearDown operation.
+func (o *BeginTearDownRequest) OpName() string { return "/IXnRemote/v1/BeginTearDown" }
+
 // BeginTearDownResponse structure represents the BeginTearDown operation response
 type BeginTearDownResponse struct {
 	// Return: The BeginTearDown return value.
@@ -2619,8 +2697,10 @@ type xxx_PokeWOperation struct {
 	Return     int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PokeW operation.
 func (o *xxx_PokeWOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of PokeW operation.
 func (o *xxx_PokeWOperation) OpName() string { return "/IXnRemote/v1/PokeW" }
 
 func (o *xxx_PokeWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2869,6 +2949,17 @@ func (o *PokeWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakePokeWRequest build a response structure from the given request structure.
+func (o *PokeWRequest) MakeResponse() *PokeWResponse {
+	return &PokeWResponse{}
+}
+
+// OpNum returns the operation number of PokeW operation.
+func (o *PokeWRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of PokeW operation.
+func (o *PokeWRequest) OpName() string { return "/IXnRemote/v1/PokeW" }
+
 // PokeWResponse structure represents the PokeW operation response
 type PokeWResponse struct {
 	// Return: The PokeW return value.
@@ -2920,8 +3011,10 @@ type xxx_BuildContextWOperation struct {
 	Return          int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BuildContextW operation.
 func (o *xxx_BuildContextWOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of BuildContextW operation.
 func (o *xxx_BuildContextWOperation) OpName() string { return "/IXnRemote/v1/BuildContextW" }
 
 func (o *xxx_BuildContextWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3325,6 +3418,17 @@ func (o *BuildContextWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeBuildContextWRequest build a response structure from the given request structure.
+func (o *BuildContextWRequest) MakeResponse() *BuildContextWResponse {
+	return &BuildContextWResponse{}
+}
+
+// OpNum returns the operation number of BuildContextW operation.
+func (o *BuildContextWRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of BuildContextW operation.
+func (o *BuildContextWRequest) OpName() string { return "/IXnRemote/v1/BuildContextW" }
 
 // BuildContextWResponse structure represents the BuildContextW operation response
 type BuildContextWResponse struct {

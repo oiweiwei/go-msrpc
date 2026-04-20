@@ -94,8 +94,10 @@ type xxx_ExchangePublicKeysOperation struct {
 	Return          int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExchangePublicKeys operation.
 func (o *xxx_ExchangePublicKeysOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of ExchangePublicKeys operation.
 func (o *xxx_ExchangePublicKeysOperation) OpName() string {
 	return "/BitsPeerAuth/v1/ExchangePublicKeys"
 }
@@ -362,6 +364,17 @@ func (o *ExchangePublicKeysRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeExchangePublicKeysRequest build a response structure from the given request structure.
+func (o *ExchangePublicKeysRequest) MakeResponse() *ExchangePublicKeysResponse {
+	return &ExchangePublicKeysResponse{}
+}
+
+// OpNum returns the operation number of ExchangePublicKeys operation.
+func (o *ExchangePublicKeysRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of ExchangePublicKeys operation.
+func (o *ExchangePublicKeysRequest) OpName() string { return "/BitsPeerAuth/v1/ExchangePublicKeys" }
 
 // ExchangePublicKeysResponse structure represents the ExchangePublicKeys operation response
 type ExchangePublicKeysResponse struct {

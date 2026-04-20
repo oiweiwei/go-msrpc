@@ -214,8 +214,10 @@ type xxx_CommitChangesOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CommitChanges operation.
 func (o *xxx_CommitChangesOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of CommitChanges operation.
 func (o *xxx_CommitChangesOperation) OpName() string {
 	return "/IAppHostWritableAdminManager/v0/CommitChanges"
 }
@@ -361,6 +363,19 @@ func (o *CommitChangesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeCommitChangesRequest build a response structure from the given request structure.
+func (o *CommitChangesRequest) MakeResponse() *CommitChangesResponse {
+	return &CommitChangesResponse{}
+}
+
+// OpNum returns the operation number of CommitChanges operation.
+func (o *CommitChangesRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of CommitChanges operation.
+func (o *CommitChangesRequest) OpName() string {
+	return "/IAppHostWritableAdminManager/v0/CommitChanges"
+}
+
 // CommitChangesResponse structure represents the CommitChanges operation response
 type CommitChangesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -408,8 +423,10 @@ type xxx_GetCommitPathOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CommitPath operation.
 func (o *xxx_GetCommitPathOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of CommitPath operation.
 func (o *xxx_GetCommitPathOperation) OpName() string {
 	return "/IAppHostWritableAdminManager/v0/CommitPath"
 }
@@ -601,6 +618,17 @@ func (o *GetCommitPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetCommitPathRequest build a response structure from the given request structure.
+func (o *GetCommitPathRequest) MakeResponse() *GetCommitPathResponse {
+	return &GetCommitPathResponse{}
+}
+
+// OpNum returns the operation number of CommitPath operation.
+func (o *GetCommitPathRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of CommitPath operation.
+func (o *GetCommitPathRequest) OpName() string { return "/IAppHostWritableAdminManager/v0/CommitPath" }
+
 // GetCommitPathResponse structure represents the CommitPath operation response
 type GetCommitPathResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -651,8 +679,10 @@ type xxx_SetCommitPathOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CommitPath operation.
 func (o *xxx_SetCommitPathOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of CommitPath operation.
 func (o *xxx_SetCommitPathOperation) OpName() string {
 	return "/IAppHostWritableAdminManager/v0/CommitPath"
 }
@@ -846,6 +876,17 @@ func (o *SetCommitPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetCommitPathRequest build a response structure from the given request structure.
+func (o *SetCommitPathRequest) MakeResponse() *SetCommitPathResponse {
+	return &SetCommitPathResponse{}
+}
+
+// OpNum returns the operation number of CommitPath operation.
+func (o *SetCommitPathRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of CommitPath operation.
+func (o *SetCommitPathRequest) OpName() string { return "/IAppHostWritableAdminManager/v0/CommitPath" }
 
 // SetCommitPathResponse structure represents the CommitPath operation response
 type SetCommitPathResponse struct {

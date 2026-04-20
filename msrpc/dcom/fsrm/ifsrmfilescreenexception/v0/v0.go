@@ -188,8 +188,10 @@ type xxx_GetPathOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Path operation.
 func (o *xxx_GetPathOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of Path operation.
 func (o *xxx_GetPathOperation) OpName() string { return "/IFsrmFileScreenException/v0/Path" }
 
 func (o *xxx_GetPathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -379,6 +381,17 @@ func (o *GetPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetPathRequest build a response structure from the given request structure.
+func (o *GetPathRequest) MakeResponse() *GetPathResponse {
+	return &GetPathResponse{}
+}
+
+// OpNum returns the operation number of Path operation.
+func (o *GetPathRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of Path operation.
+func (o *GetPathRequest) OpName() string { return "/IFsrmFileScreenException/v0/Path" }
+
 // GetPathResponse structure represents the Path operation response
 type GetPathResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -429,8 +442,10 @@ type xxx_GetAllowedFileGroupsOperation struct {
 	Return    int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AllowedFileGroups operation.
 func (o *xxx_GetAllowedFileGroupsOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of AllowedFileGroups operation.
 func (o *xxx_GetAllowedFileGroupsOperation) OpName() string {
 	return "/IFsrmFileScreenException/v0/AllowedFileGroups"
 }
@@ -622,6 +637,19 @@ func (o *GetAllowedFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetAllowedFileGroupsRequest build a response structure from the given request structure.
+func (o *GetAllowedFileGroupsRequest) MakeResponse() *GetAllowedFileGroupsResponse {
+	return &GetAllowedFileGroupsResponse{}
+}
+
+// OpNum returns the operation number of AllowedFileGroups operation.
+func (o *GetAllowedFileGroupsRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of AllowedFileGroups operation.
+func (o *GetAllowedFileGroupsRequest) OpName() string {
+	return "/IFsrmFileScreenException/v0/AllowedFileGroups"
+}
+
 // GetAllowedFileGroupsResponse structure represents the AllowedFileGroups operation response
 type GetAllowedFileGroupsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -672,8 +700,10 @@ type xxx_SetAllowedFileGroupsOperation struct {
 	Return    int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AllowedFileGroups operation.
 func (o *xxx_SetAllowedFileGroupsOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of AllowedFileGroups operation.
 func (o *xxx_SetAllowedFileGroupsOperation) OpName() string {
 	return "/IFsrmFileScreenException/v0/AllowedFileGroups"
 }
@@ -866,6 +896,19 @@ func (o *SetAllowedFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetAllowedFileGroupsRequest build a response structure from the given request structure.
+func (o *SetAllowedFileGroupsRequest) MakeResponse() *SetAllowedFileGroupsResponse {
+	return &SetAllowedFileGroupsResponse{}
+}
+
+// OpNum returns the operation number of AllowedFileGroups operation.
+func (o *SetAllowedFileGroupsRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of AllowedFileGroups operation.
+func (o *SetAllowedFileGroupsRequest) OpName() string {
+	return "/IFsrmFileScreenException/v0/AllowedFileGroups"
 }
 
 // SetAllowedFileGroupsResponse structure represents the AllowedFileGroups operation response

@@ -460,8 +460,10 @@ type xxx_DeleteEntryOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RasRpcDeleteEntry operation.
 func (o *xxx_DeleteEntryOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of RasRpcDeleteEntry operation.
 func (o *xxx_DeleteEntryOperation) OpName() string { return "/rasrpc/v1/RasRpcDeleteEntry" }
 
 func (o *xxx_DeleteEntryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -581,6 +583,17 @@ func (o *DeleteEntryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeDeleteEntryRequest build a response structure from the given request structure.
+func (o *DeleteEntryRequest) MakeResponse() *DeleteEntryResponse {
+	return &DeleteEntryResponse{}
+}
+
+// OpNum returns the operation number of RasRpcDeleteEntry operation.
+func (o *DeleteEntryRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of RasRpcDeleteEntry operation.
+func (o *DeleteEntryRequest) OpName() string { return "/rasrpc/v1/RasRpcDeleteEntry" }
+
 // DeleteEntryResponse structure represents the RasRpcDeleteEntry operation response
 type DeleteEntryResponse struct {
 	// Return: The RasRpcDeleteEntry return value.
@@ -623,8 +636,10 @@ type xxx_GetUserPreferencesOperation struct {
 	Return uint32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RasRpcGetUserPreferences operation.
 func (o *xxx_GetUserPreferencesOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RasRpcGetUserPreferences operation.
 func (o *xxx_GetUserPreferencesOperation) OpName() string {
 	return "/rasrpc/v1/RasRpcGetUserPreferences"
 }
@@ -787,6 +802,17 @@ func (o *GetUserPreferencesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetUserPreferencesRequest build a response structure from the given request structure.
+func (o *GetUserPreferencesRequest) MakeResponse() *GetUserPreferencesResponse {
+	return &GetUserPreferencesResponse{}
+}
+
+// OpNum returns the operation number of RasRpcGetUserPreferences operation.
+func (o *GetUserPreferencesRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RasRpcGetUserPreferences operation.
+func (o *GetUserPreferencesRequest) OpName() string { return "/rasrpc/v1/RasRpcGetUserPreferences" }
+
 // GetUserPreferencesResponse structure represents the RasRpcGetUserPreferences operation response
 type GetUserPreferencesResponse struct {
 	// pUser: Pointer to the RASRPC_PBUSER (section 2.2.1.2.229) structure which on successful
@@ -834,8 +860,10 @@ type xxx_SetUserPreferencesOperation struct {
 	Return uint32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RasRpcSetUserPreferences operation.
 func (o *xxx_SetUserPreferencesOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of RasRpcSetUserPreferences operation.
 func (o *xxx_SetUserPreferencesOperation) OpName() string {
 	return "/rasrpc/v1/RasRpcSetUserPreferences"
 }
@@ -971,6 +999,17 @@ func (o *SetUserPreferencesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetUserPreferencesRequest build a response structure from the given request structure.
+func (o *SetUserPreferencesRequest) MakeResponse() *SetUserPreferencesResponse {
+	return &SetUserPreferencesResponse{}
+}
+
+// OpNum returns the operation number of RasRpcSetUserPreferences operation.
+func (o *SetUserPreferencesRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of RasRpcSetUserPreferences operation.
+func (o *SetUserPreferencesRequest) OpName() string { return "/rasrpc/v1/RasRpcSetUserPreferences" }
+
 // SetUserPreferencesResponse structure represents the RasRpcSetUserPreferences operation response
 type SetUserPreferencesResponse struct {
 	// Return: The RasRpcSetUserPreferences return value.
@@ -1013,8 +1052,10 @@ type xxx_GetSystemDirectoryOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RasRpcGetSystemDirectory operation.
 func (o *xxx_GetSystemDirectoryOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RasRpcGetSystemDirectory operation.
 func (o *xxx_GetSystemDirectoryOperation) OpName() string {
 	return "/rasrpc/v1/RasRpcGetSystemDirectory"
 }
@@ -1278,6 +1319,22 @@ func (o *GetSystemDirectoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetSystemDirectoryRequest build a response structure from the given request structure.
+func (o *GetSystemDirectoryRequest) MakeResponse() *GetSystemDirectoryResponse {
+	if o == nil {
+		return &GetSystemDirectoryResponse{}
+	}
+	return &GetSystemDirectoryResponse{
+		Size: o.Size,
+	}
+}
+
+// OpNum returns the operation number of RasRpcGetSystemDirectory operation.
+func (o *GetSystemDirectoryRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RasRpcGetSystemDirectory operation.
+func (o *GetSystemDirectoryRequest) OpName() string { return "/rasrpc/v1/RasRpcGetSystemDirectory" }
+
 // GetSystemDirectoryResponse structure represents the RasRpcGetSystemDirectory operation response
 type GetSystemDirectoryResponse struct {
 	// XXX: uSize is an implicit input depedency for output parameters
@@ -1336,8 +1393,10 @@ type xxx_SubmitRequestOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RasRpcSubmitRequest operation.
 func (o *xxx_SubmitRequestOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of RasRpcSubmitRequest operation.
 func (o *xxx_SubmitRequestOperation) OpName() string { return "/rasrpc/v1/RasRpcSubmitRequest" }
 
 func (o *xxx_SubmitRequestOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1594,6 +1653,22 @@ func (o *SubmitRequestRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSubmitRequestRequest build a response structure from the given request structure.
+func (o *SubmitRequestRequest) MakeResponse() *SubmitRequestResponse {
+	if o == nil {
+		return &SubmitRequestResponse{}
+	}
+	return &SubmitRequestResponse{
+		BufferSize: o.BufferSize,
+	}
+}
+
+// OpNum returns the operation number of RasRpcSubmitRequest operation.
+func (o *SubmitRequestRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of RasRpcSubmitRequest operation.
+func (o *SubmitRequestRequest) OpName() string { return "/rasrpc/v1/RasRpcSubmitRequest" }
+
 // SubmitRequestResponse structure represents the RasRpcSubmitRequest operation response
 type SubmitRequestResponse struct {
 	// XXX: dwcbBufSize is an implicit input depedency for output parameters
@@ -1660,8 +1735,10 @@ type xxx_GetInstalledProtocolsExOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RasRpcGetInstalledProtocolsEx operation.
 func (o *xxx_GetInstalledProtocolsExOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of RasRpcGetInstalledProtocolsEx operation.
 func (o *xxx_GetInstalledProtocolsExOperation) OpName() string {
 	return "/rasrpc/v1/RasRpcGetInstalledProtocolsEx"
 }
@@ -1823,6 +1900,19 @@ func (o *GetInstalledProtocolsExRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeGetInstalledProtocolsExRequest build a response structure from the given request structure.
+func (o *GetInstalledProtocolsExRequest) MakeResponse() *GetInstalledProtocolsExResponse {
+	return &GetInstalledProtocolsExResponse{}
+}
+
+// OpNum returns the operation number of RasRpcGetInstalledProtocolsEx operation.
+func (o *GetInstalledProtocolsExRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of RasRpcGetInstalledProtocolsEx operation.
+func (o *GetInstalledProtocolsExRequest) OpName() string {
+	return "/rasrpc/v1/RasRpcGetInstalledProtocolsEx"
+}
+
 // GetInstalledProtocolsExResponse structure represents the RasRpcGetInstalledProtocolsEx operation response
 type GetInstalledProtocolsExResponse struct {
 	// Return: The RasRpcGetInstalledProtocolsEx return value.
@@ -1864,8 +1954,10 @@ type xxx_GetVersionOperation struct {
 	Return  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RasRpcGetVersion operation.
 func (o *xxx_GetVersionOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of RasRpcGetVersion operation.
 func (o *xxx_GetVersionOperation) OpName() string { return "/rasrpc/v1/RasRpcGetVersion" }
 
 func (o *xxx_GetVersionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1979,6 +2071,17 @@ func (o *GetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetVersionRequest build a response structure from the given request structure.
+func (o *GetVersionRequest) MakeResponse() *GetVersionResponse {
+	return &GetVersionResponse{}
+}
+
+// OpNum returns the operation number of RasRpcGetVersion operation.
+func (o *GetVersionRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of RasRpcGetVersion operation.
+func (o *GetVersionRequest) OpName() string { return "/rasrpc/v1/RasRpcGetVersion" }
 
 // GetVersionResponse structure represents the RasRpcGetVersion operation response
 type GetVersionResponse struct {

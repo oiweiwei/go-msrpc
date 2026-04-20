@@ -4324,8 +4324,10 @@ type xxx_OpenPolicyStoreOperation struct {
 	Return        uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWOpenPolicyStore operation.
 func (o *xxx_OpenPolicyStoreOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RRPC_FWOpenPolicyStore operation.
 func (o *xxx_OpenPolicyStoreOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWOpenPolicyStore" }
 
 func (o *xxx_OpenPolicyStoreOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4508,6 +4510,17 @@ func (o *OpenPolicyStoreRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeOpenPolicyStoreRequest build a response structure from the given request structure.
+func (o *OpenPolicyStoreRequest) MakeResponse() *OpenPolicyStoreResponse {
+	return &OpenPolicyStoreResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWOpenPolicyStore operation.
+func (o *OpenPolicyStoreRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RRPC_FWOpenPolicyStore operation.
+func (o *OpenPolicyStoreRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWOpenPolicyStore" }
+
 // OpenPolicyStoreResponse structure represents the RRPC_FWOpenPolicyStore operation response
 type OpenPolicyStoreResponse struct {
 	// phPolicyStore: This is an output parameter that provides a pointer to an FW_POLICY_STORE_HANDLE
@@ -4554,8 +4567,10 @@ type xxx_ClosePolicyStoreOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWClosePolicyStore operation.
 func (o *xxx_ClosePolicyStoreOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RRPC_FWClosePolicyStore operation.
 func (o *xxx_ClosePolicyStoreOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWClosePolicyStore"
 }
@@ -4692,6 +4707,17 @@ func (o *ClosePolicyStoreRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeClosePolicyStoreRequest build a response structure from the given request structure.
+func (o *ClosePolicyStoreRequest) MakeResponse() *ClosePolicyStoreResponse {
+	return &ClosePolicyStoreResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWClosePolicyStore operation.
+func (o *ClosePolicyStoreRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RRPC_FWClosePolicyStore operation.
+func (o *ClosePolicyStoreRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWClosePolicyStore" }
+
 // ClosePolicyStoreResponse structure represents the RRPC_FWClosePolicyStore operation response
 type ClosePolicyStoreResponse struct {
 	// phPolicyStore: This is an input and output parameter that provides a pointer to an
@@ -4739,8 +4765,10 @@ type xxx_RestoreDefaultsOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWRestoreDefaults operation.
 func (o *xxx_RestoreDefaultsOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of RRPC_FWRestoreDefaults operation.
 func (o *xxx_RestoreDefaultsOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWRestoreDefaults" }
 
 func (o *xxx_RestoreDefaultsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4826,6 +4854,17 @@ func (o *RestoreDefaultsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeRestoreDefaultsRequest build a response structure from the given request structure.
+func (o *RestoreDefaultsRequest) MakeResponse() *RestoreDefaultsResponse {
+	return &RestoreDefaultsResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWRestoreDefaults operation.
+func (o *RestoreDefaultsRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of RRPC_FWRestoreDefaults operation.
+func (o *RestoreDefaultsRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWRestoreDefaults" }
+
 // RestoreDefaultsResponse structure represents the RRPC_FWRestoreDefaults operation response
 type RestoreDefaultsResponse struct {
 	// Return: The RRPC_FWRestoreDefaults return value.
@@ -4874,8 +4913,10 @@ type xxx_GetGlobalConfigOperation struct {
 	Return            uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWGetGlobalConfig operation.
 func (o *xxx_GetGlobalConfigOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RRPC_FWGetGlobalConfig operation.
 func (o *xxx_GetGlobalConfigOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWGetGlobalConfig" }
 
 func (o *xxx_GetGlobalConfigOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5286,6 +5327,22 @@ func (o *GetGlobalConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetGlobalConfigRequest build a response structure from the given request structure.
+func (o *GetGlobalConfigRequest) MakeResponse() *GetGlobalConfigResponse {
+	if o == nil {
+		return &GetGlobalConfigResponse{}
+	}
+	return &GetGlobalConfigResponse{
+		DataLength: o.DataLength,
+	}
+}
+
+// OpNum returns the operation number of RRPC_FWGetGlobalConfig operation.
+func (o *GetGlobalConfigRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RRPC_FWGetGlobalConfig operation.
+func (o *GetGlobalConfigRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWGetGlobalConfig" }
+
 // GetGlobalConfigResponse structure represents the RRPC_FWGetGlobalConfig operation response
 type GetGlobalConfigResponse struct {
 	// XXX: cbData is an implicit input depedency for output parameters
@@ -5360,8 +5417,10 @@ type xxx_SetGlobalConfigOperation struct {
 	Return        uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetGlobalConfig operation.
 func (o *xxx_SetGlobalConfigOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RRPC_FWSetGlobalConfig operation.
 func (o *xxx_SetGlobalConfigOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWSetGlobalConfig" }
 
 func (o *xxx_SetGlobalConfigOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5600,6 +5659,17 @@ func (o *SetGlobalConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetGlobalConfigRequest build a response structure from the given request structure.
+func (o *SetGlobalConfigRequest) MakeResponse() *SetGlobalConfigResponse {
+	return &SetGlobalConfigResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetGlobalConfig operation.
+func (o *SetGlobalConfigRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RRPC_FWSetGlobalConfig operation.
+func (o *SetGlobalConfigRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWSetGlobalConfig" }
+
 // SetGlobalConfigResponse structure represents the RRPC_FWSetGlobalConfig operation response
 type SetGlobalConfigResponse struct {
 	// Return: The RRPC_FWSetGlobalConfig return value.
@@ -5642,8 +5712,10 @@ type xxx_AddFirewallRuleOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddFirewallRule operation.
 func (o *xxx_AddFirewallRuleOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of RRPC_FWAddFirewallRule operation.
 func (o *xxx_AddFirewallRuleOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWAddFirewallRule" }
 
 func (o *xxx_AddFirewallRuleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5790,6 +5862,17 @@ func (o *AddFirewallRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeAddFirewallRuleRequest build a response structure from the given request structure.
+func (o *AddFirewallRuleRequest) MakeResponse() *AddFirewallRuleResponse {
+	return &AddFirewallRuleResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddFirewallRule operation.
+func (o *AddFirewallRuleRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of RRPC_FWAddFirewallRule operation.
+func (o *AddFirewallRuleRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWAddFirewallRule" }
+
 // AddFirewallRuleResponse structure represents the RRPC_FWAddFirewallRule operation response
 type AddFirewallRuleResponse struct {
 	// Return: The RRPC_FWAddFirewallRule return value.
@@ -5832,8 +5915,10 @@ type xxx_SetFirewallRuleOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetFirewallRule operation.
 func (o *xxx_SetFirewallRuleOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of RRPC_FWSetFirewallRule operation.
 func (o *xxx_SetFirewallRuleOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWSetFirewallRule" }
 
 func (o *xxx_SetFirewallRuleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5980,6 +6065,17 @@ func (o *SetFirewallRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetFirewallRuleRequest build a response structure from the given request structure.
+func (o *SetFirewallRuleRequest) MakeResponse() *SetFirewallRuleResponse {
+	return &SetFirewallRuleResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetFirewallRule operation.
+func (o *SetFirewallRuleRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of RRPC_FWSetFirewallRule operation.
+func (o *SetFirewallRuleRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWSetFirewallRule" }
+
 // SetFirewallRuleResponse structure represents the RRPC_FWSetFirewallRule operation response
 type SetFirewallRuleResponse struct {
 	// Return: The RRPC_FWSetFirewallRule return value.
@@ -6022,8 +6118,10 @@ type xxx_DeleteFirewallRuleOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWDeleteFirewallRule operation.
 func (o *xxx_DeleteFirewallRuleOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of RRPC_FWDeleteFirewallRule operation.
 func (o *xxx_DeleteFirewallRuleOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWDeleteFirewallRule"
 }
@@ -6155,6 +6253,17 @@ func (o *DeleteFirewallRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeDeleteFirewallRuleRequest build a response structure from the given request structure.
+func (o *DeleteFirewallRuleRequest) MakeResponse() *DeleteFirewallRuleResponse {
+	return &DeleteFirewallRuleResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWDeleteFirewallRule operation.
+func (o *DeleteFirewallRuleRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of RRPC_FWDeleteFirewallRule operation.
+func (o *DeleteFirewallRuleRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWDeleteFirewallRule" }
+
 // DeleteFirewallRuleResponse structure represents the RRPC_FWDeleteFirewallRule operation response
 type DeleteFirewallRuleResponse struct {
 	// Return: The RRPC_FWDeleteFirewallRule return value.
@@ -6196,8 +6305,10 @@ type xxx_DeleteAllFirewallRulesOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWDeleteAllFirewallRules operation.
 func (o *xxx_DeleteAllFirewallRulesOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RRPC_FWDeleteAllFirewallRules operation.
 func (o *xxx_DeleteAllFirewallRulesOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWDeleteAllFirewallRules"
 }
@@ -6312,6 +6423,19 @@ func (o *DeleteAllFirewallRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeDeleteAllFirewallRulesRequest build a response structure from the given request structure.
+func (o *DeleteAllFirewallRulesRequest) MakeResponse() *DeleteAllFirewallRulesResponse {
+	return &DeleteAllFirewallRulesResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWDeleteAllFirewallRules operation.
+func (o *DeleteAllFirewallRulesRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of RRPC_FWDeleteAllFirewallRules operation.
+func (o *DeleteAllFirewallRulesRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWDeleteAllFirewallRules"
+}
+
 // DeleteAllFirewallRulesResponse structure represents the RRPC_FWDeleteAllFirewallRules operation response
 type DeleteAllFirewallRulesResponse struct {
 	// Return: The RRPC_FWDeleteAllFirewallRules return value.
@@ -6358,8 +6482,10 @@ type xxx_EnumFirewallRulesOperation struct {
 	Return           uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules operation.
 func (o *xxx_EnumFirewallRulesOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RRPC_FWEnumFirewallRules operation.
 func (o *xxx_EnumFirewallRulesOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules"
 }
@@ -6589,6 +6715,17 @@ func (o *EnumFirewallRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeEnumFirewallRulesRequest build a response structure from the given request structure.
+func (o *EnumFirewallRulesRequest) MakeResponse() *EnumFirewallRulesResponse {
+	return &EnumFirewallRulesResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules operation.
+func (o *EnumFirewallRulesRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RRPC_FWEnumFirewallRules operation.
+func (o *EnumFirewallRulesRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumFirewallRules" }
+
 // EnumFirewallRulesResponse structure represents the RRPC_FWEnumFirewallRules operation response
 type EnumFirewallRulesResponse struct {
 	// pdwNumRules: This output parameter, if successful, MUST be equal to the number of
@@ -6647,8 +6784,10 @@ type xxx_GetConfigOperation struct {
 	Return            uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWGetConfig operation.
 func (o *xxx_GetConfigOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of RRPC_FWGetConfig operation.
 func (o *xxx_GetConfigOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWGetConfig" }
 
 func (o *xxx_GetConfigOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7069,6 +7208,22 @@ func (o *GetConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetConfigRequest build a response structure from the given request structure.
+func (o *GetConfigRequest) MakeResponse() *GetConfigResponse {
+	if o == nil {
+		return &GetConfigResponse{}
+	}
+	return &GetConfigResponse{
+		DataLength: o.DataLength,
+	}
+}
+
+// OpNum returns the operation number of RRPC_FWGetConfig operation.
+func (o *GetConfigRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of RRPC_FWGetConfig operation.
+func (o *GetConfigRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWGetConfig" }
+
 // GetConfigResponse structure represents the RRPC_FWGetConfig operation response
 type GetConfigResponse struct {
 	// XXX: cbData is an implicit input depedency for output parameters
@@ -7143,8 +7298,10 @@ type xxx_SetConfigOperation struct {
 	Return      uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetConfig operation.
 func (o *xxx_SetConfigOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RRPC_FWSetConfig operation.
 func (o *xxx_SetConfigOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWSetConfig" }
 
 func (o *xxx_SetConfigOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7349,6 +7506,17 @@ func (o *SetConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeSetConfigRequest build a response structure from the given request structure.
+func (o *SetConfigRequest) MakeResponse() *SetConfigResponse {
+	return &SetConfigResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetConfig operation.
+func (o *SetConfigRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RRPC_FWSetConfig operation.
+func (o *SetConfigRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWSetConfig" }
+
 // SetConfigResponse structure represents the RRPC_FWSetConfig operation response
 type SetConfigResponse struct {
 	// Return: The RRPC_FWSetConfig return value.
@@ -7391,8 +7559,10 @@ type xxx_AddConnectionSecurityRuleOperation struct {
 	Return      uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddConnectionSecurityRule operation.
 func (o *xxx_AddConnectionSecurityRuleOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of RRPC_FWAddConnectionSecurityRule operation.
 func (o *xxx_AddConnectionSecurityRuleOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWAddConnectionSecurityRule"
 }
@@ -7537,6 +7707,19 @@ func (o *AddConnectionSecurityRuleRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeAddConnectionSecurityRuleRequest build a response structure from the given request structure.
+func (o *AddConnectionSecurityRuleRequest) MakeResponse() *AddConnectionSecurityRuleResponse {
+	return &AddConnectionSecurityRuleResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddConnectionSecurityRule operation.
+func (o *AddConnectionSecurityRuleRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of RRPC_FWAddConnectionSecurityRule operation.
+func (o *AddConnectionSecurityRuleRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWAddConnectionSecurityRule"
+}
+
 // AddConnectionSecurityRuleResponse structure represents the RRPC_FWAddConnectionSecurityRule operation response
 type AddConnectionSecurityRuleResponse struct {
 	// Return: The RRPC_FWAddConnectionSecurityRule return value.
@@ -7579,8 +7762,10 @@ type xxx_SetConnectionSecurityRuleOperation struct {
 	Return      uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetConnectionSecurityRule operation.
 func (o *xxx_SetConnectionSecurityRuleOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of RRPC_FWSetConnectionSecurityRule operation.
 func (o *xxx_SetConnectionSecurityRuleOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWSetConnectionSecurityRule"
 }
@@ -7725,6 +7910,19 @@ func (o *SetConnectionSecurityRuleRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeSetConnectionSecurityRuleRequest build a response structure from the given request structure.
+func (o *SetConnectionSecurityRuleRequest) MakeResponse() *SetConnectionSecurityRuleResponse {
+	return &SetConnectionSecurityRuleResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetConnectionSecurityRule operation.
+func (o *SetConnectionSecurityRuleRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of RRPC_FWSetConnectionSecurityRule operation.
+func (o *SetConnectionSecurityRuleRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWSetConnectionSecurityRule"
+}
+
 // SetConnectionSecurityRuleResponse structure represents the RRPC_FWSetConnectionSecurityRule operation response
 type SetConnectionSecurityRuleResponse struct {
 	// Return: The RRPC_FWSetConnectionSecurityRule return value.
@@ -7767,8 +7965,10 @@ type xxx_DeleteConnectionSecurityRuleOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWDeleteConnectionSecurityRule operation.
 func (o *xxx_DeleteConnectionSecurityRuleOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of RRPC_FWDeleteConnectionSecurityRule operation.
 func (o *xxx_DeleteConnectionSecurityRuleOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWDeleteConnectionSecurityRule"
 }
@@ -7897,6 +8097,19 @@ func (o *DeleteConnectionSecurityRuleRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeDeleteConnectionSecurityRuleRequest build a response structure from the given request structure.
+func (o *DeleteConnectionSecurityRuleRequest) MakeResponse() *DeleteConnectionSecurityRuleResponse {
+	return &DeleteConnectionSecurityRuleResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWDeleteConnectionSecurityRule operation.
+func (o *DeleteConnectionSecurityRuleRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of RRPC_FWDeleteConnectionSecurityRule operation.
+func (o *DeleteConnectionSecurityRuleRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWDeleteConnectionSecurityRule"
+}
+
 // DeleteConnectionSecurityRuleResponse structure represents the RRPC_FWDeleteConnectionSecurityRule operation response
 type DeleteConnectionSecurityRuleResponse struct {
 	// Return: The RRPC_FWDeleteConnectionSecurityRule return value.
@@ -7938,8 +8151,10 @@ type xxx_DeleteAllConnectionSecurityRulesOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWDeleteAllConnectionSecurityRules operation.
 func (o *xxx_DeleteAllConnectionSecurityRulesOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of RRPC_FWDeleteAllConnectionSecurityRules operation.
 func (o *xxx_DeleteAllConnectionSecurityRulesOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWDeleteAllConnectionSecurityRules"
 }
@@ -8051,6 +8266,19 @@ func (o *DeleteAllConnectionSecurityRulesRequest) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
+// MakeDeleteAllConnectionSecurityRulesRequest build a response structure from the given request structure.
+func (o *DeleteAllConnectionSecurityRulesRequest) MakeResponse() *DeleteAllConnectionSecurityRulesResponse {
+	return &DeleteAllConnectionSecurityRulesResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWDeleteAllConnectionSecurityRules operation.
+func (o *DeleteAllConnectionSecurityRulesRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of RRPC_FWDeleteAllConnectionSecurityRules operation.
+func (o *DeleteAllConnectionSecurityRulesRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWDeleteAllConnectionSecurityRules"
+}
+
 // DeleteAllConnectionSecurityRulesResponse structure represents the RRPC_FWDeleteAllConnectionSecurityRules operation response
 type DeleteAllConnectionSecurityRulesResponse struct {
 	// Return: The RRPC_FWDeleteAllConnectionSecurityRules return value.
@@ -8097,8 +8325,10 @@ type xxx_EnumConnectionSecurityRulesOperation struct {
 	Return           uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumConnectionSecurityRules operation.
 func (o *xxx_EnumConnectionSecurityRulesOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of RRPC_FWEnumConnectionSecurityRules operation.
 func (o *xxx_EnumConnectionSecurityRulesOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumConnectionSecurityRules"
 }
@@ -8324,6 +8554,19 @@ func (o *EnumConnectionSecurityRulesRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeEnumConnectionSecurityRulesRequest build a response structure from the given request structure.
+func (o *EnumConnectionSecurityRulesRequest) MakeResponse() *EnumConnectionSecurityRulesResponse {
+	return &EnumConnectionSecurityRulesResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumConnectionSecurityRules operation.
+func (o *EnumConnectionSecurityRulesRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of RRPC_FWEnumConnectionSecurityRules operation.
+func (o *EnumConnectionSecurityRulesRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumConnectionSecurityRules"
+}
+
 // EnumConnectionSecurityRulesResponse structure represents the RRPC_FWEnumConnectionSecurityRules operation response
 type EnumConnectionSecurityRulesResponse struct {
 	// pdwNumRules: This output parameter, if successful, MUST be equal to the number of
@@ -8376,8 +8619,10 @@ type xxx_AddAuthenticationSetOperation struct {
 	Return      uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddAuthenticationSet operation.
 func (o *xxx_AddAuthenticationSetOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of RRPC_FWAddAuthenticationSet operation.
 func (o *xxx_AddAuthenticationSetOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWAddAuthenticationSet"
 }
@@ -8522,6 +8767,19 @@ func (o *AddAuthenticationSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeAddAuthenticationSetRequest build a response structure from the given request structure.
+func (o *AddAuthenticationSetRequest) MakeResponse() *AddAuthenticationSetResponse {
+	return &AddAuthenticationSetResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddAuthenticationSet operation.
+func (o *AddAuthenticationSetRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of RRPC_FWAddAuthenticationSet operation.
+func (o *AddAuthenticationSetRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWAddAuthenticationSet"
+}
+
 // AddAuthenticationSetResponse structure represents the RRPC_FWAddAuthenticationSet operation response
 type AddAuthenticationSetResponse struct {
 	// Return: The RRPC_FWAddAuthenticationSet return value.
@@ -8564,8 +8822,10 @@ type xxx_SetAuthenticationSetOperation struct {
 	Return      uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetAuthenticationSet operation.
 func (o *xxx_SetAuthenticationSetOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of RRPC_FWSetAuthenticationSet operation.
 func (o *xxx_SetAuthenticationSetOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWSetAuthenticationSet"
 }
@@ -8710,6 +8970,19 @@ func (o *SetAuthenticationSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeSetAuthenticationSetRequest build a response structure from the given request structure.
+func (o *SetAuthenticationSetRequest) MakeResponse() *SetAuthenticationSetResponse {
+	return &SetAuthenticationSetResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetAuthenticationSet operation.
+func (o *SetAuthenticationSetRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of RRPC_FWSetAuthenticationSet operation.
+func (o *SetAuthenticationSetRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWSetAuthenticationSet"
+}
+
 // SetAuthenticationSetResponse structure represents the RRPC_FWSetAuthenticationSet operation response
 type SetAuthenticationSetResponse struct {
 	// Return: The RRPC_FWSetAuthenticationSet return value.
@@ -8753,8 +9026,10 @@ type xxx_DeleteAuthenticationSetOperation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWDeleteAuthenticationSet operation.
 func (o *xxx_DeleteAuthenticationSetOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of RRPC_FWDeleteAuthenticationSet operation.
 func (o *xxx_DeleteAuthenticationSetOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWDeleteAuthenticationSet"
 }
@@ -8903,6 +9178,19 @@ func (o *DeleteAuthenticationSetRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeDeleteAuthenticationSetRequest build a response structure from the given request structure.
+func (o *DeleteAuthenticationSetRequest) MakeResponse() *DeleteAuthenticationSetResponse {
+	return &DeleteAuthenticationSetResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWDeleteAuthenticationSet operation.
+func (o *DeleteAuthenticationSetRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of RRPC_FWDeleteAuthenticationSet operation.
+func (o *DeleteAuthenticationSetRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWDeleteAuthenticationSet"
+}
+
 // DeleteAuthenticationSetResponse structure represents the RRPC_FWDeleteAuthenticationSet operation response
 type DeleteAuthenticationSetResponse struct {
 	// Return: The RRPC_FWDeleteAuthenticationSet return value.
@@ -8945,8 +9233,10 @@ type xxx_DeleteAllAuthenticationSetsOperation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWDeleteAllAuthenticationSets operation.
 func (o *xxx_DeleteAllAuthenticationSetsOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of RRPC_FWDeleteAllAuthenticationSets operation.
 func (o *xxx_DeleteAllAuthenticationSetsOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWDeleteAllAuthenticationSets"
 }
@@ -9078,6 +9368,19 @@ func (o *DeleteAllAuthenticationSetsRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeDeleteAllAuthenticationSetsRequest build a response structure from the given request structure.
+func (o *DeleteAllAuthenticationSetsRequest) MakeResponse() *DeleteAllAuthenticationSetsResponse {
+	return &DeleteAllAuthenticationSetsResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWDeleteAllAuthenticationSets operation.
+func (o *DeleteAllAuthenticationSetsRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of RRPC_FWDeleteAllAuthenticationSets operation.
+func (o *DeleteAllAuthenticationSetsRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWDeleteAllAuthenticationSets"
+}
+
 // DeleteAllAuthenticationSetsResponse structure represents the RRPC_FWDeleteAllAuthenticationSets operation response
 type DeleteAllAuthenticationSetsResponse struct {
 	// Return: The RRPC_FWDeleteAllAuthenticationSets return value.
@@ -9124,8 +9427,10 @@ type xxx_EnumAuthenticationSetsOperation struct {
 	Return           uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumAuthenticationSets operation.
 func (o *xxx_EnumAuthenticationSetsOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of RRPC_FWEnumAuthenticationSets operation.
 func (o *xxx_EnumAuthenticationSetsOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumAuthenticationSets"
 }
@@ -9352,6 +9657,19 @@ func (o *EnumAuthenticationSetsRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeEnumAuthenticationSetsRequest build a response structure from the given request structure.
+func (o *EnumAuthenticationSetsRequest) MakeResponse() *EnumAuthenticationSetsResponse {
+	return &EnumAuthenticationSetsResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumAuthenticationSets operation.
+func (o *EnumAuthenticationSetsRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of RRPC_FWEnumAuthenticationSets operation.
+func (o *EnumAuthenticationSetsRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumAuthenticationSets"
+}
+
 // EnumAuthenticationSetsResponse structure represents the RRPC_FWEnumAuthenticationSets operation response
 type EnumAuthenticationSetsResponse struct {
 	// pdwNumAuthSets: This is an output parameter that on success MUST be equal to the
@@ -9404,8 +9722,10 @@ type xxx_AddCryptoSetOperation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddCryptoSet operation.
 func (o *xxx_AddCryptoSetOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of RRPC_FWAddCryptoSet operation.
 func (o *xxx_AddCryptoSetOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWAddCryptoSet" }
 
 func (o *xxx_AddCryptoSetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9548,6 +9868,17 @@ func (o *AddCryptoSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeAddCryptoSetRequest build a response structure from the given request structure.
+func (o *AddCryptoSetRequest) MakeResponse() *AddCryptoSetResponse {
+	return &AddCryptoSetResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddCryptoSet operation.
+func (o *AddCryptoSetRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of RRPC_FWAddCryptoSet operation.
+func (o *AddCryptoSetRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWAddCryptoSet" }
+
 // AddCryptoSetResponse structure represents the RRPC_FWAddCryptoSet operation response
 type AddCryptoSetResponse struct {
 	// Return: The RRPC_FWAddCryptoSet return value.
@@ -9590,8 +9921,10 @@ type xxx_SetCryptoSetOperation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetCryptoSet operation.
 func (o *xxx_SetCryptoSetOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of RRPC_FWSetCryptoSet operation.
 func (o *xxx_SetCryptoSetOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWSetCryptoSet" }
 
 func (o *xxx_SetCryptoSetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9734,6 +10067,17 @@ func (o *SetCryptoSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeSetCryptoSetRequest build a response structure from the given request structure.
+func (o *SetCryptoSetRequest) MakeResponse() *SetCryptoSetResponse {
+	return &SetCryptoSetResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetCryptoSet operation.
+func (o *SetCryptoSetRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of RRPC_FWSetCryptoSet operation.
+func (o *SetCryptoSetRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWSetCryptoSet" }
+
 // SetCryptoSetResponse structure represents the RRPC_FWSetCryptoSet operation response
 type SetCryptoSetResponse struct {
 	// Return: The RRPC_FWSetCryptoSet return value.
@@ -9777,8 +10121,10 @@ type xxx_DeleteCryptoSetOperation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWDeleteCryptoSet operation.
 func (o *xxx_DeleteCryptoSetOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of RRPC_FWDeleteCryptoSet operation.
 func (o *xxx_DeleteCryptoSetOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWDeleteCryptoSet" }
 
 func (o *xxx_DeleteCryptoSetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9925,6 +10271,17 @@ func (o *DeleteCryptoSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeDeleteCryptoSetRequest build a response structure from the given request structure.
+func (o *DeleteCryptoSetRequest) MakeResponse() *DeleteCryptoSetResponse {
+	return &DeleteCryptoSetResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWDeleteCryptoSet operation.
+func (o *DeleteCryptoSetRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of RRPC_FWDeleteCryptoSet operation.
+func (o *DeleteCryptoSetRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWDeleteCryptoSet" }
+
 // DeleteCryptoSetResponse structure represents the RRPC_FWDeleteCryptoSet operation response
 type DeleteCryptoSetResponse struct {
 	// Return: The RRPC_FWDeleteCryptoSet return value.
@@ -9967,8 +10324,10 @@ type xxx_DeleteAllCryptoSetsOperation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWDeleteAllCryptoSets operation.
 func (o *xxx_DeleteAllCryptoSetsOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of RRPC_FWDeleteAllCryptoSets operation.
 func (o *xxx_DeleteAllCryptoSetsOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWDeleteAllCryptoSets"
 }
@@ -10100,6 +10459,19 @@ func (o *DeleteAllCryptoSetsRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeDeleteAllCryptoSetsRequest build a response structure from the given request structure.
+func (o *DeleteAllCryptoSetsRequest) MakeResponse() *DeleteAllCryptoSetsResponse {
+	return &DeleteAllCryptoSetsResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWDeleteAllCryptoSets operation.
+func (o *DeleteAllCryptoSetsRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of RRPC_FWDeleteAllCryptoSets operation.
+func (o *DeleteAllCryptoSetsRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWDeleteAllCryptoSets"
+}
+
 // DeleteAllCryptoSetsResponse structure represents the RRPC_FWDeleteAllCryptoSets operation response
 type DeleteAllCryptoSetsResponse struct {
 	// Return: The RRPC_FWDeleteAllCryptoSets return value.
@@ -10146,8 +10518,10 @@ type xxx_EnumCryptoSetsOperation struct {
 	Return           uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumCryptoSets operation.
 func (o *xxx_EnumCryptoSetsOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of RRPC_FWEnumCryptoSets operation.
 func (o *xxx_EnumCryptoSetsOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumCryptoSets" }
 
 func (o *xxx_EnumCryptoSetsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10372,6 +10746,17 @@ func (o *EnumCryptoSetsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeEnumCryptoSetsRequest build a response structure from the given request structure.
+func (o *EnumCryptoSetsRequest) MakeResponse() *EnumCryptoSetsResponse {
+	return &EnumCryptoSetsResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumCryptoSets operation.
+func (o *EnumCryptoSetsRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of RRPC_FWEnumCryptoSets operation.
+func (o *EnumCryptoSetsRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumCryptoSets" }
+
 // EnumCryptoSetsResponse structure represents the RRPC_FWEnumCryptoSets operation response
 type EnumCryptoSetsResponse struct {
 	// pdwNumSets: This is an output parameter that on success MUST be equal to the number
@@ -10426,8 +10811,10 @@ type xxx_EnumPhase1SAsOperation struct {
 	Return      uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumPhase1SAs operation.
 func (o *xxx_EnumPhase1SAsOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of RRPC_FWEnumPhase1SAs operation.
 func (o *xxx_EnumPhase1SAsOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumPhase1SAs" }
 
 func (o *xxx_EnumPhase1SAsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10684,6 +11071,17 @@ func (o *EnumPhase1SAsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeEnumPhase1SAsRequest build a response structure from the given request structure.
+func (o *EnumPhase1SAsRequest) MakeResponse() *EnumPhase1SAsResponse {
+	return &EnumPhase1SAsResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumPhase1SAs operation.
+func (o *EnumPhase1SAsRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of RRPC_FWEnumPhase1SAs operation.
+func (o *EnumPhase1SAsRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumPhase1SAs" }
+
 // EnumPhase1SAsResponse structure represents the RRPC_FWEnumPhase1SAs operation response
 type EnumPhase1SAsResponse struct {
 	// pdwNumSAs: This is an output parameter that on success MUST be equal to the number
@@ -10738,8 +11136,10 @@ type xxx_EnumPhase2SAsOperation struct {
 	Return      uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumPhase2SAs operation.
 func (o *xxx_EnumPhase2SAsOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of RRPC_FWEnumPhase2SAs operation.
 func (o *xxx_EnumPhase2SAsOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumPhase2SAs" }
 
 func (o *xxx_EnumPhase2SAsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10997,6 +11397,17 @@ func (o *EnumPhase2SAsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeEnumPhase2SAsRequest build a response structure from the given request structure.
+func (o *EnumPhase2SAsRequest) MakeResponse() *EnumPhase2SAsResponse {
+	return &EnumPhase2SAsResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumPhase2SAs operation.
+func (o *EnumPhase2SAsRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of RRPC_FWEnumPhase2SAs operation.
+func (o *EnumPhase2SAsRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumPhase2SAs" }
+
 // EnumPhase2SAsResponse structure represents the RRPC_FWEnumPhase2SAs operation response
 type EnumPhase2SAsResponse struct {
 	// pdwNumSAs: This is an output parameter that on success MUST be equal to the number
@@ -11049,8 +11460,10 @@ type xxx_DeletePhase1SAsOperation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWDeletePhase1SAs operation.
 func (o *xxx_DeletePhase1SAsOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of RRPC_FWDeletePhase1SAs operation.
 func (o *xxx_DeletePhase1SAsOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWDeletePhase1SAs" }
 
 func (o *xxx_DeletePhase1SAsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11214,6 +11627,17 @@ func (o *DeletePhase1SAsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeDeletePhase1SAsRequest build a response structure from the given request structure.
+func (o *DeletePhase1SAsRequest) MakeResponse() *DeletePhase1SAsResponse {
+	return &DeletePhase1SAsResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWDeletePhase1SAs operation.
+func (o *DeletePhase1SAsRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of RRPC_FWDeletePhase1SAs operation.
+func (o *DeletePhase1SAsRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWDeletePhase1SAs" }
+
 // DeletePhase1SAsResponse structure represents the RRPC_FWDeletePhase1SAs operation response
 type DeletePhase1SAsResponse struct {
 	// Return: The RRPC_FWDeletePhase1SAs return value.
@@ -11256,8 +11680,10 @@ type xxx_DeletePhase2SAsOperation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWDeletePhase2SAs operation.
 func (o *xxx_DeletePhase2SAsOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of RRPC_FWDeletePhase2SAs operation.
 func (o *xxx_DeletePhase2SAsOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWDeletePhase2SAs" }
 
 func (o *xxx_DeletePhase2SAsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11421,6 +11847,17 @@ func (o *DeletePhase2SAsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeDeletePhase2SAsRequest build a response structure from the given request structure.
+func (o *DeletePhase2SAsRequest) MakeResponse() *DeletePhase2SAsResponse {
+	return &DeletePhase2SAsResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWDeletePhase2SAs operation.
+func (o *DeletePhase2SAsRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of RRPC_FWDeletePhase2SAs operation.
+func (o *DeletePhase2SAsRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWDeletePhase2SAs" }
+
 // DeletePhase2SAsResponse structure represents the RRPC_FWDeletePhase2SAs operation response
 type DeletePhase2SAsResponse struct {
 	// Return: The RRPC_FWDeletePhase2SAs return value.
@@ -11464,8 +11901,10 @@ type xxx_EnumProductsOperation struct {
 	Return         uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumProducts operation.
 func (o *xxx_EnumProductsOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of RRPC_FWEnumProducts operation.
 func (o *xxx_EnumProductsOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumProducts" }
 
 func (o *xxx_EnumProductsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11669,6 +12108,17 @@ func (o *EnumProductsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeEnumProductsRequest build a response structure from the given request structure.
+func (o *EnumProductsRequest) MakeResponse() *EnumProductsResponse {
+	return &EnumProductsResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumProducts operation.
+func (o *EnumProductsRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of RRPC_FWEnumProducts operation.
+func (o *EnumProductsRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumProducts" }
+
 // EnumProductsResponse structure represents the RRPC_FWEnumProducts operation response
 type EnumProductsResponse struct {
 	// pdwNumProducts: This is an output parameter that on success MUST be equal to the
@@ -11722,8 +12172,10 @@ type xxx_AddMainModeRuleOperation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddMainModeRule operation.
 func (o *xxx_AddMainModeRuleOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of RRPC_FWAddMainModeRule operation.
 func (o *xxx_AddMainModeRuleOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWAddMainModeRule" }
 
 func (o *xxx_AddMainModeRuleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11878,6 +12330,17 @@ func (o *AddMainModeRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeAddMainModeRuleRequest build a response structure from the given request structure.
+func (o *AddMainModeRuleRequest) MakeResponse() *AddMainModeRuleResponse {
+	return &AddMainModeRuleResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddMainModeRule operation.
+func (o *AddMainModeRuleRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of RRPC_FWAddMainModeRule operation.
+func (o *AddMainModeRuleRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWAddMainModeRule" }
+
 // AddMainModeRuleResponse structure represents the RRPC_FWAddMainModeRule operation response
 type AddMainModeRuleResponse struct {
 	// pStatus: This is an output parameter that on return will have the status code of
@@ -11926,8 +12389,10 @@ type xxx_SetMainModeRuleOperation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetMainModeRule operation.
 func (o *xxx_SetMainModeRuleOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of RRPC_FWSetMainModeRule operation.
 func (o *xxx_SetMainModeRuleOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWSetMainModeRule" }
 
 func (o *xxx_SetMainModeRuleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12082,6 +12547,17 @@ func (o *SetMainModeRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetMainModeRuleRequest build a response structure from the given request structure.
+func (o *SetMainModeRuleRequest) MakeResponse() *SetMainModeRuleResponse {
+	return &SetMainModeRuleResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetMainModeRule operation.
+func (o *SetMainModeRuleRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of RRPC_FWSetMainModeRule operation.
+func (o *SetMainModeRuleRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWSetMainModeRule" }
+
 // SetMainModeRuleResponse structure represents the RRPC_FWSetMainModeRule operation response
 type SetMainModeRuleResponse struct {
 	// pStatus: This is an output parameter that on return will have the status code of
@@ -12129,8 +12605,10 @@ type xxx_DeleteMainModeRuleOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWDeleteMainModeRule operation.
 func (o *xxx_DeleteMainModeRuleOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of RRPC_FWDeleteMainModeRule operation.
 func (o *xxx_DeleteMainModeRuleOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWDeleteMainModeRule"
 }
@@ -12259,6 +12737,17 @@ func (o *DeleteMainModeRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeDeleteMainModeRuleRequest build a response structure from the given request structure.
+func (o *DeleteMainModeRuleRequest) MakeResponse() *DeleteMainModeRuleResponse {
+	return &DeleteMainModeRuleResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWDeleteMainModeRule operation.
+func (o *DeleteMainModeRuleRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of RRPC_FWDeleteMainModeRule operation.
+func (o *DeleteMainModeRuleRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWDeleteMainModeRule" }
+
 // DeleteMainModeRuleResponse structure represents the RRPC_FWDeleteMainModeRule operation response
 type DeleteMainModeRuleResponse struct {
 	// Return: The RRPC_FWDeleteMainModeRule return value.
@@ -12300,8 +12789,10 @@ type xxx_DeleteAllMainModeRulesOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWDeleteAllMainModeRules operation.
 func (o *xxx_DeleteAllMainModeRulesOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of RRPC_FWDeleteAllMainModeRules operation.
 func (o *xxx_DeleteAllMainModeRulesOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWDeleteAllMainModeRules"
 }
@@ -12413,6 +12904,19 @@ func (o *DeleteAllMainModeRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeDeleteAllMainModeRulesRequest build a response structure from the given request structure.
+func (o *DeleteAllMainModeRulesRequest) MakeResponse() *DeleteAllMainModeRulesResponse {
+	return &DeleteAllMainModeRulesResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWDeleteAllMainModeRules operation.
+func (o *DeleteAllMainModeRulesRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of RRPC_FWDeleteAllMainModeRules operation.
+func (o *DeleteAllMainModeRulesRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWDeleteAllMainModeRules"
+}
+
 // DeleteAllMainModeRulesResponse structure represents the RRPC_FWDeleteAllMainModeRules operation response
 type DeleteAllMainModeRulesResponse struct {
 	// Return: The RRPC_FWDeleteAllMainModeRules return value.
@@ -12459,8 +12963,10 @@ type xxx_EnumMainModeRulesOperation struct {
 	Return           uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumMainModeRules operation.
 func (o *xxx_EnumMainModeRulesOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of RRPC_FWEnumMainModeRules operation.
 func (o *xxx_EnumMainModeRulesOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumMainModeRules"
 }
@@ -12686,6 +13192,17 @@ func (o *EnumMainModeRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeEnumMainModeRulesRequest build a response structure from the given request structure.
+func (o *EnumMainModeRulesRequest) MakeResponse() *EnumMainModeRulesResponse {
+	return &EnumMainModeRulesResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumMainModeRules operation.
+func (o *EnumMainModeRulesRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of RRPC_FWEnumMainModeRules operation.
+func (o *EnumMainModeRulesRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumMainModeRules" }
+
 // EnumMainModeRulesResponse structure represents the RRPC_FWEnumMainModeRules operation response
 type EnumMainModeRulesResponse struct {
 	// pdwNumRules: This is an output parameter that on success MUST be equal to the number
@@ -12741,8 +13258,10 @@ type xxx_QueryFirewallRulesOperation struct {
 	Return      uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules operation.
 func (o *xxx_QueryFirewallRulesOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of RRPC_FWQueryFirewallRules operation.
 func (o *xxx_QueryFirewallRulesOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules"
 }
@@ -12963,6 +13482,17 @@ func (o *QueryFirewallRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeQueryFirewallRulesRequest build a response structure from the given request structure.
+func (o *QueryFirewallRulesRequest) MakeResponse() *QueryFirewallRulesResponse {
+	return &QueryFirewallRulesResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules operation.
+func (o *QueryFirewallRulesRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of RRPC_FWQueryFirewallRules operation.
+func (o *QueryFirewallRulesRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWQueryFirewallRules" }
+
 // QueryFirewallRulesResponse structure represents the RRPC_FWQueryFirewallRules operation response
 type QueryFirewallRulesResponse struct {
 	// pdwNumRules: This is an output parameter that on success MUST be equal to the number
@@ -13016,8 +13546,10 @@ type xxx_QueryConnectionSecurityRules210Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWQueryConnectionSecurityRules2_10 operation.
 func (o *xxx_QueryConnectionSecurityRules210Operation) OpNum() int { return 38 }
 
+// OpName returns the operation name of RRPC_FWQueryConnectionSecurityRules2_10 operation.
 func (o *xxx_QueryConnectionSecurityRules210Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWQueryConnectionSecurityRules2_10"
 }
@@ -13232,6 +13764,19 @@ func (o *QueryConnectionSecurityRules210Request) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeQueryConnectionSecurityRules210Request build a response structure from the given request structure.
+func (o *QueryConnectionSecurityRules210Request) MakeResponse() *QueryConnectionSecurityRules210Response {
+	return &QueryConnectionSecurityRules210Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryConnectionSecurityRules2_10 operation.
+func (o *QueryConnectionSecurityRules210Request) OpNum() int { return 38 }
+
+// OpName returns the operation name of RRPC_FWQueryConnectionSecurityRules2_10 operation.
+func (o *QueryConnectionSecurityRules210Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWQueryConnectionSecurityRules2_10"
+}
+
 // QueryConnectionSecurityRules210Response structure represents the RRPC_FWQueryConnectionSecurityRules2_10 operation response
 type QueryConnectionSecurityRules210Response struct {
 	RulesLength uint32          `idl:"name:pdwNumRules;pointer:ref" json:"rules_length"`
@@ -13283,8 +13828,10 @@ type xxx_QueryMainModeRulesOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWQueryMainModeRules operation.
 func (o *xxx_QueryMainModeRulesOperation) OpNum() int { return 39 }
 
+// OpName returns the operation name of RRPC_FWQueryMainModeRules operation.
 func (o *xxx_QueryMainModeRulesOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWQueryMainModeRules"
 }
@@ -13505,6 +14052,17 @@ func (o *QueryMainModeRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeQueryMainModeRulesRequest build a response structure from the given request structure.
+func (o *QueryMainModeRulesRequest) MakeResponse() *QueryMainModeRulesResponse {
+	return &QueryMainModeRulesResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryMainModeRules operation.
+func (o *QueryMainModeRulesRequest) OpNum() int { return 39 }
+
+// OpName returns the operation name of RRPC_FWQueryMainModeRules operation.
+func (o *QueryMainModeRulesRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWQueryMainModeRules" }
+
 // QueryMainModeRulesResponse structure represents the RRPC_FWQueryMainModeRules operation response
 type QueryMainModeRulesResponse struct {
 	// pdwNumRules: This is an output parameter that on success MUST be equal to the number
@@ -13561,8 +14119,10 @@ type xxx_QueryAuthenticationSetsOperation struct {
 	Return      uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWQueryAuthenticationSets operation.
 func (o *xxx_QueryAuthenticationSetsOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of RRPC_FWQueryAuthenticationSets operation.
 func (o *xxx_QueryAuthenticationSetsOperation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWQueryAuthenticationSets"
 }
@@ -13803,6 +14363,19 @@ func (o *QueryAuthenticationSetsRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeQueryAuthenticationSetsRequest build a response structure from the given request structure.
+func (o *QueryAuthenticationSetsRequest) MakeResponse() *QueryAuthenticationSetsResponse {
+	return &QueryAuthenticationSetsResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryAuthenticationSets operation.
+func (o *QueryAuthenticationSetsRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of RRPC_FWQueryAuthenticationSets operation.
+func (o *QueryAuthenticationSetsRequest) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWQueryAuthenticationSets"
+}
+
 // QueryAuthenticationSetsResponse structure represents the RRPC_FWQueryAuthenticationSets operation response
 type QueryAuthenticationSetsResponse struct {
 	// pdwNumSets: This is an output parameter that, on success, MUST be equal to the number
@@ -13859,8 +14432,10 @@ type xxx_QueryCryptoSetsOperation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWQueryCryptoSets operation.
 func (o *xxx_QueryCryptoSetsOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of RRPC_FWQueryCryptoSets operation.
 func (o *xxx_QueryCryptoSetsOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWQueryCryptoSets" }
 
 func (o *xxx_QueryCryptoSetsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14099,6 +14674,17 @@ func (o *QueryCryptoSetsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeQueryCryptoSetsRequest build a response structure from the given request structure.
+func (o *QueryCryptoSetsRequest) MakeResponse() *QueryCryptoSetsResponse {
+	return &QueryCryptoSetsResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryCryptoSets operation.
+func (o *QueryCryptoSetsRequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of RRPC_FWQueryCryptoSets operation.
+func (o *QueryCryptoSetsRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWQueryCryptoSets" }
+
 // QueryCryptoSetsResponse structure represents the RRPC_FWQueryCryptoSets operation response
 type QueryCryptoSetsResponse struct {
 	// pdwNumSets: This is an output parameter that, on success, MUST be equal to the number
@@ -14152,8 +14738,10 @@ type xxx_EnumNetworksOperation struct {
 	Return         uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumNetworks operation.
 func (o *xxx_EnumNetworksOperation) OpNum() int { return 42 }
 
+// OpName returns the operation name of RRPC_FWEnumNetworks operation.
 func (o *xxx_EnumNetworksOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumNetworks" }
 
 func (o *xxx_EnumNetworksOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14357,6 +14945,17 @@ func (o *EnumNetworksRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeEnumNetworksRequest build a response structure from the given request structure.
+func (o *EnumNetworksRequest) MakeResponse() *EnumNetworksResponse {
+	return &EnumNetworksResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumNetworks operation.
+func (o *EnumNetworksRequest) OpNum() int { return 42 }
+
+// OpName returns the operation name of RRPC_FWEnumNetworks operation.
+func (o *EnumNetworksRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumNetworks" }
+
 // EnumNetworksResponse structure represents the RRPC_FWEnumNetworks operation response
 type EnumNetworksResponse struct {
 	// pdwNumNetworks: This is an output parameter that, on success, MUST be equal to the
@@ -14410,8 +15009,10 @@ type xxx_EnumAdaptersOperation struct {
 	Return         uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumAdapters operation.
 func (o *xxx_EnumAdaptersOperation) OpNum() int { return 43 }
 
+// OpName returns the operation name of RRPC_FWEnumAdapters operation.
 func (o *xxx_EnumAdaptersOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumAdapters" }
 
 func (o *xxx_EnumAdaptersOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14615,6 +15216,17 @@ func (o *EnumAdaptersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeEnumAdaptersRequest build a response structure from the given request structure.
+func (o *EnumAdaptersRequest) MakeResponse() *EnumAdaptersResponse {
+	return &EnumAdaptersResponse{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumAdapters operation.
+func (o *EnumAdaptersRequest) OpNum() int { return 43 }
+
+// OpName returns the operation name of RRPC_FWEnumAdapters operation.
+func (o *EnumAdaptersRequest) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumAdapters" }
+
 // EnumAdaptersResponse structure represents the RRPC_FWEnumAdapters operation response
 type EnumAdaptersResponse struct {
 	// pdwNumAdapters: This is an output parameter that, on success, MUST be equal to the
@@ -14674,8 +15286,10 @@ type xxx_GetGlobalConfig210Operation struct {
 	Return            uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWGetGlobalConfig2_10 operation.
 func (o *xxx_GetGlobalConfig210Operation) OpNum() int { return 44 }
 
+// OpName returns the operation name of RRPC_FWGetGlobalConfig2_10 operation.
 func (o *xxx_GetGlobalConfig210Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWGetGlobalConfig2_10"
 }
@@ -15099,6 +15713,22 @@ func (o *GetGlobalConfig210Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetGlobalConfig210Request build a response structure from the given request structure.
+func (o *GetGlobalConfig210Request) MakeResponse() *GetGlobalConfig210Response {
+	if o == nil {
+		return &GetGlobalConfig210Response{}
+	}
+	return &GetGlobalConfig210Response{
+		DataLength: o.DataLength,
+	}
+}
+
+// OpNum returns the operation number of RRPC_FWGetGlobalConfig2_10 operation.
+func (o *GetGlobalConfig210Request) OpNum() int { return 44 }
+
+// OpName returns the operation name of RRPC_FWGetGlobalConfig2_10 operation.
+func (o *GetGlobalConfig210Request) OpName() string { return "/RemoteFW/v1/RRPC_FWGetGlobalConfig2_10" }
+
 // GetGlobalConfig210Response structure represents the RRPC_FWGetGlobalConfig2_10 operation response
 type GetGlobalConfig210Response struct {
 	// XXX: cbData is an implicit input depedency for output parameters
@@ -15182,8 +15812,10 @@ type xxx_GetConfig210Operation struct {
 	Return            uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWGetConfig2_10 operation.
 func (o *xxx_GetConfig210Operation) OpNum() int { return 45 }
 
+// OpName returns the operation name of RRPC_FWGetConfig2_10 operation.
 func (o *xxx_GetConfig210Operation) OpName() string { return "/RemoteFW/v1/RRPC_FWGetConfig2_10" }
 
 func (o *xxx_GetConfig210Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -15615,6 +16247,22 @@ func (o *GetConfig210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetConfig210Request build a response structure from the given request structure.
+func (o *GetConfig210Request) MakeResponse() *GetConfig210Response {
+	if o == nil {
+		return &GetConfig210Response{}
+	}
+	return &GetConfig210Response{
+		DataLength: o.DataLength,
+	}
+}
+
+// OpNum returns the operation number of RRPC_FWGetConfig2_10 operation.
+func (o *GetConfig210Request) OpNum() int { return 45 }
+
+// OpName returns the operation name of RRPC_FWGetConfig2_10 operation.
+func (o *GetConfig210Request) OpName() string { return "/RemoteFW/v1/RRPC_FWGetConfig2_10" }
+
 // GetConfig210Response structure represents the RRPC_FWGetConfig2_10 operation response
 type GetConfig210Response struct {
 	// XXX: cbData is an implicit input depedency for output parameters
@@ -15692,8 +16340,10 @@ type xxx_AddFirewallRule210Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_10 operation.
 func (o *xxx_AddFirewallRule210Operation) OpNum() int { return 46 }
 
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_10 operation.
 func (o *xxx_AddFirewallRule210Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_10"
 }
@@ -15853,6 +16503,17 @@ func (o *AddFirewallRule210Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeAddFirewallRule210Request build a response structure from the given request structure.
+func (o *AddFirewallRule210Request) MakeResponse() *AddFirewallRule210Response {
+	return &AddFirewallRule210Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_10 operation.
+func (o *AddFirewallRule210Request) OpNum() int { return 46 }
+
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_10 operation.
+func (o *AddFirewallRule210Request) OpName() string { return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_10" }
+
 // AddFirewallRule210Response structure represents the RRPC_FWAddFirewallRule2_10 operation response
 type AddFirewallRule210Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -15901,8 +16562,10 @@ type xxx_SetFirewallRule210Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_10 operation.
 func (o *xxx_SetFirewallRule210Operation) OpNum() int { return 47 }
 
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_10 operation.
 func (o *xxx_SetFirewallRule210Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_10"
 }
@@ -16062,6 +16725,17 @@ func (o *SetFirewallRule210Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetFirewallRule210Request build a response structure from the given request structure.
+func (o *SetFirewallRule210Request) MakeResponse() *SetFirewallRule210Response {
+	return &SetFirewallRule210Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_10 operation.
+func (o *SetFirewallRule210Request) OpNum() int { return 47 }
+
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_10 operation.
+func (o *SetFirewallRule210Request) OpName() string { return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_10" }
+
 // SetFirewallRule210Response structure represents the RRPC_FWSetFirewallRule2_10 operation response
 type SetFirewallRule210Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -16113,8 +16787,10 @@ type xxx_EnumFirewallRules210Operation struct {
 	Return           uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_10 operation.
 func (o *xxx_EnumFirewallRules210Operation) OpNum() int { return 48 }
 
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_10 operation.
 func (o *xxx_EnumFirewallRules210Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_10"
 }
@@ -16343,6 +17019,19 @@ func (o *EnumFirewallRules210Request) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeEnumFirewallRules210Request build a response structure from the given request structure.
+func (o *EnumFirewallRules210Request) MakeResponse() *EnumFirewallRules210Response {
+	return &EnumFirewallRules210Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_10 operation.
+func (o *EnumFirewallRules210Request) OpNum() int { return 48 }
+
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_10 operation.
+func (o *EnumFirewallRules210Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_10"
+}
+
 // EnumFirewallRules210Response structure represents the RRPC_FWEnumFirewallRules2_10 operation response
 type EnumFirewallRules210Response struct {
 	// pdwNumRules: This is an output parameter that, on success, MUST be equal to the number
@@ -16396,8 +17085,10 @@ type xxx_AddConnectionSecurityRule210Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddConnectionSecurityRule2_10 operation.
 func (o *xxx_AddConnectionSecurityRule210Operation) OpNum() int { return 49 }
 
+// OpName returns the operation name of RRPC_FWAddConnectionSecurityRule2_10 operation.
 func (o *xxx_AddConnectionSecurityRule210Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWAddConnectionSecurityRule2_10"
 }
@@ -16557,6 +17248,19 @@ func (o *AddConnectionSecurityRule210Request) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeAddConnectionSecurityRule210Request build a response structure from the given request structure.
+func (o *AddConnectionSecurityRule210Request) MakeResponse() *AddConnectionSecurityRule210Response {
+	return &AddConnectionSecurityRule210Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddConnectionSecurityRule2_10 operation.
+func (o *AddConnectionSecurityRule210Request) OpNum() int { return 49 }
+
+// OpName returns the operation name of RRPC_FWAddConnectionSecurityRule2_10 operation.
+func (o *AddConnectionSecurityRule210Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWAddConnectionSecurityRule2_10"
+}
+
 // AddConnectionSecurityRule210Response structure represents the RRPC_FWAddConnectionSecurityRule2_10 operation response
 type AddConnectionSecurityRule210Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -16605,8 +17309,10 @@ type xxx_SetConnectionSecurityRule210Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetConnectionSecurityRule2_10 operation.
 func (o *xxx_SetConnectionSecurityRule210Operation) OpNum() int { return 50 }
 
+// OpName returns the operation name of RRPC_FWSetConnectionSecurityRule2_10 operation.
 func (o *xxx_SetConnectionSecurityRule210Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWSetConnectionSecurityRule2_10"
 }
@@ -16766,6 +17472,19 @@ func (o *SetConnectionSecurityRule210Request) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeSetConnectionSecurityRule210Request build a response structure from the given request structure.
+func (o *SetConnectionSecurityRule210Request) MakeResponse() *SetConnectionSecurityRule210Response {
+	return &SetConnectionSecurityRule210Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetConnectionSecurityRule2_10 operation.
+func (o *SetConnectionSecurityRule210Request) OpNum() int { return 50 }
+
+// OpName returns the operation name of RRPC_FWSetConnectionSecurityRule2_10 operation.
+func (o *SetConnectionSecurityRule210Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWSetConnectionSecurityRule2_10"
+}
+
 // SetConnectionSecurityRule210Response structure represents the RRPC_FWSetConnectionSecurityRule2_10 operation response
 type SetConnectionSecurityRule210Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -16817,8 +17536,10 @@ type xxx_EnumConnectionSecurityRules210Operation struct {
 	Return           uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumConnectionSecurityRules2_10 operation.
 func (o *xxx_EnumConnectionSecurityRules210Operation) OpNum() int { return 51 }
 
+// OpName returns the operation name of RRPC_FWEnumConnectionSecurityRules2_10 operation.
 func (o *xxx_EnumConnectionSecurityRules210Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumConnectionSecurityRules2_10"
 }
@@ -17047,6 +17768,19 @@ func (o *EnumConnectionSecurityRules210Request) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeEnumConnectionSecurityRules210Request build a response structure from the given request structure.
+func (o *EnumConnectionSecurityRules210Request) MakeResponse() *EnumConnectionSecurityRules210Response {
+	return &EnumConnectionSecurityRules210Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumConnectionSecurityRules2_10 operation.
+func (o *EnumConnectionSecurityRules210Request) OpNum() int { return 51 }
+
+// OpName returns the operation name of RRPC_FWEnumConnectionSecurityRules2_10 operation.
+func (o *EnumConnectionSecurityRules210Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumConnectionSecurityRules2_10"
+}
+
 // EnumConnectionSecurityRules210Response structure represents the RRPC_FWEnumConnectionSecurityRules2_10 operation response
 type EnumConnectionSecurityRules210Response struct {
 	// pdwNumRules: This is an output parameter that on success MUST be equal to the number
@@ -17100,8 +17834,10 @@ type xxx_AddAuthenticationSet210Operation struct {
 	Return      uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddAuthenticationSet2_10 operation.
 func (o *xxx_AddAuthenticationSet210Operation) OpNum() int { return 52 }
 
+// OpName returns the operation name of RRPC_FWAddAuthenticationSet2_10 operation.
 func (o *xxx_AddAuthenticationSet210Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWAddAuthenticationSet2_10"
 }
@@ -17258,6 +17994,19 @@ func (o *AddAuthenticationSet210Request) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeAddAuthenticationSet210Request build a response structure from the given request structure.
+func (o *AddAuthenticationSet210Request) MakeResponse() *AddAuthenticationSet210Response {
+	return &AddAuthenticationSet210Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddAuthenticationSet2_10 operation.
+func (o *AddAuthenticationSet210Request) OpNum() int { return 52 }
+
+// OpName returns the operation name of RRPC_FWAddAuthenticationSet2_10 operation.
+func (o *AddAuthenticationSet210Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWAddAuthenticationSet2_10"
+}
+
 // AddAuthenticationSet210Response structure represents the RRPC_FWAddAuthenticationSet2_10 operation response
 type AddAuthenticationSet210Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -17306,8 +18055,10 @@ type xxx_SetAuthenticationSet210Operation struct {
 	Return      uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetAuthenticationSet2_10 operation.
 func (o *xxx_SetAuthenticationSet210Operation) OpNum() int { return 53 }
 
+// OpName returns the operation name of RRPC_FWSetAuthenticationSet2_10 operation.
 func (o *xxx_SetAuthenticationSet210Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWSetAuthenticationSet2_10"
 }
@@ -17464,6 +18215,19 @@ func (o *SetAuthenticationSet210Request) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeSetAuthenticationSet210Request build a response structure from the given request structure.
+func (o *SetAuthenticationSet210Request) MakeResponse() *SetAuthenticationSet210Response {
+	return &SetAuthenticationSet210Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetAuthenticationSet2_10 operation.
+func (o *SetAuthenticationSet210Request) OpNum() int { return 53 }
+
+// OpName returns the operation name of RRPC_FWSetAuthenticationSet2_10 operation.
+func (o *SetAuthenticationSet210Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWSetAuthenticationSet2_10"
+}
+
 // SetAuthenticationSet210Response structure represents the RRPC_FWSetAuthenticationSet2_10 operation response
 type SetAuthenticationSet210Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -17515,8 +18279,10 @@ type xxx_EnumAuthenticationSets210Operation struct {
 	Return           uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumAuthenticationSets2_10 operation.
 func (o *xxx_EnumAuthenticationSets210Operation) OpNum() int { return 54 }
 
+// OpName returns the operation name of RRPC_FWEnumAuthenticationSets2_10 operation.
 func (o *xxx_EnumAuthenticationSets210Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumAuthenticationSets2_10"
 }
@@ -17746,6 +18512,19 @@ func (o *EnumAuthenticationSets210Request) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeEnumAuthenticationSets210Request build a response structure from the given request structure.
+func (o *EnumAuthenticationSets210Request) MakeResponse() *EnumAuthenticationSets210Response {
+	return &EnumAuthenticationSets210Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumAuthenticationSets2_10 operation.
+func (o *EnumAuthenticationSets210Request) OpNum() int { return 54 }
+
+// OpName returns the operation name of RRPC_FWEnumAuthenticationSets2_10 operation.
+func (o *EnumAuthenticationSets210Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumAuthenticationSets2_10"
+}
+
 // EnumAuthenticationSets210Response structure represents the RRPC_FWEnumAuthenticationSets2_10 operation response
 type EnumAuthenticationSets210Response struct {
 	// pdwNumAuthSets: This is an output parameter that on success MUST be equal to the
@@ -17799,8 +18578,10 @@ type xxx_AddCryptoSet210Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddCryptoSet2_10 operation.
 func (o *xxx_AddCryptoSet210Operation) OpNum() int { return 55 }
 
+// OpName returns the operation name of RRPC_FWAddCryptoSet2_10 operation.
 func (o *xxx_AddCryptoSet210Operation) OpName() string { return "/RemoteFW/v1/RRPC_FWAddCryptoSet2_10" }
 
 func (o *xxx_AddCryptoSet210Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -17955,6 +18736,17 @@ func (o *AddCryptoSet210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeAddCryptoSet210Request build a response structure from the given request structure.
+func (o *AddCryptoSet210Request) MakeResponse() *AddCryptoSet210Response {
+	return &AddCryptoSet210Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddCryptoSet2_10 operation.
+func (o *AddCryptoSet210Request) OpNum() int { return 55 }
+
+// OpName returns the operation name of RRPC_FWAddCryptoSet2_10 operation.
+func (o *AddCryptoSet210Request) OpName() string { return "/RemoteFW/v1/RRPC_FWAddCryptoSet2_10" }
+
 // AddCryptoSet210Response structure represents the RRPC_FWAddCryptoSet2_10 operation response
 type AddCryptoSet210Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -18003,8 +18795,10 @@ type xxx_SetCryptoSet210Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetCryptoSet2_10 operation.
 func (o *xxx_SetCryptoSet210Operation) OpNum() int { return 56 }
 
+// OpName returns the operation name of RRPC_FWSetCryptoSet2_10 operation.
 func (o *xxx_SetCryptoSet210Operation) OpName() string { return "/RemoteFW/v1/RRPC_FWSetCryptoSet2_10" }
 
 func (o *xxx_SetCryptoSet210Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18159,6 +18953,17 @@ func (o *SetCryptoSet210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetCryptoSet210Request build a response structure from the given request structure.
+func (o *SetCryptoSet210Request) MakeResponse() *SetCryptoSet210Response {
+	return &SetCryptoSet210Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetCryptoSet2_10 operation.
+func (o *SetCryptoSet210Request) OpNum() int { return 56 }
+
+// OpName returns the operation name of RRPC_FWSetCryptoSet2_10 operation.
+func (o *SetCryptoSet210Request) OpName() string { return "/RemoteFW/v1/RRPC_FWSetCryptoSet2_10" }
+
 // SetCryptoSet210Response structure represents the RRPC_FWSetCryptoSet2_10 operation response
 type SetCryptoSet210Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -18210,8 +19015,10 @@ type xxx_EnumCryptoSets210Operation struct {
 	Return           uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumCryptoSets2_10 operation.
 func (o *xxx_EnumCryptoSets210Operation) OpNum() int { return 57 }
 
+// OpName returns the operation name of RRPC_FWEnumCryptoSets2_10 operation.
 func (o *xxx_EnumCryptoSets210Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumCryptoSets2_10"
 }
@@ -18441,6 +19248,17 @@ func (o *EnumCryptoSets210Request) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeEnumCryptoSets210Request build a response structure from the given request structure.
+func (o *EnumCryptoSets210Request) MakeResponse() *EnumCryptoSets210Response {
+	return &EnumCryptoSets210Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumCryptoSets2_10 operation.
+func (o *EnumCryptoSets210Request) OpNum() int { return 57 }
+
+// OpName returns the operation name of RRPC_FWEnumCryptoSets2_10 operation.
+func (o *EnumCryptoSets210Request) OpName() string { return "/RemoteFW/v1/RRPC_FWEnumCryptoSets2_10" }
+
 // EnumCryptoSets210Response structure represents the RRPC_FWEnumCryptoSets2_10 operation response
 type EnumCryptoSets210Response struct {
 	// pdwNumSets: This is an output parameter that, on success, MUST be equal to the number
@@ -18494,8 +19312,10 @@ type xxx_AddConnectionSecurityRule220Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddConnectionSecurityRule2_20 operation.
 func (o *xxx_AddConnectionSecurityRule220Operation) OpNum() int { return 58 }
 
+// OpName returns the operation name of RRPC_FWAddConnectionSecurityRule2_20 operation.
 func (o *xxx_AddConnectionSecurityRule220Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWAddConnectionSecurityRule2_20"
 }
@@ -18655,6 +19475,19 @@ func (o *AddConnectionSecurityRule220Request) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeAddConnectionSecurityRule220Request build a response structure from the given request structure.
+func (o *AddConnectionSecurityRule220Request) MakeResponse() *AddConnectionSecurityRule220Response {
+	return &AddConnectionSecurityRule220Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddConnectionSecurityRule2_20 operation.
+func (o *AddConnectionSecurityRule220Request) OpNum() int { return 58 }
+
+// OpName returns the operation name of RRPC_FWAddConnectionSecurityRule2_20 operation.
+func (o *AddConnectionSecurityRule220Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWAddConnectionSecurityRule2_20"
+}
+
 // AddConnectionSecurityRule220Response structure represents the RRPC_FWAddConnectionSecurityRule2_20 operation response
 type AddConnectionSecurityRule220Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -18703,8 +19536,10 @@ type xxx_SetConnectionSecurityRule220Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetConnectionSecurityRule2_20 operation.
 func (o *xxx_SetConnectionSecurityRule220Operation) OpNum() int { return 59 }
 
+// OpName returns the operation name of RRPC_FWSetConnectionSecurityRule2_20 operation.
 func (o *xxx_SetConnectionSecurityRule220Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWSetConnectionSecurityRule2_20"
 }
@@ -18864,6 +19699,19 @@ func (o *SetConnectionSecurityRule220Request) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeSetConnectionSecurityRule220Request build a response structure from the given request structure.
+func (o *SetConnectionSecurityRule220Request) MakeResponse() *SetConnectionSecurityRule220Response {
+	return &SetConnectionSecurityRule220Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetConnectionSecurityRule2_20 operation.
+func (o *SetConnectionSecurityRule220Request) OpNum() int { return 59 }
+
+// OpName returns the operation name of RRPC_FWSetConnectionSecurityRule2_20 operation.
+func (o *SetConnectionSecurityRule220Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWSetConnectionSecurityRule2_20"
+}
+
 // SetConnectionSecurityRule220Response structure represents the RRPC_FWSetConnectionSecurityRule2_20 operation response
 type SetConnectionSecurityRule220Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -18915,8 +19763,10 @@ type xxx_EnumConnectionSecurityRules220Operation struct {
 	Return           uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumConnectionSecurityRules2_20 operation.
 func (o *xxx_EnumConnectionSecurityRules220Operation) OpNum() int { return 60 }
 
+// OpName returns the operation name of RRPC_FWEnumConnectionSecurityRules2_20 operation.
 func (o *xxx_EnumConnectionSecurityRules220Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumConnectionSecurityRules2_20"
 }
@@ -19145,6 +19995,19 @@ func (o *EnumConnectionSecurityRules220Request) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeEnumConnectionSecurityRules220Request build a response structure from the given request structure.
+func (o *EnumConnectionSecurityRules220Request) MakeResponse() *EnumConnectionSecurityRules220Response {
+	return &EnumConnectionSecurityRules220Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumConnectionSecurityRules2_20 operation.
+func (o *EnumConnectionSecurityRules220Request) OpNum() int { return 60 }
+
+// OpName returns the operation name of RRPC_FWEnumConnectionSecurityRules2_20 operation.
+func (o *EnumConnectionSecurityRules220Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumConnectionSecurityRules2_20"
+}
+
 // EnumConnectionSecurityRules220Response structure represents the RRPC_FWEnumConnectionSecurityRules2_20 operation response
 type EnumConnectionSecurityRules220Response struct {
 	// pdwNumRules: This is an output parameter that on success MUST be equal to the number
@@ -19200,8 +20063,10 @@ type xxx_QueryConnectionSecurityRules220Operation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWQueryConnectionSecurityRules2_20 operation.
 func (o *xxx_QueryConnectionSecurityRules220Operation) OpNum() int { return 61 }
 
+// OpName returns the operation name of RRPC_FWQueryConnectionSecurityRules2_20 operation.
 func (o *xxx_QueryConnectionSecurityRules220Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWQueryConnectionSecurityRules2_20"
 }
@@ -19422,6 +20287,19 @@ func (o *QueryConnectionSecurityRules220Request) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeQueryConnectionSecurityRules220Request build a response structure from the given request structure.
+func (o *QueryConnectionSecurityRules220Request) MakeResponse() *QueryConnectionSecurityRules220Response {
+	return &QueryConnectionSecurityRules220Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryConnectionSecurityRules2_20 operation.
+func (o *QueryConnectionSecurityRules220Request) OpNum() int { return 61 }
+
+// OpName returns the operation name of RRPC_FWQueryConnectionSecurityRules2_20 operation.
+func (o *QueryConnectionSecurityRules220Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWQueryConnectionSecurityRules2_20"
+}
+
 // QueryConnectionSecurityRules220Response structure represents the RRPC_FWQueryConnectionSecurityRules2_20 operation response
 type QueryConnectionSecurityRules220Response struct {
 	// pdwNumRules: This is an output parameter that on success MUST be equal to the number
@@ -19475,8 +20353,10 @@ type xxx_AddAuthenticationSet220Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddAuthenticationSet2_20 operation.
 func (o *xxx_AddAuthenticationSet220Operation) OpNum() int { return 62 }
 
+// OpName returns the operation name of RRPC_FWAddAuthenticationSet2_20 operation.
 func (o *xxx_AddAuthenticationSet220Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWAddAuthenticationSet2_20"
 }
@@ -19633,6 +20513,19 @@ func (o *AddAuthenticationSet220Request) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeAddAuthenticationSet220Request build a response structure from the given request structure.
+func (o *AddAuthenticationSet220Request) MakeResponse() *AddAuthenticationSet220Response {
+	return &AddAuthenticationSet220Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddAuthenticationSet2_20 operation.
+func (o *AddAuthenticationSet220Request) OpNum() int { return 62 }
+
+// OpName returns the operation name of RRPC_FWAddAuthenticationSet2_20 operation.
+func (o *AddAuthenticationSet220Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWAddAuthenticationSet2_20"
+}
+
 // AddAuthenticationSet220Response structure represents the RRPC_FWAddAuthenticationSet2_20 operation response
 type AddAuthenticationSet220Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -19681,8 +20574,10 @@ type xxx_SetAuthenticationSet220Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetAuthenticationSet2_20 operation.
 func (o *xxx_SetAuthenticationSet220Operation) OpNum() int { return 63 }
 
+// OpName returns the operation name of RRPC_FWSetAuthenticationSet2_20 operation.
 func (o *xxx_SetAuthenticationSet220Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWSetAuthenticationSet2_20"
 }
@@ -19839,6 +20734,19 @@ func (o *SetAuthenticationSet220Request) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeSetAuthenticationSet220Request build a response structure from the given request structure.
+func (o *SetAuthenticationSet220Request) MakeResponse() *SetAuthenticationSet220Response {
+	return &SetAuthenticationSet220Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetAuthenticationSet2_20 operation.
+func (o *SetAuthenticationSet220Request) OpNum() int { return 63 }
+
+// OpName returns the operation name of RRPC_FWSetAuthenticationSet2_20 operation.
+func (o *SetAuthenticationSet220Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWSetAuthenticationSet2_20"
+}
+
 // SetAuthenticationSet220Response structure represents the RRPC_FWSetAuthenticationSet2_20 operation response
 type SetAuthenticationSet220Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -19890,8 +20798,10 @@ type xxx_EnumAuthenticationSets220Operation struct {
 	Return           uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumAuthenticationSets2_20 operation.
 func (o *xxx_EnumAuthenticationSets220Operation) OpNum() int { return 64 }
 
+// OpName returns the operation name of RRPC_FWEnumAuthenticationSets2_20 operation.
 func (o *xxx_EnumAuthenticationSets220Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumAuthenticationSets2_20"
 }
@@ -20118,6 +21028,19 @@ func (o *EnumAuthenticationSets220Request) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeEnumAuthenticationSets220Request build a response structure from the given request structure.
+func (o *EnumAuthenticationSets220Request) MakeResponse() *EnumAuthenticationSets220Response {
+	return &EnumAuthenticationSets220Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumAuthenticationSets2_20 operation.
+func (o *EnumAuthenticationSets220Request) OpNum() int { return 64 }
+
+// OpName returns the operation name of RRPC_FWEnumAuthenticationSets2_20 operation.
+func (o *EnumAuthenticationSets220Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumAuthenticationSets2_20"
+}
+
 // EnumAuthenticationSets220Response structure represents the RRPC_FWEnumAuthenticationSets2_20 operation response
 type EnumAuthenticationSets220Response struct {
 	// pdwNumAuthSets: This is an output parameter that, on success, MUST be equal to the
@@ -20175,8 +21098,10 @@ type xxx_QueryAuthenticationSets220Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWQueryAuthenticationSets2_20 operation.
 func (o *xxx_QueryAuthenticationSets220Operation) OpNum() int { return 65 }
 
+// OpName returns the operation name of RRPC_FWQueryAuthenticationSets2_20 operation.
 func (o *xxx_QueryAuthenticationSets220Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWQueryAuthenticationSets2_20"
 }
@@ -20415,6 +21340,19 @@ func (o *QueryAuthenticationSets220Request) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeQueryAuthenticationSets220Request build a response structure from the given request structure.
+func (o *QueryAuthenticationSets220Request) MakeResponse() *QueryAuthenticationSets220Response {
+	return &QueryAuthenticationSets220Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryAuthenticationSets2_20 operation.
+func (o *QueryAuthenticationSets220Request) OpNum() int { return 65 }
+
+// OpName returns the operation name of RRPC_FWQueryAuthenticationSets2_20 operation.
+func (o *QueryAuthenticationSets220Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWQueryAuthenticationSets2_20"
+}
+
 // QueryAuthenticationSets220Response structure represents the RRPC_FWQueryAuthenticationSets2_20 operation response
 type QueryAuthenticationSets220Response struct {
 	// pdwNumSets: This is an output parameter that, on success, MUST be equal to the number
@@ -20468,8 +21406,10 @@ type xxx_AddFirewallRule220Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_20 operation.
 func (o *xxx_AddFirewallRule220Operation) OpNum() int { return 66 }
 
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_20 operation.
 func (o *xxx_AddFirewallRule220Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_20"
 }
@@ -20629,6 +21569,17 @@ func (o *AddFirewallRule220Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeAddFirewallRule220Request build a response structure from the given request structure.
+func (o *AddFirewallRule220Request) MakeResponse() *AddFirewallRule220Response {
+	return &AddFirewallRule220Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_20 operation.
+func (o *AddFirewallRule220Request) OpNum() int { return 66 }
+
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_20 operation.
+func (o *AddFirewallRule220Request) OpName() string { return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_20" }
+
 // AddFirewallRule220Response structure represents the RRPC_FWAddFirewallRule2_20 operation response
 type AddFirewallRule220Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -20677,8 +21628,10 @@ type xxx_SetFirewallRule220Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_20 operation.
 func (o *xxx_SetFirewallRule220Operation) OpNum() int { return 67 }
 
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_20 operation.
 func (o *xxx_SetFirewallRule220Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_20"
 }
@@ -20838,6 +21791,17 @@ func (o *SetFirewallRule220Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetFirewallRule220Request build a response structure from the given request structure.
+func (o *SetFirewallRule220Request) MakeResponse() *SetFirewallRule220Response {
+	return &SetFirewallRule220Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_20 operation.
+func (o *SetFirewallRule220Request) OpNum() int { return 67 }
+
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_20 operation.
+func (o *SetFirewallRule220Request) OpName() string { return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_20" }
+
 // SetFirewallRule220Response structure represents the RRPC_FWSetFirewallRule2_20 operation response
 type SetFirewallRule220Response struct {
 	// pStatus: This output parameter is the status code of the rule as specified by the
@@ -20889,8 +21853,10 @@ type xxx_EnumFirewallRules220Operation struct {
 	Return           uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_20 operation.
 func (o *xxx_EnumFirewallRules220Operation) OpNum() int { return 68 }
 
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_20 operation.
 func (o *xxx_EnumFirewallRules220Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_20"
 }
@@ -21119,6 +22085,19 @@ func (o *EnumFirewallRules220Request) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeEnumFirewallRules220Request build a response structure from the given request structure.
+func (o *EnumFirewallRules220Request) MakeResponse() *EnumFirewallRules220Response {
+	return &EnumFirewallRules220Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_20 operation.
+func (o *EnumFirewallRules220Request) OpNum() int { return 68 }
+
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_20 operation.
+func (o *EnumFirewallRules220Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_20"
+}
+
 // EnumFirewallRules220Response structure represents the RRPC_FWEnumFirewallRules2_20 operation response
 type EnumFirewallRules220Response struct {
 	// pdwNumRules: This is an output parameter that on success MUST be equal to the number
@@ -21174,8 +22153,10 @@ type xxx_QueryFirewallRules220Operation struct {
 	Return      uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_20 operation.
 func (o *xxx_QueryFirewallRules220Operation) OpNum() int { return 69 }
 
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_20 operation.
 func (o *xxx_QueryFirewallRules220Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_20"
 }
@@ -21396,6 +22377,19 @@ func (o *QueryFirewallRules220Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeQueryFirewallRules220Request build a response structure from the given request structure.
+func (o *QueryFirewallRules220Request) MakeResponse() *QueryFirewallRules220Response {
+	return &QueryFirewallRules220Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_20 operation.
+func (o *QueryFirewallRules220Request) OpNum() int { return 69 }
+
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_20 operation.
+func (o *QueryFirewallRules220Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_20"
+}
+
 // QueryFirewallRules220Response structure represents the RRPC_FWQueryFirewallRules2_20 operation response
 type QueryFirewallRules220Response struct {
 	// pdwNumRules: This is an output parameter that on success MUST be equal to the number
@@ -21449,8 +22443,10 @@ type xxx_AddFirewallRule224Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_24 operation.
 func (o *xxx_AddFirewallRule224Operation) OpNum() int { return 70 }
 
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_24 operation.
 func (o *xxx_AddFirewallRule224Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_24"
 }
@@ -21610,6 +22606,17 @@ func (o *AddFirewallRule224Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeAddFirewallRule224Request build a response structure from the given request structure.
+func (o *AddFirewallRule224Request) MakeResponse() *AddFirewallRule224Response {
+	return &AddFirewallRule224Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_24 operation.
+func (o *AddFirewallRule224Request) OpNum() int { return 70 }
+
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_24 operation.
+func (o *AddFirewallRule224Request) OpName() string { return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_24" }
+
 // AddFirewallRule224Response structure represents the RRPC_FWAddFirewallRule2_24 operation response
 type AddFirewallRule224Response struct {
 	// pStatus: An output parameter that is the status code of the rule, as specified by
@@ -21658,8 +22665,10 @@ type xxx_SetFirewallRule224Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_24 operation.
 func (o *xxx_SetFirewallRule224Operation) OpNum() int { return 71 }
 
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_24 operation.
 func (o *xxx_SetFirewallRule224Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_24"
 }
@@ -21819,6 +22828,17 @@ func (o *SetFirewallRule224Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetFirewallRule224Request build a response structure from the given request structure.
+func (o *SetFirewallRule224Request) MakeResponse() *SetFirewallRule224Response {
+	return &SetFirewallRule224Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_24 operation.
+func (o *SetFirewallRule224Request) OpNum() int { return 71 }
+
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_24 operation.
+func (o *SetFirewallRule224Request) OpName() string { return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_24" }
+
 // SetFirewallRule224Response structure represents the RRPC_FWSetFirewallRule2_24 operation response
 type SetFirewallRule224Response struct {
 	// pStatus: An output parameter that is the status code of the rule, as specified by
@@ -21870,8 +22890,10 @@ type xxx_EnumFirewallRules224Operation struct {
 	Return           uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_24 operation.
 func (o *xxx_EnumFirewallRules224Operation) OpNum() int { return 72 }
 
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_24 operation.
 func (o *xxx_EnumFirewallRules224Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_24"
 }
@@ -22101,6 +23123,19 @@ func (o *EnumFirewallRules224Request) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeEnumFirewallRules224Request build a response structure from the given request structure.
+func (o *EnumFirewallRules224Request) MakeResponse() *EnumFirewallRules224Response {
+	return &EnumFirewallRules224Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_24 operation.
+func (o *EnumFirewallRules224Request) OpNum() int { return 72 }
+
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_24 operation.
+func (o *EnumFirewallRules224Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_24"
+}
+
 // EnumFirewallRules224Response structure represents the RRPC_FWEnumFirewallRules2_24 operation response
 type EnumFirewallRules224Response struct {
 	// pdwNumRules: An output parameter that, on success, MUST be equal to the number of
@@ -22156,8 +23191,10 @@ type xxx_QueryFirewallRules224Operation struct {
 	Return      uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_24 operation.
 func (o *xxx_QueryFirewallRules224Operation) OpNum() int { return 73 }
 
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_24 operation.
 func (o *xxx_QueryFirewallRules224Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_24"
 }
@@ -22382,6 +23419,19 @@ func (o *QueryFirewallRules224Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeQueryFirewallRules224Request build a response structure from the given request structure.
+func (o *QueryFirewallRules224Request) MakeResponse() *QueryFirewallRules224Response {
+	return &QueryFirewallRules224Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_24 operation.
+func (o *QueryFirewallRules224Request) OpNum() int { return 73 }
+
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_24 operation.
+func (o *QueryFirewallRules224Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_24"
+}
+
 // QueryFirewallRules224Response structure represents the RRPC_FWQueryFirewallRules2_24 operation response
 type QueryFirewallRules224Response struct {
 	// pdwNumRules: An output parameter that, on success, MUST be equal to the number of
@@ -22435,8 +23485,10 @@ type xxx_AddFirewallRule225Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_25 operation.
 func (o *xxx_AddFirewallRule225Operation) OpNum() int { return 74 }
 
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_25 operation.
 func (o *xxx_AddFirewallRule225Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_25"
 }
@@ -22597,6 +23649,17 @@ func (o *AddFirewallRule225Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeAddFirewallRule225Request build a response structure from the given request structure.
+func (o *AddFirewallRule225Request) MakeResponse() *AddFirewallRule225Response {
+	return &AddFirewallRule225Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_25 operation.
+func (o *AddFirewallRule225Request) OpNum() int { return 74 }
+
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_25 operation.
+func (o *AddFirewallRule225Request) OpName() string { return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_25" }
+
 // AddFirewallRule225Response structure represents the RRPC_FWAddFirewallRule2_25 operation response
 type AddFirewallRule225Response struct {
 	// pStatus: An output parameter that is the status code of the rule, as specified by
@@ -22645,8 +23708,10 @@ type xxx_SetFirewallRule225Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_25 operation.
 func (o *xxx_SetFirewallRule225Operation) OpNum() int { return 75 }
 
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_25 operation.
 func (o *xxx_SetFirewallRule225Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_25"
 }
@@ -22807,6 +23872,17 @@ func (o *SetFirewallRule225Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetFirewallRule225Request build a response structure from the given request structure.
+func (o *SetFirewallRule225Request) MakeResponse() *SetFirewallRule225Response {
+	return &SetFirewallRule225Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_25 operation.
+func (o *SetFirewallRule225Request) OpNum() int { return 75 }
+
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_25 operation.
+func (o *SetFirewallRule225Request) OpName() string { return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_25" }
+
 // SetFirewallRule225Response structure represents the RRPC_FWSetFirewallRule2_25 operation response
 type SetFirewallRule225Response struct {
 	// pStatus: An output parameter that is the status code of the rule, as specified by
@@ -22858,8 +23934,10 @@ type xxx_EnumFirewallRules225Operation struct {
 	Return           uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_25 operation.
 func (o *xxx_EnumFirewallRules225Operation) OpNum() int { return 76 }
 
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_25 operation.
 func (o *xxx_EnumFirewallRules225Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_25"
 }
@@ -23089,6 +24167,19 @@ func (o *EnumFirewallRules225Request) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeEnumFirewallRules225Request build a response structure from the given request structure.
+func (o *EnumFirewallRules225Request) MakeResponse() *EnumFirewallRules225Response {
+	return &EnumFirewallRules225Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_25 operation.
+func (o *EnumFirewallRules225Request) OpNum() int { return 76 }
+
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_25 operation.
+func (o *EnumFirewallRules225Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_25"
+}
+
 // EnumFirewallRules225Response structure represents the RRPC_FWEnumFirewallRules2_25 operation response
 type EnumFirewallRules225Response struct {
 	// pdwNumRules: An output parameter that, on success, MUST be equal to the number of
@@ -23144,8 +24235,10 @@ type xxx_QueryFirewallRules225Operation struct {
 	Return      uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_25 operation.
 func (o *xxx_QueryFirewallRules225Operation) OpNum() int { return 77 }
 
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_25 operation.
 func (o *xxx_QueryFirewallRules225Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_25"
 }
@@ -23370,6 +24463,19 @@ func (o *QueryFirewallRules225Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeQueryFirewallRules225Request build a response structure from the given request structure.
+func (o *QueryFirewallRules225Request) MakeResponse() *QueryFirewallRules225Response {
+	return &QueryFirewallRules225Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_25 operation.
+func (o *QueryFirewallRules225Request) OpNum() int { return 77 }
+
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_25 operation.
+func (o *QueryFirewallRules225Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_25"
+}
+
 // QueryFirewallRules225Response structure represents the RRPC_FWQueryFirewallRules2_25 operation response
 type QueryFirewallRules225Response struct {
 	// pdwNumRules: An output parameter that, on success, MUST be equal to the number of
@@ -23423,8 +24529,10 @@ type xxx_AddFirewallRule226Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_26 operation.
 func (o *xxx_AddFirewallRule226Operation) OpNum() int { return 78 }
 
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_26 operation.
 func (o *xxx_AddFirewallRule226Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_26"
 }
@@ -23584,6 +24692,17 @@ func (o *AddFirewallRule226Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeAddFirewallRule226Request build a response structure from the given request structure.
+func (o *AddFirewallRule226Request) MakeResponse() *AddFirewallRule226Response {
+	return &AddFirewallRule226Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_26 operation.
+func (o *AddFirewallRule226Request) OpNum() int { return 78 }
+
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_26 operation.
+func (o *AddFirewallRule226Request) OpName() string { return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_26" }
+
 // AddFirewallRule226Response structure represents the RRPC_FWAddFirewallRule2_26 operation response
 type AddFirewallRule226Response struct {
 	// pStatus: An output parameter that is the status code of the rule, as specified by
@@ -23632,8 +24751,10 @@ type xxx_SetFirewallRule226Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_26 operation.
 func (o *xxx_SetFirewallRule226Operation) OpNum() int { return 79 }
 
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_26 operation.
 func (o *xxx_SetFirewallRule226Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_26"
 }
@@ -23793,6 +24914,17 @@ func (o *SetFirewallRule226Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetFirewallRule226Request build a response structure from the given request structure.
+func (o *SetFirewallRule226Request) MakeResponse() *SetFirewallRule226Response {
+	return &SetFirewallRule226Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_26 operation.
+func (o *SetFirewallRule226Request) OpNum() int { return 79 }
+
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_26 operation.
+func (o *SetFirewallRule226Request) OpName() string { return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_26" }
+
 // SetFirewallRule226Response structure represents the RRPC_FWSetFirewallRule2_26 operation response
 type SetFirewallRule226Response struct {
 	// pStatus: An output parameter that is the status code of the rule, as specified by
@@ -23844,8 +24976,10 @@ type xxx_EnumFirewallRules226Operation struct {
 	Return           uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_26 operation.
 func (o *xxx_EnumFirewallRules226Operation) OpNum() int { return 80 }
 
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_26 operation.
 func (o *xxx_EnumFirewallRules226Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_26"
 }
@@ -24075,6 +25209,19 @@ func (o *EnumFirewallRules226Request) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeEnumFirewallRules226Request build a response structure from the given request structure.
+func (o *EnumFirewallRules226Request) MakeResponse() *EnumFirewallRules226Response {
+	return &EnumFirewallRules226Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_26 operation.
+func (o *EnumFirewallRules226Request) OpNum() int { return 80 }
+
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_26 operation.
+func (o *EnumFirewallRules226Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_26"
+}
+
 // EnumFirewallRules226Response structure represents the RRPC_FWEnumFirewallRules2_26 operation response
 type EnumFirewallRules226Response struct {
 	// pdwNumRules: An output parameter that, on success, MUST be equal to the number of
@@ -24130,8 +25277,10 @@ type xxx_QueryFirewallRules226Operation struct {
 	Return      uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_26 operation.
 func (o *xxx_QueryFirewallRules226Operation) OpNum() int { return 81 }
 
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_26 operation.
 func (o *xxx_QueryFirewallRules226Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_26"
 }
@@ -24356,6 +25505,19 @@ func (o *QueryFirewallRules226Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeQueryFirewallRules226Request build a response structure from the given request structure.
+func (o *QueryFirewallRules226Request) MakeResponse() *QueryFirewallRules226Response {
+	return &QueryFirewallRules226Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_26 operation.
+func (o *QueryFirewallRules226Request) OpNum() int { return 81 }
+
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_26 operation.
+func (o *QueryFirewallRules226Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_26"
+}
+
 // QueryFirewallRules226Response structure represents the RRPC_FWQueryFirewallRules2_26 operation response
 type QueryFirewallRules226Response struct {
 	// pdwNumRules: An output parameter that, on success, MUST be equal to the number of
@@ -24409,8 +25571,10 @@ type xxx_AddFirewallRule227Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_27 operation.
 func (o *xxx_AddFirewallRule227Operation) OpNum() int { return 82 }
 
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_27 operation.
 func (o *xxx_AddFirewallRule227Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_27"
 }
@@ -24571,6 +25735,17 @@ func (o *AddFirewallRule227Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeAddFirewallRule227Request build a response structure from the given request structure.
+func (o *AddFirewallRule227Request) MakeResponse() *AddFirewallRule227Response {
+	return &AddFirewallRule227Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_27 operation.
+func (o *AddFirewallRule227Request) OpNum() int { return 82 }
+
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_27 operation.
+func (o *AddFirewallRule227Request) OpName() string { return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_27" }
+
 // AddFirewallRule227Response structure represents the RRPC_FWAddFirewallRule2_27 operation response
 type AddFirewallRule227Response struct {
 	// pStatus: An output parameter that is the status code of the rule, as specified by
@@ -24619,8 +25794,10 @@ type xxx_SetFirewallRule227Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_27 operation.
 func (o *xxx_SetFirewallRule227Operation) OpNum() int { return 83 }
 
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_27 operation.
 func (o *xxx_SetFirewallRule227Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_27"
 }
@@ -24781,6 +25958,17 @@ func (o *SetFirewallRule227Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetFirewallRule227Request build a response structure from the given request structure.
+func (o *SetFirewallRule227Request) MakeResponse() *SetFirewallRule227Response {
+	return &SetFirewallRule227Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_27 operation.
+func (o *SetFirewallRule227Request) OpNum() int { return 83 }
+
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_27 operation.
+func (o *SetFirewallRule227Request) OpName() string { return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_27" }
+
 // SetFirewallRule227Response structure represents the RRPC_FWSetFirewallRule2_27 operation response
 type SetFirewallRule227Response struct {
 	// pStatus: An output parameter that is the status code of the rule, as specified by
@@ -24832,8 +26020,10 @@ type xxx_EnumFirewallRules227Operation struct {
 	Return           uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_27 operation.
 func (o *xxx_EnumFirewallRules227Operation) OpNum() int { return 84 }
 
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_27 operation.
 func (o *xxx_EnumFirewallRules227Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_27"
 }
@@ -25063,6 +26253,19 @@ func (o *EnumFirewallRules227Request) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeEnumFirewallRules227Request build a response structure from the given request structure.
+func (o *EnumFirewallRules227Request) MakeResponse() *EnumFirewallRules227Response {
+	return &EnumFirewallRules227Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_27 operation.
+func (o *EnumFirewallRules227Request) OpNum() int { return 84 }
+
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_27 operation.
+func (o *EnumFirewallRules227Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_27"
+}
+
 // EnumFirewallRules227Response structure represents the RRPC_FWEnumFirewallRules2_27 operation response
 type EnumFirewallRules227Response struct {
 	// pdwNumRules: An output parameter that, on success, MUST be equal to the number of
@@ -25118,8 +26321,10 @@ type xxx_QueryFirewallRules227Operation struct {
 	Return      uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_27 operation.
 func (o *xxx_QueryFirewallRules227Operation) OpNum() int { return 85 }
 
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_27 operation.
 func (o *xxx_QueryFirewallRules227Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_27"
 }
@@ -25344,6 +26549,19 @@ func (o *QueryFirewallRules227Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeQueryFirewallRules227Request build a response structure from the given request structure.
+func (o *QueryFirewallRules227Request) MakeResponse() *QueryFirewallRules227Response {
+	return &QueryFirewallRules227Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_27 operation.
+func (o *QueryFirewallRules227Request) OpNum() int { return 85 }
+
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_27 operation.
+func (o *QueryFirewallRules227Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_27"
+}
+
 // QueryFirewallRules227Response structure represents the RRPC_FWQueryFirewallRules2_27 operation response
 type QueryFirewallRules227Response struct {
 	// pdwNumRules: An output parameter that, on success, MUST be equal to the number of
@@ -25397,8 +26615,10 @@ type xxx_AddFirewallRule231Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_31 operation.
 func (o *xxx_AddFirewallRule231Operation) OpNum() int { return 86 }
 
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_31 operation.
 func (o *xxx_AddFirewallRule231Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_31"
 }
@@ -25559,6 +26779,17 @@ func (o *AddFirewallRule231Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeAddFirewallRule231Request build a response structure from the given request structure.
+func (o *AddFirewallRule231Request) MakeResponse() *AddFirewallRule231Response {
+	return &AddFirewallRule231Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_31 operation.
+func (o *AddFirewallRule231Request) OpNum() int { return 86 }
+
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_31 operation.
+func (o *AddFirewallRule231Request) OpName() string { return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_31" }
+
 // AddFirewallRule231Response structure represents the RRPC_FWAddFirewallRule2_31 operation response
 type AddFirewallRule231Response struct {
 	// pStatus: An output parameter that is the status code of the rule, as specified by
@@ -25607,8 +26838,10 @@ type xxx_SetFirewallRule231Operation struct {
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_31 operation.
 func (o *xxx_SetFirewallRule231Operation) OpNum() int { return 87 }
 
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_31 operation.
 func (o *xxx_SetFirewallRule231Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_31"
 }
@@ -25769,6 +27002,17 @@ func (o *SetFirewallRule231Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetFirewallRule231Request build a response structure from the given request structure.
+func (o *SetFirewallRule231Request) MakeResponse() *SetFirewallRule231Response {
+	return &SetFirewallRule231Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_31 operation.
+func (o *SetFirewallRule231Request) OpNum() int { return 87 }
+
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_31 operation.
+func (o *SetFirewallRule231Request) OpName() string { return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_31" }
+
 // SetFirewallRule231Response structure represents the RRPC_FWSetFirewallRule2_31 operation response
 type SetFirewallRule231Response struct {
 	// pStatus: An output parameter that is the status code of the rule, as specified by
@@ -25820,8 +27064,10 @@ type xxx_EnumFirewallRules231Operation struct {
 	Return           uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_31 operation.
 func (o *xxx_EnumFirewallRules231Operation) OpNum() int { return 88 }
 
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_31 operation.
 func (o *xxx_EnumFirewallRules231Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_31"
 }
@@ -26051,6 +27297,19 @@ func (o *EnumFirewallRules231Request) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeEnumFirewallRules231Request build a response structure from the given request structure.
+func (o *EnumFirewallRules231Request) MakeResponse() *EnumFirewallRules231Response {
+	return &EnumFirewallRules231Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_31 operation.
+func (o *EnumFirewallRules231Request) OpNum() int { return 88 }
+
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_31 operation.
+func (o *EnumFirewallRules231Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_31"
+}
+
 // EnumFirewallRules231Response structure represents the RRPC_FWEnumFirewallRules2_31 operation response
 type EnumFirewallRules231Response struct {
 	// pdwNumRules: An output parameter that on success MUST be equal to the number of rules
@@ -26106,8 +27365,10 @@ type xxx_QueryFirewallRules231Operation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_31 operation.
 func (o *xxx_QueryFirewallRules231Operation) OpNum() int { return 89 }
 
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_31 operation.
 func (o *xxx_QueryFirewallRules231Operation) OpName() string {
 	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_31"
 }
@@ -26330,6 +27591,19 @@ func (o *QueryFirewallRules231Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeQueryFirewallRules231Request build a response structure from the given request structure.
+func (o *QueryFirewallRules231Request) MakeResponse() *QueryFirewallRules231Response {
+	return &QueryFirewallRules231Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_31 operation.
+func (o *QueryFirewallRules231Request) OpNum() int { return 89 }
+
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_31 operation.
+func (o *QueryFirewallRules231Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_31"
 }
 
 // QueryFirewallRules231Response structure represents the RRPC_FWQueryFirewallRules2_31 operation response

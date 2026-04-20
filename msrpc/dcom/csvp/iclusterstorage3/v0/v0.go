@@ -873,8 +873,10 @@ type xxx_GetUniqueIDs3Operation struct {
 	Return                 int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepDiskGetUniqueIds3 operation.
 func (o *xxx_GetUniqueIDs3Operation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CprepDiskGetUniqueIds3 operation.
 func (o *xxx_GetUniqueIDs3Operation) OpName() string {
 	return "/IClusterStorage3/v0/CprepDiskGetUniqueIds3"
 }
@@ -1216,6 +1218,17 @@ func (o *GetUniqueIDs3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetUniqueIDs3Request build a response structure from the given request structure.
+func (o *GetUniqueIDs3Request) MakeResponse() *GetUniqueIDs3Response {
+	return &GetUniqueIDs3Response{}
+}
+
+// OpNum returns the operation number of CprepDiskGetUniqueIds3 operation.
+func (o *GetUniqueIDs3Request) OpNum() int { return 3 }
+
+// OpName returns the operation name of CprepDiskGetUniqueIds3 operation.
+func (o *GetUniqueIDs3Request) OpName() string { return "/IClusterStorage3/v0/CprepDiskGetUniqueIds3" }
+
 // GetUniqueIDs3Response structure represents the CprepDiskGetUniqueIds3 operation response
 type GetUniqueIDs3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1286,8 +1299,10 @@ type xxx_CheckNetFTBindings3Operation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepCheckNetFtBindings3 operation.
 func (o *xxx_CheckNetFTBindings3Operation) OpNum() int { return 4 }
 
+// OpName returns the operation name of CprepCheckNetFtBindings3 operation.
 func (o *xxx_CheckNetFTBindings3Operation) OpName() string {
 	return "/IClusterStorage3/v0/CprepCheckNetFtBindings3"
 }
@@ -1433,6 +1448,19 @@ func (o *CheckNetFTBindings3Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeCheckNetFTBindings3Request build a response structure from the given request structure.
+func (o *CheckNetFTBindings3Request) MakeResponse() *CheckNetFTBindings3Response {
+	return &CheckNetFTBindings3Response{}
+}
+
+// OpNum returns the operation number of CprepCheckNetFtBindings3 operation.
+func (o *CheckNetFTBindings3Request) OpNum() int { return 4 }
+
+// OpName returns the operation name of CprepCheckNetFtBindings3 operation.
+func (o *CheckNetFTBindings3Request) OpName() string {
+	return "/IClusterStorage3/v0/CprepCheckNetFtBindings3"
+}
+
 // CheckNetFTBindings3Response structure represents the CprepCheckNetFtBindings3 operation response
 type CheckNetFTBindings3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1481,8 +1509,10 @@ type xxx_CSVTestSetup3Operation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepCsvTestSetup3 operation.
 func (o *xxx_CSVTestSetup3Operation) OpNum() int { return 5 }
 
+// OpName returns the operation name of CprepCsvTestSetup3 operation.
 func (o *xxx_CSVTestSetup3Operation) OpName() string {
 	return "/IClusterStorage3/v0/CprepCsvTestSetup3"
 }
@@ -1669,6 +1699,17 @@ func (o *CSVTestSetup3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeCSVTestSetup3Request build a response structure from the given request structure.
+func (o *CSVTestSetup3Request) MakeResponse() *CSVTestSetup3Response {
+	return &CSVTestSetup3Response{}
+}
+
+// OpNum returns the operation number of CprepCsvTestSetup3 operation.
+func (o *CSVTestSetup3Request) OpNum() int { return 5 }
+
+// OpName returns the operation name of CprepCsvTestSetup3 operation.
+func (o *CSVTestSetup3Request) OpName() string { return "/IClusterStorage3/v0/CprepCsvTestSetup3" }
+
 // CSVTestSetup3Response structure represents the CprepCsvTestSetup3 operation response
 type CSVTestSetup3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1716,8 +1757,10 @@ type xxx_IsNodeClustered3Operation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepIsNodeClustered3 operation.
 func (o *xxx_IsNodeClustered3Operation) OpNum() int { return 6 }
 
+// OpName returns the operation name of CprepIsNodeClustered3 operation.
 func (o *xxx_IsNodeClustered3Operation) OpName() string {
 	return "/IClusterStorage3/v0/CprepIsNodeClustered3"
 }
@@ -1875,6 +1918,19 @@ func (o *IsNodeClustered3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeIsNodeClustered3Request build a response structure from the given request structure.
+func (o *IsNodeClustered3Request) MakeResponse() *IsNodeClustered3Response {
+	return &IsNodeClustered3Response{}
+}
+
+// OpNum returns the operation number of CprepIsNodeClustered3 operation.
+func (o *IsNodeClustered3Request) OpNum() int { return 6 }
+
+// OpName returns the operation name of CprepIsNodeClustered3 operation.
+func (o *IsNodeClustered3Request) OpName() string {
+	return "/IClusterStorage3/v0/CprepIsNodeClustered3"
+}
+
 // IsNodeClustered3Response structure represents the CprepIsNodeClustered3 operation response
 type IsNodeClustered3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1928,8 +1984,10 @@ type xxx_CreateNewSMBShares3Operation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepCreateNewSmbShares3 operation.
 func (o *xxx_CreateNewSMBShares3Operation) OpNum() int { return 7 }
 
+// OpName returns the operation name of CprepCreateNewSmbShares3 operation.
 func (o *xxx_CreateNewSMBShares3Operation) OpName() string {
 	return "/IClusterStorage3/v0/CprepCreateNewSmbShares3"
 }
@@ -2179,6 +2237,19 @@ func (o *CreateNewSMBShares3Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeCreateNewSMBShares3Request build a response structure from the given request structure.
+func (o *CreateNewSMBShares3Request) MakeResponse() *CreateNewSMBShares3Response {
+	return &CreateNewSMBShares3Response{}
+}
+
+// OpNum returns the operation number of CprepCreateNewSmbShares3 operation.
+func (o *CreateNewSMBShares3Request) OpNum() int { return 7 }
+
+// OpName returns the operation name of CprepCreateNewSmbShares3 operation.
+func (o *CreateNewSMBShares3Request) OpName() string {
+	return "/IClusterStorage3/v0/CprepCreateNewSmbShares3"
+}
+
 // CreateNewSMBShares3Response structure represents the CprepCreateNewSmbShares3 operation response
 type CreateNewSMBShares3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2237,8 +2308,10 @@ type xxx_ConnectToNewSMBShares3Operation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepConnectToNewSmbShares3 operation.
 func (o *xxx_ConnectToNewSMBShares3Operation) OpNum() int { return 8 }
 
+// OpName returns the operation name of CprepConnectToNewSmbShares3 operation.
 func (o *xxx_ConnectToNewSMBShares3Operation) OpName() string {
 	return "/IClusterStorage3/v0/CprepConnectToNewSmbShares3"
 }
@@ -2476,6 +2549,19 @@ func (o *ConnectToNewSMBShares3Request) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeConnectToNewSMBShares3Request build a response structure from the given request structure.
+func (o *ConnectToNewSMBShares3Request) MakeResponse() *ConnectToNewSMBShares3Response {
+	return &ConnectToNewSMBShares3Response{}
+}
+
+// OpNum returns the operation number of CprepConnectToNewSmbShares3 operation.
+func (o *ConnectToNewSMBShares3Request) OpNum() int { return 8 }
+
+// OpName returns the operation name of CprepConnectToNewSmbShares3 operation.
+func (o *ConnectToNewSMBShares3Request) OpName() string {
+	return "/IClusterStorage3/v0/CprepConnectToNewSmbShares3"
+}
+
 // ConnectToNewSMBShares3Response structure represents the CprepConnectToNewSmbShares3 operation response
 type ConnectToNewSMBShares3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2524,8 +2610,10 @@ type xxx_GetProperties3Operation struct {
 	Return         int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepDiskGetProps3 operation.
 func (o *xxx_GetProperties3Operation) OpNum() int { return 9 }
 
+// OpName returns the operation name of CprepDiskGetProps3 operation.
 func (o *xxx_GetProperties3Operation) OpName() string {
 	return "/IClusterStorage3/v0/CprepDiskGetProps3"
 }
@@ -2723,6 +2811,17 @@ func (o *GetProperties3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetProperties3Request build a response structure from the given request structure.
+func (o *GetProperties3Request) MakeResponse() *GetProperties3Response {
+	return &GetProperties3Response{}
+}
+
+// OpNum returns the operation number of CprepDiskGetProps3 operation.
+func (o *GetProperties3Request) OpNum() int { return 9 }
+
+// OpName returns the operation name of CprepDiskGetProps3 operation.
+func (o *GetProperties3Request) OpName() string { return "/IClusterStorage3/v0/CprepDiskGetProps3" }
+
 // GetProperties3Response structure represents the CprepDiskGetProps3 operation response
 type GetProperties3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2775,8 +2874,10 @@ type xxx_IsReadOnly3Operation struct {
 	Return   int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepDiskIsReadOnly3 operation.
 func (o *xxx_IsReadOnly3Operation) OpNum() int { return 10 }
 
+// OpName returns the operation name of CprepDiskIsReadOnly3 operation.
 func (o *xxx_IsReadOnly3Operation) OpName() string {
 	return "/IClusterStorage3/v0/CprepDiskIsReadOnly3"
 }
@@ -2960,6 +3061,17 @@ func (o *IsReadOnly3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeIsReadOnly3Request build a response structure from the given request structure.
+func (o *IsReadOnly3Request) MakeResponse() *IsReadOnly3Response {
+	return &IsReadOnly3Response{}
+}
+
+// OpNum returns the operation number of CprepDiskIsReadOnly3 operation.
+func (o *IsReadOnly3Request) OpNum() int { return 10 }
+
+// OpName returns the operation name of CprepDiskIsReadOnly3 operation.
+func (o *IsReadOnly3Request) OpName() string { return "/IClusterStorage3/v0/CprepDiskIsReadOnly3" }
+
 // IsReadOnly3Response structure represents the CprepDiskIsReadOnly3 operation response
 type IsReadOnly3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3014,8 +3126,10 @@ type xxx_PRRegister3Operation struct {
 	Return   int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepDiskPRRegister3 operation.
 func (o *xxx_PRRegister3Operation) OpNum() int { return 11 }
 
+// OpName returns the operation name of CprepDiskPRRegister3 operation.
 func (o *xxx_PRRegister3Operation) OpName() string {
 	return "/IClusterStorage3/v0/CprepDiskPRRegister3"
 }
@@ -3221,6 +3335,17 @@ func (o *PRRegister3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakePRRegister3Request build a response structure from the given request structure.
+func (o *PRRegister3Request) MakeResponse() *PRRegister3Response {
+	return &PRRegister3Response{}
+}
+
+// OpNum returns the operation number of CprepDiskPRRegister3 operation.
+func (o *PRRegister3Request) OpNum() int { return 11 }
+
+// OpName returns the operation name of CprepDiskPRRegister3 operation.
+func (o *PRRegister3Request) OpName() string { return "/IClusterStorage3/v0/CprepDiskPRRegister3" }
+
 // PRRegister3Response structure represents the CprepDiskPRRegister3 operation response
 type PRRegister3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3270,8 +3395,10 @@ type xxx_FindKey3Operation struct {
 	Return int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepDiskFindKey3 operation.
 func (o *xxx_FindKey3Operation) OpNum() int { return 12 }
 
+// OpName returns the operation name of CprepDiskFindKey3 operation.
 func (o *xxx_FindKey3Operation) OpName() string { return "/IClusterStorage3/v0/CprepDiskFindKey3" }
 
 func (o *xxx_FindKey3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3471,6 +3598,17 @@ func (o *FindKey3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeFindKey3Request build a response structure from the given request structure.
+func (o *FindKey3Request) MakeResponse() *FindKey3Response {
+	return &FindKey3Response{}
+}
+
+// OpNum returns the operation number of CprepDiskFindKey3 operation.
+func (o *FindKey3Request) OpNum() int { return 12 }
+
+// OpName returns the operation name of CprepDiskFindKey3 operation.
+func (o *FindKey3Request) OpName() string { return "/IClusterStorage3/v0/CprepDiskFindKey3" }
+
 // FindKey3Response structure represents the CprepDiskFindKey3 operation response
 type FindKey3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3526,8 +3664,10 @@ type xxx_PRPreempt3Operation struct {
 	Return   int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepDiskPRPreempt3 operation.
 func (o *xxx_PRPreempt3Operation) OpNum() int { return 13 }
 
+// OpName returns the operation name of CprepDiskPRPreempt3 operation.
 func (o *xxx_PRPreempt3Operation) OpName() string { return "/IClusterStorage3/v0/CprepDiskPRPreempt3" }
 
 func (o *xxx_PRPreempt3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3730,6 +3870,17 @@ func (o *PRPreempt3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakePRPreempt3Request build a response structure from the given request structure.
+func (o *PRPreempt3Request) MakeResponse() *PRPreempt3Response {
+	return &PRPreempt3Response{}
+}
+
+// OpNum returns the operation number of CprepDiskPRPreempt3 operation.
+func (o *PRPreempt3Request) OpNum() int { return 13 }
+
+// OpName returns the operation name of CprepDiskPRPreempt3 operation.
+func (o *PRPreempt3Request) OpName() string { return "/IClusterStorage3/v0/CprepDiskPRPreempt3" }
+
 // PRPreempt3Response structure represents the CprepDiskPRPreempt3 operation response
 type PRPreempt3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3778,8 +3929,10 @@ type xxx_PRReserve3Operation struct {
 	Return int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepDiskPRReserve3 operation.
 func (o *xxx_PRReserve3Operation) OpNum() int { return 14 }
 
+// OpName returns the operation name of CprepDiskPRReserve3 operation.
 func (o *xxx_PRReserve3Operation) OpName() string { return "/IClusterStorage3/v0/CprepDiskPRReserve3" }
 
 func (o *xxx_PRReserve3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3965,6 +4118,17 @@ func (o *PRReserve3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakePRReserve3Request build a response structure from the given request structure.
+func (o *PRReserve3Request) MakeResponse() *PRReserve3Response {
+	return &PRReserve3Response{}
+}
+
+// OpNum returns the operation number of CprepDiskPRReserve3 operation.
+func (o *PRReserve3Request) OpNum() int { return 14 }
+
+// OpName returns the operation name of CprepDiskPRReserve3 operation.
+func (o *PRReserve3Request) OpName() string { return "/IClusterStorage3/v0/CprepDiskPRReserve3" }
+
 // PRReserve3Response structure represents the CprepDiskPRReserve3 operation response
 type PRReserve3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4013,8 +4177,10 @@ type xxx_IsPRPresent3Operation struct {
 	Return int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepDiskIsPRPresent3 operation.
 func (o *xxx_IsPRPresent3Operation) OpNum() int { return 15 }
 
+// OpName returns the operation name of CprepDiskIsPRPresent3 operation.
 func (o *xxx_IsPRPresent3Operation) OpName() string {
 	return "/IClusterStorage3/v0/CprepDiskIsPRPresent3"
 }
@@ -4202,6 +4368,17 @@ func (o *IsPRPresent3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeIsPRPresent3Request build a response structure from the given request structure.
+func (o *IsPRPresent3Request) MakeResponse() *IsPRPresent3Response {
+	return &IsPRPresent3Response{}
+}
+
+// OpNum returns the operation number of CprepDiskIsPRPresent3 operation.
+func (o *IsPRPresent3Request) OpNum() int { return 15 }
+
+// OpName returns the operation name of CprepDiskIsPRPresent3 operation.
+func (o *IsPRPresent3Request) OpName() string { return "/IClusterStorage3/v0/CprepDiskIsPRPresent3" }
+
 // IsPRPresent3Response structure represents the CprepDiskIsPRPresent3 operation response
 type IsPRPresent3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4250,8 +4427,10 @@ type xxx_PRRelease3Operation struct {
 	Return int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepDiskPRRelease3 operation.
 func (o *xxx_PRRelease3Operation) OpNum() int { return 16 }
 
+// OpName returns the operation name of CprepDiskPRRelease3 operation.
 func (o *xxx_PRRelease3Operation) OpName() string { return "/IClusterStorage3/v0/CprepDiskPRRelease3" }
 
 func (o *xxx_PRRelease3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4437,6 +4616,17 @@ func (o *PRRelease3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakePRRelease3Request build a response structure from the given request structure.
+func (o *PRRelease3Request) MakeResponse() *PRRelease3Response {
+	return &PRRelease3Response{}
+}
+
+// OpNum returns the operation number of CprepDiskPRRelease3 operation.
+func (o *PRRelease3Request) OpNum() int { return 16 }
+
+// OpName returns the operation name of CprepDiskPRRelease3 operation.
+func (o *PRRelease3Request) OpName() string { return "/IClusterStorage3/v0/CprepDiskPRRelease3" }
+
 // PRRelease3Response structure represents the CprepDiskPRRelease3 operation response
 type PRRelease3Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4485,8 +4675,10 @@ type xxx_PRClear3Operation struct {
 	Return int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CprepDiskPRClear3 operation.
 func (o *xxx_PRClear3Operation) OpNum() int { return 17 }
 
+// OpName returns the operation name of CprepDiskPRClear3 operation.
 func (o *xxx_PRClear3Operation) OpName() string { return "/IClusterStorage3/v0/CprepDiskPRClear3" }
 
 func (o *xxx_PRClear3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4671,6 +4863,17 @@ func (o *PRClear3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakePRClear3Request build a response structure from the given request structure.
+func (o *PRClear3Request) MakeResponse() *PRClear3Response {
+	return &PRClear3Response{}
+}
+
+// OpNum returns the operation number of CprepDiskPRClear3 operation.
+func (o *PRClear3Request) OpNum() int { return 17 }
+
+// OpName returns the operation name of CprepDiskPRClear3 operation.
+func (o *PRClear3Request) OpName() string { return "/IClusterStorage3/v0/CprepDiskPRClear3" }
 
 // PRClear3Response structure represents the CprepDiskPRClear3 operation response
 type PRClear3Response struct {

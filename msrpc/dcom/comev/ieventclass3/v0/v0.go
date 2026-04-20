@@ -209,8 +209,10 @@ type xxx_GetEventClassPartitionIDOperation struct {
 	Return                int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EventClassPartitionID operation.
 func (o *xxx_GetEventClassPartitionIDOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of EventClassPartitionID operation.
 func (o *xxx_GetEventClassPartitionIDOperation) OpName() string {
 	return "/IEventClass3/v0/EventClassPartitionID"
 }
@@ -402,6 +404,19 @@ func (o *GetEventClassPartitionIDRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeGetEventClassPartitionIDRequest build a response structure from the given request structure.
+func (o *GetEventClassPartitionIDRequest) MakeResponse() *GetEventClassPartitionIDResponse {
+	return &GetEventClassPartitionIDResponse{}
+}
+
+// OpNum returns the operation number of EventClassPartitionID operation.
+func (o *GetEventClassPartitionIDRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of EventClassPartitionID operation.
+func (o *GetEventClassPartitionIDRequest) OpName() string {
+	return "/IEventClass3/v0/EventClassPartitionID"
+}
+
 // GetEventClassPartitionIDResponse structure represents the EventClassPartitionID operation response
 type GetEventClassPartitionIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -452,8 +467,10 @@ type xxx_SetEventClassPartitionIDOperation struct {
 	Return                int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EventClassPartitionID operation.
 func (o *xxx_SetEventClassPartitionIDOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of EventClassPartitionID operation.
 func (o *xxx_SetEventClassPartitionIDOperation) OpName() string {
 	return "/IEventClass3/v0/EventClassPartitionID"
 }
@@ -648,6 +665,19 @@ func (o *SetEventClassPartitionIDRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeSetEventClassPartitionIDRequest build a response structure from the given request structure.
+func (o *SetEventClassPartitionIDRequest) MakeResponse() *SetEventClassPartitionIDResponse {
+	return &SetEventClassPartitionIDResponse{}
+}
+
+// OpNum returns the operation number of EventClassPartitionID operation.
+func (o *SetEventClassPartitionIDRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of EventClassPartitionID operation.
+func (o *SetEventClassPartitionIDRequest) OpName() string {
+	return "/IEventClass3/v0/EventClassPartitionID"
+}
+
 // SetEventClassPartitionIDResponse structure represents the EventClassPartitionID operation response
 type SetEventClassPartitionIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -695,8 +725,10 @@ type xxx_GetEventClassApplicationIDOperation struct {
 	Return                  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EventClassApplicationID operation.
 func (o *xxx_GetEventClassApplicationIDOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of EventClassApplicationID operation.
 func (o *xxx_GetEventClassApplicationIDOperation) OpName() string {
 	return "/IEventClass3/v0/EventClassApplicationID"
 }
@@ -888,6 +920,19 @@ func (o *GetEventClassApplicationIDRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeGetEventClassApplicationIDRequest build a response structure from the given request structure.
+func (o *GetEventClassApplicationIDRequest) MakeResponse() *GetEventClassApplicationIDResponse {
+	return &GetEventClassApplicationIDResponse{}
+}
+
+// OpNum returns the operation number of EventClassApplicationID operation.
+func (o *GetEventClassApplicationIDRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of EventClassApplicationID operation.
+func (o *GetEventClassApplicationIDRequest) OpName() string {
+	return "/IEventClass3/v0/EventClassApplicationID"
+}
+
 // GetEventClassApplicationIDResponse structure represents the EventClassApplicationID operation response
 type GetEventClassApplicationIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -938,8 +983,10 @@ type xxx_SetEventClassApplicationIDOperation struct {
 	Return                  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EventClassApplicationID operation.
 func (o *xxx_SetEventClassApplicationIDOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of EventClassApplicationID operation.
 func (o *xxx_SetEventClassApplicationIDOperation) OpName() string {
 	return "/IEventClass3/v0/EventClassApplicationID"
 }
@@ -1132,6 +1179,19 @@ func (o *SetEventClassApplicationIDRequest) UnmarshalNDR(ctx context.Context, r 
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetEventClassApplicationIDRequest build a response structure from the given request structure.
+func (o *SetEventClassApplicationIDRequest) MakeResponse() *SetEventClassApplicationIDResponse {
+	return &SetEventClassApplicationIDResponse{}
+}
+
+// OpNum returns the operation number of EventClassApplicationID operation.
+func (o *SetEventClassApplicationIDRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of EventClassApplicationID operation.
+func (o *SetEventClassApplicationIDRequest) OpName() string {
+	return "/IEventClass3/v0/EventClassApplicationID"
 }
 
 // SetEventClassApplicationIDResponse structure represents the EventClassApplicationID operation response

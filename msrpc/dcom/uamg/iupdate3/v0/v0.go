@@ -154,8 +154,10 @@ type xxx_GetBrowseOnlyOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BrowseOnly operation.
 func (o *xxx_GetBrowseOnlyOperation) OpNum() int { return 56 }
 
+// OpName returns the operation name of BrowseOnly operation.
 func (o *xxx_GetBrowseOnlyOperation) OpName() string { return "/IUpdate3/v0/BrowseOnly" }
 
 func (o *xxx_GetBrowseOnlyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -310,6 +312,17 @@ func (o *GetBrowseOnlyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetBrowseOnlyRequest build a response structure from the given request structure.
+func (o *GetBrowseOnlyRequest) MakeResponse() *GetBrowseOnlyResponse {
+	return &GetBrowseOnlyResponse{}
+}
+
+// OpNum returns the operation number of BrowseOnly operation.
+func (o *GetBrowseOnlyRequest) OpNum() int { return 56 }
+
+// OpName returns the operation name of BrowseOnly operation.
+func (o *GetBrowseOnlyRequest) OpName() string { return "/IUpdate3/v0/BrowseOnly" }
 
 // GetBrowseOnlyResponse structure represents the BrowseOnly operation response
 type GetBrowseOnlyResponse struct {

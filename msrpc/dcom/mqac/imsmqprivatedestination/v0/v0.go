@@ -163,8 +163,10 @@ type xxx_GetHandleOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Handle operation.
 func (o *xxx_GetHandleOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Handle operation.
 func (o *xxx_GetHandleOperation) OpName() string { return "/IMSMQPrivateDestination/v0/Handle" }
 
 func (o *xxx_GetHandleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -354,6 +356,17 @@ func (o *GetHandleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetHandleRequest build a response structure from the given request structure.
+func (o *GetHandleRequest) MakeResponse() *GetHandleResponse {
+	return &GetHandleResponse{}
+}
+
+// OpNum returns the operation number of Handle operation.
+func (o *GetHandleRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Handle operation.
+func (o *GetHandleRequest) OpName() string { return "/IMSMQPrivateDestination/v0/Handle" }
+
 // GetHandleResponse structure represents the Handle operation response
 type GetHandleResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -404,8 +417,10 @@ type xxx_SetHandleOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Handle operation.
 func (o *xxx_SetHandleOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Handle operation.
 func (o *xxx_SetHandleOperation) OpName() string { return "/IMSMQPrivateDestination/v0/Handle" }
 
 func (o *xxx_SetHandleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -578,6 +593,17 @@ func (o *SetHandleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetHandleRequest build a response structure from the given request structure.
+func (o *SetHandleRequest) MakeResponse() *SetHandleResponse {
+	return &SetHandleResponse{}
+}
+
+// OpNum returns the operation number of Handle operation.
+func (o *SetHandleRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Handle operation.
+func (o *SetHandleRequest) OpName() string { return "/IMSMQPrivateDestination/v0/Handle" }
 
 // SetHandleResponse structure represents the Handle operation response
 type SetHandleResponse struct {

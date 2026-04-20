@@ -209,8 +209,10 @@ type xxx_GetNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Name operation.
 func (o *xxx_GetNameOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Name operation.
 func (o *xxx_GetNameOperation) OpName() string { return "/IAppHostMethod/v0/Name" }
 
 func (o *xxx_GetNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -400,6 +402,17 @@ func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetNameRequest build a response structure from the given request structure.
+func (o *GetNameRequest) MakeResponse() *GetNameResponse {
+	return &GetNameResponse{}
+}
+
+// OpNum returns the operation number of Name operation.
+func (o *GetNameRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Name operation.
+func (o *GetNameRequest) OpName() string { return "/IAppHostMethod/v0/Name" }
+
 // GetNameResponse structure represents the Name operation response
 type GetNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -450,8 +463,10 @@ type xxx_GetSchemaOperation struct {
 	Return       int32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Schema operation.
 func (o *xxx_GetSchemaOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Schema operation.
 func (o *xxx_GetSchemaOperation) OpName() string { return "/IAppHostMethod/v0/Schema" }
 
 func (o *xxx_GetSchemaOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -641,6 +656,17 @@ func (o *GetSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetSchemaRequest build a response structure from the given request structure.
+func (o *GetSchemaRequest) MakeResponse() *GetSchemaResponse {
+	return &GetSchemaResponse{}
+}
+
+// OpNum returns the operation number of Schema operation.
+func (o *GetSchemaRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Schema operation.
+func (o *GetSchemaRequest) OpName() string { return "/IAppHostMethod/v0/Schema" }
+
 // GetSchemaResponse structure represents the Schema operation response
 type GetSchemaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -691,8 +717,10 @@ type xxx_CreateInstanceOperation struct {
 	Return         int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateInstance operation.
 func (o *xxx_CreateInstanceOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of CreateInstance operation.
 func (o *xxx_CreateInstanceOperation) OpName() string { return "/IAppHostMethod/v0/CreateInstance" }
 
 func (o *xxx_CreateInstanceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -881,6 +909,17 @@ func (o *CreateInstanceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCreateInstanceRequest build a response structure from the given request structure.
+func (o *CreateInstanceRequest) MakeResponse() *CreateInstanceResponse {
+	return &CreateInstanceResponse{}
+}
+
+// OpNum returns the operation number of CreateInstance operation.
+func (o *CreateInstanceRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of CreateInstance operation.
+func (o *CreateInstanceRequest) OpName() string { return "/IAppHostMethod/v0/CreateInstance" }
 
 // CreateInstanceResponse structure represents the CreateInstance operation response
 type CreateInstanceResponse struct {

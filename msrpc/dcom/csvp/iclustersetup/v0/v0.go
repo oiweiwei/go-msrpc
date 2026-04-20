@@ -597,8 +597,10 @@ type xxx_ConfigServiceSecretOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ConfigSvcSecret operation.
 func (o *xxx_ConfigServiceSecretOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ConfigSvcSecret operation.
 func (o *xxx_ConfigServiceSecretOperation) OpName() string {
 	return "/IClusterSetup/v0/ConfigSvcSecret"
 }
@@ -795,6 +797,17 @@ func (o *ConfigServiceSecretRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeConfigServiceSecretRequest build a response structure from the given request structure.
+func (o *ConfigServiceSecretRequest) MakeResponse() *ConfigServiceSecretResponse {
+	return &ConfigServiceSecretResponse{}
+}
+
+// OpNum returns the operation number of ConfigSvcSecret operation.
+func (o *ConfigServiceSecretRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ConfigSvcSecret operation.
+func (o *ConfigServiceSecretRequest) OpName() string { return "/IClusterSetup/v0/ConfigSvcSecret" }
+
 // ConfigServiceSecretResponse structure represents the ConfigSvcSecret operation response
 type ConfigServiceSecretResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -842,8 +855,10 @@ type xxx_RetrieveServiceSecretOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RetrieveSvcSecret operation.
 func (o *xxx_RetrieveServiceSecretOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RetrieveSvcSecret operation.
 func (o *xxx_RetrieveServiceSecretOperation) OpName() string {
 	return "/IClusterSetup/v0/RetrieveSvcSecret"
 }
@@ -1035,6 +1050,17 @@ func (o *RetrieveServiceSecretRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeRetrieveServiceSecretRequest build a response structure from the given request structure.
+func (o *RetrieveServiceSecretRequest) MakeResponse() *RetrieveServiceSecretResponse {
+	return &RetrieveServiceSecretResponse{}
+}
+
+// OpNum returns the operation number of RetrieveSvcSecret operation.
+func (o *RetrieveServiceSecretRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RetrieveSvcSecret operation.
+func (o *RetrieveServiceSecretRequest) OpName() string { return "/IClusterSetup/v0/RetrieveSvcSecret" }
+
 // RetrieveServiceSecretResponse structure represents the RetrieveSvcSecret operation response
 type RetrieveServiceSecretResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1086,8 +1112,10 @@ type xxx_RetrieveHostLabelOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RetrieveHostLabel operation.
 func (o *xxx_RetrieveHostLabelOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of RetrieveHostLabel operation.
 func (o *xxx_RetrieveHostLabelOperation) OpName() string {
 	return "/IClusterSetup/v0/RetrieveHostLabel"
 }
@@ -1279,6 +1307,17 @@ func (o *RetrieveHostLabelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeRetrieveHostLabelRequest build a response structure from the given request structure.
+func (o *RetrieveHostLabelRequest) MakeResponse() *RetrieveHostLabelResponse {
+	return &RetrieveHostLabelResponse{}
+}
+
+// OpNum returns the operation number of RetrieveHostLabel operation.
+func (o *RetrieveHostLabelRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of RetrieveHostLabel operation.
+func (o *RetrieveHostLabelRequest) OpName() string { return "/IClusterSetup/v0/RetrieveHostLabel" }
+
 // RetrieveHostLabelResponse structure represents the RetrieveHostLabel operation response
 type RetrieveHostLabelResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1330,8 +1369,10 @@ type xxx_GetFunctionalLevelOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetFunctionalLevel operation.
 func (o *xxx_GetFunctionalLevelOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of GetFunctionalLevel operation.
 func (o *xxx_GetFunctionalLevelOperation) OpName() string {
 	return "/IClusterSetup/v0/GetFunctionalLevel"
 }
@@ -1489,6 +1530,17 @@ func (o *GetFunctionalLevelRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetFunctionalLevelRequest build a response structure from the given request structure.
+func (o *GetFunctionalLevelRequest) MakeResponse() *GetFunctionalLevelResponse {
+	return &GetFunctionalLevelResponse{}
+}
+
+// OpNum returns the operation number of GetFunctionalLevel operation.
+func (o *GetFunctionalLevelRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of GetFunctionalLevel operation.
+func (o *GetFunctionalLevelRequest) OpName() string { return "/IClusterSetup/v0/GetFunctionalLevel" }
+
 // GetFunctionalLevelResponse structure represents the GetFunctionalLevel operation response
 type GetFunctionalLevelResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1540,8 +1592,10 @@ type xxx_ConfigClusterCertOperation struct {
 	Return      int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ConfigClusterCert operation.
 func (o *xxx_ConfigClusterCertOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ConfigClusterCert operation.
 func (o *xxx_ConfigClusterCertOperation) OpName() string {
 	return "/IClusterSetup/v0/ConfigClusterCert"
 }
@@ -1713,6 +1767,17 @@ func (o *ConfigClusterCertRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeConfigClusterCertRequest build a response structure from the given request structure.
+func (o *ConfigClusterCertRequest) MakeResponse() *ConfigClusterCertResponse {
+	return &ConfigClusterCertResponse{}
+}
+
+// OpNum returns the operation number of ConfigClusterCert operation.
+func (o *ConfigClusterCertRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ConfigClusterCert operation.
+func (o *ConfigClusterCertRequest) OpName() string { return "/IClusterSetup/v0/ConfigClusterCert" }
+
 // ConfigClusterCertResponse structure represents the ConfigClusterCert operation response
 type ConfigClusterCertResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1760,8 +1825,10 @@ type xxx_RetrieveClusterCertOperation struct {
 	Return      int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RetrieveClusterCert operation.
 func (o *xxx_RetrieveClusterCertOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of RetrieveClusterCert operation.
 func (o *xxx_RetrieveClusterCertOperation) OpName() string {
 	return "/IClusterSetup/v0/RetrieveClusterCert"
 }
@@ -1928,6 +1995,17 @@ func (o *RetrieveClusterCertRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeRetrieveClusterCertRequest build a response structure from the given request structure.
+func (o *RetrieveClusterCertRequest) MakeResponse() *RetrieveClusterCertResponse {
+	return &RetrieveClusterCertResponse{}
+}
+
+// OpNum returns the operation number of RetrieveClusterCert operation.
+func (o *RetrieveClusterCertRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of RetrieveClusterCert operation.
+func (o *RetrieveClusterCertRequest) OpName() string { return "/IClusterSetup/v0/RetrieveClusterCert" }
+
 // RetrieveClusterCertResponse structure represents the RetrieveClusterCert operation response
 type RetrieveClusterCertResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1980,8 +2058,10 @@ type xxx_GenerateClusterCertOperation struct {
 	Return      int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GenerateClusterCert operation.
 func (o *xxx_GenerateClusterCertOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of GenerateClusterCert operation.
 func (o *xxx_GenerateClusterCertOperation) OpName() string {
 	return "/IClusterSetup/v0/GenerateClusterCert"
 }
@@ -2174,6 +2254,17 @@ func (o *GenerateClusterCertRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGenerateClusterCertRequest build a response structure from the given request structure.
+func (o *GenerateClusterCertRequest) MakeResponse() *GenerateClusterCertResponse {
+	return &GenerateClusterCertResponse{}
+}
+
+// OpNum returns the operation number of GenerateClusterCert operation.
+func (o *GenerateClusterCertRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of GenerateClusterCert operation.
+func (o *GenerateClusterCertRequest) OpName() string { return "/IClusterSetup/v0/GenerateClusterCert" }
+
 // GenerateClusterCertResponse structure represents the GenerateClusterCert operation response
 type GenerateClusterCertResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2226,8 +2317,10 @@ type xxx_GetUpgradeVersionOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetUpgradeVersion operation.
 func (o *xxx_GetUpgradeVersionOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of GetUpgradeVersion operation.
 func (o *xxx_GetUpgradeVersionOperation) OpName() string {
 	return "/IClusterSetup/v0/GetUpgradeVersion"
 }
@@ -2385,6 +2478,17 @@ func (o *GetUpgradeVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetUpgradeVersionRequest build a response structure from the given request structure.
+func (o *GetUpgradeVersionRequest) MakeResponse() *GetUpgradeVersionResponse {
+	return &GetUpgradeVersionResponse{}
+}
+
+// OpNum returns the operation number of GetUpgradeVersion operation.
+func (o *GetUpgradeVersionRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of GetUpgradeVersion operation.
+func (o *GetUpgradeVersionRequest) OpName() string { return "/IClusterSetup/v0/GetUpgradeVersion" }
+
 // GetUpgradeVersionResponse structure represents the GetUpgradeVersion operation response
 type GetUpgradeVersionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2437,8 +2541,10 @@ type xxx_ConfigClusterCerV2Operation struct {
 	Return      int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ConfigClusterCerV2 operation.
 func (o *xxx_ConfigClusterCerV2Operation) OpNum() int { return 14 }
 
+// OpName returns the operation name of ConfigClusterCerV2 operation.
 func (o *xxx_ConfigClusterCerV2Operation) OpName() string {
 	return "/IClusterSetup/v0/ConfigClusterCerV2"
 }
@@ -2623,6 +2729,17 @@ func (o *ConfigClusterCerV2Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeConfigClusterCerV2Request build a response structure from the given request structure.
+func (o *ConfigClusterCerV2Request) MakeResponse() *ConfigClusterCerV2Response {
+	return &ConfigClusterCerV2Response{}
+}
+
+// OpNum returns the operation number of ConfigClusterCerV2 operation.
+func (o *ConfigClusterCerV2Request) OpNum() int { return 14 }
+
+// OpName returns the operation name of ConfigClusterCerV2 operation.
+func (o *ConfigClusterCerV2Request) OpName() string { return "/IClusterSetup/v0/ConfigClusterCerV2" }
+
 // ConfigClusterCerV2Response structure represents the ConfigClusterCerV2 operation response
 type ConfigClusterCerV2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2671,8 +2788,10 @@ type xxx_RetrieveClusterCertV2Operation struct {
 	Return      int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RetrieveClusterCertV2 operation.
 func (o *xxx_RetrieveClusterCertV2Operation) OpNum() int { return 15 }
 
+// OpName returns the operation name of RetrieveClusterCertV2 operation.
 func (o *xxx_RetrieveClusterCertV2Operation) OpName() string {
 	return "/IClusterSetup/v0/RetrieveClusterCertV2"
 }
@@ -2856,6 +2975,19 @@ func (o *RetrieveClusterCertV2Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeRetrieveClusterCertV2Request build a response structure from the given request structure.
+func (o *RetrieveClusterCertV2Request) MakeResponse() *RetrieveClusterCertV2Response {
+	return &RetrieveClusterCertV2Response{}
+}
+
+// OpNum returns the operation number of RetrieveClusterCertV2 operation.
+func (o *RetrieveClusterCertV2Request) OpNum() int { return 15 }
+
+// OpName returns the operation name of RetrieveClusterCertV2 operation.
+func (o *RetrieveClusterCertV2Request) OpName() string {
+	return "/IClusterSetup/v0/RetrieveClusterCertV2"
+}
+
 // RetrieveClusterCertV2Response structure represents the RetrieveClusterCertV2 operation response
 type RetrieveClusterCertV2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2907,8 +3039,10 @@ type xxx_GenerateClusterCertV2Operation struct {
 	Return      int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GenerateClusterCertV2 operation.
 func (o *xxx_GenerateClusterCertV2Operation) OpNum() int { return 16 }
 
+// OpName returns the operation name of GenerateClusterCertV2 operation.
 func (o *xxx_GenerateClusterCertV2Operation) OpName() string {
 	return "/IClusterSetup/v0/GenerateClusterCertV2"
 }
@@ -3114,6 +3248,19 @@ func (o *GenerateClusterCertV2Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGenerateClusterCertV2Request build a response structure from the given request structure.
+func (o *GenerateClusterCertV2Request) MakeResponse() *GenerateClusterCertV2Response {
+	return &GenerateClusterCertV2Response{}
+}
+
+// OpNum returns the operation number of GenerateClusterCertV2 operation.
+func (o *GenerateClusterCertV2Request) OpNum() int { return 16 }
+
+// OpName returns the operation name of GenerateClusterCertV2 operation.
+func (o *GenerateClusterCertV2Request) OpName() string {
+	return "/IClusterSetup/v0/GenerateClusterCertV2"
 }
 
 // GenerateClusterCertV2Response structure represents the GenerateClusterCertV2 operation response

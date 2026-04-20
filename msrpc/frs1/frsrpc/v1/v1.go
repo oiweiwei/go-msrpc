@@ -591,8 +591,10 @@ type xxx_SendCommPacketOperation struct {
 	Return     uint32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FrsRpcSendCommPkt operation.
 func (o *xxx_SendCommPacketOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of FrsRpcSendCommPkt operation.
 func (o *xxx_SendCommPacketOperation) OpName() string { return "/frsrpc/v1.1/FrsRpcSendCommPkt" }
 
 func (o *xxx_SendCommPacketOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -709,6 +711,17 @@ func (o *SendCommPacketRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSendCommPacketRequest build a response structure from the given request structure.
+func (o *SendCommPacketRequest) MakeResponse() *SendCommPacketResponse {
+	return &SendCommPacketResponse{}
+}
+
+// OpNum returns the operation number of FrsRpcSendCommPkt operation.
+func (o *SendCommPacketRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of FrsRpcSendCommPkt operation.
+func (o *SendCommPacketRequest) OpName() string { return "/frsrpc/v1.1/FrsRpcSendCommPkt" }
+
 // SendCommPacketResponse structure represents the FrsRpcSendCommPkt operation response
 type SendCommPacketResponse struct {
 	// Return: The FrsRpcSendCommPkt return value.
@@ -755,8 +768,10 @@ type xxx_VerifyPromotionParentOperation struct {
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FrsRpcVerifyPromotionParent operation.
 func (o *xxx_VerifyPromotionParentOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of FrsRpcVerifyPromotionParent operation.
 func (o *xxx_VerifyPromotionParentOperation) OpName() string {
 	return "/frsrpc/v1.1/FrsRpcVerifyPromotionParent"
 }
@@ -1049,6 +1064,19 @@ func (o *VerifyPromotionParentRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeVerifyPromotionParentRequest build a response structure from the given request structure.
+func (o *VerifyPromotionParentRequest) MakeResponse() *VerifyPromotionParentResponse {
+	return &VerifyPromotionParentResponse{}
+}
+
+// OpNum returns the operation number of FrsRpcVerifyPromotionParent operation.
+func (o *VerifyPromotionParentRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of FrsRpcVerifyPromotionParent operation.
+func (o *VerifyPromotionParentRequest) OpName() string {
+	return "/frsrpc/v1.1/FrsRpcVerifyPromotionParent"
+}
+
 // VerifyPromotionParentResponse structure represents the FrsRpcVerifyPromotionParent operation response
 type VerifyPromotionParentResponse struct {
 	// Return: The FrsRpcVerifyPromotionParent return value.
@@ -1101,8 +1129,10 @@ type xxx_StartPromotionParentOperation struct {
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FrsRpcStartPromotionParent operation.
 func (o *xxx_StartPromotionParentOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of FrsRpcStartPromotionParent operation.
 func (o *xxx_StartPromotionParentOperation) OpName() string {
 	return "/frsrpc/v1.1/FrsRpcStartPromotionParent"
 }
@@ -1842,6 +1872,24 @@ func (o *StartPromotionParentRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeStartPromotionParentRequest build a response structure from the given request structure.
+func (o *StartPromotionParentRequest) MakeResponse() *StartPromotionParentResponse {
+	if o == nil {
+		return &StartPromotionParentResponse{}
+	}
+	return &StartPromotionParentResponse{
+		GUIDSize: o.GUIDSize,
+	}
+}
+
+// OpNum returns the operation number of FrsRpcStartPromotionParent operation.
+func (o *StartPromotionParentRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of FrsRpcStartPromotionParent operation.
+func (o *StartPromotionParentRequest) OpName() string {
+	return "/frsrpc/v1.1/FrsRpcStartPromotionParent"
+}
+
 // StartPromotionParentResponse structure represents the FrsRpcStartPromotionParent operation response
 type StartPromotionParentResponse struct {
 	// XXX: GuidSize is an implicit input depedency for output parameters
@@ -1897,8 +1945,10 @@ type xxx_NoopOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FrsNOP operation.
 func (o *xxx_NoopOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of FrsNOP operation.
 func (o *xxx_NoopOperation) OpName() string { return "/frsrpc/v1.1/FrsNOP" }
 
 func (o *xxx_NoopOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1983,6 +2033,17 @@ func (o *NoopRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeNoopRequest build a response structure from the given request structure.
+func (o *NoopRequest) MakeResponse() *NoopResponse {
+	return &NoopResponse{}
+}
+
+// OpNum returns the operation number of FrsNOP operation.
+func (o *NoopRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of FrsNOP operation.
+func (o *NoopRequest) OpName() string { return "/frsrpc/v1.1/FrsNOP" }
 
 // NoopResponse structure represents the FrsNOP operation response
 type NoopResponse struct {

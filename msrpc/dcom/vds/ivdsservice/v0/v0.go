@@ -570,8 +570,10 @@ type xxx_IsServiceReadyOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsServiceReady operation.
 func (o *xxx_IsServiceReadyOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of IsServiceReady operation.
 func (o *xxx_IsServiceReadyOperation) OpName() string { return "/IVdsService/v0/IsServiceReady" }
 
 func (o *xxx_IsServiceReadyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -715,6 +717,17 @@ func (o *IsServiceReadyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeIsServiceReadyRequest build a response structure from the given request structure.
+func (o *IsServiceReadyRequest) MakeResponse() *IsServiceReadyResponse {
+	return &IsServiceReadyResponse{}
+}
+
+// OpNum returns the operation number of IsServiceReady operation.
+func (o *IsServiceReadyRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of IsServiceReady operation.
+func (o *IsServiceReadyRequest) OpName() string { return "/IVdsService/v0/IsServiceReady" }
+
 // IsServiceReadyResponse structure represents the IsServiceReady operation response
 type IsServiceReadyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -761,8 +774,10 @@ type xxx_WaitForServiceReadyOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WaitForServiceReady operation.
 func (o *xxx_WaitForServiceReadyOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of WaitForServiceReady operation.
 func (o *xxx_WaitForServiceReadyOperation) OpName() string {
 	return "/IVdsService/v0/WaitForServiceReady"
 }
@@ -908,6 +923,17 @@ func (o *WaitForServiceReadyRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeWaitForServiceReadyRequest build a response structure from the given request structure.
+func (o *WaitForServiceReadyRequest) MakeResponse() *WaitForServiceReadyResponse {
+	return &WaitForServiceReadyResponse{}
+}
+
+// OpNum returns the operation number of WaitForServiceReady operation.
+func (o *WaitForServiceReadyRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of WaitForServiceReady operation.
+func (o *WaitForServiceReadyRequest) OpName() string { return "/IVdsService/v0/WaitForServiceReady" }
+
 // WaitForServiceReadyResponse structure represents the WaitForServiceReady operation response
 type WaitForServiceReadyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -955,8 +981,10 @@ type xxx_GetPropertiesOperation struct {
 	Return          int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetProperties operation.
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of GetProperties operation.
 func (o *xxx_GetPropertiesOperation) OpName() string { return "/IVdsService/v0/GetProperties" }
 
 func (o *xxx_GetPropertiesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1127,6 +1155,17 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetPropertiesRequest build a response structure from the given request structure.
+func (o *GetPropertiesRequest) MakeResponse() *GetPropertiesResponse {
+	return &GetPropertiesResponse{}
+}
+
+// OpNum returns the operation number of GetProperties operation.
+func (o *GetPropertiesRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of GetProperties operation.
+func (o *GetPropertiesRequest) OpName() string { return "/IVdsService/v0/GetProperties" }
+
 // GetPropertiesResponse structure represents the GetProperties operation response
 type GetPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1178,8 +1217,10 @@ type xxx_QueryProvidersOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryProviders operation.
 func (o *xxx_QueryProvidersOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of QueryProviders operation.
 func (o *xxx_QueryProvidersOperation) OpName() string { return "/IVdsService/v0/QueryProviders" }
 
 func (o *xxx_QueryProvidersOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1387,6 +1428,17 @@ func (o *QueryProvidersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeQueryProvidersRequest build a response structure from the given request structure.
+func (o *QueryProvidersRequest) MakeResponse() *QueryProvidersResponse {
+	return &QueryProvidersResponse{}
+}
+
+// OpNum returns the operation number of QueryProviders operation.
+func (o *QueryProvidersRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of QueryProviders operation.
+func (o *QueryProvidersRequest) OpName() string { return "/IVdsService/v0/QueryProviders" }
+
 // QueryProvidersResponse structure represents the QueryProviders operation response
 type QueryProvidersResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1441,8 +1493,10 @@ type xxx_QueryUnallocatedDisksOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryUnallocatedDisks operation.
 func (o *xxx_QueryUnallocatedDisksOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of QueryUnallocatedDisks operation.
 func (o *xxx_QueryUnallocatedDisksOperation) OpName() string {
 	return "/IVdsService/v0/QueryUnallocatedDisks"
 }
@@ -1634,6 +1688,19 @@ func (o *QueryUnallocatedDisksRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeQueryUnallocatedDisksRequest build a response structure from the given request structure.
+func (o *QueryUnallocatedDisksRequest) MakeResponse() *QueryUnallocatedDisksResponse {
+	return &QueryUnallocatedDisksResponse{}
+}
+
+// OpNum returns the operation number of QueryUnallocatedDisks operation.
+func (o *QueryUnallocatedDisksRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of QueryUnallocatedDisks operation.
+func (o *QueryUnallocatedDisksRequest) OpName() string {
+	return "/IVdsService/v0/QueryUnallocatedDisks"
+}
+
 // QueryUnallocatedDisksResponse structure represents the QueryUnallocatedDisks operation response
 type QueryUnallocatedDisksResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1690,8 +1757,10 @@ type xxx_GetObjectOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetObject operation.
 func (o *xxx_GetObjectOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of GetObject operation.
 func (o *xxx_GetObjectOperation) OpName() string { return "/IVdsService/v0/GetObject" }
 
 func (o *xxx_GetObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1923,6 +1992,17 @@ func (o *GetObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetObjectRequest build a response structure from the given request structure.
+func (o *GetObjectRequest) MakeResponse() *GetObjectResponse {
+	return &GetObjectResponse{}
+}
+
+// OpNum returns the operation number of GetObject operation.
+func (o *GetObjectRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of GetObject operation.
+func (o *GetObjectRequest) OpName() string { return "/IVdsService/v0/GetObject" }
+
 // GetObjectResponse structure represents the GetObject operation response
 type GetObjectResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1978,8 +2058,10 @@ type xxx_QueryDriveLettersOperation struct {
 	Return                   int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryDriveLetters operation.
 func (o *xxx_QueryDriveLettersOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of QueryDriveLetters operation.
 func (o *xxx_QueryDriveLettersOperation) OpName() string { return "/IVdsService/v0/QueryDriveLetters" }
 
 func (o *xxx_QueryDriveLettersOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2213,6 +2295,22 @@ func (o *QueryDriveLettersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeQueryDriveLettersRequest build a response structure from the given request structure.
+func (o *QueryDriveLettersRequest) MakeResponse() *QueryDriveLettersResponse {
+	if o == nil {
+		return &QueryDriveLettersResponse{}
+	}
+	return &QueryDriveLettersResponse{
+		Count: o.Count,
+	}
+}
+
+// OpNum returns the operation number of QueryDriveLetters operation.
+func (o *QueryDriveLettersRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of QueryDriveLetters operation.
+func (o *QueryDriveLettersRequest) OpName() string { return "/IVdsService/v0/QueryDriveLetters" }
+
 // QueryDriveLettersResponse structure represents the QueryDriveLetters operation response
 type QueryDriveLettersResponse struct {
 	// XXX: count is an implicit input depedency for output parameters
@@ -2277,8 +2375,10 @@ type xxx_QueryFileSystemTypesOperation struct {
 	Return                   int32                         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryFileSystemTypes operation.
 func (o *xxx_QueryFileSystemTypesOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of QueryFileSystemTypes operation.
 func (o *xxx_QueryFileSystemTypesOperation) OpName() string {
 	return "/IVdsService/v0/QueryFileSystemTypes"
 }
@@ -2518,6 +2618,17 @@ func (o *QueryFileSystemTypesRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeQueryFileSystemTypesRequest build a response structure from the given request structure.
+func (o *QueryFileSystemTypesRequest) MakeResponse() *QueryFileSystemTypesResponse {
+	return &QueryFileSystemTypesResponse{}
+}
+
+// OpNum returns the operation number of QueryFileSystemTypes operation.
+func (o *QueryFileSystemTypesRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of QueryFileSystemTypes operation.
+func (o *QueryFileSystemTypesRequest) OpName() string { return "/IVdsService/v0/QueryFileSystemTypes" }
+
 // QueryFileSystemTypesResponse structure represents the QueryFileSystemTypes operation response
 type QueryFileSystemTypesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2575,8 +2686,10 @@ type xxx_ReenumerateOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Reenumerate operation.
 func (o *xxx_ReenumerateOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of Reenumerate operation.
 func (o *xxx_ReenumerateOperation) OpName() string { return "/IVdsService/v0/Reenumerate" }
 
 func (o *xxx_ReenumerateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2720,6 +2833,17 @@ func (o *ReenumerateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeReenumerateRequest build a response structure from the given request structure.
+func (o *ReenumerateRequest) MakeResponse() *ReenumerateResponse {
+	return &ReenumerateResponse{}
+}
+
+// OpNum returns the operation number of Reenumerate operation.
+func (o *ReenumerateRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of Reenumerate operation.
+func (o *ReenumerateRequest) OpName() string { return "/IVdsService/v0/Reenumerate" }
+
 // ReenumerateResponse structure represents the Reenumerate operation response
 type ReenumerateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2766,8 +2890,10 @@ type xxx_RefreshOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Refresh operation.
 func (o *xxx_RefreshOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of Refresh operation.
 func (o *xxx_RefreshOperation) OpName() string { return "/IVdsService/v0/Refresh" }
 
 func (o *xxx_RefreshOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2911,6 +3037,17 @@ func (o *RefreshRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeRefreshRequest build a response structure from the given request structure.
+func (o *RefreshRequest) MakeResponse() *RefreshResponse {
+	return &RefreshResponse{}
+}
+
+// OpNum returns the operation number of Refresh operation.
+func (o *RefreshRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of Refresh operation.
+func (o *RefreshRequest) OpName() string { return "/IVdsService/v0/Refresh" }
+
 // RefreshResponse structure represents the Refresh operation response
 type RefreshResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2957,8 +3094,10 @@ type xxx_CleanupObsoleteMountPointsOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CleanupObsoleteMountPoints operation.
 func (o *xxx_CleanupObsoleteMountPointsOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of CleanupObsoleteMountPoints operation.
 func (o *xxx_CleanupObsoleteMountPointsOperation) OpName() string {
 	return "/IVdsService/v0/CleanupObsoleteMountPoints"
 }
@@ -3104,6 +3243,19 @@ func (o *CleanupObsoleteMountPointsRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeCleanupObsoleteMountPointsRequest build a response structure from the given request structure.
+func (o *CleanupObsoleteMountPointsRequest) MakeResponse() *CleanupObsoleteMountPointsResponse {
+	return &CleanupObsoleteMountPointsResponse{}
+}
+
+// OpNum returns the operation number of CleanupObsoleteMountPoints operation.
+func (o *CleanupObsoleteMountPointsRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of CleanupObsoleteMountPoints operation.
+func (o *CleanupObsoleteMountPointsRequest) OpName() string {
+	return "/IVdsService/v0/CleanupObsoleteMountPoints"
+}
+
 // CleanupObsoleteMountPointsResponse structure represents the CleanupObsoleteMountPoints operation response
 type CleanupObsoleteMountPointsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3152,8 +3304,10 @@ type xxx_AdviseOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Advise operation.
 func (o *xxx_AdviseOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of Advise operation.
 func (o *xxx_AdviseOperation) OpName() string { return "/IVdsService/v0/Advise" }
 
 func (o *xxx_AdviseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3360,6 +3514,17 @@ func (o *AdviseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeAdviseRequest build a response structure from the given request structure.
+func (o *AdviseRequest) MakeResponse() *AdviseResponse {
+	return &AdviseResponse{}
+}
+
+// OpNum returns the operation number of Advise operation.
+func (o *AdviseRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of Advise operation.
+func (o *AdviseRequest) OpName() string { return "/IVdsService/v0/Advise" }
+
 // AdviseResponse structure represents the Advise operation response
 type AdviseResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3414,8 +3579,10 @@ type xxx_UnadviseOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Unadvise operation.
 func (o *xxx_UnadviseOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of Unadvise operation.
 func (o *xxx_UnadviseOperation) OpName() string { return "/IVdsService/v0/Unadvise" }
 
 func (o *xxx_UnadviseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3575,6 +3742,17 @@ func (o *UnadviseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeUnadviseRequest build a response structure from the given request structure.
+func (o *UnadviseRequest) MakeResponse() *UnadviseResponse {
+	return &UnadviseResponse{}
+}
+
+// OpNum returns the operation number of Unadvise operation.
+func (o *UnadviseRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of Unadvise operation.
+func (o *UnadviseRequest) OpName() string { return "/IVdsService/v0/Unadvise" }
+
 // UnadviseResponse structure represents the Unadvise operation response
 type UnadviseResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3621,8 +3799,10 @@ type xxx_RebootOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Reboot operation.
 func (o *xxx_RebootOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of Reboot operation.
 func (o *xxx_RebootOperation) OpName() string { return "/IVdsService/v0/Reboot" }
 
 func (o *xxx_RebootOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3766,6 +3946,17 @@ func (o *RebootRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeRebootRequest build a response structure from the given request structure.
+func (o *RebootRequest) MakeResponse() *RebootResponse {
+	return &RebootResponse{}
+}
+
+// OpNum returns the operation number of Reboot operation.
+func (o *RebootRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of Reboot operation.
+func (o *RebootRequest) OpName() string { return "/IVdsService/v0/Reboot" }
+
 // RebootResponse structure represents the Reboot operation response
 type RebootResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3813,8 +4004,10 @@ type xxx_SetFlagsOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetFlags operation.
 func (o *xxx_SetFlagsOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of SetFlags operation.
 func (o *xxx_SetFlagsOperation) OpName() string { return "/IVdsService/v0/SetFlags" }
 
 func (o *xxx_SetFlagsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3973,6 +4166,17 @@ func (o *SetFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeSetFlagsRequest build a response structure from the given request structure.
+func (o *SetFlagsRequest) MakeResponse() *SetFlagsResponse {
+	return &SetFlagsResponse{}
+}
+
+// OpNum returns the operation number of SetFlags operation.
+func (o *SetFlagsRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of SetFlags operation.
+func (o *SetFlagsRequest) OpName() string { return "/IVdsService/v0/SetFlags" }
+
 // SetFlagsResponse structure represents the SetFlags operation response
 type SetFlagsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4020,8 +4224,10 @@ type xxx_ClearFlagsOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClearFlags operation.
 func (o *xxx_ClearFlagsOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of ClearFlags operation.
 func (o *xxx_ClearFlagsOperation) OpName() string { return "/IVdsService/v0/ClearFlags" }
 
 func (o *xxx_ClearFlagsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4179,6 +4385,17 @@ func (o *ClearFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeClearFlagsRequest build a response structure from the given request structure.
+func (o *ClearFlagsRequest) MakeResponse() *ClearFlagsResponse {
+	return &ClearFlagsResponse{}
+}
+
+// OpNum returns the operation number of ClearFlags operation.
+func (o *ClearFlagsRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of ClearFlags operation.
+func (o *ClearFlagsRequest) OpName() string { return "/IVdsService/v0/ClearFlags" }
 
 // ClearFlagsResponse structure represents the ClearFlags operation response
 type ClearFlagsResponse struct {

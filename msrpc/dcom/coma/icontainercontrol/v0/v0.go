@@ -210,8 +210,10 @@ type xxx_CreateContainerOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateContainer operation.
 func (o *xxx_CreateContainerOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CreateContainer operation.
 func (o *xxx_CreateContainerOperation) OpName() string {
 	return "/IContainerControl/v0/CreateContainer"
 }
@@ -382,6 +384,17 @@ func (o *CreateContainerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeCreateContainerRequest build a response structure from the given request structure.
+func (o *CreateContainerRequest) MakeResponse() *CreateContainerResponse {
+	return &CreateContainerResponse{}
+}
+
+// OpNum returns the operation number of CreateContainer operation.
+func (o *CreateContainerRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of CreateContainer operation.
+func (o *CreateContainerRequest) OpName() string { return "/IContainerControl/v0/CreateContainer" }
+
 // CreateContainerResponse structure represents the CreateContainer operation response
 type CreateContainerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -429,8 +442,10 @@ type xxx_ShutdownContainersOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ShutdownContainers operation.
 func (o *xxx_ShutdownContainersOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of ShutdownContainers operation.
 func (o *xxx_ShutdownContainersOperation) OpName() string {
 	return "/IContainerControl/v0/ShutdownContainers"
 }
@@ -601,6 +616,19 @@ func (o *ShutdownContainersRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeShutdownContainersRequest build a response structure from the given request structure.
+func (o *ShutdownContainersRequest) MakeResponse() *ShutdownContainersResponse {
+	return &ShutdownContainersResponse{}
+}
+
+// OpNum returns the operation number of ShutdownContainers operation.
+func (o *ShutdownContainersRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of ShutdownContainers operation.
+func (o *ShutdownContainersRequest) OpName() string {
+	return "/IContainerControl/v0/ShutdownContainers"
+}
+
 // ShutdownContainersResponse structure represents the ShutdownContainers operation response
 type ShutdownContainersResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -647,8 +675,10 @@ type xxx_RefreshComponentsOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RefreshComponents operation.
 func (o *xxx_RefreshComponentsOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of RefreshComponents operation.
 func (o *xxx_RefreshComponentsOperation) OpName() string {
 	return "/IContainerControl/v0/RefreshComponents"
 }
@@ -793,6 +823,17 @@ func (o *RefreshComponentsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeRefreshComponentsRequest build a response structure from the given request structure.
+func (o *RefreshComponentsRequest) MakeResponse() *RefreshComponentsResponse {
+	return &RefreshComponentsResponse{}
+}
+
+// OpNum returns the operation number of RefreshComponents operation.
+func (o *RefreshComponentsRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of RefreshComponents operation.
+func (o *RefreshComponentsRequest) OpName() string { return "/IContainerControl/v0/RefreshComponents" }
 
 // RefreshComponentsResponse structure represents the RefreshComponents operation response
 type RefreshComponentsResponse struct {

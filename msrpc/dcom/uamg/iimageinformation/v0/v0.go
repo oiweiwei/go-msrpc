@@ -261,8 +261,10 @@ type xxx_GetAltTextOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AltText operation.
 func (o *xxx_GetAltTextOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of AltText operation.
 func (o *xxx_GetAltTextOperation) OpName() string { return "/IImageInformation/v0/AltText" }
 
 func (o *xxx_GetAltTextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -452,6 +454,17 @@ func (o *GetAltTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetAltTextRequest build a response structure from the given request structure.
+func (o *GetAltTextRequest) MakeResponse() *GetAltTextResponse {
+	return &GetAltTextResponse{}
+}
+
+// OpNum returns the operation number of AltText operation.
+func (o *GetAltTextRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of AltText operation.
+func (o *GetAltTextRequest) OpName() string { return "/IImageInformation/v0/AltText" }
+
 // GetAltTextResponse structure represents the AltText operation response
 type GetAltTextResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -504,8 +517,10 @@ type xxx_GetHeightOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Height operation.
 func (o *xxx_GetHeightOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Height operation.
 func (o *xxx_GetHeightOperation) OpName() string { return "/IImageInformation/v0/Height" }
 
 func (o *xxx_GetHeightOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -661,6 +676,17 @@ func (o *GetHeightRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetHeightRequest build a response structure from the given request structure.
+func (o *GetHeightRequest) MakeResponse() *GetHeightResponse {
+	return &GetHeightResponse{}
+}
+
+// OpNum returns the operation number of Height operation.
+func (o *GetHeightRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Height operation.
+func (o *GetHeightRequest) OpName() string { return "/IImageInformation/v0/Height" }
+
 // GetHeightResponse structure represents the Height operation response
 type GetHeightResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -712,8 +738,10 @@ type xxx_GetSourceOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Source operation.
 func (o *xxx_GetSourceOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Source operation.
 func (o *xxx_GetSourceOperation) OpName() string { return "/IImageInformation/v0/Source" }
 
 func (o *xxx_GetSourceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -903,6 +931,17 @@ func (o *GetSourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetSourceRequest build a response structure from the given request structure.
+func (o *GetSourceRequest) MakeResponse() *GetSourceResponse {
+	return &GetSourceResponse{}
+}
+
+// OpNum returns the operation number of Source operation.
+func (o *GetSourceRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Source operation.
+func (o *GetSourceRequest) OpName() string { return "/IImageInformation/v0/Source" }
+
 // GetSourceResponse structure represents the Source operation response
 type GetSourceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -954,8 +993,10 @@ type xxx_GetWidthOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Width operation.
 func (o *xxx_GetWidthOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of Width operation.
 func (o *xxx_GetWidthOperation) OpName() string { return "/IImageInformation/v0/Width" }
 
 func (o *xxx_GetWidthOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1110,6 +1151,17 @@ func (o *GetWidthRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetWidthRequest build a response structure from the given request structure.
+func (o *GetWidthRequest) MakeResponse() *GetWidthResponse {
+	return &GetWidthResponse{}
+}
+
+// OpNum returns the operation number of Width operation.
+func (o *GetWidthRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of Width operation.
+func (o *GetWidthRequest) OpName() string { return "/IImageInformation/v0/Width" }
 
 // GetWidthResponse structure represents the Width operation response
 type GetWidthResponse struct {

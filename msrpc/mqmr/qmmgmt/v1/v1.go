@@ -490,8 +490,10 @@ type xxx_ManagementGetInfoOperation struct {
 	Return          int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMMgmtGetInfo operation.
 func (o *xxx_ManagementGetInfoOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of R_QMMgmtGetInfo operation.
 func (o *xxx_ManagementGetInfoOperation) OpName() string { return "/qmmgmt/v1/R_QMMgmtGetInfo" }
 
 func (o *xxx_ManagementGetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -820,6 +822,22 @@ func (o *ManagementGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeManagementGetInfoRequest build a response structure from the given request structure.
+func (o *ManagementGetInfoRequest) MakeResponse() *ManagementGetInfoResponse {
+	if o == nil {
+		return &ManagementGetInfoResponse{}
+	}
+	return &ManagementGetInfoResponse{
+		CreatePartition: o.CreatePartition,
+	}
+}
+
+// OpNum returns the operation number of R_QMMgmtGetInfo operation.
+func (o *ManagementGetInfoRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of R_QMMgmtGetInfo operation.
+func (o *ManagementGetInfoRequest) OpName() string { return "/qmmgmt/v1/R_QMMgmtGetInfo" }
+
 // ManagementGetInfoResponse structure represents the R_QMMgmtGetInfo operation response
 type ManagementGetInfoResponse struct {
 	// XXX: cp is an implicit input depedency for output parameters
@@ -884,8 +902,10 @@ type xxx_ManagementActionOperation struct {
 	Return       int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_QMMgmtAction operation.
 func (o *xxx_ManagementActionOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of R_QMMgmtAction operation.
 func (o *xxx_ManagementActionOperation) OpName() string { return "/qmmgmt/v1/R_QMMgmtAction" }
 
 func (o *xxx_ManagementActionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1046,6 +1066,17 @@ func (o *ManagementActionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeManagementActionRequest build a response structure from the given request structure.
+func (o *ManagementActionRequest) MakeResponse() *ManagementActionResponse {
+	return &ManagementActionResponse{}
+}
+
+// OpNum returns the operation number of R_QMMgmtAction operation.
+func (o *ManagementActionRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of R_QMMgmtAction operation.
+func (o *ManagementActionRequest) OpName() string { return "/qmmgmt/v1/R_QMMgmtAction" }
 
 // ManagementActionResponse structure represents the R_QMMgmtAction operation response
 type ManagementActionResponse struct {

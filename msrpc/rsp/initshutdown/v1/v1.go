@@ -134,8 +134,10 @@ type xxx_BaseInitiateShutdownOperation struct {
 	Return              uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseInitiateShutdown operation.
 func (o *xxx_BaseInitiateShutdownOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of BaseInitiateShutdown operation.
 func (o *xxx_BaseInitiateShutdownOperation) OpName() string {
 	return "/InitShutdown/v1/BaseInitiateShutdown"
 }
@@ -364,6 +366,17 @@ func (o *BaseInitiateShutdownRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeBaseInitiateShutdownRequest build a response structure from the given request structure.
+func (o *BaseInitiateShutdownRequest) MakeResponse() *BaseInitiateShutdownResponse {
+	return &BaseInitiateShutdownResponse{}
+}
+
+// OpNum returns the operation number of BaseInitiateShutdown operation.
+func (o *BaseInitiateShutdownRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of BaseInitiateShutdown operation.
+func (o *BaseInitiateShutdownRequest) OpName() string { return "/InitShutdown/v1/BaseInitiateShutdown" }
+
 // BaseInitiateShutdownResponse structure represents the BaseInitiateShutdown operation response
 type BaseInitiateShutdownResponse struct {
 	// Return: The BaseInitiateShutdown return value.
@@ -405,8 +418,10 @@ type xxx_BaseAbortShutdownOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseAbortShutdown operation.
 func (o *xxx_BaseAbortShutdownOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of BaseAbortShutdown operation.
 func (o *xxx_BaseAbortShutdownOperation) OpName() string { return "/InitShutdown/v1/BaseAbortShutdown" }
 
 func (o *xxx_BaseAbortShutdownOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -533,6 +548,17 @@ func (o *BaseAbortShutdownRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeBaseAbortShutdownRequest build a response structure from the given request structure.
+func (o *BaseAbortShutdownRequest) MakeResponse() *BaseAbortShutdownResponse {
+	return &BaseAbortShutdownResponse{}
+}
+
+// OpNum returns the operation number of BaseAbortShutdown operation.
+func (o *BaseAbortShutdownRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of BaseAbortShutdown operation.
+func (o *BaseAbortShutdownRequest) OpName() string { return "/InitShutdown/v1/BaseAbortShutdown" }
+
 // BaseAbortShutdownResponse structure represents the BaseAbortShutdown operation response
 type BaseAbortShutdownResponse struct {
 	// Return: The BaseAbortShutdown return value.
@@ -579,8 +605,10 @@ type xxx_BaseInitiateShutdownExOperation struct {
 	Return              uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseInitiateShutdownEx operation.
 func (o *xxx_BaseInitiateShutdownExOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of BaseInitiateShutdownEx operation.
 func (o *xxx_BaseInitiateShutdownExOperation) OpName() string {
 	return "/InitShutdown/v1/BaseInitiateShutdownEx"
 }
@@ -823,6 +851,19 @@ func (o *BaseInitiateShutdownExRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeBaseInitiateShutdownExRequest build a response structure from the given request structure.
+func (o *BaseInitiateShutdownExRequest) MakeResponse() *BaseInitiateShutdownExResponse {
+	return &BaseInitiateShutdownExResponse{}
+}
+
+// OpNum returns the operation number of BaseInitiateShutdownEx operation.
+func (o *BaseInitiateShutdownExRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of BaseInitiateShutdownEx operation.
+func (o *BaseInitiateShutdownExRequest) OpName() string {
+	return "/InitShutdown/v1/BaseInitiateShutdownEx"
 }
 
 // BaseInitiateShutdownExResponse structure represents the BaseInitiateShutdownEx operation response

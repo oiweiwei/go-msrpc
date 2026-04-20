@@ -304,8 +304,10 @@ type xxx_GetClientApplicationIDOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClientApplicationID operation.
 func (o *xxx_GetClientApplicationIDOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of ClientApplicationID operation.
 func (o *xxx_GetClientApplicationIDOperation) OpName() string {
 	return "/IUpdateServiceManager2/v0/ClientApplicationID"
 }
@@ -497,6 +499,19 @@ func (o *GetClientApplicationIDRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetClientApplicationIDRequest build a response structure from the given request structure.
+func (o *GetClientApplicationIDRequest) MakeResponse() *GetClientApplicationIDResponse {
+	return &GetClientApplicationIDResponse{}
+}
+
+// OpNum returns the operation number of ClientApplicationID operation.
+func (o *GetClientApplicationIDRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of ClientApplicationID operation.
+func (o *GetClientApplicationIDRequest) OpName() string {
+	return "/IUpdateServiceManager2/v0/ClientApplicationID"
+}
+
 // GetClientApplicationIDResponse structure represents the ClientApplicationID operation response
 type GetClientApplicationIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -556,8 +571,10 @@ type xxx_SetClientApplicationIDOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClientApplicationID operation.
 func (o *xxx_SetClientApplicationIDOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of ClientApplicationID operation.
 func (o *xxx_SetClientApplicationIDOperation) OpName() string {
 	return "/IUpdateServiceManager2/v0/ClientApplicationID"
 }
@@ -757,6 +774,19 @@ func (o *SetClientApplicationIDRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeSetClientApplicationIDRequest build a response structure from the given request structure.
+func (o *SetClientApplicationIDRequest) MakeResponse() *SetClientApplicationIDResponse {
+	return &SetClientApplicationIDResponse{}
+}
+
+// OpNum returns the operation number of ClientApplicationID operation.
+func (o *SetClientApplicationIDRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of ClientApplicationID operation.
+func (o *SetClientApplicationIDRequest) OpName() string {
+	return "/IUpdateServiceManager2/v0/ClientApplicationID"
+}
+
 // SetClientApplicationIDResponse structure represents the ClientApplicationID operation response
 type SetClientApplicationIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -805,8 +835,10 @@ type xxx_QueryServiceRegistrationOperation struct {
 	Return      int32                           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryServiceRegistration operation.
 func (o *xxx_QueryServiceRegistrationOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of QueryServiceRegistration operation.
 func (o *xxx_QueryServiceRegistrationOperation) OpName() string {
 	return "/IUpdateServiceManager2/v0/QueryServiceRegistration"
 }
@@ -1048,6 +1080,19 @@ func (o *QueryServiceRegistrationRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeQueryServiceRegistrationRequest build a response structure from the given request structure.
+func (o *QueryServiceRegistrationRequest) MakeResponse() *QueryServiceRegistrationResponse {
+	return &QueryServiceRegistrationResponse{}
+}
+
+// OpNum returns the operation number of QueryServiceRegistration operation.
+func (o *QueryServiceRegistrationRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of QueryServiceRegistration operation.
+func (o *QueryServiceRegistrationRequest) OpName() string {
+	return "/IUpdateServiceManager2/v0/QueryServiceRegistration"
+}
+
 // QueryServiceRegistrationResponse structure represents the QueryServiceRegistration operation response
 type QueryServiceRegistrationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1102,8 +1147,10 @@ type xxx_AddService2Operation struct {
 	Return               int32                           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddService2 operation.
 func (o *xxx_AddService2Operation) OpNum() int { return 17 }
 
+// OpName returns the operation name of AddService2 operation.
 func (o *xxx_AddService2Operation) OpName() string { return "/IUpdateServiceManager2/v0/AddService2" }
 
 func (o *xxx_AddService2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1412,6 +1459,17 @@ func (o *AddService2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeAddService2Request build a response structure from the given request structure.
+func (o *AddService2Request) MakeResponse() *AddService2Response {
+	return &AddService2Response{}
+}
+
+// OpNum returns the operation number of AddService2 operation.
+func (o *AddService2Request) OpNum() int { return 17 }
+
+// OpName returns the operation name of AddService2 operation.
+func (o *AddService2Request) OpName() string { return "/IUpdateServiceManager2/v0/AddService2" }
 
 // AddService2Response structure represents the AddService2 operation response
 type AddService2Response struct {

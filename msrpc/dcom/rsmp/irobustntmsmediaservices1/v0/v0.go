@@ -169,8 +169,10 @@ type xxx_GetNTMSMediaPoolNameAROperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsMediaPoolNameAR operation.
 func (o *xxx_GetNTMSMediaPoolNameAROperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of GetNtmsMediaPoolNameAR operation.
 func (o *xxx_GetNTMSMediaPoolNameAROperation) OpName() string {
 	return "/IRobustNtmsMediaServices1/v0/GetNtmsMediaPoolNameAR"
 }
@@ -450,6 +452,24 @@ func (o *GetNTMSMediaPoolNameARRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetNTMSMediaPoolNameARRequest build a response structure from the given request structure.
+func (o *GetNTMSMediaPoolNameARRequest) MakeResponse() *GetNTMSMediaPoolNameARResponse {
+	if o == nil {
+		return &GetNTMSMediaPoolNameARResponse{}
+	}
+	return &GetNTMSMediaPoolNameARResponse{
+		NameSizeBuffer: o.NameSizeBuffer,
+	}
+}
+
+// OpNum returns the operation number of GetNtmsMediaPoolNameAR operation.
+func (o *GetNTMSMediaPoolNameARRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of GetNtmsMediaPoolNameAR operation.
+func (o *GetNTMSMediaPoolNameARRequest) OpName() string {
+	return "/IRobustNtmsMediaServices1/v0/GetNtmsMediaPoolNameAR"
+}
+
 // GetNTMSMediaPoolNameARResponse structure represents the GetNtmsMediaPoolNameAR operation response
 type GetNTMSMediaPoolNameARResponse struct {
 	// XXX: lpdwNameSizeBuf is an implicit input depedency for output parameters
@@ -545,8 +565,10 @@ type xxx_GetNTMSMediaPoolNameWROperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsMediaPoolNameWR operation.
 func (o *xxx_GetNTMSMediaPoolNameWROperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of GetNtmsMediaPoolNameWR operation.
 func (o *xxx_GetNTMSMediaPoolNameWROperation) OpName() string {
 	return "/IRobustNtmsMediaServices1/v0/GetNtmsMediaPoolNameWR"
 }
@@ -830,6 +852,24 @@ func (o *GetNTMSMediaPoolNameWRRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetNTMSMediaPoolNameWRRequest build a response structure from the given request structure.
+func (o *GetNTMSMediaPoolNameWRRequest) MakeResponse() *GetNTMSMediaPoolNameWRResponse {
+	if o == nil {
+		return &GetNTMSMediaPoolNameWRResponse{}
+	}
+	return &GetNTMSMediaPoolNameWRResponse{
+		NameSizeBuffer: o.NameSizeBuffer,
+	}
+}
+
+// OpNum returns the operation number of GetNtmsMediaPoolNameWR operation.
+func (o *GetNTMSMediaPoolNameWRRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of GetNtmsMediaPoolNameWR operation.
+func (o *GetNTMSMediaPoolNameWRRequest) OpName() string {
+	return "/IRobustNtmsMediaServices1/v0/GetNtmsMediaPoolNameWR"
 }
 
 // GetNTMSMediaPoolNameWRResponse structure represents the GetNtmsMediaPoolNameWR operation response

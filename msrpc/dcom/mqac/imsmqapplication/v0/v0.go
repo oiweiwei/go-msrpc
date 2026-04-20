@@ -146,8 +146,10 @@ type xxx_MachineIDOfMachineNameOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MachineIdOfMachineName operation.
 func (o *xxx_MachineIDOfMachineNameOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of MachineIdOfMachineName operation.
 func (o *xxx_MachineIDOfMachineNameOperation) OpName() string {
 	return "/IMSMQApplication/v0/MachineIdOfMachineName"
 }
@@ -388,6 +390,19 @@ func (o *MachineIDOfMachineNameRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeMachineIDOfMachineNameRequest build a response structure from the given request structure.
+func (o *MachineIDOfMachineNameRequest) MakeResponse() *MachineIDOfMachineNameResponse {
+	return &MachineIDOfMachineNameResponse{}
+}
+
+// OpNum returns the operation number of MachineIdOfMachineName operation.
+func (o *MachineIDOfMachineNameRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of MachineIdOfMachineName operation.
+func (o *MachineIDOfMachineNameRequest) OpName() string {
+	return "/IMSMQApplication/v0/MachineIdOfMachineName"
 }
 
 // MachineIDOfMachineNameResponse structure represents the MachineIdOfMachineName operation response

@@ -209,8 +209,10 @@ type xxx_ServerMessageOperation struct {
 	Return  int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LnkSvrMessage operation.
 func (o *xxx_ServerMessageOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of LnkSvrMessage operation.
 func (o *xxx_ServerMessageOperation) OpName() string { return "/trksvr/v1/LnkSvrMessage" }
 
 func (o *xxx_ServerMessageOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -356,6 +358,17 @@ func (o *ServerMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeServerMessageRequest build a response structure from the given request structure.
+func (o *ServerMessageRequest) MakeResponse() *ServerMessageResponse {
+	return &ServerMessageResponse{}
+}
+
+// OpNum returns the operation number of LnkSvrMessage operation.
+func (o *ServerMessageRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of LnkSvrMessage operation.
+func (o *ServerMessageRequest) OpName() string { return "/trksvr/v1/LnkSvrMessage" }
+
 // ServerMessageResponse structure represents the LnkSvrMessage operation response
 type ServerMessageResponse struct {
 	// pMsg: Pointer to a message, in the format of a TRKSVR_MESSAGE_UNION structure. If
@@ -403,8 +416,10 @@ type xxx_ServerMessageCallbackOperation struct {
 	Return  int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LnkSvrMessageCallback operation.
 func (o *xxx_ServerMessageCallbackOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of LnkSvrMessageCallback operation.
 func (o *xxx_ServerMessageCallbackOperation) OpName() string {
 	return "/trksvr/v1/LnkSvrMessageCallback"
 }
@@ -550,6 +565,17 @@ func (o *ServerMessageCallbackRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeServerMessageCallbackRequest build a response structure from the given request structure.
+func (o *ServerMessageCallbackRequest) MakeResponse() *ServerMessageCallbackResponse {
+	return &ServerMessageCallbackResponse{}
+}
+
+// OpNum returns the operation number of LnkSvrMessageCallback operation.
+func (o *ServerMessageCallbackRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of LnkSvrMessageCallback operation.
+func (o *ServerMessageCallbackRequest) OpName() string { return "/trksvr/v1/LnkSvrMessageCallback" }
 
 // ServerMessageCallbackResponse structure represents the LnkSvrMessageCallback operation response
 type ServerMessageCallbackResponse struct {

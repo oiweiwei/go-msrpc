@@ -271,8 +271,10 @@ type xxx_JobAddOperation struct {
 	Return     uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrJobAdd operation.
 func (o *xxx_JobAddOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of NetrJobAdd operation.
 func (o *xxx_JobAddOperation) OpName() string { return "/atsvc/v1/NetrJobAdd" }
 
 func (o *xxx_JobAddOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -445,6 +447,17 @@ func (o *JobAddRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeJobAddRequest build a response structure from the given request structure.
+func (o *JobAddRequest) MakeResponse() *JobAddResponse {
+	return &JobAddResponse{}
+}
+
+// OpNum returns the operation number of NetrJobAdd operation.
+func (o *JobAddRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of NetrJobAdd operation.
+func (o *JobAddRequest) OpName() string { return "/atsvc/v1/NetrJobAdd" }
+
 // JobAddResponse structure represents the NetrJobAdd operation response
 type JobAddResponse struct {
 	// pJobId: MUST return a pointer to the task identifier when the NetrJobAdd method is
@@ -493,8 +506,10 @@ type xxx_JobDeleteOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrJobDel operation.
 func (o *xxx_JobDeleteOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of NetrJobDel operation.
 func (o *xxx_JobDeleteOperation) OpName() string { return "/atsvc/v1/NetrJobDel" }
 
 func (o *xxx_JobDeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -657,6 +672,17 @@ func (o *JobDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeJobDeleteRequest build a response structure from the given request structure.
+func (o *JobDeleteRequest) MakeResponse() *JobDeleteResponse {
+	return &JobDeleteResponse{}
+}
+
+// OpNum returns the operation number of NetrJobDel operation.
+func (o *JobDeleteRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of NetrJobDel operation.
+func (o *JobDeleteRequest) OpName() string { return "/atsvc/v1/NetrJobDel" }
+
 // JobDeleteResponse structure represents the NetrJobDel operation response
 type JobDeleteResponse struct {
 	// Return: The NetrJobDel return value.
@@ -702,8 +728,10 @@ type xxx_JobEnumOperation struct {
 	Return                 uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrJobEnum operation.
 func (o *xxx_JobEnumOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of NetrJobEnum operation.
 func (o *xxx_JobEnumOperation) OpName() string { return "/atsvc/v1/NetrJobEnum" }
 
 func (o *xxx_JobEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -994,6 +1022,17 @@ func (o *JobEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeJobEnumRequest build a response structure from the given request structure.
+func (o *JobEnumRequest) MakeResponse() *JobEnumResponse {
+	return &JobEnumResponse{}
+}
+
+// OpNum returns the operation number of NetrJobEnum operation.
+func (o *JobEnumRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of NetrJobEnum operation.
+func (o *JobEnumRequest) OpName() string { return "/atsvc/v1/NetrJobEnum" }
+
 // JobEnumResponse structure represents the NetrJobEnum operation response
 type JobEnumResponse struct {
 	// pEnumContainer:  Pointer to an AT_ENUM_CONTAINER (section 2.3.5) structure that
@@ -1055,8 +1094,10 @@ type xxx_JobGetInfoOperation struct {
 	Return     uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrJobGetInfo operation.
 func (o *xxx_JobGetInfoOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of NetrJobGetInfo operation.
 func (o *xxx_JobGetInfoOperation) OpName() string { return "/atsvc/v1/NetrJobGetInfo" }
 
 func (o *xxx_JobGetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1246,6 +1287,17 @@ func (o *JobGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeJobGetInfoRequest build a response structure from the given request structure.
+func (o *JobGetInfoRequest) MakeResponse() *JobGetInfoResponse {
+	return &JobGetInfoResponse{}
+}
+
+// OpNum returns the operation number of NetrJobGetInfo operation.
+func (o *JobGetInfoRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of NetrJobGetInfo operation.
+func (o *JobGetInfoRequest) OpName() string { return "/atsvc/v1/NetrJobGetInfo" }
 
 // JobGetInfoResponse structure represents the NetrJobGetInfo operation response
 type JobGetInfoResponse struct {

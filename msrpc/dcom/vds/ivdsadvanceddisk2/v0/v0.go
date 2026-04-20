@@ -150,8 +150,10 @@ type xxx_ChangePartitionTypeOperation struct {
 	Return     int32                              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ChangePartitionType operation.
 func (o *xxx_ChangePartitionTypeOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ChangePartitionType operation.
 func (o *xxx_ChangePartitionTypeOperation) OpName() string {
 	return "/IVdsAdvancedDisk2/v0/ChangePartitionType"
 }
@@ -359,6 +361,19 @@ func (o *ChangePartitionTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeChangePartitionTypeRequest build a response structure from the given request structure.
+func (o *ChangePartitionTypeRequest) MakeResponse() *ChangePartitionTypeResponse {
+	return &ChangePartitionTypeResponse{}
+}
+
+// OpNum returns the operation number of ChangePartitionType operation.
+func (o *ChangePartitionTypeRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ChangePartitionType operation.
+func (o *ChangePartitionTypeRequest) OpName() string {
+	return "/IVdsAdvancedDisk2/v0/ChangePartitionType"
 }
 
 // ChangePartitionTypeResponse structure represents the ChangePartitionType operation response

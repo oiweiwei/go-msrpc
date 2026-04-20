@@ -171,8 +171,10 @@ type xxx_SupportsMultipleBitnessOperation struct {
 	Return                  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SupportsMultipleBitness operation.
 func (o *xxx_SupportsMultipleBitnessOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SupportsMultipleBitness operation.
 func (o *xxx_SupportsMultipleBitnessOperation) OpName() string {
 	return "/ICatalog64BitSupport/v0/SupportsMultipleBitness"
 }
@@ -338,6 +340,19 @@ func (o *SupportsMultipleBitnessRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeSupportsMultipleBitnessRequest build a response structure from the given request structure.
+func (o *SupportsMultipleBitnessRequest) MakeResponse() *SupportsMultipleBitnessResponse {
+	return &SupportsMultipleBitnessResponse{}
+}
+
+// OpNum returns the operation number of SupportsMultipleBitness operation.
+func (o *SupportsMultipleBitnessRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SupportsMultipleBitness operation.
+func (o *SupportsMultipleBitnessRequest) OpName() string {
+	return "/ICatalog64BitSupport/v0/SupportsMultipleBitness"
+}
+
 // SupportsMultipleBitnessResponse structure represents the SupportsMultipleBitness operation response
 type SupportsMultipleBitnessResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -391,8 +406,10 @@ type xxx_Initialize64BitQueryCellSupportOperation struct {
 	Return                        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Initialize64BitQueryCellSupport operation.
 func (o *xxx_Initialize64BitQueryCellSupportOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Initialize64BitQueryCellSupport operation.
 func (o *xxx_Initialize64BitQueryCellSupportOperation) OpName() string {
 	return "/ICatalog64BitSupport/v0/Initialize64BitQueryCellSupport"
 }
@@ -581,6 +598,19 @@ func (o *Initialize64BitQueryCellSupportRequest) UnmarshalNDR(ctx context.Contex
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeInitialize64BitQueryCellSupportRequest build a response structure from the given request structure.
+func (o *Initialize64BitQueryCellSupportRequest) MakeResponse() *Initialize64BitQueryCellSupportResponse {
+	return &Initialize64BitQueryCellSupportResponse{}
+}
+
+// OpNum returns the operation number of Initialize64BitQueryCellSupport operation.
+func (o *Initialize64BitQueryCellSupportRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Initialize64BitQueryCellSupport operation.
+func (o *Initialize64BitQueryCellSupportRequest) OpName() string {
+	return "/ICatalog64BitSupport/v0/Initialize64BitQueryCellSupport"
 }
 
 // Initialize64BitQueryCellSupportResponse structure represents the Initialize64BitQueryCellSupport operation response

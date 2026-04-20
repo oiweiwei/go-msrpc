@@ -399,15 +399,46 @@ func (p *Generator) GenOperationStruct(ctx context.Context, op *midl.Operation, 
 		p.P("return", "nil")
 	})
 
+	if dir == InParam {
+		p.GenMakeResponse(ctx, op, dir)
+		p.GenOpNum(ctx, op, dir)
+		p.GenOpName(ctx, op, dir)
+	}
+}
+
+func (p *Generator) GenMakeResponse(ctx context.Context, op *midl.Operation, dir int) {
+	implicit := p.GetOutputParamImplicitDependents(ctx, op, OutParam)
+	p.P()
+	p.P("//", "Make"+p.OpName(ctx, op, dir), "build a response structure from the given request structure.")
+	p.Block("func", "(o *"+p.OpName(ctx, op, dir)+")", "MakeResponse()", "*"+p.OpName(ctx, op, OutParam), func() {
+		if len(implicit) == 0 {
+			p.P("return", "&"+p.OpName(ctx, op, OutParam)+"{}")
+			return
+		}
+		p.If("o == nil", func() {
+			p.P("return", "&"+p.OpName(ctx, op, OutParam)+"{}")
+		})
+		p.Block("return", "&"+p.OpName(ctx, op, OutParam), func() {
+			for _, param := range implicit {
+				n := GoName(param.Name)
+				if n == "_" {
+					continue
+				}
+				p.P(n+":", "o."+n+",")
+			}
+		})
+	})
 }
 
 func (p *Generator) GenOpNum(ctx context.Context, op *midl.Operation, dir int) {
 	p.P()
+	p.P("//", "OpNum", "returns", "the", "operation", "number", "of", op.Name, "operation.")
 	p.P("func", "(o *"+p.OpName(ctx, op, dir)+")", "OpNum()", "int", "{", "return", op.OpNum, "}")
 }
 
 func (p *Generator) GenOpName(ctx context.Context, op *midl.Operation, dir int) {
 	p.P()
+	p.P("//", "OpName", "returns", "the", "operation", "name", "of", op.Name, "operation.")
 	p.P("func", "(o *"+p.OpName(ctx, op, dir)+")", "OpName()", "string", "{",
 		"return", p.Q("/"+Interface(ctx).Name+"/"+Interface(ctx).Attrs.Version.String()+"/"+op.Name),
 		"}")

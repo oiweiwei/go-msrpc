@@ -155,8 +155,10 @@ type xxx_GetSupportedClientOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSupportedClient operation.
 func (o *xxx_GetSupportedClientOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetSupportedClient operation.
 func (o *xxx_GetSupportedClientOperation) OpName() string {
 	return "/IWRMProtocol/v0/GetSupportedClient"
 }
@@ -347,6 +349,17 @@ func (o *GetSupportedClientRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetSupportedClientRequest build a response structure from the given request structure.
+func (o *GetSupportedClientRequest) MakeResponse() *GetSupportedClientResponse {
+	return &GetSupportedClientResponse{}
+}
+
+// OpNum returns the operation number of GetSupportedClient operation.
+func (o *GetSupportedClientRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetSupportedClient operation.
+func (o *GetSupportedClientRequest) OpName() string { return "/IWRMProtocol/v0/GetSupportedClient" }
 
 // GetSupportedClientResponse structure represents the GetSupportedClient operation response
 type GetSupportedClientResponse struct {

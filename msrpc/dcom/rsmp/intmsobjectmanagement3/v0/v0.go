@@ -171,8 +171,10 @@ type xxx_GetNTMSObjectAttributeAROperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsObjectAttributeAR operation.
 func (o *xxx_GetNTMSObjectAttributeAROperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of GetNtmsObjectAttributeAR operation.
 func (o *xxx_GetNTMSObjectAttributeAROperation) OpName() string {
 	return "/INtmsObjectManagement3/v0/GetNtmsObjectAttributeAR"
 }
@@ -484,6 +486,24 @@ func (o *GetNTMSObjectAttributeARRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeGetNTMSObjectAttributeARRequest build a response structure from the given request structure.
+func (o *GetNTMSObjectAttributeARRequest) MakeResponse() *GetNTMSObjectAttributeARResponse {
+	if o == nil {
+		return &GetNTMSObjectAttributeARResponse{}
+	}
+	return &GetNTMSObjectAttributeARResponse{
+		AttributeBufferSize: o.AttributeBufferSize,
+	}
+}
+
+// OpNum returns the operation number of GetNtmsObjectAttributeAR operation.
+func (o *GetNTMSObjectAttributeARRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of GetNtmsObjectAttributeAR operation.
+func (o *GetNTMSObjectAttributeARRequest) OpName() string {
+	return "/INtmsObjectManagement3/v0/GetNtmsObjectAttributeAR"
+}
+
 // GetNTMSObjectAttributeARResponse structure represents the GetNtmsObjectAttributeAR operation response
 type GetNTMSObjectAttributeARResponse struct {
 	// XXX: lpdwAttributeBufferSize is an implicit input depedency for output parameters
@@ -614,8 +634,10 @@ type xxx_GetNTMSObjectAttributeWROperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsObjectAttributeWR operation.
 func (o *xxx_GetNTMSObjectAttributeWROperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of GetNtmsObjectAttributeWR operation.
 func (o *xxx_GetNTMSObjectAttributeWROperation) OpName() string {
 	return "/INtmsObjectManagement3/v0/GetNtmsObjectAttributeWR"
 }
@@ -925,6 +947,24 @@ func (o *GetNTMSObjectAttributeWRRequest) UnmarshalNDR(ctx context.Context, r nd
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetNTMSObjectAttributeWRRequest build a response structure from the given request structure.
+func (o *GetNTMSObjectAttributeWRRequest) MakeResponse() *GetNTMSObjectAttributeWRResponse {
+	if o == nil {
+		return &GetNTMSObjectAttributeWRResponse{}
+	}
+	return &GetNTMSObjectAttributeWRResponse{
+		AttributeBufferSize: o.AttributeBufferSize,
+	}
+}
+
+// OpNum returns the operation number of GetNtmsObjectAttributeWR operation.
+func (o *GetNTMSObjectAttributeWRRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of GetNtmsObjectAttributeWR operation.
+func (o *GetNTMSObjectAttributeWRRequest) OpName() string {
+	return "/INtmsObjectManagement3/v0/GetNtmsObjectAttributeWR"
 }
 
 // GetNTMSObjectAttributeWRResponse structure represents the GetNtmsObjectAttributeWR operation response

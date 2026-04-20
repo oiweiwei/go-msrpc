@@ -207,8 +207,10 @@ type xxx_GetContainerDataOperation struct {
 	Return        int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetContainerData operation.
 func (o *xxx_GetContainerDataOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetContainerData operation.
 func (o *xxx_GetContainerDataOperation) OpName() string {
 	return "/IGetTrackingData/v0/GetContainerData"
 }
@@ -448,6 +450,17 @@ func (o *GetContainerDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetContainerDataRequest build a response structure from the given request structure.
+func (o *GetContainerDataRequest) MakeResponse() *GetContainerDataResponse {
+	return &GetContainerDataResponse{}
+}
+
+// OpNum returns the operation number of GetContainerData operation.
+func (o *GetContainerDataRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetContainerData operation.
+func (o *GetContainerDataRequest) OpName() string { return "/IGetTrackingData/v0/GetContainerData" }
+
 // GetContainerDataResponse structure represents the GetContainerData operation response
 type GetContainerDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -508,8 +521,10 @@ type xxx_GetComponentDataByContainerOperation struct {
 	Return        int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetComponentDataByContainer operation.
 func (o *xxx_GetComponentDataByContainerOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of GetComponentDataByContainer operation.
 func (o *xxx_GetComponentDataByContainerOperation) OpName() string {
 	return "/IGetTrackingData/v0/GetComponentDataByContainer"
 }
@@ -765,6 +780,19 @@ func (o *GetComponentDataByContainerRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeGetComponentDataByContainerRequest build a response structure from the given request structure.
+func (o *GetComponentDataByContainerRequest) MakeResponse() *GetComponentDataByContainerResponse {
+	return &GetComponentDataByContainerResponse{}
+}
+
+// OpNum returns the operation number of GetComponentDataByContainer operation.
+func (o *GetComponentDataByContainerRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of GetComponentDataByContainer operation.
+func (o *GetComponentDataByContainerRequest) OpName() string {
+	return "/IGetTrackingData/v0/GetComponentDataByContainer"
+}
+
 // GetComponentDataByContainerResponse structure represents the GetComponentDataByContainer operation response
 type GetComponentDataByContainerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -825,8 +853,10 @@ type xxx_GetComponentDataByContainerAndClassIDOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetComponentDataByContainerAndCLSID operation.
 func (o *xxx_GetComponentDataByContainerAndClassIDOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of GetComponentDataByContainerAndCLSID operation.
 func (o *xxx_GetComponentDataByContainerAndClassIDOperation) OpName() string {
 	return "/IGetTrackingData/v0/GetComponentDataByContainerAndCLSID"
 }
@@ -1057,6 +1087,19 @@ func (o *GetComponentDataByContainerAndClassIDRequest) UnmarshalNDR(ctx context.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetComponentDataByContainerAndClassIDRequest build a response structure from the given request structure.
+func (o *GetComponentDataByContainerAndClassIDRequest) MakeResponse() *GetComponentDataByContainerAndClassIDResponse {
+	return &GetComponentDataByContainerAndClassIDResponse{}
+}
+
+// OpNum returns the operation number of GetComponentDataByContainerAndCLSID operation.
+func (o *GetComponentDataByContainerAndClassIDRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of GetComponentDataByContainerAndCLSID operation.
+func (o *GetComponentDataByContainerAndClassIDRequest) OpName() string {
+	return "/IGetTrackingData/v0/GetComponentDataByContainerAndCLSID"
 }
 
 // GetComponentDataByContainerAndClassIDResponse structure represents the GetComponentDataByContainerAndCLSID operation response

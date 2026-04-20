@@ -189,8 +189,10 @@ type xxx_CreateVirtualSmartCardOperation struct {
 	Return           int32                                         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateVirtualSmartCard operation.
 func (o *xxx_CreateVirtualSmartCardOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CreateVirtualSmartCard operation.
 func (o *xxx_CreateVirtualSmartCardOperation) OpName() string {
 	return "/ITpmVirtualSmartCardManager/v0/CreateVirtualSmartCard"
 }
@@ -819,6 +821,19 @@ func (o *CreateVirtualSmartCardRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeCreateVirtualSmartCardRequest build a response structure from the given request structure.
+func (o *CreateVirtualSmartCardRequest) MakeResponse() *CreateVirtualSmartCardResponse {
+	return &CreateVirtualSmartCardResponse{}
+}
+
+// OpNum returns the operation number of CreateVirtualSmartCard operation.
+func (o *CreateVirtualSmartCardRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of CreateVirtualSmartCard operation.
+func (o *CreateVirtualSmartCardRequest) OpName() string {
+	return "/ITpmVirtualSmartCardManager/v0/CreateVirtualSmartCard"
+}
+
 // CreateVirtualSmartCardResponse structure represents the CreateVirtualSmartCard operation response
 type CreateVirtualSmartCardResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -878,8 +893,10 @@ type xxx_DestroyVirtualSmartCardOperation struct {
 	Return         int32                                         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DestroyVirtualSmartCard operation.
 func (o *xxx_DestroyVirtualSmartCardOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of DestroyVirtualSmartCard operation.
 func (o *xxx_DestroyVirtualSmartCardOperation) OpName() string {
 	return "/ITpmVirtualSmartCardManager/v0/DestroyVirtualSmartCard"
 }
@@ -1104,6 +1121,19 @@ func (o *DestroyVirtualSmartCardRequest) UnmarshalNDR(ctx context.Context, r ndr
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeDestroyVirtualSmartCardRequest build a response structure from the given request structure.
+func (o *DestroyVirtualSmartCardRequest) MakeResponse() *DestroyVirtualSmartCardResponse {
+	return &DestroyVirtualSmartCardResponse{}
+}
+
+// OpNum returns the operation number of DestroyVirtualSmartCard operation.
+func (o *DestroyVirtualSmartCardRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of DestroyVirtualSmartCard operation.
+func (o *DestroyVirtualSmartCardRequest) OpName() string {
+	return "/ITpmVirtualSmartCardManager/v0/DestroyVirtualSmartCard"
 }
 
 // DestroyVirtualSmartCardResponse structure represents the DestroyVirtualSmartCard operation response

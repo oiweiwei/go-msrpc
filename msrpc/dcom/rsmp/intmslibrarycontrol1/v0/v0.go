@@ -596,8 +596,10 @@ type xxx_EjectNTMSMediaOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EjectNtmsMedia operation.
 func (o *xxx_EjectNTMSMediaOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of EjectNtmsMedia operation.
 func (o *xxx_EjectNTMSMediaOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/EjectNtmsMedia"
 }
@@ -876,6 +878,17 @@ func (o *EjectNTMSMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeEjectNTMSMediaRequest build a response structure from the given request structure.
+func (o *EjectNTMSMediaRequest) MakeResponse() *EjectNTMSMediaResponse {
+	return &EjectNTMSMediaResponse{}
+}
+
+// OpNum returns the operation number of EjectNtmsMedia operation.
+func (o *EjectNTMSMediaRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of EjectNtmsMedia operation.
+func (o *EjectNTMSMediaRequest) OpName() string { return "/INtmsLibraryControl1/v0/EjectNtmsMedia" }
+
 // EjectNTMSMediaResponse structure represents the EjectNtmsMedia operation response
 type EjectNTMSMediaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -930,8 +943,10 @@ type xxx_InjectNTMSMediaOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of InjectNtmsMedia operation.
 func (o *xxx_InjectNTMSMediaOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of InjectNtmsMedia operation.
 func (o *xxx_InjectNTMSMediaOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/InjectNtmsMedia"
 }
@@ -1197,6 +1212,17 @@ func (o *InjectNTMSMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeInjectNTMSMediaRequest build a response structure from the given request structure.
+func (o *InjectNTMSMediaRequest) MakeResponse() *InjectNTMSMediaResponse {
+	return &InjectNTMSMediaResponse{}
+}
+
+// OpNum returns the operation number of InjectNtmsMedia operation.
+func (o *InjectNTMSMediaRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of InjectNtmsMedia operation.
+func (o *InjectNTMSMediaRequest) OpName() string { return "/INtmsLibraryControl1/v0/InjectNtmsMedia" }
+
 // InjectNTMSMediaResponse structure represents the InjectNtmsMedia operation response
 type InjectNTMSMediaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1253,8 +1279,10 @@ type xxx_AccessNTMSLibraryDoorOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AccessNtmsLibraryDoor operation.
 func (o *xxx_AccessNTMSLibraryDoorOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of AccessNtmsLibraryDoor operation.
 func (o *xxx_AccessNTMSLibraryDoorOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/AccessNtmsLibraryDoor"
 }
@@ -1465,6 +1493,19 @@ func (o *AccessNTMSLibraryDoorRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeAccessNTMSLibraryDoorRequest build a response structure from the given request structure.
+func (o *AccessNTMSLibraryDoorRequest) MakeResponse() *AccessNTMSLibraryDoorResponse {
+	return &AccessNTMSLibraryDoorResponse{}
+}
+
+// OpNum returns the operation number of AccessNtmsLibraryDoor operation.
+func (o *AccessNTMSLibraryDoorRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of AccessNtmsLibraryDoor operation.
+func (o *AccessNTMSLibraryDoorRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/AccessNtmsLibraryDoor"
+}
+
 // AccessNTMSLibraryDoorResponse structure represents the AccessNtmsLibraryDoor operation response
 type AccessNTMSLibraryDoorResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1512,8 +1553,10 @@ type xxx_CleanNTMSDriveOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CleanNtmsDrive operation.
 func (o *xxx_CleanNTMSDriveOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CleanNtmsDrive operation.
 func (o *xxx_CleanNTMSDriveOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/CleanNtmsDrive"
 }
@@ -1713,6 +1756,17 @@ func (o *CleanNTMSDriveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCleanNTMSDriveRequest build a response structure from the given request structure.
+func (o *CleanNTMSDriveRequest) MakeResponse() *CleanNTMSDriveResponse {
+	return &CleanNTMSDriveResponse{}
+}
+
+// OpNum returns the operation number of CleanNtmsDrive operation.
+func (o *CleanNTMSDriveRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of CleanNtmsDrive operation.
+func (o *CleanNTMSDriveRequest) OpName() string { return "/INtmsLibraryControl1/v0/CleanNtmsDrive" }
+
 // CleanNTMSDriveResponse structure represents the CleanNtmsDrive operation response
 type CleanNTMSDriveResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1760,8 +1814,10 @@ type xxx_DismountNTMSDriveOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DismountNtmsDrive operation.
 func (o *xxx_DismountNTMSDriveOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of DismountNtmsDrive operation.
 func (o *xxx_DismountNTMSDriveOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/DismountNtmsDrive"
 }
@@ -1961,6 +2017,19 @@ func (o *DismountNTMSDriveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeDismountNTMSDriveRequest build a response structure from the given request structure.
+func (o *DismountNTMSDriveRequest) MakeResponse() *DismountNTMSDriveResponse {
+	return &DismountNTMSDriveResponse{}
+}
+
+// OpNum returns the operation number of DismountNtmsDrive operation.
+func (o *DismountNTMSDriveRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of DismountNtmsDrive operation.
+func (o *DismountNTMSDriveRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/DismountNtmsDrive"
+}
+
 // DismountNTMSDriveResponse structure represents the DismountNtmsDrive operation response
 type DismountNTMSDriveResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2009,8 +2078,10 @@ type xxx_InventoryNTMSLibraryOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of InventoryNtmsLibrary operation.
 func (o *xxx_InventoryNTMSLibraryOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of InventoryNtmsLibrary operation.
 func (o *xxx_InventoryNTMSLibraryOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/InventoryNtmsLibrary"
 }
@@ -2220,6 +2291,19 @@ func (o *InventoryNTMSLibraryRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeInventoryNTMSLibraryRequest build a response structure from the given request structure.
+func (o *InventoryNTMSLibraryRequest) MakeResponse() *InventoryNTMSLibraryResponse {
+	return &InventoryNTMSLibraryResponse{}
+}
+
+// OpNum returns the operation number of InventoryNtmsLibrary operation.
+func (o *InventoryNTMSLibraryRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of InventoryNtmsLibrary operation.
+func (o *InventoryNTMSLibraryRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/InventoryNtmsLibrary"
+}
+
 // InventoryNTMSLibraryResponse structure represents the InventoryNtmsLibrary operation response
 type InventoryNTMSLibraryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2266,8 +2350,10 @@ type xxx_LibraryControl1LocalOnlyOpnum09Operation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of INtmsLibraryControl1_LocalOnlyOpnum09 operation.
 func (o *xxx_LibraryControl1LocalOnlyOpnum09Operation) OpNum() int { return 6 }
 
+// OpName returns the operation name of INtmsLibraryControl1_LocalOnlyOpnum09 operation.
 func (o *xxx_LibraryControl1LocalOnlyOpnum09Operation) OpName() string {
 	return "/INtmsLibraryControl1/v0/INtmsLibraryControl1_LocalOnlyOpnum09"
 }
@@ -2413,6 +2499,19 @@ func (o *LibraryControl1LocalOnlyOpnum09Request) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeLibraryControl1LocalOnlyOpnum09Request build a response structure from the given request structure.
+func (o *LibraryControl1LocalOnlyOpnum09Request) MakeResponse() *LibraryControl1LocalOnlyOpnum09Response {
+	return &LibraryControl1LocalOnlyOpnum09Response{}
+}
+
+// OpNum returns the operation number of INtmsLibraryControl1_LocalOnlyOpnum09 operation.
+func (o *LibraryControl1LocalOnlyOpnum09Request) OpNum() int { return 6 }
+
+// OpName returns the operation name of INtmsLibraryControl1_LocalOnlyOpnum09 operation.
+func (o *LibraryControl1LocalOnlyOpnum09Request) OpName() string {
+	return "/INtmsLibraryControl1/v0/INtmsLibraryControl1_LocalOnlyOpnum09"
+}
+
 // LibraryControl1LocalOnlyOpnum09Response structure represents the INtmsLibraryControl1_LocalOnlyOpnum09 operation response
 type LibraryControl1LocalOnlyOpnum09Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2460,8 +2559,10 @@ type xxx_CancelNTMSLibraryRequestOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CancelNtmsLibraryRequest operation.
 func (o *xxx_CancelNTMSLibraryRequestOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of CancelNtmsLibraryRequest operation.
 func (o *xxx_CancelNTMSLibraryRequestOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/CancelNtmsLibraryRequest"
 }
@@ -2648,6 +2749,19 @@ func (o *CancelNTMSLibraryRequestRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeCancelNTMSLibraryRequestRequest build a response structure from the given request structure.
+func (o *CancelNTMSLibraryRequestRequest) MakeResponse() *CancelNTMSLibraryRequestResponse {
+	return &CancelNTMSLibraryRequestResponse{}
+}
+
+// OpNum returns the operation number of CancelNtmsLibraryRequest operation.
+func (o *CancelNTMSLibraryRequestRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of CancelNtmsLibraryRequest operation.
+func (o *CancelNTMSLibraryRequestRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/CancelNtmsLibraryRequest"
+}
+
 // CancelNTMSLibraryRequestResponse structure represents the CancelNtmsLibraryRequest operation response
 type CancelNTMSLibraryRequestResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2696,8 +2810,10 @@ type xxx_ReserveNTMSCleanerSlotOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ReserveNtmsCleanerSlot operation.
 func (o *xxx_ReserveNTMSCleanerSlotOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ReserveNtmsCleanerSlot operation.
 func (o *xxx_ReserveNTMSCleanerSlotOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/ReserveNtmsCleanerSlot"
 }
@@ -2919,6 +3035,19 @@ func (o *ReserveNTMSCleanerSlotRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeReserveNTMSCleanerSlotRequest build a response structure from the given request structure.
+func (o *ReserveNTMSCleanerSlotRequest) MakeResponse() *ReserveNTMSCleanerSlotResponse {
+	return &ReserveNTMSCleanerSlotResponse{}
+}
+
+// OpNum returns the operation number of ReserveNtmsCleanerSlot operation.
+func (o *ReserveNTMSCleanerSlotRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ReserveNtmsCleanerSlot operation.
+func (o *ReserveNTMSCleanerSlotRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/ReserveNtmsCleanerSlot"
+}
+
 // ReserveNTMSCleanerSlotResponse structure represents the ReserveNtmsCleanerSlot operation response
 type ReserveNTMSCleanerSlotResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2966,8 +3095,10 @@ type xxx_ReleaseNTMSCleanerSlotOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ReleaseNtmsCleanerSlot operation.
 func (o *xxx_ReleaseNTMSCleanerSlotOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ReleaseNtmsCleanerSlot operation.
 func (o *xxx_ReleaseNTMSCleanerSlotOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/ReleaseNtmsCleanerSlot"
 }
@@ -3155,6 +3286,19 @@ func (o *ReleaseNTMSCleanerSlotRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeReleaseNTMSCleanerSlotRequest build a response structure from the given request structure.
+func (o *ReleaseNTMSCleanerSlotRequest) MakeResponse() *ReleaseNTMSCleanerSlotResponse {
+	return &ReleaseNTMSCleanerSlotResponse{}
+}
+
+// OpNum returns the operation number of ReleaseNtmsCleanerSlot operation.
+func (o *ReleaseNTMSCleanerSlotRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ReleaseNtmsCleanerSlot operation.
+func (o *ReleaseNTMSCleanerSlotRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/ReleaseNtmsCleanerSlot"
+}
+
 // ReleaseNTMSCleanerSlotResponse structure represents the ReleaseNtmsCleanerSlot operation response
 type ReleaseNTMSCleanerSlotResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3205,8 +3349,10 @@ type xxx_InjectNTMSCleanerOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of InjectNtmsCleaner operation.
 func (o *xxx_InjectNTMSCleanerOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of InjectNtmsCleaner operation.
 func (o *xxx_InjectNTMSCleanerOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/InjectNtmsCleaner"
 }
@@ -3491,6 +3637,19 @@ func (o *InjectNTMSCleanerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeInjectNTMSCleanerRequest build a response structure from the given request structure.
+func (o *InjectNTMSCleanerRequest) MakeResponse() *InjectNTMSCleanerResponse {
+	return &InjectNTMSCleanerResponse{}
+}
+
+// OpNum returns the operation number of InjectNtmsCleaner operation.
+func (o *InjectNTMSCleanerRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of InjectNtmsCleaner operation.
+func (o *InjectNTMSCleanerRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/InjectNtmsCleaner"
+}
+
 // InjectNTMSCleanerResponse structure represents the InjectNtmsCleaner operation response
 type InjectNTMSCleanerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3547,8 +3706,10 @@ type xxx_EjectNTMSCleanerOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EjectNtmsCleaner operation.
 func (o *xxx_EjectNTMSCleanerOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of EjectNtmsCleaner operation.
 func (o *xxx_EjectNTMSCleanerOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/EjectNtmsCleaner"
 }
@@ -3813,6 +3974,17 @@ func (o *EjectNTMSCleanerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeEjectNTMSCleanerRequest build a response structure from the given request structure.
+func (o *EjectNTMSCleanerRequest) MakeResponse() *EjectNTMSCleanerResponse {
+	return &EjectNTMSCleanerResponse{}
+}
+
+// OpNum returns the operation number of EjectNtmsCleaner operation.
+func (o *EjectNTMSCleanerRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of EjectNtmsCleaner operation.
+func (o *EjectNTMSCleanerRequest) OpName() string { return "/INtmsLibraryControl1/v0/EjectNtmsCleaner" }
+
 // EjectNTMSCleanerResponse structure represents the EjectNtmsCleaner operation response
 type EjectNTMSCleanerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3867,8 +4039,10 @@ type xxx_DeleteNTMSLibraryOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteNtmsLibrary operation.
 func (o *xxx_DeleteNTMSLibraryOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of DeleteNtmsLibrary operation.
 func (o *xxx_DeleteNTMSLibraryOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/DeleteNtmsLibrary"
 }
@@ -4062,6 +4236,19 @@ func (o *DeleteNTMSLibraryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeDeleteNTMSLibraryRequest build a response structure from the given request structure.
+func (o *DeleteNTMSLibraryRequest) MakeResponse() *DeleteNTMSLibraryResponse {
+	return &DeleteNTMSLibraryResponse{}
+}
+
+// OpNum returns the operation number of DeleteNtmsLibrary operation.
+func (o *DeleteNTMSLibraryRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of DeleteNtmsLibrary operation.
+func (o *DeleteNTMSLibraryRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/DeleteNtmsLibrary"
+}
+
 // DeleteNTMSLibraryResponse structure represents the DeleteNtmsLibrary operation response
 type DeleteNTMSLibraryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4109,8 +4296,10 @@ type xxx_DeleteNTMSDriveOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteNtmsDrive operation.
 func (o *xxx_DeleteNTMSDriveOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of DeleteNtmsDrive operation.
 func (o *xxx_DeleteNTMSDriveOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/DeleteNtmsDrive"
 }
@@ -4304,6 +4493,17 @@ func (o *DeleteNTMSDriveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeDeleteNTMSDriveRequest build a response structure from the given request structure.
+func (o *DeleteNTMSDriveRequest) MakeResponse() *DeleteNTMSDriveResponse {
+	return &DeleteNTMSDriveResponse{}
+}
+
+// OpNum returns the operation number of DeleteNtmsDrive operation.
+func (o *DeleteNTMSDriveRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of DeleteNtmsDrive operation.
+func (o *DeleteNTMSDriveRequest) OpName() string { return "/INtmsLibraryControl1/v0/DeleteNtmsDrive" }
+
 // DeleteNTMSDriveResponse structure represents the DeleteNtmsDrive operation response
 type DeleteNTMSDriveResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4352,8 +4552,10 @@ type xxx_GetNTMSRequestOrderOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsRequestOrder operation.
 func (o *xxx_GetNTMSRequestOrderOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of GetNtmsRequestOrder operation.
 func (o *xxx_GetNTMSRequestOrderOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/GetNtmsRequestOrder"
 }
@@ -4536,6 +4738,19 @@ func (o *GetNTMSRequestOrderRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetNTMSRequestOrderRequest build a response structure from the given request structure.
+func (o *GetNTMSRequestOrderRequest) MakeResponse() *GetNTMSRequestOrderResponse {
+	return &GetNTMSRequestOrderResponse{}
+}
+
+// OpNum returns the operation number of GetNtmsRequestOrder operation.
+func (o *GetNTMSRequestOrderRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of GetNtmsRequestOrder operation.
+func (o *GetNTMSRequestOrderRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/GetNtmsRequestOrder"
+}
+
 // GetNTMSRequestOrderResponse structure represents the GetNtmsRequestOrder operation response
 type GetNTMSRequestOrderResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4607,8 +4822,10 @@ type xxx_SetNTMSRequestOrderOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetNtmsRequestOrder operation.
 func (o *xxx_SetNTMSRequestOrderOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of SetNtmsRequestOrder operation.
 func (o *xxx_SetNTMSRequestOrderOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/SetNtmsRequestOrder"
 }
@@ -4814,6 +5031,19 @@ func (o *SetNTMSRequestOrderRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeSetNTMSRequestOrderRequest build a response structure from the given request structure.
+func (o *SetNTMSRequestOrderRequest) MakeResponse() *SetNTMSRequestOrderResponse {
+	return &SetNTMSRequestOrderResponse{}
+}
+
+// OpNum returns the operation number of SetNtmsRequestOrder operation.
+func (o *SetNTMSRequestOrderRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of SetNtmsRequestOrder operation.
+func (o *SetNTMSRequestOrderRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/SetNtmsRequestOrder"
+}
+
 // SetNTMSRequestOrderResponse structure represents the SetNtmsRequestOrder operation response
 type SetNTMSRequestOrderResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4863,8 +5093,10 @@ type xxx_DeleteNTMSRequestsOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteNtmsRequests operation.
 func (o *xxx_DeleteNTMSRequestsOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of DeleteNtmsRequests operation.
 func (o *xxx_DeleteNTMSRequestsOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/DeleteNtmsRequests"
 }
@@ -5120,6 +5352,19 @@ func (o *DeleteNTMSRequestsRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeDeleteNTMSRequestsRequest build a response structure from the given request structure.
+func (o *DeleteNTMSRequestsRequest) MakeResponse() *DeleteNTMSRequestsResponse {
+	return &DeleteNTMSRequestsResponse{}
+}
+
+// OpNum returns the operation number of DeleteNtmsRequests operation.
+func (o *DeleteNTMSRequestsRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of DeleteNtmsRequests operation.
+func (o *DeleteNTMSRequestsRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/DeleteNtmsRequests"
+}
+
 // DeleteNTMSRequestsResponse structure represents the DeleteNtmsRequests operation response
 type DeleteNTMSRequestsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -5167,8 +5412,10 @@ type xxx_BeginNTMSDeviceChangeDetectionOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BeginNtmsDeviceChangeDetection operation.
 func (o *xxx_BeginNTMSDeviceChangeDetectionOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of BeginNtmsDeviceChangeDetection operation.
 func (o *xxx_BeginNTMSDeviceChangeDetectionOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/BeginNtmsDeviceChangeDetection"
 }
@@ -5326,6 +5573,19 @@ func (o *BeginNTMSDeviceChangeDetectionRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeBeginNTMSDeviceChangeDetectionRequest build a response structure from the given request structure.
+func (o *BeginNTMSDeviceChangeDetectionRequest) MakeResponse() *BeginNTMSDeviceChangeDetectionResponse {
+	return &BeginNTMSDeviceChangeDetectionResponse{}
+}
+
+// OpNum returns the operation number of BeginNtmsDeviceChangeDetection operation.
+func (o *BeginNTMSDeviceChangeDetectionRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of BeginNtmsDeviceChangeDetection operation.
+func (o *BeginNTMSDeviceChangeDetectionRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/BeginNtmsDeviceChangeDetection"
+}
+
 // BeginNTMSDeviceChangeDetectionResponse structure represents the BeginNtmsDeviceChangeDetection operation response
 type BeginNTMSDeviceChangeDetectionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -5407,8 +5667,10 @@ type xxx_SetNTMSDeviceChangeDetectionOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetNtmsDeviceChangeDetection operation.
 func (o *xxx_SetNTMSDeviceChangeDetectionOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of SetNtmsDeviceChangeDetection operation.
 func (o *xxx_SetNTMSDeviceChangeDetectionOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/SetNtmsDeviceChangeDetection"
 }
@@ -5710,6 +5972,19 @@ func (o *SetNTMSDeviceChangeDetectionRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeSetNTMSDeviceChangeDetectionRequest build a response structure from the given request structure.
+func (o *SetNTMSDeviceChangeDetectionRequest) MakeResponse() *SetNTMSDeviceChangeDetectionResponse {
+	return &SetNTMSDeviceChangeDetectionResponse{}
+}
+
+// OpNum returns the operation number of SetNtmsDeviceChangeDetection operation.
+func (o *SetNTMSDeviceChangeDetectionRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of SetNtmsDeviceChangeDetection operation.
+func (o *SetNTMSDeviceChangeDetectionRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/SetNtmsDeviceChangeDetection"
+}
+
 // SetNTMSDeviceChangeDetectionResponse structure represents the SetNtmsDeviceChangeDetection operation response
 type SetNTMSDeviceChangeDetectionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -5757,8 +6032,10 @@ type xxx_EndNTMSDeviceChangeDetectionOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EndNtmsDeviceChangeDetection operation.
 func (o *xxx_EndNTMSDeviceChangeDetectionOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of EndNtmsDeviceChangeDetection operation.
 func (o *xxx_EndNTMSDeviceChangeDetectionOperation) OpName() string {
 	return "/INtmsLibraryControl1/v0/EndNtmsDeviceChangeDetection"
 }
@@ -5942,6 +6219,19 @@ func (o *EndNTMSDeviceChangeDetectionRequest) UnmarshalNDR(ctx context.Context, 
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeEndNTMSDeviceChangeDetectionRequest build a response structure from the given request structure.
+func (o *EndNTMSDeviceChangeDetectionRequest) MakeResponse() *EndNTMSDeviceChangeDetectionResponse {
+	return &EndNTMSDeviceChangeDetectionResponse{}
+}
+
+// OpNum returns the operation number of EndNtmsDeviceChangeDetection operation.
+func (o *EndNTMSDeviceChangeDetectionRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of EndNtmsDeviceChangeDetection operation.
+func (o *EndNTMSDeviceChangeDetectionRequest) OpName() string {
+	return "/INtmsLibraryControl1/v0/EndNtmsDeviceChangeDetection"
 }
 
 // EndNTMSDeviceChangeDetectionResponse structure represents the EndNtmsDeviceChangeDetection operation response

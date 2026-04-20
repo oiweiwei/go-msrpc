@@ -158,8 +158,10 @@ type xxx_LookupQueueOperation struct {
 	Return              int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LookupQueue operation.
 func (o *xxx_LookupQueueOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of LookupQueue operation.
 func (o *xxx_LookupQueueOperation) OpName() string { return "/IMSMQQuery/v0/LookupQueue" }
 
 func (o *xxx_LookupQueueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -816,6 +818,17 @@ func (o *LookupQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeLookupQueueRequest build a response structure from the given request structure.
+func (o *LookupQueueRequest) MakeResponse() *LookupQueueResponse {
+	return &LookupQueueResponse{}
+}
+
+// OpNum returns the operation number of LookupQueue operation.
+func (o *LookupQueueRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of LookupQueue operation.
+func (o *LookupQueueRequest) OpName() string { return "/IMSMQQuery/v0/LookupQueue" }
 
 // LookupQueueResponse structure represents the LookupQueue operation response
 type LookupQueueResponse struct {

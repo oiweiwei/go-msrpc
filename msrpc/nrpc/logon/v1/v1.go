@@ -19611,8 +19611,10 @@ type xxx_UASLogonOperation struct {
 	Return                uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonUasLogon operation.
 func (o *xxx_UASLogonOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of NetrLogonUasLogon operation.
 func (o *xxx_UASLogonOperation) OpName() string { return "/logon/v1/NetrLogonUasLogon" }
 
 func (o *xxx_UASLogonOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19814,6 +19816,17 @@ func (o *UASLogonRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeUASLogonRequest build a response structure from the given request structure.
+func (o *UASLogonRequest) MakeResponse() *UASLogonResponse {
+	return &UASLogonResponse{}
+}
+
+// OpNum returns the operation number of NetrLogonUasLogon operation.
+func (o *UASLogonRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of NetrLogonUasLogon operation.
+func (o *UASLogonRequest) OpName() string { return "/logon/v1/NetrLogonUasLogon" }
+
 // UASLogonResponse structure represents the NetrLogonUasLogon operation response
 type UASLogonResponse struct {
 	ValidationInformation *ValidationUASInfo `idl:"name:ValidationInformation" json:"validation_information"`
@@ -19861,8 +19874,10 @@ type xxx_UASLogoffOperation struct {
 	Return            uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonUasLogoff operation.
 func (o *xxx_UASLogoffOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of NetrLogonUasLogoff operation.
 func (o *xxx_UASLogoffOperation) OpName() string { return "/logon/v1/NetrLogonUasLogoff" }
 
 func (o *xxx_UASLogoffOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20039,6 +20054,17 @@ func (o *UASLogoffRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeUASLogoffRequest build a response structure from the given request structure.
+func (o *UASLogoffRequest) MakeResponse() *UASLogoffResponse {
+	return &UASLogoffResponse{}
+}
+
+// OpNum returns the operation number of NetrLogonUasLogoff operation.
+func (o *UASLogoffRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of NetrLogonUasLogoff operation.
+func (o *UASLogoffRequest) OpName() string { return "/logon/v1/NetrLogonUasLogoff" }
+
 // UASLogoffResponse structure represents the NetrLogonUasLogoff operation response
 type UASLogoffResponse struct {
 	LogoffInformation *LogoffUASInfo `idl:"name:LogoffInformation" json:"logoff_information"`
@@ -20091,8 +20117,10 @@ type xxx_SAMLogonOperation struct {
 	Return                int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonSamLogon operation.
 func (o *xxx_SAMLogonOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of NetrLogonSamLogon operation.
 func (o *xxx_SAMLogonOperation) OpName() string { return "/logon/v1/NetrLogonSamLogon" }
 
 func (o *xxx_SAMLogonOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20505,6 +20533,22 @@ func (o *SAMLogonRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeSAMLogonRequest build a response structure from the given request structure.
+func (o *SAMLogonRequest) MakeResponse() *SAMLogonResponse {
+	if o == nil {
+		return &SAMLogonResponse{}
+	}
+	return &SAMLogonResponse{
+		ValidationLevel: o.ValidationLevel,
+	}
+}
+
+// OpNum returns the operation number of NetrLogonSamLogon operation.
+func (o *SAMLogonRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of NetrLogonSamLogon operation.
+func (o *SAMLogonRequest) OpName() string { return "/logon/v1/NetrLogonSamLogon" }
+
 // SAMLogonResponse structure represents the NetrLogonSamLogon operation response
 type SAMLogonResponse struct {
 	// XXX: ValidationLevel is an implicit input depedency for output parameters
@@ -20571,8 +20615,10 @@ type xxx_SAMLogoffOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonSamLogoff operation.
 func (o *xxx_SAMLogoffOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of NetrLogonSamLogoff operation.
 func (o *xxx_SAMLogoffOperation) OpName() string { return "/logon/v1/NetrLogonSamLogoff" }
 
 func (o *xxx_SAMLogoffOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20940,6 +20986,17 @@ func (o *SAMLogoffRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeSAMLogoffRequest build a response structure from the given request structure.
+func (o *SAMLogoffRequest) MakeResponse() *SAMLogoffResponse {
+	return &SAMLogoffResponse{}
+}
+
+// OpNum returns the operation number of NetrLogonSamLogoff operation.
+func (o *SAMLogoffRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of NetrLogonSamLogoff operation.
+func (o *SAMLogoffRequest) OpName() string { return "/logon/v1/NetrLogonSamLogoff" }
+
 // SAMLogoffResponse structure represents the NetrLogonSamLogoff operation response
 type SAMLogoffResponse struct {
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure, as specified
@@ -20989,8 +21046,10 @@ type xxx_RequestChallengeOperation struct {
 	Return          int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrServerReqChallenge operation.
 func (o *xxx_RequestChallengeOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of NetrServerReqChallenge operation.
 func (o *xxx_RequestChallengeOperation) OpName() string { return "/logon/v1/NetrServerReqChallenge" }
 
 func (o *xxx_RequestChallengeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -21181,6 +21240,17 @@ func (o *RequestChallengeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeRequestChallengeRequest build a response structure from the given request structure.
+func (o *RequestChallengeRequest) MakeResponse() *RequestChallengeResponse {
+	return &RequestChallengeResponse{}
+}
+
+// OpNum returns the operation number of NetrServerReqChallenge operation.
+func (o *RequestChallengeRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of NetrServerReqChallenge operation.
+func (o *RequestChallengeRequest) OpName() string { return "/logon/v1/NetrServerReqChallenge" }
+
 // RequestChallengeResponse structure represents the NetrServerReqChallenge operation response
 type RequestChallengeResponse struct {
 	// ServerChallenge: A pointer to a NETLOGON_CREDENTIAL structure, as specified in section
@@ -21232,8 +21302,10 @@ type xxx_AuthenticateOperation struct {
 	Return            int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrServerAuthenticate operation.
 func (o *xxx_AuthenticateOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of NetrServerAuthenticate operation.
 func (o *xxx_AuthenticateOperation) OpName() string { return "/logon/v1/NetrServerAuthenticate" }
 
 func (o *xxx_AuthenticateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -21449,6 +21521,17 @@ func (o *AuthenticateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeAuthenticateRequest build a response structure from the given request structure.
+func (o *AuthenticateRequest) MakeResponse() *AuthenticateResponse {
+	return &AuthenticateResponse{}
+}
+
+// OpNum returns the operation number of NetrServerAuthenticate operation.
+func (o *AuthenticateRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of NetrServerAuthenticate operation.
+func (o *AuthenticateRequest) OpName() string { return "/logon/v1/NetrServerAuthenticate" }
+
 // AuthenticateResponse structure represents the NetrServerAuthenticate operation response
 type AuthenticateResponse struct {
 	ServerCredential *Credential `idl:"name:ServerCredential" json:"server_credential"`
@@ -21499,8 +21582,10 @@ type xxx_PasswordSetOperation struct {
 	Return              int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrServerPasswordSet operation.
 func (o *xxx_PasswordSetOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of NetrServerPasswordSet operation.
 func (o *xxx_PasswordSetOperation) OpName() string { return "/logon/v1/NetrServerPasswordSet" }
 
 func (o *xxx_PasswordSetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -21752,6 +21837,17 @@ func (o *PasswordSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakePasswordSetRequest build a response structure from the given request structure.
+func (o *PasswordSetRequest) MakeResponse() *PasswordSetResponse {
+	return &PasswordSetResponse{}
+}
+
+// OpNum returns the operation number of NetrServerPasswordSet operation.
+func (o *PasswordSetRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of NetrServerPasswordSet operation.
+func (o *PasswordSetRequest) OpName() string { return "/logon/v1/NetrServerPasswordSet" }
+
 // PasswordSetResponse structure represents the NetrServerPasswordSet operation response
 type PasswordSetResponse struct {
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure, as specified
@@ -21805,8 +21901,10 @@ type xxx_DatabaseDeltasOperation struct {
 	Return                 int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDatabaseDeltas operation.
 func (o *xxx_DatabaseDeltasOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of NetrDatabaseDeltas operation.
 func (o *xxx_DatabaseDeltasOperation) OpName() string { return "/logon/v1/NetrDatabaseDeltas" }
 
 func (o *xxx_DatabaseDeltasOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -22145,6 +22243,17 @@ func (o *DatabaseDeltasRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeDatabaseDeltasRequest build a response structure from the given request structure.
+func (o *DatabaseDeltasRequest) MakeResponse() *DatabaseDeltasResponse {
+	return &DatabaseDeltasResponse{}
+}
+
+// OpNum returns the operation number of NetrDatabaseDeltas operation.
+func (o *DatabaseDeltasRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of NetrDatabaseDeltas operation.
+func (o *DatabaseDeltasRequest) OpName() string { return "/logon/v1/NetrDatabaseDeltas" }
+
 // DatabaseDeltasResponse structure represents the NetrDatabaseDeltas operation response
 type DatabaseDeltasResponse struct {
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure that contains
@@ -22213,8 +22322,10 @@ type xxx_DatabaseSyncOperation struct {
 	Return                 int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDatabaseSync operation.
 func (o *xxx_DatabaseSyncOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of NetrDatabaseSync operation.
 func (o *xxx_DatabaseSyncOperation) OpName() string { return "/logon/v1/NetrDatabaseSync" }
 
 func (o *xxx_DatabaseSyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -22502,6 +22613,17 @@ func (o *DatabaseSyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeDatabaseSyncRequest build a response structure from the given request structure.
+func (o *DatabaseSyncRequest) MakeResponse() *DatabaseSyncResponse {
+	return &DatabaseSyncResponse{}
+}
+
+// OpNum returns the operation number of NetrDatabaseSync operation.
+func (o *DatabaseSyncRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of NetrDatabaseSync operation.
+func (o *DatabaseSyncRequest) OpName() string { return "/logon/v1/NetrDatabaseSync" }
+
 // DatabaseSyncResponse structure represents the NetrDatabaseSync operation response
 type DatabaseSyncResponse struct {
 	ReturnAuthenticator *Authenticator  `idl:"name:ReturnAuthenticator" json:"return_authenticator"`
@@ -22563,8 +22685,10 @@ type xxx_AccountDeltasOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrAccountDeltas operation.
 func (o *xxx_AccountDeltasOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of NetrAccountDeltas operation.
 func (o *xxx_AccountDeltasOperation) OpName() string { return "/logon/v1/NetrAccountDeltas" }
 
 func (o *xxx_AccountDeltasOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -22933,6 +23057,22 @@ func (o *AccountDeltasRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeAccountDeltasRequest build a response structure from the given request structure.
+func (o *AccountDeltasRequest) MakeResponse() *AccountDeltasResponse {
+	if o == nil {
+		return &AccountDeltasResponse{}
+	}
+	return &AccountDeltasResponse{
+		BufferSize: o.BufferSize,
+	}
+}
+
+// OpNum returns the operation number of NetrAccountDeltas operation.
+func (o *AccountDeltasRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of NetrAccountDeltas operation.
+func (o *AccountDeltasRequest) OpName() string { return "/logon/v1/NetrAccountDeltas" }
+
 // AccountDeltasResponse structure represents the NetrAccountDeltas operation response
 type AccountDeltasResponse struct {
 	// XXX: BufferSize is an implicit input depedency for output parameters
@@ -23011,8 +23151,10 @@ type xxx_AccountSyncOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrAccountSync operation.
 func (o *xxx_AccountSyncOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of NetrAccountSync operation.
 func (o *xxx_AccountSyncOperation) OpName() string { return "/logon/v1/NetrAccountSync" }
 
 func (o *xxx_AccountSyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -23369,6 +23511,22 @@ func (o *AccountSyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeAccountSyncRequest build a response structure from the given request structure.
+func (o *AccountSyncRequest) MakeResponse() *AccountSyncResponse {
+	if o == nil {
+		return &AccountSyncResponse{}
+	}
+	return &AccountSyncResponse{
+		BufferSize: o.BufferSize,
+	}
+}
+
+// OpNum returns the operation number of NetrAccountSync operation.
+func (o *AccountSyncRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of NetrAccountSync operation.
+func (o *AccountSyncRequest) OpName() string { return "/logon/v1/NetrAccountSync" }
+
 // AccountSyncResponse structure represents the NetrAccountSync operation response
 type AccountSyncResponse struct {
 	// XXX: BufferSize is an implicit input depedency for output parameters
@@ -23441,8 +23599,10 @@ type xxx_GetNetrDCNameOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrGetDCName operation.
 func (o *xxx_GetNetrDCNameOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of NetrGetDCName operation.
 func (o *xxx_GetNetrDCNameOperation) OpName() string { return "/logon/v1/NetrGetDCName" }
 
 func (o *xxx_GetNetrDCNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -23624,6 +23784,17 @@ func (o *GetNetrDCNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetNetrDCNameRequest build a response structure from the given request structure.
+func (o *GetNetrDCNameRequest) MakeResponse() *GetNetrDCNameResponse {
+	return &GetNetrDCNameResponse{}
+}
+
+// OpNum returns the operation number of NetrGetDCName operation.
+func (o *GetNetrDCNameRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of NetrGetDCName operation.
+func (o *GetNetrDCNameRequest) OpName() string { return "/logon/v1/NetrGetDCName" }
+
 // GetNetrDCNameResponse structure represents the NetrGetDCName operation response
 type GetNetrDCNameResponse struct {
 	// Buffer: A pointer to a null-terminated Unicode string that contains the NetBIOS name
@@ -23674,8 +23845,10 @@ type xxx_ControlOperation struct {
 	Return       uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonControl operation.
 func (o *xxx_ControlOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of NetrLogonControl operation.
 func (o *xxx_ControlOperation) OpName() string { return "/logon/v1/NetrLogonControl" }
 
 func (o *xxx_ControlOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -23860,6 +24033,22 @@ func (o *ControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeControlRequest build a response structure from the given request structure.
+func (o *ControlRequest) MakeResponse() *ControlResponse {
+	if o == nil {
+		return &ControlResponse{}
+	}
+	return &ControlResponse{
+		QueryLevel: o.QueryLevel,
+	}
+}
+
+// OpNum returns the operation number of NetrLogonControl operation.
+func (o *ControlRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of NetrLogonControl operation.
+func (o *ControlRequest) OpName() string { return "/logon/v1/NetrLogonControl" }
+
 // ControlResponse structure represents the NetrLogonControl operation response
 type ControlResponse struct {
 	// XXX: QueryLevel is an implicit input depedency for output parameters
@@ -23917,8 +24106,10 @@ type xxx_GetAnyDCNameOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrGetAnyDCName operation.
 func (o *xxx_GetAnyDCNameOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of NetrGetAnyDCName operation.
 func (o *xxx_GetAnyDCNameOperation) OpName() string { return "/logon/v1/NetrGetAnyDCName" }
 
 func (o *xxx_GetAnyDCNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24125,6 +24316,17 @@ func (o *GetAnyDCNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetAnyDCNameRequest build a response structure from the given request structure.
+func (o *GetAnyDCNameRequest) MakeResponse() *GetAnyDCNameResponse {
+	return &GetAnyDCNameResponse{}
+}
+
+// OpNum returns the operation number of NetrGetAnyDCName operation.
+func (o *GetAnyDCNameRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of NetrGetAnyDCName operation.
+func (o *GetAnyDCNameRequest) OpName() string { return "/logon/v1/NetrGetAnyDCName" }
+
 // GetAnyDCNameResponse structure represents the NetrGetAnyDCName operation response
 type GetAnyDCNameResponse struct {
 	// Buffer: A pointer to an allocated buffer that contains the null-terminated Unicode
@@ -24176,8 +24378,10 @@ type xxx_Control2Operation struct {
 	Return       uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonControl2 operation.
 func (o *xxx_Control2Operation) OpNum() int { return 14 }
 
+// OpName returns the operation name of NetrLogonControl2 operation.
 func (o *xxx_Control2Operation) OpName() string { return "/logon/v1/NetrLogonControl2" }
 
 func (o *xxx_Control2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24394,6 +24598,22 @@ func (o *Control2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeControl2Request build a response structure from the given request structure.
+func (o *Control2Request) MakeResponse() *Control2Response {
+	if o == nil {
+		return &Control2Response{}
+	}
+	return &Control2Response{
+		QueryLevel: o.QueryLevel,
+	}
+}
+
+// OpNum returns the operation number of NetrLogonControl2 operation.
+func (o *Control2Request) OpNum() int { return 14 }
+
+// OpName returns the operation name of NetrLogonControl2 operation.
+func (o *Control2Request) OpName() string { return "/logon/v1/NetrLogonControl2" }
+
 // Control2Response structure represents the NetrLogonControl2 operation response
 type Control2Response struct {
 	// XXX: QueryLevel is an implicit input depedency for output parameters
@@ -24455,8 +24675,10 @@ type xxx_Authenticate2Operation struct {
 	Return            int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrServerAuthenticate2 operation.
 func (o *xxx_Authenticate2Operation) OpNum() int { return 15 }
 
+// OpName returns the operation name of NetrServerAuthenticate2 operation.
 func (o *xxx_Authenticate2Operation) OpName() string { return "/logon/v1/NetrServerAuthenticate2" }
 
 func (o *xxx_Authenticate2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24699,6 +24921,17 @@ func (o *Authenticate2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeAuthenticate2Request build a response structure from the given request structure.
+func (o *Authenticate2Request) MakeResponse() *Authenticate2Response {
+	return &Authenticate2Response{}
+}
+
+// OpNum returns the operation number of NetrServerAuthenticate2 operation.
+func (o *Authenticate2Request) OpNum() int { return 15 }
+
+// OpName returns the operation name of NetrServerAuthenticate2 operation.
+func (o *Authenticate2Request) OpName() string { return "/logon/v1/NetrServerAuthenticate2" }
+
 // Authenticate2Response structure represents the NetrServerAuthenticate2 operation response
 type Authenticate2Response struct {
 	ServerCredential *Credential `idl:"name:ServerCredential" json:"server_credential"`
@@ -24754,8 +24987,10 @@ type xxx_DatabaseSync2Operation struct {
 	Return                 int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDatabaseSync2 operation.
 func (o *xxx_DatabaseSync2Operation) OpNum() int { return 16 }
 
+// OpName returns the operation name of NetrDatabaseSync2 operation.
 func (o *xxx_DatabaseSync2Operation) OpName() string { return "/logon/v1/NetrDatabaseSync2" }
 
 func (o *xxx_DatabaseSync2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -25122,6 +25357,17 @@ func (o *DatabaseSync2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeDatabaseSync2Request build a response structure from the given request structure.
+func (o *DatabaseSync2Request) MakeResponse() *DatabaseSync2Response {
+	return &DatabaseSync2Response{}
+}
+
+// OpNum returns the operation number of NetrDatabaseSync2 operation.
+func (o *DatabaseSync2Request) OpNum() int { return 16 }
+
+// OpName returns the operation name of NetrDatabaseSync2 operation.
+func (o *DatabaseSync2Request) OpName() string { return "/logon/v1/NetrDatabaseSync2" }
+
 // DatabaseSync2Response structure represents the NetrDatabaseSync2 operation response
 type DatabaseSync2Response struct {
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure, as specified
@@ -25214,8 +25460,10 @@ type xxx_DatabaseRedoOperation struct {
 	Return              int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDatabaseRedo operation.
 func (o *xxx_DatabaseRedoOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of NetrDatabaseRedo operation.
 func (o *xxx_DatabaseRedoOperation) OpName() string { return "/logon/v1/NetrDatabaseRedo" }
 
 func (o *xxx_DatabaseRedoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -25524,6 +25772,17 @@ func (o *DatabaseRedoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeDatabaseRedoRequest build a response structure from the given request structure.
+func (o *DatabaseRedoRequest) MakeResponse() *DatabaseRedoResponse {
+	return &DatabaseRedoResponse{}
+}
+
+// OpNum returns the operation number of NetrDatabaseRedo operation.
+func (o *DatabaseRedoRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of NetrDatabaseRedo operation.
+func (o *DatabaseRedoRequest) OpName() string { return "/logon/v1/NetrDatabaseRedo" }
+
 // DatabaseRedoResponse structure represents the NetrDatabaseRedo operation response
 type DatabaseRedoResponse struct {
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure, as specified
@@ -25580,8 +25839,10 @@ type xxx_Control2ExOperation struct {
 	Return       uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonControl2Ex operation.
 func (o *xxx_Control2ExOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of NetrLogonControl2Ex operation.
 func (o *xxx_Control2ExOperation) OpName() string { return "/logon/v1/NetrLogonControl2Ex" }
 
 func (o *xxx_Control2ExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -25873,6 +26134,22 @@ func (o *Control2ExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeControl2ExRequest build a response structure from the given request structure.
+func (o *Control2ExRequest) MakeResponse() *Control2ExResponse {
+	if o == nil {
+		return &Control2ExResponse{}
+	}
+	return &Control2ExResponse{
+		QueryLevel: o.QueryLevel,
+	}
+}
+
+// OpNum returns the operation number of NetrLogonControl2Ex operation.
+func (o *Control2ExRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of NetrLogonControl2Ex operation.
+func (o *Control2ExRequest) OpName() string { return "/logon/v1/NetrLogonControl2Ex" }
+
 // Control2ExResponse structure represents the NetrLogonControl2Ex operation response
 type Control2ExResponse struct {
 	// XXX: QueryLevel is an implicit input depedency for output parameters
@@ -25932,8 +26209,10 @@ type xxx_EnumerateTrustedDomainsOperation struct {
 	Return           int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrEnumerateTrustedDomains operation.
 func (o *xxx_EnumerateTrustedDomainsOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of NetrEnumerateTrustedDomains operation.
 func (o *xxx_EnumerateTrustedDomainsOperation) OpName() string {
 	return "/logon/v1/NetrEnumerateTrustedDomains"
 }
@@ -26089,6 +26368,19 @@ func (o *EnumerateTrustedDomainsRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeEnumerateTrustedDomainsRequest build a response structure from the given request structure.
+func (o *EnumerateTrustedDomainsRequest) MakeResponse() *EnumerateTrustedDomainsResponse {
+	return &EnumerateTrustedDomainsResponse{}
+}
+
+// OpNum returns the operation number of NetrEnumerateTrustedDomains operation.
+func (o *EnumerateTrustedDomainsRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of NetrEnumerateTrustedDomains operation.
+func (o *EnumerateTrustedDomainsRequest) OpName() string {
+	return "/logon/v1/NetrEnumerateTrustedDomains"
+}
+
 // EnumerateTrustedDomainsResponse structure represents the NetrEnumerateTrustedDomains operation response
 type EnumerateTrustedDomainsResponse struct {
 	// DomainNameBuffer: A pointer to a DOMAIN_NAME_BUFFER structure, as specified in section
@@ -26141,8 +26433,10 @@ type xxx_GetDCNameOperation struct {
 	Return               uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DsrGetDcName operation.
 func (o *xxx_GetDCNameOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of DsrGetDcName operation.
 func (o *xxx_GetDCNameOperation) OpName() string { return "/logon/v1/DsrGetDcName" }
 
 func (o *xxx_GetDCNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -26472,6 +26766,17 @@ func (o *GetDCNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetDCNameRequest build a response structure from the given request structure.
+func (o *GetDCNameRequest) MakeResponse() *GetDCNameResponse {
+	return &GetDCNameResponse{}
+}
+
+// OpNum returns the operation number of DsrGetDcName operation.
+func (o *GetDCNameRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of DsrGetDcName operation.
+func (o *GetDCNameRequest) OpName() string { return "/logon/v1/DsrGetDcName" }
+
 // GetDCNameResponse structure represents the DsrGetDcName operation response
 type GetDCNameResponse struct {
 	DomainControllerInfo *DomainControllerInfoW `idl:"name:DomainControllerInfo" json:"domain_controller_info"`
@@ -26521,8 +26826,10 @@ type xxx_GetCapabilitiesOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonGetCapabilities operation.
 func (o *xxx_GetCapabilitiesOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of NetrLogonGetCapabilities operation.
 func (o *xxx_GetCapabilitiesOperation) OpName() string { return "/logon/v1/NetrLogonGetCapabilities" }
 
 func (o *xxx_GetCapabilitiesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -26780,6 +27087,22 @@ func (o *GetCapabilitiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetCapabilitiesRequest build a response structure from the given request structure.
+func (o *GetCapabilitiesRequest) MakeResponse() *GetCapabilitiesResponse {
+	if o == nil {
+		return &GetCapabilitiesResponse{}
+	}
+	return &GetCapabilitiesResponse{
+		QueryLevel: o.QueryLevel,
+	}
+}
+
+// OpNum returns the operation number of NetrLogonGetCapabilities operation.
+func (o *GetCapabilitiesRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of NetrLogonGetCapabilities operation.
+func (o *GetCapabilitiesRequest) OpName() string { return "/logon/v1/NetrLogonGetCapabilities" }
+
 // GetCapabilitiesResponse structure represents the NetrLogonGetCapabilities operation response
 type GetCapabilitiesResponse struct {
 	// XXX: QueryLevel is an implicit input depedency for output parameters
@@ -26842,8 +27165,10 @@ type xxx_SetServiceBitsOperation struct {
 	Return                int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonSetServiceBits operation.
 func (o *xxx_SetServiceBitsOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of NetrLogonSetServiceBits operation.
 func (o *xxx_SetServiceBitsOperation) OpName() string { return "/logon/v1/NetrLogonSetServiceBits" }
 
 func (o *xxx_SetServiceBitsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -27058,6 +27383,17 @@ func (o *SetServiceBitsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetServiceBitsRequest build a response structure from the given request structure.
+func (o *SetServiceBitsRequest) MakeResponse() *SetServiceBitsResponse {
+	return &SetServiceBitsResponse{}
+}
+
+// OpNum returns the operation number of NetrLogonSetServiceBits operation.
+func (o *SetServiceBitsRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of NetrLogonSetServiceBits operation.
+func (o *SetServiceBitsRequest) OpName() string { return "/logon/v1/NetrLogonSetServiceBits" }
+
 // SetServiceBitsResponse structure represents the NetrLogonSetServiceBits operation response
 type SetServiceBitsResponse struct {
 	// Return: The NetrLogonSetServiceBits return value.
@@ -27101,8 +27437,10 @@ type xxx_GetTrustRIDOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonGetTrustRid operation.
 func (o *xxx_GetTrustRIDOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of NetrLogonGetTrustRid operation.
 func (o *xxx_GetTrustRIDOperation) OpName() string { return "/logon/v1/NetrLogonGetTrustRid" }
 
 func (o *xxx_GetTrustRIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -27284,6 +27622,17 @@ func (o *GetTrustRIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetTrustRIDRequest build a response structure from the given request structure.
+func (o *GetTrustRIDRequest) MakeResponse() *GetTrustRIDResponse {
+	return &GetTrustRIDResponse{}
+}
+
+// OpNum returns the operation number of NetrLogonGetTrustRid operation.
+func (o *GetTrustRIDRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of NetrLogonGetTrustRid operation.
+func (o *GetTrustRIDRequest) OpName() string { return "/logon/v1/NetrLogonGetTrustRid" }
+
 // GetTrustRIDResponse structure represents the NetrLogonGetTrustRid operation response
 type GetTrustRIDResponse struct {
 	// Rid: A pointer to an unsigned long that receives the RID of the account.
@@ -27334,8 +27683,10 @@ type xxx_ComputeServerDigestOperation struct {
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonComputeServerDigest operation.
 func (o *xxx_ComputeServerDigestOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of NetrLogonComputeServerDigest operation.
 func (o *xxx_ComputeServerDigestOperation) OpName() string {
 	return "/logon/v1/NetrLogonComputeServerDigest"
 }
@@ -27603,6 +27954,17 @@ func (o *ComputeServerDigestRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeComputeServerDigestRequest build a response structure from the given request structure.
+func (o *ComputeServerDigestRequest) MakeResponse() *ComputeServerDigestResponse {
+	return &ComputeServerDigestResponse{}
+}
+
+// OpNum returns the operation number of NetrLogonComputeServerDigest operation.
+func (o *ComputeServerDigestRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of NetrLogonComputeServerDigest operation.
+func (o *ComputeServerDigestRequest) OpName() string { return "/logon/v1/NetrLogonComputeServerDigest" }
+
 // ComputeServerDigestResponse structure represents the NetrLogonComputeServerDigest operation response
 type ComputeServerDigestResponse struct {
 	// NewMessageDigest: A 128-bit MD5 digest of the current machine account password and
@@ -27661,8 +28023,10 @@ type xxx_ComputeClientDigestOperation struct {
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonComputeClientDigest operation.
 func (o *xxx_ComputeClientDigestOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of NetrLogonComputeClientDigest operation.
 func (o *xxx_ComputeClientDigestOperation) OpName() string {
 	return "/logon/v1/NetrLogonComputeClientDigest"
 }
@@ -27957,6 +28321,17 @@ func (o *ComputeClientDigestRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeComputeClientDigestRequest build a response structure from the given request structure.
+func (o *ComputeClientDigestRequest) MakeResponse() *ComputeClientDigestResponse {
+	return &ComputeClientDigestResponse{}
+}
+
+// OpNum returns the operation number of NetrLogonComputeClientDigest operation.
+func (o *ComputeClientDigestRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of NetrLogonComputeClientDigest operation.
+func (o *ComputeClientDigestRequest) OpName() string { return "/logon/v1/NetrLogonComputeClientDigest" }
+
 // ComputeClientDigestResponse structure represents the NetrLogonComputeClientDigest operation response
 type ComputeClientDigestResponse struct {
 	// NewMessageDigest: A 128-bit MD5 digest of the current computer account password and
@@ -28016,8 +28391,10 @@ type xxx_Authenticate3Operation struct {
 	Return            int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrServerAuthenticate3 operation.
 func (o *xxx_Authenticate3Operation) OpNum() int { return 26 }
 
+// OpName returns the operation name of NetrServerAuthenticate3 operation.
 func (o *xxx_Authenticate3Operation) OpName() string { return "/logon/v1/NetrServerAuthenticate3" }
 
 func (o *xxx_Authenticate3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -28289,6 +28666,17 @@ func (o *Authenticate3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeAuthenticate3Request build a response structure from the given request structure.
+func (o *Authenticate3Request) MakeResponse() *Authenticate3Response {
+	return &Authenticate3Response{}
+}
+
+// OpNum returns the operation number of NetrServerAuthenticate3 operation.
+func (o *Authenticate3Request) OpNum() int { return 26 }
+
+// OpName returns the operation name of NetrServerAuthenticate3 operation.
+func (o *Authenticate3Request) OpName() string { return "/logon/v1/NetrServerAuthenticate3" }
+
 // Authenticate3Response structure represents the NetrServerAuthenticate3 operation response
 type Authenticate3Response struct {
 	// ServerCredential: A pointer to a NETLOGON_CREDENTIAL structure, as specified in section
@@ -28355,8 +28743,10 @@ type xxx_GetDCNameExOperation struct {
 	Return               uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DsrGetDcNameEx operation.
 func (o *xxx_GetDCNameExOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of DsrGetDcNameEx operation.
 func (o *xxx_GetDCNameExOperation) OpName() string { return "/logon/v1/DsrGetDcNameEx" }
 
 func (o *xxx_GetDCNameExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -28672,6 +29062,17 @@ func (o *GetDCNameExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetDCNameExRequest build a response structure from the given request structure.
+func (o *GetDCNameExRequest) MakeResponse() *GetDCNameExResponse {
+	return &GetDCNameExResponse{}
+}
+
+// OpNum returns the operation number of DsrGetDcNameEx operation.
+func (o *GetDCNameExRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of DsrGetDcNameEx operation.
+func (o *GetDCNameExRequest) OpName() string { return "/logon/v1/DsrGetDcNameEx" }
+
 // GetDCNameExResponse structure represents the DsrGetDcNameEx operation response
 type GetDCNameExResponse struct {
 	DomainControllerInfo *DomainControllerInfoW `idl:"name:DomainControllerInfo" json:"domain_controller_info"`
@@ -28717,8 +29118,10 @@ type xxx_GetSiteNameOperation struct {
 	Return       uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DsrGetSiteName operation.
 func (o *xxx_GetSiteNameOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of DsrGetSiteName operation.
 func (o *xxx_GetSiteNameOperation) OpName() string { return "/logon/v1/DsrGetSiteName" }
 
 func (o *xxx_GetSiteNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -28882,6 +29285,17 @@ func (o *GetSiteNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetSiteNameRequest build a response structure from the given request structure.
+func (o *GetSiteNameRequest) MakeResponse() *GetSiteNameResponse {
+	return &GetSiteNameResponse{}
+}
+
+// OpNum returns the operation number of DsrGetSiteName operation.
+func (o *GetSiteNameRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of DsrGetSiteName operation.
+func (o *GetSiteNameRequest) OpName() string { return "/logon/v1/DsrGetSiteName" }
+
 // GetSiteNameResponse structure represents the DsrGetSiteName operation response
 type GetSiteNameResponse struct {
 	// SiteName: A null-terminated Unicode string that contains the name of the site in
@@ -28934,8 +29348,10 @@ type xxx_GetDomainInfoOperation struct {
 	Return              int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonGetDomainInfo operation.
 func (o *xxx_GetDomainInfoOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of NetrLogonGetDomainInfo operation.
 func (o *xxx_GetDomainInfoOperation) OpName() string { return "/logon/v1/NetrLogonGetDomainInfo" }
 
 func (o *xxx_GetDomainInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -29243,6 +29659,22 @@ func (o *GetDomainInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetDomainInfoRequest build a response structure from the given request structure.
+func (o *GetDomainInfoRequest) MakeResponse() *GetDomainInfoResponse {
+	if o == nil {
+		return &GetDomainInfoResponse{}
+	}
+	return &GetDomainInfoResponse{
+		Level: o.Level,
+	}
+}
+
+// OpNum returns the operation number of NetrLogonGetDomainInfo operation.
+func (o *GetDomainInfoRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of NetrLogonGetDomainInfo operation.
+func (o *GetDomainInfoRequest) OpName() string { return "/logon/v1/NetrLogonGetDomainInfo" }
+
 // GetDomainInfoResponse structure represents the NetrLogonGetDomainInfo operation response
 type GetDomainInfoResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
@@ -29311,8 +29743,10 @@ type xxx_PasswordSet2Operation struct {
 	Return              int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrServerPasswordSet2 operation.
 func (o *xxx_PasswordSet2Operation) OpNum() int { return 30 }
 
+// OpName returns the operation name of NetrServerPasswordSet2 operation.
 func (o *xxx_PasswordSet2Operation) OpName() string { return "/logon/v1/NetrServerPasswordSet2" }
 
 func (o *xxx_PasswordSet2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -29564,6 +29998,17 @@ func (o *PasswordSet2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakePasswordSet2Request build a response structure from the given request structure.
+func (o *PasswordSet2Request) MakeResponse() *PasswordSet2Response {
+	return &PasswordSet2Response{}
+}
+
+// OpNum returns the operation number of NetrServerPasswordSet2 operation.
+func (o *PasswordSet2Request) OpNum() int { return 30 }
+
+// OpName returns the operation name of NetrServerPasswordSet2 operation.
+func (o *PasswordSet2Request) OpName() string { return "/logon/v1/NetrServerPasswordSet2" }
+
 // PasswordSet2Response structure represents the NetrServerPasswordSet2 operation response
 type PasswordSet2Response struct {
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure, as specified
@@ -29616,8 +30061,10 @@ type xxx_PasswordGetOperation struct {
 	Return                 int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrServerPasswordGet operation.
 func (o *xxx_PasswordGetOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of NetrServerPasswordGet operation.
 func (o *xxx_PasswordGetOperation) OpName() string { return "/logon/v1/NetrServerPasswordGet" }
 
 func (o *xxx_PasswordGetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -29863,6 +30310,17 @@ func (o *PasswordGetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakePasswordGetRequest build a response structure from the given request structure.
+func (o *PasswordGetRequest) MakeResponse() *PasswordGetResponse {
+	return &PasswordGetResponse{}
+}
+
+// OpNum returns the operation number of NetrServerPasswordGet operation.
+func (o *PasswordGetRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of NetrServerPasswordGet operation.
+func (o *PasswordGetRequest) OpName() string { return "/logon/v1/NetrServerPasswordGet" }
+
 // PasswordGetResponse structure represents the NetrServerPasswordGet operation response
 type PasswordGetResponse struct {
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure, as specified
@@ -29919,8 +30377,10 @@ type xxx_SendToSAMOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonSendToSam operation.
 func (o *xxx_SendToSAMOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of NetrLogonSendToSam operation.
 func (o *xxx_SendToSAMOperation) OpName() string { return "/logon/v1/NetrLogonSendToSam" }
 
 func (o *xxx_SendToSAMOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -30180,6 +30640,17 @@ func (o *SendToSAMRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeSendToSAMRequest build a response structure from the given request structure.
+func (o *SendToSAMRequest) MakeResponse() *SendToSAMResponse {
+	return &SendToSAMResponse{}
+}
+
+// OpNum returns the operation number of NetrLogonSendToSam operation.
+func (o *SendToSAMRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of NetrLogonSendToSam operation.
+func (o *SendToSAMRequest) OpName() string { return "/logon/v1/NetrLogonSendToSam" }
+
 // SendToSAMResponse structure represents the NetrLogonSendToSam operation response
 type SendToSAMResponse struct {
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure, as specified
@@ -30229,8 +30700,10 @@ type xxx_AddressToSiteNamesWOperation struct {
 	Return          uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DsrAddressToSiteNamesW operation.
 func (o *xxx_AddressToSiteNamesWOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of DsrAddressToSiteNamesW operation.
 func (o *xxx_AddressToSiteNamesWOperation) OpName() string { return "/logon/v1/DsrAddressToSiteNamesW" }
 
 func (o *xxx_AddressToSiteNamesWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -30494,6 +30967,17 @@ func (o *AddressToSiteNamesWRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeAddressToSiteNamesWRequest build a response structure from the given request structure.
+func (o *AddressToSiteNamesWRequest) MakeResponse() *AddressToSiteNamesWResponse {
+	return &AddressToSiteNamesWResponse{}
+}
+
+// OpNum returns the operation number of DsrAddressToSiteNamesW operation.
+func (o *AddressToSiteNamesWRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of DsrAddressToSiteNamesW operation.
+func (o *AddressToSiteNamesWRequest) OpName() string { return "/logon/v1/DsrAddressToSiteNamesW" }
+
 // AddressToSiteNamesWResponse structure represents the DsrAddressToSiteNamesW operation response
 type AddressToSiteNamesWResponse struct {
 	// SiteNames: A pointer to an NL_SITE_NAME_ARRAY structure (section 2.2.1.2.2) that
@@ -30551,8 +31035,10 @@ type xxx_GetDCNameEx2Operation struct {
 	Return                      uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DsrGetDcNameEx2 operation.
 func (o *xxx_GetDCNameEx2Operation) OpNum() int { return 34 }
 
+// OpName returns the operation name of DsrGetDcNameEx2 operation.
 func (o *xxx_GetDCNameEx2Operation) OpName() string { return "/logon/v1/DsrGetDcNameEx2" }
 
 func (o *xxx_GetDCNameEx2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -31049,6 +31535,17 @@ func (o *GetDCNameEx2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetDCNameEx2Request build a response structure from the given request structure.
+func (o *GetDCNameEx2Request) MakeResponse() *GetDCNameEx2Response {
+	return &GetDCNameEx2Response{}
+}
+
+// OpNum returns the operation number of DsrGetDcNameEx2 operation.
+func (o *GetDCNameEx2Request) OpNum() int { return 34 }
+
+// OpName returns the operation name of DsrGetDcNameEx2 operation.
+func (o *GetDCNameEx2Request) OpName() string { return "/logon/v1/DsrGetDcNameEx2" }
+
 // GetDCNameEx2Response structure represents the DsrGetDcNameEx2 operation response
 type GetDCNameEx2Response struct {
 	// DomainControllerInfo: A pointer to a DOMAIN_CONTROLLER_INFOW structure (section 2.2.1.2.1)
@@ -31097,8 +31594,10 @@ type xxx_GetTimeServiceParentDomainOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonGetTimeServiceParentDomain operation.
 func (o *xxx_GetTimeServiceParentDomainOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of NetrLogonGetTimeServiceParentDomain operation.
 func (o *xxx_GetTimeServiceParentDomainOperation) OpName() string {
 	return "/logon/v1/NetrLogonGetTimeServiceParentDomain"
 }
@@ -31276,6 +31775,19 @@ func (o *GetTimeServiceParentDomainRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeGetTimeServiceParentDomainRequest build a response structure from the given request structure.
+func (o *GetTimeServiceParentDomainRequest) MakeResponse() *GetTimeServiceParentDomainResponse {
+	return &GetTimeServiceParentDomainResponse{}
+}
+
+// OpNum returns the operation number of NetrLogonGetTimeServiceParentDomain operation.
+func (o *GetTimeServiceParentDomainRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of NetrLogonGetTimeServiceParentDomain operation.
+func (o *GetTimeServiceParentDomainRequest) OpName() string {
+	return "/logon/v1/NetrLogonGetTimeServiceParentDomain"
+}
+
 // GetTimeServiceParentDomainResponse structure represents the NetrLogonGetTimeServiceParentDomain operation response
 type GetTimeServiceParentDomainResponse struct {
 	// DomainName: A pointer to the buffer that receives the null-terminated Unicode string
@@ -31342,8 +31854,10 @@ type xxx_EnumerateTrustedDomainsExOperation struct {
 	Return     uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrEnumerateTrustedDomainsEx operation.
 func (o *xxx_EnumerateTrustedDomainsExOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of NetrEnumerateTrustedDomainsEx operation.
 func (o *xxx_EnumerateTrustedDomainsExOperation) OpName() string {
 	return "/logon/v1/NetrEnumerateTrustedDomainsEx"
 }
@@ -31499,6 +32013,19 @@ func (o *EnumerateTrustedDomainsExRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeEnumerateTrustedDomainsExRequest build a response structure from the given request structure.
+func (o *EnumerateTrustedDomainsExRequest) MakeResponse() *EnumerateTrustedDomainsExResponse {
+	return &EnumerateTrustedDomainsExResponse{}
+}
+
+// OpNum returns the operation number of NetrEnumerateTrustedDomainsEx operation.
+func (o *EnumerateTrustedDomainsExRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of NetrEnumerateTrustedDomainsEx operation.
+func (o *EnumerateTrustedDomainsExRequest) OpName() string {
+	return "/logon/v1/NetrEnumerateTrustedDomainsEx"
+}
+
 // EnumerateTrustedDomainsExResponse structure represents the NetrEnumerateTrustedDomainsEx operation response
 type EnumerateTrustedDomainsExResponse struct {
 	// Domains: A pointer to a NETLOGON_TRUSTED_DOMAIN_ARRAY structure, as specified in
@@ -31549,8 +32076,10 @@ type xxx_AddressToSiteNamesExWOperation struct {
 	Return          uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DsrAddressToSiteNamesExW operation.
 func (o *xxx_AddressToSiteNamesExWOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of DsrAddressToSiteNamesExW operation.
 func (o *xxx_AddressToSiteNamesExWOperation) OpName() string {
 	return "/logon/v1/DsrAddressToSiteNamesExW"
 }
@@ -31817,6 +32346,17 @@ func (o *AddressToSiteNamesExWRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeAddressToSiteNamesExWRequest build a response structure from the given request structure.
+func (o *AddressToSiteNamesExWRequest) MakeResponse() *AddressToSiteNamesExWResponse {
+	return &AddressToSiteNamesExWResponse{}
+}
+
+// OpNum returns the operation number of DsrAddressToSiteNamesExW operation.
+func (o *AddressToSiteNamesExWRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of DsrAddressToSiteNamesExW operation.
+func (o *AddressToSiteNamesExWRequest) OpName() string { return "/logon/v1/DsrAddressToSiteNamesExW" }
+
 // AddressToSiteNamesExWResponse structure represents the DsrAddressToSiteNamesExW operation response
 type AddressToSiteNamesExWResponse struct {
 	// SiteNames: A pointer to an NL_SITE_NAME_EX_ARRAY structure (section 2.2.1.2.3) that
@@ -31868,8 +32408,10 @@ type xxx_GetDCSiteCoverageWOperation struct {
 	Return     uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DsrGetDcSiteCoverageW operation.
 func (o *xxx_GetDCSiteCoverageWOperation) OpNum() int { return 38 }
 
+// OpName returns the operation name of DsrGetDcSiteCoverageW operation.
 func (o *xxx_GetDCSiteCoverageWOperation) OpName() string { return "/logon/v1/DsrGetDcSiteCoverageW" }
 
 func (o *xxx_GetDCSiteCoverageWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -32043,6 +32585,17 @@ func (o *GetDCSiteCoverageWRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetDCSiteCoverageWRequest build a response structure from the given request structure.
+func (o *GetDCSiteCoverageWRequest) MakeResponse() *GetDCSiteCoverageWResponse {
+	return &GetDCSiteCoverageWResponse{}
+}
+
+// OpNum returns the operation number of DsrGetDcSiteCoverageW operation.
+func (o *GetDCSiteCoverageWRequest) OpNum() int { return 38 }
+
+// OpName returns the operation name of DsrGetDcSiteCoverageW operation.
+func (o *GetDCSiteCoverageWRequest) OpName() string { return "/logon/v1/DsrGetDcSiteCoverageW" }
+
 // GetDCSiteCoverageWResponse structure represents the DsrGetDcSiteCoverageW operation response
 type GetDCSiteCoverageWResponse struct {
 	// SiteNames: A pointer to an NL_SITE_NAME_ARRAY structure (section 2.2.1.2.2) that
@@ -32096,8 +32649,10 @@ type xxx_SAMLogonExOperation struct {
 	Return                int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonSamLogonEx operation.
 func (o *xxx_SAMLogonExOperation) OpNum() int { return 39 }
 
+// OpName returns the operation name of NetrLogonSamLogonEx operation.
 func (o *xxx_SAMLogonExOperation) OpName() string { return "/logon/v1/NetrLogonSamLogonEx" }
 
 func (o *xxx_SAMLogonExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -32433,6 +32988,22 @@ func (o *SAMLogonExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeSAMLogonExRequest build a response structure from the given request structure.
+func (o *SAMLogonExRequest) MakeResponse() *SAMLogonExResponse {
+	if o == nil {
+		return &SAMLogonExResponse{}
+	}
+	return &SAMLogonExResponse{
+		ValidationLevel: o.ValidationLevel,
+	}
+}
+
+// OpNum returns the operation number of NetrLogonSamLogonEx operation.
+func (o *SAMLogonExRequest) OpNum() int { return 39 }
+
+// OpName returns the operation name of NetrLogonSamLogonEx operation.
+func (o *SAMLogonExRequest) OpName() string { return "/logon/v1/NetrLogonSamLogonEx" }
+
 // SAMLogonExResponse structure represents the NetrLogonSamLogonEx operation response
 type SAMLogonExResponse struct {
 	// XXX: ValidationLevel is an implicit input depedency for output parameters
@@ -32532,8 +33103,10 @@ type xxx_EnumerateDomainTrustsOperation struct {
 	Return     uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DsrEnumerateDomainTrusts operation.
 func (o *xxx_EnumerateDomainTrustsOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of DsrEnumerateDomainTrusts operation.
 func (o *xxx_EnumerateDomainTrustsOperation) OpName() string {
 	return "/logon/v1/DsrEnumerateDomainTrusts"
 }
@@ -32736,6 +33309,17 @@ func (o *EnumerateDomainTrustsRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeEnumerateDomainTrustsRequest build a response structure from the given request structure.
+func (o *EnumerateDomainTrustsRequest) MakeResponse() *EnumerateDomainTrustsResponse {
+	return &EnumerateDomainTrustsResponse{}
+}
+
+// OpNum returns the operation number of DsrEnumerateDomainTrusts operation.
+func (o *EnumerateDomainTrustsRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of DsrEnumerateDomainTrusts operation.
+func (o *EnumerateDomainTrustsRequest) OpName() string { return "/logon/v1/DsrEnumerateDomainTrusts" }
+
 // EnumerateDomainTrustsResponse structure represents the DsrEnumerateDomainTrusts operation response
 type EnumerateDomainTrustsResponse struct {
 	// Domains: A pointer to a NETLOGON_TRUSTED_DOMAIN_ARRAY structure, as specified in
@@ -32786,8 +33370,10 @@ type xxx_DeregisterDNSHostRecordsOperation struct {
 	Return        uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DsrDeregisterDnsHostRecords operation.
 func (o *xxx_DeregisterDNSHostRecordsOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of DsrDeregisterDnsHostRecords operation.
 func (o *xxx_DeregisterDNSHostRecordsOperation) OpName() string {
 	return "/logon/v1/DsrDeregisterDnsHostRecords"
 }
@@ -33079,6 +33665,19 @@ func (o *DeregisterDNSHostRecordsRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeDeregisterDNSHostRecordsRequest build a response structure from the given request structure.
+func (o *DeregisterDNSHostRecordsRequest) MakeResponse() *DeregisterDNSHostRecordsResponse {
+	return &DeregisterDNSHostRecordsResponse{}
+}
+
+// OpNum returns the operation number of DsrDeregisterDnsHostRecords operation.
+func (o *DeregisterDNSHostRecordsRequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of DsrDeregisterDnsHostRecords operation.
+func (o *DeregisterDNSHostRecordsRequest) OpName() string {
+	return "/logon/v1/DsrDeregisterDnsHostRecords"
+}
+
 // DeregisterDNSHostRecordsResponse structure represents the DsrDeregisterDnsHostRecords operation response
 type DeregisterDNSHostRecordsResponse struct {
 	// Return: The DsrDeregisterDnsHostRecords return value.
@@ -33127,8 +33726,10 @@ type xxx_TrustPasswordsGetOperation struct {
 	Return                  int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrServerTrustPasswordsGet operation.
 func (o *xxx_TrustPasswordsGetOperation) OpNum() int { return 42 }
 
+// OpName returns the operation name of NetrServerTrustPasswordsGet operation.
 func (o *xxx_TrustPasswordsGetOperation) OpName() string {
 	return "/logon/v1/NetrServerTrustPasswordsGet"
 }
@@ -33398,6 +33999,17 @@ func (o *TrustPasswordsGetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeTrustPasswordsGetRequest build a response structure from the given request structure.
+func (o *TrustPasswordsGetRequest) MakeResponse() *TrustPasswordsGetResponse {
+	return &TrustPasswordsGetResponse{}
+}
+
+// OpNum returns the operation number of NetrServerTrustPasswordsGet operation.
+func (o *TrustPasswordsGetRequest) OpNum() int { return 42 }
+
+// OpName returns the operation name of NetrServerTrustPasswordsGet operation.
+func (o *TrustPasswordsGetRequest) OpName() string { return "/logon/v1/NetrServerTrustPasswordsGet" }
+
 // TrustPasswordsGetResponse structure represents the NetrServerTrustPasswordsGet operation response
 type TrustPasswordsGetResponse struct {
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure, as specified
@@ -33467,8 +34079,10 @@ type xxx_GetForestTrustInformationOperation struct {
 	Return            uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DsrGetForestTrustInformation operation.
 func (o *xxx_GetForestTrustInformationOperation) OpNum() int { return 43 }
 
+// OpName returns the operation name of DsrGetForestTrustInformation operation.
 func (o *xxx_GetForestTrustInformationOperation) OpName() string {
 	return "/logon/v1/DsrGetForestTrustInformation"
 }
@@ -33723,6 +34337,19 @@ func (o *GetForestTrustInformationRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeGetForestTrustInformationRequest build a response structure from the given request structure.
+func (o *GetForestTrustInformationRequest) MakeResponse() *GetForestTrustInformationResponse {
+	return &GetForestTrustInformationResponse{}
+}
+
+// OpNum returns the operation number of DsrGetForestTrustInformation operation.
+func (o *GetForestTrustInformationRequest) OpNum() int { return 43 }
+
+// OpName returns the operation name of DsrGetForestTrustInformation operation.
+func (o *GetForestTrustInformationRequest) OpName() string {
+	return "/logon/v1/DsrGetForestTrustInformation"
+}
+
 // GetForestTrustInformationResponse structure represents the DsrGetForestTrustInformation operation response
 type GetForestTrustInformationResponse struct {
 	// ForestTrustInfo: A pointer to an LSA_FOREST_TRUST_INFORMATION structure, as specified
@@ -33774,8 +34401,10 @@ type xxx_GetNetrForestTrustInformationOperation struct {
 	Return              int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrGetForestTrustInformation operation.
 func (o *xxx_GetNetrForestTrustInformationOperation) OpNum() int { return 44 }
 
+// OpName returns the operation name of NetrGetForestTrustInformation operation.
 func (o *xxx_GetNetrForestTrustInformationOperation) OpName() string {
 	return "/logon/v1/NetrGetForestTrustInformation"
 }
@@ -34030,6 +34659,19 @@ func (o *GetNetrForestTrustInformationRequest) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
+// MakeGetNetrForestTrustInformationRequest build a response structure from the given request structure.
+func (o *GetNetrForestTrustInformationRequest) MakeResponse() *GetNetrForestTrustInformationResponse {
+	return &GetNetrForestTrustInformationResponse{}
+}
+
+// OpNum returns the operation number of NetrGetForestTrustInformation operation.
+func (o *GetNetrForestTrustInformationRequest) OpNum() int { return 44 }
+
+// OpName returns the operation name of NetrGetForestTrustInformation operation.
+func (o *GetNetrForestTrustInformationRequest) OpName() string {
+	return "/logon/v1/NetrGetForestTrustInformation"
+}
+
 // GetNetrForestTrustInformationResponse structure represents the NetrGetForestTrustInformation operation response
 type GetNetrForestTrustInformationResponse struct {
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure, as specified
@@ -34090,8 +34732,10 @@ type xxx_SAMLogonWithFlagsOperation struct {
 	Return                int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrLogonSamLogonWithFlags operation.
 func (o *xxx_SAMLogonWithFlagsOperation) OpNum() int { return 45 }
 
+// OpName returns the operation name of NetrLogonSamLogonWithFlags operation.
 func (o *xxx_SAMLogonWithFlagsOperation) OpName() string {
 	return "/logon/v1/NetrLogonSamLogonWithFlags"
 }
@@ -34575,6 +35219,22 @@ func (o *SAMLogonWithFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSAMLogonWithFlagsRequest build a response structure from the given request structure.
+func (o *SAMLogonWithFlagsRequest) MakeResponse() *SAMLogonWithFlagsResponse {
+	if o == nil {
+		return &SAMLogonWithFlagsResponse{}
+	}
+	return &SAMLogonWithFlagsResponse{
+		ValidationLevel: o.ValidationLevel,
+	}
+}
+
+// OpNum returns the operation number of NetrLogonSamLogonWithFlags operation.
+func (o *SAMLogonWithFlagsRequest) OpNum() int { return 45 }
+
+// OpName returns the operation name of NetrLogonSamLogonWithFlags operation.
+func (o *SAMLogonWithFlagsRequest) OpName() string { return "/logon/v1/NetrLogonSamLogonWithFlags" }
+
 // SAMLogonWithFlagsResponse structure represents the NetrLogonSamLogonWithFlags operation response
 type SAMLogonWithFlagsResponse struct {
 	// XXX: ValidationLevel is an implicit input depedency for output parameters
@@ -34685,8 +35345,10 @@ type xxx_GetTrustInfoOperation struct {
 	Return                  int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrServerGetTrustInfo operation.
 func (o *xxx_GetTrustInfoOperation) OpNum() int { return 46 }
 
+// OpName returns the operation name of NetrServerGetTrustInfo operation.
 func (o *xxx_GetTrustInfoOperation) OpName() string { return "/logon/v1/NetrServerGetTrustInfo" }
 
 func (o *xxx_GetTrustInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -35000,6 +35662,17 @@ func (o *GetTrustInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetTrustInfoRequest build a response structure from the given request structure.
+func (o *GetTrustInfoRequest) MakeResponse() *GetTrustInfoResponse {
+	return &GetTrustInfoResponse{}
+}
+
+// OpNum returns the operation number of NetrServerGetTrustInfo operation.
+func (o *GetTrustInfoRequest) OpNum() int { return 46 }
+
+// OpName returns the operation name of NetrServerGetTrustInfo operation.
+func (o *GetTrustInfoRequest) OpName() string { return "/logon/v1/NetrServerGetTrustInfo" }
+
 // GetTrustInfoResponse structure represents the NetrServerGetTrustInfo operation response
 type GetTrustInfoResponse struct {
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure, as specified
@@ -35078,8 +35751,10 @@ type xxx_UpdateReadOnlyServerDNSRecordsOperation struct {
 	Return              int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DsrUpdateReadOnlyServerDnsRecords operation.
 func (o *xxx_UpdateReadOnlyServerDNSRecordsOperation) OpNum() int { return 48 }
 
+// OpName returns the operation name of DsrUpdateReadOnlyServerDnsRecords operation.
 func (o *xxx_UpdateReadOnlyServerDNSRecordsOperation) OpName() string {
 	return "/logon/v1/DsrUpdateReadOnlyServerDnsRecords"
 }
@@ -35391,6 +36066,19 @@ func (o *UpdateReadOnlyServerDNSRecordsRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeUpdateReadOnlyServerDNSRecordsRequest build a response structure from the given request structure.
+func (o *UpdateReadOnlyServerDNSRecordsRequest) MakeResponse() *UpdateReadOnlyServerDNSRecordsResponse {
+	return &UpdateReadOnlyServerDNSRecordsResponse{}
+}
+
+// OpNum returns the operation number of DsrUpdateReadOnlyServerDnsRecords operation.
+func (o *UpdateReadOnlyServerDNSRecordsRequest) OpNum() int { return 48 }
+
+// OpName returns the operation name of DsrUpdateReadOnlyServerDnsRecords operation.
+func (o *UpdateReadOnlyServerDNSRecordsRequest) OpName() string {
+	return "/logon/v1/DsrUpdateReadOnlyServerDnsRecords"
+}
+
 // UpdateReadOnlyServerDNSRecordsResponse structure represents the DsrUpdateReadOnlyServerDnsRecords operation response
 type UpdateReadOnlyServerDNSRecordsResponse struct {
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure that contains
@@ -35450,8 +36138,10 @@ type xxx_ChainSetClientAttributesOperation struct {
 	Return                int32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrChainSetClientAttributes operation.
 func (o *xxx_ChainSetClientAttributesOperation) OpNum() int { return 49 }
 
+// OpName returns the operation name of NetrChainSetClientAttributes operation.
 func (o *xxx_ChainSetClientAttributesOperation) OpName() string {
 	return "/logon/v1/NetrChainSetClientAttributes"
 }
@@ -35806,6 +36496,19 @@ func (o *ChainSetClientAttributesRequest) UnmarshalNDR(ctx context.Context, r nd
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeChainSetClientAttributesRequest build a response structure from the given request structure.
+func (o *ChainSetClientAttributesRequest) MakeResponse() *ChainSetClientAttributesResponse {
+	return &ChainSetClientAttributesResponse{}
+}
+
+// OpNum returns the operation number of NetrChainSetClientAttributes operation.
+func (o *ChainSetClientAttributesRequest) OpNum() int { return 49 }
+
+// OpName returns the operation name of NetrChainSetClientAttributes operation.
+func (o *ChainSetClientAttributesRequest) OpName() string {
+	return "/logon/v1/NetrChainSetClientAttributes"
 }
 
 // ChainSetClientAttributesResponse structure represents the NetrChainSetClientAttributes operation response

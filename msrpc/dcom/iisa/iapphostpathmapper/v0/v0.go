@@ -142,8 +142,10 @@ type xxx_MapPathOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MapPath operation.
 func (o *xxx_MapPathOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of MapPath operation.
 func (o *xxx_MapPathOperation) OpName() string { return "/IAppHostPathMapper/v0/MapPath" }
 
 func (o *xxx_MapPathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -430,6 +432,17 @@ func (o *MapPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeMapPathRequest build a response structure from the given request structure.
+func (o *MapPathRequest) MakeResponse() *MapPathResponse {
+	return &MapPathResponse{}
+}
+
+// OpNum returns the operation number of MapPath operation.
+func (o *MapPathRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of MapPath operation.
+func (o *MapPathRequest) OpName() string { return "/IAppHostPathMapper/v0/MapPath" }
 
 // MapPathResponse structure represents the MapPath operation response
 type MapPathResponse struct {

@@ -150,8 +150,10 @@ type xxx_CreateRemoteObjectOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateRemoteObject operation.
 func (o *xxx_CreateRemoteObjectOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CreateRemoteObject operation.
 func (o *xxx_CreateRemoteObjectOperation) OpName() string {
 	return "/IDMRemoteServer/v0/CreateRemoteObject"
 }
@@ -376,6 +378,17 @@ func (o *CreateRemoteObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCreateRemoteObjectRequest build a response structure from the given request structure.
+func (o *CreateRemoteObjectRequest) MakeResponse() *CreateRemoteObjectResponse {
+	return &CreateRemoteObjectResponse{}
+}
+
+// OpNum returns the operation number of CreateRemoteObject operation.
+func (o *CreateRemoteObjectRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of CreateRemoteObject operation.
+func (o *CreateRemoteObjectRequest) OpName() string { return "/IDMRemoteServer/v0/CreateRemoteObject" }
 
 // CreateRemoteObjectResponse structure represents the CreateRemoteObject operation response
 type CreateRemoteObjectResponse struct {

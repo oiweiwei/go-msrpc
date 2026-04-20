@@ -163,8 +163,10 @@ type xxx_WriteTableOperation struct {
 	Return                    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WriteTable operation.
 func (o *xxx_WriteTableOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of WriteTable operation.
 func (o *xxx_WriteTableOperation) OpName() string { return "/ICatalogTableWrite/v0/WriteTable" }
 
 func (o *xxx_WriteTableOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -967,6 +969,17 @@ func (o *WriteTableRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeWriteTableRequest build a response structure from the given request structure.
+func (o *WriteTableRequest) MakeResponse() *WriteTableResponse {
+	return &WriteTableResponse{}
+}
+
+// OpNum returns the operation number of WriteTable operation.
+func (o *WriteTableRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of WriteTable operation.
+func (o *WriteTableRequest) OpName() string { return "/ICatalogTableWrite/v0/WriteTable" }
 
 // WriteTableResponse structure represents the WriteTable operation response
 type WriteTableResponse struct {

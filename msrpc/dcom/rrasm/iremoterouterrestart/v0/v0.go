@@ -138,8 +138,10 @@ type xxx_RestartRouterOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RestartRouter operation.
 func (o *xxx_RestartRouterOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RestartRouter operation.
 func (o *xxx_RestartRouterOperation) OpName() string { return "/IRemoteRouterRestart/v0/RestartRouter" }
 
 func (o *xxx_RestartRouterOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -297,6 +299,17 @@ func (o *RestartRouterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeRestartRouterRequest build a response structure from the given request structure.
+func (o *RestartRouterRequest) MakeResponse() *RestartRouterResponse {
+	return &RestartRouterResponse{}
+}
+
+// OpNum returns the operation number of RestartRouter operation.
+func (o *RestartRouterRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RestartRouter operation.
+func (o *RestartRouterRequest) OpName() string { return "/IRemoteRouterRestart/v0/RestartRouter" }
 
 // RestartRouterResponse structure represents the RestartRouter operation response
 type RestartRouterResponse struct {

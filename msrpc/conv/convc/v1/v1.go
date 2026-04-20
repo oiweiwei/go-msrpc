@@ -83,8 +83,10 @@ type xxx_IndyOperation struct {
 	CasUUID *conv.UUID `idl:"name:cas_uuid" json:"cas_uuid"`
 }
 
+// OpNum returns the operation number of convc_indy operation.
 func (o *xxx_IndyOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of convc_indy operation.
 func (o *xxx_IndyOperation) OpName() string { return "/convc/v1/convc_indy" }
 
 func (o *xxx_IndyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -181,6 +183,17 @@ func (o *IndyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeIndyRequest build a response structure from the given request structure.
+func (o *IndyRequest) MakeResponse() *IndyResponse {
+	return &IndyResponse{}
+}
+
+// OpNum returns the operation number of convc_indy operation.
+func (o *IndyRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of convc_indy operation.
+func (o *IndyRequest) OpName() string { return "/convc/v1/convc_indy" }
 
 // IndyResponse structure represents the convc_indy operation response
 type IndyResponse struct {

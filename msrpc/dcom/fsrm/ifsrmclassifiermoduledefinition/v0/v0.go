@@ -255,8 +255,10 @@ type xxx_GetPropertiesAffectedOperation struct {
 	Return             int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PropertiesAffected operation.
 func (o *xxx_GetPropertiesAffectedOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of PropertiesAffected operation.
 func (o *xxx_GetPropertiesAffectedOperation) OpName() string {
 	return "/IFsrmClassifierModuleDefinition/v0/PropertiesAffected"
 }
@@ -448,6 +450,19 @@ func (o *GetPropertiesAffectedRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetPropertiesAffectedRequest build a response structure from the given request structure.
+func (o *GetPropertiesAffectedRequest) MakeResponse() *GetPropertiesAffectedResponse {
+	return &GetPropertiesAffectedResponse{}
+}
+
+// OpNum returns the operation number of PropertiesAffected operation.
+func (o *GetPropertiesAffectedRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of PropertiesAffected operation.
+func (o *GetPropertiesAffectedRequest) OpName() string {
+	return "/IFsrmClassifierModuleDefinition/v0/PropertiesAffected"
+}
+
 // GetPropertiesAffectedResponse structure represents the PropertiesAffected operation response
 type GetPropertiesAffectedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -498,8 +513,10 @@ type xxx_SetPropertiesAffectedOperation struct {
 	Return             int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PropertiesAffected operation.
 func (o *xxx_SetPropertiesAffectedOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of PropertiesAffected operation.
 func (o *xxx_SetPropertiesAffectedOperation) OpName() string {
 	return "/IFsrmClassifierModuleDefinition/v0/PropertiesAffected"
 }
@@ -694,6 +711,19 @@ func (o *SetPropertiesAffectedRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeSetPropertiesAffectedRequest build a response structure from the given request structure.
+func (o *SetPropertiesAffectedRequest) MakeResponse() *SetPropertiesAffectedResponse {
+	return &SetPropertiesAffectedResponse{}
+}
+
+// OpNum returns the operation number of PropertiesAffected operation.
+func (o *SetPropertiesAffectedRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of PropertiesAffected operation.
+func (o *SetPropertiesAffectedRequest) OpName() string {
+	return "/IFsrmClassifierModuleDefinition/v0/PropertiesAffected"
+}
+
 // SetPropertiesAffectedResponse structure represents the PropertiesAffected operation response
 type SetPropertiesAffectedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -741,8 +771,10 @@ type xxx_GetPropertiesUsedOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PropertiesUsed operation.
 func (o *xxx_GetPropertiesUsedOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of PropertiesUsed operation.
 func (o *xxx_GetPropertiesUsedOperation) OpName() string {
 	return "/IFsrmClassifierModuleDefinition/v0/PropertiesUsed"
 }
@@ -934,6 +966,19 @@ func (o *GetPropertiesUsedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetPropertiesUsedRequest build a response structure from the given request structure.
+func (o *GetPropertiesUsedRequest) MakeResponse() *GetPropertiesUsedResponse {
+	return &GetPropertiesUsedResponse{}
+}
+
+// OpNum returns the operation number of PropertiesUsed operation.
+func (o *GetPropertiesUsedRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of PropertiesUsed operation.
+func (o *GetPropertiesUsedRequest) OpName() string {
+	return "/IFsrmClassifierModuleDefinition/v0/PropertiesUsed"
+}
+
 // GetPropertiesUsedResponse structure represents the PropertiesUsed operation response
 type GetPropertiesUsedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -984,8 +1029,10 @@ type xxx_SetPropertiesUsedOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PropertiesUsed operation.
 func (o *xxx_SetPropertiesUsedOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of PropertiesUsed operation.
 func (o *xxx_SetPropertiesUsedOperation) OpName() string {
 	return "/IFsrmClassifierModuleDefinition/v0/PropertiesUsed"
 }
@@ -1180,6 +1227,19 @@ func (o *SetPropertiesUsedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetPropertiesUsedRequest build a response structure from the given request structure.
+func (o *SetPropertiesUsedRequest) MakeResponse() *SetPropertiesUsedResponse {
+	return &SetPropertiesUsedResponse{}
+}
+
+// OpNum returns the operation number of PropertiesUsed operation.
+func (o *SetPropertiesUsedRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of PropertiesUsed operation.
+func (o *SetPropertiesUsedRequest) OpName() string {
+	return "/IFsrmClassifierModuleDefinition/v0/PropertiesUsed"
+}
+
 // SetPropertiesUsedResponse structure represents the PropertiesUsed operation response
 type SetPropertiesUsedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1227,8 +1287,10 @@ type xxx_GetNeedsExplicitValueOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NeedsExplicitValue operation.
 func (o *xxx_GetNeedsExplicitValueOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of NeedsExplicitValue operation.
 func (o *xxx_GetNeedsExplicitValueOperation) OpName() string {
 	return "/IFsrmClassifierModuleDefinition/v0/NeedsExplicitValue"
 }
@@ -1386,6 +1448,19 @@ func (o *GetNeedsExplicitValueRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetNeedsExplicitValueRequest build a response structure from the given request structure.
+func (o *GetNeedsExplicitValueRequest) MakeResponse() *GetNeedsExplicitValueResponse {
+	return &GetNeedsExplicitValueResponse{}
+}
+
+// OpNum returns the operation number of NeedsExplicitValue operation.
+func (o *GetNeedsExplicitValueRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of NeedsExplicitValue operation.
+func (o *GetNeedsExplicitValueRequest) OpName() string {
+	return "/IFsrmClassifierModuleDefinition/v0/NeedsExplicitValue"
+}
+
 // GetNeedsExplicitValueResponse structure represents the NeedsExplicitValue operation response
 type GetNeedsExplicitValueResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1436,8 +1511,10 @@ type xxx_SetNeedsExplicitValueOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NeedsExplicitValue operation.
 func (o *xxx_SetNeedsExplicitValueOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of NeedsExplicitValue operation.
 func (o *xxx_SetNeedsExplicitValueOperation) OpName() string {
 	return "/IFsrmClassifierModuleDefinition/v0/NeedsExplicitValue"
 }
@@ -1596,6 +1673,19 @@ func (o *SetNeedsExplicitValueRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetNeedsExplicitValueRequest build a response structure from the given request structure.
+func (o *SetNeedsExplicitValueRequest) MakeResponse() *SetNeedsExplicitValueResponse {
+	return &SetNeedsExplicitValueResponse{}
+}
+
+// OpNum returns the operation number of NeedsExplicitValue operation.
+func (o *SetNeedsExplicitValueRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of NeedsExplicitValue operation.
+func (o *SetNeedsExplicitValueRequest) OpName() string {
+	return "/IFsrmClassifierModuleDefinition/v0/NeedsExplicitValue"
 }
 
 // SetNeedsExplicitValueResponse structure represents the NeedsExplicitValue operation response

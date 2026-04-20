@@ -236,8 +236,10 @@ type xxx_StartOperation struct {
 	Return int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Start operation.
 func (o *xxx_StartOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Start operation.
 func (o *xxx_StartOperation) OpName() string { return "/ICapabilitySupport/v0/Start" }
 
 func (o *xxx_StartOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -397,6 +399,17 @@ func (o *StartRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeStartRequest build a response structure from the given request structure.
+func (o *StartRequest) MakeResponse() *StartResponse {
+	return &StartResponse{}
+}
+
+// OpNum returns the operation number of Start operation.
+func (o *StartRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Start operation.
+func (o *StartRequest) OpName() string { return "/ICapabilitySupport/v0/Start" }
+
 // StartResponse structure represents the Start operation response
 type StartResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -444,8 +457,10 @@ type xxx_StopOperation struct {
 	Return int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Stop operation.
 func (o *xxx_StopOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Stop operation.
 func (o *xxx_StopOperation) OpName() string { return "/ICapabilitySupport/v0/Stop" }
 
 func (o *xxx_StopOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -605,6 +620,17 @@ func (o *StopRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeStopRequest build a response structure from the given request structure.
+func (o *StopRequest) MakeResponse() *StopResponse {
+	return &StopResponse{}
+}
+
+// OpNum returns the operation number of Stop operation.
+func (o *StopRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Stop operation.
+func (o *StopRequest) OpName() string { return "/ICapabilitySupport/v0/Stop" }
+
 // StopResponse structure represents the Stop operation response
 type StopResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -653,8 +679,10 @@ type xxx_IsInstalledOperation struct {
 	Return int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsInstalled operation.
 func (o *xxx_IsInstalledOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of IsInstalled operation.
 func (o *xxx_IsInstalledOperation) OpName() string { return "/ICapabilitySupport/v0/IsInstalled" }
 
 func (o *xxx_IsInstalledOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -826,6 +854,17 @@ func (o *IsInstalledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeIsInstalledRequest build a response structure from the given request structure.
+func (o *IsInstalledRequest) MakeResponse() *IsInstalledResponse {
+	return &IsInstalledResponse{}
+}
+
+// OpNum returns the operation number of IsInstalled operation.
+func (o *IsInstalledRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of IsInstalled operation.
+func (o *IsInstalledRequest) OpName() string { return "/ICapabilitySupport/v0/IsInstalled" }
+
 // IsInstalledResponse structure represents the IsInstalled operation response
 type IsInstalledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -880,8 +919,10 @@ type xxx_IsRunningOperation struct {
 	Return int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsRunning operation.
 func (o *xxx_IsRunningOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of IsRunning operation.
 func (o *xxx_IsRunningOperation) OpName() string { return "/ICapabilitySupport/v0/IsRunning" }
 
 func (o *xxx_IsRunningOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1052,6 +1093,17 @@ func (o *IsRunningRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeIsRunningRequest build a response structure from the given request structure.
+func (o *IsRunningRequest) MakeResponse() *IsRunningResponse {
+	return &IsRunningResponse{}
+}
+
+// OpNum returns the operation number of IsRunning operation.
+func (o *IsRunningRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of IsRunning operation.
+func (o *IsRunningRequest) OpName() string { return "/ICapabilitySupport/v0/IsRunning" }
 
 // IsRunningResponse structure represents the IsRunning operation response
 type IsRunningResponse struct {

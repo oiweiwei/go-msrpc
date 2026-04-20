@@ -8091,8 +8091,10 @@ type xxx_ManagerGetVersionOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsManagerGetVersion operation.
 func (o *xxx_ManagerGetVersionOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of NetrDfsManagerGetVersion operation.
 func (o *xxx_ManagerGetVersionOperation) OpName() string {
 	return "/netdfs/v3/NetrDfsManagerGetVersion"
 }
@@ -8180,6 +8182,17 @@ func (o *ManagerGetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeManagerGetVersionRequest build a response structure from the given request structure.
+func (o *ManagerGetVersionRequest) MakeResponse() *ManagerGetVersionResponse {
+	return &ManagerGetVersionResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsManagerGetVersion operation.
+func (o *ManagerGetVersionRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of NetrDfsManagerGetVersion operation.
+func (o *ManagerGetVersionRequest) OpName() string { return "/netdfs/v3/NetrDfsManagerGetVersion" }
+
 // ManagerGetVersionResponse structure represents the NetrDfsManagerGetVersion operation response
 type ManagerGetVersionResponse struct {
 	// Return: The NetrDfsManagerGetVersion return value.
@@ -8225,8 +8238,10 @@ type xxx_AddOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsAdd operation.
 func (o *xxx_AddOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of NetrDfsAdd operation.
 func (o *xxx_AddOperation) OpName() string { return "/netdfs/v3/NetrDfsAdd" }
 
 func (o *xxx_AddOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8466,6 +8481,17 @@ func (o *AddRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeAddRequest build a response structure from the given request structure.
+func (o *AddRequest) MakeResponse() *AddResponse {
+	return &AddResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsAdd operation.
+func (o *AddRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of NetrDfsAdd operation.
+func (o *AddRequest) OpName() string { return "/netdfs/v3/NetrDfsAdd" }
+
 // AddResponse structure represents the NetrDfsAdd operation response
 type AddResponse struct {
 	// Return: The NetrDfsAdd return value.
@@ -8509,8 +8535,10 @@ type xxx_RemoveOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsRemove operation.
 func (o *xxx_RemoveOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of NetrDfsRemove operation.
 func (o *xxx_RemoveOperation) OpName() string { return "/netdfs/v3/NetrDfsRemove" }
 
 func (o *xxx_RemoveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8700,6 +8728,17 @@ func (o *RemoveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeRemoveRequest build a response structure from the given request structure.
+func (o *RemoveRequest) MakeResponse() *RemoveResponse {
+	return &RemoveResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsRemove operation.
+func (o *RemoveRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of NetrDfsRemove operation.
+func (o *RemoveRequest) OpName() string { return "/netdfs/v3/NetrDfsRemove" }
+
 // RemoveResponse structure represents the NetrDfsRemove operation response
 type RemoveResponse struct {
 	// Return: The NetrDfsRemove return value.
@@ -8745,8 +8784,10 @@ type xxx_SetInfoOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsSetInfo operation.
 func (o *xxx_SetInfoOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of NetrDfsSetInfo operation.
 func (o *xxx_SetInfoOperation) OpName() string { return "/netdfs/v3/NetrDfsSetInfo" }
 
 func (o *xxx_SetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9026,6 +9067,17 @@ func (o *SetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetInfoRequest build a response structure from the given request structure.
+func (o *SetInfoRequest) MakeResponse() *SetInfoResponse {
+	return &SetInfoResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsSetInfo operation.
+func (o *SetInfoRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of NetrDfsSetInfo operation.
+func (o *SetInfoRequest) OpName() string { return "/netdfs/v3/NetrDfsSetInfo" }
+
 // SetInfoResponse structure represents the NetrDfsSetInfo operation response
 type SetInfoResponse struct {
 	// Return: The NetrDfsSetInfo return value.
@@ -9071,8 +9123,10 @@ type xxx_GetInfoOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsGetInfo operation.
 func (o *xxx_GetInfoOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of NetrDfsGetInfo operation.
 func (o *xxx_GetInfoOperation) OpName() string { return "/netdfs/v3/NetrDfsGetInfo" }
 
 func (o *xxx_GetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9351,6 +9405,22 @@ func (o *GetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetInfoRequest build a response structure from the given request structure.
+func (o *GetInfoRequest) MakeResponse() *GetInfoResponse {
+	if o == nil {
+		return &GetInfoResponse{}
+	}
+	return &GetInfoResponse{
+		Level: o.Level,
+	}
+}
+
+// OpNum returns the operation number of NetrDfsGetInfo operation.
+func (o *GetInfoRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of NetrDfsGetInfo operation.
+func (o *GetInfoRequest) OpName() string { return "/netdfs/v3/NetrDfsGetInfo" }
+
 // GetInfoResponse structure represents the NetrDfsGetInfo operation response
 type GetInfoResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
@@ -9411,8 +9481,10 @@ type xxx_EnumOperation struct {
 	Return        uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsEnum operation.
 func (o *xxx_EnumOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of NetrDfsEnum operation.
 func (o *xxx_EnumOperation) OpName() string { return "/netdfs/v3/NetrDfsEnum" }
 
 func (o *xxx_EnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9762,6 +9834,17 @@ func (o *EnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeEnumRequest build a response structure from the given request structure.
+func (o *EnumRequest) MakeResponse() *EnumResponse {
+	return &EnumResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsEnum operation.
+func (o *EnumRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of NetrDfsEnum operation.
+func (o *EnumRequest) OpName() string { return "/netdfs/v3/NetrDfsEnum" }
+
 // EnumResponse structure represents the NetrDfsEnum operation response
 type EnumResponse struct {
 	// DfsEnum: A pointer to a DFS_INFO_ENUM_STRUCT union to receive the returned information.
@@ -9832,8 +9915,10 @@ type xxx_MoveOperation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsMove operation.
 func (o *xxx_MoveOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of NetrDfsMove operation.
 func (o *xxx_MoveOperation) OpName() string { return "/netdfs/v3/NetrDfsMove" }
 
 func (o *xxx_MoveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9981,6 +10066,17 @@ func (o *MoveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeMoveRequest build a response structure from the given request structure.
+func (o *MoveRequest) MakeResponse() *MoveResponse {
+	return &MoveResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsMove operation.
+func (o *MoveRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of NetrDfsMove operation.
+func (o *MoveRequest) OpName() string { return "/netdfs/v3/NetrDfsMove" }
+
 // MoveResponse structure represents the NetrDfsMove operation response
 type MoveResponse struct {
 	// Return: The NetrDfsMove return value.
@@ -10030,8 +10126,10 @@ type xxx_AddFTRootOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsAddFtRoot operation.
 func (o *xxx_AddFTRootOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of NetrDfsAddFtRoot operation.
 func (o *xxx_AddFTRootOperation) OpName() string { return "/netdfs/v3/NetrDfsAddFtRoot" }
 
 func (o *xxx_AddFTRootOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10397,6 +10495,17 @@ func (o *AddFTRootRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeAddFTRootRequest build a response structure from the given request structure.
+func (o *AddFTRootRequest) MakeResponse() *AddFTRootResponse {
+	return &AddFTRootResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsAddFtRoot operation.
+func (o *AddFTRootRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of NetrDfsAddFtRoot operation.
+func (o *AddFTRootRequest) OpName() string { return "/netdfs/v3/NetrDfsAddFtRoot" }
+
 // AddFTRootResponse structure represents the NetrDfsAddFtRoot operation response
 type AddFTRootResponse struct {
 	// ppRootList: On success, returns a list of DFS root targets in the domain-based DFS
@@ -10450,8 +10559,10 @@ type xxx_RemoveFTRootOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsRemoveFtRoot operation.
 func (o *xxx_RemoveFTRootOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of NetrDfsRemoveFtRoot operation.
 func (o *xxx_RemoveFTRootOperation) OpName() string { return "/netdfs/v3/NetrDfsRemoveFtRoot" }
 
 func (o *xxx_RemoveFTRootOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10773,6 +10884,17 @@ func (o *RemoveFTRootRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeRemoveFTRootRequest build a response structure from the given request structure.
+func (o *RemoveFTRootRequest) MakeResponse() *RemoveFTRootResponse {
+	return &RemoveFTRootResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsRemoveFtRoot operation.
+func (o *RemoveFTRootRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of NetrDfsRemoveFtRoot operation.
+func (o *RemoveFTRootRequest) OpName() string { return "/netdfs/v3/NetrDfsRemoveFtRoot" }
+
 // RemoveFTRootResponse structure represents the NetrDfsRemoveFtRoot operation response
 type RemoveFTRootResponse struct {
 	// ppRootList: On success, returns a list of DFS root targets in the domain-based DFS
@@ -10824,8 +10946,10 @@ type xxx_AddStdRootOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsAddStdRoot operation.
 func (o *xxx_AddStdRootOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of NetrDfsAddStdRoot operation.
 func (o *xxx_AddStdRootOperation) OpName() string { return "/netdfs/v3/NetrDfsAddStdRoot" }
 
 func (o *xxx_AddStdRootOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10981,6 +11105,17 @@ func (o *AddStdRootRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeAddStdRootRequest build a response structure from the given request structure.
+func (o *AddStdRootRequest) MakeResponse() *AddStdRootResponse {
+	return &AddStdRootResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsAddStdRoot operation.
+func (o *AddStdRootRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of NetrDfsAddStdRoot operation.
+func (o *AddStdRootRequest) OpName() string { return "/netdfs/v3/NetrDfsAddStdRoot" }
+
 // AddStdRootResponse structure represents the NetrDfsAddStdRoot operation response
 type AddStdRootResponse struct {
 	// Return: The NetrDfsAddStdRoot return value.
@@ -11024,8 +11159,10 @@ type xxx_RemoveStdRootOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsRemoveStdRoot operation.
 func (o *xxx_RemoveStdRootOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of NetrDfsRemoveStdRoot operation.
 func (o *xxx_RemoveStdRootOperation) OpName() string { return "/netdfs/v3/NetrDfsRemoveStdRoot" }
 
 func (o *xxx_RemoveStdRootOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11162,6 +11299,17 @@ func (o *RemoveStdRootRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeRemoveStdRootRequest build a response structure from the given request structure.
+func (o *RemoveStdRootRequest) MakeResponse() *RemoveStdRootResponse {
+	return &RemoveStdRootResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsRemoveStdRoot operation.
+func (o *RemoveStdRootRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of NetrDfsRemoveStdRoot operation.
+func (o *RemoveStdRootRequest) OpName() string { return "/netdfs/v3/NetrDfsRemoveStdRoot" }
+
 // RemoveStdRootResponse structure represents the NetrDfsRemoveStdRoot operation response
 type RemoveStdRootResponse struct {
 	// Return: The NetrDfsRemoveStdRoot return value.
@@ -11204,8 +11352,10 @@ type xxx_ManagerInitializeOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsManagerInitialize operation.
 func (o *xxx_ManagerInitializeOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of NetrDfsManagerInitialize operation.
 func (o *xxx_ManagerInitializeOperation) OpName() string {
 	return "/netdfs/v3/NetrDfsManagerInitialize"
 }
@@ -11326,6 +11476,17 @@ func (o *ManagerInitializeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeManagerInitializeRequest build a response structure from the given request structure.
+func (o *ManagerInitializeRequest) MakeResponse() *ManagerInitializeResponse {
+	return &ManagerInitializeResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsManagerInitialize operation.
+func (o *ManagerInitializeRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of NetrDfsManagerInitialize operation.
+func (o *ManagerInitializeRequest) OpName() string { return "/netdfs/v3/NetrDfsManagerInitialize" }
+
 // ManagerInitializeResponse structure represents the NetrDfsManagerInitialize operation response
 type ManagerInitializeResponse struct {
 	// Return: The NetrDfsManagerInitialize return value.
@@ -11370,8 +11531,10 @@ type xxx_AddStdRootForcedOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsAddStdRootForced operation.
 func (o *xxx_AddStdRootForcedOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of NetrDfsAddStdRootForced operation.
 func (o *xxx_AddStdRootForcedOperation) OpName() string { return "/netdfs/v3/NetrDfsAddStdRootForced" }
 
 func (o *xxx_AddStdRootForcedOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11532,6 +11695,17 @@ func (o *AddStdRootForcedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeAddStdRootForcedRequest build a response structure from the given request structure.
+func (o *AddStdRootForcedRequest) MakeResponse() *AddStdRootForcedResponse {
+	return &AddStdRootForcedResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsAddStdRootForced operation.
+func (o *AddStdRootForcedRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of NetrDfsAddStdRootForced operation.
+func (o *AddStdRootForcedRequest) OpName() string { return "/netdfs/v3/NetrDfsAddStdRootForced" }
+
 // AddStdRootForcedResponse structure represents the NetrDfsAddStdRootForced operation response
 type AddStdRootForcedResponse struct {
 	// Return: The NetrDfsAddStdRootForced return value.
@@ -11576,8 +11750,10 @@ type xxx_GetDCAddressOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsGetDcAddress operation.
 func (o *xxx_GetDCAddressOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of NetrDfsGetDcAddress operation.
 func (o *xxx_GetDCAddressOperation) OpName() string { return "/netdfs/v3/NetrDfsGetDcAddress" }
 
 func (o *xxx_GetDCAddressOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11817,6 +11993,17 @@ func (o *GetDCAddressRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetDCAddressRequest build a response structure from the given request structure.
+func (o *GetDCAddressRequest) MakeResponse() *GetDCAddressResponse {
+	return &GetDCAddressResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsGetDcAddress operation.
+func (o *GetDCAddressRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of NetrDfsGetDcAddress operation.
+func (o *GetDCAddressRequest) OpName() string { return "/netdfs/v3/NetrDfsGetDcAddress" }
+
 // GetDCAddressResponse structure represents the NetrDfsGetDcAddress operation response
 type GetDCAddressResponse struct {
 	// DcName: A null-terminated Unicode string that contains the DC host name when the
@@ -11876,8 +12063,10 @@ type xxx_SetDCAddressOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsSetDcAddress operation.
 func (o *xxx_SetDCAddressOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of NetrDfsSetDcAddress operation.
 func (o *xxx_SetDCAddressOperation) OpName() string { return "/netdfs/v3/NetrDfsSetDcAddress" }
 
 func (o *xxx_SetDCAddressOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12044,6 +12233,17 @@ func (o *SetDCAddressRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeSetDCAddressRequest build a response structure from the given request structure.
+func (o *SetDCAddressRequest) MakeResponse() *SetDCAddressResponse {
+	return &SetDCAddressResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsSetDcAddress operation.
+func (o *SetDCAddressRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of NetrDfsSetDcAddress operation.
+func (o *SetDCAddressRequest) OpName() string { return "/netdfs/v3/NetrDfsSetDcAddress" }
+
 // SetDCAddressResponse structure represents the NetrDfsSetDcAddress operation response
 type SetDCAddressResponse struct {
 	// Return: The NetrDfsSetDcAddress return value.
@@ -12086,8 +12286,10 @@ type xxx_FlushFTTableOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsFlushFtTable operation.
 func (o *xxx_FlushFTTableOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of NetrDfsFlushFtTable operation.
 func (o *xxx_FlushFTTableOperation) OpName() string { return "/netdfs/v3/NetrDfsFlushFtTable" }
 
 func (o *xxx_FlushFTTableOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12207,6 +12409,17 @@ func (o *FlushFTTableRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeFlushFTTableRequest build a response structure from the given request structure.
+func (o *FlushFTTableRequest) MakeResponse() *FlushFTTableResponse {
+	return &FlushFTTableResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsFlushFtTable operation.
+func (o *FlushFTTableRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of NetrDfsFlushFtTable operation.
+func (o *FlushFTTableRequest) OpName() string { return "/netdfs/v3/NetrDfsFlushFtTable" }
+
 // FlushFTTableResponse structure represents the NetrDfsFlushFtTable operation response
 type FlushFTTableResponse struct {
 	// Return: The NetrDfsFlushFtTable return value.
@@ -12254,8 +12467,10 @@ type xxx_Add2Operation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsAdd2 operation.
 func (o *xxx_Add2Operation) OpNum() int { return 19 }
 
+// OpName returns the operation name of NetrDfsAdd2 operation.
 func (o *xxx_Add2Operation) OpName() string { return "/netdfs/v3/NetrDfsAdd2" }
 
 func (o *xxx_Add2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12649,6 +12864,17 @@ func (o *Add2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeAdd2Request build a response structure from the given request structure.
+func (o *Add2Request) MakeResponse() *Add2Response {
+	return &Add2Response{}
+}
+
+// OpNum returns the operation number of NetrDfsAdd2 operation.
+func (o *Add2Request) OpNum() int { return 19 }
+
+// OpName returns the operation name of NetrDfsAdd2 operation.
+func (o *Add2Request) OpName() string { return "/netdfs/v3/NetrDfsAdd2" }
+
 // Add2Response structure represents the NetrDfsAdd2 operation response
 type Add2Response struct {
 	// ppRootList: On success, returns a list of DFS root targets in the domain-based DFS
@@ -12701,8 +12927,10 @@ type xxx_Remove2Operation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsRemove2 operation.
 func (o *xxx_Remove2Operation) OpNum() int { return 20 }
 
+// OpName returns the operation name of NetrDfsRemove2 operation.
 func (o *xxx_Remove2Operation) OpName() string { return "/netdfs/v3/NetrDfsRemove2" }
 
 func (o *xxx_Remove2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13045,6 +13273,17 @@ func (o *Remove2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeRemove2Request build a response structure from the given request structure.
+func (o *Remove2Request) MakeResponse() *Remove2Response {
+	return &Remove2Response{}
+}
+
+// OpNum returns the operation number of NetrDfsRemove2 operation.
+func (o *Remove2Request) OpNum() int { return 20 }
+
+// OpName returns the operation name of NetrDfsRemove2 operation.
+func (o *Remove2Request) OpName() string { return "/netdfs/v3/NetrDfsRemove2" }
+
 // Remove2Response structure represents the NetrDfsRemove2 operation response
 type Remove2Response struct {
 	// ppRootList: On success, returns a list of DFS root targets in the domain-based DFS
@@ -13097,8 +13336,10 @@ type xxx_EnumExOperation struct {
 	Return        uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsEnumEx operation.
 func (o *xxx_EnumExOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of NetrDfsEnumEx operation.
 func (o *xxx_EnumExOperation) OpName() string { return "/netdfs/v3/NetrDfsEnumEx" }
 
 func (o *xxx_EnumExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13489,6 +13730,17 @@ func (o *EnumExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeEnumExRequest build a response structure from the given request structure.
+func (o *EnumExRequest) MakeResponse() *EnumExResponse {
+	return &EnumExResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsEnumEx operation.
+func (o *EnumExRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of NetrDfsEnumEx operation.
+func (o *EnumExRequest) OpName() string { return "/netdfs/v3/NetrDfsEnumEx" }
+
 // EnumExResponse structure represents the NetrDfsEnumEx operation response
 type EnumExResponse struct {
 	// DfsEnum: A pointer to a DFS_INFO_ENUM_STRUCT union to receive the returned information.
@@ -13562,8 +13814,10 @@ type xxx_SetInfo2Operation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsSetInfo2 operation.
 func (o *xxx_SetInfo2Operation) OpNum() int { return 22 }
 
+// OpName returns the operation name of NetrDfsSetInfo2 operation.
 func (o *xxx_SetInfo2Operation) OpName() string { return "/netdfs/v3/NetrDfsSetInfo2" }
 
 func (o *xxx_SetInfo2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13998,6 +14252,17 @@ func (o *SetInfo2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeSetInfo2Request build a response structure from the given request structure.
+func (o *SetInfo2Request) MakeResponse() *SetInfo2Response {
+	return &SetInfo2Response{}
+}
+
+// OpNum returns the operation number of NetrDfsSetInfo2 operation.
+func (o *SetInfo2Request) OpNum() int { return 22 }
+
+// OpName returns the operation name of NetrDfsSetInfo2 operation.
+func (o *SetInfo2Request) OpName() string { return "/netdfs/v3/NetrDfsSetInfo2" }
+
 // SetInfo2Response structure represents the NetrDfsSetInfo2 operation response
 type SetInfo2Response struct {
 	// ppRootList: On success, returns a list of DFS root targets in the domain-based DFS
@@ -14051,8 +14316,10 @@ type xxx_AddRootTargetOperation struct {
 	Return       uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsAddRootTarget operation.
 func (o *xxx_AddRootTargetOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of NetrDfsAddRootTarget operation.
 func (o *xxx_AddRootTargetOperation) OpName() string { return "/netdfs/v3/NetrDfsAddRootTarget" }
 
 func (o *xxx_AddRootTargetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14327,6 +14594,17 @@ func (o *AddRootTargetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeAddRootTargetRequest build a response structure from the given request structure.
+func (o *AddRootTargetRequest) MakeResponse() *AddRootTargetResponse {
+	return &AddRootTargetResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsAddRootTarget operation.
+func (o *AddRootTargetRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of NetrDfsAddRootTarget operation.
+func (o *AddRootTargetRequest) OpName() string { return "/netdfs/v3/NetrDfsAddRootTarget" }
+
 // AddRootTargetResponse structure represents the NetrDfsAddRootTarget operation response
 type AddRootTargetResponse struct {
 	// Return: The NetrDfsAddRootTarget return value.
@@ -14370,8 +14648,10 @@ type xxx_RemoveRootTargetOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsRemoveRootTarget operation.
 func (o *xxx_RemoveRootTargetOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of NetrDfsRemoveRootTarget operation.
 func (o *xxx_RemoveRootTargetOperation) OpName() string { return "/netdfs/v3/NetrDfsRemoveRootTarget" }
 
 func (o *xxx_RemoveRootTargetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14569,6 +14849,17 @@ func (o *RemoveRootTargetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeRemoveRootTargetRequest build a response structure from the given request structure.
+func (o *RemoveRootTargetRequest) MakeResponse() *RemoveRootTargetResponse {
+	return &RemoveRootTargetResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsRemoveRootTarget operation.
+func (o *RemoveRootTargetRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of NetrDfsRemoveRootTarget operation.
+func (o *RemoveRootTargetRequest) OpName() string { return "/netdfs/v3/NetrDfsRemoveRootTarget" }
+
 // RemoveRootTargetResponse structure represents the NetrDfsRemoveRootTarget operation response
 type RemoveRootTargetResponse struct {
 	// Return: The NetrDfsRemoveRootTarget return value.
@@ -14612,8 +14903,10 @@ type xxx_GetSupportedNamespaceVersionOperation struct {
 	Return      uint32                         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrDfsGetSupportedNamespaceVersion operation.
 func (o *xxx_GetSupportedNamespaceVersionOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of NetrDfsGetSupportedNamespaceVersion operation.
 func (o *xxx_GetSupportedNamespaceVersionOperation) OpName() string {
 	return "/netdfs/v3/NetrDfsGetSupportedNamespaceVersion"
 }
@@ -14794,6 +15087,19 @@ func (o *GetSupportedNamespaceVersionRequest) UnmarshalNDR(ctx context.Context, 
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetSupportedNamespaceVersionRequest build a response structure from the given request structure.
+func (o *GetSupportedNamespaceVersionRequest) MakeResponse() *GetSupportedNamespaceVersionResponse {
+	return &GetSupportedNamespaceVersionResponse{}
+}
+
+// OpNum returns the operation number of NetrDfsGetSupportedNamespaceVersion operation.
+func (o *GetSupportedNamespaceVersionRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of NetrDfsGetSupportedNamespaceVersion operation.
+func (o *GetSupportedNamespaceVersionRequest) OpName() string {
+	return "/netdfs/v3/NetrDfsGetSupportedNamespaceVersion"
 }
 
 // GetSupportedNamespaceVersionResponse structure represents the NetrDfsGetSupportedNamespaceVersion operation response

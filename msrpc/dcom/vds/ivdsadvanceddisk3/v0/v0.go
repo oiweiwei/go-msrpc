@@ -169,8 +169,10 @@ type xxx_GetPropertiesOperation struct {
 	Return               int32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetProperties operation.
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetProperties operation.
 func (o *xxx_GetPropertiesOperation) OpName() string { return "/IVdsAdvancedDisk3/v0/GetProperties" }
 
 func (o *xxx_GetPropertiesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -341,6 +343,17 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetPropertiesRequest build a response structure from the given request structure.
+func (o *GetPropertiesRequest) MakeResponse() *GetPropertiesResponse {
+	return &GetPropertiesResponse{}
+}
+
+// OpNum returns the operation number of GetProperties operation.
+func (o *GetPropertiesRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetProperties operation.
+func (o *GetPropertiesRequest) OpName() string { return "/IVdsAdvancedDisk3/v0/GetProperties" }
+
 // GetPropertiesResponse structure represents the GetProperties operation response
 type GetPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -391,8 +404,10 @@ type xxx_GetUniqueIDOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetUniqueId operation.
 func (o *xxx_GetUniqueIDOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetUniqueId operation.
 func (o *xxx_GetUniqueIDOperation) OpName() string { return "/IVdsAdvancedDisk3/v0/GetUniqueId" }
 
 func (o *xxx_GetUniqueIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -572,6 +587,17 @@ func (o *GetUniqueIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetUniqueIDRequest build a response structure from the given request structure.
+func (o *GetUniqueIDRequest) MakeResponse() *GetUniqueIDResponse {
+	return &GetUniqueIDResponse{}
+}
+
+// OpNum returns the operation number of GetUniqueId operation.
+func (o *GetUniqueIDRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetUniqueId operation.
+func (o *GetUniqueIDRequest) OpName() string { return "/IVdsAdvancedDisk3/v0/GetUniqueId" }
 
 // GetUniqueIDResponse structure represents the GetUniqueId operation response
 type GetUniqueIDResponse struct {

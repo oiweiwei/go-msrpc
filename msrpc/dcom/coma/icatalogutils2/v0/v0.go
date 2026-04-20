@@ -392,8 +392,10 @@ type xxx_CopyConglomerationsOperation struct {
 	Return                   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CopyConglomerations operation.
 func (o *xxx_CopyConglomerationsOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CopyConglomerations operation.
 func (o *xxx_CopyConglomerationsOperation) OpName() string {
 	return "/ICatalogUtils2/v0/CopyConglomerations"
 }
@@ -670,6 +672,17 @@ func (o *CopyConglomerationsRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeCopyConglomerationsRequest build a response structure from the given request structure.
+func (o *CopyConglomerationsRequest) MakeResponse() *CopyConglomerationsResponse {
+	return &CopyConglomerationsResponse{}
+}
+
+// OpNum returns the operation number of CopyConglomerations operation.
+func (o *CopyConglomerationsRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of CopyConglomerations operation.
+func (o *CopyConglomerationsRequest) OpName() string { return "/ICatalogUtils2/v0/CopyConglomerations" }
+
 // CopyConglomerationsResponse structure represents the CopyConglomerations operation response
 type CopyConglomerationsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -719,8 +732,10 @@ type xxx_CopyComponentConfigurationOperation struct {
 	Return                    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CopyComponentConfiguration operation.
 func (o *xxx_CopyComponentConfigurationOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of CopyComponentConfiguration operation.
 func (o *xxx_CopyComponentConfigurationOperation) OpName() string {
 	return "/ICatalogUtils2/v0/CopyComponentConfiguration"
 }
@@ -920,6 +935,19 @@ func (o *CopyComponentConfigurationRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeCopyComponentConfigurationRequest build a response structure from the given request structure.
+func (o *CopyComponentConfigurationRequest) MakeResponse() *CopyComponentConfigurationResponse {
+	return &CopyComponentConfigurationResponse{}
+}
+
+// OpNum returns the operation number of CopyComponentConfiguration operation.
+func (o *CopyComponentConfigurationRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of CopyComponentConfiguration operation.
+func (o *CopyComponentConfigurationRequest) OpName() string {
+	return "/ICatalogUtils2/v0/CopyComponentConfiguration"
+}
+
 // CopyComponentConfigurationResponse structure represents the CopyComponentConfiguration operation response
 type CopyComponentConfigurationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -971,8 +999,10 @@ type xxx_AliasComponentOperation struct {
 	Return                    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AliasComponent operation.
 func (o *xxx_AliasComponentOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of AliasComponent operation.
 func (o *xxx_AliasComponentOperation) OpName() string { return "/ICatalogUtils2/v0/AliasComponent" }
 
 func (o *xxx_AliasComponentOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1211,6 +1241,17 @@ func (o *AliasComponentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeAliasComponentRequest build a response structure from the given request structure.
+func (o *AliasComponentRequest) MakeResponse() *AliasComponentResponse {
+	return &AliasComponentResponse{}
+}
+
+// OpNum returns the operation number of AliasComponent operation.
+func (o *AliasComponentRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of AliasComponent operation.
+func (o *AliasComponentRequest) OpName() string { return "/ICatalogUtils2/v0/AliasComponent" }
+
 // AliasComponentResponse structure represents the AliasComponent operation response
 type AliasComponentResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1260,8 +1301,10 @@ type xxx_MoveComponentConfigurationOperation struct {
 	Return                    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MoveComponentConfiguration operation.
 func (o *xxx_MoveComponentConfigurationOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of MoveComponentConfiguration operation.
 func (o *xxx_MoveComponentConfigurationOperation) OpName() string {
 	return "/ICatalogUtils2/v0/MoveComponentConfiguration"
 }
@@ -1461,6 +1504,19 @@ func (o *MoveComponentConfigurationRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeMoveComponentConfigurationRequest build a response structure from the given request structure.
+func (o *MoveComponentConfigurationRequest) MakeResponse() *MoveComponentConfigurationResponse {
+	return &MoveComponentConfigurationResponse{}
+}
+
+// OpNum returns the operation number of MoveComponentConfiguration operation.
+func (o *MoveComponentConfigurationRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of MoveComponentConfiguration operation.
+func (o *MoveComponentConfigurationRequest) OpName() string {
+	return "/ICatalogUtils2/v0/MoveComponentConfiguration"
+}
+
 // MoveComponentConfigurationResponse structure represents the MoveComponentConfiguration operation response
 type MoveComponentConfigurationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1515,8 +1571,10 @@ type xxx_GetEventClassesForIid2Operation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetEventClassesForIID2 operation.
 func (o *xxx_GetEventClassesForIid2Operation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetEventClassesForIID2 operation.
 func (o *xxx_GetEventClassesForIid2Operation) OpName() string {
 	return "/ICatalogUtils2/v0/GetEventClassesForIID2"
 }
@@ -2184,6 +2242,19 @@ func (o *GetEventClassesForIid2Request) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetEventClassesForIid2Request build a response structure from the given request structure.
+func (o *GetEventClassesForIid2Request) MakeResponse() *GetEventClassesForIid2Response {
+	return &GetEventClassesForIid2Response{}
+}
+
+// OpNum returns the operation number of GetEventClassesForIID2 operation.
+func (o *GetEventClassesForIid2Request) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetEventClassesForIID2 operation.
+func (o *GetEventClassesForIid2Request) OpName() string {
+	return "/ICatalogUtils2/v0/GetEventClassesForIID2"
+}
+
 // GetEventClassesForIid2Response structure represents the GetEventClassesForIID2 operation response
 type GetEventClassesForIid2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2267,8 +2338,10 @@ type xxx_IsSafeToDeleteOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsSafeToDelete operation.
 func (o *xxx_IsSafeToDeleteOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of IsSafeToDelete operation.
 func (o *xxx_IsSafeToDeleteOperation) OpName() string { return "/ICatalogUtils2/v0/IsSafeToDelete" }
 
 func (o *xxx_IsSafeToDeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2473,6 +2546,17 @@ func (o *IsSafeToDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeIsSafeToDeleteRequest build a response structure from the given request structure.
+func (o *IsSafeToDeleteRequest) MakeResponse() *IsSafeToDeleteResponse {
+	return &IsSafeToDeleteResponse{}
+}
+
+// OpNum returns the operation number of IsSafeToDelete operation.
+func (o *IsSafeToDeleteRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of IsSafeToDelete operation.
+func (o *IsSafeToDeleteRequest) OpName() string { return "/ICatalogUtils2/v0/IsSafeToDelete" }
+
 // IsSafeToDeleteResponse structure represents the IsSafeToDelete operation response
 type IsSafeToDeleteResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2522,8 +2606,10 @@ type xxx_FlushPartitionCacheOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FlushPartitionCache operation.
 func (o *xxx_FlushPartitionCacheOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of FlushPartitionCache operation.
 func (o *xxx_FlushPartitionCacheOperation) OpName() string {
 	return "/ICatalogUtils2/v0/FlushPartitionCache"
 }
@@ -2669,6 +2755,17 @@ func (o *FlushPartitionCacheRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeFlushPartitionCacheRequest build a response structure from the given request structure.
+func (o *FlushPartitionCacheRequest) MakeResponse() *FlushPartitionCacheResponse {
+	return &FlushPartitionCacheResponse{}
+}
+
+// OpNum returns the operation number of FlushPartitionCache operation.
+func (o *FlushPartitionCacheRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of FlushPartitionCache operation.
+func (o *FlushPartitionCacheRequest) OpName() string { return "/ICatalogUtils2/v0/FlushPartitionCache" }
+
 // FlushPartitionCacheResponse structure represents the FlushPartitionCache operation response
 type FlushPartitionCacheResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2718,8 +2815,10 @@ type xxx_EnumerateSRPLevelsOperation struct {
 	Return      int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumerateSRPLevels operation.
 func (o *xxx_EnumerateSRPLevelsOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of EnumerateSRPLevels operation.
 func (o *xxx_EnumerateSRPLevelsOperation) OpName() string {
 	return "/ICatalogUtils2/v0/EnumerateSRPLevels"
 }
@@ -2976,6 +3075,17 @@ func (o *EnumerateSRPLevelsRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeEnumerateSRPLevelsRequest build a response structure from the given request structure.
+func (o *EnumerateSRPLevelsRequest) MakeResponse() *EnumerateSRPLevelsResponse {
+	return &EnumerateSRPLevelsResponse{}
+}
+
+// OpNum returns the operation number of EnumerateSRPLevels operation.
+func (o *EnumerateSRPLevelsRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of EnumerateSRPLevels operation.
+func (o *EnumerateSRPLevelsRequest) OpName() string { return "/ICatalogUtils2/v0/EnumerateSRPLevels" }
+
 // EnumerateSRPLevelsResponse structure represents the EnumerateSRPLevels operation response
 type EnumerateSRPLevelsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3039,8 +3149,10 @@ type xxx_GetComponentVersionsOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetComponentVersions operation.
 func (o *xxx_GetComponentVersionsOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of GetComponentVersions operation.
 func (o *xxx_GetComponentVersionsOperation) OpName() string {
 	return "/ICatalogUtils2/v0/GetComponentVersions"
 }
@@ -3532,6 +3644,19 @@ func (o *GetComponentVersionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetComponentVersionsRequest build a response structure from the given request structure.
+func (o *GetComponentVersionsRequest) MakeResponse() *GetComponentVersionsResponse {
+	return &GetComponentVersionsResponse{}
+}
+
+// OpNum returns the operation number of GetComponentVersions operation.
+func (o *GetComponentVersionsRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of GetComponentVersions operation.
+func (o *GetComponentVersionsRequest) OpName() string {
+	return "/ICatalogUtils2/v0/GetComponentVersions"
 }
 
 // GetComponentVersionsResponse structure represents the GetComponentVersions operation response

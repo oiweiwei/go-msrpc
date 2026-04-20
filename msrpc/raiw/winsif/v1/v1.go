@@ -869,8 +869,10 @@ type xxx_RecordActionOperation struct {
 	Return       uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsRecordAction operation.
 func (o *xxx_RecordActionOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of R_WinsRecordAction operation.
 func (o *xxx_RecordActionOperation) OpName() string { return "/winsif/v1/R_WinsRecordAction" }
 
 func (o *xxx_RecordActionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1190,6 +1192,17 @@ func (o *RecordActionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeRecordActionRequest build a response structure from the given request structure.
+func (o *RecordActionRequest) MakeResponse() *RecordActionResponse {
+	return &RecordActionResponse{}
+}
+
+// OpNum returns the operation number of R_WinsRecordAction operation.
+func (o *RecordActionRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of R_WinsRecordAction operation.
+func (o *RecordActionRequest) OpName() string { return "/winsif/v1/R_WinsRecordAction" }
+
 // RecordActionResponse structure represents the R_WinsRecordAction operation response
 type RecordActionResponse struct {
 	// ppRecAction: A pointer to a WINSINTF_RECORD_ACTION_T structure (section 2.2.2.3)
@@ -1374,8 +1387,10 @@ type xxx_StatusOperation struct {
 	Return  uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsStatus operation.
 func (o *xxx_StatusOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of R_WinsStatus operation.
 func (o *xxx_StatusOperation) OpName() string { return "/winsif/v1/R_WinsStatus" }
 
 func (o *xxx_StatusOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1537,6 +1552,17 @@ func (o *StatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeStatusRequest build a response structure from the given request structure.
+func (o *StatusRequest) MakeResponse() *StatusResponse {
+	return &StatusResponse{}
+}
+
+// OpNum returns the operation number of R_WinsStatus operation.
+func (o *StatusRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of R_WinsStatus operation.
+func (o *StatusRequest) OpName() string { return "/winsif/v1/R_WinsStatus" }
+
 // StatusResponse structure represents the R_WinsStatus operation response
 type StatusResponse struct {
 	// pResults: A pointer to a WINSINTF_RESULTS_T structure (section 2.2.2.7) that contains
@@ -1584,8 +1610,10 @@ type xxx_TriggerOperation struct {
 	Return       uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsTrigger operation.
 func (o *xxx_TriggerOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of R_WinsTrigger operation.
 func (o *xxx_TriggerOperation) OpName() string { return "/winsif/v1/R_WinsTrigger" }
 
 func (o *xxx_TriggerOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1711,6 +1739,17 @@ func (o *TriggerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeTriggerRequest build a response structure from the given request structure.
+func (o *TriggerRequest) MakeResponse() *TriggerResponse {
+	return &TriggerResponse{}
+}
+
+// OpNum returns the operation number of R_WinsTrigger operation.
+func (o *TriggerRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of R_WinsTrigger operation.
+func (o *TriggerRequest) OpName() string { return "/winsif/v1/R_WinsTrigger" }
+
 // TriggerResponse structure represents the R_WinsTrigger operation response
 type TriggerResponse struct {
 	// Return: The R_WinsTrigger return value.
@@ -1753,8 +1792,10 @@ type xxx_DoStaticInitOperation struct {
 	Return       uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsDoStaticInit operation.
 func (o *xxx_DoStaticInitOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of R_WinsDoStaticInit operation.
 func (o *xxx_DoStaticInitOperation) OpName() string { return "/winsif/v1/R_WinsDoStaticInit" }
 
 func (o *xxx_DoStaticInitOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1908,6 +1949,17 @@ func (o *DoStaticInitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeDoStaticInitRequest build a response structure from the given request structure.
+func (o *DoStaticInitRequest) MakeResponse() *DoStaticInitResponse {
+	return &DoStaticInitResponse{}
+}
+
+// OpNum returns the operation number of R_WinsDoStaticInit operation.
+func (o *DoStaticInitRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of R_WinsDoStaticInit operation.
+func (o *DoStaticInitRequest) OpName() string { return "/winsif/v1/R_WinsDoStaticInit" }
+
 // DoStaticInitResponse structure represents the R_WinsDoStaticInit operation response
 type DoStaticInitResponse struct {
 	// Return: The R_WinsDoStaticInit return value.
@@ -1948,8 +2000,10 @@ type xxx_DoScavengingOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsDoScavenging operation.
 func (o *xxx_DoScavengingOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of R_WinsDoScavenging operation.
 func (o *xxx_DoScavengingOperation) OpName() string { return "/winsif/v1/R_WinsDoScavenging" }
 
 func (o *xxx_DoScavengingOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2035,6 +2089,17 @@ func (o *DoScavengingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeDoScavengingRequest build a response structure from the given request structure.
+func (o *DoScavengingRequest) MakeResponse() *DoScavengingResponse {
+	return &DoScavengingResponse{}
+}
+
+// OpNum returns the operation number of R_WinsDoScavenging operation.
+func (o *DoScavengingRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of R_WinsDoScavenging operation.
+func (o *DoScavengingRequest) OpName() string { return "/winsif/v1/R_WinsDoScavenging" }
+
 // DoScavengingResponse structure represents the R_WinsDoScavenging operation response
 type DoScavengingResponse struct {
 	// Return: The R_WinsDoScavenging return value.
@@ -2079,8 +2144,10 @@ type xxx_GetDBRecordsOperation struct {
 	Return    uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsGetDbRecs operation.
 func (o *xxx_GetDBRecordsOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of R_WinsGetDbRecs operation.
 func (o *xxx_GetDBRecordsOperation) OpName() string { return "/winsif/v1/R_WinsGetDbRecs" }
 
 func (o *xxx_GetDBRecordsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2267,6 +2334,17 @@ func (o *GetDBRecordsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetDBRecordsRequest build a response structure from the given request structure.
+func (o *GetDBRecordsRequest) MakeResponse() *GetDBRecordsResponse {
+	return &GetDBRecordsResponse{}
+}
+
+// OpNum returns the operation number of R_WinsGetDbRecs operation.
+func (o *GetDBRecordsRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of R_WinsGetDbRecs operation.
+func (o *GetDBRecordsRequest) OpName() string { return "/winsif/v1/R_WinsGetDbRecs" }
+
 // GetDBRecordsResponse structure represents the R_WinsGetDbRecs operation response
 type GetDBRecordsResponse struct {
 	// pRecs: Pointer to a structure of type WINSINTF_RECS_T, which contains the records
@@ -2313,8 +2391,10 @@ type xxx_TerminateOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsTerm operation.
 func (o *xxx_TerminateOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of R_WinsTerm operation.
 func (o *xxx_TerminateOperation) OpName() string { return "/winsif/v1/R_WinsTerm" }
 
 func (o *xxx_TerminateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2418,6 +2498,17 @@ func (o *TerminateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeTerminateRequest build a response structure from the given request structure.
+func (o *TerminateRequest) MakeResponse() *TerminateResponse {
+	return &TerminateResponse{}
+}
+
+// OpNum returns the operation number of R_WinsTerm operation.
+func (o *TerminateRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of R_WinsTerm operation.
+func (o *TerminateRequest) OpName() string { return "/winsif/v1/R_WinsTerm" }
+
 // TerminateResponse structure represents the R_WinsTerm operation response
 type TerminateResponse struct {
 	// Return: The R_WinsTerm return value.
@@ -2460,8 +2551,10 @@ type xxx_BackupOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsBackup operation.
 func (o *xxx_BackupOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of R_WinsBackup operation.
 func (o *xxx_BackupOperation) OpName() string { return "/winsif/v1/R_WinsBackup" }
 
 func (o *xxx_BackupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2580,6 +2673,17 @@ func (o *BackupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeBackupRequest build a response structure from the given request structure.
+func (o *BackupRequest) MakeResponse() *BackupResponse {
+	return &BackupResponse{}
+}
+
+// OpNum returns the operation number of R_WinsBackup operation.
+func (o *BackupRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of R_WinsBackup operation.
+func (o *BackupRequest) OpName() string { return "/winsif/v1/R_WinsBackup" }
+
 // BackupResponse structure represents the R_WinsBackup operation response
 type BackupResponse struct {
 	// Return: The R_WinsBackup return value.
@@ -2623,8 +2727,10 @@ type xxx_DeleteDBRecordsOperation struct {
 	Return    uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsDelDbRecs operation.
 func (o *xxx_DeleteDBRecordsOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of R_WinsDelDbRecs operation.
 func (o *xxx_DeleteDBRecordsOperation) OpName() string { return "/winsif/v1/R_WinsDelDbRecs" }
 
 func (o *xxx_DeleteDBRecordsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2784,6 +2890,17 @@ func (o *DeleteDBRecordsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeDeleteDBRecordsRequest build a response structure from the given request structure.
+func (o *DeleteDBRecordsRequest) MakeResponse() *DeleteDBRecordsResponse {
+	return &DeleteDBRecordsResponse{}
+}
+
+// OpNum returns the operation number of R_WinsDelDbRecs operation.
+func (o *DeleteDBRecordsRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of R_WinsDelDbRecs operation.
+func (o *DeleteDBRecordsRequest) OpName() string { return "/winsif/v1/R_WinsDelDbRecs" }
+
 // DeleteDBRecordsResponse structure represents the R_WinsDelDbRecs operation response
 type DeleteDBRecordsResponse struct {
 	// Return: The R_WinsDelDbRecs return value.
@@ -2828,8 +2945,10 @@ type xxx_PullRangeOperation struct {
 	Return    uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsPullRange operation.
 func (o *xxx_PullRangeOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of R_WinsPullRange operation.
 func (o *xxx_PullRangeOperation) OpName() string { return "/winsif/v1/R_WinsPullRange" }
 
 func (o *xxx_PullRangeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3015,6 +3134,17 @@ func (o *PullRangeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakePullRangeRequest build a response structure from the given request structure.
+func (o *PullRangeRequest) MakeResponse() *PullRangeResponse {
+	return &PullRangeResponse{}
+}
+
+// OpNum returns the operation number of R_WinsPullRange operation.
+func (o *PullRangeRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of R_WinsPullRange operation.
+func (o *PullRangeRequest) OpName() string { return "/winsif/v1/R_WinsPullRange" }
+
 // PullRangeResponse structure represents the R_WinsPullRange operation response
 type PullRangeResponse struct {
 	// Return: The R_WinsPullRange return value.
@@ -3056,8 +3186,10 @@ type xxx_SetPriorityClassOperation struct {
 	Return        uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsSetPriorityClass operation.
 func (o *xxx_SetPriorityClassOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of R_WinsSetPriorityClass operation.
 func (o *xxx_SetPriorityClassOperation) OpName() string { return "/winsif/v1/R_WinsSetPriorityClass" }
 
 func (o *xxx_SetPriorityClassOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3159,6 +3291,17 @@ func (o *SetPriorityClassRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetPriorityClassRequest build a response structure from the given request structure.
+func (o *SetPriorityClassRequest) MakeResponse() *SetPriorityClassResponse {
+	return &SetPriorityClassResponse{}
+}
+
+// OpNum returns the operation number of R_WinsSetPriorityClass operation.
+func (o *SetPriorityClassRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of R_WinsSetPriorityClass operation.
+func (o *SetPriorityClassRequest) OpName() string { return "/winsif/v1/R_WinsSetPriorityClass" }
+
 // SetPriorityClassResponse structure represents the R_WinsSetPriorityClass operation response
 type SetPriorityClassResponse struct {
 	// Return: The R_WinsSetPriorityClass return value.
@@ -3199,8 +3342,10 @@ type xxx_ResetCountersOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsResetCounters operation.
 func (o *xxx_ResetCountersOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of R_WinsResetCounters operation.
 func (o *xxx_ResetCountersOperation) OpName() string { return "/winsif/v1/R_WinsResetCounters" }
 
 func (o *xxx_ResetCountersOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3286,6 +3431,17 @@ func (o *ResetCountersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeResetCountersRequest build a response structure from the given request structure.
+func (o *ResetCountersRequest) MakeResponse() *ResetCountersResponse {
+	return &ResetCountersResponse{}
+}
+
+// OpNum returns the operation number of R_WinsResetCounters operation.
+func (o *ResetCountersRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of R_WinsResetCounters operation.
+func (o *ResetCountersRequest) OpName() string { return "/winsif/v1/R_WinsResetCounters" }
+
 // ResetCountersResponse structure represents the R_WinsResetCounters operation response
 type ResetCountersResponse struct {
 	// Return: The R_WinsResetCounters return value.
@@ -3327,8 +3483,10 @@ type xxx_WorkerThreadUpdateOperation struct {
 	Return                uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsWorkerThdUpd operation.
 func (o *xxx_WorkerThreadUpdateOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of R_WinsWorkerThdUpd operation.
 func (o *xxx_WorkerThreadUpdateOperation) OpName() string { return "/winsif/v1/R_WinsWorkerThdUpd" }
 
 func (o *xxx_WorkerThreadUpdateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3431,6 +3589,17 @@ func (o *WorkerThreadUpdateRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeWorkerThreadUpdateRequest build a response structure from the given request structure.
+func (o *WorkerThreadUpdateRequest) MakeResponse() *WorkerThreadUpdateResponse {
+	return &WorkerThreadUpdateResponse{}
+}
+
+// OpNum returns the operation number of R_WinsWorkerThdUpd operation.
+func (o *WorkerThreadUpdateRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of R_WinsWorkerThdUpd operation.
+func (o *WorkerThreadUpdateRequest) OpName() string { return "/winsif/v1/R_WinsWorkerThdUpd" }
+
 // WorkerThreadUpdateResponse structure represents the R_WinsWorkerThdUpd operation response
 type WorkerThreadUpdateResponse struct {
 	// Return: The R_WinsWorkerThdUpd return value.
@@ -3473,8 +3642,10 @@ type xxx_GetNameAndAddrOperation struct {
 	Return   uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsGetNameAndAddr operation.
 func (o *xxx_GetNameAndAddrOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of R_WinsGetNameAndAddr operation.
 func (o *xxx_GetNameAndAddrOperation) OpName() string { return "/winsif/v1/R_WinsGetNameAndAddr" }
 
 func (o *xxx_GetNameAndAddrOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3656,6 +3827,17 @@ func (o *GetNameAndAddrRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetNameAndAddrRequest build a response structure from the given request structure.
+func (o *GetNameAndAddrRequest) MakeResponse() *GetNameAndAddrResponse {
+	return &GetNameAndAddrResponse{}
+}
+
+// OpNum returns the operation number of R_WinsGetNameAndAddr operation.
+func (o *GetNameAndAddrRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of R_WinsGetNameAndAddr operation.
+func (o *GetNameAndAddrRequest) OpName() string { return "/winsif/v1/R_WinsGetNameAndAddr" }
+
 // GetNameAndAddrResponse structure represents the R_WinsGetNameAndAddr operation response
 type GetNameAndAddrResponse struct {
 	WINSAddr *raiw.Addr `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
@@ -3703,8 +3885,10 @@ type xxx_GetBrowserNamesOldOperation struct {
 	Return uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsGetBrowserNames_Old operation.
 func (o *xxx_GetBrowserNamesOldOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of R_WinsGetBrowserNames_Old operation.
 func (o *xxx_GetBrowserNamesOldOperation) OpName() string {
 	return "/winsif/v1/R_WinsGetBrowserNames_Old"
 }
@@ -3819,6 +4003,17 @@ func (o *GetBrowserNamesOldRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetBrowserNamesOldRequest build a response structure from the given request structure.
+func (o *GetBrowserNamesOldRequest) MakeResponse() *GetBrowserNamesOldResponse {
+	return &GetBrowserNamesOldResponse{}
+}
+
+// OpNum returns the operation number of R_WinsGetBrowserNames_Old operation.
+func (o *GetBrowserNamesOldRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of R_WinsGetBrowserNames_Old operation.
+func (o *GetBrowserNamesOldRequest) OpName() string { return "/winsif/v1/R_WinsGetBrowserNames_Old" }
+
 // GetBrowserNamesOldResponse structure represents the R_WinsGetBrowserNames_Old operation response
 type GetBrowserNamesOldResponse struct {
 	// pNames: This field MUST be ignored.
@@ -3864,8 +4059,10 @@ type xxx_DeleteWINSOperation struct {
 	Return   uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsDeleteWins operation.
 func (o *xxx_DeleteWINSOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of R_WinsDeleteWins operation.
 func (o *xxx_DeleteWINSOperation) OpName() string { return "/winsif/v1/R_WinsDeleteWins" }
 
 func (o *xxx_DeleteWINSOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3975,6 +4172,17 @@ func (o *DeleteWINSRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeDeleteWINSRequest build a response structure from the given request structure.
+func (o *DeleteWINSRequest) MakeResponse() *DeleteWINSResponse {
+	return &DeleteWINSResponse{}
+}
+
+// OpNum returns the operation number of R_WinsDeleteWins operation.
+func (o *DeleteWINSRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of R_WinsDeleteWins operation.
+func (o *DeleteWINSRequest) OpName() string { return "/winsif/v1/R_WinsDeleteWins" }
+
 // DeleteWINSResponse structure represents the R_WinsDeleteWins operation response
 type DeleteWINSResponse struct {
 	// Return: The R_WinsDeleteWins return value.
@@ -4016,8 +4224,10 @@ type xxx_SetFlagsOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsSetFlags operation.
 func (o *xxx_SetFlagsOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of R_WinsSetFlags operation.
 func (o *xxx_SetFlagsOperation) OpName() string { return "/winsif/v1/R_WinsSetFlags" }
 
 func (o *xxx_SetFlagsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4119,6 +4329,17 @@ func (o *SetFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeSetFlagsRequest build a response structure from the given request structure.
+func (o *SetFlagsRequest) MakeResponse() *SetFlagsResponse {
+	return &SetFlagsResponse{}
+}
+
+// OpNum returns the operation number of R_WinsSetFlags operation.
+func (o *SetFlagsRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of R_WinsSetFlags operation.
+func (o *SetFlagsRequest) OpName() string { return "/winsif/v1/R_WinsSetFlags" }
+
 // SetFlagsResponse structure represents the R_WinsSetFlags operation response
 type SetFlagsResponse struct {
 	// Return: The R_WinsSetFlags return value.
@@ -4161,8 +4382,10 @@ type xxx_GetBrowserNamesOperation struct {
 	Return uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsGetBrowserNames operation.
 func (o *xxx_GetBrowserNamesOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of R_WinsGetBrowserNames operation.
 func (o *xxx_GetBrowserNamesOperation) OpName() string { return "/winsif/v1/R_WinsGetBrowserNames" }
 
 func (o *xxx_GetBrowserNamesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4308,6 +4531,17 @@ func (o *GetBrowserNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetBrowserNamesRequest build a response structure from the given request structure.
+func (o *GetBrowserNamesRequest) MakeResponse() *GetBrowserNamesResponse {
+	return &GetBrowserNamesResponse{}
+}
+
+// OpNum returns the operation number of R_WinsGetBrowserNames operation.
+func (o *GetBrowserNamesRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of R_WinsGetBrowserNames operation.
+func (o *GetBrowserNamesRequest) OpName() string { return "/winsif/v1/R_WinsGetBrowserNames" }
+
 // GetBrowserNamesResponse structure represents the R_WinsGetBrowserNames operation response
 type GetBrowserNamesResponse struct {
 	// pNames: A pointer to a structure of type WINSINTF_BROWSER_NAMES_T (section 2.2.2.10),
@@ -4360,8 +4594,10 @@ type xxx_GetDBRecordsByNameOperation struct {
 	Return                 uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsGetDbRecsByName operation.
 func (o *xxx_GetDBRecordsByNameOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of R_WinsGetDbRecsByName operation.
 func (o *xxx_GetDBRecordsByNameOperation) OpName() string { return "/winsif/v1/R_WinsGetDbRecsByName" }
 
 func (o *xxx_GetDBRecordsByNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4675,6 +4911,17 @@ func (o *GetDBRecordsByNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetDBRecordsByNameRequest build a response structure from the given request structure.
+func (o *GetDBRecordsByNameRequest) MakeResponse() *GetDBRecordsByNameResponse {
+	return &GetDBRecordsByNameResponse{}
+}
+
+// OpNum returns the operation number of R_WinsGetDbRecsByName operation.
+func (o *GetDBRecordsByNameRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of R_WinsGetDbRecsByName operation.
+func (o *GetDBRecordsByNameRequest) OpName() string { return "/winsif/v1/R_WinsGetDbRecsByName" }
+
 // GetDBRecordsByNameResponse structure represents the R_WinsGetDbRecsByName operation response
 type GetDBRecordsByNameResponse struct {
 	// pRecs: A pointer to a structure containing the retrieved records.
@@ -4721,8 +4968,10 @@ type xxx_StatusNewOperation struct {
 	Return  uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsStatusNew operation.
 func (o *xxx_StatusNewOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of R_WinsStatusNew operation.
 func (o *xxx_StatusNewOperation) OpName() string { return "/winsif/v1/R_WinsStatusNew" }
 
 func (o *xxx_StatusNewOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4852,6 +5101,17 @@ func (o *StatusNewRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeStatusNewRequest build a response structure from the given request structure.
+func (o *StatusNewRequest) MakeResponse() *StatusNewResponse {
+	return &StatusNewResponse{}
+}
+
+// OpNum returns the operation number of R_WinsStatusNew operation.
+func (o *StatusNewRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of R_WinsStatusNew operation.
+func (o *StatusNewRequest) OpName() string { return "/winsif/v1/R_WinsStatusNew" }
+
 // StatusNewResponse structure represents the R_WinsStatusNew operation response
 type StatusNewResponse struct {
 	// pResults: A pointer to a WINSINTF_RESULTS_NEW_T structure (section 2.2.2.11), which
@@ -4900,8 +5160,10 @@ type xxx_StatusWOperation struct {
 	Return  uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsStatusWHdl operation.
 func (o *xxx_StatusWOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of R_WinsStatusWHdl operation.
 func (o *xxx_StatusWOperation) OpName() string { return "/winsif/v1/R_WinsStatusWHdl" }
 
 func (o *xxx_StatusWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5095,6 +5357,17 @@ func (o *StatusWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeStatusWRequest build a response structure from the given request structure.
+func (o *StatusWRequest) MakeResponse() *StatusWResponse {
+	return &StatusWResponse{}
+}
+
+// OpNum returns the operation number of R_WinsStatusWHdl operation.
+func (o *StatusWRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of R_WinsStatusWHdl operation.
+func (o *StatusWRequest) OpName() string { return "/winsif/v1/R_WinsStatusWHdl" }
+
 // StatusWResponse structure represents the R_WinsStatusWHdl operation response
 type StatusWResponse struct {
 	// pResults: A pointer to a structure of type WINSINTF_RESULTS_NEW_T (section 2.2.2.11)
@@ -5141,8 +5414,10 @@ type xxx_DoScavengingNewOperation struct {
 	Return                    uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsDoScavengingNew operation.
 func (o *xxx_DoScavengingNewOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of R_WinsDoScavengingNew operation.
 func (o *xxx_DoScavengingNewOperation) OpName() string { return "/winsif/v1/R_WinsDoScavengingNew" }
 
 func (o *xxx_DoScavengingNewOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5253,6 +5528,17 @@ func (o *DoScavengingNewRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeDoScavengingNewRequest build a response structure from the given request structure.
+func (o *DoScavengingNewRequest) MakeResponse() *DoScavengingNewResponse {
+	return &DoScavengingNewResponse{}
+}
+
+// OpNum returns the operation number of R_WinsDoScavengingNew operation.
+func (o *DoScavengingNewRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of R_WinsDoScavengingNew operation.
+func (o *DoScavengingNewRequest) OpName() string { return "/winsif/v1/R_WinsDoScavengingNew" }
 
 // DoScavengingNewResponse structure represents the R_WinsDoScavengingNew operation response
 type DoScavengingNewResponse struct {

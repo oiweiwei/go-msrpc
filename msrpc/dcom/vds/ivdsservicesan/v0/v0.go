@@ -173,8 +173,10 @@ type xxx_GetSANPolicyOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSANPolicy operation.
 func (o *xxx_GetSANPolicyOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetSANPolicy operation.
 func (o *xxx_GetSANPolicyOperation) OpName() string { return "/IVdsServiceSAN/v0/GetSANPolicy" }
 
 func (o *xxx_GetSANPolicyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -330,6 +332,17 @@ func (o *GetSANPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetSANPolicyRequest build a response structure from the given request structure.
+func (o *GetSANPolicyRequest) MakeResponse() *GetSANPolicyResponse {
+	return &GetSANPolicyResponse{}
+}
+
+// OpNum returns the operation number of GetSANPolicy operation.
+func (o *GetSANPolicyRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetSANPolicy operation.
+func (o *GetSANPolicyRequest) OpName() string { return "/IVdsServiceSAN/v0/GetSANPolicy" }
+
 // GetSANPolicyResponse structure represents the GetSANPolicy operation response
 type GetSANPolicyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -383,8 +396,10 @@ type xxx_SetSANPolicyOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetSANPolicy operation.
 func (o *xxx_SetSANPolicyOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of SetSANPolicy operation.
 func (o *xxx_SetSANPolicyOperation) OpName() string { return "/IVdsServiceSAN/v0/SetSANPolicy" }
 
 func (o *xxx_SetSANPolicyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -544,6 +559,17 @@ func (o *SetSANPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetSANPolicyRequest build a response structure from the given request structure.
+func (o *SetSANPolicyRequest) MakeResponse() *SetSANPolicyResponse {
+	return &SetSANPolicyResponse{}
+}
+
+// OpNum returns the operation number of SetSANPolicy operation.
+func (o *SetSANPolicyRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of SetSANPolicy operation.
+func (o *SetSANPolicyRequest) OpName() string { return "/IVdsServiceSAN/v0/SetSANPolicy" }
 
 // SetSANPolicyResponse structure represents the SetSANPolicy operation response
 type SetSANPolicyResponse struct {

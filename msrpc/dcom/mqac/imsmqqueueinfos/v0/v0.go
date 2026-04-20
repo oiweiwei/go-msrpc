@@ -167,8 +167,10 @@ type xxx_ResetOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Reset operation.
 func (o *xxx_ResetOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Reset operation.
 func (o *xxx_ResetOperation) OpName() string { return "/IMSMQQueueInfos/v0/Reset" }
 
 func (o *xxx_ResetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -312,6 +314,17 @@ func (o *ResetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeResetRequest build a response structure from the given request structure.
+func (o *ResetRequest) MakeResponse() *ResetResponse {
+	return &ResetResponse{}
+}
+
+// OpNum returns the operation number of Reset operation.
+func (o *ResetRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Reset operation.
+func (o *ResetRequest) OpName() string { return "/IMSMQQueueInfos/v0/Reset" }
+
 // ResetResponse structure represents the Reset operation response
 type ResetResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -359,8 +372,10 @@ type xxx_NextOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Next operation.
 func (o *xxx_NextOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Next operation.
 func (o *xxx_NextOperation) OpName() string { return "/IMSMQQueueInfos/v0/Next" }
 
 func (o *xxx_NextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -549,6 +564,17 @@ func (o *NextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeNextRequest build a response structure from the given request structure.
+func (o *NextRequest) MakeResponse() *NextResponse {
+	return &NextResponse{}
+}
+
+// OpNum returns the operation number of Next operation.
+func (o *NextRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Next operation.
+func (o *NextRequest) OpName() string { return "/IMSMQQueueInfos/v0/Next" }
 
 // NextResponse structure represents the Next operation response
 type NextResponse struct {

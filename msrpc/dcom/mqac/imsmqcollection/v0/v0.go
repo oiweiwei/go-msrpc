@@ -197,8 +197,10 @@ type xxx_ItemOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Item operation.
 func (o *xxx_ItemOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Item operation.
 func (o *xxx_ItemOperation) OpName() string { return "/IMSMQCollection/v0/Item" }
 
 func (o *xxx_ItemOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -439,6 +441,17 @@ func (o *ItemRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeItemRequest build a response structure from the given request structure.
+func (o *ItemRequest) MakeResponse() *ItemResponse {
+	return &ItemResponse{}
+}
+
+// OpNum returns the operation number of Item operation.
+func (o *ItemRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Item operation.
+func (o *ItemRequest) OpName() string { return "/IMSMQCollection/v0/Item" }
+
 // ItemResponse structure represents the Item operation response
 type ItemResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -491,8 +504,10 @@ type xxx_GetCountOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Count operation.
 func (o *xxx_GetCountOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Count operation.
 func (o *xxx_GetCountOperation) OpName() string { return "/IMSMQCollection/v0/Count" }
 
 func (o *xxx_GetCountOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -648,6 +663,17 @@ func (o *GetCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeGetCountRequest build a response structure from the given request structure.
+func (o *GetCountRequest) MakeResponse() *GetCountResponse {
+	return &GetCountResponse{}
+}
+
+// OpNum returns the operation number of Count operation.
+func (o *GetCountRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Count operation.
+func (o *GetCountRequest) OpName() string { return "/IMSMQCollection/v0/Count" }
+
 // GetCountResponse structure represents the Count operation response
 type GetCountResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -700,8 +726,10 @@ type xxx__NewEnumOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of _NewEnum operation.
 func (o *xxx__NewEnumOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of _NewEnum operation.
 func (o *xxx__NewEnumOperation) OpName() string { return "/IMSMQCollection/v0/_NewEnum" }
 
 func (o *xxx__NewEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -890,6 +918,17 @@ func (o *_NewEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// Make_NewEnumRequest build a response structure from the given request structure.
+func (o *_NewEnumRequest) MakeResponse() *_NewEnumResponse {
+	return &_NewEnumResponse{}
+}
+
+// OpNum returns the operation number of _NewEnum operation.
+func (o *_NewEnumRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of _NewEnum operation.
+func (o *_NewEnumRequest) OpName() string { return "/IMSMQCollection/v0/_NewEnum" }
 
 // _NewEnumResponse structure represents the _NewEnum operation response
 type _NewEnumResponse struct {

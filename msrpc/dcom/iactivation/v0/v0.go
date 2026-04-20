@@ -115,8 +115,10 @@ type xxx_RemoteActivationOperation struct {
 	Return                          uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteActivation operation.
 func (o *xxx_RemoteActivationOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RemoteActivation operation.
 func (o *xxx_RemoteActivationOperation) OpName() string { return "/IActivation/v0/RemoteActivation" }
 
 func (o *xxx_RemoteActivationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -841,6 +843,22 @@ func (o *RemoteActivationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeRemoteActivationRequest build a response structure from the given request structure.
+func (o *RemoteActivationRequest) MakeResponse() *RemoteActivationResponse {
+	if o == nil {
+		return &RemoteActivationResponse{}
+	}
+	return &RemoteActivationResponse{
+		Interfaces: o.Interfaces,
+	}
+}
+
+// OpNum returns the operation number of RemoteActivation operation.
+func (o *RemoteActivationRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RemoteActivation operation.
+func (o *RemoteActivationRequest) OpName() string { return "/IActivation/v0/RemoteActivation" }
 
 // RemoteActivationResponse structure represents the RemoteActivation operation response
 type RemoteActivationResponse struct {

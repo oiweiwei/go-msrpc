@@ -211,8 +211,10 @@ type xxx_GetEventTypeOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EventType operation.
 func (o *xxx_GetEventTypeOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of EventType operation.
 func (o *xxx_GetEventTypeOperation) OpName() string { return "/IFsrmActionEventLog/v0/EventType" }
 
 func (o *xxx_GetEventTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -368,6 +370,17 @@ func (o *GetEventTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetEventTypeRequest build a response structure from the given request structure.
+func (o *GetEventTypeRequest) MakeResponse() *GetEventTypeResponse {
+	return &GetEventTypeResponse{}
+}
+
+// OpNum returns the operation number of EventType operation.
+func (o *GetEventTypeRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of EventType operation.
+func (o *GetEventTypeRequest) OpName() string { return "/IFsrmActionEventLog/v0/EventType" }
+
 // GetEventTypeResponse structure represents the EventType operation response
 type GetEventTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -418,8 +431,10 @@ type xxx_SetEventTypeOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EventType operation.
 func (o *xxx_SetEventTypeOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of EventType operation.
 func (o *xxx_SetEventTypeOperation) OpName() string { return "/IFsrmActionEventLog/v0/EventType" }
 
 func (o *xxx_SetEventTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -578,6 +593,17 @@ func (o *SetEventTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeSetEventTypeRequest build a response structure from the given request structure.
+func (o *SetEventTypeRequest) MakeResponse() *SetEventTypeResponse {
+	return &SetEventTypeResponse{}
+}
+
+// OpNum returns the operation number of EventType operation.
+func (o *SetEventTypeRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of EventType operation.
+func (o *SetEventTypeRequest) OpName() string { return "/IFsrmActionEventLog/v0/EventType" }
+
 // SetEventTypeResponse structure represents the EventType operation response
 type SetEventTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -625,8 +651,10 @@ type xxx_GetMessageTextOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MessageText operation.
 func (o *xxx_GetMessageTextOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of MessageText operation.
 func (o *xxx_GetMessageTextOperation) OpName() string { return "/IFsrmActionEventLog/v0/MessageText" }
 
 func (o *xxx_GetMessageTextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -816,6 +844,17 @@ func (o *GetMessageTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetMessageTextRequest build a response structure from the given request structure.
+func (o *GetMessageTextRequest) MakeResponse() *GetMessageTextResponse {
+	return &GetMessageTextResponse{}
+}
+
+// OpNum returns the operation number of MessageText operation.
+func (o *GetMessageTextRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of MessageText operation.
+func (o *GetMessageTextRequest) OpName() string { return "/IFsrmActionEventLog/v0/MessageText" }
+
 // GetMessageTextResponse structure represents the MessageText operation response
 type GetMessageTextResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -866,8 +905,10 @@ type xxx_SetMessageTextOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MessageText operation.
 func (o *xxx_SetMessageTextOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of MessageText operation.
 func (o *xxx_SetMessageTextOperation) OpName() string { return "/IFsrmActionEventLog/v0/MessageText" }
 
 func (o *xxx_SetMessageTextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1059,6 +1100,17 @@ func (o *SetMessageTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetMessageTextRequest build a response structure from the given request structure.
+func (o *SetMessageTextRequest) MakeResponse() *SetMessageTextResponse {
+	return &SetMessageTextResponse{}
+}
+
+// OpNum returns the operation number of MessageText operation.
+func (o *SetMessageTextRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of MessageText operation.
+func (o *SetMessageTextRequest) OpName() string { return "/IFsrmActionEventLog/v0/MessageText" }
 
 // SetMessageTextResponse structure represents the MessageText operation response
 type SetMessageTextResponse struct {

@@ -486,8 +486,10 @@ type xxx_SetInstanceNameOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of InstanceName operation.
 func (o *xxx_SetInstanceNameOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of InstanceName operation.
 func (o *xxx_SetInstanceNameOperation) OpName() string { return "/IIISCertObj/v0/InstanceName" }
 
 func (o *xxx_SetInstanceNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -681,6 +683,17 @@ func (o *SetInstanceNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetInstanceNameRequest build a response structure from the given request structure.
+func (o *SetInstanceNameRequest) MakeResponse() *SetInstanceNameResponse {
+	return &SetInstanceNameResponse{}
+}
+
+// OpNum returns the operation number of InstanceName operation.
+func (o *SetInstanceNameRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of InstanceName operation.
+func (o *SetInstanceNameRequest) OpName() string { return "/IIISCertObj/v0/InstanceName" }
+
 // SetInstanceNameResponse structure represents the InstanceName operation response
 type SetInstanceNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -728,8 +741,10 @@ type xxx_IsInstalledRemoteOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsInstalledRemote operation.
 func (o *xxx_IsInstalledRemoteOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of IsInstalledRemote operation.
 func (o *xxx_IsInstalledRemoteOperation) OpName() string { return "/IIISCertObj/v0/IsInstalledRemote" }
 
 func (o *xxx_IsInstalledRemoteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -885,6 +900,17 @@ func (o *IsInstalledRemoteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeIsInstalledRemoteRequest build a response structure from the given request structure.
+func (o *IsInstalledRemoteRequest) MakeResponse() *IsInstalledRemoteResponse {
+	return &IsInstalledRemoteResponse{}
+}
+
+// OpNum returns the operation number of IsInstalledRemote operation.
+func (o *IsInstalledRemoteRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of IsInstalledRemote operation.
+func (o *IsInstalledRemoteRequest) OpName() string { return "/IIISCertObj/v0/IsInstalledRemote" }
+
 // IsInstalledRemoteResponse structure represents the IsInstalledRemote operation response
 type IsInstalledRemoteResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -936,8 +962,10 @@ type xxx_IsExportableRemoteOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsExportableRemote operation.
 func (o *xxx_IsExportableRemoteOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of IsExportableRemote operation.
 func (o *xxx_IsExportableRemoteOperation) OpName() string {
 	return "/IIISCertObj/v0/IsExportableRemote"
 }
@@ -1095,6 +1123,17 @@ func (o *IsExportableRemoteRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeIsExportableRemoteRequest build a response structure from the given request structure.
+func (o *IsExportableRemoteRequest) MakeResponse() *IsExportableRemoteResponse {
+	return &IsExportableRemoteResponse{}
+}
+
+// OpNum returns the operation number of IsExportableRemote operation.
+func (o *IsExportableRemoteRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of IsExportableRemote operation.
+func (o *IsExportableRemoteRequest) OpName() string { return "/IIISCertObj/v0/IsExportableRemote" }
+
 // IsExportableRemoteResponse structure represents the IsExportableRemote operation response
 type IsExportableRemoteResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1146,8 +1185,10 @@ type xxx_GetCertInfoRemoteOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCertInfoRemote operation.
 func (o *xxx_GetCertInfoRemoteOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of GetCertInfoRemote operation.
 func (o *xxx_GetCertInfoRemoteOperation) OpName() string { return "/IIISCertObj/v0/GetCertInfoRemote" }
 
 func (o *xxx_GetCertInfoRemoteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1337,6 +1378,17 @@ func (o *GetCertInfoRemoteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetCertInfoRemoteRequest build a response structure from the given request structure.
+func (o *GetCertInfoRemoteRequest) MakeResponse() *GetCertInfoRemoteResponse {
+	return &GetCertInfoRemoteResponse{}
+}
+
+// OpNum returns the operation number of GetCertInfoRemote operation.
+func (o *GetCertInfoRemoteRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of GetCertInfoRemote operation.
+func (o *GetCertInfoRemoteRequest) OpName() string { return "/IIISCertObj/v0/GetCertInfoRemote" }
+
 // GetCertInfoRemoteResponse structure represents the GetCertInfoRemote operation response
 type GetCertInfoRemoteResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1398,8 +1450,10 @@ type xxx_ImportFromBlobOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ImportFromBlob operation.
 func (o *xxx_ImportFromBlobOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of ImportFromBlob operation.
 func (o *xxx_ImportFromBlobOperation) OpName() string { return "/IIISCertObj/v0/ImportFromBlob" }
 
 func (o *xxx_ImportFromBlobOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1793,6 +1847,17 @@ func (o *ImportFromBlobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeImportFromBlobRequest build a response structure from the given request structure.
+func (o *ImportFromBlobRequest) MakeResponse() *ImportFromBlobResponse {
+	return &ImportFromBlobResponse{}
+}
+
+// OpNum returns the operation number of ImportFromBlob operation.
+func (o *ImportFromBlobRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of ImportFromBlob operation.
+func (o *ImportFromBlobRequest) OpName() string { return "/IIISCertObj/v0/ImportFromBlob" }
+
 // ImportFromBlobResponse structure represents the ImportFromBlob operation response
 type ImportFromBlobResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1848,8 +1913,10 @@ type xxx_ImportFromBlobGetHashOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ImportFromBlobGetHash operation.
 func (o *xxx_ImportFromBlobGetHashOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of ImportFromBlobGetHash operation.
 func (o *xxx_ImportFromBlobGetHashOperation) OpName() string {
 	return "/IIISCertObj/v0/ImportFromBlobGetHash"
 }
@@ -2330,6 +2397,19 @@ func (o *ImportFromBlobGetHashRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeImportFromBlobGetHashRequest build a response structure from the given request structure.
+func (o *ImportFromBlobGetHashRequest) MakeResponse() *ImportFromBlobGetHashResponse {
+	return &ImportFromBlobGetHashResponse{}
+}
+
+// OpNum returns the operation number of ImportFromBlobGetHash operation.
+func (o *ImportFromBlobGetHashRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of ImportFromBlobGetHash operation.
+func (o *ImportFromBlobGetHashRequest) OpName() string {
+	return "/IIISCertObj/v0/ImportFromBlobGetHash"
+}
+
 // ImportFromBlobGetHashResponse structure represents the ImportFromBlobGetHash operation response
 type ImportFromBlobGetHashResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2393,8 +2473,10 @@ type xxx_ExportToBlobOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExportToBlob operation.
 func (o *xxx_ExportToBlobOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of ExportToBlob operation.
 func (o *xxx_ExportToBlobOperation) OpName() string { return "/IIISCertObj/v0/ExportToBlob" }
 
 func (o *xxx_ExportToBlobOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2780,6 +2862,17 @@ func (o *ExportToBlobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeExportToBlobRequest build a response structure from the given request structure.
+func (o *ExportToBlobRequest) MakeResponse() *ExportToBlobResponse {
+	return &ExportToBlobResponse{}
+}
+
+// OpNum returns the operation number of ExportToBlob operation.
+func (o *ExportToBlobRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of ExportToBlob operation.
+func (o *ExportToBlobRequest) OpName() string { return "/IIISCertObj/v0/ExportToBlob" }
 
 // ExportToBlobResponse structure represents the ExportToBlob operation response
 type ExportToBlobResponse struct {

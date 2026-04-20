@@ -256,8 +256,10 @@ type xxx_GetCountOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Count operation.
 func (o *xxx_GetCountOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Count operation.
 func (o *xxx_GetCountOperation) OpName() string {
 	return "/IAppHostSectionDefinitionCollection/v0/Count"
 }
@@ -415,6 +417,17 @@ func (o *GetCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeGetCountRequest build a response structure from the given request structure.
+func (o *GetCountRequest) MakeResponse() *GetCountResponse {
+	return &GetCountResponse{}
+}
+
+// OpNum returns the operation number of Count operation.
+func (o *GetCountRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Count operation.
+func (o *GetCountRequest) OpName() string { return "/IAppHostSectionDefinitionCollection/v0/Count" }
+
 // GetCountResponse structure represents the Count operation response
 type GetCountResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -466,8 +479,10 @@ type xxx_GetItemOperation struct {
 	Return        int32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Item operation.
 func (o *xxx_GetItemOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Item operation.
 func (o *xxx_GetItemOperation) OpName() string { return "/IAppHostSectionDefinitionCollection/v0/Item" }
 
 func (o *xxx_GetItemOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -687,6 +702,17 @@ func (o *GetItemRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetItemRequest build a response structure from the given request structure.
+func (o *GetItemRequest) MakeResponse() *GetItemResponse {
+	return &GetItemResponse{}
+}
+
+// OpNum returns the operation number of Item operation.
+func (o *GetItemRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Item operation.
+func (o *GetItemRequest) OpName() string { return "/IAppHostSectionDefinitionCollection/v0/Item" }
+
 // GetItemResponse structure represents the Item operation response
 type GetItemResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -738,8 +764,10 @@ type xxx_AddSectionOperation struct {
 	Return        int32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddSection operation.
 func (o *xxx_AddSectionOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of AddSection operation.
 func (o *xxx_AddSectionOperation) OpName() string {
 	return "/IAppHostSectionDefinitionCollection/v0/AddSection"
 }
@@ -981,6 +1009,19 @@ func (o *AddSectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeAddSectionRequest build a response structure from the given request structure.
+func (o *AddSectionRequest) MakeResponse() *AddSectionResponse {
+	return &AddSectionResponse{}
+}
+
+// OpNum returns the operation number of AddSection operation.
+func (o *AddSectionRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of AddSection operation.
+func (o *AddSectionRequest) OpName() string {
+	return "/IAppHostSectionDefinitionCollection/v0/AddSection"
+}
+
 // AddSectionResponse structure represents the AddSection operation response
 type AddSectionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1032,8 +1073,10 @@ type xxx_DeleteSectionOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteSection operation.
 func (o *xxx_DeleteSectionOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of DeleteSection operation.
 func (o *xxx_DeleteSectionOperation) OpName() string {
 	return "/IAppHostSectionDefinitionCollection/v0/DeleteSection"
 }
@@ -1210,6 +1253,19 @@ func (o *DeleteSectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeDeleteSectionRequest build a response structure from the given request structure.
+func (o *DeleteSectionRequest) MakeResponse() *DeleteSectionResponse {
+	return &DeleteSectionResponse{}
+}
+
+// OpNum returns the operation number of DeleteSection operation.
+func (o *DeleteSectionRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of DeleteSection operation.
+func (o *DeleteSectionRequest) OpName() string {
+	return "/IAppHostSectionDefinitionCollection/v0/DeleteSection"
 }
 
 // DeleteSectionResponse structure represents the DeleteSection operation response

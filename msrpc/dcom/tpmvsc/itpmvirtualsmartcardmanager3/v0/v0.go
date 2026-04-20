@@ -161,8 +161,10 @@ type xxx_CreateVirtualSmartCardWithAttestationOperation struct {
 	Return           int32                                         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateVirtualSmartCardWithAttestation operation.
 func (o *xxx_CreateVirtualSmartCardWithAttestationOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of CreateVirtualSmartCardWithAttestation operation.
 func (o *xxx_CreateVirtualSmartCardWithAttestationOperation) OpName() string {
 	return "/ITpmVirtualSmartCardManager3/v0/CreateVirtualSmartCardWithAttestation"
 }
@@ -889,6 +891,19 @@ func (o *CreateVirtualSmartCardWithAttestationRequest) UnmarshalNDR(ctx context.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeCreateVirtualSmartCardWithAttestationRequest build a response structure from the given request structure.
+func (o *CreateVirtualSmartCardWithAttestationRequest) MakeResponse() *CreateVirtualSmartCardWithAttestationResponse {
+	return &CreateVirtualSmartCardWithAttestationResponse{}
+}
+
+// OpNum returns the operation number of CreateVirtualSmartCardWithAttestation operation.
+func (o *CreateVirtualSmartCardWithAttestationRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of CreateVirtualSmartCardWithAttestation operation.
+func (o *CreateVirtualSmartCardWithAttestationRequest) OpName() string {
+	return "/ITpmVirtualSmartCardManager3/v0/CreateVirtualSmartCardWithAttestation"
 }
 
 // CreateVirtualSmartCardWithAttestationResponse structure represents the CreateVirtualSmartCardWithAttestation operation response

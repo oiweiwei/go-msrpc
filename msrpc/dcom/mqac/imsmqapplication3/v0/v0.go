@@ -495,8 +495,10 @@ type xxx_ActiveQueuesOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ActiveQueues operation.
 func (o *xxx_ActiveQueuesOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of ActiveQueues operation.
 func (o *xxx_ActiveQueuesOperation) OpName() string { return "/IMSMQApplication3/v0/ActiveQueues" }
 
 func (o *xxx_ActiveQueuesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -686,6 +688,17 @@ func (o *ActiveQueuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeActiveQueuesRequest build a response structure from the given request structure.
+func (o *ActiveQueuesRequest) MakeResponse() *ActiveQueuesResponse {
+	return &ActiveQueuesResponse{}
+}
+
+// OpNum returns the operation number of ActiveQueues operation.
+func (o *ActiveQueuesRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of ActiveQueues operation.
+func (o *ActiveQueuesRequest) OpName() string { return "/IMSMQApplication3/v0/ActiveQueues" }
+
 // ActiveQueuesResponse structure represents the ActiveQueues operation response
 type ActiveQueuesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -737,8 +750,10 @@ type xxx_GetPrivateQueuesOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PrivateQueues operation.
 func (o *xxx_GetPrivateQueuesOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of PrivateQueues operation.
 func (o *xxx_GetPrivateQueuesOperation) OpName() string { return "/IMSMQApplication3/v0/PrivateQueues" }
 
 func (o *xxx_GetPrivateQueuesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -928,6 +943,17 @@ func (o *GetPrivateQueuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetPrivateQueuesRequest build a response structure from the given request structure.
+func (o *GetPrivateQueuesRequest) MakeResponse() *GetPrivateQueuesResponse {
+	return &GetPrivateQueuesResponse{}
+}
+
+// OpNum returns the operation number of PrivateQueues operation.
+func (o *GetPrivateQueuesRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of PrivateQueues operation.
+func (o *GetPrivateQueuesRequest) OpName() string { return "/IMSMQApplication3/v0/PrivateQueues" }
+
 // GetPrivateQueuesResponse structure represents the PrivateQueues operation response
 type GetPrivateQueuesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -979,8 +1005,10 @@ type xxx_GetDirectoryServiceServerOperation struct {
 	Return                 int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DirectoryServiceServer operation.
 func (o *xxx_GetDirectoryServiceServerOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of DirectoryServiceServer operation.
 func (o *xxx_GetDirectoryServiceServerOperation) OpName() string {
 	return "/IMSMQApplication3/v0/DirectoryServiceServer"
 }
@@ -1172,6 +1200,19 @@ func (o *GetDirectoryServiceServerRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeGetDirectoryServiceServerRequest build a response structure from the given request structure.
+func (o *GetDirectoryServiceServerRequest) MakeResponse() *GetDirectoryServiceServerResponse {
+	return &GetDirectoryServiceServerResponse{}
+}
+
+// OpNum returns the operation number of DirectoryServiceServer operation.
+func (o *GetDirectoryServiceServerRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of DirectoryServiceServer operation.
+func (o *GetDirectoryServiceServerRequest) OpName() string {
+	return "/IMSMQApplication3/v0/DirectoryServiceServer"
+}
+
 // GetDirectoryServiceServerResponse structure represents the DirectoryServiceServer operation response
 type GetDirectoryServiceServerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1225,8 +1266,10 @@ type xxx_GetIsConnectedOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsConnected operation.
 func (o *xxx_GetIsConnectedOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of IsConnected operation.
 func (o *xxx_GetIsConnectedOperation) OpName() string { return "/IMSMQApplication3/v0/IsConnected" }
 
 func (o *xxx_GetIsConnectedOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1382,6 +1425,17 @@ func (o *GetIsConnectedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetIsConnectedRequest build a response structure from the given request structure.
+func (o *GetIsConnectedRequest) MakeResponse() *GetIsConnectedResponse {
+	return &GetIsConnectedResponse{}
+}
+
+// OpNum returns the operation number of IsConnected operation.
+func (o *GetIsConnectedRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of IsConnected operation.
+func (o *GetIsConnectedRequest) OpName() string { return "/IMSMQApplication3/v0/IsConnected" }
+
 // GetIsConnectedResponse structure represents the IsConnected operation response
 type GetIsConnectedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1445,8 +1499,10 @@ type xxx_GetBytesInAllQueuesOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BytesInAllQueues operation.
 func (o *xxx_GetBytesInAllQueuesOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of BytesInAllQueues operation.
 func (o *xxx_GetBytesInAllQueuesOperation) OpName() string {
 	return "/IMSMQApplication3/v0/BytesInAllQueues"
 }
@@ -1638,6 +1694,17 @@ func (o *GetBytesInAllQueuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetBytesInAllQueuesRequest build a response structure from the given request structure.
+func (o *GetBytesInAllQueuesRequest) MakeResponse() *GetBytesInAllQueuesResponse {
+	return &GetBytesInAllQueuesResponse{}
+}
+
+// OpNum returns the operation number of BytesInAllQueues operation.
+func (o *GetBytesInAllQueuesRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of BytesInAllQueues operation.
+func (o *GetBytesInAllQueuesRequest) OpName() string { return "/IMSMQApplication3/v0/BytesInAllQueues" }
+
 // GetBytesInAllQueuesResponse structure represents the BytesInAllQueues operation response
 type GetBytesInAllQueuesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1691,8 +1758,10 @@ type xxx_SetMachineOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Machine operation.
 func (o *xxx_SetMachineOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of Machine operation.
 func (o *xxx_SetMachineOperation) OpName() string { return "/IMSMQApplication3/v0/Machine" }
 
 func (o *xxx_SetMachineOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1885,6 +1954,17 @@ func (o *SetMachineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeSetMachineRequest build a response structure from the given request structure.
+func (o *SetMachineRequest) MakeResponse() *SetMachineResponse {
+	return &SetMachineResponse{}
+}
+
+// OpNum returns the operation number of Machine operation.
+func (o *SetMachineRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of Machine operation.
+func (o *SetMachineRequest) OpName() string { return "/IMSMQApplication3/v0/Machine" }
+
 // SetMachineResponse structure represents the Machine operation response
 type SetMachineResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1932,8 +2012,10 @@ type xxx_GetMachineOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Machine operation.
 func (o *xxx_GetMachineOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of Machine operation.
 func (o *xxx_GetMachineOperation) OpName() string { return "/IMSMQApplication3/v0/Machine" }
 
 func (o *xxx_GetMachineOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2123,6 +2205,17 @@ func (o *GetMachineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetMachineRequest build a response structure from the given request structure.
+func (o *GetMachineRequest) MakeResponse() *GetMachineResponse {
+	return &GetMachineResponse{}
+}
+
+// OpNum returns the operation number of Machine operation.
+func (o *GetMachineRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of Machine operation.
+func (o *GetMachineRequest) OpName() string { return "/IMSMQApplication3/v0/Machine" }
+
 // GetMachineResponse structure represents the Machine operation response
 type GetMachineResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2172,8 +2265,10 @@ type xxx_ConnectOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Connect operation.
 func (o *xxx_ConnectOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of Connect operation.
 func (o *xxx_ConnectOperation) OpName() string { return "/IMSMQApplication3/v0/Connect" }
 
 func (o *xxx_ConnectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2317,6 +2412,17 @@ func (o *ConnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeConnectRequest build a response structure from the given request structure.
+func (o *ConnectRequest) MakeResponse() *ConnectResponse {
+	return &ConnectResponse{}
+}
+
+// OpNum returns the operation number of Connect operation.
+func (o *ConnectRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of Connect operation.
+func (o *ConnectRequest) OpName() string { return "/IMSMQApplication3/v0/Connect" }
+
 // ConnectResponse structure represents the Connect operation response
 type ConnectResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2363,8 +2469,10 @@ type xxx_DisconnectOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Disconnect operation.
 func (o *xxx_DisconnectOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of Disconnect operation.
 func (o *xxx_DisconnectOperation) OpName() string { return "/IMSMQApplication3/v0/Disconnect" }
 
 func (o *xxx_DisconnectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2508,6 +2616,17 @@ func (o *DisconnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeDisconnectRequest build a response structure from the given request structure.
+func (o *DisconnectRequest) MakeResponse() *DisconnectResponse {
+	return &DisconnectResponse{}
+}
+
+// OpNum returns the operation number of Disconnect operation.
+func (o *DisconnectRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of Disconnect operation.
+func (o *DisconnectRequest) OpName() string { return "/IMSMQApplication3/v0/Disconnect" }
+
 // DisconnectResponse structure represents the Disconnect operation response
 type DisconnectResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2554,8 +2673,10 @@ type xxx_TidyOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Tidy operation.
 func (o *xxx_TidyOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of Tidy operation.
 func (o *xxx_TidyOperation) OpName() string { return "/IMSMQApplication3/v0/Tidy" }
 
 func (o *xxx_TidyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2698,6 +2819,17 @@ func (o *TidyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeTidyRequest build a response structure from the given request structure.
+func (o *TidyRequest) MakeResponse() *TidyResponse {
+	return &TidyResponse{}
+}
+
+// OpNum returns the operation number of Tidy operation.
+func (o *TidyRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of Tidy operation.
+func (o *TidyRequest) OpName() string { return "/IMSMQApplication3/v0/Tidy" }
 
 // TidyResponse structure represents the Tidy operation response
 type TidyResponse struct {

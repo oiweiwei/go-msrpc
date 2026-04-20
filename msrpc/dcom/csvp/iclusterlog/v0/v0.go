@@ -295,8 +295,10 @@ type xxx_GenerateClusterLogOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GenerateClusterLog operation.
 func (o *xxx_GenerateClusterLogOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GenerateClusterLog operation.
 func (o *xxx_GenerateClusterLogOperation) OpName() string {
 	return "/IClusterLog/v0/GenerateClusterLog"
 }
@@ -488,6 +490,17 @@ func (o *GenerateClusterLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGenerateClusterLogRequest build a response structure from the given request structure.
+func (o *GenerateClusterLogRequest) MakeResponse() *GenerateClusterLogResponse {
+	return &GenerateClusterLogResponse{}
+}
+
+// OpNum returns the operation number of GenerateClusterLog operation.
+func (o *GenerateClusterLogRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GenerateClusterLog operation.
+func (o *GenerateClusterLogRequest) OpName() string { return "/IClusterLog/v0/GenerateClusterLog" }
+
 // GenerateClusterLogResponse structure represents the GenerateClusterLog operation response
 type GenerateClusterLogResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -546,8 +559,10 @@ type xxx_GenerateTimeSpanLogOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GenerateTimeSpanLog operation.
 func (o *xxx_GenerateTimeSpanLogOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GenerateTimeSpanLog operation.
 func (o *xxx_GenerateTimeSpanLogOperation) OpName() string {
 	return "/IClusterLog/v0/GenerateTimeSpanLog"
 }
@@ -757,6 +772,17 @@ func (o *GenerateTimeSpanLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGenerateTimeSpanLogRequest build a response structure from the given request structure.
+func (o *GenerateTimeSpanLogRequest) MakeResponse() *GenerateTimeSpanLogResponse {
+	return &GenerateTimeSpanLogResponse{}
+}
+
+// OpNum returns the operation number of GenerateTimeSpanLog operation.
+func (o *GenerateTimeSpanLogRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GenerateTimeSpanLog operation.
+func (o *GenerateTimeSpanLogRequest) OpName() string { return "/IClusterLog/v0/GenerateTimeSpanLog" }
+
 // GenerateTimeSpanLogResponse structure represents the GenerateTimeSpanLog operation response
 type GenerateTimeSpanLogResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -809,8 +835,10 @@ type xxx_GenerateClusterLogInLocalTimeOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GenerateClusterLogInLocalTime operation.
 func (o *xxx_GenerateClusterLogInLocalTimeOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of GenerateClusterLogInLocalTime operation.
 func (o *xxx_GenerateClusterLogInLocalTimeOperation) OpName() string {
 	return "/IClusterLog/v0/GenerateClusterLogInLocalTime"
 }
@@ -1002,6 +1030,19 @@ func (o *GenerateClusterLogInLocalTimeRequest) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
+// MakeGenerateClusterLogInLocalTimeRequest build a response structure from the given request structure.
+func (o *GenerateClusterLogInLocalTimeRequest) MakeResponse() *GenerateClusterLogInLocalTimeResponse {
+	return &GenerateClusterLogInLocalTimeResponse{}
+}
+
+// OpNum returns the operation number of GenerateClusterLogInLocalTime operation.
+func (o *GenerateClusterLogInLocalTimeRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of GenerateClusterLogInLocalTime operation.
+func (o *GenerateClusterLogInLocalTimeRequest) OpName() string {
+	return "/IClusterLog/v0/GenerateClusterLogInLocalTime"
+}
+
 // GenerateClusterLogInLocalTimeResponse structure represents the GenerateClusterLogInLocalTime operation response
 type GenerateClusterLogInLocalTimeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1060,8 +1101,10 @@ type xxx_GenerateTimeSpanLogInLocalTimeOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GenerateTimeSpanLogInLocalTime operation.
 func (o *xxx_GenerateTimeSpanLogInLocalTimeOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of GenerateTimeSpanLogInLocalTime operation.
 func (o *xxx_GenerateTimeSpanLogInLocalTimeOperation) OpName() string {
 	return "/IClusterLog/v0/GenerateTimeSpanLogInLocalTime"
 }
@@ -1269,6 +1312,19 @@ func (o *GenerateTimeSpanLogInLocalTimeRequest) UnmarshalNDR(ctx context.Context
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGenerateTimeSpanLogInLocalTimeRequest build a response structure from the given request structure.
+func (o *GenerateTimeSpanLogInLocalTimeRequest) MakeResponse() *GenerateTimeSpanLogInLocalTimeResponse {
+	return &GenerateTimeSpanLogInLocalTimeResponse{}
+}
+
+// OpNum returns the operation number of GenerateTimeSpanLogInLocalTime operation.
+func (o *GenerateTimeSpanLogInLocalTimeRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of GenerateTimeSpanLogInLocalTime operation.
+func (o *GenerateTimeSpanLogInLocalTimeRequest) OpName() string {
+	return "/IClusterLog/v0/GenerateTimeSpanLogInLocalTime"
 }
 
 // GenerateTimeSpanLogInLocalTimeResponse structure represents the GenerateTimeSpanLogInLocalTime operation response

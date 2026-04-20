@@ -246,8 +246,10 @@ type xxx_GetPartitionFileSystemPropertiesOperation struct {
 	Return             int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetPartitionFileSystemProperties operation.
 func (o *xxx_GetPartitionFileSystemPropertiesOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetPartitionFileSystemProperties operation.
 func (o *xxx_GetPartitionFileSystemPropertiesOperation) OpName() string {
 	return "/IVdsDiskPartitionMF/v0/GetPartitionFileSystemProperties"
 }
@@ -437,6 +439,19 @@ func (o *GetPartitionFileSystemPropertiesRequest) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
+// MakeGetPartitionFileSystemPropertiesRequest build a response structure from the given request structure.
+func (o *GetPartitionFileSystemPropertiesRequest) MakeResponse() *GetPartitionFileSystemPropertiesResponse {
+	return &GetPartitionFileSystemPropertiesResponse{}
+}
+
+// OpNum returns the operation number of GetPartitionFileSystemProperties operation.
+func (o *GetPartitionFileSystemPropertiesRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetPartitionFileSystemProperties operation.
+func (o *GetPartitionFileSystemPropertiesRequest) OpName() string {
+	return "/IVdsDiskPartitionMF/v0/GetPartitionFileSystemProperties"
+}
+
 // GetPartitionFileSystemPropertiesResponse structure represents the GetPartitionFileSystemProperties operation response
 type GetPartitionFileSystemPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -490,8 +505,10 @@ type xxx_GetPartitionFileSystemTypeNameOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetPartitionFileSystemTypeName operation.
 func (o *xxx_GetPartitionFileSystemTypeNameOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetPartitionFileSystemTypeName operation.
 func (o *xxx_GetPartitionFileSystemTypeNameOperation) OpName() string {
 	return "/IVdsDiskPartitionMF/v0/GetPartitionFileSystemTypeName"
 }
@@ -691,6 +708,19 @@ func (o *GetPartitionFileSystemTypeNameRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeGetPartitionFileSystemTypeNameRequest build a response structure from the given request structure.
+func (o *GetPartitionFileSystemTypeNameRequest) MakeResponse() *GetPartitionFileSystemTypeNameResponse {
+	return &GetPartitionFileSystemTypeNameResponse{}
+}
+
+// OpNum returns the operation number of GetPartitionFileSystemTypeName operation.
+func (o *GetPartitionFileSystemTypeNameRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetPartitionFileSystemTypeName operation.
+func (o *GetPartitionFileSystemTypeNameRequest) OpName() string {
+	return "/IVdsDiskPartitionMF/v0/GetPartitionFileSystemTypeName"
+}
+
 // GetPartitionFileSystemTypeNameResponse structure represents the GetPartitionFileSystemTypeName operation response
 type GetPartitionFileSystemTypeNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -745,8 +775,10 @@ type xxx_QueryPartitionFileSystemFormatSupportOperation struct {
 	Return                      int32                                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryPartitionFileSystemFormatSupport operation.
 func (o *xxx_QueryPartitionFileSystemFormatSupportOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of QueryPartitionFileSystemFormatSupport operation.
 func (o *xxx_QueryPartitionFileSystemFormatSupportOperation) OpName() string {
 	return "/IVdsDiskPartitionMF/v0/QueryPartitionFileSystemFormatSupport"
 }
@@ -1003,6 +1035,19 @@ func (o *QueryPartitionFileSystemFormatSupportRequest) UnmarshalNDR(ctx context.
 	return nil
 }
 
+// MakeQueryPartitionFileSystemFormatSupportRequest build a response structure from the given request structure.
+func (o *QueryPartitionFileSystemFormatSupportRequest) MakeResponse() *QueryPartitionFileSystemFormatSupportResponse {
+	return &QueryPartitionFileSystemFormatSupportResponse{}
+}
+
+// OpNum returns the operation number of QueryPartitionFileSystemFormatSupport operation.
+func (o *QueryPartitionFileSystemFormatSupportRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of QueryPartitionFileSystemFormatSupport operation.
+func (o *QueryPartitionFileSystemFormatSupportRequest) OpName() string {
+	return "/IVdsDiskPartitionMF/v0/QueryPartitionFileSystemFormatSupport"
+}
+
 // QueryPartitionFileSystemFormatSupportResponse structure represents the QueryPartitionFileSystemFormatSupport operation response
 type QueryPartitionFileSystemFormatSupportResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1069,8 +1114,10 @@ type xxx_FormatPartitionExOperation struct {
 	Return                    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FormatPartitionEx operation.
 func (o *xxx_FormatPartitionExOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of FormatPartitionEx operation.
 func (o *xxx_FormatPartitionExOperation) OpName() string {
 	return "/IVdsDiskPartitionMF/v0/FormatPartitionEx"
 }
@@ -1449,6 +1496,19 @@ func (o *FormatPartitionExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeFormatPartitionExRequest build a response structure from the given request structure.
+func (o *FormatPartitionExRequest) MakeResponse() *FormatPartitionExResponse {
+	return &FormatPartitionExResponse{}
+}
+
+// OpNum returns the operation number of FormatPartitionEx operation.
+func (o *FormatPartitionExRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of FormatPartitionEx operation.
+func (o *FormatPartitionExRequest) OpName() string {
+	return "/IVdsDiskPartitionMF/v0/FormatPartitionEx"
 }
 
 // FormatPartitionExResponse structure represents the FormatPartitionEx operation response

@@ -147,8 +147,10 @@ type xxx_LoadServiceOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LoadService operation.
 func (o *xxx_LoadServiceOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of LoadService operation.
 func (o *xxx_LoadServiceOperation) OpName() string { return "/IVdsServiceLoader/v0/LoadService" }
 
 func (o *xxx_LoadServiceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -379,6 +381,17 @@ func (o *LoadServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeLoadServiceRequest build a response structure from the given request structure.
+func (o *LoadServiceRequest) MakeResponse() *LoadServiceResponse {
+	return &LoadServiceResponse{}
+}
+
+// OpNum returns the operation number of LoadService operation.
+func (o *LoadServiceRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of LoadService operation.
+func (o *LoadServiceRequest) OpName() string { return "/IVdsServiceLoader/v0/LoadService" }
 
 // LoadServiceResponse structure represents the LoadService operation response
 type LoadServiceResponse struct {

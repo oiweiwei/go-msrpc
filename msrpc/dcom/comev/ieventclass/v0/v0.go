@@ -399,8 +399,10 @@ type xxx_GetEventClassIDOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EventClassID operation.
 func (o *xxx_GetEventClassIDOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of EventClassID operation.
 func (o *xxx_GetEventClassIDOperation) OpName() string { return "/IEventClass/v0/EventClassID" }
 
 func (o *xxx_GetEventClassIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -590,6 +592,17 @@ func (o *GetEventClassIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetEventClassIDRequest build a response structure from the given request structure.
+func (o *GetEventClassIDRequest) MakeResponse() *GetEventClassIDResponse {
+	return &GetEventClassIDResponse{}
+}
+
+// OpNum returns the operation number of EventClassID operation.
+func (o *GetEventClassIDRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of EventClassID operation.
+func (o *GetEventClassIDRequest) OpName() string { return "/IEventClass/v0/EventClassID" }
+
 // GetEventClassIDResponse structure represents the EventClassID operation response
 type GetEventClassIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -640,8 +653,10 @@ type xxx_SetEventClassIDOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EventClassID operation.
 func (o *xxx_SetEventClassIDOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of EventClassID operation.
 func (o *xxx_SetEventClassIDOperation) OpName() string { return "/IEventClass/v0/EventClassID" }
 
 func (o *xxx_SetEventClassIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -834,6 +849,17 @@ func (o *SetEventClassIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetEventClassIDRequest build a response structure from the given request structure.
+func (o *SetEventClassIDRequest) MakeResponse() *SetEventClassIDResponse {
+	return &SetEventClassIDResponse{}
+}
+
+// OpNum returns the operation number of EventClassID operation.
+func (o *SetEventClassIDRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of EventClassID operation.
+func (o *SetEventClassIDRequest) OpName() string { return "/IEventClass/v0/EventClassID" }
+
 // SetEventClassIDResponse structure represents the EventClassID operation response
 type SetEventClassIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -881,8 +907,10 @@ type xxx_GetEventClassNameOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EventClassName operation.
 func (o *xxx_GetEventClassNameOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of EventClassName operation.
 func (o *xxx_GetEventClassNameOperation) OpName() string { return "/IEventClass/v0/EventClassName" }
 
 func (o *xxx_GetEventClassNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1072,6 +1100,17 @@ func (o *GetEventClassNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetEventClassNameRequest build a response structure from the given request structure.
+func (o *GetEventClassNameRequest) MakeResponse() *GetEventClassNameResponse {
+	return &GetEventClassNameResponse{}
+}
+
+// OpNum returns the operation number of EventClassName operation.
+func (o *GetEventClassNameRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of EventClassName operation.
+func (o *GetEventClassNameRequest) OpName() string { return "/IEventClass/v0/EventClassName" }
+
 // GetEventClassNameResponse structure represents the EventClassName operation response
 type GetEventClassNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1122,8 +1161,10 @@ type xxx_SetEventClassNameOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EventClassName operation.
 func (o *xxx_SetEventClassNameOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of EventClassName operation.
 func (o *xxx_SetEventClassNameOperation) OpName() string { return "/IEventClass/v0/EventClassName" }
 
 func (o *xxx_SetEventClassNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1316,6 +1357,17 @@ func (o *SetEventClassNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetEventClassNameRequest build a response structure from the given request structure.
+func (o *SetEventClassNameRequest) MakeResponse() *SetEventClassNameResponse {
+	return &SetEventClassNameResponse{}
+}
+
+// OpNum returns the operation number of EventClassName operation.
+func (o *SetEventClassNameRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of EventClassName operation.
+func (o *SetEventClassNameRequest) OpName() string { return "/IEventClass/v0/EventClassName" }
+
 // SetEventClassNameResponse structure represents the EventClassName operation response
 type SetEventClassNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1363,8 +1415,10 @@ type xxx_GetOwnerSIDOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OwnerSID operation.
 func (o *xxx_GetOwnerSIDOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of OwnerSID operation.
 func (o *xxx_GetOwnerSIDOperation) OpName() string { return "/IEventClass/v0/OwnerSID" }
 
 func (o *xxx_GetOwnerSIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1554,6 +1608,17 @@ func (o *GetOwnerSIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetOwnerSIDRequest build a response structure from the given request structure.
+func (o *GetOwnerSIDRequest) MakeResponse() *GetOwnerSIDResponse {
+	return &GetOwnerSIDResponse{}
+}
+
+// OpNum returns the operation number of OwnerSID operation.
+func (o *GetOwnerSIDRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of OwnerSID operation.
+func (o *GetOwnerSIDRequest) OpName() string { return "/IEventClass/v0/OwnerSID" }
+
 // GetOwnerSIDResponse structure represents the OwnerSID operation response
 type GetOwnerSIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1604,8 +1669,10 @@ type xxx_SetOwnerSIDOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OwnerSID operation.
 func (o *xxx_SetOwnerSIDOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of OwnerSID operation.
 func (o *xxx_SetOwnerSIDOperation) OpName() string { return "/IEventClass/v0/OwnerSID" }
 
 func (o *xxx_SetOwnerSIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1798,6 +1865,17 @@ func (o *SetOwnerSIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeSetOwnerSIDRequest build a response structure from the given request structure.
+func (o *SetOwnerSIDRequest) MakeResponse() *SetOwnerSIDResponse {
+	return &SetOwnerSIDResponse{}
+}
+
+// OpNum returns the operation number of OwnerSID operation.
+func (o *SetOwnerSIDRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of OwnerSID operation.
+func (o *SetOwnerSIDRequest) OpName() string { return "/IEventClass/v0/OwnerSID" }
+
 // SetOwnerSIDResponse structure represents the OwnerSID operation response
 type SetOwnerSIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1845,8 +1923,10 @@ type xxx_GetFiringInterfaceIDOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FiringInterfaceID operation.
 func (o *xxx_GetFiringInterfaceIDOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of FiringInterfaceID operation.
 func (o *xxx_GetFiringInterfaceIDOperation) OpName() string {
 	return "/IEventClass/v0/FiringInterfaceID"
 }
@@ -2038,6 +2118,17 @@ func (o *GetFiringInterfaceIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetFiringInterfaceIDRequest build a response structure from the given request structure.
+func (o *GetFiringInterfaceIDRequest) MakeResponse() *GetFiringInterfaceIDResponse {
+	return &GetFiringInterfaceIDResponse{}
+}
+
+// OpNum returns the operation number of FiringInterfaceID operation.
+func (o *GetFiringInterfaceIDRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of FiringInterfaceID operation.
+func (o *GetFiringInterfaceIDRequest) OpName() string { return "/IEventClass/v0/FiringInterfaceID" }
+
 // GetFiringInterfaceIDResponse structure represents the FiringInterfaceID operation response
 type GetFiringInterfaceIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2088,8 +2179,10 @@ type xxx_SetFiringInterfaceIDOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FiringInterfaceID operation.
 func (o *xxx_SetFiringInterfaceIDOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of FiringInterfaceID operation.
 func (o *xxx_SetFiringInterfaceIDOperation) OpName() string {
 	return "/IEventClass/v0/FiringInterfaceID"
 }
@@ -2284,6 +2377,17 @@ func (o *SetFiringInterfaceIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeSetFiringInterfaceIDRequest build a response structure from the given request structure.
+func (o *SetFiringInterfaceIDRequest) MakeResponse() *SetFiringInterfaceIDResponse {
+	return &SetFiringInterfaceIDResponse{}
+}
+
+// OpNum returns the operation number of FiringInterfaceID operation.
+func (o *SetFiringInterfaceIDRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of FiringInterfaceID operation.
+func (o *SetFiringInterfaceIDRequest) OpName() string { return "/IEventClass/v0/FiringInterfaceID" }
+
 // SetFiringInterfaceIDResponse structure represents the FiringInterfaceID operation response
 type SetFiringInterfaceIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2331,8 +2435,10 @@ type xxx_GetDescriptionOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Description operation.
 func (o *xxx_GetDescriptionOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of Description operation.
 func (o *xxx_GetDescriptionOperation) OpName() string { return "/IEventClass/v0/Description" }
 
 func (o *xxx_GetDescriptionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2522,6 +2628,17 @@ func (o *GetDescriptionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetDescriptionRequest build a response structure from the given request structure.
+func (o *GetDescriptionRequest) MakeResponse() *GetDescriptionResponse {
+	return &GetDescriptionResponse{}
+}
+
+// OpNum returns the operation number of Description operation.
+func (o *GetDescriptionRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of Description operation.
+func (o *GetDescriptionRequest) OpName() string { return "/IEventClass/v0/Description" }
+
 // GetDescriptionResponse structure represents the Description operation response
 type GetDescriptionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2572,8 +2689,10 @@ type xxx_SetDescriptionOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Description operation.
 func (o *xxx_SetDescriptionOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of Description operation.
 func (o *xxx_SetDescriptionOperation) OpName() string { return "/IEventClass/v0/Description" }
 
 func (o *xxx_SetDescriptionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2766,6 +2885,17 @@ func (o *SetDescriptionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetDescriptionRequest build a response structure from the given request structure.
+func (o *SetDescriptionRequest) MakeResponse() *SetDescriptionResponse {
+	return &SetDescriptionResponse{}
+}
+
+// OpNum returns the operation number of Description operation.
+func (o *SetDescriptionRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of Description operation.
+func (o *SetDescriptionRequest) OpName() string { return "/IEventClass/v0/Description" }
+
 // SetDescriptionResponse structure represents the Description operation response
 type SetDescriptionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2813,8 +2943,10 @@ type xxx_GetTypeLibOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TypeLib operation.
 func (o *xxx_GetTypeLibOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of TypeLib operation.
 func (o *xxx_GetTypeLibOperation) OpName() string { return "/IEventClass/v0/TypeLib" }
 
 func (o *xxx_GetTypeLibOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3004,6 +3136,17 @@ func (o *GetTypeLibRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetTypeLibRequest build a response structure from the given request structure.
+func (o *GetTypeLibRequest) MakeResponse() *GetTypeLibResponse {
+	return &GetTypeLibResponse{}
+}
+
+// OpNum returns the operation number of TypeLib operation.
+func (o *GetTypeLibRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of TypeLib operation.
+func (o *GetTypeLibRequest) OpName() string { return "/IEventClass/v0/TypeLib" }
+
 // GetTypeLibResponse structure represents the TypeLib operation response
 type GetTypeLibResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3054,8 +3197,10 @@ type xxx_SetTypeLibOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TypeLib operation.
 func (o *xxx_SetTypeLibOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of TypeLib operation.
 func (o *xxx_SetTypeLibOperation) OpName() string { return "/IEventClass/v0/TypeLib" }
 
 func (o *xxx_SetTypeLibOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3247,6 +3392,17 @@ func (o *SetTypeLibRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetTypeLibRequest build a response structure from the given request structure.
+func (o *SetTypeLibRequest) MakeResponse() *SetTypeLibResponse {
+	return &SetTypeLibResponse{}
+}
+
+// OpNum returns the operation number of TypeLib operation.
+func (o *SetTypeLibRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of TypeLib operation.
+func (o *SetTypeLibRequest) OpName() string { return "/IEventClass/v0/TypeLib" }
 
 // SetTypeLibResponse structure represents the TypeLib operation response
 type SetTypeLibResponse struct {

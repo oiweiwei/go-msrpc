@@ -504,8 +504,10 @@ type xxx_SendRTMessageOperation struct {
 	Return               int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SendRTMessage operation.
 func (o *xxx_SendRTMessageOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SendRTMessage operation.
 func (o *xxx_SendRTMessageOperation) OpName() string { return "/IClusterNetwork2/v0/SendRTMessage" }
 
 func (o *xxx_SendRTMessageOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -840,6 +842,17 @@ func (o *SendRTMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSendRTMessageRequest build a response structure from the given request structure.
+func (o *SendRTMessageRequest) MakeResponse() *SendRTMessageResponse {
+	return &SendRTMessageResponse{}
+}
+
+// OpNum returns the operation number of SendRTMessage operation.
+func (o *SendRTMessageRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SendRTMessage operation.
+func (o *SendRTMessageRequest) OpName() string { return "/IClusterNetwork2/v0/SendRTMessage" }
+
 // SendRTMessageResponse structure represents the SendRTMessage operation response
 type SendRTMessageResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -897,8 +910,10 @@ type xxx_InitializeNodeOperation struct {
 	Return                int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of InitializeNode operation.
 func (o *xxx_InitializeNodeOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of InitializeNode operation.
 func (o *xxx_InitializeNodeOperation) OpName() string { return "/IClusterNetwork2/v0/InitializeNode" }
 
 func (o *xxx_InitializeNodeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1106,6 +1121,17 @@ func (o *InitializeNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeInitializeNodeRequest build a response structure from the given request structure.
+func (o *InitializeNodeRequest) MakeResponse() *InitializeNodeResponse {
+	return &InitializeNodeResponse{}
+}
+
+// OpNum returns the operation number of InitializeNode operation.
+func (o *InitializeNodeRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of InitializeNode operation.
+func (o *InitializeNodeRequest) OpName() string { return "/IClusterNetwork2/v0/InitializeNode" }
+
 // InitializeNodeResponse structure represents the InitializeNode operation response
 type InitializeNodeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1171,8 +1197,10 @@ type xxx_GetIPConfigSerializedOperation struct {
 	Return             int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetIpConfigSerialized operation.
 func (o *xxx_GetIPConfigSerializedOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of GetIpConfigSerialized operation.
 func (o *xxx_GetIPConfigSerializedOperation) OpName() string {
 	return "/IClusterNetwork2/v0/GetIpConfigSerialized"
 }
@@ -1408,6 +1436,19 @@ func (o *GetIPConfigSerializedRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetIPConfigSerializedRequest build a response structure from the given request structure.
+func (o *GetIPConfigSerializedRequest) MakeResponse() *GetIPConfigSerializedResponse {
+	return &GetIPConfigSerializedResponse{}
+}
+
+// OpNum returns the operation number of GetIpConfigSerialized operation.
+func (o *GetIPConfigSerializedRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of GetIpConfigSerialized operation.
+func (o *GetIPConfigSerializedRequest) OpName() string {
+	return "/IClusterNetwork2/v0/GetIpConfigSerialized"
+}
+
 // GetIPConfigSerializedResponse structure represents the GetIpConfigSerialized operation response
 type GetIPConfigSerializedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1465,8 +1506,10 @@ type xxx_CleanupNodeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CleanupNode operation.
 func (o *xxx_CleanupNodeOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of CleanupNode operation.
 func (o *xxx_CleanupNodeOperation) OpName() string { return "/IClusterNetwork2/v0/CleanupNode" }
 
 func (o *xxx_CleanupNodeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1610,6 +1653,17 @@ func (o *CleanupNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCleanupNodeRequest build a response structure from the given request structure.
+func (o *CleanupNodeRequest) MakeResponse() *CleanupNodeResponse {
+	return &CleanupNodeResponse{}
+}
+
+// OpNum returns the operation number of CleanupNode operation.
+func (o *CleanupNodeRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of CleanupNode operation.
+func (o *CleanupNodeRequest) OpName() string { return "/IClusterNetwork2/v0/CleanupNode" }
+
 // CleanupNodeResponse structure represents the CleanupNode operation response
 type CleanupNodeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1658,8 +1712,10 @@ type xxx_QueryFirewallConfigurationOperation struct {
 	Return                 int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryFirewallConfiguration operation.
 func (o *xxx_QueryFirewallConfigurationOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of QueryFirewallConfiguration operation.
 func (o *xxx_QueryFirewallConfigurationOperation) OpName() string {
 	return "/IClusterNetwork2/v0/QueryFirewallConfiguration"
 }
@@ -1829,6 +1885,19 @@ func (o *QueryFirewallConfigurationRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeQueryFirewallConfigurationRequest build a response structure from the given request structure.
+func (o *QueryFirewallConfigurationRequest) MakeResponse() *QueryFirewallConfigurationResponse {
+	return &QueryFirewallConfigurationResponse{}
+}
+
+// OpNum returns the operation number of QueryFirewallConfiguration operation.
+func (o *QueryFirewallConfigurationRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of QueryFirewallConfiguration operation.
+func (o *QueryFirewallConfigurationRequest) OpName() string {
+	return "/IClusterNetwork2/v0/QueryFirewallConfiguration"
+}
+
 // QueryFirewallConfigurationResponse structure represents the QueryFirewallConfiguration operation response
 type QueryFirewallConfigurationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1918,8 +1987,10 @@ type xxx_ProcessAddRoutesOperation struct {
 	Return  int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ProcessAddRoutes operation.
 func (o *xxx_ProcessAddRoutesOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ProcessAddRoutes operation.
 func (o *xxx_ProcessAddRoutesOperation) OpName() string {
 	return "/IClusterNetwork2/v0/ProcessAddRoutes"
 }
@@ -2096,6 +2167,17 @@ func (o *ProcessAddRoutesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeProcessAddRoutesRequest build a response structure from the given request structure.
+func (o *ProcessAddRoutesRequest) MakeResponse() *ProcessAddRoutesResponse {
+	return &ProcessAddRoutesResponse{}
+}
+
+// OpNum returns the operation number of ProcessAddRoutes operation.
+func (o *ProcessAddRoutesRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ProcessAddRoutes operation.
+func (o *ProcessAddRoutesRequest) OpName() string { return "/IClusterNetwork2/v0/ProcessAddRoutes" }
+
 // ProcessAddRoutesResponse structure represents the ProcessAddRoutes operation response
 type ProcessAddRoutesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2143,8 +2225,10 @@ type xxx_GetAddRoutesStatusOperation struct {
 	Return int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetAddRoutesStatus operation.
 func (o *xxx_GetAddRoutesStatusOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of GetAddRoutesStatus operation.
 func (o *xxx_GetAddRoutesStatusOperation) OpName() string {
 	return "/IClusterNetwork2/v0/GetAddRoutesStatus"
 }
@@ -2317,6 +2401,17 @@ func (o *GetAddRoutesStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetAddRoutesStatusRequest build a response structure from the given request structure.
+func (o *GetAddRoutesStatusRequest) MakeResponse() *GetAddRoutesStatusResponse {
+	return &GetAddRoutesStatusResponse{}
+}
+
+// OpNum returns the operation number of GetAddRoutesStatus operation.
+func (o *GetAddRoutesStatusRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of GetAddRoutesStatus operation.
+func (o *GetAddRoutesStatusRequest) OpName() string { return "/IClusterNetwork2/v0/GetAddRoutesStatus" }
+
 // GetAddRoutesStatusResponse structure represents the GetAddRoutesStatus operation response
 type GetAddRoutesStatusResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2367,8 +2462,10 @@ type xxx_CancelAddRoutesRequestOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CancelAddRoutesRequest operation.
 func (o *xxx_CancelAddRoutesRequestOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of CancelAddRoutesRequest operation.
 func (o *xxx_CancelAddRoutesRequestOperation) OpName() string {
 	return "/IClusterNetwork2/v0/CancelAddRoutesRequest"
 }
@@ -2512,6 +2609,19 @@ func (o *CancelAddRoutesRequestRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeCancelAddRoutesRequestRequest build a response structure from the given request structure.
+func (o *CancelAddRoutesRequestRequest) MakeResponse() *CancelAddRoutesRequestResponse {
+	return &CancelAddRoutesRequestResponse{}
+}
+
+// OpNum returns the operation number of CancelAddRoutesRequest operation.
+func (o *CancelAddRoutesRequestRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of CancelAddRoutesRequest operation.
+func (o *CancelAddRoutesRequestRequest) OpName() string {
+	return "/IClusterNetwork2/v0/CancelAddRoutesRequest"
 }
 
 // CancelAddRoutesRequestResponse structure represents the CancelAddRoutesRequest operation response

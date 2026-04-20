@@ -446,8 +446,10 @@ type xxx_GetActionVariablesOperation struct {
 	Return    int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ActionVariables operation.
 func (o *xxx_GetActionVariablesOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of ActionVariables operation.
 func (o *xxx_GetActionVariablesOperation) OpName() string {
 	return "/IFsrmFileScreenManager/v0/ActionVariables"
 }
@@ -639,6 +641,19 @@ func (o *GetActionVariablesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetActionVariablesRequest build a response structure from the given request structure.
+func (o *GetActionVariablesRequest) MakeResponse() *GetActionVariablesResponse {
+	return &GetActionVariablesResponse{}
+}
+
+// OpNum returns the operation number of ActionVariables operation.
+func (o *GetActionVariablesRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of ActionVariables operation.
+func (o *GetActionVariablesRequest) OpName() string {
+	return "/IFsrmFileScreenManager/v0/ActionVariables"
+}
+
 // GetActionVariablesResponse structure represents the ActionVariables operation response
 type GetActionVariablesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -689,8 +704,10 @@ type xxx_GetActionVariableDescriptionsOperation struct {
 	Return       int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ActionVariableDescriptions operation.
 func (o *xxx_GetActionVariableDescriptionsOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ActionVariableDescriptions operation.
 func (o *xxx_GetActionVariableDescriptionsOperation) OpName() string {
 	return "/IFsrmFileScreenManager/v0/ActionVariableDescriptions"
 }
@@ -882,6 +899,19 @@ func (o *GetActionVariableDescriptionsRequest) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
+// MakeGetActionVariableDescriptionsRequest build a response structure from the given request structure.
+func (o *GetActionVariableDescriptionsRequest) MakeResponse() *GetActionVariableDescriptionsResponse {
+	return &GetActionVariableDescriptionsResponse{}
+}
+
+// OpNum returns the operation number of ActionVariableDescriptions operation.
+func (o *GetActionVariableDescriptionsRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ActionVariableDescriptions operation.
+func (o *GetActionVariableDescriptionsRequest) OpName() string {
+	return "/IFsrmFileScreenManager/v0/ActionVariableDescriptions"
+}
+
 // GetActionVariableDescriptionsResponse structure represents the ActionVariableDescriptions operation response
 type GetActionVariableDescriptionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -933,8 +963,10 @@ type xxx_CreateFileScreenOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateFileScreen operation.
 func (o *xxx_CreateFileScreenOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of CreateFileScreen operation.
 func (o *xxx_CreateFileScreenOperation) OpName() string {
 	return "/IFsrmFileScreenManager/v0/CreateFileScreen"
 }
@@ -1176,6 +1208,19 @@ func (o *CreateFileScreenRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeCreateFileScreenRequest build a response structure from the given request structure.
+func (o *CreateFileScreenRequest) MakeResponse() *CreateFileScreenResponse {
+	return &CreateFileScreenResponse{}
+}
+
+// OpNum returns the operation number of CreateFileScreen operation.
+func (o *CreateFileScreenRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of CreateFileScreen operation.
+func (o *CreateFileScreenRequest) OpName() string {
+	return "/IFsrmFileScreenManager/v0/CreateFileScreen"
+}
+
 // CreateFileScreenResponse structure represents the CreateFileScreen operation response
 type CreateFileScreenResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1232,8 +1277,10 @@ type xxx_GetFileScreenOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetFileScreen operation.
 func (o *xxx_GetFileScreenOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of GetFileScreen operation.
 func (o *xxx_GetFileScreenOperation) OpName() string {
 	return "/IFsrmFileScreenManager/v0/GetFileScreen"
 }
@@ -1475,6 +1522,17 @@ func (o *GetFileScreenRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetFileScreenRequest build a response structure from the given request structure.
+func (o *GetFileScreenRequest) MakeResponse() *GetFileScreenResponse {
+	return &GetFileScreenResponse{}
+}
+
+// OpNum returns the operation number of GetFileScreen operation.
+func (o *GetFileScreenRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of GetFileScreen operation.
+func (o *GetFileScreenRequest) OpName() string { return "/IFsrmFileScreenManager/v0/GetFileScreen" }
+
 // GetFileScreenResponse structure represents the GetFileScreen operation response
 type GetFileScreenResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1530,8 +1588,10 @@ type xxx_EnumFileScreensOperation struct {
 	Return      int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumFileScreens operation.
 func (o *xxx_EnumFileScreensOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of EnumFileScreens operation.
 func (o *xxx_EnumFileScreensOperation) OpName() string {
 	return "/IFsrmFileScreenManager/v0/EnumFileScreens"
 }
@@ -1790,6 +1850,17 @@ func (o *EnumFileScreensRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeEnumFileScreensRequest build a response structure from the given request structure.
+func (o *EnumFileScreensRequest) MakeResponse() *EnumFileScreensResponse {
+	return &EnumFileScreensResponse{}
+}
+
+// OpNum returns the operation number of EnumFileScreens operation.
+func (o *EnumFileScreensRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of EnumFileScreens operation.
+func (o *EnumFileScreensRequest) OpName() string { return "/IFsrmFileScreenManager/v0/EnumFileScreens" }
+
 // EnumFileScreensResponse structure represents the EnumFileScreens operation response
 type EnumFileScreensResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1845,8 +1916,10 @@ type xxx_CreateFileScreenExceptionOperation struct {
 	Return              int32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateFileScreenException operation.
 func (o *xxx_CreateFileScreenExceptionOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of CreateFileScreenException operation.
 func (o *xxx_CreateFileScreenExceptionOperation) OpName() string {
 	return "/IFsrmFileScreenManager/v0/CreateFileScreenException"
 }
@@ -2088,6 +2161,19 @@ func (o *CreateFileScreenExceptionRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeCreateFileScreenExceptionRequest build a response structure from the given request structure.
+func (o *CreateFileScreenExceptionRequest) MakeResponse() *CreateFileScreenExceptionResponse {
+	return &CreateFileScreenExceptionResponse{}
+}
+
+// OpNum returns the operation number of CreateFileScreenException operation.
+func (o *CreateFileScreenExceptionRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of CreateFileScreenException operation.
+func (o *CreateFileScreenExceptionRequest) OpName() string {
+	return "/IFsrmFileScreenManager/v0/CreateFileScreenException"
+}
+
 // CreateFileScreenExceptionResponse structure represents the CreateFileScreenException operation response
 type CreateFileScreenExceptionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2144,8 +2230,10 @@ type xxx_GetFileScreenExceptionOperation struct {
 	Return              int32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetFileScreenException operation.
 func (o *xxx_GetFileScreenExceptionOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of GetFileScreenException operation.
 func (o *xxx_GetFileScreenExceptionOperation) OpName() string {
 	return "/IFsrmFileScreenManager/v0/GetFileScreenException"
 }
@@ -2387,6 +2475,19 @@ func (o *GetFileScreenExceptionRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetFileScreenExceptionRequest build a response structure from the given request structure.
+func (o *GetFileScreenExceptionRequest) MakeResponse() *GetFileScreenExceptionResponse {
+	return &GetFileScreenExceptionResponse{}
+}
+
+// OpNum returns the operation number of GetFileScreenException operation.
+func (o *GetFileScreenExceptionRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of GetFileScreenException operation.
+func (o *GetFileScreenExceptionRequest) OpName() string {
+	return "/IFsrmFileScreenManager/v0/GetFileScreenException"
+}
+
 // GetFileScreenExceptionResponse structure represents the GetFileScreenException operation response
 type GetFileScreenExceptionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2443,8 +2544,10 @@ type xxx_EnumFileScreenExceptionsOperation struct {
 	Return               int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumFileScreenExceptions operation.
 func (o *xxx_EnumFileScreenExceptionsOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of EnumFileScreenExceptions operation.
 func (o *xxx_EnumFileScreenExceptionsOperation) OpName() string {
 	return "/IFsrmFileScreenManager/v0/EnumFileScreenExceptions"
 }
@@ -2704,6 +2807,19 @@ func (o *EnumFileScreenExceptionsRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeEnumFileScreenExceptionsRequest build a response structure from the given request structure.
+func (o *EnumFileScreenExceptionsRequest) MakeResponse() *EnumFileScreenExceptionsResponse {
+	return &EnumFileScreenExceptionsResponse{}
+}
+
+// OpNum returns the operation number of EnumFileScreenExceptions operation.
+func (o *EnumFileScreenExceptionsRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of EnumFileScreenExceptions operation.
+func (o *EnumFileScreenExceptionsRequest) OpName() string {
+	return "/IFsrmFileScreenManager/v0/EnumFileScreenExceptions"
+}
+
 // EnumFileScreenExceptionsResponse structure represents the EnumFileScreenExceptions operation response
 type EnumFileScreenExceptionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2758,8 +2874,10 @@ type xxx_CreateFileScreenCollectionOperation struct {
 	Return     int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateFileScreenCollection operation.
 func (o *xxx_CreateFileScreenCollectionOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of CreateFileScreenCollection operation.
 func (o *xxx_CreateFileScreenCollectionOperation) OpName() string {
 	return "/IFsrmFileScreenManager/v0/CreateFileScreenCollection"
 }
@@ -2949,6 +3067,19 @@ func (o *CreateFileScreenCollectionRequest) UnmarshalNDR(ctx context.Context, r 
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeCreateFileScreenCollectionRequest build a response structure from the given request structure.
+func (o *CreateFileScreenCollectionRequest) MakeResponse() *CreateFileScreenCollectionResponse {
+	return &CreateFileScreenCollectionResponse{}
+}
+
+// OpNum returns the operation number of CreateFileScreenCollection operation.
+func (o *CreateFileScreenCollectionRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of CreateFileScreenCollection operation.
+func (o *CreateFileScreenCollectionRequest) OpName() string {
+	return "/IFsrmFileScreenManager/v0/CreateFileScreenCollection"
 }
 
 // CreateFileScreenCollectionResponse structure represents the CreateFileScreenCollection operation response

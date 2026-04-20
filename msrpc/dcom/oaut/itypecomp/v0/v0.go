@@ -213,8 +213,10 @@ type xxx_BindOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Bind operation.
 func (o *xxx_BindOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Bind operation.
 func (o *xxx_BindOperation) OpName() string { return "/ITypeComp/v0/Bind" }
 
 func (o *xxx_BindOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -621,6 +623,17 @@ func (o *BindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeBindRequest build a response structure from the given request structure.
+func (o *BindRequest) MakeResponse() *BindResponse {
+	return &BindResponse{}
+}
+
+// OpNum returns the operation number of Bind operation.
+func (o *BindRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Bind operation.
+func (o *BindRequest) OpName() string { return "/ITypeComp/v0/Bind" }
+
 // BindResponse structure represents the Bind operation response
 type BindResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -726,8 +739,10 @@ type xxx_BindTypeOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BindType operation.
 func (o *xxx_BindTypeOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of BindType operation.
 func (o *xxx_BindTypeOperation) OpName() string { return "/ITypeComp/v0/BindType" }
 
 func (o *xxx_BindTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -950,6 +965,17 @@ func (o *BindTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeBindTypeRequest build a response structure from the given request structure.
+func (o *BindTypeRequest) MakeResponse() *BindTypeResponse {
+	return &BindTypeResponse{}
+}
+
+// OpNum returns the operation number of BindType operation.
+func (o *BindTypeRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of BindType operation.
+func (o *BindTypeRequest) OpName() string { return "/ITypeComp/v0/BindType" }
 
 // BindTypeResponse structure represents the BindType operation response
 type BindTypeResponse struct {

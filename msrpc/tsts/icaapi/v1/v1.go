@@ -1401,8 +1401,10 @@ type xxx_WinStationOpenServerOperation struct {
 	Return bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationOpenServer operation.
 func (o *xxx_WinStationOpenServerOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RpcWinStationOpenServer operation.
 func (o *xxx_WinStationOpenServerOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationOpenServer"
 }
@@ -1523,6 +1525,17 @@ func (o *WinStationOpenServerRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeWinStationOpenServerRequest build a response structure from the given request structure.
+func (o *WinStationOpenServerRequest) MakeResponse() *WinStationOpenServerResponse {
+	return &WinStationOpenServerResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationOpenServer operation.
+func (o *WinStationOpenServerRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RpcWinStationOpenServer operation.
+func (o *WinStationOpenServerRequest) OpName() string { return "/IcaApi/v1/RpcWinStationOpenServer" }
+
 // WinStationOpenServerResponse structure represents the RpcWinStationOpenServer operation response
 type WinStationOpenServerResponse struct {
 	// pResult:  Failure error code if the call to RpcWinStationOpenServer failed. If the
@@ -1589,8 +1602,10 @@ type xxx_WinStationCloseServerOperation struct {
 	Return bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationCloseServer operation.
 func (o *xxx_WinStationCloseServerOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RpcWinStationCloseServer operation.
 func (o *xxx_WinStationCloseServerOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationCloseServer"
 }
@@ -1716,6 +1731,17 @@ func (o *WinStationCloseServerRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeWinStationCloseServerRequest build a response structure from the given request structure.
+func (o *WinStationCloseServerRequest) MakeResponse() *WinStationCloseServerResponse {
+	return &WinStationCloseServerResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationCloseServer operation.
+func (o *WinStationCloseServerRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RpcWinStationCloseServer operation.
+func (o *WinStationCloseServerRequest) OpName() string { return "/IcaApi/v1/RpcWinStationCloseServer" }
+
 // WinStationCloseServerResponse structure represents the RpcWinStationCloseServer operation response
 type WinStationCloseServerResponse struct {
 	// pResult: If the call was successful, this parameter is STATUS_SUCCESS (0x00000000),
@@ -1764,8 +1790,10 @@ type xxx_IcaServerPingOperation struct {
 	Return bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcIcaServerPing operation.
 func (o *xxx_IcaServerPingOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of RpcIcaServerPing operation.
 func (o *xxx_IcaServerPingOperation) OpName() string { return "/IcaApi/v1/RpcIcaServerPing" }
 
 func (o *xxx_IcaServerPingOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1889,6 +1917,17 @@ func (o *IcaServerPingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeIcaServerPingRequest build a response structure from the given request structure.
+func (o *IcaServerPingRequest) MakeResponse() *IcaServerPingResponse {
+	return &IcaServerPingResponse{}
+}
+
+// OpNum returns the operation number of RpcIcaServerPing operation.
+func (o *IcaServerPingRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of RpcIcaServerPing operation.
+func (o *IcaServerPingRequest) OpName() string { return "/IcaApi/v1/RpcIcaServerPing" }
+
 // IcaServerPingResponse structure represents the RpcIcaServerPing operation response
 type IcaServerPingResponse struct {
 	// pResult: If the call was successful, this parameter is STATUS_SUCCESS (0x00000000),
@@ -1941,8 +1980,10 @@ type xxx_WinStationEnumerateOperation struct {
 	Return    bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationEnumerate operation.
 func (o *xxx_WinStationEnumerateOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RpcWinStationEnumerate operation.
 func (o *xxx_WinStationEnumerateOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationEnumerate"
 }
@@ -2307,6 +2348,17 @@ func (o *WinStationEnumerateRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeWinStationEnumerateRequest build a response structure from the given request structure.
+func (o *WinStationEnumerateRequest) MakeResponse() *WinStationEnumerateResponse {
+	return &WinStationEnumerateResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationEnumerate operation.
+func (o *WinStationEnumerateRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RpcWinStationEnumerate operation.
+func (o *WinStationEnumerateRequest) OpName() string { return "/IcaApi/v1/RpcWinStationEnumerate" }
+
 // WinStationEnumerateResponse structure represents the RpcWinStationEnumerate operation response
 type WinStationEnumerateResponse struct {
 	// pResult: If the call was successful, this parameter will be STATUS_SUCCESS (0x00000000),
@@ -2380,8 +2432,10 @@ type xxx_WinStationRenameOperation struct {
 	Return            bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationRename operation.
 func (o *xxx_WinStationRenameOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RpcWinStationRename operation.
 func (o *xxx_WinStationRenameOperation) OpName() string { return "/IcaApi/v1/RpcWinStationRename" }
 
 func (o *xxx_WinStationRenameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2663,6 +2717,17 @@ func (o *WinStationRenameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeWinStationRenameRequest build a response structure from the given request structure.
+func (o *WinStationRenameRequest) MakeResponse() *WinStationRenameResponse {
+	return &WinStationRenameResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationRename operation.
+func (o *WinStationRenameRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RpcWinStationRename operation.
+func (o *WinStationRenameRequest) OpName() string { return "/IcaApi/v1/RpcWinStationRename" }
+
 // WinStationRenameResponse structure represents the RpcWinStationRename operation response
 type WinStationRenameResponse struct {
 	// pResult:  The failure error code if the call to RpcWinStationRename fails. If the
@@ -2734,8 +2799,10 @@ type xxx_WinStationQueryInformationOperation struct {
 	Return                      bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationQueryInformation operation.
 func (o *xxx_WinStationQueryInformationOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of RpcWinStationQueryInformation operation.
 func (o *xxx_WinStationQueryInformationOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationQueryInformation"
 }
@@ -3224,6 +3291,24 @@ func (o *WinStationQueryInformationRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeWinStationQueryInformationRequest build a response structure from the given request structure.
+func (o *WinStationQueryInformationRequest) MakeResponse() *WinStationQueryInformationResponse {
+	if o == nil {
+		return &WinStationQueryInformationResponse{}
+	}
+	return &WinStationQueryInformationResponse{
+		WinStationInformationLength: o.WinStationInformationLength,
+	}
+}
+
+// OpNum returns the operation number of RpcWinStationQueryInformation operation.
+func (o *WinStationQueryInformationRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of RpcWinStationQueryInformation operation.
+func (o *WinStationQueryInformationRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationQueryInformation"
+}
+
 // WinStationQueryInformationResponse structure represents the RpcWinStationQueryInformation operation response
 type WinStationQueryInformationResponse struct {
 	// XXX: WinStationInformationLength is an implicit input depedency for output parameters
@@ -3314,8 +3399,10 @@ type xxx_WinStationSetInformationOperation struct {
 	Return                      bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationSetInformation operation.
 func (o *xxx_WinStationSetInformationOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of RpcWinStationSetInformation operation.
 func (o *xxx_WinStationSetInformationOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationSetInformation"
 }
@@ -3720,6 +3807,24 @@ func (o *WinStationSetInformationRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeWinStationSetInformationRequest build a response structure from the given request structure.
+func (o *WinStationSetInformationRequest) MakeResponse() *WinStationSetInformationResponse {
+	if o == nil {
+		return &WinStationSetInformationResponse{}
+	}
+	return &WinStationSetInformationResponse{
+		WinStationInformationLength: o.WinStationInformationLength,
+	}
+}
+
+// OpNum returns the operation number of RpcWinStationSetInformation operation.
+func (o *WinStationSetInformationRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of RpcWinStationSetInformation operation.
+func (o *WinStationSetInformationRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationSetInformation"
+}
+
 // WinStationSetInformationResponse structure represents the RpcWinStationSetInformation operation response
 type WinStationSetInformationResponse struct {
 	// XXX: WinStationInformationLength is an implicit input depedency for output parameters
@@ -3806,8 +3911,10 @@ type xxx_WinStationSendMessageOperation struct {
 	Return        bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationSendMessage operation.
 func (o *xxx_WinStationSendMessageOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of RpcWinStationSendMessage operation.
 func (o *xxx_WinStationSendMessageOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationSendMessage"
 }
@@ -4171,6 +4278,17 @@ func (o *WinStationSendMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeWinStationSendMessageRequest build a response structure from the given request structure.
+func (o *WinStationSendMessageRequest) MakeResponse() *WinStationSendMessageResponse {
+	return &WinStationSendMessageResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationSendMessage operation.
+func (o *WinStationSendMessageRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of RpcWinStationSendMessage operation.
+func (o *WinStationSendMessageRequest) OpName() string { return "/IcaApi/v1/RpcWinStationSendMessage" }
+
 // WinStationSendMessageResponse structure represents the RpcWinStationSendMessage operation response
 type WinStationSendMessageResponse struct {
 	// pResult:  Failure error code if the call to RpcWinStationSendMessage failed. If
@@ -4237,8 +4355,10 @@ type xxx_LogonIDFromWinStationNameOperation struct {
 	Return         bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcLogonIdFromWinStationName operation.
 func (o *xxx_LogonIDFromWinStationNameOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RpcLogonIdFromWinStationName operation.
 func (o *xxx_LogonIDFromWinStationNameOperation) OpName() string {
 	return "/IcaApi/v1/RpcLogonIdFromWinStationName"
 }
@@ -4454,6 +4574,19 @@ func (o *LogonIDFromWinStationNameRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeLogonIDFromWinStationNameRequest build a response structure from the given request structure.
+func (o *LogonIDFromWinStationNameRequest) MakeResponse() *LogonIDFromWinStationNameResponse {
+	return &LogonIDFromWinStationNameResponse{}
+}
+
+// OpNum returns the operation number of RpcLogonIdFromWinStationName operation.
+func (o *LogonIDFromWinStationNameRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of RpcLogonIdFromWinStationName operation.
+func (o *LogonIDFromWinStationNameRequest) OpName() string {
+	return "/IcaApi/v1/RpcLogonIdFromWinStationName"
+}
+
 // LogonIDFromWinStationNameResponse structure represents the RpcLogonIdFromWinStationName operation response
 type LogonIDFromWinStationNameResponse struct {
 	// pResult:  The failure error code if the call to RpcLogonIdFromWinStationName fails.
@@ -4519,8 +4652,10 @@ type xxx_WinStationNameFromLogonIDOperation struct {
 	Return         bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationNameFromLogonId operation.
 func (o *xxx_WinStationNameFromLogonIDOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RpcWinStationNameFromLogonId operation.
 func (o *xxx_WinStationNameFromLogonIDOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationNameFromLogonId"
 }
@@ -4791,6 +4926,24 @@ func (o *WinStationNameFromLogonIDRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeWinStationNameFromLogonIDRequest build a response structure from the given request structure.
+func (o *WinStationNameFromLogonIDRequest) MakeResponse() *WinStationNameFromLogonIDResponse {
+	if o == nil {
+		return &WinStationNameFromLogonIDResponse{}
+	}
+	return &WinStationNameFromLogonIDResponse{
+		NameSize: o.NameSize,
+	}
+}
+
+// OpNum returns the operation number of RpcWinStationNameFromLogonId operation.
+func (o *WinStationNameFromLogonIDRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RpcWinStationNameFromLogonId operation.
+func (o *WinStationNameFromLogonIDRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationNameFromLogonId"
+}
+
 // WinStationNameFromLogonIDResponse structure represents the RpcWinStationNameFromLogonId operation response
 type WinStationNameFromLogonIDResponse struct {
 	// XXX: NameSize is an implicit input depedency for output parameters
@@ -4874,8 +5027,10 @@ type xxx_WinStationConnectOperation struct {
 	Return         bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationConnect operation.
 func (o *xxx_WinStationConnectOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of RpcWinStationConnect operation.
 func (o *xxx_WinStationConnectOperation) OpName() string { return "/IcaApi/v1/RpcWinStationConnect" }
 
 func (o *xxx_WinStationConnectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5146,6 +5301,17 @@ func (o *WinStationConnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeWinStationConnectRequest build a response structure from the given request structure.
+func (o *WinStationConnectRequest) MakeResponse() *WinStationConnectResponse {
+	return &WinStationConnectResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationConnect operation.
+func (o *WinStationConnectRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of RpcWinStationConnect operation.
+func (o *WinStationConnectRequest) OpName() string { return "/IcaApi/v1/RpcWinStationConnect" }
+
 // WinStationConnectResponse structure represents the RpcWinStationConnect operation response
 type WinStationConnectResponse struct {
 	// pResult: If the call was successful, this parameter MUST be STATUS_SUCCESS (0x00000000);
@@ -5195,8 +5361,10 @@ type xxx_WinStationDisconnectOperation struct {
 	Return  bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationDisconnect operation.
 func (o *xxx_WinStationDisconnectOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of RpcWinStationDisconnect operation.
 func (o *xxx_WinStationDisconnectOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationDisconnect"
 }
@@ -5355,6 +5523,17 @@ func (o *WinStationDisconnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeWinStationDisconnectRequest build a response structure from the given request structure.
+func (o *WinStationDisconnectRequest) MakeResponse() *WinStationDisconnectResponse {
+	return &WinStationDisconnectResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationDisconnect operation.
+func (o *WinStationDisconnectRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of RpcWinStationDisconnect operation.
+func (o *WinStationDisconnectRequest) OpName() string { return "/IcaApi/v1/RpcWinStationDisconnect" }
+
 // WinStationDisconnectResponse structure represents the RpcWinStationDisconnect operation response
 type WinStationDisconnectResponse struct {
 	// pResult:  Failure error code if the call to RpcWinStationDisconnect failed. If the
@@ -5415,8 +5594,10 @@ type xxx_WinStationResetOperation struct {
 	Return  bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationReset operation.
 func (o *xxx_WinStationResetOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of RpcWinStationReset operation.
 func (o *xxx_WinStationResetOperation) OpName() string { return "/IcaApi/v1/RpcWinStationReset" }
 
 func (o *xxx_WinStationResetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5572,6 +5753,17 @@ func (o *WinStationResetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeWinStationResetRequest build a response structure from the given request structure.
+func (o *WinStationResetRequest) MakeResponse() *WinStationResetResponse {
+	return &WinStationResetResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationReset operation.
+func (o *WinStationResetRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of RpcWinStationReset operation.
+func (o *WinStationResetRequest) OpName() string { return "/IcaApi/v1/RpcWinStationReset" }
+
 // WinStationResetResponse structure represents the RpcWinStationReset operation response
 type WinStationResetResponse struct {
 	// pResult:  Failure error code if the call to RpcWinStationReset failed. If the call
@@ -5632,8 +5824,10 @@ type xxx_WinStationShutdownSystemOperation struct {
 	Return        bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationShutdownSystem operation.
 func (o *xxx_WinStationShutdownSystemOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of RpcWinStationShutdownSystem operation.
 func (o *xxx_WinStationShutdownSystemOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationShutdownSystem"
 }
@@ -5808,6 +6002,19 @@ func (o *WinStationShutdownSystemRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeWinStationShutdownSystemRequest build a response structure from the given request structure.
+func (o *WinStationShutdownSystemRequest) MakeResponse() *WinStationShutdownSystemResponse {
+	return &WinStationShutdownSystemResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationShutdownSystem operation.
+func (o *WinStationShutdownSystemRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of RpcWinStationShutdownSystem operation.
+func (o *WinStationShutdownSystemRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationShutdownSystem"
+}
+
 // WinStationShutdownSystemResponse structure represents the RpcWinStationShutdownSystem operation response
 type WinStationShutdownSystemResponse struct {
 	// pResult:  Failure error code if the call to RpcWinStationShutdownSystem failed.
@@ -5868,8 +6075,10 @@ type xxx_WinStationWaitSystemEventOperation struct {
 	Return     bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationWaitSystemEvent operation.
 func (o *xxx_WinStationWaitSystemEventOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of RpcWinStationWaitSystemEvent operation.
 func (o *xxx_WinStationWaitSystemEventOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationWaitSystemEvent"
 }
@@ -6057,6 +6266,19 @@ func (o *WinStationWaitSystemEventRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeWinStationWaitSystemEventRequest build a response structure from the given request structure.
+func (o *WinStationWaitSystemEventRequest) MakeResponse() *WinStationWaitSystemEventResponse {
+	return &WinStationWaitSystemEventResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationWaitSystemEvent operation.
+func (o *WinStationWaitSystemEventRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of RpcWinStationWaitSystemEvent operation.
+func (o *WinStationWaitSystemEventRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationWaitSystemEvent"
+}
+
 // WinStationWaitSystemEventResponse structure represents the RpcWinStationWaitSystemEvent operation response
 type WinStationWaitSystemEventResponse struct {
 	// pResult: If the call was successful, this parameter MUST be STATUS_SUCCESS (0x00000000);
@@ -6115,8 +6337,10 @@ type xxx_WinStationShadowOperation struct {
 	Return           bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationShadow operation.
 func (o *xxx_WinStationShadowOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of RpcWinStationShadow operation.
 func (o *xxx_WinStationShadowOperation) OpName() string { return "/IcaApi/v1/RpcWinStationShadow" }
 
 func (o *xxx_WinStationShadowOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6413,6 +6637,17 @@ func (o *WinStationShadowRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeWinStationShadowRequest build a response structure from the given request structure.
+func (o *WinStationShadowRequest) MakeResponse() *WinStationShadowResponse {
+	return &WinStationShadowResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationShadow operation.
+func (o *WinStationShadowRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of RpcWinStationShadow operation.
+func (o *WinStationShadowRequest) OpName() string { return "/IcaApi/v1/RpcWinStationShadow" }
+
 // WinStationShadowResponse structure represents the RpcWinStationShadow operation response
 type WinStationShadowResponse struct {
 	// pResult: If the call was successful, this parameter MUST be STATUS_SUCCESS (0x00000000);
@@ -6462,8 +6697,10 @@ type xxx_WinStationBreakPointOperation struct {
 	Return     bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationBreakPoint operation.
 func (o *xxx_WinStationBreakPointOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of RpcWinStationBreakPoint operation.
 func (o *xxx_WinStationBreakPointOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationBreakPoint"
 }
@@ -6624,6 +6861,17 @@ func (o *WinStationBreakPointRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeWinStationBreakPointRequest build a response structure from the given request structure.
+func (o *WinStationBreakPointRequest) MakeResponse() *WinStationBreakPointResponse {
+	return &WinStationBreakPointResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationBreakPoint operation.
+func (o *WinStationBreakPointRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of RpcWinStationBreakPoint operation.
+func (o *WinStationBreakPointRequest) OpName() string { return "/IcaApi/v1/RpcWinStationBreakPoint" }
+
 // WinStationBreakPointResponse structure represents the RpcWinStationBreakPoint operation response
 type WinStationBreakPointResponse struct {
 	// pResult:  Failure error code if the call to RpcWinStationBreakPoint failed. If the
@@ -6682,8 +6930,10 @@ type xxx_WinStationReadRegistryOperation struct {
 	Return bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationReadRegistry operation.
 func (o *xxx_WinStationReadRegistryOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of RpcWinStationReadRegistry operation.
 func (o *xxx_WinStationReadRegistryOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationReadRegistry"
 }
@@ -6809,6 +7059,19 @@ func (o *WinStationReadRegistryRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeWinStationReadRegistryRequest build a response structure from the given request structure.
+func (o *WinStationReadRegistryRequest) MakeResponse() *WinStationReadRegistryResponse {
+	return &WinStationReadRegistryResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationReadRegistry operation.
+func (o *WinStationReadRegistryRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of RpcWinStationReadRegistry operation.
+func (o *WinStationReadRegistryRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationReadRegistry"
+}
+
 // WinStationReadRegistryResponse structure represents the RpcWinStationReadRegistry operation response
 type WinStationReadRegistryResponse struct {
 	// pResult:  If the call was successful, this parameter MUST be STATUS_SUCCESS (0x00000000),
@@ -6859,8 +7122,10 @@ type xxx_OldRPCWinStationEnumerateProcessesOperation struct {
 	Return        bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OldRpcWinStationEnumerateProcesses operation.
 func (o *xxx_OldRPCWinStationEnumerateProcessesOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of OldRpcWinStationEnumerateProcesses operation.
 func (o *xxx_OldRPCWinStationEnumerateProcessesOperation) OpName() string {
 	return "/IcaApi/v1/OldRpcWinStationEnumerateProcesses"
 }
@@ -7054,6 +7319,24 @@ func (o *OldRPCWinStationEnumerateProcessesRequest) UnmarshalNDR(ctx context.Con
 	return nil
 }
 
+// MakeOldRPCWinStationEnumerateProcessesRequest build a response structure from the given request structure.
+func (o *OldRPCWinStationEnumerateProcessesRequest) MakeResponse() *OldRPCWinStationEnumerateProcessesResponse {
+	if o == nil {
+		return &OldRPCWinStationEnumerateProcessesResponse{}
+	}
+	return &OldRPCWinStationEnumerateProcessesResponse{
+		ByteCount: o.ByteCount,
+	}
+}
+
+// OpNum returns the operation number of OldRpcWinStationEnumerateProcesses operation.
+func (o *OldRPCWinStationEnumerateProcessesRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of OldRpcWinStationEnumerateProcesses operation.
+func (o *OldRPCWinStationEnumerateProcessesRequest) OpName() string {
+	return "/IcaApi/v1/OldRpcWinStationEnumerateProcesses"
+}
+
 // OldRPCWinStationEnumerateProcessesResponse structure represents the OldRpcWinStationEnumerateProcesses operation response
 type OldRPCWinStationEnumerateProcessesResponse struct {
 	// XXX: ByteCount is an implicit input depedency for output parameters
@@ -7145,8 +7428,10 @@ type xxx_WinStationEnumerateProcessesOperation struct {
 	Return        bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationEnumerateProcesses operation.
 func (o *xxx_WinStationEnumerateProcessesOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of RpcWinStationEnumerateProcesses operation.
 func (o *xxx_WinStationEnumerateProcessesOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationEnumerateProcesses"
 }
@@ -7340,6 +7625,24 @@ func (o *WinStationEnumerateProcessesRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeWinStationEnumerateProcessesRequest build a response structure from the given request structure.
+func (o *WinStationEnumerateProcessesRequest) MakeResponse() *WinStationEnumerateProcessesResponse {
+	if o == nil {
+		return &WinStationEnumerateProcessesResponse{}
+	}
+	return &WinStationEnumerateProcessesResponse{
+		ByteCount: o.ByteCount,
+	}
+}
+
+// OpNum returns the operation number of RpcWinStationEnumerateProcesses operation.
+func (o *WinStationEnumerateProcessesRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of RpcWinStationEnumerateProcesses operation.
+func (o *WinStationEnumerateProcessesRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationEnumerateProcesses"
+}
+
 // WinStationEnumerateProcessesResponse structure represents the RpcWinStationEnumerateProcesses operation response
 type WinStationEnumerateProcessesResponse struct {
 	// XXX: ByteCount is an implicit input depedency for output parameters
@@ -7431,8 +7734,10 @@ type xxx_WinStationTerminateProcessOperation struct {
 	Return    bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationTerminateProcess operation.
 func (o *xxx_WinStationTerminateProcessOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of RpcWinStationTerminateProcess operation.
 func (o *xxx_WinStationTerminateProcessOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationTerminateProcess"
 }
@@ -7591,6 +7896,19 @@ func (o *WinStationTerminateProcessRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeWinStationTerminateProcessRequest build a response structure from the given request structure.
+func (o *WinStationTerminateProcessRequest) MakeResponse() *WinStationTerminateProcessResponse {
+	return &WinStationTerminateProcessResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationTerminateProcess operation.
+func (o *WinStationTerminateProcessRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of RpcWinStationTerminateProcess operation.
+func (o *WinStationTerminateProcessRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationTerminateProcess"
+}
+
 // WinStationTerminateProcessResponse structure represents the RpcWinStationTerminateProcess operation response
 type WinStationTerminateProcessResponse struct {
 	// pResult:  Failure error code if the call to RpcWinStationTerminateProcess failed.
@@ -7653,8 +7971,10 @@ type xxx_WinStationGetAllProcessesOperation struct {
 	Return            bool                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationGetAllProcesses operation.
 func (o *xxx_WinStationGetAllProcessesOperation) OpNum() int { return 43 }
 
+// OpName returns the operation name of RpcWinStationGetAllProcesses operation.
 func (o *xxx_WinStationGetAllProcessesOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationGetAllProcesses"
 }
@@ -7908,6 +8228,19 @@ func (o *WinStationGetAllProcessesRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeWinStationGetAllProcessesRequest build a response structure from the given request structure.
+func (o *WinStationGetAllProcessesRequest) MakeResponse() *WinStationGetAllProcessesResponse {
+	return &WinStationGetAllProcessesResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationGetAllProcesses operation.
+func (o *WinStationGetAllProcessesRequest) OpNum() int { return 43 }
+
+// OpName returns the operation name of RpcWinStationGetAllProcesses operation.
+func (o *WinStationGetAllProcessesRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationGetAllProcesses"
+}
+
 // WinStationGetAllProcessesResponse structure represents the RpcWinStationGetAllProcesses operation response
 type WinStationGetAllProcessesResponse struct {
 	// pResult:  Failure error code if the call to RpcWinStationGetAllProcesses failed.
@@ -7983,8 +8316,10 @@ type xxx_WinStationGetProcessSIDOperation struct {
 	Return           bool               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationGetProcessSid operation.
 func (o *xxx_WinStationGetProcessSIDOperation) OpNum() int { return 44 }
 
+// OpName returns the operation name of RpcWinStationGetProcessSid operation.
 func (o *xxx_WinStationGetProcessSIDOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationGetProcessSid"
 }
@@ -8354,6 +8689,24 @@ func (o *WinStationGetProcessSIDRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeWinStationGetProcessSIDRequest build a response structure from the given request structure.
+func (o *WinStationGetProcessSIDRequest) MakeResponse() *WinStationGetProcessSIDResponse {
+	if o == nil {
+		return &WinStationGetProcessSIDResponse{}
+	}
+	return &WinStationGetProcessSIDResponse{
+		SIDSize: o.SIDSize,
+	}
+}
+
+// OpNum returns the operation number of RpcWinStationGetProcessSid operation.
+func (o *WinStationGetProcessSIDRequest) OpNum() int { return 44 }
+
+// OpName returns the operation name of RpcWinStationGetProcessSid operation.
+func (o *WinStationGetProcessSIDRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationGetProcessSid"
+}
+
 // WinStationGetProcessSIDResponse structure represents the RpcWinStationGetProcessSid operation response
 type WinStationGetProcessSIDResponse struct {
 	// XXX: dwSidSize is an implicit input depedency for output parameters
@@ -8443,8 +8796,10 @@ type xxx_WinStationGetTerminateServerCountersValueOperation struct {
 	Return  bool            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationGetTermSrvCountersValue operation.
 func (o *xxx_WinStationGetTerminateServerCountersValueOperation) OpNum() int { return 45 }
 
+// OpName returns the operation name of RpcWinStationGetTermSrvCountersValue operation.
 func (o *xxx_WinStationGetTerminateServerCountersValueOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationGetTermSrvCountersValue"
 }
@@ -8709,6 +9064,24 @@ func (o *WinStationGetTerminateServerCountersValueRequest) UnmarshalNDR(ctx cont
 	return nil
 }
 
+// MakeWinStationGetTerminateServerCountersValueRequest build a response structure from the given request structure.
+func (o *WinStationGetTerminateServerCountersValueRequest) MakeResponse() *WinStationGetTerminateServerCountersValueResponse {
+	if o == nil {
+		return &WinStationGetTerminateServerCountersValueResponse{}
+	}
+	return &WinStationGetTerminateServerCountersValueResponse{
+		Entries: o.Entries,
+	}
+}
+
+// OpNum returns the operation number of RpcWinStationGetTermSrvCountersValue operation.
+func (o *WinStationGetTerminateServerCountersValueRequest) OpNum() int { return 45 }
+
+// OpName returns the operation name of RpcWinStationGetTermSrvCountersValue operation.
+func (o *WinStationGetTerminateServerCountersValueRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationGetTermSrvCountersValue"
+}
+
 // WinStationGetTerminateServerCountersValueResponse structure represents the RpcWinStationGetTermSrvCountersValue operation response
 type WinStationGetTerminateServerCountersValueResponse struct {
 	// XXX: dwEntries is an implicit input depedency for output parameters
@@ -8775,8 +9148,10 @@ type xxx_WinStationReInitializeSecurityOperation struct {
 	Return bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationReInitializeSecurity operation.
 func (o *xxx_WinStationReInitializeSecurityOperation) OpNum() int { return 46 }
 
+// OpName returns the operation name of RpcWinStationReInitializeSecurity operation.
 func (o *xxx_WinStationReInitializeSecurityOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationReInitializeSecurity"
 }
@@ -8902,6 +9277,19 @@ func (o *WinStationReInitializeSecurityRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeWinStationReInitializeSecurityRequest build a response structure from the given request structure.
+func (o *WinStationReInitializeSecurityRequest) MakeResponse() *WinStationReInitializeSecurityResponse {
+	return &WinStationReInitializeSecurityResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationReInitializeSecurity operation.
+func (o *WinStationReInitializeSecurityRequest) OpNum() int { return 46 }
+
+// OpName returns the operation name of RpcWinStationReInitializeSecurity operation.
+func (o *WinStationReInitializeSecurityRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationReInitializeSecurity"
+}
+
 // WinStationReInitializeSecurityResponse structure represents the RpcWinStationReInitializeSecurity operation response
 type WinStationReInitializeSecurityResponse struct {
 	// pResult:  If the call was successful, this parameter MUST be STATUS_SUCCESS (0x00000000);
@@ -8954,8 +9342,10 @@ type xxx_WinStationGetLANAdapterNameOperation struct {
 	Return         bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationGetLanAdapterName operation.
 func (o *xxx_WinStationGetLANAdapterNameOperation) OpNum() int { return 53 }
 
+// OpName returns the operation name of RpcWinStationGetLanAdapterName operation.
 func (o *xxx_WinStationGetLANAdapterNameOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationGetLanAdapterName"
 }
@@ -9272,6 +9662,19 @@ func (o *WinStationGetLANAdapterNameRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeWinStationGetLANAdapterNameRequest build a response structure from the given request structure.
+func (o *WinStationGetLANAdapterNameRequest) MakeResponse() *WinStationGetLANAdapterNameResponse {
+	return &WinStationGetLANAdapterNameResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationGetLanAdapterName operation.
+func (o *WinStationGetLANAdapterNameRequest) OpNum() int { return 53 }
+
+// OpName returns the operation name of RpcWinStationGetLanAdapterName operation.
+func (o *WinStationGetLANAdapterNameRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationGetLanAdapterName"
+}
+
 // WinStationGetLANAdapterNameResponse structure represents the RpcWinStationGetLanAdapterName operation response
 type WinStationGetLANAdapterNameResponse struct {
 	// pResult: If the call was successful, this parameter MUST be STATUS_SUCCESS (0x00000000);
@@ -9332,8 +9735,10 @@ type xxx_WinStationUpdateSettingsOperation struct {
 	Return             bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationUpdateSettings operation.
 func (o *xxx_WinStationUpdateSettingsOperation) OpNum() int { return 58 }
 
+// OpName returns the operation name of RpcWinStationUpdateSettings operation.
 func (o *xxx_WinStationUpdateSettingsOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationUpdateSettings"
 }
@@ -9503,6 +9908,19 @@ func (o *WinStationUpdateSettingsRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeWinStationUpdateSettingsRequest build a response structure from the given request structure.
+func (o *WinStationUpdateSettingsRequest) MakeResponse() *WinStationUpdateSettingsResponse {
+	return &WinStationUpdateSettingsResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationUpdateSettings operation.
+func (o *WinStationUpdateSettingsRequest) OpNum() int { return 58 }
+
+// OpName returns the operation name of RpcWinStationUpdateSettings operation.
+func (o *WinStationUpdateSettingsRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationUpdateSettings"
+}
+
 // WinStationUpdateSettingsResponse structure represents the RpcWinStationUpdateSettings operation response
 type WinStationUpdateSettingsResponse struct {
 	// pResult:  Failure error code if the call to RpcWinStationUpdateSettings failed.
@@ -9565,8 +9983,10 @@ type xxx_WinStationShadowStopOperation struct {
 	Return  bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationShadowStop operation.
 func (o *xxx_WinStationShadowStopOperation) OpNum() int { return 59 }
 
+// OpName returns the operation name of RpcWinStationShadowStop operation.
 func (o *xxx_WinStationShadowStopOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationShadowStop"
 }
@@ -9724,6 +10144,17 @@ func (o *WinStationShadowStopRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeWinStationShadowStopRequest build a response structure from the given request structure.
+func (o *WinStationShadowStopRequest) MakeResponse() *WinStationShadowStopResponse {
+	return &WinStationShadowStopResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationShadowStop operation.
+func (o *WinStationShadowStopRequest) OpNum() int { return 59 }
+
+// OpName returns the operation name of RpcWinStationShadowStop operation.
+func (o *WinStationShadowStopRequest) OpName() string { return "/IcaApi/v1/RpcWinStationShadowStop" }
+
 // WinStationShadowStopResponse structure represents the RpcWinStationShadowStop operation response
 type WinStationShadowStopResponse struct {
 	// pResult: Failure error code if the call to RpcWinStationShadowStop failed. If the
@@ -9786,8 +10217,10 @@ type xxx_WinStationCloseServerExOperation struct {
 	Return bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationCloseServerEx operation.
 func (o *xxx_WinStationCloseServerExOperation) OpNum() int { return 60 }
 
+// OpName returns the operation name of RpcWinStationCloseServerEx operation.
 func (o *xxx_WinStationCloseServerExOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationCloseServerEx"
 }
@@ -9935,6 +10368,19 @@ func (o *WinStationCloseServerExRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeWinStationCloseServerExRequest build a response structure from the given request structure.
+func (o *WinStationCloseServerExRequest) MakeResponse() *WinStationCloseServerExResponse {
+	return &WinStationCloseServerExResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationCloseServerEx operation.
+func (o *WinStationCloseServerExRequest) OpNum() int { return 60 }
+
+// OpName returns the operation name of RpcWinStationCloseServerEx operation.
+func (o *WinStationCloseServerExRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationCloseServerEx"
+}
+
 // WinStationCloseServerExResponse structure represents the RpcWinStationCloseServerEx operation response
 type WinStationCloseServerExResponse struct {
 	// phServer: Pointer to a variable that is a handle to the server. The variable is of
@@ -9989,8 +10435,10 @@ type xxx_WinStationIsHelpAssistantSessionOperation struct {
 	Return    bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationIsHelpAssistantSession operation.
 func (o *xxx_WinStationIsHelpAssistantSessionOperation) OpNum() int { return 61 }
 
+// OpName returns the operation name of RpcWinStationIsHelpAssistantSession operation.
 func (o *xxx_WinStationIsHelpAssistantSessionOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationIsHelpAssistantSession"
 }
@@ -10132,6 +10580,19 @@ func (o *WinStationIsHelpAssistantSessionRequest) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
+// MakeWinStationIsHelpAssistantSessionRequest build a response structure from the given request structure.
+func (o *WinStationIsHelpAssistantSessionRequest) MakeResponse() *WinStationIsHelpAssistantSessionResponse {
+	return &WinStationIsHelpAssistantSessionResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationIsHelpAssistantSession operation.
+func (o *WinStationIsHelpAssistantSessionRequest) OpNum() int { return 61 }
+
+// OpName returns the operation name of RpcWinStationIsHelpAssistantSession operation.
+func (o *WinStationIsHelpAssistantSessionRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationIsHelpAssistantSession"
+}
+
 // WinStationIsHelpAssistantSessionResponse structure represents the RpcWinStationIsHelpAssistantSession operation response
 type WinStationIsHelpAssistantSessionResponse struct {
 	// pResult:  Failure error code if the call to RpcWinStationIsHelpAssistantSession
@@ -10197,8 +10658,10 @@ type xxx_WinStationGetMachinePolicyOperation struct {
 	Return     bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationGetMachinePolicy operation.
 func (o *xxx_WinStationGetMachinePolicyOperation) OpNum() int { return 62 }
 
+// OpName returns the operation name of RpcWinStationGetMachinePolicy operation.
 func (o *xxx_WinStationGetMachinePolicyOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationGetMachinePolicy"
 }
@@ -10430,6 +10893,24 @@ func (o *WinStationGetMachinePolicyRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeWinStationGetMachinePolicyRequest build a response structure from the given request structure.
+func (o *WinStationGetMachinePolicyRequest) MakeResponse() *WinStationGetMachinePolicyResponse {
+	if o == nil {
+		return &WinStationGetMachinePolicyResponse{}
+	}
+	return &WinStationGetMachinePolicyResponse{
+		BufferSize: o.BufferSize,
+	}
+}
+
+// OpNum returns the operation number of RpcWinStationGetMachinePolicy operation.
+func (o *WinStationGetMachinePolicyRequest) OpNum() int { return 62 }
+
+// OpName returns the operation name of RpcWinStationGetMachinePolicy operation.
+func (o *WinStationGetMachinePolicyRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationGetMachinePolicy"
+}
+
 // WinStationGetMachinePolicyResponse structure represents the RpcWinStationGetMachinePolicy operation response
 type WinStationGetMachinePolicyResponse struct {
 	// XXX: bufferSize is an implicit input depedency for output parameters
@@ -10492,8 +10973,10 @@ type xxx_WinStationCheckLoopBackOperation struct {
 	Return           bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationCheckLoopBack operation.
 func (o *xxx_WinStationCheckLoopBackOperation) OpNum() int { return 65 }
 
+// OpName returns the operation name of RpcWinStationCheckLoopBack operation.
 func (o *xxx_WinStationCheckLoopBackOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationCheckLoopBack"
 }
@@ -10730,6 +11213,19 @@ func (o *WinStationCheckLoopBackRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeWinStationCheckLoopBackRequest build a response structure from the given request structure.
+func (o *WinStationCheckLoopBackRequest) MakeResponse() *WinStationCheckLoopBackResponse {
+	return &WinStationCheckLoopBackResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationCheckLoopBack operation.
+func (o *WinStationCheckLoopBackRequest) OpNum() int { return 65 }
+
+// OpName returns the operation name of RpcWinStationCheckLoopBack operation.
+func (o *WinStationCheckLoopBackRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationCheckLoopBack"
+}
+
 // WinStationCheckLoopBackResponse structure represents the RpcWinStationCheckLoopBack operation response
 type WinStationCheckLoopBackResponse struct {
 	// pResult: Failure error code if the call to RpcWinStationCheckLoopBack failed. If
@@ -10794,8 +11290,10 @@ type xxx_ConnectCallbackOperation struct {
 	Return      bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcConnectCallback operation.
 func (o *xxx_ConnectCallbackOperation) OpNum() int { return 66 }
 
+// OpName returns the operation name of RpcConnectCallback operation.
 func (o *xxx_ConnectCallbackOperation) OpName() string { return "/IcaApi/v1/RpcConnectCallback" }
 
 func (o *xxx_ConnectCallbackOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11024,6 +11522,17 @@ func (o *ConnectCallbackRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeConnectCallbackRequest build a response structure from the given request structure.
+func (o *ConnectCallbackRequest) MakeResponse() *ConnectCallbackResponse {
+	return &ConnectCallbackResponse{}
+}
+
+// OpNum returns the operation number of RpcConnectCallback operation.
+func (o *ConnectCallbackRequest) OpNum() int { return 66 }
+
+// OpName returns the operation name of RpcConnectCallback operation.
+func (o *ConnectCallbackRequest) OpName() string { return "/IcaApi/v1/RpcConnectCallback" }
+
 // ConnectCallbackResponse structure represents the RpcConnectCallback operation response
 type ConnectCallbackResponse struct {
 	// pResult:  Failure error code if the call to RpcConnectCallback failed. If the call
@@ -11091,8 +11600,10 @@ type xxx_WinStationGetAllProcessesNT6Operation struct {
 	Return            bool                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationGetAllProcesses_NT6 operation.
 func (o *xxx_WinStationGetAllProcessesNT6Operation) OpNum() int { return 70 }
 
+// OpName returns the operation name of RpcWinStationGetAllProcesses_NT6 operation.
 func (o *xxx_WinStationGetAllProcessesNT6Operation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationGetAllProcesses_NT6"
 }
@@ -11347,6 +11858,19 @@ func (o *WinStationGetAllProcessesNT6Request) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeWinStationGetAllProcessesNT6Request build a response structure from the given request structure.
+func (o *WinStationGetAllProcessesNT6Request) MakeResponse() *WinStationGetAllProcessesNT6Response {
+	return &WinStationGetAllProcessesNT6Response{}
+}
+
+// OpNum returns the operation number of RpcWinStationGetAllProcesses_NT6 operation.
+func (o *WinStationGetAllProcessesNT6Request) OpNum() int { return 70 }
+
+// OpName returns the operation name of RpcWinStationGetAllProcesses_NT6 operation.
+func (o *WinStationGetAllProcessesNT6Request) OpName() string {
+	return "/IcaApi/v1/RpcWinStationGetAllProcesses_NT6"
+}
+
 // WinStationGetAllProcessesNT6Response structure represents the RpcWinStationGetAllProcesses_NT6 operation response
 type WinStationGetAllProcessesNT6Response struct {
 	// pResult:  Failure error code if the call to RpcWinStationGetAllProcesses_NT6 failed.
@@ -11418,8 +11942,10 @@ type xxx_WinStationOpenSessionDirectoryOperation struct {
 	Return     bool         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWinStationOpenSessionDirectory operation.
 func (o *xxx_WinStationOpenSessionDirectoryOperation) OpNum() int { return 75 }
 
+// OpName returns the operation name of RpcWinStationOpenSessionDirectory operation.
 func (o *xxx_WinStationOpenSessionDirectoryOperation) OpName() string {
 	return "/IcaApi/v1/RpcWinStationOpenSessionDirectory"
 }
@@ -11623,6 +12149,19 @@ func (o *WinStationOpenSessionDirectoryRequest) UnmarshalNDR(ctx context.Context
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeWinStationOpenSessionDirectoryRequest build a response structure from the given request structure.
+func (o *WinStationOpenSessionDirectoryRequest) MakeResponse() *WinStationOpenSessionDirectoryResponse {
+	return &WinStationOpenSessionDirectoryResponse{}
+}
+
+// OpNum returns the operation number of RpcWinStationOpenSessionDirectory operation.
+func (o *WinStationOpenSessionDirectoryRequest) OpNum() int { return 75 }
+
+// OpName returns the operation name of RpcWinStationOpenSessionDirectory operation.
+func (o *WinStationOpenSessionDirectoryRequest) OpName() string {
+	return "/IcaApi/v1/RpcWinStationOpenSessionDirectory"
 }
 
 // WinStationOpenSessionDirectoryResponse structure represents the RpcWinStationOpenSessionDirectory operation response

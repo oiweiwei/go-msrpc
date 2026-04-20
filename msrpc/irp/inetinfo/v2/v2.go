@@ -4423,8 +4423,10 @@ type xxx_GetVersionOperation struct {
 	Return  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_InetInfoGetVersion operation.
 func (o *xxx_GetVersionOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of R_InetInfoGetVersion operation.
 func (o *xxx_GetVersionOperation) OpName() string { return "/inetinfo/v2/R_InetInfoGetVersion" }
 
 func (o *xxx_GetVersionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4579,6 +4581,17 @@ func (o *GetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetVersionRequest build a response structure from the given request structure.
+func (o *GetVersionRequest) MakeResponse() *GetVersionResponse {
+	return &GetVersionResponse{}
+}
+
+// OpNum returns the operation number of R_InetInfoGetVersion operation.
+func (o *GetVersionRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of R_InetInfoGetVersion operation.
+func (o *GetVersionRequest) OpName() string { return "/inetinfo/v2/R_InetInfoGetVersion" }
+
 // GetVersionResponse structure represents the R_InetInfoGetVersion operation response
 type GetVersionResponse struct {
 	// pdwVersion: A pointer to a variable. On successful return, it MUST contain a major
@@ -4628,8 +4641,10 @@ type xxx_GetAdminInformationOperation struct {
 	Return     uint32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_InetInfoGetAdminInformation operation.
 func (o *xxx_GetAdminInformationOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of R_InetInfoGetAdminInformation operation.
 func (o *xxx_GetAdminInformationOperation) OpName() string {
 	return "/inetinfo/v2/R_InetInfoGetAdminInformation"
 }
@@ -4822,6 +4837,19 @@ func (o *GetAdminInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetAdminInformationRequest build a response structure from the given request structure.
+func (o *GetAdminInformationRequest) MakeResponse() *GetAdminInformationResponse {
+	return &GetAdminInformationResponse{}
+}
+
+// OpNum returns the operation number of R_InetInfoGetAdminInformation operation.
+func (o *GetAdminInformationRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of R_InetInfoGetAdminInformation operation.
+func (o *GetAdminInformationRequest) OpName() string {
+	return "/inetinfo/v2/R_InetInfoGetAdminInformation"
+}
+
 // GetAdminInformationResponse structure represents the R_InetInfoGetAdminInformation operation response
 type GetAdminInformationResponse struct {
 	// ppConfig: The pointer to a pointer to an INET_INFO_CONFIG_INFO structure that contains
@@ -4870,8 +4898,10 @@ type xxx_GetSitesOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_InetInfoGetSites operation.
 func (o *xxx_GetSitesOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of R_InetInfoGetSites operation.
 func (o *xxx_GetSitesOperation) OpName() string { return "/inetinfo/v2/R_InetInfoGetSites" }
 
 func (o *xxx_GetSitesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5062,6 +5092,17 @@ func (o *GetSitesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeGetSitesRequest build a response structure from the given request structure.
+func (o *GetSitesRequest) MakeResponse() *GetSitesResponse {
+	return &GetSitesResponse{}
+}
+
+// OpNum returns the operation number of R_InetInfoGetSites operation.
+func (o *GetSitesRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of R_InetInfoGetSites operation.
+func (o *GetSitesRequest) OpName() string { return "/inetinfo/v2/R_InetInfoGetSites" }
+
 // GetSitesResponse structure represents the R_InetInfoGetSites operation response
 type GetSitesResponse struct {
 	// ppSites: The pointer to a pointer to INET_INFO_SITE_LIST that specifies the list
@@ -5110,8 +5151,10 @@ type xxx_SetAdminInformationOperation struct {
 	Return     uint32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_InetInfoSetAdminInformation operation.
 func (o *xxx_SetAdminInformationOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of R_InetInfoSetAdminInformation operation.
 func (o *xxx_SetAdminInformationOperation) OpName() string {
 	return "/inetinfo/v2/R_InetInfoSetAdminInformation"
 }
@@ -5291,6 +5334,19 @@ func (o *SetAdminInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeSetAdminInformationRequest build a response structure from the given request structure.
+func (o *SetAdminInformationRequest) MakeResponse() *SetAdminInformationResponse {
+	return &SetAdminInformationResponse{}
+}
+
+// OpNum returns the operation number of R_InetInfoSetAdminInformation operation.
+func (o *SetAdminInformationRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of R_InetInfoSetAdminInformation operation.
+func (o *SetAdminInformationRequest) OpName() string {
+	return "/inetinfo/v2/R_InetInfoSetAdminInformation"
+}
+
 // SetAdminInformationResponse structure represents the R_InetInfoSetAdminInformation operation response
 type SetAdminInformationResponse struct {
 	// Return: The R_InetInfoSetAdminInformation return value.
@@ -5334,8 +5390,10 @@ type xxx_GetGlobalAdminInformationOperation struct {
 	Return     uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_InetInfoGetGlobalAdminInformation operation.
 func (o *xxx_GetGlobalAdminInformationOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of R_InetInfoGetGlobalAdminInformation operation.
 func (o *xxx_GetGlobalAdminInformationOperation) OpName() string {
 	return "/inetinfo/v2/R_InetInfoGetGlobalAdminInformation"
 }
@@ -5527,6 +5585,19 @@ func (o *GetGlobalAdminInformationRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeGetGlobalAdminInformationRequest build a response structure from the given request structure.
+func (o *GetGlobalAdminInformationRequest) MakeResponse() *GetGlobalAdminInformationResponse {
+	return &GetGlobalAdminInformationResponse{}
+}
+
+// OpNum returns the operation number of R_InetInfoGetGlobalAdminInformation operation.
+func (o *GetGlobalAdminInformationRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of R_InetInfoGetGlobalAdminInformation operation.
+func (o *GetGlobalAdminInformationRequest) OpName() string {
+	return "/inetinfo/v2/R_InetInfoGetGlobalAdminInformation"
+}
+
 // GetGlobalAdminInformationResponse structure represents the R_InetInfoGetGlobalAdminInformation operation response
 type GetGlobalAdminInformationResponse struct {
 	// ppConfig: The pointer to a pointer to an INET_INFO_GLOBAL_CONFIG_INFO structure.
@@ -5574,8 +5645,10 @@ type xxx_SetGlobalAdminInformationOperation struct {
 	Return     uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_InetInfoSetGlobalAdminInformation operation.
 func (o *xxx_SetGlobalAdminInformationOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of R_InetInfoSetGlobalAdminInformation operation.
 func (o *xxx_SetGlobalAdminInformationOperation) OpName() string {
 	return "/inetinfo/v2/R_InetInfoSetGlobalAdminInformation"
 }
@@ -5747,6 +5820,19 @@ func (o *SetGlobalAdminInformationRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeSetGlobalAdminInformationRequest build a response structure from the given request structure.
+func (o *SetGlobalAdminInformationRequest) MakeResponse() *SetGlobalAdminInformationResponse {
+	return &SetGlobalAdminInformationResponse{}
+}
+
+// OpNum returns the operation number of R_InetInfoSetGlobalAdminInformation operation.
+func (o *SetGlobalAdminInformationRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of R_InetInfoSetGlobalAdminInformation operation.
+func (o *SetGlobalAdminInformationRequest) OpName() string {
+	return "/inetinfo/v2/R_InetInfoSetGlobalAdminInformation"
+}
+
 // SetGlobalAdminInformationResponse structure represents the R_InetInfoSetGlobalAdminInformation operation response
 type SetGlobalAdminInformationResponse struct {
 	// Return: The R_InetInfoSetGlobalAdminInformation return value.
@@ -5791,8 +5877,10 @@ type xxx_QueryStatisticsOperation struct {
 	Return     uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_InetInfoQueryStatistics operation.
 func (o *xxx_QueryStatisticsOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of R_InetInfoQueryStatistics operation.
 func (o *xxx_QueryStatisticsOperation) OpName() string {
 	return "/inetinfo/v2/R_InetInfoQueryStatistics"
 }
@@ -5986,6 +6074,22 @@ func (o *QueryStatisticsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeQueryStatisticsRequest build a response structure from the given request structure.
+func (o *QueryStatisticsRequest) MakeResponse() *QueryStatisticsResponse {
+	if o == nil {
+		return &QueryStatisticsResponse{}
+	}
+	return &QueryStatisticsResponse{
+		Level: o.Level,
+	}
+}
+
+// OpNum returns the operation number of R_InetInfoQueryStatistics operation.
+func (o *QueryStatisticsRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of R_InetInfoQueryStatistics operation.
+func (o *QueryStatisticsRequest) OpName() string { return "/inetinfo/v2/R_InetInfoQueryStatistics" }
+
 // QueryStatisticsResponse structure represents the R_InetInfoQueryStatistics operation response
 type QueryStatisticsResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
@@ -6044,8 +6148,10 @@ type xxx_ClearStatisticsOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_InetInfoClearStatistics operation.
 func (o *xxx_ClearStatisticsOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of R_InetInfoClearStatistics operation.
 func (o *xxx_ClearStatisticsOperation) OpName() string {
 	return "/inetinfo/v2/R_InetInfoClearStatistics"
 }
@@ -6192,6 +6298,17 @@ func (o *ClearStatisticsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeClearStatisticsRequest build a response structure from the given request structure.
+func (o *ClearStatisticsRequest) MakeResponse() *ClearStatisticsResponse {
+	return &ClearStatisticsResponse{}
+}
+
+// OpNum returns the operation number of R_InetInfoClearStatistics operation.
+func (o *ClearStatisticsRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of R_InetInfoClearStatistics operation.
+func (o *ClearStatisticsRequest) OpName() string { return "/inetinfo/v2/R_InetInfoClearStatistics" }
+
 // ClearStatisticsResponse structure represents the R_InetInfoClearStatistics operation response
 type ClearStatisticsResponse struct {
 	// Return: The R_InetInfoClearStatistics return value.
@@ -6234,8 +6351,10 @@ type xxx_FlushMemoryCacheOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_InetInfoFlushMemoryCache operation.
 func (o *xxx_FlushMemoryCacheOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of R_InetInfoFlushMemoryCache operation.
 func (o *xxx_FlushMemoryCacheOperation) OpName() string {
 	return "/inetinfo/v2/R_InetInfoFlushMemoryCache"
 }
@@ -6382,6 +6501,17 @@ func (o *FlushMemoryCacheRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeFlushMemoryCacheRequest build a response structure from the given request structure.
+func (o *FlushMemoryCacheRequest) MakeResponse() *FlushMemoryCacheResponse {
+	return &FlushMemoryCacheResponse{}
+}
+
+// OpNum returns the operation number of R_InetInfoFlushMemoryCache operation.
+func (o *FlushMemoryCacheRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of R_InetInfoFlushMemoryCache operation.
+func (o *FlushMemoryCacheRequest) OpName() string { return "/inetinfo/v2/R_InetInfoFlushMemoryCache" }
+
 // FlushMemoryCacheResponse structure represents the R_InetInfoFlushMemoryCache operation response
 type FlushMemoryCacheResponse struct {
 	// Return: The R_InetInfoFlushMemoryCache return value.
@@ -6425,8 +6555,10 @@ type xxx_GetServerCapabilitiesOperation struct {
 	Return uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_InetInfoGetServerCapabilities operation.
 func (o *xxx_GetServerCapabilitiesOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of R_InetInfoGetServerCapabilities operation.
 func (o *xxx_GetServerCapabilitiesOperation) OpName() string {
 	return "/inetinfo/v2/R_InetInfoGetServerCapabilities"
 }
@@ -6617,6 +6749,19 @@ func (o *GetServerCapabilitiesRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetServerCapabilitiesRequest build a response structure from the given request structure.
+func (o *GetServerCapabilitiesRequest) MakeResponse() *GetServerCapabilitiesResponse {
+	return &GetServerCapabilitiesResponse{}
+}
+
+// OpNum returns the operation number of R_InetInfoGetServerCapabilities operation.
+func (o *GetServerCapabilitiesRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of R_InetInfoGetServerCapabilities operation.
+func (o *GetServerCapabilitiesRequest) OpName() string {
+	return "/inetinfo/v2/R_InetInfoGetServerCapabilities"
+}
+
 // GetServerCapabilitiesResponse structure represents the R_InetInfoGetServerCapabilities operation response
 type GetServerCapabilitiesResponse struct {
 	// ppCap: The pointer to an INET_INFO_CAPABILITIES_STRUCT structure that indicates the
@@ -6667,8 +6812,10 @@ type xxx_W3QueryStatistics2Operation struct {
 	Return   uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_W3QueryStatistics2 operation.
 func (o *xxx_W3QueryStatistics2Operation) OpNum() int { return 10 }
 
+// OpName returns the operation name of R_W3QueryStatistics2 operation.
 func (o *xxx_W3QueryStatistics2Operation) OpName() string { return "/inetinfo/v2/R_W3QueryStatistics2" }
 
 func (o *xxx_W3QueryStatistics2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6885,6 +7032,22 @@ func (o *W3QueryStatistics2Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeW3QueryStatistics2Request build a response structure from the given request structure.
+func (o *W3QueryStatistics2Request) MakeResponse() *W3QueryStatistics2Response {
+	if o == nil {
+		return &W3QueryStatistics2Response{}
+	}
+	return &W3QueryStatistics2Response{
+		Level: o.Level,
+	}
+}
+
+// OpNum returns the operation number of R_W3QueryStatistics2 operation.
+func (o *W3QueryStatistics2Request) OpNum() int { return 10 }
+
+// OpName returns the operation name of R_W3QueryStatistics2 operation.
+func (o *W3QueryStatistics2Request) OpName() string { return "/inetinfo/v2/R_W3QueryStatistics2" }
+
 // W3QueryStatistics2Response structure represents the R_W3QueryStatistics2 operation response
 type W3QueryStatistics2Response struct {
 	// XXX: dwLevel is an implicit input depedency for output parameters
@@ -6943,8 +7106,10 @@ type xxx_W3ClearStatistics2Operation struct {
 	Return   uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_W3ClearStatistics2 operation.
 func (o *xxx_W3ClearStatistics2Operation) OpNum() int { return 11 }
 
+// OpName returns the operation name of R_W3ClearStatistics2 operation.
 func (o *xxx_W3ClearStatistics2Operation) OpName() string { return "/inetinfo/v2/R_W3ClearStatistics2" }
 
 func (o *xxx_W3ClearStatistics2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7089,6 +7254,17 @@ func (o *W3ClearStatistics2Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeW3ClearStatistics2Request build a response structure from the given request structure.
+func (o *W3ClearStatistics2Request) MakeResponse() *W3ClearStatistics2Response {
+	return &W3ClearStatistics2Response{}
+}
+
+// OpNum returns the operation number of R_W3ClearStatistics2 operation.
+func (o *W3ClearStatistics2Request) OpNum() int { return 11 }
+
+// OpName returns the operation name of R_W3ClearStatistics2 operation.
+func (o *W3ClearStatistics2Request) OpName() string { return "/inetinfo/v2/R_W3ClearStatistics2" }
+
 // W3ClearStatistics2Response structure represents the R_W3ClearStatistics2 operation response
 type W3ClearStatistics2Response struct {
 	// Return: The R_W3ClearStatistics2 return value.
@@ -7134,8 +7310,10 @@ type xxx_FTPQueryStatistics2Operation struct {
 	Return   uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_FtpQueryStatistics2 operation.
 func (o *xxx_FTPQueryStatistics2Operation) OpNum() int { return 12 }
 
+// OpName returns the operation name of R_FtpQueryStatistics2 operation.
 func (o *xxx_FTPQueryStatistics2Operation) OpName() string {
 	return "/inetinfo/v2/R_FtpQueryStatistics2"
 }
@@ -7354,6 +7532,22 @@ func (o *FTPQueryStatistics2Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeFTPQueryStatistics2Request build a response structure from the given request structure.
+func (o *FTPQueryStatistics2Request) MakeResponse() *FTPQueryStatistics2Response {
+	if o == nil {
+		return &FTPQueryStatistics2Response{}
+	}
+	return &FTPQueryStatistics2Response{
+		Level: o.Level,
+	}
+}
+
+// OpNum returns the operation number of R_FtpQueryStatistics2 operation.
+func (o *FTPQueryStatistics2Request) OpNum() int { return 12 }
+
+// OpName returns the operation name of R_FtpQueryStatistics2 operation.
+func (o *FTPQueryStatistics2Request) OpName() string { return "/inetinfo/v2/R_FtpQueryStatistics2" }
+
 // FTPQueryStatistics2Response structure represents the R_FtpQueryStatistics2 operation response
 type FTPQueryStatistics2Response struct {
 	// XXX: dwLevel is an implicit input depedency for output parameters
@@ -7412,8 +7606,10 @@ type xxx_FTPClearStatistics2Operation struct {
 	Return   uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_FtpClearStatistics2 operation.
 func (o *xxx_FTPClearStatistics2Operation) OpNum() int { return 13 }
 
+// OpName returns the operation name of R_FtpClearStatistics2 operation.
 func (o *xxx_FTPClearStatistics2Operation) OpName() string {
 	return "/inetinfo/v2/R_FtpClearStatistics2"
 }
@@ -7560,6 +7756,17 @@ func (o *FTPClearStatistics2Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeFTPClearStatistics2Request build a response structure from the given request structure.
+func (o *FTPClearStatistics2Request) MakeResponse() *FTPClearStatistics2Response {
+	return &FTPClearStatistics2Response{}
+}
+
+// OpNum returns the operation number of R_FtpClearStatistics2 operation.
+func (o *FTPClearStatistics2Request) OpNum() int { return 13 }
+
+// OpName returns the operation name of R_FtpClearStatistics2 operation.
+func (o *FTPClearStatistics2Request) OpName() string { return "/inetinfo/v2/R_FtpClearStatistics2" }
+
 // FTPClearStatistics2Response structure represents the R_FtpClearStatistics2 operation response
 type FTPClearStatistics2Response struct {
 	// Return: The R_FtpClearStatistics2 return value.
@@ -7604,8 +7811,10 @@ type xxx_IISEnumerateUsersOperation struct {
 	Return    uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_IISEnumerateUsers operation.
 func (o *xxx_IISEnumerateUsersOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of R_IISEnumerateUsers operation.
 func (o *xxx_IISEnumerateUsersOperation) OpName() string { return "/inetinfo/v2/R_IISEnumerateUsers" }
 
 func (o *xxx_IISEnumerateUsersOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7826,6 +8035,17 @@ func (o *IISEnumerateUsersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeIISEnumerateUsersRequest build a response structure from the given request structure.
+func (o *IISEnumerateUsersRequest) MakeResponse() *IISEnumerateUsersResponse {
+	return &IISEnumerateUsersResponse{}
+}
+
+// OpNum returns the operation number of R_IISEnumerateUsers operation.
+func (o *IISEnumerateUsersRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of R_IISEnumerateUsers operation.
+func (o *IISEnumerateUsersRequest) OpName() string { return "/inetinfo/v2/R_IISEnumerateUsers" }
+
 // IISEnumerateUsersResponse structure represents the R_IISEnumerateUsers operation response
 type IISEnumerateUsersResponse struct {
 	// InfoStruct: The pointer to an IIS_USER_ENUM_STRUCT that contains the list of active
@@ -7875,8 +8095,10 @@ type xxx_IISDisconnectUserOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_IISDisconnectUser operation.
 func (o *xxx_IISDisconnectUserOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of R_IISDisconnectUser operation.
 func (o *xxx_IISDisconnectUserOperation) OpName() string { return "/inetinfo/v2/R_IISDisconnectUser" }
 
 func (o *xxx_IISDisconnectUserOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8055,6 +8277,17 @@ func (o *IISDisconnectUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeIISDisconnectUserRequest build a response structure from the given request structure.
+func (o *IISDisconnectUserRequest) MakeResponse() *IISDisconnectUserResponse {
+	return &IISDisconnectUserResponse{}
+}
+
+// OpNum returns the operation number of R_IISDisconnectUser operation.
+func (o *IISDisconnectUserRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of R_IISDisconnectUser operation.
+func (o *IISDisconnectUserRequest) OpName() string { return "/inetinfo/v2/R_IISDisconnectUser" }
 
 // IISDisconnectUserResponse structure represents the R_IISDisconnectUser operation response
 type IISDisconnectUserResponse struct {

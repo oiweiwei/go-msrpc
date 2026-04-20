@@ -544,8 +544,10 @@ type xxx_CreateMachineGroupOperation struct {
 	Return               int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateMachineGroup operation.
 func (o *xxx_CreateMachineGroupOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of CreateMachineGroup operation.
 func (o *xxx_CreateMachineGroupOperation) OpName() string {
 	return "/IWRMMachineGroup/v0/CreateMachineGroup"
 }
@@ -794,6 +796,17 @@ func (o *CreateMachineGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeCreateMachineGroupRequest build a response structure from the given request structure.
+func (o *CreateMachineGroupRequest) MakeResponse() *CreateMachineGroupResponse {
+	return &CreateMachineGroupResponse{}
+}
+
+// OpNum returns the operation number of CreateMachineGroup operation.
+func (o *CreateMachineGroupRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of CreateMachineGroup operation.
+func (o *CreateMachineGroupRequest) OpName() string { return "/IWRMMachineGroup/v0/CreateMachineGroup" }
+
 // CreateMachineGroupResponse structure represents the CreateMachineGroup operation response
 type CreateMachineGroupResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -842,8 +855,10 @@ type xxx_GetMachineGroupInfoOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetMachineGroupInfo operation.
 func (o *xxx_GetMachineGroupInfoOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of GetMachineGroupInfo operation.
 func (o *xxx_GetMachineGroupInfoOperation) OpName() string {
 	return "/IWRMMachineGroup/v0/GetMachineGroupInfo"
 }
@@ -1086,6 +1101,19 @@ func (o *GetMachineGroupInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetMachineGroupInfoRequest build a response structure from the given request structure.
+func (o *GetMachineGroupInfoRequest) MakeResponse() *GetMachineGroupInfoResponse {
+	return &GetMachineGroupInfoResponse{}
+}
+
+// OpNum returns the operation number of GetMachineGroupInfo operation.
+func (o *GetMachineGroupInfoRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GetMachineGroupInfo operation.
+func (o *GetMachineGroupInfoRequest) OpName() string {
+	return "/IWRMMachineGroup/v0/GetMachineGroupInfo"
+}
+
 // GetMachineGroupInfoResponse structure represents the GetMachineGroupInfo operation response
 type GetMachineGroupInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1140,8 +1168,10 @@ type xxx_ModifyMachineGroupOperation struct {
 	Return             int32                         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ModifyMachineGroup operation.
 func (o *xxx_ModifyMachineGroupOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ModifyMachineGroup operation.
 func (o *xxx_ModifyMachineGroupOperation) OpName() string {
 	return "/IWRMMachineGroup/v0/ModifyMachineGroup"
 }
@@ -1406,6 +1436,17 @@ func (o *ModifyMachineGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeModifyMachineGroupRequest build a response structure from the given request structure.
+func (o *ModifyMachineGroupRequest) MakeResponse() *ModifyMachineGroupResponse {
+	return &ModifyMachineGroupResponse{}
+}
+
+// OpNum returns the operation number of ModifyMachineGroup operation.
+func (o *ModifyMachineGroupRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ModifyMachineGroup operation.
+func (o *ModifyMachineGroupRequest) OpName() string { return "/IWRMMachineGroup/v0/ModifyMachineGroup" }
+
 // ModifyMachineGroupResponse structure represents the ModifyMachineGroup operation response
 type ModifyMachineGroupResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1453,8 +1494,10 @@ type xxx_DeleteMachineGroupOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteMachineGroup operation.
 func (o *xxx_DeleteMachineGroupOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of DeleteMachineGroup operation.
 func (o *xxx_DeleteMachineGroupOperation) OpName() string {
 	return "/IWRMMachineGroup/v0/DeleteMachineGroup"
 }
@@ -1651,6 +1694,17 @@ func (o *DeleteMachineGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeDeleteMachineGroupRequest build a response structure from the given request structure.
+func (o *DeleteMachineGroupRequest) MakeResponse() *DeleteMachineGroupResponse {
+	return &DeleteMachineGroupResponse{}
+}
+
+// OpNum returns the operation number of DeleteMachineGroup operation.
+func (o *DeleteMachineGroupRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of DeleteMachineGroup operation.
+func (o *DeleteMachineGroupRequest) OpName() string { return "/IWRMMachineGroup/v0/DeleteMachineGroup" }
+
 // DeleteMachineGroupResponse structure represents the DeleteMachineGroup operation response
 type DeleteMachineGroupResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1699,8 +1753,10 @@ type xxx_RenameMachineGroupOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RenameMachineGroup operation.
 func (o *xxx_RenameMachineGroupOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RenameMachineGroup operation.
 func (o *xxx_RenameMachineGroupOperation) OpName() string {
 	return "/IWRMMachineGroup/v0/RenameMachineGroup"
 }
@@ -1948,6 +2004,17 @@ func (o *RenameMachineGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeRenameMachineGroupRequest build a response structure from the given request structure.
+func (o *RenameMachineGroupRequest) MakeResponse() *RenameMachineGroupResponse {
+	return &RenameMachineGroupResponse{}
+}
+
+// OpNum returns the operation number of RenameMachineGroup operation.
+func (o *RenameMachineGroupRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RenameMachineGroup operation.
+func (o *RenameMachineGroupRequest) OpName() string { return "/IWRMMachineGroup/v0/RenameMachineGroup" }
+
 // RenameMachineGroupResponse structure represents the RenameMachineGroup operation response
 type RenameMachineGroupResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1996,8 +2063,10 @@ type xxx_AddMachineOperation struct {
 	Return               int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddMachine operation.
 func (o *xxx_AddMachineOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of AddMachine operation.
 func (o *xxx_AddMachineOperation) OpName() string { return "/IWRMMachineGroup/v0/AddMachine" }
 
 func (o *xxx_AddMachineOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2243,6 +2312,17 @@ func (o *AddMachineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeAddMachineRequest build a response structure from the given request structure.
+func (o *AddMachineRequest) MakeResponse() *AddMachineResponse {
+	return &AddMachineResponse{}
+}
+
+// OpNum returns the operation number of AddMachine operation.
+func (o *AddMachineRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of AddMachine operation.
+func (o *AddMachineRequest) OpName() string { return "/IWRMMachineGroup/v0/AddMachine" }
+
 // AddMachineResponse structure represents the AddMachine operation response
 type AddMachineResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2291,8 +2371,10 @@ type xxx_GetMachineInfoOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetMachineInfo operation.
 func (o *xxx_GetMachineInfoOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of GetMachineInfo operation.
 func (o *xxx_GetMachineInfoOperation) OpName() string { return "/IWRMMachineGroup/v0/GetMachineInfo" }
 
 func (o *xxx_GetMachineInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2533,6 +2615,17 @@ func (o *GetMachineInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetMachineInfoRequest build a response structure from the given request structure.
+func (o *GetMachineInfoRequest) MakeResponse() *GetMachineInfoResponse {
+	return &GetMachineInfoResponse{}
+}
+
+// OpNum returns the operation number of GetMachineInfo operation.
+func (o *GetMachineInfoRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of GetMachineInfo operation.
+func (o *GetMachineInfoRequest) OpName() string { return "/IWRMMachineGroup/v0/GetMachineInfo" }
+
 // GetMachineInfoResponse structure represents the GetMachineInfo operation response
 type GetMachineInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2587,8 +2680,10 @@ type xxx_ModifyMachineInfoOperation struct {
 	Return               int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ModifyMachineInfo operation.
 func (o *xxx_ModifyMachineInfoOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of ModifyMachineInfo operation.
 func (o *xxx_ModifyMachineInfoOperation) OpName() string {
 	return "/IWRMMachineGroup/v0/ModifyMachineInfo"
 }
@@ -2886,6 +2981,17 @@ func (o *ModifyMachineInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeModifyMachineInfoRequest build a response structure from the given request structure.
+func (o *ModifyMachineInfoRequest) MakeResponse() *ModifyMachineInfoResponse {
+	return &ModifyMachineInfoResponse{}
+}
+
+// OpNum returns the operation number of ModifyMachineInfo operation.
+func (o *ModifyMachineInfoRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of ModifyMachineInfo operation.
+func (o *ModifyMachineInfoRequest) OpName() string { return "/IWRMMachineGroup/v0/ModifyMachineInfo" }
+
 // ModifyMachineInfoResponse structure represents the ModifyMachineInfo operation response
 type ModifyMachineInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2935,8 +3041,10 @@ type xxx_DeleteMachineOperation struct {
 	Return               int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteMachine operation.
 func (o *xxx_DeleteMachineOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of DeleteMachine operation.
 func (o *xxx_DeleteMachineOperation) OpName() string { return "/IWRMMachineGroup/v0/DeleteMachine" }
 
 func (o *xxx_DeleteMachineOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3218,6 +3326,17 @@ func (o *DeleteMachineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeDeleteMachineRequest build a response structure from the given request structure.
+func (o *DeleteMachineRequest) MakeResponse() *DeleteMachineResponse {
+	return &DeleteMachineResponse{}
+}
+
+// OpNum returns the operation number of DeleteMachine operation.
+func (o *DeleteMachineRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of DeleteMachine operation.
+func (o *DeleteMachineRequest) OpName() string { return "/IWRMMachineGroup/v0/DeleteMachine" }
 
 // DeleteMachineResponse structure represents the DeleteMachine operation response
 type DeleteMachineResponse struct {

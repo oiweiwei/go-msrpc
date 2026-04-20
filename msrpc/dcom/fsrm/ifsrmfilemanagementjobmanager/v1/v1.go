@@ -280,8 +280,10 @@ type xxx_GetActionVariablesOperation struct {
 	Return    int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ActionVariables operation.
 func (o *xxx_GetActionVariablesOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of ActionVariables operation.
 func (o *xxx_GetActionVariablesOperation) OpName() string {
 	return "/IFsrmFileManagementJobManager/v1/ActionVariables"
 }
@@ -473,6 +475,19 @@ func (o *GetActionVariablesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetActionVariablesRequest build a response structure from the given request structure.
+func (o *GetActionVariablesRequest) MakeResponse() *GetActionVariablesResponse {
+	return &GetActionVariablesResponse{}
+}
+
+// OpNum returns the operation number of ActionVariables operation.
+func (o *GetActionVariablesRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of ActionVariables operation.
+func (o *GetActionVariablesRequest) OpName() string {
+	return "/IFsrmFileManagementJobManager/v1/ActionVariables"
+}
+
 // GetActionVariablesResponse structure represents the ActionVariables operation response
 type GetActionVariablesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -523,8 +538,10 @@ type xxx_GetActionVariableDescriptionsOperation struct {
 	Return       int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ActionVariableDescriptions operation.
 func (o *xxx_GetActionVariableDescriptionsOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ActionVariableDescriptions operation.
 func (o *xxx_GetActionVariableDescriptionsOperation) OpName() string {
 	return "/IFsrmFileManagementJobManager/v1/ActionVariableDescriptions"
 }
@@ -716,6 +733,19 @@ func (o *GetActionVariableDescriptionsRequest) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
+// MakeGetActionVariableDescriptionsRequest build a response structure from the given request structure.
+func (o *GetActionVariableDescriptionsRequest) MakeResponse() *GetActionVariableDescriptionsResponse {
+	return &GetActionVariableDescriptionsResponse{}
+}
+
+// OpNum returns the operation number of ActionVariableDescriptions operation.
+func (o *GetActionVariableDescriptionsRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ActionVariableDescriptions operation.
+func (o *GetActionVariableDescriptionsRequest) OpName() string {
+	return "/IFsrmFileManagementJobManager/v1/ActionVariableDescriptions"
+}
+
 // GetActionVariableDescriptionsResponse structure represents the ActionVariableDescriptions operation response
 type GetActionVariableDescriptionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -767,8 +797,10 @@ type xxx_EnumFileManagementJobsOperation struct {
 	Return             int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumFileManagementJobs operation.
 func (o *xxx_EnumFileManagementJobsOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of EnumFileManagementJobs operation.
 func (o *xxx_EnumFileManagementJobsOperation) OpName() string {
 	return "/IFsrmFileManagementJobManager/v1/EnumFileManagementJobs"
 }
@@ -977,6 +1009,19 @@ func (o *EnumFileManagementJobsRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeEnumFileManagementJobsRequest build a response structure from the given request structure.
+func (o *EnumFileManagementJobsRequest) MakeResponse() *EnumFileManagementJobsResponse {
+	return &EnumFileManagementJobsResponse{}
+}
+
+// OpNum returns the operation number of EnumFileManagementJobs operation.
+func (o *EnumFileManagementJobsRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of EnumFileManagementJobs operation.
+func (o *EnumFileManagementJobsRequest) OpName() string {
+	return "/IFsrmFileManagementJobManager/v1/EnumFileManagementJobs"
+}
+
 // EnumFileManagementJobsResponse structure represents the EnumFileManagementJobs operation response
 type EnumFileManagementJobsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1030,8 +1075,10 @@ type xxx_CreateFileManagementJobOperation struct {
 	Return            int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateFileManagementJob operation.
 func (o *xxx_CreateFileManagementJobOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of CreateFileManagementJob operation.
 func (o *xxx_CreateFileManagementJobOperation) OpName() string {
 	return "/IFsrmFileManagementJobManager/v1/CreateFileManagementJob"
 }
@@ -1223,6 +1270,19 @@ func (o *CreateFileManagementJobRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeCreateFileManagementJobRequest build a response structure from the given request structure.
+func (o *CreateFileManagementJobRequest) MakeResponse() *CreateFileManagementJobResponse {
+	return &CreateFileManagementJobResponse{}
+}
+
+// OpNum returns the operation number of CreateFileManagementJob operation.
+func (o *CreateFileManagementJobRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of CreateFileManagementJob operation.
+func (o *CreateFileManagementJobRequest) OpName() string {
+	return "/IFsrmFileManagementJobManager/v1/CreateFileManagementJob"
+}
+
 // CreateFileManagementJobResponse structure represents the CreateFileManagementJob operation response
 type CreateFileManagementJobResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1279,8 +1339,10 @@ type xxx_GetFileManagementJobOperation struct {
 	Return            int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetFileManagementJob operation.
 func (o *xxx_GetFileManagementJobOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of GetFileManagementJob operation.
 func (o *xxx_GetFileManagementJobOperation) OpName() string {
 	return "/IFsrmFileManagementJobManager/v1/GetFileManagementJob"
 }
@@ -1520,6 +1582,19 @@ func (o *GetFileManagementJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetFileManagementJobRequest build a response structure from the given request structure.
+func (o *GetFileManagementJobRequest) MakeResponse() *GetFileManagementJobResponse {
+	return &GetFileManagementJobResponse{}
+}
+
+// OpNum returns the operation number of GetFileManagementJob operation.
+func (o *GetFileManagementJobRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of GetFileManagementJob operation.
+func (o *GetFileManagementJobRequest) OpName() string {
+	return "/IFsrmFileManagementJobManager/v1/GetFileManagementJob"
 }
 
 // GetFileManagementJobResponse structure represents the GetFileManagementJob operation response

@@ -848,8 +848,10 @@ type xxx_ClearEventLogWOperation struct {
 	Return         int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrClearELFW operation.
 func (o *xxx_ClearEventLogWOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of ElfrClearELFW operation.
 func (o *xxx_ClearEventLogWOperation) OpName() string { return "/eventlog/v0/ElfrClearELFW" }
 
 func (o *xxx_ClearEventLogWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1015,6 +1017,17 @@ func (o *ClearEventLogWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeClearEventLogWRequest build a response structure from the given request structure.
+func (o *ClearEventLogWRequest) MakeResponse() *ClearEventLogWResponse {
+	return &ClearEventLogWResponse{}
+}
+
+// OpNum returns the operation number of ElfrClearELFW operation.
+func (o *ClearEventLogWRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of ElfrClearELFW operation.
+func (o *ClearEventLogWRequest) OpName() string { return "/eventlog/v0/ElfrClearELFW" }
+
 // ClearEventLogWResponse structure represents the ElfrClearELFW operation response
 type ClearEventLogWResponse struct {
 	// Return: The ElfrClearELFW return value.
@@ -1057,8 +1070,10 @@ type xxx_BackupEventLogWOperation struct {
 	Return         int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrBackupELFW operation.
 func (o *xxx_BackupEventLogWOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of ElfrBackupELFW operation.
 func (o *xxx_BackupEventLogWOperation) OpName() string { return "/eventlog/v0/ElfrBackupELFW" }
 
 func (o *xxx_BackupEventLogWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1205,6 +1220,17 @@ func (o *BackupEventLogWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeBackupEventLogWRequest build a response structure from the given request structure.
+func (o *BackupEventLogWRequest) MakeResponse() *BackupEventLogWResponse {
+	return &BackupEventLogWResponse{}
+}
+
+// OpNum returns the operation number of ElfrBackupELFW operation.
+func (o *BackupEventLogWRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of ElfrBackupELFW operation.
+func (o *BackupEventLogWRequest) OpName() string { return "/eventlog/v0/ElfrBackupELFW" }
+
 // BackupEventLogWResponse structure represents the ElfrBackupELFW operation response
 type BackupEventLogWResponse struct {
 	// Return: The ElfrBackupELFW return value.
@@ -1246,8 +1272,10 @@ type xxx_CloseEventLogOperation struct {
 	Return int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrCloseEL operation.
 func (o *xxx_CloseEventLogOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of ElfrCloseEL operation.
 func (o *xxx_CloseEventLogOperation) OpName() string { return "/eventlog/v0/ElfrCloseEL" }
 
 func (o *xxx_CloseEventLogOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1380,6 +1408,17 @@ func (o *CloseEventLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeCloseEventLogRequest build a response structure from the given request structure.
+func (o *CloseEventLogRequest) MakeResponse() *CloseEventLogResponse {
+	return &CloseEventLogResponse{}
+}
+
+// OpNum returns the operation number of ElfrCloseEL operation.
+func (o *CloseEventLogRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of ElfrCloseEL operation.
+func (o *CloseEventLogRequest) OpName() string { return "/eventlog/v0/ElfrCloseEL" }
+
 // CloseEventLogResponse structure represents the ElfrCloseEL operation response
 type CloseEventLogResponse struct {
 	// LogHandle: Handle to an event log. This parameter is a server context handle, as
@@ -1426,8 +1465,10 @@ type xxx_DeregisterEventSourceOperation struct {
 	Return int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrDeregisterEventSource operation.
 func (o *xxx_DeregisterEventSourceOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ElfrDeregisterEventSource operation.
 func (o *xxx_DeregisterEventSourceOperation) OpName() string {
 	return "/eventlog/v0/ElfrDeregisterEventSource"
 }
@@ -1562,6 +1603,19 @@ func (o *DeregisterEventSourceRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeDeregisterEventSourceRequest build a response structure from the given request structure.
+func (o *DeregisterEventSourceRequest) MakeResponse() *DeregisterEventSourceResponse {
+	return &DeregisterEventSourceResponse{}
+}
+
+// OpNum returns the operation number of ElfrDeregisterEventSource operation.
+func (o *DeregisterEventSourceRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ElfrDeregisterEventSource operation.
+func (o *DeregisterEventSourceRequest) OpName() string {
+	return "/eventlog/v0/ElfrDeregisterEventSource"
+}
+
 // DeregisterEventSourceResponse structure represents the ElfrDeregisterEventSource operation response
 type DeregisterEventSourceResponse struct {
 	// LogHandle: Handle to an event log. This parameter is a server context handle, as
@@ -1609,8 +1663,10 @@ type xxx_NumberOfRecordsOperation struct {
 	Return          int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrNumberOfRecords operation.
 func (o *xxx_NumberOfRecordsOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of ElfrNumberOfRecords operation.
 func (o *xxx_NumberOfRecordsOperation) OpName() string { return "/eventlog/v0/ElfrNumberOfRecords" }
 
 func (o *xxx_NumberOfRecordsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1734,6 +1790,17 @@ func (o *NumberOfRecordsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeNumberOfRecordsRequest build a response structure from the given request structure.
+func (o *NumberOfRecordsRequest) MakeResponse() *NumberOfRecordsResponse {
+	return &NumberOfRecordsResponse{}
+}
+
+// OpNum returns the operation number of ElfrNumberOfRecords operation.
+func (o *NumberOfRecordsRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of ElfrNumberOfRecords operation.
+func (o *NumberOfRecordsRequest) OpName() string { return "/eventlog/v0/ElfrNumberOfRecords" }
+
 // NumberOfRecordsResponse structure represents the ElfrNumberOfRecords operation response
 type NumberOfRecordsResponse struct {
 	// NumberOfRecords: Total number of records in the specified event log.
@@ -1780,8 +1847,10 @@ type xxx_OldestRecordOperation struct {
 	Return             int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrOldestRecord operation.
 func (o *xxx_OldestRecordOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of ElfrOldestRecord operation.
 func (o *xxx_OldestRecordOperation) OpName() string { return "/eventlog/v0/ElfrOldestRecord" }
 
 func (o *xxx_OldestRecordOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1905,6 +1974,17 @@ func (o *OldestRecordRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeOldestRecordRequest build a response structure from the given request structure.
+func (o *OldestRecordRequest) MakeResponse() *OldestRecordResponse {
+	return &OldestRecordResponse{}
+}
+
+// OpNum returns the operation number of ElfrOldestRecord operation.
+func (o *OldestRecordRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of ElfrOldestRecord operation.
+func (o *OldestRecordRequest) OpName() string { return "/eventlog/v0/ElfrOldestRecord" }
+
 // OldestRecordResponse structure represents the ElfrOldestRecord operation response
 type OldestRecordResponse struct {
 	// OldestRecordNumber: The number of the oldest record in the specified event log. The
@@ -1954,8 +2034,10 @@ type xxx_ChangeNotifyOperation struct {
 	Return   int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrChangeNotify operation.
 func (o *xxx_ChangeNotifyOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of ElfrChangeNotify operation.
 func (o *xxx_ChangeNotifyOperation) OpName() string { return "/eventlog/v0/ElfrChangeNotify" }
 
 func (o *xxx_ChangeNotifyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2108,6 +2190,17 @@ func (o *ChangeNotifyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeChangeNotifyRequest build a response structure from the given request structure.
+func (o *ChangeNotifyRequest) MakeResponse() *ChangeNotifyResponse {
+	return &ChangeNotifyResponse{}
+}
+
+// OpNum returns the operation number of ElfrChangeNotify operation.
+func (o *ChangeNotifyRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of ElfrChangeNotify operation.
+func (o *ChangeNotifyRequest) OpName() string { return "/eventlog/v0/ElfrChangeNotify" }
+
 // ChangeNotifyResponse structure represents the ElfrChangeNotify operation response
 type ChangeNotifyResponse struct {
 	// Return: The ElfrChangeNotify return value.
@@ -2154,8 +2247,10 @@ type xxx_OpenEventLogWOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrOpenELW operation.
 func (o *xxx_OpenEventLogWOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of ElfrOpenELW operation.
 func (o *xxx_OpenEventLogWOperation) OpName() string { return "/eventlog/v0/ElfrOpenELW" }
 
 func (o *xxx_OpenEventLogWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2402,6 +2497,17 @@ func (o *OpenEventLogWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeOpenEventLogWRequest build a response structure from the given request structure.
+func (o *OpenEventLogWRequest) MakeResponse() *OpenEventLogWResponse {
+	return &OpenEventLogWResponse{}
+}
+
+// OpNum returns the operation number of ElfrOpenELW operation.
+func (o *OpenEventLogWRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of ElfrOpenELW operation.
+func (o *OpenEventLogWRequest) OpName() string { return "/eventlog/v0/ElfrOpenELW" }
+
 // OpenEventLogWResponse structure represents the ElfrOpenELW operation response
 type OpenEventLogWResponse struct {
 	// LogHandle: Pointer to an event log handle. This parameter is a server context handle,
@@ -2457,8 +2563,10 @@ type xxx_RegisterEventSourceWOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrRegisterEventSourceW operation.
 func (o *xxx_RegisterEventSourceWOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ElfrRegisterEventSourceW operation.
 func (o *xxx_RegisterEventSourceWOperation) OpName() string {
 	return "/eventlog/v0/ElfrRegisterEventSourceW"
 }
@@ -2707,6 +2815,17 @@ func (o *RegisterEventSourceWRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeRegisterEventSourceWRequest build a response structure from the given request structure.
+func (o *RegisterEventSourceWRequest) MakeResponse() *RegisterEventSourceWResponse {
+	return &RegisterEventSourceWResponse{}
+}
+
+// OpNum returns the operation number of ElfrRegisterEventSourceW operation.
+func (o *RegisterEventSourceWRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ElfrRegisterEventSourceW operation.
+func (o *RegisterEventSourceWRequest) OpName() string { return "/eventlog/v0/ElfrRegisterEventSourceW" }
+
 // RegisterEventSourceWResponse structure represents the ElfrRegisterEventSourceW operation response
 type RegisterEventSourceWResponse struct {
 	// LogHandle: Pointer to an event log handle. This parameter is a server context handle,
@@ -2757,8 +2876,10 @@ type xxx_OpenBackupEventLogWOperation struct {
 	Return         int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrOpenBELW operation.
 func (o *xxx_OpenBackupEventLogWOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ElfrOpenBELW operation.
 func (o *xxx_OpenBackupEventLogWOperation) OpName() string { return "/eventlog/v0/ElfrOpenBELW" }
 
 func (o *xxx_OpenBackupEventLogWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2974,6 +3095,17 @@ func (o *OpenBackupEventLogWRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeOpenBackupEventLogWRequest build a response structure from the given request structure.
+func (o *OpenBackupEventLogWRequest) MakeResponse() *OpenBackupEventLogWResponse {
+	return &OpenBackupEventLogWResponse{}
+}
+
+// OpNum returns the operation number of ElfrOpenBELW operation.
+func (o *OpenBackupEventLogWRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ElfrOpenBELW operation.
+func (o *OpenBackupEventLogWRequest) OpName() string { return "/eventlog/v0/ElfrOpenBELW" }
+
 // OpenBackupEventLogWResponse structure represents the ElfrOpenBELW operation response
 type OpenBackupEventLogWResponse struct {
 	// LogHandle: Pointer to an event log handle. This parameter is a server context handle,
@@ -3031,8 +3163,10 @@ type xxx_ReadEventLogWOperation struct {
 	Return                 int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrReadELW operation.
 func (o *xxx_ReadEventLogWOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of ElfrReadELW operation.
 func (o *xxx_ReadEventLogWOperation) OpName() string { return "/eventlog/v0/ElfrReadELW" }
 
 func (o *xxx_ReadEventLogWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3297,6 +3431,22 @@ func (o *ReadEventLogWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeReadEventLogWRequest build a response structure from the given request structure.
+func (o *ReadEventLogWRequest) MakeResponse() *ReadEventLogWResponse {
+	if o == nil {
+		return &ReadEventLogWResponse{}
+	}
+	return &ReadEventLogWResponse{
+		NumberOfBytesToRead: o.NumberOfBytesToRead,
+	}
+}
+
+// OpNum returns the operation number of ElfrReadELW operation.
+func (o *ReadEventLogWRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of ElfrReadELW operation.
+func (o *ReadEventLogWRequest) OpName() string { return "/eventlog/v0/ElfrReadELW" }
+
 // ReadEventLogWResponse structure represents the ElfrReadELW operation response
 type ReadEventLogWResponse struct {
 	// XXX: NumberOfBytesToRead is an implicit input depedency for output parameters
@@ -3377,8 +3527,10 @@ type xxx_ReportEventWOperation struct {
 	Return        int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrReportEventW operation.
 func (o *xxx_ReportEventWOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of ElfrReportEventW operation.
 func (o *xxx_ReportEventWOperation) OpName() string { return "/eventlog/v0/ElfrReportEventW" }
 
 func (o *xxx_ReportEventWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4012,6 +4164,17 @@ func (o *ReportEventWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeReportEventWRequest build a response structure from the given request structure.
+func (o *ReportEventWRequest) MakeResponse() *ReportEventWResponse {
+	return &ReportEventWResponse{}
+}
+
+// OpNum returns the operation number of ElfrReportEventW operation.
+func (o *ReportEventWRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of ElfrReportEventW operation.
+func (o *ReportEventWRequest) OpName() string { return "/eventlog/v0/ElfrReportEventW" }
+
 // ReportEventWResponse structure represents the ElfrReportEventW operation response
 type ReportEventWResponse struct {
 	// RecordNumber: Unused. Can be set to any arbitrary value when sent, and any value
@@ -4064,8 +4227,10 @@ type xxx_ClearEventLogAOperation struct {
 	Return         int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrClearELFA operation.
 func (o *xxx_ClearEventLogAOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of ElfrClearELFA operation.
 func (o *xxx_ClearEventLogAOperation) OpName() string { return "/eventlog/v0/ElfrClearELFA" }
 
 func (o *xxx_ClearEventLogAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4231,6 +4396,17 @@ func (o *ClearEventLogARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeClearEventLogARequest build a response structure from the given request structure.
+func (o *ClearEventLogARequest) MakeResponse() *ClearEventLogAResponse {
+	return &ClearEventLogAResponse{}
+}
+
+// OpNum returns the operation number of ElfrClearELFA operation.
+func (o *ClearEventLogARequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of ElfrClearELFA operation.
+func (o *ClearEventLogARequest) OpName() string { return "/eventlog/v0/ElfrClearELFA" }
+
 // ClearEventLogAResponse structure represents the ElfrClearELFA operation response
 type ClearEventLogAResponse struct {
 	// Return: The ElfrClearELFA return value.
@@ -4273,8 +4449,10 @@ type xxx_BackupEventLogAOperation struct {
 	Return         int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrBackupELFA operation.
 func (o *xxx_BackupEventLogAOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of ElfrBackupELFA operation.
 func (o *xxx_BackupEventLogAOperation) OpName() string { return "/eventlog/v0/ElfrBackupELFA" }
 
 func (o *xxx_BackupEventLogAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4420,6 +4598,17 @@ func (o *BackupEventLogARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeBackupEventLogARequest build a response structure from the given request structure.
+func (o *BackupEventLogARequest) MakeResponse() *BackupEventLogAResponse {
+	return &BackupEventLogAResponse{}
+}
+
+// OpNum returns the operation number of ElfrBackupELFA operation.
+func (o *BackupEventLogARequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of ElfrBackupELFA operation.
+func (o *BackupEventLogARequest) OpName() string { return "/eventlog/v0/ElfrBackupELFA" }
+
 // BackupEventLogAResponse structure represents the ElfrBackupELFA operation response
 type BackupEventLogAResponse struct {
 	// Return: The ElfrBackupELFA return value.
@@ -4466,8 +4655,10 @@ type xxx_OpenEventLogAOperation struct {
 	Return        int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrOpenELA operation.
 func (o *xxx_OpenEventLogAOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of ElfrOpenELA operation.
 func (o *xxx_OpenEventLogAOperation) OpName() string { return "/eventlog/v0/ElfrOpenELA" }
 
 func (o *xxx_OpenEventLogAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4714,6 +4905,17 @@ func (o *OpenEventLogARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeOpenEventLogARequest build a response structure from the given request structure.
+func (o *OpenEventLogARequest) MakeResponse() *OpenEventLogAResponse {
+	return &OpenEventLogAResponse{}
+}
+
+// OpNum returns the operation number of ElfrOpenELA operation.
+func (o *OpenEventLogARequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of ElfrOpenELA operation.
+func (o *OpenEventLogARequest) OpName() string { return "/eventlog/v0/ElfrOpenELA" }
+
 // OpenEventLogAResponse structure represents the ElfrOpenELA operation response
 type OpenEventLogAResponse struct {
 	// LogHandle: Pointer to an event log handle. This parameter is a server context handle,
@@ -4769,8 +4971,10 @@ type xxx_RegisterEventSourceAOperation struct {
 	Return        int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrRegisterEventSourceA operation.
 func (o *xxx_RegisterEventSourceAOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of ElfrRegisterEventSourceA operation.
 func (o *xxx_RegisterEventSourceAOperation) OpName() string {
 	return "/eventlog/v0/ElfrRegisterEventSourceA"
 }
@@ -5019,6 +5223,17 @@ func (o *RegisterEventSourceARequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeRegisterEventSourceARequest build a response structure from the given request structure.
+func (o *RegisterEventSourceARequest) MakeResponse() *RegisterEventSourceAResponse {
+	return &RegisterEventSourceAResponse{}
+}
+
+// OpNum returns the operation number of ElfrRegisterEventSourceA operation.
+func (o *RegisterEventSourceARequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of ElfrRegisterEventSourceA operation.
+func (o *RegisterEventSourceARequest) OpName() string { return "/eventlog/v0/ElfrRegisterEventSourceA" }
+
 // RegisterEventSourceAResponse structure represents the ElfrRegisterEventSourceA operation response
 type RegisterEventSourceAResponse struct {
 	// LogHandle: Pointer to an event log handle. This parameter is a server context handle,
@@ -5069,8 +5284,10 @@ type xxx_OpenBackupEventLogAOperation struct {
 	Return         int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrOpenBELA operation.
 func (o *xxx_OpenBackupEventLogAOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of ElfrOpenBELA operation.
 func (o *xxx_OpenBackupEventLogAOperation) OpName() string { return "/eventlog/v0/ElfrOpenBELA" }
 
 func (o *xxx_OpenBackupEventLogAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5286,6 +5503,17 @@ func (o *OpenBackupEventLogARequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeOpenBackupEventLogARequest build a response structure from the given request structure.
+func (o *OpenBackupEventLogARequest) MakeResponse() *OpenBackupEventLogAResponse {
+	return &OpenBackupEventLogAResponse{}
+}
+
+// OpNum returns the operation number of ElfrOpenBELA operation.
+func (o *OpenBackupEventLogARequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of ElfrOpenBELA operation.
+func (o *OpenBackupEventLogARequest) OpName() string { return "/eventlog/v0/ElfrOpenBELA" }
+
 // OpenBackupEventLogAResponse structure represents the ElfrOpenBELA operation response
 type OpenBackupEventLogAResponse struct {
 	// LogHandle: Pointer to an event log handle. This parameter is a server context handle,
@@ -5342,8 +5570,10 @@ type xxx_ReadEventLogAOperation struct {
 	Return                 int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrReadELA operation.
 func (o *xxx_ReadEventLogAOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of ElfrReadELA operation.
 func (o *xxx_ReadEventLogAOperation) OpName() string { return "/eventlog/v0/ElfrReadELA" }
 
 func (o *xxx_ReadEventLogAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5608,6 +5838,22 @@ func (o *ReadEventLogARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeReadEventLogARequest build a response structure from the given request structure.
+func (o *ReadEventLogARequest) MakeResponse() *ReadEventLogAResponse {
+	if o == nil {
+		return &ReadEventLogAResponse{}
+	}
+	return &ReadEventLogAResponse{
+		NumberOfBytesToRead: o.NumberOfBytesToRead,
+	}
+}
+
+// OpNum returns the operation number of ElfrReadELA operation.
+func (o *ReadEventLogARequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of ElfrReadELA operation.
+func (o *ReadEventLogARequest) OpName() string { return "/eventlog/v0/ElfrReadELA" }
+
 // ReadEventLogAResponse structure represents the ElfrReadELA operation response
 type ReadEventLogAResponse struct {
 	// XXX: NumberOfBytesToRead is an implicit input depedency for output parameters
@@ -5687,8 +5933,10 @@ type xxx_ReportEventAOperation struct {
 	Return        int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrReportEventA operation.
 func (o *xxx_ReportEventAOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of ElfrReportEventA operation.
 func (o *xxx_ReportEventAOperation) OpName() string { return "/eventlog/v0/ElfrReportEventA" }
 
 func (o *xxx_ReportEventAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6317,6 +6565,17 @@ func (o *ReportEventARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeReportEventARequest build a response structure from the given request structure.
+func (o *ReportEventARequest) MakeResponse() *ReportEventAResponse {
+	return &ReportEventAResponse{}
+}
+
+// OpNum returns the operation number of ElfrReportEventA operation.
+func (o *ReportEventARequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of ElfrReportEventA operation.
+func (o *ReportEventARequest) OpName() string { return "/eventlog/v0/ElfrReportEventA" }
+
 // ReportEventAResponse structure represents the ElfrReportEventA operation response
 type ReportEventAResponse struct {
 	// RecordNumber: Unused. Can be set to any arbitrary value when sent, and any value
@@ -6372,8 +6631,10 @@ type xxx_GetLogInformationOperation struct {
 	Return            int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrGetLogInformation operation.
 func (o *xxx_GetLogInformationOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of ElfrGetLogInformation operation.
 func (o *xxx_GetLogInformationOperation) OpName() string { return "/eventlog/v0/ElfrGetLogInformation" }
 
 func (o *xxx_GetLogInformationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6577,6 +6838,22 @@ func (o *GetLogInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetLogInformationRequest build a response structure from the given request structure.
+func (o *GetLogInformationRequest) MakeResponse() *GetLogInformationResponse {
+	if o == nil {
+		return &GetLogInformationResponse{}
+	}
+	return &GetLogInformationResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of ElfrGetLogInformation operation.
+func (o *GetLogInformationRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of ElfrGetLogInformation operation.
+func (o *GetLogInformationRequest) OpName() string { return "/eventlog/v0/ElfrGetLogInformation" }
+
 // GetLogInformationResponse structure represents the ElfrGetLogInformation operation response
 type GetLogInformationResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
@@ -6653,8 +6930,10 @@ type xxx_ReportEventAndSourceWOperation struct {
 	Return        int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrReportEventAndSourceW operation.
 func (o *xxx_ReportEventAndSourceWOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of ElfrReportEventAndSourceW operation.
 func (o *xxx_ReportEventAndSourceWOperation) OpName() string {
 	return "/eventlog/v0/ElfrReportEventAndSourceW"
 }
@@ -7317,6 +7596,19 @@ func (o *ReportEventAndSourceWRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeReportEventAndSourceWRequest build a response structure from the given request structure.
+func (o *ReportEventAndSourceWRequest) MakeResponse() *ReportEventAndSourceWResponse {
+	return &ReportEventAndSourceWResponse{}
+}
+
+// OpNum returns the operation number of ElfrReportEventAndSourceW operation.
+func (o *ReportEventAndSourceWRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of ElfrReportEventAndSourceW operation.
+func (o *ReportEventAndSourceWRequest) OpName() string {
+	return "/eventlog/v0/ElfrReportEventAndSourceW"
+}
+
 // ReportEventAndSourceWResponse structure represents the ElfrReportEventAndSourceW operation response
 type ReportEventAndSourceWResponse struct {
 	// RecordNumber: Unused. Can be set to any arbitrary value when sent, and any value
@@ -7380,8 +7672,10 @@ type xxx_ReportEventExWOperation struct {
 	Return        int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrReportEventExW operation.
 func (o *xxx_ReportEventExWOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of ElfrReportEventExW operation.
 func (o *xxx_ReportEventExWOperation) OpName() string { return "/eventlog/v0/ElfrReportEventExW" }
 
 func (o *xxx_ReportEventExWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7952,6 +8246,17 @@ func (o *ReportEventExWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeReportEventExWRequest build a response structure from the given request structure.
+func (o *ReportEventExWRequest) MakeResponse() *ReportEventExWResponse {
+	return &ReportEventExWResponse{}
+}
+
+// OpNum returns the operation number of ElfrReportEventExW operation.
+func (o *ReportEventExWRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of ElfrReportEventExW operation.
+func (o *ReportEventExWRequest) OpName() string { return "/eventlog/v0/ElfrReportEventExW" }
+
 // ReportEventExWResponse structure represents the ElfrReportEventExW operation response
 type ReportEventExWResponse struct {
 	// RecordNumber: Unused. Can be set to any arbitrary value when sent, and any value
@@ -8010,8 +8315,10 @@ type xxx_ReportEventExAOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ElfrReportEventExA operation.
 func (o *xxx_ReportEventExAOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of ElfrReportEventExA operation.
 func (o *xxx_ReportEventExAOperation) OpName() string { return "/eventlog/v0/ElfrReportEventExA" }
 
 func (o *xxx_ReportEventExAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8581,6 +8888,17 @@ func (o *ReportEventExARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeReportEventExARequest build a response structure from the given request structure.
+func (o *ReportEventExARequest) MakeResponse() *ReportEventExAResponse {
+	return &ReportEventExAResponse{}
+}
+
+// OpNum returns the operation number of ElfrReportEventExA operation.
+func (o *ReportEventExARequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of ElfrReportEventExA operation.
+func (o *ReportEventExARequest) OpName() string { return "/eventlog/v0/ElfrReportEventExA" }
 
 // ReportEventExAResponse structure represents the ElfrReportEventExA operation response
 type ReportEventExAResponse struct {

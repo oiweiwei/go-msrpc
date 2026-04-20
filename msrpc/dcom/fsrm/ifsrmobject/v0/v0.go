@@ -234,8 +234,10 @@ type xxx_GetIDOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Id operation.
 func (o *xxx_GetIDOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Id operation.
 func (o *xxx_GetIDOperation) OpName() string { return "/IFsrmObject/v0/Id" }
 
 func (o *xxx_GetIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -400,6 +402,17 @@ func (o *GetIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetIDRequest build a response structure from the given request structure.
+func (o *GetIDRequest) MakeResponse() *GetIDResponse {
+	return &GetIDResponse{}
+}
+
+// OpNum returns the operation number of Id operation.
+func (o *GetIDRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Id operation.
+func (o *GetIDRequest) OpName() string { return "/IFsrmObject/v0/Id" }
+
 // GetIDResponse structure represents the Id operation response
 type GetIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -450,8 +463,10 @@ type xxx_GetDescriptionOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Description operation.
 func (o *xxx_GetDescriptionOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Description operation.
 func (o *xxx_GetDescriptionOperation) OpName() string { return "/IFsrmObject/v0/Description" }
 
 func (o *xxx_GetDescriptionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -641,6 +656,17 @@ func (o *GetDescriptionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetDescriptionRequest build a response structure from the given request structure.
+func (o *GetDescriptionRequest) MakeResponse() *GetDescriptionResponse {
+	return &GetDescriptionResponse{}
+}
+
+// OpNum returns the operation number of Description operation.
+func (o *GetDescriptionRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Description operation.
+func (o *GetDescriptionRequest) OpName() string { return "/IFsrmObject/v0/Description" }
+
 // GetDescriptionResponse structure represents the Description operation response
 type GetDescriptionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -691,8 +717,10 @@ type xxx_SetDescriptionOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Description operation.
 func (o *xxx_SetDescriptionOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Description operation.
 func (o *xxx_SetDescriptionOperation) OpName() string { return "/IFsrmObject/v0/Description" }
 
 func (o *xxx_SetDescriptionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -885,6 +913,17 @@ func (o *SetDescriptionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetDescriptionRequest build a response structure from the given request structure.
+func (o *SetDescriptionRequest) MakeResponse() *SetDescriptionResponse {
+	return &SetDescriptionResponse{}
+}
+
+// OpNum returns the operation number of Description operation.
+func (o *SetDescriptionRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Description operation.
+func (o *SetDescriptionRequest) OpName() string { return "/IFsrmObject/v0/Description" }
+
 // SetDescriptionResponse structure represents the Description operation response
 type SetDescriptionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -931,8 +970,10 @@ type xxx_DeleteOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Delete operation.
 func (o *xxx_DeleteOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of Delete operation.
 func (o *xxx_DeleteOperation) OpName() string { return "/IFsrmObject/v0/Delete" }
 
 func (o *xxx_DeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1076,6 +1117,17 @@ func (o *DeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeDeleteRequest build a response structure from the given request structure.
+func (o *DeleteRequest) MakeResponse() *DeleteResponse {
+	return &DeleteResponse{}
+}
+
+// OpNum returns the operation number of Delete operation.
+func (o *DeleteRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of Delete operation.
+func (o *DeleteRequest) OpName() string { return "/IFsrmObject/v0/Delete" }
+
 // DeleteResponse structure represents the Delete operation response
 type DeleteResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1122,8 +1174,10 @@ type xxx_CommitOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Commit operation.
 func (o *xxx_CommitOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of Commit operation.
 func (o *xxx_CommitOperation) OpName() string { return "/IFsrmObject/v0/Commit" }
 
 func (o *xxx_CommitOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1266,6 +1320,17 @@ func (o *CommitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCommitRequest build a response structure from the given request structure.
+func (o *CommitRequest) MakeResponse() *CommitResponse {
+	return &CommitResponse{}
+}
+
+// OpNum returns the operation number of Commit operation.
+func (o *CommitRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of Commit operation.
+func (o *CommitRequest) OpName() string { return "/IFsrmObject/v0/Commit" }
 
 // CommitResponse structure represents the Commit operation response
 type CommitResponse struct {

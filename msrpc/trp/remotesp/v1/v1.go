@@ -204,8 +204,10 @@ type xxx_AttachOperation struct {
 	Return  int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteSPAttach operation.
 func (o *xxx_AttachOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RemoteSPAttach operation.
 func (o *xxx_AttachOperation) OpName() string { return "/remotesp/v1/RemoteSPAttach" }
 
 func (o *xxx_AttachOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -312,6 +314,17 @@ func (o *AttachRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeAttachRequest build a response structure from the given request structure.
+func (o *AttachRequest) MakeResponse() *AttachResponse {
+	return &AttachResponse{}
+}
+
+// OpNum returns the operation number of RemoteSPAttach operation.
+func (o *AttachRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RemoteSPAttach operation.
+func (o *AttachRequest) OpName() string { return "/remotesp/v1/RemoteSPAttach" }
+
 // AttachResponse structure represents the RemoteSPAttach operation response
 type AttachResponse struct {
 	// pphContext: Client handle of type PCONTEXT_HANDLE_TYPE2.
@@ -358,8 +371,10 @@ type xxx_EventProcOperation struct {
 	Size    int32  `idl:"name:lSize" json:"size"`
 }
 
+// OpNum returns the operation number of RemoteSPEventProc operation.
 func (o *xxx_EventProcOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RemoteSPEventProc operation.
 func (o *xxx_EventProcOperation) OpName() string { return "/remotesp/v1/RemoteSPEventProc" }
 
 func (o *xxx_EventProcOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -550,6 +565,17 @@ func (o *EventProcRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeEventProcRequest build a response structure from the given request structure.
+func (o *EventProcRequest) MakeResponse() *EventProcResponse {
+	return &EventProcResponse{}
+}
+
+// OpNum returns the operation number of RemoteSPEventProc operation.
+func (o *EventProcRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RemoteSPEventProc operation.
+func (o *EventProcRequest) OpName() string { return "/remotesp/v1/RemoteSPEventProc" }
+
 // EventProcResponse structure represents the RemoteSPEventProc operation response
 type EventProcResponse struct {
 }
@@ -586,8 +612,10 @@ type xxx_DetachOperation struct {
 	Context *Type2 `idl:"name:pphContext" json:"context"`
 }
 
+// OpNum returns the operation number of RemoteSPDetach operation.
 func (o *xxx_DetachOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of RemoteSPDetach operation.
 func (o *xxx_DetachOperation) OpName() string { return "/remotesp/v1/RemoteSPDetach" }
 
 func (o *xxx_DetachOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -711,6 +739,17 @@ func (o *DetachRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeDetachRequest build a response structure from the given request structure.
+func (o *DetachRequest) MakeResponse() *DetachResponse {
+	return &DetachResponse{}
+}
+
+// OpNum returns the operation number of RemoteSPDetach operation.
+func (o *DetachRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of RemoteSPDetach operation.
+func (o *DetachRequest) OpName() string { return "/remotesp/v1/RemoteSPDetach" }
 
 // DetachResponse structure represents the RemoteSPDetach operation response
 type DetachResponse struct {

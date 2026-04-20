@@ -193,8 +193,10 @@ type xxx_RemoteQueryInterfaceOperation struct {
 	Return                int32                              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemQueryInterface operation.
 func (o *xxx_RemoteQueryInterfaceOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RemQueryInterface operation.
 func (o *xxx_RemoteQueryInterfaceOperation) OpName() string {
 	return "/IRemUnknown/v0/RemQueryInterface"
 }
@@ -540,6 +542,22 @@ func (o *RemoteQueryInterfaceRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeRemoteQueryInterfaceRequest build a response structure from the given request structure.
+func (o *RemoteQueryInterfaceRequest) MakeResponse() *RemoteQueryInterfaceResponse {
+	if o == nil {
+		return &RemoteQueryInterfaceResponse{}
+	}
+	return &RemoteQueryInterfaceResponse{
+		IIDsCount: o.IIDsCount,
+	}
+}
+
+// OpNum returns the operation number of RemQueryInterface operation.
+func (o *RemoteQueryInterfaceRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RemQueryInterface operation.
+func (o *RemoteQueryInterfaceRequest) OpName() string { return "/IRemUnknown/v0/RemQueryInterface" }
+
 // RemoteQueryInterfaceResponse structure represents the RemQueryInterface operation response
 type RemoteQueryInterfaceResponse struct {
 	// XXX: cIids is an implicit input depedency for output parameters
@@ -605,8 +623,10 @@ type xxx_RemoteAddReferenceOperation struct {
 	Return                   int32                            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemAddRef operation.
 func (o *xxx_RemoteAddReferenceOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RemAddRef operation.
 func (o *xxx_RemoteAddReferenceOperation) OpName() string { return "/IRemUnknown/v0/RemAddRef" }
 
 func (o *xxx_RemoteAddReferenceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -875,6 +895,22 @@ func (o *RemoteAddReferenceRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeRemoteAddReferenceRequest build a response structure from the given request structure.
+func (o *RemoteAddReferenceRequest) MakeResponse() *RemoteAddReferenceResponse {
+	if o == nil {
+		return &RemoteAddReferenceResponse{}
+	}
+	return &RemoteAddReferenceResponse{
+		InterfaceReferencesCount: o.InterfaceReferencesCount,
+	}
+}
+
+// OpNum returns the operation number of RemAddRef operation.
+func (o *RemoteAddReferenceRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RemAddRef operation.
+func (o *RemoteAddReferenceRequest) OpName() string { return "/IRemUnknown/v0/RemAddRef" }
+
 // RemoteAddReferenceResponse structure represents the RemAddRef operation response
 type RemoteAddReferenceResponse struct {
 	// XXX: cInterfaceRefs is an implicit input depedency for output parameters
@@ -939,8 +975,10 @@ type xxx_RemoteReleaseOperation struct {
 	Return                   int32                            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemRelease operation.
 func (o *xxx_RemoteReleaseOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of RemRelease operation.
 func (o *xxx_RemoteReleaseOperation) OpName() string { return "/IRemUnknown/v0/RemRelease" }
 
 func (o *xxx_RemoteReleaseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1162,6 +1200,17 @@ func (o *RemoteReleaseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeRemoteReleaseRequest build a response structure from the given request structure.
+func (o *RemoteReleaseRequest) MakeResponse() *RemoteReleaseResponse {
+	return &RemoteReleaseResponse{}
+}
+
+// OpNum returns the operation number of RemRelease operation.
+func (o *RemoteReleaseRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of RemRelease operation.
+func (o *RemoteReleaseRequest) OpName() string { return "/IRemUnknown/v0/RemRelease" }
 
 // RemoteReleaseResponse structure represents the RemRelease operation response
 type RemoteReleaseResponse struct {

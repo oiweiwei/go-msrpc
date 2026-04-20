@@ -202,8 +202,10 @@ type xxx_GetFileSystemTypeNameOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetFileSystemTypeName operation.
 func (o *xxx_GetFileSystemTypeNameOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetFileSystemTypeName operation.
 func (o *xxx_GetFileSystemTypeNameOperation) OpName() string {
 	return "/IVdsVolumeMF2/v0/GetFileSystemTypeName"
 }
@@ -386,6 +388,19 @@ func (o *GetFileSystemTypeNameRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetFileSystemTypeNameRequest build a response structure from the given request structure.
+func (o *GetFileSystemTypeNameRequest) MakeResponse() *GetFileSystemTypeNameResponse {
+	return &GetFileSystemTypeNameResponse{}
+}
+
+// OpNum returns the operation number of GetFileSystemTypeName operation.
+func (o *GetFileSystemTypeNameRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetFileSystemTypeName operation.
+func (o *GetFileSystemTypeNameRequest) OpName() string {
+	return "/IVdsVolumeMF2/v0/GetFileSystemTypeName"
+}
+
 // GetFileSystemTypeNameResponse structure represents the GetFileSystemTypeName operation response
 type GetFileSystemTypeNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -439,8 +454,10 @@ type xxx_QueryFileSystemFormatSupportOperation struct {
 	Return                      int32                                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryFileSystemFormatSupport operation.
 func (o *xxx_QueryFileSystemFormatSupportOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of QueryFileSystemFormatSupport operation.
 func (o *xxx_QueryFileSystemFormatSupportOperation) OpName() string {
 	return "/IVdsVolumeMF2/v0/QueryFileSystemFormatSupport"
 }
@@ -680,6 +697,19 @@ func (o *QueryFileSystemFormatSupportRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeQueryFileSystemFormatSupportRequest build a response structure from the given request structure.
+func (o *QueryFileSystemFormatSupportRequest) MakeResponse() *QueryFileSystemFormatSupportResponse {
+	return &QueryFileSystemFormatSupportResponse{}
+}
+
+// OpNum returns the operation number of QueryFileSystemFormatSupport operation.
+func (o *QueryFileSystemFormatSupportRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of QueryFileSystemFormatSupport operation.
+func (o *QueryFileSystemFormatSupportRequest) OpName() string {
+	return "/IVdsVolumeMF2/v0/QueryFileSystemFormatSupport"
+}
+
 // QueryFileSystemFormatSupportResponse structure represents the QueryFileSystemFormatSupport operation response
 type QueryFileSystemFormatSupportResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -745,8 +775,10 @@ type xxx_FormatExOperation struct {
 	Return                    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FormatEx operation.
 func (o *xxx_FormatExOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of FormatEx operation.
 func (o *xxx_FormatExOperation) OpName() string { return "/IVdsVolumeMF2/v0/FormatEx" }
 
 func (o *xxx_FormatExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1108,6 +1140,17 @@ func (o *FormatExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeFormatExRequest build a response structure from the given request structure.
+func (o *FormatExRequest) MakeResponse() *FormatExResponse {
+	return &FormatExResponse{}
+}
+
+// OpNum returns the operation number of FormatEx operation.
+func (o *FormatExRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of FormatEx operation.
+func (o *FormatExRequest) OpName() string { return "/IVdsVolumeMF2/v0/FormatEx" }
 
 // FormatExResponse structure represents the FormatEx operation response
 type FormatExResponse struct {

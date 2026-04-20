@@ -176,8 +176,10 @@ type xxx_QueryMediaOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryMedia operation.
 func (o *xxx_QueryMediaOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of QueryMedia operation.
 func (o *xxx_QueryMediaOperation) OpName() string { return "/IVdsRemovable/v0/QueryMedia" }
 
 func (o *xxx_QueryMediaOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -321,6 +323,17 @@ func (o *QueryMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeQueryMediaRequest build a response structure from the given request structure.
+func (o *QueryMediaRequest) MakeResponse() *QueryMediaResponse {
+	return &QueryMediaResponse{}
+}
+
+// OpNum returns the operation number of QueryMedia operation.
+func (o *QueryMediaRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of QueryMedia operation.
+func (o *QueryMediaRequest) OpName() string { return "/IVdsRemovable/v0/QueryMedia" }
+
 // QueryMediaResponse structure represents the QueryMedia operation response
 type QueryMediaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -367,8 +380,10 @@ type xxx_EjectOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Eject operation.
 func (o *xxx_EjectOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Eject operation.
 func (o *xxx_EjectOperation) OpName() string { return "/IVdsRemovable/v0/Eject" }
 
 func (o *xxx_EjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -511,6 +526,17 @@ func (o *EjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeEjectRequest build a response structure from the given request structure.
+func (o *EjectRequest) MakeResponse() *EjectResponse {
+	return &EjectResponse{}
+}
+
+// OpNum returns the operation number of Eject operation.
+func (o *EjectRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Eject operation.
+func (o *EjectRequest) OpName() string { return "/IVdsRemovable/v0/Eject" }
 
 // EjectResponse structure represents the Eject operation response
 type EjectResponse struct {

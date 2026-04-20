@@ -166,8 +166,10 @@ type xxx_CreateOperation struct {
 	Return       int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IRPCRemoteObject_Create operation.
 func (o *xxx_CreateOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of IRPCRemoteObject_Create operation.
 func (o *xxx_CreateOperation) OpName() string { return "/IRPCRemoteObject/v1/IRPCRemoteObject_Create" }
 
 func (o *xxx_CreateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -274,6 +276,17 @@ func (o *CreateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeCreateRequest build a response structure from the given request structure.
+func (o *CreateRequest) MakeResponse() *CreateResponse {
+	return &CreateResponse{}
+}
+
+// OpNum returns the operation number of IRPCRemoteObject_Create operation.
+func (o *CreateRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of IRPCRemoteObject_Create operation.
+func (o *CreateRequest) OpName() string { return "/IRPCRemoteObject/v1/IRPCRemoteObject_Create" }
+
 // CreateResponse structure represents the IRPCRemoteObject_Create operation response
 type CreateResponse struct {
 	// ppRemoteObj: MUST be a remote object context handle returned by the server. It MUST
@@ -319,8 +332,10 @@ type xxx_DeleteOperation struct {
 	RemoteObject *RemoteObject `idl:"name:ppRemoteObj" json:"remote_object"`
 }
 
+// OpNum returns the operation number of IRPCRemoteObject_Delete operation.
 func (o *xxx_DeleteOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of IRPCRemoteObject_Delete operation.
 func (o *xxx_DeleteOperation) OpName() string { return "/IRPCRemoteObject/v1/IRPCRemoteObject_Delete" }
 
 func (o *xxx_DeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -443,6 +458,17 @@ func (o *DeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeDeleteRequest build a response structure from the given request structure.
+func (o *DeleteRequest) MakeResponse() *DeleteResponse {
+	return &DeleteResponse{}
+}
+
+// OpNum returns the operation number of IRPCRemoteObject_Delete operation.
+func (o *DeleteRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of IRPCRemoteObject_Delete operation.
+func (o *DeleteRequest) OpName() string { return "/IRPCRemoteObject/v1/IRPCRemoteObject_Delete" }
 
 // DeleteResponse structure represents the IRPCRemoteObject_Delete operation response
 type DeleteResponse struct {

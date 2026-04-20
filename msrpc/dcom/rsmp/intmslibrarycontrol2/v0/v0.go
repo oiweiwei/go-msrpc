@@ -141,8 +141,10 @@ type xxx_IdentifyNTMSSlotOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IdentifyNtmsSlot operation.
 func (o *xxx_IdentifyNTMSSlotOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of IdentifyNtmsSlot operation.
 func (o *xxx_IdentifyNTMSSlotOperation) OpName() string {
 	return "/INtmsLibraryControl2/v0/IdentifyNtmsSlot"
 }
@@ -347,6 +349,17 @@ func (o *IdentifyNTMSSlotRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeIdentifyNTMSSlotRequest build a response structure from the given request structure.
+func (o *IdentifyNTMSSlotRequest) MakeResponse() *IdentifyNTMSSlotResponse {
+	return &IdentifyNTMSSlotResponse{}
+}
+
+// OpNum returns the operation number of IdentifyNtmsSlot operation.
+func (o *IdentifyNTMSSlotRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of IdentifyNtmsSlot operation.
+func (o *IdentifyNTMSSlotRequest) OpName() string { return "/INtmsLibraryControl2/v0/IdentifyNtmsSlot" }
 
 // IdentifyNTMSSlotResponse structure represents the IdentifyNtmsSlot operation response
 type IdentifyNTMSSlotResponse struct {

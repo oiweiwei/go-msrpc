@@ -303,8 +303,10 @@ type xxx_GetAgeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Age operation.
 func (o *xxx_GetAgeOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Age operation.
 func (o *xxx_GetAgeOperation) OpName() string { return "/IFolderAction/v0/Age" }
 
 func (o *xxx_GetAgeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -460,6 +462,17 @@ func (o *GetAgeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetAgeRequest build a response structure from the given request structure.
+func (o *GetAgeRequest) MakeResponse() *GetAgeResponse {
+	return &GetAgeResponse{}
+}
+
+// OpNum returns the operation number of Age operation.
+func (o *GetAgeRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Age operation.
+func (o *GetAgeRequest) OpName() string { return "/IFolderAction/v0/Age" }
+
 // GetAgeResponse structure represents the Age operation response
 type GetAgeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -510,8 +523,10 @@ type xxx_SetAgeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Age operation.
 func (o *xxx_SetAgeOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Age operation.
 func (o *xxx_SetAgeOperation) OpName() string { return "/IFolderAction/v0/Age" }
 
 func (o *xxx_SetAgeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -670,6 +685,17 @@ func (o *SetAgeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetAgeRequest build a response structure from the given request structure.
+func (o *SetAgeRequest) MakeResponse() *SetAgeResponse {
+	return &SetAgeResponse{}
+}
+
+// OpNum returns the operation number of Age operation.
+func (o *SetAgeRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Age operation.
+func (o *SetAgeRequest) OpName() string { return "/IFolderAction/v0/Age" }
+
 // SetAgeResponse structure represents the Age operation response
 type SetAgeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -717,8 +743,10 @@ type xxx_GetSizeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Size operation.
 func (o *xxx_GetSizeOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Size operation.
 func (o *xxx_GetSizeOperation) OpName() string { return "/IFolderAction/v0/Size" }
 
 func (o *xxx_GetSizeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -874,6 +902,17 @@ func (o *GetSizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetSizeRequest build a response structure from the given request structure.
+func (o *GetSizeRequest) MakeResponse() *GetSizeResponse {
+	return &GetSizeResponse{}
+}
+
+// OpNum returns the operation number of Size operation.
+func (o *GetSizeRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Size operation.
+func (o *GetSizeRequest) OpName() string { return "/IFolderAction/v0/Size" }
+
 // GetSizeResponse structure represents the Size operation response
 type GetSizeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -924,8 +963,10 @@ type xxx_SetSizeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Size operation.
 func (o *xxx_SetSizeOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of Size operation.
 func (o *xxx_SetSizeOperation) OpName() string { return "/IFolderAction/v0/Size" }
 
 func (o *xxx_SetSizeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1084,6 +1125,17 @@ func (o *SetSizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetSizeRequest build a response structure from the given request structure.
+func (o *SetSizeRequest) MakeResponse() *SetSizeResponse {
+	return &SetSizeResponse{}
+}
+
+// OpNum returns the operation number of Size operation.
+func (o *SetSizeRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of Size operation.
+func (o *SetSizeRequest) OpName() string { return "/IFolderAction/v0/Size" }
+
 // SetSizeResponse structure represents the Size operation response
 type SetSizeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1131,8 +1183,10 @@ type xxx_GetActionsOperation struct {
 	Return int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Actions operation.
 func (o *xxx_GetActionsOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of Actions operation.
 func (o *xxx_GetActionsOperation) OpName() string { return "/IFolderAction/v0/Actions" }
 
 func (o *xxx_GetActionsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1288,6 +1342,17 @@ func (o *GetActionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetActionsRequest build a response structure from the given request structure.
+func (o *GetActionsRequest) MakeResponse() *GetActionsResponse {
+	return &GetActionsResponse{}
+}
+
+// OpNum returns the operation number of Actions operation.
+func (o *GetActionsRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of Actions operation.
+func (o *GetActionsRequest) OpName() string { return "/IFolderAction/v0/Actions" }
+
 // GetActionsResponse structure represents the Actions operation response
 type GetActionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1338,8 +1403,10 @@ type xxx_SetActionsOperation struct {
 	Return int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Actions operation.
 func (o *xxx_SetActionsOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of Actions operation.
 func (o *xxx_SetActionsOperation) OpName() string { return "/IFolderAction/v0/Actions" }
 
 func (o *xxx_SetActionsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1498,6 +1565,17 @@ func (o *SetActionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeSetActionsRequest build a response structure from the given request structure.
+func (o *SetActionsRequest) MakeResponse() *SetActionsResponse {
+	return &SetActionsResponse{}
+}
+
+// OpNum returns the operation number of Actions operation.
+func (o *SetActionsRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of Actions operation.
+func (o *SetActionsRequest) OpName() string { return "/IFolderAction/v0/Actions" }
+
 // SetActionsResponse structure represents the Actions operation response
 type SetActionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1545,8 +1623,10 @@ type xxx_GetSendCabToOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SendCabTo operation.
 func (o *xxx_GetSendCabToOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of SendCabTo operation.
 func (o *xxx_GetSendCabToOperation) OpName() string { return "/IFolderAction/v0/SendCabTo" }
 
 func (o *xxx_GetSendCabToOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1736,6 +1816,17 @@ func (o *GetSendCabToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetSendCabToRequest build a response structure from the given request structure.
+func (o *GetSendCabToRequest) MakeResponse() *GetSendCabToResponse {
+	return &GetSendCabToResponse{}
+}
+
+// OpNum returns the operation number of SendCabTo operation.
+func (o *GetSendCabToRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of SendCabTo operation.
+func (o *GetSendCabToRequest) OpName() string { return "/IFolderAction/v0/SendCabTo" }
+
 // GetSendCabToResponse structure represents the SendCabTo operation response
 type GetSendCabToResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1786,8 +1877,10 @@ type xxx_SetSendCabToOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SendCabTo operation.
 func (o *xxx_SetSendCabToOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of SendCabTo operation.
 func (o *xxx_SetSendCabToOperation) OpName() string { return "/IFolderAction/v0/SendCabTo" }
 
 func (o *xxx_SetSendCabToOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1979,6 +2072,17 @@ func (o *SetSendCabToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetSendCabToRequest build a response structure from the given request structure.
+func (o *SetSendCabToRequest) MakeResponse() *SetSendCabToResponse {
+	return &SetSendCabToResponse{}
+}
+
+// OpNum returns the operation number of SendCabTo operation.
+func (o *SetSendCabToRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of SendCabTo operation.
+func (o *SetSendCabToRequest) OpName() string { return "/IFolderAction/v0/SendCabTo" }
 
 // SetSendCabToResponse structure represents the SendCabTo operation response
 type SetSendCabToResponse struct {

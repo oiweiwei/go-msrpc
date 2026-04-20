@@ -86,8 +86,10 @@ type xxx_RemoteGetMasterSecretOperation struct {
 	Return       uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteGetMasterSecret operation.
 func (o *xxx_RemoteGetMasterSecretOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RemoteGetMasterSecret operation.
 func (o *xxx_RemoteGetMasterSecretOperation) OpName() string {
 	return "/ISingleSignonRemoteMasterSecret/v1/RemoteGetMasterSecret"
 }
@@ -248,6 +250,19 @@ func (o *RemoteGetMasterSecretRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeRemoteGetMasterSecretRequest build a response structure from the given request structure.
+func (o *RemoteGetMasterSecretRequest) MakeResponse() *RemoteGetMasterSecretResponse {
+	return &RemoteGetMasterSecretResponse{}
+}
+
+// OpNum returns the operation number of RemoteGetMasterSecret operation.
+func (o *RemoteGetMasterSecretRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RemoteGetMasterSecret operation.
+func (o *RemoteGetMasterSecretRequest) OpName() string {
+	return "/ISingleSignonRemoteMasterSecret/v1/RemoteGetMasterSecret"
 }
 
 // RemoteGetMasterSecretResponse structure represents the RemoteGetMasterSecret operation response

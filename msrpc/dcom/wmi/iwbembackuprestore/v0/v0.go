@@ -187,8 +187,10 @@ type xxx_BackupOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Backup operation.
 func (o *xxx_BackupOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Backup operation.
 func (o *xxx_BackupOperation) OpName() string { return "/IWbemBackupRestore/v0/Backup" }
 
 func (o *xxx_BackupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -365,6 +367,17 @@ func (o *BackupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeBackupRequest build a response structure from the given request structure.
+func (o *BackupRequest) MakeResponse() *BackupResponse {
+	return &BackupResponse{}
+}
+
+// OpNum returns the operation number of Backup operation.
+func (o *BackupRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Backup operation.
+func (o *BackupRequest) OpName() string { return "/IWbemBackupRestore/v0/Backup" }
+
 // BackupResponse structure represents the Backup operation response
 type BackupResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -413,8 +426,10 @@ type xxx_RestoreOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Restore operation.
 func (o *xxx_RestoreOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Restore operation.
 func (o *xxx_RestoreOperation) OpName() string { return "/IWbemBackupRestore/v0/Restore" }
 
 func (o *xxx_RestoreOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -602,6 +617,17 @@ func (o *RestoreRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeRestoreRequest build a response structure from the given request structure.
+func (o *RestoreRequest) MakeResponse() *RestoreResponse {
+	return &RestoreResponse{}
+}
+
+// OpNum returns the operation number of Restore operation.
+func (o *RestoreRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Restore operation.
+func (o *RestoreRequest) OpName() string { return "/IWbemBackupRestore/v0/Restore" }
 
 // RestoreResponse structure represents the Restore operation response
 type RestoreResponse struct {

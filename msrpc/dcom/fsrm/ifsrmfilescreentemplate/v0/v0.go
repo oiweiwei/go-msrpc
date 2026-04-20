@@ -211,8 +211,10 @@ type xxx_GetNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Name operation.
 func (o *xxx_GetNameOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of Name operation.
 func (o *xxx_GetNameOperation) OpName() string { return "/IFsrmFileScreenTemplate/v0/Name" }
 
 func (o *xxx_GetNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -402,6 +404,17 @@ func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetNameRequest build a response structure from the given request structure.
+func (o *GetNameRequest) MakeResponse() *GetNameResponse {
+	return &GetNameResponse{}
+}
+
+// OpNum returns the operation number of Name operation.
+func (o *GetNameRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of Name operation.
+func (o *GetNameRequest) OpName() string { return "/IFsrmFileScreenTemplate/v0/Name" }
+
 // GetNameResponse structure represents the Name operation response
 type GetNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -452,8 +465,10 @@ type xxx_SetNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Name operation.
 func (o *xxx_SetNameOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of Name operation.
 func (o *xxx_SetNameOperation) OpName() string { return "/IFsrmFileScreenTemplate/v0/Name" }
 
 func (o *xxx_SetNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -646,6 +661,17 @@ func (o *SetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetNameRequest build a response structure from the given request structure.
+func (o *SetNameRequest) MakeResponse() *SetNameResponse {
+	return &SetNameResponse{}
+}
+
+// OpNum returns the operation number of Name operation.
+func (o *SetNameRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of Name operation.
+func (o *SetNameRequest) OpName() string { return "/IFsrmFileScreenTemplate/v0/Name" }
+
 // SetNameResponse structure represents the Name operation response
 type SetNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -693,8 +719,10 @@ type xxx_CopyTemplateOperation struct {
 	Return                 int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CopyTemplate operation.
 func (o *xxx_CopyTemplateOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of CopyTemplate operation.
 func (o *xxx_CopyTemplateOperation) OpName() string {
 	return "/IFsrmFileScreenTemplate/v0/CopyTemplate"
 }
@@ -889,6 +917,17 @@ func (o *CopyTemplateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCopyTemplateRequest build a response structure from the given request structure.
+func (o *CopyTemplateRequest) MakeResponse() *CopyTemplateResponse {
+	return &CopyTemplateResponse{}
+}
+
+// OpNum returns the operation number of CopyTemplate operation.
+func (o *CopyTemplateRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of CopyTemplate operation.
+func (o *CopyTemplateRequest) OpName() string { return "/IFsrmFileScreenTemplate/v0/CopyTemplate" }
+
 // CopyTemplateResponse structure represents the CopyTemplate operation response
 type CopyTemplateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -938,8 +977,10 @@ type xxx_CommitAndUpdateDerivedOperation struct {
 	Return               int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CommitAndUpdateDerived operation.
 func (o *xxx_CommitAndUpdateDerivedOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of CommitAndUpdateDerived operation.
 func (o *xxx_CommitAndUpdateDerivedOperation) OpName() string {
 	return "/IFsrmFileScreenTemplate/v0/CommitAndUpdateDerived"
 }
@@ -1159,6 +1200,19 @@ func (o *CommitAndUpdateDerivedRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeCommitAndUpdateDerivedRequest build a response structure from the given request structure.
+func (o *CommitAndUpdateDerivedRequest) MakeResponse() *CommitAndUpdateDerivedResponse {
+	return &CommitAndUpdateDerivedResponse{}
+}
+
+// OpNum returns the operation number of CommitAndUpdateDerived operation.
+func (o *CommitAndUpdateDerivedRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of CommitAndUpdateDerived operation.
+func (o *CommitAndUpdateDerivedRequest) OpName() string {
+	return "/IFsrmFileScreenTemplate/v0/CommitAndUpdateDerived"
 }
 
 // CommitAndUpdateDerivedResponse structure represents the CommitAndUpdateDerived operation response

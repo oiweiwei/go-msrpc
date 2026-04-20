@@ -218,8 +218,10 @@ type xxx_CommitOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Commit operation.
 func (o *xxx_CommitOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Commit operation.
 func (o *xxx_CommitOperation) OpName() string { return "/ITransaction/v0/Commit" }
 
 func (o *xxx_CommitOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -408,6 +410,17 @@ func (o *CommitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeCommitRequest build a response structure from the given request structure.
+func (o *CommitRequest) MakeResponse() *CommitResponse {
+	return &CommitResponse{}
+}
+
+// OpNum returns the operation number of Commit operation.
+func (o *CommitRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Commit operation.
+func (o *CommitRequest) OpName() string { return "/ITransaction/v0/Commit" }
+
 // CommitResponse structure represents the Commit operation response
 type CommitResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -457,8 +470,10 @@ type xxx_AbortOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Abort operation.
 func (o *xxx_AbortOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Abort operation.
 func (o *xxx_AbortOperation) OpName() string { return "/ITransaction/v0/Abort" }
 
 func (o *xxx_AbortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -681,6 +696,17 @@ func (o *AbortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeAbortRequest build a response structure from the given request structure.
+func (o *AbortRequest) MakeResponse() *AbortResponse {
+	return &AbortResponse{}
+}
+
+// OpNum returns the operation number of Abort operation.
+func (o *AbortRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Abort operation.
+func (o *AbortRequest) OpName() string { return "/ITransaction/v0/Abort" }
+
 // AbortResponse structure represents the Abort operation response
 type AbortResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -728,8 +754,10 @@ type xxx_GetTransactionInfoOperation struct {
 	Return int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetTransactionInfo operation.
 func (o *xxx_GetTransactionInfoOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of GetTransactionInfo operation.
 func (o *xxx_GetTransactionInfoOperation) OpName() string {
 	return "/ITransaction/v0/GetTransactionInfo"
 }
@@ -895,6 +923,17 @@ func (o *GetTransactionInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetTransactionInfoRequest build a response structure from the given request structure.
+func (o *GetTransactionInfoRequest) MakeResponse() *GetTransactionInfoResponse {
+	return &GetTransactionInfoResponse{}
+}
+
+// OpNum returns the operation number of GetTransactionInfo operation.
+func (o *GetTransactionInfoRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of GetTransactionInfo operation.
+func (o *GetTransactionInfoRequest) OpName() string { return "/ITransaction/v0/GetTransactionInfo" }
 
 // GetTransactionInfoResponse structure represents the GetTransactionInfo operation response
 type GetTransactionInfoResponse struct {

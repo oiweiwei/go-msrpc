@@ -257,8 +257,10 @@ type xxx_GetClassIDOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetClassID operation.
 func (o *xxx_GetClassIDOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetClassID operation.
 func (o *xxx_GetClassIDOperation) OpName() string { return "/IPersistMoniker/v0/GetClassID" }
 
 func (o *xxx_GetClassIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -423,6 +425,17 @@ func (o *GetClassIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetClassIDRequest build a response structure from the given request structure.
+func (o *GetClassIDRequest) MakeResponse() *GetClassIDResponse {
+	return &GetClassIDResponse{}
+}
+
+// OpNum returns the operation number of GetClassID operation.
+func (o *GetClassIDRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetClassID operation.
+func (o *GetClassIDRequest) OpName() string { return "/IPersistMoniker/v0/GetClassID" }
+
 // GetClassIDResponse structure represents the GetClassID operation response
 type GetClassIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -472,8 +485,10 @@ type xxx_IsDirtyOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsDirty operation.
 func (o *xxx_IsDirtyOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of IsDirty operation.
 func (o *xxx_IsDirtyOperation) OpName() string { return "/IPersistMoniker/v0/IsDirty" }
 
 func (o *xxx_IsDirtyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -617,6 +632,17 @@ func (o *IsDirtyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeIsDirtyRequest build a response structure from the given request structure.
+func (o *IsDirtyRequest) MakeResponse() *IsDirtyResponse {
+	return &IsDirtyResponse{}
+}
+
+// OpNum returns the operation number of IsDirty operation.
+func (o *IsDirtyRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of IsDirty operation.
+func (o *IsDirtyRequest) OpName() string { return "/IPersistMoniker/v0/IsDirty" }
+
 // IsDirtyResponse structure represents the IsDirty operation response
 type IsDirtyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -667,8 +693,10 @@ type xxx_LoadOperation struct {
 	Return         int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Load operation.
 func (o *xxx_LoadOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of Load operation.
 func (o *xxx_LoadOperation) OpName() string { return "/IPersistMoniker/v0/Load" }
 
 func (o *xxx_LoadOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -948,6 +976,17 @@ func (o *LoadRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeLoadRequest build a response structure from the given request structure.
+func (o *LoadRequest) MakeResponse() *LoadResponse {
+	return &LoadResponse{}
+}
+
+// OpNum returns the operation number of Load operation.
+func (o *LoadRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of Load operation.
+func (o *LoadRequest) OpName() string { return "/IPersistMoniker/v0/Load" }
+
 // LoadResponse structure represents the Load operation response
 type LoadResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -997,8 +1036,10 @@ type xxx_SaveOperation struct {
 	Return      int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Save operation.
 func (o *xxx_SaveOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of Save operation.
 func (o *xxx_SaveOperation) OpName() string { return "/IPersistMoniker/v0/Save" }
 
 func (o *xxx_SaveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1263,6 +1304,17 @@ func (o *SaveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSaveRequest build a response structure from the given request structure.
+func (o *SaveRequest) MakeResponse() *SaveResponse {
+	return &SaveResponse{}
+}
+
+// OpNum returns the operation number of Save operation.
+func (o *SaveRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of Save operation.
+func (o *SaveRequest) OpName() string { return "/IPersistMoniker/v0/Save" }
+
 // SaveResponse structure represents the Save operation response
 type SaveResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1311,8 +1363,10 @@ type xxx_SaveCompletedOperation struct {
 	Return      int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SaveCompleted operation.
 func (o *xxx_SaveCompletedOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of SaveCompleted operation.
 func (o *xxx_SaveCompletedOperation) OpName() string { return "/IPersistMoniker/v0/SaveCompleted" }
 
 func (o *xxx_SaveCompletedOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1554,6 +1608,17 @@ func (o *SaveCompletedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSaveCompletedRequest build a response structure from the given request structure.
+func (o *SaveCompletedRequest) MakeResponse() *SaveCompletedResponse {
+	return &SaveCompletedResponse{}
+}
+
+// OpNum returns the operation number of SaveCompleted operation.
+func (o *SaveCompletedRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of SaveCompleted operation.
+func (o *SaveCompletedRequest) OpName() string { return "/IPersistMoniker/v0/SaveCompleted" }
+
 // SaveCompletedResponse structure represents the SaveCompleted operation response
 type SaveCompletedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1601,8 +1666,10 @@ type xxx_GetCurMonikerOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCurMoniker operation.
 func (o *xxx_GetCurMonikerOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of GetCurMoniker operation.
 func (o *xxx_GetCurMonikerOperation) OpName() string { return "/IPersistMoniker/v0/GetCurMoniker" }
 
 func (o *xxx_GetCurMonikerOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1791,6 +1858,17 @@ func (o *GetCurMonikerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetCurMonikerRequest build a response structure from the given request structure.
+func (o *GetCurMonikerRequest) MakeResponse() *GetCurMonikerResponse {
+	return &GetCurMonikerResponse{}
+}
+
+// OpNum returns the operation number of GetCurMoniker operation.
+func (o *GetCurMonikerRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GetCurMoniker operation.
+func (o *GetCurMonikerRequest) OpName() string { return "/IPersistMoniker/v0/GetCurMoniker" }
 
 // GetCurMonikerResponse structure represents the GetCurMoniker operation response
 type GetCurMonikerResponse struct {

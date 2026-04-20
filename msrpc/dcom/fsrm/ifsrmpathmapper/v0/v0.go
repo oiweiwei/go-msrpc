@@ -158,8 +158,10 @@ type xxx_GetSharePathsForLocalPathOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSharePathsForLocalPath operation.
 func (o *xxx_GetSharePathsForLocalPathOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetSharePathsForLocalPath operation.
 func (o *xxx_GetSharePathsForLocalPathOperation) OpName() string {
 	return "/IFsrmPathMapper/v0/GetSharePathsForLocalPath"
 }
@@ -399,6 +401,19 @@ func (o *GetSharePathsForLocalPathRequest) UnmarshalNDR(ctx context.Context, r n
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetSharePathsForLocalPathRequest build a response structure from the given request structure.
+func (o *GetSharePathsForLocalPathRequest) MakeResponse() *GetSharePathsForLocalPathResponse {
+	return &GetSharePathsForLocalPathResponse{}
+}
+
+// OpNum returns the operation number of GetSharePathsForLocalPath operation.
+func (o *GetSharePathsForLocalPathRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetSharePathsForLocalPath operation.
+func (o *GetSharePathsForLocalPathRequest) OpName() string {
+	return "/IFsrmPathMapper/v0/GetSharePathsForLocalPath"
 }
 
 // GetSharePathsForLocalPathResponse structure represents the GetSharePathsForLocalPath operation response

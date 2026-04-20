@@ -142,8 +142,10 @@ type xxx_OnNotifyOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OnNotify operation.
 func (o *xxx_OnNotifyOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of OnNotify operation.
 func (o *xxx_OnNotifyOperation) OpName() string { return "/IClientSink/v0/OnNotify" }
 
 func (o *xxx_OnNotifyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -340,6 +342,17 @@ func (o *OnNotifyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeOnNotifyRequest build a response structure from the given request structure.
+func (o *OnNotifyRequest) MakeResponse() *OnNotifyResponse {
+	return &OnNotifyResponse{}
+}
+
+// OpNum returns the operation number of OnNotify operation.
+func (o *OnNotifyRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of OnNotify operation.
+func (o *OnNotifyRequest) OpName() string { return "/IClientSink/v0/OnNotify" }
 
 // OnNotifyResponse structure represents the OnNotify operation response
 type OnNotifyResponse struct {

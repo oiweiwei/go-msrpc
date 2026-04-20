@@ -227,8 +227,10 @@ type xxx_GetNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Name operation.
 func (o *xxx_GetNameOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Name operation.
 func (o *xxx_GetNameOperation) OpName() string { return "/IFsrmProperty/v0/Name" }
 
 func (o *xxx_GetNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -418,6 +420,17 @@ func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetNameRequest build a response structure from the given request structure.
+func (o *GetNameRequest) MakeResponse() *GetNameResponse {
+	return &GetNameResponse{}
+}
+
+// OpNum returns the operation number of Name operation.
+func (o *GetNameRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Name operation.
+func (o *GetNameRequest) OpName() string { return "/IFsrmProperty/v0/Name" }
+
 // GetNameResponse structure represents the Name operation response
 type GetNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -468,8 +481,10 @@ type xxx_GetValueOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Value operation.
 func (o *xxx_GetValueOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Value operation.
 func (o *xxx_GetValueOperation) OpName() string { return "/IFsrmProperty/v0/Value" }
 
 func (o *xxx_GetValueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -659,6 +674,17 @@ func (o *GetValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeGetValueRequest build a response structure from the given request structure.
+func (o *GetValueRequest) MakeResponse() *GetValueResponse {
+	return &GetValueResponse{}
+}
+
+// OpNum returns the operation number of Value operation.
+func (o *GetValueRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Value operation.
+func (o *GetValueRequest) OpName() string { return "/IFsrmProperty/v0/Value" }
+
 // GetValueResponse structure represents the Value operation response
 type GetValueResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -709,8 +735,10 @@ type xxx_GetSourcesOperation struct {
 	Return  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Sources operation.
 func (o *xxx_GetSourcesOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Sources operation.
 func (o *xxx_GetSourcesOperation) OpName() string { return "/IFsrmProperty/v0/Sources" }
 
 func (o *xxx_GetSourcesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -900,6 +928,17 @@ func (o *GetSourcesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetSourcesRequest build a response structure from the given request structure.
+func (o *GetSourcesRequest) MakeResponse() *GetSourcesResponse {
+	return &GetSourcesResponse{}
+}
+
+// OpNum returns the operation number of Sources operation.
+func (o *GetSourcesRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Sources operation.
+func (o *GetSourcesRequest) OpName() string { return "/IFsrmProperty/v0/Sources" }
+
 // GetSourcesResponse structure represents the Sources operation response
 type GetSourcesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -951,8 +990,10 @@ type xxx_GetPropertyFlagsOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PropertyFlags operation.
 func (o *xxx_GetPropertyFlagsOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of PropertyFlags operation.
 func (o *xxx_GetPropertyFlagsOperation) OpName() string { return "/IFsrmProperty/v0/PropertyFlags" }
 
 func (o *xxx_GetPropertyFlagsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1107,6 +1148,17 @@ func (o *GetPropertyFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetPropertyFlagsRequest build a response structure from the given request structure.
+func (o *GetPropertyFlagsRequest) MakeResponse() *GetPropertyFlagsResponse {
+	return &GetPropertyFlagsResponse{}
+}
+
+// OpNum returns the operation number of PropertyFlags operation.
+func (o *GetPropertyFlagsRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of PropertyFlags operation.
+func (o *GetPropertyFlagsRequest) OpName() string { return "/IFsrmProperty/v0/PropertyFlags" }
 
 // GetPropertyFlagsResponse structure represents the PropertyFlags operation response
 type GetPropertyFlagsResponse struct {

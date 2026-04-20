@@ -407,8 +407,10 @@ type xxx_GetLineNumberOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LineNumber operation.
 func (o *xxx_GetLineNumberOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of LineNumber operation.
 func (o *xxx_GetLineNumberOperation) OpName() string { return "/IAppHostConfigException/v0/LineNumber" }
 
 func (o *xxx_GetLineNumberOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -564,6 +566,17 @@ func (o *GetLineNumberRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetLineNumberRequest build a response structure from the given request structure.
+func (o *GetLineNumberRequest) MakeResponse() *GetLineNumberResponse {
+	return &GetLineNumberResponse{}
+}
+
+// OpNum returns the operation number of LineNumber operation.
+func (o *GetLineNumberRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of LineNumber operation.
+func (o *GetLineNumberRequest) OpName() string { return "/IAppHostConfigException/v0/LineNumber" }
+
 // GetLineNumberResponse structure represents the LineNumber operation response
 type GetLineNumberResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -615,8 +628,10 @@ type xxx_GetFileNameOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FileName operation.
 func (o *xxx_GetFileNameOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of FileName operation.
 func (o *xxx_GetFileNameOperation) OpName() string { return "/IAppHostConfigException/v0/FileName" }
 
 func (o *xxx_GetFileNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -806,6 +821,17 @@ func (o *GetFileNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetFileNameRequest build a response structure from the given request structure.
+func (o *GetFileNameRequest) MakeResponse() *GetFileNameResponse {
+	return &GetFileNameResponse{}
+}
+
+// OpNum returns the operation number of FileName operation.
+func (o *GetFileNameRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of FileName operation.
+func (o *GetFileNameRequest) OpName() string { return "/IAppHostConfigException/v0/FileName" }
+
 // GetFileNameResponse structure represents the FileName operation response
 type GetFileNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -857,8 +883,10 @@ type xxx_GetConfigPathOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ConfigPath operation.
 func (o *xxx_GetConfigPathOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of ConfigPath operation.
 func (o *xxx_GetConfigPathOperation) OpName() string { return "/IAppHostConfigException/v0/ConfigPath" }
 
 func (o *xxx_GetConfigPathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1048,6 +1076,17 @@ func (o *GetConfigPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetConfigPathRequest build a response structure from the given request structure.
+func (o *GetConfigPathRequest) MakeResponse() *GetConfigPathResponse {
+	return &GetConfigPathResponse{}
+}
+
+// OpNum returns the operation number of ConfigPath operation.
+func (o *GetConfigPathRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of ConfigPath operation.
+func (o *GetConfigPathRequest) OpName() string { return "/IAppHostConfigException/v0/ConfigPath" }
+
 // GetConfigPathResponse structure represents the ConfigPath operation response
 type GetConfigPathResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1098,8 +1137,10 @@ type xxx_GetErrorLineOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ErrorLine operation.
 func (o *xxx_GetErrorLineOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of ErrorLine operation.
 func (o *xxx_GetErrorLineOperation) OpName() string { return "/IAppHostConfigException/v0/ErrorLine" }
 
 func (o *xxx_GetErrorLineOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1289,6 +1330,17 @@ func (o *GetErrorLineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetErrorLineRequest build a response structure from the given request structure.
+func (o *GetErrorLineRequest) MakeResponse() *GetErrorLineResponse {
+	return &GetErrorLineResponse{}
+}
+
+// OpNum returns the operation number of ErrorLine operation.
+func (o *GetErrorLineRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of ErrorLine operation.
+func (o *GetErrorLineRequest) OpName() string { return "/IAppHostConfigException/v0/ErrorLine" }
+
 // GetErrorLineResponse structure represents the ErrorLine operation response
 type GetErrorLineResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1340,8 +1392,10 @@ type xxx_GetPreErrorLineOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PreErrorLine operation.
 func (o *xxx_GetPreErrorLineOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of PreErrorLine operation.
 func (o *xxx_GetPreErrorLineOperation) OpName() string {
 	return "/IAppHostConfigException/v0/PreErrorLine"
 }
@@ -1533,6 +1587,17 @@ func (o *GetPreErrorLineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetPreErrorLineRequest build a response structure from the given request structure.
+func (o *GetPreErrorLineRequest) MakeResponse() *GetPreErrorLineResponse {
+	return &GetPreErrorLineResponse{}
+}
+
+// OpNum returns the operation number of PreErrorLine operation.
+func (o *GetPreErrorLineRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of PreErrorLine operation.
+func (o *GetPreErrorLineRequest) OpName() string { return "/IAppHostConfigException/v0/PreErrorLine" }
+
 // GetPreErrorLineResponse structure represents the PreErrorLine operation response
 type GetPreErrorLineResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1584,8 +1649,10 @@ type xxx_GetPostErrorLineOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PostErrorLine operation.
 func (o *xxx_GetPostErrorLineOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of PostErrorLine operation.
 func (o *xxx_GetPostErrorLineOperation) OpName() string {
 	return "/IAppHostConfigException/v0/PostErrorLine"
 }
@@ -1777,6 +1844,17 @@ func (o *GetPostErrorLineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetPostErrorLineRequest build a response structure from the given request structure.
+func (o *GetPostErrorLineRequest) MakeResponse() *GetPostErrorLineResponse {
+	return &GetPostErrorLineResponse{}
+}
+
+// OpNum returns the operation number of PostErrorLine operation.
+func (o *GetPostErrorLineRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of PostErrorLine operation.
+func (o *GetPostErrorLineRequest) OpName() string { return "/IAppHostConfigException/v0/PostErrorLine" }
+
 // GetPostErrorLineResponse structure represents the PostErrorLine operation response
 type GetPostErrorLineResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1828,8 +1906,10 @@ type xxx_GetErrorStringOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ErrorString operation.
 func (o *xxx_GetErrorStringOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ErrorString operation.
 func (o *xxx_GetErrorStringOperation) OpName() string {
 	return "/IAppHostConfigException/v0/ErrorString"
 }
@@ -2020,6 +2100,17 @@ func (o *GetErrorStringRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetErrorStringRequest build a response structure from the given request structure.
+func (o *GetErrorStringRequest) MakeResponse() *GetErrorStringResponse {
+	return &GetErrorStringResponse{}
+}
+
+// OpNum returns the operation number of ErrorString operation.
+func (o *GetErrorStringRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ErrorString operation.
+func (o *GetErrorStringRequest) OpName() string { return "/IAppHostConfigException/v0/ErrorString" }
 
 // GetErrorStringResponse structure represents the ErrorString operation response
 type GetErrorStringResponse struct {

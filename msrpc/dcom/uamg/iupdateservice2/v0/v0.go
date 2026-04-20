@@ -151,8 +151,10 @@ type xxx_GetIsDefaultAUServiceOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsDefaultAUService operation.
 func (o *xxx_GetIsDefaultAUServiceOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of IsDefaultAUService operation.
 func (o *xxx_GetIsDefaultAUServiceOperation) OpName() string {
 	return "/IUpdateService2/v0/IsDefaultAUService"
 }
@@ -308,6 +310,19 @@ func (o *GetIsDefaultAUServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetIsDefaultAUServiceRequest build a response structure from the given request structure.
+func (o *GetIsDefaultAUServiceRequest) MakeResponse() *GetIsDefaultAUServiceResponse {
+	return &GetIsDefaultAUServiceResponse{}
+}
+
+// OpNum returns the operation number of IsDefaultAUService operation.
+func (o *GetIsDefaultAUServiceRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of IsDefaultAUService operation.
+func (o *GetIsDefaultAUServiceRequest) OpName() string {
+	return "/IUpdateService2/v0/IsDefaultAUService"
 }
 
 // GetIsDefaultAUServiceResponse structure represents the IsDefaultAUService operation response

@@ -237,8 +237,10 @@ type xxx_GetRebootRequiredOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RebootRequired operation.
 func (o *xxx_GetRebootRequiredOperation) OpNum() int { return 52 }
 
+// OpName returns the operation name of RebootRequired operation.
 func (o *xxx_GetRebootRequiredOperation) OpName() string { return "/IUpdate2/v0/RebootRequired" }
 
 func (o *xxx_GetRebootRequiredOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -394,6 +396,17 @@ func (o *GetRebootRequiredRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetRebootRequiredRequest build a response structure from the given request structure.
+func (o *GetRebootRequiredRequest) MakeResponse() *GetRebootRequiredResponse {
+	return &GetRebootRequiredResponse{}
+}
+
+// OpNum returns the operation number of RebootRequired operation.
+func (o *GetRebootRequiredRequest) OpNum() int { return 52 }
+
+// OpName returns the operation name of RebootRequired operation.
+func (o *GetRebootRequiredRequest) OpName() string { return "/IUpdate2/v0/RebootRequired" }
+
 // GetRebootRequiredResponse structure represents the RebootRequired operation response
 type GetRebootRequiredResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -446,8 +459,10 @@ type xxx_GetIsPresentOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsPresent operation.
 func (o *xxx_GetIsPresentOperation) OpNum() int { return 53 }
 
+// OpName returns the operation name of IsPresent operation.
 func (o *xxx_GetIsPresentOperation) OpName() string { return "/IUpdate2/v0/IsPresent" }
 
 func (o *xxx_GetIsPresentOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -603,6 +618,17 @@ func (o *GetIsPresentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetIsPresentRequest build a response structure from the given request structure.
+func (o *GetIsPresentRequest) MakeResponse() *GetIsPresentResponse {
+	return &GetIsPresentResponse{}
+}
+
+// OpNum returns the operation number of IsPresent operation.
+func (o *GetIsPresentRequest) OpNum() int { return 53 }
+
+// OpName returns the operation name of IsPresent operation.
+func (o *GetIsPresentRequest) OpName() string { return "/IUpdate2/v0/IsPresent" }
+
 // GetIsPresentResponse structure represents the IsPresent operation response
 type GetIsPresentResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -655,8 +681,10 @@ type xxx_GetCveIDsOperation struct {
 	Return      int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CveIDs operation.
 func (o *xxx_GetCveIDsOperation) OpNum() int { return 54 }
 
+// OpName returns the operation name of CveIDs operation.
 func (o *xxx_GetCveIDsOperation) OpName() string { return "/IUpdate2/v0/CveIDs" }
 
 func (o *xxx_GetCveIDsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -845,6 +873,17 @@ func (o *GetCveIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetCveIDsRequest build a response structure from the given request structure.
+func (o *GetCveIDsRequest) MakeResponse() *GetCveIDsResponse {
+	return &GetCveIDsResponse{}
+}
+
+// OpNum returns the operation number of CveIDs operation.
+func (o *GetCveIDsRequest) OpNum() int { return 54 }
+
+// OpName returns the operation name of CveIDs operation.
+func (o *GetCveIDsRequest) OpName() string { return "/IUpdate2/v0/CveIDs" }
 
 // GetCveIDsResponse structure represents the CveIDs operation response
 type GetCveIDsResponse struct {

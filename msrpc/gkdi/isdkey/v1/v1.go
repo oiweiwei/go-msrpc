@@ -100,8 +100,10 @@ type xxx_GetKeyOperation struct {
 	Return         int32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetKey operation.
 func (o *xxx_GetKeyOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of GetKey operation.
 func (o *xxx_GetKeyOperation) OpName() string { return "/ISDKey/v1/GetKey" }
 
 func (o *xxx_GetKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -443,6 +445,17 @@ func (o *GetKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetKeyRequest build a response structure from the given request structure.
+func (o *GetKeyRequest) MakeResponse() *GetKeyResponse {
+	return &GetKeyResponse{}
+}
+
+// OpNum returns the operation number of GetKey operation.
+func (o *GetKeyRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of GetKey operation.
+func (o *GetKeyRequest) OpName() string { return "/ISDKey/v1/GetKey" }
 
 // GetKeyResponse structure represents the GetKey operation response
 type GetKeyResponse struct {

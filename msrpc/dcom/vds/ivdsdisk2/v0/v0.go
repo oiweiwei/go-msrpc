@@ -148,8 +148,10 @@ type xxx_SetSANModeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetSANMode operation.
 func (o *xxx_SetSANModeOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SetSANMode operation.
 func (o *xxx_SetSANModeOperation) OpName() string { return "/IVdsDisk2/v0/SetSANMode" }
 
 func (o *xxx_SetSANModeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -309,6 +311,17 @@ func (o *SetSANModeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetSANModeRequest build a response structure from the given request structure.
+func (o *SetSANModeRequest) MakeResponse() *SetSANModeResponse {
+	return &SetSANModeResponse{}
+}
+
+// OpNum returns the operation number of SetSANMode operation.
+func (o *SetSANModeRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SetSANMode operation.
+func (o *SetSANModeRequest) OpName() string { return "/IVdsDisk2/v0/SetSANMode" }
 
 // SetSANModeResponse structure represents the SetSANMode operation response
 type SetSANModeResponse struct {

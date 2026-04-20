@@ -286,8 +286,10 @@ type xxx_GetSiteNameFromSiteIDOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSiteNameFromSiteId operation.
 func (o *xxx_GetSiteNameFromSiteIDOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetSiteNameFromSiteId operation.
 func (o *xxx_GetSiteNameFromSiteIDOperation) OpName() string {
 	return "/IAppHostMappingExtension/v0/GetSiteNameFromSiteId"
 }
@@ -496,6 +498,19 @@ func (o *GetSiteNameFromSiteIDRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetSiteNameFromSiteIDRequest build a response structure from the given request structure.
+func (o *GetSiteNameFromSiteIDRequest) MakeResponse() *GetSiteNameFromSiteIDResponse {
+	return &GetSiteNameFromSiteIDResponse{}
+}
+
+// OpNum returns the operation number of GetSiteNameFromSiteId operation.
+func (o *GetSiteNameFromSiteIDRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetSiteNameFromSiteId operation.
+func (o *GetSiteNameFromSiteIDRequest) OpName() string {
+	return "/IAppHostMappingExtension/v0/GetSiteNameFromSiteId"
+}
+
 // GetSiteNameFromSiteIDResponse structure represents the GetSiteNameFromSiteId operation response
 type GetSiteNameFromSiteIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -549,8 +564,10 @@ type xxx_GetSiteIDFromSiteNameOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSiteIdFromSiteName operation.
 func (o *xxx_GetSiteIDFromSiteNameOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetSiteIdFromSiteName operation.
 func (o *xxx_GetSiteIDFromSiteNameOperation) OpName() string {
 	return "/IAppHostMappingExtension/v0/GetSiteIdFromSiteName"
 }
@@ -758,6 +775,19 @@ func (o *GetSiteIDFromSiteNameRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetSiteIDFromSiteNameRequest build a response structure from the given request structure.
+func (o *GetSiteIDFromSiteNameRequest) MakeResponse() *GetSiteIDFromSiteNameResponse {
+	return &GetSiteIDFromSiteNameResponse{}
+}
+
+// OpNum returns the operation number of GetSiteIdFromSiteName operation.
+func (o *GetSiteIDFromSiteNameRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetSiteIdFromSiteName operation.
+func (o *GetSiteIDFromSiteNameRequest) OpName() string {
+	return "/IAppHostMappingExtension/v0/GetSiteIdFromSiteName"
+}
+
 // GetSiteIDFromSiteNameResponse structure represents the GetSiteIdFromSiteName operation response
 type GetSiteIDFromSiteNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -811,8 +841,10 @@ type xxx_GetSiteElementFromSiteIDOperation struct {
 	Return      int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSiteElementFromSiteId operation.
 func (o *xxx_GetSiteElementFromSiteIDOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of GetSiteElementFromSiteId operation.
 func (o *xxx_GetSiteElementFromSiteIDOperation) OpName() string {
 	return "/IAppHostMappingExtension/v0/GetSiteElementFromSiteId"
 }
@@ -1020,6 +1052,19 @@ func (o *GetSiteElementFromSiteIDRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeGetSiteElementFromSiteIDRequest build a response structure from the given request structure.
+func (o *GetSiteElementFromSiteIDRequest) MakeResponse() *GetSiteElementFromSiteIDResponse {
+	return &GetSiteElementFromSiteIDResponse{}
+}
+
+// OpNum returns the operation number of GetSiteElementFromSiteId operation.
+func (o *GetSiteElementFromSiteIDRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of GetSiteElementFromSiteId operation.
+func (o *GetSiteElementFromSiteIDRequest) OpName() string {
+	return "/IAppHostMappingExtension/v0/GetSiteElementFromSiteId"
+}
+
 // GetSiteElementFromSiteIDResponse structure represents the GetSiteElementFromSiteId operation response
 type GetSiteElementFromSiteIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1076,8 +1121,10 @@ type xxx_MapPathOperation struct {
 	Return                  int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MapPath operation.
 func (o *xxx_MapPathOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of MapPath operation.
 func (o *xxx_MapPathOperation) OpName() string { return "/IAppHostMappingExtension/v0/MapPath" }
 
 func (o *xxx_MapPathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1456,6 +1503,17 @@ func (o *MapPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeMapPathRequest build a response structure from the given request structure.
+func (o *MapPathRequest) MakeResponse() *MapPathResponse {
+	return &MapPathResponse{}
+}
+
+// OpNum returns the operation number of MapPath operation.
+func (o *MapPathRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of MapPath operation.
+func (o *MapPathRequest) OpName() string { return "/IAppHostMappingExtension/v0/MapPath" }
 
 // MapPathResponse structure represents the MapPath operation response
 type MapPathResponse struct {

@@ -189,8 +189,10 @@ type xxx_GetDerivedObjectsOperation struct {
 	Return         int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DerivedObjects operation.
 func (o *xxx_GetDerivedObjectsOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of DerivedObjects operation.
 func (o *xxx_GetDerivedObjectsOperation) OpName() string {
 	return "/IFsrmDerivedObjectsResult/v0/DerivedObjects"
 }
@@ -382,6 +384,19 @@ func (o *GetDerivedObjectsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetDerivedObjectsRequest build a response structure from the given request structure.
+func (o *GetDerivedObjectsRequest) MakeResponse() *GetDerivedObjectsResponse {
+	return &GetDerivedObjectsResponse{}
+}
+
+// OpNum returns the operation number of DerivedObjects operation.
+func (o *GetDerivedObjectsRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of DerivedObjects operation.
+func (o *GetDerivedObjectsRequest) OpName() string {
+	return "/IFsrmDerivedObjectsResult/v0/DerivedObjects"
+}
+
 // GetDerivedObjectsResponse structure represents the DerivedObjects operation response
 type GetDerivedObjectsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -436,8 +451,10 @@ type xxx_GetResultsOperation struct {
 	Return  int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Results operation.
 func (o *xxx_GetResultsOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Results operation.
 func (o *xxx_GetResultsOperation) OpName() string { return "/IFsrmDerivedObjectsResult/v0/Results" }
 
 func (o *xxx_GetResultsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -626,6 +643,17 @@ func (o *GetResultsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetResultsRequest build a response structure from the given request structure.
+func (o *GetResultsRequest) MakeResponse() *GetResultsResponse {
+	return &GetResultsResponse{}
+}
+
+// OpNum returns the operation number of Results operation.
+func (o *GetResultsRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Results operation.
+func (o *GetResultsRequest) OpName() string { return "/IFsrmDerivedObjectsResult/v0/Results" }
 
 // GetResultsResponse structure represents the Results operation response
 type GetResultsResponse struct {

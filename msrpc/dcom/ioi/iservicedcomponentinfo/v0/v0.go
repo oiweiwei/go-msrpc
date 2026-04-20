@@ -145,8 +145,10 @@ type xxx_GetComponentInfoOperation struct {
 	Return    int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetComponentInfo operation.
 func (o *xxx_GetComponentInfoOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetComponentInfo operation.
 func (o *xxx_GetComponentInfoOperation) OpName() string {
 	return "/IServicedComponentInfo/v0/GetComponentInfo"
 }
@@ -378,6 +380,19 @@ func (o *GetComponentInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetComponentInfoRequest build a response structure from the given request structure.
+func (o *GetComponentInfoRequest) MakeResponse() *GetComponentInfoResponse {
+	return &GetComponentInfoResponse{}
+}
+
+// OpNum returns the operation number of GetComponentInfo operation.
+func (o *GetComponentInfoRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetComponentInfo operation.
+func (o *GetComponentInfoRequest) OpName() string {
+	return "/IServicedComponentInfo/v0/GetComponentInfo"
 }
 
 // GetComponentInfoResponse structure represents the GetComponentInfo operation response

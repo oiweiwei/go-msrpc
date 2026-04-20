@@ -257,8 +257,10 @@ type xxx_GetConnectionInterfaceOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetConnectionInterface operation.
 func (o *xxx_GetConnectionInterfaceOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetConnectionInterface operation.
 func (o *xxx_GetConnectionInterfaceOperation) OpName() string {
 	return "/IConnectionPoint/v0/GetConnectionInterface"
 }
@@ -425,6 +427,19 @@ func (o *GetConnectionInterfaceRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetConnectionInterfaceRequest build a response structure from the given request structure.
+func (o *GetConnectionInterfaceRequest) MakeResponse() *GetConnectionInterfaceResponse {
+	return &GetConnectionInterfaceResponse{}
+}
+
+// OpNum returns the operation number of GetConnectionInterface operation.
+func (o *GetConnectionInterfaceRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetConnectionInterface operation.
+func (o *GetConnectionInterfaceRequest) OpName() string {
+	return "/IConnectionPoint/v0/GetConnectionInterface"
+}
+
 // GetConnectionInterfaceResponse structure represents the GetConnectionInterface operation response
 type GetConnectionInterfaceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -477,8 +492,10 @@ type xxx_GetConnectionPointContainerOperation struct {
 	Return int32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetConnectionPointContainer operation.
 func (o *xxx_GetConnectionPointContainerOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetConnectionPointContainer operation.
 func (o *xxx_GetConnectionPointContainerOperation) OpName() string {
 	return "/IConnectionPoint/v0/GetConnectionPointContainer"
 }
@@ -670,6 +687,19 @@ func (o *GetConnectionPointContainerRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeGetConnectionPointContainerRequest build a response structure from the given request structure.
+func (o *GetConnectionPointContainerRequest) MakeResponse() *GetConnectionPointContainerResponse {
+	return &GetConnectionPointContainerResponse{}
+}
+
+// OpNum returns the operation number of GetConnectionPointContainer operation.
+func (o *GetConnectionPointContainerRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetConnectionPointContainer operation.
+func (o *GetConnectionPointContainerRequest) OpName() string {
+	return "/IConnectionPoint/v0/GetConnectionPointContainer"
+}
+
 // GetConnectionPointContainerResponse structure represents the GetConnectionPointContainer operation response
 type GetConnectionPointContainerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -723,8 +753,10 @@ type xxx_AdviseOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Advise operation.
 func (o *xxx_AdviseOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of Advise operation.
 func (o *xxx_AdviseOperation) OpName() string { return "/IConnectionPoint/v0/Advise" }
 
 func (o *xxx_AdviseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -931,6 +963,17 @@ func (o *AdviseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeAdviseRequest build a response structure from the given request structure.
+func (o *AdviseRequest) MakeResponse() *AdviseResponse {
+	return &AdviseResponse{}
+}
+
+// OpNum returns the operation number of Advise operation.
+func (o *AdviseRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of Advise operation.
+func (o *AdviseRequest) OpName() string { return "/IConnectionPoint/v0/Advise" }
+
 // AdviseResponse structure represents the Advise operation response
 type AdviseResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -983,8 +1026,10 @@ type xxx_UnadviseOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Unadvise operation.
 func (o *xxx_UnadviseOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of Unadvise operation.
 func (o *xxx_UnadviseOperation) OpName() string { return "/IConnectionPoint/v0/Unadvise" }
 
 func (o *xxx_UnadviseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1146,6 +1191,17 @@ func (o *UnadviseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeUnadviseRequest build a response structure from the given request structure.
+func (o *UnadviseRequest) MakeResponse() *UnadviseResponse {
+	return &UnadviseResponse{}
+}
+
+// OpNum returns the operation number of Unadvise operation.
+func (o *UnadviseRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of Unadvise operation.
+func (o *UnadviseRequest) OpName() string { return "/IConnectionPoint/v0/Unadvise" }
+
 // UnadviseResponse structure represents the Unadvise operation response
 type UnadviseResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1193,8 +1249,10 @@ type xxx_EnumConnectionsOperation struct {
 	Return int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumConnections operation.
 func (o *xxx_EnumConnectionsOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of EnumConnections operation.
 func (o *xxx_EnumConnectionsOperation) OpName() string { return "/IConnectionPoint/v0/EnumConnections" }
 
 func (o *xxx_EnumConnectionsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1383,6 +1441,17 @@ func (o *EnumConnectionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeEnumConnectionsRequest build a response structure from the given request structure.
+func (o *EnumConnectionsRequest) MakeResponse() *EnumConnectionsResponse {
+	return &EnumConnectionsResponse{}
+}
+
+// OpNum returns the operation number of EnumConnections operation.
+func (o *EnumConnectionsRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of EnumConnections operation.
+func (o *EnumConnectionsRequest) OpName() string { return "/IConnectionPoint/v0/EnumConnections" }
 
 // EnumConnectionsResponse structure represents the EnumConnections operation response
 type EnumConnectionsResponse struct {

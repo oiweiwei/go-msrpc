@@ -1852,8 +1852,10 @@ type xxx_OpenClassesRootOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OpenClassesRoot operation.
 func (o *xxx_OpenClassesRootOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of OpenClassesRoot operation.
 func (o *xxx_OpenClassesRootOperation) OpName() string { return "/winreg/v1/OpenClassesRoot" }
 
 func (o *xxx_OpenClassesRootOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2019,6 +2021,17 @@ func (o *OpenClassesRootRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeOpenClassesRootRequest build a response structure from the given request structure.
+func (o *OpenClassesRootRequest) MakeResponse() *OpenClassesRootResponse {
+	return &OpenClassesRootResponse{}
+}
+
+// OpNum returns the operation number of OpenClassesRoot operation.
+func (o *OpenClassesRootRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of OpenClassesRoot operation.
+func (o *OpenClassesRootRequest) OpName() string { return "/winreg/v1/OpenClassesRoot" }
+
 // OpenClassesRootResponse structure represents the OpenClassesRoot operation response
 type OpenClassesRootResponse struct {
 	// phKey: A pointer to an RPC context handle for the root key, HKEY_CLASSES_ROOT, as
@@ -2067,8 +2080,10 @@ type xxx_OpenCurrentUserOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OpenCurrentUser operation.
 func (o *xxx_OpenCurrentUserOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of OpenCurrentUser operation.
 func (o *xxx_OpenCurrentUserOperation) OpName() string { return "/winreg/v1/OpenCurrentUser" }
 
 func (o *xxx_OpenCurrentUserOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2235,6 +2250,17 @@ func (o *OpenCurrentUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeOpenCurrentUserRequest build a response structure from the given request structure.
+func (o *OpenCurrentUserRequest) MakeResponse() *OpenCurrentUserResponse {
+	return &OpenCurrentUserResponse{}
+}
+
+// OpNum returns the operation number of OpenCurrentUser operation.
+func (o *OpenCurrentUserRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of OpenCurrentUser operation.
+func (o *OpenCurrentUserRequest) OpName() string { return "/winreg/v1/OpenCurrentUser" }
+
 // OpenCurrentUserResponse structure represents the OpenCurrentUser operation response
 type OpenCurrentUserResponse struct {
 	// phKey: A pointer to an RPC context handle for the root key, HKEY_CURRENT_USER, as
@@ -2283,8 +2309,10 @@ type xxx_OpenLocalMachineOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OpenLocalMachine operation.
 func (o *xxx_OpenLocalMachineOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of OpenLocalMachine operation.
 func (o *xxx_OpenLocalMachineOperation) OpName() string { return "/winreg/v1/OpenLocalMachine" }
 
 func (o *xxx_OpenLocalMachineOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2451,6 +2479,17 @@ func (o *OpenLocalMachineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeOpenLocalMachineRequest build a response structure from the given request structure.
+func (o *OpenLocalMachineRequest) MakeResponse() *OpenLocalMachineResponse {
+	return &OpenLocalMachineResponse{}
+}
+
+// OpNum returns the operation number of OpenLocalMachine operation.
+func (o *OpenLocalMachineRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of OpenLocalMachine operation.
+func (o *OpenLocalMachineRequest) OpName() string { return "/winreg/v1/OpenLocalMachine" }
+
 // OpenLocalMachineResponse structure represents the OpenLocalMachine operation response
 type OpenLocalMachineResponse struct {
 	// phKey: A pointer to an RPC context handle for the root key, HKEY_LOCAL_MACHINE, as
@@ -2499,8 +2538,10 @@ type xxx_OpenPerformanceDataOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OpenPerformanceData operation.
 func (o *xxx_OpenPerformanceDataOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of OpenPerformanceData operation.
 func (o *xxx_OpenPerformanceDataOperation) OpName() string { return "/winreg/v1/OpenPerformanceData" }
 
 func (o *xxx_OpenPerformanceDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2665,6 +2706,17 @@ func (o *OpenPerformanceDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeOpenPerformanceDataRequest build a response structure from the given request structure.
+func (o *OpenPerformanceDataRequest) MakeResponse() *OpenPerformanceDataResponse {
+	return &OpenPerformanceDataResponse{}
+}
+
+// OpNum returns the operation number of OpenPerformanceData operation.
+func (o *OpenPerformanceDataRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of OpenPerformanceData operation.
+func (o *OpenPerformanceDataRequest) OpName() string { return "/winreg/v1/OpenPerformanceData" }
+
 // OpenPerformanceDataResponse structure represents the OpenPerformanceData operation response
 type OpenPerformanceDataResponse struct {
 	// phKey: A pointer to an RPC context handle for the root key, HKEY_PERFORMANCE_DATA,
@@ -2713,8 +2765,10 @@ type xxx_OpenUsersOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OpenUsers operation.
 func (o *xxx_OpenUsersOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of OpenUsers operation.
 func (o *xxx_OpenUsersOperation) OpName() string { return "/winreg/v1/OpenUsers" }
 
 func (o *xxx_OpenUsersOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2881,6 +2935,17 @@ func (o *OpenUsersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeOpenUsersRequest build a response structure from the given request structure.
+func (o *OpenUsersRequest) MakeResponse() *OpenUsersResponse {
+	return &OpenUsersResponse{}
+}
+
+// OpNum returns the operation number of OpenUsers operation.
+func (o *OpenUsersRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of OpenUsers operation.
+func (o *OpenUsersRequest) OpName() string { return "/winreg/v1/OpenUsers" }
+
 // OpenUsersResponse structure represents the OpenUsers operation response
 type OpenUsersResponse struct {
 	// phKey: A pointer to an RPC context handle for the root key, HKEY_USERS, as specified
@@ -2927,8 +2992,10 @@ type xxx_BaseRegCloseKeyOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegCloseKey operation.
 func (o *xxx_BaseRegCloseKeyOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of BaseRegCloseKey operation.
 func (o *xxx_BaseRegCloseKeyOperation) OpName() string { return "/winreg/v1/BaseRegCloseKey" }
 
 func (o *xxx_BaseRegCloseKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3063,6 +3130,17 @@ func (o *BaseRegCloseKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeBaseRegCloseKeyRequest build a response structure from the given request structure.
+func (o *BaseRegCloseKeyRequest) MakeResponse() *BaseRegCloseKeyResponse {
+	return &BaseRegCloseKeyResponse{}
+}
+
+// OpNum returns the operation number of BaseRegCloseKey operation.
+func (o *BaseRegCloseKeyRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of BaseRegCloseKey operation.
+func (o *BaseRegCloseKeyRequest) OpName() string { return "/winreg/v1/BaseRegCloseKey" }
+
 // BaseRegCloseKeyResponse structure represents the BaseRegCloseKey operation response
 type BaseRegCloseKeyResponse struct {
 	// hKey: A handle to a key that MUST have been opened previously by using one of the
@@ -3118,8 +3196,10 @@ type xxx_BaseRegCreateKeyOperation struct {
 	Return             uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegCreateKey operation.
 func (o *xxx_BaseRegCreateKeyOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of BaseRegCreateKey operation.
 func (o *xxx_BaseRegCreateKeyOperation) OpName() string { return "/winreg/v1/BaseRegCreateKey" }
 
 func (o *xxx_BaseRegCreateKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3504,6 +3584,17 @@ func (o *BaseRegCreateKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeBaseRegCreateKeyRequest build a response structure from the given request structure.
+func (o *BaseRegCreateKeyRequest) MakeResponse() *BaseRegCreateKeyResponse {
+	return &BaseRegCreateKeyResponse{}
+}
+
+// OpNum returns the operation number of BaseRegCreateKey operation.
+func (o *BaseRegCreateKeyRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of BaseRegCreateKey operation.
+func (o *BaseRegCreateKeyRequest) OpName() string { return "/winreg/v1/BaseRegCreateKey" }
+
 // BaseRegCreateKeyResponse structure represents the BaseRegCreateKey operation response
 type BaseRegCreateKeyResponse struct {
 	// phkResult: A pointer to a variable that receives a handle to the opened or created
@@ -3568,8 +3659,10 @@ type xxx_BaseRegDeleteKeyOperation struct {
 	Return uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegDeleteKey operation.
 func (o *xxx_BaseRegDeleteKeyOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of BaseRegDeleteKey operation.
 func (o *xxx_BaseRegDeleteKeyOperation) OpName() string { return "/winreg/v1/BaseRegDeleteKey" }
 
 func (o *xxx_BaseRegDeleteKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3715,6 +3808,17 @@ func (o *BaseRegDeleteKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeBaseRegDeleteKeyRequest build a response structure from the given request structure.
+func (o *BaseRegDeleteKeyRequest) MakeResponse() *BaseRegDeleteKeyResponse {
+	return &BaseRegDeleteKeyResponse{}
+}
+
+// OpNum returns the operation number of BaseRegDeleteKey operation.
+func (o *BaseRegDeleteKeyRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of BaseRegDeleteKey operation.
+func (o *BaseRegDeleteKeyRequest) OpName() string { return "/winreg/v1/BaseRegDeleteKey" }
+
 // BaseRegDeleteKeyResponse structure represents the BaseRegDeleteKey operation response
 type BaseRegDeleteKeyResponse struct {
 	// Return: The BaseRegDeleteKey return value.
@@ -3757,8 +3861,10 @@ type xxx_BaseRegDeleteValueOperation struct {
 	Return    uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegDeleteValue operation.
 func (o *xxx_BaseRegDeleteValueOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of BaseRegDeleteValue operation.
 func (o *xxx_BaseRegDeleteValueOperation) OpName() string { return "/winreg/v1/BaseRegDeleteValue" }
 
 func (o *xxx_BaseRegDeleteValueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3905,6 +4011,17 @@ func (o *BaseRegDeleteValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeBaseRegDeleteValueRequest build a response structure from the given request structure.
+func (o *BaseRegDeleteValueRequest) MakeResponse() *BaseRegDeleteValueResponse {
+	return &BaseRegDeleteValueResponse{}
+}
+
+// OpNum returns the operation number of BaseRegDeleteValue operation.
+func (o *BaseRegDeleteValueRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of BaseRegDeleteValue operation.
+func (o *BaseRegDeleteValueRequest) OpName() string { return "/winreg/v1/BaseRegDeleteValue" }
+
 // BaseRegDeleteValueResponse structure represents the BaseRegDeleteValue operation response
 type BaseRegDeleteValueResponse struct {
 	// Return: The BaseRegDeleteValue return value.
@@ -3952,8 +4069,10 @@ type xxx_BaseRegEnumKeyOperation struct {
 	Return        uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegEnumKey operation.
 func (o *xxx_BaseRegEnumKeyOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of BaseRegEnumKey operation.
 func (o *xxx_BaseRegEnumKeyOperation) OpName() string { return "/winreg/v1/BaseRegEnumKey" }
 
 func (o *xxx_BaseRegEnumKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4340,6 +4459,17 @@ func (o *BaseRegEnumKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeBaseRegEnumKeyRequest build a response structure from the given request structure.
+func (o *BaseRegEnumKeyRequest) MakeResponse() *BaseRegEnumKeyResponse {
+	return &BaseRegEnumKeyResponse{}
+}
+
+// OpNum returns the operation number of BaseRegEnumKey operation.
+func (o *BaseRegEnumKeyRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of BaseRegEnumKey operation.
+func (o *BaseRegEnumKeyRequest) OpName() string { return "/winreg/v1/BaseRegEnumKey" }
+
 // BaseRegEnumKeyResponse structure represents the BaseRegEnumKey operation response
 type BaseRegEnumKeyResponse struct {
 	// lpNameOut: A pointer to an RRP_UNICODE_STRING structure that receives the name of
@@ -4403,8 +4533,10 @@ type xxx_BaseRegEnumValueOperation struct {
 	Return       uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegEnumValue operation.
 func (o *xxx_BaseRegEnumValueOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of BaseRegEnumValue operation.
 func (o *xxx_BaseRegEnumValueOperation) OpName() string { return "/winreg/v1/BaseRegEnumValue" }
 
 func (o *xxx_BaseRegEnumValueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5010,6 +5142,17 @@ func (o *BaseRegEnumValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeBaseRegEnumValueRequest build a response structure from the given request structure.
+func (o *BaseRegEnumValueRequest) MakeResponse() *BaseRegEnumValueResponse {
+	return &BaseRegEnumValueResponse{}
+}
+
+// OpNum returns the operation number of BaseRegEnumValue operation.
+func (o *BaseRegEnumValueRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of BaseRegEnumValue operation.
+func (o *BaseRegEnumValueRequest) OpName() string { return "/winreg/v1/BaseRegEnumValue" }
+
 // BaseRegEnumValueResponse structure represents the BaseRegEnumValue operation response
 type BaseRegEnumValueResponse struct {
 	// lpValueNameOut: A pointer to an RPC_UNICODE_STRING structure that receives the retrieved
@@ -5074,8 +5217,10 @@ type xxx_BaseRegFlushKeyOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegFlushKey operation.
 func (o *xxx_BaseRegFlushKeyOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of BaseRegFlushKey operation.
 func (o *xxx_BaseRegFlushKeyOperation) OpName() string { return "/winreg/v1/BaseRegFlushKey" }
 
 func (o *xxx_BaseRegFlushKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5189,6 +5334,17 @@ func (o *BaseRegFlushKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeBaseRegFlushKeyRequest build a response structure from the given request structure.
+func (o *BaseRegFlushKeyRequest) MakeResponse() *BaseRegFlushKeyResponse {
+	return &BaseRegFlushKeyResponse{}
+}
+
+// OpNum returns the operation number of BaseRegFlushKey operation.
+func (o *BaseRegFlushKeyRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of BaseRegFlushKey operation.
+func (o *BaseRegFlushKeyRequest) OpName() string { return "/winreg/v1/BaseRegFlushKey" }
+
 // BaseRegFlushKeyResponse structure represents the BaseRegFlushKey operation response
 type BaseRegFlushKeyResponse struct {
 	// Return: The BaseRegFlushKey return value.
@@ -5233,8 +5389,10 @@ type xxx_BaseRegGetKeySecurityOperation struct {
 	Return                uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegGetKeySecurity operation.
 func (o *xxx_BaseRegGetKeySecurityOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of BaseRegGetKeySecurity operation.
 func (o *xxx_BaseRegGetKeySecurityOperation) OpName() string {
 	return "/winreg/v1/BaseRegGetKeySecurity"
 }
@@ -5430,6 +5588,17 @@ func (o *BaseRegGetKeySecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeBaseRegGetKeySecurityRequest build a response structure from the given request structure.
+func (o *BaseRegGetKeySecurityRequest) MakeResponse() *BaseRegGetKeySecurityResponse {
+	return &BaseRegGetKeySecurityResponse{}
+}
+
+// OpNum returns the operation number of BaseRegGetKeySecurity operation.
+func (o *BaseRegGetKeySecurityRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of BaseRegGetKeySecurity operation.
+func (o *BaseRegGetKeySecurityRequest) OpName() string { return "/winreg/v1/BaseRegGetKeySecurity" }
+
 // BaseRegGetKeySecurityResponse structure represents the BaseRegGetKeySecurity operation response
 type BaseRegGetKeySecurityResponse struct {
 	// pRpcSecurityDescriptorOut: A pointer to a buffer to which the requested security
@@ -5478,8 +5647,10 @@ type xxx_BaseRegLoadKeyOperation struct {
 	Return uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegLoadKey operation.
 func (o *xxx_BaseRegLoadKeyOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of BaseRegLoadKey operation.
 func (o *xxx_BaseRegLoadKeyOperation) OpName() string { return "/winreg/v1/BaseRegLoadKey" }
 
 func (o *xxx_BaseRegLoadKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5662,6 +5833,17 @@ func (o *BaseRegLoadKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeBaseRegLoadKeyRequest build a response structure from the given request structure.
+func (o *BaseRegLoadKeyRequest) MakeResponse() *BaseRegLoadKeyResponse {
+	return &BaseRegLoadKeyResponse{}
+}
+
+// OpNum returns the operation number of BaseRegLoadKey operation.
+func (o *BaseRegLoadKeyRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of BaseRegLoadKey operation.
+func (o *BaseRegLoadKeyRequest) OpName() string { return "/winreg/v1/BaseRegLoadKey" }
+
 // BaseRegLoadKeyResponse structure represents the BaseRegLoadKey operation response
 type BaseRegLoadKeyResponse struct {
 	// Return: The BaseRegLoadKey return value.
@@ -5707,8 +5889,10 @@ type xxx_BaseRegOpenKeyOperation struct {
 	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegOpenKey operation.
 func (o *xxx_BaseRegOpenKeyOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of BaseRegOpenKey operation.
 func (o *xxx_BaseRegOpenKeyOperation) OpName() string { return "/winreg/v1/BaseRegOpenKey" }
 
 func (o *xxx_BaseRegOpenKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5926,6 +6110,17 @@ func (o *BaseRegOpenKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeBaseRegOpenKeyRequest build a response structure from the given request structure.
+func (o *BaseRegOpenKeyRequest) MakeResponse() *BaseRegOpenKeyResponse {
+	return &BaseRegOpenKeyResponse{}
+}
+
+// OpNum returns the operation number of BaseRegOpenKey operation.
+func (o *BaseRegOpenKeyRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of BaseRegOpenKey operation.
+func (o *BaseRegOpenKeyRequest) OpName() string { return "/winreg/v1/BaseRegOpenKey" }
+
 // BaseRegOpenKeyResponse structure represents the BaseRegOpenKey operation response
 type BaseRegOpenKeyResponse struct {
 	// phkResult: A pointer to the handle of the open key. The server MUST return a NULL
@@ -5982,8 +6177,10 @@ type xxx_BaseRegQueryInfoKeyOperation struct {
 	Return                   uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegQueryInfoKey operation.
 func (o *xxx_BaseRegQueryInfoKeyOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of BaseRegQueryInfoKey operation.
 func (o *xxx_BaseRegQueryInfoKeyOperation) OpName() string { return "/winreg/v1/BaseRegQueryInfoKey" }
 
 func (o *xxx_BaseRegQueryInfoKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6262,6 +6459,17 @@ func (o *BaseRegQueryInfoKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeBaseRegQueryInfoKeyRequest build a response structure from the given request structure.
+func (o *BaseRegQueryInfoKeyRequest) MakeResponse() *BaseRegQueryInfoKeyResponse {
+	return &BaseRegQueryInfoKeyResponse{}
+}
+
+// OpNum returns the operation number of BaseRegQueryInfoKey operation.
+func (o *BaseRegQueryInfoKeyRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of BaseRegQueryInfoKey operation.
+func (o *BaseRegQueryInfoKeyRequest) OpName() string { return "/winreg/v1/BaseRegQueryInfoKey" }
+
 // BaseRegQueryInfoKeyResponse structure represents the BaseRegQueryInfoKey operation response
 type BaseRegQueryInfoKeyResponse struct {
 	// lpClassOut: A pointer to an RPC_UNICODE_STRING structure that receives the class
@@ -6355,8 +6563,10 @@ type xxx_BaseRegQueryValueOperation struct {
 	Return     uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegQueryValue operation.
 func (o *xxx_BaseRegQueryValueOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of BaseRegQueryValue operation.
 func (o *xxx_BaseRegQueryValueOperation) OpName() string { return "/winreg/v1/BaseRegQueryValue" }
 
 func (o *xxx_BaseRegQueryValueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6928,6 +7138,17 @@ func (o *BaseRegQueryValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeBaseRegQueryValueRequest build a response structure from the given request structure.
+func (o *BaseRegQueryValueRequest) MakeResponse() *BaseRegQueryValueResponse {
+	return &BaseRegQueryValueResponse{}
+}
+
+// OpNum returns the operation number of BaseRegQueryValue operation.
+func (o *BaseRegQueryValueRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of BaseRegQueryValue operation.
+func (o *BaseRegQueryValueRequest) OpName() string { return "/winreg/v1/BaseRegQueryValue" }
+
 // BaseRegQueryValueResponse structure represents the BaseRegQueryValue operation response
 type BaseRegQueryValueResponse struct {
 	// lpType: On input, the client sets lpType to a pointer to a variable to receive the
@@ -7000,8 +7221,10 @@ type xxx_BaseRegReplaceKeyOperation struct {
 	Return  uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegReplaceKey operation.
 func (o *xxx_BaseRegReplaceKeyOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of BaseRegReplaceKey operation.
 func (o *xxx_BaseRegReplaceKeyOperation) OpName() string { return "/winreg/v1/BaseRegReplaceKey" }
 
 func (o *xxx_BaseRegReplaceKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7215,6 +7438,17 @@ func (o *BaseRegReplaceKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeBaseRegReplaceKeyRequest build a response structure from the given request structure.
+func (o *BaseRegReplaceKeyRequest) MakeResponse() *BaseRegReplaceKeyResponse {
+	return &BaseRegReplaceKeyResponse{}
+}
+
+// OpNum returns the operation number of BaseRegReplaceKey operation.
+func (o *BaseRegReplaceKeyRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of BaseRegReplaceKey operation.
+func (o *BaseRegReplaceKeyRequest) OpName() string { return "/winreg/v1/BaseRegReplaceKey" }
+
 // BaseRegReplaceKeyResponse structure represents the BaseRegReplaceKey operation response
 type BaseRegReplaceKeyResponse struct {
 	// Return: The BaseRegReplaceKey return value.
@@ -7258,8 +7492,10 @@ type xxx_BaseRegRestoreKeyOperation struct {
 	Return uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegRestoreKey operation.
 func (o *xxx_BaseRegRestoreKeyOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of BaseRegRestoreKey operation.
 func (o *xxx_BaseRegRestoreKeyOperation) OpName() string { return "/winreg/v1/BaseRegRestoreKey" }
 
 func (o *xxx_BaseRegRestoreKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7447,6 +7683,17 @@ func (o *BaseRegRestoreKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeBaseRegRestoreKeyRequest build a response structure from the given request structure.
+func (o *BaseRegRestoreKeyRequest) MakeResponse() *BaseRegRestoreKeyResponse {
+	return &BaseRegRestoreKeyResponse{}
+}
+
+// OpNum returns the operation number of BaseRegRestoreKey operation.
+func (o *BaseRegRestoreKeyRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of BaseRegRestoreKey operation.
+func (o *BaseRegRestoreKeyRequest) OpName() string { return "/winreg/v1/BaseRegRestoreKey" }
+
 // BaseRegRestoreKeyResponse structure represents the BaseRegRestoreKey operation response
 type BaseRegRestoreKeyResponse struct {
 	// Return: The BaseRegRestoreKey return value.
@@ -7490,8 +7737,10 @@ type xxx_BaseRegSaveKeyOperation struct {
 	Return             uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegSaveKey operation.
 func (o *xxx_BaseRegSaveKeyOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of BaseRegSaveKey operation.
 func (o *xxx_BaseRegSaveKeyOperation) OpName() string { return "/winreg/v1/BaseRegSaveKey" }
 
 func (o *xxx_BaseRegSaveKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7688,6 +7937,17 @@ func (o *BaseRegSaveKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeBaseRegSaveKeyRequest build a response structure from the given request structure.
+func (o *BaseRegSaveKeyRequest) MakeResponse() *BaseRegSaveKeyResponse {
+	return &BaseRegSaveKeyResponse{}
+}
+
+// OpNum returns the operation number of BaseRegSaveKey operation.
+func (o *BaseRegSaveKeyRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of BaseRegSaveKey operation.
+func (o *BaseRegSaveKeyRequest) OpName() string { return "/winreg/v1/BaseRegSaveKey" }
+
 // BaseRegSaveKeyResponse structure represents the BaseRegSaveKey operation response
 type BaseRegSaveKeyResponse struct {
 	// Return: The BaseRegSaveKey return value.
@@ -7731,8 +7991,10 @@ type xxx_BaseRegSetKeySecurityOperation struct {
 	Return              uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegSetKeySecurity operation.
 func (o *xxx_BaseRegSetKeySecurityOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of BaseRegSetKeySecurity operation.
 func (o *xxx_BaseRegSetKeySecurityOperation) OpName() string {
 	return "/winreg/v1/BaseRegSetKeySecurity"
 }
@@ -7897,6 +8159,17 @@ func (o *BaseRegSetKeySecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeBaseRegSetKeySecurityRequest build a response structure from the given request structure.
+func (o *BaseRegSetKeySecurityRequest) MakeResponse() *BaseRegSetKeySecurityResponse {
+	return &BaseRegSetKeySecurityResponse{}
+}
+
+// OpNum returns the operation number of BaseRegSetKeySecurity operation.
+func (o *BaseRegSetKeySecurityRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of BaseRegSetKeySecurity operation.
+func (o *BaseRegSetKeySecurityRequest) OpName() string { return "/winreg/v1/BaseRegSetKeySecurity" }
+
 // BaseRegSetKeySecurityResponse structure represents the BaseRegSetKeySecurity operation response
 type BaseRegSetKeySecurityResponse struct {
 	// Return: The BaseRegSetKeySecurity return value.
@@ -7942,8 +8215,10 @@ type xxx_BaseRegSetValueOperation struct {
 	Return     uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegSetValue operation.
 func (o *xxx_BaseRegSetValueOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of BaseRegSetValue operation.
 func (o *xxx_BaseRegSetValueOperation) OpName() string { return "/winreg/v1/BaseRegSetValue" }
 
 func (o *xxx_BaseRegSetValueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8174,6 +8449,17 @@ func (o *BaseRegSetValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeBaseRegSetValueRequest build a response structure from the given request structure.
+func (o *BaseRegSetValueRequest) MakeResponse() *BaseRegSetValueResponse {
+	return &BaseRegSetValueResponse{}
+}
+
+// OpNum returns the operation number of BaseRegSetValue operation.
+func (o *BaseRegSetValueRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of BaseRegSetValue operation.
+func (o *BaseRegSetValueRequest) OpName() string { return "/winreg/v1/BaseRegSetValue" }
+
 // BaseRegSetValueResponse structure represents the BaseRegSetValue operation response
 type BaseRegSetValueResponse struct {
 	// Return: The BaseRegSetValue return value.
@@ -8216,8 +8502,10 @@ type xxx_BaseRegUnloadKeyOperation struct {
 	Return uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegUnLoadKey operation.
 func (o *xxx_BaseRegUnloadKeyOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of BaseRegUnLoadKey operation.
 func (o *xxx_BaseRegUnloadKeyOperation) OpName() string { return "/winreg/v1/BaseRegUnLoadKey" }
 
 func (o *xxx_BaseRegUnloadKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8362,6 +8650,17 @@ func (o *BaseRegUnloadKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeBaseRegUnloadKeyRequest build a response structure from the given request structure.
+func (o *BaseRegUnloadKeyRequest) MakeResponse() *BaseRegUnloadKeyResponse {
+	return &BaseRegUnloadKeyResponse{}
+}
+
+// OpNum returns the operation number of BaseRegUnLoadKey operation.
+func (o *BaseRegUnloadKeyRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of BaseRegUnLoadKey operation.
+func (o *BaseRegUnloadKeyRequest) OpName() string { return "/winreg/v1/BaseRegUnLoadKey" }
+
 // BaseRegUnloadKeyResponse structure represents the BaseRegUnLoadKey operation response
 type BaseRegUnloadKeyResponse struct {
 	// Return: The BaseRegUnLoadKey return value.
@@ -8404,8 +8703,10 @@ type xxx_BaseRegGetVersionOperation struct {
 	Return  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegGetVersion operation.
 func (o *xxx_BaseRegGetVersionOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of BaseRegGetVersion operation.
 func (o *xxx_BaseRegGetVersionOperation) OpName() string { return "/winreg/v1/BaseRegGetVersion" }
 
 func (o *xxx_BaseRegGetVersionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8531,6 +8832,17 @@ func (o *BaseRegGetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeBaseRegGetVersionRequest build a response structure from the given request structure.
+func (o *BaseRegGetVersionRequest) MakeResponse() *BaseRegGetVersionResponse {
+	return &BaseRegGetVersionResponse{}
+}
+
+// OpNum returns the operation number of BaseRegGetVersion operation.
+func (o *BaseRegGetVersionRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of BaseRegGetVersion operation.
+func (o *BaseRegGetVersionRequest) OpName() string { return "/winreg/v1/BaseRegGetVersion" }
+
 // BaseRegGetVersionResponse structure represents the BaseRegGetVersion operation response
 type BaseRegGetVersionResponse struct {
 	// lpdwVersion: A buffer in which the registry version MUST be returned. The registry
@@ -8579,8 +8891,10 @@ type xxx_OpenCurrentConfigOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OpenCurrentConfig operation.
 func (o *xxx_OpenCurrentConfigOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of OpenCurrentConfig operation.
 func (o *xxx_OpenCurrentConfigOperation) OpName() string { return "/winreg/v1/OpenCurrentConfig" }
 
 func (o *xxx_OpenCurrentConfigOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8747,6 +9061,17 @@ func (o *OpenCurrentConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeOpenCurrentConfigRequest build a response structure from the given request structure.
+func (o *OpenCurrentConfigRequest) MakeResponse() *OpenCurrentConfigResponse {
+	return &OpenCurrentConfigResponse{}
+}
+
+// OpNum returns the operation number of OpenCurrentConfig operation.
+func (o *OpenCurrentConfigRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of OpenCurrentConfig operation.
+func (o *OpenCurrentConfigRequest) OpName() string { return "/winreg/v1/OpenCurrentConfig" }
+
 // OpenCurrentConfigResponse structure represents the OpenCurrentConfig operation response
 type OpenCurrentConfigResponse struct {
 	// phKey: A handle to the root key, HKEY_CURRENT_CONFIG, as specified in section 3.1.1.7.
@@ -8791,24 +9116,26 @@ type xxx_BaseRegQueryMultipleValuesOperation struct {
 	Key          *Key          `idl:"name:hKey" json:"key"`
 	ValueListIn  []*ValueEntry `idl:"name:val_listIn;size_is:(num_vals);length_is:(num_vals)" json:"value_list_in"`
 	ValueListOut []*ValueEntry `idl:"name:val_listOut;size_is:(num_vals);length_is:(num_vals)" json:"value_list_out"`
-	ValsLength   uint32        `idl:"name:num_vals" json:"vals_length"`
+	ValuesLength uint32        `idl:"name:num_vals" json:"values_length"`
 	Buffer       []byte        `idl:"name:lpvalueBuf;size_is:(ldwTotsize);length_is:(ldwTotsize);pointer:unique" json:"buffer"`
 	TotalSize    uint32        `idl:"name:ldwTotsize;pointer:ref" json:"total_size"`
 	Return       uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegQueryMultipleValues operation.
 func (o *xxx_BaseRegQueryMultipleValuesOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of BaseRegQueryMultipleValues operation.
 func (o *xxx_BaseRegQueryMultipleValuesOperation) OpName() string {
 	return "/winreg/v1/BaseRegQueryMultipleValues"
 }
 
 func (o *xxx_BaseRegQueryMultipleValuesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
-	if o.ValueListIn != nil && o.ValsLength == 0 {
-		o.ValsLength = uint32(len(o.ValueListIn))
+	if o.ValueListIn != nil && o.ValuesLength == 0 {
+		o.ValuesLength = uint32(len(o.ValueListIn))
 	}
-	if o.ValueListIn != nil && o.ValsLength == 0 {
-		o.ValsLength = uint32(len(o.ValueListIn))
+	if o.ValueListIn != nil && o.ValuesLength == 0 {
+		o.ValuesLength = uint32(len(o.ValueListIn))
 	}
 	if o.Buffer != nil && o.TotalSize == 0 {
 		o.TotalSize = uint32(len(o.Buffer))
@@ -8842,14 +9169,14 @@ func (o *xxx_BaseRegQueryMultipleValuesOperation) MarshalNDRRequest(ctx context.
 	}
 	// val_listIn {in} (1:{alias=PRVALENT}*(1))(2:{alias=RVALENT}[dim:0,size_is=num_vals,length_is=num_vals](struct))
 	{
-		dimSize1 := uint64(o.ValsLength)
+		dimSize1 := uint64(o.ValuesLength)
 		if err := w.WriteSize(dimSize1); err != nil {
 			return err
 		}
 		sizeInfo := []uint64{
 			dimSize1,
 		}
-		dimLength1 := uint64(o.ValsLength)
+		dimLength1 := uint64(o.ValuesLength)
 		if dimLength1 > sizeInfo[0] {
 			dimLength1 = sizeInfo[0]
 		} else {
@@ -8887,7 +9214,7 @@ func (o *xxx_BaseRegQueryMultipleValuesOperation) MarshalNDRRequest(ctx context.
 	}
 	// num_vals {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.ValsLength); err != nil {
+		if err := w.WriteData(o.ValuesLength); err != nil {
 			return err
 		}
 	}
@@ -8998,7 +9325,7 @@ func (o *xxx_BaseRegQueryMultipleValuesOperation) UnmarshalNDRRequest(ctx contex
 	}
 	// num_vals {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.ValsLength); err != nil {
+		if err := w.ReadData(&o.ValuesLength); err != nil {
 			return err
 		}
 	}
@@ -9071,14 +9398,14 @@ func (o *xxx_BaseRegQueryMultipleValuesOperation) MarshalNDRResponse(ctx context
 	}
 	// val_listOut {out} (1:{alias=PRVALENT}*(1))(2:{alias=RVALENT}[dim:0,size_is=num_vals,length_is=num_vals](struct))
 	{
-		dimSize1 := uint64(o.ValsLength)
+		dimSize1 := uint64(o.ValuesLength)
 		if err := w.WriteSize(dimSize1); err != nil {
 			return err
 		}
 		sizeInfo := []uint64{
 			dimSize1,
 		}
-		dimLength1 := uint64(o.ValsLength)
+		dimLength1 := uint64(o.ValuesLength)
 		if dimLength1 > sizeInfo[0] {
 			dimLength1 = sizeInfo[0]
 		} else {
@@ -9282,7 +9609,7 @@ type BaseRegQueryMultipleValuesRequest struct {
 	// be returned.
 	ValueListIn []*ValueEntry `idl:"name:val_listIn;size_is:(num_vals);length_is:(num_vals)" json:"value_list_in"`
 	// num_vals: The size in bytes of the val_list array.
-	ValsLength uint32 `idl:"name:num_vals" json:"vals_length"`
+	ValuesLength uint32 `idl:"name:num_vals" json:"values_length"`
 	// lpvalueBuf: Returns the data for each value that is specified by the val_listOut
 	// parameter.
 	Buffer []byte `idl:"name:lpvalueBuf;size_is:(ldwTotsize);length_is:(ldwTotsize);pointer:unique" json:"buffer"`
@@ -9299,7 +9626,7 @@ func (o *BaseRegQueryMultipleValuesRequest) xxx_ToOp(ctx context.Context, op *xx
 	}
 	op.Key = o.Key
 	op.ValueListIn = o.ValueListIn
-	op.ValsLength = o.ValsLength
+	op.ValuesLength = o.ValuesLength
 	op.Buffer = o.Buffer
 	op.TotalSize = o.TotalSize
 	return op
@@ -9311,7 +9638,7 @@ func (o *BaseRegQueryMultipleValuesRequest) xxx_FromOp(ctx context.Context, op *
 	}
 	o.Key = op.Key
 	o.ValueListIn = op.ValueListIn
-	o.ValsLength = op.ValsLength
+	o.ValuesLength = op.ValuesLength
 	o.Buffer = op.Buffer
 	o.TotalSize = op.TotalSize
 }
@@ -9327,10 +9654,28 @@ func (o *BaseRegQueryMultipleValuesRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeBaseRegQueryMultipleValuesRequest build a response structure from the given request structure.
+func (o *BaseRegQueryMultipleValuesRequest) MakeResponse() *BaseRegQueryMultipleValuesResponse {
+	if o == nil {
+		return &BaseRegQueryMultipleValuesResponse{}
+	}
+	return &BaseRegQueryMultipleValuesResponse{
+		ValuesLength: o.ValuesLength,
+	}
+}
+
+// OpNum returns the operation number of BaseRegQueryMultipleValues operation.
+func (o *BaseRegQueryMultipleValuesRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of BaseRegQueryMultipleValues operation.
+func (o *BaseRegQueryMultipleValuesRequest) OpName() string {
+	return "/winreg/v1/BaseRegQueryMultipleValues"
+}
+
 // BaseRegQueryMultipleValuesResponse structure represents the BaseRegQueryMultipleValues operation response
 type BaseRegQueryMultipleValuesResponse struct {
 	// XXX: num_vals is an implicit input depedency for output parameters
-	ValsLength uint32 `idl:"name:num_vals" json:"vals_length"`
+	ValuesLength uint32 `idl:"name:num_vals" json:"values_length"`
 
 	// val_listOut: A pointer to an array of RVALENT structures, one for each value to be
 	// queried.
@@ -9352,8 +9697,8 @@ func (o *BaseRegQueryMultipleValuesResponse) xxx_ToOp(ctx context.Context, op *x
 		return op
 	}
 	// XXX: implicit input dependencies for output parameters
-	if op.ValsLength == uint32(0) {
-		op.ValsLength = o.ValsLength
+	if op.ValuesLength == uint32(0) {
+		op.ValuesLength = o.ValuesLength
 	}
 
 	op.ValueListOut = o.ValueListOut
@@ -9368,7 +9713,7 @@ func (o *BaseRegQueryMultipleValuesResponse) xxx_FromOp(ctx context.Context, op 
 		return
 	}
 	// XXX: implicit input dependencies for output parameters
-	o.ValsLength = op.ValsLength
+	o.ValuesLength = op.ValuesLength
 
 	o.ValueListOut = op.ValueListOut
 	o.Buffer = op.Buffer
@@ -9396,8 +9741,10 @@ type xxx_BaseRegSaveKeyExOperation struct {
 	Return             uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegSaveKeyEx operation.
 func (o *xxx_BaseRegSaveKeyExOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of BaseRegSaveKeyEx operation.
 func (o *xxx_BaseRegSaveKeyExOperation) OpName() string { return "/winreg/v1/BaseRegSaveKeyEx" }
 
 func (o *xxx_BaseRegSaveKeyExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9626,6 +9973,17 @@ func (o *BaseRegSaveKeyExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeBaseRegSaveKeyExRequest build a response structure from the given request structure.
+func (o *BaseRegSaveKeyExRequest) MakeResponse() *BaseRegSaveKeyExResponse {
+	return &BaseRegSaveKeyExResponse{}
+}
+
+// OpNum returns the operation number of BaseRegSaveKeyEx operation.
+func (o *BaseRegSaveKeyExRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of BaseRegSaveKeyEx operation.
+func (o *BaseRegSaveKeyExRequest) OpName() string { return "/winreg/v1/BaseRegSaveKeyEx" }
+
 // BaseRegSaveKeyExResponse structure represents the BaseRegSaveKeyEx operation response
 type BaseRegSaveKeyExResponse struct {
 	// Return: The BaseRegSaveKeyEx return value.
@@ -9669,8 +10027,10 @@ type xxx_OpenPerformanceTextOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OpenPerformanceText operation.
 func (o *xxx_OpenPerformanceTextOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of OpenPerformanceText operation.
 func (o *xxx_OpenPerformanceTextOperation) OpName() string { return "/winreg/v1/OpenPerformanceText" }
 
 func (o *xxx_OpenPerformanceTextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9835,6 +10195,17 @@ func (o *OpenPerformanceTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeOpenPerformanceTextRequest build a response structure from the given request structure.
+func (o *OpenPerformanceTextRequest) MakeResponse() *OpenPerformanceTextResponse {
+	return &OpenPerformanceTextResponse{}
+}
+
+// OpNum returns the operation number of OpenPerformanceText operation.
+func (o *OpenPerformanceTextRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of OpenPerformanceText operation.
+func (o *OpenPerformanceTextRequest) OpName() string { return "/winreg/v1/OpenPerformanceText" }
+
 // OpenPerformanceTextResponse structure represents the OpenPerformanceText operation response
 type OpenPerformanceTextResponse struct {
 	// phKey: A pointer to a variable that receives a handle to the root key HKEY_PERFORMANCE_TEXT.
@@ -9882,8 +10253,10 @@ type xxx_OpenPerformanceNlsTextOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OpenPerformanceNlsText operation.
 func (o *xxx_OpenPerformanceNlsTextOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of OpenPerformanceNlsText operation.
 func (o *xxx_OpenPerformanceNlsTextOperation) OpName() string {
 	return "/winreg/v1/OpenPerformanceNlsText"
 }
@@ -10050,6 +10423,17 @@ func (o *OpenPerformanceNlsTextRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeOpenPerformanceNlsTextRequest build a response structure from the given request structure.
+func (o *OpenPerformanceNlsTextRequest) MakeResponse() *OpenPerformanceNlsTextResponse {
+	return &OpenPerformanceNlsTextResponse{}
+}
+
+// OpNum returns the operation number of OpenPerformanceNlsText operation.
+func (o *OpenPerformanceNlsTextRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of OpenPerformanceNlsText operation.
+func (o *OpenPerformanceNlsTextRequest) OpName() string { return "/winreg/v1/OpenPerformanceNlsText" }
+
 // OpenPerformanceNlsTextResponse structure represents the OpenPerformanceNlsText operation response
 type OpenPerformanceNlsTextResponse struct {
 	// phKey: A pointer to a variable that receives a handle to the root key HKEY_PERFORMANCE_NLSTEXT,
@@ -10095,25 +10479,27 @@ type xxx_BaseRegQueryMultipleValues2Operation struct {
 	Key          *Key          `idl:"name:hKey" json:"key"`
 	ValueListIn  []*ValueEntry `idl:"name:val_listIn;size_is:(num_vals);length_is:(num_vals)" json:"value_list_in"`
 	ValueListOut []*ValueEntry `idl:"name:val_listOut;size_is:(num_vals);length_is:(num_vals)" json:"value_list_out"`
-	ValsLength   uint32        `idl:"name:num_vals" json:"vals_length"`
+	ValuesLength uint32        `idl:"name:num_vals" json:"values_length"`
 	Buffer       []byte        `idl:"name:lpvalueBuf;size_is:(ldwTotsize);length_is:(ldwTotsize);pointer:unique" json:"buffer"`
 	TotalSize    uint32        `idl:"name:ldwTotsize" json:"total_size"`
 	RequiredSize uint32        `idl:"name:ldwRequiredSize" json:"required_size"`
 	Return       uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegQueryMultipleValues2 operation.
 func (o *xxx_BaseRegQueryMultipleValues2Operation) OpNum() int { return 34 }
 
+// OpName returns the operation name of BaseRegQueryMultipleValues2 operation.
 func (o *xxx_BaseRegQueryMultipleValues2Operation) OpName() string {
 	return "/winreg/v1/BaseRegQueryMultipleValues2"
 }
 
 func (o *xxx_BaseRegQueryMultipleValues2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
-	if o.ValueListIn != nil && o.ValsLength == 0 {
-		o.ValsLength = uint32(len(o.ValueListIn))
+	if o.ValueListIn != nil && o.ValuesLength == 0 {
+		o.ValuesLength = uint32(len(o.ValueListIn))
 	}
-	if o.ValueListIn != nil && o.ValsLength == 0 {
-		o.ValsLength = uint32(len(o.ValueListIn))
+	if o.ValueListIn != nil && o.ValuesLength == 0 {
+		o.ValuesLength = uint32(len(o.ValueListIn))
 	}
 	if o.Buffer != nil && o.TotalSize == 0 {
 		o.TotalSize = uint32(len(o.Buffer))
@@ -10147,14 +10533,14 @@ func (o *xxx_BaseRegQueryMultipleValues2Operation) MarshalNDRRequest(ctx context
 	}
 	// val_listIn {in} (1:{alias=PRVALENT}*(1))(2:{alias=RVALENT}[dim:0,size_is=num_vals,length_is=num_vals](struct))
 	{
-		dimSize1 := uint64(o.ValsLength)
+		dimSize1 := uint64(o.ValuesLength)
 		if err := w.WriteSize(dimSize1); err != nil {
 			return err
 		}
 		sizeInfo := []uint64{
 			dimSize1,
 		}
-		dimLength1 := uint64(o.ValsLength)
+		dimLength1 := uint64(o.ValuesLength)
 		if dimLength1 > sizeInfo[0] {
 			dimLength1 = sizeInfo[0]
 		} else {
@@ -10192,7 +10578,7 @@ func (o *xxx_BaseRegQueryMultipleValues2Operation) MarshalNDRRequest(ctx context
 	}
 	// num_vals {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.ValsLength); err != nil {
+		if err := w.WriteData(o.ValuesLength); err != nil {
 			return err
 		}
 	}
@@ -10303,7 +10689,7 @@ func (o *xxx_BaseRegQueryMultipleValues2Operation) UnmarshalNDRRequest(ctx conte
 	}
 	// num_vals {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.ValsLength); err != nil {
+		if err := w.ReadData(&o.ValuesLength); err != nil {
 			return err
 		}
 	}
@@ -10370,14 +10756,14 @@ func (o *xxx_BaseRegQueryMultipleValues2Operation) MarshalNDRResponse(ctx contex
 	}
 	// val_listOut {out} (1:{alias=PRVALENT}*(1))(2:{alias=RVALENT}[dim:0,size_is=num_vals,length_is=num_vals](struct))
 	{
-		dimSize1 := uint64(o.ValsLength)
+		dimSize1 := uint64(o.ValuesLength)
 		if err := w.WriteSize(dimSize1); err != nil {
 			return err
 		}
 		sizeInfo := []uint64{
 			dimSize1,
 		}
-		dimLength1 := uint64(o.ValsLength)
+		dimLength1 := uint64(o.ValuesLength)
 		if dimLength1 > sizeInfo[0] {
 			dimLength1 = sizeInfo[0]
 		} else {
@@ -10581,7 +10967,7 @@ type BaseRegQueryMultipleValues2Request struct {
 	// The array holds the list of value names for which the type and data MUST be returned.
 	ValueListIn []*ValueEntry `idl:"name:val_listIn;size_is:(num_vals);length_is:(num_vals)" json:"value_list_in"`
 	// num_vals: The size as the number of RVALENT structures of the val_list array.
-	ValsLength uint32 `idl:"name:num_vals" json:"vals_length"`
+	ValuesLength uint32 `idl:"name:num_vals" json:"values_length"`
 	// lpvalueBuf: The data for each value that is specified by the val_listOut parameter.
 	Buffer []byte `idl:"name:lpvalueBuf;size_is:(ldwTotsize);length_is:(ldwTotsize);pointer:unique" json:"buffer"`
 	// ldwTotsize: A value that indicates the size in bytes of lpvalueBuf.
@@ -10597,7 +10983,7 @@ func (o *BaseRegQueryMultipleValues2Request) xxx_ToOp(ctx context.Context, op *x
 	}
 	op.Key = o.Key
 	op.ValueListIn = o.ValueListIn
-	op.ValsLength = o.ValsLength
+	op.ValuesLength = o.ValuesLength
 	op.Buffer = o.Buffer
 	op.TotalSize = o.TotalSize
 	return op
@@ -10609,7 +10995,7 @@ func (o *BaseRegQueryMultipleValues2Request) xxx_FromOp(ctx context.Context, op 
 	}
 	o.Key = op.Key
 	o.ValueListIn = op.ValueListIn
-	o.ValsLength = op.ValsLength
+	o.ValuesLength = op.ValuesLength
 	o.Buffer = op.Buffer
 	o.TotalSize = op.TotalSize
 }
@@ -10625,10 +11011,29 @@ func (o *BaseRegQueryMultipleValues2Request) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeBaseRegQueryMultipleValues2Request build a response structure from the given request structure.
+func (o *BaseRegQueryMultipleValues2Request) MakeResponse() *BaseRegQueryMultipleValues2Response {
+	if o == nil {
+		return &BaseRegQueryMultipleValues2Response{}
+	}
+	return &BaseRegQueryMultipleValues2Response{
+		ValuesLength: o.ValuesLength,
+		TotalSize:    o.TotalSize,
+	}
+}
+
+// OpNum returns the operation number of BaseRegQueryMultipleValues2 operation.
+func (o *BaseRegQueryMultipleValues2Request) OpNum() int { return 34 }
+
+// OpName returns the operation name of BaseRegQueryMultipleValues2 operation.
+func (o *BaseRegQueryMultipleValues2Request) OpName() string {
+	return "/winreg/v1/BaseRegQueryMultipleValues2"
+}
+
 // BaseRegQueryMultipleValues2Response structure represents the BaseRegQueryMultipleValues2 operation response
 type BaseRegQueryMultipleValues2Response struct {
 	// XXX: num_vals is an implicit input depedency for output parameters
-	ValsLength uint32 `idl:"name:num_vals" json:"vals_length"`
+	ValuesLength uint32 `idl:"name:num_vals" json:"values_length"`
 	// XXX: ldwTotsize is an implicit input depedency for output parameters
 	TotalSize uint32 `idl:"name:ldwTotsize" json:"total_size"`
 
@@ -10654,8 +11059,8 @@ func (o *BaseRegQueryMultipleValues2Response) xxx_ToOp(ctx context.Context, op *
 		return op
 	}
 	// XXX: implicit input dependencies for output parameters
-	if op.ValsLength == uint32(0) {
-		op.ValsLength = o.ValsLength
+	if op.ValuesLength == uint32(0) {
+		op.ValuesLength = o.ValuesLength
 	}
 	if op.TotalSize == uint32(0) {
 		op.TotalSize = o.TotalSize
@@ -10673,7 +11078,7 @@ func (o *BaseRegQueryMultipleValues2Response) xxx_FromOp(ctx context.Context, op
 		return
 	}
 	// XXX: implicit input dependencies for output parameters
-	o.ValsLength = op.ValsLength
+	o.ValuesLength = op.ValuesLength
 	o.TotalSize = op.TotalSize
 
 	o.ValueListOut = op.ValueListOut
@@ -10702,8 +11107,10 @@ type xxx_BaseRegDeleteKeyExOperation struct {
 	Return     uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseRegDeleteKeyEx operation.
 func (o *xxx_BaseRegDeleteKeyExOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of BaseRegDeleteKeyEx operation.
 func (o *xxx_BaseRegDeleteKeyExOperation) OpName() string { return "/winreg/v1/BaseRegDeleteKeyEx" }
 
 func (o *xxx_BaseRegDeleteKeyExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10890,6 +11297,17 @@ func (o *BaseRegDeleteKeyExRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeBaseRegDeleteKeyExRequest build a response structure from the given request structure.
+func (o *BaseRegDeleteKeyExRequest) MakeResponse() *BaseRegDeleteKeyExResponse {
+	return &BaseRegDeleteKeyExResponse{}
+}
+
+// OpNum returns the operation number of BaseRegDeleteKeyEx operation.
+func (o *BaseRegDeleteKeyExRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of BaseRegDeleteKeyEx operation.
+func (o *BaseRegDeleteKeyExRequest) OpName() string { return "/winreg/v1/BaseRegDeleteKeyEx" }
 
 // BaseRegDeleteKeyExResponse structure represents the BaseRegDeleteKeyEx operation response
 type BaseRegDeleteKeyExResponse struct {

@@ -264,8 +264,10 @@ type xxx_RemoteConnectionParametersOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteConnectionParms operation.
 func (o *xxx_RemoteConnectionParametersOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of RemoteConnectionParms operation.
 func (o *xxx_RemoteConnectionParametersOperation) OpName() string {
 	return "/IPCHService/v0/RemoteConnectionParms"
 }
@@ -632,6 +634,19 @@ func (o *RemoteConnectionParametersRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeRemoteConnectionParametersRequest build a response structure from the given request structure.
+func (o *RemoteConnectionParametersRequest) MakeResponse() *RemoteConnectionParametersResponse {
+	return &RemoteConnectionParametersResponse{}
+}
+
+// OpNum returns the operation number of RemoteConnectionParms operation.
+func (o *RemoteConnectionParametersRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of RemoteConnectionParms operation.
+func (o *RemoteConnectionParametersRequest) OpName() string {
+	return "/IPCHService/v0/RemoteConnectionParms"
+}
+
 // RemoteConnectionParametersResponse structure represents the RemoteConnectionParms operation response
 type RemoteConnectionParametersResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -684,8 +699,10 @@ type xxx_RemoteUserSessionInfoOperation struct {
 	Return int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteUserSessionInfo operation.
 func (o *xxx_RemoteUserSessionInfoOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of RemoteUserSessionInfo operation.
 func (o *xxx_RemoteUserSessionInfoOperation) OpName() string {
 	return "/IPCHService/v0/RemoteUserSessionInfo"
 }
@@ -875,6 +892,19 @@ func (o *RemoteUserSessionInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeRemoteUserSessionInfoRequest build a response structure from the given request structure.
+func (o *RemoteUserSessionInfoRequest) MakeResponse() *RemoteUserSessionInfoResponse {
+	return &RemoteUserSessionInfoResponse{}
+}
+
+// OpNum returns the operation number of RemoteUserSessionInfo operation.
+func (o *RemoteUserSessionInfoRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of RemoteUserSessionInfo operation.
+func (o *RemoteUserSessionInfoRequest) OpName() string {
+	return "/IPCHService/v0/RemoteUserSessionInfo"
 }
 
 // RemoteUserSessionInfoResponse structure represents the RemoteUserSessionInfo operation response

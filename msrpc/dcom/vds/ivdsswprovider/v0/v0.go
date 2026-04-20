@@ -173,8 +173,10 @@ type xxx_QueryPacksOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryPacks operation.
 func (o *xxx_QueryPacksOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of QueryPacks operation.
 func (o *xxx_QueryPacksOperation) OpName() string { return "/IVdsSwProvider/v0/QueryPacks" }
 
 func (o *xxx_QueryPacksOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -364,6 +366,17 @@ func (o *QueryPacksRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeQueryPacksRequest build a response structure from the given request structure.
+func (o *QueryPacksRequest) MakeResponse() *QueryPacksResponse {
+	return &QueryPacksResponse{}
+}
+
+// OpNum returns the operation number of QueryPacks operation.
+func (o *QueryPacksRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of QueryPacks operation.
+func (o *QueryPacksRequest) OpName() string { return "/IVdsSwProvider/v0/QueryPacks" }
+
 // QueryPacksResponse structure represents the QueryPacks operation response
 type QueryPacksResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -418,8 +431,10 @@ type xxx_CreatePackOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreatePack operation.
 func (o *xxx_CreatePackOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of CreatePack operation.
 func (o *xxx_CreatePackOperation) OpName() string { return "/IVdsSwProvider/v0/CreatePack" }
 
 func (o *xxx_CreatePackOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -608,6 +623,17 @@ func (o *CreatePackRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCreatePackRequest build a response structure from the given request structure.
+func (o *CreatePackRequest) MakeResponse() *CreatePackResponse {
+	return &CreatePackResponse{}
+}
+
+// OpNum returns the operation number of CreatePack operation.
+func (o *CreatePackRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of CreatePack operation.
+func (o *CreatePackRequest) OpName() string { return "/IVdsSwProvider/v0/CreatePack" }
 
 // CreatePackResponse structure represents the CreatePack operation response
 type CreatePackResponse struct {

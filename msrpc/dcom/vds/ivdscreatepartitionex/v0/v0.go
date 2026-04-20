@@ -154,8 +154,10 @@ type xxx_CreatePartitionExOperation struct {
 	Return     int32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreatePartitionEx operation.
 func (o *xxx_CreatePartitionExOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CreatePartitionEx operation.
 func (o *xxx_CreatePartitionExOperation) OpName() string {
 	return "/IVdsCreatePartitionEx/v0/CreatePartitionEx"
 }
@@ -423,6 +425,19 @@ func (o *CreatePartitionExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeCreatePartitionExRequest build a response structure from the given request structure.
+func (o *CreatePartitionExRequest) MakeResponse() *CreatePartitionExResponse {
+	return &CreatePartitionExResponse{}
+}
+
+// OpNum returns the operation number of CreatePartitionEx operation.
+func (o *CreatePartitionExRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of CreatePartitionEx operation.
+func (o *CreatePartitionExRequest) OpName() string {
+	return "/IVdsCreatePartitionEx/v0/CreatePartitionEx"
 }
 
 // CreatePartitionExResponse structure represents the CreatePartitionEx operation response

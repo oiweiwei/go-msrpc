@@ -244,8 +244,10 @@ type xxx_GetIDOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Id operation.
 func (o *xxx_GetIDOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Id operation.
 func (o *xxx_GetIDOperation) OpName() string { return "/IFsrmAction/v0/Id" }
 
 func (o *xxx_GetIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -410,6 +412,17 @@ func (o *GetIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetIDRequest build a response structure from the given request structure.
+func (o *GetIDRequest) MakeResponse() *GetIDResponse {
+	return &GetIDResponse{}
+}
+
+// OpNum returns the operation number of Id operation.
+func (o *GetIDRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Id operation.
+func (o *GetIDRequest) OpName() string { return "/IFsrmAction/v0/Id" }
+
 // GetIDResponse structure represents the Id operation response
 type GetIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -460,8 +473,10 @@ type xxx_GetActionTypeOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ActionType operation.
 func (o *xxx_GetActionTypeOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ActionType operation.
 func (o *xxx_GetActionTypeOperation) OpName() string { return "/IFsrmAction/v0/ActionType" }
 
 func (o *xxx_GetActionTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -617,6 +632,17 @@ func (o *GetActionTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetActionTypeRequest build a response structure from the given request structure.
+func (o *GetActionTypeRequest) MakeResponse() *GetActionTypeResponse {
+	return &GetActionTypeResponse{}
+}
+
+// OpNum returns the operation number of ActionType operation.
+func (o *GetActionTypeRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ActionType operation.
+func (o *GetActionTypeRequest) OpName() string { return "/IFsrmAction/v0/ActionType" }
+
 // GetActionTypeResponse structure represents the ActionType operation response
 type GetActionTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -669,8 +695,10 @@ type xxx_GetRunLimitIntervalOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RunLimitInterval operation.
 func (o *xxx_GetRunLimitIntervalOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RunLimitInterval operation.
 func (o *xxx_GetRunLimitIntervalOperation) OpName() string { return "/IFsrmAction/v0/RunLimitInterval" }
 
 func (o *xxx_GetRunLimitIntervalOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -826,6 +854,17 @@ func (o *GetRunLimitIntervalRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetRunLimitIntervalRequest build a response structure from the given request structure.
+func (o *GetRunLimitIntervalRequest) MakeResponse() *GetRunLimitIntervalResponse {
+	return &GetRunLimitIntervalResponse{}
+}
+
+// OpNum returns the operation number of RunLimitInterval operation.
+func (o *GetRunLimitIntervalRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RunLimitInterval operation.
+func (o *GetRunLimitIntervalRequest) OpName() string { return "/IFsrmAction/v0/RunLimitInterval" }
+
 // GetRunLimitIntervalResponse structure represents the RunLimitInterval operation response
 type GetRunLimitIntervalResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -876,8 +915,10 @@ type xxx_SetRunLimitIntervalOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RunLimitInterval operation.
 func (o *xxx_SetRunLimitIntervalOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of RunLimitInterval operation.
 func (o *xxx_SetRunLimitIntervalOperation) OpName() string { return "/IFsrmAction/v0/RunLimitInterval" }
 
 func (o *xxx_SetRunLimitIntervalOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1036,6 +1077,17 @@ func (o *SetRunLimitIntervalRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeSetRunLimitIntervalRequest build a response structure from the given request structure.
+func (o *SetRunLimitIntervalRequest) MakeResponse() *SetRunLimitIntervalResponse {
+	return &SetRunLimitIntervalResponse{}
+}
+
+// OpNum returns the operation number of RunLimitInterval operation.
+func (o *SetRunLimitIntervalRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of RunLimitInterval operation.
+func (o *SetRunLimitIntervalRequest) OpName() string { return "/IFsrmAction/v0/RunLimitInterval" }
+
 // SetRunLimitIntervalResponse structure represents the RunLimitInterval operation response
 type SetRunLimitIntervalResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1082,8 +1134,10 @@ type xxx_DeleteOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Delete operation.
 func (o *xxx_DeleteOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of Delete operation.
 func (o *xxx_DeleteOperation) OpName() string { return "/IFsrmAction/v0/Delete" }
 
 func (o *xxx_DeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1226,6 +1280,17 @@ func (o *DeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeDeleteRequest build a response structure from the given request structure.
+func (o *DeleteRequest) MakeResponse() *DeleteResponse {
+	return &DeleteResponse{}
+}
+
+// OpNum returns the operation number of Delete operation.
+func (o *DeleteRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of Delete operation.
+func (o *DeleteRequest) OpName() string { return "/IFsrmAction/v0/Delete" }
 
 // DeleteResponse structure represents the Delete operation response
 type DeleteResponse struct {

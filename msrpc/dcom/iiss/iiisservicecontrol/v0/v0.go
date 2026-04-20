@@ -431,8 +431,10 @@ type xxx_StopOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Stop operation.
 func (o *xxx_StopOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Stop operation.
 func (o *xxx_StopOperation) OpName() string { return "/IIisServiceControl/v0/Stop" }
 
 func (o *xxx_StopOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -623,6 +625,17 @@ func (o *StopRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeStopRequest build a response structure from the given request structure.
+func (o *StopRequest) MakeResponse() *StopResponse {
+	return &StopResponse{}
+}
+
+// OpNum returns the operation number of Stop operation.
+func (o *StopRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Stop operation.
+func (o *StopRequest) OpName() string { return "/IIisServiceControl/v0/Stop" }
+
 // StopResponse structure represents the Stop operation response
 type StopResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -670,8 +683,10 @@ type xxx_StartOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Start operation.
 func (o *xxx_StartOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Start operation.
 func (o *xxx_StartOperation) OpName() string { return "/IIisServiceControl/v0/Start" }
 
 func (o *xxx_StartOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -832,6 +847,17 @@ func (o *StartRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeStartRequest build a response structure from the given request structure.
+func (o *StartRequest) MakeResponse() *StartResponse {
+	return &StartResponse{}
+}
+
+// OpNum returns the operation number of Start operation.
+func (o *StartRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Start operation.
+func (o *StartRequest) OpName() string { return "/IIisServiceControl/v0/Start" }
+
 // StartResponse structure represents the Start operation response
 type StartResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -880,8 +906,10 @@ type xxx_RebootOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Reboot operation.
 func (o *xxx_RebootOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Reboot operation.
 func (o *xxx_RebootOperation) OpName() string { return "/IIisServiceControl/v0/Reboot" }
 
 func (o *xxx_RebootOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1068,6 +1096,17 @@ func (o *RebootRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeRebootRequest build a response structure from the given request structure.
+func (o *RebootRequest) MakeResponse() *RebootResponse {
+	return &RebootResponse{}
+}
+
+// OpNum returns the operation number of Reboot operation.
+func (o *RebootRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Reboot operation.
+func (o *RebootRequest) OpName() string { return "/IIisServiceControl/v0/Reboot" }
+
 // RebootResponse structure represents the Reboot operation response
 type RebootResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1118,8 +1157,10 @@ type xxx_StatusOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Status operation.
 func (o *xxx_StatusOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of Status operation.
 func (o *xxx_StatusOperation) OpName() string { return "/IIisServiceControl/v0/Status" }
 
 func (o *xxx_StatusOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1357,6 +1398,22 @@ func (o *StatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeStatusRequest build a response structure from the given request structure.
+func (o *StatusRequest) MakeResponse() *StatusResponse {
+	if o == nil {
+		return &StatusResponse{}
+	}
+	return &StatusResponse{
+		BufferSize: o.BufferSize,
+	}
+}
+
+// OpNum returns the operation number of Status operation.
+func (o *StatusRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of Status operation.
+func (o *StatusRequest) OpName() string { return "/IIisServiceControl/v0/Status" }
+
 // StatusResponse structure represents the Status operation response
 type StatusResponse struct {
 	// XXX: dwBufferSize is an implicit input depedency for output parameters
@@ -1430,8 +1487,10 @@ type xxx_KillOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Kill operation.
 func (o *xxx_KillOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of Kill operation.
 func (o *xxx_KillOperation) OpName() string { return "/IIisServiceControl/v0/Kill" }
 
 func (o *xxx_KillOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1574,6 +1633,17 @@ func (o *KillRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeKillRequest build a response structure from the given request structure.
+func (o *KillRequest) MakeResponse() *KillResponse {
+	return &KillResponse{}
+}
+
+// OpNum returns the operation number of Kill operation.
+func (o *KillRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of Kill operation.
+func (o *KillRequest) OpName() string { return "/IIisServiceControl/v0/Kill" }
 
 // KillResponse structure represents the Kill operation response
 type KillResponse struct {

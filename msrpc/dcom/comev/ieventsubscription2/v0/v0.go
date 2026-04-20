@@ -209,8 +209,10 @@ type xxx_GetFilterCriteriaOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FilterCriteria operation.
 func (o *xxx_GetFilterCriteriaOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of FilterCriteria operation.
 func (o *xxx_GetFilterCriteriaOperation) OpName() string {
 	return "/IEventSubscription2/v0/FilterCriteria"
 }
@@ -402,6 +404,17 @@ func (o *GetFilterCriteriaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetFilterCriteriaRequest build a response structure from the given request structure.
+func (o *GetFilterCriteriaRequest) MakeResponse() *GetFilterCriteriaResponse {
+	return &GetFilterCriteriaResponse{}
+}
+
+// OpNum returns the operation number of FilterCriteria operation.
+func (o *GetFilterCriteriaRequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of FilterCriteria operation.
+func (o *GetFilterCriteriaRequest) OpName() string { return "/IEventSubscription2/v0/FilterCriteria" }
+
 // GetFilterCriteriaResponse structure represents the FilterCriteria operation response
 type GetFilterCriteriaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -452,8 +465,10 @@ type xxx_SetFilterCriteriaOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FilterCriteria operation.
 func (o *xxx_SetFilterCriteriaOperation) OpNum() int { return 42 }
 
+// OpName returns the operation name of FilterCriteria operation.
 func (o *xxx_SetFilterCriteriaOperation) OpName() string {
 	return "/IEventSubscription2/v0/FilterCriteria"
 }
@@ -648,6 +663,17 @@ func (o *SetFilterCriteriaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetFilterCriteriaRequest build a response structure from the given request structure.
+func (o *SetFilterCriteriaRequest) MakeResponse() *SetFilterCriteriaResponse {
+	return &SetFilterCriteriaResponse{}
+}
+
+// OpNum returns the operation number of FilterCriteria operation.
+func (o *SetFilterCriteriaRequest) OpNum() int { return 42 }
+
+// OpName returns the operation name of FilterCriteria operation.
+func (o *SetFilterCriteriaRequest) OpName() string { return "/IEventSubscription2/v0/FilterCriteria" }
+
 // SetFilterCriteriaResponse structure represents the FilterCriteria operation response
 type SetFilterCriteriaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -695,8 +721,10 @@ type xxx_GetSubscriberMonikerOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SubscriberMoniker operation.
 func (o *xxx_GetSubscriberMonikerOperation) OpNum() int { return 43 }
 
+// OpName returns the operation name of SubscriberMoniker operation.
 func (o *xxx_GetSubscriberMonikerOperation) OpName() string {
 	return "/IEventSubscription2/v0/SubscriberMoniker"
 }
@@ -888,6 +916,19 @@ func (o *GetSubscriberMonikerRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetSubscriberMonikerRequest build a response structure from the given request structure.
+func (o *GetSubscriberMonikerRequest) MakeResponse() *GetSubscriberMonikerResponse {
+	return &GetSubscriberMonikerResponse{}
+}
+
+// OpNum returns the operation number of SubscriberMoniker operation.
+func (o *GetSubscriberMonikerRequest) OpNum() int { return 43 }
+
+// OpName returns the operation name of SubscriberMoniker operation.
+func (o *GetSubscriberMonikerRequest) OpName() string {
+	return "/IEventSubscription2/v0/SubscriberMoniker"
+}
+
 // GetSubscriberMonikerResponse structure represents the SubscriberMoniker operation response
 type GetSubscriberMonikerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -938,8 +979,10 @@ type xxx_SetSubscriberMonikerOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SubscriberMoniker operation.
 func (o *xxx_SetSubscriberMonikerOperation) OpNum() int { return 44 }
 
+// OpName returns the operation name of SubscriberMoniker operation.
 func (o *xxx_SetSubscriberMonikerOperation) OpName() string {
 	return "/IEventSubscription2/v0/SubscriberMoniker"
 }
@@ -1132,6 +1175,19 @@ func (o *SetSubscriberMonikerRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetSubscriberMonikerRequest build a response structure from the given request structure.
+func (o *SetSubscriberMonikerRequest) MakeResponse() *SetSubscriberMonikerResponse {
+	return &SetSubscriberMonikerResponse{}
+}
+
+// OpNum returns the operation number of SubscriberMoniker operation.
+func (o *SetSubscriberMonikerRequest) OpNum() int { return 44 }
+
+// OpName returns the operation name of SubscriberMoniker operation.
+func (o *SetSubscriberMonikerRequest) OpName() string {
+	return "/IEventSubscription2/v0/SubscriberMoniker"
 }
 
 // SetSubscriberMonikerResponse structure represents the SubscriberMoniker operation response

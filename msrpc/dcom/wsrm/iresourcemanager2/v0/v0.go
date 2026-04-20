@@ -311,8 +311,10 @@ type xxx_ExportObjectsOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExportObjects operation.
 func (o *xxx_ExportObjectsOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of ExportObjects operation.
 func (o *xxx_ExportObjectsOperation) OpName() string { return "/IResourceManager2/v0/ExportObjects" }
 
 func (o *xxx_ExportObjectsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -583,6 +585,17 @@ func (o *ExportObjectsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeExportObjectsRequest build a response structure from the given request structure.
+func (o *ExportObjectsRequest) MakeResponse() *ExportObjectsResponse {
+	return &ExportObjectsResponse{}
+}
+
+// OpNum returns the operation number of ExportObjects operation.
+func (o *ExportObjectsRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of ExportObjects operation.
+func (o *ExportObjectsRequest) OpName() string { return "/IResourceManager2/v0/ExportObjects" }
+
 // ExportObjectsResponse structure represents the ExportObjects operation response
 type ExportObjectsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -642,8 +655,10 @@ type xxx_GetImportConflictsOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetImportConflicts operation.
 func (o *xxx_GetImportConflictsOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of GetImportConflicts operation.
 func (o *xxx_GetImportConflictsOperation) OpName() string {
 	return "/IResourceManager2/v0/GetImportConflicts"
 }
@@ -1140,6 +1155,19 @@ func (o *GetImportConflictsRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetImportConflictsRequest build a response structure from the given request structure.
+func (o *GetImportConflictsRequest) MakeResponse() *GetImportConflictsResponse {
+	return &GetImportConflictsResponse{}
+}
+
+// OpNum returns the operation number of GetImportConflicts operation.
+func (o *GetImportConflictsRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GetImportConflicts operation.
+func (o *GetImportConflictsRequest) OpName() string {
+	return "/IResourceManager2/v0/GetImportConflicts"
+}
+
 // GetImportConflictsResponse structure represents the GetImportConflicts operation response
 type GetImportConflictsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1198,8 +1226,10 @@ type xxx_ImportXMLOperation struct {
 	Return            int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ImportXml operation.
 func (o *xxx_ImportXMLOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ImportXml operation.
 func (o *xxx_ImportXMLOperation) OpName() string { return "/IResourceManager2/v0/ImportXml" }
 
 func (o *xxx_ImportXMLOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1668,6 +1698,17 @@ func (o *ImportXMLRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeImportXMLRequest build a response structure from the given request structure.
+func (o *ImportXMLRequest) MakeResponse() *ImportXMLResponse {
+	return &ImportXMLResponse{}
+}
+
+// OpNum returns the operation number of ImportXml operation.
+func (o *ImportXMLRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ImportXml operation.
+func (o *ImportXMLRequest) OpName() string { return "/IResourceManager2/v0/ImportXml" }
+
 // ImportXMLResponse structure represents the ImportXml operation response
 type ImportXMLResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1720,8 +1761,10 @@ type xxx_ExportXMLOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExportXml operation.
 func (o *xxx_ExportXMLOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of ExportXml operation.
 func (o *xxx_ExportXMLOperation) OpName() string { return "/IResourceManager2/v0/ExportXml" }
 
 func (o *xxx_ExportXMLOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2140,6 +2183,17 @@ func (o *ExportXMLRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeExportXMLRequest build a response structure from the given request structure.
+func (o *ExportXMLRequest) MakeResponse() *ExportXMLResponse {
+	return &ExportXMLResponse{}
+}
+
+// OpNum returns the operation number of ExportXml operation.
+func (o *ExportXMLRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of ExportXml operation.
+func (o *ExportXMLRequest) OpName() string { return "/IResourceManager2/v0/ExportXml" }
 
 // ExportXMLResponse structure represents the ExportXml operation response
 type ExportXMLResponse struct {

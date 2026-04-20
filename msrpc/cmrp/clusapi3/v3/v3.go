@@ -6498,8 +6498,10 @@ type xxx_OpenClusterOperation struct {
 	Return *Cluster `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenCluster operation.
 func (o *xxx_OpenClusterOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of ApiOpenCluster operation.
 func (o *xxx_OpenClusterOperation) OpName() string { return "/clusapi3/v3/ApiOpenCluster" }
 
 func (o *xxx_OpenClusterOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6606,6 +6608,17 @@ func (o *OpenClusterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeOpenClusterRequest build a response structure from the given request structure.
+func (o *OpenClusterRequest) MakeResponse() *OpenClusterResponse {
+	return &OpenClusterResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenCluster operation.
+func (o *OpenClusterRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of ApiOpenCluster operation.
+func (o *OpenClusterRequest) OpName() string { return "/clusapi3/v3/ApiOpenCluster" }
+
 // OpenClusterResponse structure represents the ApiOpenCluster operation response
 type OpenClusterResponse struct {
 	Status uint32 `idl:"name:Status" json:"status"`
@@ -6650,8 +6663,10 @@ type xxx_CloseClusterOperation struct {
 	Return  uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCloseCluster operation.
 func (o *xxx_CloseClusterOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of ApiCloseCluster operation.
 func (o *xxx_CloseClusterOperation) OpName() string { return "/clusapi3/v3/ApiCloseCluster" }
 
 func (o *xxx_CloseClusterOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6782,6 +6797,17 @@ func (o *CloseClusterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCloseClusterRequest build a response structure from the given request structure.
+func (o *CloseClusterRequest) MakeResponse() *CloseClusterResponse {
+	return &CloseClusterResponse{}
+}
+
+// OpNum returns the operation number of ApiCloseCluster operation.
+func (o *CloseClusterRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of ApiCloseCluster operation.
+func (o *CloseClusterRequest) OpName() string { return "/clusapi3/v3/ApiCloseCluster" }
+
 // CloseClusterResponse structure represents the ApiCloseCluster operation response
 type CloseClusterResponse struct {
 	Cluster *Cluster `idl:"name:Cluster" json:"cluster"`
@@ -6827,8 +6853,10 @@ type xxx_SetClusterNameOperation struct {
 	Return         uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiSetClusterName operation.
 func (o *xxx_SetClusterNameOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of ApiSetClusterName operation.
 func (o *xxx_SetClusterNameOperation) OpName() string { return "/clusapi3/v3/ApiSetClusterName" }
 
 func (o *xxx_SetClusterNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6941,6 +6969,17 @@ func (o *SetClusterNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetClusterNameRequest build a response structure from the given request structure.
+func (o *SetClusterNameRequest) MakeResponse() *SetClusterNameResponse {
+	return &SetClusterNameResponse{}
+}
+
+// OpNum returns the operation number of ApiSetClusterName operation.
+func (o *SetClusterNameRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of ApiSetClusterName operation.
+func (o *SetClusterNameRequest) OpName() string { return "/clusapi3/v3/ApiSetClusterName" }
+
 // SetClusterNameResponse structure represents the ApiSetClusterName operation response
 type SetClusterNameResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -6986,8 +7025,10 @@ type xxx_GetClusterNameOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetClusterName operation.
 func (o *xxx_GetClusterNameOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ApiGetClusterName operation.
 func (o *xxx_GetClusterNameOperation) OpName() string { return "/clusapi3/v3/ApiGetClusterName" }
 
 func (o *xxx_GetClusterNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7147,6 +7188,17 @@ func (o *GetClusterNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetClusterNameRequest build a response structure from the given request structure.
+func (o *GetClusterNameRequest) MakeResponse() *GetClusterNameResponse {
+	return &GetClusterNameResponse{}
+}
+
+// OpNum returns the operation number of ApiGetClusterName operation.
+func (o *GetClusterNameRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ApiGetClusterName operation.
+func (o *GetClusterNameRequest) OpName() string { return "/clusapi3/v3/ApiGetClusterName" }
+
 // GetClusterNameResponse structure represents the ApiGetClusterName operation response
 type GetClusterNameResponse struct {
 	ClusterName string `idl:"name:ClusterName;string" json:"cluster_name"`
@@ -7198,8 +7250,10 @@ type xxx_GetClusterVersionOperation struct {
 	Return       uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetClusterVersion operation.
 func (o *xxx_GetClusterVersionOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of ApiGetClusterVersion operation.
 func (o *xxx_GetClusterVersionOperation) OpName() string { return "/clusapi3/v3/ApiGetClusterVersion" }
 
 func (o *xxx_GetClusterVersionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7395,6 +7449,17 @@ func (o *GetClusterVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetClusterVersionRequest build a response structure from the given request structure.
+func (o *GetClusterVersionRequest) MakeResponse() *GetClusterVersionResponse {
+	return &GetClusterVersionResponse{}
+}
+
+// OpNum returns the operation number of ApiGetClusterVersion operation.
+func (o *GetClusterVersionRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of ApiGetClusterVersion operation.
+func (o *GetClusterVersionRequest) OpName() string { return "/clusapi3/v3/ApiGetClusterVersion" }
+
 // GetClusterVersionResponse structure represents the ApiGetClusterVersion operation response
 type GetClusterVersionResponse struct {
 	MajorVersion uint16 `idl:"name:lpwMajorVersion" json:"major_version"`
@@ -7454,8 +7519,10 @@ type xxx_GetQuorumResourceOperation struct {
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetQuorumResource operation.
 func (o *xxx_GetQuorumResourceOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of ApiGetQuorumResource operation.
 func (o *xxx_GetQuorumResourceOperation) OpName() string { return "/clusapi3/v3/ApiGetQuorumResource" }
 
 func (o *xxx_GetQuorumResourceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7639,6 +7706,17 @@ func (o *GetQuorumResourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetQuorumResourceRequest build a response structure from the given request structure.
+func (o *GetQuorumResourceRequest) MakeResponse() *GetQuorumResourceResponse {
+	return &GetQuorumResourceResponse{}
+}
+
+// OpNum returns the operation number of ApiGetQuorumResource operation.
+func (o *GetQuorumResourceRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of ApiGetQuorumResource operation.
+func (o *GetQuorumResourceRequest) OpName() string { return "/clusapi3/v3/ApiGetQuorumResource" }
+
 // GetQuorumResourceResponse structure represents the ApiGetQuorumResource operation response
 type GetQuorumResourceResponse struct {
 	ResourceName     string `idl:"name:lpszResourceName;string" json:"resource_name"`
@@ -7695,8 +7773,10 @@ type xxx_SetQuorumResourceOperation struct {
 	Return           uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiSetQuorumResource operation.
 func (o *xxx_SetQuorumResourceOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of ApiSetQuorumResource operation.
 func (o *xxx_SetQuorumResourceOperation) OpName() string { return "/clusapi3/v3/ApiSetQuorumResource" }
 
 func (o *xxx_SetQuorumResourceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7848,6 +7928,17 @@ func (o *SetQuorumResourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetQuorumResourceRequest build a response structure from the given request structure.
+func (o *SetQuorumResourceRequest) MakeResponse() *SetQuorumResourceResponse {
+	return &SetQuorumResourceResponse{}
+}
+
+// OpNum returns the operation number of ApiSetQuorumResource operation.
+func (o *SetQuorumResourceRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of ApiSetQuorumResource operation.
+func (o *SetQuorumResourceRequest) OpName() string { return "/clusapi3/v3/ApiSetQuorumResource" }
+
 // SetQuorumResourceResponse structure represents the ApiSetQuorumResource operation response
 type SetQuorumResourceResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -7894,8 +7985,10 @@ type xxx_CreateEnumOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateEnum operation.
 func (o *xxx_CreateEnumOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of ApiCreateEnum operation.
 func (o *xxx_CreateEnumOperation) OpName() string { return "/clusapi3/v3/ApiCreateEnum" }
 
 func (o *xxx_CreateEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8054,6 +8147,17 @@ func (o *CreateEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeCreateEnumRequest build a response structure from the given request structure.
+func (o *CreateEnumRequest) MakeResponse() *CreateEnumResponse {
+	return &CreateEnumResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateEnum operation.
+func (o *CreateEnumRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of ApiCreateEnum operation.
+func (o *CreateEnumRequest) OpName() string { return "/clusapi3/v3/ApiCreateEnum" }
+
 // CreateEnumResponse structure represents the ApiCreateEnum operation response
 type CreateEnumResponse struct {
 	ReturnEnum *EnumList `idl:"name:ReturnEnum" json:"return_enum"`
@@ -8103,8 +8207,10 @@ type xxx_OpenResourceOperation struct {
 	Return       *Resource `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenResource operation.
 func (o *xxx_OpenResourceOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ApiOpenResource operation.
 func (o *xxx_OpenResourceOperation) OpName() string { return "/clusapi3/v3/ApiOpenResource" }
 
 func (o *xxx_OpenResourceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8238,6 +8344,17 @@ func (o *OpenResourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeOpenResourceRequest build a response structure from the given request structure.
+func (o *OpenResourceRequest) MakeResponse() *OpenResourceResponse {
+	return &OpenResourceResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenResource operation.
+func (o *OpenResourceRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ApiOpenResource operation.
+func (o *OpenResourceRequest) OpName() string { return "/clusapi3/v3/ApiOpenResource" }
+
 // OpenResourceResponse structure represents the ApiOpenResource operation response
 type OpenResourceResponse struct {
 	Status    uint32 `idl:"name:Status" json:"status"`
@@ -8290,8 +8407,10 @@ type xxx_CreateResourceOperation struct {
 	Return       *Resource `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateResource operation.
 func (o *xxx_CreateResourceOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ApiCreateResource operation.
 func (o *xxx_CreateResourceOperation) OpName() string { return "/clusapi3/v3/ApiCreateResource" }
 
 func (o *xxx_CreateResourceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8479,6 +8598,17 @@ func (o *CreateResourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreateResourceRequest build a response structure from the given request structure.
+func (o *CreateResourceRequest) MakeResponse() *CreateResourceResponse {
+	return &CreateResourceResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateResource operation.
+func (o *CreateResourceRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ApiCreateResource operation.
+func (o *CreateResourceRequest) OpName() string { return "/clusapi3/v3/ApiCreateResource" }
+
 // CreateResourceResponse structure represents the ApiCreateResource operation response
 type CreateResourceResponse struct {
 	Status    uint32 `idl:"name:Status" json:"status"`
@@ -8527,8 +8657,10 @@ type xxx_DeleteResourceOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiDeleteResource operation.
 func (o *xxx_DeleteResourceOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of ApiDeleteResource operation.
 func (o *xxx_DeleteResourceOperation) OpName() string { return "/clusapi3/v3/ApiDeleteResource" }
 
 func (o *xxx_DeleteResourceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8650,6 +8782,17 @@ func (o *DeleteResourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeDeleteResourceRequest build a response structure from the given request structure.
+func (o *DeleteResourceRequest) MakeResponse() *DeleteResourceResponse {
+	return &DeleteResourceResponse{}
+}
+
+// OpNum returns the operation number of ApiDeleteResource operation.
+func (o *DeleteResourceRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of ApiDeleteResource operation.
+func (o *DeleteResourceRequest) OpName() string { return "/clusapi3/v3/ApiDeleteResource" }
+
 // DeleteResourceResponse structure represents the ApiDeleteResource operation response
 type DeleteResourceResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -8694,8 +8837,10 @@ type xxx_CloseResourceOperation struct {
 	Return   uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCloseResource operation.
 func (o *xxx_CloseResourceOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of ApiCloseResource operation.
 func (o *xxx_CloseResourceOperation) OpName() string { return "/clusapi3/v3/ApiCloseResource" }
 
 func (o *xxx_CloseResourceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8826,6 +8971,17 @@ func (o *CloseResourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeCloseResourceRequest build a response structure from the given request structure.
+func (o *CloseResourceRequest) MakeResponse() *CloseResourceResponse {
+	return &CloseResourceResponse{}
+}
+
+// OpNum returns the operation number of ApiCloseResource operation.
+func (o *CloseResourceRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of ApiCloseResource operation.
+func (o *CloseResourceRequest) OpName() string { return "/clusapi3/v3/ApiCloseResource" }
+
 // CloseResourceResponse structure represents the ApiCloseResource operation response
 type CloseResourceResponse struct {
 	Resource *Resource `idl:"name:Resource" json:"resource"`
@@ -8874,8 +9030,10 @@ type xxx_GetResourceStateOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetResourceState operation.
 func (o *xxx_GetResourceStateOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of ApiGetResourceState operation.
 func (o *xxx_GetResourceStateOperation) OpName() string { return "/clusapi3/v3/ApiGetResourceState" }
 
 func (o *xxx_GetResourceStateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9083,6 +9241,17 @@ func (o *GetResourceStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetResourceStateRequest build a response structure from the given request structure.
+func (o *GetResourceStateRequest) MakeResponse() *GetResourceStateResponse {
+	return &GetResourceStateResponse{}
+}
+
+// OpNum returns the operation number of ApiGetResourceState operation.
+func (o *GetResourceStateRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of ApiGetResourceState operation.
+func (o *GetResourceStateRequest) OpName() string { return "/clusapi3/v3/ApiGetResourceState" }
+
 // GetResourceStateResponse structure represents the ApiGetResourceState operation response
 type GetResourceStateResponse struct {
 	State     uint32 `idl:"name:State" json:"state"`
@@ -9138,8 +9307,10 @@ type xxx_SetResourceNameOperation struct {
 	Return       uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiSetResourceName operation.
 func (o *xxx_SetResourceNameOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of ApiSetResourceName operation.
 func (o *xxx_SetResourceNameOperation) OpName() string { return "/clusapi3/v3/ApiSetResourceName" }
 
 func (o *xxx_SetResourceNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9276,6 +9447,17 @@ func (o *SetResourceNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetResourceNameRequest build a response structure from the given request structure.
+func (o *SetResourceNameRequest) MakeResponse() *SetResourceNameResponse {
+	return &SetResourceNameResponse{}
+}
+
+// OpNum returns the operation number of ApiSetResourceName operation.
+func (o *SetResourceNameRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of ApiSetResourceName operation.
+func (o *SetResourceNameRequest) OpName() string { return "/clusapi3/v3/ApiSetResourceName" }
+
 // SetResourceNameResponse structure represents the ApiSetResourceName operation response
 type SetResourceNameResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -9322,8 +9504,10 @@ type xxx_GetResourceIDOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetResourceId operation.
 func (o *xxx_GetResourceIDOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of ApiGetResourceId operation.
 func (o *xxx_GetResourceIDOperation) OpName() string { return "/clusapi3/v3/ApiGetResourceId" }
 
 func (o *xxx_GetResourceIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9482,6 +9666,17 @@ func (o *GetResourceIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetResourceIDRequest build a response structure from the given request structure.
+func (o *GetResourceIDRequest) MakeResponse() *GetResourceIDResponse {
+	return &GetResourceIDResponse{}
+}
+
+// OpNum returns the operation number of ApiGetResourceId operation.
+func (o *GetResourceIDRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of ApiGetResourceId operation.
+func (o *GetResourceIDRequest) OpName() string { return "/clusapi3/v3/ApiGetResourceId" }
+
 // GetResourceIDResponse structure represents the ApiGetResourceId operation response
 type GetResourceIDResponse struct {
 	GUID      string `idl:"name:pGuid;string" json:"guid"`
@@ -9531,8 +9726,10 @@ type xxx_GetResourceTypeOperation struct {
 	Return       uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetResourceType operation.
 func (o *xxx_GetResourceTypeOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of ApiGetResourceType operation.
 func (o *xxx_GetResourceTypeOperation) OpName() string { return "/clusapi3/v3/ApiGetResourceType" }
 
 func (o *xxx_GetResourceTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9691,6 +9888,17 @@ func (o *GetResourceTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetResourceTypeRequest build a response structure from the given request structure.
+func (o *GetResourceTypeRequest) MakeResponse() *GetResourceTypeResponse {
+	return &GetResourceTypeResponse{}
+}
+
+// OpNum returns the operation number of ApiGetResourceType operation.
+func (o *GetResourceTypeRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of ApiGetResourceType operation.
+func (o *GetResourceTypeRequest) OpName() string { return "/clusapi3/v3/ApiGetResourceType" }
+
 // GetResourceTypeResponse structure represents the ApiGetResourceType operation response
 type GetResourceTypeResponse struct {
 	ResourceType string `idl:"name:lpszResourceType;string" json:"resource_type"`
@@ -9739,8 +9947,10 @@ type xxx_FailResourceOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiFailResource operation.
 func (o *xxx_FailResourceOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of ApiFailResource operation.
 func (o *xxx_FailResourceOperation) OpName() string { return "/clusapi3/v3/ApiFailResource" }
 
 func (o *xxx_FailResourceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9862,6 +10072,17 @@ func (o *FailResourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeFailResourceRequest build a response structure from the given request structure.
+func (o *FailResourceRequest) MakeResponse() *FailResourceResponse {
+	return &FailResourceResponse{}
+}
+
+// OpNum returns the operation number of ApiFailResource operation.
+func (o *FailResourceRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of ApiFailResource operation.
+func (o *FailResourceRequest) OpName() string { return "/clusapi3/v3/ApiFailResource" }
+
 // FailResourceResponse structure represents the ApiFailResource operation response
 type FailResourceResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -9907,8 +10128,10 @@ type xxx_OnlineResourceOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOnlineResource operation.
 func (o *xxx_OnlineResourceOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of ApiOnlineResource operation.
 func (o *xxx_OnlineResourceOperation) OpName() string { return "/clusapi3/v3/ApiOnlineResource" }
 
 func (o *xxx_OnlineResourceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10030,6 +10253,17 @@ func (o *OnlineResourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeOnlineResourceRequest build a response structure from the given request structure.
+func (o *OnlineResourceRequest) MakeResponse() *OnlineResourceResponse {
+	return &OnlineResourceResponse{}
+}
+
+// OpNum returns the operation number of ApiOnlineResource operation.
+func (o *OnlineResourceRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of ApiOnlineResource operation.
+func (o *OnlineResourceRequest) OpName() string { return "/clusapi3/v3/ApiOnlineResource" }
+
 // OnlineResourceResponse structure represents the ApiOnlineResource operation response
 type OnlineResourceResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -10075,8 +10309,10 @@ type xxx_OfflineResourceOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOfflineResource operation.
 func (o *xxx_OfflineResourceOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of ApiOfflineResource operation.
 func (o *xxx_OfflineResourceOperation) OpName() string { return "/clusapi3/v3/ApiOfflineResource" }
 
 func (o *xxx_OfflineResourceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10198,6 +10434,17 @@ func (o *OfflineResourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeOfflineResourceRequest build a response structure from the given request structure.
+func (o *OfflineResourceRequest) MakeResponse() *OfflineResourceResponse {
+	return &OfflineResourceResponse{}
+}
+
+// OpNum returns the operation number of ApiOfflineResource operation.
+func (o *OfflineResourceRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of ApiOfflineResource operation.
+func (o *OfflineResourceRequest) OpName() string { return "/clusapi3/v3/ApiOfflineResource" }
+
 // OfflineResourceResponse structure represents the ApiOfflineResource operation response
 type OfflineResourceResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -10244,8 +10491,10 @@ type xxx_AddResourceDependencyOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddResourceDependency operation.
 func (o *xxx_AddResourceDependencyOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of ApiAddResourceDependency operation.
 func (o *xxx_AddResourceDependencyOperation) OpName() string {
 	return "/clusapi3/v3/ApiAddResourceDependency"
 }
@@ -10393,6 +10642,19 @@ func (o *AddResourceDependencyRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeAddResourceDependencyRequest build a response structure from the given request structure.
+func (o *AddResourceDependencyRequest) MakeResponse() *AddResourceDependencyResponse {
+	return &AddResourceDependencyResponse{}
+}
+
+// OpNum returns the operation number of ApiAddResourceDependency operation.
+func (o *AddResourceDependencyRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of ApiAddResourceDependency operation.
+func (o *AddResourceDependencyRequest) OpName() string {
+	return "/clusapi3/v3/ApiAddResourceDependency"
+}
+
 // AddResourceDependencyResponse structure represents the ApiAddResourceDependency operation response
 type AddResourceDependencyResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -10439,8 +10701,10 @@ type xxx_RemoveResourceDependencyOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiRemoveResourceDependency operation.
 func (o *xxx_RemoveResourceDependencyOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of ApiRemoveResourceDependency operation.
 func (o *xxx_RemoveResourceDependencyOperation) OpName() string {
 	return "/clusapi3/v3/ApiRemoveResourceDependency"
 }
@@ -10588,6 +10852,19 @@ func (o *RemoveResourceDependencyRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeRemoveResourceDependencyRequest build a response structure from the given request structure.
+func (o *RemoveResourceDependencyRequest) MakeResponse() *RemoveResourceDependencyResponse {
+	return &RemoveResourceDependencyResponse{}
+}
+
+// OpNum returns the operation number of ApiRemoveResourceDependency operation.
+func (o *RemoveResourceDependencyRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of ApiRemoveResourceDependency operation.
+func (o *RemoveResourceDependencyRequest) OpName() string {
+	return "/clusapi3/v3/ApiRemoveResourceDependency"
+}
+
 // RemoveResourceDependencyResponse structure represents the ApiRemoveResourceDependency operation response
 type RemoveResourceDependencyResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -10634,8 +10911,10 @@ type xxx_CanResourceBeDependentOperation struct {
 	Return            uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCanResourceBeDependent operation.
 func (o *xxx_CanResourceBeDependentOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of ApiCanResourceBeDependent operation.
 func (o *xxx_CanResourceBeDependentOperation) OpName() string {
 	return "/clusapi3/v3/ApiCanResourceBeDependent"
 }
@@ -10783,6 +11062,19 @@ func (o *CanResourceBeDependentRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeCanResourceBeDependentRequest build a response structure from the given request structure.
+func (o *CanResourceBeDependentRequest) MakeResponse() *CanResourceBeDependentResponse {
+	return &CanResourceBeDependentResponse{}
+}
+
+// OpNum returns the operation number of ApiCanResourceBeDependent operation.
+func (o *CanResourceBeDependentRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of ApiCanResourceBeDependent operation.
+func (o *CanResourceBeDependentRequest) OpName() string {
+	return "/clusapi3/v3/ApiCanResourceBeDependent"
+}
+
 // CanResourceBeDependentResponse structure represents the ApiCanResourceBeDependent operation response
 type CanResourceBeDependentResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -10830,8 +11122,10 @@ type xxx_CreateRestrictionEnumOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateResEnum operation.
 func (o *xxx_CreateRestrictionEnumOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of ApiCreateResEnum operation.
 func (o *xxx_CreateRestrictionEnumOperation) OpName() string { return "/clusapi3/v3/ApiCreateResEnum" }
 
 func (o *xxx_CreateRestrictionEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11014,6 +11308,17 @@ func (o *CreateRestrictionEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeCreateRestrictionEnumRequest build a response structure from the given request structure.
+func (o *CreateRestrictionEnumRequest) MakeResponse() *CreateRestrictionEnumResponse {
+	return &CreateRestrictionEnumResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateResEnum operation.
+func (o *CreateRestrictionEnumRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of ApiCreateResEnum operation.
+func (o *CreateRestrictionEnumRequest) OpName() string { return "/clusapi3/v3/ApiCreateResEnum" }
+
 // CreateRestrictionEnumResponse structure represents the ApiCreateResEnum operation response
 type CreateRestrictionEnumResponse struct {
 	ReturnEnum *EnumList `idl:"name:ReturnEnum" json:"return_enum"`
@@ -11063,8 +11368,10 @@ type xxx_AddResourceNodeOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddResourceNode operation.
 func (o *xxx_AddResourceNodeOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of ApiAddResourceNode operation.
 func (o *xxx_AddResourceNodeOperation) OpName() string { return "/clusapi3/v3/ApiAddResourceNode" }
 
 func (o *xxx_AddResourceNodeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11210,6 +11517,17 @@ func (o *AddResourceNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeAddResourceNodeRequest build a response structure from the given request structure.
+func (o *AddResourceNodeRequest) MakeResponse() *AddResourceNodeResponse {
+	return &AddResourceNodeResponse{}
+}
+
+// OpNum returns the operation number of ApiAddResourceNode operation.
+func (o *AddResourceNodeRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of ApiAddResourceNode operation.
+func (o *AddResourceNodeRequest) OpName() string { return "/clusapi3/v3/ApiAddResourceNode" }
+
 // AddResourceNodeResponse structure represents the ApiAddResourceNode operation response
 type AddResourceNodeResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -11256,8 +11574,10 @@ type xxx_RemoveResourceNodeOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiRemoveResourceNode operation.
 func (o *xxx_RemoveResourceNodeOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of ApiRemoveResourceNode operation.
 func (o *xxx_RemoveResourceNodeOperation) OpName() string {
 	return "/clusapi3/v3/ApiRemoveResourceNode"
 }
@@ -11405,6 +11725,17 @@ func (o *RemoveResourceNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeRemoveResourceNodeRequest build a response structure from the given request structure.
+func (o *RemoveResourceNodeRequest) MakeResponse() *RemoveResourceNodeResponse {
+	return &RemoveResourceNodeResponse{}
+}
+
+// OpNum returns the operation number of ApiRemoveResourceNode operation.
+func (o *RemoveResourceNodeRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of ApiRemoveResourceNode operation.
+func (o *RemoveResourceNodeRequest) OpName() string { return "/clusapi3/v3/ApiRemoveResourceNode" }
+
 // RemoveResourceNodeResponse structure represents the ApiRemoveResourceNode operation response
 type RemoveResourceNodeResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -11451,8 +11782,10 @@ type xxx_ChangeResourceGroupOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiChangeResourceGroup operation.
 func (o *xxx_ChangeResourceGroupOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of ApiChangeResourceGroup operation.
 func (o *xxx_ChangeResourceGroupOperation) OpName() string {
 	return "/clusapi3/v3/ApiChangeResourceGroup"
 }
@@ -11600,6 +11933,17 @@ func (o *ChangeResourceGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeChangeResourceGroupRequest build a response structure from the given request structure.
+func (o *ChangeResourceGroupRequest) MakeResponse() *ChangeResourceGroupResponse {
+	return &ChangeResourceGroupResponse{}
+}
+
+// OpNum returns the operation number of ApiChangeResourceGroup operation.
+func (o *ChangeResourceGroupRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of ApiChangeResourceGroup operation.
+func (o *ChangeResourceGroupRequest) OpName() string { return "/clusapi3/v3/ApiChangeResourceGroup" }
+
 // ChangeResourceGroupResponse structure represents the ApiChangeResourceGroup operation response
 type ChangeResourceGroupResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -11649,8 +11993,10 @@ type xxx_CreateResourceTypeOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateResourceType operation.
 func (o *xxx_CreateResourceTypeOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of ApiCreateResourceType operation.
 func (o *xxx_CreateResourceTypeOperation) OpName() string {
 	return "/clusapi3/v3/ApiCreateResourceType"
 }
@@ -11825,6 +12171,17 @@ func (o *CreateResourceTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeCreateResourceTypeRequest build a response structure from the given request structure.
+func (o *CreateResourceTypeRequest) MakeResponse() *CreateResourceTypeResponse {
+	return &CreateResourceTypeResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateResourceType operation.
+func (o *CreateResourceTypeRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of ApiCreateResourceType operation.
+func (o *CreateResourceTypeRequest) OpName() string { return "/clusapi3/v3/ApiCreateResourceType" }
+
 // CreateResourceTypeResponse structure represents the ApiCreateResourceType operation response
 type CreateResourceTypeResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -11870,8 +12227,10 @@ type xxx_DeleteResourceTypeOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiDeleteResourceType operation.
 func (o *xxx_DeleteResourceTypeOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of ApiDeleteResourceType operation.
 func (o *xxx_DeleteResourceTypeOperation) OpName() string {
 	return "/clusapi3/v3/ApiDeleteResourceType"
 }
@@ -11986,6 +12345,17 @@ func (o *DeleteResourceTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeDeleteResourceTypeRequest build a response structure from the given request structure.
+func (o *DeleteResourceTypeRequest) MakeResponse() *DeleteResourceTypeResponse {
+	return &DeleteResourceTypeResponse{}
+}
+
+// OpNum returns the operation number of ApiDeleteResourceType operation.
+func (o *DeleteResourceTypeRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of ApiDeleteResourceType operation.
+func (o *DeleteResourceTypeRequest) OpName() string { return "/clusapi3/v3/ApiDeleteResourceType" }
+
 // DeleteResourceTypeResponse structure represents the ApiDeleteResourceType operation response
 type DeleteResourceTypeResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -12032,8 +12402,10 @@ type xxx_GetRootKeyOperation struct {
 	Return        *Key   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetRootKey operation.
 func (o *xxx_GetRootKeyOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of ApiGetRootKey operation.
 func (o *xxx_GetRootKeyOperation) OpName() string { return "/clusapi3/v3/ApiGetRootKey" }
 
 func (o *xxx_GetRootKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12167,6 +12539,17 @@ func (o *GetRootKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetRootKeyRequest build a response structure from the given request structure.
+func (o *GetRootKeyRequest) MakeResponse() *GetRootKeyResponse {
+	return &GetRootKeyResponse{}
+}
+
+// OpNum returns the operation number of ApiGetRootKey operation.
+func (o *GetRootKeyRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of ApiGetRootKey operation.
+func (o *GetRootKeyRequest) OpName() string { return "/clusapi3/v3/ApiGetRootKey" }
+
 // GetRootKeyResponse structure represents the ApiGetRootKey operation response
 type GetRootKeyResponse struct {
 	Status    uint32 `idl:"name:Status" json:"status"`
@@ -12221,8 +12604,10 @@ type xxx_CreateKeyOperation struct {
 	Return             *Key                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateKey operation.
 func (o *xxx_CreateKeyOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of ApiCreateKey operation.
 func (o *xxx_CreateKeyOperation) OpName() string { return "/clusapi3/v3/ApiCreateKey" }
 
 func (o *xxx_CreateKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12471,6 +12856,17 @@ func (o *CreateKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeCreateKeyRequest build a response structure from the given request structure.
+func (o *CreateKeyRequest) MakeResponse() *CreateKeyResponse {
+	return &CreateKeyResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateKey operation.
+func (o *CreateKeyRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of ApiCreateKey operation.
+func (o *CreateKeyRequest) OpName() string { return "/clusapi3/v3/ApiCreateKey" }
+
 // CreateKeyResponse structure represents the ApiCreateKey operation response
 type CreateKeyResponse struct {
 	Disposition uint32 `idl:"name:lpdwDisposition" json:"disposition"`
@@ -12525,8 +12921,10 @@ type xxx_OpenKeyOperation struct {
 	Return        *Key   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenKey operation.
 func (o *xxx_OpenKeyOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of ApiOpenKey operation.
 func (o *xxx_OpenKeyOperation) OpName() string { return "/clusapi3/v3/ApiOpenKey" }
 
 func (o *xxx_OpenKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12699,6 +13097,17 @@ func (o *OpenKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeOpenKeyRequest build a response structure from the given request structure.
+func (o *OpenKeyRequest) MakeResponse() *OpenKeyResponse {
+	return &OpenKeyResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenKey operation.
+func (o *OpenKeyRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of ApiOpenKey operation.
+func (o *OpenKeyRequest) OpName() string { return "/clusapi3/v3/ApiOpenKey" }
+
 // OpenKeyResponse structure represents the ApiOpenKey operation response
 type OpenKeyResponse struct {
 	Status    uint32 `idl:"name:Status" json:"status"`
@@ -12750,8 +13159,10 @@ type xxx_EnumKeyOperation struct {
 	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiEnumKey operation.
 func (o *xxx_EnumKeyOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of ApiEnumKey operation.
 func (o *xxx_EnumKeyOperation) OpName() string { return "/clusapi3/v3/ApiEnumKey" }
 
 func (o *xxx_EnumKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12946,6 +13357,17 @@ func (o *EnumKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeEnumKeyRequest build a response structure from the given request structure.
+func (o *EnumKeyRequest) MakeResponse() *EnumKeyResponse {
+	return &EnumKeyResponse{}
+}
+
+// OpNum returns the operation number of ApiEnumKey operation.
+func (o *EnumKeyRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of ApiEnumKey operation.
+func (o *EnumKeyRequest) OpName() string { return "/clusapi3/v3/ApiEnumKey" }
+
 // EnumKeyResponse structure represents the ApiEnumKey operation response
 type EnumKeyResponse struct {
 	KeyName       string         `idl:"name:KeyName;string" json:"key_name"`
@@ -13001,8 +13423,10 @@ type xxx_SetValueOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiSetValue operation.
 func (o *xxx_SetValueOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of ApiSetValue operation.
 func (o *xxx_SetValueOperation) OpName() string { return "/clusapi3/v3/ApiSetValue" }
 
 func (o *xxx_SetValueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13220,6 +13644,17 @@ func (o *SetValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeSetValueRequest build a response structure from the given request structure.
+func (o *SetValueRequest) MakeResponse() *SetValueResponse {
+	return &SetValueResponse{}
+}
+
+// OpNum returns the operation number of ApiSetValue operation.
+func (o *SetValueRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of ApiSetValue operation.
+func (o *SetValueRequest) OpName() string { return "/clusapi3/v3/ApiSetValue" }
+
 // SetValueResponse structure represents the ApiSetValue operation response
 type SetValueResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -13266,8 +13701,10 @@ type xxx_DeleteValueOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiDeleteValue operation.
 func (o *xxx_DeleteValueOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of ApiDeleteValue operation.
 func (o *xxx_DeleteValueOperation) OpName() string { return "/clusapi3/v3/ApiDeleteValue" }
 
 func (o *xxx_DeleteValueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13404,6 +13841,17 @@ func (o *DeleteValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeDeleteValueRequest build a response structure from the given request structure.
+func (o *DeleteValueRequest) MakeResponse() *DeleteValueResponse {
+	return &DeleteValueResponse{}
+}
+
+// OpNum returns the operation number of ApiDeleteValue operation.
+func (o *DeleteValueRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of ApiDeleteValue operation.
+func (o *DeleteValueRequest) OpName() string { return "/clusapi3/v3/ApiDeleteValue" }
+
 // DeleteValueResponse structure represents the ApiDeleteValue operation response
 type DeleteValueResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -13454,8 +13902,10 @@ type xxx_QueryValueOperation struct {
 	Return         uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiQueryValue operation.
 func (o *xxx_QueryValueOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of ApiQueryValue operation.
 func (o *xxx_QueryValueOperation) OpName() string { return "/clusapi3/v3/ApiQueryValue" }
 
 func (o *xxx_QueryValueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13676,6 +14126,22 @@ func (o *QueryValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeQueryValueRequest build a response structure from the given request structure.
+func (o *QueryValueRequest) MakeResponse() *QueryValueResponse {
+	if o == nil {
+		return &QueryValueResponse{}
+	}
+	return &QueryValueResponse{
+		DataLength: o.DataLength,
+	}
+}
+
+// OpNum returns the operation number of ApiQueryValue operation.
+func (o *QueryValueRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of ApiQueryValue operation.
+func (o *QueryValueRequest) OpName() string { return "/clusapi3/v3/ApiQueryValue" }
+
 // QueryValueResponse structure represents the ApiQueryValue operation response
 type QueryValueResponse struct {
 	// XXX: cbData is an implicit input depedency for output parameters
@@ -13742,8 +14208,10 @@ type xxx_DeleteKeyOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiDeleteKey operation.
 func (o *xxx_DeleteKeyOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of ApiDeleteKey operation.
 func (o *xxx_DeleteKeyOperation) OpName() string { return "/clusapi3/v3/ApiDeleteKey" }
 
 func (o *xxx_DeleteKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13880,6 +14348,17 @@ func (o *DeleteKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeDeleteKeyRequest build a response structure from the given request structure.
+func (o *DeleteKeyRequest) MakeResponse() *DeleteKeyResponse {
+	return &DeleteKeyResponse{}
+}
+
+// OpNum returns the operation number of ApiDeleteKey operation.
+func (o *DeleteKeyRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of ApiDeleteKey operation.
+func (o *DeleteKeyRequest) OpName() string { return "/clusapi3/v3/ApiDeleteKey" }
+
 // DeleteKeyResponse structure represents the ApiDeleteKey operation response
 type DeleteKeyResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -13931,8 +14410,10 @@ type xxx_EnumValueOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiEnumValue operation.
 func (o *xxx_EnumValueOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of ApiEnumValue operation.
 func (o *xxx_EnumValueOperation) OpName() string { return "/clusapi3/v3/ApiEnumValue" }
 
 func (o *xxx_EnumValueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14205,6 +14686,17 @@ func (o *EnumValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeEnumValueRequest build a response structure from the given request structure.
+func (o *EnumValueRequest) MakeResponse() *EnumValueResponse {
+	return &EnumValueResponse{}
+}
+
+// OpNum returns the operation number of ApiEnumValue operation.
+func (o *EnumValueRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of ApiEnumValue operation.
+func (o *EnumValueRequest) OpName() string { return "/clusapi3/v3/ApiEnumValue" }
+
 // EnumValueResponse structure represents the ApiEnumValue operation response
 type EnumValueResponse struct {
 	ValueName  string `idl:"name:lpValueName;string" json:"value_name"`
@@ -14264,8 +14756,10 @@ type xxx_CloseKeyOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCloseKey operation.
 func (o *xxx_CloseKeyOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of ApiCloseKey operation.
 func (o *xxx_CloseKeyOperation) OpName() string { return "/clusapi3/v3/ApiCloseKey" }
 
 func (o *xxx_CloseKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14396,6 +14890,17 @@ func (o *CloseKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeCloseKeyRequest build a response structure from the given request structure.
+func (o *CloseKeyRequest) MakeResponse() *CloseKeyResponse {
+	return &CloseKeyResponse{}
+}
+
+// OpNum returns the operation number of ApiCloseKey operation.
+func (o *CloseKeyRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of ApiCloseKey operation.
+func (o *CloseKeyRequest) OpName() string { return "/clusapi3/v3/ApiCloseKey" }
+
 // CloseKeyResponse structure represents the ApiCloseKey operation response
 type CloseKeyResponse struct {
 	Key *Key `idl:"name:pKey" json:"key"`
@@ -14448,8 +14953,10 @@ type xxx_QueryInfoKeyOperation struct {
 	Return                   uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiQueryInfoKey operation.
 func (o *xxx_QueryInfoKeyOperation) OpNum() int { return 38 }
 
+// OpName returns the operation name of ApiQueryInfoKey operation.
 func (o *xxx_QueryInfoKeyOperation) OpName() string { return "/clusapi3/v3/ApiQueryInfoKey" }
 
 func (o *xxx_QueryInfoKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14664,6 +15171,17 @@ func (o *QueryInfoKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeQueryInfoKeyRequest build a response structure from the given request structure.
+func (o *QueryInfoKeyRequest) MakeResponse() *QueryInfoKeyResponse {
+	return &QueryInfoKeyResponse{}
+}
+
+// OpNum returns the operation number of ApiQueryInfoKey operation.
+func (o *QueryInfoKeyRequest) OpNum() int { return 38 }
+
+// OpName returns the operation name of ApiQueryInfoKey operation.
+func (o *QueryInfoKeyRequest) OpName() string { return "/clusapi3/v3/ApiQueryInfoKey" }
+
 // QueryInfoKeyResponse structure represents the ApiQueryInfoKey operation response
 type QueryInfoKeyResponse struct {
 	SubKeysCount             uint32         `idl:"name:lpcSubKeys" json:"sub_keys_count"`
@@ -14732,8 +15250,10 @@ type xxx_SetKeySecurityOperation struct {
 	Return              uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiSetKeySecurity operation.
 func (o *xxx_SetKeySecurityOperation) OpNum() int { return 39 }
 
+// OpName returns the operation name of ApiSetKeySecurity operation.
 func (o *xxx_SetKeySecurityOperation) OpName() string { return "/clusapi3/v3/ApiSetKeySecurity" }
 
 func (o *xxx_SetKeySecurityOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14900,6 +15420,17 @@ func (o *SetKeySecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetKeySecurityRequest build a response structure from the given request structure.
+func (o *SetKeySecurityRequest) MakeResponse() *SetKeySecurityResponse {
+	return &SetKeySecurityResponse{}
+}
+
+// OpNum returns the operation number of ApiSetKeySecurity operation.
+func (o *SetKeySecurityRequest) OpNum() int { return 39 }
+
+// OpName returns the operation name of ApiSetKeySecurity operation.
+func (o *SetKeySecurityRequest) OpName() string { return "/clusapi3/v3/ApiSetKeySecurity" }
+
 // SetKeySecurityResponse structure represents the ApiSetKeySecurity operation response
 type SetKeySecurityResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -14947,8 +15478,10 @@ type xxx_GetKeySecurityOperation struct {
 	Return              uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetKeySecurity operation.
 func (o *xxx_GetKeySecurityOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of ApiGetKeySecurity operation.
 func (o *xxx_GetKeySecurityOperation) OpName() string { return "/clusapi3/v3/ApiGetKeySecurity" }
 
 func (o *xxx_GetKeySecurityOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -15142,6 +15675,17 @@ func (o *GetKeySecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetKeySecurityRequest build a response structure from the given request structure.
+func (o *GetKeySecurityRequest) MakeResponse() *GetKeySecurityResponse {
+	return &GetKeySecurityResponse{}
+}
+
+// OpNum returns the operation number of ApiGetKeySecurity operation.
+func (o *GetKeySecurityRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of ApiGetKeySecurity operation.
+func (o *GetKeySecurityRequest) OpName() string { return "/clusapi3/v3/ApiGetKeySecurity" }
+
 // GetKeySecurityResponse structure represents the ApiGetKeySecurity operation response
 type GetKeySecurityResponse struct {
 	SecurityDescriptor *SecurityDescriptor `idl:"name:pRpcSecurityDescriptor" json:"security_descriptor"`
@@ -15191,8 +15735,10 @@ type xxx_OpenGroupOperation struct {
 	Return    *Group `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenGroup operation.
 func (o *xxx_OpenGroupOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of ApiOpenGroup operation.
 func (o *xxx_OpenGroupOperation) OpName() string { return "/clusapi3/v3/ApiOpenGroup" }
 
 func (o *xxx_OpenGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -15326,6 +15872,17 @@ func (o *OpenGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeOpenGroupRequest build a response structure from the given request structure.
+func (o *OpenGroupRequest) MakeResponse() *OpenGroupResponse {
+	return &OpenGroupResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenGroup operation.
+func (o *OpenGroupRequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of ApiOpenGroup operation.
+func (o *OpenGroupRequest) OpName() string { return "/clusapi3/v3/ApiOpenGroup" }
+
 // OpenGroupResponse structure represents the ApiOpenGroup operation response
 type OpenGroupResponse struct {
 	Status    uint32 `idl:"name:Status" json:"status"`
@@ -15375,8 +15932,10 @@ type xxx_CreateGroupOperation struct {
 	Return    *Group `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateGroup operation.
 func (o *xxx_CreateGroupOperation) OpNum() int { return 42 }
 
+// OpName returns the operation name of ApiCreateGroup operation.
 func (o *xxx_CreateGroupOperation) OpName() string { return "/clusapi3/v3/ApiCreateGroup" }
 
 func (o *xxx_CreateGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -15510,6 +16069,17 @@ func (o *CreateGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCreateGroupRequest build a response structure from the given request structure.
+func (o *CreateGroupRequest) MakeResponse() *CreateGroupResponse {
+	return &CreateGroupResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateGroup operation.
+func (o *CreateGroupRequest) OpNum() int { return 42 }
+
+// OpName returns the operation name of ApiCreateGroup operation.
+func (o *CreateGroupRequest) OpName() string { return "/clusapi3/v3/ApiCreateGroup" }
+
 // CreateGroupResponse structure represents the ApiCreateGroup operation response
 type CreateGroupResponse struct {
 	Status    uint32 `idl:"name:Status" json:"status"`
@@ -15559,8 +16129,10 @@ type xxx_DeleteGroupOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiDeleteGroup operation.
 func (o *xxx_DeleteGroupOperation) OpNum() int { return 43 }
 
+// OpName returns the operation name of ApiDeleteGroup operation.
 func (o *xxx_DeleteGroupOperation) OpName() string { return "/clusapi3/v3/ApiDeleteGroup" }
 
 func (o *xxx_DeleteGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -15705,6 +16277,17 @@ func (o *DeleteGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeDeleteGroupRequest build a response structure from the given request structure.
+func (o *DeleteGroupRequest) MakeResponse() *DeleteGroupResponse {
+	return &DeleteGroupResponse{}
+}
+
+// OpNum returns the operation number of ApiDeleteGroup operation.
+func (o *DeleteGroupRequest) OpNum() int { return 43 }
+
+// OpName returns the operation name of ApiDeleteGroup operation.
+func (o *DeleteGroupRequest) OpName() string { return "/clusapi3/v3/ApiDeleteGroup" }
+
 // DeleteGroupResponse structure represents the ApiDeleteGroup operation response
 type DeleteGroupResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -15749,8 +16332,10 @@ type xxx_CloseGroupOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCloseGroup operation.
 func (o *xxx_CloseGroupOperation) OpNum() int { return 44 }
 
+// OpName returns the operation name of ApiCloseGroup operation.
 func (o *xxx_CloseGroupOperation) OpName() string { return "/clusapi3/v3/ApiCloseGroup" }
 
 func (o *xxx_CloseGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -15881,6 +16466,17 @@ func (o *CloseGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeCloseGroupRequest build a response structure from the given request structure.
+func (o *CloseGroupRequest) MakeResponse() *CloseGroupResponse {
+	return &CloseGroupResponse{}
+}
+
+// OpNum returns the operation number of ApiCloseGroup operation.
+func (o *CloseGroupRequest) OpNum() int { return 44 }
+
+// OpName returns the operation name of ApiCloseGroup operation.
+func (o *CloseGroupRequest) OpName() string { return "/clusapi3/v3/ApiCloseGroup" }
+
 // CloseGroupResponse structure represents the ApiCloseGroup operation response
 type CloseGroupResponse struct {
 	Group *Group `idl:"name:Group" json:"group"`
@@ -15928,8 +16524,10 @@ type xxx_GetGroupStateOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetGroupState operation.
 func (o *xxx_GetGroupStateOperation) OpNum() int { return 45 }
 
+// OpName returns the operation name of ApiGetGroupState operation.
 func (o *xxx_GetGroupStateOperation) OpName() string { return "/clusapi3/v3/ApiGetGroupState" }
 
 func (o *xxx_GetGroupStateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -16100,6 +16698,17 @@ func (o *GetGroupStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetGroupStateRequest build a response structure from the given request structure.
+func (o *GetGroupStateRequest) MakeResponse() *GetGroupStateResponse {
+	return &GetGroupStateResponse{}
+}
+
+// OpNum returns the operation number of ApiGetGroupState operation.
+func (o *GetGroupStateRequest) OpNum() int { return 45 }
+
+// OpName returns the operation name of ApiGetGroupState operation.
+func (o *GetGroupStateRequest) OpName() string { return "/clusapi3/v3/ApiGetGroupState" }
+
 // GetGroupStateResponse structure represents the ApiGetGroupState operation response
 type GetGroupStateResponse struct {
 	State     uint32 `idl:"name:State" json:"state"`
@@ -16152,8 +16761,10 @@ type xxx_SetGroupNameOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiSetGroupName operation.
 func (o *xxx_SetGroupNameOperation) OpNum() int { return 46 }
 
+// OpName returns the operation name of ApiSetGroupName operation.
 func (o *xxx_SetGroupNameOperation) OpName() string { return "/clusapi3/v3/ApiSetGroupName" }
 
 func (o *xxx_SetGroupNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -16290,6 +16901,17 @@ func (o *SetGroupNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeSetGroupNameRequest build a response structure from the given request structure.
+func (o *SetGroupNameRequest) MakeResponse() *SetGroupNameResponse {
+	return &SetGroupNameResponse{}
+}
+
+// OpNum returns the operation number of ApiSetGroupName operation.
+func (o *SetGroupNameRequest) OpNum() int { return 46 }
+
+// OpName returns the operation name of ApiSetGroupName operation.
+func (o *SetGroupNameRequest) OpName() string { return "/clusapi3/v3/ApiSetGroupName" }
+
 // SetGroupNameResponse structure represents the ApiSetGroupName operation response
 type SetGroupNameResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -16336,8 +16958,10 @@ type xxx_GetGroupIDOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetGroupId operation.
 func (o *xxx_GetGroupIDOperation) OpNum() int { return 47 }
 
+// OpName returns the operation name of ApiGetGroupId operation.
 func (o *xxx_GetGroupIDOperation) OpName() string { return "/clusapi3/v3/ApiGetGroupId" }
 
 func (o *xxx_GetGroupIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -16496,6 +17120,17 @@ func (o *GetGroupIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetGroupIDRequest build a response structure from the given request structure.
+func (o *GetGroupIDRequest) MakeResponse() *GetGroupIDResponse {
+	return &GetGroupIDResponse{}
+}
+
+// OpNum returns the operation number of ApiGetGroupId operation.
+func (o *GetGroupIDRequest) OpNum() int { return 47 }
+
+// OpName returns the operation name of ApiGetGroupId operation.
+func (o *GetGroupIDRequest) OpName() string { return "/clusapi3/v3/ApiGetGroupId" }
+
 // GetGroupIDResponse structure represents the ApiGetGroupId operation response
 type GetGroupIDResponse struct {
 	GUID      string `idl:"name:pGuid;string" json:"guid"`
@@ -16545,8 +17180,10 @@ type xxx_GetNodeIDOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetNodeId operation.
 func (o *xxx_GetNodeIDOperation) OpNum() int { return 48 }
 
+// OpName returns the operation name of ApiGetNodeId operation.
 func (o *xxx_GetNodeIDOperation) OpName() string { return "/clusapi3/v3/ApiGetNodeId" }
 
 func (o *xxx_GetNodeIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -16705,6 +17342,17 @@ func (o *GetNodeIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetNodeIDRequest build a response structure from the given request structure.
+func (o *GetNodeIDRequest) MakeResponse() *GetNodeIDResponse {
+	return &GetNodeIDResponse{}
+}
+
+// OpNum returns the operation number of ApiGetNodeId operation.
+func (o *GetNodeIDRequest) OpNum() int { return 48 }
+
+// OpName returns the operation name of ApiGetNodeId operation.
+func (o *GetNodeIDRequest) OpName() string { return "/clusapi3/v3/ApiGetNodeId" }
+
 // GetNodeIDResponse structure represents the ApiGetNodeId operation response
 type GetNodeIDResponse struct {
 	GUID      string `idl:"name:pGuid;string" json:"guid"`
@@ -16753,8 +17401,10 @@ type xxx_OnlineGroupOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOnlineGroup operation.
 func (o *xxx_OnlineGroupOperation) OpNum() int { return 49 }
 
+// OpName returns the operation name of ApiOnlineGroup operation.
 func (o *xxx_OnlineGroupOperation) OpName() string { return "/clusapi3/v3/ApiOnlineGroup" }
 
 func (o *xxx_OnlineGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -16876,6 +17526,17 @@ func (o *OnlineGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeOnlineGroupRequest build a response structure from the given request structure.
+func (o *OnlineGroupRequest) MakeResponse() *OnlineGroupResponse {
+	return &OnlineGroupResponse{}
+}
+
+// OpNum returns the operation number of ApiOnlineGroup operation.
+func (o *OnlineGroupRequest) OpNum() int { return 49 }
+
+// OpName returns the operation name of ApiOnlineGroup operation.
+func (o *OnlineGroupRequest) OpName() string { return "/clusapi3/v3/ApiOnlineGroup" }
+
 // OnlineGroupResponse structure represents the ApiOnlineGroup operation response
 type OnlineGroupResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -16921,8 +17582,10 @@ type xxx_OfflineGroupOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOfflineGroup operation.
 func (o *xxx_OfflineGroupOperation) OpNum() int { return 50 }
 
+// OpName returns the operation name of ApiOfflineGroup operation.
 func (o *xxx_OfflineGroupOperation) OpName() string { return "/clusapi3/v3/ApiOfflineGroup" }
 
 func (o *xxx_OfflineGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -17044,6 +17707,17 @@ func (o *OfflineGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeOfflineGroupRequest build a response structure from the given request structure.
+func (o *OfflineGroupRequest) MakeResponse() *OfflineGroupResponse {
+	return &OfflineGroupResponse{}
+}
+
+// OpNum returns the operation number of ApiOfflineGroup operation.
+func (o *OfflineGroupRequest) OpNum() int { return 50 }
+
+// OpName returns the operation name of ApiOfflineGroup operation.
+func (o *OfflineGroupRequest) OpName() string { return "/clusapi3/v3/ApiOfflineGroup" }
+
 // OfflineGroupResponse structure represents the ApiOfflineGroup operation response
 type OfflineGroupResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -17089,8 +17763,10 @@ type xxx_MoveGroupOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiMoveGroup operation.
 func (o *xxx_MoveGroupOperation) OpNum() int { return 51 }
 
+// OpName returns the operation name of ApiMoveGroup operation.
 func (o *xxx_MoveGroupOperation) OpName() string { return "/clusapi3/v3/ApiMoveGroup" }
 
 func (o *xxx_MoveGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -17212,6 +17888,17 @@ func (o *MoveGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeMoveGroupRequest build a response structure from the given request structure.
+func (o *MoveGroupRequest) MakeResponse() *MoveGroupResponse {
+	return &MoveGroupResponse{}
+}
+
+// OpNum returns the operation number of ApiMoveGroup operation.
+func (o *MoveGroupRequest) OpNum() int { return 51 }
+
+// OpName returns the operation name of ApiMoveGroup operation.
+func (o *MoveGroupRequest) OpName() string { return "/clusapi3/v3/ApiMoveGroup" }
+
 // MoveGroupResponse structure represents the ApiMoveGroup operation response
 type MoveGroupResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -17258,8 +17945,10 @@ type xxx_MoveGroupToNodeOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiMoveGroupToNode operation.
 func (o *xxx_MoveGroupToNodeOperation) OpNum() int { return 52 }
 
+// OpName returns the operation name of ApiMoveGroupToNode operation.
 func (o *xxx_MoveGroupToNodeOperation) OpName() string { return "/clusapi3/v3/ApiMoveGroupToNode" }
 
 func (o *xxx_MoveGroupToNodeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -17405,6 +18094,17 @@ func (o *MoveGroupToNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeMoveGroupToNodeRequest build a response structure from the given request structure.
+func (o *MoveGroupToNodeRequest) MakeResponse() *MoveGroupToNodeResponse {
+	return &MoveGroupToNodeResponse{}
+}
+
+// OpNum returns the operation number of ApiMoveGroupToNode operation.
+func (o *MoveGroupToNodeRequest) OpNum() int { return 52 }
+
+// OpName returns the operation name of ApiMoveGroupToNode operation.
+func (o *MoveGroupToNodeRequest) OpName() string { return "/clusapi3/v3/ApiMoveGroupToNode" }
+
 // MoveGroupToNodeResponse structure represents the ApiMoveGroupToNode operation response
 type MoveGroupToNodeResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -17452,8 +18152,10 @@ type xxx_CreateGroupResourceEnumOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateGroupResourceEnum operation.
 func (o *xxx_CreateGroupResourceEnumOperation) OpNum() int { return 53 }
 
+// OpName returns the operation name of ApiCreateGroupResourceEnum operation.
 func (o *xxx_CreateGroupResourceEnumOperation) OpName() string {
 	return "/clusapi3/v3/ApiCreateGroupResourceEnum"
 }
@@ -17638,6 +18340,19 @@ func (o *CreateGroupResourceEnumRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeCreateGroupResourceEnumRequest build a response structure from the given request structure.
+func (o *CreateGroupResourceEnumRequest) MakeResponse() *CreateGroupResourceEnumResponse {
+	return &CreateGroupResourceEnumResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateGroupResourceEnum operation.
+func (o *CreateGroupResourceEnumRequest) OpNum() int { return 53 }
+
+// OpName returns the operation name of ApiCreateGroupResourceEnum operation.
+func (o *CreateGroupResourceEnumRequest) OpName() string {
+	return "/clusapi3/v3/ApiCreateGroupResourceEnum"
+}
+
 // CreateGroupResourceEnumResponse structure represents the ApiCreateGroupResourceEnum operation response
 type CreateGroupResourceEnumResponse struct {
 	ReturnEnum *EnumList `idl:"name:ReturnEnum" json:"return_enum"`
@@ -17688,8 +18403,10 @@ type xxx_SetGroupNodeListOperation struct {
 	Return     uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiSetGroupNodeList operation.
 func (o *xxx_SetGroupNodeListOperation) OpNum() int { return 54 }
 
+// OpName returns the operation name of ApiSetGroupNodeList operation.
 func (o *xxx_SetGroupNodeListOperation) OpName() string { return "/clusapi3/v3/ApiSetGroupNodeList" }
 
 func (o *xxx_SetGroupNodeListOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -17913,6 +18630,17 @@ func (o *SetGroupNodeListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetGroupNodeListRequest build a response structure from the given request structure.
+func (o *SetGroupNodeListRequest) MakeResponse() *SetGroupNodeListResponse {
+	return &SetGroupNodeListResponse{}
+}
+
+// OpNum returns the operation number of ApiSetGroupNodeList operation.
+func (o *SetGroupNodeListRequest) OpNum() int { return 54 }
+
+// OpName returns the operation name of ApiSetGroupNodeList operation.
+func (o *SetGroupNodeListRequest) OpName() string { return "/clusapi3/v3/ApiSetGroupNodeList" }
+
 // SetGroupNodeListResponse structure represents the ApiSetGroupNodeList operation response
 type SetGroupNodeListResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -17958,8 +18686,10 @@ type xxx_CreateNotifyOperation struct {
 	Return    *Notify `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateNotify operation.
 func (o *xxx_CreateNotifyOperation) OpNum() int { return 55 }
 
+// OpName returns the operation name of ApiCreateNotify operation.
 func (o *xxx_CreateNotifyOperation) OpName() string { return "/clusapi3/v3/ApiCreateNotify" }
 
 func (o *xxx_CreateNotifyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18078,6 +18808,17 @@ func (o *CreateNotifyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCreateNotifyRequest build a response structure from the given request structure.
+func (o *CreateNotifyRequest) MakeResponse() *CreateNotifyResponse {
+	return &CreateNotifyResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateNotify operation.
+func (o *CreateNotifyRequest) OpNum() int { return 55 }
+
+// OpName returns the operation name of ApiCreateNotify operation.
+func (o *CreateNotifyRequest) OpName() string { return "/clusapi3/v3/ApiCreateNotify" }
+
 // CreateNotifyResponse structure represents the ApiCreateNotify operation response
 type CreateNotifyResponse struct {
 	Status    uint32 `idl:"name:Status" json:"status"`
@@ -18125,8 +18866,10 @@ type xxx_CloseNotifyOperation struct {
 	Return uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCloseNotify operation.
 func (o *xxx_CloseNotifyOperation) OpNum() int { return 56 }
 
+// OpName returns the operation name of ApiCloseNotify operation.
 func (o *xxx_CloseNotifyOperation) OpName() string { return "/clusapi3/v3/ApiCloseNotify" }
 
 func (o *xxx_CloseNotifyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18257,6 +19000,17 @@ func (o *CloseNotifyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCloseNotifyRequest build a response structure from the given request structure.
+func (o *CloseNotifyRequest) MakeResponse() *CloseNotifyResponse {
+	return &CloseNotifyResponse{}
+}
+
+// OpNum returns the operation number of ApiCloseNotify operation.
+func (o *CloseNotifyRequest) OpNum() int { return 56 }
+
+// OpName returns the operation name of ApiCloseNotify operation.
+func (o *CloseNotifyRequest) OpName() string { return "/clusapi3/v3/ApiCloseNotify" }
+
 // CloseNotifyResponse structure represents the ApiCloseNotify operation response
 type CloseNotifyResponse struct {
 	Notify *Notify `idl:"name:Notify" json:"notify"`
@@ -18305,8 +19059,10 @@ type xxx_AddNotifyClusterOperation struct {
 	Return    uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddNotifyCluster operation.
 func (o *xxx_AddNotifyClusterOperation) OpNum() int { return 57 }
 
+// OpName returns the operation name of ApiAddNotifyCluster operation.
 func (o *xxx_AddNotifyClusterOperation) OpName() string { return "/clusapi3/v3/ApiAddNotifyCluster" }
 
 func (o *xxx_AddNotifyClusterOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18482,6 +19238,17 @@ func (o *AddNotifyClusterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeAddNotifyClusterRequest build a response structure from the given request structure.
+func (o *AddNotifyClusterRequest) MakeResponse() *AddNotifyClusterResponse {
+	return &AddNotifyClusterResponse{}
+}
+
+// OpNum returns the operation number of ApiAddNotifyCluster operation.
+func (o *AddNotifyClusterRequest) OpNum() int { return 57 }
+
+// OpName returns the operation name of ApiAddNotifyCluster operation.
+func (o *AddNotifyClusterRequest) OpName() string { return "/clusapi3/v3/ApiAddNotifyCluster" }
+
 // AddNotifyClusterResponse structure represents the ApiAddNotifyCluster operation response
 type AddNotifyClusterResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -18531,8 +19298,10 @@ type xxx_AddNotifyNodeOperation struct {
 	Return        uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddNotifyNode operation.
 func (o *xxx_AddNotifyNodeOperation) OpNum() int { return 58 }
 
+// OpName returns the operation name of ApiAddNotifyNode operation.
 func (o *xxx_AddNotifyNodeOperation) OpName() string { return "/clusapi3/v3/ApiAddNotifyNode" }
 
 func (o *xxx_AddNotifyNodeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18720,6 +19489,17 @@ func (o *AddNotifyNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeAddNotifyNodeRequest build a response structure from the given request structure.
+func (o *AddNotifyNodeRequest) MakeResponse() *AddNotifyNodeResponse {
+	return &AddNotifyNodeResponse{}
+}
+
+// OpNum returns the operation number of ApiAddNotifyNode operation.
+func (o *AddNotifyNodeRequest) OpNum() int { return 58 }
+
+// OpName returns the operation name of ApiAddNotifyNode operation.
+func (o *AddNotifyNodeRequest) OpName() string { return "/clusapi3/v3/ApiAddNotifyNode" }
+
 // AddNotifyNodeResponse structure represents the ApiAddNotifyNode operation response
 type AddNotifyNodeResponse struct {
 	StateSequence uint32 `idl:"name:dwStateSequence" json:"state_sequence"`
@@ -18772,8 +19552,10 @@ type xxx_AddNotifyGroupOperation struct {
 	Return        uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddNotifyGroup operation.
 func (o *xxx_AddNotifyGroupOperation) OpNum() int { return 59 }
 
+// OpName returns the operation name of ApiAddNotifyGroup operation.
 func (o *xxx_AddNotifyGroupOperation) OpName() string { return "/clusapi3/v3/ApiAddNotifyGroup" }
 
 func (o *xxx_AddNotifyGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18961,6 +19743,17 @@ func (o *AddNotifyGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeAddNotifyGroupRequest build a response structure from the given request structure.
+func (o *AddNotifyGroupRequest) MakeResponse() *AddNotifyGroupResponse {
+	return &AddNotifyGroupResponse{}
+}
+
+// OpNum returns the operation number of ApiAddNotifyGroup operation.
+func (o *AddNotifyGroupRequest) OpNum() int { return 59 }
+
+// OpName returns the operation name of ApiAddNotifyGroup operation.
+func (o *AddNotifyGroupRequest) OpName() string { return "/clusapi3/v3/ApiAddNotifyGroup" }
+
 // AddNotifyGroupResponse structure represents the ApiAddNotifyGroup operation response
 type AddNotifyGroupResponse struct {
 	StateSequence uint32 `idl:"name:dwStateSequence" json:"state_sequence"`
@@ -19013,8 +19806,10 @@ type xxx_AddNotifyResourceOperation struct {
 	Return        uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddNotifyResource operation.
 func (o *xxx_AddNotifyResourceOperation) OpNum() int { return 60 }
 
+// OpName returns the operation name of ApiAddNotifyResource operation.
 func (o *xxx_AddNotifyResourceOperation) OpName() string { return "/clusapi3/v3/ApiAddNotifyResource" }
 
 func (o *xxx_AddNotifyResourceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19202,6 +19997,17 @@ func (o *AddNotifyResourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeAddNotifyResourceRequest build a response structure from the given request structure.
+func (o *AddNotifyResourceRequest) MakeResponse() *AddNotifyResourceResponse {
+	return &AddNotifyResourceResponse{}
+}
+
+// OpNum returns the operation number of ApiAddNotifyResource operation.
+func (o *AddNotifyResourceRequest) OpNum() int { return 60 }
+
+// OpName returns the operation name of ApiAddNotifyResource operation.
+func (o *AddNotifyResourceRequest) OpName() string { return "/clusapi3/v3/ApiAddNotifyResource" }
+
 // AddNotifyResourceResponse structure represents the ApiAddNotifyResource operation response
 type AddNotifyResourceResponse struct {
 	StateSequence uint32 `idl:"name:dwStateSequence" json:"state_sequence"`
@@ -19254,8 +20060,10 @@ type xxx_AddNotifyKeyOperation struct {
 	Return       uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddNotifyKey operation.
 func (o *xxx_AddNotifyKeyOperation) OpNum() int { return 61 }
 
+// OpName returns the operation name of ApiAddNotifyKey operation.
 func (o *xxx_AddNotifyKeyOperation) OpName() string { return "/clusapi3/v3/ApiAddNotifyKey" }
 
 func (o *xxx_AddNotifyKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19454,6 +20262,17 @@ func (o *AddNotifyKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeAddNotifyKeyRequest build a response structure from the given request structure.
+func (o *AddNotifyKeyRequest) MakeResponse() *AddNotifyKeyResponse {
+	return &AddNotifyKeyResponse{}
+}
+
+// OpNum returns the operation number of ApiAddNotifyKey operation.
+func (o *AddNotifyKeyRequest) OpNum() int { return 61 }
+
+// OpName returns the operation name of ApiAddNotifyKey operation.
+func (o *AddNotifyKeyRequest) OpName() string { return "/clusapi3/v3/ApiAddNotifyKey" }
+
 // AddNotifyKeyResponse structure represents the ApiAddNotifyKey operation response
 type AddNotifyKeyResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -19503,8 +20322,10 @@ type xxx_ReAddNotifyNodeOperation struct {
 	Return        uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiReAddNotifyNode operation.
 func (o *xxx_ReAddNotifyNodeOperation) OpNum() int { return 62 }
 
+// OpName returns the operation name of ApiReAddNotifyNode operation.
 func (o *xxx_ReAddNotifyNodeOperation) OpName() string { return "/clusapi3/v3/ApiReAddNotifyNode" }
 
 func (o *xxx_ReAddNotifyNodeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19695,6 +20516,17 @@ func (o *ReAddNotifyNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeReAddNotifyNodeRequest build a response structure from the given request structure.
+func (o *ReAddNotifyNodeRequest) MakeResponse() *ReAddNotifyNodeResponse {
+	return &ReAddNotifyNodeResponse{}
+}
+
+// OpNum returns the operation number of ApiReAddNotifyNode operation.
+func (o *ReAddNotifyNodeRequest) OpNum() int { return 62 }
+
+// OpName returns the operation name of ApiReAddNotifyNode operation.
+func (o *ReAddNotifyNodeRequest) OpName() string { return "/clusapi3/v3/ApiReAddNotifyNode" }
+
 // ReAddNotifyNodeResponse structure represents the ApiReAddNotifyNode operation response
 type ReAddNotifyNodeResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -19744,8 +20576,10 @@ type xxx_ReAddNotifyGroupOperation struct {
 	Return        uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiReAddNotifyGroup operation.
 func (o *xxx_ReAddNotifyGroupOperation) OpNum() int { return 63 }
 
+// OpName returns the operation name of ApiReAddNotifyGroup operation.
 func (o *xxx_ReAddNotifyGroupOperation) OpName() string { return "/clusapi3/v3/ApiReAddNotifyGroup" }
 
 func (o *xxx_ReAddNotifyGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19936,6 +20770,17 @@ func (o *ReAddNotifyGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeReAddNotifyGroupRequest build a response structure from the given request structure.
+func (o *ReAddNotifyGroupRequest) MakeResponse() *ReAddNotifyGroupResponse {
+	return &ReAddNotifyGroupResponse{}
+}
+
+// OpNum returns the operation number of ApiReAddNotifyGroup operation.
+func (o *ReAddNotifyGroupRequest) OpNum() int { return 63 }
+
+// OpName returns the operation name of ApiReAddNotifyGroup operation.
+func (o *ReAddNotifyGroupRequest) OpName() string { return "/clusapi3/v3/ApiReAddNotifyGroup" }
+
 // ReAddNotifyGroupResponse structure represents the ApiReAddNotifyGroup operation response
 type ReAddNotifyGroupResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -19985,8 +20830,10 @@ type xxx_ReAddNotifyResourceOperation struct {
 	Return        uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiReAddNotifyResource operation.
 func (o *xxx_ReAddNotifyResourceOperation) OpNum() int { return 64 }
 
+// OpName returns the operation name of ApiReAddNotifyResource operation.
 func (o *xxx_ReAddNotifyResourceOperation) OpName() string {
 	return "/clusapi3/v3/ApiReAddNotifyResource"
 }
@@ -20179,6 +21026,17 @@ func (o *ReAddNotifyResourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeReAddNotifyResourceRequest build a response structure from the given request structure.
+func (o *ReAddNotifyResourceRequest) MakeResponse() *ReAddNotifyResourceResponse {
+	return &ReAddNotifyResourceResponse{}
+}
+
+// OpNum returns the operation number of ApiReAddNotifyResource operation.
+func (o *ReAddNotifyResourceRequest) OpNum() int { return 64 }
+
+// OpName returns the operation name of ApiReAddNotifyResource operation.
+func (o *ReAddNotifyResourceRequest) OpName() string { return "/clusapi3/v3/ApiReAddNotifyResource" }
+
 // ReAddNotifyResourceResponse structure represents the ApiReAddNotifyResource operation response
 type ReAddNotifyResourceResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -20228,8 +21086,10 @@ type xxx_GetNotifyOperation struct {
 	Return        uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetNotify operation.
 func (o *xxx_GetNotifyOperation) OpNum() int { return 65 }
 
+// OpName returns the operation name of ApiGetNotify operation.
 func (o *xxx_GetNotifyOperation) OpName() string { return "/clusapi3/v3/ApiGetNotify" }
 
 func (o *xxx_GetNotifyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20424,6 +21284,17 @@ func (o *GetNotifyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetNotifyRequest build a response structure from the given request structure.
+func (o *GetNotifyRequest) MakeResponse() *GetNotifyResponse {
+	return &GetNotifyResponse{}
+}
+
+// OpNum returns the operation number of ApiGetNotify operation.
+func (o *GetNotifyRequest) OpNum() int { return 65 }
+
+// OpName returns the operation name of ApiGetNotify operation.
+func (o *GetNotifyRequest) OpName() string { return "/clusapi3/v3/ApiGetNotify" }
+
 // GetNotifyResponse structure represents the ApiGetNotify operation response
 type GetNotifyResponse struct {
 	NotifyKey     uint32 `idl:"name:dwNotifyKey" json:"notify_key"`
@@ -20482,8 +21353,10 @@ type xxx_OpenNodeOperation struct {
 	Return    *Node  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenNode operation.
 func (o *xxx_OpenNodeOperation) OpNum() int { return 66 }
 
+// OpName returns the operation name of ApiOpenNode operation.
 func (o *xxx_OpenNodeOperation) OpName() string { return "/clusapi3/v3/ApiOpenNode" }
 
 func (o *xxx_OpenNodeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20617,6 +21490,17 @@ func (o *OpenNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeOpenNodeRequest build a response structure from the given request structure.
+func (o *OpenNodeRequest) MakeResponse() *OpenNodeResponse {
+	return &OpenNodeResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenNode operation.
+func (o *OpenNodeRequest) OpNum() int { return 66 }
+
+// OpName returns the operation name of ApiOpenNode operation.
+func (o *OpenNodeRequest) OpName() string { return "/clusapi3/v3/ApiOpenNode" }
+
 // OpenNodeResponse structure represents the ApiOpenNode operation response
 type OpenNodeResponse struct {
 	Status    uint32 `idl:"name:Status" json:"status"`
@@ -20664,8 +21548,10 @@ type xxx_CloseNodeOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCloseNode operation.
 func (o *xxx_CloseNodeOperation) OpNum() int { return 67 }
 
+// OpName returns the operation name of ApiCloseNode operation.
 func (o *xxx_CloseNodeOperation) OpName() string { return "/clusapi3/v3/ApiCloseNode" }
 
 func (o *xxx_CloseNodeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20796,6 +21682,17 @@ func (o *CloseNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeCloseNodeRequest build a response structure from the given request structure.
+func (o *CloseNodeRequest) MakeResponse() *CloseNodeResponse {
+	return &CloseNodeResponse{}
+}
+
+// OpNum returns the operation number of ApiCloseNode operation.
+func (o *CloseNodeRequest) OpNum() int { return 67 }
+
+// OpName returns the operation name of ApiCloseNode operation.
+func (o *CloseNodeRequest) OpName() string { return "/clusapi3/v3/ApiCloseNode" }
+
 // CloseNodeResponse structure represents the ApiCloseNode operation response
 type CloseNodeResponse struct {
 	Node *Node `idl:"name:Node" json:"node"`
@@ -20842,8 +21739,10 @@ type xxx_GetNodeStateOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetNodeState operation.
 func (o *xxx_GetNodeStateOperation) OpNum() int { return 68 }
 
+// OpName returns the operation name of ApiGetNodeState operation.
 func (o *xxx_GetNodeStateOperation) OpName() string { return "/clusapi3/v3/ApiGetNodeState" }
 
 func (o *xxx_GetNodeStateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20977,6 +21876,17 @@ func (o *GetNodeStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetNodeStateRequest build a response structure from the given request structure.
+func (o *GetNodeStateRequest) MakeResponse() *GetNodeStateResponse {
+	return &GetNodeStateResponse{}
+}
+
+// OpNum returns the operation number of ApiGetNodeState operation.
+func (o *GetNodeStateRequest) OpNum() int { return 68 }
+
+// OpName returns the operation name of ApiGetNodeState operation.
+func (o *GetNodeStateRequest) OpName() string { return "/clusapi3/v3/ApiGetNodeState" }
+
 // GetNodeStateResponse structure represents the ApiGetNodeState operation response
 type GetNodeStateResponse struct {
 	State     uint32 `idl:"name:State" json:"state"`
@@ -21025,8 +21935,10 @@ type xxx_PauseNodeOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiPauseNode operation.
 func (o *xxx_PauseNodeOperation) OpNum() int { return 69 }
 
+// OpName returns the operation name of ApiPauseNode operation.
 func (o *xxx_PauseNodeOperation) OpName() string { return "/clusapi3/v3/ApiPauseNode" }
 
 func (o *xxx_PauseNodeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -21148,6 +22060,17 @@ func (o *PauseNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakePauseNodeRequest build a response structure from the given request structure.
+func (o *PauseNodeRequest) MakeResponse() *PauseNodeResponse {
+	return &PauseNodeResponse{}
+}
+
+// OpNum returns the operation number of ApiPauseNode operation.
+func (o *PauseNodeRequest) OpNum() int { return 69 }
+
+// OpName returns the operation name of ApiPauseNode operation.
+func (o *PauseNodeRequest) OpName() string { return "/clusapi3/v3/ApiPauseNode" }
+
 // PauseNodeResponse structure represents the ApiPauseNode operation response
 type PauseNodeResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -21193,8 +22116,10 @@ type xxx_ResumeNodeOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiResumeNode operation.
 func (o *xxx_ResumeNodeOperation) OpNum() int { return 70 }
 
+// OpName returns the operation name of ApiResumeNode operation.
 func (o *xxx_ResumeNodeOperation) OpName() string { return "/clusapi3/v3/ApiResumeNode" }
 
 func (o *xxx_ResumeNodeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -21316,6 +22241,17 @@ func (o *ResumeNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeResumeNodeRequest build a response structure from the given request structure.
+func (o *ResumeNodeRequest) MakeResponse() *ResumeNodeResponse {
+	return &ResumeNodeResponse{}
+}
+
+// OpNum returns the operation number of ApiResumeNode operation.
+func (o *ResumeNodeRequest) OpNum() int { return 70 }
+
+// OpName returns the operation name of ApiResumeNode operation.
+func (o *ResumeNodeRequest) OpName() string { return "/clusapi3/v3/ApiResumeNode" }
+
 // ResumeNodeResponse structure represents the ApiResumeNode operation response
 type ResumeNodeResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -21361,8 +22297,10 @@ type xxx_EvictNodeOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiEvictNode operation.
 func (o *xxx_EvictNodeOperation) OpNum() int { return 71 }
 
+// OpName returns the operation name of ApiEvictNode operation.
 func (o *xxx_EvictNodeOperation) OpName() string { return "/clusapi3/v3/ApiEvictNode" }
 
 func (o *xxx_EvictNodeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -21484,6 +22422,17 @@ func (o *EvictNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeEvictNodeRequest build a response structure from the given request structure.
+func (o *EvictNodeRequest) MakeResponse() *EvictNodeResponse {
+	return &EvictNodeResponse{}
+}
+
+// OpNum returns the operation number of ApiEvictNode operation.
+func (o *EvictNodeRequest) OpNum() int { return 71 }
+
+// OpName returns the operation name of ApiEvictNode operation.
+func (o *EvictNodeRequest) OpName() string { return "/clusapi3/v3/ApiEvictNode" }
+
 // EvictNodeResponse structure represents the ApiEvictNode operation response
 type EvictNodeResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -21537,8 +22486,10 @@ type xxx_NodeResourceControlOperation struct {
 	Return         uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiNodeResourceControl operation.
 func (o *xxx_NodeResourceControlOperation) OpNum() int { return 72 }
 
+// OpName returns the operation name of ApiNodeResourceControl operation.
 func (o *xxx_NodeResourceControlOperation) OpName() string {
 	return "/clusapi3/v3/ApiNodeResourceControl"
 }
@@ -21899,6 +22850,22 @@ func (o *NodeResourceControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeNodeResourceControlRequest build a response structure from the given request structure.
+func (o *NodeResourceControlRequest) MakeResponse() *NodeResourceControlResponse {
+	if o == nil {
+		return &NodeResourceControlResponse{}
+	}
+	return &NodeResourceControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiNodeResourceControl operation.
+func (o *NodeResourceControlRequest) OpNum() int { return 72 }
+
+// OpName returns the operation name of ApiNodeResourceControl operation.
+func (o *NodeResourceControlRequest) OpName() string { return "/clusapi3/v3/ApiNodeResourceControl" }
+
 // NodeResourceControlResponse structure represents the ApiNodeResourceControl operation response
 type NodeResourceControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -21971,8 +22938,10 @@ type xxx_ResourceControlOperation struct {
 	Return         uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiResourceControl operation.
 func (o *xxx_ResourceControlOperation) OpNum() int { return 73 }
 
+// OpName returns the operation name of ApiResourceControl operation.
 func (o *xxx_ResourceControlOperation) OpName() string { return "/clusapi3/v3/ApiResourceControl" }
 
 func (o *xxx_ResourceControlOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -22307,6 +23276,22 @@ func (o *ResourceControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeResourceControlRequest build a response structure from the given request structure.
+func (o *ResourceControlRequest) MakeResponse() *ResourceControlResponse {
+	if o == nil {
+		return &ResourceControlResponse{}
+	}
+	return &ResourceControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiResourceControl operation.
+func (o *ResourceControlRequest) OpNum() int { return 73 }
+
+// OpName returns the operation name of ApiResourceControl operation.
+func (o *ResourceControlRequest) OpName() string { return "/clusapi3/v3/ApiResourceControl" }
+
 // ResourceControlResponse structure represents the ApiResourceControl operation response
 type ResourceControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -22381,8 +23366,10 @@ type xxx_NodeResourceTypeControlOperation struct {
 	Return           uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiNodeResourceTypeControl operation.
 func (o *xxx_NodeResourceTypeControlOperation) OpNum() int { return 74 }
 
+// OpName returns the operation name of ApiNodeResourceTypeControl operation.
 func (o *xxx_NodeResourceTypeControlOperation) OpName() string {
 	return "/clusapi3/v3/ApiNodeResourceTypeControl"
 }
@@ -22758,6 +23745,24 @@ func (o *NodeResourceTypeControlRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeNodeResourceTypeControlRequest build a response structure from the given request structure.
+func (o *NodeResourceTypeControlRequest) MakeResponse() *NodeResourceTypeControlResponse {
+	if o == nil {
+		return &NodeResourceTypeControlResponse{}
+	}
+	return &NodeResourceTypeControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiNodeResourceTypeControl operation.
+func (o *NodeResourceTypeControlRequest) OpNum() int { return 74 }
+
+// OpName returns the operation name of ApiNodeResourceTypeControl operation.
+func (o *NodeResourceTypeControlRequest) OpName() string {
+	return "/clusapi3/v3/ApiNodeResourceTypeControl"
+}
+
 // NodeResourceTypeControlResponse structure represents the ApiNodeResourceTypeControl operation response
 type NodeResourceTypeControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -22831,8 +23836,10 @@ type xxx_ResourceTypeControlOperation struct {
 	Return           uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiResourceTypeControl operation.
 func (o *xxx_ResourceTypeControlOperation) OpNum() int { return 75 }
 
+// OpName returns the operation name of ApiResourceTypeControl operation.
 func (o *xxx_ResourceTypeControlOperation) OpName() string {
 	return "/clusapi3/v3/ApiResourceTypeControl"
 }
@@ -23184,6 +24191,22 @@ func (o *ResourceTypeControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeResourceTypeControlRequest build a response structure from the given request structure.
+func (o *ResourceTypeControlRequest) MakeResponse() *ResourceTypeControlResponse {
+	if o == nil {
+		return &ResourceTypeControlResponse{}
+	}
+	return &ResourceTypeControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiResourceTypeControl operation.
+func (o *ResourceTypeControlRequest) OpNum() int { return 75 }
+
+// OpName returns the operation name of ApiResourceTypeControl operation.
+func (o *ResourceTypeControlRequest) OpName() string { return "/clusapi3/v3/ApiResourceTypeControl" }
+
 // ResourceTypeControlResponse structure represents the ApiResourceTypeControl operation response
 type ResourceTypeControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -23257,8 +24280,10 @@ type xxx_NodeGroupControlOperation struct {
 	Return         uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiNodeGroupControl operation.
 func (o *xxx_NodeGroupControlOperation) OpNum() int { return 76 }
 
+// OpName returns the operation name of ApiNodeGroupControl operation.
 func (o *xxx_NodeGroupControlOperation) OpName() string { return "/clusapi3/v3/ApiNodeGroupControl" }
 
 func (o *xxx_NodeGroupControlOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -23617,6 +24642,22 @@ func (o *NodeGroupControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeNodeGroupControlRequest build a response structure from the given request structure.
+func (o *NodeGroupControlRequest) MakeResponse() *NodeGroupControlResponse {
+	if o == nil {
+		return &NodeGroupControlResponse{}
+	}
+	return &NodeGroupControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiNodeGroupControl operation.
+func (o *NodeGroupControlRequest) OpNum() int { return 76 }
+
+// OpName returns the operation name of ApiNodeGroupControl operation.
+func (o *NodeGroupControlRequest) OpName() string { return "/clusapi3/v3/ApiNodeGroupControl" }
+
 // NodeGroupControlResponse structure represents the ApiNodeGroupControl operation response
 type NodeGroupControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -23689,8 +24730,10 @@ type xxx_GroupControlOperation struct {
 	Return         uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGroupControl operation.
 func (o *xxx_GroupControlOperation) OpNum() int { return 77 }
 
+// OpName returns the operation name of ApiGroupControl operation.
 func (o *xxx_GroupControlOperation) OpName() string { return "/clusapi3/v3/ApiGroupControl" }
 
 func (o *xxx_GroupControlOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24025,6 +25068,22 @@ func (o *GroupControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGroupControlRequest build a response structure from the given request structure.
+func (o *GroupControlRequest) MakeResponse() *GroupControlResponse {
+	if o == nil {
+		return &GroupControlResponse{}
+	}
+	return &GroupControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiGroupControl operation.
+func (o *GroupControlRequest) OpNum() int { return 77 }
+
+// OpName returns the operation name of ApiGroupControl operation.
+func (o *GroupControlRequest) OpName() string { return "/clusapi3/v3/ApiGroupControl" }
+
 // GroupControlResponse structure represents the ApiGroupControl operation response
 type GroupControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -24098,8 +25157,10 @@ type xxx_NodeNodeControlOperation struct {
 	Return         uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiNodeNodeControl operation.
 func (o *xxx_NodeNodeControlOperation) OpNum() int { return 78 }
 
+// OpName returns the operation name of ApiNodeNodeControl operation.
 func (o *xxx_NodeNodeControlOperation) OpName() string { return "/clusapi3/v3/ApiNodeNodeControl" }
 
 func (o *xxx_NodeNodeControlOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24458,6 +25519,22 @@ func (o *NodeNodeControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeNodeNodeControlRequest build a response structure from the given request structure.
+func (o *NodeNodeControlRequest) MakeResponse() *NodeNodeControlResponse {
+	if o == nil {
+		return &NodeNodeControlResponse{}
+	}
+	return &NodeNodeControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiNodeNodeControl operation.
+func (o *NodeNodeControlRequest) OpNum() int { return 78 }
+
+// OpName returns the operation name of ApiNodeNodeControl operation.
+func (o *NodeNodeControlRequest) OpName() string { return "/clusapi3/v3/ApiNodeNodeControl" }
+
 // NodeNodeControlResponse structure represents the ApiNodeNodeControl operation response
 type NodeNodeControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -24530,8 +25607,10 @@ type xxx_NodeControlOperation struct {
 	Return         uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiNodeControl operation.
 func (o *xxx_NodeControlOperation) OpNum() int { return 79 }
 
+// OpName returns the operation name of ApiNodeControl operation.
 func (o *xxx_NodeControlOperation) OpName() string { return "/clusapi3/v3/ApiNodeControl" }
 
 func (o *xxx_NodeControlOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24866,6 +25945,22 @@ func (o *NodeControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeNodeControlRequest build a response structure from the given request structure.
+func (o *NodeControlRequest) MakeResponse() *NodeControlResponse {
+	if o == nil {
+		return &NodeControlResponse{}
+	}
+	return &NodeControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiNodeControl operation.
+func (o *NodeControlRequest) OpNum() int { return 79 }
+
+// OpName returns the operation name of ApiNodeControl operation.
+func (o *NodeControlRequest) OpName() string { return "/clusapi3/v3/ApiNodeControl" }
+
 // NodeControlResponse structure represents the ApiNodeControl operation response
 type NodeControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -24932,8 +26027,10 @@ type xxx_OpenNetworkOperation struct {
 	Return      *Network `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenNetwork operation.
 func (o *xxx_OpenNetworkOperation) OpNum() int { return 81 }
 
+// OpName returns the operation name of ApiOpenNetwork operation.
 func (o *xxx_OpenNetworkOperation) OpName() string { return "/clusapi3/v3/ApiOpenNetwork" }
 
 func (o *xxx_OpenNetworkOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -25067,6 +26164,17 @@ func (o *OpenNetworkRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeOpenNetworkRequest build a response structure from the given request structure.
+func (o *OpenNetworkRequest) MakeResponse() *OpenNetworkResponse {
+	return &OpenNetworkResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenNetwork operation.
+func (o *OpenNetworkRequest) OpNum() int { return 81 }
+
+// OpName returns the operation name of ApiOpenNetwork operation.
+func (o *OpenNetworkRequest) OpName() string { return "/clusapi3/v3/ApiOpenNetwork" }
+
 // OpenNetworkResponse structure represents the ApiOpenNetwork operation response
 type OpenNetworkResponse struct {
 	Status    uint32 `idl:"name:Status" json:"status"`
@@ -25114,8 +26222,10 @@ type xxx_CloseNetworkOperation struct {
 	Return  uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCloseNetwork operation.
 func (o *xxx_CloseNetworkOperation) OpNum() int { return 82 }
 
+// OpName returns the operation name of ApiCloseNetwork operation.
 func (o *xxx_CloseNetworkOperation) OpName() string { return "/clusapi3/v3/ApiCloseNetwork" }
 
 func (o *xxx_CloseNetworkOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -25246,6 +26356,17 @@ func (o *CloseNetworkRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCloseNetworkRequest build a response structure from the given request structure.
+func (o *CloseNetworkRequest) MakeResponse() *CloseNetworkResponse {
+	return &CloseNetworkResponse{}
+}
+
+// OpNum returns the operation number of ApiCloseNetwork operation.
+func (o *CloseNetworkRequest) OpNum() int { return 82 }
+
+// OpName returns the operation name of ApiCloseNetwork operation.
+func (o *CloseNetworkRequest) OpName() string { return "/clusapi3/v3/ApiCloseNetwork" }
+
 // CloseNetworkResponse structure represents the ApiCloseNetwork operation response
 type CloseNetworkResponse struct {
 	Network *Network `idl:"name:Network" json:"network"`
@@ -25292,8 +26413,10 @@ type xxx_GetNetworkStateOperation struct {
 	Return    uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetNetworkState operation.
 func (o *xxx_GetNetworkStateOperation) OpNum() int { return 83 }
 
+// OpName returns the operation name of ApiGetNetworkState operation.
 func (o *xxx_GetNetworkStateOperation) OpName() string { return "/clusapi3/v3/ApiGetNetworkState" }
 
 func (o *xxx_GetNetworkStateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -25427,6 +26550,17 @@ func (o *GetNetworkStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetNetworkStateRequest build a response structure from the given request structure.
+func (o *GetNetworkStateRequest) MakeResponse() *GetNetworkStateResponse {
+	return &GetNetworkStateResponse{}
+}
+
+// OpNum returns the operation number of ApiGetNetworkState operation.
+func (o *GetNetworkStateRequest) OpNum() int { return 83 }
+
+// OpName returns the operation name of ApiGetNetworkState operation.
+func (o *GetNetworkStateRequest) OpName() string { return "/clusapi3/v3/ApiGetNetworkState" }
+
 // GetNetworkStateResponse structure represents the ApiGetNetworkState operation response
 type GetNetworkStateResponse struct {
 	State     uint32 `idl:"name:State" json:"state"`
@@ -25476,8 +26610,10 @@ type xxx_SetNetworkNameOperation struct {
 	Return      uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiSetNetworkName operation.
 func (o *xxx_SetNetworkNameOperation) OpNum() int { return 84 }
 
+// OpName returns the operation name of ApiSetNetworkName operation.
 func (o *xxx_SetNetworkNameOperation) OpName() string { return "/clusapi3/v3/ApiSetNetworkName" }
 
 func (o *xxx_SetNetworkNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -25614,6 +26750,17 @@ func (o *SetNetworkNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetNetworkNameRequest build a response structure from the given request structure.
+func (o *SetNetworkNameRequest) MakeResponse() *SetNetworkNameResponse {
+	return &SetNetworkNameResponse{}
+}
+
+// OpNum returns the operation number of ApiSetNetworkName operation.
+func (o *SetNetworkNameRequest) OpNum() int { return 84 }
+
+// OpName returns the operation name of ApiSetNetworkName operation.
+func (o *SetNetworkNameRequest) OpName() string { return "/clusapi3/v3/ApiSetNetworkName" }
+
 // SetNetworkNameResponse structure represents the ApiSetNetworkName operation response
 type SetNetworkNameResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -25661,8 +26808,10 @@ type xxx_CreateNetworkEnumOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateNetworkEnum operation.
 func (o *xxx_CreateNetworkEnumOperation) OpNum() int { return 85 }
 
+// OpName returns the operation name of ApiCreateNetworkEnum operation.
 func (o *xxx_CreateNetworkEnumOperation) OpName() string { return "/clusapi3/v3/ApiCreateNetworkEnum" }
 
 func (o *xxx_CreateNetworkEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -25845,6 +26994,17 @@ func (o *CreateNetworkEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeCreateNetworkEnumRequest build a response structure from the given request structure.
+func (o *CreateNetworkEnumRequest) MakeResponse() *CreateNetworkEnumResponse {
+	return &CreateNetworkEnumResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateNetworkEnum operation.
+func (o *CreateNetworkEnumRequest) OpNum() int { return 85 }
+
+// OpName returns the operation name of ApiCreateNetworkEnum operation.
+func (o *CreateNetworkEnumRequest) OpName() string { return "/clusapi3/v3/ApiCreateNetworkEnum" }
+
 // CreateNetworkEnumResponse structure represents the ApiCreateNetworkEnum operation response
 type CreateNetworkEnumResponse struct {
 	ReturnEnum *EnumList `idl:"name:ReturnEnum" json:"return_enum"`
@@ -25894,8 +27054,10 @@ type xxx_GetNetworkIDOperation struct {
 	Return    uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetNetworkId operation.
 func (o *xxx_GetNetworkIDOperation) OpNum() int { return 86 }
 
+// OpName returns the operation name of ApiGetNetworkId operation.
 func (o *xxx_GetNetworkIDOperation) OpName() string { return "/clusapi3/v3/ApiGetNetworkId" }
 
 func (o *xxx_GetNetworkIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -26054,6 +27216,17 @@ func (o *GetNetworkIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetNetworkIDRequest build a response structure from the given request structure.
+func (o *GetNetworkIDRequest) MakeResponse() *GetNetworkIDResponse {
+	return &GetNetworkIDResponse{}
+}
+
+// OpNum returns the operation number of ApiGetNetworkId operation.
+func (o *GetNetworkIDRequest) OpNum() int { return 86 }
+
+// OpName returns the operation name of ApiGetNetworkId operation.
+func (o *GetNetworkIDRequest) OpName() string { return "/clusapi3/v3/ApiGetNetworkId" }
+
 // GetNetworkIDResponse structure represents the ApiGetNetworkId operation response
 type GetNetworkIDResponse struct {
 	GUID      string `idl:"name:pGuid;string" json:"guid"`
@@ -26103,8 +27276,10 @@ type xxx_SetNetworkPriorityOrderOperation struct {
 	Return        uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiSetNetworkPriorityOrder operation.
 func (o *xxx_SetNetworkPriorityOrderOperation) OpNum() int { return 87 }
 
+// OpName returns the operation name of ApiSetNetworkPriorityOrder operation.
 func (o *xxx_SetNetworkPriorityOrderOperation) OpName() string {
 	return "/clusapi3/v3/ApiSetNetworkPriorityOrder"
 }
@@ -26298,6 +27473,19 @@ func (o *SetNetworkPriorityOrderRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeSetNetworkPriorityOrderRequest build a response structure from the given request structure.
+func (o *SetNetworkPriorityOrderRequest) MakeResponse() *SetNetworkPriorityOrderResponse {
+	return &SetNetworkPriorityOrderResponse{}
+}
+
+// OpNum returns the operation number of ApiSetNetworkPriorityOrder operation.
+func (o *SetNetworkPriorityOrderRequest) OpNum() int { return 87 }
+
+// OpName returns the operation name of ApiSetNetworkPriorityOrder operation.
+func (o *SetNetworkPriorityOrderRequest) OpName() string {
+	return "/clusapi3/v3/ApiSetNetworkPriorityOrder"
+}
+
 // SetNetworkPriorityOrderResponse structure represents the ApiSetNetworkPriorityOrder operation response
 type SetNetworkPriorityOrderResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -26351,8 +27539,10 @@ type xxx_NodeNetworkControlOperation struct {
 	Return         uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiNodeNetworkControl operation.
 func (o *xxx_NodeNetworkControlOperation) OpNum() int { return 88 }
 
+// OpName returns the operation name of ApiNodeNetworkControl operation.
 func (o *xxx_NodeNetworkControlOperation) OpName() string {
 	return "/clusapi3/v3/ApiNodeNetworkControl"
 }
@@ -26713,6 +27903,22 @@ func (o *NodeNetworkControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeNodeNetworkControlRequest build a response structure from the given request structure.
+func (o *NodeNetworkControlRequest) MakeResponse() *NodeNetworkControlResponse {
+	if o == nil {
+		return &NodeNetworkControlResponse{}
+	}
+	return &NodeNetworkControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiNodeNetworkControl operation.
+func (o *NodeNetworkControlRequest) OpNum() int { return 88 }
+
+// OpName returns the operation name of ApiNodeNetworkControl operation.
+func (o *NodeNetworkControlRequest) OpName() string { return "/clusapi3/v3/ApiNodeNetworkControl" }
+
 // NodeNetworkControlResponse structure represents the ApiNodeNetworkControl operation response
 type NodeNetworkControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -26785,8 +27991,10 @@ type xxx_NetworkControlOperation struct {
 	Return         uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiNetworkControl operation.
 func (o *xxx_NetworkControlOperation) OpNum() int { return 89 }
 
+// OpName returns the operation name of ApiNetworkControl operation.
 func (o *xxx_NetworkControlOperation) OpName() string { return "/clusapi3/v3/ApiNetworkControl" }
 
 func (o *xxx_NetworkControlOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -27121,6 +28329,22 @@ func (o *NetworkControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeNetworkControlRequest build a response structure from the given request structure.
+func (o *NetworkControlRequest) MakeResponse() *NetworkControlResponse {
+	if o == nil {
+		return &NetworkControlResponse{}
+	}
+	return &NetworkControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiNetworkControl operation.
+func (o *NetworkControlRequest) OpNum() int { return 89 }
+
+// OpName returns the operation name of ApiNetworkControl operation.
+func (o *NetworkControlRequest) OpName() string { return "/clusapi3/v3/ApiNetworkControl" }
+
 // NetworkControlResponse structure represents the ApiNetworkControl operation response
 type NetworkControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -27190,8 +28414,10 @@ type xxx_AddNotifyNetworkOperation struct {
 	Return        uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddNotifyNetwork operation.
 func (o *xxx_AddNotifyNetworkOperation) OpNum() int { return 90 }
 
+// OpName returns the operation name of ApiAddNotifyNetwork operation.
 func (o *xxx_AddNotifyNetworkOperation) OpName() string { return "/clusapi3/v3/ApiAddNotifyNetwork" }
 
 func (o *xxx_AddNotifyNetworkOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -27379,6 +28605,17 @@ func (o *AddNotifyNetworkRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeAddNotifyNetworkRequest build a response structure from the given request structure.
+func (o *AddNotifyNetworkRequest) MakeResponse() *AddNotifyNetworkResponse {
+	return &AddNotifyNetworkResponse{}
+}
+
+// OpNum returns the operation number of ApiAddNotifyNetwork operation.
+func (o *AddNotifyNetworkRequest) OpNum() int { return 90 }
+
+// OpName returns the operation name of ApiAddNotifyNetwork operation.
+func (o *AddNotifyNetworkRequest) OpName() string { return "/clusapi3/v3/ApiAddNotifyNetwork" }
+
 // AddNotifyNetworkResponse structure represents the ApiAddNotifyNetwork operation response
 type AddNotifyNetworkResponse struct {
 	StateSequence uint32 `idl:"name:dwStateSequence" json:"state_sequence"`
@@ -27431,8 +28668,10 @@ type xxx_ReAddNotifyNetworkOperation struct {
 	Return        uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiReAddNotifyNetwork operation.
 func (o *xxx_ReAddNotifyNetworkOperation) OpNum() int { return 91 }
 
+// OpName returns the operation name of ApiReAddNotifyNetwork operation.
 func (o *xxx_ReAddNotifyNetworkOperation) OpName() string {
 	return "/clusapi3/v3/ApiReAddNotifyNetwork"
 }
@@ -27625,6 +28864,17 @@ func (o *ReAddNotifyNetworkRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeReAddNotifyNetworkRequest build a response structure from the given request structure.
+func (o *ReAddNotifyNetworkRequest) MakeResponse() *ReAddNotifyNetworkResponse {
+	return &ReAddNotifyNetworkResponse{}
+}
+
+// OpNum returns the operation number of ApiReAddNotifyNetwork operation.
+func (o *ReAddNotifyNetworkRequest) OpNum() int { return 91 }
+
+// OpName returns the operation name of ApiReAddNotifyNetwork operation.
+func (o *ReAddNotifyNetworkRequest) OpName() string { return "/clusapi3/v3/ApiReAddNotifyNetwork" }
+
 // ReAddNotifyNetworkResponse structure represents the ApiReAddNotifyNetwork operation response
 type ReAddNotifyNetworkResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -27671,8 +28921,10 @@ type xxx_OpenNetInterfaceOperation struct {
 	Return           *NetInterface `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenNetInterface operation.
 func (o *xxx_OpenNetInterfaceOperation) OpNum() int { return 92 }
 
+// OpName returns the operation name of ApiOpenNetInterface operation.
 func (o *xxx_OpenNetInterfaceOperation) OpName() string { return "/clusapi3/v3/ApiOpenNetInterface" }
 
 func (o *xxx_OpenNetInterfaceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -27806,6 +29058,17 @@ func (o *OpenNetInterfaceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeOpenNetInterfaceRequest build a response structure from the given request structure.
+func (o *OpenNetInterfaceRequest) MakeResponse() *OpenNetInterfaceResponse {
+	return &OpenNetInterfaceResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenNetInterface operation.
+func (o *OpenNetInterfaceRequest) OpNum() int { return 92 }
+
+// OpName returns the operation name of ApiOpenNetInterface operation.
+func (o *OpenNetInterfaceRequest) OpName() string { return "/clusapi3/v3/ApiOpenNetInterface" }
+
 // OpenNetInterfaceResponse structure represents the ApiOpenNetInterface operation response
 type OpenNetInterfaceResponse struct {
 	Status    uint32 `idl:"name:Status" json:"status"`
@@ -27853,8 +29116,10 @@ type xxx_CloseNetInterfaceOperation struct {
 	Return       uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCloseNetInterface operation.
 func (o *xxx_CloseNetInterfaceOperation) OpNum() int { return 93 }
 
+// OpName returns the operation name of ApiCloseNetInterface operation.
 func (o *xxx_CloseNetInterfaceOperation) OpName() string { return "/clusapi3/v3/ApiCloseNetInterface" }
 
 func (o *xxx_CloseNetInterfaceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -27985,6 +29250,17 @@ func (o *CloseNetInterfaceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeCloseNetInterfaceRequest build a response structure from the given request structure.
+func (o *CloseNetInterfaceRequest) MakeResponse() *CloseNetInterfaceResponse {
+	return &CloseNetInterfaceResponse{}
+}
+
+// OpNum returns the operation number of ApiCloseNetInterface operation.
+func (o *CloseNetInterfaceRequest) OpNum() int { return 93 }
+
+// OpName returns the operation name of ApiCloseNetInterface operation.
+func (o *CloseNetInterfaceRequest) OpName() string { return "/clusapi3/v3/ApiCloseNetInterface" }
+
 // CloseNetInterfaceResponse structure represents the ApiCloseNetInterface operation response
 type CloseNetInterfaceResponse struct {
 	NetInterface *NetInterface `idl:"name:NetInterface" json:"net_interface"`
@@ -28031,8 +29307,10 @@ type xxx_GetNetInterfaceStateOperation struct {
 	Return       uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetNetInterfaceState operation.
 func (o *xxx_GetNetInterfaceStateOperation) OpNum() int { return 94 }
 
+// OpName returns the operation name of ApiGetNetInterfaceState operation.
 func (o *xxx_GetNetInterfaceStateOperation) OpName() string {
 	return "/clusapi3/v3/ApiGetNetInterfaceState"
 }
@@ -28168,6 +29446,17 @@ func (o *GetNetInterfaceStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetNetInterfaceStateRequest build a response structure from the given request structure.
+func (o *GetNetInterfaceStateRequest) MakeResponse() *GetNetInterfaceStateResponse {
+	return &GetNetInterfaceStateResponse{}
+}
+
+// OpNum returns the operation number of ApiGetNetInterfaceState operation.
+func (o *GetNetInterfaceStateRequest) OpNum() int { return 94 }
+
+// OpName returns the operation name of ApiGetNetInterfaceState operation.
+func (o *GetNetInterfaceStateRequest) OpName() string { return "/clusapi3/v3/ApiGetNetInterfaceState" }
+
 // GetNetInterfaceStateResponse structure represents the ApiGetNetInterfaceState operation response
 type GetNetInterfaceStateResponse struct {
 	State     uint32 `idl:"name:State" json:"state"`
@@ -28218,8 +29507,10 @@ type xxx_GetNetInterfaceOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetNetInterface operation.
 func (o *xxx_GetNetInterfaceOperation) OpNum() int { return 95 }
 
+// OpName returns the operation name of ApiGetNetInterface operation.
 func (o *xxx_GetNetInterfaceOperation) OpName() string { return "/clusapi3/v3/ApiGetNetInterface" }
 
 func (o *xxx_GetNetInterfaceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -28384,6 +29675,17 @@ func (o *GetNetInterfaceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetNetInterfaceRequest build a response structure from the given request structure.
+func (o *GetNetInterfaceRequest) MakeResponse() *GetNetInterfaceResponse {
+	return &GetNetInterfaceResponse{}
+}
+
+// OpNum returns the operation number of ApiGetNetInterface operation.
+func (o *GetNetInterfaceRequest) OpNum() int { return 95 }
+
+// OpName returns the operation name of ApiGetNetInterface operation.
+func (o *GetNetInterfaceRequest) OpName() string { return "/clusapi3/v3/ApiGetNetInterface" }
+
 // GetNetInterfaceResponse structure represents the ApiGetNetInterface operation response
 type GetNetInterfaceResponse struct {
 	InterfaceName string `idl:"name:lppszInterfaceName;string" json:"interface_name"`
@@ -28433,8 +29735,10 @@ type xxx_GetNetInterfaceIDOperation struct {
 	Return       uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetNetInterfaceId operation.
 func (o *xxx_GetNetInterfaceIDOperation) OpNum() int { return 96 }
 
+// OpName returns the operation name of ApiGetNetInterfaceId operation.
 func (o *xxx_GetNetInterfaceIDOperation) OpName() string { return "/clusapi3/v3/ApiGetNetInterfaceId" }
 
 func (o *xxx_GetNetInterfaceIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -28593,6 +29897,17 @@ func (o *GetNetInterfaceIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetNetInterfaceIDRequest build a response structure from the given request structure.
+func (o *GetNetInterfaceIDRequest) MakeResponse() *GetNetInterfaceIDResponse {
+	return &GetNetInterfaceIDResponse{}
+}
+
+// OpNum returns the operation number of ApiGetNetInterfaceId operation.
+func (o *GetNetInterfaceIDRequest) OpNum() int { return 96 }
+
+// OpName returns the operation name of ApiGetNetInterfaceId operation.
+func (o *GetNetInterfaceIDRequest) OpName() string { return "/clusapi3/v3/ApiGetNetInterfaceId" }
+
 // GetNetInterfaceIDResponse structure represents the ApiGetNetInterfaceId operation response
 type GetNetInterfaceIDResponse struct {
 	GUID      string `idl:"name:pGuid;string" json:"guid"`
@@ -28649,8 +29964,10 @@ type xxx_NodeNetInterfaceControlOperation struct {
 	Return         uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiNodeNetInterfaceControl operation.
 func (o *xxx_NodeNetInterfaceControlOperation) OpNum() int { return 97 }
 
+// OpName returns the operation name of ApiNodeNetInterfaceControl operation.
 func (o *xxx_NodeNetInterfaceControlOperation) OpName() string {
 	return "/clusapi3/v3/ApiNodeNetInterfaceControl"
 }
@@ -29011,6 +30328,24 @@ func (o *NodeNetInterfaceControlRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeNodeNetInterfaceControlRequest build a response structure from the given request structure.
+func (o *NodeNetInterfaceControlRequest) MakeResponse() *NodeNetInterfaceControlResponse {
+	if o == nil {
+		return &NodeNetInterfaceControlResponse{}
+	}
+	return &NodeNetInterfaceControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiNodeNetInterfaceControl operation.
+func (o *NodeNetInterfaceControlRequest) OpNum() int { return 97 }
+
+// OpName returns the operation name of ApiNodeNetInterfaceControl operation.
+func (o *NodeNetInterfaceControlRequest) OpName() string {
+	return "/clusapi3/v3/ApiNodeNetInterfaceControl"
+}
+
 // NodeNetInterfaceControlResponse structure represents the ApiNodeNetInterfaceControl operation response
 type NodeNetInterfaceControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -29083,8 +30418,10 @@ type xxx_NetInterfaceControlOperation struct {
 	Return         uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiNetInterfaceControl operation.
 func (o *xxx_NetInterfaceControlOperation) OpNum() int { return 98 }
 
+// OpName returns the operation name of ApiNetInterfaceControl operation.
 func (o *xxx_NetInterfaceControlOperation) OpName() string {
 	return "/clusapi3/v3/ApiNetInterfaceControl"
 }
@@ -29421,6 +30758,22 @@ func (o *NetInterfaceControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeNetInterfaceControlRequest build a response structure from the given request structure.
+func (o *NetInterfaceControlRequest) MakeResponse() *NetInterfaceControlResponse {
+	if o == nil {
+		return &NetInterfaceControlResponse{}
+	}
+	return &NetInterfaceControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiNetInterfaceControl operation.
+func (o *NetInterfaceControlRequest) OpNum() int { return 98 }
+
+// OpName returns the operation name of ApiNetInterfaceControl operation.
+func (o *NetInterfaceControlRequest) OpName() string { return "/clusapi3/v3/ApiNetInterfaceControl" }
+
 // NetInterfaceControlResponse structure represents the ApiNetInterfaceControl operation response
 type NetInterfaceControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -29490,8 +30843,10 @@ type xxx_AddNotifyNetInterfaceOperation struct {
 	Return        uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddNotifyNetInterface operation.
 func (o *xxx_AddNotifyNetInterfaceOperation) OpNum() int { return 99 }
 
+// OpName returns the operation name of ApiAddNotifyNetInterface operation.
 func (o *xxx_AddNotifyNetInterfaceOperation) OpName() string {
 	return "/clusapi3/v3/ApiAddNotifyNetInterface"
 }
@@ -29681,6 +31036,19 @@ func (o *AddNotifyNetInterfaceRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeAddNotifyNetInterfaceRequest build a response structure from the given request structure.
+func (o *AddNotifyNetInterfaceRequest) MakeResponse() *AddNotifyNetInterfaceResponse {
+	return &AddNotifyNetInterfaceResponse{}
+}
+
+// OpNum returns the operation number of ApiAddNotifyNetInterface operation.
+func (o *AddNotifyNetInterfaceRequest) OpNum() int { return 99 }
+
+// OpName returns the operation name of ApiAddNotifyNetInterface operation.
+func (o *AddNotifyNetInterfaceRequest) OpName() string {
+	return "/clusapi3/v3/ApiAddNotifyNetInterface"
+}
+
 // AddNotifyNetInterfaceResponse structure represents the ApiAddNotifyNetInterface operation response
 type AddNotifyNetInterfaceResponse struct {
 	StateSequence uint32 `idl:"name:dwStateSequence" json:"state_sequence"`
@@ -29733,8 +31101,10 @@ type xxx_ReAddNotifyNetInterfaceOperation struct {
 	Return        uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiReAddNotifyNetInterface operation.
 func (o *xxx_ReAddNotifyNetInterfaceOperation) OpNum() int { return 100 }
 
+// OpName returns the operation name of ApiReAddNotifyNetInterface operation.
 func (o *xxx_ReAddNotifyNetInterfaceOperation) OpName() string {
 	return "/clusapi3/v3/ApiReAddNotifyNetInterface"
 }
@@ -29927,6 +31297,19 @@ func (o *ReAddNotifyNetInterfaceRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeReAddNotifyNetInterfaceRequest build a response structure from the given request structure.
+func (o *ReAddNotifyNetInterfaceRequest) MakeResponse() *ReAddNotifyNetInterfaceResponse {
+	return &ReAddNotifyNetInterfaceResponse{}
+}
+
+// OpNum returns the operation number of ApiReAddNotifyNetInterface operation.
+func (o *ReAddNotifyNetInterfaceRequest) OpNum() int { return 100 }
+
+// OpName returns the operation name of ApiReAddNotifyNetInterface operation.
+func (o *ReAddNotifyNetInterfaceRequest) OpName() string {
+	return "/clusapi3/v3/ApiReAddNotifyNetInterface"
+}
+
 // ReAddNotifyNetInterfaceResponse structure represents the ApiReAddNotifyNetInterface operation response
 type ReAddNotifyNetInterfaceResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -29974,8 +31357,10 @@ type xxx_CreateNodeEnumOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateNodeEnum operation.
 func (o *xxx_CreateNodeEnumOperation) OpNum() int { return 101 }
 
+// OpName returns the operation name of ApiCreateNodeEnum operation.
 func (o *xxx_CreateNodeEnumOperation) OpName() string { return "/clusapi3/v3/ApiCreateNodeEnum" }
 
 func (o *xxx_CreateNodeEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -30158,6 +31543,17 @@ func (o *CreateNodeEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreateNodeEnumRequest build a response structure from the given request structure.
+func (o *CreateNodeEnumRequest) MakeResponse() *CreateNodeEnumResponse {
+	return &CreateNodeEnumResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateNodeEnum operation.
+func (o *CreateNodeEnumRequest) OpNum() int { return 101 }
+
+// OpName returns the operation name of ApiCreateNodeEnum operation.
+func (o *CreateNodeEnumRequest) OpName() string { return "/clusapi3/v3/ApiCreateNodeEnum" }
+
 // CreateNodeEnumResponse structure represents the ApiCreateNodeEnum operation response
 type CreateNodeEnumResponse struct {
 	ReturnEnum *EnumList `idl:"name:ReturnEnum" json:"return_enum"`
@@ -30211,8 +31607,10 @@ type xxx_GetClusterVersion2Operation struct {
 	Return                  uint32                         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetClusterVersion2 operation.
 func (o *xxx_GetClusterVersion2Operation) OpNum() int { return 102 }
 
+// OpName returns the operation name of ApiGetClusterVersion2 operation.
 func (o *xxx_GetClusterVersion2Operation) OpName() string {
 	return "/clusapi3/v3/ApiGetClusterVersion2"
 }
@@ -30468,6 +31866,17 @@ func (o *GetClusterVersion2Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetClusterVersion2Request build a response structure from the given request structure.
+func (o *GetClusterVersion2Request) MakeResponse() *GetClusterVersion2Response {
+	return &GetClusterVersion2Response{}
+}
+
+// OpNum returns the operation number of ApiGetClusterVersion2 operation.
+func (o *GetClusterVersion2Request) OpNum() int { return 102 }
+
+// OpName returns the operation name of ApiGetClusterVersion2 operation.
+func (o *GetClusterVersion2Request) OpName() string { return "/clusapi3/v3/ApiGetClusterVersion2" }
+
 // GetClusterVersion2Response structure represents the ApiGetClusterVersion2 operation response
 type GetClusterVersion2Response struct {
 	MajorVersion            uint16                         `idl:"name:lpwMajorVersion" json:"major_version"`
@@ -30533,8 +31942,10 @@ type xxx_CreateRestrictionTypeEnumOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateResTypeEnum operation.
 func (o *xxx_CreateRestrictionTypeEnumOperation) OpNum() int { return 103 }
 
+// OpName returns the operation name of ApiCreateResTypeEnum operation.
 func (o *xxx_CreateRestrictionTypeEnumOperation) OpName() string {
 	return "/clusapi3/v3/ApiCreateResTypeEnum"
 }
@@ -30710,6 +32121,19 @@ func (o *CreateRestrictionTypeEnumRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeCreateRestrictionTypeEnumRequest build a response structure from the given request structure.
+func (o *CreateRestrictionTypeEnumRequest) MakeResponse() *CreateRestrictionTypeEnumResponse {
+	return &CreateRestrictionTypeEnumResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateResTypeEnum operation.
+func (o *CreateRestrictionTypeEnumRequest) OpNum() int { return 103 }
+
+// OpName returns the operation name of ApiCreateResTypeEnum operation.
+func (o *CreateRestrictionTypeEnumRequest) OpName() string {
+	return "/clusapi3/v3/ApiCreateResTypeEnum"
+}
+
 // CreateRestrictionTypeEnumResponse structure represents the ApiCreateResTypeEnum operation response
 type CreateRestrictionTypeEnumResponse struct {
 	ReturnEnum *EnumList `idl:"name:ReturnEnum" json:"return_enum"`
@@ -30758,8 +32182,10 @@ type xxx_BackupClusterDatabaseOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiBackupClusterDatabase operation.
 func (o *xxx_BackupClusterDatabaseOperation) OpNum() int { return 104 }
 
+// OpName returns the operation name of ApiBackupClusterDatabase operation.
 func (o *xxx_BackupClusterDatabaseOperation) OpName() string {
 	return "/clusapi3/v3/ApiBackupClusterDatabase"
 }
@@ -30874,6 +32300,19 @@ func (o *BackupClusterDatabaseRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeBackupClusterDatabaseRequest build a response structure from the given request structure.
+func (o *BackupClusterDatabaseRequest) MakeResponse() *BackupClusterDatabaseResponse {
+	return &BackupClusterDatabaseResponse{}
+}
+
+// OpNum returns the operation number of ApiBackupClusterDatabase operation.
+func (o *BackupClusterDatabaseRequest) OpNum() int { return 104 }
+
+// OpName returns the operation name of ApiBackupClusterDatabase operation.
+func (o *BackupClusterDatabaseRequest) OpName() string {
+	return "/clusapi3/v3/ApiBackupClusterDatabase"
+}
+
 // BackupClusterDatabaseResponse structure represents the ApiBackupClusterDatabase operation response
 type BackupClusterDatabaseResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -30927,8 +32366,10 @@ type xxx_NodeClusterControlOperation struct {
 	Return         uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiNodeClusterControl operation.
 func (o *xxx_NodeClusterControlOperation) OpNum() int { return 105 }
 
+// OpName returns the operation name of ApiNodeClusterControl operation.
 func (o *xxx_NodeClusterControlOperation) OpName() string {
 	return "/clusapi3/v3/ApiNodeClusterControl"
 }
@@ -31289,6 +32730,22 @@ func (o *NodeClusterControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeNodeClusterControlRequest build a response structure from the given request structure.
+func (o *NodeClusterControlRequest) MakeResponse() *NodeClusterControlResponse {
+	if o == nil {
+		return &NodeClusterControlResponse{}
+	}
+	return &NodeClusterControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiNodeClusterControl operation.
+func (o *NodeClusterControlRequest) OpNum() int { return 105 }
+
+// OpName returns the operation name of ApiNodeClusterControl operation.
+func (o *NodeClusterControlRequest) OpName() string { return "/clusapi3/v3/ApiNodeClusterControl" }
+
 // NodeClusterControlResponse structure represents the ApiNodeClusterControl operation response
 type NodeClusterControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -31361,8 +32818,10 @@ type xxx_ClusterControlOperation struct {
 	Return         uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiClusterControl operation.
 func (o *xxx_ClusterControlOperation) OpNum() int { return 106 }
 
+// OpName returns the operation name of ApiClusterControl operation.
 func (o *xxx_ClusterControlOperation) OpName() string { return "/clusapi3/v3/ApiClusterControl" }
 
 func (o *xxx_ClusterControlOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -31697,6 +33156,22 @@ func (o *ClusterControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeClusterControlRequest build a response structure from the given request structure.
+func (o *ClusterControlRequest) MakeResponse() *ClusterControlResponse {
+	if o == nil {
+		return &ClusterControlResponse{}
+	}
+	return &ClusterControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiClusterControl operation.
+func (o *ClusterControlRequest) OpNum() int { return 106 }
+
+// OpName returns the operation name of ApiClusterControl operation.
+func (o *ClusterControlRequest) OpName() string { return "/clusapi3/v3/ApiClusterControl" }
+
 // ClusterControlResponse structure represents the ApiClusterControl operation response
 type ClusterControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -31761,8 +33236,10 @@ type xxx_UnblockGetNotifyCallOperation struct {
 	Return uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiUnblockGetNotifyCall operation.
 func (o *xxx_UnblockGetNotifyCallOperation) OpNum() int { return 107 }
 
+// OpName returns the operation name of ApiUnblockGetNotifyCall operation.
 func (o *xxx_UnblockGetNotifyCallOperation) OpName() string {
 	return "/clusapi3/v3/ApiUnblockGetNotifyCall"
 }
@@ -31874,6 +33351,17 @@ func (o *UnblockGetNotifyCallRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeUnblockGetNotifyCallRequest build a response structure from the given request structure.
+func (o *UnblockGetNotifyCallRequest) MakeResponse() *UnblockGetNotifyCallResponse {
+	return &UnblockGetNotifyCallResponse{}
+}
+
+// OpNum returns the operation number of ApiUnblockGetNotifyCall operation.
+func (o *UnblockGetNotifyCallRequest) OpNum() int { return 107 }
+
+// OpName returns the operation name of ApiUnblockGetNotifyCall operation.
+func (o *UnblockGetNotifyCallRequest) OpName() string { return "/clusapi3/v3/ApiUnblockGetNotifyCall" }
+
 // UnblockGetNotifyCallResponse structure represents the ApiUnblockGetNotifyCall operation response
 type UnblockGetNotifyCallResponse struct {
 	// Return: The ApiUnblockGetNotifyCall return value.
@@ -31920,8 +33408,10 @@ type xxx_SetServiceAccountPasswordOperation struct {
 	Return                    uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiSetServiceAccountPassword operation.
 func (o *xxx_SetServiceAccountPasswordOperation) OpNum() int { return 108 }
 
+// OpName returns the operation name of ApiSetServiceAccountPassword operation.
 func (o *xxx_SetServiceAccountPasswordOperation) OpName() string {
 	return "/clusapi3/v3/ApiSetServiceAccountPassword"
 }
@@ -32158,6 +33648,24 @@ func (o *SetServiceAccountPasswordRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeSetServiceAccountPasswordRequest build a response structure from the given request structure.
+func (o *SetServiceAccountPasswordRequest) MakeResponse() *SetServiceAccountPasswordResponse {
+	if o == nil {
+		return &SetServiceAccountPasswordResponse{}
+	}
+	return &SetServiceAccountPasswordResponse{
+		ReturnStatusBufferSize: o.ReturnStatusBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiSetServiceAccountPassword operation.
+func (o *SetServiceAccountPasswordRequest) OpNum() int { return 108 }
+
+// OpName returns the operation name of ApiSetServiceAccountPassword operation.
+func (o *SetServiceAccountPasswordRequest) OpName() string {
+	return "/clusapi3/v3/ApiSetServiceAccountPassword"
+}
+
 // SetServiceAccountPasswordResponse structure represents the ApiSetServiceAccountPassword operation response
 type SetServiceAccountPasswordResponse struct {
 	// XXX: ReturnStatusBufferSize is an implicit input depedency for output parameters
@@ -32221,8 +33729,10 @@ type xxx_SetResourceDependencyExpressionOperation struct {
 	Return               uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiSetResourceDependencyExpression operation.
 func (o *xxx_SetResourceDependencyExpressionOperation) OpNum() int { return 109 }
 
+// OpName returns the operation name of ApiSetResourceDependencyExpression operation.
 func (o *xxx_SetResourceDependencyExpressionOperation) OpName() string {
 	return "/clusapi3/v3/ApiSetResourceDependencyExpression"
 }
@@ -32390,6 +33900,19 @@ func (o *SetResourceDependencyExpressionRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeSetResourceDependencyExpressionRequest build a response structure from the given request structure.
+func (o *SetResourceDependencyExpressionRequest) MakeResponse() *SetResourceDependencyExpressionResponse {
+	return &SetResourceDependencyExpressionResponse{}
+}
+
+// OpNum returns the operation number of ApiSetResourceDependencyExpression operation.
+func (o *SetResourceDependencyExpressionRequest) OpNum() int { return 109 }
+
+// OpName returns the operation name of ApiSetResourceDependencyExpression operation.
+func (o *SetResourceDependencyExpressionRequest) OpName() string {
+	return "/clusapi3/v3/ApiSetResourceDependencyExpression"
+}
+
 // SetResourceDependencyExpressionResponse structure represents the ApiSetResourceDependencyExpression operation response
 type SetResourceDependencyExpressionResponse struct {
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
@@ -32441,8 +33964,10 @@ type xxx_GetResourceDependencyExpressionOperation struct {
 	Return               uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetResourceDependencyExpression operation.
 func (o *xxx_GetResourceDependencyExpressionOperation) OpNum() int { return 110 }
 
+// OpName returns the operation name of ApiGetResourceDependencyExpression operation.
 func (o *xxx_GetResourceDependencyExpressionOperation) OpName() string {
 	return "/clusapi3/v3/ApiGetResourceDependencyExpression"
 }
@@ -32605,6 +34130,19 @@ func (o *GetResourceDependencyExpressionRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeGetResourceDependencyExpressionRequest build a response structure from the given request structure.
+func (o *GetResourceDependencyExpressionRequest) MakeResponse() *GetResourceDependencyExpressionResponse {
+	return &GetResourceDependencyExpressionResponse{}
+}
+
+// OpNum returns the operation number of ApiGetResourceDependencyExpression operation.
+func (o *GetResourceDependencyExpressionRequest) OpNum() int { return 110 }
+
+// OpName returns the operation name of ApiGetResourceDependencyExpression operation.
+func (o *GetResourceDependencyExpressionRequest) OpName() string {
+	return "/clusapi3/v3/ApiGetResourceDependencyExpression"
+}
+
 // GetResourceDependencyExpressionResponse structure represents the ApiGetResourceDependencyExpression operation response
 type GetResourceDependencyExpressionResponse struct {
 	// lpszDependencyExpression: The address of a pointer that receives a pointer to a Unicode
@@ -32663,8 +34201,10 @@ type xxx_GetResourceNetworkNameOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetResourceNetworkName operation.
 func (o *xxx_GetResourceNetworkNameOperation) OpNum() int { return 112 }
 
+// OpName returns the operation name of ApiGetResourceNetworkName operation.
 func (o *xxx_GetResourceNetworkNameOperation) OpName() string {
 	return "/clusapi3/v3/ApiGetResourceNetworkName"
 }
@@ -32827,6 +34367,19 @@ func (o *GetResourceNetworkNameRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetResourceNetworkNameRequest build a response structure from the given request structure.
+func (o *GetResourceNetworkNameRequest) MakeResponse() *GetResourceNetworkNameResponse {
+	return &GetResourceNetworkNameResponse{}
+}
+
+// OpNum returns the operation number of ApiGetResourceNetworkName operation.
+func (o *GetResourceNetworkNameRequest) OpNum() int { return 112 }
+
+// OpName returns the operation name of ApiGetResourceNetworkName operation.
+func (o *GetResourceNetworkNameRequest) OpName() string {
+	return "/clusapi3/v3/ApiGetResourceNetworkName"
+}
+
 // GetResourceNetworkNameResponse structure represents the ApiGetResourceNetworkName operation response
 type GetResourceNetworkNameResponse struct {
 	// lpszName: A pointer to a Unicode string buffer. The lpszName parameter receives the
@@ -32892,8 +34445,10 @@ type xxx_ExecuteBatchOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiExecuteBatch operation.
 func (o *xxx_ExecuteBatchOperation) OpNum() int { return 113 }
 
+// OpName returns the operation name of ApiExecuteBatch operation.
 func (o *xxx_ExecuteBatchOperation) OpName() string { return "/clusapi3/v3/ApiExecuteBatch" }
 
 func (o *xxx_ExecuteBatchOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -33102,6 +34657,17 @@ func (o *ExecuteBatchRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeExecuteBatchRequest build a response structure from the given request structure.
+func (o *ExecuteBatchRequest) MakeResponse() *ExecuteBatchResponse {
+	return &ExecuteBatchResponse{}
+}
+
+// OpNum returns the operation number of ApiExecuteBatch operation.
+func (o *ExecuteBatchRequest) OpNum() int { return 113 }
+
+// OpName returns the operation name of ApiExecuteBatch operation.
+func (o *ExecuteBatchRequest) OpName() string { return "/clusapi3/v3/ApiExecuteBatch" }
+
 // ExecuteBatchResponse structure represents the ApiExecuteBatch operation response
 type ExecuteBatchResponse struct {
 	// pdwFailedCommand: A pointer to a 32-bit integer that is written, upon failure of
@@ -33158,8 +34724,10 @@ type xxx_CreateBatchPortOperation struct {
 	Return    uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateBatchPort operation.
 func (o *xxx_CreateBatchPortOperation) OpNum() int { return 114 }
 
+// OpName returns the operation name of ApiCreateBatchPort operation.
 func (o *xxx_CreateBatchPortOperation) OpName() string { return "/clusapi3/v3/ApiCreateBatchPort" }
 
 func (o *xxx_CreateBatchPortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -33304,6 +34872,17 @@ func (o *CreateBatchPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeCreateBatchPortRequest build a response structure from the given request structure.
+func (o *CreateBatchPortRequest) MakeResponse() *CreateBatchPortResponse {
+	return &CreateBatchPortResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateBatchPort operation.
+func (o *CreateBatchPortRequest) OpNum() int { return 114 }
+
+// OpName returns the operation name of ApiCreateBatchPort operation.
+func (o *CreateBatchPortRequest) OpName() string { return "/clusapi3/v3/ApiCreateBatchPort" }
+
 // CreateBatchPortResponse structure represents the ApiCreateBatchPort operation response
 type CreateBatchPortResponse struct {
 	// phBatchPort: If the method succeeds, the server MUST write a valid HBATCH_PORT_RPC
@@ -33360,8 +34939,10 @@ type xxx_GetBatchNotificationOperation struct {
 	Return      uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetBatchNotification operation.
 func (o *xxx_GetBatchNotificationOperation) OpNum() int { return 115 }
 
+// OpName returns the operation name of ApiGetBatchNotification operation.
 func (o *xxx_GetBatchNotificationOperation) OpName() string {
 	return "/clusapi3/v3/ApiGetBatchNotification"
 }
@@ -33560,6 +35141,17 @@ func (o *GetBatchNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetBatchNotificationRequest build a response structure from the given request structure.
+func (o *GetBatchNotificationRequest) MakeResponse() *GetBatchNotificationResponse {
+	return &GetBatchNotificationResponse{}
+}
+
+// OpNum returns the operation number of ApiGetBatchNotification operation.
+func (o *GetBatchNotificationRequest) OpNum() int { return 115 }
+
+// OpName returns the operation name of ApiGetBatchNotification operation.
+func (o *GetBatchNotificationRequest) OpName() string { return "/clusapi3/v3/ApiGetBatchNotification" }
+
 // GetBatchNotificationResponse structure represents the ApiGetBatchNotification operation response
 type GetBatchNotificationResponse struct {
 	// cbData: A pointer to a 32-bit integer. Upon successful completion of this method,
@@ -33612,8 +35204,10 @@ type xxx_CloseBatchPortOperation struct {
 	Return    uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCloseBatchPort operation.
 func (o *xxx_CloseBatchPortOperation) OpNum() int { return 116 }
 
+// OpName returns the operation name of ApiCloseBatchPort operation.
 func (o *xxx_CloseBatchPortOperation) OpName() string { return "/clusapi3/v3/ApiCloseBatchPort" }
 
 func (o *xxx_CloseBatchPortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -33747,6 +35341,17 @@ func (o *CloseBatchPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCloseBatchPortRequest build a response structure from the given request structure.
+func (o *CloseBatchPortRequest) MakeResponse() *CloseBatchPortResponse {
+	return &CloseBatchPortResponse{}
+}
+
+// OpNum returns the operation number of ApiCloseBatchPort operation.
+func (o *CloseBatchPortRequest) OpNum() int { return 116 }
+
+// OpName returns the operation name of ApiCloseBatchPort operation.
+func (o *CloseBatchPortRequest) OpName() string { return "/clusapi3/v3/ApiCloseBatchPort" }
+
 // CloseBatchPortResponse structure represents the ApiCloseBatchPort operation response
 type CloseBatchPortResponse struct {
 	// phBatchPort: A pointer to an HBATCH_PORT_RPC context handle that was obtained in
@@ -33796,8 +35401,10 @@ type xxx_OpenClusterExOperation struct {
 	Return        *Cluster `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenClusterEx operation.
 func (o *xxx_OpenClusterExOperation) OpNum() int { return 117 }
 
+// OpName returns the operation name of ApiOpenClusterEx operation.
 func (o *xxx_OpenClusterExOperation) OpName() string { return "/clusapi3/v3/ApiOpenClusterEx" }
 
 func (o *xxx_OpenClusterExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -33970,6 +35577,17 @@ func (o *OpenClusterExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeOpenClusterExRequest build a response structure from the given request structure.
+func (o *OpenClusterExRequest) MakeResponse() *OpenClusterExResponse {
+	return &OpenClusterExResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenClusterEx operation.
+func (o *OpenClusterExRequest) OpNum() int { return 117 }
+
+// OpName returns the operation name of ApiOpenClusterEx operation.
+func (o *OpenClusterExRequest) OpName() string { return "/clusapi3/v3/ApiOpenClusterEx" }
+
 // OpenClusterExResponse structure represents the ApiOpenClusterEx operation response
 type OpenClusterExResponse struct {
 	// lpdwGrantedAccess: A pointer to a 32-bit value that indicates the access level granted
@@ -34058,8 +35676,10 @@ type xxx_OpenNodeExOperation struct {
 	Return        *Node  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenNodeEx operation.
 func (o *xxx_OpenNodeExOperation) OpNum() int { return 118 }
 
+// OpName returns the operation name of ApiOpenNodeEx operation.
 func (o *xxx_OpenNodeExOperation) OpName() string { return "/clusapi3/v3/ApiOpenNodeEx" }
 
 func (o *xxx_OpenNodeExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -34224,6 +35844,17 @@ func (o *OpenNodeExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeOpenNodeExRequest build a response structure from the given request structure.
+func (o *OpenNodeExRequest) MakeResponse() *OpenNodeExResponse {
+	return &OpenNodeExResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenNodeEx operation.
+func (o *OpenNodeExRequest) OpNum() int { return 118 }
+
+// OpName returns the operation name of ApiOpenNodeEx operation.
+func (o *OpenNodeExRequest) OpName() string { return "/clusapi3/v3/ApiOpenNodeEx" }
+
 // OpenNodeExResponse structure represents the ApiOpenNodeEx operation response
 type OpenNodeExResponse struct {
 	// lpdwGrantedAccess: The value for this parameter is the same as specified for lpdwGrantedAccess
@@ -34307,8 +35938,10 @@ type xxx_OpenGroupExOperation struct {
 	Return        *Group `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenGroupEx operation.
 func (o *xxx_OpenGroupExOperation) OpNum() int { return 119 }
 
+// OpName returns the operation name of ApiOpenGroupEx operation.
 func (o *xxx_OpenGroupExOperation) OpName() string { return "/clusapi3/v3/ApiOpenGroupEx" }
 
 func (o *xxx_OpenGroupExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -34473,6 +36106,17 @@ func (o *OpenGroupExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeOpenGroupExRequest build a response structure from the given request structure.
+func (o *OpenGroupExRequest) MakeResponse() *OpenGroupExResponse {
+	return &OpenGroupExResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenGroupEx operation.
+func (o *OpenGroupExRequest) OpNum() int { return 119 }
+
+// OpName returns the operation name of ApiOpenGroupEx operation.
+func (o *OpenGroupExRequest) OpName() string { return "/clusapi3/v3/ApiOpenGroupEx" }
+
 // OpenGroupExResponse structure represents the ApiOpenGroupEx operation response
 type OpenGroupExResponse struct {
 	// lpdwGrantedAccess: The value for this parameter is the same as specified for lpdwGrantedAccess
@@ -34559,8 +36203,10 @@ type xxx_OpenResourceExOperation struct {
 	Return        *Resource `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenResourceEx operation.
 func (o *xxx_OpenResourceExOperation) OpNum() int { return 120 }
 
+// OpName returns the operation name of ApiOpenResourceEx operation.
 func (o *xxx_OpenResourceExOperation) OpName() string { return "/clusapi3/v3/ApiOpenResourceEx" }
 
 func (o *xxx_OpenResourceExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -34726,6 +36372,17 @@ func (o *OpenResourceExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeOpenResourceExRequest build a response structure from the given request structure.
+func (o *OpenResourceExRequest) MakeResponse() *OpenResourceExResponse {
+	return &OpenResourceExResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenResourceEx operation.
+func (o *OpenResourceExRequest) OpNum() int { return 120 }
+
+// OpName returns the operation name of ApiOpenResourceEx operation.
+func (o *OpenResourceExRequest) OpName() string { return "/clusapi3/v3/ApiOpenResourceEx" }
+
 // OpenResourceExResponse structure represents the ApiOpenResourceEx operation response
 type OpenResourceExResponse struct {
 	// lpdwGrantedAccess: The value for this parameter is the same as specified for lpdwGrantedAccess
@@ -34807,8 +36464,10 @@ type xxx_OpenNetworkExOperation struct {
 	Return        *Network `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenNetworkEx operation.
 func (o *xxx_OpenNetworkExOperation) OpNum() int { return 121 }
 
+// OpName returns the operation name of ApiOpenNetworkEx operation.
 func (o *xxx_OpenNetworkExOperation) OpName() string { return "/clusapi3/v3/ApiOpenNetworkEx" }
 
 func (o *xxx_OpenNetworkExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -34973,6 +36632,17 @@ func (o *OpenNetworkExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeOpenNetworkExRequest build a response structure from the given request structure.
+func (o *OpenNetworkExRequest) MakeResponse() *OpenNetworkExResponse {
+	return &OpenNetworkExResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenNetworkEx operation.
+func (o *OpenNetworkExRequest) OpNum() int { return 121 }
+
+// OpName returns the operation name of ApiOpenNetworkEx operation.
+func (o *OpenNetworkExRequest) OpName() string { return "/clusapi3/v3/ApiOpenNetworkEx" }
+
 // OpenNetworkExResponse structure represents the ApiOpenNetworkEx operation response
 type OpenNetworkExResponse struct {
 	// lpdwGrantedAccess: The value for this parameter is the same as specified for lpdwGrantedAccess
@@ -35054,8 +36724,10 @@ type xxx_OpenNetInterfaceExOperation struct {
 	Return           *NetInterface `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenNetInterfaceEx operation.
 func (o *xxx_OpenNetInterfaceExOperation) OpNum() int { return 122 }
 
+// OpName returns the operation name of ApiOpenNetInterfaceEx operation.
 func (o *xxx_OpenNetInterfaceExOperation) OpName() string {
 	return "/clusapi3/v3/ApiOpenNetInterfaceEx"
 }
@@ -35222,6 +36894,17 @@ func (o *OpenNetInterfaceExRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeOpenNetInterfaceExRequest build a response structure from the given request structure.
+func (o *OpenNetInterfaceExRequest) MakeResponse() *OpenNetInterfaceExResponse {
+	return &OpenNetInterfaceExResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenNetInterfaceEx operation.
+func (o *OpenNetInterfaceExRequest) OpNum() int { return 122 }
+
+// OpName returns the operation name of ApiOpenNetInterfaceEx operation.
+func (o *OpenNetInterfaceExRequest) OpName() string { return "/clusapi3/v3/ApiOpenNetInterfaceEx" }
+
 // OpenNetInterfaceExResponse structure represents the ApiOpenNetInterfaceEx operation response
 type OpenNetInterfaceExResponse struct {
 	// lpdwGrantedAccess: The value for this parameter is the same as specified for lpdwGrantedAccess
@@ -35301,8 +36984,10 @@ type xxx_ChangeCSVStateOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiChangeCsvState operation.
 func (o *xxx_ChangeCSVStateOperation) OpNum() int { return 123 }
 
+// OpName returns the operation name of ApiChangeCsvState operation.
 func (o *xxx_ChangeCSVStateOperation) OpName() string { return "/clusapi3/v3/ApiChangeCsvState" }
 
 func (o *xxx_ChangeCSVStateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -35444,6 +37129,17 @@ func (o *ChangeCSVStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeChangeCSVStateRequest build a response structure from the given request structure.
+func (o *ChangeCSVStateRequest) MakeResponse() *ChangeCSVStateResponse {
+	return &ChangeCSVStateResponse{}
+}
+
+// OpNum returns the operation number of ApiChangeCsvState operation.
+func (o *ChangeCSVStateRequest) OpNum() int { return 123 }
+
+// OpName returns the operation name of ApiChangeCsvState operation.
+func (o *ChangeCSVStateRequest) OpName() string { return "/clusapi3/v3/ApiChangeCsvState" }
+
 // ChangeCSVStateResponse structure represents the ApiChangeCsvState operation response
 type ChangeCSVStateResponse struct {
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
@@ -35497,8 +37193,10 @@ type xxx_CreateNodeEnumExOperation struct {
 	Return         uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateNodeEnumEx operation.
 func (o *xxx_CreateNodeEnumExOperation) OpNum() int { return 124 }
 
+// OpName returns the operation name of ApiCreateNodeEnumEx operation.
 func (o *xxx_CreateNodeEnumExOperation) OpName() string { return "/clusapi3/v3/ApiCreateNodeEnumEx" }
 
 func (o *xxx_CreateNodeEnumExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -35771,6 +37469,17 @@ func (o *CreateNodeEnumExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeCreateNodeEnumExRequest build a response structure from the given request structure.
+func (o *CreateNodeEnumExRequest) MakeResponse() *CreateNodeEnumExResponse {
+	return &CreateNodeEnumExResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateNodeEnumEx operation.
+func (o *CreateNodeEnumExRequest) OpNum() int { return 124 }
+
+// OpName returns the operation name of ApiCreateNodeEnumEx operation.
+func (o *CreateNodeEnumExRequest) OpName() string { return "/clusapi3/v3/ApiCreateNodeEnumEx" }
+
 // CreateNodeEnumExResponse structure represents the ApiCreateNodeEnumEx operation response
 type CreateNodeEnumExResponse struct {
 	// ReturnIdEnum: A pointer to an ENUM_LIST (section 2.2.3.5) that contains IDs of the
@@ -35839,8 +37548,10 @@ type xxx_CreateEnumExOperation struct {
 	Return         uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateEnumEx operation.
 func (o *xxx_CreateEnumExOperation) OpNum() int { return 125 }
 
+// OpName returns the operation name of ApiCreateEnumEx operation.
 func (o *xxx_CreateEnumExOperation) OpName() string { return "/clusapi3/v3/ApiCreateEnumEx" }
 
 func (o *xxx_CreateEnumExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -36148,6 +37859,17 @@ func (o *CreateEnumExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCreateEnumExRequest build a response structure from the given request structure.
+func (o *CreateEnumExRequest) MakeResponse() *CreateEnumExResponse {
+	return &CreateEnumExResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateEnumEx operation.
+func (o *CreateEnumExRequest) OpNum() int { return 125 }
+
+// OpName returns the operation name of ApiCreateEnumEx operation.
+func (o *CreateEnumExRequest) OpName() string { return "/clusapi3/v3/ApiCreateEnumEx" }
+
 // CreateEnumExResponse structure represents the ApiCreateEnumEx operation response
 type CreateEnumExResponse struct {
 	// ReturnIdEnum: A pointer to a PENUM_LIST (section 2.2.3.5). The pointer contains the
@@ -36214,8 +37936,10 @@ type xxx_PauseNodeExOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiPauseNodeEx operation.
 func (o *xxx_PauseNodeExOperation) OpNum() int { return 126 }
 
+// OpName returns the operation name of ApiPauseNodeEx operation.
 func (o *xxx_PauseNodeExOperation) OpName() string { return "/clusapi3/v3/ApiPauseNodeEx" }
 
 func (o *xxx_PauseNodeExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -36385,6 +38109,17 @@ func (o *PauseNodeExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakePauseNodeExRequest build a response structure from the given request structure.
+func (o *PauseNodeExRequest) MakeResponse() *PauseNodeExResponse {
+	return &PauseNodeExResponse{}
+}
+
+// OpNum returns the operation number of ApiPauseNodeEx operation.
+func (o *PauseNodeExRequest) OpNum() int { return 126 }
+
+// OpName returns the operation name of ApiPauseNodeEx operation.
+func (o *PauseNodeExRequest) OpName() string { return "/clusapi3/v3/ApiPauseNodeEx" }
+
 // PauseNodeExResponse structure represents the ApiPauseNodeEx operation response
 type PauseNodeExResponse struct {
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
@@ -36436,8 +38171,10 @@ type xxx_PauseNodeWithDrainTargetOperation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiPauseNodeWithDrainTarget operation.
 func (o *xxx_PauseNodeWithDrainTargetOperation) OpNum() int { return 127 }
 
+// OpName returns the operation name of ApiPauseNodeWithDrainTarget operation.
 func (o *xxx_PauseNodeWithDrainTargetOperation) OpName() string {
 	return "/clusapi3/v3/ApiPauseNodeWithDrainTarget"
 }
@@ -36610,6 +38347,19 @@ func (o *PauseNodeWithDrainTargetRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakePauseNodeWithDrainTargetRequest build a response structure from the given request structure.
+func (o *PauseNodeWithDrainTargetRequest) MakeResponse() *PauseNodeWithDrainTargetResponse {
+	return &PauseNodeWithDrainTargetResponse{}
+}
+
+// OpNum returns the operation number of ApiPauseNodeWithDrainTarget operation.
+func (o *PauseNodeWithDrainTargetRequest) OpNum() int { return 127 }
+
+// OpName returns the operation name of ApiPauseNodeWithDrainTarget operation.
+func (o *PauseNodeWithDrainTargetRequest) OpName() string {
+	return "/clusapi3/v3/ApiPauseNodeWithDrainTarget"
+}
+
 // PauseNodeWithDrainTargetResponse structure represents the ApiPauseNodeWithDrainTarget operation response
 type PauseNodeWithDrainTargetResponse struct {
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
@@ -36661,8 +38411,10 @@ type xxx_ResumeNodeExOperation struct {
 	Return              uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiResumeNodeEx operation.
 func (o *xxx_ResumeNodeExOperation) OpNum() int { return 128 }
 
+// OpName returns the operation name of ApiResumeNodeEx operation.
 func (o *xxx_ResumeNodeExOperation) OpName() string { return "/clusapi3/v3/ApiResumeNodeEx" }
 
 func (o *xxx_ResumeNodeExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -36814,6 +38566,17 @@ func (o *ResumeNodeExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeResumeNodeExRequest build a response structure from the given request structure.
+func (o *ResumeNodeExRequest) MakeResponse() *ResumeNodeExResponse {
+	return &ResumeNodeExResponse{}
+}
+
+// OpNum returns the operation number of ApiResumeNodeEx operation.
+func (o *ResumeNodeExRequest) OpNum() int { return 128 }
+
+// OpName returns the operation name of ApiResumeNodeEx operation.
+func (o *ResumeNodeExRequest) OpName() string { return "/clusapi3/v3/ApiResumeNodeEx" }
+
 // ResumeNodeExResponse structure represents the ApiResumeNodeEx operation response
 type ResumeNodeExResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -36861,8 +38624,10 @@ type xxx_CreateGroupExOperation struct {
 	Return    *Group                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateGroupEx operation.
 func (o *xxx_CreateGroupExOperation) OpNum() int { return 129 }
 
+// OpName returns the operation name of ApiCreateGroupEx operation.
 func (o *xxx_CreateGroupExOperation) OpName() string { return "/clusapi3/v3/ApiCreateGroupEx" }
 
 func (o *xxx_CreateGroupExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -37069,6 +38834,17 @@ func (o *CreateGroupExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeCreateGroupExRequest build a response structure from the given request structure.
+func (o *CreateGroupExRequest) MakeResponse() *CreateGroupExResponse {
+	return &CreateGroupExResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateGroupEx operation.
+func (o *CreateGroupExRequest) OpNum() int { return 129 }
+
+// OpName returns the operation name of ApiCreateGroupEx operation.
+func (o *CreateGroupExRequest) OpName() string { return "/clusapi3/v3/ApiCreateGroupEx" }
+
 // CreateGroupExResponse structure represents the ApiCreateGroupEx operation response
 type CreateGroupExResponse struct {
 	// Status: Indicates the status of this operation. The server MUST set this parameter
@@ -37139,8 +38915,10 @@ type xxx_OnlineGroupExOperation struct {
 	Return         uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOnlineGroupEx operation.
 func (o *xxx_OnlineGroupExOperation) OpNum() int { return 130 }
 
+// OpName returns the operation name of ApiOnlineGroupEx operation.
 func (o *xxx_OnlineGroupExOperation) OpName() string { return "/clusapi3/v3/ApiOnlineGroupEx" }
 
 func (o *xxx_OnlineGroupExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -37384,6 +39162,17 @@ func (o *OnlineGroupExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeOnlineGroupExRequest build a response structure from the given request structure.
+func (o *OnlineGroupExRequest) MakeResponse() *OnlineGroupExResponse {
+	return &OnlineGroupExResponse{}
+}
+
+// OpNum returns the operation number of ApiOnlineGroupEx operation.
+func (o *OnlineGroupExRequest) OpNum() int { return 130 }
+
+// OpName returns the operation name of ApiOnlineGroupEx operation.
+func (o *OnlineGroupExRequest) OpName() string { return "/clusapi3/v3/ApiOnlineGroupEx" }
+
 // OnlineGroupExResponse structure represents the ApiOnlineGroupEx operation response
 type OnlineGroupExResponse struct {
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
@@ -37436,8 +39225,10 @@ type xxx_OfflineGroupExOperation struct {
 	Return         uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOfflineGroupEx operation.
 func (o *xxx_OfflineGroupExOperation) OpNum() int { return 131 }
 
+// OpName returns the operation name of ApiOfflineGroupEx operation.
 func (o *xxx_OfflineGroupExOperation) OpName() string { return "/clusapi3/v3/ApiOfflineGroupEx" }
 
 func (o *xxx_OfflineGroupExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -37681,6 +39472,17 @@ func (o *OfflineGroupExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeOfflineGroupExRequest build a response structure from the given request structure.
+func (o *OfflineGroupExRequest) MakeResponse() *OfflineGroupExResponse {
+	return &OfflineGroupExResponse{}
+}
+
+// OpNum returns the operation number of ApiOfflineGroupEx operation.
+func (o *OfflineGroupExRequest) OpNum() int { return 131 }
+
+// OpName returns the operation name of ApiOfflineGroupEx operation.
+func (o *OfflineGroupExRequest) OpName() string { return "/clusapi3/v3/ApiOfflineGroupEx" }
+
 // OfflineGroupExResponse structure represents the ApiOfflineGroupEx operation response
 type OfflineGroupExResponse struct {
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
@@ -37733,8 +39535,10 @@ type xxx_MoveGroupExOperation struct {
 	Return         uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiMoveGroupEx operation.
 func (o *xxx_MoveGroupExOperation) OpNum() int { return 132 }
 
+// OpName returns the operation name of ApiMoveGroupEx operation.
 func (o *xxx_MoveGroupExOperation) OpName() string { return "/clusapi3/v3/ApiMoveGroupEx" }
 
 func (o *xxx_MoveGroupExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -38012,6 +39816,17 @@ func (o *MoveGroupExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeMoveGroupExRequest build a response structure from the given request structure.
+func (o *MoveGroupExRequest) MakeResponse() *MoveGroupExResponse {
+	return &MoveGroupExResponse{}
+}
+
+// OpNum returns the operation number of ApiMoveGroupEx operation.
+func (o *MoveGroupExRequest) OpNum() int { return 132 }
+
+// OpName returns the operation name of ApiMoveGroupEx operation.
+func (o *MoveGroupExRequest) OpName() string { return "/clusapi3/v3/ApiMoveGroupEx" }
+
 // MoveGroupExResponse structure represents the ApiMoveGroupEx operation response
 type MoveGroupExResponse struct {
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
@@ -38065,8 +39880,10 @@ type xxx_MoveGroupToNodeExOperation struct {
 	Return         uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiMoveGroupToNodeEx operation.
 func (o *xxx_MoveGroupToNodeExOperation) OpNum() int { return 133 }
 
+// OpName returns the operation name of ApiMoveGroupToNodeEx operation.
 func (o *xxx_MoveGroupToNodeExOperation) OpName() string { return "/clusapi3/v3/ApiMoveGroupToNodeEx" }
 
 func (o *xxx_MoveGroupToNodeExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -38311,6 +40128,17 @@ func (o *MoveGroupToNodeExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeMoveGroupToNodeExRequest build a response structure from the given request structure.
+func (o *MoveGroupToNodeExRequest) MakeResponse() *MoveGroupToNodeExResponse {
+	return &MoveGroupToNodeExResponse{}
+}
+
+// OpNum returns the operation number of ApiMoveGroupToNodeEx operation.
+func (o *MoveGroupToNodeExRequest) OpNum() int { return 133 }
+
+// OpName returns the operation name of ApiMoveGroupToNodeEx operation.
+func (o *MoveGroupToNodeExRequest) OpName() string { return "/clusapi3/v3/ApiMoveGroupToNodeEx" }
+
 // MoveGroupToNodeExResponse structure represents the ApiMoveGroupToNodeEx operation response
 type MoveGroupToNodeExResponse struct {
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
@@ -38361,8 +40189,10 @@ type xxx_CancelClusterGroupOperationOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCancelClusterGroupOperation operation.
 func (o *xxx_CancelClusterGroupOperationOperation) OpNum() int { return 134 }
 
+// OpName returns the operation name of ApiCancelClusterGroupOperation operation.
 func (o *xxx_CancelClusterGroupOperationOperation) OpName() string {
 	return "/clusapi3/v3/ApiCancelClusterGroupOperation"
 }
@@ -38505,6 +40335,19 @@ func (o *CancelClusterGroupOperationRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeCancelClusterGroupOperationRequest build a response structure from the given request structure.
+func (o *CancelClusterGroupOperationRequest) MakeResponse() *CancelClusterGroupOperationResponse {
+	return &CancelClusterGroupOperationResponse{}
+}
+
+// OpNum returns the operation number of ApiCancelClusterGroupOperation operation.
+func (o *CancelClusterGroupOperationRequest) OpNum() int { return 134 }
+
+// OpName returns the operation name of ApiCancelClusterGroupOperation operation.
+func (o *CancelClusterGroupOperationRequest) OpName() string {
+	return "/clusapi3/v3/ApiCancelClusterGroupOperation"
+}
+
 // CancelClusterGroupOperationResponse structure represents the ApiCancelClusterGroupOperation operation response
 type CancelClusterGroupOperationResponse struct {
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
@@ -38557,8 +40400,10 @@ type xxx_OnlineResourceExOperation struct {
 	Return         uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOnlineResourceEx operation.
 func (o *xxx_OnlineResourceExOperation) OpNum() int { return 135 }
 
+// OpName returns the operation name of ApiOnlineResourceEx operation.
 func (o *xxx_OnlineResourceExOperation) OpName() string { return "/clusapi3/v3/ApiOnlineResourceEx" }
 
 func (o *xxx_OnlineResourceExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -38803,6 +40648,17 @@ func (o *OnlineResourceExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeOnlineResourceExRequest build a response structure from the given request structure.
+func (o *OnlineResourceExRequest) MakeResponse() *OnlineResourceExResponse {
+	return &OnlineResourceExResponse{}
+}
+
+// OpNum returns the operation number of ApiOnlineResourceEx operation.
+func (o *OnlineResourceExRequest) OpNum() int { return 135 }
+
+// OpName returns the operation name of ApiOnlineResourceEx operation.
+func (o *OnlineResourceExRequest) OpName() string { return "/clusapi3/v3/ApiOnlineResourceEx" }
+
 // OnlineResourceExResponse structure represents the ApiOnlineResourceEx operation response
 type OnlineResourceExResponse struct {
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
@@ -38855,8 +40711,10 @@ type xxx_OfflineResourceExOperation struct {
 	Return         uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOfflineResourceEx operation.
 func (o *xxx_OfflineResourceExOperation) OpNum() int { return 136 }
 
+// OpName returns the operation name of ApiOfflineResourceEx operation.
 func (o *xxx_OfflineResourceExOperation) OpName() string { return "/clusapi3/v3/ApiOfflineResourceEx" }
 
 func (o *xxx_OfflineResourceExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -39114,6 +40972,17 @@ func (o *OfflineResourceExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeOfflineResourceExRequest build a response structure from the given request structure.
+func (o *OfflineResourceExRequest) MakeResponse() *OfflineResourceExResponse {
+	return &OfflineResourceExResponse{}
+}
+
+// OpNum returns the operation number of ApiOfflineResourceEx operation.
+func (o *OfflineResourceExRequest) OpNum() int { return 136 }
+
+// OpName returns the operation name of ApiOfflineResourceEx operation.
+func (o *OfflineResourceExRequest) OpName() string { return "/clusapi3/v3/ApiOfflineResourceEx" }
+
 // OfflineResourceExResponse structure represents the ApiOfflineResourceEx operation response
 type OfflineResourceExResponse struct {
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
@@ -39163,8 +41032,10 @@ type xxx_CreateNotifyV2Operation struct {
 	Return    *Notify `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateNotifyV2 operation.
 func (o *xxx_CreateNotifyV2Operation) OpNum() int { return 137 }
 
+// OpName returns the operation name of ApiCreateNotifyV2 operation.
 func (o *xxx_CreateNotifyV2Operation) OpName() string { return "/clusapi3/v3/ApiCreateNotifyV2" }
 
 func (o *xxx_CreateNotifyV2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -39283,6 +41154,17 @@ func (o *CreateNotifyV2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreateNotifyV2Request build a response structure from the given request structure.
+func (o *CreateNotifyV2Request) MakeResponse() *CreateNotifyV2Response {
+	return &CreateNotifyV2Response{}
+}
+
+// OpNum returns the operation number of ApiCreateNotifyV2 operation.
+func (o *CreateNotifyV2Request) OpNum() int { return 137 }
+
+// OpName returns the operation name of ApiCreateNotifyV2 operation.
+func (o *CreateNotifyV2Request) OpName() string { return "/clusapi3/v3/ApiCreateNotifyV2" }
+
 // CreateNotifyV2Response structure represents the ApiCreateNotifyV2 operation response
 type CreateNotifyV2Response struct {
 	// rpc_error: Indicates the status of the operation. The server MUST set this parameter
@@ -39344,8 +41226,10 @@ type xxx_AddNotifyV2Operation struct {
 	Return             uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddNotifyV2 operation.
 func (o *xxx_AddNotifyV2Operation) OpNum() int { return 138 }
 
+// OpName returns the operation name of ApiAddNotifyV2 operation.
 func (o *xxx_AddNotifyV2Operation) OpName() string { return "/clusapi3/v3/ApiAddNotifyV2" }
 
 func (o *xxx_AddNotifyV2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -39679,6 +41563,17 @@ func (o *AddNotifyV2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeAddNotifyV2Request build a response structure from the given request structure.
+func (o *AddNotifyV2Request) MakeResponse() *AddNotifyV2Response {
+	return &AddNotifyV2Response{}
+}
+
+// OpNum returns the operation number of ApiAddNotifyV2 operation.
+func (o *AddNotifyV2Request) OpNum() int { return 138 }
+
+// OpName returns the operation name of ApiAddNotifyV2 operation.
+func (o *AddNotifyV2Request) OpName() string { return "/clusapi3/v3/ApiAddNotifyV2" }
+
 // AddNotifyV2Response structure represents the ApiAddNotifyV2 operation response
 type AddNotifyV2Response struct {
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
@@ -39729,8 +41624,10 @@ type xxx_GetNotifyV2Operation struct {
 	Return              uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetNotifyV2 operation.
 func (o *xxx_GetNotifyV2Operation) OpNum() int { return 139 }
 
+// OpName returns the operation name of ApiGetNotifyV2 operation.
 func (o *xxx_GetNotifyV2Operation) OpName() string { return "/clusapi3/v3/ApiGetNotifyV2" }
 
 func (o *xxx_GetNotifyV2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -39935,6 +41832,17 @@ func (o *GetNotifyV2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetNotifyV2Request build a response structure from the given request structure.
+func (o *GetNotifyV2Request) MakeResponse() *GetNotifyV2Response {
+	return &GetNotifyV2Response{}
+}
+
+// OpNum returns the operation number of ApiGetNotifyV2 operation.
+func (o *GetNotifyV2Request) OpNum() int { return 139 }
+
+// OpName returns the operation name of ApiGetNotifyV2 operation.
+func (o *GetNotifyV2Request) OpName() string { return "/clusapi3/v3/ApiGetNotifyV2" }
 
 // GetNotifyV2Response structure represents the ApiGetNotifyV2 operation response
 type GetNotifyV2Response struct {
@@ -40379,8 +42287,10 @@ type xxx_CreateGroupEnumOperation struct {
 	Return                   uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateGroupEnum operation.
 func (o *xxx_CreateGroupEnumOperation) OpNum() int { return 143 }
 
+// OpName returns the operation name of ApiCreateGroupEnum operation.
 func (o *xxx_CreateGroupEnumOperation) OpName() string { return "/clusapi3/v3/ApiCreateGroupEnum" }
 
 func (o *xxx_CreateGroupEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -40753,6 +42663,17 @@ func (o *CreateGroupEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeCreateGroupEnumRequest build a response structure from the given request structure.
+func (o *CreateGroupEnumRequest) MakeResponse() *CreateGroupEnumResponse {
+	return &CreateGroupEnumResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateGroupEnum operation.
+func (o *CreateGroupEnumRequest) OpNum() int { return 143 }
+
+// OpName returns the operation name of ApiCreateGroupEnum operation.
+func (o *CreateGroupEnumRequest) OpName() string { return "/clusapi3/v3/ApiCreateGroupEnum" }
+
 // CreateGroupEnumResponse structure represents the ApiCreateGroupEnum operation response
 type CreateGroupEnumResponse struct {
 	// ppResultList: A pointer to the enumerated group list as specified in GROUP_ENUM_LIST
@@ -40813,8 +42734,10 @@ type xxx_CreateResourceEnumOperation struct {
 	Return                   uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateResourceEnum operation.
 func (o *xxx_CreateResourceEnumOperation) OpNum() int { return 144 }
 
+// OpName returns the operation name of ApiCreateResourceEnum operation.
 func (o *xxx_CreateResourceEnumOperation) OpName() string {
 	return "/clusapi3/v3/ApiCreateResourceEnum"
 }
@@ -41189,6 +43112,17 @@ func (o *CreateResourceEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeCreateResourceEnumRequest build a response structure from the given request structure.
+func (o *CreateResourceEnumRequest) MakeResponse() *CreateResourceEnumResponse {
+	return &CreateResourceEnumResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateResourceEnum operation.
+func (o *CreateResourceEnumRequest) OpNum() int { return 144 }
+
+// OpName returns the operation name of ApiCreateResourceEnum operation.
+func (o *CreateResourceEnumRequest) OpName() string { return "/clusapi3/v3/ApiCreateResourceEnum" }
+
 // CreateResourceEnumResponse structure represents the ApiCreateResourceEnum operation response
 type CreateResourceEnumResponse struct {
 	// ppResultList: A pointer to the enumerated resource list as specified in RESOURCE_ENUM_LIST
@@ -41248,8 +43182,10 @@ type xxx_ExecuteReadBatchOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiExecuteReadBatch operation.
 func (o *xxx_ExecuteReadBatchOperation) OpNum() int { return 145 }
 
+// OpName returns the operation name of ApiExecuteReadBatch operation.
 func (o *xxx_ExecuteReadBatchOperation) OpName() string { return "/clusapi3/v3/ApiExecuteReadBatch" }
 
 func (o *xxx_ExecuteReadBatchOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -41522,6 +43458,17 @@ func (o *ExecuteReadBatchRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeExecuteReadBatchRequest build a response structure from the given request structure.
+func (o *ExecuteReadBatchRequest) MakeResponse() *ExecuteReadBatchResponse {
+	return &ExecuteReadBatchResponse{}
+}
+
+// OpNum returns the operation number of ApiExecuteReadBatch operation.
+func (o *ExecuteReadBatchRequest) OpNum() int { return 145 }
+
+// OpName returns the operation name of ApiExecuteReadBatch operation.
+func (o *ExecuteReadBatchRequest) OpName() string { return "/clusapi3/v3/ApiExecuteReadBatch" }
+
 // ExecuteReadBatchResponse structure represents the ApiExecuteReadBatch operation response
 type ExecuteReadBatchResponse struct {
 	OutDataLength uint32 `idl:"name:cbOutData" json:"out_data_length"`
@@ -41574,8 +43521,10 @@ type xxx_RestartResourceOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiRestartResource operation.
 func (o *xxx_RestartResourceOperation) OpNum() int { return 146 }
 
+// OpName returns the operation name of ApiRestartResource operation.
 func (o *xxx_RestartResourceOperation) OpName() string { return "/clusapi3/v3/ApiRestartResource" }
 
 func (o *xxx_RestartResourceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -41717,6 +43666,17 @@ func (o *RestartResourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeRestartResourceRequest build a response structure from the given request structure.
+func (o *RestartResourceRequest) MakeResponse() *RestartResourceResponse {
+	return &RestartResourceResponse{}
+}
+
+// OpNum returns the operation number of ApiRestartResource operation.
+func (o *RestartResourceRequest) OpNum() int { return 146 }
+
+// OpName returns the operation name of ApiRestartResource operation.
+func (o *RestartResourceRequest) OpName() string { return "/clusapi3/v3/ApiRestartResource" }
+
 // RestartResourceResponse structure represents the ApiRestartResource operation response
 type RestartResourceResponse struct {
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
@@ -41767,8 +43727,10 @@ type xxx_GetNotifyAsyncOperation struct {
 	Return              uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGetNotifyAsync operation.
 func (o *xxx_GetNotifyAsyncOperation) OpNum() int { return 147 }
 
+// OpName returns the operation name of ApiGetNotifyAsync operation.
 func (o *xxx_GetNotifyAsyncOperation) OpName() string { return "/clusapi3/v3/ApiGetNotifyAsync" }
 
 func (o *xxx_GetNotifyAsyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -41974,6 +43936,17 @@ func (o *GetNotifyAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetNotifyAsyncRequest build a response structure from the given request structure.
+func (o *GetNotifyAsyncRequest) MakeResponse() *GetNotifyAsyncResponse {
+	return &GetNotifyAsyncResponse{}
+}
+
+// OpNum returns the operation number of ApiGetNotifyAsync operation.
+func (o *GetNotifyAsyncRequest) OpNum() int { return 147 }
+
+// OpName returns the operation name of ApiGetNotifyAsync operation.
+func (o *GetNotifyAsyncRequest) OpName() string { return "/clusapi3/v3/ApiGetNotifyAsync" }
+
 // GetNotifyAsyncResponse structure represents the ApiGetNotifyAsync operation response
 type GetNotifyAsyncResponse struct {
 	// Notifications: A pointer to an array of one or more NOTIFICATION_DATA_ASYNC_RPC (section
@@ -42026,8 +43999,10 @@ type xxx_Opnum149otUsedOnWireOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Opnum149otUsedOnWire operation.
 func (o *xxx_Opnum149otUsedOnWireOperation) OpNum() int { return 149 }
 
+// OpName returns the operation name of Opnum149otUsedOnWire operation.
 func (o *xxx_Opnum149otUsedOnWireOperation) OpName() string {
 	return "/clusapi3/v3/Opnum149otUsedOnWire"
 }
@@ -42115,6 +44090,17 @@ func (o *Opnum149otUsedOnWireRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeOpnum149otUsedOnWireRequest build a response structure from the given request structure.
+func (o *Opnum149otUsedOnWireRequest) MakeResponse() *Opnum149otUsedOnWireResponse {
+	return &Opnum149otUsedOnWireResponse{}
+}
+
+// OpNum returns the operation number of Opnum149otUsedOnWire operation.
+func (o *Opnum149otUsedOnWireRequest) OpNum() int { return 149 }
+
+// OpName returns the operation name of Opnum149otUsedOnWire operation.
+func (o *Opnum149otUsedOnWireRequest) OpName() string { return "/clusapi3/v3/Opnum149otUsedOnWire" }
+
 // Opnum149otUsedOnWireResponse structure represents the Opnum149otUsedOnWire operation response
 type Opnum149otUsedOnWireResponse struct {
 	// Return: The Opnum149otUsedOnWire return value.
@@ -42161,8 +44147,10 @@ type xxx_AddNotifyResourceTypeV2Operation struct {
 	Return    uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddNotifyResourceTypeV2 operation.
 func (o *xxx_AddNotifyResourceTypeV2Operation) OpNum() int { return 155 }
 
+// OpName returns the operation name of ApiAddNotifyResourceTypeV2 operation.
 func (o *xxx_AddNotifyResourceTypeV2Operation) OpName() string {
 	return "/clusapi3/v3/ApiAddNotifyResourceTypeV2"
 }
@@ -42346,6 +44334,19 @@ func (o *AddNotifyResourceTypeV2Request) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeAddNotifyResourceTypeV2Request build a response structure from the given request structure.
+func (o *AddNotifyResourceTypeV2Request) MakeResponse() *AddNotifyResourceTypeV2Response {
+	return &AddNotifyResourceTypeV2Response{}
+}
+
+// OpNum returns the operation number of ApiAddNotifyResourceTypeV2 operation.
+func (o *AddNotifyResourceTypeV2Request) OpNum() int { return 155 }
+
+// OpName returns the operation name of ApiAddNotifyResourceTypeV2 operation.
+func (o *AddNotifyResourceTypeV2Request) OpName() string {
+	return "/clusapi3/v3/ApiAddNotifyResourceTypeV2"
+}
+
 // AddNotifyResourceTypeV2Response structure represents the ApiAddNotifyResourceTypeV2 operation response
 type AddNotifyResourceTypeV2Response struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -42396,8 +44397,10 @@ type xxx_ExecuteReadBatchExOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiExecuteReadBatchEx operation.
 func (o *xxx_ExecuteReadBatchExOperation) OpNum() int { return 157 }
 
+// OpName returns the operation name of ApiExecuteReadBatchEx operation.
 func (o *xxx_ExecuteReadBatchExOperation) OpName() string {
 	return "/clusapi3/v3/ApiExecuteReadBatchEx"
 }
@@ -42687,6 +44690,17 @@ func (o *ExecuteReadBatchExRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeExecuteReadBatchExRequest build a response structure from the given request structure.
+func (o *ExecuteReadBatchExRequest) MakeResponse() *ExecuteReadBatchExResponse {
+	return &ExecuteReadBatchExResponse{}
+}
+
+// OpNum returns the operation number of ApiExecuteReadBatchEx operation.
+func (o *ExecuteReadBatchExRequest) OpNum() int { return 157 }
+
+// OpName returns the operation name of ApiExecuteReadBatchEx operation.
+func (o *ExecuteReadBatchExRequest) OpName() string { return "/clusapi3/v3/ApiExecuteReadBatchEx" }
+
 // ExecuteReadBatchExResponse structure represents the ApiExecuteReadBatchEx operation response
 type ExecuteReadBatchExResponse struct {
 	OutDataLength uint32 `idl:"name:cbOutData" json:"out_data_length"`
@@ -42739,8 +44753,10 @@ type xxx_CreateGroupSetOperation struct {
 	Return       *GroupSet `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateGroupSet operation.
 func (o *xxx_CreateGroupSetOperation) OpNum() int { return 163 }
 
+// OpName returns the operation name of ApiCreateGroupSet operation.
 func (o *xxx_CreateGroupSetOperation) OpName() string { return "/clusapi3/v3/ApiCreateGroupSet" }
 
 func (o *xxx_CreateGroupSetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -42874,6 +44890,17 @@ func (o *CreateGroupSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreateGroupSetRequest build a response structure from the given request structure.
+func (o *CreateGroupSetRequest) MakeResponse() *CreateGroupSetResponse {
+	return &CreateGroupSetResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateGroupSet operation.
+func (o *CreateGroupSetRequest) OpNum() int { return 163 }
+
+// OpName returns the operation name of ApiCreateGroupSet operation.
+func (o *CreateGroupSetRequest) OpName() string { return "/clusapi3/v3/ApiCreateGroupSet" }
+
 // CreateGroupSetResponse structure represents the ApiCreateGroupSet operation response
 type CreateGroupSetResponse struct {
 	Status    uint32 `idl:"name:Status" json:"status"`
@@ -42923,8 +44950,10 @@ type xxx_OpenGroupSetOperation struct {
 	Return       *GroupSet `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiOpenGroupSet operation.
 func (o *xxx_OpenGroupSetOperation) OpNum() int { return 164 }
 
+// OpName returns the operation name of ApiOpenGroupSet operation.
 func (o *xxx_OpenGroupSetOperation) OpName() string { return "/clusapi3/v3/ApiOpenGroupSet" }
 
 func (o *xxx_OpenGroupSetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -43058,6 +45087,17 @@ func (o *OpenGroupSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeOpenGroupSetRequest build a response structure from the given request structure.
+func (o *OpenGroupSetRequest) MakeResponse() *OpenGroupSetResponse {
+	return &OpenGroupSetResponse{}
+}
+
+// OpNum returns the operation number of ApiOpenGroupSet operation.
+func (o *OpenGroupSetRequest) OpNum() int { return 164 }
+
+// OpName returns the operation name of ApiOpenGroupSet operation.
+func (o *OpenGroupSetRequest) OpName() string { return "/clusapi3/v3/ApiOpenGroupSet" }
+
 // OpenGroupSetResponse structure represents the ApiOpenGroupSet operation response
 type OpenGroupSetResponse struct {
 	Status    uint32 `idl:"name:Status" json:"status"`
@@ -43105,8 +45145,10 @@ type xxx_CloseGroupSetOperation struct {
 	Return   uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCloseGroupSet operation.
 func (o *xxx_CloseGroupSetOperation) OpNum() int { return 165 }
 
+// OpName returns the operation name of ApiCloseGroupSet operation.
 func (o *xxx_CloseGroupSetOperation) OpName() string { return "/clusapi3/v3/ApiCloseGroupSet" }
 
 func (o *xxx_CloseGroupSetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -43237,6 +45279,17 @@ func (o *CloseGroupSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeCloseGroupSetRequest build a response structure from the given request structure.
+func (o *CloseGroupSetRequest) MakeResponse() *CloseGroupSetResponse {
+	return &CloseGroupSetResponse{}
+}
+
+// OpNum returns the operation number of ApiCloseGroupSet operation.
+func (o *CloseGroupSetRequest) OpNum() int { return 165 }
+
+// OpName returns the operation name of ApiCloseGroupSet operation.
+func (o *CloseGroupSetRequest) OpName() string { return "/clusapi3/v3/ApiCloseGroupSet" }
+
 // CloseGroupSetResponse structure represents the ApiCloseGroupSet operation response
 type CloseGroupSetResponse struct {
 	GroupSet *GroupSet `idl:"name:GroupSet" json:"group_set"`
@@ -43282,8 +45335,10 @@ type xxx_DeleteGroupSetOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiDeleteGroupSet operation.
 func (o *xxx_DeleteGroupSetOperation) OpNum() int { return 166 }
 
+// OpName returns the operation name of ApiDeleteGroupSet operation.
 func (o *xxx_DeleteGroupSetOperation) OpName() string { return "/clusapi3/v3/ApiDeleteGroupSet" }
 
 func (o *xxx_DeleteGroupSetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -43405,6 +45460,17 @@ func (o *DeleteGroupSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeDeleteGroupSetRequest build a response structure from the given request structure.
+func (o *DeleteGroupSetRequest) MakeResponse() *DeleteGroupSetResponse {
+	return &DeleteGroupSetResponse{}
+}
+
+// OpNum returns the operation number of ApiDeleteGroupSet operation.
+func (o *DeleteGroupSetRequest) OpNum() int { return 166 }
+
+// OpName returns the operation name of ApiDeleteGroupSet operation.
+func (o *DeleteGroupSetRequest) OpName() string { return "/clusapi3/v3/ApiDeleteGroupSet" }
+
 // DeleteGroupSetResponse structure represents the ApiDeleteGroupSet operation response
 type DeleteGroupSetResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -43451,8 +45517,10 @@ type xxx_AddGroupToGroupSetOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddGroupToGroupSet operation.
 func (o *xxx_AddGroupToGroupSetOperation) OpNum() int { return 167 }
 
+// OpName returns the operation name of ApiAddGroupToGroupSet operation.
 func (o *xxx_AddGroupToGroupSetOperation) OpName() string {
 	return "/clusapi3/v3/ApiAddGroupToGroupSet"
 }
@@ -43600,6 +45668,17 @@ func (o *AddGroupToGroupSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeAddGroupToGroupSetRequest build a response structure from the given request structure.
+func (o *AddGroupToGroupSetRequest) MakeResponse() *AddGroupToGroupSetResponse {
+	return &AddGroupToGroupSetResponse{}
+}
+
+// OpNum returns the operation number of ApiAddGroupToGroupSet operation.
+func (o *AddGroupToGroupSetRequest) OpNum() int { return 167 }
+
+// OpName returns the operation name of ApiAddGroupToGroupSet operation.
+func (o *AddGroupToGroupSetRequest) OpName() string { return "/clusapi3/v3/ApiAddGroupToGroupSet" }
+
 // AddGroupToGroupSetResponse structure represents the ApiAddGroupToGroupSet operation response
 type AddGroupToGroupSetResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -43645,8 +45724,10 @@ type xxx_RemoveGroupFromGroupSetOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiRemoveGroupFromGroupSet operation.
 func (o *xxx_RemoveGroupFromGroupSetOperation) OpNum() int { return 168 }
 
+// OpName returns the operation name of ApiRemoveGroupFromGroupSet operation.
 func (o *xxx_RemoveGroupFromGroupSetOperation) OpName() string {
 	return "/clusapi3/v3/ApiRemoveGroupFromGroupSet"
 }
@@ -43770,6 +45851,19 @@ func (o *RemoveGroupFromGroupSetRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeRemoveGroupFromGroupSetRequest build a response structure from the given request structure.
+func (o *RemoveGroupFromGroupSetRequest) MakeResponse() *RemoveGroupFromGroupSetResponse {
+	return &RemoveGroupFromGroupSetResponse{}
+}
+
+// OpNum returns the operation number of ApiRemoveGroupFromGroupSet operation.
+func (o *RemoveGroupFromGroupSetRequest) OpNum() int { return 168 }
+
+// OpName returns the operation name of ApiRemoveGroupFromGroupSet operation.
+func (o *RemoveGroupFromGroupSetRequest) OpName() string {
+	return "/clusapi3/v3/ApiRemoveGroupFromGroupSet"
+}
+
 // RemoveGroupFromGroupSetResponse structure represents the ApiRemoveGroupFromGroupSet operation response
 type RemoveGroupFromGroupSetResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -43816,8 +45910,10 @@ type xxx_MoveGroupToGroupSetOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiMoveGroupToGroupSet operation.
 func (o *xxx_MoveGroupToGroupSetOperation) OpNum() int { return 169 }
 
+// OpName returns the operation name of ApiMoveGroupToGroupSet operation.
 func (o *xxx_MoveGroupToGroupSetOperation) OpName() string {
 	return "/clusapi3/v3/ApiMoveGroupToGroupSet"
 }
@@ -43965,6 +46061,17 @@ func (o *MoveGroupToGroupSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeMoveGroupToGroupSetRequest build a response structure from the given request structure.
+func (o *MoveGroupToGroupSetRequest) MakeResponse() *MoveGroupToGroupSetResponse {
+	return &MoveGroupToGroupSetResponse{}
+}
+
+// OpNum returns the operation number of ApiMoveGroupToGroupSet operation.
+func (o *MoveGroupToGroupSetRequest) OpNum() int { return 169 }
+
+// OpName returns the operation name of ApiMoveGroupToGroupSet operation.
+func (o *MoveGroupToGroupSetRequest) OpName() string { return "/clusapi3/v3/ApiMoveGroupToGroupSet" }
+
 // MoveGroupToGroupSetResponse structure represents the ApiMoveGroupToGroupSet operation response
 type MoveGroupToGroupSetResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -44011,8 +46118,10 @@ type xxx_AddGroupSetDependencyOperation struct {
 	Return            uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddGroupSetDependency operation.
 func (o *xxx_AddGroupSetDependencyOperation) OpNum() int { return 171 }
 
+// OpName returns the operation name of ApiAddGroupSetDependency operation.
 func (o *xxx_AddGroupSetDependencyOperation) OpName() string {
 	return "/clusapi3/v3/ApiAddGroupSetDependency"
 }
@@ -44160,6 +46269,19 @@ func (o *AddGroupSetDependencyRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeAddGroupSetDependencyRequest build a response structure from the given request structure.
+func (o *AddGroupSetDependencyRequest) MakeResponse() *AddGroupSetDependencyResponse {
+	return &AddGroupSetDependencyResponse{}
+}
+
+// OpNum returns the operation number of ApiAddGroupSetDependency operation.
+func (o *AddGroupSetDependencyRequest) OpNum() int { return 171 }
+
+// OpName returns the operation name of ApiAddGroupSetDependency operation.
+func (o *AddGroupSetDependencyRequest) OpName() string {
+	return "/clusapi3/v3/ApiAddGroupSetDependency"
+}
+
 // AddGroupSetDependencyResponse structure represents the ApiAddGroupSetDependency operation response
 type AddGroupSetDependencyResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -44206,8 +46328,10 @@ type xxx_AddGroupToGroupSetDependencyOperation struct {
 	Return           uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddGroupToGroupSetDependency operation.
 func (o *xxx_AddGroupToGroupSetDependencyOperation) OpNum() int { return 172 }
 
+// OpName returns the operation name of ApiAddGroupToGroupSetDependency operation.
 func (o *xxx_AddGroupToGroupSetDependencyOperation) OpName() string {
 	return "/clusapi3/v3/ApiAddGroupToGroupSetDependency"
 }
@@ -44355,6 +46479,19 @@ func (o *AddGroupToGroupSetDependencyRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeAddGroupToGroupSetDependencyRequest build a response structure from the given request structure.
+func (o *AddGroupToGroupSetDependencyRequest) MakeResponse() *AddGroupToGroupSetDependencyResponse {
+	return &AddGroupToGroupSetDependencyResponse{}
+}
+
+// OpNum returns the operation number of ApiAddGroupToGroupSetDependency operation.
+func (o *AddGroupToGroupSetDependencyRequest) OpNum() int { return 172 }
+
+// OpName returns the operation name of ApiAddGroupToGroupSetDependency operation.
+func (o *AddGroupToGroupSetDependencyRequest) OpName() string {
+	return "/clusapi3/v3/ApiAddGroupToGroupSetDependency"
+}
+
 // AddGroupToGroupSetDependencyResponse structure represents the ApiAddGroupToGroupSetDependency operation response
 type AddGroupToGroupSetDependencyResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -44408,8 +46545,10 @@ type xxx_NodeGroupSetControlOperation struct {
 	Return         uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiNodeGroupSetControl operation.
 func (o *xxx_NodeGroupSetControlOperation) OpNum() int { return 173 }
 
+// OpName returns the operation name of ApiNodeGroupSetControl operation.
 func (o *xxx_NodeGroupSetControlOperation) OpName() string {
 	return "/clusapi3/v3/ApiNodeGroupSetControl"
 }
@@ -44773,6 +46912,22 @@ func (o *NodeGroupSetControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeNodeGroupSetControlRequest build a response structure from the given request structure.
+func (o *NodeGroupSetControlRequest) MakeResponse() *NodeGroupSetControlResponse {
+	if o == nil {
+		return &NodeGroupSetControlResponse{}
+	}
+	return &NodeGroupSetControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiNodeGroupSetControl operation.
+func (o *NodeGroupSetControlRequest) OpNum() int { return 173 }
+
+// OpName returns the operation name of ApiNodeGroupSetControl operation.
+func (o *NodeGroupSetControlRequest) OpName() string { return "/clusapi3/v3/ApiNodeGroupSetControl" }
+
 // NodeGroupSetControlResponse structure represents the ApiNodeGroupSetControl operation response
 type NodeGroupSetControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -44845,8 +47000,10 @@ type xxx_GroupSetControlOperation struct {
 	Return         uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiGroupSetControl operation.
 func (o *xxx_GroupSetControlOperation) OpNum() int { return 174 }
 
+// OpName returns the operation name of ApiGroupSetControl operation.
 func (o *xxx_GroupSetControlOperation) OpName() string { return "/clusapi3/v3/ApiGroupSetControl" }
 
 func (o *xxx_GroupSetControlOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -45184,6 +47341,22 @@ func (o *GroupSetControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGroupSetControlRequest build a response structure from the given request structure.
+func (o *GroupSetControlRequest) MakeResponse() *GroupSetControlResponse {
+	if o == nil {
+		return &GroupSetControlResponse{}
+	}
+	return &GroupSetControlResponse{
+		OutBufferSize: o.OutBufferSize,
+	}
+}
+
+// OpNum returns the operation number of ApiGroupSetControl operation.
+func (o *GroupSetControlRequest) OpNum() int { return 174 }
+
+// OpName returns the operation name of ApiGroupSetControl operation.
+func (o *GroupSetControlRequest) OpName() string { return "/clusapi3/v3/ApiGroupSetControl" }
+
 // GroupSetControlResponse structure represents the ApiGroupSetControl operation response
 type GroupSetControlResponse struct {
 	// XXX: nOutBufferSize is an implicit input depedency for output parameters
@@ -45250,8 +47423,10 @@ type xxx_SetGroupDependencyExpressionOperation struct {
 	Return               uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiSetGroupDependencyExpression operation.
 func (o *xxx_SetGroupDependencyExpressionOperation) OpNum() int { return 175 }
 
+// OpName returns the operation name of ApiSetGroupDependencyExpression operation.
 func (o *xxx_SetGroupDependencyExpressionOperation) OpName() string {
 	return "/clusapi3/v3/ApiSetGroupDependencyExpression"
 }
@@ -45390,6 +47565,19 @@ func (o *SetGroupDependencyExpressionRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeSetGroupDependencyExpressionRequest build a response structure from the given request structure.
+func (o *SetGroupDependencyExpressionRequest) MakeResponse() *SetGroupDependencyExpressionResponse {
+	return &SetGroupDependencyExpressionResponse{}
+}
+
+// OpNum returns the operation number of ApiSetGroupDependencyExpression operation.
+func (o *SetGroupDependencyExpressionRequest) OpNum() int { return 175 }
+
+// OpName returns the operation name of ApiSetGroupDependencyExpression operation.
+func (o *SetGroupDependencyExpressionRequest) OpName() string {
+	return "/clusapi3/v3/ApiSetGroupDependencyExpression"
+}
+
 // SetGroupDependencyExpressionResponse structure represents the ApiSetGroupDependencyExpression operation response
 type SetGroupDependencyExpressionResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -45436,8 +47624,10 @@ type xxx_RemoveClusterGroupDependencyOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiRemoveClusterGroupDependency operation.
 func (o *xxx_RemoveClusterGroupDependencyOperation) OpNum() int { return 176 }
 
+// OpName returns the operation name of ApiRemoveClusterGroupDependency operation.
 func (o *xxx_RemoveClusterGroupDependencyOperation) OpName() string {
 	return "/clusapi3/v3/ApiRemoveClusterGroupDependency"
 }
@@ -45585,6 +47775,19 @@ func (o *RemoveClusterGroupDependencyRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeRemoveClusterGroupDependencyRequest build a response structure from the given request structure.
+func (o *RemoveClusterGroupDependencyRequest) MakeResponse() *RemoveClusterGroupDependencyResponse {
+	return &RemoveClusterGroupDependencyResponse{}
+}
+
+// OpNum returns the operation number of ApiRemoveClusterGroupDependency operation.
+func (o *RemoveClusterGroupDependencyRequest) OpNum() int { return 176 }
+
+// OpName returns the operation name of ApiRemoveClusterGroupDependency operation.
+func (o *RemoveClusterGroupDependencyRequest) OpName() string {
+	return "/clusapi3/v3/ApiRemoveClusterGroupDependency"
+}
+
 // RemoveClusterGroupDependencyResponse structure represents the ApiRemoveClusterGroupDependency operation response
 type RemoveClusterGroupDependencyResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -45631,8 +47834,10 @@ type xxx_SetGroupSetDependencyExpressionOperation struct {
 	Return               uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiSetGroupSetDependencyExpression operation.
 func (o *xxx_SetGroupSetDependencyExpressionOperation) OpNum() int { return 177 }
 
+// OpName returns the operation name of ApiSetGroupSetDependencyExpression operation.
 func (o *xxx_SetGroupSetDependencyExpressionOperation) OpName() string {
 	return "/clusapi3/v3/ApiSetGroupSetDependencyExpression"
 }
@@ -45771,6 +47976,19 @@ func (o *SetGroupSetDependencyExpressionRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeSetGroupSetDependencyExpressionRequest build a response structure from the given request structure.
+func (o *SetGroupSetDependencyExpressionRequest) MakeResponse() *SetGroupSetDependencyExpressionResponse {
+	return &SetGroupSetDependencyExpressionResponse{}
+}
+
+// OpNum returns the operation number of ApiSetGroupSetDependencyExpression operation.
+func (o *SetGroupSetDependencyExpressionRequest) OpNum() int { return 177 }
+
+// OpName returns the operation name of ApiSetGroupSetDependencyExpression operation.
+func (o *SetGroupSetDependencyExpressionRequest) OpName() string {
+	return "/clusapi3/v3/ApiSetGroupSetDependencyExpression"
+}
+
 // SetGroupSetDependencyExpressionResponse structure represents the ApiSetGroupSetDependencyExpression operation response
 type SetGroupSetDependencyExpressionResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -45817,8 +48035,10 @@ type xxx_RemoveGroupSetDependencyOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiRemoveGroupSetDependency operation.
 func (o *xxx_RemoveGroupSetDependencyOperation) OpNum() int { return 178 }
 
+// OpName returns the operation name of ApiRemoveGroupSetDependency operation.
 func (o *xxx_RemoveGroupSetDependencyOperation) OpName() string {
 	return "/clusapi3/v3/ApiRemoveGroupSetDependency"
 }
@@ -45966,6 +48186,19 @@ func (o *RemoveGroupSetDependencyRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeRemoveGroupSetDependencyRequest build a response structure from the given request structure.
+func (o *RemoveGroupSetDependencyRequest) MakeResponse() *RemoveGroupSetDependencyResponse {
+	return &RemoveGroupSetDependencyResponse{}
+}
+
+// OpNum returns the operation number of ApiRemoveGroupSetDependency operation.
+func (o *RemoveGroupSetDependencyRequest) OpNum() int { return 178 }
+
+// OpName returns the operation name of ApiRemoveGroupSetDependency operation.
+func (o *RemoveGroupSetDependencyRequest) OpName() string {
+	return "/clusapi3/v3/ApiRemoveGroupSetDependency"
+}
+
 // RemoveGroupSetDependencyResponse structure represents the ApiRemoveGroupSetDependency operation response
 type RemoveGroupSetDependencyResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -46012,8 +48245,10 @@ type xxx_RemoveClusterGroupToGroupSetDependencyOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiRemoveClusterGroupToGroupSetDependency operation.
 func (o *xxx_RemoveClusterGroupToGroupSetDependencyOperation) OpNum() int { return 179 }
 
+// OpName returns the operation name of ApiRemoveClusterGroupToGroupSetDependency operation.
 func (o *xxx_RemoveClusterGroupToGroupSetDependencyOperation) OpName() string {
 	return "/clusapi3/v3/ApiRemoveClusterGroupToGroupSetDependency"
 }
@@ -46161,6 +48396,19 @@ func (o *RemoveClusterGroupToGroupSetDependencyRequest) UnmarshalNDR(ctx context
 	return nil
 }
 
+// MakeRemoveClusterGroupToGroupSetDependencyRequest build a response structure from the given request structure.
+func (o *RemoveClusterGroupToGroupSetDependencyRequest) MakeResponse() *RemoveClusterGroupToGroupSetDependencyResponse {
+	return &RemoveClusterGroupToGroupSetDependencyResponse{}
+}
+
+// OpNum returns the operation number of ApiRemoveClusterGroupToGroupSetDependency operation.
+func (o *RemoveClusterGroupToGroupSetDependencyRequest) OpNum() int { return 179 }
+
+// OpName returns the operation name of ApiRemoveClusterGroupToGroupSetDependency operation.
+func (o *RemoveClusterGroupToGroupSetDependencyRequest) OpName() string {
+	return "/clusapi3/v3/ApiRemoveClusterGroupToGroupSetDependency"
+}
+
 // RemoveClusterGroupToGroupSetDependencyResponse structure represents the ApiRemoveClusterGroupToGroupSetDependency operation response
 type RemoveClusterGroupToGroupSetDependencyResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -46207,8 +48455,10 @@ type xxx_CreateGroupSetEnumOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateGroupSetEnum operation.
 func (o *xxx_CreateGroupSetEnumOperation) OpNum() int { return 180 }
 
+// OpName returns the operation name of ApiCreateGroupSetEnum operation.
 func (o *xxx_CreateGroupSetEnumOperation) OpName() string {
 	return "/clusapi3/v3/ApiCreateGroupSetEnum"
 }
@@ -46378,6 +48628,17 @@ func (o *CreateGroupSetEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeCreateGroupSetEnumRequest build a response structure from the given request structure.
+func (o *CreateGroupSetEnumRequest) MakeResponse() *CreateGroupSetEnumResponse {
+	return &CreateGroupSetEnumResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateGroupSetEnum operation.
+func (o *CreateGroupSetEnumRequest) OpNum() int { return 180 }
+
+// OpName returns the operation name of ApiCreateGroupSetEnum operation.
+func (o *CreateGroupSetEnumRequest) OpName() string { return "/clusapi3/v3/ApiCreateGroupSetEnum" }
+
 // CreateGroupSetEnumResponse structure represents the ApiCreateGroupSetEnum operation response
 type CreateGroupSetEnumResponse struct {
 	ReturnEnum *EnumList `idl:"name:ReturnEnum" json:"return_enum"`
@@ -46429,8 +48690,10 @@ type xxx_CreateNetInterfaceEnumOperation struct {
 	Return      uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiCreateNetInterfaceEnum operation.
 func (o *xxx_CreateNetInterfaceEnumOperation) OpNum() int { return 181 }
 
+// OpName returns the operation name of ApiCreateNetInterfaceEnum operation.
 func (o *xxx_CreateNetInterfaceEnumOperation) OpName() string {
 	return "/clusapi3/v3/ApiCreateNetInterfaceEnum"
 }
@@ -46630,6 +48893,19 @@ func (o *CreateNetInterfaceEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeCreateNetInterfaceEnumRequest build a response structure from the given request structure.
+func (o *CreateNetInterfaceEnumRequest) MakeResponse() *CreateNetInterfaceEnumResponse {
+	return &CreateNetInterfaceEnumResponse{}
+}
+
+// OpNum returns the operation number of ApiCreateNetInterfaceEnum operation.
+func (o *CreateNetInterfaceEnumRequest) OpNum() int { return 181 }
+
+// OpName returns the operation name of ApiCreateNetInterfaceEnum operation.
+func (o *CreateNetInterfaceEnumRequest) OpName() string {
+	return "/clusapi3/v3/ApiCreateNetInterfaceEnum"
+}
+
 // CreateNetInterfaceEnumResponse structure represents the ApiCreateNetInterfaceEnum operation response
 type CreateNetInterfaceEnumResponse struct {
 	ReturnEnum *EnumList `idl:"name:ReturnEnum" json:"return_enum"`
@@ -46680,8 +48956,10 @@ type xxx_ChangeCSVStateExOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiChangeCsvStateEx operation.
 func (o *xxx_ChangeCSVStateExOperation) OpNum() int { return 182 }
 
+// OpName returns the operation name of ApiChangeCsvStateEx operation.
 func (o *xxx_ChangeCSVStateExOperation) OpName() string { return "/clusapi3/v3/ApiChangeCsvStateEx" }
 
 func (o *xxx_ChangeCSVStateExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -46833,6 +49111,17 @@ func (o *ChangeCSVStateExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeChangeCSVStateExRequest build a response structure from the given request structure.
+func (o *ChangeCSVStateExRequest) MakeResponse() *ChangeCSVStateExResponse {
+	return &ChangeCSVStateExResponse{}
+}
+
+// OpNum returns the operation number of ApiChangeCsvStateEx operation.
+func (o *ChangeCSVStateExRequest) OpNum() int { return 182 }
+
+// OpName returns the operation name of ApiChangeCsvStateEx operation.
+func (o *ChangeCSVStateExRequest) OpName() string { return "/clusapi3/v3/ApiChangeCsvStateEx" }
+
 // ChangeCSVStateExResponse structure represents the ApiChangeCsvStateEx operation response
 type ChangeCSVStateExResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -46883,8 +49172,10 @@ type xxx_AddGroupToGroupSetExOperation struct {
 	Return       uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiAddGroupToGroupSetEx operation.
 func (o *xxx_AddGroupToGroupSetExOperation) OpNum() int { return 183 }
 
+// OpName returns the operation name of ApiAddGroupToGroupSetEx operation.
 func (o *xxx_AddGroupToGroupSetExOperation) OpName() string {
 	return "/clusapi3/v3/ApiAddGroupToGroupSetEx"
 }
@@ -47100,6 +49391,17 @@ func (o *AddGroupToGroupSetExRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeAddGroupToGroupSetExRequest build a response structure from the given request structure.
+func (o *AddGroupToGroupSetExRequest) MakeResponse() *AddGroupToGroupSetExResponse {
+	return &AddGroupToGroupSetExResponse{}
+}
+
+// OpNum returns the operation number of ApiAddGroupToGroupSetEx operation.
+func (o *AddGroupToGroupSetExRequest) OpNum() int { return 183 }
+
+// OpName returns the operation name of ApiAddGroupToGroupSetEx operation.
+func (o *AddGroupToGroupSetExRequest) OpName() string { return "/clusapi3/v3/ApiAddGroupToGroupSetEx" }
+
 // AddGroupToGroupSetExResponse structure represents the ApiAddGroupToGroupSetEx operation response
 type AddGroupToGroupSetExResponse struct {
 	RPCStatus uint32 `idl:"name:rpc_status" json:"rpc_status"`
@@ -47147,8 +49449,10 @@ type xxx_ChangeResourceGroupExOperation struct {
 	Return    uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ApiChangeResourceGroupEx operation.
 func (o *xxx_ChangeResourceGroupExOperation) OpNum() int { return 184 }
 
+// OpName returns the operation name of ApiChangeResourceGroupEx operation.
 func (o *xxx_ChangeResourceGroupExOperation) OpName() string {
 	return "/clusapi3/v3/ApiChangeResourceGroupEx"
 }
@@ -47309,6 +49613,19 @@ func (o *ChangeResourceGroupExRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeChangeResourceGroupExRequest build a response structure from the given request structure.
+func (o *ChangeResourceGroupExRequest) MakeResponse() *ChangeResourceGroupExResponse {
+	return &ChangeResourceGroupExResponse{}
+}
+
+// OpNum returns the operation number of ApiChangeResourceGroupEx operation.
+func (o *ChangeResourceGroupExRequest) OpNum() int { return 184 }
+
+// OpName returns the operation name of ApiChangeResourceGroupEx operation.
+func (o *ChangeResourceGroupExRequest) OpName() string {
+	return "/clusapi3/v3/ApiChangeResourceGroupEx"
 }
 
 // ChangeResourceGroupExResponse structure represents the ApiChangeResourceGroupEx operation response

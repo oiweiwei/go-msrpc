@@ -163,8 +163,10 @@ type xxx_GetNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Name operation.
 func (o *xxx_GetNameOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Name operation.
 func (o *xxx_GetNameOperation) OpName() string { return "/IAppHostConstantValue/v0/Name" }
 
 func (o *xxx_GetNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -354,6 +356,17 @@ func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetNameRequest build a response structure from the given request structure.
+func (o *GetNameRequest) MakeResponse() *GetNameResponse {
+	return &GetNameResponse{}
+}
+
+// OpNum returns the operation number of Name operation.
+func (o *GetNameRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Name operation.
+func (o *GetNameRequest) OpName() string { return "/IAppHostConstantValue/v0/Name" }
+
 // GetNameResponse structure represents the Name operation response
 type GetNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -404,8 +417,10 @@ type xxx_GetValueOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Value operation.
 func (o *xxx_GetValueOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Value operation.
 func (o *xxx_GetValueOperation) OpName() string { return "/IAppHostConstantValue/v0/Value" }
 
 func (o *xxx_GetValueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -560,6 +575,17 @@ func (o *GetValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetValueRequest build a response structure from the given request structure.
+func (o *GetValueRequest) MakeResponse() *GetValueResponse {
+	return &GetValueResponse{}
+}
+
+// OpNum returns the operation number of Value operation.
+func (o *GetValueRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Value operation.
+func (o *GetValueRequest) OpName() string { return "/IAppHostConstantValue/v0/Value" }
 
 // GetValueResponse structure represents the Value operation response
 type GetValueResponse struct {

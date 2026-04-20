@@ -146,8 +146,10 @@ type xxx_RemoteQueryInterface2Operation struct {
 	Return    int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemQueryInterface2 operation.
 func (o *xxx_RemoteQueryInterface2Operation) OpNum() int { return 6 }
 
+// OpName returns the operation name of RemQueryInterface2 operation.
 func (o *xxx_RemoteQueryInterface2Operation) OpName() string {
 	return "/IRemUnknown2/v0/RemQueryInterface2"
 }
@@ -519,6 +521,22 @@ func (o *RemoteQueryInterface2Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeRemoteQueryInterface2Request build a response structure from the given request structure.
+func (o *RemoteQueryInterface2Request) MakeResponse() *RemoteQueryInterface2Response {
+	if o == nil {
+		return &RemoteQueryInterface2Response{}
+	}
+	return &RemoteQueryInterface2Response{
+		IIDsCount: o.IIDsCount,
+	}
+}
+
+// OpNum returns the operation number of RemQueryInterface2 operation.
+func (o *RemoteQueryInterface2Request) OpNum() int { return 6 }
+
+// OpName returns the operation name of RemQueryInterface2 operation.
+func (o *RemoteQueryInterface2Request) OpName() string { return "/IRemUnknown2/v0/RemQueryInterface2" }
 
 // RemoteQueryInterface2Response structure represents the RemQueryInterface2 operation response
 type RemoteQueryInterface2Response struct {

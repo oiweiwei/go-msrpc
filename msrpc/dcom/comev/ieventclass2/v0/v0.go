@@ -301,8 +301,10 @@ type xxx_GetPublisherIDOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PublisherID operation.
 func (o *xxx_GetPublisherIDOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of PublisherID operation.
 func (o *xxx_GetPublisherIDOperation) OpName() string { return "/IEventClass2/v0/PublisherID" }
 
 func (o *xxx_GetPublisherIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -492,6 +494,17 @@ func (o *GetPublisherIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetPublisherIDRequest build a response structure from the given request structure.
+func (o *GetPublisherIDRequest) MakeResponse() *GetPublisherIDResponse {
+	return &GetPublisherIDResponse{}
+}
+
+// OpNum returns the operation number of PublisherID operation.
+func (o *GetPublisherIDRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of PublisherID operation.
+func (o *GetPublisherIDRequest) OpName() string { return "/IEventClass2/v0/PublisherID" }
+
 // GetPublisherIDResponse structure represents the PublisherID operation response
 type GetPublisherIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -542,8 +555,10 @@ type xxx_SetPublisherIDOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PublisherID operation.
 func (o *xxx_SetPublisherIDOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of PublisherID operation.
 func (o *xxx_SetPublisherIDOperation) OpName() string { return "/IEventClass2/v0/PublisherID" }
 
 func (o *xxx_SetPublisherIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -736,6 +751,17 @@ func (o *SetPublisherIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetPublisherIDRequest build a response structure from the given request structure.
+func (o *SetPublisherIDRequest) MakeResponse() *SetPublisherIDResponse {
+	return &SetPublisherIDResponse{}
+}
+
+// OpNum returns the operation number of PublisherID operation.
+func (o *SetPublisherIDRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of PublisherID operation.
+func (o *SetPublisherIDRequest) OpName() string { return "/IEventClass2/v0/PublisherID" }
+
 // SetPublisherIDResponse structure represents the PublisherID operation response
 type SetPublisherIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -783,8 +809,10 @@ type xxx_GetMultiInterfacePublisherFilterClassIDOperation struct {
 	Return                 int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MultiInterfacePublisherFilterCLSID operation.
 func (o *xxx_GetMultiInterfacePublisherFilterClassIDOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of MultiInterfacePublisherFilterCLSID operation.
 func (o *xxx_GetMultiInterfacePublisherFilterClassIDOperation) OpName() string {
 	return "/IEventClass2/v0/MultiInterfacePublisherFilterCLSID"
 }
@@ -976,6 +1004,19 @@ func (o *GetMultiInterfacePublisherFilterClassIDRequest) UnmarshalNDR(ctx contex
 	return nil
 }
 
+// MakeGetMultiInterfacePublisherFilterClassIDRequest build a response structure from the given request structure.
+func (o *GetMultiInterfacePublisherFilterClassIDRequest) MakeResponse() *GetMultiInterfacePublisherFilterClassIDResponse {
+	return &GetMultiInterfacePublisherFilterClassIDResponse{}
+}
+
+// OpNum returns the operation number of MultiInterfacePublisherFilterCLSID operation.
+func (o *GetMultiInterfacePublisherFilterClassIDRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of MultiInterfacePublisherFilterCLSID operation.
+func (o *GetMultiInterfacePublisherFilterClassIDRequest) OpName() string {
+	return "/IEventClass2/v0/MultiInterfacePublisherFilterCLSID"
+}
+
 // GetMultiInterfacePublisherFilterClassIDResponse structure represents the MultiInterfacePublisherFilterCLSID operation response
 type GetMultiInterfacePublisherFilterClassIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1026,8 +1067,10 @@ type xxx_SetMultiInterfacePublisherFilterClassIDOperation struct {
 	Return                 int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MultiInterfacePublisherFilterCLSID operation.
 func (o *xxx_SetMultiInterfacePublisherFilterClassIDOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of MultiInterfacePublisherFilterCLSID operation.
 func (o *xxx_SetMultiInterfacePublisherFilterClassIDOperation) OpName() string {
 	return "/IEventClass2/v0/MultiInterfacePublisherFilterCLSID"
 }
@@ -1222,6 +1265,19 @@ func (o *SetMultiInterfacePublisherFilterClassIDRequest) UnmarshalNDR(ctx contex
 	return nil
 }
 
+// MakeSetMultiInterfacePublisherFilterClassIDRequest build a response structure from the given request structure.
+func (o *SetMultiInterfacePublisherFilterClassIDRequest) MakeResponse() *SetMultiInterfacePublisherFilterClassIDResponse {
+	return &SetMultiInterfacePublisherFilterClassIDResponse{}
+}
+
+// OpNum returns the operation number of MultiInterfacePublisherFilterCLSID operation.
+func (o *SetMultiInterfacePublisherFilterClassIDRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of MultiInterfacePublisherFilterCLSID operation.
+func (o *SetMultiInterfacePublisherFilterClassIDRequest) OpName() string {
+	return "/IEventClass2/v0/MultiInterfacePublisherFilterCLSID"
+}
+
 // SetMultiInterfacePublisherFilterClassIDResponse structure represents the MultiInterfacePublisherFilterCLSID operation response
 type SetMultiInterfacePublisherFilterClassIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1269,8 +1325,10 @@ type xxx_GetAllowInProcessActivationOperation struct {
 	Return                   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AllowInprocActivation operation.
 func (o *xxx_GetAllowInProcessActivationOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of AllowInprocActivation operation.
 func (o *xxx_GetAllowInProcessActivationOperation) OpName() string {
 	return "/IEventClass2/v0/AllowInprocActivation"
 }
@@ -1436,6 +1494,19 @@ func (o *GetAllowInProcessActivationRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeGetAllowInProcessActivationRequest build a response structure from the given request structure.
+func (o *GetAllowInProcessActivationRequest) MakeResponse() *GetAllowInProcessActivationResponse {
+	return &GetAllowInProcessActivationResponse{}
+}
+
+// OpNum returns the operation number of AllowInprocActivation operation.
+func (o *GetAllowInProcessActivationRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of AllowInprocActivation operation.
+func (o *GetAllowInProcessActivationRequest) OpName() string {
+	return "/IEventClass2/v0/AllowInprocActivation"
+}
+
 // GetAllowInProcessActivationResponse structure represents the AllowInprocActivation operation response
 type GetAllowInProcessActivationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1486,8 +1557,10 @@ type xxx_SetAllowInProcessActivationOperation struct {
 	Return                   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AllowInprocActivation operation.
 func (o *xxx_SetAllowInProcessActivationOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of AllowInprocActivation operation.
 func (o *xxx_SetAllowInProcessActivationOperation) OpName() string {
 	return "/IEventClass2/v0/AllowInprocActivation"
 }
@@ -1656,6 +1729,19 @@ func (o *SetAllowInProcessActivationRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeSetAllowInProcessActivationRequest build a response structure from the given request structure.
+func (o *SetAllowInProcessActivationRequest) MakeResponse() *SetAllowInProcessActivationResponse {
+	return &SetAllowInProcessActivationResponse{}
+}
+
+// OpNum returns the operation number of AllowInprocActivation operation.
+func (o *SetAllowInProcessActivationRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of AllowInprocActivation operation.
+func (o *SetAllowInProcessActivationRequest) OpName() string {
+	return "/IEventClass2/v0/AllowInprocActivation"
+}
+
 // SetAllowInProcessActivationResponse structure represents the AllowInprocActivation operation response
 type SetAllowInProcessActivationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1703,8 +1789,10 @@ type xxx_GetFireInParallelOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FireInParallel operation.
 func (o *xxx_GetFireInParallelOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of FireInParallel operation.
 func (o *xxx_GetFireInParallelOperation) OpName() string { return "/IEventClass2/v0/FireInParallel" }
 
 func (o *xxx_GetFireInParallelOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1868,6 +1956,17 @@ func (o *GetFireInParallelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetFireInParallelRequest build a response structure from the given request structure.
+func (o *GetFireInParallelRequest) MakeResponse() *GetFireInParallelResponse {
+	return &GetFireInParallelResponse{}
+}
+
+// OpNum returns the operation number of FireInParallel operation.
+func (o *GetFireInParallelRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of FireInParallel operation.
+func (o *GetFireInParallelRequest) OpName() string { return "/IEventClass2/v0/FireInParallel" }
+
 // GetFireInParallelResponse structure represents the FireInParallel operation response
 type GetFireInParallelResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1918,8 +2017,10 @@ type xxx_SetFireInParallelOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FireInParallel operation.
 func (o *xxx_SetFireInParallelOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of FireInParallel operation.
 func (o *xxx_SetFireInParallelOperation) OpName() string { return "/IEventClass2/v0/FireInParallel" }
 
 func (o *xxx_SetFireInParallelOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2085,6 +2186,17 @@ func (o *SetFireInParallelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetFireInParallelRequest build a response structure from the given request structure.
+func (o *SetFireInParallelRequest) MakeResponse() *SetFireInParallelResponse {
+	return &SetFireInParallelResponse{}
+}
+
+// OpNum returns the operation number of FireInParallel operation.
+func (o *SetFireInParallelRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of FireInParallel operation.
+func (o *SetFireInParallelRequest) OpName() string { return "/IEventClass2/v0/FireInParallel" }
 
 // SetFireInParallelResponse structure represents the FireInParallel operation response
 type SetFireInParallelResponse struct {

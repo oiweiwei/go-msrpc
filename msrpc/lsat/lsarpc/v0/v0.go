@@ -3052,8 +3052,10 @@ type xxx_CloseOperation struct {
 	Return int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarClose operation.
 func (o *xxx_CloseOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of LsarClose operation.
 func (o *xxx_CloseOperation) OpName() string { return "/lsarpc/v0/LsarClose" }
 
 func (o *xxx_CloseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3184,6 +3186,17 @@ func (o *CloseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeCloseRequest build a response structure from the given request structure.
+func (o *CloseRequest) MakeResponse() *CloseResponse {
+	return &CloseResponse{}
+}
+
+// OpNum returns the operation number of LsarClose operation.
+func (o *CloseRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of LsarClose operation.
+func (o *CloseRequest) OpName() string { return "/lsarpc/v0/LsarClose" }
+
 // CloseResponse structure represents the LsarClose operation response
 type CloseResponse struct {
 	Object *Handle `idl:"name:ObjectHandle" json:"object"`
@@ -3231,8 +3244,10 @@ type xxx_OpenPolicyOperation struct {
 	Return           int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarOpenPolicy operation.
 func (o *xxx_OpenPolicyOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of LsarOpenPolicy operation.
 func (o *xxx_OpenPolicyOperation) OpName() string { return "/lsarpc/v0/LsarOpenPolicy" }
 
 func (o *xxx_OpenPolicyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3424,6 +3439,17 @@ func (o *OpenPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeOpenPolicyRequest build a response structure from the given request structure.
+func (o *OpenPolicyRequest) MakeResponse() *OpenPolicyResponse {
+	return &OpenPolicyResponse{}
+}
+
+// OpNum returns the operation number of LsarOpenPolicy operation.
+func (o *OpenPolicyRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of LsarOpenPolicy operation.
+func (o *OpenPolicyRequest) OpName() string { return "/lsarpc/v0/LsarOpenPolicy" }
+
 // OpenPolicyResponse structure represents the LsarOpenPolicy operation response
 type OpenPolicyResponse struct {
 	Policy *Handle `idl:"name:PolicyHandle" json:"policy"`
@@ -3474,8 +3500,10 @@ type xxx_LookupNamesOperation struct {
 	Return            int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarLookupNames operation.
 func (o *xxx_LookupNamesOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of LsarLookupNames operation.
 func (o *xxx_LookupNamesOperation) OpName() string { return "/lsarpc/v0/LsarLookupNames" }
 
 func (o *xxx_LookupNamesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3825,6 +3853,17 @@ func (o *LookupNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeLookupNamesRequest build a response structure from the given request structure.
+func (o *LookupNamesRequest) MakeResponse() *LookupNamesResponse {
+	return &LookupNamesResponse{}
+}
+
+// OpNum returns the operation number of LsarLookupNames operation.
+func (o *LookupNamesRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of LsarLookupNames operation.
+func (o *LookupNamesRequest) OpName() string { return "/lsarpc/v0/LsarLookupNames" }
+
 // LookupNamesResponse structure represents the LsarLookupNames operation response
 type LookupNamesResponse struct {
 	// ReferencedDomains: On successful return, contains the domain information for the
@@ -3888,8 +3927,10 @@ type xxx_LookupSIDsOperation struct {
 	Return            int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarLookupSids operation.
 func (o *xxx_LookupSIDsOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of LsarLookupSids operation.
 func (o *xxx_LookupSIDsOperation) OpName() string { return "/lsarpc/v0/LsarLookupSids" }
 
 func (o *xxx_LookupSIDsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4184,6 +4225,17 @@ func (o *LookupSIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeLookupSIDsRequest build a response structure from the given request structure.
+func (o *LookupSIDsRequest) MakeResponse() *LookupSIDsResponse {
+	return &LookupSIDsResponse{}
+}
+
+// OpNum returns the operation number of LsarLookupSids operation.
+func (o *LookupSIDsRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of LsarLookupSids operation.
+func (o *LookupSIDsRequest) OpName() string { return "/lsarpc/v0/LsarLookupSids" }
+
 // LookupSIDsResponse structure represents the LsarLookupSids operation response
 type LookupSIDsResponse struct {
 	// ReferencedDomains: On successful return, contains the domain information for the
@@ -4244,8 +4296,10 @@ type xxx_OpenPolicy2Operation struct {
 	Return           int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarOpenPolicy2 operation.
 func (o *xxx_OpenPolicy2Operation) OpNum() int { return 44 }
 
+// OpName returns the operation name of LsarOpenPolicy2 operation.
 func (o *xxx_OpenPolicy2Operation) OpName() string { return "/lsarpc/v0/LsarOpenPolicy2" }
 
 func (o *xxx_OpenPolicy2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4437,6 +4491,17 @@ func (o *OpenPolicy2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeOpenPolicy2Request build a response structure from the given request structure.
+func (o *OpenPolicy2Request) MakeResponse() *OpenPolicy2Response {
+	return &OpenPolicy2Response{}
+}
+
+// OpNum returns the operation number of LsarOpenPolicy2 operation.
+func (o *OpenPolicy2Request) OpNum() int { return 44 }
+
+// OpName returns the operation name of LsarOpenPolicy2 operation.
+func (o *OpenPolicy2Request) OpName() string { return "/lsarpc/v0/LsarOpenPolicy2" }
+
 // OpenPolicy2Response structure represents the LsarOpenPolicy2 operation response
 type OpenPolicy2Response struct {
 	Policy *Handle `idl:"name:PolicyHandle" json:"policy"`
@@ -4483,8 +4548,10 @@ type xxx_GetUserNameOperation struct {
 	Return     int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarGetUserName operation.
 func (o *xxx_GetUserNameOperation) OpNum() int { return 45 }
 
+// OpName returns the operation name of LsarGetUserName operation.
 func (o *xxx_GetUserNameOperation) OpName() string { return "/lsarpc/v0/LsarGetUserName" }
 
 func (o *xxx_GetUserNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4846,6 +4913,17 @@ func (o *GetUserNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetUserNameRequest build a response structure from the given request structure.
+func (o *GetUserNameRequest) MakeResponse() *GetUserNameResponse {
+	return &GetUserNameResponse{}
+}
+
+// OpNum returns the operation number of LsarGetUserName operation.
+func (o *GetUserNameRequest) OpNum() int { return 45 }
+
+// OpName returns the operation name of LsarGetUserName operation.
+func (o *GetUserNameRequest) OpName() string { return "/lsarpc/v0/LsarGetUserName" }
+
 // GetUserNameResponse structure represents the LsarGetUserName operation response
 type GetUserNameResponse struct {
 	// UserName: On return, contains the name of the security principal that is making the
@@ -4906,8 +4984,10 @@ type xxx_LookupSids2Operation struct {
 	Return            int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarLookupSids2 operation.
 func (o *xxx_LookupSids2Operation) OpNum() int { return 57 }
 
+// OpName returns the operation name of LsarLookupSids2 operation.
 func (o *xxx_LookupSids2Operation) OpName() string { return "/lsarpc/v0/LsarLookupSids2" }
 
 func (o *xxx_LookupSids2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5236,6 +5316,17 @@ func (o *LookupSids2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeLookupSids2Request build a response structure from the given request structure.
+func (o *LookupSids2Request) MakeResponse() *LookupSids2Response {
+	return &LookupSids2Response{}
+}
+
+// OpNum returns the operation number of LsarLookupSids2 operation.
+func (o *LookupSids2Request) OpNum() int { return 57 }
+
+// OpName returns the operation name of LsarLookupSids2 operation.
+func (o *LookupSids2Request) OpName() string { return "/lsarpc/v0/LsarLookupSids2" }
+
 // LookupSids2Response structure represents the LsarLookupSids2 operation response
 type LookupSids2Response struct {
 	// ReferencedDomains: On successful return, contains the domain information for the
@@ -5301,8 +5392,10 @@ type xxx_LookupNames2Operation struct {
 	Return            int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarLookupNames2 operation.
 func (o *xxx_LookupNames2Operation) OpNum() int { return 58 }
 
+// OpName returns the operation name of LsarLookupNames2 operation.
 func (o *xxx_LookupNames2Operation) OpName() string { return "/lsarpc/v0/LsarLookupNames2" }
 
 func (o *xxx_LookupNames2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5686,6 +5779,17 @@ func (o *LookupNames2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeLookupNames2Request build a response structure from the given request structure.
+func (o *LookupNames2Request) MakeResponse() *LookupNames2Response {
+	return &LookupNames2Response{}
+}
+
+// OpNum returns the operation number of LsarLookupNames2 operation.
+func (o *LookupNames2Request) OpNum() int { return 58 }
+
+// OpName returns the operation name of LsarLookupNames2 operation.
+func (o *LookupNames2Request) OpName() string { return "/lsarpc/v0/LsarLookupNames2" }
+
 // LookupNames2Response structure represents the LsarLookupNames2 operation response
 type LookupNames2Response struct {
 	// ReferencedDomains: On successful return, contains the domain information for the
@@ -5752,8 +5856,10 @@ type xxx_LookupNames3Operation struct {
 	Return            int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarLookupNames3 operation.
 func (o *xxx_LookupNames3Operation) OpNum() int { return 68 }
 
+// OpName returns the operation name of LsarLookupNames3 operation.
 func (o *xxx_LookupNames3Operation) OpName() string { return "/lsarpc/v0/LsarLookupNames3" }
 
 func (o *xxx_LookupNames3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6137,6 +6243,17 @@ func (o *LookupNames3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeLookupNames3Request build a response structure from the given request structure.
+func (o *LookupNames3Request) MakeResponse() *LookupNames3Response {
+	return &LookupNames3Response{}
+}
+
+// OpNum returns the operation number of LsarLookupNames3 operation.
+func (o *LookupNames3Request) OpNum() int { return 68 }
+
+// OpName returns the operation name of LsarLookupNames3 operation.
+func (o *LookupNames3Request) OpName() string { return "/lsarpc/v0/LsarLookupNames3" }
+
 // LookupNames3Response structure represents the LsarLookupNames3 operation response
 type LookupNames3Response struct {
 	// ReferencedDomains: On successful return, contains the domain information for the
@@ -6201,8 +6318,10 @@ type xxx_LookupSids3Operation struct {
 	Return            int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarLookupSids3 operation.
 func (o *xxx_LookupSids3Operation) OpNum() int { return 76 }
 
+// OpName returns the operation name of LsarLookupSids3 operation.
 func (o *xxx_LookupSids3Operation) OpName() string { return "/lsarpc/v0/LsarLookupSids3" }
 
 func (o *xxx_LookupSids3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6506,6 +6625,17 @@ func (o *LookupSids3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeLookupSids3Request build a response structure from the given request structure.
+func (o *LookupSids3Request) MakeResponse() *LookupSids3Response {
+	return &LookupSids3Response{}
+}
+
+// OpNum returns the operation number of LsarLookupSids3 operation.
+func (o *LookupSids3Request) OpNum() int { return 76 }
+
+// OpName returns the operation name of LsarLookupSids3 operation.
+func (o *LookupSids3Request) OpName() string { return "/lsarpc/v0/LsarLookupSids3" }
+
 // LookupSids3Response structure represents the LsarLookupSids3 operation response
 type LookupSids3Response struct {
 	// ReferencedDomains: On successful return, contains the domain information for the
@@ -6570,8 +6700,10 @@ type xxx_LookupNames4Operation struct {
 	Return            int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarLookupNames4 operation.
 func (o *xxx_LookupNames4Operation) OpNum() int { return 77 }
 
+// OpName returns the operation name of LsarLookupNames4 operation.
 func (o *xxx_LookupNames4Operation) OpName() string { return "/lsarpc/v0/LsarLookupNames4" }
 
 func (o *xxx_LookupNames4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6968,6 +7100,17 @@ func (o *LookupNames4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeLookupNames4Request build a response structure from the given request structure.
+func (o *LookupNames4Request) MakeResponse() *LookupNames4Response {
+	return &LookupNames4Response{}
+}
+
+// OpNum returns the operation number of LsarLookupNames4 operation.
+func (o *LookupNames4Request) OpNum() int { return 77 }
+
+// OpName returns the operation name of LsarLookupNames4 operation.
+func (o *LookupNames4Request) OpName() string { return "/lsarpc/v0/LsarLookupNames4" }
 
 // LookupNames4Response structure represents the LsarLookupNames4 operation response
 type LookupNames4Response struct {

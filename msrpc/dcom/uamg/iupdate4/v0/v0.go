@@ -153,8 +153,10 @@ type xxx_GetPerUserOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PerUser operation.
 func (o *xxx_GetPerUserOperation) OpNum() int { return 57 }
 
+// OpName returns the operation name of PerUser operation.
 func (o *xxx_GetPerUserOperation) OpName() string { return "/IUpdate4/v0/PerUser" }
 
 func (o *xxx_GetPerUserOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -309,6 +311,17 @@ func (o *GetPerUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetPerUserRequest build a response structure from the given request structure.
+func (o *GetPerUserRequest) MakeResponse() *GetPerUserResponse {
+	return &GetPerUserResponse{}
+}
+
+// OpNum returns the operation number of PerUser operation.
+func (o *GetPerUserRequest) OpNum() int { return 57 }
+
+// OpName returns the operation name of PerUser operation.
+func (o *GetPerUserRequest) OpName() string { return "/IUpdate4/v0/PerUser" }
 
 // GetPerUserResponse structure represents the PerUser operation response
 type GetPerUserResponse struct {

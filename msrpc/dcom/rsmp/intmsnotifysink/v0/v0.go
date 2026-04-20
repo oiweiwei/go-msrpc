@@ -200,8 +200,10 @@ type xxx_ConnectCallbackOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ConnectCallback operation.
 func (o *xxx_ConnectCallbackOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ConnectCallback operation.
 func (o *xxx_ConnectCallbackOperation) OpName() string { return "/INtmsNotifySink/v0/ConnectCallback" }
 
 func (o *xxx_ConnectCallbackOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -457,6 +459,17 @@ func (o *ConnectCallbackRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeConnectCallbackRequest build a response structure from the given request structure.
+func (o *ConnectCallbackRequest) MakeResponse() *ConnectCallbackResponse {
+	return &ConnectCallbackResponse{}
+}
+
+// OpNum returns the operation number of ConnectCallback operation.
+func (o *ConnectCallbackRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ConnectCallback operation.
+func (o *ConnectCallbackRequest) OpName() string { return "/INtmsNotifySink/v0/ConnectCallback" }
+
 // ConnectCallbackResponse structure represents the ConnectCallback operation response
 type ConnectCallbackResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -506,8 +519,10 @@ type xxx_OnNotifyOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OnNotify operation.
 func (o *xxx_OnNotifyOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of OnNotify operation.
 func (o *xxx_OnNotifyOperation) OpName() string { return "/INtmsNotifySink/v0/OnNotify" }
 
 func (o *xxx_OnNotifyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -705,6 +720,17 @@ func (o *OnNotifyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeOnNotifyRequest build a response structure from the given request structure.
+func (o *OnNotifyRequest) MakeResponse() *OnNotifyResponse {
+	return &OnNotifyResponse{}
+}
+
+// OpNum returns the operation number of OnNotify operation.
+func (o *OnNotifyRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of OnNotify operation.
+func (o *OnNotifyRequest) OpName() string { return "/INtmsNotifySink/v0/OnNotify" }
+
 // OnNotifyResponse structure represents the OnNotify operation response
 type OnNotifyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -751,8 +777,10 @@ type xxx_ReleaseCallbackOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ReleaseCallback operation.
 func (o *xxx_ReleaseCallbackOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of ReleaseCallback operation.
 func (o *xxx_ReleaseCallbackOperation) OpName() string { return "/INtmsNotifySink/v0/ReleaseCallback" }
 
 func (o *xxx_ReleaseCallbackOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -895,6 +923,17 @@ func (o *ReleaseCallbackRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeReleaseCallbackRequest build a response structure from the given request structure.
+func (o *ReleaseCallbackRequest) MakeResponse() *ReleaseCallbackResponse {
+	return &ReleaseCallbackResponse{}
+}
+
+// OpNum returns the operation number of ReleaseCallback operation.
+func (o *ReleaseCallbackRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of ReleaseCallback operation.
+func (o *ReleaseCallbackRequest) OpName() string { return "/INtmsNotifySink/v0/ReleaseCallback" }
 
 // ReleaseCallbackResponse structure represents the ReleaseCallback operation response
 type ReleaseCallbackResponse struct {

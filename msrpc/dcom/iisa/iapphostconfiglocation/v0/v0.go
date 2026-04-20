@@ -309,8 +309,10 @@ type xxx_GetPathOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Path operation.
 func (o *xxx_GetPathOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Path operation.
 func (o *xxx_GetPathOperation) OpName() string { return "/IAppHostConfigLocation/v0/Path" }
 
 func (o *xxx_GetPathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -500,6 +502,17 @@ func (o *GetPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetPathRequest build a response structure from the given request structure.
+func (o *GetPathRequest) MakeResponse() *GetPathResponse {
+	return &GetPathResponse{}
+}
+
+// OpNum returns the operation number of Path operation.
+func (o *GetPathRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Path operation.
+func (o *GetPathRequest) OpName() string { return "/IAppHostConfigLocation/v0/Path" }
+
 // GetPathResponse structure represents the Path operation response
 type GetPathResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -552,8 +565,10 @@ type xxx_GetCountOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Count operation.
 func (o *xxx_GetCountOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Count operation.
 func (o *xxx_GetCountOperation) OpName() string { return "/IAppHostConfigLocation/v0/Count" }
 
 func (o *xxx_GetCountOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -709,6 +724,17 @@ func (o *GetCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeGetCountRequest build a response structure from the given request structure.
+func (o *GetCountRequest) MakeResponse() *GetCountResponse {
+	return &GetCountResponse{}
+}
+
+// OpNum returns the operation number of Count operation.
+func (o *GetCountRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Count operation.
+func (o *GetCountRequest) OpName() string { return "/IAppHostConfigLocation/v0/Count" }
+
 // GetCountResponse structure represents the Count operation response
 type GetCountResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -760,8 +786,10 @@ type xxx_GetItemOperation struct {
 	Return  int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Item operation.
 func (o *xxx_GetItemOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of Item operation.
 func (o *xxx_GetItemOperation) OpName() string { return "/IAppHostConfigLocation/v0/Item" }
 
 func (o *xxx_GetItemOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -981,6 +1009,17 @@ func (o *GetItemRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetItemRequest build a response structure from the given request structure.
+func (o *GetItemRequest) MakeResponse() *GetItemResponse {
+	return &GetItemResponse{}
+}
+
+// OpNum returns the operation number of Item operation.
+func (o *GetItemRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of Item operation.
+func (o *GetItemRequest) OpName() string { return "/IAppHostConfigLocation/v0/Item" }
+
 // GetItemResponse structure represents the Item operation response
 type GetItemResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1032,8 +1071,10 @@ type xxx_AddConfigSectionOperation struct {
 	Return       int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddConfigSection operation.
 func (o *xxx_AddConfigSectionOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of AddConfigSection operation.
 func (o *xxx_AddConfigSectionOperation) OpName() string {
 	return "/IAppHostConfigLocation/v0/AddConfigSection"
 }
@@ -1275,6 +1316,19 @@ func (o *AddConfigSectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeAddConfigSectionRequest build a response structure from the given request structure.
+func (o *AddConfigSectionRequest) MakeResponse() *AddConfigSectionResponse {
+	return &AddConfigSectionResponse{}
+}
+
+// OpNum returns the operation number of AddConfigSection operation.
+func (o *AddConfigSectionRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of AddConfigSection operation.
+func (o *AddConfigSectionRequest) OpName() string {
+	return "/IAppHostConfigLocation/v0/AddConfigSection"
+}
+
 // AddConfigSectionResponse structure represents the AddConfigSection operation response
 type AddConfigSectionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1326,8 +1380,10 @@ type xxx_DeleteConfigSectionOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteConfigSection operation.
 func (o *xxx_DeleteConfigSectionOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of DeleteConfigSection operation.
 func (o *xxx_DeleteConfigSectionOperation) OpName() string {
 	return "/IAppHostConfigLocation/v0/DeleteConfigSection"
 }
@@ -1506,6 +1562,19 @@ func (o *DeleteConfigSectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeDeleteConfigSectionRequest build a response structure from the given request structure.
+func (o *DeleteConfigSectionRequest) MakeResponse() *DeleteConfigSectionResponse {
+	return &DeleteConfigSectionResponse{}
+}
+
+// OpNum returns the operation number of DeleteConfigSection operation.
+func (o *DeleteConfigSectionRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of DeleteConfigSection operation.
+func (o *DeleteConfigSectionRequest) OpName() string {
+	return "/IAppHostConfigLocation/v0/DeleteConfigSection"
 }
 
 // DeleteConfigSectionResponse structure represents the DeleteConfigSection operation response

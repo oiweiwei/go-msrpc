@@ -104,8 +104,10 @@ type xxx_GetSessionIPOperation struct {
 	Return     int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetSessionIP operation.
 func (o *xxx_GetSessionIPOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RpcGetSessionIP operation.
 func (o *xxx_GetSessionIPOperation) OpName() string { return "/TSVIPPublic/v1/RpcGetSessionIP" }
 
 func (o *xxx_GetSessionIPOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -244,6 +246,17 @@ func (o *GetSessionIPRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetSessionIPRequest build a response structure from the given request structure.
+func (o *GetSessionIPRequest) MakeResponse() *GetSessionIPResponse {
+	return &GetSessionIPResponse{}
+}
+
+// OpNum returns the operation number of RpcGetSessionIP operation.
+func (o *GetSessionIPRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RpcGetSessionIP operation.
+func (o *GetSessionIPRequest) OpName() string { return "/TSVIPPublic/v1/RpcGetSessionIP" }
 
 // GetSessionIPResponse structure represents the RpcGetSessionIP operation response
 type GetSessionIPResponse struct {

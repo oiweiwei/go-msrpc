@@ -142,8 +142,10 @@ type xxx_ObjectsChangedOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ObjectsChanged operation.
 func (o *xxx_ObjectsChangedOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ObjectsChanged operation.
 func (o *xxx_ObjectsChangedOperation) OpName() string { return "/IDMNotify/v0/ObjectsChanged" }
 
 func (o *xxx_ObjectsChangedOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -449,6 +451,17 @@ func (o *ObjectsChangedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeObjectsChangedRequest build a response structure from the given request structure.
+func (o *ObjectsChangedRequest) MakeResponse() *ObjectsChangedResponse {
+	return &ObjectsChangedResponse{}
+}
+
+// OpNum returns the operation number of ObjectsChanged operation.
+func (o *ObjectsChangedRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ObjectsChanged operation.
+func (o *ObjectsChangedRequest) OpName() string { return "/IDMNotify/v0/ObjectsChanged" }
 
 // ObjectsChangedResponse structure represents the ObjectsChanged operation response
 type ObjectsChangedResponse struct {

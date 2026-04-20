@@ -220,8 +220,10 @@ type xxx_BaseInitiateSystemShutdownOperation struct {
 	Return              uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseInitiateSystemShutdown operation.
 func (o *xxx_BaseInitiateSystemShutdownOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of BaseInitiateSystemShutdown operation.
 func (o *xxx_BaseInitiateSystemShutdownOperation) OpName() string {
 	return "/winreg/v1/BaseInitiateSystemShutdown"
 }
@@ -450,6 +452,19 @@ func (o *BaseInitiateSystemShutdownRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeBaseInitiateSystemShutdownRequest build a response structure from the given request structure.
+func (o *BaseInitiateSystemShutdownRequest) MakeResponse() *BaseInitiateSystemShutdownResponse {
+	return &BaseInitiateSystemShutdownResponse{}
+}
+
+// OpNum returns the operation number of BaseInitiateSystemShutdown operation.
+func (o *BaseInitiateSystemShutdownRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of BaseInitiateSystemShutdown operation.
+func (o *BaseInitiateSystemShutdownRequest) OpName() string {
+	return "/winreg/v1/BaseInitiateSystemShutdown"
+}
+
 // BaseInitiateSystemShutdownResponse structure represents the BaseInitiateSystemShutdown operation response
 type BaseInitiateSystemShutdownResponse struct {
 	// Return: The BaseInitiateSystemShutdown return value.
@@ -491,8 +506,10 @@ type xxx_BaseAbortSystemShutdownOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseAbortSystemShutdown operation.
 func (o *xxx_BaseAbortSystemShutdownOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of BaseAbortSystemShutdown operation.
 func (o *xxx_BaseAbortSystemShutdownOperation) OpName() string {
 	return "/winreg/v1/BaseAbortSystemShutdown"
 }
@@ -621,6 +638,17 @@ func (o *BaseAbortSystemShutdownRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeBaseAbortSystemShutdownRequest build a response structure from the given request structure.
+func (o *BaseAbortSystemShutdownRequest) MakeResponse() *BaseAbortSystemShutdownResponse {
+	return &BaseAbortSystemShutdownResponse{}
+}
+
+// OpNum returns the operation number of BaseAbortSystemShutdown operation.
+func (o *BaseAbortSystemShutdownRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of BaseAbortSystemShutdown operation.
+func (o *BaseAbortSystemShutdownRequest) OpName() string { return "/winreg/v1/BaseAbortSystemShutdown" }
+
 // BaseAbortSystemShutdownResponse structure represents the BaseAbortSystemShutdown operation response
 type BaseAbortSystemShutdownResponse struct {
 	// Return: The BaseAbortSystemShutdown return value.
@@ -667,8 +695,10 @@ type xxx_BaseInitiateSystemShutdownExOperation struct {
 	Return              uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BaseInitiateSystemShutdownEx operation.
 func (o *xxx_BaseInitiateSystemShutdownExOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of BaseInitiateSystemShutdownEx operation.
 func (o *xxx_BaseInitiateSystemShutdownExOperation) OpName() string {
 	return "/winreg/v1/BaseInitiateSystemShutdownEx"
 }
@@ -912,6 +942,19 @@ func (o *BaseInitiateSystemShutdownExRequest) UnmarshalNDR(ctx context.Context, 
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeBaseInitiateSystemShutdownExRequest build a response structure from the given request structure.
+func (o *BaseInitiateSystemShutdownExRequest) MakeResponse() *BaseInitiateSystemShutdownExResponse {
+	return &BaseInitiateSystemShutdownExResponse{}
+}
+
+// OpNum returns the operation number of BaseInitiateSystemShutdownEx operation.
+func (o *BaseInitiateSystemShutdownExRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of BaseInitiateSystemShutdownEx operation.
+func (o *BaseInitiateSystemShutdownExRequest) OpName() string {
+	return "/winreg/v1/BaseInitiateSystemShutdownEx"
 }
 
 // BaseInitiateSystemShutdownExResponse structure represents the BaseInitiateSystemShutdownEx operation response

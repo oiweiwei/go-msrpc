@@ -151,8 +151,10 @@ type xxx_QuerySubSystemsOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QuerySubSystems operation.
 func (o *xxx_QuerySubSystemsOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of QuerySubSystems operation.
 func (o *xxx_QuerySubSystemsOperation) OpName() string { return "/IVdsHwProvider/v0/QuerySubSystems" }
 
 func (o *xxx_QuerySubSystemsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -341,6 +343,17 @@ func (o *QuerySubSystemsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeQuerySubSystemsRequest build a response structure from the given request structure.
+func (o *QuerySubSystemsRequest) MakeResponse() *QuerySubSystemsResponse {
+	return &QuerySubSystemsResponse{}
+}
+
+// OpNum returns the operation number of QuerySubSystems operation.
+func (o *QuerySubSystemsRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of QuerySubSystems operation.
+func (o *QuerySubSystemsRequest) OpName() string { return "/IVdsHwProvider/v0/QuerySubSystems" }
 
 // QuerySubSystemsResponse structure represents the QuerySubSystems operation response
 type QuerySubSystemsResponse struct {

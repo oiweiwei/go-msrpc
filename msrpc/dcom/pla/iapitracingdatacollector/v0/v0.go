@@ -439,8 +439,10 @@ type xxx_GetLogAPINamesOnlyOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LogApiNamesOnly operation.
 func (o *xxx_GetLogAPINamesOnlyOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of LogApiNamesOnly operation.
 func (o *xxx_GetLogAPINamesOnlyOperation) OpName() string {
 	return "/IApiTracingDataCollector/v0/LogApiNamesOnly"
 }
@@ -598,6 +600,19 @@ func (o *GetLogAPINamesOnlyRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetLogAPINamesOnlyRequest build a response structure from the given request structure.
+func (o *GetLogAPINamesOnlyRequest) MakeResponse() *GetLogAPINamesOnlyResponse {
+	return &GetLogAPINamesOnlyResponse{}
+}
+
+// OpNum returns the operation number of LogApiNamesOnly operation.
+func (o *GetLogAPINamesOnlyRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of LogApiNamesOnly operation.
+func (o *GetLogAPINamesOnlyRequest) OpName() string {
+	return "/IApiTracingDataCollector/v0/LogApiNamesOnly"
+}
+
 // GetLogAPINamesOnlyResponse structure represents the LogApiNamesOnly operation response
 type GetLogAPINamesOnlyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -648,8 +663,10 @@ type xxx_SetLogAPINamesOnlyOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LogApiNamesOnly operation.
 func (o *xxx_SetLogAPINamesOnlyOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of LogApiNamesOnly operation.
 func (o *xxx_SetLogAPINamesOnlyOperation) OpName() string {
 	return "/IApiTracingDataCollector/v0/LogApiNamesOnly"
 }
@@ -810,6 +827,19 @@ func (o *SetLogAPINamesOnlyRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetLogAPINamesOnlyRequest build a response structure from the given request structure.
+func (o *SetLogAPINamesOnlyRequest) MakeResponse() *SetLogAPINamesOnlyResponse {
+	return &SetLogAPINamesOnlyResponse{}
+}
+
+// OpNum returns the operation number of LogApiNamesOnly operation.
+func (o *SetLogAPINamesOnlyRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of LogApiNamesOnly operation.
+func (o *SetLogAPINamesOnlyRequest) OpName() string {
+	return "/IApiTracingDataCollector/v0/LogApiNamesOnly"
+}
+
 // SetLogAPINamesOnlyResponse structure represents the LogApiNamesOnly operation response
 type SetLogAPINamesOnlyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -857,8 +887,10 @@ type xxx_GetLogAPIsRecursivelyOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LogApisRecursively operation.
 func (o *xxx_GetLogAPIsRecursivelyOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of LogApisRecursively operation.
 func (o *xxx_GetLogAPIsRecursivelyOperation) OpName() string {
 	return "/IApiTracingDataCollector/v0/LogApisRecursively"
 }
@@ -1016,6 +1048,19 @@ func (o *GetLogAPIsRecursivelyRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetLogAPIsRecursivelyRequest build a response structure from the given request structure.
+func (o *GetLogAPIsRecursivelyRequest) MakeResponse() *GetLogAPIsRecursivelyResponse {
+	return &GetLogAPIsRecursivelyResponse{}
+}
+
+// OpNum returns the operation number of LogApisRecursively operation.
+func (o *GetLogAPIsRecursivelyRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of LogApisRecursively operation.
+func (o *GetLogAPIsRecursivelyRequest) OpName() string {
+	return "/IApiTracingDataCollector/v0/LogApisRecursively"
+}
+
 // GetLogAPIsRecursivelyResponse structure represents the LogApisRecursively operation response
 type GetLogAPIsRecursivelyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1066,8 +1111,10 @@ type xxx_SetLogAPIsRecursivelyOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LogApisRecursively operation.
 func (o *xxx_SetLogAPIsRecursivelyOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of LogApisRecursively operation.
 func (o *xxx_SetLogAPIsRecursivelyOperation) OpName() string {
 	return "/IApiTracingDataCollector/v0/LogApisRecursively"
 }
@@ -1228,6 +1275,19 @@ func (o *SetLogAPIsRecursivelyRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeSetLogAPIsRecursivelyRequest build a response structure from the given request structure.
+func (o *SetLogAPIsRecursivelyRequest) MakeResponse() *SetLogAPIsRecursivelyResponse {
+	return &SetLogAPIsRecursivelyResponse{}
+}
+
+// OpNum returns the operation number of LogApisRecursively operation.
+func (o *SetLogAPIsRecursivelyRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of LogApisRecursively operation.
+func (o *SetLogAPIsRecursivelyRequest) OpName() string {
+	return "/IApiTracingDataCollector/v0/LogApisRecursively"
+}
+
 // SetLogAPIsRecursivelyResponse structure represents the LogApisRecursively operation response
 type SetLogAPIsRecursivelyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1275,8 +1335,10 @@ type xxx_GetExePathOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExePath operation.
 func (o *xxx_GetExePathOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of ExePath operation.
 func (o *xxx_GetExePathOperation) OpName() string { return "/IApiTracingDataCollector/v0/ExePath" }
 
 func (o *xxx_GetExePathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1466,6 +1528,17 @@ func (o *GetExePathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetExePathRequest build a response structure from the given request structure.
+func (o *GetExePathRequest) MakeResponse() *GetExePathResponse {
+	return &GetExePathResponse{}
+}
+
+// OpNum returns the operation number of ExePath operation.
+func (o *GetExePathRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of ExePath operation.
+func (o *GetExePathRequest) OpName() string { return "/IApiTracingDataCollector/v0/ExePath" }
+
 // GetExePathResponse structure represents the ExePath operation response
 type GetExePathResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1516,8 +1589,10 @@ type xxx_SetExePathOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExePath operation.
 func (o *xxx_SetExePathOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of ExePath operation.
 func (o *xxx_SetExePathOperation) OpName() string { return "/IApiTracingDataCollector/v0/ExePath" }
 
 func (o *xxx_SetExePathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1710,6 +1785,17 @@ func (o *SetExePathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeSetExePathRequest build a response structure from the given request structure.
+func (o *SetExePathRequest) MakeResponse() *SetExePathResponse {
+	return &SetExePathResponse{}
+}
+
+// OpNum returns the operation number of ExePath operation.
+func (o *SetExePathRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of ExePath operation.
+func (o *SetExePathRequest) OpName() string { return "/IApiTracingDataCollector/v0/ExePath" }
+
 // SetExePathResponse structure represents the ExePath operation response
 type SetExePathResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1757,8 +1843,10 @@ type xxx_GetLogFilePathOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LogFilePath operation.
 func (o *xxx_GetLogFilePathOperation) OpNum() int { return 38 }
 
+// OpName returns the operation name of LogFilePath operation.
 func (o *xxx_GetLogFilePathOperation) OpName() string {
 	return "/IApiTracingDataCollector/v0/LogFilePath"
 }
@@ -1950,6 +2038,17 @@ func (o *GetLogFilePathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetLogFilePathRequest build a response structure from the given request structure.
+func (o *GetLogFilePathRequest) MakeResponse() *GetLogFilePathResponse {
+	return &GetLogFilePathResponse{}
+}
+
+// OpNum returns the operation number of LogFilePath operation.
+func (o *GetLogFilePathRequest) OpNum() int { return 38 }
+
+// OpName returns the operation name of LogFilePath operation.
+func (o *GetLogFilePathRequest) OpName() string { return "/IApiTracingDataCollector/v0/LogFilePath" }
+
 // GetLogFilePathResponse structure represents the LogFilePath operation response
 type GetLogFilePathResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2000,8 +2099,10 @@ type xxx_SetLogFilePathOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LogFilePath operation.
 func (o *xxx_SetLogFilePathOperation) OpNum() int { return 39 }
 
+// OpName returns the operation name of LogFilePath operation.
 func (o *xxx_SetLogFilePathOperation) OpName() string {
 	return "/IApiTracingDataCollector/v0/LogFilePath"
 }
@@ -2196,6 +2297,17 @@ func (o *SetLogFilePathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetLogFilePathRequest build a response structure from the given request structure.
+func (o *SetLogFilePathRequest) MakeResponse() *SetLogFilePathResponse {
+	return &SetLogFilePathResponse{}
+}
+
+// OpNum returns the operation number of LogFilePath operation.
+func (o *SetLogFilePathRequest) OpNum() int { return 39 }
+
+// OpName returns the operation name of LogFilePath operation.
+func (o *SetLogFilePathRequest) OpName() string { return "/IApiTracingDataCollector/v0/LogFilePath" }
+
 // SetLogFilePathResponse structure represents the LogFilePath operation response
 type SetLogFilePathResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2243,8 +2355,10 @@ type xxx_GetIncludeModulesOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IncludeModules operation.
 func (o *xxx_GetIncludeModulesOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of IncludeModules operation.
 func (o *xxx_GetIncludeModulesOperation) OpName() string {
 	return "/IApiTracingDataCollector/v0/IncludeModules"
 }
@@ -2436,6 +2550,19 @@ func (o *GetIncludeModulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetIncludeModulesRequest build a response structure from the given request structure.
+func (o *GetIncludeModulesRequest) MakeResponse() *GetIncludeModulesResponse {
+	return &GetIncludeModulesResponse{}
+}
+
+// OpNum returns the operation number of IncludeModules operation.
+func (o *GetIncludeModulesRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of IncludeModules operation.
+func (o *GetIncludeModulesRequest) OpName() string {
+	return "/IApiTracingDataCollector/v0/IncludeModules"
+}
+
 // GetIncludeModulesResponse structure represents the IncludeModules operation response
 type GetIncludeModulesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2486,8 +2613,10 @@ type xxx_SetIncludeModulesOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IncludeModules operation.
 func (o *xxx_SetIncludeModulesOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of IncludeModules operation.
 func (o *xxx_SetIncludeModulesOperation) OpName() string {
 	return "/IApiTracingDataCollector/v0/IncludeModules"
 }
@@ -2682,6 +2811,19 @@ func (o *SetIncludeModulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetIncludeModulesRequest build a response structure from the given request structure.
+func (o *SetIncludeModulesRequest) MakeResponse() *SetIncludeModulesResponse {
+	return &SetIncludeModulesResponse{}
+}
+
+// OpNum returns the operation number of IncludeModules operation.
+func (o *SetIncludeModulesRequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of IncludeModules operation.
+func (o *SetIncludeModulesRequest) OpName() string {
+	return "/IApiTracingDataCollector/v0/IncludeModules"
+}
+
 // SetIncludeModulesResponse structure represents the IncludeModules operation response
 type SetIncludeModulesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2729,8 +2871,10 @@ type xxx_GetIncludeAPIsOperation struct {
 	Return      int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IncludeApis operation.
 func (o *xxx_GetIncludeAPIsOperation) OpNum() int { return 42 }
 
+// OpName returns the operation name of IncludeApis operation.
 func (o *xxx_GetIncludeAPIsOperation) OpName() string {
 	return "/IApiTracingDataCollector/v0/IncludeApis"
 }
@@ -2922,6 +3066,17 @@ func (o *GetIncludeAPIsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetIncludeAPIsRequest build a response structure from the given request structure.
+func (o *GetIncludeAPIsRequest) MakeResponse() *GetIncludeAPIsResponse {
+	return &GetIncludeAPIsResponse{}
+}
+
+// OpNum returns the operation number of IncludeApis operation.
+func (o *GetIncludeAPIsRequest) OpNum() int { return 42 }
+
+// OpName returns the operation name of IncludeApis operation.
+func (o *GetIncludeAPIsRequest) OpName() string { return "/IApiTracingDataCollector/v0/IncludeApis" }
+
 // GetIncludeAPIsResponse structure represents the IncludeApis operation response
 type GetIncludeAPIsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2972,8 +3127,10 @@ type xxx_SetIncludeAPIsOperation struct {
 	Return      int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IncludeApis operation.
 func (o *xxx_SetIncludeAPIsOperation) OpNum() int { return 43 }
 
+// OpName returns the operation name of IncludeApis operation.
 func (o *xxx_SetIncludeAPIsOperation) OpName() string {
 	return "/IApiTracingDataCollector/v0/IncludeApis"
 }
@@ -3168,6 +3325,17 @@ func (o *SetIncludeAPIsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetIncludeAPIsRequest build a response structure from the given request structure.
+func (o *SetIncludeAPIsRequest) MakeResponse() *SetIncludeAPIsResponse {
+	return &SetIncludeAPIsResponse{}
+}
+
+// OpNum returns the operation number of IncludeApis operation.
+func (o *SetIncludeAPIsRequest) OpNum() int { return 43 }
+
+// OpName returns the operation name of IncludeApis operation.
+func (o *SetIncludeAPIsRequest) OpName() string { return "/IApiTracingDataCollector/v0/IncludeApis" }
+
 // SetIncludeAPIsResponse structure represents the IncludeApis operation response
 type SetIncludeAPIsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3215,8 +3383,10 @@ type xxx_GetExcludeAPIsOperation struct {
 	Return      int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExcludeApis operation.
 func (o *xxx_GetExcludeAPIsOperation) OpNum() int { return 44 }
 
+// OpName returns the operation name of ExcludeApis operation.
 func (o *xxx_GetExcludeAPIsOperation) OpName() string {
 	return "/IApiTracingDataCollector/v0/ExcludeApis"
 }
@@ -3408,6 +3578,17 @@ func (o *GetExcludeAPIsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetExcludeAPIsRequest build a response structure from the given request structure.
+func (o *GetExcludeAPIsRequest) MakeResponse() *GetExcludeAPIsResponse {
+	return &GetExcludeAPIsResponse{}
+}
+
+// OpNum returns the operation number of ExcludeApis operation.
+func (o *GetExcludeAPIsRequest) OpNum() int { return 44 }
+
+// OpName returns the operation name of ExcludeApis operation.
+func (o *GetExcludeAPIsRequest) OpName() string { return "/IApiTracingDataCollector/v0/ExcludeApis" }
+
 // GetExcludeAPIsResponse structure represents the ExcludeApis operation response
 type GetExcludeAPIsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3458,8 +3639,10 @@ type xxx_SetExcludeAPIsOperation struct {
 	Return      int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExcludeApis operation.
 func (o *xxx_SetExcludeAPIsOperation) OpNum() int { return 45 }
 
+// OpName returns the operation name of ExcludeApis operation.
 func (o *xxx_SetExcludeAPIsOperation) OpName() string {
 	return "/IApiTracingDataCollector/v0/ExcludeApis"
 }
@@ -3653,6 +3836,17 @@ func (o *SetExcludeAPIsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetExcludeAPIsRequest build a response structure from the given request structure.
+func (o *SetExcludeAPIsRequest) MakeResponse() *SetExcludeAPIsResponse {
+	return &SetExcludeAPIsResponse{}
+}
+
+// OpNum returns the operation number of ExcludeApis operation.
+func (o *SetExcludeAPIsRequest) OpNum() int { return 45 }
+
+// OpName returns the operation name of ExcludeApis operation.
+func (o *SetExcludeAPIsRequest) OpName() string { return "/IApiTracingDataCollector/v0/ExcludeApis" }
 
 // SetExcludeAPIsResponse structure represents the ExcludeApis operation response
 type SetExcludeAPIsResponse struct {

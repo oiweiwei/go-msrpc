@@ -333,8 +333,10 @@ type xxx_GetInterfaceListOperation struct {
 	Return        uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WitnessrGetInterfaceList operation.
 func (o *xxx_GetInterfaceListOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of WitnessrGetInterfaceList operation.
 func (o *xxx_GetInterfaceListOperation) OpName() string {
 	return "/Witness/v1.1/WitnessrGetInterfaceList"
 }
@@ -468,6 +470,17 @@ func (o *GetInterfaceListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetInterfaceListRequest build a response structure from the given request structure.
+func (o *GetInterfaceListRequest) MakeResponse() *GetInterfaceListResponse {
+	return &GetInterfaceListResponse{}
+}
+
+// OpNum returns the operation number of WitnessrGetInterfaceList operation.
+func (o *GetInterfaceListRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of WitnessrGetInterfaceList operation.
+func (o *GetInterfaceListRequest) OpName() string { return "/Witness/v1.1/WitnessrGetInterfaceList" }
+
 // GetInterfaceListResponse structure represents the WitnessrGetInterfaceList operation response
 type GetInterfaceListResponse struct {
 	// InterfaceList:  A pointer to a PWITNESS_INTERFACE_LIST, as specified in section
@@ -518,8 +531,10 @@ type xxx_RegisterOperation struct {
 	Return             uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WitnessrRegister operation.
 func (o *xxx_RegisterOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of WitnessrRegister operation.
 func (o *xxx_RegisterOperation) OpName() string { return "/Witness/v1.1/WitnessrRegister" }
 
 func (o *xxx_RegisterOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -768,6 +783,17 @@ func (o *RegisterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeRegisterRequest build a response structure from the given request structure.
+func (o *RegisterRequest) MakeResponse() *RegisterResponse {
+	return &RegisterResponse{}
+}
+
+// OpNum returns the operation number of WitnessrRegister operation.
+func (o *RegisterRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of WitnessrRegister operation.
+func (o *RegisterRequest) OpName() string { return "/Witness/v1.1/WitnessrRegister" }
+
 // RegisterResponse structure represents the WitnessrRegister operation response
 type RegisterResponse struct {
 	// ppContext: A context handle of type PPCONTEXT_HANDLE, as specified in section 2.2.1.2,
@@ -814,8 +840,10 @@ type xxx_UnregisterOperation struct {
 	Return  uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WitnessrUnRegister operation.
 func (o *xxx_UnregisterOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of WitnessrUnRegister operation.
 func (o *xxx_UnregisterOperation) OpName() string { return "/Witness/v1.1/WitnessrUnRegister" }
 
 func (o *xxx_UnregisterOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -927,6 +955,17 @@ func (o *UnregisterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeUnregisterRequest build a response structure from the given request structure.
+func (o *UnregisterRequest) MakeResponse() *UnregisterResponse {
+	return &UnregisterResponse{}
+}
+
+// OpNum returns the operation number of WitnessrUnRegister operation.
+func (o *UnregisterRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of WitnessrUnRegister operation.
+func (o *UnregisterRequest) OpName() string { return "/Witness/v1.1/WitnessrUnRegister" }
+
 // UnregisterResponse structure represents the WitnessrUnRegister operation response
 type UnregisterResponse struct {
 	// Return: The WitnessrUnRegister return value.
@@ -969,8 +1008,10 @@ type xxx_AsyncNotifyOperation struct {
 	Return   uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WitnessrAsyncNotify operation.
 func (o *xxx_AsyncNotifyOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of WitnessrAsyncNotify operation.
 func (o *xxx_AsyncNotifyOperation) OpName() string { return "/Witness/v1.1/WitnessrAsyncNotify" }
 
 func (o *xxx_AsyncNotifyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1128,6 +1169,17 @@ func (o *AsyncNotifyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeAsyncNotifyRequest build a response structure from the given request structure.
+func (o *AsyncNotifyRequest) MakeResponse() *AsyncNotifyResponse {
+	return &AsyncNotifyResponse{}
+}
+
+// OpNum returns the operation number of WitnessrAsyncNotify operation.
+func (o *AsyncNotifyRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of WitnessrAsyncNotify operation.
+func (o *AsyncNotifyRequest) OpName() string { return "/Witness/v1.1/WitnessrAsyncNotify" }
+
 // AsyncNotifyResponse structure represents the WitnessrAsyncNotify operation response
 type AsyncNotifyResponse struct {
 	// pResp:  A pointer to a PRESP_ASYNC_NOTIFY structure, as specified in section 2.2.2.4.
@@ -1180,8 +1232,10 @@ type xxx_RegisterExOperation struct {
 	Return             uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WitnessrRegisterEx operation.
 func (o *xxx_RegisterExOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of WitnessrRegisterEx operation.
 func (o *xxx_RegisterExOperation) OpName() string { return "/Witness/v1.1/WitnessrRegisterEx" }
 
 func (o *xxx_RegisterExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1516,6 +1570,17 @@ func (o *RegisterExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeRegisterExRequest build a response structure from the given request structure.
+func (o *RegisterExRequest) MakeResponse() *RegisterExResponse {
+	return &RegisterExResponse{}
+}
+
+// OpNum returns the operation number of WitnessrRegisterEx operation.
+func (o *RegisterExRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of WitnessrRegisterEx operation.
+func (o *RegisterExRequest) OpName() string { return "/Witness/v1.1/WitnessrRegisterEx" }
 
 // RegisterExResponse structure represents the WitnessrRegisterEx operation response
 type RegisterExResponse struct {

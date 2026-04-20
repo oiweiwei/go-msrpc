@@ -255,8 +255,10 @@ type xxx_AddOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Add operation.
 func (o *xxx_AddOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of Add operation.
 func (o *xxx_AddOperation) OpName() string { return "/IFsrmMutableCollection/v0/Add" }
 
 func (o *xxx_AddOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -432,6 +434,17 @@ func (o *AddRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeAddRequest build a response structure from the given request structure.
+func (o *AddRequest) MakeResponse() *AddResponse {
+	return &AddResponse{}
+}
+
+// OpNum returns the operation number of Add operation.
+func (o *AddRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of Add operation.
+func (o *AddRequest) OpName() string { return "/IFsrmMutableCollection/v0/Add" }
+
 // AddResponse structure represents the Add operation response
 type AddResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -479,8 +492,10 @@ type xxx_RemoveOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Remove operation.
 func (o *xxx_RemoveOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of Remove operation.
 func (o *xxx_RemoveOperation) OpName() string { return "/IFsrmMutableCollection/v0/Remove" }
 
 func (o *xxx_RemoveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -641,6 +656,17 @@ func (o *RemoveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeRemoveRequest build a response structure from the given request structure.
+func (o *RemoveRequest) MakeResponse() *RemoveResponse {
+	return &RemoveResponse{}
+}
+
+// OpNum returns the operation number of Remove operation.
+func (o *RemoveRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of Remove operation.
+func (o *RemoveRequest) OpName() string { return "/IFsrmMutableCollection/v0/Remove" }
+
 // RemoveResponse structure represents the Remove operation response
 type RemoveResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -688,8 +714,10 @@ type xxx_RemoveByIDOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoveById operation.
 func (o *xxx_RemoveByIDOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of RemoveById operation.
 func (o *xxx_RemoveByIDOperation) OpName() string { return "/IFsrmMutableCollection/v0/RemoveById" }
 
 func (o *xxx_RemoveByIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -858,6 +886,17 @@ func (o *RemoveByIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeRemoveByIDRequest build a response structure from the given request structure.
+func (o *RemoveByIDRequest) MakeResponse() *RemoveByIDResponse {
+	return &RemoveByIDResponse{}
+}
+
+// OpNum returns the operation number of RemoveById operation.
+func (o *RemoveByIDRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of RemoveById operation.
+func (o *RemoveByIDRequest) OpName() string { return "/IFsrmMutableCollection/v0/RemoveById" }
+
 // RemoveByIDResponse structure represents the RemoveById operation response
 type RemoveByIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -905,8 +944,10 @@ type xxx_CloneOperation struct {
 	Return     int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Clone operation.
 func (o *xxx_CloneOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of Clone operation.
 func (o *xxx_CloneOperation) OpName() string { return "/IFsrmMutableCollection/v0/Clone" }
 
 func (o *xxx_CloneOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1095,6 +1136,17 @@ func (o *CloneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCloneRequest build a response structure from the given request structure.
+func (o *CloneRequest) MakeResponse() *CloneResponse {
+	return &CloneResponse{}
+}
+
+// OpNum returns the operation number of Clone operation.
+func (o *CloneRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of Clone operation.
+func (o *CloneRequest) OpName() string { return "/IFsrmMutableCollection/v0/Clone" }
 
 // CloneResponse structure represents the Clone operation response
 type CloneResponse struct {

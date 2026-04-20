@@ -323,8 +323,10 @@ type xxx_GetClientApplicationIDOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClientApplicationID operation.
 func (o *xxx_GetClientApplicationIDOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of ClientApplicationID operation.
 func (o *xxx_GetClientApplicationIDOperation) OpName() string {
 	return "/IUpdateSession/v0/ClientApplicationID"
 }
@@ -516,6 +518,19 @@ func (o *GetClientApplicationIDRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetClientApplicationIDRequest build a response structure from the given request structure.
+func (o *GetClientApplicationIDRequest) MakeResponse() *GetClientApplicationIDResponse {
+	return &GetClientApplicationIDResponse{}
+}
+
+// OpNum returns the operation number of ClientApplicationID operation.
+func (o *GetClientApplicationIDRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of ClientApplicationID operation.
+func (o *GetClientApplicationIDRequest) OpName() string {
+	return "/IUpdateSession/v0/ClientApplicationID"
+}
+
 // GetClientApplicationIDResponse structure represents the ClientApplicationID operation response
 type GetClientApplicationIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -575,8 +590,10 @@ type xxx_SetClientApplicationIDOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClientApplicationID operation.
 func (o *xxx_SetClientApplicationIDOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ClientApplicationID operation.
 func (o *xxx_SetClientApplicationIDOperation) OpName() string {
 	return "/IUpdateSession/v0/ClientApplicationID"
 }
@@ -776,6 +793,19 @@ func (o *SetClientApplicationIDRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeSetClientApplicationIDRequest build a response structure from the given request structure.
+func (o *SetClientApplicationIDRequest) MakeResponse() *SetClientApplicationIDResponse {
+	return &SetClientApplicationIDResponse{}
+}
+
+// OpNum returns the operation number of ClientApplicationID operation.
+func (o *SetClientApplicationIDRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ClientApplicationID operation.
+func (o *SetClientApplicationIDRequest) OpName() string {
+	return "/IUpdateSession/v0/ClientApplicationID"
+}
+
 // SetClientApplicationIDResponse structure represents the ClientApplicationID operation response
 type SetClientApplicationIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -823,8 +853,10 @@ type xxx_GetReadOnlyOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ReadOnly operation.
 func (o *xxx_GetReadOnlyOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ReadOnly operation.
 func (o *xxx_GetReadOnlyOperation) OpName() string { return "/IUpdateSession/v0/ReadOnly" }
 
 func (o *xxx_GetReadOnlyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -980,6 +1012,17 @@ func (o *GetReadOnlyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetReadOnlyRequest build a response structure from the given request structure.
+func (o *GetReadOnlyRequest) MakeResponse() *GetReadOnlyResponse {
+	return &GetReadOnlyResponse{}
+}
+
+// OpNum returns the operation number of ReadOnly operation.
+func (o *GetReadOnlyRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ReadOnly operation.
+func (o *GetReadOnlyRequest) OpName() string { return "/IUpdateSession/v0/ReadOnly" }
+
 // GetReadOnlyResponse structure represents the ReadOnly operation response
 type GetReadOnlyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1038,8 +1081,10 @@ type xxx_CreateUpdateSearcherOperation struct {
 	Return      int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateUpdateSearcher operation.
 func (o *xxx_CreateUpdateSearcherOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of CreateUpdateSearcher operation.
 func (o *xxx_CreateUpdateSearcherOperation) OpName() string {
 	return "/IUpdateSession/v0/CreateUpdateSearcher"
 }
@@ -1229,6 +1274,19 @@ func (o *CreateUpdateSearcherRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeCreateUpdateSearcherRequest build a response structure from the given request structure.
+func (o *CreateUpdateSearcherRequest) MakeResponse() *CreateUpdateSearcherResponse {
+	return &CreateUpdateSearcherResponse{}
+}
+
+// OpNum returns the operation number of CreateUpdateSearcher operation.
+func (o *CreateUpdateSearcherRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of CreateUpdateSearcher operation.
+func (o *CreateUpdateSearcherRequest) OpName() string {
+	return "/IUpdateSession/v0/CreateUpdateSearcher"
 }
 
 // CreateUpdateSearcherResponse structure represents the CreateUpdateSearcher operation response

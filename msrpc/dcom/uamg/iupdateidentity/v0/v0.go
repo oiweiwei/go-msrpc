@@ -188,8 +188,10 @@ type xxx_GetRevisionNumberOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RevisionNumber operation.
 func (o *xxx_GetRevisionNumberOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of RevisionNumber operation.
 func (o *xxx_GetRevisionNumberOperation) OpName() string { return "/IUpdateIdentity/v0/RevisionNumber" }
 
 func (o *xxx_GetRevisionNumberOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -345,6 +347,17 @@ func (o *GetRevisionNumberRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetRevisionNumberRequest build a response structure from the given request structure.
+func (o *GetRevisionNumberRequest) MakeResponse() *GetRevisionNumberResponse {
+	return &GetRevisionNumberResponse{}
+}
+
+// OpNum returns the operation number of RevisionNumber operation.
+func (o *GetRevisionNumberRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of RevisionNumber operation.
+func (o *GetRevisionNumberRequest) OpName() string { return "/IUpdateIdentity/v0/RevisionNumber" }
+
 // GetRevisionNumberResponse structure represents the RevisionNumber operation response
 type GetRevisionNumberResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -396,8 +409,10 @@ type xxx_GetUpdateIDOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UpdateID operation.
 func (o *xxx_GetUpdateIDOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of UpdateID operation.
 func (o *xxx_GetUpdateIDOperation) OpName() string { return "/IUpdateIdentity/v0/UpdateID" }
 
 func (o *xxx_GetUpdateIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -586,6 +601,17 @@ func (o *GetUpdateIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetUpdateIDRequest build a response structure from the given request structure.
+func (o *GetUpdateIDRequest) MakeResponse() *GetUpdateIDResponse {
+	return &GetUpdateIDResponse{}
+}
+
+// OpNum returns the operation number of UpdateID operation.
+func (o *GetUpdateIDRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of UpdateID operation.
+func (o *GetUpdateIDRequest) OpName() string { return "/IUpdateIdentity/v0/UpdateID" }
 
 // GetUpdateIDResponse structure represents the UpdateID operation response
 type GetUpdateIDResponse struct {

@@ -543,8 +543,10 @@ type xxx_RetrieveEventListOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RetrieveEventList operation.
 func (o *xxx_RetrieveEventListOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of RetrieveEventList operation.
 func (o *xxx_RetrieveEventListOperation) OpName() string {
 	return "/IResourceManager/v0/RetrieveEventList"
 }
@@ -736,6 +738,17 @@ func (o *RetrieveEventListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeRetrieveEventListRequest build a response structure from the given request structure.
+func (o *RetrieveEventListRequest) MakeResponse() *RetrieveEventListResponse {
+	return &RetrieveEventListResponse{}
+}
+
+// OpNum returns the operation number of RetrieveEventList operation.
+func (o *RetrieveEventListRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of RetrieveEventList operation.
+func (o *RetrieveEventListRequest) OpName() string { return "/IResourceManager/v0/RetrieveEventList" }
+
 // RetrieveEventListResponse structure represents the RetrieveEventList operation response
 type RetrieveEventListResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -787,8 +800,10 @@ type xxx_GetSystemAffinityOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSystemAffinity operation.
 func (o *xxx_GetSystemAffinityOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of GetSystemAffinity operation.
 func (o *xxx_GetSystemAffinityOperation) OpName() string {
 	return "/IResourceManager/v0/GetSystemAffinity"
 }
@@ -946,6 +961,17 @@ func (o *GetSystemAffinityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetSystemAffinityRequest build a response structure from the given request structure.
+func (o *GetSystemAffinityRequest) MakeResponse() *GetSystemAffinityResponse {
+	return &GetSystemAffinityResponse{}
+}
+
+// OpNum returns the operation number of GetSystemAffinity operation.
+func (o *GetSystemAffinityRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GetSystemAffinity operation.
+func (o *GetSystemAffinityRequest) OpName() string { return "/IResourceManager/v0/GetSystemAffinity" }
+
 // GetSystemAffinityResponse structure represents the GetSystemAffinity operation response
 type GetSystemAffinityResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1002,8 +1028,10 @@ type xxx_ImportXMLFilesOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ImportXMLFiles operation.
 func (o *xxx_ImportXMLFilesOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ImportXMLFiles operation.
 func (o *xxx_ImportXMLFilesOperation) OpName() string { return "/IResourceManager/v0/ImportXMLFiles" }
 
 func (o *xxx_ImportXMLFilesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1356,6 +1384,17 @@ func (o *ImportXMLFilesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeImportXMLFilesRequest build a response structure from the given request structure.
+func (o *ImportXMLFilesRequest) MakeResponse() *ImportXMLFilesResponse {
+	return &ImportXMLFilesResponse{}
+}
+
+// OpNum returns the operation number of ImportXMLFiles operation.
+func (o *ImportXMLFilesRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ImportXMLFiles operation.
+func (o *ImportXMLFilesRequest) OpName() string { return "/IResourceManager/v0/ImportXMLFiles" }
+
 // ImportXMLFilesResponse structure represents the ImportXMLFiles operation response
 type ImportXMLFilesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1406,8 +1445,10 @@ type xxx_ExportXMLFilesOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExportXMLFiles operation.
 func (o *xxx_ExportXMLFilesOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of ExportXMLFiles operation.
 func (o *xxx_ExportXMLFilesOperation) OpName() string { return "/IResourceManager/v0/ExportXMLFiles" }
 
 func (o *xxx_ExportXMLFilesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1735,6 +1776,17 @@ func (o *ExportXMLFilesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeExportXMLFilesRequest build a response structure from the given request structure.
+func (o *ExportXMLFilesRequest) MakeResponse() *ExportXMLFilesResponse {
+	return &ExportXMLFilesResponse{}
+}
+
+// OpNum returns the operation number of ExportXMLFiles operation.
+func (o *ExportXMLFilesRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of ExportXMLFiles operation.
+func (o *ExportXMLFilesRequest) OpName() string { return "/IResourceManager/v0/ExportXMLFiles" }
+
 // ExportXMLFilesResponse structure represents the ExportXMLFiles operation response
 type ExportXMLFilesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1804,8 +1856,10 @@ type xxx_RestoreXMLFilesOperation struct {
 	Return      int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RestoreXMLFiles operation.
 func (o *xxx_RestoreXMLFilesOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RestoreXMLFiles operation.
 func (o *xxx_RestoreXMLFilesOperation) OpName() string { return "/IResourceManager/v0/RestoreXMLFiles" }
 
 func (o *xxx_RestoreXMLFilesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1965,6 +2019,17 @@ func (o *RestoreXMLFilesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeRestoreXMLFilesRequest build a response structure from the given request structure.
+func (o *RestoreXMLFilesRequest) MakeResponse() *RestoreXMLFilesResponse {
+	return &RestoreXMLFilesResponse{}
+}
+
+// OpNum returns the operation number of RestoreXMLFiles operation.
+func (o *RestoreXMLFilesRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RestoreXMLFiles operation.
+func (o *RestoreXMLFilesRequest) OpName() string { return "/IResourceManager/v0/RestoreXMLFiles" }
+
 // RestoreXMLFilesResponse structure represents the RestoreXMLFiles operation response
 type RestoreXMLFilesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2014,8 +2079,10 @@ type xxx_GetDependenciesOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetDependencies operation.
 func (o *xxx_GetDependenciesOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of GetDependencies operation.
 func (o *xxx_GetDependenciesOperation) OpName() string { return "/IResourceManager/v0/GetDependencies" }
 
 func (o *xxx_GetDependenciesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2273,6 +2340,17 @@ func (o *GetDependenciesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetDependenciesRequest build a response structure from the given request structure.
+func (o *GetDependenciesRequest) MakeResponse() *GetDependenciesResponse {
+	return &GetDependenciesResponse{}
+}
+
+// OpNum returns the operation number of GetDependencies operation.
+func (o *GetDependenciesRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of GetDependencies operation.
+func (o *GetDependenciesRequest) OpName() string { return "/IResourceManager/v0/GetDependencies" }
+
 // GetDependenciesResponse structure represents the GetDependencies operation response
 type GetDependenciesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2326,8 +2404,10 @@ type xxx_GetServiceListOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetServiceList operation.
 func (o *xxx_GetServiceListOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of GetServiceList operation.
 func (o *xxx_GetServiceListOperation) OpName() string { return "/IResourceManager/v0/GetServiceList" }
 
 func (o *xxx_GetServiceListOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2517,6 +2597,17 @@ func (o *GetServiceListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetServiceListRequest build a response structure from the given request structure.
+func (o *GetServiceListRequest) MakeResponse() *GetServiceListResponse {
+	return &GetServiceListResponse{}
+}
+
+// OpNum returns the operation number of GetServiceList operation.
+func (o *GetServiceListRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of GetServiceList operation.
+func (o *GetServiceListRequest) OpName() string { return "/IResourceManager/v0/GetServiceList" }
+
 // GetServiceListResponse structure represents the GetServiceList operation response
 type GetServiceListResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2570,8 +2661,10 @@ type xxx_GetIISAppPoolNamesOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetIISAppPoolNames operation.
 func (o *xxx_GetIISAppPoolNamesOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of GetIISAppPoolNames operation.
 func (o *xxx_GetIISAppPoolNamesOperation) OpName() string {
 	return "/IResourceManager/v0/GetIISAppPoolNames"
 }
@@ -2809,6 +2902,17 @@ func (o *GetIISAppPoolNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetIISAppPoolNamesRequest build a response structure from the given request structure.
+func (o *GetIISAppPoolNamesRequest) MakeResponse() *GetIISAppPoolNamesResponse {
+	return &GetIISAppPoolNamesResponse{}
+}
+
+// OpNum returns the operation number of GetIISAppPoolNames operation.
+func (o *GetIISAppPoolNamesRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of GetIISAppPoolNames operation.
+func (o *GetIISAppPoolNamesRequest) OpName() string { return "/IResourceManager/v0/GetIISAppPoolNames" }
+
 // GetIISAppPoolNamesResponse structure represents the GetIISAppPoolNames operation response
 type GetIISAppPoolNamesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2866,8 +2970,10 @@ type xxx_GetServerNameOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetServerName operation.
 func (o *xxx_GetServerNameOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of GetServerName operation.
 func (o *xxx_GetServerNameOperation) OpName() string { return "/IResourceManager/v0/GetServerName" }
 
 func (o *xxx_GetServerNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3057,6 +3163,17 @@ func (o *GetServerNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetServerNameRequest build a response structure from the given request structure.
+func (o *GetServerNameRequest) MakeResponse() *GetServerNameResponse {
+	return &GetServerNameResponse{}
+}
+
+// OpNum returns the operation number of GetServerName operation.
+func (o *GetServerNameRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of GetServerName operation.
+func (o *GetServerNameRequest) OpName() string { return "/IResourceManager/v0/GetServerName" }
+
 // GetServerNameResponse structure represents the GetServerName operation response
 type GetServerNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3108,8 +3225,10 @@ type xxx_GetCurrentMemoryOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCurrentMemory operation.
 func (o *xxx_GetCurrentMemoryOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of GetCurrentMemory operation.
 func (o *xxx_GetCurrentMemoryOperation) OpName() string {
 	return "/IResourceManager/v0/GetCurrentMemory"
 }
@@ -3266,6 +3385,17 @@ func (o *GetCurrentMemoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetCurrentMemoryRequest build a response structure from the given request structure.
+func (o *GetCurrentMemoryRequest) MakeResponse() *GetCurrentMemoryResponse {
+	return &GetCurrentMemoryResponse{}
+}
+
+// OpNum returns the operation number of GetCurrentMemory operation.
+func (o *GetCurrentMemoryRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of GetCurrentMemory operation.
+func (o *GetCurrentMemoryRequest) OpName() string { return "/IResourceManager/v0/GetCurrentMemory" }
 
 // GetCurrentMemoryResponse structure represents the GetCurrentMemory operation response
 type GetCurrentMemoryResponse struct {

@@ -117,8 +117,10 @@ type xxx_RemoteGetClassObjectOperation struct {
 	Return           int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteGetClassObject operation.
 func (o *xxx_RemoteGetClassObjectOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RemoteGetClassObject operation.
 func (o *xxx_RemoteGetClassObjectOperation) OpName() string {
 	return "/IRemoteSCMActivator/v0/RemoteGetClassObject"
 }
@@ -391,6 +393,19 @@ func (o *RemoteGetClassObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeRemoteGetClassObjectRequest build a response structure from the given request structure.
+func (o *RemoteGetClassObjectRequest) MakeResponse() *RemoteGetClassObjectResponse {
+	return &RemoteGetClassObjectResponse{}
+}
+
+// OpNum returns the operation number of RemoteGetClassObject operation.
+func (o *RemoteGetClassObjectRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RemoteGetClassObject operation.
+func (o *RemoteGetClassObjectRequest) OpName() string {
+	return "/IRemoteSCMActivator/v0/RemoteGetClassObject"
+}
+
 // RemoteGetClassObjectResponse structure represents the RemoteGetClassObject operation response
 type RemoteGetClassObjectResponse struct {
 	// orpcthat: This MUST contain an ORPCTHAT. The extensions field MUST be set to NULL.
@@ -463,8 +478,10 @@ type xxx_RemoteCreateInstanceOperation struct {
 	Return           int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteCreateInstance operation.
 func (o *xxx_RemoteCreateInstanceOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RemoteCreateInstance operation.
 func (o *xxx_RemoteCreateInstanceOperation) OpName() string {
 	return "/IRemoteSCMActivator/v0/RemoteCreateInstance"
 }
@@ -785,6 +802,19 @@ func (o *RemoteCreateInstanceRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeRemoteCreateInstanceRequest build a response structure from the given request structure.
+func (o *RemoteCreateInstanceRequest) MakeResponse() *RemoteCreateInstanceResponse {
+	return &RemoteCreateInstanceResponse{}
+}
+
+// OpNum returns the operation number of RemoteCreateInstance operation.
+func (o *RemoteCreateInstanceRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RemoteCreateInstance operation.
+func (o *RemoteCreateInstanceRequest) OpName() string {
+	return "/IRemoteSCMActivator/v0/RemoteCreateInstance"
 }
 
 // RemoteCreateInstanceResponse structure represents the RemoteCreateInstance operation response

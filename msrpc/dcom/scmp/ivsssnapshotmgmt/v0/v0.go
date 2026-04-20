@@ -253,8 +253,10 @@ type xxx_GetProviderManagementInterfaceOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetProviderMgmtInterface operation.
 func (o *xxx_GetProviderManagementInterfaceOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetProviderMgmtInterface operation.
 func (o *xxx_GetProviderManagementInterfaceOperation) OpName() string {
 	return "/IVssSnapshotMgmt/v0/GetProviderMgmtInterface"
 }
@@ -498,6 +500,19 @@ func (o *GetProviderManagementInterfaceRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeGetProviderManagementInterfaceRequest build a response structure from the given request structure.
+func (o *GetProviderManagementInterfaceRequest) MakeResponse() *GetProviderManagementInterfaceResponse {
+	return &GetProviderManagementInterfaceResponse{}
+}
+
+// OpNum returns the operation number of GetProviderMgmtInterface operation.
+func (o *GetProviderManagementInterfaceRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetProviderMgmtInterface operation.
+func (o *GetProviderManagementInterfaceRequest) OpName() string {
+	return "/IVssSnapshotMgmt/v0/GetProviderMgmtInterface"
+}
+
 // GetProviderManagementInterfaceResponse structure represents the GetProviderMgmtInterface operation response
 type GetProviderManagementInterfaceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -553,8 +568,10 @@ type xxx_QueryVolumesSupportedForSnapshotsOperation struct {
 	Return     int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryVolumesSupportedForSnapshots operation.
 func (o *xxx_QueryVolumesSupportedForSnapshotsOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of QueryVolumesSupportedForSnapshots operation.
 func (o *xxx_QueryVolumesSupportedForSnapshotsOperation) OpName() string {
 	return "/IVssSnapshotMgmt/v0/QueryVolumesSupportedForSnapshots"
 }
@@ -803,6 +820,19 @@ func (o *QueryVolumesSupportedForSnapshotsRequest) UnmarshalNDR(ctx context.Cont
 	return nil
 }
 
+// MakeQueryVolumesSupportedForSnapshotsRequest build a response structure from the given request structure.
+func (o *QueryVolumesSupportedForSnapshotsRequest) MakeResponse() *QueryVolumesSupportedForSnapshotsResponse {
+	return &QueryVolumesSupportedForSnapshotsResponse{}
+}
+
+// OpNum returns the operation number of QueryVolumesSupportedForSnapshots operation.
+func (o *QueryVolumesSupportedForSnapshotsRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of QueryVolumesSupportedForSnapshots operation.
+func (o *QueryVolumesSupportedForSnapshotsRequest) OpName() string {
+	return "/IVssSnapshotMgmt/v0/QueryVolumesSupportedForSnapshots"
+}
+
 // QueryVolumesSupportedForSnapshotsResponse structure represents the QueryVolumesSupportedForSnapshots operation response
 type QueryVolumesSupportedForSnapshotsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -859,8 +889,10 @@ type xxx_QuerySnapshotsByVolumeOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QuerySnapshotsByVolume operation.
 func (o *xxx_QuerySnapshotsByVolumeOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of QuerySnapshotsByVolume operation.
 func (o *xxx_QuerySnapshotsByVolumeOperation) OpName() string {
 	return "/IVssSnapshotMgmt/v0/QuerySnapshotsByVolume"
 }
@@ -1119,6 +1151,19 @@ func (o *QuerySnapshotsByVolumeRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeQuerySnapshotsByVolumeRequest build a response structure from the given request structure.
+func (o *QuerySnapshotsByVolumeRequest) MakeResponse() *QuerySnapshotsByVolumeResponse {
+	return &QuerySnapshotsByVolumeResponse{}
+}
+
+// OpNum returns the operation number of QuerySnapshotsByVolume operation.
+func (o *QuerySnapshotsByVolumeRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of QuerySnapshotsByVolume operation.
+func (o *QuerySnapshotsByVolumeRequest) OpName() string {
+	return "/IVssSnapshotMgmt/v0/QuerySnapshotsByVolume"
 }
 
 // QuerySnapshotsByVolumeResponse structure represents the QuerySnapshotsByVolume operation response

@@ -339,8 +339,10 @@ type xxx_ShutdownContainerOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ShutdownContainer operation.
 func (o *xxx_ShutdownContainerOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ShutdownContainer operation.
 func (o *xxx_ShutdownContainerOperation) OpName() string {
 	return "/IContainerControl2/v0/ShutdownContainer"
 }
@@ -511,6 +513,17 @@ func (o *ShutdownContainerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeShutdownContainerRequest build a response structure from the given request structure.
+func (o *ShutdownContainerRequest) MakeResponse() *ShutdownContainerResponse {
+	return &ShutdownContainerResponse{}
+}
+
+// OpNum returns the operation number of ShutdownContainer operation.
+func (o *ShutdownContainerRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ShutdownContainer operation.
+func (o *ShutdownContainerRequest) OpName() string { return "/IContainerControl2/v0/ShutdownContainer" }
+
 // ShutdownContainerResponse structure represents the ShutdownContainer operation response
 type ShutdownContainerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -558,8 +571,10 @@ type xxx_PauseContainerOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PauseContainer operation.
 func (o *xxx_PauseContainerOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of PauseContainer operation.
 func (o *xxx_PauseContainerOperation) OpName() string { return "/IContainerControl2/v0/PauseContainer" }
 
 func (o *xxx_PauseContainerOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -728,6 +743,17 @@ func (o *PauseContainerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakePauseContainerRequest build a response structure from the given request structure.
+func (o *PauseContainerRequest) MakeResponse() *PauseContainerResponse {
+	return &PauseContainerResponse{}
+}
+
+// OpNum returns the operation number of PauseContainer operation.
+func (o *PauseContainerRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of PauseContainer operation.
+func (o *PauseContainerRequest) OpName() string { return "/IContainerControl2/v0/PauseContainer" }
+
 // PauseContainerResponse structure represents the PauseContainer operation response
 type PauseContainerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -775,8 +801,10 @@ type xxx_ResumeContainerOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ResumeContainer operation.
 func (o *xxx_ResumeContainerOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of ResumeContainer operation.
 func (o *xxx_ResumeContainerOperation) OpName() string {
 	return "/IContainerControl2/v0/ResumeContainer"
 }
@@ -947,6 +975,17 @@ func (o *ResumeContainerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeResumeContainerRequest build a response structure from the given request structure.
+func (o *ResumeContainerRequest) MakeResponse() *ResumeContainerResponse {
+	return &ResumeContainerResponse{}
+}
+
+// OpNum returns the operation number of ResumeContainer operation.
+func (o *ResumeContainerRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of ResumeContainer operation.
+func (o *ResumeContainerRequest) OpName() string { return "/IContainerControl2/v0/ResumeContainer" }
+
 // ResumeContainerResponse structure represents the ResumeContainer operation response
 type ResumeContainerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -995,8 +1034,10 @@ type xxx_IsContainerPausedOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsContainerPaused operation.
 func (o *xxx_IsContainerPausedOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of IsContainerPaused operation.
 func (o *xxx_IsContainerPausedOperation) OpName() string {
 	return "/IContainerControl2/v0/IsContainerPaused"
 }
@@ -1187,6 +1228,17 @@ func (o *IsContainerPausedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeIsContainerPausedRequest build a response structure from the given request structure.
+func (o *IsContainerPausedRequest) MakeResponse() *IsContainerPausedResponse {
+	return &IsContainerPausedResponse{}
+}
+
+// OpNum returns the operation number of IsContainerPaused operation.
+func (o *IsContainerPausedRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of IsContainerPaused operation.
+func (o *IsContainerPausedRequest) OpName() string { return "/IContainerControl2/v0/IsContainerPaused" }
+
 // IsContainerPausedResponse structure represents the IsContainerPaused operation response
 type IsContainerPausedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1242,8 +1294,10 @@ type xxx_GetRunningContainersOperation struct {
 	Return           int32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetRunningContainers operation.
 func (o *xxx_GetRunningContainersOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetRunningContainers operation.
 func (o *xxx_GetRunningContainersOperation) OpName() string {
 	return "/IContainerControl2/v0/GetRunningContainers"
 }
@@ -1534,6 +1588,19 @@ func (o *GetRunningContainersRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetRunningContainersRequest build a response structure from the given request structure.
+func (o *GetRunningContainersRequest) MakeResponse() *GetRunningContainersResponse {
+	return &GetRunningContainersResponse{}
+}
+
+// OpNum returns the operation number of GetRunningContainers operation.
+func (o *GetRunningContainersRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetRunningContainers operation.
+func (o *GetRunningContainersRequest) OpName() string {
+	return "/IContainerControl2/v0/GetRunningContainers"
+}
+
 // GetRunningContainersResponse structure represents the GetRunningContainers operation response
 type GetRunningContainersResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1592,8 +1659,10 @@ type xxx_GetContainerIDFromProcessIDOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetContainerIDFromProcessID operation.
 func (o *xxx_GetContainerIDFromProcessIDOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of GetContainerIDFromProcessID operation.
 func (o *xxx_GetContainerIDFromProcessIDOperation) OpName() string {
 	return "/IContainerControl2/v0/GetContainerIDFromProcessID"
 }
@@ -1801,6 +1870,19 @@ func (o *GetContainerIDFromProcessIDRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeGetContainerIDFromProcessIDRequest build a response structure from the given request structure.
+func (o *GetContainerIDFromProcessIDRequest) MakeResponse() *GetContainerIDFromProcessIDResponse {
+	return &GetContainerIDFromProcessIDResponse{}
+}
+
+// OpNum returns the operation number of GetContainerIDFromProcessID operation.
+func (o *GetContainerIDFromProcessIDRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GetContainerIDFromProcessID operation.
+func (o *GetContainerIDFromProcessIDRequest) OpName() string {
+	return "/IContainerControl2/v0/GetContainerIDFromProcessID"
+}
+
 // GetContainerIDFromProcessIDResponse structure represents the GetContainerIDFromProcessID operation response
 type GetContainerIDFromProcessIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1855,8 +1937,10 @@ type xxx_RecycleContainerOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RecycleContainer operation.
 func (o *xxx_RecycleContainerOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RecycleContainer operation.
 func (o *xxx_RecycleContainerOperation) OpName() string {
 	return "/IContainerControl2/v0/RecycleContainer"
 }
@@ -2044,6 +2128,17 @@ func (o *RecycleContainerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeRecycleContainerRequest build a response structure from the given request structure.
+func (o *RecycleContainerRequest) MakeResponse() *RecycleContainerResponse {
+	return &RecycleContainerResponse{}
+}
+
+// OpNum returns the operation number of RecycleContainer operation.
+func (o *RecycleContainerRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RecycleContainer operation.
+func (o *RecycleContainerRequest) OpName() string { return "/IContainerControl2/v0/RecycleContainer" }
+
 // RecycleContainerResponse structure represents the RecycleContainer operation response
 type RecycleContainerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2092,8 +2187,10 @@ type xxx_GetContainerIDFromConglomerationIDOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetContainerIDFromConglomerationID operation.
 func (o *xxx_GetContainerIDFromConglomerationIDOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of GetContainerIDFromConglomerationID operation.
 func (o *xxx_GetContainerIDFromConglomerationIDOperation) OpName() string {
 	return "/IContainerControl2/v0/GetContainerIDFromConglomerationID"
 }
@@ -2283,6 +2380,19 @@ func (o *GetContainerIDFromConglomerationIDRequest) UnmarshalNDR(ctx context.Con
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetContainerIDFromConglomerationIDRequest build a response structure from the given request structure.
+func (o *GetContainerIDFromConglomerationIDRequest) MakeResponse() *GetContainerIDFromConglomerationIDResponse {
+	return &GetContainerIDFromConglomerationIDResponse{}
+}
+
+// OpNum returns the operation number of GetContainerIDFromConglomerationID operation.
+func (o *GetContainerIDFromConglomerationIDRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of GetContainerIDFromConglomerationID operation.
+func (o *GetContainerIDFromConglomerationIDRequest) OpName() string {
+	return "/IContainerControl2/v0/GetContainerIDFromConglomerationID"
 }
 
 // GetContainerIDFromConglomerationIDResponse structure represents the GetContainerIDFromConglomerationID operation response

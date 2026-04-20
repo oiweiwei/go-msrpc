@@ -482,8 +482,10 @@ type xxx_InitOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Init operation.
 func (o *xxx_InitOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Init operation.
 func (o *xxx_InitOperation) OpName() string { return "/IMSMQManagement/v0/Init" }
 
 func (o *xxx_InitOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -781,6 +783,17 @@ func (o *InitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeInitRequest build a response structure from the given request structure.
+func (o *InitRequest) MakeResponse() *InitResponse {
+	return &InitResponse{}
+}
+
+// OpNum returns the operation number of Init operation.
+func (o *InitRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Init operation.
+func (o *InitRequest) OpName() string { return "/IMSMQManagement/v0/Init" }
+
 // InitResponse structure represents the Init operation response
 type InitResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -828,8 +841,10 @@ type xxx_GetFormatNameOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FormatName operation.
 func (o *xxx_GetFormatNameOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of FormatName operation.
 func (o *xxx_GetFormatNameOperation) OpName() string { return "/IMSMQManagement/v0/FormatName" }
 
 func (o *xxx_GetFormatNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1019,6 +1034,17 @@ func (o *GetFormatNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetFormatNameRequest build a response structure from the given request structure.
+func (o *GetFormatNameRequest) MakeResponse() *GetFormatNameResponse {
+	return &GetFormatNameResponse{}
+}
+
+// OpNum returns the operation number of FormatName operation.
+func (o *GetFormatNameRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of FormatName operation.
+func (o *GetFormatNameRequest) OpName() string { return "/IMSMQManagement/v0/FormatName" }
+
 // GetFormatNameResponse structure represents the FormatName operation response
 type GetFormatNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1069,8 +1095,10 @@ type xxx_GetMachineOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Machine operation.
 func (o *xxx_GetMachineOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Machine operation.
 func (o *xxx_GetMachineOperation) OpName() string { return "/IMSMQManagement/v0/Machine" }
 
 func (o *xxx_GetMachineOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1260,6 +1288,17 @@ func (o *GetMachineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetMachineRequest build a response structure from the given request structure.
+func (o *GetMachineRequest) MakeResponse() *GetMachineResponse {
+	return &GetMachineResponse{}
+}
+
+// OpNum returns the operation number of Machine operation.
+func (o *GetMachineRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Machine operation.
+func (o *GetMachineRequest) OpName() string { return "/IMSMQManagement/v0/Machine" }
+
 // GetMachineResponse structure represents the Machine operation response
 type GetMachineResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1310,8 +1349,10 @@ type xxx_GetMessageCountOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MessageCount operation.
 func (o *xxx_GetMessageCountOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of MessageCount operation.
 func (o *xxx_GetMessageCountOperation) OpName() string { return "/IMSMQManagement/v0/MessageCount" }
 
 func (o *xxx_GetMessageCountOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1467,6 +1508,17 @@ func (o *GetMessageCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetMessageCountRequest build a response structure from the given request structure.
+func (o *GetMessageCountRequest) MakeResponse() *GetMessageCountResponse {
+	return &GetMessageCountResponse{}
+}
+
+// OpNum returns the operation number of MessageCount operation.
+func (o *GetMessageCountRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of MessageCount operation.
+func (o *GetMessageCountRequest) OpName() string { return "/IMSMQManagement/v0/MessageCount" }
+
 // GetMessageCountResponse structure represents the MessageCount operation response
 type GetMessageCountResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1519,8 +1571,10 @@ type xxx_GetForeignStatusOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ForeignStatus operation.
 func (o *xxx_GetForeignStatusOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of ForeignStatus operation.
 func (o *xxx_GetForeignStatusOperation) OpName() string { return "/IMSMQManagement/v0/ForeignStatus" }
 
 func (o *xxx_GetForeignStatusOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1676,6 +1730,17 @@ func (o *GetForeignStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetForeignStatusRequest build a response structure from the given request structure.
+func (o *GetForeignStatusRequest) MakeResponse() *GetForeignStatusResponse {
+	return &GetForeignStatusResponse{}
+}
+
+// OpNum returns the operation number of ForeignStatus operation.
+func (o *GetForeignStatusRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of ForeignStatus operation.
+func (o *GetForeignStatusRequest) OpName() string { return "/IMSMQManagement/v0/ForeignStatus" }
+
 // GetForeignStatusResponse structure represents the ForeignStatus operation response
 type GetForeignStatusResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1744,8 +1809,10 @@ type xxx_GetQueueTypeOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueueType operation.
 func (o *xxx_GetQueueTypeOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of QueueType operation.
 func (o *xxx_GetQueueTypeOperation) OpName() string { return "/IMSMQManagement/v0/QueueType" }
 
 func (o *xxx_GetQueueTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1901,6 +1968,17 @@ func (o *GetQueueTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetQueueTypeRequest build a response structure from the given request structure.
+func (o *GetQueueTypeRequest) MakeResponse() *GetQueueTypeResponse {
+	return &GetQueueTypeResponse{}
+}
+
+// OpNum returns the operation number of QueueType operation.
+func (o *GetQueueTypeRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of QueueType operation.
+func (o *GetQueueTypeRequest) OpName() string { return "/IMSMQManagement/v0/QueueType" }
+
 // GetQueueTypeResponse structure represents the QueueType operation response
 type GetQueueTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1971,8 +2049,10 @@ type xxx_GetIsLocalOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsLocal operation.
 func (o *xxx_GetIsLocalOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of IsLocal operation.
 func (o *xxx_GetIsLocalOperation) OpName() string { return "/IMSMQManagement/v0/IsLocal" }
 
 func (o *xxx_GetIsLocalOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2128,6 +2208,17 @@ func (o *GetIsLocalRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetIsLocalRequest build a response structure from the given request structure.
+func (o *GetIsLocalRequest) MakeResponse() *GetIsLocalResponse {
+	return &GetIsLocalResponse{}
+}
+
+// OpNum returns the operation number of IsLocal operation.
+func (o *GetIsLocalRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of IsLocal operation.
+func (o *GetIsLocalRequest) OpName() string { return "/IMSMQManagement/v0/IsLocal" }
+
 // GetIsLocalResponse structure represents the IsLocal operation response
 type GetIsLocalResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2181,8 +2272,10 @@ type xxx_GetTransactionalStatusOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TransactionalStatus operation.
 func (o *xxx_GetTransactionalStatusOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of TransactionalStatus operation.
 func (o *xxx_GetTransactionalStatusOperation) OpName() string {
 	return "/IMSMQManagement/v0/TransactionalStatus"
 }
@@ -2340,6 +2433,19 @@ func (o *GetTransactionalStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetTransactionalStatusRequest build a response structure from the given request structure.
+func (o *GetTransactionalStatusRequest) MakeResponse() *GetTransactionalStatusResponse {
+	return &GetTransactionalStatusResponse{}
+}
+
+// OpNum returns the operation number of TransactionalStatus operation.
+func (o *GetTransactionalStatusRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of TransactionalStatus operation.
+func (o *GetTransactionalStatusRequest) OpName() string {
+	return "/IMSMQManagement/v0/TransactionalStatus"
+}
+
 // GetTransactionalStatusResponse structure represents the TransactionalStatus operation response
 type GetTransactionalStatusResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2407,8 +2513,10 @@ type xxx_GetBytesInQueueOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BytesInQueue operation.
 func (o *xxx_GetBytesInQueueOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of BytesInQueue operation.
 func (o *xxx_GetBytesInQueueOperation) OpName() string { return "/IMSMQManagement/v0/BytesInQueue" }
 
 func (o *xxx_GetBytesInQueueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2597,6 +2705,17 @@ func (o *GetBytesInQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetBytesInQueueRequest build a response structure from the given request structure.
+func (o *GetBytesInQueueRequest) MakeResponse() *GetBytesInQueueResponse {
+	return &GetBytesInQueueResponse{}
+}
+
+// OpNum returns the operation number of BytesInQueue operation.
+func (o *GetBytesInQueueRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of BytesInQueue operation.
+func (o *GetBytesInQueueRequest) OpName() string { return "/IMSMQManagement/v0/BytesInQueue" }
 
 // GetBytesInQueueResponse structure represents the BytesInQueue operation response
 type GetBytesInQueueResponse struct {

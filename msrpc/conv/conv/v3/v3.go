@@ -138,8 +138,10 @@ type xxx_WhoAreYouOperation struct {
 	Status      uint32     `idl:"name:st" json:"status"`
 }
 
+// OpNum returns the operation number of conv_who_are_you operation.
 func (o *xxx_WhoAreYouOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of conv_who_are_you operation.
 func (o *xxx_WhoAreYouOperation) OpName() string { return "/conv/v3/conv_who_are_you" }
 
 func (o *xxx_WhoAreYouOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -276,6 +278,17 @@ func (o *WhoAreYouRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeWhoAreYouRequest build a response structure from the given request structure.
+func (o *WhoAreYouRequest) MakeResponse() *WhoAreYouResponse {
+	return &WhoAreYouResponse{}
+}
+
+// OpNum returns the operation number of conv_who_are_you operation.
+func (o *WhoAreYouRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of conv_who_are_you operation.
+func (o *WhoAreYouRequest) OpName() string { return "/conv/v3/conv_who_are_you" }
+
 // WhoAreYouResponse structure represents the conv_who_are_you operation response
 type WhoAreYouResponse struct {
 	Seq    uint32 `idl:"name:seq" json:"seq"`
@@ -322,8 +335,10 @@ type xxx_WhoAreYou2Operation struct {
 	Status      uint32     `idl:"name:st" json:"status"`
 }
 
+// OpNum returns the operation number of conv_who_are_you2 operation.
 func (o *xxx_WhoAreYou2Operation) OpNum() int { return 1 }
 
+// OpName returns the operation name of conv_who_are_you2 operation.
 func (o *xxx_WhoAreYou2Operation) OpName() string { return "/conv/v3/conv_who_are_you2" }
 
 func (o *xxx_WhoAreYou2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -481,6 +496,17 @@ func (o *WhoAreYou2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeWhoAreYou2Request build a response structure from the given request structure.
+func (o *WhoAreYou2Request) MakeResponse() *WhoAreYou2Response {
+	return &WhoAreYou2Response{}
+}
+
+// OpNum returns the operation number of conv_who_are_you2 operation.
+func (o *WhoAreYou2Request) OpNum() int { return 1 }
+
+// OpName returns the operation name of conv_who_are_you2 operation.
+func (o *WhoAreYou2Request) OpName() string { return "/conv/v3/conv_who_are_you2" }
+
 // WhoAreYou2Response structure represents the conv_who_are_you2 operation response
 type WhoAreYou2Response struct {
 	Seq     uint32     `idl:"name:seq" json:"seq"`
@@ -528,8 +554,10 @@ type xxx_AreYouThereOperation struct {
 	Status      uint32     `idl:"name:st" json:"status"`
 }
 
+// OpNum returns the operation number of conv_are_you_there operation.
 func (o *xxx_AreYouThereOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of conv_are_you_there operation.
 func (o *xxx_AreYouThereOperation) OpName() string { return "/conv/v3/conv_are_you_there" }
 
 func (o *xxx_AreYouThereOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -654,6 +682,17 @@ func (o *AreYouThereRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeAreYouThereRequest build a response structure from the given request structure.
+func (o *AreYouThereRequest) MakeResponse() *AreYouThereResponse {
+	return &AreYouThereResponse{}
+}
+
+// OpNum returns the operation number of conv_are_you_there operation.
+func (o *AreYouThereRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of conv_are_you_there operation.
+func (o *AreYouThereRequest) OpName() string { return "/conv/v3/conv_are_you_there" }
+
 // AreYouThereResponse structure represents the conv_are_you_there operation response
 type AreYouThereResponse struct {
 	Status uint32 `idl:"name:st" json:"status"`
@@ -702,8 +741,10 @@ type xxx_WhoAreYouAuthOperation struct {
 	Status       uint32     `idl:"name:st" json:"status"`
 }
 
+// OpNum returns the operation number of conv_who_are_you_auth operation.
 func (o *xxx_WhoAreYouAuthOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of conv_who_are_you_auth operation.
 func (o *xxx_WhoAreYouAuthOperation) OpName() string { return "/conv/v3/conv_who_are_you_auth" }
 
 func (o *xxx_WhoAreYouAuthOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1022,6 +1063,22 @@ func (o *WhoAreYouAuthRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeWhoAreYouAuthRequest build a response structure from the given request structure.
+func (o *WhoAreYouAuthRequest) MakeResponse() *WhoAreYouAuthResponse {
+	if o == nil {
+		return &WhoAreYouAuthResponse{}
+	}
+	return &WhoAreYouAuthResponse{
+		OutMaxLength: o.OutMaxLength,
+	}
+}
+
+// OpNum returns the operation number of conv_who_are_you_auth operation.
+func (o *WhoAreYouAuthRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of conv_who_are_you_auth operation.
+func (o *WhoAreYouAuthRequest) OpName() string { return "/conv/v3/conv_who_are_you_auth" }
+
 // WhoAreYouAuthResponse structure represents the conv_who_are_you_auth operation response
 type WhoAreYouAuthResponse struct {
 	// XXX: out_max_len is an implicit input depedency for output parameters
@@ -1090,8 +1147,10 @@ type xxx_WhoAreYouAuthMoreOperation struct {
 	Status       uint32     `idl:"name:st" json:"status"`
 }
 
+// OpNum returns the operation number of conv_who_are_you_auth_more operation.
 func (o *xxx_WhoAreYouAuthMoreOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of conv_who_are_you_auth_more operation.
 func (o *xxx_WhoAreYouAuthMoreOperation) OpName() string {
 	return "/conv/v3/conv_who_are_you_auth_more"
 }
@@ -1327,6 +1386,22 @@ func (o *WhoAreYouAuthMoreRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeWhoAreYouAuthMoreRequest build a response structure from the given request structure.
+func (o *WhoAreYouAuthMoreRequest) MakeResponse() *WhoAreYouAuthMoreResponse {
+	if o == nil {
+		return &WhoAreYouAuthMoreResponse{}
+	}
+	return &WhoAreYouAuthMoreResponse{
+		OutMaxLength: o.OutMaxLength,
+	}
+}
+
+// OpNum returns the operation number of conv_who_are_you_auth_more operation.
+func (o *WhoAreYouAuthMoreRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of conv_who_are_you_auth_more operation.
+func (o *WhoAreYouAuthMoreRequest) OpName() string { return "/conv/v3/conv_who_are_you_auth_more" }
 
 // WhoAreYouAuthMoreResponse structure represents the conv_who_are_you_auth_more operation response
 type WhoAreYouAuthMoreResponse struct {

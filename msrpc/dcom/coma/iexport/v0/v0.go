@@ -195,8 +195,10 @@ type xxx_ExportConglomerationOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExportConglomeration operation.
 func (o *xxx_ExportConglomerationOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ExportConglomeration operation.
 func (o *xxx_ExportConglomerationOperation) OpName() string {
 	return "/IExport/v0/ExportConglomeration"
 }
@@ -410,6 +412,17 @@ func (o *ExportConglomerationRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeExportConglomerationRequest build a response structure from the given request structure.
+func (o *ExportConglomerationRequest) MakeResponse() *ExportConglomerationResponse {
+	return &ExportConglomerationResponse{}
+}
+
+// OpNum returns the operation number of ExportConglomeration operation.
+func (o *ExportConglomerationRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ExportConglomeration operation.
+func (o *ExportConglomerationRequest) OpName() string { return "/IExport/v0/ExportConglomeration" }
 
 // ExportConglomerationResponse structure represents the ExportConglomeration operation response
 type ExportConglomerationResponse struct {

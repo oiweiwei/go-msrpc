@@ -495,8 +495,10 @@ type xxx_OpenNTMSServerSessionWOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OpenNtmsServerSessionW operation.
 func (o *xxx_OpenNTMSServerSessionWOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of OpenNtmsServerSessionW operation.
 func (o *xxx_OpenNTMSServerSessionWOperation) OpName() string {
 	return "/INtmsSession1/v0/OpenNtmsServerSessionW"
 }
@@ -795,6 +797,19 @@ func (o *OpenNTMSServerSessionWRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeOpenNTMSServerSessionWRequest build a response structure from the given request structure.
+func (o *OpenNTMSServerSessionWRequest) MakeResponse() *OpenNTMSServerSessionWResponse {
+	return &OpenNTMSServerSessionWResponse{}
+}
+
+// OpNum returns the operation number of OpenNtmsServerSessionW operation.
+func (o *OpenNTMSServerSessionWRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of OpenNtmsServerSessionW operation.
+func (o *OpenNTMSServerSessionWRequest) OpName() string {
+	return "/INtmsSession1/v0/OpenNtmsServerSessionW"
+}
+
 // OpenNTMSServerSessionWResponse structure represents the OpenNtmsServerSessionW operation response
 type OpenNTMSServerSessionWResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -846,8 +861,10 @@ type xxx_OpenNTMSServerSessionAOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OpenNtmsServerSessionA operation.
 func (o *xxx_OpenNTMSServerSessionAOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of OpenNtmsServerSessionA operation.
 func (o *xxx_OpenNTMSServerSessionAOperation) OpName() string {
 	return "/INtmsSession1/v0/OpenNtmsServerSessionA"
 }
@@ -1145,6 +1162,19 @@ func (o *OpenNTMSServerSessionARequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeOpenNTMSServerSessionARequest build a response structure from the given request structure.
+func (o *OpenNTMSServerSessionARequest) MakeResponse() *OpenNTMSServerSessionAResponse {
+	return &OpenNTMSServerSessionAResponse{}
+}
+
+// OpNum returns the operation number of OpenNtmsServerSessionA operation.
+func (o *OpenNTMSServerSessionARequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of OpenNtmsServerSessionA operation.
+func (o *OpenNTMSServerSessionARequest) OpName() string {
+	return "/INtmsSession1/v0/OpenNtmsServerSessionA"
+}
+
 // OpenNTMSServerSessionAResponse structure represents the OpenNtmsServerSessionA operation response
 type OpenNTMSServerSessionAResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1191,8 +1221,10 @@ type xxx_CloseNTMSSessionOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CloseNtmsSession operation.
 func (o *xxx_CloseNTMSSessionOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of CloseNtmsSession operation.
 func (o *xxx_CloseNTMSSessionOperation) OpName() string { return "/INtmsSession1/v0/CloseNtmsSession" }
 
 func (o *xxx_CloseNTMSSessionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1336,6 +1368,17 @@ func (o *CloseNTMSSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeCloseNTMSSessionRequest build a response structure from the given request structure.
+func (o *CloseNTMSSessionRequest) MakeResponse() *CloseNTMSSessionResponse {
+	return &CloseNTMSSessionResponse{}
+}
+
+// OpNum returns the operation number of CloseNtmsSession operation.
+func (o *CloseNTMSSessionRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of CloseNtmsSession operation.
+func (o *CloseNTMSSessionRequest) OpName() string { return "/INtmsSession1/v0/CloseNtmsSession" }
+
 // CloseNTMSSessionResponse structure represents the CloseNtmsSession operation response
 type CloseNTMSSessionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1387,8 +1430,10 @@ type xxx_SubmitNTMSOperatorRequestWOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SubmitNtmsOperatorRequestW operation.
 func (o *xxx_SubmitNTMSOperatorRequestWOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SubmitNtmsOperatorRequestW operation.
 func (o *xxx_SubmitNTMSOperatorRequestWOperation) OpName() string {
 	return "/INtmsSession1/v0/SubmitNtmsOperatorRequestW"
 }
@@ -1752,6 +1797,19 @@ func (o *SubmitNTMSOperatorRequestWRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeSubmitNTMSOperatorRequestWRequest build a response structure from the given request structure.
+func (o *SubmitNTMSOperatorRequestWRequest) MakeResponse() *SubmitNTMSOperatorRequestWResponse {
+	return &SubmitNTMSOperatorRequestWResponse{}
+}
+
+// OpNum returns the operation number of SubmitNtmsOperatorRequestW operation.
+func (o *SubmitNTMSOperatorRequestWRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SubmitNtmsOperatorRequestW operation.
+func (o *SubmitNTMSOperatorRequestWRequest) OpName() string {
+	return "/INtmsSession1/v0/SubmitNtmsOperatorRequestW"
+}
+
 // SubmitNTMSOperatorRequestWResponse structure represents the SubmitNtmsOperatorRequestW operation response
 type SubmitNTMSOperatorRequestWResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1832,8 +1890,10 @@ type xxx_SubmitNTMSOperatorRequestAOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SubmitNtmsOperatorRequestA operation.
 func (o *xxx_SubmitNTMSOperatorRequestAOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of SubmitNtmsOperatorRequestA operation.
 func (o *xxx_SubmitNTMSOperatorRequestAOperation) OpName() string {
 	return "/INtmsSession1/v0/SubmitNtmsOperatorRequestA"
 }
@@ -2197,6 +2257,19 @@ func (o *SubmitNTMSOperatorRequestARequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeSubmitNTMSOperatorRequestARequest build a response structure from the given request structure.
+func (o *SubmitNTMSOperatorRequestARequest) MakeResponse() *SubmitNTMSOperatorRequestAResponse {
+	return &SubmitNTMSOperatorRequestAResponse{}
+}
+
+// OpNum returns the operation number of SubmitNtmsOperatorRequestA operation.
+func (o *SubmitNTMSOperatorRequestARequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of SubmitNtmsOperatorRequestA operation.
+func (o *SubmitNTMSOperatorRequestARequest) OpName() string {
+	return "/INtmsSession1/v0/SubmitNtmsOperatorRequestA"
+}
+
 // SubmitNTMSOperatorRequestAResponse structure represents the SubmitNtmsOperatorRequestA operation response
 type SubmitNTMSOperatorRequestAResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2274,8 +2347,10 @@ type xxx_WaitForNTMSOperatorRequestOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WaitForNtmsOperatorRequest operation.
 func (o *xxx_WaitForNTMSOperatorRequestOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of WaitForNtmsOperatorRequest operation.
 func (o *xxx_WaitForNTMSOperatorRequestOperation) OpName() string {
 	return "/INtmsSession1/v0/WaitForNtmsOperatorRequest"
 }
@@ -2487,6 +2562,19 @@ func (o *WaitForNTMSOperatorRequestRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeWaitForNTMSOperatorRequestRequest build a response structure from the given request structure.
+func (o *WaitForNTMSOperatorRequestRequest) MakeResponse() *WaitForNTMSOperatorRequestResponse {
+	return &WaitForNTMSOperatorRequestResponse{}
+}
+
+// OpNum returns the operation number of WaitForNtmsOperatorRequest operation.
+func (o *WaitForNTMSOperatorRequestRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of WaitForNtmsOperatorRequest operation.
+func (o *WaitForNTMSOperatorRequestRequest) OpName() string {
+	return "/INtmsSession1/v0/WaitForNtmsOperatorRequest"
+}
+
 // WaitForNTMSOperatorRequestResponse structure represents the WaitForNtmsOperatorRequest operation response
 type WaitForNTMSOperatorRequestResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2534,8 +2622,10 @@ type xxx_CancelNTMSOperatorRequestOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CancelNtmsOperatorRequest operation.
 func (o *xxx_CancelNTMSOperatorRequestOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of CancelNtmsOperatorRequest operation.
 func (o *xxx_CancelNTMSOperatorRequestOperation) OpName() string {
 	return "/INtmsSession1/v0/CancelNtmsOperatorRequest"
 }
@@ -2726,6 +2816,19 @@ func (o *CancelNTMSOperatorRequestRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeCancelNTMSOperatorRequestRequest build a response structure from the given request structure.
+func (o *CancelNTMSOperatorRequestRequest) MakeResponse() *CancelNTMSOperatorRequestResponse {
+	return &CancelNTMSOperatorRequestResponse{}
+}
+
+// OpNum returns the operation number of CancelNtmsOperatorRequest operation.
+func (o *CancelNTMSOperatorRequestRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of CancelNtmsOperatorRequest operation.
+func (o *CancelNTMSOperatorRequestRequest) OpName() string {
+	return "/INtmsSession1/v0/CancelNtmsOperatorRequest"
+}
+
 // CancelNTMSOperatorRequestResponse structure represents the CancelNtmsOperatorRequest operation response
 type CancelNTMSOperatorRequestResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2773,8 +2876,10 @@ type xxx_SatisfyNTMSOperatorRequestOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SatisfyNtmsOperatorRequest operation.
 func (o *xxx_SatisfyNTMSOperatorRequestOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of SatisfyNtmsOperatorRequest operation.
 func (o *xxx_SatisfyNTMSOperatorRequestOperation) OpName() string {
 	return "/INtmsSession1/v0/SatisfyNtmsOperatorRequest"
 }
@@ -2963,6 +3068,19 @@ func (o *SatisfyNTMSOperatorRequestRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeSatisfyNTMSOperatorRequestRequest build a response structure from the given request structure.
+func (o *SatisfyNTMSOperatorRequestRequest) MakeResponse() *SatisfyNTMSOperatorRequestResponse {
+	return &SatisfyNTMSOperatorRequestResponse{}
+}
+
+// OpNum returns the operation number of SatisfyNtmsOperatorRequest operation.
+func (o *SatisfyNTMSOperatorRequestRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of SatisfyNtmsOperatorRequest operation.
+func (o *SatisfyNTMSOperatorRequestRequest) OpName() string {
+	return "/INtmsSession1/v0/SatisfyNtmsOperatorRequest"
+}
+
 // SatisfyNTMSOperatorRequestResponse structure represents the SatisfyNtmsOperatorRequest operation response
 type SatisfyNTMSOperatorRequestResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3009,8 +3127,10 @@ type xxx_ImportNTMSDatabaseOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ImportNtmsDatabase operation.
 func (o *xxx_ImportNTMSDatabaseOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ImportNtmsDatabase operation.
 func (o *xxx_ImportNTMSDatabaseOperation) OpName() string {
 	return "/INtmsSession1/v0/ImportNtmsDatabase"
 }
@@ -3156,6 +3276,17 @@ func (o *ImportNTMSDatabaseRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeImportNTMSDatabaseRequest build a response structure from the given request structure.
+func (o *ImportNTMSDatabaseRequest) MakeResponse() *ImportNTMSDatabaseResponse {
+	return &ImportNTMSDatabaseResponse{}
+}
+
+// OpNum returns the operation number of ImportNtmsDatabase operation.
+func (o *ImportNTMSDatabaseRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ImportNtmsDatabase operation.
+func (o *ImportNTMSDatabaseRequest) OpName() string { return "/INtmsSession1/v0/ImportNtmsDatabase" }
+
 // ImportNTMSDatabaseResponse structure represents the ImportNtmsDatabase operation response
 type ImportNTMSDatabaseResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3202,8 +3333,10 @@ type xxx_ExportNTMSDatabaseOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExportNtmsDatabase operation.
 func (o *xxx_ExportNTMSDatabaseOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ExportNtmsDatabase operation.
 func (o *xxx_ExportNTMSDatabaseOperation) OpName() string {
 	return "/INtmsSession1/v0/ExportNtmsDatabase"
 }
@@ -3349,6 +3482,17 @@ func (o *ExportNTMSDatabaseRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeExportNTMSDatabaseRequest build a response structure from the given request structure.
+func (o *ExportNTMSDatabaseRequest) MakeResponse() *ExportNTMSDatabaseResponse {
+	return &ExportNTMSDatabaseResponse{}
+}
+
+// OpNum returns the operation number of ExportNtmsDatabase operation.
+func (o *ExportNTMSDatabaseRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ExportNtmsDatabase operation.
+func (o *ExportNTMSDatabaseRequest) OpName() string { return "/INtmsSession1/v0/ExportNtmsDatabase" }
+
 // ExportNTMSDatabaseResponse structure represents the ExportNtmsDatabase operation response
 type ExportNTMSDatabaseResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3396,8 +3540,10 @@ type xxx_AddNotificationOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddNotification operation.
 func (o *xxx_AddNotificationOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of AddNotification operation.
 func (o *xxx_AddNotificationOperation) OpName() string { return "/INtmsSession1/v0/AddNotification" }
 
 func (o *xxx_AddNotificationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3567,6 +3713,17 @@ func (o *AddNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeAddNotificationRequest build a response structure from the given request structure.
+func (o *AddNotificationRequest) MakeResponse() *AddNotificationResponse {
+	return &AddNotificationResponse{}
+}
+
+// OpNum returns the operation number of AddNotification operation.
+func (o *AddNotificationRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of AddNotification operation.
+func (o *AddNotificationRequest) OpName() string { return "/INtmsSession1/v0/AddNotification" }
+
 // AddNotificationResponse structure represents the AddNotification operation response
 type AddNotificationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3614,8 +3771,10 @@ type xxx_RemoveNotificationOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoveNotification operation.
 func (o *xxx_RemoveNotificationOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of RemoveNotification operation.
 func (o *xxx_RemoveNotificationOperation) OpName() string {
 	return "/INtmsSession1/v0/RemoveNotification"
 }
@@ -3789,6 +3948,17 @@ func (o *RemoveNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeRemoveNotificationRequest build a response structure from the given request structure.
+func (o *RemoveNotificationRequest) MakeResponse() *RemoveNotificationResponse {
+	return &RemoveNotificationResponse{}
+}
+
+// OpNum returns the operation number of RemoveNotification operation.
+func (o *RemoveNotificationRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of RemoveNotification operation.
+func (o *RemoveNotificationRequest) OpName() string { return "/INtmsSession1/v0/RemoveNotification" }
+
 // RemoveNotificationResponse structure represents the RemoveNotification operation response
 type RemoveNotificationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3838,8 +4008,10 @@ type xxx_DispatchNotificationOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DispatchNotification operation.
 func (o *xxx_DispatchNotificationOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of DispatchNotification operation.
 func (o *xxx_DispatchNotificationOperation) OpName() string {
 	return "/INtmsSession1/v0/DispatchNotification"
 }
@@ -4054,6 +4226,19 @@ func (o *DispatchNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeDispatchNotificationRequest build a response structure from the given request structure.
+func (o *DispatchNotificationRequest) MakeResponse() *DispatchNotificationResponse {
+	return &DispatchNotificationResponse{}
+}
+
+// OpNum returns the operation number of DispatchNotification operation.
+func (o *DispatchNotificationRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of DispatchNotification operation.
+func (o *DispatchNotificationRequest) OpName() string {
+	return "/INtmsSession1/v0/DispatchNotification"
 }
 
 // DispatchNotificationResponse structure represents the DispatchNotification operation response

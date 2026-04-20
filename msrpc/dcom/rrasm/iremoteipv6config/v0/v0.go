@@ -186,8 +186,10 @@ type xxx_GetAddressListOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetAddressList operation.
 func (o *xxx_GetAddressListOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetAddressList operation.
 func (o *xxx_GetAddressListOperation) OpName() string { return "/IRemoteIPV6Config/v0/GetAddressList" }
 
 func (o *xxx_GetAddressListOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -454,6 +456,17 @@ func (o *GetAddressListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetAddressListRequest build a response structure from the given request structure.
+func (o *GetAddressListRequest) MakeResponse() *GetAddressListResponse {
+	return &GetAddressListResponse{}
+}
+
+// OpNum returns the operation number of GetAddressList operation.
+func (o *GetAddressListRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetAddressList operation.
+func (o *GetAddressListRequest) OpName() string { return "/IRemoteIPV6Config/v0/GetAddressList" }
 
 // GetAddressListResponse structure represents the GetAddressList operation response
 type GetAddressListResponse struct {

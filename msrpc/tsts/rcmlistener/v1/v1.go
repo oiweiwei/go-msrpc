@@ -282,8 +282,10 @@ type xxx_OpenListenerOperation struct {
 	Return       int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcOpenListener operation.
 func (o *xxx_OpenListenerOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RpcOpenListener operation.
 func (o *xxx_OpenListenerOperation) OpName() string { return "/RCMListener/v1/RpcOpenListener" }
 
 func (o *xxx_OpenListenerOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -406,6 +408,17 @@ func (o *OpenListenerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeOpenListenerRequest build a response structure from the given request structure.
+func (o *OpenListenerRequest) MakeResponse() *OpenListenerResponse {
+	return &OpenListenerResponse{}
+}
+
+// OpNum returns the operation number of RpcOpenListener operation.
+func (o *OpenListenerRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RpcOpenListener operation.
+func (o *OpenListenerRequest) OpName() string { return "/RCMListener/v1/RpcOpenListener" }
+
 // OpenListenerResponse structure represents the RpcOpenListener operation response
 type OpenListenerResponse struct {
 	// phListener:  Pointer to a handle to the listener. The handle is of type HLISTENER.
@@ -451,8 +464,10 @@ type xxx_CloseListenerOperation struct {
 	Return   int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcCloseListener operation.
 func (o *xxx_CloseListenerOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RpcCloseListener operation.
 func (o *xxx_CloseListenerOperation) OpName() string { return "/RCMListener/v1/RpcCloseListener" }
 
 func (o *xxx_CloseListenerOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -585,6 +600,17 @@ func (o *CloseListenerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeCloseListenerRequest build a response structure from the given request structure.
+func (o *CloseListenerRequest) MakeResponse() *CloseListenerResponse {
+	return &CloseListenerResponse{}
+}
+
+// OpNum returns the operation number of RpcCloseListener operation.
+func (o *CloseListenerRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RpcCloseListener operation.
+func (o *CloseListenerRequest) OpName() string { return "/RCMListener/v1/RpcCloseListener" }
+
 // CloseListenerResponse structure represents the RpcCloseListener operation response
 type CloseListenerResponse struct {
 	// phListener: Pointer to a handle to the listener as returned by RpcOpenListener. The
@@ -631,8 +657,10 @@ type xxx_StopListenerOperation struct {
 	Return   int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcStopListener operation.
 func (o *xxx_StopListenerOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of RpcStopListener operation.
 func (o *xxx_StopListenerOperation) OpName() string { return "/RCMListener/v1/RpcStopListener" }
 
 func (o *xxx_StopListenerOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -743,6 +771,17 @@ func (o *StopListenerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeStopListenerRequest build a response structure from the given request structure.
+func (o *StopListenerRequest) MakeResponse() *StopListenerResponse {
+	return &StopListenerResponse{}
+}
+
+// OpNum returns the operation number of RpcStopListener operation.
+func (o *StopListenerRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of RpcStopListener operation.
+func (o *StopListenerRequest) OpName() string { return "/RCMListener/v1/RpcStopListener" }
+
 // StopListenerResponse structure represents the RpcStopListener operation response
 type StopListenerResponse struct {
 	// Return: The RpcStopListener return value.
@@ -784,8 +823,10 @@ type xxx_StartListenerOperation struct {
 	Return   int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcStartListener operation.
 func (o *xxx_StartListenerOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RpcStartListener operation.
 func (o *xxx_StartListenerOperation) OpName() string { return "/RCMListener/v1/RpcStartListener" }
 
 func (o *xxx_StartListenerOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -896,6 +937,17 @@ func (o *StartListenerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeStartListenerRequest build a response structure from the given request structure.
+func (o *StartListenerRequest) MakeResponse() *StartListenerResponse {
+	return &StartListenerResponse{}
+}
+
+// OpNum returns the operation number of RpcStartListener operation.
+func (o *StartListenerRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RpcStartListener operation.
+func (o *StartListenerRequest) OpName() string { return "/RCMListener/v1/RpcStartListener" }
+
 // StartListenerResponse structure represents the RpcStartListener operation response
 type StartListenerResponse struct {
 	// Return: The RpcStartListener return value.
@@ -938,8 +990,10 @@ type xxx_IsListeningOperation struct {
 	Return      int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcIsListening operation.
 func (o *xxx_IsListeningOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RpcIsListening operation.
 func (o *xxx_IsListeningOperation) OpName() string { return "/RCMListener/v1/RpcIsListening" }
 
 func (o *xxx_IsListeningOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1069,6 +1123,17 @@ func (o *IsListeningRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeIsListeningRequest build a response structure from the given request structure.
+func (o *IsListeningRequest) MakeResponse() *IsListeningResponse {
+	return &IsListeningResponse{}
+}
+
+// OpNum returns the operation number of RpcIsListening operation.
+func (o *IsListeningRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RpcIsListening operation.
+func (o *IsListeningRequest) OpName() string { return "/RCMListener/v1/RpcIsListening" }
 
 // IsListeningResponse structure represents the RpcIsListening operation response
 type IsListeningResponse struct {

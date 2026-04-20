@@ -168,8 +168,10 @@ type xxx_GetVersionOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetVersion operation.
 func (o *xxx_GetVersionOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of GetVersion operation.
 func (o *xxx_GetVersionOperation) OpName() string { return "/IEventSystem2/v0/GetVersion" }
 
 func (o *xxx_GetVersionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -325,6 +327,17 @@ func (o *GetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetVersionRequest build a response structure from the given request structure.
+func (o *GetVersionRequest) MakeResponse() *GetVersionResponse {
+	return &GetVersionResponse{}
+}
+
+// OpNum returns the operation number of GetVersion operation.
+func (o *GetVersionRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of GetVersion operation.
+func (o *GetVersionRequest) OpName() string { return "/IEventSystem2/v0/GetVersion" }
+
 // GetVersionResponse structure represents the GetVersion operation response
 type GetVersionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -391,8 +404,10 @@ type xxx_VerifyTransientSubscribersOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of VerifyTransientSubscribers operation.
 func (o *xxx_VerifyTransientSubscribersOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of VerifyTransientSubscribers operation.
 func (o *xxx_VerifyTransientSubscribersOperation) OpName() string {
 	return "/IEventSystem2/v0/VerifyTransientSubscribers"
 }
@@ -536,6 +551,19 @@ func (o *VerifyTransientSubscribersRequest) UnmarshalNDR(ctx context.Context, r 
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeVerifyTransientSubscribersRequest build a response structure from the given request structure.
+func (o *VerifyTransientSubscribersRequest) MakeResponse() *VerifyTransientSubscribersResponse {
+	return &VerifyTransientSubscribersResponse{}
+}
+
+// OpNum returns the operation number of VerifyTransientSubscribers operation.
+func (o *VerifyTransientSubscribersRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of VerifyTransientSubscribers operation.
+func (o *VerifyTransientSubscribersRequest) OpName() string {
+	return "/IEventSystem2/v0/VerifyTransientSubscribers"
 }
 
 // VerifyTransientSubscribersResponse structure represents the VerifyTransientSubscribers operation response

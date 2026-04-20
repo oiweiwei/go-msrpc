@@ -281,8 +281,10 @@ type xxx_GetComputerSitesOperation struct {
 	Return              int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSGetComputerSites operation.
 func (o *xxx_GetComputerSitesOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of S_DSGetComputerSites operation.
 func (o *xxx_GetComputerSitesOperation) OpName() string { return "/dscomm2/v1/S_DSGetComputerSites" }
 
 func (o *xxx_GetComputerSitesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -634,6 +636,17 @@ func (o *GetComputerSitesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetComputerSitesRequest build a response structure from the given request structure.
+func (o *GetComputerSitesRequest) MakeResponse() *GetComputerSitesResponse {
+	return &GetComputerSitesResponse{}
+}
+
+// OpNum returns the operation number of S_DSGetComputerSites operation.
+func (o *GetComputerSitesRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of S_DSGetComputerSites operation.
+func (o *GetComputerSitesRequest) OpName() string { return "/dscomm2/v1/S_DSGetComputerSites" }
+
 // GetComputerSitesResponse structure represents the S_DSGetComputerSites operation response
 type GetComputerSitesResponse struct {
 	// pdwNumberOfSites: Number of site identifiers returned in the ppguidSites parameter.
@@ -705,8 +718,10 @@ type xxx_GetPropertiesExOperation struct {
 	Return              int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSGetPropsEx operation.
 func (o *xxx_GetPropertiesExOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of S_DSGetPropsEx operation.
 func (o *xxx_GetPropertiesExOperation) OpName() string { return "/dscomm2/v1/S_DSGetPropsEx" }
 
 func (o *xxx_GetPropertiesExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1142,6 +1157,22 @@ func (o *GetPropertiesExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetPropertiesExRequest build a response structure from the given request structure.
+func (o *GetPropertiesExRequest) MakeResponse() *GetPropertiesExResponse {
+	if o == nil {
+		return &GetPropertiesExResponse{}
+	}
+	return &GetPropertiesExResponse{
+		CreatePartition: o.CreatePartition,
+	}
+}
+
+// OpNum returns the operation number of S_DSGetPropsEx operation.
+func (o *GetPropertiesExRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of S_DSGetPropsEx operation.
+func (o *GetPropertiesExRequest) OpName() string { return "/dscomm2/v1/S_DSGetPropsEx" }
+
 // GetPropertiesExResponse structure represents the S_DSGetPropsEx operation response
 type GetPropertiesExResponse struct {
 	// XXX: cp is an implicit input depedency for output parameters
@@ -1218,8 +1249,10 @@ type xxx_GetPropertiesGUIDExOperation struct {
 	Return              int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSGetPropsGuidEx operation.
 func (o *xxx_GetPropertiesGUIDExOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of S_DSGetPropsGuidEx operation.
 func (o *xxx_GetPropertiesGUIDExOperation) OpName() string { return "/dscomm2/v1/S_DSGetPropsGuidEx" }
 
 func (o *xxx_GetPropertiesGUIDExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1688,6 +1721,22 @@ func (o *GetPropertiesGUIDExRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetPropertiesGUIDExRequest build a response structure from the given request structure.
+func (o *GetPropertiesGUIDExRequest) MakeResponse() *GetPropertiesGUIDExResponse {
+	if o == nil {
+		return &GetPropertiesGUIDExResponse{}
+	}
+	return &GetPropertiesGUIDExResponse{
+		CreatePartition: o.CreatePartition,
+	}
+}
+
+// OpNum returns the operation number of S_DSGetPropsGuidEx operation.
+func (o *GetPropertiesGUIDExRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of S_DSGetPropsGuidEx operation.
+func (o *GetPropertiesGUIDExRequest) OpName() string { return "/dscomm2/v1/S_DSGetPropsGuidEx" }
+
 // GetPropertiesGUIDExResponse structure represents the S_DSGetPropsGuidEx operation response
 type GetPropertiesGUIDExResponse struct {
 	// XXX: cp is an implicit input depedency for output parameters
@@ -1759,8 +1808,10 @@ type xxx_BeginDeleteNotificationOperation struct {
 	Return     int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSBeginDeleteNotification operation.
 func (o *xxx_BeginDeleteNotificationOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of S_DSBeginDeleteNotification operation.
 func (o *xxx_BeginDeleteNotificationOperation) OpName() string {
 	return "/dscomm2/v1/S_DSBeginDeleteNotification"
 }
@@ -1915,6 +1966,19 @@ func (o *BeginDeleteNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeBeginDeleteNotificationRequest build a response structure from the given request structure.
+func (o *BeginDeleteNotificationRequest) MakeResponse() *BeginDeleteNotificationResponse {
+	return &BeginDeleteNotificationResponse{}
+}
+
+// OpNum returns the operation number of S_DSBeginDeleteNotification operation.
+func (o *BeginDeleteNotificationRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of S_DSBeginDeleteNotification operation.
+func (o *BeginDeleteNotificationRequest) OpName() string {
+	return "/dscomm2/v1/S_DSBeginDeleteNotification"
+}
+
 // BeginDeleteNotificationResponse structure represents the S_DSBeginDeleteNotification operation response
 type BeginDeleteNotificationResponse struct {
 	// pHandle:  MUST be set by the server to a pointer to a unique RPC context_handle
@@ -1962,8 +2026,10 @@ type xxx_NotifyDeleteOperation struct {
 	Return int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSNotifyDelete operation.
 func (o *xxx_NotifyDeleteOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of S_DSNotifyDelete operation.
 func (o *xxx_NotifyDeleteOperation) OpName() string { return "/dscomm2/v1/S_DSNotifyDelete" }
 
 func (o *xxx_NotifyDeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2076,6 +2142,17 @@ func (o *NotifyDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeNotifyDeleteRequest build a response structure from the given request structure.
+func (o *NotifyDeleteRequest) MakeResponse() *NotifyDeleteResponse {
+	return &NotifyDeleteResponse{}
+}
+
+// OpNum returns the operation number of S_DSNotifyDelete operation.
+func (o *NotifyDeleteRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of S_DSNotifyDelete operation.
+func (o *NotifyDeleteRequest) OpName() string { return "/dscomm2/v1/S_DSNotifyDelete" }
+
 // NotifyDeleteResponse structure represents the S_DSNotifyDelete operation response
 type NotifyDeleteResponse struct {
 	// Return: The S_DSNotifyDelete return value.
@@ -2116,8 +2193,10 @@ type xxx_EndDeleteNotificationOperation struct {
 	Handle *dscomm.DeleteType `idl:"name:pHandle" json:"handle"`
 }
 
+// OpNum returns the operation number of S_DSEndDeleteNotification operation.
 func (o *xxx_EndDeleteNotificationOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of S_DSEndDeleteNotification operation.
 func (o *xxx_EndDeleteNotificationOperation) OpName() string {
 	return "/dscomm2/v1/S_DSEndDeleteNotification"
 }
@@ -2242,6 +2321,19 @@ func (o *EndDeleteNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeEndDeleteNotificationRequest build a response structure from the given request structure.
+func (o *EndDeleteNotificationRequest) MakeResponse() *EndDeleteNotificationResponse {
+	return &EndDeleteNotificationResponse{}
+}
+
+// OpNum returns the operation number of S_DSEndDeleteNotification operation.
+func (o *EndDeleteNotificationRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of S_DSEndDeleteNotification operation.
+func (o *EndDeleteNotificationRequest) OpName() string {
+	return "/dscomm2/v1/S_DSEndDeleteNotification"
+}
+
 // EndDeleteNotificationResponse structure represents the S_DSEndDeleteNotification operation response
 type EndDeleteNotificationResponse struct {
 	// pHandle:  MUST be set by the client to a pointer to an RPC context_handle returned
@@ -2285,8 +2377,10 @@ type xxx_IsServerGCOperation struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSIsServerGC operation.
 func (o *xxx_IsServerGCOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of S_DSIsServerGC operation.
 func (o *xxx_IsServerGCOperation) OpName() string { return "/dscomm2/v1/S_DSIsServerGC" }
 
 func (o *xxx_IsServerGCOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2372,6 +2466,17 @@ func (o *IsServerGCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeIsServerGCRequest build a response structure from the given request structure.
+func (o *IsServerGCRequest) MakeResponse() *IsServerGCResponse {
+	return &IsServerGCResponse{}
+}
+
+// OpNum returns the operation number of S_DSIsServerGC operation.
+func (o *IsServerGCRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of S_DSIsServerGC operation.
+func (o *IsServerGCRequest) OpName() string { return "/dscomm2/v1/S_DSIsServerGC" }
+
 // IsServerGCResponse structure represents the S_DSIsServerGC operation response
 type IsServerGCResponse struct {
 	// Return: The S_DSIsServerGC return value.
@@ -2418,8 +2523,10 @@ type xxx_GetGCListInDomainOperation struct {
 	Return              int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSGetGCListInDomain operation.
 func (o *xxx_GetGCListInDomainOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of S_DSGetGCListInDomain operation.
 func (o *xxx_GetGCListInDomainOperation) OpName() string { return "/dscomm2/v1/S_DSGetGCListInDomain" }
 
 func (o *xxx_GetGCListInDomainOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2731,6 +2838,17 @@ func (o *GetGCListInDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetGCListInDomainRequest build a response structure from the given request structure.
+func (o *GetGCListInDomainRequest) MakeResponse() *GetGCListInDomainResponse {
+	return &GetGCListInDomainResponse{}
+}
+
+// OpNum returns the operation number of S_DSGetGCListInDomain operation.
+func (o *GetGCListInDomainRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of S_DSGetGCListInDomain operation.
+func (o *GetGCListInDomainRequest) OpName() string { return "/dscomm2/v1/S_DSGetGCListInDomain" }
 
 // GetGCListInDomainResponse structure represents the S_DSGetGCListInDomain operation response
 type GetGCListInDomainResponse struct {

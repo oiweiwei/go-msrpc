@@ -217,8 +217,10 @@ type xxx_ClientAttachOperation struct {
 	Return           int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClientAttach operation.
 func (o *xxx_ClientAttachOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of ClientAttach operation.
 func (o *xxx_ClientAttachOperation) OpName() string { return "/tapsrv/v1/ClientAttach" }
 
 func (o *xxx_ClientAttachOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -415,6 +417,17 @@ func (o *ClientAttachRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeClientAttachRequest build a response structure from the given request structure.
+func (o *ClientAttachRequest) MakeResponse() *ClientAttachResponse {
+	return &ClientAttachResponse{}
+}
+
+// OpNum returns the operation number of ClientAttach operation.
+func (o *ClientAttachRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of ClientAttach operation.
+func (o *ClientAttachRequest) OpName() string { return "/tapsrv/v1/ClientAttach" }
+
 // ClientAttachResponse structure represents the ClientAttach operation response
 type ClientAttachResponse struct {
 	// pphContext: Pointer to a PCONTEXT_HANDLE_TYPE context handle.
@@ -470,8 +483,10 @@ type xxx_ClientRequestOperation struct {
 	UsedSize   int32  `idl:"name:plUsedSize" json:"used_size"`
 }
 
+// OpNum returns the operation number of ClientRequest operation.
 func (o *xxx_ClientRequestOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of ClientRequest operation.
 func (o *xxx_ClientRequestOperation) OpName() string { return "/tapsrv/v1/ClientRequest" }
 
 func (o *xxx_ClientRequestOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -761,6 +776,22 @@ func (o *ClientRequestRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeClientRequestRequest build a response structure from the given request structure.
+func (o *ClientRequestRequest) MakeResponse() *ClientRequestResponse {
+	if o == nil {
+		return &ClientRequestResponse{}
+	}
+	return &ClientRequestResponse{
+		NeededSize: o.NeededSize,
+	}
+}
+
+// OpNum returns the operation number of ClientRequest operation.
+func (o *ClientRequestRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of ClientRequest operation.
+func (o *ClientRequestRequest) OpName() string { return "/tapsrv/v1/ClientRequest" }
+
 // ClientRequestResponse structure represents the ClientRequest operation response
 type ClientRequestResponse struct {
 	// XXX: lNeededSize is an implicit input depedency for output parameters
@@ -820,8 +851,10 @@ type xxx_ClientDetachOperation struct {
 	Context *Type `idl:"name:pphContext" json:"context"`
 }
 
+// OpNum returns the operation number of ClientDetach operation.
 func (o *xxx_ClientDetachOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of ClientDetach operation.
 func (o *xxx_ClientDetachOperation) OpName() string { return "/tapsrv/v1/ClientDetach" }
 
 func (o *xxx_ClientDetachOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -945,6 +978,17 @@ func (o *ClientDetachRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeClientDetachRequest build a response structure from the given request structure.
+func (o *ClientDetachRequest) MakeResponse() *ClientDetachResponse {
+	return &ClientDetachResponse{}
+}
+
+// OpNum returns the operation number of ClientDetach operation.
+func (o *ClientDetachRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of ClientDetach operation.
+func (o *ClientDetachRequest) OpName() string { return "/tapsrv/v1/ClientDetach" }
 
 // ClientDetachResponse structure represents the ClientDetach operation response
 type ClientDetachResponse struct {
