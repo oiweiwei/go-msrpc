@@ -6,7 +6,9 @@ import (
 	"errors"
 	"time"
 
+	"github.com/oiweiwei/go-msrpc/ssp/credential"
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
+	"github.com/oiweiwei/go-msrpc/ssp/name"
 )
 
 var (
@@ -21,6 +23,37 @@ type Mechanism struct {
 // Config binding for GSS.
 func (Config) Type() gssapi.OID {
 	return MechanismType
+}
+
+func (c *Config) Capabilities() gssapi.Cap {
+
+	var caps gssapi.Cap
+
+	if c.Integrity {
+		caps |= gssapi.Integrity | gssapi.ReplayDetection | gssapi.Sequencing
+	}
+
+	if c.Confidentiality {
+		caps |= gssapi.Confidentiality
+	}
+
+	if c.Identify {
+		caps |= gssapi.Identify
+	}
+
+	if c.Anonymity {
+		caps |= gssapi.Anonymity
+	}
+
+	if c.Datagram {
+		caps |= gssapi.Datagram
+	}
+
+	if c.Anonymity {
+		caps |= gssapi.Anonymity
+	}
+
+	return caps
 }
 
 // Copy function returns the copy of the configuration.
@@ -61,11 +94,65 @@ func (Mechanism) New(ctx context.Context) (gssapi.Mechanism, error) {
 		// config should have been populated.
 		return nil, gssapi.ContextError(ctx, gssapi.NoContext, gssapi.ErrNoContext)
 	}
-	if cc.Credential != nil {
+
+	c.IsServer = cc.IsServer
+
+	if !c.IsServer && cc.Credential != nil {
 		if c.Credential, ok = cc.Credential.Value().(Credential); !ok || !IsValidCredential(c.Credential) {
 			return nil, gssapi.ContextError(ctx, gssapi.DefectiveCredential, gssapi.ErrDefectiveCredential)
 		}
 	}
+
+	if cc.CredentialDatabase != nil {
+		if db, ok := cc.CredentialDatabase.Value().(credential.Database); ok {
+			if cc.CredentialDatabase.AllowAnonymous() {
+				c.AllowAnonymous = true
+			}
+			if cc.CredentialDatabase.AllowGuest() {
+				c.AllowGuest = true
+			}
+			c.Verifier = &LocalVerifier{
+				Config:   c,
+				Database: db,
+			}
+		}
+	} else {
+		if c.Verifier == nil {
+			c.Verifier = &LocalVerifier{
+				Config:   c,
+				Database: credential.NewLocalDatabase(),
+			}
+		}
+	}
+
+	for _, n := range cc.ServerNames {
+		switch n.Type {
+		case name.DNSNameType:
+			if n.Name != "" {
+				c.DNSComputerName = n.Name
+			}
+			if n.Domain != "" {
+				c.DNSDomainName = n.Domain
+			}
+			if n.Forest != "" {
+				c.DNSForestName = n.Forest
+			}
+		case name.NetBIOSNameType:
+			if n.Name != "" {
+				c.NetBIOSComputerName = n.Name
+			}
+			if n.Domain != "" {
+				c.NetBIOSDomainName = n.Domain
+			}
+		}
+	}
+
+	if cc.ChannelBindings != nil {
+		if c.ChannelBindings, err = cc.ChannelBindings.Marshal(); err != nil {
+			return nil, gssapi.ContextError(ctx, gssapi.BadBindings, gssapi.ErrBadBindings)
+		}
+	}
+
 	if cc.Capabilities.IsSet(gssapi.MutualAuthn) {
 		return nil, gssapi.ContextError(ctx, gssapi.Unavailable, ErrMutualAuthnNotSupported)
 	}
@@ -95,11 +182,6 @@ func (Mechanism) New(ctx context.Context) (gssapi.Mechanism, error) {
 	}
 	if cc.TargetNameFromUntrustedSource {
 		c.UnverifiedTargetName = cc.TargetNameFromUntrustedSource
-	}
-	if cc.ChannelBindings != nil {
-		if c.ChannelBindings, err = cc.ChannelBindings.Marshal(); err != nil {
-			return nil, gssapi.ContextError(ctx, gssapi.BadBindings, gssapi.ErrBadBindings)
-		}
 	}
 	return &Mechanism{
 		Authentifier: &Authentifier{Config: c},
@@ -139,9 +221,30 @@ func (m *Mechanism) Init(ctx context.Context, tok *gssapi.Token) (*gssapi.Token,
 	return &gssapi.Token{Payload: b}, gssapi.ContextContinueNeeded(ctx)
 }
 
+func (m *Mechanism) Capabilities(ctx context.Context) gssapi.Cap {
+	return m.Config.Capabilities()
+}
+
 // The security context accept call.
 func (m *Mechanism) Accept(ctx context.Context, tok *gssapi.Token) (*gssapi.Token, error) {
-	return nil, gssapi.ContextError(ctx, gssapi.Unavailable, gssapi.ErrUnavailable)
+
+	if m.session != nil {
+		err := m.VerifyAuthenticate(ctx, tok.Payload)
+		if err != nil {
+			return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
+		}
+
+		gssapi.SetAttribute(ctx, gssapi.AttributeSessionKey, m.SessionKey())
+
+		return &gssapi.Token{}, gssapi.ContextComplete(ctx)
+	}
+
+	b, err := m.Challenge(ctx, tok.Payload)
+	if err != nil {
+		return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
+	}
+
+	return &gssapi.Token{Payload: b}, gssapi.ContextContinueNeeded(ctx)
 }
 
 // The maximum message size for the given limit. (and flag determining if
@@ -285,6 +388,14 @@ func (m *Mechanism) Unwrap(ctx context.Context, tok *gssapi.MessageToken) (*gssa
 		tok.Capabilities &= ^gssapi.Confidentiality
 	}
 
+	if len(tok.Signature) == 0 {
+		if len(tok.Payload) < SignatureSize {
+			return nil, gssapi.ContextError(ctx, gssapi.DefectiveToken, gssapi.ErrDefectiveToken)
+		}
+		// compute signature and checksum from the payload if signature is not provided.
+		tok.Signature, tok.Payload = tok.Payload[:SignatureSize], tok.Payload[SignatureSize:]
+	}
+
 	// decrypt the payload.
 	if tok.Capabilities.IsSet(gssapi.Confidentiality) {
 		if err := m.ApplyInboundCipher(ctx, tok.Payload); err != nil {
@@ -368,6 +479,13 @@ func (m *Mechanism) MakeSignatureEx(ctx context.Context, tokEx *gssapi.MessageTo
 
 // VerifySignature token.
 func (m *Mechanism) VerifySignature(ctx context.Context, tok *gssapi.MessageToken) error {
+
+	if len(tok.Signature) == 0 {
+		if len(tok.Payload) < 16 {
+			return gssapi.ContextError(ctx, gssapi.DefectiveToken, gssapi.ErrDefectiveToken)
+		}
+		tok.Payload, tok.Signature = tok.Payload[:len(tok.Payload)-16], tok.Payload[len(tok.Payload)-16:]
+	}
 
 	expChk, err := m.MakeInboundChecksum(ctx, [][]byte{tok.Payload})
 	if err != nil {

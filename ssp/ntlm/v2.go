@@ -1,6 +1,7 @@
 package ntlm
 
 import (
+	"bytes"
 	"context"
 	"errors"
 	"fmt"
@@ -342,6 +343,86 @@ func (v2 *V2) ChallengeResponse(ctx context.Context, cred Credential, c *Challen
 	}
 
 	return resp, nil
+}
+
+func (v2 *V2) AuthenticateResponse(ctx context.Context, cred Credential, a *AuthenticateMessage, nonce []byte) (*ChallengeResponse, error) {
+
+	var (
+		resp = new(ChallengeResponse)
+		err  error
+	)
+
+	if len(a.NTChallengeResponse) == 0 && bytes.Equal(a.LMChallengeResponse, []byte{0}) {
+		return &ChallengeResponse{
+			LM:             []byte{0},
+			IsAnonymous:    true,
+			SessionBaseKey: make([]byte, 16),
+		}, nil
+	}
+
+	// compute nt key.
+	if resp.KeyNT, err = v2.NTOWF(ctx, cred); err != nil {
+		return nil, err
+	}
+
+	// "compute" lm key.
+	resp.KeyLM = resp.KeyNT
+
+	respNT, respLM := new(NTLMv2Response), new(LMv2Response)
+
+	if err := respNT.Unmarshal(ctx, a.NTChallengeResponse); err != nil {
+		return nil, fmt.Errorf("v2: unmarshal nt challenge response: %w", err)
+	}
+
+	resp.Tmp = a.NTChallengeResponse[16:]
+
+	if resp.NT, err = crypto.HMACMD5(resp.KeyNT, nonce, resp.Tmp); err != nil {
+		return nil, fmt.Errorf("v2: compute response nt: %v", err)
+	}
+
+	if resp.SessionBaseKey, err = crypto.HMACMD5(resp.KeyNT, resp.NT); err != nil {
+		return nil, fmt.Errorf("v2: compute session base key: %v", err)
+	}
+
+	resp.NT = append(resp.NT, resp.Tmp...)
+
+	if !isZero(a.LMChallengeResponse) {
+		if err := respLM.Unmarshal(ctx, a.LMChallengeResponse); err != nil {
+			return nil, fmt.Errorf("v2: unmarshal lm challenge response: %w", err)
+		}
+		if resp.LM, err = crypto.HMACMD5(resp.KeyLM, nonce, respNT.NTLMv2ClientChallenge.ChallengeFromClient); err != nil {
+			return nil, fmt.Errorf("v2: compute response lm: %v", err)
+		}
+		resp.LM = append(resp.LM, respNT.NTLMv2ClientChallenge.ChallengeFromClient...)
+	}
+
+	if !bytes.Equal(a.NTChallengeResponse, resp.NT) {
+		return nil, fmt.Errorf("v2: authenticate response: nt challenge response mismatch")
+	}
+
+	if !isZero(a.LMChallengeResponse) {
+		if !bytes.Equal(a.LMChallengeResponse, resp.LM) {
+			return nil, fmt.Errorf("v2: authenticate response: lm challenge response mismatch")
+		}
+	}
+
+	if resp.KeyExchangeKey, err = v2.KeyExchangeKey(ctx, &ChallengeMessage{
+		Negotiate:       a.Negotiate,
+		ServerChallenge: v2.ServerChallenge,
+	}, resp); err != nil {
+		return nil, fmt.Errorf("v2: compute key exchange key: %w", err)
+	}
+
+	return resp, nil
+}
+
+func isZero(b []byte) bool {
+	for _, v := range b {
+		if v != 0 {
+			return false
+		}
+	}
+	return true
 }
 
 // KeyExchangeKey function returns the key used to protect the session key that is

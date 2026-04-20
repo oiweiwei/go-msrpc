@@ -45,7 +45,7 @@ Examples rely on following environment variables:
 | ---- | ----------- | ------- |
 | **USERNAME** | The Domain\Username | `"MSAD2.COM\User"` |
 | **PASSWORD** | The password | `"password"` |
-| **PASSWORD_MD4** | The password hash (use [go run examples/helpers/nt_hash.go -d $PASSWORD](./examples/helpers/nt_hash.go) to generate the hash) | `"f077ca4b7d73486a45e75dcdd74cd5bd"` |
+| **PASSWORD_MD4** | The password hash (use [go run examples/helpers/nthash/nt_hash.go -d $PASSWORD](./examples/helpers/nthash/nt_hash.go) to generate the hash) | `"f077ca4b7d73486a45e75dcdd74cd5bd"` |
 | **WORKSTATION** | The workstation name | `"Ubuntu"` |
 | **SERVER** | The server FQDN or IP | `"192.168.0.22"` |
 | **SERVER_NAME** | The server NetBIOS name | `"WIN2019"` |
@@ -272,6 +272,13 @@ The set of changes includes:
 | [MS-WMIO](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wmio) | Windows Management Instrumentation Encoding Version 1.0 Protocol | [github.com/oiweiwei/msrpc/wmio](./msrpc/dcom/wmio) |
 | [MS-WMI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wmi) | Windows Management Instrumentation Remote Protocol | [github.com/oiweiwei/msrpc/wmi](./msrpc/dcom/wmi) |
 | [MS-WSRM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wsrm) | Windows System Resource Manager (WSRM) Protocol | [github.com/oiweiwei/msrpc/wsrm](./msrpc/dcom/wsrm) |
+
+### Other Stubs
+
+| Code | Description | Package |
+| ------- | -------- | ------- |
+| [MIMICOM](https://gist.github.com/gentilkiwi/e3d9c92b93ed4bb48f7956492c1d335a) | Mimikatz COM Interface | [github.com/oiweiwei/msrpc/mimicom](./msrpc/mimicom) |
+
 
 ### Documentation
 

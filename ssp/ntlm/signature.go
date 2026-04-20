@@ -12,6 +12,8 @@ type Signature struct {
 	SeqNum   uint32
 }
 
+const SignatureSize = 16
+
 func (s *Signature) Marshal(ctx context.Context) ([]byte, error) {
 
 	e := internal.NewCodec(ctx, nil)

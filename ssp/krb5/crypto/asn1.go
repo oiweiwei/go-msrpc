@@ -68,17 +68,17 @@ func EncodeASN1ValueWithExtraSize(b []byte, oid asn1.ObjectIdentifier, extra ...
 // ParseASN1Value function parses the given byte slice as an ASN.1 value. The
 // function returns the remaining data, the object identifier and an error if
 // any.
-func ParseASN1Value(b []byte, extra [][]byte) ([]byte, asn1.ObjectIdentifier, error) {
+func ParseASN1Value(b []byte, extra [][]byte) ([]byte, int, asn1.ObjectIdentifier, error) {
 
 	var oid asn1.ObjectIdentifier
 
 	if !IsASN1Value(b) {
-		return b, oid, nil
+		return b, 0, oid, nil
 	}
 
-	b, sz, ok := DecodeASN1Header(b)
+	b, oft, sz, ok := DecodeASN1Header(b)
 	if !ok {
-		return nil, oid, fmt.Errorf("invalid asn1 size header")
+		return nil, 0, oid, fmt.Errorf("invalid asn1 size header")
 	}
 
 	extraL := uint32(0)
@@ -95,10 +95,10 @@ func ParseASN1Value(b []byte, extra [][]byte) ([]byte, asn1.ObjectIdentifier, er
 	// trim oid.
 	b, err := asn1.Unmarshal(b, &oid)
 	if err != nil {
-		return nil, oid, fmt.Errorf("unmarshal oid: %w", err)
+		return nil, 0, oid, fmt.Errorf("unmarshal oid: %w", err)
 	}
 
-	return b, oid, nil
+	return b, oft + (int(sz) - len(b)), oid, nil
 }
 
 // EncodeASN1Header function encodes the given size into an ASN.1 header and
@@ -148,35 +148,37 @@ func EncodeASN1HeaderTo(b []byte, sz uint32) (int, error) {
 // DecodeASN1Header function decodes the given byte slice as an ASN.1 header and
 // returns the remaining data, the size and a boolean value indicating if the
 // header is valid.
-func DecodeASN1Header(b []byte) ([]byte, uint32, bool) {
+func DecodeASN1Header(b []byte) ([]byte, int, uint32, bool) {
+
+	oft := 0
 
 	if len(b) == 0 || b[0] != 0x60 {
 		// not an asn1 value.
-		return b, uint32(len(b)), true
+		return b, 0, uint32(len(b)), true
 	}
 
-	if b = b[1:]; len(b) < 1 {
+	if b, oft = b[1:], oft+1; len(b) < 1 {
 		// trim asn1 app tag.
-		return nil, 0, false
+		return nil, oft, 0, false
 	}
 
 	var sz uint32
 
-	if b, sz = b[1:], uint32(b[0]); sz <= 0x7F {
+	if b, sz, oft = b[1:], uint32(b[0]), oft+1; sz <= 0x7F {
 		// trim primitive size.
-		return b, sz, true
+		return b, oft, sz, true
 	}
 
 	if sz&0x80 != 0x80 || (sz&0x0F) > uint32(len(b)) {
 		// check number of bytes.
-		return nil, 0, false
+		return nil, 0, 0, false
 	}
 
 	sz &= 0x0F
 
 	var cnt int
 
-	switch cnt = int(sz); cnt {
+	switch cnt, oft = int(sz), oft+int(sz); cnt {
 	case 1:
 		b, sz = b[cnt:], uint32(b[0])
 	case 2:
@@ -186,8 +188,8 @@ func DecodeASN1Header(b []byte) ([]byte, uint32, bool) {
 	case 4:
 		b, sz = b[cnt:], uint32(b[0])<<24|uint32(b[1])<<16|uint32(b[2])<<8|uint32(b[3])
 	default:
-		return nil, 0, false
+		return nil, oft, 0, false
 	}
 
-	return b, sz, true
+	return b, oft, sz, true
 }

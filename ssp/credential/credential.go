@@ -62,9 +62,29 @@ func DomainName(un string) string {
 	return dn
 }
 
+func IsAnonymous(cred Credential) bool {
+	if cred == nil {
+		return true
+	}
+	p, ok := (any)(cred).(*passwordCred)
+	if !ok {
+		return false
+	}
+	return p.allowEmpty && p.userName == ""
+}
+
 // Anonymous function returns the anonymous password credentials.
 func Anonymous() Password {
 	return &passwordCred{allowEmpty: true}
+}
+
+func New(un string, opts ...Option) Credential {
+	dn, un, wkst := parseDomainUserWorkstation(un, opts...)
+	return &userCred{
+		userName:    un,
+		domainName:  dn,
+		workstation: wkst,
+	}
 }
 
 func NewFromString(s string, opts ...Option) Password {

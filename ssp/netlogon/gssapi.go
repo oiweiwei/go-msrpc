@@ -110,6 +110,10 @@ func (m *Mechanism) Init(ctx context.Context, tok *gssapi.Token) (*gssapi.Token,
 	return &gssapi.Token{Payload: b}, gssapi.ContextContinueNeeded(ctx)
 }
 
+func (m *Mechanism) Capabilities(ctx context.Context) gssapi.Cap {
+	return gssapi.Cap(0)
+}
+
 // The security context accept call.
 func (m *Mechanism) Accept(ctx context.Context, tok *gssapi.Token) (*gssapi.Token, error) {
 	return nil, gssapi.ContextError(ctx, gssapi.Unavailable, gssapi.ErrUnavailable)

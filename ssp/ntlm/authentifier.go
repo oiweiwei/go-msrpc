@@ -5,7 +5,9 @@ import (
 	"context"
 	"fmt"
 	"hash"
+	"time"
 
+	"github.com/oiweiwei/go-msrpc/ssp/credential"
 	"github.com/oiweiwei/go-msrpc/ssp/crypto"
 )
 
@@ -196,7 +198,7 @@ func (a *Authentifier) Authenticate(ctx context.Context, b []byte) ([]byte, erro
 			return nil, fmt.Errorf("ntlm: init: authenticate: compute mic: %w", err)
 		}
 		// copy mic value.
-		copy(b[micidx:], am.MIC)
+		copy(b[MICOffset:], am.MIC)
 		// reset the mic buffer.
 		a.mic.Reset()
 	}
@@ -204,8 +206,161 @@ func (a *Authentifier) Authenticate(ctx context.Context, b []byte) ([]byte, erro
 	return b, nil
 }
 
+func (a *Authentifier) Challenge(ctx context.Context, b []byte) ([]byte, error) {
+
+	var err error
+
+	nm := &NegotiateMessage{}
+
+	if err := nm.Unmarshal(ctx, b); err != nil {
+		return nil, fmt.Errorf("ntlm: init: challenge: unmarshal negotiate message: %w", err)
+	}
+
+	// accept the negotiated flags.
+	a.Config.Accept(nm.Negotiate)
+
+	a.mic.Write(b)
+
+	cm := &ChallengeMessage{
+		Negotiate:  nm.Negotiate | RequestTarget | NegotiateNTLM | NegotiateAlwaysSign,
+		TargetInfo: AttrValues{},
+	}
+
+	if cm.Negotiate.IsSet(NegotiateUnicode) {
+		cm.Negotiate = cm.Negotiate.Unset(NegotiateOEM)
+	} else {
+		cm.Negotiate = cm.Negotiate.Set(NegotiateOEM)
+	}
+
+	if nm.Negotiate.IsSet(NegotiateExtendedSessionSecurity) {
+		cm.Negotiate = cm.Negotiate.Unset(NegotiateLMKey)
+	}
+
+	if cm.Negotiate.IsSet(TargetTypeDomain) || a.Config.NetBIOSDomainName != "" {
+		cm.TargetName = a.Config.NetBIOSDomainName
+		cm.Negotiate = cm.Negotiate.Set(TargetTypeDomain).Unset(TargetTypeServer)
+	} else {
+		cm.TargetName = a.Config.NetBIOSComputerName
+		cm.Negotiate = cm.Negotiate.Set(TargetTypeServer).Unset(TargetTypeDomain)
+	}
+
+	cm.Negotiate = cm.Negotiate.Set(NegotiateTargetInfo).Set(RequestTarget)
+
+	// if err := a.Config.Verify(cm.Negotiate); err != nil {
+	//	return nil, fmt.Errorf("ntlm: init: challenge: %w", err)
+	// }
+
+	if a.Config.NetBIOSComputerName != "" {
+		cm.TargetInfo[AttrNetBIOSComputerName] = &Value{NetBIOSComputerName: a.Config.NetBIOSComputerName}
+	}
+
+	if a.Config.NetBIOSDomainName != "" {
+		cm.TargetInfo[AttrNetBIOSDomainName] = &Value{NetBIOSDomainName: a.Config.NetBIOSDomainName}
+	}
+
+	if a.Config.DNSDomainName != "" {
+		cm.TargetInfo[AttrDNSDomainName] = &Value{DNSDomainName: a.Config.DNSDomainName}
+	}
+
+	if a.Config.DNSComputerName != "" {
+		cm.TargetInfo[AttrDNSComputerName] = &Value{DNSComputerName: a.Config.DNSComputerName}
+	}
+
+	if a.Config.DNSForestName != "" {
+		cm.TargetInfo[AttrDNSTreeName] = &Value{DNSTreeName: a.Config.DNSForestName}
+	}
+
+	if a.Config.RequestMIC {
+		cm.TargetInfo[AttrTimestamp] = &Value{Timestamp: TimeToFiletime(time.Now())}
+	}
+
+	if cm.ServerChallenge, err = crypto.Nonce(8); err != nil {
+		return nil, fmt.Errorf("ntlm: init: challenge: generate server challenge: %w", err)
+	}
+
+	if cm.Negotiate.IsSet(NegotiateVersion) {
+		if cm.Version = a.Config.Version; cm.Version.IsZero() {
+			cm.Version = DefaultVersion
+		}
+	}
+
+	if b, err = cm.Marshal(ctx); err != nil {
+		return nil, fmt.Errorf("ntlm: init: challenge: marshal challenge message: %w", err)
+	}
+
+	a.makeSecurityParameters(ctx, cm)
+
+	a.mic.Write(b)
+
+	return b, nil
+}
+
+func (a *Authentifier) VerifyAuthenticate(ctx context.Context, b []byte) error {
+
+	am := &AuthenticateMessage{}
+
+	if err := am.Unmarshal(ctx, b); err != nil {
+		return fmt.Errorf("ntlm: init: verify authenticate: unmarshal authenticate message: %w", err)
+	}
+
+	if len(am.MIC) == 0 && a.Config.RequestMIC {
+		return fmt.Errorf("ntlm: init: verify authenticate: mic is required but not provided")
+	}
+
+	copy(b[MICOffset:], make([]byte, 16))
+
+	a.mic.Write(b)
+
+	var cred credential.Credential
+
+	cred = credential.NewFromPassword(am.UserName, "",
+		credential.Domain(am.DomainName),
+		credential.Workstation(am.Workstation),
+	)
+
+	nonce := a.session.ServerChallenge
+
+	resp, err := a.Config.Verifier.VerifyChallenge(ctx, a.session, cred, nonce, am)
+	if err != nil {
+		if am.UserName == "" {
+			return fmt.Errorf("ntlm: init: verify authenticate: verify challenge response: %w", err)
+		}
+		cred = credential.New(am.UserName,
+			credential.Workstation(am.Workstation),
+		)
+		if resp, err = a.Config.Verifier.VerifyChallenge(ctx, a.session, cred, nonce, am); err != nil {
+			return fmt.Errorf("ntlm: init: verify authenticate: verify challenge response: %w", err)
+		}
+	}
+
+	var exportedKey []byte
+
+	if a.session.KeyExchange {
+		if exportedKey, err = RC4K(ctx, resp.KeyExchangeKey, am.EncryptedRandomSessionKey); err != nil {
+			return fmt.Errorf("ntlm: local provider: rc4k failed: %w", err)
+		}
+	} else {
+		exportedKey = resp.KeyExchangeKey
+	}
+
+	expectedMIC, err := crypto.HMACMD5(exportedKey, a.mic.Bytes())
+	if err != nil {
+		return fmt.Errorf("ntlm: init: authenticate: compute mic: %w", err)
+	}
+
+	if !bytes.Equal(am.MIC, expectedMIC) {
+		return fmt.Errorf("ntlm: init: verify authenticate: mic mismatch")
+	}
+
+	if err = a.makeSecurityService(ctx, exportedKey); err != nil {
+		return fmt.Errorf("ntlm: init: verify authenticate: make security service: %w", err)
+	}
+
+	return nil
+}
+
 // The MIC index in the output buffer.
-const micidx = 72
+const MICOffset = 72
 
 var (
 	// client-to-server seal.
@@ -283,7 +438,7 @@ func (a *Authentifier) makeSecurityService(ctx context.Context, key []byte) erro
 }
 
 // makeSignKey creates the key for the signature.
-func (a *Authentifier) makeSignKey(ctx context.Context, key []byte, magic []byte) ([]byte, error) {
+func (a *Authentifier) makeSignKey(_ context.Context, key []byte, magic []byte) ([]byte, error) {
 	if !a.session.ExtendedSessionSecurity {
 		return nil, nil
 	}
@@ -299,10 +454,11 @@ type SecurityParameters struct {
 	KeySize                 int
 	ServerName              string
 	DomainName              string
+	ServerChallenge         []byte
 }
 
 // makeHashFunc creates the hash function.
-func (a *Authentifier) makeHashFunc(ctx context.Context, key []byte) func(uint32) hash.Hash {
+func (a *Authentifier) makeHashFunc(_ context.Context, key []byte) func(uint32) hash.Hash {
 	if a.session.ExtendedSessionSecurity {
 		return HMACMD5(key)
 	}
@@ -310,7 +466,7 @@ func (a *Authentifier) makeHashFunc(ctx context.Context, key []byte) func(uint32
 }
 
 // makeSealKey creates the key for the encryption.
-func (a *Authentifier) makeSealKey(ctx context.Context, key []byte, magic []byte) ([]byte, error) {
+func (a *Authentifier) makeSealKey(_ context.Context, key []byte, magic []byte) ([]byte, error) {
 
 	if a.session.ExtendedSessionSecurity {
 		switch a.session.KeySize {
@@ -339,7 +495,7 @@ const (
 	SignatureVersion = 0x01
 )
 
-func (a *Authentifier) makeSecurityParameters(ctx context.Context, cm *ChallengeMessage) {
+func (a *Authentifier) makeSecurityParameters(_ context.Context, cm *ChallengeMessage) {
 	a.session = &SecurityParameters{
 		ExtendedSessionSecurity: cm.Negotiate.IsSet(NegotiateExtendedSessionSecurity),
 		UseLMKey:                cm.Negotiate.IsSet(NegotiateLMKey),
@@ -347,6 +503,7 @@ func (a *Authentifier) makeSecurityParameters(ctx context.Context, cm *Challenge
 		KeyExchange:             cm.Negotiate.IsSet(NegotiateKeyExchange),
 		Datagram:                cm.Negotiate.IsSet(NegotiateDatagram),
 		KeySize:                 40,
+		ServerChallenge:         cm.ServerChallenge,
 	}
 
 	if cm.Negotiate.IsSet(TargetTypeDomain) {
@@ -408,7 +565,7 @@ func (a *Authentifier) MakeOutboundChecksum(ctx context.Context, b [][]byte) ([]
 	return chk, nil
 }
 
-func (a *Authentifier) makeChecksum(ctx context.Context, cipher *Cipher, seqNum uint32, b ...[]byte) ([]byte, error) {
+func (a *Authentifier) makeChecksum(_ context.Context, cipher *Cipher, seqNum uint32, b ...[]byte) ([]byte, error) {
 	if !a.Config.Integrity {
 		return nil, nil
 	}

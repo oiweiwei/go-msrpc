@@ -261,11 +261,99 @@ func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
 	return b, nil
 }
 
+func (a *Authentifier) VerifyAPRequest(ctx context.Context, b []byte) ([]byte, error) {
+
+	if len(b) == 0 {
+		return nil, fmt.Errorf("krb5: verify apreq: empty token")
+	}
+
+	var err error
+
+	if a.service, err = a.makeService(ctx); err != nil {
+		return nil, fmt.Errorf("krb5: verify apreq: make service: %w", err)
+	}
+
+	if b[0] == 0x60 {
+		tok := &spnego.KRB5Token{}
+		if err := tok.Unmarshal(b); err != nil {
+			return nil, fmt.Errorf("krb5: verify apreq: unmarshal spnego: %w", err)
+		}
+		a.APReq = &tok.APReq
+	} else {
+		// dce style token.
+		a.APReq = &messages.APReq{}
+		if err := a.APReq.Unmarshal(b); err != nil {
+			return nil, fmt.Errorf("krb5: verify apreq: unmarshal: %w", err)
+		}
+	}
+
+	if ok, _, err := service.VerifyAPREQ(a.APReq, a.service); err != nil {
+		return nil, fmt.Errorf("krb5: verify apreq: verify apreq: %w", err)
+	} else if !ok {
+		return nil, fmt.Errorf("krb5: verify apreq: invalid apreq")
+	}
+
+	a.SessionKey = a.APReq.Ticket.DecryptedEncPart.Key
+
+	a.Config.Accept(a.APReq.Authenticator.Cksum.Checksum, a.APReq.APOptions)
+
+	if err := a.makeSecurityService(ctx); err != nil {
+		return nil, fmt.Errorf("krb5: verify apreq: make security service: %w", err)
+	}
+
+	if !a.Config.DCEStyle && !a.Config.FlagIsSet(gssapi.MutualAuthn) {
+		// no mutual authn, no aprep.
+		return nil, nil
+	}
+
+	encPart := messages.NewEncAPRepPart(a.APReq.Authenticator.SeqNumber)
+	encPart.Subkey = a.SessionKey
+
+	ap, err := messages.NewAPRep(a.SessionKey, encPart)
+	if err != nil {
+		return nil, fmt.Errorf("krb5: verify apreq: aprep: new aprep: %w", err)
+	}
+
+	b, err = ap.Marshal()
+	if err != nil {
+		return nil, fmt.Errorf("krb5: verify apreq: aprep: marshal: %w", err)
+	}
+
+	if err := a.makeSecurityService(ctx); err != nil {
+		return nil, fmt.Errorf("krb5: accept: make security service: %w", err)
+	}
+
+	a.APRep = &ap
+
+	return b, nil
+}
+
+func (a *Authentifier) VerifyAPReply(ctx context.Context, b []byte) error {
+
+	if !a.Config.DCEStyle {
+		tok := &spnego.KRB5Token{}
+		if err := tok.Unmarshal(b); err != nil {
+			return fmt.Errorf("krb5: verify: aprep: unmarshal: dcestyle: %w", err)
+		}
+		a.APRep = &tok.APRep
+	} else {
+		if err := a.APRep.Unmarshal(b); err != nil {
+			return fmt.Errorf("krb5: verify: aprep: unmarshal: %w", err)
+		}
+	}
+
+	if err := a.APRep.DecryptEncPart(a.SessionKey); err != nil {
+		return fmt.Errorf("krb5: verify: aprep: decrypt enc part: %w", err)
+	}
+
+	return nil
+}
+
 func (a *Authentifier) APReply(ctx context.Context, b []byte) ([]byte, error) {
 
 	if len(b) == 0 {
 		if err := a.makeSecurityService(ctx); err != nil {
-			return nil, fmt.Errorf("krb5: init: aprep: make security service: %w", err)
+			return nil, fmt.Errorf("krb5: init: aprep: b0: make security service: %w", err)
 		}
 		return nil, nil
 	}
@@ -305,6 +393,14 @@ func (a *Authentifier) APReply(ctx context.Context, b []byte) ([]byte, error) {
 	return b, nil
 }
 
+func (a *Authentifier) ParseInboundSignature(ctx context.Context, payload []byte) ([]byte, []byte, error) {
+	sgn, payload, err := a.state.InboundCipher.ParseSignature(ctx, payload)
+	if err != nil {
+		return nil, nil, fmt.Errorf("krb5: parse inbound signature: %w", err)
+	}
+	return sgn, payload, nil
+}
+
 func (a *Authentifier) MakeOutboundSignature(ctx context.Context, forSign [][]byte) ([]byte, error) {
 	sgn, err := a.state.OutboundCipher.MakeSignature(ctx, a.state.OutboundSequenceNumber, forSign)
 	if err != nil {
@@ -323,8 +419,17 @@ func (a *Authentifier) MakeInboundSignature(ctx context.Context, forSign [][]byt
 	return sgn, nil
 }
 
-func (a *Authentifier) WrapOutboundPayload(ctx context.Context, forSign, forSeal [][]byte) ([]byte, error) {
-	sgn, err := a.state.OutboundCipher.Wrap(ctx, a.state.OutboundSequenceNumber, forSign, forSeal)
+func (a *Authentifier) WrapOutboundPayload(ctx context.Context, payload []byte, conf bool) ([]byte, error) {
+	sgn, err := a.state.OutboundCipher.Wrap(ctx, a.state.OutboundSequenceNumber, payload, conf)
+	if err != nil {
+		return nil, fmt.Errorf("krb5: wrap outbound payload: %w", err)
+	}
+	a.state.OutboundSequenceNumber++
+	return sgn, nil
+}
+
+func (a *Authentifier) WrapExOutboundPayload(ctx context.Context, forSign, forSeal [][]byte) ([]byte, error) {
+	sgn, err := a.state.OutboundCipher.WrapEx(ctx, a.state.OutboundSequenceNumber, forSign, forSeal)
 	if err != nil {
 		return nil, fmt.Errorf("krb5: wrap outbound payload: %w", err)
 	}
@@ -333,8 +438,8 @@ func (a *Authentifier) WrapOutboundPayload(ctx context.Context, forSign, forSeal
 	return sgn, nil
 }
 
-func (a *Authentifier) UnwrapInboundPayload(ctx context.Context, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
-	ok, err := a.state.InboundCipher.Unwrap(ctx, a.state.InboundSequenceNumber, forSign, forSeal, sgn)
+func (a *Authentifier) UnwrapExInboundPayload(ctx context.Context, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
+	ok, err := a.state.InboundCipher.UnwrapEx(ctx, a.state.InboundSequenceNumber, forSign, forSeal, sgn)
 	if err != nil {
 		return ok, fmt.Errorf("krb5: unwrap inbound payload: %w", err)
 	}
@@ -342,6 +447,17 @@ func (a *Authentifier) UnwrapInboundPayload(ctx context.Context, forSign, forSea
 		a.state.InboundSequenceNumber++
 	}
 	return ok, nil
+}
+
+func (a *Authentifier) UnwrapInboundPayload(ctx context.Context, payload []byte, sgn []byte) ([]byte, bool, error) {
+	sgn, ok, err := a.state.InboundCipher.Unwrap(ctx, a.state.InboundSequenceNumber, payload, sgn)
+	if err != nil {
+		return sgn, ok, fmt.Errorf("krb5: unwrap inbound payload: %w", err)
+	}
+	if ok {
+		a.state.InboundSequenceNumber++
+	}
+	return sgn, ok, nil
 }
 
 func (a *Authentifier) OutboundSignatureSize(ctx context.Context, conf bool) int {

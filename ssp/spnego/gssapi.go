@@ -63,6 +63,7 @@ func (Mechanism) New(ctx context.Context) (gssapi.Mechanism, error) {
 
 	// set capabilities.
 	c.Capabilities = cc.Capabilities
+	c.IsServer = cc.IsServer
 
 	// check that mechanism list is not empty.
 	if len(c.MechanismsList) == 0 {
@@ -110,8 +111,25 @@ func (m *Mechanism) Init(ctx context.Context, tok *gssapi.Token) (*gssapi.Token,
 
 }
 
+func (m *Mechanism) Capabilities(ctx context.Context) gssapi.Cap {
+	return m.Mechanism.Capabilities(ctx)
+}
+
 func (m *Mechanism) Accept(ctx context.Context, tok *gssapi.Token) (*gssapi.Token, error) {
-	return nil, nil
+
+	b, err := m.ServerRespond(ctx, tok.Payload)
+	if err != nil {
+		b, err1 := m.Reject(ctx)
+		if err1 != nil {
+			return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
+		}
+		return &gssapi.Token{Payload: b}, gssapi.ContextError(ctx, gssapi.Failure, err)
+	}
+
+	return &gssapi.Token{
+		Payload: b,
+	}, nil
+
 }
 
 func (m *Mechanism) WrapSizeLimit(ctx context.Context, sz int, conf bool) int {

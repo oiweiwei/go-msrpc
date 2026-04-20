@@ -148,3 +148,59 @@ func GetCredentialValue(ctx context.Context, name string, mechanismType OID, usa
 	}
 	return nil
 }
+
+type CredentialDatabase interface {
+	// Value returns the actual database.
+	Value() any
+	// AllowGuest returns true if the database allows guest access.
+	AllowGuest() bool
+	// AllowAnonymous returns true if the database allows anonymous access.
+	AllowAnonymous() bool
+}
+
+type credentialDatabase struct {
+	value          any
+	allowGuest     bool
+	allowAnonymous bool
+}
+
+// Value returns the actual database value.
+func (c *credentialDatabase) Value() any {
+	return c.value
+}
+
+// AllowGuest returns true if the database allows guest access.
+func (c *credentialDatabase) AllowGuest() bool {
+	return c.allowGuest
+}
+
+// AllowAnonymous returns true if the database allows anonymous access.
+func (c *credentialDatabase) AllowAnonymous() bool {
+	return c.allowAnonymous
+}
+
+// CredentialDatabaseOption is a function that modifies the credential database options.
+type CredentialDatabaseOption func(*credentialDatabase)
+
+// AllowGuest sets the guest access option for the credential database.
+func AllowGuest(allow bool) CredentialDatabaseOption {
+	return func(db *credentialDatabase) {
+		db.allowGuest = allow
+	}
+}
+
+// AllowAnonymous sets the anonymous access option for the credential database.
+func AllowAnonymous(allow bool) CredentialDatabaseOption {
+	return func(db *credentialDatabase) {
+		db.allowAnonymous = allow
+	}
+}
+
+// NewCredentialDatabase creates a new credential database with the given value and options.
+func NewCredentialDatabase(value any, opts ...CredentialDatabaseOption) CredentialDatabase {
+	db := credentialDatabase{value: value}
+	for _, opt := range opts {
+		opt(&db)
+	}
+	return &db
+}

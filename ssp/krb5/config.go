@@ -1,15 +1,19 @@
 package krb5
 
 import (
+	"encoding/binary"
 	"os"
 	"strings"
 	"time"
 
 	v8_config "github.com/jcmturner/gokrb5/v8/config"
 
+	"github.com/jcmturner/gofork/encoding/asn1"
+
 	"github.com/oiweiwei/gokrb5.fork/v9/client"
 	"github.com/oiweiwei/gokrb5.fork/v9/config"
 	"github.com/oiweiwei/gokrb5.fork/v9/iana/etypeID"
+	"github.com/oiweiwei/gokrb5.fork/v9/iana/flags"
 	"github.com/oiweiwei/gokrb5.fork/v9/service"
 	"github.com/oiweiwei/gokrb5.fork/v9/types"
 
@@ -81,6 +85,52 @@ type Config struct {
 	// AnyServiceClassSPN used to match service tickets only
 	// by hostname.
 	AnyServiceClassSPN bool
+}
+
+func (c *Config) Accept(ff []byte, apOptions asn1.BitString) {
+	if len(ff) > 24 {
+		c.Flags = append(c.Flags, int(gssapi.Delegation))
+	}
+	if len(ff) >= 24 {
+		f := binary.LittleEndian.Uint32(ff[20:24])
+
+		if f&uint32(gssapi.Anonymity) != 0 {
+			c.Flags = append(c.Flags, int(gssapi.Anonymity))
+		}
+
+		if f&uint32(gssapi.Confidentiality) != 0 {
+			c.Flags = append(c.Flags, int(gssapi.Confidentiality))
+		}
+
+		if f&uint32(gssapi.Integrity) != 0 {
+			c.Flags = append(c.Flags, int(gssapi.Integrity))
+		}
+
+		if f&uint32(gssapi.Identify) != 0 {
+			c.Flags = append(c.Flags, int(gssapi.Identify))
+		}
+
+		if f&uint32(gssapi.Datagram) != 0 {
+			c.Flags = append(c.Flags, int(gssapi.Datagram))
+		}
+
+		if f&uint32(gssapi.ReplayDetection) != 0 {
+			c.Flags = append(c.Flags, int(gssapi.ReplayDetection))
+		}
+
+		if f&uint32(gssapi.Sequencing) != 0 {
+			c.Flags = append(c.Flags, int(gssapi.Sequencing))
+		}
+
+		if f&uint32(gssapi.DCEStyle) != 0 {
+			c.Flags = append(c.Flags, int(gssapi.DCEStyle))
+			c.DCEStyle = true
+		}
+	}
+
+	if apOptions.At(flags.APOptionMutualRequired) != 0 {
+		c.APOptions = append(c.APOptions, flags.APOptionMutualRequired)
+	}
 }
 
 func (c *Config) GetKRB5Config() *config.Config {

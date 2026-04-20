@@ -9,6 +9,7 @@ import (
 )
 
 type Config struct {
+	IsServer bool
 	// The services available.
 	Capabilities gssapi.Cap
 	// The list of negotiated mechanisms.
@@ -55,6 +56,180 @@ func (a *Authentifier) Negotiate(ctx context.Context) ([]byte, error) {
 	return b, nil
 }
 
+func (a *Authentifier) Reject(ctx context.Context) ([]byte, error) {
+
+	resp := &NegTokenResp{
+		State: Reject,
+	}
+
+	b, err := resp.Marshal(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("spnego: reject: marshal neg token resp: %w", err)
+	}
+
+	return b, nil
+}
+
+const Init2HintName = "not_defined_in_RFC4178@please_ignore"
+
+func (a *Authentifier) ServerRespond(ctx context.Context, b []byte) ([]byte, error) {
+
+	var err error
+
+	if len(b) == 0 {
+
+		init2 := &NegTokenInit{
+			MechTypes: a.MakeMechanismList(ctx),
+			HintName:  Init2HintName,
+		}
+
+		a.RetrievedMechanismList = init2.MechTypes
+
+		if a.Mechanism, err = a.SelectMechanism(ctx); err != nil {
+			return nil, err
+		}
+
+		if a.Mechanism == nil {
+			return nil, fmt.Errorf("spnego: init: no mechanism selected")
+		}
+
+		tok, err := a.Mechanism.Accept(ctx, &gssapi.Token{})
+		if err != nil {
+			return nil, fmt.Errorf("spnego: init: mechanism accept: %w", err)
+		}
+
+		init2.MechToken = tok.Payload
+
+		b, err := init2.Marshal(ctx)
+		if err != nil {
+			return nil, fmt.Errorf("spnego: init: marshal neg token init: %w", err)
+		}
+
+		return b, nil
+	}
+
+	var resp = new(NegTokenResp)
+
+	if a.IsNegTokenInit(ctx, b) {
+
+		init := &NegTokenInit{}
+
+		if err := init.Unmarshal(ctx, b); err != nil {
+			return nil, fmt.Errorf("spnego: init: unmarshal neg token init: %w", err)
+		}
+
+		a.RetrievedMechanismList = init.MechTypes
+
+		if a.Mechanism, err = a.SelectMechanism(ctx); err != nil {
+			return nil, fmt.Errorf("spnego: init: select mechanism: %w", err)
+		}
+
+		if a.Mechanism == nil {
+			return nil, fmt.Errorf("spnego: init: no mechanism selected")
+		}
+
+		tok, err := a.Mechanism.Accept(ctx, &gssapi.Token{Payload: init.MechToken})
+		if err != nil {
+			return nil, fmt.Errorf("spnego: init: mechanism accept: %w", err)
+		}
+
+		resp = &NegTokenResp{
+			SupportedMech: (asn1.ObjectIdentifier)(a.Mechanism.Type()),
+			ResponseToken: tok.Payload,
+			State:         AcceptIncomplete,
+		}
+
+		if gssapi.IsComplete(ctx) {
+
+			// create mechanism list mic.
+			sgn, err := a.ComputeSignature(ctx, init.MechTokenMIC)
+			if err != nil {
+				return nil, fmt.Errorf("spnego: init: compute mech list mic: %w", err)
+			}
+
+			resp.MechListMIC = sgn
+			resp.State = AcceptCompleted
+		}
+
+		b, err := resp.Marshal(ctx)
+		if err != nil {
+			return nil, fmt.Errorf("spnego: init: marshal neg token resp: %w", err)
+		}
+
+		return b, nil
+	}
+
+	if err := resp.Unmarshal(ctx, b); err != nil {
+		return nil, fmt.Errorf("spnego: init: unmarshal neg token resp: %w", err)
+	}
+
+	mechTok, err := a.Mechanism.Accept(ctx, &gssapi.Token{Payload: resp.ResponseToken})
+	if err != nil {
+		return nil, fmt.Errorf("spnego: init: mechanism accept: %w", err)
+	}
+
+	micTok := resp.MechListMIC
+
+	resp = &NegTokenResp{
+		SupportedMech: (asn1.ObjectIdentifier)(a.Mechanism.Type()),
+		ResponseToken: mechTok.Payload,
+		State:         AcceptIncomplete,
+	}
+
+	if a.Config.RequireMechanismListMIC {
+		resp.State = RequestMIC
+	}
+
+	if gssapi.IsComplete(ctx) {
+		if len(micTok) == 0 && a.Config.RequireMechanismListMIC {
+			return nil, fmt.Errorf("spnego: init: mechanism list mic required but not provided")
+		}
+		// verify the mechanism list mic.
+		resp.MechListMIC, err = a.ComputeSignature(ctx, micTok)
+		if err != nil {
+			return nil, fmt.Errorf("spnego: init: compute mech list mic: %w", err)
+		}
+		resp.State = AcceptCompleted
+	}
+
+	b, err = resp.Marshal(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("spnego: init: marshal neg token resp: %w", err)
+	}
+
+	return b, nil
+}
+
+func (a *Authentifier) ComputeSignature(ctx context.Context, tok []byte) ([]byte, error) {
+
+	// create mechanism list mic.
+
+	b, err := asn1.Marshal(a.MakeMechanismList(ctx))
+	if err != nil {
+		return nil, fmt.Errorf("spnego: init: marshal mech list: %w", err)
+	}
+
+	if len(tok) > 0 {
+		if err := a.Mechanism.VerifySignature(ctx, &gssapi.MessageToken{Payload: b, Signature: tok}); err != nil {
+			return nil, fmt.Errorf("spnego: init: verify mech list mic: %w", err)
+		}
+	}
+
+	sgn, err := a.Mechanism.MakeSignature(ctx, &gssapi.MessageToken{Payload: b})
+	if err != nil {
+		return nil, fmt.Errorf("spnego: init: make mech list signature: %w", err)
+	}
+
+	rst, ok := (any)(a.Mechanism).(interface{ ResetSecurityService(context.Context) error })
+	if ok {
+		if err := rst.ResetSecurityService(ctx); err != nil {
+			return nil, fmt.Errorf("spnego: init: reset security service: %w", err)
+		}
+	}
+
+	return sgn.Signature, nil
+}
+
 func (a *Authentifier) Respond(ctx context.Context, b []byte) ([]byte, error) {
 
 	var err error
@@ -71,17 +246,8 @@ func (a *Authentifier) Respond(ctx context.Context, b []byte) ([]byte, error) {
 
 		a.RetrievedMechanismList = init.MechTypes
 
-	loop:
-		// select the mechanism from the retrieved list.
-		for i := range a.MechanismsList {
-			for _, rm := range a.RetrievedMechanismList {
-				if a.MechanismsList[i].Type().Equal((gssapi.OID)(rm)) {
-					if a.Mechanism, err = a.MechanismsList[i].New(ctx); err != nil {
-						continue
-					}
-					break loop
-				}
-			}
+		if a.Mechanism, err = a.SelectMechanism(ctx); err != nil {
+			return nil, gssapi.ErrFailure
 		}
 
 		if a.Mechanism == nil {
@@ -169,6 +335,7 @@ func (a *Authentifier) Respond(ctx context.Context, b []byte) ([]byte, error) {
 				return nil, fmt.Errorf("spnego: init: reset security service: %w", err)
 			}
 		}
+
 	}
 
 	b, err = resp.Marshal(ctx)
@@ -180,7 +347,7 @@ func (a *Authentifier) Respond(ctx context.Context, b []byte) ([]byte, error) {
 }
 
 func (a *Authentifier) IsNegTokenInit(ctx context.Context, b []byte) bool {
-	return len(b) > 0 && b[0] == Application|0
+	return len(b) > 0 && b[0] == 0x60 // Application|0
 }
 
 func (a *Authentifier) MakeMechanismList(ctx context.Context) []asn1.ObjectIdentifier {
@@ -198,9 +365,21 @@ func (a *Authentifier) MakeMechanismList(ctx context.Context) []asn1.ObjectIdent
 	return mechTypes
 }
 
-func (a *Authentifier) SelectMechanism(ctx context.Context, oid gssapi.OID) gssapi.Mechanism {
+func (a *Authentifier) SelectMechanism(ctx context.Context) (gssapi.Mechanism, error) {
 
-	// select mechanism based on oid or first entry if default...
-	return nil
+	var err error
 
+	// select the mechanism from the retrieved list.
+	for i := range a.MechanismsList {
+		for _, rm := range a.RetrievedMechanismList {
+			if a.MechanismsList[i].Type().Equal((gssapi.OID)(rm)) {
+				if a.Mechanism, err = a.MechanismsList[i].New(ctx); err != nil {
+					continue
+				}
+				return a.Mechanism, nil
+			}
+		}
+	}
+
+	return nil, err
 }

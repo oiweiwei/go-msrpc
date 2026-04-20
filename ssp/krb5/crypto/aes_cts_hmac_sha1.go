@@ -79,19 +79,28 @@ func (c *AESCTSHMACSHA1) DeriveEncryptionKey() ([]byte, error) {
 	return c.setting.Type.DeriveKey(c.setting.Key.KeyValue, common.GetUsageKe(uint32(ecU)))
 }
 
-func (c *AESCTSHMACSHA1) Wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte) ([]byte, error) {
-	b, err := c.wrap(ctx, seqNum, forSign, forSeal)
+func (c *AESCTSHMACSHA1) Wrap(ctx context.Context, seqNum uint64, payload []byte, conf bool) ([]byte, error) {
+	var forSeal [][]byte
+	if conf {
+		forSeal = [][]byte{payload}
+	}
+
+	b, err := c.wrap(ctx, seqNum, [][]byte{payload}, forSeal, false)
 	if err != nil {
 		return nil, fmt.Errorf("aes-cts-hmac-sha1: wrap: %w", err)
 	}
 	return b, nil
 }
 
-func isSinglePayload(forSign, forSeal [][]byte) bool {
-	return len(forSign) == 1 && len(forSeal) == 1 && bytes.Equal(forSign[0], forSeal[0])
+func (c *AESCTSHMACSHA1) WrapEx(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte) ([]byte, error) {
+	b, err := c.wrap(ctx, seqNum, forSign, forSeal, true)
+	if err != nil {
+		return nil, fmt.Errorf("aes-cts-hmac-sha1: wrap_ex: %w", err)
+	}
+	return b, nil
 }
 
-func (c *AESCTSHMACSHA1) wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte) ([]byte, error) {
+func (c *AESCTSHMACSHA1) wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, isEx bool) ([]byte, error) {
 
 	eB, hdr := bytes.NewBuffer(nil), c.WrapHeader(ctx, seqNum)
 
@@ -103,7 +112,7 @@ func (c *AESCTSHMACSHA1) wrap(ctx context.Context, seqNum uint64, forSign, forSe
 
 	ec := EC
 
-	if isSinglePayload(forSign, forSeal) /* it's a Wrap call, compute EC according to RFC 4121, section 4.3.2. */ {
+	if !isEx /* it's a Wrap call, compute EC according to RFC 4121, section 4.3.2. */ {
 		sz, block := 0, c.setting.Type.GetMessageBlockByteSize()
 		for _, b := range forSeal {
 			sz += len(b)
@@ -115,7 +124,7 @@ func (c *AESCTSHMACSHA1) wrap(ctx context.Context, seqNum uint64, forSign, forSe
 
 	// gen ec.
 	ecB := bytes.Repeat([]byte{0xFF}, ec)
-	// set ec value (16). (pad = 1, block_size = 16).
+	// set ec value.
 	binary.BigEndian.PutUint16(hdr[4:6], uint16(ec))
 
 	iH, err := c.IntegrityHash()
@@ -156,15 +165,50 @@ func (c *AESCTSHMACSHA1) wrap(ctx context.Context, seqNum uint64, forSign, forSe
 	return append(hdr, sgn...), nil
 }
 
-func (c *AESCTSHMACSHA1) Unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
-	ok, err := c.unwrap(ctx, seqNum, forSign, forSeal, sgn)
+func (c *AESCTSHMACSHA1) Unwrap(ctx context.Context, seqNum uint64, payload []byte, sgn []byte) ([]byte, bool, error) {
+
+	var err error
+
+	if len(sgn) == 0 {
+		if sgn, payload, err = c.ParseSignature(ctx, payload); err != nil {
+			return nil, false, fmt.Errorf("aes-cts-hmac-sha1: unwrap: parse token: %w", err)
+		}
+	}
+
+	ok, err := c.unwrapEx(ctx, seqNum, [][]byte{payload}, [][]byte{payload}, sgn)
 	if err != nil {
-		return ok, fmt.Errorf("aes-cts-hmac-sha1: unwrap: %w", err)
+		return nil, false, fmt.Errorf("aes-cts-hmac-sha1: unwrap: %w", err)
+	}
+	return sgn, ok, nil
+}
+
+func (c *AESCTSHMACSHA1) UnwrapEx(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
+	ok, err := c.unwrapEx(ctx, seqNum, forSign, forSeal, sgn)
+	if err != nil {
+		return ok, fmt.Errorf("aes-cts-hmac-sha1: unwrap_ex: %w", err)
 	}
 	return ok, nil
 }
 
-func (c *AESCTSHMACSHA1) unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
+// ParseSignature parses the header of the signature and returns the header and the remaining of the signature.
+func (c *AESCTSHMACSHA1) ParseSignature(ctx context.Context, payload []byte) ([]byte, []byte, error) {
+
+	if len(payload) < 16 {
+		return nil, nil, fmt.Errorf("invalid payload size: %d < 16", len(payload))
+	}
+
+	rrc, ec := int(binary.BigEndian.Uint16(payload[6:])), int(binary.BigEndian.Uint16(payload[4:]))
+
+	sgn := ec + rrc + 16 /* hdr */ + c.setting.Type.GetConfounderByteSize()
+	if len(payload) < sgn {
+		return nil, nil, fmt.Errorf("invalid payload size: %d < %d", len(payload), sgn)
+	}
+
+	return payload[:sgn], payload[sgn:], nil
+
+}
+
+func (c *AESCTSHMACSHA1) unwrapEx(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
 
 	// buffer for decryption.
 	eB, hdr := bytes.NewBuffer(nil), sgn[:16]

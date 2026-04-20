@@ -117,6 +117,25 @@ type Config struct {
 	// The flag that indicates whether all the input buffers must be used to
 	// build a signature. (DO NOT USE IT).
 	NoSignAllBuffers bool
+
+	ServerConfigFlags Flag
+	// The NetBIOS computer name of the server.
+	NetBIOSComputerName string
+	// The NetBIOS domain name of the server.
+	NetBIOSDomainName string
+	// The DNS computer name of the server.
+	DNSComputerName string
+	// The DNS domain name of the server.
+	DNSDomainName string
+	// The DNS forest name of the server.
+	DNSForestName string
+
+	// Allow the use of the null session.
+	AllowAnonymous bool
+	// Allow the use of the guest account.
+	AllowGuest bool
+	// The credential verifier.
+	Verifier Verifier
 }
 
 func IsCredentialEmpty(cred any) bool {
@@ -210,6 +229,31 @@ func (c *Config) Verify(f Flag) error {
 	}
 
 	return nil
+}
+
+func (c *Config) Accept(flags Flag) {
+
+	c.Integrity = true
+
+	if flags.IsSet(NegotiateSign) {
+		c.Integrity = true
+	}
+
+	if flags.IsSet(NegotiateSeal) {
+		c.Confidentiality = true
+	}
+
+	if flags.IsSet(Anonymous) {
+		c.Anonymity = true
+	}
+
+	if flags.IsSet(NegotiateIdentify) {
+		c.Identify = true
+	}
+
+	if flags.IsSet(NegotiateDatagram) {
+		c.Datagram = true
+	}
 }
 
 // Negotiate function returns the set of negotiated flags.

@@ -716,7 +716,7 @@ func (t *ExprTree) Expression(opts ...any) string {
 	switch t.Op {
 	case TERNARY:
 		if t.Cond.Op == UMUL || t.Cond.Op == IDENT {
-			ret = fmt.Sprintf(t.Lval.Expression(opts...))
+			ret = fmt.Sprint(t.Lval.Expression(opts...))
 		} else {
 			ret = fmt.Sprintf("(%s?%s:%s)", t.Cond.Expression(opts...), t.Lval.Expression(opts...), t.Rval.Expression(opts...))
 		}
