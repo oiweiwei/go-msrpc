@@ -1053,8 +1053,10 @@ type xxx_CreateObjectOperation struct {
 	Return                   int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSCreateObject operation.
 func (o *xxx_CreateObjectOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of S_DSCreateObject operation.
 func (o *xxx_CreateObjectOperation) OpName() string { return "/dscomm/v1/S_DSCreateObject" }
 
 func (o *xxx_CreateObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1544,6 +1546,17 @@ func (o *CreateObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCreateObjectRequest build a response structure from the given request structure.
+func (o *CreateObjectRequest) MakeResponse() *CreateObjectResponse {
+	return &CreateObjectResponse{}
+}
+
+// OpNum returns the operation number of S_DSCreateObject operation.
+func (o *CreateObjectRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of S_DSCreateObject operation.
+func (o *CreateObjectRequest) OpName() string { return "/dscomm/v1/S_DSCreateObject" }
+
 // CreateObjectResponse structure represents the S_DSCreateObject operation response
 type CreateObjectResponse struct {
 	// pObjGuid: SHOULD be set by the server to the GUID of the created object if the dwObjectType
@@ -1591,8 +1604,10 @@ type xxx_DeleteObjectOperation struct {
 	Return     int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSDeleteObject operation.
 func (o *xxx_DeleteObjectOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of S_DSDeleteObject operation.
 func (o *xxx_DeleteObjectOperation) OpName() string { return "/dscomm/v1/S_DSDeleteObject" }
 
 func (o *xxx_DeleteObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1716,6 +1731,17 @@ func (o *DeleteObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeDeleteObjectRequest build a response structure from the given request structure.
+func (o *DeleteObjectRequest) MakeResponse() *DeleteObjectResponse {
+	return &DeleteObjectResponse{}
+}
+
+// OpNum returns the operation number of S_DSDeleteObject operation.
+func (o *DeleteObjectRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of S_DSDeleteObject operation.
+func (o *DeleteObjectRequest) OpName() string { return "/dscomm/v1/S_DSDeleteObject" }
+
 // DeleteObjectResponse structure represents the S_DSDeleteObject operation response
 type DeleteObjectResponse struct {
 	// Return: The S_DSDeleteObject return value.
@@ -1764,8 +1790,10 @@ type xxx_GetPropertiesOperation struct {
 	Return              int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSGetProps operation.
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of S_DSGetProps operation.
 func (o *xxx_GetPropertiesOperation) OpName() string { return "/dscomm/v1/S_DSGetProps" }
 
 func (o *xxx_GetPropertiesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2202,6 +2230,22 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetPropertiesRequest build a response structure from the given request structure.
+func (o *GetPropertiesRequest) MakeResponse() *GetPropertiesResponse {
+	if o == nil {
+		return &GetPropertiesResponse{}
+	}
+	return &GetPropertiesResponse{
+		CreatePartition: o.CreatePartition,
+	}
+}
+
+// OpNum returns the operation number of S_DSGetProps operation.
+func (o *GetPropertiesRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of S_DSGetProps operation.
+func (o *GetPropertiesRequest) OpName() string { return "/dscomm/v1/S_DSGetProps" }
+
 // GetPropertiesResponse structure represents the S_DSGetProps operation response
 type GetPropertiesResponse struct {
 	// XXX: cp is an implicit input depedency for output parameters
@@ -2275,8 +2319,10 @@ type xxx_SetPropertiesOperation struct {
 	Return          int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSSetProps operation.
 func (o *xxx_SetPropertiesOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of S_DSSetProps operation.
 func (o *xxx_SetPropertiesOperation) OpName() string { return "/dscomm/v1/S_DSSetProps" }
 
 func (o *xxx_SetPropertiesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2546,6 +2592,17 @@ func (o *SetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSetPropertiesRequest build a response structure from the given request structure.
+func (o *SetPropertiesRequest) MakeResponse() *SetPropertiesResponse {
+	return &SetPropertiesResponse{}
+}
+
+// OpNum returns the operation number of S_DSSetProps operation.
+func (o *SetPropertiesRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of S_DSSetProps operation.
+func (o *SetPropertiesRequest) OpName() string { return "/dscomm/v1/S_DSSetProps" }
+
 // SetPropertiesResponse structure represents the S_DSSetProps operation response
 type SetPropertiesResponse struct {
 	// Return: The S_DSSetProps return value.
@@ -2595,8 +2652,10 @@ type xxx_GetObjectSecurityOperation struct {
 	Return              int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSGetObjectSecurity operation.
 func (o *xxx_GetObjectSecurityOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of S_DSGetObjectSecurity operation.
 func (o *xxx_GetObjectSecurityOperation) OpName() string { return "/dscomm/v1/S_DSGetObjectSecurity" }
 
 func (o *xxx_GetObjectSecurityOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2957,6 +3016,22 @@ func (o *GetObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetObjectSecurityRequest build a response structure from the given request structure.
+func (o *GetObjectSecurityRequest) MakeResponse() *GetObjectSecurityResponse {
+	if o == nil {
+		return &GetObjectSecurityResponse{}
+	}
+	return &GetObjectSecurityResponse{
+		Length: o.Length,
+	}
+}
+
+// OpNum returns the operation number of S_DSGetObjectSecurity operation.
+func (o *GetObjectSecurityRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of S_DSGetObjectSecurity operation.
+func (o *GetObjectSecurityRequest) OpName() string { return "/dscomm/v1/S_DSGetObjectSecurity" }
+
 // GetObjectSecurityResponse structure represents the S_DSGetObjectSecurity operation response
 type GetObjectSecurityResponse struct {
 	// XXX: nLength is an implicit input depedency for output parameters
@@ -3035,8 +3110,10 @@ type xxx_SetObjectSecurityOperation struct {
 	Return              int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSSetObjectSecurity operation.
 func (o *xxx_SetObjectSecurityOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of S_DSSetObjectSecurity operation.
 func (o *xxx_SetObjectSecurityOperation) OpName() string { return "/dscomm/v1/S_DSSetObjectSecurity" }
 
 func (o *xxx_SetObjectSecurityOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3281,6 +3358,17 @@ func (o *SetObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetObjectSecurityRequest build a response structure from the given request structure.
+func (o *SetObjectSecurityRequest) MakeResponse() *SetObjectSecurityResponse {
+	return &SetObjectSecurityResponse{}
+}
+
+// OpNum returns the operation number of S_DSSetObjectSecurity operation.
+func (o *SetObjectSecurityRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of S_DSSetObjectSecurity operation.
+func (o *SetObjectSecurityRequest) OpName() string { return "/dscomm/v1/S_DSSetObjectSecurity" }
+
 // SetObjectSecurityResponse structure represents the S_DSSetObjectSecurity operation response
 type SetObjectSecurityResponse struct {
 	// Return: The S_DSSetObjectSecurity return value.
@@ -3327,8 +3415,10 @@ type xxx_LookupBeginOperation struct {
 	Return      int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSLookupBegin operation.
 func (o *xxx_LookupBeginOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of S_DSLookupBegin operation.
 func (o *xxx_LookupBeginOperation) OpName() string { return "/dscomm/v1/S_DSLookupBegin" }
 
 func (o *xxx_LookupBeginOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3644,6 +3734,17 @@ func (o *LookupBeginRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeLookupBeginRequest build a response structure from the given request structure.
+func (o *LookupBeginRequest) MakeResponse() *LookupBeginResponse {
+	return &LookupBeginResponse{}
+}
+
+// OpNum returns the operation number of S_DSLookupBegin operation.
+func (o *LookupBeginRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of S_DSLookupBegin operation.
+func (o *LookupBeginRequest) OpName() string { return "/dscomm/v1/S_DSLookupBegin" }
+
 // LookupBeginResponse structure represents the S_DSLookupBegin operation response
 type LookupBeginResponse struct {
 	// pHandle:  MUST be set by the server to point to an RPC context handle to be used
@@ -3696,8 +3797,10 @@ type xxx_LookupNextOperation struct {
 	Return              int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSLookupNext operation.
 func (o *xxx_LookupNextOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of S_DSLookupNext operation.
 func (o *xxx_LookupNextOperation) OpName() string { return "/dscomm/v1/S_DSLookupNext" }
 
 func (o *xxx_LookupNextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4033,6 +4136,22 @@ func (o *LookupNextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeLookupNextRequest build a response structure from the given request structure.
+func (o *LookupNextRequest) MakeResponse() *LookupNextResponse {
+	if o == nil {
+		return &LookupNextResponse{}
+	}
+	return &LookupNextResponse{
+		Size: o.Size,
+	}
+}
+
+// OpNum returns the operation number of S_DSLookupNext operation.
+func (o *LookupNextRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of S_DSLookupNext operation.
+func (o *LookupNextRequest) OpName() string { return "/dscomm/v1/S_DSLookupNext" }
+
 // LookupNextResponse structure represents the S_DSLookupNext operation response
 type LookupNextResponse struct {
 	// XXX: dwSize is an implicit input depedency for output parameters
@@ -4111,8 +4230,10 @@ type xxx_LookupEndOperation struct {
 	Return  int32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSLookupEnd operation.
 func (o *xxx_LookupEndOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of S_DSLookupEnd operation.
 func (o *xxx_LookupEndOperation) OpName() string { return "/dscomm/v1/S_DSLookupEnd" }
 
 func (o *xxx_LookupEndOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4246,6 +4367,17 @@ func (o *LookupEndRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeLookupEndRequest build a response structure from the given request structure.
+func (o *LookupEndRequest) MakeResponse() *LookupEndResponse {
+	return &LookupEndResponse{}
+}
+
+// OpNum returns the operation number of S_DSLookupEnd operation.
+func (o *LookupEndRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of S_DSLookupEnd operation.
+func (o *LookupEndRequest) OpName() string { return "/dscomm/v1/S_DSLookupEnd" }
+
 // LookupEndResponse structure represents the S_DSLookupEnd operation response
 type LookupEndResponse struct {
 	// phContext:  MUST point to an RPC context handle returned by a previous call to S_DSLookupBegin.
@@ -4294,8 +4426,10 @@ type xxx_DeleteObjectGUIDOperation struct {
 	Return     int32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSDeleteObjectGuid operation.
 func (o *xxx_DeleteObjectGUIDOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of S_DSDeleteObjectGuid operation.
 func (o *xxx_DeleteObjectGUIDOperation) OpName() string { return "/dscomm/v1/S_DSDeleteObjectGuid" }
 
 func (o *xxx_DeleteObjectGUIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4427,6 +4561,17 @@ func (o *DeleteObjectGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeDeleteObjectGUIDRequest build a response structure from the given request structure.
+func (o *DeleteObjectGUIDRequest) MakeResponse() *DeleteObjectGUIDResponse {
+	return &DeleteObjectGUIDResponse{}
+}
+
+// OpNum returns the operation number of S_DSDeleteObjectGuid operation.
+func (o *DeleteObjectGUIDRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of S_DSDeleteObjectGuid operation.
+func (o *DeleteObjectGUIDRequest) OpName() string { return "/dscomm/v1/S_DSDeleteObjectGuid" }
+
 // DeleteObjectGUIDResponse structure represents the S_DSDeleteObjectGuid operation response
 type DeleteObjectGUIDResponse struct {
 	// Return: The S_DSDeleteObjectGuid return value.
@@ -4475,8 +4620,10 @@ type xxx_GetPropertiesGUIDOperation struct {
 	Return              int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSGetPropsGuid operation.
 func (o *xxx_GetPropertiesGUIDOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of S_DSGetPropsGuid operation.
 func (o *xxx_GetPropertiesGUIDOperation) OpName() string { return "/dscomm/v1/S_DSGetPropsGuid" }
 
 func (o *xxx_GetPropertiesGUIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4946,6 +5093,22 @@ func (o *GetPropertiesGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetPropertiesGUIDRequest build a response structure from the given request structure.
+func (o *GetPropertiesGUIDRequest) MakeResponse() *GetPropertiesGUIDResponse {
+	if o == nil {
+		return &GetPropertiesGUIDResponse{}
+	}
+	return &GetPropertiesGUIDResponse{
+		CreatePartition: o.CreatePartition,
+	}
+}
+
+// OpNum returns the operation number of S_DSGetPropsGuid operation.
+func (o *GetPropertiesGUIDRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of S_DSGetPropsGuid operation.
+func (o *GetPropertiesGUIDRequest) OpName() string { return "/dscomm/v1/S_DSGetPropsGuid" }
+
 // GetPropertiesGUIDResponse structure represents the S_DSGetPropsGuid operation response
 type GetPropertiesGUIDResponse struct {
 	// XXX: cp is an implicit input depedency for output parameters
@@ -5020,8 +5183,10 @@ type xxx_SetPropertiesGUIDOperation struct {
 	Return          int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSSetPropsGuid operation.
 func (o *xxx_SetPropertiesGUIDOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of S_DSSetPropsGuid operation.
 func (o *xxx_SetPropertiesGUIDOperation) OpName() string { return "/dscomm/v1/S_DSSetPropsGuid" }
 
 func (o *xxx_SetPropertiesGUIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5299,6 +5464,17 @@ func (o *SetPropertiesGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetPropertiesGUIDRequest build a response structure from the given request structure.
+func (o *SetPropertiesGUIDRequest) MakeResponse() *SetPropertiesGUIDResponse {
+	return &SetPropertiesGUIDResponse{}
+}
+
+// OpNum returns the operation number of S_DSSetPropsGuid operation.
+func (o *SetPropertiesGUIDRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of S_DSSetPropsGuid operation.
+func (o *SetPropertiesGUIDRequest) OpName() string { return "/dscomm/v1/S_DSSetPropsGuid" }
+
 // SetPropertiesGUIDResponse structure represents the S_DSSetPropsGuid operation response
 type SetPropertiesGUIDResponse struct {
 	// Return: The S_DSSetPropsGuid return value.
@@ -5348,8 +5524,10 @@ type xxx_GetObjectSecurityGUIDOperation struct {
 	Return              int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSGetObjectSecurityGuid operation.
 func (o *xxx_GetObjectSecurityGUIDOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of S_DSGetObjectSecurityGuid operation.
 func (o *xxx_GetObjectSecurityGUIDOperation) OpName() string {
 	return "/dscomm/v1/S_DSGetObjectSecurityGuid"
 }
@@ -5683,6 +5861,22 @@ func (o *GetObjectSecurityGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetObjectSecurityGUIDRequest build a response structure from the given request structure.
+func (o *GetObjectSecurityGUIDRequest) MakeResponse() *GetObjectSecurityGUIDResponse {
+	if o == nil {
+		return &GetObjectSecurityGUIDResponse{}
+	}
+	return &GetObjectSecurityGUIDResponse{
+		Length: o.Length,
+	}
+}
+
+// OpNum returns the operation number of S_DSGetObjectSecurityGuid operation.
+func (o *GetObjectSecurityGUIDRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of S_DSGetObjectSecurityGuid operation.
+func (o *GetObjectSecurityGUIDRequest) OpName() string { return "/dscomm/v1/S_DSGetObjectSecurityGuid" }
+
 // GetObjectSecurityGUIDResponse structure represents the S_DSGetObjectSecurityGuid operation response
 type GetObjectSecurityGUIDResponse struct {
 	// XXX: nLength is an implicit input depedency for output parameters
@@ -5763,8 +5957,10 @@ type xxx_SetObjectSecurityGUIDOperation struct {
 	Return              int32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSSetObjectSecurityGuid operation.
 func (o *xxx_SetObjectSecurityGUIDOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of S_DSSetObjectSecurityGuid operation.
 func (o *xxx_SetObjectSecurityGUIDOperation) OpName() string {
 	return "/dscomm/v1/S_DSSetObjectSecurityGuid"
 }
@@ -6018,6 +6214,17 @@ func (o *SetObjectSecurityGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeSetObjectSecurityGUIDRequest build a response structure from the given request structure.
+func (o *SetObjectSecurityGUIDRequest) MakeResponse() *SetObjectSecurityGUIDResponse {
+	return &SetObjectSecurityGUIDResponse{}
+}
+
+// OpNum returns the operation number of S_DSSetObjectSecurityGuid operation.
+func (o *SetObjectSecurityGUIDRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of S_DSSetObjectSecurityGuid operation.
+func (o *SetObjectSecurityGUIDRequest) OpName() string { return "/dscomm/v1/S_DSSetObjectSecurityGuid" }
+
 // SetObjectSecurityGUIDResponse structure represents the S_DSSetObjectSecurityGuid operation response
 type SetObjectSecurityGUIDResponse struct {
 	// Return: The S_DSSetObjectSecurityGuid return value.
@@ -6063,8 +6270,10 @@ type xxx_QMSetMachinePropertiesOperation struct {
 	Return          int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSQMSetMachineProperties operation.
 func (o *xxx_QMSetMachinePropertiesOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of S_DSQMSetMachineProperties operation.
 func (o *xxx_QMSetMachinePropertiesOperation) OpName() string {
 	return "/dscomm/v1/S_DSQMSetMachineProperties"
 }
@@ -6336,6 +6545,19 @@ func (o *QMSetMachinePropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeQMSetMachinePropertiesRequest build a response structure from the given request structure.
+func (o *QMSetMachinePropertiesRequest) MakeResponse() *QMSetMachinePropertiesResponse {
+	return &QMSetMachinePropertiesResponse{}
+}
+
+// OpNum returns the operation number of S_DSQMSetMachineProperties operation.
+func (o *QMSetMachinePropertiesRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of S_DSQMSetMachineProperties operation.
+func (o *QMSetMachinePropertiesRequest) OpName() string {
+	return "/dscomm/v1/S_DSQMSetMachineProperties"
+}
+
 // QMSetMachinePropertiesResponse structure represents the S_DSQMSetMachineProperties operation response
 type QMSetMachinePropertiesResponse struct {
 	// Return: The S_DSQMSetMachineProperties return value.
@@ -6381,8 +6603,10 @@ type xxx_CreateServersCacheOperation struct {
 	Return              int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSCreateServersCache operation.
 func (o *xxx_CreateServersCacheOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of S_DSCreateServersCache operation.
 func (o *xxx_CreateServersCacheOperation) OpName() string { return "/dscomm/v1/S_DSCreateServersCache" }
 
 func (o *xxx_CreateServersCacheOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6724,6 +6948,17 @@ func (o *CreateServersCacheRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeCreateServersCacheRequest build a response structure from the given request structure.
+func (o *CreateServersCacheRequest) MakeResponse() *CreateServersCacheResponse {
+	return &CreateServersCacheResponse{}
+}
+
+// OpNum returns the operation number of S_DSCreateServersCache operation.
+func (o *CreateServersCacheRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of S_DSCreateServersCache operation.
+func (o *CreateServersCacheRequest) OpName() string { return "/dscomm/v1/S_DSCreateServersCache" }
+
 // CreateServersCacheResponse structure represents the S_DSCreateServersCache operation response
 type CreateServersCacheResponse struct {
 	// pdwIndex:  Pointer to an unsigned long that contains an index into the configured
@@ -6797,8 +7032,10 @@ type xxx_QMSetMachinePropertiesSignProcOperation struct {
 	Return           int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSQMSetMachinePropertiesSignProc operation.
 func (o *xxx_QMSetMachinePropertiesSignProcOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of S_DSQMSetMachinePropertiesSignProc operation.
 func (o *xxx_QMSetMachinePropertiesSignProcOperation) OpName() string {
 	return "/dscomm/v1/S_DSQMSetMachinePropertiesSignProc"
 }
@@ -7174,6 +7411,24 @@ func (o *QMSetMachinePropertiesSignProcRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeQMSetMachinePropertiesSignProcRequest build a response structure from the given request structure.
+func (o *QMSetMachinePropertiesSignProcRequest) MakeResponse() *QMSetMachinePropertiesSignProcResponse {
+	if o == nil {
+		return &QMSetMachinePropertiesSignProcResponse{}
+	}
+	return &QMSetMachinePropertiesSignProcResponse{
+		SignatureMaxSize: o.SignatureMaxSize,
+	}
+}
+
+// OpNum returns the operation number of S_DSQMSetMachinePropertiesSignProc operation.
+func (o *QMSetMachinePropertiesSignProcRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of S_DSQMSetMachinePropertiesSignProc operation.
+func (o *QMSetMachinePropertiesSignProcRequest) OpName() string {
+	return "/dscomm/v1/S_DSQMSetMachinePropertiesSignProc"
+}
+
 // QMSetMachinePropertiesSignProcResponse structure represents the S_DSQMSetMachinePropertiesSignProc operation response
 type QMSetMachinePropertiesSignProcResponse struct {
 	// XXX: dwSignatureMaxSize is an implicit input depedency for output parameters
@@ -7247,8 +7502,10 @@ type xxx_QMGetObjectSecurityOperation struct {
 	Return              int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSQMGetObjectSecurity operation.
 func (o *xxx_QMGetObjectSecurityOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of S_DSQMGetObjectSecurity operation.
 func (o *xxx_QMGetObjectSecurityOperation) OpName() string {
 	return "/dscomm/v1/S_DSQMGetObjectSecurity"
 }
@@ -7601,6 +7858,22 @@ func (o *QMGetObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeQMGetObjectSecurityRequest build a response structure from the given request structure.
+func (o *QMGetObjectSecurityRequest) MakeResponse() *QMGetObjectSecurityResponse {
+	if o == nil {
+		return &QMGetObjectSecurityResponse{}
+	}
+	return &QMGetObjectSecurityResponse{
+		Length: o.Length,
+	}
+}
+
+// OpNum returns the operation number of S_DSQMGetObjectSecurity operation.
+func (o *QMGetObjectSecurityRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of S_DSQMGetObjectSecurity operation.
+func (o *QMGetObjectSecurityRequest) OpName() string { return "/dscomm/v1/S_DSQMGetObjectSecurity" }
+
 // QMGetObjectSecurityResponse structure represents the S_DSQMGetObjectSecurity operation response
 type QMGetObjectSecurityResponse struct {
 	// XXX: nLength is an implicit input depedency for output parameters
@@ -7682,8 +7955,10 @@ type xxx_QMGetObjectSecurityChallengeResponseProcOperation struct {
 	Return                   int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSQMGetObjectSecurityChallengeResponceProc operation.
 func (o *xxx_QMGetObjectSecurityChallengeResponseProcOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of S_DSQMGetObjectSecurityChallengeResponceProc operation.
 func (o *xxx_QMGetObjectSecurityChallengeResponseProcOperation) OpName() string {
 	return "/dscomm/v1/S_DSQMGetObjectSecurityChallengeResponceProc"
 }
@@ -8061,6 +8336,24 @@ func (o *QMGetObjectSecurityChallengeResponseProcRequest) UnmarshalNDR(ctx conte
 	return nil
 }
 
+// MakeQMGetObjectSecurityChallengeResponseProcRequest build a response structure from the given request structure.
+func (o *QMGetObjectSecurityChallengeResponseProcRequest) MakeResponse() *QMGetObjectSecurityChallengeResponseProcResponse {
+	if o == nil {
+		return &QMGetObjectSecurityChallengeResponseProcResponse{}
+	}
+	return &QMGetObjectSecurityChallengeResponseProcResponse{
+		ChallengeResponseMaxSize: o.ChallengeResponseMaxSize,
+	}
+}
+
+// OpNum returns the operation number of S_DSQMGetObjectSecurityChallengeResponceProc operation.
+func (o *QMGetObjectSecurityChallengeResponseProcRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of S_DSQMGetObjectSecurityChallengeResponceProc operation.
+func (o *QMGetObjectSecurityChallengeResponseProcRequest) OpName() string {
+	return "/dscomm/v1/S_DSQMGetObjectSecurityChallengeResponceProc"
+}
+
 // QMGetObjectSecurityChallengeResponseProcResponse structure represents the S_DSQMGetObjectSecurityChallengeResponceProc operation response
 type QMGetObjectSecurityChallengeResponseProcResponse struct {
 	// XXX: dwCallengeResponceMaxSize is an implicit input depedency for output parameters
@@ -8131,8 +8424,10 @@ type xxx_InitSecurityContextOperation struct {
 	Return              int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_InitSecCtx operation.
 func (o *xxx_InitSecurityContextOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of S_InitSecCtx operation.
 func (o *xxx_InitSecurityContextOperation) OpName() string { return "/dscomm/v1/S_InitSecCtx" }
 
 func (o *xxx_InitSecurityContextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8410,6 +8705,22 @@ func (o *InitSecurityContextRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeInitSecurityContextRequest build a response structure from the given request structure.
+func (o *InitSecurityContextRequest) MakeResponse() *InitSecurityContextResponse {
+	if o == nil {
+		return &InitSecurityContextResponse{}
+	}
+	return &InitSecurityContextResponse{
+		ClientBufferMaxSize: o.ClientBufferMaxSize,
+	}
+}
+
+// OpNum returns the operation number of S_InitSecCtx operation.
+func (o *InitSecurityContextRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of S_InitSecCtx operation.
+func (o *InitSecurityContextRequest) OpName() string { return "/dscomm/v1/S_InitSecCtx" }
+
 // InitSecurityContextResponse structure represents the S_InitSecCtx operation response
 type InitSecurityContextResponse struct {
 	// XXX: dwClientBuffMaxSize is an implicit input depedency for output parameters
@@ -8481,8 +8792,10 @@ type xxx_ValidateServerOperation struct {
 	Return              int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSValidateServer operation.
 func (o *xxx_ValidateServerOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of S_DSValidateServer operation.
 func (o *xxx_ValidateServerOperation) OpName() string { return "/dscomm/v1/S_DSValidateServer" }
 
 func (o *xxx_ValidateServerOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8776,6 +9089,17 @@ func (o *ValidateServerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeValidateServerRequest build a response structure from the given request structure.
+func (o *ValidateServerRequest) MakeResponse() *ValidateServerResponse {
+	return &ValidateServerResponse{}
+}
+
+// OpNum returns the operation number of S_DSValidateServer operation.
+func (o *ValidateServerRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of S_DSValidateServer operation.
+func (o *ValidateServerRequest) OpName() string { return "/dscomm/v1/S_DSValidateServer" }
+
 // ValidateServerResponse structure represents the S_DSValidateServer operation response
 type ValidateServerResponse struct {
 	// pphServerAuth:  MUST be set by the server to a PCONTEXT_HANDLE_SERVER_AUTH_TYPE
@@ -8822,8 +9146,10 @@ type xxx_CloseServerOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSCloseServerHandle operation.
 func (o *xxx_CloseServerOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of S_DSCloseServerHandle operation.
 func (o *xxx_CloseServerOperation) OpName() string { return "/dscomm/v1/S_DSCloseServerHandle" }
 
 func (o *xxx_CloseServerOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8958,6 +9284,17 @@ func (o *CloseServerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCloseServerRequest build a response structure from the given request structure.
+func (o *CloseServerRequest) MakeResponse() *CloseServerResponse {
+	return &CloseServerResponse{}
+}
+
+// OpNum returns the operation number of S_DSCloseServerHandle operation.
+func (o *CloseServerRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of S_DSCloseServerHandle operation.
+func (o *CloseServerRequest) OpName() string { return "/dscomm/v1/S_DSCloseServerHandle" }
+
 // CloseServerResponse structure represents the S_DSCloseServerHandle operation response
 type CloseServerResponse struct {
 	// pphServerAuth:  The PCONTEXT_HANDLE_SERVER_AUTH_TYPE RPC context handle to close.
@@ -9006,8 +9343,10 @@ type xxx_GetServerPortOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of S_DSGetServerPort operation.
 func (o *xxx_GetServerPortOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of S_DSGetServerPort operation.
 func (o *xxx_GetServerPortOperation) OpName() string { return "/dscomm/v1/S_DSGetServerPort" }
 
 func (o *xxx_GetServerPortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9125,6 +9464,17 @@ func (o *GetServerPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetServerPortRequest build a response structure from the given request structure.
+func (o *GetServerPortRequest) MakeResponse() *GetServerPortResponse {
+	return &GetServerPortResponse{}
+}
+
+// OpNum returns the operation number of S_DSGetServerPort operation.
+func (o *GetServerPortRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of S_DSGetServerPort operation.
+func (o *GetServerPortRequest) OpName() string { return "/dscomm/v1/S_DSGetServerPort" }
 
 // GetServerPortResponse structure represents the S_DSGetServerPort operation response
 type GetServerPortResponse struct {

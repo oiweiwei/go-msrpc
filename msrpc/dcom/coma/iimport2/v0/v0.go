@@ -161,8 +161,10 @@ type xxx_SetPartitionOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetPartition operation.
 func (o *xxx_SetPartitionOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SetPartition operation.
 func (o *xxx_SetPartitionOperation) OpName() string { return "/IImport2/v0/SetPartition" }
 
 func (o *xxx_SetPartitionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -349,6 +351,17 @@ func (o *SetPartitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetPartitionRequest build a response structure from the given request structure.
+func (o *SetPartitionRequest) MakeResponse() *SetPartitionResponse {
+	return &SetPartitionResponse{}
+}
+
+// OpNum returns the operation number of SetPartition operation.
+func (o *SetPartitionRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SetPartition operation.
+func (o *SetPartitionRequest) OpName() string { return "/IImport2/v0/SetPartition" }
 
 // SetPartitionResponse structure represents the SetPartition operation response
 type SetPartitionResponse struct {

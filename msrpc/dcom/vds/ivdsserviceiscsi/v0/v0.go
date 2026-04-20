@@ -216,8 +216,10 @@ type xxx_GetInitiatorNameOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetInitiatorName operation.
 func (o *xxx_GetInitiatorNameOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetInitiatorName operation.
 func (o *xxx_GetInitiatorNameOperation) OpName() string {
 	return "/IVdsServiceIscsi/v0/GetInitiatorName"
 }
@@ -400,6 +402,17 @@ func (o *GetInitiatorNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetInitiatorNameRequest build a response structure from the given request structure.
+func (o *GetInitiatorNameRequest) MakeResponse() *GetInitiatorNameResponse {
+	return &GetInitiatorNameResponse{}
+}
+
+// OpNum returns the operation number of GetInitiatorName operation.
+func (o *GetInitiatorNameRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetInitiatorName operation.
+func (o *GetInitiatorNameRequest) OpName() string { return "/IVdsServiceIscsi/v0/GetInitiatorName" }
+
 // GetInitiatorNameResponse structure represents the GetInitiatorName operation response
 type GetInitiatorNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -452,8 +465,10 @@ type xxx_QueryInitiatorAdaptersOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryInitiatorAdapters operation.
 func (o *xxx_QueryInitiatorAdaptersOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of QueryInitiatorAdapters operation.
 func (o *xxx_QueryInitiatorAdaptersOperation) OpName() string {
 	return "/IVdsServiceIscsi/v0/QueryInitiatorAdapters"
 }
@@ -645,6 +660,19 @@ func (o *QueryInitiatorAdaptersRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeQueryInitiatorAdaptersRequest build a response structure from the given request structure.
+func (o *QueryInitiatorAdaptersRequest) MakeResponse() *QueryInitiatorAdaptersResponse {
+	return &QueryInitiatorAdaptersResponse{}
+}
+
+// OpNum returns the operation number of QueryInitiatorAdapters operation.
+func (o *QueryInitiatorAdaptersRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of QueryInitiatorAdapters operation.
+func (o *QueryInitiatorAdaptersRequest) OpName() string {
+	return "/IVdsServiceIscsi/v0/QueryInitiatorAdapters"
+}
+
 // QueryInitiatorAdaptersResponse structure represents the QueryInitiatorAdapters operation response
 type QueryInitiatorAdaptersResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -700,8 +728,10 @@ type xxx_SetInitiatorSharedSecretOperation struct {
 	Return                int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetInitiatorSharedSecret operation.
 func (o *xxx_SetInitiatorSharedSecretOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of SetInitiatorSharedSecret operation.
 func (o *xxx_SetInitiatorSharedSecretOperation) OpName() string {
 	return "/IVdsServiceIscsi/v0/SetInitiatorSharedSecret"
 }
@@ -923,6 +953,19 @@ func (o *SetInitiatorSharedSecretRequest) UnmarshalNDR(ctx context.Context, r nd
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetInitiatorSharedSecretRequest build a response structure from the given request structure.
+func (o *SetInitiatorSharedSecretRequest) MakeResponse() *SetInitiatorSharedSecretResponse {
+	return &SetInitiatorSharedSecretResponse{}
+}
+
+// OpNum returns the operation number of SetInitiatorSharedSecret operation.
+func (o *SetInitiatorSharedSecretRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of SetInitiatorSharedSecret operation.
+func (o *SetInitiatorSharedSecretRequest) OpName() string {
+	return "/IVdsServiceIscsi/v0/SetInitiatorSharedSecret"
 }
 
 // SetInitiatorSharedSecretResponse structure represents the SetInitiatorSharedSecret operation response

@@ -282,8 +282,10 @@ type xxx_SyncOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of W32TimeSync operation.
 func (o *xxx_SyncOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of W32TimeSync operation.
 func (o *xxx_SyncOperation) OpName() string { return "/W32Time/v4.1/W32TimeSync" }
 
 func (o *xxx_SyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -461,6 +463,17 @@ func (o *SyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSyncRequest build a response structure from the given request structure.
+func (o *SyncRequest) MakeResponse() *SyncResponse {
+	return &SyncResponse{}
+}
+
+// OpNum returns the operation number of W32TimeSync operation.
+func (o *SyncRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of W32TimeSync operation.
+func (o *SyncRequest) OpName() string { return "/W32Time/v4.1/W32TimeSync" }
+
 // SyncResponse structure represents the W32TimeSync operation response
 type SyncResponse struct {
 	// Return: The W32TimeSync return value.
@@ -501,8 +514,10 @@ type xxx_GetNetlogonServiceBitsOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of W32TimeGetNetlogonServiceBits operation.
 func (o *xxx_GetNetlogonServiceBitsOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of W32TimeGetNetlogonServiceBits operation.
 func (o *xxx_GetNetlogonServiceBitsOperation) OpName() string {
 	return "/W32Time/v4.1/W32TimeGetNetlogonServiceBits"
 }
@@ -590,6 +605,19 @@ func (o *GetNetlogonServiceBitsRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetNetlogonServiceBitsRequest build a response structure from the given request structure.
+func (o *GetNetlogonServiceBitsRequest) MakeResponse() *GetNetlogonServiceBitsResponse {
+	return &GetNetlogonServiceBitsResponse{}
+}
+
+// OpNum returns the operation number of W32TimeGetNetlogonServiceBits operation.
+func (o *GetNetlogonServiceBitsRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of W32TimeGetNetlogonServiceBits operation.
+func (o *GetNetlogonServiceBitsRequest) OpName() string {
+	return "/W32Time/v4.1/W32TimeGetNetlogonServiceBits"
+}
+
 // GetNetlogonServiceBitsResponse structure represents the W32TimeGetNetlogonServiceBits operation response
 type GetNetlogonServiceBitsResponse struct {
 	// Return: The W32TimeGetNetlogonServiceBits return value.
@@ -633,8 +661,10 @@ type xxx_QueryProviderStatusOperation struct {
 	Return       uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of W32TimeQueryProviderStatus operation.
 func (o *xxx_QueryProviderStatusOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of W32TimeQueryProviderStatus operation.
 func (o *xxx_QueryProviderStatusOperation) OpName() string {
 	return "/W32Time/v4.1/W32TimeQueryProviderStatus"
 }
@@ -800,6 +830,19 @@ func (o *QueryProviderStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeQueryProviderStatusRequest build a response structure from the given request structure.
+func (o *QueryProviderStatusRequest) MakeResponse() *QueryProviderStatusResponse {
+	return &QueryProviderStatusResponse{}
+}
+
+// OpNum returns the operation number of W32TimeQueryProviderStatus operation.
+func (o *QueryProviderStatusRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of W32TimeQueryProviderStatus operation.
+func (o *QueryProviderStatusRequest) OpName() string {
+	return "/W32Time/v4.1/W32TimeQueryProviderStatus"
+}
+
 // QueryProviderStatusResponse structure represents the W32TimeQueryProviderStatus operation response
 type QueryProviderStatusResponse struct {
 	// pProviderInfo: A pointer that receives a pointer to a W32TIME_PROVIDER_INFO structure
@@ -846,8 +889,10 @@ type xxx_QuerySourceOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of W32TimeQuerySource operation.
 func (o *xxx_QuerySourceOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of W32TimeQuerySource operation.
 func (o *xxx_QuerySourceOperation) OpName() string { return "/W32Time/v4.1/W32TimeQuerySource" }
 
 func (o *xxx_QuerySourceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -970,6 +1015,17 @@ func (o *QuerySourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeQuerySourceRequest build a response structure from the given request structure.
+func (o *QuerySourceRequest) MakeResponse() *QuerySourceResponse {
+	return &QuerySourceResponse{}
+}
+
+// OpNum returns the operation number of W32TimeQuerySource operation.
+func (o *QuerySourceRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of W32TimeQuerySource operation.
+func (o *QuerySourceRequest) OpName() string { return "/W32Time/v4.1/W32TimeQuerySource" }
+
 // QuerySourceResponse structure represents the W32TimeQuerySource operation response
 type QuerySourceResponse struct {
 	// pwszSource: A pointer to a null-terminated string that is the name of the time source
@@ -1021,8 +1077,10 @@ type xxx_QueryProviderConfigurationOperation struct {
 	Return                    uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of W32TimeQueryProviderConfiguration operation.
 func (o *xxx_QueryProviderConfigurationOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of W32TimeQueryProviderConfiguration operation.
 func (o *xxx_QueryProviderConfigurationOperation) OpName() string {
 	return "/W32Time/v4.1/W32TimeQueryProviderConfiguration"
 }
@@ -1189,6 +1247,19 @@ func (o *QueryProviderConfigurationRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeQueryProviderConfigurationRequest build a response structure from the given request structure.
+func (o *QueryProviderConfigurationRequest) MakeResponse() *QueryProviderConfigurationResponse {
+	return &QueryProviderConfigurationResponse{}
+}
+
+// OpNum returns the operation number of W32TimeQueryProviderConfiguration operation.
+func (o *QueryProviderConfigurationRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of W32TimeQueryProviderConfiguration operation.
+func (o *QueryProviderConfigurationRequest) OpName() string {
+	return "/W32Time/v4.1/W32TimeQueryProviderConfiguration"
+}
+
 // QueryProviderConfigurationResponse structure represents the W32TimeQueryProviderConfiguration operation response
 type QueryProviderConfigurationResponse struct {
 	// pConfigurationProviderInfo: A pointer that receives a pointer to a W32TIME_CONFIGURATION_PROVIDER
@@ -1235,8 +1306,10 @@ type xxx_QueryConfigurationOperation struct {
 	Return            uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of W32TimeQueryConfiguration operation.
 func (o *xxx_QueryConfigurationOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of W32TimeQueryConfiguration operation.
 func (o *xxx_QueryConfigurationOperation) OpName() string {
 	return "/W32Time/v4.1/W32TimeQueryConfiguration"
 }
@@ -1370,6 +1443,17 @@ func (o *QueryConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeQueryConfigurationRequest build a response structure from the given request structure.
+func (o *QueryConfigurationRequest) MakeResponse() *QueryConfigurationResponse {
+	return &QueryConfigurationResponse{}
+}
+
+// OpNum returns the operation number of W32TimeQueryConfiguration operation.
+func (o *QueryConfigurationRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of W32TimeQueryConfiguration operation.
+func (o *QueryConfigurationRequest) OpName() string { return "/W32Time/v4.1/W32TimeQueryConfiguration" }
+
 // QueryConfigurationResponse structure represents the W32TimeQueryConfiguration operation response
 type QueryConfigurationResponse struct {
 	// pConfigurationInfo: A pointer that receives a pointer to a W32TIME_CONFIGURATION_INFO
@@ -1416,8 +1500,10 @@ type xxx_QueryStatusOperation struct {
 	Return     uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of W32TimeQueryStatus operation.
 func (o *xxx_QueryStatusOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of W32TimeQueryStatus operation.
 func (o *xxx_QueryStatusOperation) OpName() string { return "/W32Time/v4.1/W32TimeQueryStatus" }
 
 func (o *xxx_QueryStatusOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1549,6 +1635,17 @@ func (o *QueryStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeQueryStatusRequest build a response structure from the given request structure.
+func (o *QueryStatusRequest) MakeResponse() *QueryStatusResponse {
+	return &QueryStatusResponse{}
+}
+
+// OpNum returns the operation number of W32TimeQueryStatus operation.
+func (o *QueryStatusRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of W32TimeQueryStatus operation.
+func (o *QueryStatusRequest) OpName() string { return "/W32Time/v4.1/W32TimeQueryStatus" }
+
 // QueryStatusResponse structure represents the W32TimeQueryStatus operation response
 type QueryStatusResponse struct {
 	// pStatusInfo: A pointer that receives a pointer to a W32TIME_STATUS_INFO structure
@@ -1594,8 +1691,10 @@ type xxx_LogOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of W32TimeLog operation.
 func (o *xxx_LogOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of W32TimeLog operation.
 func (o *xxx_LogOperation) OpName() string { return "/W32Time/v4.1/W32TimeLog" }
 
 func (o *xxx_LogOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1680,6 +1779,17 @@ func (o *LogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeLogRequest build a response structure from the given request structure.
+func (o *LogRequest) MakeResponse() *LogResponse {
+	return &LogResponse{}
+}
+
+// OpNum returns the operation number of W32TimeLog operation.
+func (o *LogRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of W32TimeLog operation.
+func (o *LogRequest) OpName() string { return "/W32Time/v4.1/W32TimeLog" }
 
 // LogResponse structure represents the W32TimeLog operation response
 type LogResponse struct {

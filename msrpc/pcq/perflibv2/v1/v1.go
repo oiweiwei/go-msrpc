@@ -496,8 +496,10 @@ type xxx_EnumerateCounterSetOperation struct {
 	Return     uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PerflibV2EnumerateCounterSet operation.
 func (o *xxx_EnumerateCounterSetOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of PerflibV2EnumerateCounterSet operation.
 func (o *xxx_EnumerateCounterSetOperation) OpName() string {
 	return "/PerflibV2/v1/PerflibV2EnumerateCounterSet"
 }
@@ -722,6 +724,24 @@ func (o *EnumerateCounterSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeEnumerateCounterSetRequest build a response structure from the given request structure.
+func (o *EnumerateCounterSetRequest) MakeResponse() *EnumerateCounterSetResponse {
+	if o == nil {
+		return &EnumerateCounterSetResponse{}
+	}
+	return &EnumerateCounterSetResponse{
+		InSize: o.InSize,
+	}
+}
+
+// OpNum returns the operation number of PerflibV2EnumerateCounterSet operation.
+func (o *EnumerateCounterSetRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of PerflibV2EnumerateCounterSet operation.
+func (o *EnumerateCounterSetRequest) OpName() string {
+	return "/PerflibV2/v1/PerflibV2EnumerateCounterSet"
+}
+
 // EnumerateCounterSetResponse structure represents the PerflibV2EnumerateCounterSet operation response
 type EnumerateCounterSetResponse struct {
 	// XXX: dwInSize is an implicit input depedency for output parameters
@@ -795,8 +815,10 @@ type xxx_QueryCounterSetRegistrationInfoOperation struct {
 	Return          uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PerflibV2QueryCounterSetRegistrationInfo operation.
 func (o *xxx_QueryCounterSetRegistrationInfoOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of PerflibV2QueryCounterSetRegistrationInfo operation.
 func (o *xxx_QueryCounterSetRegistrationInfoOperation) OpName() string {
 	return "/PerflibV2/v1/PerflibV2QueryCounterSetRegistrationInfo"
 }
@@ -1103,6 +1125,24 @@ func (o *QueryCounterSetRegistrationInfoRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeQueryCounterSetRegistrationInfoRequest build a response structure from the given request structure.
+func (o *QueryCounterSetRegistrationInfoRequest) MakeResponse() *QueryCounterSetRegistrationInfoResponse {
+	if o == nil {
+		return &QueryCounterSetRegistrationInfoResponse{}
+	}
+	return &QueryCounterSetRegistrationInfoResponse{
+		InSize: o.InSize,
+	}
+}
+
+// OpNum returns the operation number of PerflibV2QueryCounterSetRegistrationInfo operation.
+func (o *QueryCounterSetRegistrationInfoRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of PerflibV2QueryCounterSetRegistrationInfo operation.
+func (o *QueryCounterSetRegistrationInfoRequest) OpName() string {
+	return "/PerflibV2/v1/PerflibV2QueryCounterSetRegistrationInfo"
+}
+
 // QueryCounterSetRegistrationInfoResponse structure represents the PerflibV2QueryCounterSetRegistrationInfo operation response
 type QueryCounterSetRegistrationInfoResponse struct {
 	// XXX: dwInSize is an implicit input depedency for output parameters
@@ -1172,8 +1212,10 @@ type xxx_EnumerateCounterSetInstancesOperation struct {
 	Return         uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PerflibV2EnumerateCounterSetInstances operation.
 func (o *xxx_EnumerateCounterSetInstancesOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of PerflibV2EnumerateCounterSetInstances operation.
 func (o *xxx_EnumerateCounterSetInstancesOperation) OpName() string {
 	return "/PerflibV2/v1/PerflibV2EnumerateCounterSetInstances"
 }
@@ -1448,6 +1490,24 @@ func (o *EnumerateCounterSetInstancesRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeEnumerateCounterSetInstancesRequest build a response structure from the given request structure.
+func (o *EnumerateCounterSetInstancesRequest) MakeResponse() *EnumerateCounterSetInstancesResponse {
+	if o == nil {
+		return &EnumerateCounterSetInstancesResponse{}
+	}
+	return &EnumerateCounterSetInstancesResponse{
+		InSize: o.InSize,
+	}
+}
+
+// OpNum returns the operation number of PerflibV2EnumerateCounterSetInstances operation.
+func (o *EnumerateCounterSetInstancesRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of PerflibV2EnumerateCounterSetInstances operation.
+func (o *EnumerateCounterSetInstancesRequest) OpName() string {
+	return "/PerflibV2/v1/PerflibV2EnumerateCounterSetInstances"
+}
+
 // EnumerateCounterSetInstancesResponse structure represents the PerflibV2EnumerateCounterSetInstances operation response
 type EnumerateCounterSetInstancesResponse struct {
 	// XXX: dwInSize is an implicit input depedency for output parameters
@@ -1514,8 +1574,10 @@ type xxx_OpenQueryHandleOperation struct {
 	Return  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PerflibV2OpenQueryHandle operation.
 func (o *xxx_OpenQueryHandleOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of PerflibV2OpenQueryHandle operation.
 func (o *xxx_OpenQueryHandleOperation) OpName() string {
 	return "/PerflibV2/v1/PerflibV2OpenQueryHandle"
 }
@@ -1641,6 +1703,17 @@ func (o *OpenQueryHandleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeOpenQueryHandleRequest build a response structure from the given request structure.
+func (o *OpenQueryHandleRequest) MakeResponse() *OpenQueryHandleResponse {
+	return &OpenQueryHandleResponse{}
+}
+
+// OpNum returns the operation number of PerflibV2OpenQueryHandle operation.
+func (o *OpenQueryHandleRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of PerflibV2OpenQueryHandle operation.
+func (o *OpenQueryHandleRequest) OpName() string { return "/PerflibV2/v1/PerflibV2OpenQueryHandle" }
+
 // OpenQueryHandleResponse structure represents the PerflibV2OpenQueryHandle operation response
 type OpenQueryHandleResponse struct {
 	// phQuery: A handle used by other methods to add, remove, and collect performance counters.
@@ -1686,8 +1759,10 @@ type xxx_CloseQueryHandleOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PerflibV2CloseQueryHandle operation.
 func (o *xxx_CloseQueryHandleOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of PerflibV2CloseQueryHandle operation.
 func (o *xxx_CloseQueryHandleOperation) OpName() string {
 	return "/PerflibV2/v1/PerflibV2CloseQueryHandle"
 }
@@ -1823,6 +1898,17 @@ func (o *CloseQueryHandleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeCloseQueryHandleRequest build a response structure from the given request structure.
+func (o *CloseQueryHandleRequest) MakeResponse() *CloseQueryHandleResponse {
+	return &CloseQueryHandleResponse{}
+}
+
+// OpNum returns the operation number of PerflibV2CloseQueryHandle operation.
+func (o *CloseQueryHandleRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of PerflibV2CloseQueryHandle operation.
+func (o *CloseQueryHandleRequest) OpName() string { return "/PerflibV2/v1/PerflibV2CloseQueryHandle" }
+
 // CloseQueryHandleResponse structure represents the PerflibV2CloseQueryHandle operation response
 type CloseQueryHandleResponse struct {
 	// phQuery: A handle that is created by the PerflibV2OpenQueryHandle method. An exception
@@ -1874,8 +1960,10 @@ type xxx_QueryCounterInfoOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PerflibV2QueryCounterInfo operation.
 func (o *xxx_QueryCounterInfoOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of PerflibV2QueryCounterInfo operation.
 func (o *xxx_QueryCounterInfoOperation) OpName() string {
 	return "/PerflibV2/v1/PerflibV2QueryCounterInfo"
 }
@@ -2101,6 +2189,22 @@ func (o *QueryCounterInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeQueryCounterInfoRequest build a response structure from the given request structure.
+func (o *QueryCounterInfoRequest) MakeResponse() *QueryCounterInfoResponse {
+	if o == nil {
+		return &QueryCounterInfoResponse{}
+	}
+	return &QueryCounterInfoResponse{
+		InSize: o.InSize,
+	}
+}
+
+// OpNum returns the operation number of PerflibV2QueryCounterInfo operation.
+func (o *QueryCounterInfoRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of PerflibV2QueryCounterInfo operation.
+func (o *QueryCounterInfoRequest) OpName() string { return "/PerflibV2/v1/PerflibV2QueryCounterInfo" }
+
 // QueryCounterInfoResponse structure represents the PerflibV2QueryCounterInfo operation response
 type QueryCounterInfoResponse struct {
 	// XXX: dwInSize is an implicit input depedency for output parameters
@@ -2169,8 +2273,10 @@ type xxx_QueryCounterDataOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PerflibV2QueryCounterData operation.
 func (o *xxx_QueryCounterDataOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of PerflibV2QueryCounterData operation.
 func (o *xxx_QueryCounterDataOperation) OpName() string {
 	return "/PerflibV2/v1/PerflibV2QueryCounterData"
 }
@@ -2396,6 +2502,22 @@ func (o *QueryCounterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeQueryCounterDataRequest build a response structure from the given request structure.
+func (o *QueryCounterDataRequest) MakeResponse() *QueryCounterDataResponse {
+	if o == nil {
+		return &QueryCounterDataResponse{}
+	}
+	return &QueryCounterDataResponse{
+		InSize: o.InSize,
+	}
+}
+
+// OpNum returns the operation number of PerflibV2QueryCounterData operation.
+func (o *QueryCounterDataRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of PerflibV2QueryCounterData operation.
+func (o *QueryCounterDataRequest) OpName() string { return "/PerflibV2/v1/PerflibV2QueryCounterData" }
+
 // QueryCounterDataResponse structure represents the PerflibV2QueryCounterData operation response
 type QueryCounterDataResponse struct {
 	// XXX: dwInSize is an implicit input depedency for output parameters
@@ -2463,8 +2585,10 @@ type xxx_ValidateCountersOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PerflibV2ValidateCounters operation.
 func (o *xxx_ValidateCountersOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of PerflibV2ValidateCounters operation.
 func (o *xxx_ValidateCountersOperation) OpName() string {
 	return "/PerflibV2/v1/PerflibV2ValidateCounters"
 }
@@ -2715,6 +2839,22 @@ func (o *ValidateCountersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeValidateCountersRequest build a response structure from the given request structure.
+func (o *ValidateCountersRequest) MakeResponse() *ValidateCountersResponse {
+	if o == nil {
+		return &ValidateCountersResponse{}
+	}
+	return &ValidateCountersResponse{
+		InSize: o.InSize,
+	}
+}
+
+// OpNum returns the operation number of PerflibV2ValidateCounters operation.
+func (o *ValidateCountersRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of PerflibV2ValidateCounters operation.
+func (o *ValidateCountersRequest) OpName() string { return "/PerflibV2/v1/PerflibV2ValidateCounters" }
 
 // ValidateCountersResponse structure represents the PerflibV2ValidateCounters operation response
 type ValidateCountersResponse struct {

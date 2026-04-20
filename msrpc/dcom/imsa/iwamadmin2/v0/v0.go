@@ -157,8 +157,10 @@ type xxx_AppCreate2Operation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AppCreate2 operation.
 func (o *xxx_AppCreate2Operation) OpNum() int { return 9 }
 
+// OpName returns the operation name of AppCreate2 operation.
 func (o *xxx_AppCreate2Operation) OpName() string { return "/IWamAdmin2/v0/AppCreate2" }
 
 func (o *xxx_AppCreate2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -374,6 +376,17 @@ func (o *AppCreate2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeAppCreate2Request build a response structure from the given request structure.
+func (o *AppCreate2Request) MakeResponse() *AppCreate2Response {
+	return &AppCreate2Response{}
+}
+
+// OpNum returns the operation number of AppCreate2 operation.
+func (o *AppCreate2Request) OpNum() int { return 9 }
+
+// OpName returns the operation name of AppCreate2 operation.
+func (o *AppCreate2Request) OpName() string { return "/IWamAdmin2/v0/AppCreate2" }
 
 // AppCreate2Response structure represents the AppCreate2 operation response
 type AppCreate2Response struct {

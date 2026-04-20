@@ -114,8 +114,10 @@ type xxx_InitiateShutdownOperation struct {
 	Return       uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WsdrInitiateShutdown operation.
 func (o *xxx_InitiateShutdownOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of WsdrInitiateShutdown operation.
 func (o *xxx_InitiateShutdownOperation) OpName() string {
 	return "/WindowsShutdown/v1/WsdrInitiateShutdown"
 }
@@ -398,6 +400,17 @@ func (o *InitiateShutdownRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeInitiateShutdownRequest build a response structure from the given request structure.
+func (o *InitiateShutdownRequest) MakeResponse() *InitiateShutdownResponse {
+	return &InitiateShutdownResponse{}
+}
+
+// OpNum returns the operation number of WsdrInitiateShutdown operation.
+func (o *InitiateShutdownRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of WsdrInitiateShutdown operation.
+func (o *InitiateShutdownRequest) OpName() string { return "/WindowsShutdown/v1/WsdrInitiateShutdown" }
+
 // InitiateShutdownResponse structure represents the WsdrInitiateShutdown operation response
 type InitiateShutdownResponse struct {
 	// Return: The WsdrInitiateShutdown return value.
@@ -439,8 +452,10 @@ type xxx_AbortShutdownOperation struct {
 	Return     uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WsdrAbortShutdown operation.
 func (o *xxx_AbortShutdownOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of WsdrAbortShutdown operation.
 func (o *xxx_AbortShutdownOperation) OpName() string { return "/WindowsShutdown/v1/WsdrAbortShutdown" }
 
 func (o *xxx_AbortShutdownOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -576,6 +591,17 @@ func (o *AbortShutdownRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeAbortShutdownRequest build a response structure from the given request structure.
+func (o *AbortShutdownRequest) MakeResponse() *AbortShutdownResponse {
+	return &AbortShutdownResponse{}
+}
+
+// OpNum returns the operation number of WsdrAbortShutdown operation.
+func (o *AbortShutdownRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of WsdrAbortShutdown operation.
+func (o *AbortShutdownRequest) OpName() string { return "/WindowsShutdown/v1/WsdrAbortShutdown" }
 
 // AbortShutdownResponse structure represents the WsdrAbortShutdown operation response
 type AbortShutdownResponse struct {

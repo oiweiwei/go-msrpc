@@ -256,8 +256,10 @@ type xxx_WaitForSessionStateOperation struct {
 	Return    int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWaitForSessionState operation.
 func (o *xxx_WaitForSessionStateOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RpcWaitForSessionState operation.
 func (o *xxx_WaitForSessionStateOperation) OpName() string {
 	return "/TermSrvNotification/v1/RpcWaitForSessionState"
 }
@@ -396,6 +398,19 @@ func (o *WaitForSessionStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeWaitForSessionStateRequest build a response structure from the given request structure.
+func (o *WaitForSessionStateRequest) MakeResponse() *WaitForSessionStateResponse {
+	return &WaitForSessionStateResponse{}
+}
+
+// OpNum returns the operation number of RpcWaitForSessionState operation.
+func (o *WaitForSessionStateRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RpcWaitForSessionState operation.
+func (o *WaitForSessionStateRequest) OpName() string {
+	return "/TermSrvNotification/v1/RpcWaitForSessionState"
+}
+
 // WaitForSessionStateResponse structure represents the RpcWaitForSessionState operation response
 type WaitForSessionStateResponse struct {
 	// Return: The RpcWaitForSessionState return value.
@@ -439,8 +454,10 @@ type xxx_RegisterAsyncNotificationOperation struct {
 	Return    int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcRegisterAsyncNotification operation.
 func (o *xxx_RegisterAsyncNotificationOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RpcRegisterAsyncNotification operation.
 func (o *xxx_RegisterAsyncNotificationOperation) OpName() string {
 	return "/TermSrvNotification/v1/RpcRegisterAsyncNotification"
 }
@@ -583,6 +600,19 @@ func (o *RegisterAsyncNotificationRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeRegisterAsyncNotificationRequest build a response structure from the given request structure.
+func (o *RegisterAsyncNotificationRequest) MakeResponse() *RegisterAsyncNotificationResponse {
+	return &RegisterAsyncNotificationResponse{}
+}
+
+// OpNum returns the operation number of RpcRegisterAsyncNotification operation.
+func (o *RegisterAsyncNotificationRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RpcRegisterAsyncNotification operation.
+func (o *RegisterAsyncNotificationRequest) OpName() string {
+	return "/TermSrvNotification/v1/RpcRegisterAsyncNotification"
+}
+
 // RegisterAsyncNotificationResponse structure represents the RpcRegisterAsyncNotification operation response
 type RegisterAsyncNotificationResponse struct {
 	// phNotify: Handle to the notification object. For more information, see NOTIFY_HANDLE.
@@ -630,8 +660,10 @@ type xxx_WaitAsyncNotificationOperation struct {
 	Return        int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcWaitAsyncNotification operation.
 func (o *xxx_WaitAsyncNotificationOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of RpcWaitAsyncNotification operation.
 func (o *xxx_WaitAsyncNotificationOperation) OpName() string {
 	return "/TermSrvNotification/v1/RpcWaitAsyncNotification"
 }
@@ -838,6 +870,19 @@ func (o *WaitAsyncNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeWaitAsyncNotificationRequest build a response structure from the given request structure.
+func (o *WaitAsyncNotificationRequest) MakeResponse() *WaitAsyncNotificationResponse {
+	return &WaitAsyncNotificationResponse{}
+}
+
+// OpNum returns the operation number of RpcWaitAsyncNotification operation.
+func (o *WaitAsyncNotificationRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of RpcWaitAsyncNotification operation.
+func (o *WaitAsyncNotificationRequest) OpName() string {
+	return "/TermSrvNotification/v1/RpcWaitAsyncNotification"
+}
+
 // WaitAsyncNotificationResponse structure represents the RpcWaitAsyncNotification operation response
 type WaitAsyncNotificationResponse struct {
 	// SessionChange:  An array of type SESSION_CHANGE containing information about all
@@ -888,8 +933,10 @@ type xxx_UnregisterAsyncNotificationOperation struct {
 	Return int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcUnRegisterAsyncNotification operation.
 func (o *xxx_UnregisterAsyncNotificationOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RpcUnRegisterAsyncNotification operation.
 func (o *xxx_UnregisterAsyncNotificationOperation) OpName() string {
 	return "/TermSrvNotification/v1/RpcUnRegisterAsyncNotification"
 }
@@ -1022,6 +1069,19 @@ func (o *UnregisterAsyncNotificationRequest) UnmarshalNDR(ctx context.Context, r
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeUnregisterAsyncNotificationRequest build a response structure from the given request structure.
+func (o *UnregisterAsyncNotificationRequest) MakeResponse() *UnregisterAsyncNotificationResponse {
+	return &UnregisterAsyncNotificationResponse{}
+}
+
+// OpNum returns the operation number of RpcUnRegisterAsyncNotification operation.
+func (o *UnregisterAsyncNotificationRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RpcUnRegisterAsyncNotification operation.
+func (o *UnregisterAsyncNotificationRequest) OpName() string {
+	return "/TermSrvNotification/v1/RpcUnRegisterAsyncNotification"
 }
 
 // UnregisterAsyncNotificationResponse structure represents the RpcUnRegisterAsyncNotification operation response

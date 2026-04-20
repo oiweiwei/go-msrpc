@@ -190,8 +190,10 @@ type xxx_GetTransactionOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Transaction operation.
 func (o *xxx_GetTransactionOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Transaction operation.
 func (o *xxx_GetTransactionOperation) OpName() string { return "/IMSMQTransaction/v0/Transaction" }
 
 func (o *xxx_GetTransactionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -347,6 +349,17 @@ func (o *GetTransactionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetTransactionRequest build a response structure from the given request structure.
+func (o *GetTransactionRequest) MakeResponse() *GetTransactionResponse {
+	return &GetTransactionResponse{}
+}
+
+// OpNum returns the operation number of Transaction operation.
+func (o *GetTransactionRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Transaction operation.
+func (o *GetTransactionRequest) OpName() string { return "/IMSMQTransaction/v0/Transaction" }
+
 // GetTransactionResponse structure represents the Transaction operation response
 type GetTransactionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -400,8 +413,10 @@ type xxx_CommitOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Commit operation.
 func (o *xxx_CommitOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Commit operation.
 func (o *xxx_CommitOperation) OpName() string { return "/IMSMQTransaction/v0/Commit" }
 
 func (o *xxx_CommitOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -692,6 +707,17 @@ func (o *CommitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeCommitRequest build a response structure from the given request structure.
+func (o *CommitRequest) MakeResponse() *CommitResponse {
+	return &CommitResponse{}
+}
+
+// OpNum returns the operation number of Commit operation.
+func (o *CommitRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Commit operation.
+func (o *CommitRequest) OpName() string { return "/IMSMQTransaction/v0/Commit" }
+
 // CommitResponse structure represents the Commit operation response
 type CommitResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -740,8 +766,10 @@ type xxx_AbortOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Abort operation.
 func (o *xxx_AbortOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Abort operation.
 func (o *xxx_AbortOperation) OpName() string { return "/IMSMQTransaction/v0/Abort" }
 
 func (o *xxx_AbortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -982,6 +1010,17 @@ func (o *AbortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeAbortRequest build a response structure from the given request structure.
+func (o *AbortRequest) MakeResponse() *AbortResponse {
+	return &AbortResponse{}
+}
+
+// OpNum returns the operation number of Abort operation.
+func (o *AbortRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Abort operation.
+func (o *AbortRequest) OpName() string { return "/IMSMQTransaction/v0/Abort" }
 
 // AbortResponse structure represents the Abort operation response
 type AbortResponse struct {

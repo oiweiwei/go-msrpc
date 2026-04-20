@@ -2648,8 +2648,10 @@ type xxx_OpenEnumOperation struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcOpenEnum operation.
 func (o *xxx_OpenEnumOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RpcOpenEnum operation.
 func (o *xxx_OpenEnumOperation) OpName() string { return "/TermSrvEnumeration/v1/RpcOpenEnum" }
 
 func (o *xxx_OpenEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2756,6 +2758,17 @@ func (o *OpenEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeOpenEnumRequest build a response structure from the given request structure.
+func (o *OpenEnumRequest) MakeResponse() *OpenEnumResponse {
+	return &OpenEnumResponse{}
+}
+
+// OpNum returns the operation number of RpcOpenEnum operation.
+func (o *OpenEnumRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RpcOpenEnum operation.
+func (o *OpenEnumRequest) OpName() string { return "/TermSrvEnumeration/v1/RpcOpenEnum" }
+
 // OpenEnumResponse structure represents the RpcOpenEnum operation response
 type OpenEnumResponse struct {
 	// phEnum:  The handle to the session enumeration object. This is of type ENUM_HANDLE.
@@ -2801,8 +2814,10 @@ type xxx_CloseEnumOperation struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcCloseEnum operation.
 func (o *xxx_CloseEnumOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RpcCloseEnum operation.
 func (o *xxx_CloseEnumOperation) OpName() string { return "/TermSrvEnumeration/v1/RpcCloseEnum" }
 
 func (o *xxx_CloseEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2934,6 +2949,17 @@ func (o *CloseEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeCloseEnumRequest build a response structure from the given request structure.
+func (o *CloseEnumRequest) MakeResponse() *CloseEnumResponse {
+	return &CloseEnumResponse{}
+}
+
+// OpNum returns the operation number of RpcCloseEnum operation.
+func (o *CloseEnumRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RpcCloseEnum operation.
+func (o *CloseEnumRequest) OpName() string { return "/TermSrvEnumeration/v1/RpcCloseEnum" }
+
 // CloseEnumResponse structure represents the RpcCloseEnum operation response
 type CloseEnumResponse struct {
 	// phEnum:  The handle to the session enumeration object. This is of type ENUM_HANDLE.
@@ -2981,8 +3007,10 @@ type xxx_FilterByStateOperation struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcFilterByState operation.
 func (o *xxx_FilterByStateOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of RpcFilterByState operation.
 func (o *xxx_FilterByStateOperation) OpName() string {
 	return "/TermSrvEnumeration/v1/RpcFilterByState"
 }
@@ -3137,6 +3165,17 @@ func (o *FilterByStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeFilterByStateRequest build a response structure from the given request structure.
+func (o *FilterByStateRequest) MakeResponse() *FilterByStateResponse {
+	return &FilterByStateResponse{}
+}
+
+// OpNum returns the operation number of RpcFilterByState operation.
+func (o *FilterByStateRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of RpcFilterByState operation.
+func (o *FilterByStateRequest) OpName() string { return "/TermSrvEnumeration/v1/RpcFilterByState" }
+
 // FilterByStateResponse structure represents the RpcFilterByState operation response
 type FilterByStateResponse struct {
 	// Return: The RpcFilterByState return value.
@@ -3178,8 +3217,10 @@ type xxx_FilterByCallersNameOperation struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcFilterByCallersName operation.
 func (o *xxx_FilterByCallersNameOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RpcFilterByCallersName operation.
 func (o *xxx_FilterByCallersNameOperation) OpName() string {
 	return "/TermSrvEnumeration/v1/RpcFilterByCallersName"
 }
@@ -3292,6 +3333,19 @@ func (o *FilterByCallersNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeFilterByCallersNameRequest build a response structure from the given request structure.
+func (o *FilterByCallersNameRequest) MakeResponse() *FilterByCallersNameResponse {
+	return &FilterByCallersNameResponse{}
+}
+
+// OpNum returns the operation number of RpcFilterByCallersName operation.
+func (o *FilterByCallersNameRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RpcFilterByCallersName operation.
+func (o *FilterByCallersNameRequest) OpName() string {
+	return "/TermSrvEnumeration/v1/RpcFilterByCallersName"
+}
+
 // FilterByCallersNameResponse structure represents the RpcFilterByCallersName operation response
 type FilterByCallersNameResponse struct {
 	// Return: The RpcFilterByCallersName return value.
@@ -3334,8 +3388,10 @@ type xxx_EnumAddFilterOperation struct {
 	Return  int32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcEnumAddFilter operation.
 func (o *xxx_EnumAddFilterOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RpcEnumAddFilter operation.
 func (o *xxx_EnumAddFilterOperation) OpName() string {
 	return "/TermSrvEnumeration/v1/RpcEnumAddFilter"
 }
@@ -3475,6 +3531,17 @@ func (o *EnumAddFilterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeEnumAddFilterRequest build a response structure from the given request structure.
+func (o *EnumAddFilterRequest) MakeResponse() *EnumAddFilterResponse {
+	return &EnumAddFilterResponse{}
+}
+
+// OpNum returns the operation number of RpcEnumAddFilter operation.
+func (o *EnumAddFilterRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RpcEnumAddFilter operation.
+func (o *EnumAddFilterRequest) OpName() string { return "/TermSrvEnumeration/v1/RpcEnumAddFilter" }
+
 // EnumAddFilterResponse structure represents the RpcEnumAddFilter operation response
 type EnumAddFilterResponse struct {
 	// Return: The RpcEnumAddFilter return value.
@@ -3519,8 +3586,10 @@ type xxx_GetEnumResultOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetEnumResult operation.
 func (o *xxx_GetEnumResultOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of RpcGetEnumResult operation.
 func (o *xxx_GetEnumResultOperation) OpName() string {
 	return "/TermSrvEnumeration/v1/RpcGetEnumResult"
 }
@@ -3745,6 +3814,17 @@ func (o *GetEnumResultRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetEnumResultRequest build a response structure from the given request structure.
+func (o *GetEnumResultRequest) MakeResponse() *GetEnumResultResponse {
+	return &GetEnumResultResponse{}
+}
+
+// OpNum returns the operation number of RpcGetEnumResult operation.
+func (o *GetEnumResultRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of RpcGetEnumResult operation.
+func (o *GetEnumResultRequest) OpName() string { return "/TermSrvEnumeration/v1/RpcGetEnumResult" }
+
 // GetEnumResultResponse structure represents the RpcGetEnumResult operation response
 type GetEnumResultResponse struct {
 	// ppSessionEnumResult: A pointer of the type PSESSIONENUM which points to the list
@@ -3797,8 +3877,10 @@ type xxx_FilterBySessionTypeOperation struct {
 	Return      int32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcFilterBySessionType operation.
 func (o *xxx_FilterBySessionTypeOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of RpcFilterBySessionType operation.
 func (o *xxx_FilterBySessionTypeOperation) OpName() string {
 	return "/TermSrvEnumeration/v1/RpcFilterBySessionType"
 }
@@ -3937,6 +4019,19 @@ func (o *FilterBySessionTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeFilterBySessionTypeRequest build a response structure from the given request structure.
+func (o *FilterBySessionTypeRequest) MakeResponse() *FilterBySessionTypeResponse {
+	return &FilterBySessionTypeResponse{}
+}
+
+// OpNum returns the operation number of RpcFilterBySessionType operation.
+func (o *FilterBySessionTypeRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of RpcFilterBySessionType operation.
+func (o *FilterBySessionTypeRequest) OpName() string {
+	return "/TermSrvEnumeration/v1/RpcFilterBySessionType"
+}
+
 // FilterBySessionTypeResponse structure represents the RpcFilterBySessionType operation response
 type FilterBySessionTypeResponse struct {
 	// Return: The RpcFilterBySessionType return value.
@@ -3981,8 +4076,10 @@ type xxx_GetSessionIDsOperation struct {
 	Return          int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetSessionIds operation.
 func (o *xxx_GetSessionIDsOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RpcGetSessionIds operation.
 func (o *xxx_GetSessionIDsOperation) OpName() string {
 	return "/TermSrvEnumeration/v1/RpcGetSessionIds"
 }
@@ -4192,6 +4289,17 @@ func (o *GetSessionIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetSessionIDsRequest build a response structure from the given request structure.
+func (o *GetSessionIDsRequest) MakeResponse() *GetSessionIDsResponse {
+	return &GetSessionIDsResponse{}
+}
+
+// OpNum returns the operation number of RpcGetSessionIds operation.
+func (o *GetSessionIDsRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of RpcGetSessionIds operation.
+func (o *GetSessionIDsRequest) OpName() string { return "/TermSrvEnumeration/v1/RpcGetSessionIds" }
+
 // GetSessionIDsResponse structure represents the RpcGetSessionIds operation response
 type GetSessionIDsResponse struct {
 	// pSessionIds:  An array to contain the list of session IDs running on the terminal
@@ -4245,8 +4353,10 @@ type xxx_GetEnumResultExOperation struct {
 	Return            int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetEnumResultEx operation.
 func (o *xxx_GetEnumResultExOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RpcGetEnumResultEx operation.
 func (o *xxx_GetEnumResultExOperation) OpName() string {
 	return "/TermSrvEnumeration/v1/RpcGetEnumResultEx"
 }
@@ -4484,6 +4594,17 @@ func (o *GetEnumResultExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetEnumResultExRequest build a response structure from the given request structure.
+func (o *GetEnumResultExRequest) MakeResponse() *GetEnumResultExResponse {
+	return &GetEnumResultExResponse{}
+}
+
+// OpNum returns the operation number of RpcGetEnumResultEx operation.
+func (o *GetEnumResultExRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RpcGetEnumResultEx operation.
+func (o *GetEnumResultExRequest) OpName() string { return "/TermSrvEnumeration/v1/RpcGetEnumResultEx" }
+
 // GetEnumResultExResponse structure represents the RpcGetEnumResultEx operation response
 type GetEnumResultExResponse struct {
 	// ppSessionEnumResult: A pointer of the type PSESSIONENUM_EX which points to the list
@@ -4537,8 +4658,10 @@ type xxx_GetAllSessionsOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetAllSessions operation.
 func (o *xxx_GetAllSessionsOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of RpcGetAllSessions operation.
 func (o *xxx_GetAllSessionsOperation) OpName() string {
 	return "/TermSrvEnumeration/v1/RpcGetAllSessions"
 }
@@ -4762,6 +4885,17 @@ func (o *GetAllSessionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetAllSessionsRequest build a response structure from the given request structure.
+func (o *GetAllSessionsRequest) MakeResponse() *GetAllSessionsResponse {
+	return &GetAllSessionsResponse{}
+}
+
+// OpNum returns the operation number of RpcGetAllSessions operation.
+func (o *GetAllSessionsRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of RpcGetAllSessions operation.
+func (o *GetAllSessionsRequest) OpName() string { return "/TermSrvEnumeration/v1/RpcGetAllSessions" }
+
 // GetAllSessionsResponse structure represents the RpcGetAllSessions operation response
 type GetAllSessionsResponse struct {
 	// pLevel: The level of information requested. This field MUST be set to the supported
@@ -4834,8 +4968,10 @@ type xxx_GetAllSessionsExOperation struct {
 	Return       int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetAllSessionsEx operation.
 func (o *xxx_GetAllSessionsExOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RpcGetAllSessionsEx operation.
 func (o *xxx_GetAllSessionsExOperation) OpName() string {
 	return "/TermSrvEnumeration/v1/RpcGetAllSessionsEx"
 }
@@ -5042,6 +5178,19 @@ func (o *GetAllSessionsExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetAllSessionsExRequest build a response structure from the given request structure.
+func (o *GetAllSessionsExRequest) MakeResponse() *GetAllSessionsExResponse {
+	return &GetAllSessionsExResponse{}
+}
+
+// OpNum returns the operation number of RpcGetAllSessionsEx operation.
+func (o *GetAllSessionsExRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RpcGetAllSessionsEx operation.
+func (o *GetAllSessionsExRequest) OpName() string {
+	return "/TermSrvEnumeration/v1/RpcGetAllSessionsEx"
 }
 
 // GetAllSessionsExResponse structure represents the RpcGetAllSessionsEx operation response

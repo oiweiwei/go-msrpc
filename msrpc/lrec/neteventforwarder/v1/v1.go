@@ -280,8 +280,10 @@ type xxx_OpenSessionOperation struct {
 	Return     uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcNetEventOpenSession operation.
 func (o *xxx_OpenSessionOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RpcNetEventOpenSession operation.
 func (o *xxx_OpenSessionOperation) OpName() string {
 	return "/NetEventForwarder/v1/RpcNetEventOpenSession"
 }
@@ -405,6 +407,17 @@ func (o *OpenSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeOpenSessionRequest build a response structure from the given request structure.
+func (o *OpenSessionRequest) MakeResponse() *OpenSessionResponse {
+	return &OpenSessionResponse{}
+}
+
+// OpNum returns the operation number of RpcNetEventOpenSession operation.
+func (o *OpenSessionRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RpcNetEventOpenSession operation.
+func (o *OpenSessionRequest) OpName() string { return "/NetEventForwarder/v1/RpcNetEventOpenSession" }
+
 // OpenSessionResponse structure represents the RpcNetEventOpenSession operation response
 type OpenSessionResponse struct {
 	Session *Session `idl:"name:SessionHandle" json:"session"`
@@ -450,8 +463,10 @@ type xxx_ReceiveDataOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcNetEventReceiveData operation.
 func (o *xxx_ReceiveDataOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RpcNetEventReceiveData operation.
 func (o *xxx_ReceiveDataOperation) OpName() string {
 	return "/NetEventForwarder/v1/RpcNetEventReceiveData"
 }
@@ -590,6 +605,17 @@ func (o *ReceiveDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeReceiveDataRequest build a response structure from the given request structure.
+func (o *ReceiveDataRequest) MakeResponse() *ReceiveDataResponse {
+	return &ReceiveDataResponse{}
+}
+
+// OpNum returns the operation number of RpcNetEventReceiveData operation.
+func (o *ReceiveDataRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RpcNetEventReceiveData operation.
+func (o *ReceiveDataRequest) OpName() string { return "/NetEventForwarder/v1/RpcNetEventReceiveData" }
+
 // ReceiveDataResponse structure represents the RpcNetEventReceiveData operation response
 type ReceiveDataResponse struct {
 	EventBuffer *EventBuffer `idl:"name:EventBuffer" json:"event_buffer"`
@@ -633,8 +659,10 @@ type xxx_CloseSessionOperation struct {
 	Session *Session `idl:"name:SessionHandle" json:"session"`
 }
 
+// OpNum returns the operation number of RpcNetEventCloseSession operation.
 func (o *xxx_CloseSessionOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of RpcNetEventCloseSession operation.
 func (o *xxx_CloseSessionOperation) OpName() string {
 	return "/NetEventForwarder/v1/RpcNetEventCloseSession"
 }
@@ -754,6 +782,17 @@ func (o *CloseSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCloseSessionRequest build a response structure from the given request structure.
+func (o *CloseSessionRequest) MakeResponse() *CloseSessionResponse {
+	return &CloseSessionResponse{}
+}
+
+// OpNum returns the operation number of RpcNetEventCloseSession operation.
+func (o *CloseSessionRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of RpcNetEventCloseSession operation.
+func (o *CloseSessionRequest) OpName() string { return "/NetEventForwarder/v1/RpcNetEventCloseSession" }
 
 // CloseSessionResponse structure represents the RpcNetEventCloseSession operation response
 type CloseSessionResponse struct {

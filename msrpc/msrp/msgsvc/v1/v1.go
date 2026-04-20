@@ -1192,8 +1192,10 @@ type xxx_MessageNameAddOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrMessageNameAdd operation.
 func (o *xxx_MessageNameAddOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of NetrMessageNameAdd operation.
 func (o *xxx_MessageNameAddOperation) OpName() string { return "/msgsvc/v1/NetrMessageNameAdd" }
 
 func (o *xxx_MessageNameAddOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1341,6 +1343,17 @@ func (o *MessageNameAddRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeMessageNameAddRequest build a response structure from the given request structure.
+func (o *MessageNameAddRequest) MakeResponse() *MessageNameAddResponse {
+	return &MessageNameAddResponse{}
+}
+
+// OpNum returns the operation number of NetrMessageNameAdd operation.
+func (o *MessageNameAddRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of NetrMessageNameAdd operation.
+func (o *MessageNameAddRequest) OpName() string { return "/msgsvc/v1/NetrMessageNameAdd" }
+
 // MessageNameAddResponse structure represents the NetrMessageNameAdd operation response
 type MessageNameAddResponse struct {
 	// Return: The NetrMessageNameAdd return value.
@@ -1386,8 +1399,10 @@ type xxx_MessageNameEnumOperation struct {
 	Return        uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrMessageNameEnum operation.
 func (o *xxx_MessageNameEnumOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of NetrMessageNameEnum operation.
 func (o *xxx_MessageNameEnumOperation) OpName() string { return "/msgsvc/v1/NetrMessageNameEnum" }
 
 func (o *xxx_MessageNameEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1681,6 +1696,17 @@ func (o *MessageNameEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeMessageNameEnumRequest build a response structure from the given request structure.
+func (o *MessageNameEnumRequest) MakeResponse() *MessageNameEnumResponse {
+	return &MessageNameEnumResponse{}
+}
+
+// OpNum returns the operation number of NetrMessageNameEnum operation.
+func (o *MessageNameEnumRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of NetrMessageNameEnum operation.
+func (o *MessageNameEnumRequest) OpName() string { return "/msgsvc/v1/NetrMessageNameEnum" }
+
 // MessageNameEnumResponse structure represents the NetrMessageNameEnum operation response
 type MessageNameEnumResponse struct {
 	// InfoStruct: A pointer to a buffer that receives a variable-length data structure
@@ -1743,8 +1769,10 @@ type xxx_MessageNameGetInfoOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrMessageNameGetInfo operation.
 func (o *xxx_MessageNameGetInfoOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of NetrMessageNameGetInfo operation.
 func (o *xxx_MessageNameGetInfoOperation) OpName() string { return "/msgsvc/v1/NetrMessageNameGetInfo" }
 
 func (o *xxx_MessageNameGetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1939,6 +1967,22 @@ func (o *MessageNameGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeMessageNameGetInfoRequest build a response structure from the given request structure.
+func (o *MessageNameGetInfoRequest) MakeResponse() *MessageNameGetInfoResponse {
+	if o == nil {
+		return &MessageNameGetInfoResponse{}
+	}
+	return &MessageNameGetInfoResponse{
+		Level: o.Level,
+	}
+}
+
+// OpNum returns the operation number of NetrMessageNameGetInfo operation.
+func (o *MessageNameGetInfoRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of NetrMessageNameGetInfo operation.
+func (o *MessageNameGetInfoRequest) OpName() string { return "/msgsvc/v1/NetrMessageNameGetInfo" }
+
 // MessageNameGetInfoResponse structure represents the NetrMessageNameGetInfo operation response
 type MessageNameGetInfoResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
@@ -1996,8 +2040,10 @@ type xxx_MessageNameDeleteOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrMessageNameDel operation.
 func (o *xxx_MessageNameDeleteOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of NetrMessageNameDel operation.
 func (o *xxx_MessageNameDeleteOperation) OpName() string { return "/msgsvc/v1/NetrMessageNameDel" }
 
 func (o *xxx_MessageNameDeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2143,6 +2189,17 @@ func (o *MessageNameDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeMessageNameDeleteRequest build a response structure from the given request structure.
+func (o *MessageNameDeleteRequest) MakeResponse() *MessageNameDeleteResponse {
+	return &MessageNameDeleteResponse{}
+}
+
+// OpNum returns the operation number of NetrMessageNameDel operation.
+func (o *MessageNameDeleteRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of NetrMessageNameDel operation.
+func (o *MessageNameDeleteRequest) OpName() string { return "/msgsvc/v1/NetrMessageNameDel" }
 
 // MessageNameDeleteResponse structure represents the NetrMessageNameDel operation response
 type MessageNameDeleteResponse struct {

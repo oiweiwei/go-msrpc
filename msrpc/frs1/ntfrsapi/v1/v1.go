@@ -283,8 +283,10 @@ type xxx_SetDSPollingIntervalWOperation struct {
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NtFrsApi_Rpc_Set_DsPollingIntervalW operation.
 func (o *xxx_SetDSPollingIntervalWOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of NtFrsApi_Rpc_Set_DsPollingIntervalW operation.
 func (o *xxx_SetDSPollingIntervalWOperation) OpName() string {
 	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_Set_DsPollingIntervalW"
 }
@@ -436,6 +438,19 @@ func (o *SetDSPollingIntervalWRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeSetDSPollingIntervalWRequest build a response structure from the given request structure.
+func (o *SetDSPollingIntervalWRequest) MakeResponse() *SetDSPollingIntervalWResponse {
+	return &SetDSPollingIntervalWResponse{}
+}
+
+// OpNum returns the operation number of NtFrsApi_Rpc_Set_DsPollingIntervalW operation.
+func (o *SetDSPollingIntervalWRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of NtFrsApi_Rpc_Set_DsPollingIntervalW operation.
+func (o *SetDSPollingIntervalWRequest) OpName() string {
+	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_Set_DsPollingIntervalW"
+}
+
 // SetDSPollingIntervalWResponse structure represents the NtFrsApi_Rpc_Set_DsPollingIntervalW operation response
 type SetDSPollingIntervalWResponse struct {
 	// Return: The NtFrsApi_Rpc_Set_DsPollingIntervalW return value.
@@ -479,8 +494,10 @@ type xxx_GetDSPollingIntervalWOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NtFrsApi_Rpc_Get_DsPollingIntervalW operation.
 func (o *xxx_GetDSPollingIntervalWOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of NtFrsApi_Rpc_Get_DsPollingIntervalW operation.
 func (o *xxx_GetDSPollingIntervalWOperation) OpName() string {
 	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_Get_DsPollingIntervalW"
 }
@@ -604,6 +621,19 @@ func (o *GetDSPollingIntervalWRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetDSPollingIntervalWRequest build a response structure from the given request structure.
+func (o *GetDSPollingIntervalWRequest) MakeResponse() *GetDSPollingIntervalWResponse {
+	return &GetDSPollingIntervalWResponse{}
+}
+
+// OpNum returns the operation number of NtFrsApi_Rpc_Get_DsPollingIntervalW operation.
+func (o *GetDSPollingIntervalWRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of NtFrsApi_Rpc_Get_DsPollingIntervalW operation.
+func (o *GetDSPollingIntervalWRequest) OpName() string {
+	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_Get_DsPollingIntervalW"
+}
+
 // GetDSPollingIntervalWResponse structure represents the NtFrsApi_Rpc_Get_DsPollingIntervalW operation response
 type GetDSPollingIntervalWResponse struct {
 	// Interval: Current interval in minutes, which MUST be the same value as either LongInterval
@@ -659,8 +689,10 @@ type xxx_InfoWOperation struct {
 	Return   uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NtFrsApi_Rpc_InfoW operation.
 func (o *xxx_InfoWOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of NtFrsApi_Rpc_InfoW operation.
 func (o *xxx_InfoWOperation) OpName() string { return "/NtFrsApi/v1.1/NtFrsApi_Rpc_InfoW" }
 
 func (o *xxx_InfoWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -929,6 +961,22 @@ func (o *InfoWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeInfoWRequest build a response structure from the given request structure.
+func (o *InfoWRequest) MakeResponse() *InfoWResponse {
+	if o == nil {
+		return &InfoWResponse{}
+	}
+	return &InfoWResponse{
+		BlobSize: o.BlobSize,
+	}
+}
+
+// OpNum returns the operation number of NtFrsApi_Rpc_InfoW operation.
+func (o *InfoWRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of NtFrsApi_Rpc_InfoW operation.
+func (o *InfoWRequest) OpName() string { return "/NtFrsApi/v1.1/NtFrsApi_Rpc_InfoW" }
+
 // InfoWResponse structure represents the NtFrsApi_Rpc_InfoW operation response
 type InfoWResponse struct {
 	// XXX: BlobSize is an implicit input depedency for output parameters
@@ -995,8 +1043,10 @@ type xxx_IsPathReplicatedOperation struct {
 	Return                   uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NtFrsApi_Rpc_IsPathReplicated operation.
 func (o *xxx_IsPathReplicatedOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of NtFrsApi_Rpc_IsPathReplicated operation.
 func (o *xxx_IsPathReplicatedOperation) OpName() string {
 	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_IsPathReplicated"
 }
@@ -1217,6 +1267,19 @@ func (o *IsPathReplicatedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeIsPathReplicatedRequest build a response structure from the given request structure.
+func (o *IsPathReplicatedRequest) MakeResponse() *IsPathReplicatedResponse {
+	return &IsPathReplicatedResponse{}
+}
+
+// OpNum returns the operation number of NtFrsApi_Rpc_IsPathReplicated operation.
+func (o *IsPathReplicatedRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of NtFrsApi_Rpc_IsPathReplicated operation.
+func (o *IsPathReplicatedRequest) OpName() string {
+	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_IsPathReplicated"
+}
+
 // IsPathReplicatedResponse structure represents the NtFrsApi_Rpc_IsPathReplicated operation response
 type IsPathReplicatedResponse struct {
 	// Replicated: Boolean value that indicates if the replica set is replicated by the
@@ -1315,8 +1378,10 @@ type xxx_WriterCommandOperation struct {
 	Return  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NtFrsApi_Rpc_WriterCommand operation.
 func (o *xxx_WriterCommandOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of NtFrsApi_Rpc_WriterCommand operation.
 func (o *xxx_WriterCommandOperation) OpName() string {
 	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_WriterCommand"
 }
@@ -1434,6 +1499,17 @@ func (o *WriterCommandRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeWriterCommandRequest build a response structure from the given request structure.
+func (o *WriterCommandRequest) MakeResponse() *WriterCommandResponse {
+	return &WriterCommandResponse{}
+}
+
+// OpNum returns the operation number of NtFrsApi_Rpc_WriterCommand operation.
+func (o *WriterCommandRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of NtFrsApi_Rpc_WriterCommand operation.
+func (o *WriterCommandRequest) OpName() string { return "/NtFrsApi/v1.1/NtFrsApi_Rpc_WriterCommand" }
+
 // WriterCommandResponse structure represents the NtFrsApi_Rpc_WriterCommand operation response
 type WriterCommandResponse struct {
 	// Return: The NtFrsApi_Rpc_WriterCommand return value.
@@ -1478,8 +1554,10 @@ type xxx_ForceReplicationOperation struct {
 	Return         uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NtFrsApi_Rpc_ForceReplication operation.
 func (o *xxx_ForceReplicationOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of NtFrsApi_Rpc_ForceReplication operation.
 func (o *xxx_ForceReplicationOperation) OpName() string {
 	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_ForceReplication"
 }
@@ -1748,6 +1826,19 @@ func (o *ForceReplicationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeForceReplicationRequest build a response structure from the given request structure.
+func (o *ForceReplicationRequest) MakeResponse() *ForceReplicationResponse {
+	return &ForceReplicationResponse{}
+}
+
+// OpNum returns the operation number of NtFrsApi_Rpc_ForceReplication operation.
+func (o *ForceReplicationRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of NtFrsApi_Rpc_ForceReplication operation.
+func (o *ForceReplicationRequest) OpName() string {
+	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_ForceReplication"
 }
 
 // ForceReplicationResponse structure represents the NtFrsApi_Rpc_ForceReplication operation response

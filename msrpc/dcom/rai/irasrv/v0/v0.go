@@ -219,8 +219,10 @@ type xxx_GetNoviceUserInfoOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNoviceUserInfo operation.
 func (o *xxx_GetNoviceUserInfoOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetNoviceUserInfo operation.
 func (o *xxx_GetNoviceUserInfoOperation) OpName() string { return "/IRASrv/v0/GetNoviceUserInfo" }
 
 func (o *xxx_GetNoviceUserInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -443,6 +445,17 @@ func (o *GetNoviceUserInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetNoviceUserInfoRequest build a response structure from the given request structure.
+func (o *GetNoviceUserInfoRequest) MakeResponse() *GetNoviceUserInfoResponse {
+	return &GetNoviceUserInfoResponse{}
+}
+
+// OpNum returns the operation number of GetNoviceUserInfo operation.
+func (o *GetNoviceUserInfoRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetNoviceUserInfo operation.
+func (o *GetNoviceUserInfoRequest) OpName() string { return "/IRASrv/v0/GetNoviceUserInfo" }
+
 // GetNoviceUserInfoResponse structure represents the GetNoviceUserInfo operation response
 type GetNoviceUserInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -496,8 +509,10 @@ type xxx_GetSessionInfoOperation struct {
 	Return    int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSessionInfo operation.
 func (o *xxx_GetSessionInfoOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of GetSessionInfo operation.
 func (o *xxx_GetSessionInfoOperation) OpName() string { return "/IRASrv/v0/GetSessionInfo" }
 
 func (o *xxx_GetSessionInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -768,6 +783,17 @@ func (o *GetSessionInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetSessionInfoRequest build a response structure from the given request structure.
+func (o *GetSessionInfoRequest) MakeResponse() *GetSessionInfoResponse {
+	return &GetSessionInfoResponse{}
+}
+
+// OpNum returns the operation number of GetSessionInfo operation.
+func (o *GetSessionInfoRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GetSessionInfo operation.
+func (o *GetSessionInfoRequest) OpName() string { return "/IRASrv/v0/GetSessionInfo" }
 
 // GetSessionInfoResponse structure represents the GetSessionInfo operation response
 type GetSessionInfoResponse struct {

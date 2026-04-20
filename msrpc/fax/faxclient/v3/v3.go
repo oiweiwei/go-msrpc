@@ -182,8 +182,10 @@ type xxx_OpenConnectionOperation struct {
 	Return  uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FAX_OpenConnection operation.
 func (o *xxx_OpenConnectionOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of FAX_OpenConnection operation.
 func (o *xxx_OpenConnectionOperation) OpName() string { return "/faxclient/v3/FAX_OpenConnection" }
 
 func (o *xxx_OpenConnectionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -314,6 +316,17 @@ func (o *OpenConnectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeOpenConnectionRequest build a response structure from the given request structure.
+func (o *OpenConnectionRequest) MakeResponse() *OpenConnectionResponse {
+	return &OpenConnectionResponse{}
+}
+
+// OpNum returns the operation number of FAX_OpenConnection operation.
+func (o *OpenConnectionRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of FAX_OpenConnection operation.
+func (o *OpenConnectionRequest) OpName() string { return "/faxclient/v3/FAX_OpenConnection" }
+
 // OpenConnectionResponse structure represents the FAX_OpenConnection operation response
 type OpenConnectionResponse struct {
 	// FaxHandle: A pointer to an RPC_FAX_HANDLE indicating a context handle to open. This
@@ -381,8 +394,10 @@ type xxx_ClientEventQueueOperation struct {
 	Return   uint32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FAX_ClientEventQueue operation.
 func (o *xxx_ClientEventQueueOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of FAX_ClientEventQueue operation.
 func (o *xxx_ClientEventQueueOperation) OpName() string { return "/faxclient/v3/FAX_ClientEventQueue" }
 
 func (o *xxx_ClientEventQueueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -535,6 +550,17 @@ func (o *ClientEventQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeClientEventQueueRequest build a response structure from the given request structure.
+func (o *ClientEventQueueRequest) MakeResponse() *ClientEventQueueResponse {
+	return &ClientEventQueueResponse{}
+}
+
+// OpNum returns the operation number of FAX_ClientEventQueue operation.
+func (o *ClientEventQueueRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of FAX_ClientEventQueue operation.
+func (o *ClientEventQueueRequest) OpName() string { return "/faxclient/v3/FAX_ClientEventQueue" }
+
 // ClientEventQueueResponse structure represents the FAX_ClientEventQueue operation response
 type ClientEventQueueResponse struct {
 	// Return: The FAX_ClientEventQueue return value.
@@ -576,8 +602,10 @@ type xxx_CloseConnectionOperation struct {
 	Return uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FAX_CloseConnection operation.
 func (o *xxx_CloseConnectionOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of FAX_CloseConnection operation.
 func (o *xxx_CloseConnectionOperation) OpName() string { return "/faxclient/v3/FAX_CloseConnection" }
 
 func (o *xxx_CloseConnectionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -710,6 +738,17 @@ func (o *CloseConnectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeCloseConnectionRequest build a response structure from the given request structure.
+func (o *CloseConnectionRequest) MakeResponse() *CloseConnectionResponse {
+	return &CloseConnectionResponse{}
+}
+
+// OpNum returns the operation number of FAX_CloseConnection operation.
+func (o *CloseConnectionRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of FAX_CloseConnection operation.
+func (o *CloseConnectionRequest) OpName() string { return "/faxclient/v3/FAX_CloseConnection" }
+
 // CloseConnectionResponse structure represents the FAX_CloseConnection operation response
 type CloseConnectionResponse struct {
 	// FaxHandle: A pointer to an RPC_FAX_HANDLE that indicates a context handle to close.
@@ -758,8 +797,10 @@ type xxx_ClientEventQueueExOperation struct {
 	Return        uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FAX_ClientEventQueueEx operation.
 func (o *xxx_ClientEventQueueExOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of FAX_ClientEventQueueEx operation.
 func (o *xxx_ClientEventQueueExOperation) OpName() string {
 	return "/faxclient/v3/FAX_ClientEventQueueEx"
 }
@@ -969,6 +1010,17 @@ func (o *ClientEventQueueExRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeClientEventQueueExRequest build a response structure from the given request structure.
+func (o *ClientEventQueueExRequest) MakeResponse() *ClientEventQueueExResponse {
+	return &ClientEventQueueExResponse{}
+}
+
+// OpNum returns the operation number of FAX_ClientEventQueueEx operation.
+func (o *ClientEventQueueExRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of FAX_ClientEventQueueEx operation.
+func (o *ClientEventQueueExRequest) OpName() string { return "/faxclient/v3/FAX_ClientEventQueueEx" }
 
 // ClientEventQueueExResponse structure represents the FAX_ClientEventQueueEx operation response
 type ClientEventQueueExResponse struct {

@@ -208,8 +208,10 @@ type xxx_GenerateClusterLogOperation struct {
 	Return      int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GenerateClusterLog operation.
 func (o *xxx_GenerateClusterLogOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GenerateClusterLog operation.
 func (o *xxx_GenerateClusterLogOperation) OpName() string {
 	return "/IClusterLogEx/v0/GenerateClusterLog"
 }
@@ -431,6 +433,17 @@ func (o *GenerateClusterLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGenerateClusterLogRequest build a response structure from the given request structure.
+func (o *GenerateClusterLogRequest) MakeResponse() *GenerateClusterLogResponse {
+	return &GenerateClusterLogResponse{}
+}
+
+// OpNum returns the operation number of GenerateClusterLog operation.
+func (o *GenerateClusterLogRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GenerateClusterLog operation.
+func (o *GenerateClusterLogRequest) OpName() string { return "/IClusterLogEx/v0/GenerateClusterLog" }
+
 // GenerateClusterLogResponse structure represents the GenerateClusterLog operation response
 type GenerateClusterLogResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -490,8 +503,10 @@ type xxx_GenerateClusterHealthLogOperation struct {
 	Return      int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GenerateClusterHealthLog operation.
 func (o *xxx_GenerateClusterHealthLogOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GenerateClusterHealthLog operation.
 func (o *xxx_GenerateClusterHealthLogOperation) OpName() string {
 	return "/IClusterLogEx/v0/GenerateClusterHealthLog"
 }
@@ -715,6 +730,19 @@ func (o *GenerateClusterHealthLogRequest) UnmarshalNDR(ctx context.Context, r nd
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGenerateClusterHealthLogRequest build a response structure from the given request structure.
+func (o *GenerateClusterHealthLogRequest) MakeResponse() *GenerateClusterHealthLogResponse {
+	return &GenerateClusterHealthLogResponse{}
+}
+
+// OpNum returns the operation number of GenerateClusterHealthLog operation.
+func (o *GenerateClusterHealthLogRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GenerateClusterHealthLog operation.
+func (o *GenerateClusterHealthLogRequest) OpName() string {
+	return "/IClusterLogEx/v0/GenerateClusterHealthLog"
 }
 
 // GenerateClusterHealthLogResponse structure represents the GenerateClusterHealthLog operation response

@@ -146,8 +146,10 @@ type xxx_QueryHBAPortsOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryHbaPorts operation.
 func (o *xxx_QueryHBAPortsOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of QueryHbaPorts operation.
 func (o *xxx_QueryHBAPortsOperation) OpName() string { return "/IVdsServiceHba/v0/QueryHbaPorts" }
 
 func (o *xxx_QueryHBAPortsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -336,6 +338,17 @@ func (o *QueryHBAPortsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeQueryHBAPortsRequest build a response structure from the given request structure.
+func (o *QueryHBAPortsRequest) MakeResponse() *QueryHBAPortsResponse {
+	return &QueryHBAPortsResponse{}
+}
+
+// OpNum returns the operation number of QueryHbaPorts operation.
+func (o *QueryHBAPortsRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of QueryHbaPorts operation.
+func (o *QueryHBAPortsRequest) OpName() string { return "/IVdsServiceHba/v0/QueryHbaPorts" }
 
 // QueryHBAPortsResponse structure represents the QueryHbaPorts operation response
 type QueryHBAPortsResponse struct {

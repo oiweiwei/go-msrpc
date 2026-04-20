@@ -283,8 +283,10 @@ type xxx_BindOperation struct {
 	Return          int32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MimiBind operation.
 func (o *xxx_BindOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of MimiBind operation.
 func (o *xxx_BindOperation) OpName() string { return "/MimiCom/v1/MimiBind" }
 
 func (o *xxx_BindOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -448,6 +450,17 @@ func (o *BindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeBindRequest build a response structure from the given request structure.
+func (o *BindRequest) MakeResponse() *BindResponse {
+	return &BindResponse{}
+}
+
+// OpNum returns the operation number of MimiBind operation.
+func (o *BindRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of MimiBind operation.
+func (o *BindRequest) OpName() string { return "/MimiCom/v1/MimiBind" }
+
 // BindResponse structure represents the MimiBind operation response
 type BindResponse struct {
 	ServerPublicKey *PublicKey `idl:"name:serverPublicKey;pointer:ref" json:"server_public_key"`
@@ -495,8 +508,10 @@ type xxx_UnbindOperation struct {
 	Return int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MimiUnbind operation.
 func (o *xxx_UnbindOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of MimiUnbind operation.
 func (o *xxx_UnbindOperation) OpName() string { return "/MimiCom/v1/MimiUnbind" }
 
 func (o *xxx_UnbindOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -627,6 +642,17 @@ func (o *UnbindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeUnbindRequest build a response structure from the given request structure.
+func (o *UnbindRequest) MakeResponse() *UnbindResponse {
+	return &UnbindResponse{}
+}
+
+// OpNum returns the operation number of MimiUnbind operation.
+func (o *UnbindRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of MimiUnbind operation.
+func (o *UnbindRequest) OpName() string { return "/MimiCom/v1/MimiUnbind" }
+
 // UnbindResponse structure represents the MimiUnbind operation response
 type UnbindResponse struct {
 	Handle *Handle `idl:"name:phMimi;pointer:ref" json:"handle"`
@@ -675,8 +701,10 @@ type xxx_CommandOperation struct {
 	Return         int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MimiCommand operation.
 func (o *xxx_CommandOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of MimiCommand operation.
 func (o *xxx_CommandOperation) OpName() string { return "/MimiCom/v1/MimiCommand" }
 
 func (o *xxx_CommandOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -961,6 +989,17 @@ func (o *CommandRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCommandRequest build a response structure from the given request structure.
+func (o *CommandRequest) MakeResponse() *CommandResponse {
+	return &CommandResponse{}
+}
+
+// OpNum returns the operation number of MimiCommand operation.
+func (o *CommandRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of MimiCommand operation.
+func (o *CommandRequest) OpName() string { return "/MimiCom/v1/MimiCommand" }
 
 // CommandResponse structure represents the MimiCommand operation response
 type CommandResponse struct {

@@ -140,8 +140,10 @@ type xxx_BeginTransactionOperation struct {
 	Return      int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BeginTransaction operation.
 func (o *xxx_BeginTransactionOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of BeginTransaction operation.
 func (o *xxx_BeginTransactionOperation) OpName() string {
 	return "/IMSMQTransactionDispenser/v0/BeginTransaction"
 }
@@ -331,6 +333,19 @@ func (o *BeginTransactionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeBeginTransactionRequest build a response structure from the given request structure.
+func (o *BeginTransactionRequest) MakeResponse() *BeginTransactionResponse {
+	return &BeginTransactionResponse{}
+}
+
+// OpNum returns the operation number of BeginTransaction operation.
+func (o *BeginTransactionRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of BeginTransaction operation.
+func (o *BeginTransactionRequest) OpName() string {
+	return "/IMSMQTransactionDispenser/v0/BeginTransaction"
 }
 
 // BeginTransactionResponse structure represents the BeginTransaction operation response

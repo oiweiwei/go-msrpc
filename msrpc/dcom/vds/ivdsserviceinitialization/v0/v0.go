@@ -143,8 +143,10 @@ type xxx_InitializeOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Initialize operation.
 func (o *xxx_InitializeOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Initialize operation.
 func (o *xxx_InitializeOperation) OpName() string { return "/IVdsServiceInitialization/v0/Initialize" }
 
 func (o *xxx_InitializeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -328,6 +330,17 @@ func (o *InitializeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeInitializeRequest build a response structure from the given request structure.
+func (o *InitializeRequest) MakeResponse() *InitializeResponse {
+	return &InitializeResponse{}
+}
+
+// OpNum returns the operation number of Initialize operation.
+func (o *InitializeRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Initialize operation.
+func (o *InitializeRequest) OpName() string { return "/IVdsServiceInitialization/v0/Initialize" }
 
 // InitializeResponse structure represents the Initialize operation response
 type InitializeResponse struct {

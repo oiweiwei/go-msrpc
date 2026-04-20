@@ -164,8 +164,10 @@ type xxx_RegisterModuleOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RegisterModule operation.
 func (o *xxx_RegisterModuleOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RegisterModule operation.
 func (o *xxx_RegisterModuleOperation) OpName() string { return "/IRegister/v0/RegisterModule" }
 
 func (o *xxx_RegisterModuleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -964,6 +966,22 @@ func (o *RegisterModuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeRegisterModuleRequest build a response structure from the given request structure.
+func (o *RegisterModuleRequest) MakeResponse() *RegisterModuleResponse {
+	if o == nil {
+		return &RegisterModuleResponse{}
+	}
+	return &RegisterModuleResponse{
+		ModulesCount: o.ModulesCount,
+	}
+}
+
+// OpNum returns the operation number of RegisterModule operation.
+func (o *RegisterModuleRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RegisterModule operation.
+func (o *RegisterModuleRequest) OpName() string { return "/IRegister/v0/RegisterModule" }
 
 // RegisterModuleResponse structure represents the RegisterModule operation response
 type RegisterModuleResponse struct {

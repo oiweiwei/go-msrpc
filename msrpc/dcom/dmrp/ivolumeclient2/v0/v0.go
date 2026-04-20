@@ -139,8 +139,10 @@ type xxx_GetMaxAdjustedFreeSpaceOperation struct {
 	Return               int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetMaxAdjustedFreeSpace operation.
 func (o *xxx_GetMaxAdjustedFreeSpaceOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetMaxAdjustedFreeSpace operation.
 func (o *xxx_GetMaxAdjustedFreeSpaceOperation) OpName() string {
 	return "/IVolumeClient2/v0/GetMaxAdjustedFreeSpace"
 }
@@ -311,6 +313,19 @@ func (o *GetMaxAdjustedFreeSpaceRequest) UnmarshalNDR(ctx context.Context, r ndr
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetMaxAdjustedFreeSpaceRequest build a response structure from the given request structure.
+func (o *GetMaxAdjustedFreeSpaceRequest) MakeResponse() *GetMaxAdjustedFreeSpaceResponse {
+	return &GetMaxAdjustedFreeSpaceResponse{}
+}
+
+// OpNum returns the operation number of GetMaxAdjustedFreeSpace operation.
+func (o *GetMaxAdjustedFreeSpaceRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetMaxAdjustedFreeSpace operation.
+func (o *GetMaxAdjustedFreeSpaceRequest) OpName() string {
+	return "/IVolumeClient2/v0/GetMaxAdjustedFreeSpace"
 }
 
 // GetMaxAdjustedFreeSpaceResponse structure represents the GetMaxAdjustedFreeSpace operation response

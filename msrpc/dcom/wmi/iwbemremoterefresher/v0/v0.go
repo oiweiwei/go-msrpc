@@ -199,8 +199,10 @@ type xxx_RemoteRefreshOperation struct {
 	Return        int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteRefresh operation.
 func (o *xxx_RemoteRefreshOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RemoteRefresh operation.
 func (o *xxx_RemoteRefreshOperation) OpName() string { return "/IWbemRemoteRefresher/v0/RemoteRefresh" }
 
 func (o *xxx_RemoteRefreshOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -454,6 +456,17 @@ func (o *RemoteRefreshRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeRemoteRefreshRequest build a response structure from the given request structure.
+func (o *RemoteRefreshRequest) MakeResponse() *RemoteRefreshResponse {
+	return &RemoteRefreshResponse{}
+}
+
+// OpNum returns the operation number of RemoteRefresh operation.
+func (o *RemoteRefreshRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RemoteRefresh operation.
+func (o *RemoteRefreshRequest) OpName() string { return "/IWbemRemoteRefresher/v0/RemoteRefresh" }
+
 // RemoteRefreshResponse structure represents the RemoteRefresh operation response
 type RemoteRefreshResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -514,8 +527,10 @@ type xxx_StopRefreshingOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of StopRefreshing operation.
 func (o *xxx_StopRefreshingOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of StopRefreshing operation.
 func (o *xxx_StopRefreshingOperation) OpName() string {
 	return "/IWbemRemoteRefresher/v0/StopRefreshing"
 }
@@ -750,6 +765,17 @@ func (o *StopRefreshingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeStopRefreshingRequest build a response structure from the given request structure.
+func (o *StopRefreshingRequest) MakeResponse() *StopRefreshingResponse {
+	return &StopRefreshingResponse{}
+}
+
+// OpNum returns the operation number of StopRefreshing operation.
+func (o *StopRefreshingRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of StopRefreshing operation.
+func (o *StopRefreshingRequest) OpName() string { return "/IWbemRemoteRefresher/v0/StopRefreshing" }
 
 // StopRefreshingResponse structure represents the StopRefreshing operation response
 type StopRefreshingResponse struct {

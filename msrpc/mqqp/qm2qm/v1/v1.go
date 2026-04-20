@@ -956,8 +956,10 @@ type xxx_StartReceiveOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteQMStartReceive operation.
 func (o *xxx_StartReceiveOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RemoteQMStartReceive operation.
 func (o *xxx_StartReceiveOperation) OpName() string { return "/qm2qm/v1/RemoteQMStartReceive" }
 
 func (o *xxx_StartReceiveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1153,6 +1155,17 @@ func (o *StartReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeStartReceiveRequest build a response structure from the given request structure.
+func (o *StartReceiveRequest) MakeResponse() *StartReceiveResponse {
+	return &StartReceiveResponse{}
+}
+
+// OpNum returns the operation number of RemoteQMStartReceive operation.
+func (o *StartReceiveRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RemoteQMStartReceive operation.
+func (o *StartReceiveRequest) OpName() string { return "/qm2qm/v1/RemoteQMStartReceive" }
+
 // StartReceiveResponse structure represents the RemoteQMStartReceive operation response
 type StartReceiveResponse struct {
 	// pphContext: The server MUST return a non-NULL value for this handle upon success
@@ -1238,8 +1251,10 @@ type xxx_EndReceiveOperation struct {
 	Return  int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteQMEndReceive operation.
 func (o *xxx_EndReceiveOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RemoteQMEndReceive operation.
 func (o *xxx_EndReceiveOperation) OpName() string { return "/qm2qm/v1/RemoteQMEndReceive" }
 
 func (o *xxx_EndReceiveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1406,6 +1421,17 @@ func (o *EndReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeEndReceiveRequest build a response structure from the given request structure.
+func (o *EndReceiveRequest) MakeResponse() *EndReceiveResponse {
+	return &EndReceiveResponse{}
+}
+
+// OpNum returns the operation number of RemoteQMEndReceive operation.
+func (o *EndReceiveRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RemoteQMEndReceive operation.
+func (o *EndReceiveRequest) OpName() string { return "/qm2qm/v1/RemoteQMEndReceive" }
+
 // EndReceiveResponse structure represents the RemoteQMEndReceive operation response
 type EndReceiveResponse struct {
 	// pphContext: A pointer to a context handle of a pending remote read operation.
@@ -1456,8 +1482,10 @@ type xxx_OpenQueueOperation struct {
 	Return     int32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteQMOpenQueue operation.
 func (o *xxx_OpenQueueOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of RemoteQMOpenQueue operation.
 func (o *xxx_OpenQueueOperation) OpName() string { return "/qm2qm/v1/RemoteQMOpenQueue" }
 
 func (o *xxx_OpenQueueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1659,6 +1687,17 @@ func (o *OpenQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeOpenQueueRequest build a response structure from the given request structure.
+func (o *OpenQueueRequest) MakeResponse() *OpenQueueResponse {
+	return &OpenQueueResponse{}
+}
+
+// OpNum returns the operation number of RemoteQMOpenQueue operation.
+func (o *OpenQueueRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of RemoteQMOpenQueue operation.
+func (o *OpenQueueRequest) OpName() string { return "/qm2qm/v1/RemoteQMOpenQueue" }
+
 // OpenQueueResponse structure represents the RemoteQMOpenQueue operation response
 type OpenQueueResponse struct {
 	// phContext:  A pointer to a context handle that contains the information about the
@@ -1706,8 +1745,10 @@ type xxx_CloseQueueOperation struct {
 	Return  int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteQMCloseQueue operation.
 func (o *xxx_CloseQueueOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RemoteQMCloseQueue operation.
 func (o *xxx_CloseQueueOperation) OpName() string { return "/qm2qm/v1/RemoteQMCloseQueue" }
 
 func (o *xxx_CloseQueueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1839,6 +1880,17 @@ func (o *CloseQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeCloseQueueRequest build a response structure from the given request structure.
+func (o *CloseQueueRequest) MakeResponse() *CloseQueueResponse {
+	return &CloseQueueResponse{}
+}
+
+// OpNum returns the operation number of RemoteQMCloseQueue operation.
+func (o *CloseQueueRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RemoteQMCloseQueue operation.
+func (o *CloseQueueRequest) OpName() string { return "/qm2qm/v1/RemoteQMCloseQueue" }
+
 // CloseQueueResponse structure represents the RemoteQMCloseQueue operation response
 type CloseQueueResponse struct {
 	// pphContext: A PCTX_RRSESSION_HANDLE_TYPE to a remote opened queue.
@@ -1885,8 +1937,10 @@ type xxx_CloseCursorOperation struct {
 	Return int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteQMCloseCursor operation.
 func (o *xxx_CloseCursorOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RemoteQMCloseCursor operation.
 func (o *xxx_CloseCursorOperation) OpName() string { return "/qm2qm/v1/RemoteQMCloseCursor" }
 
 func (o *xxx_CloseCursorOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2004,6 +2058,17 @@ func (o *CloseCursorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCloseCursorRequest build a response structure from the given request structure.
+func (o *CloseCursorRequest) MakeResponse() *CloseCursorResponse {
+	return &CloseCursorResponse{}
+}
+
+// OpNum returns the operation number of RemoteQMCloseCursor operation.
+func (o *CloseCursorRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RemoteQMCloseCursor operation.
+func (o *CloseCursorRequest) OpName() string { return "/qm2qm/v1/RemoteQMCloseCursor" }
+
 // CloseCursorResponse structure represents the RemoteQMCloseCursor operation response
 type CloseCursorResponse struct {
 	// Return: The RemoteQMCloseCursor return value.
@@ -2047,8 +2112,10 @@ type xxx_CancelReceiveOperation struct {
 	Return    int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteQMCancelReceive operation.
 func (o *xxx_CancelReceiveOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of RemoteQMCancelReceive operation.
 func (o *xxx_CancelReceiveOperation) OpName() string { return "/qm2qm/v1/RemoteQMCancelReceive" }
 
 func (o *xxx_CancelReceiveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2184,6 +2251,17 @@ func (o *CancelReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeCancelReceiveRequest build a response structure from the given request structure.
+func (o *CancelReceiveRequest) MakeResponse() *CancelReceiveResponse {
+	return &CancelReceiveResponse{}
+}
+
+// OpNum returns the operation number of RemoteQMCancelReceive operation.
+func (o *CancelReceiveRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of RemoteQMCancelReceive operation.
+func (o *CancelReceiveRequest) OpName() string { return "/qm2qm/v1/RemoteQMCancelReceive" }
+
 // CancelReceiveResponse structure represents the RemoteQMCancelReceive operation response
 type CancelReceiveResponse struct {
 	// Return: The RemoteQMCancelReceive return value.
@@ -2225,8 +2303,10 @@ type xxx_PurgeQueueOperation struct {
 	Return int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteQMPurgeQueue operation.
 func (o *xxx_PurgeQueueOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of RemoteQMPurgeQueue operation.
 func (o *xxx_PurgeQueueOperation) OpName() string { return "/qm2qm/v1/RemoteQMPurgeQueue" }
 
 func (o *xxx_PurgeQueueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2329,6 +2409,17 @@ func (o *PurgeQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakePurgeQueueRequest build a response structure from the given request structure.
+func (o *PurgeQueueRequest) MakeResponse() *PurgeQueueResponse {
+	return &PurgeQueueResponse{}
+}
+
+// OpNum returns the operation number of RemoteQMPurgeQueue operation.
+func (o *PurgeQueueRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of RemoteQMPurgeQueue operation.
+func (o *PurgeQueueRequest) OpName() string { return "/qm2qm/v1/RemoteQMPurgeQueue" }
+
 // PurgeQueueResponse structure represents the RemoteQMPurgeQueue operation response
 type PurgeQueueResponse struct {
 	// Return: The RemoteQMPurgeQueue return value.
@@ -2370,8 +2461,10 @@ type xxx_GetQMQMServerPortOperation struct {
 	Return   uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteQMGetQMQMServerPort operation.
 func (o *xxx_GetQMQMServerPortOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of RemoteQMGetQMQMServerPort operation.
 func (o *xxx_GetQMQMServerPortOperation) OpName() string {
 	return "/qm2qm/v1/RemoteQMGetQMQMServerPort"
 }
@@ -2503,6 +2596,17 @@ func (o *GetQMQMServerPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetQMQMServerPortRequest build a response structure from the given request structure.
+func (o *GetQMQMServerPortRequest) MakeResponse() *GetQMQMServerPortResponse {
+	return &GetQMQMServerPortResponse{}
+}
+
+// OpNum returns the operation number of RemoteQMGetQMQMServerPort operation.
+func (o *GetQMQMServerPortRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of RemoteQMGetQMQMServerPort operation.
+func (o *GetQMQMServerPortRequest) OpName() string { return "/qm2qm/v1/RemoteQMGetQMQMServerPort" }
+
 // GetQMQMServerPortResponse structure represents the RemoteQMGetQMQMServerPort operation response
 type GetQMQMServerPortResponse struct {
 	// Return: The RemoteQMGetQMQMServerPort return value.
@@ -2545,8 +2649,10 @@ type xxx_GetVersionOperation struct {
 	BuildNumber uint16 `idl:"name:pBuildNumber" json:"build_number"`
 }
 
+// OpNum returns the operation number of RemoteQmGetVersion operation.
 func (o *xxx_GetVersionOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RemoteQmGetVersion operation.
 func (o *xxx_GetVersionOperation) OpName() string { return "/qm2qm/v1/RemoteQmGetVersion" }
 
 func (o *xxx_GetVersionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2656,6 +2762,17 @@ func (o *GetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetVersionRequest build a response structure from the given request structure.
+func (o *GetVersionRequest) MakeResponse() *GetVersionResponse {
+	return &GetVersionResponse{}
+}
+
+// OpNum returns the operation number of RemoteQmGetVersion operation.
+func (o *GetVersionRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of RemoteQmGetVersion operation.
+func (o *GetVersionRequest) OpName() string { return "/qm2qm/v1/RemoteQmGetVersion" }
+
 // GetVersionResponse structure represents the RemoteQmGetVersion operation response
 type GetVersionResponse struct {
 	// pMajor: A pointer to an unsigned character. The server SHOULD<22> set this parameter
@@ -2709,8 +2826,10 @@ type xxx_StartReceive2Operation struct {
 	Return          int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteQMStartReceive2 operation.
 func (o *xxx_StartReceive2Operation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RemoteQMStartReceive2 operation.
 func (o *xxx_StartReceive2Operation) OpName() string { return "/qm2qm/v1/RemoteQMStartReceive2" }
 
 func (o *xxx_StartReceive2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2906,6 +3025,17 @@ func (o *StartReceive2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeStartReceive2Request build a response structure from the given request structure.
+func (o *StartReceive2Request) MakeResponse() *StartReceive2Response {
+	return &StartReceive2Response{}
+}
+
+// OpNum returns the operation number of RemoteQMStartReceive2 operation.
+func (o *StartReceive2Request) OpNum() int { return 9 }
+
+// OpName returns the operation name of RemoteQMStartReceive2 operation.
+func (o *StartReceive2Request) OpName() string { return "/qm2qm/v1/RemoteQMStartReceive2" }
+
 // StartReceive2Response structure represents the RemoteQMStartReceive2 operation response
 type StartReceive2Response struct {
 	// pphContext: The server MUST return a non-NULL value for this handle upon success
@@ -2992,8 +3122,10 @@ type xxx_StartReceiveByLookupIDOperation struct {
 	Return          int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoteQMStartReceiveByLookupId operation.
 func (o *xxx_StartReceiveByLookupIDOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of RemoteQMStartReceiveByLookupId operation.
 func (o *xxx_StartReceiveByLookupIDOperation) OpName() string {
 	return "/qm2qm/v1/RemoteQMStartReceiveByLookupId"
 }
@@ -3224,6 +3356,19 @@ func (o *StartReceiveByLookupIDRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeStartReceiveByLookupIDRequest build a response structure from the given request structure.
+func (o *StartReceiveByLookupIDRequest) MakeResponse() *StartReceiveByLookupIDResponse {
+	return &StartReceiveByLookupIDResponse{}
+}
+
+// OpNum returns the operation number of RemoteQMStartReceiveByLookupId operation.
+func (o *StartReceiveByLookupIDRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of RemoteQMStartReceiveByLookupId operation.
+func (o *StartReceiveByLookupIDRequest) OpName() string {
+	return "/qm2qm/v1/RemoteQMStartReceiveByLookupId"
 }
 
 // StartReceiveByLookupIDResponse structure represents the RemoteQMStartReceiveByLookupId operation response

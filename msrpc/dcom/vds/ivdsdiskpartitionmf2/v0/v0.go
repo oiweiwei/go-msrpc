@@ -152,8 +152,10 @@ type xxx_FormatPartitionEx2Operation struct {
 	Return                    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FormatPartitionEx2 operation.
 func (o *xxx_FormatPartitionEx2Operation) OpNum() int { return 3 }
 
+// OpName returns the operation name of FormatPartitionEx2 operation.
 func (o *xxx_FormatPartitionEx2Operation) OpName() string {
 	return "/IVdsDiskPartitionMF2/v0/FormatPartitionEx2"
 }
@@ -498,6 +500,19 @@ func (o *FormatPartitionEx2Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeFormatPartitionEx2Request build a response structure from the given request structure.
+func (o *FormatPartitionEx2Request) MakeResponse() *FormatPartitionEx2Response {
+	return &FormatPartitionEx2Response{}
+}
+
+// OpNum returns the operation number of FormatPartitionEx2 operation.
+func (o *FormatPartitionEx2Request) OpNum() int { return 3 }
+
+// OpName returns the operation name of FormatPartitionEx2 operation.
+func (o *FormatPartitionEx2Request) OpName() string {
+	return "/IVdsDiskPartitionMF2/v0/FormatPartitionEx2"
 }
 
 // FormatPartitionEx2Response structure represents the FormatPartitionEx2 operation response

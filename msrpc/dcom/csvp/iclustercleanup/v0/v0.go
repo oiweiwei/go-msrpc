@@ -214,8 +214,10 @@ type xxx_CleanupEvictedNodeOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CleanUpEvictedNode operation.
 func (o *xxx_CleanupEvictedNodeOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CleanUpEvictedNode operation.
 func (o *xxx_CleanupEvictedNodeOperation) OpName() string {
 	return "/IClusterCleanup/v0/CleanUpEvictedNode"
 }
@@ -428,6 +430,17 @@ func (o *CleanupEvictedNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeCleanupEvictedNodeRequest build a response structure from the given request structure.
+func (o *CleanupEvictedNodeRequest) MakeResponse() *CleanupEvictedNodeResponse {
+	return &CleanupEvictedNodeResponse{}
+}
+
+// OpNum returns the operation number of CleanUpEvictedNode operation.
+func (o *CleanupEvictedNodeRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of CleanUpEvictedNode operation.
+func (o *CleanupEvictedNodeRequest) OpName() string { return "/IClusterCleanup/v0/CleanUpEvictedNode" }
+
 // CleanupEvictedNodeResponse structure represents the CleanUpEvictedNode operation response
 type CleanupEvictedNodeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -475,8 +488,10 @@ type xxx_ClearPROperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClearPR operation.
 func (o *xxx_ClearPROperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of ClearPR operation.
 func (o *xxx_ClearPROperation) OpName() string { return "/IClusterCleanup/v0/ClearPR" }
 
 func (o *xxx_ClearPROperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -635,6 +650,17 @@ func (o *ClearPRRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeClearPRRequest build a response structure from the given request structure.
+func (o *ClearPRRequest) MakeResponse() *ClearPRResponse {
+	return &ClearPRResponse{}
+}
+
+// OpNum returns the operation number of ClearPR operation.
+func (o *ClearPRRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of ClearPR operation.
+func (o *ClearPRRequest) OpName() string { return "/IClusterCleanup/v0/ClearPR" }
 
 // ClearPRResponse structure represents the ClearPR operation response
 type ClearPRResponse struct {

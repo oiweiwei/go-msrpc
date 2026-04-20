@@ -161,8 +161,10 @@ type xxx_GetOverwriteOnCommitOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OverwriteOnCommit operation.
 func (o *xxx_GetOverwriteOnCommitOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of OverwriteOnCommit operation.
 func (o *xxx_GetOverwriteOnCommitOperation) OpName() string {
 	return "/IFsrmFileGroupImported/v0/OverwriteOnCommit"
 }
@@ -320,6 +322,19 @@ func (o *GetOverwriteOnCommitRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetOverwriteOnCommitRequest build a response structure from the given request structure.
+func (o *GetOverwriteOnCommitRequest) MakeResponse() *GetOverwriteOnCommitResponse {
+	return &GetOverwriteOnCommitResponse{}
+}
+
+// OpNum returns the operation number of OverwriteOnCommit operation.
+func (o *GetOverwriteOnCommitRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of OverwriteOnCommit operation.
+func (o *GetOverwriteOnCommitRequest) OpName() string {
+	return "/IFsrmFileGroupImported/v0/OverwriteOnCommit"
+}
+
 // GetOverwriteOnCommitResponse structure represents the OverwriteOnCommit operation response
 type GetOverwriteOnCommitResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -370,8 +385,10 @@ type xxx_SetOverwriteOnCommitOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OverwriteOnCommit operation.
 func (o *xxx_SetOverwriteOnCommitOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of OverwriteOnCommit operation.
 func (o *xxx_SetOverwriteOnCommitOperation) OpName() string {
 	return "/IFsrmFileGroupImported/v0/OverwriteOnCommit"
 }
@@ -530,6 +547,19 @@ func (o *SetOverwriteOnCommitRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetOverwriteOnCommitRequest build a response structure from the given request structure.
+func (o *SetOverwriteOnCommitRequest) MakeResponse() *SetOverwriteOnCommitResponse {
+	return &SetOverwriteOnCommitResponse{}
+}
+
+// OpNum returns the operation number of OverwriteOnCommit operation.
+func (o *SetOverwriteOnCommitRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of OverwriteOnCommit operation.
+func (o *SetOverwriteOnCommitRequest) OpName() string {
+	return "/IFsrmFileGroupImported/v0/OverwriteOnCommit"
 }
 
 // SetOverwriteOnCommitResponse structure represents the OverwriteOnCommit operation response

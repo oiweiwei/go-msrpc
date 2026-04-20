@@ -446,8 +446,10 @@ type xxx_GetQuotaLimitOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QuotaLimit operation.
 func (o *xxx_GetQuotaLimitOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of QuotaLimit operation.
 func (o *xxx_GetQuotaLimitOperation) OpName() string { return "/IFsrmQuotaBase/v0/QuotaLimit" }
 
 func (o *xxx_GetQuotaLimitOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -637,6 +639,17 @@ func (o *GetQuotaLimitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetQuotaLimitRequest build a response structure from the given request structure.
+func (o *GetQuotaLimitRequest) MakeResponse() *GetQuotaLimitResponse {
+	return &GetQuotaLimitResponse{}
+}
+
+// OpNum returns the operation number of QuotaLimit operation.
+func (o *GetQuotaLimitRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of QuotaLimit operation.
+func (o *GetQuotaLimitRequest) OpName() string { return "/IFsrmQuotaBase/v0/QuotaLimit" }
+
 // GetQuotaLimitResponse structure represents the QuotaLimit operation response
 type GetQuotaLimitResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -687,8 +700,10 @@ type xxx_SetQuotaLimitOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QuotaLimit operation.
 func (o *xxx_SetQuotaLimitOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of QuotaLimit operation.
 func (o *xxx_SetQuotaLimitOperation) OpName() string { return "/IFsrmQuotaBase/v0/QuotaLimit" }
 
 func (o *xxx_SetQuotaLimitOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -862,6 +877,17 @@ func (o *SetQuotaLimitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSetQuotaLimitRequest build a response structure from the given request structure.
+func (o *SetQuotaLimitRequest) MakeResponse() *SetQuotaLimitResponse {
+	return &SetQuotaLimitResponse{}
+}
+
+// OpNum returns the operation number of QuotaLimit operation.
+func (o *SetQuotaLimitRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of QuotaLimit operation.
+func (o *SetQuotaLimitRequest) OpName() string { return "/IFsrmQuotaBase/v0/QuotaLimit" }
+
 // SetQuotaLimitResponse structure represents the QuotaLimit operation response
 type SetQuotaLimitResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -909,8 +935,10 @@ type xxx_GetQuotaFlagsOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QuotaFlags operation.
 func (o *xxx_GetQuotaFlagsOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of QuotaFlags operation.
 func (o *xxx_GetQuotaFlagsOperation) OpName() string { return "/IFsrmQuotaBase/v0/QuotaFlags" }
 
 func (o *xxx_GetQuotaFlagsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1066,6 +1094,17 @@ func (o *GetQuotaFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetQuotaFlagsRequest build a response structure from the given request structure.
+func (o *GetQuotaFlagsRequest) MakeResponse() *GetQuotaFlagsResponse {
+	return &GetQuotaFlagsResponse{}
+}
+
+// OpNum returns the operation number of QuotaFlags operation.
+func (o *GetQuotaFlagsRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of QuotaFlags operation.
+func (o *GetQuotaFlagsRequest) OpName() string { return "/IFsrmQuotaBase/v0/QuotaFlags" }
+
 // GetQuotaFlagsResponse structure represents the QuotaFlags operation response
 type GetQuotaFlagsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1116,8 +1155,10 @@ type xxx_SetQuotaFlagsOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QuotaFlags operation.
 func (o *xxx_SetQuotaFlagsOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of QuotaFlags operation.
 func (o *xxx_SetQuotaFlagsOperation) OpName() string { return "/IFsrmQuotaBase/v0/QuotaFlags" }
 
 func (o *xxx_SetQuotaFlagsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1276,6 +1317,17 @@ func (o *SetQuotaFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSetQuotaFlagsRequest build a response structure from the given request structure.
+func (o *SetQuotaFlagsRequest) MakeResponse() *SetQuotaFlagsResponse {
+	return &SetQuotaFlagsResponse{}
+}
+
+// OpNum returns the operation number of QuotaFlags operation.
+func (o *SetQuotaFlagsRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of QuotaFlags operation.
+func (o *SetQuotaFlagsRequest) OpName() string { return "/IFsrmQuotaBase/v0/QuotaFlags" }
+
 // SetQuotaFlagsResponse structure represents the QuotaFlags operation response
 type SetQuotaFlagsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1323,8 +1375,10 @@ type xxx_GetThresholdsOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Thresholds operation.
 func (o *xxx_GetThresholdsOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of Thresholds operation.
 func (o *xxx_GetThresholdsOperation) OpName() string { return "/IFsrmQuotaBase/v0/Thresholds" }
 
 func (o *xxx_GetThresholdsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1514,6 +1568,17 @@ func (o *GetThresholdsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetThresholdsRequest build a response structure from the given request structure.
+func (o *GetThresholdsRequest) MakeResponse() *GetThresholdsResponse {
+	return &GetThresholdsResponse{}
+}
+
+// OpNum returns the operation number of Thresholds operation.
+func (o *GetThresholdsRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of Thresholds operation.
+func (o *GetThresholdsRequest) OpName() string { return "/IFsrmQuotaBase/v0/Thresholds" }
+
 // GetThresholdsResponse structure represents the Thresholds operation response
 type GetThresholdsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1567,8 +1632,10 @@ type xxx_AddThresholdOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddThreshold operation.
 func (o *xxx_AddThresholdOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of AddThreshold operation.
 func (o *xxx_AddThresholdOperation) OpName() string { return "/IFsrmQuotaBase/v0/AddThreshold" }
 
 func (o *xxx_AddThresholdOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1728,6 +1795,17 @@ func (o *AddThresholdRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeAddThresholdRequest build a response structure from the given request structure.
+func (o *AddThresholdRequest) MakeResponse() *AddThresholdResponse {
+	return &AddThresholdResponse{}
+}
+
+// OpNum returns the operation number of AddThreshold operation.
+func (o *AddThresholdRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of AddThreshold operation.
+func (o *AddThresholdRequest) OpName() string { return "/IFsrmQuotaBase/v0/AddThreshold" }
+
 // AddThresholdResponse structure represents the AddThreshold operation response
 type AddThresholdResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1775,8 +1853,10 @@ type xxx_DeleteThresholdOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteThreshold operation.
 func (o *xxx_DeleteThresholdOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of DeleteThreshold operation.
 func (o *xxx_DeleteThresholdOperation) OpName() string { return "/IFsrmQuotaBase/v0/DeleteThreshold" }
 
 func (o *xxx_DeleteThresholdOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1936,6 +2016,17 @@ func (o *DeleteThresholdRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeDeleteThresholdRequest build a response structure from the given request structure.
+func (o *DeleteThresholdRequest) MakeResponse() *DeleteThresholdResponse {
+	return &DeleteThresholdResponse{}
+}
+
+// OpNum returns the operation number of DeleteThreshold operation.
+func (o *DeleteThresholdRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of DeleteThreshold operation.
+func (o *DeleteThresholdRequest) OpName() string { return "/IFsrmQuotaBase/v0/DeleteThreshold" }
+
 // DeleteThresholdResponse structure represents the DeleteThreshold operation response
 type DeleteThresholdResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1984,8 +2075,10 @@ type xxx_ModifyThresholdOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ModifyThreshold operation.
 func (o *xxx_ModifyThresholdOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of ModifyThreshold operation.
 func (o *xxx_ModifyThresholdOperation) OpName() string { return "/IFsrmQuotaBase/v0/ModifyThreshold" }
 
 func (o *xxx_ModifyThresholdOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2161,6 +2254,17 @@ func (o *ModifyThresholdRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeModifyThresholdRequest build a response structure from the given request structure.
+func (o *ModifyThresholdRequest) MakeResponse() *ModifyThresholdResponse {
+	return &ModifyThresholdResponse{}
+}
+
+// OpNum returns the operation number of ModifyThreshold operation.
+func (o *ModifyThresholdRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of ModifyThreshold operation.
+func (o *ModifyThresholdRequest) OpName() string { return "/IFsrmQuotaBase/v0/ModifyThreshold" }
+
 // ModifyThresholdResponse structure represents the ModifyThreshold operation response
 type ModifyThresholdResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2210,8 +2314,10 @@ type xxx_CreateThresholdActionOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateThresholdAction operation.
 func (o *xxx_CreateThresholdActionOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of CreateThresholdAction operation.
 func (o *xxx_CreateThresholdActionOperation) OpName() string {
 	return "/IFsrmQuotaBase/v0/CreateThresholdAction"
 }
@@ -2435,6 +2541,19 @@ func (o *CreateThresholdActionRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeCreateThresholdActionRequest build a response structure from the given request structure.
+func (o *CreateThresholdActionRequest) MakeResponse() *CreateThresholdActionResponse {
+	return &CreateThresholdActionResponse{}
+}
+
+// OpNum returns the operation number of CreateThresholdAction operation.
+func (o *CreateThresholdActionRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of CreateThresholdAction operation.
+func (o *CreateThresholdActionRequest) OpName() string {
+	return "/IFsrmQuotaBase/v0/CreateThresholdAction"
+}
+
 // CreateThresholdActionResponse structure represents the CreateThresholdAction operation response
 type CreateThresholdActionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2489,8 +2608,10 @@ type xxx_EnumThresholdActionsOperation struct {
 	Return    int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumThresholdActions operation.
 func (o *xxx_EnumThresholdActionsOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of EnumThresholdActions operation.
 func (o *xxx_EnumThresholdActionsOperation) OpName() string {
 	return "/IFsrmQuotaBase/v0/EnumThresholdActions"
 }
@@ -2696,6 +2817,19 @@ func (o *EnumThresholdActionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeEnumThresholdActionsRequest build a response structure from the given request structure.
+func (o *EnumThresholdActionsRequest) MakeResponse() *EnumThresholdActionsResponse {
+	return &EnumThresholdActionsResponse{}
+}
+
+// OpNum returns the operation number of EnumThresholdActions operation.
+func (o *EnumThresholdActionsRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of EnumThresholdActions operation.
+func (o *EnumThresholdActionsRequest) OpName() string {
+	return "/IFsrmQuotaBase/v0/EnumThresholdActions"
 }
 
 // EnumThresholdActionsResponse structure represents the EnumThresholdActions operation response

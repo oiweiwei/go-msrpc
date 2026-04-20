@@ -266,8 +266,10 @@ type xxx_GetNTMSServerObjectInformationAOperation struct {
 	Return   int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsServerObjectInformationA operation.
 func (o *xxx_GetNTMSServerObjectInformationAOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of GetNtmsServerObjectInformationA operation.
 func (o *xxx_GetNTMSServerObjectInformationAOperation) OpName() string {
 	return "/INtmsObjectInfo1/v0/GetNtmsServerObjectInformationA"
 }
@@ -533,6 +535,19 @@ func (o *GetNTMSServerObjectInformationARequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeGetNTMSServerObjectInformationARequest build a response structure from the given request structure.
+func (o *GetNTMSServerObjectInformationARequest) MakeResponse() *GetNTMSServerObjectInformationAResponse {
+	return &GetNTMSServerObjectInformationAResponse{}
+}
+
+// OpNum returns the operation number of GetNtmsServerObjectInformationA operation.
+func (o *GetNTMSServerObjectInformationARequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of GetNtmsServerObjectInformationA operation.
+func (o *GetNTMSServerObjectInformationARequest) OpName() string {
+	return "/INtmsObjectInfo1/v0/GetNtmsServerObjectInformationA"
+}
+
 // GetNTMSServerObjectInformationAResponse structure represents the GetNtmsServerObjectInformationA operation response
 type GetNTMSServerObjectInformationAResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -588,8 +603,10 @@ type xxx_GetNTMSServerObjectInformationWOperation struct {
 	Return   int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsServerObjectInformationW operation.
 func (o *xxx_GetNTMSServerObjectInformationWOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of GetNtmsServerObjectInformationW operation.
 func (o *xxx_GetNTMSServerObjectInformationWOperation) OpName() string {
 	return "/INtmsObjectInfo1/v0/GetNtmsServerObjectInformationW"
 }
@@ -830,6 +847,19 @@ func (o *GetNTMSServerObjectInformationWRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeGetNTMSServerObjectInformationWRequest build a response structure from the given request structure.
+func (o *GetNTMSServerObjectInformationWRequest) MakeResponse() *GetNTMSServerObjectInformationWResponse {
+	return &GetNTMSServerObjectInformationWResponse{}
+}
+
+// OpNum returns the operation number of GetNtmsServerObjectInformationW operation.
+func (o *GetNTMSServerObjectInformationWRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of GetNtmsServerObjectInformationW operation.
+func (o *GetNTMSServerObjectInformationWRequest) OpName() string {
+	return "/INtmsObjectInfo1/v0/GetNtmsServerObjectInformationW"
+}
+
 // GetNTMSServerObjectInformationWResponse structure represents the GetNtmsServerObjectInformationW operation response
 type GetNTMSServerObjectInformationWResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -883,8 +913,10 @@ type xxx_SetNTMSObjectInformationAOperation struct {
 	Return   int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetNtmsObjectInformationA operation.
 func (o *xxx_SetNTMSObjectInformationAOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of SetNtmsObjectInformationA operation.
 func (o *xxx_SetNTMSObjectInformationAOperation) OpName() string {
 	return "/INtmsObjectInfo1/v0/SetNtmsObjectInformationA"
 }
@@ -1100,6 +1132,19 @@ func (o *SetNTMSObjectInformationARequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeSetNTMSObjectInformationARequest build a response structure from the given request structure.
+func (o *SetNTMSObjectInformationARequest) MakeResponse() *SetNTMSObjectInformationAResponse {
+	return &SetNTMSObjectInformationAResponse{}
+}
+
+// OpNum returns the operation number of SetNtmsObjectInformationA operation.
+func (o *SetNTMSObjectInformationARequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of SetNtmsObjectInformationA operation.
+func (o *SetNTMSObjectInformationARequest) OpName() string {
+	return "/INtmsObjectInfo1/v0/SetNtmsObjectInformationA"
+}
+
 // SetNTMSObjectInformationAResponse structure represents the SetNtmsObjectInformationA operation response
 type SetNTMSObjectInformationAResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1148,8 +1193,10 @@ type xxx_SetNTMSObjectInformationWOperation struct {
 	Return   int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetNtmsObjectInformationW operation.
 func (o *xxx_SetNTMSObjectInformationWOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SetNtmsObjectInformationW operation.
 func (o *xxx_SetNTMSObjectInformationWOperation) OpName() string {
 	return "/INtmsObjectInfo1/v0/SetNtmsObjectInformationW"
 }
@@ -1365,6 +1412,19 @@ func (o *SetNTMSObjectInformationWRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeSetNTMSObjectInformationWRequest build a response structure from the given request structure.
+func (o *SetNTMSObjectInformationWRequest) MakeResponse() *SetNTMSObjectInformationWResponse {
+	return &SetNTMSObjectInformationWResponse{}
+}
+
+// OpNum returns the operation number of SetNtmsObjectInformationW operation.
+func (o *SetNTMSObjectInformationWRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SetNtmsObjectInformationW operation.
+func (o *SetNTMSObjectInformationWRequest) OpName() string {
+	return "/INtmsObjectInfo1/v0/SetNtmsObjectInformationW"
+}
+
 // SetNTMSObjectInformationWResponse structure represents the SetNtmsObjectInformationW operation response
 type SetNTMSObjectInformationWResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1416,8 +1476,10 @@ type xxx_CreateNTMSMediaAOperation struct {
 	Return         int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateNtmsMediaA operation.
 func (o *xxx_CreateNTMSMediaAOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of CreateNtmsMediaA operation.
 func (o *xxx_CreateNTMSMediaAOperation) OpName() string {
 	return "/INtmsObjectInfo1/v0/CreateNtmsMediaA"
 }
@@ -1858,6 +1920,23 @@ func (o *CreateNTMSMediaARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeCreateNTMSMediaARequest build a response structure from the given request structure.
+func (o *CreateNTMSMediaARequest) MakeResponse() *CreateNTMSMediaAResponse {
+	if o == nil {
+		return &CreateNTMSMediaAResponse{}
+	}
+	return &CreateNTMSMediaAResponse{
+		ListBufferSize: o.ListBufferSize,
+		ListCount:      o.ListCount,
+	}
+}
+
+// OpNum returns the operation number of CreateNtmsMediaA operation.
+func (o *CreateNTMSMediaARequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of CreateNtmsMediaA operation.
+func (o *CreateNTMSMediaARequest) OpName() string { return "/INtmsObjectInfo1/v0/CreateNtmsMediaA" }
+
 // CreateNTMSMediaAResponse structure represents the CreateNtmsMediaA operation response
 type CreateNTMSMediaAResponse struct {
 	// XXX: lpdwListBufferSize is an implicit input depedency for output parameters
@@ -1936,8 +2015,10 @@ type xxx_CreateNTMSMediaWOperation struct {
 	Return         int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateNtmsMediaW operation.
 func (o *xxx_CreateNTMSMediaWOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of CreateNtmsMediaW operation.
 func (o *xxx_CreateNTMSMediaWOperation) OpName() string {
 	return "/INtmsObjectInfo1/v0/CreateNtmsMediaW"
 }
@@ -2377,6 +2458,23 @@ func (o *CreateNTMSMediaWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCreateNTMSMediaWRequest build a response structure from the given request structure.
+func (o *CreateNTMSMediaWRequest) MakeResponse() *CreateNTMSMediaWResponse {
+	if o == nil {
+		return &CreateNTMSMediaWResponse{}
+	}
+	return &CreateNTMSMediaWResponse{
+		ListBufferSize: o.ListBufferSize,
+		ListCount:      o.ListCount,
+	}
+}
+
+// OpNum returns the operation number of CreateNtmsMediaW operation.
+func (o *CreateNTMSMediaWRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of CreateNtmsMediaW operation.
+func (o *CreateNTMSMediaWRequest) OpName() string { return "/INtmsObjectInfo1/v0/CreateNtmsMediaW" }
 
 // CreateNTMSMediaWResponse structure represents the CreateNtmsMediaW operation response
 type CreateNTMSMediaWResponse struct {

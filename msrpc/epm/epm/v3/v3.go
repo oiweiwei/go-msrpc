@@ -351,8 +351,10 @@ type xxx_InsertOperation struct {
 	Status        uint32   `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of ept_insert operation.
 func (o *xxx_InsertOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of ept_insert operation.
 func (o *xxx_InsertOperation) OpName() string { return "/epm/v3/ept_insert" }
 
 func (o *xxx_InsertOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -542,6 +544,17 @@ func (o *InsertRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeInsertRequest build a response structure from the given request structure.
+func (o *InsertRequest) MakeResponse() *InsertResponse {
+	return &InsertResponse{}
+}
+
+// OpNum returns the operation number of ept_insert operation.
+func (o *InsertRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of ept_insert operation.
+func (o *InsertRequest) OpName() string { return "/epm/v3/ept_insert" }
+
 // InsertResponse structure represents the ept_insert operation response
 type InsertResponse struct {
 	Status uint32 `idl:"name:status" json:"status"`
@@ -583,8 +596,10 @@ type xxx_DeleteOperation struct {
 	Status        uint32   `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of ept_delete operation.
 func (o *xxx_DeleteOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of ept_delete operation.
 func (o *xxx_DeleteOperation) OpName() string { return "/epm/v3/ept_delete" }
 
 func (o *xxx_DeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -751,6 +766,17 @@ func (o *DeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeDeleteRequest build a response structure from the given request structure.
+func (o *DeleteRequest) MakeResponse() *DeleteResponse {
+	return &DeleteResponse{}
+}
+
+// OpNum returns the operation number of ept_delete operation.
+func (o *DeleteRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of ept_delete operation.
+func (o *DeleteRequest) OpName() string { return "/epm/v3/ept_delete" }
+
 // DeleteResponse structure represents the ept_delete operation response
 type DeleteResponse struct {
 	Status uint32 `idl:"name:status" json:"status"`
@@ -798,8 +824,10 @@ type xxx_LookupOperation struct {
 	Status        uint32                `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of ept_lookup operation.
 func (o *xxx_LookupOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of ept_lookup operation.
 func (o *xxx_LookupOperation) OpName() string { return "/epm/v3/ept_lookup" }
 
 func (o *xxx_LookupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1168,6 +1196,22 @@ func (o *LookupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeLookupRequest build a response structure from the given request structure.
+func (o *LookupRequest) MakeResponse() *LookupResponse {
+	if o == nil {
+		return &LookupResponse{}
+	}
+	return &LookupResponse{
+		MaxEntries: o.MaxEntries,
+	}
+}
+
+// OpNum returns the operation number of ept_lookup operation.
+func (o *LookupRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of ept_lookup operation.
+func (o *LookupRequest) OpName() string { return "/epm/v3/ept_lookup" }
+
 // LookupResponse structure represents the ept_lookup operation response
 type LookupResponse struct {
 	// XXX: max_ents is an implicit input depedency for output parameters
@@ -1233,8 +1277,10 @@ type xxx_MapOperation struct {
 	Status       uint32            `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of ept_map operation.
 func (o *xxx_MapOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ept_map operation.
 func (o *xxx_MapOperation) OpName() string { return "/epm/v3/ept_map" }
 
 func (o *xxx_MapOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1592,6 +1638,22 @@ func (o *MapRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeMapRequest build a response structure from the given request structure.
+func (o *MapRequest) MakeResponse() *MapResponse {
+	if o == nil {
+		return &MapResponse{}
+	}
+	return &MapResponse{
+		MaxTowers: o.MaxTowers,
+	}
+}
+
+// OpNum returns the operation number of ept_map operation.
+func (o *MapRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ept_map operation.
+func (o *MapRequest) OpName() string { return "/epm/v3/ept_map" }
+
 // MapResponse structure represents the ept_map operation response
 type MapResponse struct {
 	// XXX: max_towers is an implicit input depedency for output parameters
@@ -1652,8 +1714,10 @@ type xxx_LookupHandleFreeOperation struct {
 	Status      uint32        `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of ept_lookup_handle_free operation.
 func (o *xxx_LookupHandleFreeOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of ept_lookup_handle_free operation.
 func (o *xxx_LookupHandleFreeOperation) OpName() string { return "/epm/v3/ept_lookup_handle_free" }
 
 func (o *xxx_LookupHandleFreeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1784,6 +1848,17 @@ func (o *LookupHandleFreeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeLookupHandleFreeRequest build a response structure from the given request structure.
+func (o *LookupHandleFreeRequest) MakeResponse() *LookupHandleFreeResponse {
+	return &LookupHandleFreeResponse{}
+}
+
+// OpNum returns the operation number of ept_lookup_handle_free operation.
+func (o *LookupHandleFreeRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of ept_lookup_handle_free operation.
+func (o *LookupHandleFreeRequest) OpName() string { return "/epm/v3/ept_lookup_handle_free" }
+
 // LookupHandleFreeResponse structure represents the ept_lookup_handle_free operation response
 type LookupHandleFreeResponse struct {
 	EntryHandle *LookupHandle `idl:"name:entry_handle" json:"entry_handle"`
@@ -1827,8 +1902,10 @@ type xxx_InquireObjectOperation struct {
 	Status uint32     `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of ept_inq_object operation.
 func (o *xxx_InquireObjectOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of ept_inq_object operation.
 func (o *xxx_InquireObjectOperation) OpName() string { return "/epm/v3/ept_inq_object" }
 
 func (o *xxx_InquireObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1935,6 +2012,17 @@ func (o *InquireObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeInquireObjectRequest build a response structure from the given request structure.
+func (o *InquireObjectRequest) MakeResponse() *InquireObjectResponse {
+	return &InquireObjectResponse{}
+}
+
+// OpNum returns the operation number of ept_inq_object operation.
+func (o *InquireObjectRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of ept_inq_object operation.
+func (o *InquireObjectRequest) OpName() string { return "/epm/v3/ept_inq_object" }
+
 // InquireObjectResponse structure represents the ept_inq_object operation response
 type InquireObjectResponse struct {
 	Object *dtyp.GUID `idl:"name:ept_object" json:"object"`
@@ -1980,8 +2068,10 @@ type xxx_ManagementDeleteOperation struct {
 	Status       uint32          `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of ept_mgmt_delete operation.
 func (o *xxx_ManagementDeleteOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of ept_mgmt_delete operation.
 func (o *xxx_ManagementDeleteOperation) OpName() string { return "/epm/v3/ept_mgmt_delete" }
 
 func (o *xxx_ManagementDeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2187,6 +2277,17 @@ func (o *ManagementDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeManagementDeleteRequest build a response structure from the given request structure.
+func (o *ManagementDeleteRequest) MakeResponse() *ManagementDeleteResponse {
+	return &ManagementDeleteResponse{}
+}
+
+// OpNum returns the operation number of ept_mgmt_delete operation.
+func (o *ManagementDeleteRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of ept_mgmt_delete operation.
+func (o *ManagementDeleteRequest) OpName() string { return "/epm/v3/ept_mgmt_delete" }
 
 // ManagementDeleteResponse structure represents the ept_mgmt_delete operation response
 type ManagementDeleteResponse struct {

@@ -355,8 +355,10 @@ type xxx_GetDescriptionOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Description operation.
 func (o *xxx_GetDescriptionOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Description operation.
 func (o *xxx_GetDescriptionOperation) OpName() string { return "/IValueMapItem/v0/Description" }
 
 func (o *xxx_GetDescriptionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -546,6 +548,17 @@ func (o *GetDescriptionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetDescriptionRequest build a response structure from the given request structure.
+func (o *GetDescriptionRequest) MakeResponse() *GetDescriptionResponse {
+	return &GetDescriptionResponse{}
+}
+
+// OpNum returns the operation number of Description operation.
+func (o *GetDescriptionRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Description operation.
+func (o *GetDescriptionRequest) OpName() string { return "/IValueMapItem/v0/Description" }
+
 // GetDescriptionResponse structure represents the Description operation response
 type GetDescriptionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -596,8 +609,10 @@ type xxx_SetDescriptionOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Description operation.
 func (o *xxx_SetDescriptionOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Description operation.
 func (o *xxx_SetDescriptionOperation) OpName() string { return "/IValueMapItem/v0/Description" }
 
 func (o *xxx_SetDescriptionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -790,6 +805,17 @@ func (o *SetDescriptionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetDescriptionRequest build a response structure from the given request structure.
+func (o *SetDescriptionRequest) MakeResponse() *SetDescriptionResponse {
+	return &SetDescriptionResponse{}
+}
+
+// OpNum returns the operation number of Description operation.
+func (o *SetDescriptionRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Description operation.
+func (o *SetDescriptionRequest) OpName() string { return "/IValueMapItem/v0/Description" }
+
 // SetDescriptionResponse structure represents the Description operation response
 type SetDescriptionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -837,8 +863,10 @@ type xxx_GetEnabledOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Enabled operation.
 func (o *xxx_GetEnabledOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Enabled operation.
 func (o *xxx_GetEnabledOperation) OpName() string { return "/IValueMapItem/v0/Enabled" }
 
 func (o *xxx_GetEnabledOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -994,6 +1022,17 @@ func (o *GetEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetEnabledRequest build a response structure from the given request structure.
+func (o *GetEnabledRequest) MakeResponse() *GetEnabledResponse {
+	return &GetEnabledResponse{}
+}
+
+// OpNum returns the operation number of Enabled operation.
+func (o *GetEnabledRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Enabled operation.
+func (o *GetEnabledRequest) OpName() string { return "/IValueMapItem/v0/Enabled" }
+
 // GetEnabledResponse structure represents the Enabled operation response
 type GetEnabledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1044,8 +1083,10 @@ type xxx_SetEnabledOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Enabled operation.
 func (o *xxx_SetEnabledOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of Enabled operation.
 func (o *xxx_SetEnabledOperation) OpName() string { return "/IValueMapItem/v0/Enabled" }
 
 func (o *xxx_SetEnabledOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1204,6 +1245,17 @@ func (o *SetEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeSetEnabledRequest build a response structure from the given request structure.
+func (o *SetEnabledRequest) MakeResponse() *SetEnabledResponse {
+	return &SetEnabledResponse{}
+}
+
+// OpNum returns the operation number of Enabled operation.
+func (o *SetEnabledRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of Enabled operation.
+func (o *SetEnabledRequest) OpName() string { return "/IValueMapItem/v0/Enabled" }
+
 // SetEnabledResponse structure represents the Enabled operation response
 type SetEnabledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1251,8 +1303,10 @@ type xxx_GetKeyOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Key operation.
 func (o *xxx_GetKeyOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of Key operation.
 func (o *xxx_GetKeyOperation) OpName() string { return "/IValueMapItem/v0/Key" }
 
 func (o *xxx_GetKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1442,6 +1496,17 @@ func (o *GetKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetKeyRequest build a response structure from the given request structure.
+func (o *GetKeyRequest) MakeResponse() *GetKeyResponse {
+	return &GetKeyResponse{}
+}
+
+// OpNum returns the operation number of Key operation.
+func (o *GetKeyRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of Key operation.
+func (o *GetKeyRequest) OpName() string { return "/IValueMapItem/v0/Key" }
+
 // GetKeyResponse structure represents the Key operation response
 type GetKeyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1492,8 +1557,10 @@ type xxx_SetKeyOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Key operation.
 func (o *xxx_SetKeyOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of Key operation.
 func (o *xxx_SetKeyOperation) OpName() string { return "/IValueMapItem/v0/Key" }
 
 func (o *xxx_SetKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1686,6 +1753,17 @@ func (o *SetKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetKeyRequest build a response structure from the given request structure.
+func (o *SetKeyRequest) MakeResponse() *SetKeyResponse {
+	return &SetKeyResponse{}
+}
+
+// OpNum returns the operation number of Key operation.
+func (o *SetKeyRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of Key operation.
+func (o *SetKeyRequest) OpName() string { return "/IValueMapItem/v0/Key" }
+
 // SetKeyResponse structure represents the Key operation response
 type SetKeyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1733,8 +1811,10 @@ type xxx_GetValueOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Value operation.
 func (o *xxx_GetValueOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of Value operation.
 func (o *xxx_GetValueOperation) OpName() string { return "/IValueMapItem/v0/Value" }
 
 func (o *xxx_GetValueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1924,6 +2004,17 @@ func (o *GetValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeGetValueRequest build a response structure from the given request structure.
+func (o *GetValueRequest) MakeResponse() *GetValueResponse {
+	return &GetValueResponse{}
+}
+
+// OpNum returns the operation number of Value operation.
+func (o *GetValueRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of Value operation.
+func (o *GetValueRequest) OpName() string { return "/IValueMapItem/v0/Value" }
+
 // GetValueResponse structure represents the Value operation response
 type GetValueResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1974,8 +2065,10 @@ type xxx_SetValueOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Value operation.
 func (o *xxx_SetValueOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of Value operation.
 func (o *xxx_SetValueOperation) OpName() string { return "/IValueMapItem/v0/Value" }
 
 func (o *xxx_SetValueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2149,6 +2242,17 @@ func (o *SetValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeSetValueRequest build a response structure from the given request structure.
+func (o *SetValueRequest) MakeResponse() *SetValueResponse {
+	return &SetValueResponse{}
+}
+
+// OpNum returns the operation number of Value operation.
+func (o *SetValueRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of Value operation.
+func (o *SetValueRequest) OpName() string { return "/IValueMapItem/v0/Value" }
+
 // SetValueResponse structure represents the Value operation response
 type SetValueResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2196,8 +2300,10 @@ type xxx_GetValueMapTypeOperation struct {
 	Return int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ValueMapType operation.
 func (o *xxx_GetValueMapTypeOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of ValueMapType operation.
 func (o *xxx_GetValueMapTypeOperation) OpName() string { return "/IValueMapItem/v0/ValueMapType" }
 
 func (o *xxx_GetValueMapTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2353,6 +2459,17 @@ func (o *GetValueMapTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetValueMapTypeRequest build a response structure from the given request structure.
+func (o *GetValueMapTypeRequest) MakeResponse() *GetValueMapTypeResponse {
+	return &GetValueMapTypeResponse{}
+}
+
+// OpNum returns the operation number of ValueMapType operation.
+func (o *GetValueMapTypeRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of ValueMapType operation.
+func (o *GetValueMapTypeRequest) OpName() string { return "/IValueMapItem/v0/ValueMapType" }
+
 // GetValueMapTypeResponse structure represents the ValueMapType operation response
 type GetValueMapTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2403,8 +2520,10 @@ type xxx_SetValueMapTypeOperation struct {
 	Return int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ValueMapType operation.
 func (o *xxx_SetValueMapTypeOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of ValueMapType operation.
 func (o *xxx_SetValueMapTypeOperation) OpName() string { return "/IValueMapItem/v0/ValueMapType" }
 
 func (o *xxx_SetValueMapTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2562,6 +2681,17 @@ func (o *SetValueMapTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetValueMapTypeRequest build a response structure from the given request structure.
+func (o *SetValueMapTypeRequest) MakeResponse() *SetValueMapTypeResponse {
+	return &SetValueMapTypeResponse{}
+}
+
+// OpNum returns the operation number of ValueMapType operation.
+func (o *SetValueMapTypeRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of ValueMapType operation.
+func (o *SetValueMapTypeRequest) OpName() string { return "/IValueMapItem/v0/ValueMapType" }
 
 // SetValueMapTypeResponse structure represents the ValueMapType operation response
 type SetValueMapTypeResponse struct {

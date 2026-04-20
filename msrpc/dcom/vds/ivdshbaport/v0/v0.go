@@ -169,8 +169,10 @@ type xxx_GetPropertiesOperation struct {
 	Return          int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetProperties operation.
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetProperties operation.
 func (o *xxx_GetPropertiesOperation) OpName() string { return "/IVdsHbaPort/v0/GetProperties" }
 
 func (o *xxx_GetPropertiesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -335,6 +337,17 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetPropertiesRequest build a response structure from the given request structure.
+func (o *GetPropertiesRequest) MakeResponse() *GetPropertiesResponse {
+	return &GetPropertiesResponse{}
+}
+
+// OpNum returns the operation number of GetProperties operation.
+func (o *GetPropertiesRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetProperties operation.
+func (o *GetPropertiesRequest) OpName() string { return "/IVdsHbaPort/v0/GetProperties" }
+
 // GetPropertiesResponse structure represents the GetProperties operation response
 type GetPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -385,8 +398,10 @@ type xxx_SetAllPathStatusesOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetAllPathStatuses operation.
 func (o *xxx_SetAllPathStatusesOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of SetAllPathStatuses operation.
 func (o *xxx_SetAllPathStatusesOperation) OpName() string {
 	return "/IVdsHbaPort/v0/SetAllPathStatuses"
 }
@@ -547,6 +562,17 @@ func (o *SetAllPathStatusesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetAllPathStatusesRequest build a response structure from the given request structure.
+func (o *SetAllPathStatusesRequest) MakeResponse() *SetAllPathStatusesResponse {
+	return &SetAllPathStatusesResponse{}
+}
+
+// OpNum returns the operation number of SetAllPathStatuses operation.
+func (o *SetAllPathStatusesRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of SetAllPathStatuses operation.
+func (o *SetAllPathStatusesRequest) OpName() string { return "/IVdsHbaPort/v0/SetAllPathStatuses" }
 
 // SetAllPathStatusesResponse structure represents the SetAllPathStatuses operation response
 type SetAllPathStatusesResponse struct {

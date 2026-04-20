@@ -171,8 +171,10 @@ type xxx_GetReport2Operation struct {
 	Return                  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetReport2 operation.
 func (o *xxx_GetReport2Operation) OpNum() int { return 9 }
 
+// OpName returns the operation name of GetReport2 operation.
 func (o *xxx_GetReport2Operation) OpName() string { return "/IServerHealthReport2/v0/GetReport2" }
 
 func (o *xxx_GetReport2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -632,6 +634,17 @@ func (o *GetReport2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetReport2Request build a response structure from the given request structure.
+func (o *GetReport2Request) MakeResponse() *GetReport2Response {
+	return &GetReport2Response{}
+}
+
+// OpNum returns the operation number of GetReport2 operation.
+func (o *GetReport2Request) OpNum() int { return 9 }
+
+// OpName returns the operation name of GetReport2 operation.
+func (o *GetReport2Request) OpName() string { return "/IServerHealthReport2/v0/GetReport2" }
+
 // GetReport2Response structure represents the GetReport2 operation response
 type GetReport2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -692,8 +705,10 @@ type xxx_GetCompressedReport2Operation struct {
 	Return                  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCompressedReport2 operation.
 func (o *xxx_GetCompressedReport2Operation) OpNum() int { return 10 }
 
+// OpName returns the operation name of GetCompressedReport2 operation.
 func (o *xxx_GetCompressedReport2Operation) OpName() string {
 	return "/IServerHealthReport2/v0/GetCompressedReport2"
 }
@@ -1165,6 +1180,19 @@ func (o *GetCompressedReport2Request) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetCompressedReport2Request build a response structure from the given request structure.
+func (o *GetCompressedReport2Request) MakeResponse() *GetCompressedReport2Response {
+	return &GetCompressedReport2Response{}
+}
+
+// OpNum returns the operation number of GetCompressedReport2 operation.
+func (o *GetCompressedReport2Request) OpNum() int { return 10 }
+
+// OpName returns the operation name of GetCompressedReport2 operation.
+func (o *GetCompressedReport2Request) OpName() string {
+	return "/IServerHealthReport2/v0/GetCompressedReport2"
 }
 
 // GetCompressedReport2Response structure represents the GetCompressedReport2 operation response

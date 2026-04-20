@@ -149,8 +149,10 @@ type xxx_SetEventOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetEvent operation.
 func (o *xxx_SetEventOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SetEvent operation.
 func (o *xxx_SetEventOperation) OpName() string { return "/IWbemLoginHelper/v0/SetEvent" }
 
 func (o *xxx_SetEventOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -310,6 +312,17 @@ func (o *SetEventRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetEventRequest build a response structure from the given request structure.
+func (o *SetEventRequest) MakeResponse() *SetEventResponse {
+	return &SetEventResponse{}
+}
+
+// OpNum returns the operation number of SetEvent operation.
+func (o *SetEventRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SetEvent operation.
+func (o *SetEventRequest) OpName() string { return "/IWbemLoginHelper/v0/SetEvent" }
 
 // SetEventResponse structure represents the SetEvent operation response
 type SetEventResponse struct {

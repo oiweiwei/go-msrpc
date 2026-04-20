@@ -377,8 +377,10 @@ type xxx_AppCreateOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AppCreate operation.
 func (o *xxx_AppCreateOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of AppCreate operation.
 func (o *xxx_AppCreateOperation) OpName() string { return "/IWamAdmin/v0/AppCreate" }
 
 func (o *xxx_AppCreateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -588,6 +590,17 @@ func (o *AppCreateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeAppCreateRequest build a response structure from the given request structure.
+func (o *AppCreateRequest) MakeResponse() *AppCreateResponse {
+	return &AppCreateResponse{}
+}
+
+// OpNum returns the operation number of AppCreate operation.
+func (o *AppCreateRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of AppCreate operation.
+func (o *AppCreateRequest) OpName() string { return "/IWamAdmin/v0/AppCreate" }
+
 // AppCreateResponse structure represents the AppCreate operation response
 type AppCreateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -636,8 +649,10 @@ type xxx_AppDeleteOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AppDelete operation.
 func (o *xxx_AppDeleteOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of AppDelete operation.
 func (o *xxx_AppDeleteOperation) OpName() string { return "/IWamAdmin/v0/AppDelete" }
 
 func (o *xxx_AppDeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -847,6 +862,17 @@ func (o *AppDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeAppDeleteRequest build a response structure from the given request structure.
+func (o *AppDeleteRequest) MakeResponse() *AppDeleteResponse {
+	return &AppDeleteResponse{}
+}
+
+// OpNum returns the operation number of AppDelete operation.
+func (o *AppDeleteRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of AppDelete operation.
+func (o *AppDeleteRequest) OpName() string { return "/IWamAdmin/v0/AppDelete" }
+
 // AppDeleteResponse structure represents the AppDelete operation response
 type AppDeleteResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -895,8 +921,10 @@ type xxx_AppUnloadOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AppUnLoad operation.
 func (o *xxx_AppUnloadOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of AppUnLoad operation.
 func (o *xxx_AppUnloadOperation) OpName() string { return "/IWamAdmin/v0/AppUnLoad" }
 
 func (o *xxx_AppUnloadOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1107,6 +1135,17 @@ func (o *AppUnloadRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeAppUnloadRequest build a response structure from the given request structure.
+func (o *AppUnloadRequest) MakeResponse() *AppUnloadResponse {
+	return &AppUnloadResponse{}
+}
+
+// OpNum returns the operation number of AppUnLoad operation.
+func (o *AppUnloadRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of AppUnLoad operation.
+func (o *AppUnloadRequest) OpName() string { return "/IWamAdmin/v0/AppUnLoad" }
+
 // AppUnloadResponse structure represents the AppUnLoad operation response
 type AppUnloadResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1155,8 +1194,10 @@ type xxx_AppGetStatusOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AppGetStatus operation.
 func (o *xxx_AppGetStatusOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of AppGetStatus operation.
 func (o *xxx_AppGetStatusOperation) OpName() string { return "/IWamAdmin/v0/AppGetStatus" }
 
 func (o *xxx_AppGetStatusOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1354,6 +1395,17 @@ func (o *AppGetStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeAppGetStatusRequest build a response structure from the given request structure.
+func (o *AppGetStatusRequest) MakeResponse() *AppGetStatusResponse {
+	return &AppGetStatusResponse{}
+}
+
+// OpNum returns the operation number of AppGetStatus operation.
+func (o *AppGetStatusRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of AppGetStatus operation.
+func (o *AppGetStatusRequest) OpName() string { return "/IWamAdmin/v0/AppGetStatus" }
+
 // AppGetStatusResponse structure represents the AppGetStatus operation response
 type AppGetStatusResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1420,8 +1472,10 @@ type xxx_AppDeleteRecoverableOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AppDeleteRecoverable operation.
 func (o *xxx_AppDeleteRecoverableOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of AppDeleteRecoverable operation.
 func (o *xxx_AppDeleteRecoverableOperation) OpName() string {
 	return "/IWamAdmin/v0/AppDeleteRecoverable"
 }
@@ -1634,6 +1688,17 @@ func (o *AppDeleteRecoverableRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeAppDeleteRecoverableRequest build a response structure from the given request structure.
+func (o *AppDeleteRecoverableRequest) MakeResponse() *AppDeleteRecoverableResponse {
+	return &AppDeleteRecoverableResponse{}
+}
+
+// OpNum returns the operation number of AppDeleteRecoverable operation.
+func (o *AppDeleteRecoverableRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of AppDeleteRecoverable operation.
+func (o *AppDeleteRecoverableRequest) OpName() string { return "/IWamAdmin/v0/AppDeleteRecoverable" }
+
 // AppDeleteRecoverableResponse structure represents the AppDeleteRecoverable operation response
 type AppDeleteRecoverableResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1682,8 +1747,10 @@ type xxx_AppRecoverOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AppRecover operation.
 func (o *xxx_AppRecoverOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of AppRecover operation.
 func (o *xxx_AppRecoverOperation) OpName() string { return "/IWamAdmin/v0/AppRecover" }
 
 func (o *xxx_AppRecoverOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1892,6 +1959,17 @@ func (o *AppRecoverRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeAppRecoverRequest build a response structure from the given request structure.
+func (o *AppRecoverRequest) MakeResponse() *AppRecoverResponse {
+	return &AppRecoverResponse{}
+}
+
+// OpNum returns the operation number of AppRecover operation.
+func (o *AppRecoverRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of AppRecover operation.
+func (o *AppRecoverRequest) OpName() string { return "/IWamAdmin/v0/AppRecover" }
 
 // AppRecoverResponse structure represents the AppRecover operation response
 type AppRecoverResponse struct {

@@ -243,8 +243,10 @@ type xxx_EnumerateNTMSObjectROperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumerateNtmsObjectR operation.
 func (o *xxx_EnumerateNTMSObjectROperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of EnumerateNtmsObjectR operation.
 func (o *xxx_EnumerateNTMSObjectROperation) OpName() string {
 	return "/INtmsObjectManagement2/v0/EnumerateNtmsObjectR"
 }
@@ -612,6 +614,24 @@ func (o *EnumerateNTMSObjectRRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeEnumerateNTMSObjectRRequest build a response structure from the given request structure.
+func (o *EnumerateNTMSObjectRRequest) MakeResponse() *EnumerateNTMSObjectRResponse {
+	if o == nil {
+		return &EnumerateNTMSObjectRResponse{}
+	}
+	return &EnumerateNTMSObjectRResponse{
+		ListBufferSize: o.ListBufferSize,
+	}
+}
+
+// OpNum returns the operation number of EnumerateNtmsObjectR operation.
+func (o *EnumerateNTMSObjectRRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of EnumerateNtmsObjectR operation.
+func (o *EnumerateNTMSObjectRRequest) OpName() string {
+	return "/INtmsObjectManagement2/v0/EnumerateNtmsObjectR"
+}
+
 // EnumerateNTMSObjectRResponse structure represents the EnumerateNtmsObjectR operation response
 type EnumerateNTMSObjectRResponse struct {
 	// XXX: lpdwListBufferSize is an implicit input depedency for output parameters
@@ -689,8 +709,10 @@ type xxx_GetNTMSUIOptionsAOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsUIOptionsA operation.
 func (o *xxx_GetNTMSUIOptionsAOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of GetNtmsUIOptionsA operation.
 func (o *xxx_GetNTMSUIOptionsAOperation) OpName() string {
 	return "/INtmsObjectManagement2/v0/GetNtmsUIOptionsA"
 }
@@ -1012,6 +1034,24 @@ func (o *GetNTMSUIOptionsARequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetNTMSUIOptionsARequest build a response structure from the given request structure.
+func (o *GetNTMSUIOptionsARequest) MakeResponse() *GetNTMSUIOptionsAResponse {
+	if o == nil {
+		return &GetNTMSUIOptionsAResponse{}
+	}
+	return &GetNTMSUIOptionsAResponse{
+		BufferSize: o.BufferSize,
+	}
+}
+
+// OpNum returns the operation number of GetNtmsUIOptionsA operation.
+func (o *GetNTMSUIOptionsARequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of GetNtmsUIOptionsA operation.
+func (o *GetNTMSUIOptionsARequest) OpName() string {
+	return "/INtmsObjectManagement2/v0/GetNtmsUIOptionsA"
+}
+
 // GetNTMSUIOptionsAResponse structure represents the GetNtmsUIOptionsA operation response
 type GetNTMSUIOptionsAResponse struct {
 	// XXX: lpdwBufSize is an implicit input depedency for output parameters
@@ -1109,8 +1149,10 @@ type xxx_GetNTMSUIOptionsWOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsUIOptionsW operation.
 func (o *xxx_GetNTMSUIOptionsWOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of GetNtmsUIOptionsW operation.
 func (o *xxx_GetNTMSUIOptionsWOperation) OpName() string {
 	return "/INtmsObjectManagement2/v0/GetNtmsUIOptionsW"
 }
@@ -1438,6 +1480,24 @@ func (o *GetNTMSUIOptionsWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetNTMSUIOptionsWRequest build a response structure from the given request structure.
+func (o *GetNTMSUIOptionsWRequest) MakeResponse() *GetNTMSUIOptionsWResponse {
+	if o == nil {
+		return &GetNTMSUIOptionsWResponse{}
+	}
+	return &GetNTMSUIOptionsWResponse{
+		BufferSize: o.BufferSize,
+	}
+}
+
+// OpNum returns the operation number of GetNtmsUIOptionsW operation.
+func (o *GetNTMSUIOptionsWRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of GetNtmsUIOptionsW operation.
+func (o *GetNTMSUIOptionsWRequest) OpName() string {
+	return "/INtmsObjectManagement2/v0/GetNtmsUIOptionsW"
+}
+
 // GetNTMSUIOptionsWResponse structure represents the GetNtmsUIOptionsW operation response
 type GetNTMSUIOptionsWResponse struct {
 	// XXX: lpdwBufSize is an implicit input depedency for output parameters
@@ -1533,8 +1593,10 @@ type xxx_SetNTMSUIOptionsAOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetNtmsUIOptionsA operation.
 func (o *xxx_SetNTMSUIOptionsAOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of SetNtmsUIOptionsA operation.
 func (o *xxx_SetNTMSUIOptionsAOperation) OpName() string {
 	return "/INtmsObjectManagement2/v0/SetNtmsUIOptionsA"
 }
@@ -1799,6 +1861,19 @@ func (o *SetNTMSUIOptionsARequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetNTMSUIOptionsARequest build a response structure from the given request structure.
+func (o *SetNTMSUIOptionsARequest) MakeResponse() *SetNTMSUIOptionsAResponse {
+	return &SetNTMSUIOptionsAResponse{}
+}
+
+// OpNum returns the operation number of SetNtmsUIOptionsA operation.
+func (o *SetNTMSUIOptionsARequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of SetNtmsUIOptionsA operation.
+func (o *SetNTMSUIOptionsARequest) OpName() string {
+	return "/INtmsObjectManagement2/v0/SetNtmsUIOptionsA"
+}
+
 // SetNTMSUIOptionsAResponse structure represents the SetNtmsUIOptionsA operation response
 type SetNTMSUIOptionsAResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1849,8 +1924,10 @@ type xxx_SetNTMSUIOptionsWOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetNtmsUIOptionsW operation.
 func (o *xxx_SetNTMSUIOptionsWOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of SetNtmsUIOptionsW operation.
 func (o *xxx_SetNTMSUIOptionsWOperation) OpName() string {
 	return "/INtmsObjectManagement2/v0/SetNtmsUIOptionsW"
 }
@@ -2140,6 +2217,19 @@ func (o *SetNTMSUIOptionsWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetNTMSUIOptionsWRequest build a response structure from the given request structure.
+func (o *SetNTMSUIOptionsWRequest) MakeResponse() *SetNTMSUIOptionsWResponse {
+	return &SetNTMSUIOptionsWResponse{}
+}
+
+// OpNum returns the operation number of SetNtmsUIOptionsW operation.
+func (o *SetNTMSUIOptionsWRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of SetNtmsUIOptionsW operation.
+func (o *SetNTMSUIOptionsWRequest) OpName() string {
+	return "/INtmsObjectManagement2/v0/SetNtmsUIOptionsW"
 }
 
 // SetNTMSUIOptionsWResponse structure represents the SetNtmsUIOptionsW operation response

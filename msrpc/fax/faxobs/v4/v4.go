@@ -1540,8 +1540,10 @@ type xxx_ConnectionReferenceCountOperation struct {
 	Return   uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_ConnectionRefCount operation.
 func (o *xxx_ConnectionReferenceCountOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of FaxObs_ConnectionRefCount operation.
 func (o *xxx_ConnectionReferenceCountOperation) OpName() string {
 	return "/faxobs/v4/FaxObs_ConnectionRefCount"
 }
@@ -1720,6 +1722,19 @@ func (o *ConnectionReferenceCountRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeConnectionReferenceCountRequest build a response structure from the given request structure.
+func (o *ConnectionReferenceCountRequest) MakeResponse() *ConnectionReferenceCountResponse {
+	return &ConnectionReferenceCountResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_ConnectionRefCount operation.
+func (o *ConnectionReferenceCountRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of FaxObs_ConnectionRefCount operation.
+func (o *ConnectionReferenceCountRequest) OpName() string {
+	return "/faxobs/v4/FaxObs_ConnectionRefCount"
+}
+
 // ConnectionReferenceCountResponse structure represents the FaxObs_ConnectionRefCount operation response
 type ConnectionReferenceCountResponse struct {
 	// Handle: The connection handle that references a connection between the client and
@@ -1774,8 +1789,10 @@ type xxx_GetVersionOperation struct {
 	Return  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetVersion operation.
 func (o *xxx_GetVersionOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of FaxObs_GetVersion operation.
 func (o *xxx_GetVersionOperation) OpName() string { return "/faxobs/v4/FaxObs_GetVersion" }
 
 func (o *xxx_GetVersionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1873,6 +1890,17 @@ func (o *GetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetVersionRequest build a response structure from the given request structure.
+func (o *GetVersionRequest) MakeResponse() *GetVersionResponse {
+	return &GetVersionResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_GetVersion operation.
+func (o *GetVersionRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of FaxObs_GetVersion operation.
+func (o *GetVersionRequest) OpName() string { return "/faxobs/v4/FaxObs_GetVersion" }
+
 // GetVersionResponse structure represents the FaxObs_GetVersion operation response
 type GetVersionResponse struct {
 	// Version: A pointer to a DWORD ([MS-DTYP] section 2.2.9) value where on return from
@@ -1932,8 +1960,10 @@ type xxx_GetInstallTypeOperation struct {
 	Return             uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetInstallType operation.
 func (o *xxx_GetInstallTypeOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of FaxObs_GetInstallType operation.
 func (o *xxx_GetInstallTypeOperation) OpName() string { return "/faxobs/v4/FaxObs_GetInstallType" }
 
 func (o *xxx_GetInstallTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2055,6 +2085,17 @@ func (o *GetInstallTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetInstallTypeRequest build a response structure from the given request structure.
+func (o *GetInstallTypeRequest) MakeResponse() *GetInstallTypeResponse {
+	return &GetInstallTypeResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_GetInstallType operation.
+func (o *GetInstallTypeRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of FaxObs_GetInstallType operation.
+func (o *GetInstallTypeRequest) OpName() string { return "/faxobs/v4/FaxObs_GetInstallType" }
+
 // GetInstallTypeResponse structure represents the FaxObs_GetInstallType operation response
 type GetInstallTypeResponse struct {
 	// InstallType: A pointer to a DWORD ([MS-DTYP] section 2.2.9) value where, upon return
@@ -2143,8 +2184,10 @@ type xxx_OpenPortOperation struct {
 	Return   uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_OpenPort operation.
 func (o *xxx_OpenPortOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of FaxObs_OpenPort operation.
 func (o *xxx_OpenPortOperation) OpName() string { return "/faxobs/v4/FaxObs_OpenPort" }
 
 func (o *xxx_OpenPortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2304,6 +2347,17 @@ func (o *OpenPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeOpenPortRequest build a response structure from the given request structure.
+func (o *OpenPortRequest) MakeResponse() *OpenPortResponse {
+	return &OpenPortResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_OpenPort operation.
+func (o *OpenPortRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of FaxObs_OpenPort operation.
+func (o *OpenPortRequest) OpName() string { return "/faxobs/v4/FaxObs_OpenPort" }
+
 // OpenPortResponse structure represents the FaxObs_OpenPort operation response
 type OpenPortResponse struct {
 	// FaxPortHandle: A pointer to a variable that receives a fax port handle (from the
@@ -2351,8 +2405,10 @@ type xxx_ClosePortOperation struct {
 	Return  uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_ClosePort operation.
 func (o *xxx_ClosePortOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of FaxObs_ClosePort operation.
 func (o *xxx_ClosePortOperation) OpName() string { return "/faxobs/v4/FaxObs_ClosePort" }
 
 func (o *xxx_ClosePortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2484,6 +2540,17 @@ func (o *ClosePortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeClosePortRequest build a response structure from the given request structure.
+func (o *ClosePortRequest) MakeResponse() *ClosePortResponse {
+	return &ClosePortResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_ClosePort operation.
+func (o *ClosePortRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of FaxObs_ClosePort operation.
+func (o *ClosePortRequest) OpName() string { return "/faxobs/v4/FaxObs_ClosePort" }
+
 // ClosePortResponse structure represents the FaxObs_ClosePort operation response
 type ClosePortResponse struct {
 	// FaxPortHandle: A pointer to a fax port handle obtained with a FaxObs_OpenPort call.
@@ -2531,8 +2598,10 @@ type xxx_SendDocumentOperation struct {
 	Return    uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_SendDocument operation.
 func (o *xxx_SendDocumentOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of FaxObs_SendDocument operation.
 func (o *xxx_SendDocumentOperation) OpName() string { return "/faxobs/v4/FaxObs_SendDocument" }
 
 func (o *xxx_SendDocumentOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2710,6 +2779,17 @@ func (o *SendDocumentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeSendDocumentRequest build a response structure from the given request structure.
+func (o *SendDocumentRequest) MakeResponse() *SendDocumentResponse {
+	return &SendDocumentResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_SendDocument operation.
+func (o *SendDocumentRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of FaxObs_SendDocument operation.
+func (o *SendDocumentRequest) OpName() string { return "/faxobs/v4/FaxObs_SendDocument" }
+
 // SendDocumentResponse structure represents the FaxObs_SendDocument operation response
 type SendDocumentResponse struct {
 	// FaxJobId: A pointer to a DWORD ([MS-DTYP] section 2.2.9) that returns the job ID.
@@ -2756,8 +2836,10 @@ type xxx_GetQueueFileNameOperation struct {
 	Return       uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetQueueFileName operation.
 func (o *xxx_GetQueueFileNameOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of FaxObs_GetQueueFileName operation.
 func (o *xxx_GetQueueFileNameOperation) OpName() string { return "/faxobs/v4/FaxObs_GetQueueFileName" }
 
 func (o *xxx_GetQueueFileNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3022,6 +3104,22 @@ func (o *GetQueueFileNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetQueueFileNameRequest build a response structure from the given request structure.
+func (o *GetQueueFileNameRequest) MakeResponse() *GetQueueFileNameResponse {
+	if o == nil {
+		return &GetQueueFileNameResponse{}
+	}
+	return &GetQueueFileNameResponse{
+		FileNameSize: o.FileNameSize,
+	}
+}
+
+// OpNum returns the operation number of FaxObs_GetQueueFileName operation.
+func (o *GetQueueFileNameRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of FaxObs_GetQueueFileName operation.
+func (o *GetQueueFileNameRequest) OpName() string { return "/faxobs/v4/FaxObs_GetQueueFileName" }
+
 // GetQueueFileNameResponse structure represents the FaxObs_GetQueueFileName operation response
 type GetQueueFileNameResponse struct {
 	// XXX: FileNameSize is an implicit input depedency for output parameters
@@ -3083,8 +3181,10 @@ type xxx_EnumJobsOperation struct {
 	Return       uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_EnumJobs operation.
 func (o *xxx_EnumJobsOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of FaxObs_EnumJobs operation.
 func (o *xxx_EnumJobsOperation) OpName() string { return "/faxobs/v4/FaxObs_EnumJobs" }
 
 func (o *xxx_EnumJobsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3399,6 +3499,17 @@ func (o *EnumJobsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeEnumJobsRequest build a response structure from the given request structure.
+func (o *EnumJobsRequest) MakeResponse() *EnumJobsResponse {
+	return &EnumJobsResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_EnumJobs operation.
+func (o *EnumJobsRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of FaxObs_EnumJobs operation.
+func (o *EnumJobsRequest) OpName() string { return "/faxobs/v4/FaxObs_EnumJobs" }
+
 // EnumJobsResponse structure represents the FaxObs_EnumJobs operation response
 type EnumJobsResponse struct {
 	// Buffer: A pointer to the address of the returned buffer containing an array of _FAX_JOB_ENTRY
@@ -3456,8 +3567,10 @@ type xxx_GetJobOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetJob operation.
 func (o *xxx_GetJobOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of FaxObs_GetJob operation.
 func (o *xxx_GetJobOperation) OpName() string { return "/faxobs/v4/FaxObs_GetJob" }
 
 func (o *xxx_GetJobOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3776,6 +3889,17 @@ func (o *GetJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetJobRequest build a response structure from the given request structure.
+func (o *GetJobRequest) MakeResponse() *GetJobResponse {
+	return &GetJobResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_GetJob operation.
+func (o *GetJobRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of FaxObs_GetJob operation.
+func (o *GetJobRequest) OpName() string { return "/faxobs/v4/FaxObs_GetJob" }
+
 // GetJobResponse structure represents the FaxObs_GetJob operation response
 type GetJobResponse struct {
 	// Buffer: A pointer to the address of the returned buffer containing a _FAX_JOB_ENTRY
@@ -3828,8 +3952,10 @@ type xxx_SetJobOperation struct {
 	Return   uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_SetJob operation.
 func (o *xxx_SetJobOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of FaxObs_SetJob operation.
 func (o *xxx_SetJobOperation) OpName() string { return "/faxobs/v4/FaxObs_SetJob" }
 
 func (o *xxx_SetJobOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4002,6 +4128,17 @@ func (o *SetJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetJobRequest build a response structure from the given request structure.
+func (o *SetJobRequest) MakeResponse() *SetJobResponse {
+	return &SetJobResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_SetJob operation.
+func (o *SetJobRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of FaxObs_SetJob operation.
+func (o *SetJobRequest) OpName() string { return "/faxobs/v4/FaxObs_SetJob" }
+
 // SetJobResponse structure represents the FaxObs_SetJob operation response
 type SetJobResponse struct {
 	// Return: The FaxObs_SetJob return value.
@@ -4047,8 +4184,10 @@ type xxx_GetPageDataOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetPageData operation.
 func (o *xxx_GetPageDataOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of FaxObs_GetPageData operation.
 func (o *xxx_GetPageDataOperation) OpName() string { return "/faxobs/v4/FaxObs_GetPageData" }
 
 func (o *xxx_GetPageDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4427,6 +4566,17 @@ func (o *GetPageDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetPageDataRequest build a response structure from the given request structure.
+func (o *GetPageDataRequest) MakeResponse() *GetPageDataResponse {
+	return &GetPageDataResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_GetPageData operation.
+func (o *GetPageDataRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of FaxObs_GetPageData operation.
+func (o *GetPageDataRequest) OpName() string { return "/faxobs/v4/FaxObs_GetPageData" }
+
 // GetPageDataResponse structure represents the FaxObs_GetPageData operation response
 type GetPageDataResponse struct {
 	// Buffer: A pointer to the address of the returned buffer containing the first page
@@ -4490,8 +4640,10 @@ type xxx_GetDeviceStatusOperation struct {
 	Return       uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetDeviceStatus operation.
 func (o *xxx_GetDeviceStatusOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of FaxObs_GetDeviceStatus operation.
 func (o *xxx_GetDeviceStatusOperation) OpName() string { return "/faxobs/v4/FaxObs_GetDeviceStatus" }
 
 func (o *xxx_GetDeviceStatusOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4820,6 +4972,17 @@ func (o *GetDeviceStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetDeviceStatusRequest build a response structure from the given request structure.
+func (o *GetDeviceStatusRequest) MakeResponse() *GetDeviceStatusResponse {
+	return &GetDeviceStatusResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_GetDeviceStatus operation.
+func (o *GetDeviceStatusRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of FaxObs_GetDeviceStatus operation.
+func (o *GetDeviceStatusRequest) OpName() string { return "/faxobs/v4/FaxObs_GetDeviceStatus" }
+
 // GetDeviceStatusResponse structure represents the FaxObs_GetDeviceStatus operation response
 type GetDeviceStatusResponse struct {
 	// StatusBuffer: A pointer to the address of the returned buffer containing a FAX_DEVICE_STATUS
@@ -4870,8 +5033,10 @@ type xxx_AbortOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_Abort operation.
 func (o *xxx_AbortOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of FaxObs_Abort operation.
 func (o *xxx_AbortOperation) OpName() string { return "/faxobs/v4/FaxObs_Abort" }
 
 func (o *xxx_AbortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4974,6 +5139,17 @@ func (o *AbortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeAbortRequest build a response structure from the given request structure.
+func (o *AbortRequest) MakeResponse() *AbortResponse {
+	return &AbortResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_Abort operation.
+func (o *AbortRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of FaxObs_Abort operation.
+func (o *AbortRequest) OpName() string { return "/faxobs/v4/FaxObs_Abort" }
+
 // AbortResponse structure represents the FaxObs_Abort operation response
 type AbortResponse struct {
 	// Return: The FaxObs_Abort return value.
@@ -5017,8 +5193,10 @@ type xxx_EnumPortsOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_EnumPorts operation.
 func (o *xxx_EnumPortsOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of FaxObs_EnumPorts operation.
 func (o *xxx_EnumPortsOperation) OpName() string { return "/faxobs/v4/FaxObs_EnumPorts" }
 
 func (o *xxx_EnumPortsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5334,6 +5512,17 @@ func (o *EnumPortsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeEnumPortsRequest build a response structure from the given request structure.
+func (o *EnumPortsRequest) MakeResponse() *EnumPortsResponse {
+	return &EnumPortsResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_EnumPorts operation.
+func (o *EnumPortsRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of FaxObs_EnumPorts operation.
+func (o *EnumPortsRequest) OpName() string { return "/faxobs/v4/FaxObs_EnumPorts" }
+
 // EnumPortsResponse structure represents the FaxObs_EnumPorts operation response
 type EnumPortsResponse struct {
 	// PortBuffer: A pointer to the address of the returned buffer containing an array of
@@ -5392,8 +5581,10 @@ type xxx_GetPortOperation struct {
 	Return     uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetPort operation.
 func (o *xxx_GetPortOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of FaxObs_GetPort operation.
 func (o *xxx_GetPortOperation) OpName() string { return "/faxobs/v4/FaxObs_GetPort" }
 
 func (o *xxx_GetPortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5721,6 +5912,17 @@ func (o *GetPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetPortRequest build a response structure from the given request structure.
+func (o *GetPortRequest) MakeResponse() *GetPortResponse {
+	return &GetPortResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_GetPort operation.
+func (o *GetPortRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of FaxObs_GetPort operation.
+func (o *GetPortRequest) OpName() string { return "/faxobs/v4/FaxObs_GetPort" }
+
 // GetPortResponse structure represents the FaxObs_GetPort operation response
 type GetPortResponse struct {
 	// PortBuffer: A pointer to the address of the returned buffer containing a _FAX_PORT_INFO
@@ -5772,8 +5974,10 @@ type xxx_SetPortOperation struct {
 	Return   uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_SetPort operation.
 func (o *xxx_SetPortOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of FaxObs_SetPort operation.
 func (o *xxx_SetPortOperation) OpName() string { return "/faxobs/v4/FaxObs_SetPort" }
 
 func (o *xxx_SetPortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5917,6 +6121,17 @@ func (o *SetPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetPortRequest build a response structure from the given request structure.
+func (o *SetPortRequest) MakeResponse() *SetPortResponse {
+	return &SetPortResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_SetPort operation.
+func (o *SetPortRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of FaxObs_SetPort operation.
+func (o *SetPortRequest) OpName() string { return "/faxobs/v4/FaxObs_SetPort" }
+
 // SetPortResponse structure represents the FaxObs_SetPort operation response
 type SetPortResponse struct {
 	// Return: The FaxObs_SetPort return value.
@@ -5961,8 +6176,10 @@ type xxx_EnumRoutingMethodsOperation struct {
 	Return                uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_EnumRoutingMethods operation.
 func (o *xxx_EnumRoutingMethodsOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of FaxObs_EnumRoutingMethods operation.
 func (o *xxx_EnumRoutingMethodsOperation) OpName() string {
 	return "/faxobs/v4/FaxObs_EnumRoutingMethods"
 }
@@ -6306,6 +6523,17 @@ func (o *EnumRoutingMethodsRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeEnumRoutingMethodsRequest build a response structure from the given request structure.
+func (o *EnumRoutingMethodsRequest) MakeResponse() *EnumRoutingMethodsResponse {
+	return &EnumRoutingMethodsResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_EnumRoutingMethods operation.
+func (o *EnumRoutingMethodsRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of FaxObs_EnumRoutingMethods operation.
+func (o *EnumRoutingMethodsRequest) OpName() string { return "/faxobs/v4/FaxObs_EnumRoutingMethods" }
+
 // EnumRoutingMethodsResponse structure represents the FaxObs_EnumRoutingMethods operation response
 type EnumRoutingMethodsResponse struct {
 	// RoutingInfoBuffer: A pointer to the address of the returned buffer containing an
@@ -6365,8 +6593,10 @@ type xxx_EnableRoutingMethodOperation struct {
 	Return      uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_EnableRoutingMethod operation.
 func (o *xxx_EnableRoutingMethodOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of FaxObs_EnableRoutingMethod operation.
 func (o *xxx_EnableRoutingMethodOperation) OpName() string {
 	return "/faxobs/v4/FaxObs_EnableRoutingMethod"
 }
@@ -6550,6 +6780,17 @@ func (o *EnableRoutingMethodRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeEnableRoutingMethodRequest build a response structure from the given request structure.
+func (o *EnableRoutingMethodRequest) MakeResponse() *EnableRoutingMethodResponse {
+	return &EnableRoutingMethodResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_EnableRoutingMethod operation.
+func (o *EnableRoutingMethodRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of FaxObs_EnableRoutingMethod operation.
+func (o *EnableRoutingMethodRequest) OpName() string { return "/faxobs/v4/FaxObs_EnableRoutingMethod" }
+
 // EnableRoutingMethodResponse structure represents the FaxObs_EnableRoutingMethod operation response
 type EnableRoutingMethodResponse struct {
 	// Return: The FaxObs_EnableRoutingMethod return value.
@@ -6594,8 +6835,10 @@ type xxx_GetRoutingInfoOperation struct {
 	Return                uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetRoutingInfo operation.
 func (o *xxx_GetRoutingInfoOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of FaxObs_GetRoutingInfo operation.
 func (o *xxx_GetRoutingInfoOperation) OpName() string { return "/faxobs/v4/FaxObs_GetRoutingInfo" }
 
 func (o *xxx_GetRoutingInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6972,6 +7215,17 @@ func (o *GetRoutingInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetRoutingInfoRequest build a response structure from the given request structure.
+func (o *GetRoutingInfoRequest) MakeResponse() *GetRoutingInfoResponse {
+	return &GetRoutingInfoResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_GetRoutingInfo operation.
+func (o *GetRoutingInfoRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of FaxObs_GetRoutingInfo operation.
+func (o *GetRoutingInfoRequest) OpName() string { return "/faxobs/v4/FaxObs_GetRoutingInfo" }
+
 // GetRoutingInfoResponse structure represents the FaxObs_GetRoutingInfo operation response
 type GetRoutingInfoResponse struct {
 	// RoutingInfoBuffer: A pointer to the address of the returned buffer containing the
@@ -7027,8 +7281,10 @@ type xxx_SetRoutingInfoOperation struct {
 	Return                uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_SetRoutingInfo operation.
 func (o *xxx_SetRoutingInfoOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of FaxObs_SetRoutingInfo operation.
 func (o *xxx_SetRoutingInfoOperation) OpName() string { return "/faxobs/v4/FaxObs_SetRoutingInfo" }
 
 func (o *xxx_SetRoutingInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7281,6 +7537,17 @@ func (o *SetRoutingInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetRoutingInfoRequest build a response structure from the given request structure.
+func (o *SetRoutingInfoRequest) MakeResponse() *SetRoutingInfoResponse {
+	return &SetRoutingInfoResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_SetRoutingInfo operation.
+func (o *SetRoutingInfoRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of FaxObs_SetRoutingInfo operation.
+func (o *SetRoutingInfoRequest) OpName() string { return "/faxobs/v4/FaxObs_SetRoutingInfo" }
+
 // SetRoutingInfoResponse structure represents the FaxObs_SetRoutingInfo operation response
 type SetRoutingInfoResponse struct {
 	// Return: The FaxObs_SetRoutingInfo return value.
@@ -7324,8 +7591,10 @@ type xxx_EnumGlobalRoutingInfoOperation struct {
 	Return                uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_EnumGlobalRoutingInfo operation.
 func (o *xxx_EnumGlobalRoutingInfoOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of FaxObs_EnumGlobalRoutingInfo operation.
 func (o *xxx_EnumGlobalRoutingInfoOperation) OpName() string {
 	return "/faxobs/v4/FaxObs_EnumGlobalRoutingInfo"
 }
@@ -7644,6 +7913,19 @@ func (o *EnumGlobalRoutingInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeEnumGlobalRoutingInfoRequest build a response structure from the given request structure.
+func (o *EnumGlobalRoutingInfoRequest) MakeResponse() *EnumGlobalRoutingInfoResponse {
+	return &EnumGlobalRoutingInfoResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_EnumGlobalRoutingInfo operation.
+func (o *EnumGlobalRoutingInfoRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of FaxObs_EnumGlobalRoutingInfo operation.
+func (o *EnumGlobalRoutingInfoRequest) OpName() string {
+	return "/faxobs/v4/FaxObs_EnumGlobalRoutingInfo"
+}
+
 // EnumGlobalRoutingInfoResponse structure represents the FaxObs_EnumGlobalRoutingInfo operation response
 type EnumGlobalRoutingInfoResponse struct {
 	// RoutingInfoBuffer: A pointer to the address of the returned buffer containing an
@@ -7703,8 +7985,10 @@ type xxx_SetGlobalRoutingInfoOperation struct {
 	Return      uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_SetGlobalRoutingInfo operation.
 func (o *xxx_SetGlobalRoutingInfoOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of FaxObs_SetGlobalRoutingInfo operation.
 func (o *xxx_SetGlobalRoutingInfoOperation) OpName() string {
 	return "/faxobs/v4/FaxObs_SetGlobalRoutingInfo"
 }
@@ -7824,6 +8108,19 @@ func (o *SetGlobalRoutingInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeSetGlobalRoutingInfoRequest build a response structure from the given request structure.
+func (o *SetGlobalRoutingInfoRequest) MakeResponse() *SetGlobalRoutingInfoResponse {
+	return &SetGlobalRoutingInfoResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_SetGlobalRoutingInfo operation.
+func (o *SetGlobalRoutingInfoRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of FaxObs_SetGlobalRoutingInfo operation.
+func (o *SetGlobalRoutingInfoRequest) OpName() string {
+	return "/faxobs/v4/FaxObs_SetGlobalRoutingInfo"
+}
+
 // SetGlobalRoutingInfoResponse structure represents the FaxObs_SetGlobalRoutingInfo operation response
 type SetGlobalRoutingInfoResponse struct {
 	// Return: The FaxObs_SetGlobalRoutingInfo return value.
@@ -7866,8 +8163,10 @@ type xxx_GetConfigurationOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetConfiguration operation.
 func (o *xxx_GetConfigurationOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of FaxObs_GetConfiguration operation.
 func (o *xxx_GetConfigurationOperation) OpName() string { return "/faxobs/v4/FaxObs_GetConfiguration" }
 
 func (o *xxx_GetConfigurationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8171,6 +8470,17 @@ func (o *GetConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetConfigurationRequest build a response structure from the given request structure.
+func (o *GetConfigurationRequest) MakeResponse() *GetConfigurationResponse {
+	return &GetConfigurationResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_GetConfiguration operation.
+func (o *GetConfigurationRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of FaxObs_GetConfiguration operation.
+func (o *GetConfigurationRequest) OpName() string { return "/faxobs/v4/FaxObs_GetConfiguration" }
+
 // GetConfigurationResponse structure represents the FaxObs_GetConfiguration operation response
 type GetConfigurationResponse struct {
 	// Buffer: A pointer to the address of the returned buffer containing a _FAX_CONFIGURATIONW
@@ -8222,8 +8532,10 @@ type xxx_SetConfigurationOperation struct {
 	Return    uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_SetConfiguration operation.
 func (o *xxx_SetConfigurationOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of FaxObs_SetConfiguration operation.
 func (o *xxx_SetConfigurationOperation) OpName() string { return "/faxobs/v4/FaxObs_SetConfiguration" }
 
 func (o *xxx_SetConfigurationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8352,6 +8664,17 @@ func (o *SetConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetConfigurationRequest build a response structure from the given request structure.
+func (o *SetConfigurationRequest) MakeResponse() *SetConfigurationResponse {
+	return &SetConfigurationResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_SetConfiguration operation.
+func (o *SetConfigurationRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of FaxObs_SetConfiguration operation.
+func (o *SetConfigurationRequest) OpName() string { return "/faxobs/v4/FaxObs_SetConfiguration" }
+
 // SetConfigurationResponse structure represents the FaxObs_SetConfiguration operation response
 type SetConfigurationResponse struct {
 	// Return: The FaxObs_SetConfiguration return value.
@@ -8395,8 +8718,10 @@ type xxx_GetLoggingCategoriesOperation struct {
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetLoggingCategories operation.
 func (o *xxx_GetLoggingCategoriesOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of FaxObs_GetLoggingCategories operation.
 func (o *xxx_GetLoggingCategoriesOperation) OpName() string {
 	return "/faxobs/v4/FaxObs_GetLoggingCategories"
 }
@@ -8732,6 +9057,19 @@ func (o *GetLoggingCategoriesRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetLoggingCategoriesRequest build a response structure from the given request structure.
+func (o *GetLoggingCategoriesRequest) MakeResponse() *GetLoggingCategoriesResponse {
+	return &GetLoggingCategoriesResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_GetLoggingCategories operation.
+func (o *GetLoggingCategoriesRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of FaxObs_GetLoggingCategories operation.
+func (o *GetLoggingCategoriesRequest) OpName() string {
+	return "/faxobs/v4/FaxObs_GetLoggingCategories"
+}
+
 // GetLoggingCategoriesResponse structure represents the FaxObs_GetLoggingCategories operation response
 type GetLoggingCategoriesResponse struct {
 	// Buffer: A pointer to the address of the returned buffer containing an array of FAX_LOG_CATEGORY
@@ -8791,8 +9129,10 @@ type xxx_SetLoggingCategoriesOperation struct {
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_SetLoggingCategories operation.
 func (o *xxx_SetLoggingCategoriesOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of FaxObs_SetLoggingCategories operation.
 func (o *xxx_SetLoggingCategoriesOperation) OpName() string {
 	return "/faxobs/v4/FaxObs_SetLoggingCategories"
 }
@@ -8994,6 +9334,19 @@ func (o *SetLoggingCategoriesRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeSetLoggingCategoriesRequest build a response structure from the given request structure.
+func (o *SetLoggingCategoriesRequest) MakeResponse() *SetLoggingCategoriesResponse {
+	return &SetLoggingCategoriesResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_SetLoggingCategories operation.
+func (o *SetLoggingCategoriesRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of FaxObs_SetLoggingCategories operation.
+func (o *SetLoggingCategoriesRequest) OpName() string {
+	return "/faxobs/v4/FaxObs_SetLoggingCategories"
+}
+
 // SetLoggingCategoriesResponse structure represents the FaxObs_SetLoggingCategories operation response
 type SetLoggingCategoriesResponse struct {
 	// Return: The FaxObs_SetLoggingCategories return value.
@@ -9036,8 +9389,10 @@ type xxx_GetTAPILocationsOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetTapiLocations operation.
 func (o *xxx_GetTAPILocationsOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of FaxObs_GetTapiLocations operation.
 func (o *xxx_GetTAPILocationsOperation) OpName() string { return "/faxobs/v4/FaxObs_GetTapiLocations" }
 
 func (o *xxx_GetTAPILocationsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9346,6 +9701,17 @@ func (o *GetTAPILocationsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetTAPILocationsRequest build a response structure from the given request structure.
+func (o *GetTAPILocationsRequest) MakeResponse() *GetTAPILocationsResponse {
+	return &GetTAPILocationsResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_GetTapiLocations operation.
+func (o *GetTAPILocationsRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of FaxObs_GetTapiLocations operation.
+func (o *GetTAPILocationsRequest) OpName() string { return "/faxobs/v4/FaxObs_GetTapiLocations" }
+
 // GetTAPILocationsResponse structure represents the FaxObs_GetTapiLocations operation response
 type GetTAPILocationsResponse struct {
 	// Buffer: A pointer to the address of the returned buffer containing a FAX_TAPI_LOCATION_INFO
@@ -9403,8 +9769,10 @@ type xxx_SetTAPILocationsOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_SetTapiLocations operation.
 func (o *xxx_SetTAPILocationsOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of FaxObs_SetTapiLocations operation.
 func (o *xxx_SetTAPILocationsOperation) OpName() string { return "/faxobs/v4/FaxObs_SetTapiLocations" }
 
 func (o *xxx_SetTAPILocationsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9588,6 +9956,17 @@ func (o *SetTAPILocationsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetTAPILocationsRequest build a response structure from the given request structure.
+func (o *SetTAPILocationsRequest) MakeResponse() *SetTAPILocationsResponse {
+	return &SetTAPILocationsResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_SetTapiLocations operation.
+func (o *SetTAPILocationsRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of FaxObs_SetTapiLocations operation.
+func (o *SetTAPILocationsRequest) OpName() string { return "/faxobs/v4/FaxObs_SetTapiLocations" }
+
 // SetTAPILocationsResponse structure represents the FaxObs_SetTapiLocations operation response
 type SetTAPILocationsResponse struct {
 	// Return: The FaxObs_SetTapiLocations return value.
@@ -9630,8 +10009,10 @@ type xxx_GetMAPIProfilesOperation struct {
 	Return       uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetMapiProfiles operation.
 func (o *xxx_GetMAPIProfilesOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of FaxObs_GetMapiProfiles operation.
 func (o *xxx_GetMAPIProfilesOperation) OpName() string { return "/faxobs/v4/FaxObs_GetMapiProfiles" }
 
 func (o *xxx_GetMAPIProfilesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9937,6 +10318,17 @@ func (o *GetMAPIProfilesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetMAPIProfilesRequest build a response structure from the given request structure.
+func (o *GetMAPIProfilesRequest) MakeResponse() *GetMAPIProfilesResponse {
+	return &GetMAPIProfilesResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_GetMapiProfiles operation.
+func (o *GetMAPIProfilesRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of FaxObs_GetMapiProfiles operation.
+func (o *GetMAPIProfilesRequest) OpName() string { return "/faxobs/v4/FaxObs_GetMapiProfiles" }
+
 // GetMAPIProfilesResponse structure represents the FaxObs_GetMapiProfiles operation response
 type GetMAPIProfilesResponse struct {
 	// MapiProfiles: A pointer to the address of the returned buffer. This buffer contains
@@ -9992,8 +10384,10 @@ type xxx_StartClientServerOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_StartClientServer operation.
 func (o *xxx_StartClientServerOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of FaxObs_StartClientServer operation.
 func (o *xxx_StartClientServerOperation) OpName() string {
 	return "/faxobs/v4/FaxObs_StartClientServer"
 }
@@ -10189,6 +10583,17 @@ func (o *StartClientServerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeStartClientServerRequest build a response structure from the given request structure.
+func (o *StartClientServerRequest) MakeResponse() *StartClientServerResponse {
+	return &StartClientServerResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_StartClientServer operation.
+func (o *StartClientServerRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of FaxObs_StartClientServer operation.
+func (o *StartClientServerRequest) OpName() string { return "/faxobs/v4/FaxObs_StartClientServer" }
+
 // StartClientServerResponse structure represents the FaxObs_StartClientServer operation response
 type StartClientServerResponse struct {
 	// Return: The FaxObs_StartClientServer return value.
@@ -10232,8 +10637,10 @@ type xxx_GetSecurityDescriptorOperation struct {
 	Return                uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetSecurityDescriptor operation.
 func (o *xxx_GetSecurityDescriptorOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of FaxObs_GetSecurityDescriptor operation.
 func (o *xxx_GetSecurityDescriptorOperation) OpName() string {
 	return "/faxobs/v4/FaxObs_GetSecurityDescriptor"
 }
@@ -10556,6 +10963,19 @@ func (o *GetSecurityDescriptorRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetSecurityDescriptorRequest build a response structure from the given request structure.
+func (o *GetSecurityDescriptorRequest) MakeResponse() *GetSecurityDescriptorResponse {
+	return &GetSecurityDescriptorResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_GetSecurityDescriptor operation.
+func (o *GetSecurityDescriptorRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of FaxObs_GetSecurityDescriptor operation.
+func (o *GetSecurityDescriptorRequest) OpName() string {
+	return "/faxobs/v4/FaxObs_GetSecurityDescriptor"
+}
+
 // GetSecurityDescriptorResponse structure represents the FaxObs_GetSecurityDescriptor operation response
 type GetSecurityDescriptorResponse struct {
 	// FaxSecurityDescriptor: A pointer to the address of the returned buffer containing
@@ -10608,8 +11028,10 @@ type xxx_SetSecurityDescriptorOperation struct {
 	Return                uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_SetSecurityDescriptor operation.
 func (o *xxx_SetSecurityDescriptorOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of FaxObs_SetSecurityDescriptor operation.
 func (o *xxx_SetSecurityDescriptorOperation) OpName() string {
 	return "/faxobs/v4/FaxObs_SetSecurityDescriptor"
 }
@@ -10792,6 +11214,19 @@ func (o *SetSecurityDescriptorRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeSetSecurityDescriptorRequest build a response structure from the given request structure.
+func (o *SetSecurityDescriptorRequest) MakeResponse() *SetSecurityDescriptorResponse {
+	return &SetSecurityDescriptorResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_SetSecurityDescriptor operation.
+func (o *SetSecurityDescriptorRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of FaxObs_SetSecurityDescriptor operation.
+func (o *SetSecurityDescriptorRequest) OpName() string {
+	return "/faxobs/v4/FaxObs_SetSecurityDescriptor"
+}
+
 // SetSecurityDescriptorResponse structure represents the FaxObs_SetSecurityDescriptor operation response
 type SetSecurityDescriptorResponse struct {
 	// Return: The FaxObs_SetSecurityDescriptor return value.
@@ -10833,8 +11268,10 @@ type xxx_GetSecurityDescriptorCountOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_GetSecurityDescriptorCount operation.
 func (o *xxx_GetSecurityDescriptorCountOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of FaxObs_GetSecurityDescriptorCount operation.
 func (o *xxx_GetSecurityDescriptorCountOperation) OpName() string {
 	return "/faxobs/v4/FaxObs_GetSecurityDescriptorCount"
 }
@@ -10934,6 +11371,19 @@ func (o *GetSecurityDescriptorCountRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeGetSecurityDescriptorCountRequest build a response structure from the given request structure.
+func (o *GetSecurityDescriptorCountRequest) MakeResponse() *GetSecurityDescriptorCountResponse {
+	return &GetSecurityDescriptorCountResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_GetSecurityDescriptorCount operation.
+func (o *GetSecurityDescriptorCountRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of FaxObs_GetSecurityDescriptorCount operation.
+func (o *GetSecurityDescriptorCountRequest) OpName() string {
+	return "/faxobs/v4/FaxObs_GetSecurityDescriptorCount"
+}
+
 // GetSecurityDescriptorCountResponse structure represents the FaxObs_GetSecurityDescriptorCount operation response
 type GetSecurityDescriptorCountResponse struct {
 	// Count: A pointer to a DWORD ([MS-DTYP] section 2.2.9) value containing on return
@@ -10982,8 +11432,10 @@ type xxx_AccessCheckOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FaxObs_AccessCheck operation.
 func (o *xxx_AccessCheckOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of FaxObs_AccessCheck operation.
 func (o *xxx_AccessCheckOperation) OpName() string { return "/faxobs/v4/FaxObs_AccessCheck" }
 
 func (o *xxx_AccessCheckOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11151,6 +11603,17 @@ func (o *AccessCheckRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeAccessCheckRequest build a response structure from the given request structure.
+func (o *AccessCheckRequest) MakeResponse() *AccessCheckResponse {
+	return &AccessCheckResponse{}
+}
+
+// OpNum returns the operation number of FaxObs_AccessCheck operation.
+func (o *AccessCheckRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of FaxObs_AccessCheck operation.
+func (o *AccessCheckRequest) OpName() string { return "/faxobs/v4/FaxObs_AccessCheck" }
 
 // AccessCheckResponse structure represents the FaxObs_AccessCheck operation response
 type AccessCheckResponse struct {

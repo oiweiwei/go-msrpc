@@ -315,8 +315,10 @@ type xxx_RegisterCertificateOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RegisterCertificate operation.
 func (o *xxx_RegisterCertificateOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RegisterCertificate operation.
 func (o *xxx_RegisterCertificateOperation) OpName() string {
 	return "/IMSMQApplication2/v0/RegisterCertificate"
 }
@@ -583,6 +585,19 @@ func (o *RegisterCertificateRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeRegisterCertificateRequest build a response structure from the given request structure.
+func (o *RegisterCertificateRequest) MakeResponse() *RegisterCertificateResponse {
+	return &RegisterCertificateResponse{}
+}
+
+// OpNum returns the operation number of RegisterCertificate operation.
+func (o *RegisterCertificateRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of RegisterCertificate operation.
+func (o *RegisterCertificateRequest) OpName() string {
+	return "/IMSMQApplication2/v0/RegisterCertificate"
+}
+
 // RegisterCertificateResponse structure represents the RegisterCertificate operation response
 type RegisterCertificateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -631,8 +646,10 @@ type xxx_MachineNameOfMachineIDOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MachineNameOfMachineId operation.
 func (o *xxx_MachineNameOfMachineIDOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of MachineNameOfMachineId operation.
 func (o *xxx_MachineNameOfMachineIDOperation) OpName() string {
 	return "/IMSMQApplication2/v0/MachineNameOfMachineId"
 }
@@ -876,6 +893,19 @@ func (o *MachineNameOfMachineIDRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeMachineNameOfMachineIDRequest build a response structure from the given request structure.
+func (o *MachineNameOfMachineIDRequest) MakeResponse() *MachineNameOfMachineIDResponse {
+	return &MachineNameOfMachineIDResponse{}
+}
+
+// OpNum returns the operation number of MachineNameOfMachineId operation.
+func (o *MachineNameOfMachineIDRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of MachineNameOfMachineId operation.
+func (o *MachineNameOfMachineIDRequest) OpName() string {
+	return "/IMSMQApplication2/v0/MachineNameOfMachineId"
+}
+
 // MachineNameOfMachineIDResponse structure represents the MachineNameOfMachineId operation response
 type MachineNameOfMachineIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -928,8 +958,10 @@ type xxx_GetVersionMajorOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MSMQVersionMajor operation.
 func (o *xxx_GetVersionMajorOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of MSMQVersionMajor operation.
 func (o *xxx_GetVersionMajorOperation) OpName() string {
 	return "/IMSMQApplication2/v0/MSMQVersionMajor"
 }
@@ -1087,6 +1119,17 @@ func (o *GetVersionMajorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetVersionMajorRequest build a response structure from the given request structure.
+func (o *GetVersionMajorRequest) MakeResponse() *GetVersionMajorResponse {
+	return &GetVersionMajorResponse{}
+}
+
+// OpNum returns the operation number of MSMQVersionMajor operation.
+func (o *GetVersionMajorRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of MSMQVersionMajor operation.
+func (o *GetVersionMajorRequest) OpName() string { return "/IMSMQApplication2/v0/MSMQVersionMajor" }
+
 // GetVersionMajorResponse structure represents the MSMQVersionMajor operation response
 type GetVersionMajorResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1139,8 +1182,10 @@ type xxx_GetVersionMinorOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MSMQVersionMinor operation.
 func (o *xxx_GetVersionMinorOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of MSMQVersionMinor operation.
 func (o *xxx_GetVersionMinorOperation) OpName() string {
 	return "/IMSMQApplication2/v0/MSMQVersionMinor"
 }
@@ -1298,6 +1343,17 @@ func (o *GetVersionMinorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetVersionMinorRequest build a response structure from the given request structure.
+func (o *GetVersionMinorRequest) MakeResponse() *GetVersionMinorResponse {
+	return &GetVersionMinorResponse{}
+}
+
+// OpNum returns the operation number of MSMQVersionMinor operation.
+func (o *GetVersionMinorRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of MSMQVersionMinor operation.
+func (o *GetVersionMinorRequest) OpName() string { return "/IMSMQApplication2/v0/MSMQVersionMinor" }
+
 // GetVersionMinorResponse structure represents the MSMQVersionMinor operation response
 type GetVersionMinorResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1350,8 +1406,10 @@ type xxx_GetVersionBuildOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MSMQVersionBuild operation.
 func (o *xxx_GetVersionBuildOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of MSMQVersionBuild operation.
 func (o *xxx_GetVersionBuildOperation) OpName() string {
 	return "/IMSMQApplication2/v0/MSMQVersionBuild"
 }
@@ -1509,6 +1567,17 @@ func (o *GetVersionBuildRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetVersionBuildRequest build a response structure from the given request structure.
+func (o *GetVersionBuildRequest) MakeResponse() *GetVersionBuildResponse {
+	return &GetVersionBuildResponse{}
+}
+
+// OpNum returns the operation number of MSMQVersionBuild operation.
+func (o *GetVersionBuildRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of MSMQVersionBuild operation.
+func (o *GetVersionBuildRequest) OpName() string { return "/IMSMQApplication2/v0/MSMQVersionBuild" }
+
 // GetVersionBuildResponse structure represents the MSMQVersionBuild operation response
 type GetVersionBuildResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1561,8 +1630,10 @@ type xxx_GetIsDSEnabledOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsDsEnabled operation.
 func (o *xxx_GetIsDSEnabledOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of IsDsEnabled operation.
 func (o *xxx_GetIsDSEnabledOperation) OpName() string { return "/IMSMQApplication2/v0/IsDsEnabled" }
 
 func (o *xxx_GetIsDSEnabledOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1718,6 +1789,17 @@ func (o *GetIsDSEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetIsDSEnabledRequest build a response structure from the given request structure.
+func (o *GetIsDSEnabledRequest) MakeResponse() *GetIsDSEnabledResponse {
+	return &GetIsDSEnabledResponse{}
+}
+
+// OpNum returns the operation number of IsDsEnabled operation.
+func (o *GetIsDSEnabledRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of IsDsEnabled operation.
+func (o *GetIsDSEnabledRequest) OpName() string { return "/IMSMQApplication2/v0/IsDsEnabled" }
+
 // GetIsDSEnabledResponse structure represents the IsDsEnabled operation response
 type GetIsDSEnabledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1781,8 +1863,10 @@ type xxx_GetPropertiesOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Properties operation.
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of Properties operation.
 func (o *xxx_GetPropertiesOperation) OpName() string { return "/IMSMQApplication2/v0/Properties" }
 
 func (o *xxx_GetPropertiesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1971,6 +2055,17 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetPropertiesRequest build a response structure from the given request structure.
+func (o *GetPropertiesRequest) MakeResponse() *GetPropertiesResponse {
+	return &GetPropertiesResponse{}
+}
+
+// OpNum returns the operation number of Properties operation.
+func (o *GetPropertiesRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of Properties operation.
+func (o *GetPropertiesRequest) OpName() string { return "/IMSMQApplication2/v0/Properties" }
 
 // GetPropertiesResponse structure represents the Properties operation response
 type GetPropertiesResponse struct {

@@ -776,8 +776,10 @@ type xxx_RegisterClientOperation struct {
 	Return               int32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IRPCAsyncNotify_RegisterClient operation.
 func (o *xxx_RegisterClientOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of IRPCAsyncNotify_RegisterClient operation.
 func (o *xxx_RegisterClientOperation) OpName() string {
 	return "/IRPCAsyncNotify/v1/IRPCAsyncNotify_RegisterClient"
 }
@@ -1049,6 +1051,19 @@ func (o *RegisterClientRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeRegisterClientRequest build a response structure from the given request structure.
+func (o *RegisterClientRequest) MakeResponse() *RegisterClientResponse {
+	return &RegisterClientResponse{}
+}
+
+// OpNum returns the operation number of IRPCAsyncNotify_RegisterClient operation.
+func (o *RegisterClientRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of IRPCAsyncNotify_RegisterClient operation.
+func (o *RegisterClientRequest) OpName() string {
+	return "/IRPCAsyncNotify/v1/IRPCAsyncNotify_RegisterClient"
+}
+
 // RegisterClientResponse structure represents the IRPCAsyncNotify_RegisterClient operation response
 type RegisterClientResponse struct {
 	// ppRmtServerReferral: Servers SHOULD return NULL for this parameter, and clients MUST
@@ -1095,8 +1110,10 @@ type xxx_UnregisterClientOperation struct {
 	Return             int32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IRPCAsyncNotify_UnregisterClient operation.
 func (o *xxx_UnregisterClientOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of IRPCAsyncNotify_UnregisterClient operation.
 func (o *xxx_UnregisterClientOperation) OpName() string {
 	return "/IRPCAsyncNotify/v1/IRPCAsyncNotify_UnregisterClient"
 }
@@ -1211,6 +1228,19 @@ func (o *UnregisterClientRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeUnregisterClientRequest build a response structure from the given request structure.
+func (o *UnregisterClientRequest) MakeResponse() *UnregisterClientResponse {
+	return &UnregisterClientResponse{}
+}
+
+// OpNum returns the operation number of IRPCAsyncNotify_UnregisterClient operation.
+func (o *UnregisterClientRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of IRPCAsyncNotify_UnregisterClient operation.
+func (o *UnregisterClientRequest) OpName() string {
+	return "/IRPCAsyncNotify/v1/IRPCAsyncNotify_UnregisterClient"
+}
+
 // UnregisterClientResponse structure represents the IRPCAsyncNotify_UnregisterClient operation response
 type UnregisterClientResponse struct {
 	// Return: The IRPCAsyncNotify_UnregisterClient return value.
@@ -1254,8 +1284,10 @@ type xxx_GetNewChannelOperation struct {
 	Return           int32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IRPCAsyncNotify_GetNewChannel operation.
 func (o *xxx_GetNewChannelOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of IRPCAsyncNotify_GetNewChannel operation.
 func (o *xxx_GetNewChannelOperation) OpName() string {
 	return "/IRPCAsyncNotify/v1/IRPCAsyncNotify_GetNewChannel"
 }
@@ -1465,6 +1497,19 @@ func (o *GetNewChannelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetNewChannelRequest build a response structure from the given request structure.
+func (o *GetNewChannelRequest) MakeResponse() *GetNewChannelResponse {
+	return &GetNewChannelResponse{}
+}
+
+// OpNum returns the operation number of IRPCAsyncNotify_GetNewChannel operation.
+func (o *GetNewChannelRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of IRPCAsyncNotify_GetNewChannel operation.
+func (o *GetNewChannelRequest) OpName() string {
+	return "/IRPCAsyncNotify/v1/IRPCAsyncNotify_GetNewChannel"
+}
+
 // GetNewChannelResponse structure represents the IRPCAsyncNotify_GetNewChannel operation response
 type GetNewChannelResponse struct {
 	// pNoOfChannels: MUST specify the number of notification channels returned. The array
@@ -1523,8 +1568,10 @@ type xxx_GetNotificationSendResponseOperation struct {
 	Return              int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IRPCAsyncNotify_GetNotificationSendResponse operation.
 func (o *xxx_GetNotificationSendResponseOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of IRPCAsyncNotify_GetNotificationSendResponse operation.
 func (o *xxx_GetNotificationSendResponseOperation) OpName() string {
 	return "/IRPCAsyncNotify/v1/IRPCAsyncNotify_GetNotificationSendResponse"
 }
@@ -1948,6 +1995,19 @@ func (o *GetNotificationSendResponseRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeGetNotificationSendResponseRequest build a response structure from the given request structure.
+func (o *GetNotificationSendResponseRequest) MakeResponse() *GetNotificationSendResponseResponse {
+	return &GetNotificationSendResponseResponse{}
+}
+
+// OpNum returns the operation number of IRPCAsyncNotify_GetNotificationSendResponse operation.
+func (o *GetNotificationSendResponseRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of IRPCAsyncNotify_GetNotificationSendResponse operation.
+func (o *GetNotificationSendResponseRequest) OpName() string {
+	return "/IRPCAsyncNotify/v1/IRPCAsyncNotify_GetNotificationSendResponse"
+}
+
 // GetNotificationSendResponseResponse structure represents the IRPCAsyncNotify_GetNotificationSendResponse operation response
 type GetNotificationSendResponseResponse struct {
 	// pChannel: A pointer to a notification channel that MUST NOT be closed or zero, and
@@ -2028,8 +2088,10 @@ type xxx_GetNotificationOperation struct {
 	Return              int32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IRPCAsyncNotify_GetNotification operation.
 func (o *xxx_GetNotificationOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of IRPCAsyncNotify_GetNotification operation.
 func (o *xxx_GetNotificationOperation) OpName() string {
 	return "/IRPCAsyncNotify/v1/IRPCAsyncNotify_GetNotification"
 }
@@ -2275,6 +2337,19 @@ func (o *GetNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetNotificationRequest build a response structure from the given request structure.
+func (o *GetNotificationRequest) MakeResponse() *GetNotificationResponse {
+	return &GetNotificationResponse{}
+}
+
+// OpNum returns the operation number of IRPCAsyncNotify_GetNotification operation.
+func (o *GetNotificationRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of IRPCAsyncNotify_GetNotification operation.
+func (o *GetNotificationRequest) OpName() string {
+	return "/IRPCAsyncNotify/v1/IRPCAsyncNotify_GetNotification"
+}
+
 // GetNotificationResponse structure represents the IRPCAsyncNotify_GetNotification operation response
 type GetNotificationResponse struct {
 	// ppOutNotificationType: MUST return a pointer to the notification type identifier
@@ -2338,8 +2413,10 @@ type xxx_CloseChannelOperation struct {
 	Return             int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IRPCAsyncNotify_CloseChannel operation.
 func (o *xxx_CloseChannelOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of IRPCAsyncNotify_CloseChannel operation.
 func (o *xxx_CloseChannelOperation) OpName() string {
 	return "/IRPCAsyncNotify/v1/IRPCAsyncNotify_CloseChannel"
 }
@@ -2609,6 +2686,19 @@ func (o *CloseChannelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeCloseChannelRequest build a response structure from the given request structure.
+func (o *CloseChannelRequest) MakeResponse() *CloseChannelResponse {
+	return &CloseChannelResponse{}
+}
+
+// OpNum returns the operation number of IRPCAsyncNotify_CloseChannel operation.
+func (o *CloseChannelRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of IRPCAsyncNotify_CloseChannel operation.
+func (o *CloseChannelRequest) OpName() string {
+	return "/IRPCAsyncNotify/v1/IRPCAsyncNotify_CloseChannel"
 }
 
 // CloseChannelResponse structure represents the IRPCAsyncNotify_CloseChannel operation response

@@ -303,8 +303,10 @@ type xxx_GetStartDateOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of StartDate operation.
 func (o *xxx_GetStartDateOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of StartDate operation.
 func (o *xxx_GetStartDateOperation) OpName() string { return "/ISchedule/v0/StartDate" }
 
 func (o *xxx_GetStartDateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -494,6 +496,17 @@ func (o *GetStartDateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetStartDateRequest build a response structure from the given request structure.
+func (o *GetStartDateRequest) MakeResponse() *GetStartDateResponse {
+	return &GetStartDateResponse{}
+}
+
+// OpNum returns the operation number of StartDate operation.
+func (o *GetStartDateRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of StartDate operation.
+func (o *GetStartDateRequest) OpName() string { return "/ISchedule/v0/StartDate" }
+
 // GetStartDateResponse structure represents the StartDate operation response
 type GetStartDateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -544,8 +557,10 @@ type xxx_SetStartDateOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of StartDate operation.
 func (o *xxx_SetStartDateOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of StartDate operation.
 func (o *xxx_SetStartDateOperation) OpName() string { return "/ISchedule/v0/StartDate" }
 
 func (o *xxx_SetStartDateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -719,6 +734,17 @@ func (o *SetStartDateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeSetStartDateRequest build a response structure from the given request structure.
+func (o *SetStartDateRequest) MakeResponse() *SetStartDateResponse {
+	return &SetStartDateResponse{}
+}
+
+// OpNum returns the operation number of StartDate operation.
+func (o *SetStartDateRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of StartDate operation.
+func (o *SetStartDateRequest) OpName() string { return "/ISchedule/v0/StartDate" }
+
 // SetStartDateResponse structure represents the StartDate operation response
 type SetStartDateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -766,8 +792,10 @@ type xxx_GetEndDateOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EndDate operation.
 func (o *xxx_GetEndDateOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of EndDate operation.
 func (o *xxx_GetEndDateOperation) OpName() string { return "/ISchedule/v0/EndDate" }
 
 func (o *xxx_GetEndDateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -957,6 +985,17 @@ func (o *GetEndDateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetEndDateRequest build a response structure from the given request structure.
+func (o *GetEndDateRequest) MakeResponse() *GetEndDateResponse {
+	return &GetEndDateResponse{}
+}
+
+// OpNum returns the operation number of EndDate operation.
+func (o *GetEndDateRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of EndDate operation.
+func (o *GetEndDateRequest) OpName() string { return "/ISchedule/v0/EndDate" }
+
 // GetEndDateResponse structure represents the EndDate operation response
 type GetEndDateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1007,8 +1046,10 @@ type xxx_SetEndDateOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EndDate operation.
 func (o *xxx_SetEndDateOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of EndDate operation.
 func (o *xxx_SetEndDateOperation) OpName() string { return "/ISchedule/v0/EndDate" }
 
 func (o *xxx_SetEndDateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1182,6 +1223,17 @@ func (o *SetEndDateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeSetEndDateRequest build a response structure from the given request structure.
+func (o *SetEndDateRequest) MakeResponse() *SetEndDateResponse {
+	return &SetEndDateResponse{}
+}
+
+// OpNum returns the operation number of EndDate operation.
+func (o *SetEndDateRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of EndDate operation.
+func (o *SetEndDateRequest) OpName() string { return "/ISchedule/v0/EndDate" }
+
 // SetEndDateResponse structure represents the EndDate operation response
 type SetEndDateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1229,8 +1281,10 @@ type xxx_GetStartTimeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of StartTime operation.
 func (o *xxx_GetStartTimeOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of StartTime operation.
 func (o *xxx_GetStartTimeOperation) OpName() string { return "/ISchedule/v0/StartTime" }
 
 func (o *xxx_GetStartTimeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1420,6 +1474,17 @@ func (o *GetStartTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetStartTimeRequest build a response structure from the given request structure.
+func (o *GetStartTimeRequest) MakeResponse() *GetStartTimeResponse {
+	return &GetStartTimeResponse{}
+}
+
+// OpNum returns the operation number of StartTime operation.
+func (o *GetStartTimeRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of StartTime operation.
+func (o *GetStartTimeRequest) OpName() string { return "/ISchedule/v0/StartTime" }
+
 // GetStartTimeResponse structure represents the StartTime operation response
 type GetStartTimeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1470,8 +1535,10 @@ type xxx_SetStartTimeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of StartTime operation.
 func (o *xxx_SetStartTimeOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of StartTime operation.
 func (o *xxx_SetStartTimeOperation) OpName() string { return "/ISchedule/v0/StartTime" }
 
 func (o *xxx_SetStartTimeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1645,6 +1712,17 @@ func (o *SetStartTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeSetStartTimeRequest build a response structure from the given request structure.
+func (o *SetStartTimeRequest) MakeResponse() *SetStartTimeResponse {
+	return &SetStartTimeResponse{}
+}
+
+// OpNum returns the operation number of StartTime operation.
+func (o *SetStartTimeRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of StartTime operation.
+func (o *SetStartTimeRequest) OpName() string { return "/ISchedule/v0/StartTime" }
+
 // SetStartTimeResponse structure represents the StartTime operation response
 type SetStartTimeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1692,8 +1770,10 @@ type xxx_GetDaysOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Days operation.
 func (o *xxx_GetDaysOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of Days operation.
 func (o *xxx_GetDaysOperation) OpName() string { return "/ISchedule/v0/Days" }
 
 func (o *xxx_GetDaysOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1849,6 +1929,17 @@ func (o *GetDaysRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetDaysRequest build a response structure from the given request structure.
+func (o *GetDaysRequest) MakeResponse() *GetDaysResponse {
+	return &GetDaysResponse{}
+}
+
+// OpNum returns the operation number of Days operation.
+func (o *GetDaysRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of Days operation.
+func (o *GetDaysRequest) OpName() string { return "/ISchedule/v0/Days" }
+
 // GetDaysResponse structure represents the Days operation response
 type GetDaysResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1899,8 +1990,10 @@ type xxx_SetDaysOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Days operation.
 func (o *xxx_SetDaysOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of Days operation.
 func (o *xxx_SetDaysOperation) OpName() string { return "/ISchedule/v0/Days" }
 
 func (o *xxx_SetDaysOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2058,6 +2151,17 @@ func (o *SetDaysRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetDaysRequest build a response structure from the given request structure.
+func (o *SetDaysRequest) MakeResponse() *SetDaysResponse {
+	return &SetDaysResponse{}
+}
+
+// OpNum returns the operation number of Days operation.
+func (o *SetDaysRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of Days operation.
+func (o *SetDaysRequest) OpName() string { return "/ISchedule/v0/Days" }
 
 // SetDaysResponse structure represents the Days operation response
 type SetDaysResponse struct {

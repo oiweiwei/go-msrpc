@@ -128,8 +128,10 @@ type xxx_SendMessageOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrSendMessage operation.
 func (o *xxx_SendMessageOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of NetrSendMessage operation.
 func (o *xxx_SendMessageOperation) OpName() string { return "/msgsvcsend/v1/NetrSendMessage" }
 
 func (o *xxx_SendMessageOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -270,6 +272,17 @@ func (o *SendMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSendMessageRequest build a response structure from the given request structure.
+func (o *SendMessageRequest) MakeResponse() *SendMessageResponse {
+	return &SendMessageResponse{}
+}
+
+// OpNum returns the operation number of NetrSendMessage operation.
+func (o *SendMessageRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of NetrSendMessage operation.
+func (o *SendMessageRequest) OpName() string { return "/msgsvcsend/v1/NetrSendMessage" }
 
 // SendMessageResponse structure represents the NetrSendMessage operation response
 type SendMessageResponse struct {

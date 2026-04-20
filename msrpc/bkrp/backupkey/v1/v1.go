@@ -98,8 +98,10 @@ type xxx_BackupKeyOperation struct {
 	Return        uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BackuprKey operation.
 func (o *xxx_BackupKeyOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of BackuprKey operation.
 func (o *xxx_BackupKeyOperation) OpName() string { return "/BackupKey/v1/BackuprKey" }
 
 func (o *xxx_BackupKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -418,6 +420,17 @@ func (o *BackupKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeBackupKeyRequest build a response structure from the given request structure.
+func (o *BackupKeyRequest) MakeResponse() *BackupKeyResponse {
+	return &BackupKeyResponse{}
+}
+
+// OpNum returns the operation number of BackuprKey operation.
+func (o *BackupKeyRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of BackuprKey operation.
+func (o *BackupKeyRequest) OpName() string { return "/BackupKey/v1/BackuprKey" }
 
 // BackupKeyResponse structure represents the BackuprKey operation response
 type BackupKeyResponse struct {

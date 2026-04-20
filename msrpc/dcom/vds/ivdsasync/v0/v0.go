@@ -203,8 +203,10 @@ type xxx_CancelOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Cancel operation.
 func (o *xxx_CancelOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Cancel operation.
 func (o *xxx_CancelOperation) OpName() string { return "/IVdsAsync/v0/Cancel" }
 
 func (o *xxx_CancelOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -348,6 +350,17 @@ func (o *CancelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeCancelRequest build a response structure from the given request structure.
+func (o *CancelRequest) MakeResponse() *CancelResponse {
+	return &CancelResponse{}
+}
+
+// OpNum returns the operation number of Cancel operation.
+func (o *CancelRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Cancel operation.
+func (o *CancelRequest) OpName() string { return "/IVdsAsync/v0/Cancel" }
+
 // CancelResponse structure represents the Cancel operation response
 type CancelResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -396,8 +409,10 @@ type xxx_WaitOperation struct {
 	Return      int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Wait operation.
 func (o *xxx_WaitOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Wait operation.
 func (o *xxx_WaitOperation) OpName() string { return "/IVdsAsync/v0/Wait" }
 
 func (o *xxx_WaitOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -580,6 +595,17 @@ func (o *WaitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeWaitRequest build a response structure from the given request structure.
+func (o *WaitRequest) MakeResponse() *WaitResponse {
+	return &WaitResponse{}
+}
+
+// OpNum returns the operation number of Wait operation.
+func (o *WaitRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Wait operation.
+func (o *WaitRequest) OpName() string { return "/IVdsAsync/v0/Wait" }
+
 // WaitResponse structure represents the Wait operation response
 type WaitResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -642,8 +668,10 @@ type xxx_QueryStatusOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryStatus operation.
 func (o *xxx_QueryStatusOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of QueryStatus operation.
 func (o *xxx_QueryStatusOperation) OpName() string { return "/IVdsAsync/v0/QueryStatus" }
 
 func (o *xxx_QueryStatusOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -810,6 +838,17 @@ func (o *QueryStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeQueryStatusRequest build a response structure from the given request structure.
+func (o *QueryStatusRequest) MakeResponse() *QueryStatusResponse {
+	return &QueryStatusResponse{}
+}
+
+// OpNum returns the operation number of QueryStatus operation.
+func (o *QueryStatusRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of QueryStatus operation.
+func (o *QueryStatusRequest) OpName() string { return "/IVdsAsync/v0/QueryStatus" }
 
 // QueryStatusResponse structure represents the QueryStatus operation response
 type QueryStatusResponse struct {

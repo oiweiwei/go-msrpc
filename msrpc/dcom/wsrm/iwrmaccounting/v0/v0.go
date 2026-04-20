@@ -834,8 +834,10 @@ type xxx_CreateAccountingDBOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateAccountingDb operation.
 func (o *xxx_CreateAccountingDBOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of CreateAccountingDb operation.
 func (o *xxx_CreateAccountingDBOperation) OpName() string {
 	return "/IWRMAccounting/v0/CreateAccountingDb"
 }
@@ -1155,6 +1157,17 @@ func (o *CreateAccountingDBRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeCreateAccountingDBRequest build a response structure from the given request structure.
+func (o *CreateAccountingDBRequest) MakeResponse() *CreateAccountingDBResponse {
+	return &CreateAccountingDBResponse{}
+}
+
+// OpNum returns the operation number of CreateAccountingDb operation.
+func (o *CreateAccountingDBRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of CreateAccountingDb operation.
+func (o *CreateAccountingDBRequest) OpName() string { return "/IWRMAccounting/v0/CreateAccountingDb" }
+
 // CreateAccountingDBResponse structure represents the CreateAccountingDb operation response
 type CreateAccountingDBResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1202,8 +1215,10 @@ type xxx_GetAccountingMetadataOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetAccountingMetadata operation.
 func (o *xxx_GetAccountingMetadataOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of GetAccountingMetadata operation.
 func (o *xxx_GetAccountingMetadataOperation) OpName() string {
 	return "/IWRMAccounting/v0/GetAccountingMetadata"
 }
@@ -1395,6 +1410,19 @@ func (o *GetAccountingMetadataRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetAccountingMetadataRequest build a response structure from the given request structure.
+func (o *GetAccountingMetadataRequest) MakeResponse() *GetAccountingMetadataResponse {
+	return &GetAccountingMetadataResponse{}
+}
+
+// OpNum returns the operation number of GetAccountingMetadata operation.
+func (o *GetAccountingMetadataRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GetAccountingMetadata operation.
+func (o *GetAccountingMetadataRequest) OpName() string {
+	return "/IWRMAccounting/v0/GetAccountingMetadata"
+}
+
 // GetAccountingMetadataResponse structure represents the GetAccountingMetadata operation response
 type GetAccountingMetadataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1451,8 +1479,10 @@ type xxx_ExecuteAccountingQueryOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExecuteAccountingQuery operation.
 func (o *xxx_ExecuteAccountingQueryOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ExecuteAccountingQuery operation.
 func (o *xxx_ExecuteAccountingQueryOperation) OpName() string {
 	return "/IWRMAccounting/v0/ExecuteAccountingQuery"
 }
@@ -1819,6 +1849,19 @@ func (o *ExecuteAccountingQueryRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeExecuteAccountingQueryRequest build a response structure from the given request structure.
+func (o *ExecuteAccountingQueryRequest) MakeResponse() *ExecuteAccountingQueryResponse {
+	return &ExecuteAccountingQueryResponse{}
+}
+
+// OpNum returns the operation number of ExecuteAccountingQuery operation.
+func (o *ExecuteAccountingQueryRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ExecuteAccountingQuery operation.
+func (o *ExecuteAccountingQueryRequest) OpName() string {
+	return "/IWRMAccounting/v0/ExecuteAccountingQuery"
+}
+
 // ExecuteAccountingQueryResponse structure represents the ExecuteAccountingQuery operation response
 type ExecuteAccountingQueryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1879,8 +1922,10 @@ type xxx_GetRawAccountingDataOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetRawAccountingData operation.
 func (o *xxx_GetRawAccountingDataOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of GetRawAccountingData operation.
 func (o *xxx_GetRawAccountingDataOperation) OpName() string {
 	return "/IWRMAccounting/v0/GetRawAccountingData"
 }
@@ -2247,6 +2292,19 @@ func (o *GetRawAccountingDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetRawAccountingDataRequest build a response structure from the given request structure.
+func (o *GetRawAccountingDataRequest) MakeResponse() *GetRawAccountingDataResponse {
+	return &GetRawAccountingDataResponse{}
+}
+
+// OpNum returns the operation number of GetRawAccountingData operation.
+func (o *GetRawAccountingDataRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of GetRawAccountingData operation.
+func (o *GetRawAccountingDataRequest) OpName() string {
+	return "/IWRMAccounting/v0/GetRawAccountingData"
+}
+
 // GetRawAccountingDataResponse structure represents the GetRawAccountingData operation response
 type GetRawAccountingDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2393,8 +2451,10 @@ type xxx_GetNextAccountingDataBatchOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNextAccountingDataBatch operation.
 func (o *xxx_GetNextAccountingDataBatchOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of GetNextAccountingDataBatch operation.
 func (o *xxx_GetNextAccountingDataBatchOperation) OpName() string {
 	return "/IWRMAccounting/v0/GetNextAccountingDataBatch"
 }
@@ -2606,6 +2666,19 @@ func (o *GetNextAccountingDataBatchRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeGetNextAccountingDataBatchRequest build a response structure from the given request structure.
+func (o *GetNextAccountingDataBatchRequest) MakeResponse() *GetNextAccountingDataBatchResponse {
+	return &GetNextAccountingDataBatchResponse{}
+}
+
+// OpNum returns the operation number of GetNextAccountingDataBatch operation.
+func (o *GetNextAccountingDataBatchRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of GetNextAccountingDataBatch operation.
+func (o *GetNextAccountingDataBatchRequest) OpName() string {
+	return "/IWRMAccounting/v0/GetNextAccountingDataBatch"
+}
+
 // GetNextAccountingDataBatchResponse structure represents the GetNextAccountingDataBatch operation response
 type GetNextAccountingDataBatchResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2664,8 +2737,10 @@ type xxx_DeleteAccountingDataOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteAccountingData operation.
 func (o *xxx_DeleteAccountingDataOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of DeleteAccountingData operation.
 func (o *xxx_DeleteAccountingDataOperation) OpName() string {
 	return "/IWRMAccounting/v0/DeleteAccountingData"
 }
@@ -2966,6 +3041,19 @@ func (o *DeleteAccountingDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeDeleteAccountingDataRequest build a response structure from the given request structure.
+func (o *DeleteAccountingDataRequest) MakeResponse() *DeleteAccountingDataResponse {
+	return &DeleteAccountingDataResponse{}
+}
+
+// OpNum returns the operation number of DeleteAccountingData operation.
+func (o *DeleteAccountingDataRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of DeleteAccountingData operation.
+func (o *DeleteAccountingDataRequest) OpName() string {
+	return "/IWRMAccounting/v0/DeleteAccountingData"
+}
+
 // DeleteAccountingDataResponse structure represents the DeleteAccountingData operation response
 type DeleteAccountingDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3012,8 +3100,10 @@ type xxx_DefragmentDBOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DefragmentDB operation.
 func (o *xxx_DefragmentDBOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of DefragmentDB operation.
 func (o *xxx_DefragmentDBOperation) OpName() string { return "/IWRMAccounting/v0/DefragmentDB" }
 
 func (o *xxx_DefragmentDBOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3157,6 +3247,17 @@ func (o *DefragmentDBRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeDefragmentDBRequest build a response structure from the given request structure.
+func (o *DefragmentDBRequest) MakeResponse() *DefragmentDBResponse {
+	return &DefragmentDBResponse{}
+}
+
+// OpNum returns the operation number of DefragmentDB operation.
+func (o *DefragmentDBRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of DefragmentDB operation.
+func (o *DefragmentDBRequest) OpName() string { return "/IWRMAccounting/v0/DefragmentDB" }
+
 // DefragmentDBResponse structure represents the DefragmentDB operation response
 type DefragmentDBResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3204,8 +3305,10 @@ type xxx_CancelAccountingQueryOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CancelAccountingQuery operation.
 func (o *xxx_CancelAccountingQueryOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of CancelAccountingQuery operation.
 func (o *xxx_CancelAccountingQueryOperation) OpName() string {
 	return "/IWRMAccounting/v0/CancelAccountingQuery"
 }
@@ -3376,6 +3479,19 @@ func (o *CancelAccountingQueryRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeCancelAccountingQueryRequest build a response structure from the given request structure.
+func (o *CancelAccountingQueryRequest) MakeResponse() *CancelAccountingQueryResponse {
+	return &CancelAccountingQueryResponse{}
+}
+
+// OpNum returns the operation number of CancelAccountingQuery operation.
+func (o *CancelAccountingQueryRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of CancelAccountingQuery operation.
+func (o *CancelAccountingQueryRequest) OpName() string {
+	return "/IWRMAccounting/v0/CancelAccountingQuery"
+}
+
 // CancelAccountingQueryResponse structure represents the CancelAccountingQuery operation response
 type CancelAccountingQueryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3423,8 +3539,10 @@ type xxx_RegisterAccountingClientOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RegisterAccountingClient operation.
 func (o *xxx_RegisterAccountingClientOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of RegisterAccountingClient operation.
 func (o *xxx_RegisterAccountingClientOperation) OpName() string {
 	return "/IWRMAccounting/v0/RegisterAccountingClient"
 }
@@ -3620,6 +3738,19 @@ func (o *RegisterAccountingClientRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeRegisterAccountingClientRequest build a response structure from the given request structure.
+func (o *RegisterAccountingClientRequest) MakeResponse() *RegisterAccountingClientResponse {
+	return &RegisterAccountingClientResponse{}
+}
+
+// OpNum returns the operation number of RegisterAccountingClient operation.
+func (o *RegisterAccountingClientRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of RegisterAccountingClient operation.
+func (o *RegisterAccountingClientRequest) OpName() string {
+	return "/IWRMAccounting/v0/RegisterAccountingClient"
+}
+
 // RegisterAccountingClientResponse structure represents the RegisterAccountingClient operation response
 type RegisterAccountingClientResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3667,8 +3798,10 @@ type xxx_DumpAccountingDataOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DumpAccountingData operation.
 func (o *xxx_DumpAccountingDataOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of DumpAccountingData operation.
 func (o *xxx_DumpAccountingDataOperation) OpName() string {
 	return "/IWRMAccounting/v0/DumpAccountingData"
 }
@@ -3865,6 +3998,17 @@ func (o *DumpAccountingDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeDumpAccountingDataRequest build a response structure from the given request structure.
+func (o *DumpAccountingDataRequest) MakeResponse() *DumpAccountingDataResponse {
+	return &DumpAccountingDataResponse{}
+}
+
+// OpNum returns the operation number of DumpAccountingData operation.
+func (o *DumpAccountingDataRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of DumpAccountingData operation.
+func (o *DumpAccountingDataRequest) OpName() string { return "/IWRMAccounting/v0/DumpAccountingData" }
+
 // DumpAccountingDataResponse structure represents the DumpAccountingData operation response
 type DumpAccountingDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3912,8 +4056,10 @@ type xxx_GetAccountingClientsOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetAccountingClients operation.
 func (o *xxx_GetAccountingClientsOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of GetAccountingClients operation.
 func (o *xxx_GetAccountingClientsOperation) OpName() string {
 	return "/IWRMAccounting/v0/GetAccountingClients"
 }
@@ -4105,6 +4251,19 @@ func (o *GetAccountingClientsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetAccountingClientsRequest build a response structure from the given request structure.
+func (o *GetAccountingClientsRequest) MakeResponse() *GetAccountingClientsResponse {
+	return &GetAccountingClientsResponse{}
+}
+
+// OpNum returns the operation number of GetAccountingClients operation.
+func (o *GetAccountingClientsRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of GetAccountingClients operation.
+func (o *GetAccountingClientsRequest) OpName() string {
+	return "/IWRMAccounting/v0/GetAccountingClients"
+}
+
 // GetAccountingClientsResponse structure represents the GetAccountingClients operation response
 type GetAccountingClientsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4157,8 +4316,10 @@ type xxx_SetAccountingClientStatusOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetAccountingClientStatus operation.
 func (o *xxx_SetAccountingClientStatusOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of SetAccountingClientStatus operation.
 func (o *xxx_SetAccountingClientStatusOperation) OpName() string {
 	return "/IWRMAccounting/v0/SetAccountingClientStatus"
 }
@@ -4357,6 +4518,19 @@ func (o *SetAccountingClientStatusRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeSetAccountingClientStatusRequest build a response structure from the given request structure.
+func (o *SetAccountingClientStatusRequest) MakeResponse() *SetAccountingClientStatusResponse {
+	return &SetAccountingClientStatusResponse{}
+}
+
+// OpNum returns the operation number of SetAccountingClientStatus operation.
+func (o *SetAccountingClientStatusRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of SetAccountingClientStatus operation.
+func (o *SetAccountingClientStatusRequest) OpName() string {
+	return "/IWRMAccounting/v0/SetAccountingClientStatus"
+}
+
 // SetAccountingClientStatusResponse structure represents the SetAccountingClientStatus operation response
 type SetAccountingClientStatusResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4403,8 +4577,10 @@ type xxx_CheckAccountingConnectionOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CheckAccountingConnection operation.
 func (o *xxx_CheckAccountingConnectionOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of CheckAccountingConnection operation.
 func (o *xxx_CheckAccountingConnectionOperation) OpName() string {
 	return "/IWRMAccounting/v0/CheckAccountingConnection"
 }
@@ -4550,6 +4726,19 @@ func (o *CheckAccountingConnectionRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeCheckAccountingConnectionRequest build a response structure from the given request structure.
+func (o *CheckAccountingConnectionRequest) MakeResponse() *CheckAccountingConnectionResponse {
+	return &CheckAccountingConnectionResponse{}
+}
+
+// OpNum returns the operation number of CheckAccountingConnection operation.
+func (o *CheckAccountingConnectionRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of CheckAccountingConnection operation.
+func (o *CheckAccountingConnectionRequest) OpName() string {
+	return "/IWRMAccounting/v0/CheckAccountingConnection"
+}
+
 // CheckAccountingConnectionResponse structure represents the CheckAccountingConnection operation response
 type CheckAccountingConnectionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4598,8 +4787,10 @@ type xxx_SetClientPermissionsOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetClientPermissions operation.
 func (o *xxx_SetClientPermissionsOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of SetClientPermissions operation.
 func (o *xxx_SetClientPermissionsOperation) OpName() string {
 	return "/IWRMAccounting/v0/SetClientPermissions"
 }
@@ -4818,6 +5009,19 @@ func (o *SetClientPermissionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetClientPermissionsRequest build a response structure from the given request structure.
+func (o *SetClientPermissionsRequest) MakeResponse() *SetClientPermissionsResponse {
+	return &SetClientPermissionsResponse{}
+}
+
+// OpNum returns the operation number of SetClientPermissions operation.
+func (o *SetClientPermissionsRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of SetClientPermissions operation.
+func (o *SetClientPermissionsRequest) OpName() string {
+	return "/IWRMAccounting/v0/SetClientPermissions"
 }
 
 // SetClientPermissionsResponse structure represents the SetClientPermissions operation response

@@ -374,8 +374,10 @@ type xxx_ReadOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Read operation.
 func (o *xxx_ReadOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Read operation.
 func (o *xxx_ReadOperation) OpName() string { return "/IStream/v0/Read" }
 
 func (o *xxx_ReadOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -591,6 +593,22 @@ func (o *ReadRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeReadRequest build a response structure from the given request structure.
+func (o *ReadRequest) MakeResponse() *ReadResponse {
+	if o == nil {
+		return &ReadResponse{}
+	}
+	return &ReadResponse{
+		Length: o.Length,
+	}
+}
+
+// OpNum returns the operation number of Read operation.
+func (o *ReadRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Read operation.
+func (o *ReadRequest) OpName() string { return "/IStream/v0/Read" }
+
 // ReadResponse structure represents the Read operation response
 type ReadResponse struct {
 	// XXX: cb is an implicit input depedency for output parameters
@@ -657,8 +675,10 @@ type xxx_WriteOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Write operation.
 func (o *xxx_WriteOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Write operation.
 func (o *xxx_WriteOperation) OpName() string { return "/IStream/v0/Write" }
 
 func (o *xxx_WriteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -880,6 +900,17 @@ func (o *WriteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeWriteRequest build a response structure from the given request structure.
+func (o *WriteRequest) MakeResponse() *WriteResponse {
+	return &WriteResponse{}
+}
+
+// OpNum returns the operation number of Write operation.
+func (o *WriteRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Write operation.
+func (o *WriteRequest) OpName() string { return "/IStream/v0/Write" }
+
 // WriteResponse structure represents the Write operation response
 type WriteResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -932,8 +963,10 @@ type xxx_SeekOperation struct {
 	Return      int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Seek operation.
 func (o *xxx_SeekOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of Seek operation.
 func (o *xxx_SeekOperation) OpName() string { return "/IStream/v0/Seek" }
 
 func (o *xxx_SeekOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1137,6 +1170,17 @@ func (o *SeekRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSeekRequest build a response structure from the given request structure.
+func (o *SeekRequest) MakeResponse() *SeekResponse {
+	return &SeekResponse{}
+}
+
+// OpNum returns the operation number of Seek operation.
+func (o *SeekRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of Seek operation.
+func (o *SeekRequest) OpName() string { return "/IStream/v0/Seek" }
+
 // SeekResponse structure represents the Seek operation response
 type SeekResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1187,8 +1231,10 @@ type xxx_SetSizeOperation struct {
 	Return  int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetSize operation.
 func (o *xxx_SetSizeOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of SetSize operation.
 func (o *xxx_SetSizeOperation) OpName() string { return "/IStream/v0/SetSize" }
 
 func (o *xxx_SetSizeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1356,6 +1402,17 @@ func (o *SetSizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetSizeRequest build a response structure from the given request structure.
+func (o *SetSizeRequest) MakeResponse() *SetSizeResponse {
+	return &SetSizeResponse{}
+}
+
+// OpNum returns the operation number of SetSize operation.
+func (o *SetSizeRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of SetSize operation.
+func (o *SetSizeRequest) OpName() string { return "/IStream/v0/SetSize" }
+
 // SetSizeResponse structure represents the SetSize operation response
 type SetSizeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1406,8 +1463,10 @@ type xxx_CopyToOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CopyTo operation.
 func (o *xxx_CopyToOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of CopyTo operation.
 func (o *xxx_CopyToOperation) OpName() string { return "/IStream/v0/CopyTo" }
 
 func (o *xxx_CopyToOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1666,6 +1725,17 @@ func (o *CopyToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeCopyToRequest build a response structure from the given request structure.
+func (o *CopyToRequest) MakeResponse() *CopyToResponse {
+	return &CopyToResponse{}
+}
+
+// OpNum returns the operation number of CopyTo operation.
+func (o *CopyToRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of CopyTo operation.
+func (o *CopyToRequest) OpName() string { return "/IStream/v0/CopyTo" }
+
 // CopyToResponse structure represents the CopyTo operation response
 type CopyToResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1719,8 +1789,10 @@ type xxx_CommitOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Commit operation.
 func (o *xxx_CommitOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Commit operation.
 func (o *xxx_CommitOperation) OpName() string { return "/IStream/v0/Commit" }
 
 func (o *xxx_CommitOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1879,6 +1951,17 @@ func (o *CommitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeCommitRequest build a response structure from the given request structure.
+func (o *CommitRequest) MakeResponse() *CommitResponse {
+	return &CommitResponse{}
+}
+
+// OpNum returns the operation number of Commit operation.
+func (o *CommitRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Commit operation.
+func (o *CommitRequest) OpName() string { return "/IStream/v0/Commit" }
+
 // CommitResponse structure represents the Commit operation response
 type CommitResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1925,8 +2008,10 @@ type xxx_RevertOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Revert operation.
 func (o *xxx_RevertOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Revert operation.
 func (o *xxx_RevertOperation) OpName() string { return "/IStream/v0/Revert" }
 
 func (o *xxx_RevertOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2070,6 +2155,17 @@ func (o *RevertRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeRevertRequest build a response structure from the given request structure.
+func (o *RevertRequest) MakeResponse() *RevertResponse {
+	return &RevertResponse{}
+}
+
+// OpNum returns the operation number of Revert operation.
+func (o *RevertRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Revert operation.
+func (o *RevertRequest) OpName() string { return "/IStream/v0/Revert" }
+
 // RevertResponse structure represents the Revert operation response
 type RevertResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2119,8 +2215,10 @@ type xxx_LockRegionOperation struct {
 	Return   int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LockRegion operation.
 func (o *xxx_LockRegionOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of LockRegion operation.
 func (o *xxx_LockRegionOperation) OpName() string { return "/IStream/v0/LockRegion" }
 
 func (o *xxx_LockRegionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2327,6 +2425,17 @@ func (o *LockRegionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeLockRegionRequest build a response structure from the given request structure.
+func (o *LockRegionRequest) MakeResponse() *LockRegionResponse {
+	return &LockRegionResponse{}
+}
+
+// OpNum returns the operation number of LockRegion operation.
+func (o *LockRegionRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of LockRegion operation.
+func (o *LockRegionRequest) OpName() string { return "/IStream/v0/LockRegion" }
+
 // LockRegionResponse structure represents the LockRegion operation response
 type LockRegionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2376,8 +2485,10 @@ type xxx_UnlockRegionOperation struct {
 	Return   int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UnlockRegion operation.
 func (o *xxx_UnlockRegionOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of UnlockRegion operation.
 func (o *xxx_UnlockRegionOperation) OpName() string { return "/IStream/v0/UnlockRegion" }
 
 func (o *xxx_UnlockRegionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2584,6 +2695,17 @@ func (o *UnlockRegionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeUnlockRegionRequest build a response structure from the given request structure.
+func (o *UnlockRegionRequest) MakeResponse() *UnlockRegionResponse {
+	return &UnlockRegionResponse{}
+}
+
+// OpNum returns the operation number of UnlockRegion operation.
+func (o *UnlockRegionRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of UnlockRegion operation.
+func (o *UnlockRegionRequest) OpName() string { return "/IStream/v0/UnlockRegion" }
+
 // UnlockRegionResponse structure represents the UnlockRegion operation response
 type UnlockRegionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2632,8 +2754,10 @@ type xxx_StatOperation struct {
 	Return      int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Stat operation.
 func (o *xxx_StatOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of Stat operation.
 func (o *xxx_StatOperation) OpName() string { return "/IStream/v0/Stat" }
 
 func (o *xxx_StatOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2819,6 +2943,17 @@ func (o *StatRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeStatRequest build a response structure from the given request structure.
+func (o *StatRequest) MakeResponse() *StatResponse {
+	return &StatResponse{}
+}
+
+// OpNum returns the operation number of Stat operation.
+func (o *StatRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of Stat operation.
+func (o *StatRequest) OpName() string { return "/IStream/v0/Stat" }
+
 // StatResponse structure represents the Stat operation response
 type StatResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2869,8 +3004,10 @@ type xxx_CloneOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Clone operation.
 func (o *xxx_CloneOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of Clone operation.
 func (o *xxx_CloneOperation) OpName() string { return "/IStream/v0/Clone" }
 
 func (o *xxx_CloneOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3059,6 +3196,17 @@ func (o *CloneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCloneRequest build a response structure from the given request structure.
+func (o *CloneRequest) MakeResponse() *CloneResponse {
+	return &CloneResponse{}
+}
+
+// OpNum returns the operation number of Clone operation.
+func (o *CloneRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of Clone operation.
+func (o *CloneRequest) OpName() string { return "/IStream/v0/Clone" }
 
 // CloneResponse structure represents the Clone operation response
 type CloneResponse struct {

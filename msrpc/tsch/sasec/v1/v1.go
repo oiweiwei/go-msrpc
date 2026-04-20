@@ -161,8 +161,10 @@ type xxx_SetAccountInformationOperation struct {
 	Return   int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SASetAccountInformation operation.
 func (o *xxx_SetAccountInformationOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of SASetAccountInformation operation.
 func (o *xxx_SetAccountInformationOperation) OpName() string {
 	return "/sasec/v1/SASetAccountInformation"
 }
@@ -405,6 +407,17 @@ func (o *SetAccountInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeSetAccountInformationRequest build a response structure from the given request structure.
+func (o *SetAccountInformationRequest) MakeResponse() *SetAccountInformationResponse {
+	return &SetAccountInformationResponse{}
+}
+
+// OpNum returns the operation number of SASetAccountInformation operation.
+func (o *SetAccountInformationRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of SASetAccountInformation operation.
+func (o *SetAccountInformationRequest) OpName() string { return "/sasec/v1/SASetAccountInformation" }
+
 // SetAccountInformationResponse structure represents the SASetAccountInformation operation response
 type SetAccountInformationResponse struct {
 	// Return: The SASetAccountInformation return value.
@@ -448,8 +461,10 @@ type xxx_SetNSAccountInformationOperation struct {
 	Return   int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SASetNSAccountInformation operation.
 func (o *xxx_SetNSAccountInformationOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of SASetNSAccountInformation operation.
 func (o *xxx_SetNSAccountInformationOperation) OpName() string {
 	return "/sasec/v1/SASetNSAccountInformation"
 }
@@ -663,6 +678,19 @@ func (o *SetNSAccountInformationRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeSetNSAccountInformationRequest build a response structure from the given request structure.
+func (o *SetNSAccountInformationRequest) MakeResponse() *SetNSAccountInformationResponse {
+	return &SetNSAccountInformationResponse{}
+}
+
+// OpNum returns the operation number of SASetNSAccountInformation operation.
+func (o *SetNSAccountInformationRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of SASetNSAccountInformation operation.
+func (o *SetNSAccountInformationRequest) OpName() string {
+	return "/sasec/v1/SASetNSAccountInformation"
+}
+
 // SetNSAccountInformationResponse structure represents the SASetNSAccountInformation operation response
 type SetNSAccountInformationResponse struct {
 	// Return: The SASetNSAccountInformation return value.
@@ -706,8 +734,10 @@ type xxx_GetNSAccountInformationOperation struct {
 	Return     int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SAGetNSAccountInformation operation.
 func (o *xxx_GetNSAccountInformationOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of SAGetNSAccountInformation operation.
 func (o *xxx_GetNSAccountInformationOperation) OpName() string {
 	return "/sasec/v1/SAGetNSAccountInformation"
 }
@@ -971,6 +1001,24 @@ func (o *GetNSAccountInformationRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeGetNSAccountInformationRequest build a response structure from the given request structure.
+func (o *GetNSAccountInformationRequest) MakeResponse() *GetNSAccountInformationResponse {
+	if o == nil {
+		return &GetNSAccountInformationResponse{}
+	}
+	return &GetNSAccountInformationResponse{
+		BufferSize: o.BufferSize,
+	}
+}
+
+// OpNum returns the operation number of SAGetNSAccountInformation operation.
+func (o *GetNSAccountInformationRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of SAGetNSAccountInformation operation.
+func (o *GetNSAccountInformationRequest) OpName() string {
+	return "/sasec/v1/SAGetNSAccountInformation"
+}
+
 // GetNSAccountInformationResponse structure represents the SAGetNSAccountInformation operation response
 type GetNSAccountInformationResponse struct {
 	// XXX: ccBufferSize is an implicit input depedency for output parameters
@@ -1032,8 +1080,10 @@ type xxx_GetAccountInformationOperation struct {
 	Return     int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SAGetAccountInformation operation.
 func (o *xxx_GetAccountInformationOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SAGetAccountInformation operation.
 func (o *xxx_GetAccountInformationOperation) OpName() string {
 	return "/sasec/v1/SAGetAccountInformation"
 }
@@ -1312,6 +1362,22 @@ func (o *GetAccountInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetAccountInformationRequest build a response structure from the given request structure.
+func (o *GetAccountInformationRequest) MakeResponse() *GetAccountInformationResponse {
+	if o == nil {
+		return &GetAccountInformationResponse{}
+	}
+	return &GetAccountInformationResponse{
+		BufferSize: o.BufferSize,
+	}
+}
+
+// OpNum returns the operation number of SAGetAccountInformation operation.
+func (o *GetAccountInformationRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SAGetAccountInformation operation.
+func (o *GetAccountInformationRequest) OpName() string { return "/sasec/v1/SAGetAccountInformation" }
 
 // GetAccountInformationResponse structure represents the SAGetAccountInformation operation response
 type GetAccountInformationResponse struct {

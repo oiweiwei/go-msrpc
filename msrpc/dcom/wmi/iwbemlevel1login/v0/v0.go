@@ -233,8 +233,10 @@ type xxx_EstablishPositionOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EstablishPosition operation.
 func (o *xxx_EstablishPositionOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of EstablishPosition operation.
 func (o *xxx_EstablishPositionOperation) OpName() string {
 	return "/IWbemLevel1Login/v0/EstablishPosition"
 }
@@ -435,6 +437,17 @@ func (o *EstablishPositionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeEstablishPositionRequest build a response structure from the given request structure.
+func (o *EstablishPositionRequest) MakeResponse() *EstablishPositionResponse {
+	return &EstablishPositionResponse{}
+}
+
+// OpNum returns the operation number of EstablishPosition operation.
+func (o *EstablishPositionRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of EstablishPosition operation.
+func (o *EstablishPositionRequest) OpName() string { return "/IWbemLevel1Login/v0/EstablishPosition" }
+
 // EstablishPositionResponse structure represents the EstablishPosition operation response
 type EstablishPositionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -500,8 +513,10 @@ type xxx_RequestChallengeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RequestChallenge operation.
 func (o *xxx_RequestChallengeOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RequestChallenge operation.
 func (o *xxx_RequestChallengeOperation) OpName() string {
 	return "/IWbemLevel1Login/v0/RequestChallenge"
 }
@@ -762,6 +777,17 @@ func (o *RequestChallengeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeRequestChallengeRequest build a response structure from the given request structure.
+func (o *RequestChallengeRequest) MakeResponse() *RequestChallengeResponse {
+	return &RequestChallengeResponse{}
+}
+
+// OpNum returns the operation number of RequestChallenge operation.
+func (o *RequestChallengeRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RequestChallenge operation.
+func (o *RequestChallengeRequest) OpName() string { return "/IWbemLevel1Login/v0/RequestChallenge" }
+
 // RequestChallengeResponse structure represents the RequestChallenge operation response
 type RequestChallengeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -813,8 +839,10 @@ type xxx_WBEMLoginOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WBEMLogin operation.
 func (o *xxx_WBEMLoginOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of WBEMLogin operation.
 func (o *xxx_WBEMLoginOperation) OpName() string { return "/IWbemLevel1Login/v0/WBEMLogin" }
 
 func (o *xxx_WBEMLoginOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1114,6 +1142,17 @@ func (o *WBEMLoginRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeWBEMLoginRequest build a response structure from the given request structure.
+func (o *WBEMLoginRequest) MakeResponse() *WBEMLoginResponse {
+	return &WBEMLoginResponse{}
+}
+
+// OpNum returns the operation number of WBEMLogin operation.
+func (o *WBEMLoginRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of WBEMLogin operation.
+func (o *WBEMLoginRequest) OpName() string { return "/IWbemLevel1Login/v0/WBEMLogin" }
+
 // WBEMLoginResponse structure represents the WBEMLogin operation response
 type WBEMLoginResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1165,8 +1204,10 @@ type xxx_NTLMLoginOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NTLMLogin operation.
 func (o *xxx_NTLMLoginOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of NTLMLogin operation.
 func (o *xxx_NTLMLoginOperation) OpName() string { return "/IWbemLevel1Login/v0/NTLMLogin" }
 
 func (o *xxx_NTLMLoginOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1513,6 +1554,17 @@ func (o *NTLMLoginRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeNTLMLoginRequest build a response structure from the given request structure.
+func (o *NTLMLoginRequest) MakeResponse() *NTLMLoginResponse {
+	return &NTLMLoginResponse{}
+}
+
+// OpNum returns the operation number of NTLMLogin operation.
+func (o *NTLMLoginRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of NTLMLogin operation.
+func (o *NTLMLoginRequest) OpName() string { return "/IWbemLevel1Login/v0/NTLMLogin" }
 
 // NTLMLoginResponse structure represents the NTLMLogin operation response
 type NTLMLoginResponse struct {

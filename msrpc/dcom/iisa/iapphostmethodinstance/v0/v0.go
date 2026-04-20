@@ -292,8 +292,10 @@ type xxx_GetInputOperation struct {
 	Return       int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Input operation.
 func (o *xxx_GetInputOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Input operation.
 func (o *xxx_GetInputOperation) OpName() string { return "/IAppHostMethodInstance/v0/Input" }
 
 func (o *xxx_GetInputOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -483,6 +485,17 @@ func (o *GetInputRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeGetInputRequest build a response structure from the given request structure.
+func (o *GetInputRequest) MakeResponse() *GetInputResponse {
+	return &GetInputResponse{}
+}
+
+// OpNum returns the operation number of Input operation.
+func (o *GetInputRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Input operation.
+func (o *GetInputRequest) OpName() string { return "/IAppHostMethodInstance/v0/Input" }
+
 // GetInputResponse structure represents the Input operation response
 type GetInputResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -534,8 +547,10 @@ type xxx_GetOutputOperation struct {
 	Return        int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Output operation.
 func (o *xxx_GetOutputOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Output operation.
 func (o *xxx_GetOutputOperation) OpName() string { return "/IAppHostMethodInstance/v0/Output" }
 
 func (o *xxx_GetOutputOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -725,6 +740,17 @@ func (o *GetOutputRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetOutputRequest build a response structure from the given request structure.
+func (o *GetOutputRequest) MakeResponse() *GetOutputResponse {
+	return &GetOutputResponse{}
+}
+
+// OpNum returns the operation number of Output operation.
+func (o *GetOutputRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Output operation.
+func (o *GetOutputRequest) OpName() string { return "/IAppHostMethodInstance/v0/Output" }
+
 // GetOutputResponse structure represents the Output operation response
 type GetOutputResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -775,8 +801,10 @@ type xxx_ExecuteOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Execute operation.
 func (o *xxx_ExecuteOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of Execute operation.
 func (o *xxx_ExecuteOperation) OpName() string { return "/IAppHostMethodInstance/v0/Execute" }
 
 func (o *xxx_ExecuteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -920,6 +948,17 @@ func (o *ExecuteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeExecuteRequest build a response structure from the given request structure.
+func (o *ExecuteRequest) MakeResponse() *ExecuteResponse {
+	return &ExecuteResponse{}
+}
+
+// OpNum returns the operation number of Execute operation.
+func (o *ExecuteRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of Execute operation.
+func (o *ExecuteRequest) OpName() string { return "/IAppHostMethodInstance/v0/Execute" }
+
 // ExecuteResponse structure represents the Execute operation response
 type ExecuteResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -968,8 +1007,10 @@ type xxx_GetMetadataOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetMetadata operation.
 func (o *xxx_GetMetadataOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of GetMetadata operation.
 func (o *xxx_GetMetadataOperation) OpName() string { return "/IAppHostMethodInstance/v0/GetMetadata" }
 
 func (o *xxx_GetMetadataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1208,6 +1249,17 @@ func (o *GetMetadataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetMetadataRequest build a response structure from the given request structure.
+func (o *GetMetadataRequest) MakeResponse() *GetMetadataResponse {
+	return &GetMetadataResponse{}
+}
+
+// OpNum returns the operation number of GetMetadata operation.
+func (o *GetMetadataRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of GetMetadata operation.
+func (o *GetMetadataRequest) OpName() string { return "/IAppHostMethodInstance/v0/GetMetadata" }
+
 // GetMetadataResponse structure represents the GetMetadata operation response
 type GetMetadataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1259,8 +1311,10 @@ type xxx_SetMetadataOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetMetadata operation.
 func (o *xxx_SetMetadataOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of SetMetadata operation.
 func (o *xxx_SetMetadataOperation) OpName() string { return "/IAppHostMethodInstance/v0/SetMetadata" }
 
 func (o *xxx_SetMetadataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1482,6 +1536,17 @@ func (o *SetMetadataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetMetadataRequest build a response structure from the given request structure.
+func (o *SetMetadataRequest) MakeResponse() *SetMetadataResponse {
+	return &SetMetadataResponse{}
+}
+
+// OpNum returns the operation number of SetMetadata operation.
+func (o *SetMetadataRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of SetMetadata operation.
+func (o *SetMetadataRequest) OpName() string { return "/IAppHostMethodInstance/v0/SetMetadata" }
 
 // SetMetadataResponse structure represents the SetMetadata operation response
 type SetMetadataResponse struct {

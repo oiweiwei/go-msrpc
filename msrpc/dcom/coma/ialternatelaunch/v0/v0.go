@@ -200,8 +200,10 @@ type xxx_CreateConfigurationOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateConfiguration operation.
 func (o *xxx_CreateConfigurationOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CreateConfiguration operation.
 func (o *xxx_CreateConfigurationOperation) OpName() string {
 	return "/IAlternateLaunch/v0/CreateConfiguration"
 }
@@ -628,6 +630,19 @@ func (o *CreateConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeCreateConfigurationRequest build a response structure from the given request structure.
+func (o *CreateConfigurationRequest) MakeResponse() *CreateConfigurationResponse {
+	return &CreateConfigurationResponse{}
+}
+
+// OpNum returns the operation number of CreateConfiguration operation.
+func (o *CreateConfigurationRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of CreateConfiguration operation.
+func (o *CreateConfigurationRequest) OpName() string {
+	return "/IAlternateLaunch/v0/CreateConfiguration"
+}
+
 // CreateConfigurationResponse structure represents the CreateConfiguration operation response
 type CreateConfigurationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -675,8 +690,10 @@ type xxx_DeleteConfigurationOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteConfiguration operation.
 func (o *xxx_DeleteConfigurationOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of DeleteConfiguration operation.
 func (o *xxx_DeleteConfigurationOperation) OpName() string {
 	return "/IAlternateLaunch/v0/DeleteConfiguration"
 }
@@ -846,6 +863,19 @@ func (o *DeleteConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeDeleteConfigurationRequest build a response structure from the given request structure.
+func (o *DeleteConfigurationRequest) MakeResponse() *DeleteConfigurationResponse {
+	return &DeleteConfigurationResponse{}
+}
+
+// OpNum returns the operation number of DeleteConfiguration operation.
+func (o *DeleteConfigurationRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of DeleteConfiguration operation.
+func (o *DeleteConfigurationRequest) OpName() string {
+	return "/IAlternateLaunch/v0/DeleteConfiguration"
 }
 
 // DeleteConfigurationResponse structure represents the DeleteConfiguration operation response

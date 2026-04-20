@@ -191,8 +191,10 @@ type xxx_GetWindowsDriverUpdateEntriesOperation struct {
 	Return      int32                                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WindowsDriverUpdateEntries operation.
 func (o *xxx_GetWindowsDriverUpdateEntriesOperation) OpNum() int { return 65 }
 
+// OpName returns the operation name of WindowsDriverUpdateEntries operation.
 func (o *xxx_GetWindowsDriverUpdateEntriesOperation) OpName() string {
 	return "/IWindowsDriverUpdate4/v0/WindowsDriverUpdateEntries"
 }
@@ -384,6 +386,19 @@ func (o *GetWindowsDriverUpdateEntriesRequest) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
+// MakeGetWindowsDriverUpdateEntriesRequest build a response structure from the given request structure.
+func (o *GetWindowsDriverUpdateEntriesRequest) MakeResponse() *GetWindowsDriverUpdateEntriesResponse {
+	return &GetWindowsDriverUpdateEntriesResponse{}
+}
+
+// OpNum returns the operation number of WindowsDriverUpdateEntries operation.
+func (o *GetWindowsDriverUpdateEntriesRequest) OpNum() int { return 65 }
+
+// OpName returns the operation name of WindowsDriverUpdateEntries operation.
+func (o *GetWindowsDriverUpdateEntriesRequest) OpName() string {
+	return "/IWindowsDriverUpdate4/v0/WindowsDriverUpdateEntries"
+}
+
 // GetWindowsDriverUpdateEntriesResponse structure represents the WindowsDriverUpdateEntries operation response
 type GetWindowsDriverUpdateEntriesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -436,8 +451,10 @@ type xxx_GetPerUserOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PerUser operation.
 func (o *xxx_GetPerUserOperation) OpNum() int { return 66 }
 
+// OpName returns the operation name of PerUser operation.
 func (o *xxx_GetPerUserOperation) OpName() string { return "/IWindowsDriverUpdate4/v0/PerUser" }
 
 func (o *xxx_GetPerUserOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -592,6 +609,17 @@ func (o *GetPerUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetPerUserRequest build a response structure from the given request structure.
+func (o *GetPerUserRequest) MakeResponse() *GetPerUserResponse {
+	return &GetPerUserResponse{}
+}
+
+// OpNum returns the operation number of PerUser operation.
+func (o *GetPerUserRequest) OpNum() int { return 66 }
+
+// OpName returns the operation name of PerUser operation.
+func (o *GetPerUserRequest) OpName() string { return "/IWindowsDriverUpdate4/v0/PerUser" }
 
 // GetPerUserResponse structure represents the PerUser operation response
 type GetPerUserResponse struct {

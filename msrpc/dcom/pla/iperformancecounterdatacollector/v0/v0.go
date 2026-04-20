@@ -349,8 +349,10 @@ type xxx_GetDataSourceNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DataSourceName operation.
 func (o *xxx_GetDataSourceNameOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of DataSourceName operation.
 func (o *xxx_GetDataSourceNameOperation) OpName() string {
 	return "/IPerformanceCounterDataCollector/v0/DataSourceName"
 }
@@ -542,6 +544,19 @@ func (o *GetDataSourceNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetDataSourceNameRequest build a response structure from the given request structure.
+func (o *GetDataSourceNameRequest) MakeResponse() *GetDataSourceNameResponse {
+	return &GetDataSourceNameResponse{}
+}
+
+// OpNum returns the operation number of DataSourceName operation.
+func (o *GetDataSourceNameRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of DataSourceName operation.
+func (o *GetDataSourceNameRequest) OpName() string {
+	return "/IPerformanceCounterDataCollector/v0/DataSourceName"
+}
+
 // GetDataSourceNameResponse structure represents the DataSourceName operation response
 type GetDataSourceNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -592,8 +607,10 @@ type xxx_SetDataSourceNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DataSourceName operation.
 func (o *xxx_SetDataSourceNameOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of DataSourceName operation.
 func (o *xxx_SetDataSourceNameOperation) OpName() string {
 	return "/IPerformanceCounterDataCollector/v0/DataSourceName"
 }
@@ -788,6 +805,19 @@ func (o *SetDataSourceNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetDataSourceNameRequest build a response structure from the given request structure.
+func (o *SetDataSourceNameRequest) MakeResponse() *SetDataSourceNameResponse {
+	return &SetDataSourceNameResponse{}
+}
+
+// OpNum returns the operation number of DataSourceName operation.
+func (o *SetDataSourceNameRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of DataSourceName operation.
+func (o *SetDataSourceNameRequest) OpName() string {
+	return "/IPerformanceCounterDataCollector/v0/DataSourceName"
+}
+
 // SetDataSourceNameResponse structure represents the DataSourceName operation response
 type SetDataSourceNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -835,8 +865,10 @@ type xxx_GetPerformanceCountersOperation struct {
 	Return   int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PerformanceCounters operation.
 func (o *xxx_GetPerformanceCountersOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of PerformanceCounters operation.
 func (o *xxx_GetPerformanceCountersOperation) OpName() string {
 	return "/IPerformanceCounterDataCollector/v0/PerformanceCounters"
 }
@@ -1028,6 +1060,19 @@ func (o *GetPerformanceCountersRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetPerformanceCountersRequest build a response structure from the given request structure.
+func (o *GetPerformanceCountersRequest) MakeResponse() *GetPerformanceCountersResponse {
+	return &GetPerformanceCountersResponse{}
+}
+
+// OpNum returns the operation number of PerformanceCounters operation.
+func (o *GetPerformanceCountersRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of PerformanceCounters operation.
+func (o *GetPerformanceCountersRequest) OpName() string {
+	return "/IPerformanceCounterDataCollector/v0/PerformanceCounters"
+}
+
 // GetPerformanceCountersResponse structure represents the PerformanceCounters operation response
 type GetPerformanceCountersResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1078,8 +1123,10 @@ type xxx_SetPerformanceCountersOperation struct {
 	Return   int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PerformanceCounters operation.
 func (o *xxx_SetPerformanceCountersOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of PerformanceCounters operation.
 func (o *xxx_SetPerformanceCountersOperation) OpName() string {
 	return "/IPerformanceCounterDataCollector/v0/PerformanceCounters"
 }
@@ -1274,6 +1321,19 @@ func (o *SetPerformanceCountersRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeSetPerformanceCountersRequest build a response structure from the given request structure.
+func (o *SetPerformanceCountersRequest) MakeResponse() *SetPerformanceCountersResponse {
+	return &SetPerformanceCountersResponse{}
+}
+
+// OpNum returns the operation number of PerformanceCounters operation.
+func (o *SetPerformanceCountersRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of PerformanceCounters operation.
+func (o *SetPerformanceCountersRequest) OpName() string {
+	return "/IPerformanceCounterDataCollector/v0/PerformanceCounters"
+}
+
 // SetPerformanceCountersResponse structure represents the PerformanceCounters operation response
 type SetPerformanceCountersResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1321,8 +1381,10 @@ type xxx_GetLogFileFormatOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LogFileFormat operation.
 func (o *xxx_GetLogFileFormatOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of LogFileFormat operation.
 func (o *xxx_GetLogFileFormatOperation) OpName() string {
 	return "/IPerformanceCounterDataCollector/v0/LogFileFormat"
 }
@@ -1480,6 +1542,19 @@ func (o *GetLogFileFormatRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetLogFileFormatRequest build a response structure from the given request structure.
+func (o *GetLogFileFormatRequest) MakeResponse() *GetLogFileFormatResponse {
+	return &GetLogFileFormatResponse{}
+}
+
+// OpNum returns the operation number of LogFileFormat operation.
+func (o *GetLogFileFormatRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of LogFileFormat operation.
+func (o *GetLogFileFormatRequest) OpName() string {
+	return "/IPerformanceCounterDataCollector/v0/LogFileFormat"
+}
+
 // GetLogFileFormatResponse structure represents the LogFileFormat operation response
 type GetLogFileFormatResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1530,8 +1605,10 @@ type xxx_SetLogFileFormatOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LogFileFormat operation.
 func (o *xxx_SetLogFileFormatOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of LogFileFormat operation.
 func (o *xxx_SetLogFileFormatOperation) OpName() string {
 	return "/IPerformanceCounterDataCollector/v0/LogFileFormat"
 }
@@ -1692,6 +1769,19 @@ func (o *SetLogFileFormatRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetLogFileFormatRequest build a response structure from the given request structure.
+func (o *SetLogFileFormatRequest) MakeResponse() *SetLogFileFormatResponse {
+	return &SetLogFileFormatResponse{}
+}
+
+// OpNum returns the operation number of LogFileFormat operation.
+func (o *SetLogFileFormatRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of LogFileFormat operation.
+func (o *SetLogFileFormatRequest) OpName() string {
+	return "/IPerformanceCounterDataCollector/v0/LogFileFormat"
+}
+
 // SetLogFileFormatResponse structure represents the LogFileFormat operation response
 type SetLogFileFormatResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1739,8 +1829,10 @@ type xxx_GetSampleIntervalOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SampleInterval operation.
 func (o *xxx_GetSampleIntervalOperation) OpNum() int { return 38 }
 
+// OpName returns the operation name of SampleInterval operation.
 func (o *xxx_GetSampleIntervalOperation) OpName() string {
 	return "/IPerformanceCounterDataCollector/v0/SampleInterval"
 }
@@ -1898,6 +1990,19 @@ func (o *GetSampleIntervalRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetSampleIntervalRequest build a response structure from the given request structure.
+func (o *GetSampleIntervalRequest) MakeResponse() *GetSampleIntervalResponse {
+	return &GetSampleIntervalResponse{}
+}
+
+// OpNum returns the operation number of SampleInterval operation.
+func (o *GetSampleIntervalRequest) OpNum() int { return 38 }
+
+// OpName returns the operation name of SampleInterval operation.
+func (o *GetSampleIntervalRequest) OpName() string {
+	return "/IPerformanceCounterDataCollector/v0/SampleInterval"
+}
+
 // GetSampleIntervalResponse structure represents the SampleInterval operation response
 type GetSampleIntervalResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1948,8 +2053,10 @@ type xxx_SetSampleIntervalOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SampleInterval operation.
 func (o *xxx_SetSampleIntervalOperation) OpNum() int { return 39 }
 
+// OpName returns the operation name of SampleInterval operation.
 func (o *xxx_SetSampleIntervalOperation) OpName() string {
 	return "/IPerformanceCounterDataCollector/v0/SampleInterval"
 }
@@ -2110,6 +2217,19 @@ func (o *SetSampleIntervalRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetSampleIntervalRequest build a response structure from the given request structure.
+func (o *SetSampleIntervalRequest) MakeResponse() *SetSampleIntervalResponse {
+	return &SetSampleIntervalResponse{}
+}
+
+// OpNum returns the operation number of SampleInterval operation.
+func (o *SetSampleIntervalRequest) OpNum() int { return 39 }
+
+// OpName returns the operation name of SampleInterval operation.
+func (o *SetSampleIntervalRequest) OpName() string {
+	return "/IPerformanceCounterDataCollector/v0/SampleInterval"
+}
+
 // SetSampleIntervalResponse structure represents the SampleInterval operation response
 type SetSampleIntervalResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2157,8 +2277,10 @@ type xxx_GetSegmentMaxRecordsOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SegmentMaxRecords operation.
 func (o *xxx_GetSegmentMaxRecordsOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of SegmentMaxRecords operation.
 func (o *xxx_GetSegmentMaxRecordsOperation) OpName() string {
 	return "/IPerformanceCounterDataCollector/v0/SegmentMaxRecords"
 }
@@ -2316,6 +2438,19 @@ func (o *GetSegmentMaxRecordsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetSegmentMaxRecordsRequest build a response structure from the given request structure.
+func (o *GetSegmentMaxRecordsRequest) MakeResponse() *GetSegmentMaxRecordsResponse {
+	return &GetSegmentMaxRecordsResponse{}
+}
+
+// OpNum returns the operation number of SegmentMaxRecords operation.
+func (o *GetSegmentMaxRecordsRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of SegmentMaxRecords operation.
+func (o *GetSegmentMaxRecordsRequest) OpName() string {
+	return "/IPerformanceCounterDataCollector/v0/SegmentMaxRecords"
+}
+
 // GetSegmentMaxRecordsResponse structure represents the SegmentMaxRecords operation response
 type GetSegmentMaxRecordsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2366,8 +2501,10 @@ type xxx_SetSegmentMaxRecordsOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SegmentMaxRecords operation.
 func (o *xxx_SetSegmentMaxRecordsOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of SegmentMaxRecords operation.
 func (o *xxx_SetSegmentMaxRecordsOperation) OpName() string {
 	return "/IPerformanceCounterDataCollector/v0/SegmentMaxRecords"
 }
@@ -2526,6 +2663,19 @@ func (o *SetSegmentMaxRecordsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetSegmentMaxRecordsRequest build a response structure from the given request structure.
+func (o *SetSegmentMaxRecordsRequest) MakeResponse() *SetSegmentMaxRecordsResponse {
+	return &SetSegmentMaxRecordsResponse{}
+}
+
+// OpNum returns the operation number of SegmentMaxRecords operation.
+func (o *SetSegmentMaxRecordsRequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of SegmentMaxRecords operation.
+func (o *SetSegmentMaxRecordsRequest) OpName() string {
+	return "/IPerformanceCounterDataCollector/v0/SegmentMaxRecords"
 }
 
 // SetSegmentMaxRecordsResponse structure represents the SegmentMaxRecords operation response

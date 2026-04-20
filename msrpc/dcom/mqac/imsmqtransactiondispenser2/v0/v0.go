@@ -165,8 +165,10 @@ type xxx_BeginTransactionOperation struct {
 	Return      int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BeginTransaction operation.
 func (o *xxx_BeginTransactionOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of BeginTransaction operation.
 func (o *xxx_BeginTransactionOperation) OpName() string {
 	return "/IMSMQTransactionDispenser2/v0/BeginTransaction"
 }
@@ -358,6 +360,19 @@ func (o *BeginTransactionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeBeginTransactionRequest build a response structure from the given request structure.
+func (o *BeginTransactionRequest) MakeResponse() *BeginTransactionResponse {
+	return &BeginTransactionResponse{}
+}
+
+// OpNum returns the operation number of BeginTransaction operation.
+func (o *BeginTransactionRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of BeginTransaction operation.
+func (o *BeginTransactionRequest) OpName() string {
+	return "/IMSMQTransactionDispenser2/v0/BeginTransaction"
+}
+
 // BeginTransactionResponse structure represents the BeginTransaction operation response
 type BeginTransactionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -408,8 +423,10 @@ type xxx_GetPropertiesOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Properties operation.
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Properties operation.
 func (o *xxx_GetPropertiesOperation) OpName() string {
 	return "/IMSMQTransactionDispenser2/v0/Properties"
 }
@@ -600,6 +617,17 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetPropertiesRequest build a response structure from the given request structure.
+func (o *GetPropertiesRequest) MakeResponse() *GetPropertiesResponse {
+	return &GetPropertiesResponse{}
+}
+
+// OpNum returns the operation number of Properties operation.
+func (o *GetPropertiesRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Properties operation.
+func (o *GetPropertiesRequest) OpName() string { return "/IMSMQTransactionDispenser2/v0/Properties" }
 
 // GetPropertiesResponse structure represents the Properties operation response
 type GetPropertiesResponse struct {

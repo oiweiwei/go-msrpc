@@ -439,8 +439,10 @@ type xxx_GetDriverClassOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DriverClass operation.
 func (o *xxx_GetDriverClassOperation) OpNum() int { return 52 }
 
+// OpName returns the operation name of DriverClass operation.
 func (o *xxx_GetDriverClassOperation) OpName() string { return "/IWindowsDriverUpdate/v0/DriverClass" }
 
 func (o *xxx_GetDriverClassOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -630,6 +632,17 @@ func (o *GetDriverClassRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetDriverClassRequest build a response structure from the given request structure.
+func (o *GetDriverClassRequest) MakeResponse() *GetDriverClassResponse {
+	return &GetDriverClassResponse{}
+}
+
+// OpNum returns the operation number of DriverClass operation.
+func (o *GetDriverClassRequest) OpNum() int { return 52 }
+
+// OpName returns the operation name of DriverClass operation.
+func (o *GetDriverClassRequest) OpName() string { return "/IWindowsDriverUpdate/v0/DriverClass" }
+
 // GetDriverClassResponse structure represents the DriverClass operation response
 type GetDriverClassResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -681,8 +694,10 @@ type xxx_GetDriverHardwareIDOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DriverHardwareID operation.
 func (o *xxx_GetDriverHardwareIDOperation) OpNum() int { return 53 }
 
+// OpName returns the operation name of DriverHardwareID operation.
 func (o *xxx_GetDriverHardwareIDOperation) OpName() string {
 	return "/IWindowsDriverUpdate/v0/DriverHardwareID"
 }
@@ -874,6 +889,19 @@ func (o *GetDriverHardwareIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetDriverHardwareIDRequest build a response structure from the given request structure.
+func (o *GetDriverHardwareIDRequest) MakeResponse() *GetDriverHardwareIDResponse {
+	return &GetDriverHardwareIDResponse{}
+}
+
+// OpNum returns the operation number of DriverHardwareID operation.
+func (o *GetDriverHardwareIDRequest) OpNum() int { return 53 }
+
+// OpName returns the operation name of DriverHardwareID operation.
+func (o *GetDriverHardwareIDRequest) OpName() string {
+	return "/IWindowsDriverUpdate/v0/DriverHardwareID"
+}
+
 // GetDriverHardwareIDResponse structure represents the DriverHardwareID operation response
 type GetDriverHardwareIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -926,8 +954,10 @@ type xxx_GetDriverManufacturerOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DriverManufacturer operation.
 func (o *xxx_GetDriverManufacturerOperation) OpNum() int { return 54 }
 
+// OpName returns the operation name of DriverManufacturer operation.
 func (o *xxx_GetDriverManufacturerOperation) OpName() string {
 	return "/IWindowsDriverUpdate/v0/DriverManufacturer"
 }
@@ -1119,6 +1149,19 @@ func (o *GetDriverManufacturerRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetDriverManufacturerRequest build a response structure from the given request structure.
+func (o *GetDriverManufacturerRequest) MakeResponse() *GetDriverManufacturerResponse {
+	return &GetDriverManufacturerResponse{}
+}
+
+// OpNum returns the operation number of DriverManufacturer operation.
+func (o *GetDriverManufacturerRequest) OpNum() int { return 54 }
+
+// OpName returns the operation name of DriverManufacturer operation.
+func (o *GetDriverManufacturerRequest) OpName() string {
+	return "/IWindowsDriverUpdate/v0/DriverManufacturer"
+}
+
 // GetDriverManufacturerResponse structure represents the DriverManufacturer operation response
 type GetDriverManufacturerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1174,8 +1217,10 @@ type xxx_GetDriverModelOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DriverModel operation.
 func (o *xxx_GetDriverModelOperation) OpNum() int { return 55 }
 
+// OpName returns the operation name of DriverModel operation.
 func (o *xxx_GetDriverModelOperation) OpName() string { return "/IWindowsDriverUpdate/v0/DriverModel" }
 
 func (o *xxx_GetDriverModelOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1365,6 +1410,17 @@ func (o *GetDriverModelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetDriverModelRequest build a response structure from the given request structure.
+func (o *GetDriverModelRequest) MakeResponse() *GetDriverModelResponse {
+	return &GetDriverModelResponse{}
+}
+
+// OpNum returns the operation number of DriverModel operation.
+func (o *GetDriverModelRequest) OpNum() int { return 55 }
+
+// OpName returns the operation name of DriverModel operation.
+func (o *GetDriverModelRequest) OpName() string { return "/IWindowsDriverUpdate/v0/DriverModel" }
+
 // GetDriverModelResponse structure represents the DriverModel operation response
 type GetDriverModelResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1417,8 +1473,10 @@ type xxx_GetDriverProviderOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DriverProvider operation.
 func (o *xxx_GetDriverProviderOperation) OpNum() int { return 56 }
 
+// OpName returns the operation name of DriverProvider operation.
 func (o *xxx_GetDriverProviderOperation) OpName() string {
 	return "/IWindowsDriverUpdate/v0/DriverProvider"
 }
@@ -1610,6 +1668,17 @@ func (o *GetDriverProviderRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetDriverProviderRequest build a response structure from the given request structure.
+func (o *GetDriverProviderRequest) MakeResponse() *GetDriverProviderResponse {
+	return &GetDriverProviderResponse{}
+}
+
+// OpNum returns the operation number of DriverProvider operation.
+func (o *GetDriverProviderRequest) OpNum() int { return 56 }
+
+// OpName returns the operation name of DriverProvider operation.
+func (o *GetDriverProviderRequest) OpName() string { return "/IWindowsDriverUpdate/v0/DriverProvider" }
+
 // GetDriverProviderResponse structure represents the DriverProvider operation response
 type GetDriverProviderResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1661,8 +1730,10 @@ type xxx_GetDriverVerDateOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DriverVerDate operation.
 func (o *xxx_GetDriverVerDateOperation) OpNum() int { return 57 }
 
+// OpName returns the operation name of DriverVerDate operation.
 func (o *xxx_GetDriverVerDateOperation) OpName() string {
 	return "/IWindowsDriverUpdate/v0/DriverVerDate"
 }
@@ -1820,6 +1891,17 @@ func (o *GetDriverVerDateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetDriverVerDateRequest build a response structure from the given request structure.
+func (o *GetDriverVerDateRequest) MakeResponse() *GetDriverVerDateResponse {
+	return &GetDriverVerDateResponse{}
+}
+
+// OpNum returns the operation number of DriverVerDate operation.
+func (o *GetDriverVerDateRequest) OpNum() int { return 57 }
+
+// OpName returns the operation name of DriverVerDate operation.
+func (o *GetDriverVerDateRequest) OpName() string { return "/IWindowsDriverUpdate/v0/DriverVerDate" }
+
 // GetDriverVerDateResponse structure represents the DriverVerDate operation response
 type GetDriverVerDateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1872,8 +1954,10 @@ type xxx_GetDeviceProblemNumberOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeviceProblemNumber operation.
 func (o *xxx_GetDeviceProblemNumberOperation) OpNum() int { return 58 }
 
+// OpName returns the operation name of DeviceProblemNumber operation.
 func (o *xxx_GetDeviceProblemNumberOperation) OpName() string {
 	return "/IWindowsDriverUpdate/v0/DeviceProblemNumber"
 }
@@ -2031,6 +2115,19 @@ func (o *GetDeviceProblemNumberRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetDeviceProblemNumberRequest build a response structure from the given request structure.
+func (o *GetDeviceProblemNumberRequest) MakeResponse() *GetDeviceProblemNumberResponse {
+	return &GetDeviceProblemNumberResponse{}
+}
+
+// OpNum returns the operation number of DeviceProblemNumber operation.
+func (o *GetDeviceProblemNumberRequest) OpNum() int { return 58 }
+
+// OpName returns the operation name of DeviceProblemNumber operation.
+func (o *GetDeviceProblemNumberRequest) OpName() string {
+	return "/IWindowsDriverUpdate/v0/DeviceProblemNumber"
+}
+
 // GetDeviceProblemNumberResponse structure represents the DeviceProblemNumber operation response
 type GetDeviceProblemNumberResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2082,8 +2179,10 @@ type xxx_GetDeviceStatusOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeviceStatus operation.
 func (o *xxx_GetDeviceStatusOperation) OpNum() int { return 59 }
 
+// OpName returns the operation name of DeviceStatus operation.
 func (o *xxx_GetDeviceStatusOperation) OpName() string {
 	return "/IWindowsDriverUpdate/v0/DeviceStatus"
 }
@@ -2240,6 +2339,17 @@ func (o *GetDeviceStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetDeviceStatusRequest build a response structure from the given request structure.
+func (o *GetDeviceStatusRequest) MakeResponse() *GetDeviceStatusResponse {
+	return &GetDeviceStatusResponse{}
+}
+
+// OpNum returns the operation number of DeviceStatus operation.
+func (o *GetDeviceStatusRequest) OpNum() int { return 59 }
+
+// OpName returns the operation name of DeviceStatus operation.
+func (o *GetDeviceStatusRequest) OpName() string { return "/IWindowsDriverUpdate/v0/DeviceStatus" }
 
 // GetDeviceStatusResponse structure represents the DeviceStatus operation response
 type GetDeviceStatusResponse struct {

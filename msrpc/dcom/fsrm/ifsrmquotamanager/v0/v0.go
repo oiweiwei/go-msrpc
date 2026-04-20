@@ -567,8 +567,10 @@ type xxx_GetActionVariablesOperation struct {
 	Return    int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ActionVariables operation.
 func (o *xxx_GetActionVariablesOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of ActionVariables operation.
 func (o *xxx_GetActionVariablesOperation) OpName() string {
 	return "/IFsrmQuotaManager/v0/ActionVariables"
 }
@@ -760,6 +762,17 @@ func (o *GetActionVariablesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetActionVariablesRequest build a response structure from the given request structure.
+func (o *GetActionVariablesRequest) MakeResponse() *GetActionVariablesResponse {
+	return &GetActionVariablesResponse{}
+}
+
+// OpNum returns the operation number of ActionVariables operation.
+func (o *GetActionVariablesRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of ActionVariables operation.
+func (o *GetActionVariablesRequest) OpName() string { return "/IFsrmQuotaManager/v0/ActionVariables" }
+
 // GetActionVariablesResponse structure represents the ActionVariables operation response
 type GetActionVariablesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -810,8 +823,10 @@ type xxx_GetActionVariableDescriptionsOperation struct {
 	Return       int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ActionVariableDescriptions operation.
 func (o *xxx_GetActionVariableDescriptionsOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ActionVariableDescriptions operation.
 func (o *xxx_GetActionVariableDescriptionsOperation) OpName() string {
 	return "/IFsrmQuotaManager/v0/ActionVariableDescriptions"
 }
@@ -1003,6 +1018,19 @@ func (o *GetActionVariableDescriptionsRequest) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
+// MakeGetActionVariableDescriptionsRequest build a response structure from the given request structure.
+func (o *GetActionVariableDescriptionsRequest) MakeResponse() *GetActionVariableDescriptionsResponse {
+	return &GetActionVariableDescriptionsResponse{}
+}
+
+// OpNum returns the operation number of ActionVariableDescriptions operation.
+func (o *GetActionVariableDescriptionsRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ActionVariableDescriptions operation.
+func (o *GetActionVariableDescriptionsRequest) OpName() string {
+	return "/IFsrmQuotaManager/v0/ActionVariableDescriptions"
+}
+
 // GetActionVariableDescriptionsResponse structure represents the ActionVariableDescriptions operation response
 type GetActionVariableDescriptionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1054,8 +1082,10 @@ type xxx_CreateQuotaOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateQuota operation.
 func (o *xxx_CreateQuotaOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of CreateQuota operation.
 func (o *xxx_CreateQuotaOperation) OpName() string { return "/IFsrmQuotaManager/v0/CreateQuota" }
 
 func (o *xxx_CreateQuotaOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1296,6 +1326,17 @@ func (o *CreateQuotaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCreateQuotaRequest build a response structure from the given request structure.
+func (o *CreateQuotaRequest) MakeResponse() *CreateQuotaResponse {
+	return &CreateQuotaResponse{}
+}
+
+// OpNum returns the operation number of CreateQuota operation.
+func (o *CreateQuotaRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of CreateQuota operation.
+func (o *CreateQuotaRequest) OpName() string { return "/IFsrmQuotaManager/v0/CreateQuota" }
+
 // CreateQuotaResponse structure represents the CreateQuota operation response
 type CreateQuotaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1353,8 +1394,10 @@ type xxx_CreateAutoApplyQuotaOperation struct {
 	Return            int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateAutoApplyQuota operation.
 func (o *xxx_CreateAutoApplyQuotaOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of CreateAutoApplyQuota operation.
 func (o *xxx_CreateAutoApplyQuotaOperation) OpName() string {
 	return "/IFsrmQuotaManager/v0/CreateAutoApplyQuota"
 }
@@ -1649,6 +1692,19 @@ func (o *CreateAutoApplyQuotaRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeCreateAutoApplyQuotaRequest build a response structure from the given request structure.
+func (o *CreateAutoApplyQuotaRequest) MakeResponse() *CreateAutoApplyQuotaResponse {
+	return &CreateAutoApplyQuotaResponse{}
+}
+
+// OpNum returns the operation number of CreateAutoApplyQuota operation.
+func (o *CreateAutoApplyQuotaRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of CreateAutoApplyQuota operation.
+func (o *CreateAutoApplyQuotaRequest) OpName() string {
+	return "/IFsrmQuotaManager/v0/CreateAutoApplyQuota"
+}
+
 // CreateAutoApplyQuotaResponse structure represents the CreateAutoApplyQuota operation response
 type CreateAutoApplyQuotaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1705,8 +1761,10 @@ type xxx_GetQuotaOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetQuota operation.
 func (o *xxx_GetQuotaOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of GetQuota operation.
 func (o *xxx_GetQuotaOperation) OpName() string { return "/IFsrmQuotaManager/v0/GetQuota" }
 
 func (o *xxx_GetQuotaOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1946,6 +2004,17 @@ func (o *GetQuotaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeGetQuotaRequest build a response structure from the given request structure.
+func (o *GetQuotaRequest) MakeResponse() *GetQuotaResponse {
+	return &GetQuotaResponse{}
+}
+
+// OpNum returns the operation number of GetQuota operation.
+func (o *GetQuotaRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of GetQuota operation.
+func (o *GetQuotaRequest) OpName() string { return "/IFsrmQuotaManager/v0/GetQuota" }
+
 // GetQuotaResponse structure represents the GetQuota operation response
 type GetQuotaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2000,8 +2069,10 @@ type xxx_GetAutoApplyQuotaOperation struct {
 	Return int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetAutoApplyQuota operation.
 func (o *xxx_GetAutoApplyQuotaOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of GetAutoApplyQuota operation.
 func (o *xxx_GetAutoApplyQuotaOperation) OpName() string {
 	return "/IFsrmQuotaManager/v0/GetAutoApplyQuota"
 }
@@ -2243,6 +2314,17 @@ func (o *GetAutoApplyQuotaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetAutoApplyQuotaRequest build a response structure from the given request structure.
+func (o *GetAutoApplyQuotaRequest) MakeResponse() *GetAutoApplyQuotaResponse {
+	return &GetAutoApplyQuotaResponse{}
+}
+
+// OpNum returns the operation number of GetAutoApplyQuota operation.
+func (o *GetAutoApplyQuotaRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of GetAutoApplyQuota operation.
+func (o *GetAutoApplyQuotaRequest) OpName() string { return "/IFsrmQuotaManager/v0/GetAutoApplyQuota" }
+
 // GetAutoApplyQuotaResponse structure represents the GetAutoApplyQuota operation response
 type GetAutoApplyQuotaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2297,8 +2379,10 @@ type xxx_GetRestrictiveQuotaOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetRestrictiveQuota operation.
 func (o *xxx_GetRestrictiveQuotaOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of GetRestrictiveQuota operation.
 func (o *xxx_GetRestrictiveQuotaOperation) OpName() string {
 	return "/IFsrmQuotaManager/v0/GetRestrictiveQuota"
 }
@@ -2541,6 +2625,19 @@ func (o *GetRestrictiveQuotaRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetRestrictiveQuotaRequest build a response structure from the given request structure.
+func (o *GetRestrictiveQuotaRequest) MakeResponse() *GetRestrictiveQuotaResponse {
+	return &GetRestrictiveQuotaResponse{}
+}
+
+// OpNum returns the operation number of GetRestrictiveQuota operation.
+func (o *GetRestrictiveQuotaRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of GetRestrictiveQuota operation.
+func (o *GetRestrictiveQuotaRequest) OpName() string {
+	return "/IFsrmQuotaManager/v0/GetRestrictiveQuota"
+}
+
 // GetRestrictiveQuotaResponse structure represents the GetRestrictiveQuota operation response
 type GetRestrictiveQuotaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2596,8 +2693,10 @@ type xxx_EnumQuotasOperation struct {
 	Return  int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumQuotas operation.
 func (o *xxx_EnumQuotasOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of EnumQuotas operation.
 func (o *xxx_EnumQuotasOperation) OpName() string { return "/IFsrmQuotaManager/v0/EnumQuotas" }
 
 func (o *xxx_EnumQuotasOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2854,6 +2953,17 @@ func (o *EnumQuotasRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeEnumQuotasRequest build a response structure from the given request structure.
+func (o *EnumQuotasRequest) MakeResponse() *EnumQuotasResponse {
+	return &EnumQuotasResponse{}
+}
+
+// OpNum returns the operation number of EnumQuotas operation.
+func (o *EnumQuotasRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of EnumQuotas operation.
+func (o *EnumQuotasRequest) OpName() string { return "/IFsrmQuotaManager/v0/EnumQuotas" }
+
 // EnumQuotasResponse structure represents the EnumQuotas operation response
 type EnumQuotasResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2910,8 +3020,10 @@ type xxx_EnumAutoApplyQuotasOperation struct {
 	Return  int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumAutoApplyQuotas operation.
 func (o *xxx_EnumAutoApplyQuotasOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of EnumAutoApplyQuotas operation.
 func (o *xxx_EnumAutoApplyQuotasOperation) OpName() string {
 	return "/IFsrmQuotaManager/v0/EnumAutoApplyQuotas"
 }
@@ -3170,6 +3282,19 @@ func (o *EnumAutoApplyQuotasRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeEnumAutoApplyQuotasRequest build a response structure from the given request structure.
+func (o *EnumAutoApplyQuotasRequest) MakeResponse() *EnumAutoApplyQuotasResponse {
+	return &EnumAutoApplyQuotasResponse{}
+}
+
+// OpNum returns the operation number of EnumAutoApplyQuotas operation.
+func (o *EnumAutoApplyQuotasRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of EnumAutoApplyQuotas operation.
+func (o *EnumAutoApplyQuotasRequest) OpName() string {
+	return "/IFsrmQuotaManager/v0/EnumAutoApplyQuotas"
+}
+
 // EnumAutoApplyQuotasResponse structure represents the EnumAutoApplyQuotas operation response
 type EnumAutoApplyQuotasResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3226,8 +3351,10 @@ type xxx_EnumEffectiveQuotasOperation struct {
 	Return  int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumEffectiveQuotas operation.
 func (o *xxx_EnumEffectiveQuotasOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of EnumEffectiveQuotas operation.
 func (o *xxx_EnumEffectiveQuotasOperation) OpName() string {
 	return "/IFsrmQuotaManager/v0/EnumEffectiveQuotas"
 }
@@ -3487,6 +3614,19 @@ func (o *EnumEffectiveQuotasRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeEnumEffectiveQuotasRequest build a response structure from the given request structure.
+func (o *EnumEffectiveQuotasRequest) MakeResponse() *EnumEffectiveQuotasResponse {
+	return &EnumEffectiveQuotasResponse{}
+}
+
+// OpNum returns the operation number of EnumEffectiveQuotas operation.
+func (o *EnumEffectiveQuotasRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of EnumEffectiveQuotas operation.
+func (o *EnumEffectiveQuotasRequest) OpName() string {
+	return "/IFsrmQuotaManager/v0/EnumEffectiveQuotas"
+}
+
 // EnumEffectiveQuotasResponse structure represents the EnumEffectiveQuotas operation response
 type EnumEffectiveQuotasResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3540,8 +3680,10 @@ type xxx_ScanOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Scan operation.
 func (o *xxx_ScanOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of Scan operation.
 func (o *xxx_ScanOperation) OpName() string { return "/IFsrmQuotaManager/v0/Scan" }
 
 func (o *xxx_ScanOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3736,6 +3878,17 @@ func (o *ScanRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeScanRequest build a response structure from the given request structure.
+func (o *ScanRequest) MakeResponse() *ScanResponse {
+	return &ScanResponse{}
+}
+
+// OpNum returns the operation number of Scan operation.
+func (o *ScanRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of Scan operation.
+func (o *ScanRequest) OpName() string { return "/IFsrmQuotaManager/v0/Scan" }
+
 // ScanResponse structure represents the Scan operation response
 type ScanResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3783,8 +3936,10 @@ type xxx_CreateQuotaCollectionOperation struct {
 	Return     int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateQuotaCollection operation.
 func (o *xxx_CreateQuotaCollectionOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of CreateQuotaCollection operation.
 func (o *xxx_CreateQuotaCollectionOperation) OpName() string {
 	return "/IFsrmQuotaManager/v0/CreateQuotaCollection"
 }
@@ -3974,6 +4129,19 @@ func (o *CreateQuotaCollectionRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeCreateQuotaCollectionRequest build a response structure from the given request structure.
+func (o *CreateQuotaCollectionRequest) MakeResponse() *CreateQuotaCollectionResponse {
+	return &CreateQuotaCollectionResponse{}
+}
+
+// OpNum returns the operation number of CreateQuotaCollection operation.
+func (o *CreateQuotaCollectionRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of CreateQuotaCollection operation.
+func (o *CreateQuotaCollectionRequest) OpName() string {
+	return "/IFsrmQuotaManager/v0/CreateQuotaCollection"
 }
 
 // CreateQuotaCollectionResponse structure represents the CreateQuotaCollection operation response

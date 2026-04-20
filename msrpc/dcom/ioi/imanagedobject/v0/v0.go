@@ -196,8 +196,10 @@ type xxx_GetSerializedBufferOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSerializedBuffer operation.
 func (o *xxx_GetSerializedBufferOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetSerializedBuffer operation.
 func (o *xxx_GetSerializedBufferOperation) OpName() string {
 	return "/IManagedObject/v0/GetSerializedBuffer"
 }
@@ -389,6 +391,17 @@ func (o *GetSerializedBufferRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetSerializedBufferRequest build a response structure from the given request structure.
+func (o *GetSerializedBufferRequest) MakeResponse() *GetSerializedBufferResponse {
+	return &GetSerializedBufferResponse{}
+}
+
+// OpNum returns the operation number of GetSerializedBuffer operation.
+func (o *GetSerializedBufferRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetSerializedBuffer operation.
+func (o *GetSerializedBufferRequest) OpName() string { return "/IManagedObject/v0/GetSerializedBuffer" }
+
 // GetSerializedBufferResponse structure represents the GetSerializedBuffer operation response
 type GetSerializedBufferResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -441,8 +454,10 @@ type xxx_GetObjectIdentityOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetObjectIdentity operation.
 func (o *xxx_GetObjectIdentityOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetObjectIdentity operation.
 func (o *xxx_GetObjectIdentityOperation) OpName() string {
 	return "/IManagedObject/v0/GetObjectIdentity"
 }
@@ -657,6 +672,17 @@ func (o *GetObjectIdentityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetObjectIdentityRequest build a response structure from the given request structure.
+func (o *GetObjectIdentityRequest) MakeResponse() *GetObjectIdentityResponse {
+	return &GetObjectIdentityResponse{}
+}
+
+// OpNum returns the operation number of GetObjectIdentity operation.
+func (o *GetObjectIdentityRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetObjectIdentity operation.
+func (o *GetObjectIdentityRequest) OpName() string { return "/IManagedObject/v0/GetObjectIdentity" }
 
 // GetObjectIdentityResponse structure represents the GetObjectIdentity operation response
 type GetObjectIdentityResponse struct {

@@ -324,8 +324,10 @@ type xxx_QueryOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Query operation.
 func (o *xxx_QueryOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Query operation.
 func (o *xxx_QueryOperation) OpName() string { return "/IEventSystem/v0/Query" }
 
 func (o *xxx_QueryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -640,6 +642,17 @@ func (o *QueryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeQueryRequest build a response structure from the given request structure.
+func (o *QueryRequest) MakeResponse() *QueryResponse {
+	return &QueryResponse{}
+}
+
+// OpNum returns the operation number of Query operation.
+func (o *QueryRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Query operation.
+func (o *QueryRequest) OpName() string { return "/IEventSystem/v0/Query" }
+
 // QueryResponse structure represents the Query operation response
 type QueryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -701,8 +714,10 @@ type xxx_StoreOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Store operation.
 func (o *xxx_StoreOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Store operation.
 func (o *xxx_StoreOperation) OpName() string { return "/IEventSystem/v0/Store" }
 
 func (o *xxx_StoreOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -961,6 +976,17 @@ func (o *StoreRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeStoreRequest build a response structure from the given request structure.
+func (o *StoreRequest) MakeResponse() *StoreResponse {
+	return &StoreResponse{}
+}
+
+// OpNum returns the operation number of Store operation.
+func (o *StoreRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Store operation.
+func (o *StoreRequest) OpName() string { return "/IEventSystem/v0/Store" }
+
 // StoreResponse structure represents the Store operation response
 type StoreResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1010,8 +1036,10 @@ type xxx_RemoveOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Remove operation.
 func (o *xxx_RemoveOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Remove operation.
 func (o *xxx_RemoveOperation) OpName() string { return "/IEventSystem/v0/Remove" }
 
 func (o *xxx_RemoveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1265,6 +1293,17 @@ func (o *RemoveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeRemoveRequest build a response structure from the given request structure.
+func (o *RemoveRequest) MakeResponse() *RemoveResponse {
+	return &RemoveResponse{}
+}
+
+// OpNum returns the operation number of Remove operation.
+func (o *RemoveRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Remove operation.
+func (o *RemoveRequest) OpName() string { return "/IEventSystem/v0/Remove" }
+
 // RemoveResponse structure represents the Remove operation response
 type RemoveResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1315,8 +1354,10 @@ type xxx_GetEventObjectChangeEventClassIDOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EventObjectChangeEventClassID operation.
 func (o *xxx_GetEventObjectChangeEventClassIDOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of EventObjectChangeEventClassID operation.
 func (o *xxx_GetEventObjectChangeEventClassIDOperation) OpName() string {
 	return "/IEventSystem/v0/EventObjectChangeEventClassID"
 }
@@ -1508,6 +1549,19 @@ func (o *GetEventObjectChangeEventClassIDRequest) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
+// MakeGetEventObjectChangeEventClassIDRequest build a response structure from the given request structure.
+func (o *GetEventObjectChangeEventClassIDRequest) MakeResponse() *GetEventObjectChangeEventClassIDResponse {
+	return &GetEventObjectChangeEventClassIDResponse{}
+}
+
+// OpNum returns the operation number of EventObjectChangeEventClassID operation.
+func (o *GetEventObjectChangeEventClassIDRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of EventObjectChangeEventClassID operation.
+func (o *GetEventObjectChangeEventClassIDRequest) OpName() string {
+	return "/IEventSystem/v0/EventObjectChangeEventClassID"
+}
+
 // GetEventObjectChangeEventClassIDResponse structure represents the EventObjectChangeEventClassID operation response
 type GetEventObjectChangeEventClassIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1564,8 +1618,10 @@ type xxx_QuerySOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryS operation.
 func (o *xxx_QuerySOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of QueryS operation.
 func (o *xxx_QuerySOperation) OpName() string { return "/IEventSystem/v0/QueryS" }
 
 func (o *xxx_QuerySOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1868,6 +1924,17 @@ func (o *QuerySRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeQuerySRequest build a response structure from the given request structure.
+func (o *QuerySRequest) MakeResponse() *QuerySResponse {
+	return &QuerySResponse{}
+}
+
+// OpNum returns the operation number of QueryS operation.
+func (o *QuerySRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of QueryS operation.
+func (o *QuerySRequest) OpName() string { return "/IEventSystem/v0/QueryS" }
+
 // QuerySResponse structure represents the QueryS operation response
 type QuerySResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1922,8 +1989,10 @@ type xxx_RemoveSOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoveS operation.
 func (o *xxx_RemoveSOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of RemoveS operation.
 func (o *xxx_RemoveSOperation) OpName() string { return "/IEventSystem/v0/RemoveS" }
 
 func (o *xxx_RemoveSOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2179,6 +2248,17 @@ func (o *RemoveSRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeRemoveSRequest build a response structure from the given request structure.
+func (o *RemoveSRequest) MakeResponse() *RemoveSResponse {
+	return &RemoveSResponse{}
+}
+
+// OpNum returns the operation number of RemoveS operation.
+func (o *RemoveSRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of RemoveS operation.
+func (o *RemoveSRequest) OpName() string { return "/IEventSystem/v0/RemoveS" }
 
 // RemoveSResponse structure represents the RemoveS operation response
 type RemoveSResponse struct {

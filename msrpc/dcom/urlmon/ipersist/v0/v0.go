@@ -140,8 +140,10 @@ type xxx_GetClassIDOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetClassID operation.
 func (o *xxx_GetClassIDOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetClassID operation.
 func (o *xxx_GetClassIDOperation) OpName() string { return "/IPersist/v0/GetClassID" }
 
 func (o *xxx_GetClassIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -305,6 +307,17 @@ func (o *GetClassIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetClassIDRequest build a response structure from the given request structure.
+func (o *GetClassIDRequest) MakeResponse() *GetClassIDResponse {
+	return &GetClassIDResponse{}
+}
+
+// OpNum returns the operation number of GetClassID operation.
+func (o *GetClassIDRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetClassID operation.
+func (o *GetClassIDRequest) OpName() string { return "/IPersist/v0/GetClassID" }
 
 // GetClassIDResponse structure represents the GetClassID operation response
 type GetClassIDResponse struct {

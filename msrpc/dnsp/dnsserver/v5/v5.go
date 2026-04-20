@@ -514,8 +514,10 @@ type xxx_OperationOperation struct {
 	Return     int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvOperation operation.
 func (o *xxx_OperationOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of R_DnssrvOperation operation.
 func (o *xxx_OperationOperation) OpName() string { return "/DnsServer/v5/R_DnssrvOperation" }
 
 func (o *xxx_OperationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1269,6 +1271,17 @@ func (o *OperationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeOperationRequest build a response structure from the given request structure.
+func (o *OperationRequest) MakeResponse() *OperationResponse {
+	return &OperationResponse{}
+}
+
+// OpNum returns the operation number of R_DnssrvOperation operation.
+func (o *OperationRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of R_DnssrvOperation operation.
+func (o *OperationRequest) OpName() string { return "/DnsServer/v5/R_DnssrvOperation" }
+
 // OperationResponse structure represents the R_DnssrvOperation operation response
 type OperationResponse struct {
 	// Return: The R_DnssrvOperation return value.
@@ -1314,8 +1327,10 @@ type xxx_QueryOperation struct {
 	Return     int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvQuery operation.
 func (o *xxx_QueryOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of R_DnssrvQuery operation.
 func (o *xxx_QueryOperation) OpName() string { return "/DnsServer/v5/R_DnssrvQuery" }
 
 func (o *xxx_QueryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1617,6 +1632,17 @@ func (o *QueryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeQueryRequest build a response structure from the given request structure.
+func (o *QueryRequest) MakeResponse() *QueryResponse {
+	return &QueryResponse{}
+}
+
+// OpNum returns the operation number of R_DnssrvQuery operation.
+func (o *QueryRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of R_DnssrvQuery operation.
+func (o *QueryRequest) OpName() string { return "/DnsServer/v5/R_DnssrvQuery" }
+
 // QueryResponse structure represents the R_DnssrvQuery operation response
 type QueryResponse struct {
 	// pdwTypeId: A pointer to an integer that on success contains a value of type DNS_RPC_TYPEID
@@ -1674,8 +1700,10 @@ type xxx_ComplexOperationOperation struct {
 	Return     int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvComplexOperation operation.
 func (o *xxx_ComplexOperationOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of R_DnssrvComplexOperation operation.
 func (o *xxx_ComplexOperationOperation) OpName() string {
 	return "/DnsServer/v5/R_DnssrvComplexOperation"
 }
@@ -2191,6 +2219,17 @@ func (o *ComplexOperationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeComplexOperationRequest build a response structure from the given request structure.
+func (o *ComplexOperationRequest) MakeResponse() *ComplexOperationResponse {
+	return &ComplexOperationResponse{}
+}
+
+// OpNum returns the operation number of R_DnssrvComplexOperation operation.
+func (o *ComplexOperationRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of R_DnssrvComplexOperation operation.
+func (o *ComplexOperationRequest) OpName() string { return "/DnsServer/v5/R_DnssrvComplexOperation" }
+
 // ComplexOperationResponse structure represents the R_DnssrvComplexOperation operation response
 type ComplexOperationResponse struct {
 	// pdwTypeOut: A pointer to a DWORD that on success returns a DNS_RPC_TYPEID (section
@@ -2251,8 +2290,10 @@ type xxx_EnumRecordsOperation struct {
 	Return       int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvEnumRecords operation.
 func (o *xxx_EnumRecordsOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of R_DnssrvEnumRecords operation.
 func (o *xxx_EnumRecordsOperation) OpName() string { return "/DnsServer/v5/R_DnssrvEnumRecords" }
 
 func (o *xxx_EnumRecordsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2742,6 +2783,17 @@ func (o *EnumRecordsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeEnumRecordsRequest build a response structure from the given request structure.
+func (o *EnumRecordsRequest) MakeResponse() *EnumRecordsResponse {
+	return &EnumRecordsResponse{}
+}
+
+// OpNum returns the operation number of R_DnssrvEnumRecords operation.
+func (o *EnumRecordsRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of R_DnssrvEnumRecords operation.
+func (o *EnumRecordsRequest) OpName() string { return "/DnsServer/v5/R_DnssrvEnumRecords" }
+
 // EnumRecordsResponse structure represents the R_DnssrvEnumRecords operation response
 type EnumRecordsResponse struct {
 	// pdwBufferLength: A pointer to an integer that on success contains the length of the
@@ -2801,8 +2853,10 @@ type xxx_UpdateRecordOperation struct {
 	Return       int32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvUpdateRecord operation.
 func (o *xxx_UpdateRecordOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of R_DnssrvUpdateRecord operation.
 func (o *xxx_UpdateRecordOperation) OpName() string { return "/DnsServer/v5/R_DnssrvUpdateRecord" }
 
 func (o *xxx_UpdateRecordOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3111,6 +3165,17 @@ func (o *UpdateRecordRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeUpdateRecordRequest build a response structure from the given request structure.
+func (o *UpdateRecordRequest) MakeResponse() *UpdateRecordResponse {
+	return &UpdateRecordResponse{}
+}
+
+// OpNum returns the operation number of R_DnssrvUpdateRecord operation.
+func (o *UpdateRecordRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of R_DnssrvUpdateRecord operation.
+func (o *UpdateRecordRequest) OpName() string { return "/DnsServer/v5/R_DnssrvUpdateRecord" }
+
 // UpdateRecordResponse structure represents the R_DnssrvUpdateRecord operation response
 type UpdateRecordResponse struct {
 	// Return: The R_DnssrvUpdateRecord return value.
@@ -3159,8 +3224,10 @@ type xxx_Operation2Operation struct {
 	Return        int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvOperation2 operation.
 func (o *xxx_Operation2Operation) OpNum() int { return 5 }
 
+// OpName returns the operation name of R_DnssrvOperation2 operation.
 func (o *xxx_Operation2Operation) OpName() string { return "/DnsServer/v5/R_DnssrvOperation2" }
 
 func (o *xxx_Operation2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3462,6 +3529,17 @@ func (o *Operation2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeOperation2Request build a response structure from the given request structure.
+func (o *Operation2Request) MakeResponse() *Operation2Response {
+	return &Operation2Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvOperation2 operation.
+func (o *Operation2Request) OpNum() int { return 5 }
+
+// OpName returns the operation name of R_DnssrvOperation2 operation.
+func (o *Operation2Request) OpName() string { return "/DnsServer/v5/R_DnssrvOperation2" }
+
 // Operation2Response structure represents the R_DnssrvOperation2 operation response
 type Operation2Response struct {
 	// Return: The R_DnssrvOperation2 return value.
@@ -3509,8 +3587,10 @@ type xxx_Query2Operation struct {
 	Return        int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvQuery2 operation.
 func (o *xxx_Query2Operation) OpNum() int { return 6 }
 
+// OpName returns the operation name of R_DnssrvQuery2 operation.
 func (o *xxx_Query2Operation) OpName() string { return "/DnsServer/v5/R_DnssrvQuery2" }
 
 func (o *xxx_Query2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3791,6 +3871,17 @@ func (o *Query2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeQuery2Request build a response structure from the given request structure.
+func (o *Query2Request) MakeResponse() *Query2Response {
+	return &Query2Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvQuery2 operation.
+func (o *Query2Request) OpNum() int { return 6 }
+
+// OpName returns the operation name of R_DnssrvQuery2 operation.
+func (o *Query2Request) OpName() string { return "/DnsServer/v5/R_DnssrvQuery2" }
+
 // Query2Response structure represents the R_DnssrvQuery2 operation response
 type Query2Response struct {
 	TypeID uint32      `idl:"name:pdwTypeId" json:"type_id"`
@@ -3846,8 +3937,10 @@ type xxx_ComplexOperation2Operation struct {
 	Return        int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvComplexOperation2 operation.
 func (o *xxx_ComplexOperation2Operation) OpNum() int { return 7 }
 
+// OpName returns the operation name of R_DnssrvComplexOperation2 operation.
 func (o *xxx_ComplexOperation2Operation) OpName() string {
 	return "/DnsServer/v5/R_DnssrvComplexOperation2"
 }
@@ -4177,6 +4270,17 @@ func (o *ComplexOperation2Request) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeComplexOperation2Request build a response structure from the given request structure.
+func (o *ComplexOperation2Request) MakeResponse() *ComplexOperation2Response {
+	return &ComplexOperation2Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvComplexOperation2 operation.
+func (o *ComplexOperation2Request) OpNum() int { return 7 }
+
+// OpName returns the operation name of R_DnssrvComplexOperation2 operation.
+func (o *ComplexOperation2Request) OpName() string { return "/DnsServer/v5/R_DnssrvComplexOperation2" }
+
 // ComplexOperation2Response structure represents the R_DnssrvComplexOperation2 operation response
 type ComplexOperation2Response struct {
 	TypeOut uint32      `idl:"name:pdwTypeOut" json:"type_out"`
@@ -4235,8 +4339,10 @@ type xxx_EnumRecords2Operation struct {
 	Return        int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvEnumRecords2 operation.
 func (o *xxx_EnumRecords2Operation) OpNum() int { return 8 }
 
+// OpName returns the operation name of R_DnssrvEnumRecords2 operation.
 func (o *xxx_EnumRecords2Operation) OpName() string { return "/DnsServer/v5/R_DnssrvEnumRecords2" }
 
 func (o *xxx_EnumRecords2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4711,6 +4817,17 @@ func (o *EnumRecords2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeEnumRecords2Request build a response structure from the given request structure.
+func (o *EnumRecords2Request) MakeResponse() *EnumRecords2Response {
+	return &EnumRecords2Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvEnumRecords2 operation.
+func (o *EnumRecords2Request) OpNum() int { return 8 }
+
+// OpName returns the operation name of R_DnssrvEnumRecords2 operation.
+func (o *EnumRecords2Request) OpName() string { return "/DnsServer/v5/R_DnssrvEnumRecords2" }
+
 // EnumRecords2Response structure represents the R_DnssrvEnumRecords2 operation response
 type EnumRecords2Response struct {
 	BufferLength uint32 `idl:"name:pdwBufferLength" json:"buffer_length"`
@@ -4764,8 +4881,10 @@ type xxx_UpdateRecord2Operation struct {
 	Return        int32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvUpdateRecord2 operation.
 func (o *xxx_UpdateRecord2Operation) OpNum() int { return 9 }
 
+// OpName returns the operation name of R_DnssrvUpdateRecord2 operation.
 func (o *xxx_UpdateRecord2Operation) OpName() string { return "/DnsServer/v5/R_DnssrvUpdateRecord2" }
 
 func (o *xxx_UpdateRecord2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5078,6 +5197,17 @@ func (o *UpdateRecord2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeUpdateRecord2Request build a response structure from the given request structure.
+func (o *UpdateRecord2Request) MakeResponse() *UpdateRecord2Response {
+	return &UpdateRecord2Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvUpdateRecord2 operation.
+func (o *UpdateRecord2Request) OpNum() int { return 9 }
+
+// OpName returns the operation name of R_DnssrvUpdateRecord2 operation.
+func (o *UpdateRecord2Request) OpName() string { return "/DnsServer/v5/R_DnssrvUpdateRecord2" }
+
 // UpdateRecord2Response structure represents the R_DnssrvUpdateRecord2 operation response
 type UpdateRecord2Response struct {
 	// Return: The R_DnssrvUpdateRecord2 return value.
@@ -5126,8 +5256,10 @@ type xxx_UpdateRecord3Operation struct {
 	Return        int32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvUpdateRecord3 operation.
 func (o *xxx_UpdateRecord3Operation) OpNum() int { return 10 }
 
+// OpName returns the operation name of R_DnssrvUpdateRecord3 operation.
 func (o *xxx_UpdateRecord3Operation) OpName() string { return "/DnsServer/v5/R_DnssrvUpdateRecord3" }
 
 func (o *xxx_UpdateRecord3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5481,6 +5613,17 @@ func (o *UpdateRecord3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeUpdateRecord3Request build a response structure from the given request structure.
+func (o *UpdateRecord3Request) MakeResponse() *UpdateRecord3Response {
+	return &UpdateRecord3Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvUpdateRecord3 operation.
+func (o *UpdateRecord3Request) OpNum() int { return 10 }
+
+// OpName returns the operation name of R_DnssrvUpdateRecord3 operation.
+func (o *UpdateRecord3Request) OpName() string { return "/DnsServer/v5/R_DnssrvUpdateRecord3" }
+
 // UpdateRecord3Response structure represents the R_DnssrvUpdateRecord3 operation response
 type UpdateRecord3Response struct {
 	// Return: The R_DnssrvUpdateRecord3 return value.
@@ -5534,8 +5677,10 @@ type xxx_EnumRecords3Operation struct {
 	Return        int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvEnumRecords3 operation.
 func (o *xxx_EnumRecords3Operation) OpNum() int { return 11 }
 
+// OpName returns the operation name of R_DnssrvEnumRecords3 operation.
 func (o *xxx_EnumRecords3Operation) OpName() string { return "/DnsServer/v5/R_DnssrvEnumRecords3" }
 
 func (o *xxx_EnumRecords3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6051,6 +6196,17 @@ func (o *EnumRecords3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeEnumRecords3Request build a response structure from the given request structure.
+func (o *EnumRecords3Request) MakeResponse() *EnumRecords3Response {
+	return &EnumRecords3Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvEnumRecords3 operation.
+func (o *EnumRecords3Request) OpNum() int { return 11 }
+
+// OpName returns the operation name of R_DnssrvEnumRecords3 operation.
+func (o *EnumRecords3Request) OpName() string { return "/DnsServer/v5/R_DnssrvEnumRecords3" }
+
 // EnumRecords3Response structure represents the R_DnssrvEnumRecords3 operation response
 type EnumRecords3Response struct {
 	BufferLength uint32 `idl:"name:pdwBufferLength" json:"buffer_length"`
@@ -6106,8 +6262,10 @@ type xxx_Operation3Operation struct {
 	Return        int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvOperation3 operation.
 func (o *xxx_Operation3Operation) OpNum() int { return 12 }
 
+// OpName returns the operation name of R_DnssrvOperation3 operation.
 func (o *xxx_Operation3Operation) OpName() string { return "/DnsServer/v5/R_DnssrvOperation3" }
 
 func (o *xxx_Operation3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6506,6 +6664,17 @@ func (o *Operation3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeOperation3Request build a response structure from the given request structure.
+func (o *Operation3Request) MakeResponse() *Operation3Response {
+	return &Operation3Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvOperation3 operation.
+func (o *Operation3Request) OpNum() int { return 12 }
+
+// OpName returns the operation name of R_DnssrvOperation3 operation.
+func (o *Operation3Request) OpName() string { return "/DnsServer/v5/R_DnssrvOperation3" }
+
 // Operation3Response structure represents the R_DnssrvOperation3 operation response
 type Operation3Response struct {
 	// Return: The R_DnssrvOperation3 return value.
@@ -6554,8 +6723,10 @@ type xxx_Query3Operation struct {
 	Return        int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvQuery3 operation.
 func (o *xxx_Query3Operation) OpNum() int { return 13 }
 
+// OpName returns the operation name of R_DnssrvQuery3 operation.
 func (o *xxx_Query3Operation) OpName() string { return "/DnsServer/v5/R_DnssrvQuery3" }
 
 func (o *xxx_Query3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6872,6 +7043,17 @@ func (o *Query3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeQuery3Request build a response structure from the given request structure.
+func (o *Query3Request) MakeResponse() *Query3Response {
+	return &Query3Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvQuery3 operation.
+func (o *Query3Request) OpNum() int { return 13 }
+
+// OpName returns the operation name of R_DnssrvQuery3 operation.
+func (o *Query3Request) OpName() string { return "/DnsServer/v5/R_DnssrvQuery3" }
+
 // Query3Response structure represents the R_DnssrvQuery3 operation response
 type Query3Response struct {
 	TypeID uint32      `idl:"name:pdwTypeId" json:"type_id"`
@@ -6928,8 +7110,10 @@ type xxx_ComplexOperation3Operation struct {
 	Return                   int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvComplexOperation3 operation.
 func (o *xxx_ComplexOperation3Operation) OpNum() int { return 14 }
 
+// OpName returns the operation name of R_DnssrvComplexOperation3 operation.
 func (o *xxx_ComplexOperation3Operation) OpName() string {
 	return "/DnsServer/v5/R_DnssrvComplexOperation3"
 }
@@ -7308,6 +7492,17 @@ func (o *ComplexOperation3Request) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeComplexOperation3Request build a response structure from the given request structure.
+func (o *ComplexOperation3Request) MakeResponse() *ComplexOperation3Response {
+	return &ComplexOperation3Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvComplexOperation3 operation.
+func (o *ComplexOperation3Request) OpNum() int { return 14 }
+
+// OpName returns the operation name of R_DnssrvComplexOperation3 operation.
+func (o *ComplexOperation3Request) OpName() string { return "/DnsServer/v5/R_DnssrvComplexOperation3" }
+
 // ComplexOperation3Response structure represents the R_DnssrvComplexOperation3 operation response
 type ComplexOperation3Response struct {
 	TypeOut uint32      `idl:"name:pdwTypeOut" json:"type_out"`
@@ -7364,8 +7559,10 @@ type xxx_Operation4Operation struct {
 	Return                   int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvOperation4 operation.
 func (o *xxx_Operation4Operation) OpNum() int { return 15 }
 
+// OpName returns the operation name of R_DnssrvOperation4 operation.
 func (o *xxx_Operation4Operation) OpName() string { return "/DnsServer/v5/R_DnssrvOperation4" }
 
 func (o *xxx_Operation4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7758,6 +7955,17 @@ func (o *Operation4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeOperation4Request build a response structure from the given request structure.
+func (o *Operation4Request) MakeResponse() *Operation4Response {
+	return &Operation4Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvOperation4 operation.
+func (o *Operation4Request) OpNum() int { return 15 }
+
+// OpName returns the operation name of R_DnssrvOperation4 operation.
+func (o *Operation4Request) OpName() string { return "/DnsServer/v5/R_DnssrvOperation4" }
+
 // Operation4Response structure represents the R_DnssrvOperation4 operation response
 type Operation4Response struct {
 	// Return: The R_DnssrvOperation4 return value.
@@ -7807,8 +8015,10 @@ type xxx_Query4Operation struct {
 	Return                   int32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvQuery4 operation.
 func (o *xxx_Query4Operation) OpNum() int { return 16 }
 
+// OpName returns the operation name of R_DnssrvQuery4 operation.
 func (o *xxx_Query4Operation) OpName() string { return "/DnsServer/v5/R_DnssrvQuery4" }
 
 func (o *xxx_Query4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8176,6 +8386,17 @@ func (o *Query4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeQuery4Request build a response structure from the given request structure.
+func (o *Query4Request) MakeResponse() *Query4Response {
+	return &Query4Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvQuery4 operation.
+func (o *Query4Request) OpNum() int { return 16 }
+
+// OpName returns the operation name of R_DnssrvQuery4 operation.
+func (o *Query4Request) OpName() string { return "/DnsServer/v5/R_DnssrvQuery4" }
+
 // Query4Response structure represents the R_DnssrvQuery4 operation response
 type Query4Response struct {
 	TypeID uint32      `idl:"name:pdwTypeId" json:"type_id"`
@@ -8231,8 +8452,10 @@ type xxx_UpdateRecord4Operation struct {
 	Return                   int32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvUpdateRecord4 operation.
 func (o *xxx_UpdateRecord4Operation) OpNum() int { return 17 }
 
+// OpName returns the operation name of R_DnssrvUpdateRecord4 operation.
 func (o *xxx_UpdateRecord4Operation) OpName() string { return "/DnsServer/v5/R_DnssrvUpdateRecord4" }
 
 func (o *xxx_UpdateRecord4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8626,6 +8849,17 @@ func (o *UpdateRecord4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeUpdateRecord4Request build a response structure from the given request structure.
+func (o *UpdateRecord4Request) MakeResponse() *UpdateRecord4Response {
+	return &UpdateRecord4Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvUpdateRecord4 operation.
+func (o *UpdateRecord4Request) OpNum() int { return 17 }
+
+// OpName returns the operation name of R_DnssrvUpdateRecord4 operation.
+func (o *UpdateRecord4Request) OpName() string { return "/DnsServer/v5/R_DnssrvUpdateRecord4" }
+
 // UpdateRecord4Response structure represents the R_DnssrvUpdateRecord4 operation response
 type UpdateRecord4Response struct {
 	// Return: The R_DnssrvUpdateRecord4 return value.
@@ -8680,8 +8914,10 @@ type xxx_EnumRecords4Operation struct {
 	Return                   int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DnssrvEnumRecords4 operation.
 func (o *xxx_EnumRecords4Operation) OpNum() int { return 18 }
 
+// OpName returns the operation name of R_DnssrvEnumRecords4 operation.
 func (o *xxx_EnumRecords4Operation) OpName() string { return "/DnsServer/v5/R_DnssrvEnumRecords4" }
 
 func (o *xxx_EnumRecords4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9237,6 +9473,17 @@ func (o *EnumRecords4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeEnumRecords4Request build a response structure from the given request structure.
+func (o *EnumRecords4Request) MakeResponse() *EnumRecords4Response {
+	return &EnumRecords4Response{}
+}
+
+// OpNum returns the operation number of R_DnssrvEnumRecords4 operation.
+func (o *EnumRecords4Request) OpNum() int { return 18 }
+
+// OpName returns the operation name of R_DnssrvEnumRecords4 operation.
+func (o *EnumRecords4Request) OpName() string { return "/DnsServer/v5/R_DnssrvEnumRecords4" }
 
 // EnumRecords4Response structure represents the R_DnssrvEnumRecords4 operation response
 type EnumRecords4Response struct {

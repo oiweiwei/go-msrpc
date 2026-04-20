@@ -324,8 +324,10 @@ type xxx_GetNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Name operation.
 func (o *xxx_GetNameOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Name operation.
 func (o *xxx_GetNameOperation) OpName() string { return "/IAppHostSectionDefinition/v0/Name" }
 
 func (o *xxx_GetNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -515,6 +517,17 @@ func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetNameRequest build a response structure from the given request structure.
+func (o *GetNameRequest) MakeResponse() *GetNameResponse {
+	return &GetNameResponse{}
+}
+
+// OpNum returns the operation number of Name operation.
+func (o *GetNameRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Name operation.
+func (o *GetNameRequest) OpName() string { return "/IAppHostSectionDefinition/v0/Name" }
+
 // GetNameResponse structure represents the Name operation response
 type GetNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -565,8 +578,10 @@ type xxx_GetTypeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Type operation.
 func (o *xxx_GetTypeOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Type operation.
 func (o *xxx_GetTypeOperation) OpName() string { return "/IAppHostSectionDefinition/v0/Type" }
 
 func (o *xxx_GetTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -756,6 +771,17 @@ func (o *GetTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetTypeRequest build a response structure from the given request structure.
+func (o *GetTypeRequest) MakeResponse() *GetTypeResponse {
+	return &GetTypeResponse{}
+}
+
+// OpNum returns the operation number of Type operation.
+func (o *GetTypeRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Type operation.
+func (o *GetTypeRequest) OpName() string { return "/IAppHostSectionDefinition/v0/Type" }
+
 // GetTypeResponse structure represents the Type operation response
 type GetTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -806,8 +832,10 @@ type xxx_SetTypeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Type operation.
 func (o *xxx_SetTypeOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of Type operation.
 func (o *xxx_SetTypeOperation) OpName() string { return "/IAppHostSectionDefinition/v0/Type" }
 
 func (o *xxx_SetTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1000,6 +1028,17 @@ func (o *SetTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetTypeRequest build a response structure from the given request structure.
+func (o *SetTypeRequest) MakeResponse() *SetTypeResponse {
+	return &SetTypeResponse{}
+}
+
+// OpNum returns the operation number of Type operation.
+func (o *SetTypeRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of Type operation.
+func (o *SetTypeRequest) OpName() string { return "/IAppHostSectionDefinition/v0/Type" }
+
 // SetTypeResponse structure represents the Type operation response
 type SetTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1047,8 +1086,10 @@ type xxx_GetOverrideModeDefaultOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OverrideModeDefault operation.
 func (o *xxx_GetOverrideModeDefaultOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of OverrideModeDefault operation.
 func (o *xxx_GetOverrideModeDefaultOperation) OpName() string {
 	return "/IAppHostSectionDefinition/v0/OverrideModeDefault"
 }
@@ -1240,6 +1281,19 @@ func (o *GetOverrideModeDefaultRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetOverrideModeDefaultRequest build a response structure from the given request structure.
+func (o *GetOverrideModeDefaultRequest) MakeResponse() *GetOverrideModeDefaultResponse {
+	return &GetOverrideModeDefaultResponse{}
+}
+
+// OpNum returns the operation number of OverrideModeDefault operation.
+func (o *GetOverrideModeDefaultRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of OverrideModeDefault operation.
+func (o *GetOverrideModeDefaultRequest) OpName() string {
+	return "/IAppHostSectionDefinition/v0/OverrideModeDefault"
+}
+
 // GetOverrideModeDefaultResponse structure represents the OverrideModeDefault operation response
 type GetOverrideModeDefaultResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1290,8 +1344,10 @@ type xxx_SetOverrideModeDefaultOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OverrideModeDefault operation.
 func (o *xxx_SetOverrideModeDefaultOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of OverrideModeDefault operation.
 func (o *xxx_SetOverrideModeDefaultOperation) OpName() string {
 	return "/IAppHostSectionDefinition/v0/OverrideModeDefault"
 }
@@ -1486,6 +1542,19 @@ func (o *SetOverrideModeDefaultRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeSetOverrideModeDefaultRequest build a response structure from the given request structure.
+func (o *SetOverrideModeDefaultRequest) MakeResponse() *SetOverrideModeDefaultResponse {
+	return &SetOverrideModeDefaultResponse{}
+}
+
+// OpNum returns the operation number of OverrideModeDefault operation.
+func (o *SetOverrideModeDefaultRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of OverrideModeDefault operation.
+func (o *SetOverrideModeDefaultRequest) OpName() string {
+	return "/IAppHostSectionDefinition/v0/OverrideModeDefault"
+}
+
 // SetOverrideModeDefaultResponse structure represents the OverrideModeDefault operation response
 type SetOverrideModeDefaultResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1533,8 +1602,10 @@ type xxx_GetAllowDefinitionOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AllowDefinition operation.
 func (o *xxx_GetAllowDefinitionOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of AllowDefinition operation.
 func (o *xxx_GetAllowDefinitionOperation) OpName() string {
 	return "/IAppHostSectionDefinition/v0/AllowDefinition"
 }
@@ -1726,6 +1797,19 @@ func (o *GetAllowDefinitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetAllowDefinitionRequest build a response structure from the given request structure.
+func (o *GetAllowDefinitionRequest) MakeResponse() *GetAllowDefinitionResponse {
+	return &GetAllowDefinitionResponse{}
+}
+
+// OpNum returns the operation number of AllowDefinition operation.
+func (o *GetAllowDefinitionRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of AllowDefinition operation.
+func (o *GetAllowDefinitionRequest) OpName() string {
+	return "/IAppHostSectionDefinition/v0/AllowDefinition"
+}
+
 // GetAllowDefinitionResponse structure represents the AllowDefinition operation response
 type GetAllowDefinitionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1776,8 +1860,10 @@ type xxx_SetAllowDefinitionOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AllowDefinition operation.
 func (o *xxx_SetAllowDefinitionOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of AllowDefinition operation.
 func (o *xxx_SetAllowDefinitionOperation) OpName() string {
 	return "/IAppHostSectionDefinition/v0/AllowDefinition"
 }
@@ -1972,6 +2058,19 @@ func (o *SetAllowDefinitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetAllowDefinitionRequest build a response structure from the given request structure.
+func (o *SetAllowDefinitionRequest) MakeResponse() *SetAllowDefinitionResponse {
+	return &SetAllowDefinitionResponse{}
+}
+
+// OpNum returns the operation number of AllowDefinition operation.
+func (o *SetAllowDefinitionRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of AllowDefinition operation.
+func (o *SetAllowDefinitionRequest) OpName() string {
+	return "/IAppHostSectionDefinition/v0/AllowDefinition"
+}
+
 // SetAllowDefinitionResponse structure represents the AllowDefinition operation response
 type SetAllowDefinitionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2019,8 +2118,10 @@ type xxx_GetAllowLocationOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AllowLocation operation.
 func (o *xxx_GetAllowLocationOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of AllowLocation operation.
 func (o *xxx_GetAllowLocationOperation) OpName() string {
 	return "/IAppHostSectionDefinition/v0/AllowLocation"
 }
@@ -2212,6 +2313,19 @@ func (o *GetAllowLocationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetAllowLocationRequest build a response structure from the given request structure.
+func (o *GetAllowLocationRequest) MakeResponse() *GetAllowLocationResponse {
+	return &GetAllowLocationResponse{}
+}
+
+// OpNum returns the operation number of AllowLocation operation.
+func (o *GetAllowLocationRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of AllowLocation operation.
+func (o *GetAllowLocationRequest) OpName() string {
+	return "/IAppHostSectionDefinition/v0/AllowLocation"
+}
+
 // GetAllowLocationResponse structure represents the AllowLocation operation response
 type GetAllowLocationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2262,8 +2376,10 @@ type xxx_SetAllowLocationOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AllowLocation operation.
 func (o *xxx_SetAllowLocationOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of AllowLocation operation.
 func (o *xxx_SetAllowLocationOperation) OpName() string {
 	return "/IAppHostSectionDefinition/v0/AllowLocation"
 }
@@ -2456,6 +2572,19 @@ func (o *SetAllowLocationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetAllowLocationRequest build a response structure from the given request structure.
+func (o *SetAllowLocationRequest) MakeResponse() *SetAllowLocationResponse {
+	return &SetAllowLocationResponse{}
+}
+
+// OpNum returns the operation number of AllowLocation operation.
+func (o *SetAllowLocationRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of AllowLocation operation.
+func (o *SetAllowLocationRequest) OpName() string {
+	return "/IAppHostSectionDefinition/v0/AllowLocation"
 }
 
 // SetAllowLocationResponse structure represents the AllowLocation operation response

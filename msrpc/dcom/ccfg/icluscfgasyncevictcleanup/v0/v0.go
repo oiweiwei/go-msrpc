@@ -191,8 +191,10 @@ type xxx_CleanupNodeOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CleanupNode operation.
 func (o *xxx_CleanupNodeOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of CleanupNode operation.
 func (o *xxx_CleanupNodeOperation) OpName() string {
 	return "/IClusCfgAsyncEvictCleanup/v0/CleanupNode"
 }
@@ -427,6 +429,17 @@ func (o *CleanupNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCleanupNodeRequest build a response structure from the given request structure.
+func (o *CleanupNodeRequest) MakeResponse() *CleanupNodeResponse {
+	return &CleanupNodeResponse{}
+}
+
+// OpNum returns the operation number of CleanupNode operation.
+func (o *CleanupNodeRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of CleanupNode operation.
+func (o *CleanupNodeRequest) OpName() string { return "/IClusCfgAsyncEvictCleanup/v0/CleanupNode" }
 
 // CleanupNodeResponse structure represents the CleanupNode operation response
 type CleanupNodeResponse struct {

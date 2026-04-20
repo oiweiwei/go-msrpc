@@ -2372,8 +2372,10 @@ type xxx_FreeContextOperation struct {
 	Return        uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AuthzrFreeContext operation.
 func (o *xxx_FreeContextOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of AuthzrFreeContext operation.
 func (o *xxx_FreeContextOperation) OpName() string { return "/authzr/v0/AuthzrFreeContext" }
 
 func (o *xxx_FreeContextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2506,6 +2508,17 @@ func (o *FreeContextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeFreeContextRequest build a response structure from the given request structure.
+func (o *FreeContextRequest) MakeResponse() *FreeContextResponse {
+	return &FreeContextResponse{}
+}
+
+// OpNum returns the operation number of AuthzrFreeContext operation.
+func (o *FreeContextRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of AuthzrFreeContext operation.
+func (o *FreeContextRequest) OpName() string { return "/authzr/v0/AuthzrFreeContext" }
+
 // FreeContextResponse structure represents the AuthzrFreeContext operation response
 type FreeContextResponse struct {
 	// ContextHandle: A pointer to an AUTHZR_HANDLE structure, as defined in section 2.2.1.1.
@@ -2556,8 +2569,10 @@ type xxx_InitializeContextFromSIDOperation struct {
 	Return         uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AuthzrInitializeContextFromSid operation.
 func (o *xxx_InitializeContextFromSIDOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of AuthzrInitializeContextFromSid operation.
 func (o *xxx_InitializeContextFromSIDOperation) OpName() string {
 	return "/authzr/v0/AuthzrInitializeContextFromSid"
 }
@@ -2800,6 +2815,19 @@ func (o *InitializeContextFromSIDRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeInitializeContextFromSIDRequest build a response structure from the given request structure.
+func (o *InitializeContextFromSIDRequest) MakeResponse() *InitializeContextFromSIDResponse {
+	return &InitializeContextFromSIDResponse{}
+}
+
+// OpNum returns the operation number of AuthzrInitializeContextFromSid operation.
+func (o *InitializeContextFromSIDRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of AuthzrInitializeContextFromSid operation.
+func (o *InitializeContextFromSIDRequest) OpName() string {
+	return "/authzr/v0/AuthzrInitializeContextFromSid"
+}
+
 // InitializeContextFromSIDResponse structure represents the AuthzrInitializeContextFromSid operation response
 type InitializeContextFromSIDResponse struct {
 	// ContextHandle: A pointer to an AUTHZR_HANDLE structure, as defined in section 2.2.1.1.
@@ -2847,8 +2875,10 @@ type xxx_InitializeCompoundContextOperation struct {
 	Return   uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AuthzrInitializeCompoundContext operation.
 func (o *xxx_InitializeCompoundContextOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of AuthzrInitializeCompoundContext operation.
 func (o *xxx_InitializeCompoundContextOperation) OpName() string {
 	return "/authzr/v0/AuthzrInitializeCompoundContext"
 }
@@ -3009,6 +3039,19 @@ func (o *InitializeCompoundContextRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeInitializeCompoundContextRequest build a response structure from the given request structure.
+func (o *InitializeCompoundContextRequest) MakeResponse() *InitializeCompoundContextResponse {
+	return &InitializeCompoundContextResponse{}
+}
+
+// OpNum returns the operation number of AuthzrInitializeCompoundContext operation.
+func (o *InitializeCompoundContextRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of AuthzrInitializeCompoundContext operation.
+func (o *InitializeCompoundContextRequest) OpName() string {
+	return "/authzr/v0/AuthzrInitializeCompoundContext"
+}
+
 // InitializeCompoundContextResponse structure represents the AuthzrInitializeCompoundContext operation response
 type InitializeCompoundContextResponse struct {
 	// CompoundContextHandle: A pointer to an AUTHZR_HANDLE structure, as defined in section
@@ -3060,8 +3103,10 @@ type xxx_AccessCheckOperation struct {
 	Return                  uint32                            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AuthzrAccessCheck operation.
 func (o *xxx_AccessCheckOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of AuthzrAccessCheck operation.
 func (o *xxx_AccessCheckOperation) OpName() string { return "/authzr/v0/AuthzrAccessCheck" }
 
 func (o *xxx_AccessCheckOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3369,6 +3414,17 @@ func (o *AccessCheckRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeAccessCheckRequest build a response structure from the given request structure.
+func (o *AccessCheckRequest) MakeResponse() *AccessCheckResponse {
+	return &AccessCheckResponse{}
+}
+
+// OpNum returns the operation number of AuthzrAccessCheck operation.
+func (o *AccessCheckRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of AuthzrAccessCheck operation.
+func (o *AccessCheckRequest) OpName() string { return "/authzr/v0/AuthzrAccessCheck" }
+
 // AccessCheckResponse structure represents the AuthzrAccessCheck operation response
 type AccessCheckResponse struct {
 	// pReply: A pointer to an AUTHZR_ACCESS_REPLY structure, as defined in section 2.2.3.1.
@@ -3417,8 +3473,10 @@ type xxx_GetInformationFromContextOperation struct {
 	Return             uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AuthzGetInformationFromContext operation.
 func (o *xxx_GetInformationFromContextOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of AuthzGetInformationFromContext operation.
 func (o *xxx_GetInformationFromContextOperation) OpName() string {
 	return "/authzr/v0/AuthzGetInformationFromContext"
 }
@@ -3595,6 +3653,19 @@ func (o *GetInformationFromContextRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeGetInformationFromContextRequest build a response structure from the given request structure.
+func (o *GetInformationFromContextRequest) MakeResponse() *GetInformationFromContextResponse {
+	return &GetInformationFromContextResponse{}
+}
+
+// OpNum returns the operation number of AuthzGetInformationFromContext operation.
+func (o *GetInformationFromContextRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of AuthzGetInformationFromContext operation.
+func (o *GetInformationFromContextRequest) OpName() string {
+	return "/authzr/v0/AuthzGetInformationFromContext"
+}
+
 // GetInformationFromContextResponse structure represents the AuthzGetInformationFromContext operation response
 type GetInformationFromContextResponse struct {
 	// ppContextInformation: A two-layer pointer to an AUTHZR_CONTEXT_INFORMATION structure,
@@ -3645,8 +3716,10 @@ type xxx_ModifyClaimsOperation struct {
 	Return          uint32                         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AuthzrModifyClaims operation.
 func (o *xxx_ModifyClaimsOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of AuthzrModifyClaims operation.
 func (o *xxx_ModifyClaimsOperation) OpName() string { return "/authzr/v0/AuthzrModifyClaims" }
 
 func (o *xxx_ModifyClaimsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3898,6 +3971,17 @@ func (o *ModifyClaimsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeModifyClaimsRequest build a response structure from the given request structure.
+func (o *ModifyClaimsRequest) MakeResponse() *ModifyClaimsResponse {
+	return &ModifyClaimsResponse{}
+}
+
+// OpNum returns the operation number of AuthzrModifyClaims operation.
+func (o *ModifyClaimsRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of AuthzrModifyClaims operation.
+func (o *ModifyClaimsRequest) OpName() string { return "/authzr/v0/AuthzrModifyClaims" }
+
 // ModifyClaimsResponse structure represents the AuthzrModifyClaims operation response
 type ModifyClaimsResponse struct {
 	// Return: The AuthzrModifyClaims return value.
@@ -3943,8 +4027,10 @@ type xxx_ModifySIDsOperation struct {
 	Return         uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AuthzrModifySids operation.
 func (o *xxx_ModifySIDsOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of AuthzrModifySids operation.
 func (o *xxx_ModifySIDsOperation) OpName() string { return "/authzr/v0/AuthzrModifySids" }
 
 func (o *xxx_ModifySIDsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4195,6 +4281,17 @@ func (o *ModifySIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeModifySIDsRequest build a response structure from the given request structure.
+func (o *ModifySIDsRequest) MakeResponse() *ModifySIDsResponse {
+	return &ModifySIDsResponse{}
+}
+
+// OpNum returns the operation number of AuthzrModifySids operation.
+func (o *ModifySIDsRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of AuthzrModifySids operation.
+func (o *ModifySIDsRequest) OpName() string { return "/authzr/v0/AuthzrModifySids" }
 
 // ModifySIDsResponse structure represents the AuthzrModifySids operation response
 type ModifySIDsResponse struct {

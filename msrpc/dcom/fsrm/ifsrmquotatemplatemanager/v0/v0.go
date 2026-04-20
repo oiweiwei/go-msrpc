@@ -234,8 +234,10 @@ type xxx_CreateTemplateOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateTemplate operation.
 func (o *xxx_CreateTemplateOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of CreateTemplate operation.
 func (o *xxx_CreateTemplateOperation) OpName() string {
 	return "/IFsrmQuotaTemplateManager/v0/CreateTemplate"
 }
@@ -427,6 +429,19 @@ func (o *CreateTemplateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreateTemplateRequest build a response structure from the given request structure.
+func (o *CreateTemplateRequest) MakeResponse() *CreateTemplateResponse {
+	return &CreateTemplateResponse{}
+}
+
+// OpNum returns the operation number of CreateTemplate operation.
+func (o *CreateTemplateRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of CreateTemplate operation.
+func (o *CreateTemplateRequest) OpName() string {
+	return "/IFsrmQuotaTemplateManager/v0/CreateTemplate"
+}
+
 // CreateTemplateResponse structure represents the CreateTemplate operation response
 type CreateTemplateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -478,8 +493,10 @@ type xxx_GetTemplateOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetTemplate operation.
 func (o *xxx_GetTemplateOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of GetTemplate operation.
 func (o *xxx_GetTemplateOperation) OpName() string {
 	return "/IFsrmQuotaTemplateManager/v0/GetTemplate"
 }
@@ -720,6 +737,17 @@ func (o *GetTemplateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetTemplateRequest build a response structure from the given request structure.
+func (o *GetTemplateRequest) MakeResponse() *GetTemplateResponse {
+	return &GetTemplateResponse{}
+}
+
+// OpNum returns the operation number of GetTemplate operation.
+func (o *GetTemplateRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GetTemplate operation.
+func (o *GetTemplateRequest) OpName() string { return "/IFsrmQuotaTemplateManager/v0/GetTemplate" }
+
 // GetTemplateResponse structure represents the GetTemplate operation response
 type GetTemplateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -771,8 +799,10 @@ type xxx_EnumTemplatesOperation struct {
 	Return         int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumTemplates operation.
 func (o *xxx_EnumTemplatesOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of EnumTemplates operation.
 func (o *xxx_EnumTemplatesOperation) OpName() string {
 	return "/IFsrmQuotaTemplateManager/v0/EnumTemplates"
 }
@@ -979,6 +1009,17 @@ func (o *EnumTemplatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeEnumTemplatesRequest build a response structure from the given request structure.
+func (o *EnumTemplatesRequest) MakeResponse() *EnumTemplatesResponse {
+	return &EnumTemplatesResponse{}
+}
+
+// OpNum returns the operation number of EnumTemplates operation.
+func (o *EnumTemplatesRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of EnumTemplates operation.
+func (o *EnumTemplatesRequest) OpName() string { return "/IFsrmQuotaTemplateManager/v0/EnumTemplates" }
+
 // EnumTemplatesResponse structure represents the EnumTemplates operation response
 type EnumTemplatesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1030,8 +1071,10 @@ type xxx_ExportTemplatesOperation struct {
 	Return                   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExportTemplates operation.
 func (o *xxx_ExportTemplatesOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of ExportTemplates operation.
 func (o *xxx_ExportTemplatesOperation) OpName() string {
 	return "/IFsrmQuotaTemplateManager/v0/ExportTemplates"
 }
@@ -1272,6 +1315,19 @@ func (o *ExportTemplatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeExportTemplatesRequest build a response structure from the given request structure.
+func (o *ExportTemplatesRequest) MakeResponse() *ExportTemplatesResponse {
+	return &ExportTemplatesResponse{}
+}
+
+// OpNum returns the operation number of ExportTemplates operation.
+func (o *ExportTemplatesRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of ExportTemplates operation.
+func (o *ExportTemplatesRequest) OpName() string {
+	return "/IFsrmQuotaTemplateManager/v0/ExportTemplates"
+}
+
 // ExportTemplatesResponse structure represents the ExportTemplates operation response
 type ExportTemplatesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1324,8 +1380,10 @@ type xxx_ImportTemplatesOperation struct {
 	Return                   int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ImportTemplates operation.
 func (o *xxx_ImportTemplatesOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of ImportTemplates operation.
 func (o *xxx_ImportTemplatesOperation) OpName() string {
 	return "/IFsrmQuotaTemplateManager/v0/ImportTemplates"
 }
@@ -1613,6 +1671,19 @@ func (o *ImportTemplatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeImportTemplatesRequest build a response structure from the given request structure.
+func (o *ImportTemplatesRequest) MakeResponse() *ImportTemplatesResponse {
+	return &ImportTemplatesResponse{}
+}
+
+// OpNum returns the operation number of ImportTemplates operation.
+func (o *ImportTemplatesRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of ImportTemplates operation.
+func (o *ImportTemplatesRequest) OpName() string {
+	return "/IFsrmQuotaTemplateManager/v0/ImportTemplates"
 }
 
 // ImportTemplatesResponse structure represents the ImportTemplates operation response

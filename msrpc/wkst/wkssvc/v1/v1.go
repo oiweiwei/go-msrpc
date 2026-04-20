@@ -6420,8 +6420,10 @@ type xxx_GetInfoOperation struct {
 	Return          uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrWkstaGetInfo operation.
 func (o *xxx_GetInfoOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of NetrWkstaGetInfo operation.
 func (o *xxx_GetInfoOperation) OpName() string { return "/wkssvc/v1/NetrWkstaGetInfo" }
 
 func (o *xxx_GetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6611,6 +6613,22 @@ func (o *GetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetInfoRequest build a response structure from the given request structure.
+func (o *GetInfoRequest) MakeResponse() *GetInfoResponse {
+	if o == nil {
+		return &GetInfoResponse{}
+	}
+	return &GetInfoResponse{
+		Level: o.Level,
+	}
+}
+
+// OpNum returns the operation number of NetrWkstaGetInfo operation.
+func (o *GetInfoRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of NetrWkstaGetInfo operation.
+func (o *GetInfoRequest) OpName() string { return "/wkssvc/v1/NetrWkstaGetInfo" }
+
 // GetInfoResponse structure represents the NetrWkstaGetInfo operation response
 type GetInfoResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
@@ -6671,8 +6689,10 @@ type xxx_SetInfoOperation struct {
 	Return          uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrWkstaSetInfo operation.
 func (o *xxx_SetInfoOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of NetrWkstaSetInfo operation.
 func (o *xxx_SetInfoOperation) OpName() string { return "/wkssvc/v1/NetrWkstaSetInfo" }
 
 func (o *xxx_SetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6939,6 +6959,17 @@ func (o *SetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetInfoRequest build a response structure from the given request structure.
+func (o *SetInfoRequest) MakeResponse() *SetInfoResponse {
+	return &SetInfoResponse{}
+}
+
+// OpNum returns the operation number of NetrWkstaSetInfo operation.
+func (o *SetInfoRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of NetrWkstaSetInfo operation.
+func (o *SetInfoRequest) OpName() string { return "/wkssvc/v1/NetrWkstaSetInfo" }
+
 // SetInfoResponse structure represents the NetrWkstaSetInfo operation response
 type SetInfoResponse struct {
 	// ErrorParameter: A pointer to a value that receives an unsigned 32-bit integer. This
@@ -6990,8 +7021,10 @@ type xxx_UserEnumOperation struct {
 	Return                 uint32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrWkstaUserEnum operation.
 func (o *xxx_UserEnumOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of NetrWkstaUserEnum operation.
 func (o *xxx_UserEnumOperation) OpName() string { return "/wkssvc/v1/NetrWkstaUserEnum" }
 
 func (o *xxx_UserEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7280,6 +7313,17 @@ func (o *UserEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeUserEnumRequest build a response structure from the given request structure.
+func (o *UserEnumRequest) MakeResponse() *UserEnumResponse {
+	return &UserEnumResponse{}
+}
+
+// OpNum returns the operation number of NetrWkstaUserEnum operation.
+func (o *UserEnumRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of NetrWkstaUserEnum operation.
+func (o *UserEnumRequest) OpName() string { return "/wkssvc/v1/NetrWkstaUserEnum" }
+
 // UserEnumResponse structure represents the NetrWkstaUserEnum operation response
 type UserEnumResponse struct {
 	// UserInfo: A pointer to the buffer to receive the data. The data MUST be returned
@@ -7342,8 +7386,10 @@ type xxx_TransportEnumOperation struct {
 	Return                 uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrWkstaTransportEnum operation.
 func (o *xxx_TransportEnumOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of NetrWkstaTransportEnum operation.
 func (o *xxx_TransportEnumOperation) OpName() string { return "/wkssvc/v1/NetrWkstaTransportEnum" }
 
 func (o *xxx_TransportEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7632,6 +7678,17 @@ func (o *TransportEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeTransportEnumRequest build a response structure from the given request structure.
+func (o *TransportEnumRequest) MakeResponse() *TransportEnumResponse {
+	return &TransportEnumResponse{}
+}
+
+// OpNum returns the operation number of NetrWkstaTransportEnum operation.
+func (o *TransportEnumRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of NetrWkstaTransportEnum operation.
+func (o *TransportEnumRequest) OpName() string { return "/wkssvc/v1/NetrWkstaTransportEnum" }
+
 // TransportEnumResponse structure represents the NetrWkstaTransportEnum operation response
 type TransportEnumResponse struct {
 	// TransportInfo: A pointer to a buffer that receives a WKSTA_TRANSPORT_ENUM_STRUCT
@@ -7694,8 +7751,10 @@ type xxx_TransportAddOperation struct {
 	Return         uint32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrWkstaTransportAdd operation.
 func (o *xxx_TransportAddOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of NetrWkstaTransportAdd operation.
 func (o *xxx_TransportAddOperation) OpName() string { return "/wkssvc/v1/NetrWkstaTransportAdd" }
 
 func (o *xxx_TransportAddOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7945,6 +8004,17 @@ func (o *TransportAddRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeTransportAddRequest build a response structure from the given request structure.
+func (o *TransportAddRequest) MakeResponse() *TransportAddResponse {
+	return &TransportAddResponse{}
+}
+
+// OpNum returns the operation number of NetrWkstaTransportAdd operation.
+func (o *TransportAddRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of NetrWkstaTransportAdd operation.
+func (o *TransportAddRequest) OpName() string { return "/wkssvc/v1/NetrWkstaTransportAdd" }
+
 // TransportAddResponse structure represents the NetrWkstaTransportAdd operation response
 type TransportAddResponse struct {
 	// ErrorParameter: A pointer to a value that receives the index, starting at 0, of the
@@ -7995,8 +8065,10 @@ type xxx_TransportDeleteOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrWkstaTransportDel operation.
 func (o *xxx_TransportDeleteOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of NetrWkstaTransportDel operation.
 func (o *xxx_TransportDeleteOperation) OpName() string { return "/wkssvc/v1/NetrWkstaTransportDel" }
 
 func (o *xxx_TransportDeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8200,6 +8272,17 @@ func (o *TransportDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeTransportDeleteRequest build a response structure from the given request structure.
+func (o *TransportDeleteRequest) MakeResponse() *TransportDeleteResponse {
+	return &TransportDeleteResponse{}
+}
+
+// OpNum returns the operation number of NetrWkstaTransportDel operation.
+func (o *TransportDeleteRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of NetrWkstaTransportDel operation.
+func (o *TransportDeleteRequest) OpName() string { return "/wkssvc/v1/NetrWkstaTransportDel" }
+
 // TransportDeleteResponse structure represents the NetrWkstaTransportDel operation response
 type TransportDeleteResponse struct {
 	// Return: The NetrWkstaTransportDel return value.
@@ -8244,8 +8327,10 @@ type xxx_UseAddOperation struct {
 	Return         uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrUseAdd operation.
 func (o *xxx_UseAddOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of NetrUseAdd operation.
 func (o *xxx_UseAddOperation) OpName() string { return "/wkssvc/v1/NetrUseAdd" }
 
 func (o *xxx_UseAddOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8512,6 +8597,17 @@ func (o *UseAddRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeUseAddRequest build a response structure from the given request structure.
+func (o *UseAddRequest) MakeResponse() *UseAddResponse {
+	return &UseAddResponse{}
+}
+
+// OpNum returns the operation number of NetrUseAdd operation.
+func (o *UseAddRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of NetrUseAdd operation.
+func (o *UseAddRequest) OpName() string { return "/wkssvc/v1/NetrUseAdd" }
+
 // UseAddResponse structure represents the NetrUseAdd operation response
 type UseAddResponse struct {
 	// ErrorParameter: A pointer to a value that receives an unsigned 32-bit integer. This
@@ -8561,8 +8657,10 @@ type xxx_UseGetInfoOperation struct {
 	Return     uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrUseGetInfo operation.
 func (o *xxx_UseGetInfoOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of NetrUseGetInfo operation.
 func (o *xxx_UseGetInfoOperation) OpName() string { return "/wkssvc/v1/NetrUseGetInfo" }
 
 func (o *xxx_UseGetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8770,6 +8868,22 @@ func (o *UseGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeUseGetInfoRequest build a response structure from the given request structure.
+func (o *UseGetInfoRequest) MakeResponse() *UseGetInfoResponse {
+	if o == nil {
+		return &UseGetInfoResponse{}
+	}
+	return &UseGetInfoResponse{
+		Level: o.Level,
+	}
+}
+
+// OpNum returns the operation number of NetrUseGetInfo operation.
+func (o *UseGetInfoRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of NetrUseGetInfo operation.
+func (o *UseGetInfoRequest) OpName() string { return "/wkssvc/v1/NetrUseGetInfo" }
+
 // UseGetInfoResponse structure represents the NetrUseGetInfo operation response
 type UseGetInfoResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
@@ -8829,8 +8943,10 @@ type xxx_UseDeleteOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrUseDel operation.
 func (o *xxx_UseDeleteOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of NetrUseDel operation.
 func (o *xxx_UseDeleteOperation) OpName() string { return "/wkssvc/v1/NetrUseDel" }
 
 func (o *xxx_UseDeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9008,6 +9124,17 @@ func (o *UseDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeUseDeleteRequest build a response structure from the given request structure.
+func (o *UseDeleteRequest) MakeResponse() *UseDeleteResponse {
+	return &UseDeleteResponse{}
+}
+
+// OpNum returns the operation number of NetrUseDel operation.
+func (o *UseDeleteRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of NetrUseDel operation.
+func (o *UseDeleteRequest) OpName() string { return "/wkssvc/v1/NetrUseDel" }
+
 // UseDeleteResponse structure represents the NetrUseDel operation response
 type UseDeleteResponse struct {
 	// Return: The NetrUseDel return value.
@@ -9053,8 +9180,10 @@ type xxx_UseEnumOperation struct {
 	Return                 uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrUseEnum operation.
 func (o *xxx_UseEnumOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of NetrUseEnum operation.
 func (o *xxx_UseEnumOperation) OpName() string { return "/wkssvc/v1/NetrUseEnum" }
 
 func (o *xxx_UseEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9358,6 +9487,17 @@ func (o *UseEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeUseEnumRequest build a response structure from the given request structure.
+func (o *UseEnumRequest) MakeResponse() *UseEnumResponse {
+	return &UseEnumResponse{}
+}
+
+// OpNum returns the operation number of NetrUseEnum operation.
+func (o *UseEnumRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of NetrUseEnum operation.
+func (o *UseEnumRequest) OpName() string { return "/wkssvc/v1/NetrUseEnum" }
+
 // UseEnumResponse structure represents the NetrUseEnum operation response
 type UseEnumResponse struct {
 	// InfoStruct: The USE_ENUM_STRUCT structure (section 2.2.5.29) contains a Level parameter
@@ -9435,8 +9575,10 @@ type xxx_WorkstationStatisticsGetOperation struct {
 	Return      uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrWorkstationStatisticsGet operation.
 func (o *xxx_WorkstationStatisticsGetOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of NetrWorkstationStatisticsGet operation.
 func (o *xxx_WorkstationStatisticsGetOperation) OpName() string {
 	return "/wkssvc/v1/NetrWorkstationStatisticsGet"
 }
@@ -9687,6 +9829,19 @@ func (o *WorkstationStatisticsGetRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeWorkstationStatisticsGetRequest build a response structure from the given request structure.
+func (o *WorkstationStatisticsGetRequest) MakeResponse() *WorkstationStatisticsGetResponse {
+	return &WorkstationStatisticsGetResponse{}
+}
+
+// OpNum returns the operation number of NetrWorkstationStatisticsGet operation.
+func (o *WorkstationStatisticsGetRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of NetrWorkstationStatisticsGet operation.
+func (o *WorkstationStatisticsGetRequest) OpName() string {
+	return "/wkssvc/v1/NetrWorkstationStatisticsGet"
+}
+
 // WorkstationStatisticsGetResponse structure represents the NetrWorkstationStatisticsGet operation response
 type WorkstationStatisticsGetResponse struct {
 	// Buffer: A pointer to a STAT_WORKSTATION_0 structure (section 2.2.5.11) that contains
@@ -9735,8 +9890,10 @@ type xxx_GetJoinInformationOperation struct {
 	Return     uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrGetJoinInformation operation.
 func (o *xxx_GetJoinInformationOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of NetrGetJoinInformation operation.
 func (o *xxx_GetJoinInformationOperation) OpName() string { return "/wkssvc/v1/NetrGetJoinInformation" }
 
 func (o *xxx_GetJoinInformationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9957,6 +10114,17 @@ func (o *GetJoinInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetJoinInformationRequest build a response structure from the given request structure.
+func (o *GetJoinInformationRequest) MakeResponse() *GetJoinInformationResponse {
+	return &GetJoinInformationResponse{}
+}
+
+// OpNum returns the operation number of NetrGetJoinInformation operation.
+func (o *GetJoinInformationRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of NetrGetJoinInformation operation.
+func (o *GetJoinInformationRequest) OpName() string { return "/wkssvc/v1/NetrGetJoinInformation" }
+
 // GetJoinInformationResponse structure represents the NetrGetJoinInformation operation response
 type GetJoinInformationResponse struct {
 	// NameBuffer: A pointer to the address of the buffer that receives the name of the
@@ -10014,8 +10182,10 @@ type xxx_JoinDomain2Operation struct {
 	Return           uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrJoinDomain2 operation.
 func (o *xxx_JoinDomain2Operation) OpNum() int { return 22 }
 
+// OpName returns the operation name of NetrJoinDomain2 operation.
 func (o *xxx_JoinDomain2Operation) OpName() string { return "/wkssvc/v1/NetrJoinDomain2" }
 
 func (o *xxx_JoinDomain2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10380,6 +10550,17 @@ func (o *JoinDomain2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeJoinDomain2Request build a response structure from the given request structure.
+func (o *JoinDomain2Request) MakeResponse() *JoinDomain2Response {
+	return &JoinDomain2Response{}
+}
+
+// OpNum returns the operation number of NetrJoinDomain2 operation.
+func (o *JoinDomain2Request) OpNum() int { return 22 }
+
+// OpName returns the operation name of NetrJoinDomain2 operation.
+func (o *JoinDomain2Request) OpName() string { return "/wkssvc/v1/NetrJoinDomain2" }
+
 // JoinDomain2Response structure represents the NetrJoinDomain2 operation response
 type JoinDomain2Response struct {
 	// Return: The NetrJoinDomain2 return value.
@@ -10424,8 +10605,10 @@ type xxx_UnjoinDomain2Operation struct {
 	Return      uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrUnjoinDomain2 operation.
 func (o *xxx_UnjoinDomain2Operation) OpNum() int { return 23 }
 
+// OpName returns the operation name of NetrUnjoinDomain2 operation.
 func (o *xxx_UnjoinDomain2Operation) OpName() string { return "/wkssvc/v1/NetrUnjoinDomain2" }
 
 func (o *xxx_UnjoinDomain2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10679,6 +10862,17 @@ func (o *UnjoinDomain2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeUnjoinDomain2Request build a response structure from the given request structure.
+func (o *UnjoinDomain2Request) MakeResponse() *UnjoinDomain2Response {
+	return &UnjoinDomain2Response{}
+}
+
+// OpNum returns the operation number of NetrUnjoinDomain2 operation.
+func (o *UnjoinDomain2Request) OpNum() int { return 23 }
+
+// OpName returns the operation name of NetrUnjoinDomain2 operation.
+func (o *UnjoinDomain2Request) OpName() string { return "/wkssvc/v1/NetrUnjoinDomain2" }
+
 // UnjoinDomain2Response structure represents the NetrUnjoinDomain2 operation response
 type UnjoinDomain2Response struct {
 	// Return: The NetrUnjoinDomain2 return value.
@@ -10724,8 +10918,10 @@ type xxx_RenameMachineInDomain2Operation struct {
 	Return      uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrRenameMachineInDomain2 operation.
 func (o *xxx_RenameMachineInDomain2Operation) OpNum() int { return 24 }
 
+// OpName returns the operation name of NetrRenameMachineInDomain2 operation.
 func (o *xxx_RenameMachineInDomain2Operation) OpName() string {
 	return "/wkssvc/v1/NetrRenameMachineInDomain2"
 }
@@ -11024,6 +11220,19 @@ func (o *RenameMachineInDomain2Request) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeRenameMachineInDomain2Request build a response structure from the given request structure.
+func (o *RenameMachineInDomain2Request) MakeResponse() *RenameMachineInDomain2Response {
+	return &RenameMachineInDomain2Response{}
+}
+
+// OpNum returns the operation number of NetrRenameMachineInDomain2 operation.
+func (o *RenameMachineInDomain2Request) OpNum() int { return 24 }
+
+// OpName returns the operation name of NetrRenameMachineInDomain2 operation.
+func (o *RenameMachineInDomain2Request) OpName() string {
+	return "/wkssvc/v1/NetrRenameMachineInDomain2"
+}
+
 // RenameMachineInDomain2Response structure represents the NetrRenameMachineInDomain2 operation response
 type RenameMachineInDomain2Response struct {
 	// Return: The NetrRenameMachineInDomain2 return value.
@@ -11069,8 +11278,10 @@ type xxx_ValidateName2Operation struct {
 	Return         uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrValidateName2 operation.
 func (o *xxx_ValidateName2Operation) OpNum() int { return 25 }
 
+// OpName returns the operation name of NetrValidateName2 operation.
 func (o *xxx_ValidateName2Operation) OpName() string { return "/wkssvc/v1/NetrValidateName2" }
 
 func (o *xxx_ValidateName2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11324,6 +11535,17 @@ func (o *ValidateName2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeValidateName2Request build a response structure from the given request structure.
+func (o *ValidateName2Request) MakeResponse() *ValidateName2Response {
+	return &ValidateName2Response{}
+}
+
+// OpNum returns the operation number of NetrValidateName2 operation.
+func (o *ValidateName2Request) OpNum() int { return 25 }
+
+// OpName returns the operation name of NetrValidateName2 operation.
+func (o *ValidateName2Request) OpName() string { return "/wkssvc/v1/NetrValidateName2" }
+
 // ValidateName2Response structure represents the NetrValidateName2 operation response
 type ValidateName2Response struct {
 	// Return: The NetrValidateName2 return value.
@@ -11370,8 +11592,10 @@ type xxx_GetJoinableOUs2Operation struct {
 	Return          uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrGetJoinableOUs2 operation.
 func (o *xxx_GetJoinableOUs2Operation) OpNum() int { return 26 }
 
+// OpName returns the operation name of NetrGetJoinableOUs2 operation.
 func (o *xxx_GetJoinableOUs2Operation) OpName() string { return "/wkssvc/v1/NetrGetJoinableOUs2" }
 
 func (o *xxx_GetJoinableOUs2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11736,6 +11960,17 @@ func (o *GetJoinableOUs2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetJoinableOUs2Request build a response structure from the given request structure.
+func (o *GetJoinableOUs2Request) MakeResponse() *GetJoinableOUs2Response {
+	return &GetJoinableOUs2Response{}
+}
+
+// OpNum returns the operation number of NetrGetJoinableOUs2 operation.
+func (o *GetJoinableOUs2Request) OpNum() int { return 26 }
+
+// OpName returns the operation name of NetrGetJoinableOUs2 operation.
+func (o *GetJoinableOUs2Request) OpName() string { return "/wkssvc/v1/NetrGetJoinableOUs2" }
+
 // GetJoinableOUs2Response structure represents the NetrGetJoinableOUs2 operation response
 type GetJoinableOUs2Response struct {
 	// OUCount: A pointer to the count of OUs that the method returns. The server MUST ignore
@@ -11791,8 +12026,10 @@ type xxx_AddAlternateComputerNameOperation struct {
 	Return            uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrAddAlternateComputerName operation.
 func (o *xxx_AddAlternateComputerNameOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of NetrAddAlternateComputerName operation.
 func (o *xxx_AddAlternateComputerNameOperation) OpName() string {
 	return "/wkssvc/v1/NetrAddAlternateComputerName"
 }
@@ -12084,6 +12321,19 @@ func (o *AddAlternateComputerNameRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeAddAlternateComputerNameRequest build a response structure from the given request structure.
+func (o *AddAlternateComputerNameRequest) MakeResponse() *AddAlternateComputerNameResponse {
+	return &AddAlternateComputerNameResponse{}
+}
+
+// OpNum returns the operation number of NetrAddAlternateComputerName operation.
+func (o *AddAlternateComputerNameRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of NetrAddAlternateComputerName operation.
+func (o *AddAlternateComputerNameRequest) OpName() string {
+	return "/wkssvc/v1/NetrAddAlternateComputerName"
+}
+
 // AddAlternateComputerNameResponse structure represents the NetrAddAlternateComputerName operation response
 type AddAlternateComputerNameResponse struct {
 	// Return: The NetrAddAlternateComputerName return value.
@@ -12129,8 +12379,10 @@ type xxx_RemoveAlternateComputerNameOperation struct {
 	Return            uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrRemoveAlternateComputerName operation.
 func (o *xxx_RemoveAlternateComputerNameOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of NetrRemoveAlternateComputerName operation.
 func (o *xxx_RemoveAlternateComputerNameOperation) OpName() string {
 	return "/wkssvc/v1/NetrRemoveAlternateComputerName"
 }
@@ -12422,6 +12674,19 @@ func (o *RemoveAlternateComputerNameRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeRemoveAlternateComputerNameRequest build a response structure from the given request structure.
+func (o *RemoveAlternateComputerNameRequest) MakeResponse() *RemoveAlternateComputerNameResponse {
+	return &RemoveAlternateComputerNameResponse{}
+}
+
+// OpNum returns the operation number of NetrRemoveAlternateComputerName operation.
+func (o *RemoveAlternateComputerNameRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of NetrRemoveAlternateComputerName operation.
+func (o *RemoveAlternateComputerNameRequest) OpName() string {
+	return "/wkssvc/v1/NetrRemoveAlternateComputerName"
+}
+
 // RemoveAlternateComputerNameResponse structure represents the NetrRemoveAlternateComputerName operation response
 type RemoveAlternateComputerNameResponse struct {
 	// Return: The NetrRemoveAlternateComputerName return value.
@@ -12467,8 +12732,10 @@ type xxx_SetPrimaryComputerNameOperation struct {
 	Return            uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrSetPrimaryComputerName operation.
 func (o *xxx_SetPrimaryComputerNameOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of NetrSetPrimaryComputerName operation.
 func (o *xxx_SetPrimaryComputerNameOperation) OpName() string {
 	return "/wkssvc/v1/NetrSetPrimaryComputerName"
 }
@@ -12760,6 +13027,19 @@ func (o *SetPrimaryComputerNameRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeSetPrimaryComputerNameRequest build a response structure from the given request structure.
+func (o *SetPrimaryComputerNameRequest) MakeResponse() *SetPrimaryComputerNameResponse {
+	return &SetPrimaryComputerNameResponse{}
+}
+
+// OpNum returns the operation number of NetrSetPrimaryComputerName operation.
+func (o *SetPrimaryComputerNameRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of NetrSetPrimaryComputerName operation.
+func (o *SetPrimaryComputerNameRequest) OpName() string {
+	return "/wkssvc/v1/NetrSetPrimaryComputerName"
+}
+
 // SetPrimaryComputerNameResponse structure represents the NetrSetPrimaryComputerName operation response
 type SetPrimaryComputerNameResponse struct {
 	// Return: The NetrSetPrimaryComputerName return value.
@@ -12804,8 +13084,10 @@ type xxx_EnumerateComputerNamesOperation struct {
 	Return        uint32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NetrEnumerateComputerNames operation.
 func (o *xxx_EnumerateComputerNamesOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of NetrEnumerateComputerNames operation.
 func (o *xxx_EnumerateComputerNamesOperation) OpName() string {
 	return "/wkssvc/v1/NetrEnumerateComputerNames"
 }
@@ -13011,6 +13293,19 @@ func (o *EnumerateComputerNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeEnumerateComputerNamesRequest build a response structure from the given request structure.
+func (o *EnumerateComputerNamesRequest) MakeResponse() *EnumerateComputerNamesResponse {
+	return &EnumerateComputerNamesResponse{}
+}
+
+// OpNum returns the operation number of NetrEnumerateComputerNames operation.
+func (o *EnumerateComputerNamesRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of NetrEnumerateComputerNames operation.
+func (o *EnumerateComputerNamesRequest) OpName() string {
+	return "/wkssvc/v1/NetrEnumerateComputerNames"
 }
 
 // EnumerateComputerNamesResponse structure represents the NetrEnumerateComputerNames operation response

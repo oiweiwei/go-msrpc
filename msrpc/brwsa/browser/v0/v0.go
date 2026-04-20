@@ -488,8 +488,10 @@ type xxx_QueryOtherDomainsOperation struct {
 	Return       uint32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of I_BrowserrQueryOtherDomains operation.
 func (o *xxx_QueryOtherDomainsOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of I_BrowserrQueryOtherDomains operation.
 func (o *xxx_QueryOtherDomainsOperation) OpName() string {
 	return "/browser/v0/I_BrowserrQueryOtherDomains"
 }
@@ -691,6 +693,17 @@ func (o *QueryOtherDomainsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeQueryOtherDomainsRequest build a response structure from the given request structure.
+func (o *QueryOtherDomainsRequest) MakeResponse() *QueryOtherDomainsResponse {
+	return &QueryOtherDomainsResponse{}
+}
+
+// OpNum returns the operation number of I_BrowserrQueryOtherDomains operation.
+func (o *QueryOtherDomainsRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of I_BrowserrQueryOtherDomains operation.
+func (o *QueryOtherDomainsRequest) OpName() string { return "/browser/v0/I_BrowserrQueryOtherDomains" }
 
 // QueryOtherDomainsResponse structure represents the I_BrowserrQueryOtherDomains operation response
 type QueryOtherDomainsResponse struct {

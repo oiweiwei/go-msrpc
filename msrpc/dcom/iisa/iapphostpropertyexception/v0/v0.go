@@ -233,8 +233,10 @@ type xxx_GetInvalidValueOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of InvalidValue operation.
 func (o *xxx_GetInvalidValueOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of InvalidValue operation.
 func (o *xxx_GetInvalidValueOperation) OpName() string {
 	return "/IAppHostPropertyException/v0/InvalidValue"
 }
@@ -426,6 +428,17 @@ func (o *GetInvalidValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetInvalidValueRequest build a response structure from the given request structure.
+func (o *GetInvalidValueRequest) MakeResponse() *GetInvalidValueResponse {
+	return &GetInvalidValueResponse{}
+}
+
+// OpNum returns the operation number of InvalidValue operation.
+func (o *GetInvalidValueRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of InvalidValue operation.
+func (o *GetInvalidValueRequest) OpName() string { return "/IAppHostPropertyException/v0/InvalidValue" }
+
 // GetInvalidValueResponse structure represents the InvalidValue operation response
 type GetInvalidValueResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -477,8 +490,10 @@ type xxx_GetValidationFailureReasonOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ValidationFailureReason operation.
 func (o *xxx_GetValidationFailureReasonOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of ValidationFailureReason operation.
 func (o *xxx_GetValidationFailureReasonOperation) OpName() string {
 	return "/IAppHostPropertyException/v0/ValidationFailureReason"
 }
@@ -670,6 +685,19 @@ func (o *GetValidationFailureReasonRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeGetValidationFailureReasonRequest build a response structure from the given request structure.
+func (o *GetValidationFailureReasonRequest) MakeResponse() *GetValidationFailureReasonResponse {
+	return &GetValidationFailureReasonResponse{}
+}
+
+// OpNum returns the operation number of ValidationFailureReason operation.
+func (o *GetValidationFailureReasonRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of ValidationFailureReason operation.
+func (o *GetValidationFailureReasonRequest) OpName() string {
+	return "/IAppHostPropertyException/v0/ValidationFailureReason"
+}
+
 // GetValidationFailureReasonResponse structure represents the ValidationFailureReason operation response
 type GetValidationFailureReasonResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -721,8 +749,10 @@ type xxx_GetValidationFailureParametersOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ValidationFailureParameters operation.
 func (o *xxx_GetValidationFailureParametersOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of ValidationFailureParameters operation.
 func (o *xxx_GetValidationFailureParametersOperation) OpName() string {
 	return "/IAppHostPropertyException/v0/ValidationFailureParameters"
 }
@@ -912,6 +942,19 @@ func (o *GetValidationFailureParametersRequest) UnmarshalNDR(ctx context.Context
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetValidationFailureParametersRequest build a response structure from the given request structure.
+func (o *GetValidationFailureParametersRequest) MakeResponse() *GetValidationFailureParametersResponse {
+	return &GetValidationFailureParametersResponse{}
+}
+
+// OpNum returns the operation number of ValidationFailureParameters operation.
+func (o *GetValidationFailureParametersRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of ValidationFailureParameters operation.
+func (o *GetValidationFailureParametersRequest) OpName() string {
+	return "/IAppHostPropertyException/v0/ValidationFailureParameters"
 }
 
 // GetValidationFailureParametersResponse structure represents the ValidationFailureParameters operation response

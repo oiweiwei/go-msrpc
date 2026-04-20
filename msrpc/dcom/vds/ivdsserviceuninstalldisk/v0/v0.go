@@ -177,8 +177,10 @@ type xxx_GetDiskIDFromLUNInfoOperation struct {
 	Return  int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetDiskIdFromLunInfo operation.
 func (o *xxx_GetDiskIDFromLUNInfoOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetDiskIdFromLunInfo operation.
 func (o *xxx_GetDiskIDFromLUNInfoOperation) OpName() string {
 	return "/IVdsServiceUninstallDisk/v0/GetDiskIdFromLunInfo"
 }
@@ -377,6 +379,19 @@ func (o *GetDiskIDFromLUNInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetDiskIDFromLUNInfoRequest build a response structure from the given request structure.
+func (o *GetDiskIDFromLUNInfoRequest) MakeResponse() *GetDiskIDFromLUNInfoResponse {
+	return &GetDiskIDFromLUNInfoResponse{}
+}
+
+// OpNum returns the operation number of GetDiskIdFromLunInfo operation.
+func (o *GetDiskIDFromLUNInfoRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetDiskIdFromLunInfo operation.
+func (o *GetDiskIDFromLUNInfoRequest) OpName() string {
+	return "/IVdsServiceUninstallDisk/v0/GetDiskIdFromLunInfo"
+}
+
 // GetDiskIDFromLUNInfoResponse structure represents the GetDiskIdFromLunInfo operation response
 type GetDiskIDFromLUNInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -434,8 +449,10 @@ type xxx_UninstallDisksOperation struct {
 	Return      int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UninstallDisks operation.
 func (o *xxx_UninstallDisksOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of UninstallDisks operation.
 func (o *xxx_UninstallDisksOperation) OpName() string {
 	return "/IVdsServiceUninstallDisk/v0/UninstallDisks"
 }
@@ -731,6 +748,22 @@ func (o *UninstallDisksRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeUninstallDisksRequest build a response structure from the given request structure.
+func (o *UninstallDisksRequest) MakeResponse() *UninstallDisksResponse {
+	if o == nil {
+		return &UninstallDisksResponse{}
+	}
+	return &UninstallDisksResponse{
+		Count: o.Count,
+	}
+}
+
+// OpNum returns the operation number of UninstallDisks operation.
+func (o *UninstallDisksRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of UninstallDisks operation.
+func (o *UninstallDisksRequest) OpName() string { return "/IVdsServiceUninstallDisk/v0/UninstallDisks" }
 
 // UninstallDisksResponse structure represents the UninstallDisks operation response
 type UninstallDisksResponse struct {

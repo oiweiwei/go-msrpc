@@ -192,8 +192,10 @@ type xxx_GetLastSearchSuccessDateOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LastSearchSuccessDate operation.
 func (o *xxx_GetLastSearchSuccessDateOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of LastSearchSuccessDate operation.
 func (o *xxx_GetLastSearchSuccessDateOperation) OpName() string {
 	return "/IAutomaticUpdatesResults/v0/LastSearchSuccessDate"
 }
@@ -385,6 +387,19 @@ func (o *GetLastSearchSuccessDateRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeGetLastSearchSuccessDateRequest build a response structure from the given request structure.
+func (o *GetLastSearchSuccessDateRequest) MakeResponse() *GetLastSearchSuccessDateResponse {
+	return &GetLastSearchSuccessDateResponse{}
+}
+
+// OpNum returns the operation number of LastSearchSuccessDate operation.
+func (o *GetLastSearchSuccessDateRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of LastSearchSuccessDate operation.
+func (o *GetLastSearchSuccessDateRequest) OpName() string {
+	return "/IAutomaticUpdatesResults/v0/LastSearchSuccessDate"
+}
+
 // GetLastSearchSuccessDateResponse structure represents the LastSearchSuccessDate operation response
 type GetLastSearchSuccessDateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -440,8 +455,10 @@ type xxx_GetLastInstallationSuccessDateOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LastInstallationSuccessDate operation.
 func (o *xxx_GetLastInstallationSuccessDateOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of LastInstallationSuccessDate operation.
 func (o *xxx_GetLastInstallationSuccessDateOperation) OpName() string {
 	return "/IAutomaticUpdatesResults/v0/LastInstallationSuccessDate"
 }
@@ -631,6 +648,19 @@ func (o *GetLastInstallationSuccessDateRequest) UnmarshalNDR(ctx context.Context
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetLastInstallationSuccessDateRequest build a response structure from the given request structure.
+func (o *GetLastInstallationSuccessDateRequest) MakeResponse() *GetLastInstallationSuccessDateResponse {
+	return &GetLastInstallationSuccessDateResponse{}
+}
+
+// OpNum returns the operation number of LastInstallationSuccessDate operation.
+func (o *GetLastInstallationSuccessDateRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of LastInstallationSuccessDate operation.
+func (o *GetLastInstallationSuccessDateRequest) OpName() string {
+	return "/IAutomaticUpdatesResults/v0/LastInstallationSuccessDate"
 }
 
 // GetLastInstallationSuccessDateResponse structure represents the LastInstallationSuccessDate operation response

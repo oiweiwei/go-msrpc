@@ -342,8 +342,10 @@ type xxx_DoDisconnectOperation struct {
 	Return  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EcDoDisconnect operation.
 func (o *xxx_DoDisconnectOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of EcDoDisconnect operation.
 func (o *xxx_DoDisconnectOperation) OpName() string { return "/emsmdb/v0.81/EcDoDisconnect" }
 
 func (o *xxx_DoDisconnectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -478,6 +480,17 @@ func (o *DoDisconnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeDoDisconnectRequest build a response structure from the given request structure.
+func (o *DoDisconnectRequest) MakeResponse() *DoDisconnectResponse {
+	return &DoDisconnectResponse{}
+}
+
+// OpNum returns the operation number of EcDoDisconnect operation.
+func (o *DoDisconnectRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of EcDoDisconnect operation.
+func (o *DoDisconnectRequest) OpName() string { return "/emsmdb/v0.81/EcDoDisconnect" }
+
 // DoDisconnectResponse structure represents the EcDoDisconnect operation response
 type DoDisconnectResponse struct {
 	// pcxh: A session context handle. On input, this parameter is the session context handle
@@ -533,8 +546,10 @@ type xxx_RegisterPushNotificationOperation struct {
 	Return                int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EcRRegisterPushNotification operation.
 func (o *xxx_RegisterPushNotificationOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of EcRRegisterPushNotification operation.
 func (o *xxx_RegisterPushNotificationOperation) OpName() string {
 	return "/emsmdb/v0.81/EcRRegisterPushNotification"
 }
@@ -880,6 +895,19 @@ func (o *RegisterPushNotificationRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeRegisterPushNotificationRequest build a response structure from the given request structure.
+func (o *RegisterPushNotificationRequest) MakeResponse() *RegisterPushNotificationResponse {
+	return &RegisterPushNotificationResponse{}
+}
+
+// OpNum returns the operation number of EcRRegisterPushNotification operation.
+func (o *RegisterPushNotificationRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of EcRRegisterPushNotification operation.
+func (o *RegisterPushNotificationRequest) OpName() string {
+	return "/emsmdb/v0.81/EcRRegisterPushNotification"
+}
+
 // RegisterPushNotificationResponse structure represents the EcRRegisterPushNotification operation response
 type RegisterPushNotificationResponse struct {
 	// pcxh: A session context handle. On input, the client MUST pass a valid session context
@@ -942,8 +970,10 @@ type xxx_DummyRPCOperation struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EcDummyRpc operation.
 func (o *xxx_DummyRPCOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of EcDummyRpc operation.
 func (o *xxx_DummyRPCOperation) OpName() string { return "/emsmdb/v0.81/EcDummyRpc" }
 
 func (o *xxx_DummyRPCOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1029,6 +1059,17 @@ func (o *DummyRPCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeDummyRPCRequest build a response structure from the given request structure.
+func (o *DummyRPCRequest) MakeResponse() *DummyRPCResponse {
+	return &DummyRPCResponse{}
+}
+
+// OpNum returns the operation number of EcDummyRpc operation.
+func (o *DummyRPCRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of EcDummyRpc operation.
+func (o *DummyRPCRequest) OpName() string { return "/emsmdb/v0.81/EcDummyRpc" }
+
 // DummyRPCResponse structure represents the EcDummyRpc operation response
 type DummyRPCResponse struct {
 	// Return: The EcDummyRpc return value.
@@ -1093,8 +1134,10 @@ type xxx_DoConnectExOperation struct {
 	Return              int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EcDoConnectEx operation.
 func (o *xxx_DoConnectExOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of EcDoConnectEx operation.
 func (o *xxx_DoConnectExOperation) OpName() string { return "/emsmdb/v0.81/EcDoConnectEx" }
 
 func (o *xxx_DoConnectExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1848,6 +1891,17 @@ func (o *DoConnectExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeDoConnectExRequest build a response structure from the given request structure.
+func (o *DoConnectExRequest) MakeResponse() *DoConnectExResponse {
+	return &DoConnectExResponse{}
+}
+
+// OpNum returns the operation number of EcDoConnectEx operation.
+func (o *DoConnectExRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of EcDoConnectEx operation.
+func (o *DoConnectExRequest) OpName() string { return "/emsmdb/v0.81/EcDoConnectEx" }
+
 // DoConnectExResponse structure represents the EcDoConnectEx operation response
 type DoConnectExResponse struct {
 	// pcxh: A session context handle for the client. On success, the server MUST return
@@ -2007,8 +2061,10 @@ type xxx_DoRPCExt2Operation struct {
 	Return       int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EcDoRpcExt2 operation.
 func (o *xxx_DoRPCExt2Operation) OpNum() int { return 11 }
 
+// OpName returns the operation name of EcDoRpcExt2 operation.
 func (o *xxx_DoRPCExt2Operation) OpName() string { return "/emsmdb/v0.81/EcDoRpcExt2" }
 
 func (o *xxx_DoRPCExt2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2596,6 +2652,17 @@ func (o *DoRPCExt2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeDoRPCExt2Request build a response structure from the given request structure.
+func (o *DoRPCExt2Request) MakeResponse() *DoRPCExt2Response {
+	return &DoRPCExt2Response{}
+}
+
+// OpNum returns the operation number of EcDoRpcExt2 operation.
+func (o *DoRPCExt2Request) OpNum() int { return 11 }
+
+// OpName returns the operation name of EcDoRpcExt2 operation.
+func (o *DoRPCExt2Request) OpName() string { return "/emsmdb/v0.81/EcDoRpcExt2" }
+
 // DoRPCExt2Response structure represents the EcDoRpcExt2 operation response
 type DoRPCExt2Response struct {
 	// pcxh: A session context handle. On input, the client MUST pass a valid session context
@@ -2738,8 +2805,10 @@ type xxx_DoAsyncConnectExOperation struct {
 	Return       int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EcDoAsyncConnectEx operation.
 func (o *xxx_DoAsyncConnectExOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of EcDoAsyncConnectEx operation.
 func (o *xxx_DoAsyncConnectExOperation) OpName() string { return "/emsmdb/v0.81/EcDoAsyncConnectEx" }
 
 func (o *xxx_DoAsyncConnectExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2872,6 +2941,17 @@ func (o *DoAsyncConnectExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeDoAsyncConnectExRequest build a response structure from the given request structure.
+func (o *DoAsyncConnectExRequest) MakeResponse() *DoAsyncConnectExResponse {
+	return &DoAsyncConnectExResponse{}
+}
+
+// OpNum returns the operation number of EcDoAsyncConnectEx operation.
+func (o *DoAsyncConnectExRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of EcDoAsyncConnectEx operation.
+func (o *DoAsyncConnectExRequest) OpName() string { return "/emsmdb/v0.81/EcDoAsyncConnectEx" }
 
 // DoAsyncConnectExResponse structure represents the EcDoAsyncConnectEx operation response
 type DoAsyncConnectExResponse struct {

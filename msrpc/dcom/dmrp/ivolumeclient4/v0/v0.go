@@ -183,8 +183,10 @@ type xxx_RefreshExOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RefreshEx operation.
 func (o *xxx_RefreshExOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RefreshEx operation.
 func (o *xxx_RefreshExOperation) OpName() string { return "/IVolumeClient4/v0/RefreshEx" }
 
 func (o *xxx_RefreshExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -328,6 +330,17 @@ func (o *RefreshExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeRefreshExRequest build a response structure from the given request structure.
+func (o *RefreshExRequest) MakeResponse() *RefreshExResponse {
+	return &RefreshExResponse{}
+}
+
+// OpNum returns the operation number of RefreshEx operation.
+func (o *RefreshExRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RefreshEx operation.
+func (o *RefreshExRequest) OpName() string { return "/IVolumeClient4/v0/RefreshEx" }
+
 // RefreshExResponse structure represents the RefreshEx operation response
 type RefreshExResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -377,8 +390,10 @@ type xxx_GetVolumeDeviceNameOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetVolumeDeviceName operation.
 func (o *xxx_GetVolumeDeviceNameOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetVolumeDeviceName operation.
 func (o *xxx_GetVolumeDeviceNameOperation) OpName() string {
 	return "/IVolumeClient4/v0/GetVolumeDeviceName"
 }
@@ -630,6 +645,17 @@ func (o *GetVolumeDeviceNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetVolumeDeviceNameRequest build a response structure from the given request structure.
+func (o *GetVolumeDeviceNameRequest) MakeResponse() *GetVolumeDeviceNameResponse {
+	return &GetVolumeDeviceNameResponse{}
+}
+
+// OpNum returns the operation number of GetVolumeDeviceName operation.
+func (o *GetVolumeDeviceNameRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetVolumeDeviceName operation.
+func (o *GetVolumeDeviceNameRequest) OpName() string { return "/IVolumeClient4/v0/GetVolumeDeviceName" }
 
 // GetVolumeDeviceNameResponse structure represents the GetVolumeDeviceName operation response
 type GetVolumeDeviceNameResponse struct {

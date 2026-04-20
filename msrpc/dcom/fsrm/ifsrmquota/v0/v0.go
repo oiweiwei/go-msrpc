@@ -302,8 +302,10 @@ type xxx_GetQuotaUsedOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QuotaUsed operation.
 func (o *xxx_GetQuotaUsedOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of QuotaUsed operation.
 func (o *xxx_GetQuotaUsedOperation) OpName() string { return "/IFsrmQuota/v0/QuotaUsed" }
 
 func (o *xxx_GetQuotaUsedOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -493,6 +495,17 @@ func (o *GetQuotaUsedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetQuotaUsedRequest build a response structure from the given request structure.
+func (o *GetQuotaUsedRequest) MakeResponse() *GetQuotaUsedResponse {
+	return &GetQuotaUsedResponse{}
+}
+
+// OpNum returns the operation number of QuotaUsed operation.
+func (o *GetQuotaUsedRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of QuotaUsed operation.
+func (o *GetQuotaUsedRequest) OpName() string { return "/IFsrmQuota/v0/QuotaUsed" }
+
 // GetQuotaUsedResponse structure represents the QuotaUsed operation response
 type GetQuotaUsedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -545,8 +558,10 @@ type xxx_GetQuotaPeakUsageOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QuotaPeakUsage operation.
 func (o *xxx_GetQuotaPeakUsageOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of QuotaPeakUsage operation.
 func (o *xxx_GetQuotaPeakUsageOperation) OpName() string { return "/IFsrmQuota/v0/QuotaPeakUsage" }
 
 func (o *xxx_GetQuotaPeakUsageOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -736,6 +751,17 @@ func (o *GetQuotaPeakUsageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetQuotaPeakUsageRequest build a response structure from the given request structure.
+func (o *GetQuotaPeakUsageRequest) MakeResponse() *GetQuotaPeakUsageResponse {
+	return &GetQuotaPeakUsageResponse{}
+}
+
+// OpNum returns the operation number of QuotaPeakUsage operation.
+func (o *GetQuotaPeakUsageRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of QuotaPeakUsage operation.
+func (o *GetQuotaPeakUsageRequest) OpName() string { return "/IFsrmQuota/v0/QuotaPeakUsage" }
+
 // GetQuotaPeakUsageResponse structure represents the QuotaPeakUsage operation response
 type GetQuotaPeakUsageResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -788,8 +814,10 @@ type xxx_GetQuotaPeakUsageTimeOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QuotaPeakUsageTime operation.
 func (o *xxx_GetQuotaPeakUsageTimeOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of QuotaPeakUsageTime operation.
 func (o *xxx_GetQuotaPeakUsageTimeOperation) OpName() string {
 	return "/IFsrmQuota/v0/QuotaPeakUsageTime"
 }
@@ -947,6 +975,17 @@ func (o *GetQuotaPeakUsageTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetQuotaPeakUsageTimeRequest build a response structure from the given request structure.
+func (o *GetQuotaPeakUsageTimeRequest) MakeResponse() *GetQuotaPeakUsageTimeResponse {
+	return &GetQuotaPeakUsageTimeResponse{}
+}
+
+// OpNum returns the operation number of QuotaPeakUsageTime operation.
+func (o *GetQuotaPeakUsageTimeRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of QuotaPeakUsageTime operation.
+func (o *GetQuotaPeakUsageTimeRequest) OpName() string { return "/IFsrmQuota/v0/QuotaPeakUsageTime" }
+
 // GetQuotaPeakUsageTimeResponse structure represents the QuotaPeakUsageTime operation response
 type GetQuotaPeakUsageTimeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -998,8 +1037,10 @@ type xxx_ResetPeakUsageOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ResetPeakUsage operation.
 func (o *xxx_ResetPeakUsageOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of ResetPeakUsage operation.
 func (o *xxx_ResetPeakUsageOperation) OpName() string { return "/IFsrmQuota/v0/ResetPeakUsage" }
 
 func (o *xxx_ResetPeakUsageOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1143,6 +1184,17 @@ func (o *ResetPeakUsageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeResetPeakUsageRequest build a response structure from the given request structure.
+func (o *ResetPeakUsageRequest) MakeResponse() *ResetPeakUsageResponse {
+	return &ResetPeakUsageResponse{}
+}
+
+// OpNum returns the operation number of ResetPeakUsage operation.
+func (o *ResetPeakUsageRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of ResetPeakUsage operation.
+func (o *ResetPeakUsageRequest) OpName() string { return "/IFsrmQuota/v0/ResetPeakUsage" }
+
 // ResetPeakUsageResponse structure represents the ResetPeakUsage operation response
 type ResetPeakUsageResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1189,8 +1241,10 @@ type xxx_RefreshUsagePropertiesOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RefreshUsageProperties operation.
 func (o *xxx_RefreshUsagePropertiesOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of RefreshUsageProperties operation.
 func (o *xxx_RefreshUsagePropertiesOperation) OpName() string {
 	return "/IFsrmQuota/v0/RefreshUsageProperties"
 }
@@ -1334,6 +1388,19 @@ func (o *RefreshUsagePropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeRefreshUsagePropertiesRequest build a response structure from the given request structure.
+func (o *RefreshUsagePropertiesRequest) MakeResponse() *RefreshUsagePropertiesResponse {
+	return &RefreshUsagePropertiesResponse{}
+}
+
+// OpNum returns the operation number of RefreshUsageProperties operation.
+func (o *RefreshUsagePropertiesRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of RefreshUsageProperties operation.
+func (o *RefreshUsagePropertiesRequest) OpName() string {
+	return "/IFsrmQuota/v0/RefreshUsageProperties"
 }
 
 // RefreshUsagePropertiesResponse structure represents the RefreshUsageProperties operation response

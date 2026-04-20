@@ -222,8 +222,10 @@ type xxx_GetNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Name operation.
 func (o *xxx_GetNameOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Name operation.
 func (o *xxx_GetNameOperation) OpName() string { return "/IFsrmPropertyDefinitionValue/v0/Name" }
 
 func (o *xxx_GetNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -413,6 +415,17 @@ func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetNameRequest build a response structure from the given request structure.
+func (o *GetNameRequest) MakeResponse() *GetNameResponse {
+	return &GetNameResponse{}
+}
+
+// OpNum returns the operation number of Name operation.
+func (o *GetNameRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Name operation.
+func (o *GetNameRequest) OpName() string { return "/IFsrmPropertyDefinitionValue/v0/Name" }
+
 // GetNameResponse structure represents the Name operation response
 type GetNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -463,8 +476,10 @@ type xxx_GetDisplayNameOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DisplayName operation.
 func (o *xxx_GetDisplayNameOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of DisplayName operation.
 func (o *xxx_GetDisplayNameOperation) OpName() string {
 	return "/IFsrmPropertyDefinitionValue/v0/DisplayName"
 }
@@ -656,6 +671,19 @@ func (o *GetDisplayNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetDisplayNameRequest build a response structure from the given request structure.
+func (o *GetDisplayNameRequest) MakeResponse() *GetDisplayNameResponse {
+	return &GetDisplayNameResponse{}
+}
+
+// OpNum returns the operation number of DisplayName operation.
+func (o *GetDisplayNameRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of DisplayName operation.
+func (o *GetDisplayNameRequest) OpName() string {
+	return "/IFsrmPropertyDefinitionValue/v0/DisplayName"
+}
+
 // GetDisplayNameResponse structure represents the DisplayName operation response
 type GetDisplayNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -706,8 +734,10 @@ type xxx_GetDescriptionOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Description operation.
 func (o *xxx_GetDescriptionOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Description operation.
 func (o *xxx_GetDescriptionOperation) OpName() string {
 	return "/IFsrmPropertyDefinitionValue/v0/Description"
 }
@@ -899,6 +929,19 @@ func (o *GetDescriptionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetDescriptionRequest build a response structure from the given request structure.
+func (o *GetDescriptionRequest) MakeResponse() *GetDescriptionResponse {
+	return &GetDescriptionResponse{}
+}
+
+// OpNum returns the operation number of Description operation.
+func (o *GetDescriptionRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Description operation.
+func (o *GetDescriptionRequest) OpName() string {
+	return "/IFsrmPropertyDefinitionValue/v0/Description"
+}
+
 // GetDescriptionResponse structure represents the Description operation response
 type GetDescriptionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -949,8 +992,10 @@ type xxx_GetUniqueIDOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UniqueID operation.
 func (o *xxx_GetUniqueIDOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of UniqueID operation.
 func (o *xxx_GetUniqueIDOperation) OpName() string {
 	return "/IFsrmPropertyDefinitionValue/v0/UniqueID"
 }
@@ -1141,6 +1186,17 @@ func (o *GetUniqueIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetUniqueIDRequest build a response structure from the given request structure.
+func (o *GetUniqueIDRequest) MakeResponse() *GetUniqueIDResponse {
+	return &GetUniqueIDResponse{}
+}
+
+// OpNum returns the operation number of UniqueID operation.
+func (o *GetUniqueIDRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of UniqueID operation.
+func (o *GetUniqueIDRequest) OpName() string { return "/IFsrmPropertyDefinitionValue/v0/UniqueID" }
 
 // GetUniqueIDResponse structure represents the UniqueID operation response
 type GetUniqueIDResponse struct {

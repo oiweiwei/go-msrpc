@@ -141,8 +141,10 @@ type xxx_GetStringFromIDOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetStringFromId operation.
 func (o *xxx_GetStringFromIDOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetStringFromId operation.
 func (o *xxx_GetStringFromIDOperation) OpName() string {
 	return "/IRemoteStringIdConfig/v0/GetStringFromId"
 }
@@ -348,6 +350,17 @@ func (o *GetStringFromIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetStringFromIDRequest build a response structure from the given request structure.
+func (o *GetStringFromIDRequest) MakeResponse() *GetStringFromIDResponse {
+	return &GetStringFromIDResponse{}
+}
+
+// OpNum returns the operation number of GetStringFromId operation.
+func (o *GetStringFromIDRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetStringFromId operation.
+func (o *GetStringFromIDRequest) OpName() string { return "/IRemoteStringIdConfig/v0/GetStringFromId" }
 
 // GetStringFromIDResponse structure represents the GetStringFromId operation response
 type GetStringFromIDResponse struct {

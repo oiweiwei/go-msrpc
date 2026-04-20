@@ -219,8 +219,10 @@ type xxx_InitializeAdapterConfigurationOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of InitializeAdapterConfiguration operation.
 func (o *xxx_InitializeAdapterConfigurationOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of InitializeAdapterConfiguration operation.
 func (o *xxx_InitializeAdapterConfigurationOperation) OpName() string {
 	return "/IClusterFirewall/v0/InitializeAdapterConfiguration"
 }
@@ -378,6 +380,19 @@ func (o *InitializeAdapterConfigurationRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeInitializeAdapterConfigurationRequest build a response structure from the given request structure.
+func (o *InitializeAdapterConfigurationRequest) MakeResponse() *InitializeAdapterConfigurationResponse {
+	return &InitializeAdapterConfigurationResponse{}
+}
+
+// OpNum returns the operation number of InitializeAdapterConfiguration operation.
+func (o *InitializeAdapterConfigurationRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of InitializeAdapterConfiguration operation.
+func (o *InitializeAdapterConfigurationRequest) OpName() string {
+	return "/IClusterFirewall/v0/InitializeAdapterConfiguration"
+}
+
 // InitializeAdapterConfigurationResponse structure represents the InitializeAdapterConfiguration operation response
 type InitializeAdapterConfigurationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -437,8 +452,10 @@ type xxx_GetNextAdapterFirewallConfigurationOperation struct {
 	Return                 int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNextAdapterFirewallConfiguration operation.
 func (o *xxx_GetNextAdapterFirewallConfigurationOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetNextAdapterFirewallConfiguration operation.
 func (o *xxx_GetNextAdapterFirewallConfigurationOperation) OpName() string {
 	return "/IClusterFirewall/v0/GetNextAdapterFirewallConfiguration"
 }
@@ -670,6 +687,19 @@ func (o *GetNextAdapterFirewallConfigurationRequest) UnmarshalNDR(ctx context.Co
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetNextAdapterFirewallConfigurationRequest build a response structure from the given request structure.
+func (o *GetNextAdapterFirewallConfigurationRequest) MakeResponse() *GetNextAdapterFirewallConfigurationResponse {
+	return &GetNextAdapterFirewallConfigurationResponse{}
+}
+
+// OpNum returns the operation number of GetNextAdapterFirewallConfiguration operation.
+func (o *GetNextAdapterFirewallConfigurationRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetNextAdapterFirewallConfiguration operation.
+func (o *GetNextAdapterFirewallConfigurationRequest) OpName() string {
+	return "/IClusterFirewall/v0/GetNextAdapterFirewallConfiguration"
 }
 
 // GetNextAdapterFirewallConfigurationResponse structure represents the GetNextAdapterFirewallConfiguration operation response

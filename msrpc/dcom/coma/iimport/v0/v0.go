@@ -217,8 +217,10 @@ type xxx_ImportFromFileOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ImportFromFile operation.
 func (o *xxx_ImportFromFileOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ImportFromFile operation.
 func (o *xxx_ImportFromFileOperation) OpName() string { return "/IImport/v0/ImportFromFile" }
 
 func (o *xxx_ImportFromFileOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1124,6 +1126,17 @@ func (o *ImportFromFileRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeImportFromFileRequest build a response structure from the given request structure.
+func (o *ImportFromFileRequest) MakeResponse() *ImportFromFileResponse {
+	return &ImportFromFileResponse{}
+}
+
+// OpNum returns the operation number of ImportFromFile operation.
+func (o *ImportFromFileRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ImportFromFile operation.
+func (o *ImportFromFileRequest) OpName() string { return "/IImport/v0/ImportFromFile" }
+
 // ImportFromFileResponse structure represents the ImportFromFile operation response
 type ImportFromFileResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1227,8 +1240,10 @@ type xxx_QueryFileOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryFile operation.
 func (o *xxx_QueryFileOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of QueryFile operation.
 func (o *xxx_QueryFileOperation) OpName() string { return "/IImport/v0/QueryFile" }
 
 func (o *xxx_QueryFileOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1712,6 +1727,17 @@ func (o *QueryFileRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeQueryFileRequest build a response structure from the given request structure.
+func (o *QueryFileRequest) MakeResponse() *QueryFileResponse {
+	return &QueryFileResponse{}
+}
+
+// OpNum returns the operation number of QueryFile operation.
+func (o *QueryFileRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of QueryFile operation.
+func (o *QueryFileRequest) OpName() string { return "/IImport/v0/QueryFile" }
 
 // QueryFileResponse structure represents the QueryFile operation response
 type QueryFileResponse struct {

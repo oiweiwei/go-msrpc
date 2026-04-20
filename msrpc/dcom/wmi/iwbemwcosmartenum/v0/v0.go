@@ -145,8 +145,10 @@ type xxx_NextOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Next operation.
 func (o *xxx_NextOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Next operation.
 func (o *xxx_NextOperation) OpName() string { return "/IWbemWCOSmartEnum/v0/Next" }
 
 func (o *xxx_NextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -440,6 +442,17 @@ func (o *NextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeNextRequest build a response structure from the given request structure.
+func (o *NextRequest) MakeResponse() *NextResponse {
+	return &NextResponse{}
+}
+
+// OpNum returns the operation number of Next operation.
+func (o *NextRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Next operation.
+func (o *NextRequest) OpName() string { return "/IWbemWCOSmartEnum/v0/Next" }
 
 // NextResponse structure represents the Next operation response
 type NextResponse struct {

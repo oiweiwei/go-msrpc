@@ -1267,8 +1267,10 @@ type xxx_OpenSessionOperation struct {
 	Return    int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcOpenSession operation.
 func (o *xxx_OpenSessionOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RpcOpenSession operation.
 func (o *xxx_OpenSessionOperation) OpName() string { return "/TermSrvSession/v1/RpcOpenSession" }
 
 func (o *xxx_OpenSessionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1393,6 +1395,17 @@ func (o *OpenSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeOpenSessionRequest build a response structure from the given request structure.
+func (o *OpenSessionRequest) MakeResponse() *OpenSessionResponse {
+	return &OpenSessionResponse{}
+}
+
+// OpNum returns the operation number of RpcOpenSession operation.
+func (o *OpenSessionRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RpcOpenSession operation.
+func (o *OpenSessionRequest) OpName() string { return "/TermSrvSession/v1/RpcOpenSession" }
+
 // OpenSessionResponse structure represents the RpcOpenSession operation response
 type OpenSessionResponse struct {
 	// phSession:  A handle to the session. This is of type SESSION_HANDLE.
@@ -1438,8 +1451,10 @@ type xxx_CloseSessionOperation struct {
 	Return  int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcCloseSession operation.
 func (o *xxx_CloseSessionOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RpcCloseSession operation.
 func (o *xxx_CloseSessionOperation) OpName() string { return "/TermSrvSession/v1/RpcCloseSession" }
 
 func (o *xxx_CloseSessionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1573,6 +1588,17 @@ func (o *CloseSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCloseSessionRequest build a response structure from the given request structure.
+func (o *CloseSessionRequest) MakeResponse() *CloseSessionResponse {
+	return &CloseSessionResponse{}
+}
+
+// OpNum returns the operation number of RpcCloseSession operation.
+func (o *CloseSessionRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RpcCloseSession operation.
+func (o *CloseSessionRequest) OpName() string { return "/TermSrvSession/v1/RpcCloseSession" }
+
 // CloseSessionResponse structure represents the RpcCloseSession operation response
 type CloseSessionResponse struct {
 	// phSession: Pointer to a handle to the session to close. The pointer is returned by
@@ -1622,8 +1648,10 @@ type xxx_ConnectOperation struct {
 	Return          int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcConnect operation.
 func (o *xxx_ConnectOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of RpcConnect operation.
 func (o *xxx_ConnectOperation) OpName() string { return "/TermSrvSession/v1/RpcConnect" }
 
 func (o *xxx_ConnectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1771,6 +1799,17 @@ func (o *ConnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeConnectRequest build a response structure from the given request structure.
+func (o *ConnectRequest) MakeResponse() *ConnectResponse {
+	return &ConnectResponse{}
+}
+
+// OpNum returns the operation number of RpcConnect operation.
+func (o *ConnectRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of RpcConnect operation.
+func (o *ConnectRequest) OpName() string { return "/TermSrvSession/v1/RpcConnect" }
+
 // ConnectResponse structure represents the RpcConnect operation response
 type ConnectResponse struct {
 	// Return: The RpcConnect return value.
@@ -1812,8 +1851,10 @@ type xxx_DisconnectOperation struct {
 	Return  int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcDisconnect operation.
 func (o *xxx_DisconnectOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RpcDisconnect operation.
 func (o *xxx_DisconnectOperation) OpName() string { return "/TermSrvSession/v1/RpcDisconnect" }
 
 func (o *xxx_DisconnectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1924,6 +1965,17 @@ func (o *DisconnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeDisconnectRequest build a response structure from the given request structure.
+func (o *DisconnectRequest) MakeResponse() *DisconnectResponse {
+	return &DisconnectResponse{}
+}
+
+// OpNum returns the operation number of RpcDisconnect operation.
+func (o *DisconnectRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RpcDisconnect operation.
+func (o *DisconnectRequest) OpName() string { return "/TermSrvSession/v1/RpcDisconnect" }
+
 // DisconnectResponse structure represents the RpcDisconnect operation response
 type DisconnectResponse struct {
 	// Return: The RpcDisconnect return value.
@@ -1965,8 +2017,10 @@ type xxx_LogoffOperation struct {
 	Return  int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcLogoff operation.
 func (o *xxx_LogoffOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RpcLogoff operation.
 func (o *xxx_LogoffOperation) OpName() string { return "/TermSrvSession/v1/RpcLogoff" }
 
 func (o *xxx_LogoffOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2077,6 +2131,17 @@ func (o *LogoffRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeLogoffRequest build a response structure from the given request structure.
+func (o *LogoffRequest) MakeResponse() *LogoffResponse {
+	return &LogoffResponse{}
+}
+
+// OpNum returns the operation number of RpcLogoff operation.
+func (o *LogoffRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RpcLogoff operation.
+func (o *LogoffRequest) OpName() string { return "/TermSrvSession/v1/RpcLogoff" }
+
 // LogoffResponse structure represents the RpcLogoff operation response
 type LogoffResponse struct {
 	// Return: The RpcLogoff return value.
@@ -2120,8 +2185,10 @@ type xxx_GetUserNameOperation struct {
 	Return   int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetUserName operation.
 func (o *xxx_GetUserNameOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of RpcGetUserName operation.
 func (o *xxx_GetUserNameOperation) OpName() string { return "/TermSrvSession/v1/RpcGetUserName" }
 
 func (o *xxx_GetUserNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2306,6 +2373,17 @@ func (o *GetUserNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetUserNameRequest build a response structure from the given request structure.
+func (o *GetUserNameRequest) MakeResponse() *GetUserNameResponse {
+	return &GetUserNameResponse{}
+}
+
+// OpNum returns the operation number of RpcGetUserName operation.
+func (o *GetUserNameRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of RpcGetUserName operation.
+func (o *GetUserNameRequest) OpName() string { return "/TermSrvSession/v1/RpcGetUserName" }
+
 // GetUserNameResponse structure represents the RpcGetUserName operation response
 type GetUserNameResponse struct {
 	// pszUserName: The name of the user who is logged on to the specific session.
@@ -2358,8 +2436,10 @@ type xxx_GetTerminalNameOperation struct {
 	Return       int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetTerminalName operation.
 func (o *xxx_GetTerminalNameOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of RpcGetTerminalName operation.
 func (o *xxx_GetTerminalNameOperation) OpName() string {
 	return "/TermSrvSession/v1/RpcGetTerminalName"
 }
@@ -2509,6 +2589,17 @@ func (o *GetTerminalNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetTerminalNameRequest build a response structure from the given request structure.
+func (o *GetTerminalNameRequest) MakeResponse() *GetTerminalNameResponse {
+	return &GetTerminalNameResponse{}
+}
+
+// OpNum returns the operation number of RpcGetTerminalName operation.
+func (o *GetTerminalNameRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of RpcGetTerminalName operation.
+func (o *GetTerminalNameRequest) OpName() string { return "/TermSrvSession/v1/RpcGetTerminalName" }
+
 // GetTerminalNameResponse structure represents the RpcGetTerminalName operation response
 type GetTerminalNameResponse struct {
 	// pszTerminalName: The name of the terminal associated with the specific session.
@@ -2555,8 +2646,10 @@ type xxx_GetStateOperation struct {
 	Return  int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetState operation.
 func (o *xxx_GetStateOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of RpcGetState operation.
 func (o *xxx_GetStateOperation) OpName() string { return "/TermSrvSession/v1/RpcGetState" }
 
 func (o *xxx_GetStateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2679,6 +2772,17 @@ func (o *GetStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeGetStateRequest build a response structure from the given request structure.
+func (o *GetStateRequest) MakeResponse() *GetStateResponse {
+	return &GetStateResponse{}
+}
+
+// OpNum returns the operation number of RpcGetState operation.
+func (o *GetStateRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of RpcGetState operation.
+func (o *GetStateRequest) OpName() string { return "/TermSrvSession/v1/RpcGetState" }
+
 // GetStateResponse structure represents the RpcGetState operation response
 type GetStateResponse struct {
 	// plState:  The current state of the session as defined in WINSTATIONSTATECLASS (section
@@ -2725,8 +2829,10 @@ type xxx_IsSessionDesktopLockedOperation struct {
 	Return  int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcIsSessionDesktopLocked operation.
 func (o *xxx_IsSessionDesktopLockedOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RpcIsSessionDesktopLocked operation.
 func (o *xxx_IsSessionDesktopLockedOperation) OpName() string {
 	return "/TermSrvSession/v1/RpcIsSessionDesktopLocked"
 }
@@ -2839,6 +2945,19 @@ func (o *IsSessionDesktopLockedRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeIsSessionDesktopLockedRequest build a response structure from the given request structure.
+func (o *IsSessionDesktopLockedRequest) MakeResponse() *IsSessionDesktopLockedResponse {
+	return &IsSessionDesktopLockedResponse{}
+}
+
+// OpNum returns the operation number of RpcIsSessionDesktopLocked operation.
+func (o *IsSessionDesktopLockedRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of RpcIsSessionDesktopLocked operation.
+func (o *IsSessionDesktopLockedRequest) OpName() string {
+	return "/TermSrvSession/v1/RpcIsSessionDesktopLocked"
+}
+
 // IsSessionDesktopLockedResponse structure represents the RpcIsSessionDesktopLocked operation response
 type IsSessionDesktopLockedResponse struct {
 	// Return: The RpcIsSessionDesktopLocked return value.
@@ -2886,8 +3005,10 @@ type xxx_ShowMessageBoxOperation struct {
 	Return    int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcShowMessageBox operation.
 func (o *xxx_ShowMessageBoxOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RpcShowMessageBox operation.
 func (o *xxx_ShowMessageBoxOperation) OpName() string { return "/TermSrvSession/v1/RpcShowMessageBox" }
 
 func (o *xxx_ShowMessageBoxOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3102,6 +3223,17 @@ func (o *ShowMessageBoxRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeShowMessageBoxRequest build a response structure from the given request structure.
+func (o *ShowMessageBoxRequest) MakeResponse() *ShowMessageBoxResponse {
+	return &ShowMessageBoxResponse{}
+}
+
+// OpNum returns the operation number of RpcShowMessageBox operation.
+func (o *ShowMessageBoxRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RpcShowMessageBox operation.
+func (o *ShowMessageBoxRequest) OpName() string { return "/TermSrvSession/v1/RpcShowMessageBox" }
+
 // ShowMessageBoxResponse structure represents the RpcShowMessageBox operation response
 type ShowMessageBoxResponse struct {
 	// pulResponse: Pointer to a variable that receives the user's response, which can be
@@ -3177,8 +3309,10 @@ type xxx_GetTimesOperation struct {
 	Return         int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetTimes operation.
 func (o *xxx_GetTimesOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of RpcGetTimes operation.
 func (o *xxx_GetTimesOperation) OpName() string { return "/TermSrvSession/v1/RpcGetTimes" }
 
 func (o *xxx_GetTimesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3325,6 +3459,17 @@ func (o *GetTimesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeGetTimesRequest build a response structure from the given request structure.
+func (o *GetTimesRequest) MakeResponse() *GetTimesResponse {
+	return &GetTimesResponse{}
+}
+
+// OpNum returns the operation number of RpcGetTimes operation.
+func (o *GetTimesRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of RpcGetTimes operation.
+func (o *GetTimesRequest) OpName() string { return "/TermSrvSession/v1/RpcGetTimes" }
+
 // GetTimesResponse structure represents the RpcGetTimes operation response
 type GetTimesResponse struct {
 	// pConnectTime:  The most recent time of a connection to the session.
@@ -3379,8 +3524,10 @@ type xxx_GetSessionCountersOperation struct {
 	Return  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetSessionCounters operation.
 func (o *xxx_GetSessionCountersOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RpcGetSessionCounters operation.
 func (o *xxx_GetSessionCountersOperation) OpName() string {
 	return "/TermSrvSession/v1/RpcGetSessionCounters"
 }
@@ -3604,6 +3751,24 @@ func (o *GetSessionCountersRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetSessionCountersRequest build a response structure from the given request structure.
+func (o *GetSessionCountersRequest) MakeResponse() *GetSessionCountersResponse {
+	if o == nil {
+		return &GetSessionCountersResponse{}
+	}
+	return &GetSessionCountersResponse{
+		Entries: o.Entries,
+	}
+}
+
+// OpNum returns the operation number of RpcGetSessionCounters operation.
+func (o *GetSessionCountersRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RpcGetSessionCounters operation.
+func (o *GetSessionCountersRequest) OpName() string {
+	return "/TermSrvSession/v1/RpcGetSessionCounters"
+}
+
 // GetSessionCountersResponse structure represents the RpcGetSessionCounters operation response
 type GetSessionCountersResponse struct {
 	// XXX: uEntries is an implicit input depedency for output parameters
@@ -3665,8 +3830,10 @@ type xxx_GetSessionInformationOperation struct {
 	Return      int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetSessionInformation operation.
 func (o *xxx_GetSessionInformationOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of RpcGetSessionInformation operation.
 func (o *xxx_GetSessionInformationOperation) OpName() string {
 	return "/TermSrvSession/v1/RpcGetSessionInformation"
 }
@@ -3797,6 +3964,19 @@ func (o *GetSessionInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetSessionInformationRequest build a response structure from the given request structure.
+func (o *GetSessionInformationRequest) MakeResponse() *GetSessionInformationResponse {
+	return &GetSessionInformationResponse{}
+}
+
+// OpNum returns the operation number of RpcGetSessionInformation operation.
+func (o *GetSessionInformationRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of RpcGetSessionInformation operation.
+func (o *GetSessionInformationRequest) OpName() string {
+	return "/TermSrvSession/v1/RpcGetSessionInformation"
+}
+
 // GetSessionInformationResponse structure represents the RpcGetSessionInformation operation response
 type GetSessionInformationResponse struct {
 	// pSessionInfo:  A PLSMSESSIONINFORMATION element containing information about the
@@ -3844,8 +4024,10 @@ type xxx_GetLoggedOnCountOperation struct {
 	Return         int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetLoggedOnCount operation.
 func (o *xxx_GetLoggedOnCountOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of RpcGetLoggedOnCount operation.
 func (o *xxx_GetLoggedOnCountOperation) OpName() string {
 	return "/TermSrvSession/v1/RpcGetLoggedOnCount"
 }
@@ -3957,6 +4139,17 @@ func (o *GetLoggedOnCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetLoggedOnCountRequest build a response structure from the given request structure.
+func (o *GetLoggedOnCountRequest) MakeResponse() *GetLoggedOnCountResponse {
+	return &GetLoggedOnCountResponse{}
+}
+
+// OpNum returns the operation number of RpcGetLoggedOnCount operation.
+func (o *GetLoggedOnCountRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of RpcGetLoggedOnCount operation.
+func (o *GetLoggedOnCountRequest) OpName() string { return "/TermSrvSession/v1/RpcGetLoggedOnCount" }
+
 // GetLoggedOnCountResponse structure represents the RpcGetLoggedOnCount operation response
 type GetLoggedOnCountResponse struct {
 	// pUserSessions: The number of sessions that are of SESSIONTYPE_REGULARDESKTOP, or
@@ -4011,8 +4204,10 @@ type xxx_GetSessionTypeOperation struct {
 	Return      int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetSessionType operation.
 func (o *xxx_GetSessionTypeOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of RpcGetSessionType operation.
 func (o *xxx_GetSessionTypeOperation) OpName() string { return "/TermSrvSession/v1/RpcGetSessionType" }
 
 func (o *xxx_GetSessionTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4126,6 +4321,17 @@ func (o *GetSessionTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetSessionTypeRequest build a response structure from the given request structure.
+func (o *GetSessionTypeRequest) MakeResponse() *GetSessionTypeResponse {
+	return &GetSessionTypeResponse{}
+}
+
+// OpNum returns the operation number of RpcGetSessionType operation.
+func (o *GetSessionTypeRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of RpcGetSessionType operation.
+func (o *GetSessionTypeRequest) OpName() string { return "/TermSrvSession/v1/RpcGetSessionType" }
+
 // GetSessionTypeResponse structure represents the RpcGetSessionType operation response
 type GetSessionTypeResponse struct {
 	// pSessionType: The type of the session as defined in SESSIONTYPE (section 2.2.1.18).
@@ -4173,8 +4379,10 @@ type xxx_GetSessionInformationExOperation struct {
 	Return           int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetSessionInformationEx operation.
 func (o *xxx_GetSessionInformationExOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of RpcGetSessionInformationEx operation.
 func (o *xxx_GetSessionInformationExOperation) OpName() string {
 	return "/TermSrvSession/v1/RpcGetSessionInformationEx"
 }
@@ -4320,6 +4528,19 @@ func (o *GetSessionInformationExRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeGetSessionInformationExRequest build a response structure from the given request structure.
+func (o *GetSessionInformationExRequest) MakeResponse() *GetSessionInformationExResponse {
+	return &GetSessionInformationExResponse{}
+}
+
+// OpNum returns the operation number of RpcGetSessionInformationEx operation.
+func (o *GetSessionInformationExRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of RpcGetSessionInformationEx operation.
+func (o *GetSessionInformationExRequest) OpName() string {
+	return "/TermSrvSession/v1/RpcGetSessionInformationEx"
+}
+
 // GetSessionInformationExResponse structure represents the RpcGetSessionInformationEx operation response
 type GetSessionInformationExResponse struct {
 	// LSMSessionInfoExPtr: A PLSMSESSIONINFORMATION_EX element containing information about
@@ -4367,8 +4588,10 @@ type xxx_GetActivityIDOperation struct {
 	Return     int32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetActivityId operation.
 func (o *xxx_GetActivityIDOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of RpcGetActivityId operation.
 func (o *xxx_GetActivityIDOperation) OpName() string { return "/TermSrvSession/v1/RpcGetActivityId" }
 
 func (o *xxx_GetActivityIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4523,6 +4746,17 @@ func (o *GetActivityIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetActivityIDRequest build a response structure from the given request structure.
+func (o *GetActivityIDRequest) MakeResponse() *GetActivityIDResponse {
+	return &GetActivityIDResponse{}
+}
+
+// OpNum returns the operation number of RpcGetActivityId operation.
+func (o *GetActivityIDRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of RpcGetActivityId operation.
+func (o *GetActivityIDRequest) OpName() string { return "/TermSrvSession/v1/RpcGetActivityId" }
 
 // GetActivityIDResponse structure represents the RpcGetActivityId operation response
 type GetActivityIDResponse struct {

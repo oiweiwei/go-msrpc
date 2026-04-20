@@ -189,8 +189,10 @@ type xxx_GetUserLocaleOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UserLocale operation.
 func (o *xxx_GetUserLocaleOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of UserLocale operation.
 func (o *xxx_GetUserLocaleOperation) OpName() string { return "/IUpdateSession2/v0/UserLocale" }
 
 func (o *xxx_GetUserLocaleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -346,6 +348,17 @@ func (o *GetUserLocaleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetUserLocaleRequest build a response structure from the given request structure.
+func (o *GetUserLocaleRequest) MakeResponse() *GetUserLocaleResponse {
+	return &GetUserLocaleResponse{}
+}
+
+// OpNum returns the operation number of UserLocale operation.
+func (o *GetUserLocaleRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of UserLocale operation.
+func (o *GetUserLocaleRequest) OpName() string { return "/IUpdateSession2/v0/UserLocale" }
+
 // GetUserLocaleResponse structure represents the UserLocale operation response
 type GetUserLocaleResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -400,8 +413,10 @@ type xxx_SetUserLocaleOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UserLocale operation.
 func (o *xxx_SetUserLocaleOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of UserLocale operation.
 func (o *xxx_SetUserLocaleOperation) OpName() string { return "/IUpdateSession2/v0/UserLocale" }
 
 func (o *xxx_SetUserLocaleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -561,6 +576,17 @@ func (o *SetUserLocaleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetUserLocaleRequest build a response structure from the given request structure.
+func (o *SetUserLocaleRequest) MakeResponse() *SetUserLocaleResponse {
+	return &SetUserLocaleResponse{}
+}
+
+// OpNum returns the operation number of UserLocale operation.
+func (o *SetUserLocaleRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of UserLocale operation.
+func (o *SetUserLocaleRequest) OpName() string { return "/IUpdateSession2/v0/UserLocale" }
 
 // SetUserLocaleResponse structure represents the UserLocale operation response
 type SetUserLocaleResponse struct {

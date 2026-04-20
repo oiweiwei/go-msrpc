@@ -439,8 +439,10 @@ type xxx_GetMailFromOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MailFrom operation.
 func (o *xxx_GetMailFromOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of MailFrom operation.
 func (o *xxx_GetMailFromOperation) OpName() string { return "/IFsrmActionEmail/v0/MailFrom" }
 
 func (o *xxx_GetMailFromOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -630,6 +632,17 @@ func (o *GetMailFromRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetMailFromRequest build a response structure from the given request structure.
+func (o *GetMailFromRequest) MakeResponse() *GetMailFromResponse {
+	return &GetMailFromResponse{}
+}
+
+// OpNum returns the operation number of MailFrom operation.
+func (o *GetMailFromRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of MailFrom operation.
+func (o *GetMailFromRequest) OpName() string { return "/IFsrmActionEmail/v0/MailFrom" }
+
 // GetMailFromResponse structure represents the MailFrom operation response
 type GetMailFromResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -680,8 +693,10 @@ type xxx_SetMailFromOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MailFrom operation.
 func (o *xxx_SetMailFromOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of MailFrom operation.
 func (o *xxx_SetMailFromOperation) OpName() string { return "/IFsrmActionEmail/v0/MailFrom" }
 
 func (o *xxx_SetMailFromOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -874,6 +889,17 @@ func (o *SetMailFromRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeSetMailFromRequest build a response structure from the given request structure.
+func (o *SetMailFromRequest) MakeResponse() *SetMailFromResponse {
+	return &SetMailFromResponse{}
+}
+
+// OpNum returns the operation number of MailFrom operation.
+func (o *SetMailFromRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of MailFrom operation.
+func (o *SetMailFromRequest) OpName() string { return "/IFsrmActionEmail/v0/MailFrom" }
+
 // SetMailFromResponse structure represents the MailFrom operation response
 type SetMailFromResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -921,8 +947,10 @@ type xxx_GetMailReplyToOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MailReplyTo operation.
 func (o *xxx_GetMailReplyToOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of MailReplyTo operation.
 func (o *xxx_GetMailReplyToOperation) OpName() string { return "/IFsrmActionEmail/v0/MailReplyTo" }
 
 func (o *xxx_GetMailReplyToOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1112,6 +1140,17 @@ func (o *GetMailReplyToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetMailReplyToRequest build a response structure from the given request structure.
+func (o *GetMailReplyToRequest) MakeResponse() *GetMailReplyToResponse {
+	return &GetMailReplyToResponse{}
+}
+
+// OpNum returns the operation number of MailReplyTo operation.
+func (o *GetMailReplyToRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of MailReplyTo operation.
+func (o *GetMailReplyToRequest) OpName() string { return "/IFsrmActionEmail/v0/MailReplyTo" }
+
 // GetMailReplyToResponse structure represents the MailReplyTo operation response
 type GetMailReplyToResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1162,8 +1201,10 @@ type xxx_SetMailReplyToOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MailReplyTo operation.
 func (o *xxx_SetMailReplyToOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of MailReplyTo operation.
 func (o *xxx_SetMailReplyToOperation) OpName() string { return "/IFsrmActionEmail/v0/MailReplyTo" }
 
 func (o *xxx_SetMailReplyToOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1356,6 +1397,17 @@ func (o *SetMailReplyToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetMailReplyToRequest build a response structure from the given request structure.
+func (o *SetMailReplyToRequest) MakeResponse() *SetMailReplyToResponse {
+	return &SetMailReplyToResponse{}
+}
+
+// OpNum returns the operation number of MailReplyTo operation.
+func (o *SetMailReplyToRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of MailReplyTo operation.
+func (o *SetMailReplyToRequest) OpName() string { return "/IFsrmActionEmail/v0/MailReplyTo" }
+
 // SetMailReplyToResponse structure represents the MailReplyTo operation response
 type SetMailReplyToResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1403,8 +1455,10 @@ type xxx_GetMailToOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MailTo operation.
 func (o *xxx_GetMailToOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of MailTo operation.
 func (o *xxx_GetMailToOperation) OpName() string { return "/IFsrmActionEmail/v0/MailTo" }
 
 func (o *xxx_GetMailToOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1594,6 +1648,17 @@ func (o *GetMailToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetMailToRequest build a response structure from the given request structure.
+func (o *GetMailToRequest) MakeResponse() *GetMailToResponse {
+	return &GetMailToResponse{}
+}
+
+// OpNum returns the operation number of MailTo operation.
+func (o *GetMailToRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of MailTo operation.
+func (o *GetMailToRequest) OpName() string { return "/IFsrmActionEmail/v0/MailTo" }
+
 // GetMailToResponse structure represents the MailTo operation response
 type GetMailToResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1644,8 +1709,10 @@ type xxx_SetMailToOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MailTo operation.
 func (o *xxx_SetMailToOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of MailTo operation.
 func (o *xxx_SetMailToOperation) OpName() string { return "/IFsrmActionEmail/v0/MailTo" }
 
 func (o *xxx_SetMailToOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1838,6 +1905,17 @@ func (o *SetMailToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeSetMailToRequest build a response structure from the given request structure.
+func (o *SetMailToRequest) MakeResponse() *SetMailToResponse {
+	return &SetMailToResponse{}
+}
+
+// OpNum returns the operation number of MailTo operation.
+func (o *SetMailToRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of MailTo operation.
+func (o *SetMailToRequest) OpName() string { return "/IFsrmActionEmail/v0/MailTo" }
+
 // SetMailToResponse structure represents the MailTo operation response
 type SetMailToResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1885,8 +1963,10 @@ type xxx_GetMailCCOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MailCc operation.
 func (o *xxx_GetMailCCOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of MailCc operation.
 func (o *xxx_GetMailCCOperation) OpName() string { return "/IFsrmActionEmail/v0/MailCc" }
 
 func (o *xxx_GetMailCCOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2076,6 +2156,17 @@ func (o *GetMailCCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetMailCCRequest build a response structure from the given request structure.
+func (o *GetMailCCRequest) MakeResponse() *GetMailCCResponse {
+	return &GetMailCCResponse{}
+}
+
+// OpNum returns the operation number of MailCc operation.
+func (o *GetMailCCRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of MailCc operation.
+func (o *GetMailCCRequest) OpName() string { return "/IFsrmActionEmail/v0/MailCc" }
+
 // GetMailCCResponse structure represents the MailCc operation response
 type GetMailCCResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2126,8 +2217,10 @@ type xxx_SetMailCCOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MailCc operation.
 func (o *xxx_SetMailCCOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of MailCc operation.
 func (o *xxx_SetMailCCOperation) OpName() string { return "/IFsrmActionEmail/v0/MailCc" }
 
 func (o *xxx_SetMailCCOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2320,6 +2413,17 @@ func (o *SetMailCCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeSetMailCCRequest build a response structure from the given request structure.
+func (o *SetMailCCRequest) MakeResponse() *SetMailCCResponse {
+	return &SetMailCCResponse{}
+}
+
+// OpNum returns the operation number of MailCc operation.
+func (o *SetMailCCRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of MailCc operation.
+func (o *SetMailCCRequest) OpName() string { return "/IFsrmActionEmail/v0/MailCc" }
+
 // SetMailCCResponse structure represents the MailCc operation response
 type SetMailCCResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2367,8 +2471,10 @@ type xxx_GetMailBCCOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MailBcc operation.
 func (o *xxx_GetMailBCCOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of MailBcc operation.
 func (o *xxx_GetMailBCCOperation) OpName() string { return "/IFsrmActionEmail/v0/MailBcc" }
 
 func (o *xxx_GetMailBCCOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2558,6 +2664,17 @@ func (o *GetMailBCCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetMailBCCRequest build a response structure from the given request structure.
+func (o *GetMailBCCRequest) MakeResponse() *GetMailBCCResponse {
+	return &GetMailBCCResponse{}
+}
+
+// OpNum returns the operation number of MailBcc operation.
+func (o *GetMailBCCRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of MailBcc operation.
+func (o *GetMailBCCRequest) OpName() string { return "/IFsrmActionEmail/v0/MailBcc" }
+
 // GetMailBCCResponse structure represents the MailBcc operation response
 type GetMailBCCResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2608,8 +2725,10 @@ type xxx_SetMailBCCOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MailBcc operation.
 func (o *xxx_SetMailBCCOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of MailBcc operation.
 func (o *xxx_SetMailBCCOperation) OpName() string { return "/IFsrmActionEmail/v0/MailBcc" }
 
 func (o *xxx_SetMailBCCOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2802,6 +2921,17 @@ func (o *SetMailBCCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeSetMailBCCRequest build a response structure from the given request structure.
+func (o *SetMailBCCRequest) MakeResponse() *SetMailBCCResponse {
+	return &SetMailBCCResponse{}
+}
+
+// OpNum returns the operation number of MailBcc operation.
+func (o *SetMailBCCRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of MailBcc operation.
+func (o *SetMailBCCRequest) OpName() string { return "/IFsrmActionEmail/v0/MailBcc" }
+
 // SetMailBCCResponse structure represents the MailBcc operation response
 type SetMailBCCResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2849,8 +2979,10 @@ type xxx_GetMailSubjectOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MailSubject operation.
 func (o *xxx_GetMailSubjectOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of MailSubject operation.
 func (o *xxx_GetMailSubjectOperation) OpName() string { return "/IFsrmActionEmail/v0/MailSubject" }
 
 func (o *xxx_GetMailSubjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3040,6 +3172,17 @@ func (o *GetMailSubjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetMailSubjectRequest build a response structure from the given request structure.
+func (o *GetMailSubjectRequest) MakeResponse() *GetMailSubjectResponse {
+	return &GetMailSubjectResponse{}
+}
+
+// OpNum returns the operation number of MailSubject operation.
+func (o *GetMailSubjectRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of MailSubject operation.
+func (o *GetMailSubjectRequest) OpName() string { return "/IFsrmActionEmail/v0/MailSubject" }
+
 // GetMailSubjectResponse structure represents the MailSubject operation response
 type GetMailSubjectResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3090,8 +3233,10 @@ type xxx_SetMailSubjectOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MailSubject operation.
 func (o *xxx_SetMailSubjectOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of MailSubject operation.
 func (o *xxx_SetMailSubjectOperation) OpName() string { return "/IFsrmActionEmail/v0/MailSubject" }
 
 func (o *xxx_SetMailSubjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3284,6 +3429,17 @@ func (o *SetMailSubjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetMailSubjectRequest build a response structure from the given request structure.
+func (o *SetMailSubjectRequest) MakeResponse() *SetMailSubjectResponse {
+	return &SetMailSubjectResponse{}
+}
+
+// OpNum returns the operation number of MailSubject operation.
+func (o *SetMailSubjectRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of MailSubject operation.
+func (o *SetMailSubjectRequest) OpName() string { return "/IFsrmActionEmail/v0/MailSubject" }
+
 // SetMailSubjectResponse structure represents the MailSubject operation response
 type SetMailSubjectResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3331,8 +3487,10 @@ type xxx_GetMessageTextOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MessageText operation.
 func (o *xxx_GetMessageTextOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of MessageText operation.
 func (o *xxx_GetMessageTextOperation) OpName() string { return "/IFsrmActionEmail/v0/MessageText" }
 
 func (o *xxx_GetMessageTextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3522,6 +3680,17 @@ func (o *GetMessageTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetMessageTextRequest build a response structure from the given request structure.
+func (o *GetMessageTextRequest) MakeResponse() *GetMessageTextResponse {
+	return &GetMessageTextResponse{}
+}
+
+// OpNum returns the operation number of MessageText operation.
+func (o *GetMessageTextRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of MessageText operation.
+func (o *GetMessageTextRequest) OpName() string { return "/IFsrmActionEmail/v0/MessageText" }
+
 // GetMessageTextResponse structure represents the MessageText operation response
 type GetMessageTextResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3572,8 +3741,10 @@ type xxx_SetMessageTextOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MessageText operation.
 func (o *xxx_SetMessageTextOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of MessageText operation.
 func (o *xxx_SetMessageTextOperation) OpName() string { return "/IFsrmActionEmail/v0/MessageText" }
 
 func (o *xxx_SetMessageTextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3765,6 +3936,17 @@ func (o *SetMessageTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetMessageTextRequest build a response structure from the given request structure.
+func (o *SetMessageTextRequest) MakeResponse() *SetMessageTextResponse {
+	return &SetMessageTextResponse{}
+}
+
+// OpNum returns the operation number of MessageText operation.
+func (o *SetMessageTextRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of MessageText operation.
+func (o *SetMessageTextRequest) OpName() string { return "/IFsrmActionEmail/v0/MessageText" }
 
 // SetMessageTextResponse structure represents the MessageText operation response
 type SetMessageTextResponse struct {

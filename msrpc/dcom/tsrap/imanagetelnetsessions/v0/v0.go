@@ -209,8 +209,10 @@ type xxx_GetTelnetSessionsOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetTelnetSessions operation.
 func (o *xxx_GetTelnetSessionsOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetTelnetSessions operation.
 func (o *xxx_GetTelnetSessionsOperation) OpName() string {
 	return "/IManageTelnetSessions/v0/GetTelnetSessions"
 }
@@ -402,6 +404,19 @@ func (o *GetTelnetSessionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetTelnetSessionsRequest build a response structure from the given request structure.
+func (o *GetTelnetSessionsRequest) MakeResponse() *GetTelnetSessionsResponse {
+	return &GetTelnetSessionsResponse{}
+}
+
+// OpNum returns the operation number of GetTelnetSessions operation.
+func (o *GetTelnetSessionsRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetTelnetSessions operation.
+func (o *GetTelnetSessionsRequest) OpName() string {
+	return "/IManageTelnetSessions/v0/GetTelnetSessions"
+}
+
 // GetTelnetSessionsResponse structure represents the GetTelnetSessions operation response
 type GetTelnetSessionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -454,8 +469,10 @@ type xxx_TerminateSessionOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TerminateSession operation.
 func (o *xxx_TerminateSessionOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of TerminateSession operation.
 func (o *xxx_TerminateSessionOperation) OpName() string {
 	return "/IManageTelnetSessions/v0/TerminateSession"
 }
@@ -620,6 +637,19 @@ func (o *TerminateSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeTerminateSessionRequest build a response structure from the given request structure.
+func (o *TerminateSessionRequest) MakeResponse() *TerminateSessionResponse {
+	return &TerminateSessionResponse{}
+}
+
+// OpNum returns the operation number of TerminateSession operation.
+func (o *TerminateSessionRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of TerminateSession operation.
+func (o *TerminateSessionRequest) OpName() string {
+	return "/IManageTelnetSessions/v0/TerminateSession"
+}
+
 // TerminateSessionResponse structure represents the TerminateSession operation response
 type TerminateSessionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -668,8 +698,10 @@ type xxx_SendMessageToASessionOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SendMsgToASession operation.
 func (o *xxx_SendMessageToASessionOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of SendMsgToASession operation.
 func (o *xxx_SendMessageToASessionOperation) OpName() string {
 	return "/IManageTelnetSessions/v0/SendMsgToASession"
 }
@@ -882,6 +914,19 @@ func (o *SendMessageToASessionRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSendMessageToASessionRequest build a response structure from the given request structure.
+func (o *SendMessageToASessionRequest) MakeResponse() *SendMessageToASessionResponse {
+	return &SendMessageToASessionResponse{}
+}
+
+// OpNum returns the operation number of SendMsgToASession operation.
+func (o *SendMessageToASessionRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of SendMsgToASession operation.
+func (o *SendMessageToASessionRequest) OpName() string {
+	return "/IManageTelnetSessions/v0/SendMsgToASession"
 }
 
 // SendMessageToASessionResponse structure represents the SendMsgToASession operation response

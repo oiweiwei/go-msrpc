@@ -178,8 +178,10 @@ type xxx_GetPropertiesOperation struct {
 	Return                  int32                             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetProperties operation.
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetProperties operation.
 func (o *xxx_GetPropertiesOperation) OpName() string {
 	return "/IVdsIscsiInitiatorPortal/v0/GetProperties"
 }
@@ -346,6 +348,17 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetPropertiesRequest build a response structure from the given request structure.
+func (o *GetPropertiesRequest) MakeResponse() *GetPropertiesResponse {
+	return &GetPropertiesResponse{}
+}
+
+// OpNum returns the operation number of GetProperties operation.
+func (o *GetPropertiesRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetProperties operation.
+func (o *GetPropertiesRequest) OpName() string { return "/IVdsIscsiInitiatorPortal/v0/GetProperties" }
+
 // GetPropertiesResponse structure represents the GetProperties operation response
 type GetPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -396,8 +409,10 @@ type xxx_GetInitiatorAdapterOperation struct {
 	Return           int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetInitiatorAdapter operation.
 func (o *xxx_GetInitiatorAdapterOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetInitiatorAdapter operation.
 func (o *xxx_GetInitiatorAdapterOperation) OpName() string {
 	return "/IVdsIscsiInitiatorPortal/v0/GetInitiatorAdapter"
 }
@@ -587,6 +602,19 @@ func (o *GetInitiatorAdapterRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetInitiatorAdapterRequest build a response structure from the given request structure.
+func (o *GetInitiatorAdapterRequest) MakeResponse() *GetInitiatorAdapterResponse {
+	return &GetInitiatorAdapterResponse{}
+}
+
+// OpNum returns the operation number of GetInitiatorAdapter operation.
+func (o *GetInitiatorAdapterRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetInitiatorAdapter operation.
+func (o *GetInitiatorAdapterRequest) OpName() string {
+	return "/IVdsIscsiInitiatorPortal/v0/GetInitiatorAdapter"
 }
 
 // GetInitiatorAdapterResponse structure represents the GetInitiatorAdapter operation response

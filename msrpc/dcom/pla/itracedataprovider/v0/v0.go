@@ -618,8 +618,10 @@ type xxx_GetDisplayNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DisplayName operation.
 func (o *xxx_GetDisplayNameOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of DisplayName operation.
 func (o *xxx_GetDisplayNameOperation) OpName() string { return "/ITraceDataProvider/v0/DisplayName" }
 
 func (o *xxx_GetDisplayNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -809,6 +811,17 @@ func (o *GetDisplayNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetDisplayNameRequest build a response structure from the given request structure.
+func (o *GetDisplayNameRequest) MakeResponse() *GetDisplayNameResponse {
+	return &GetDisplayNameResponse{}
+}
+
+// OpNum returns the operation number of DisplayName operation.
+func (o *GetDisplayNameRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of DisplayName operation.
+func (o *GetDisplayNameRequest) OpName() string { return "/ITraceDataProvider/v0/DisplayName" }
+
 // GetDisplayNameResponse structure represents the DisplayName operation response
 type GetDisplayNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -859,8 +872,10 @@ type xxx_SetDisplayNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DisplayName operation.
 func (o *xxx_SetDisplayNameOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of DisplayName operation.
 func (o *xxx_SetDisplayNameOperation) OpName() string { return "/ITraceDataProvider/v0/DisplayName" }
 
 func (o *xxx_SetDisplayNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1053,6 +1068,17 @@ func (o *SetDisplayNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetDisplayNameRequest build a response structure from the given request structure.
+func (o *SetDisplayNameRequest) MakeResponse() *SetDisplayNameResponse {
+	return &SetDisplayNameResponse{}
+}
+
+// OpNum returns the operation number of DisplayName operation.
+func (o *SetDisplayNameRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of DisplayName operation.
+func (o *SetDisplayNameRequest) OpName() string { return "/ITraceDataProvider/v0/DisplayName" }
+
 // SetDisplayNameResponse structure represents the DisplayName operation response
 type SetDisplayNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1100,8 +1126,10 @@ type xxx_GetGUIDOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Guid operation.
 func (o *xxx_GetGUIDOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Guid operation.
 func (o *xxx_GetGUIDOperation) OpName() string { return "/ITraceDataProvider/v0/Guid" }
 
 func (o *xxx_GetGUIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1266,6 +1294,17 @@ func (o *GetGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetGUIDRequest build a response structure from the given request structure.
+func (o *GetGUIDRequest) MakeResponse() *GetGUIDResponse {
+	return &GetGUIDResponse{}
+}
+
+// OpNum returns the operation number of Guid operation.
+func (o *GetGUIDRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Guid operation.
+func (o *GetGUIDRequest) OpName() string { return "/ITraceDataProvider/v0/Guid" }
+
 // GetGUIDResponse structure represents the Guid operation response
 type GetGUIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1316,8 +1355,10 @@ type xxx_SetGUIDOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Guid operation.
 func (o *xxx_SetGUIDOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of Guid operation.
 func (o *xxx_SetGUIDOperation) OpName() string { return "/ITraceDataProvider/v0/Guid" }
 
 func (o *xxx_SetGUIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1485,6 +1526,17 @@ func (o *SetGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetGUIDRequest build a response structure from the given request structure.
+func (o *SetGUIDRequest) MakeResponse() *SetGUIDResponse {
+	return &SetGUIDResponse{}
+}
+
+// OpNum returns the operation number of Guid operation.
+func (o *SetGUIDRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of Guid operation.
+func (o *SetGUIDRequest) OpName() string { return "/ITraceDataProvider/v0/Guid" }
+
 // SetGUIDResponse structure represents the Guid operation response
 type SetGUIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1532,8 +1584,10 @@ type xxx_GetLevelOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Level operation.
 func (o *xxx_GetLevelOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of Level operation.
 func (o *xxx_GetLevelOperation) OpName() string { return "/ITraceDataProvider/v0/Level" }
 
 func (o *xxx_GetLevelOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1723,6 +1777,17 @@ func (o *GetLevelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeGetLevelRequest build a response structure from the given request structure.
+func (o *GetLevelRequest) MakeResponse() *GetLevelResponse {
+	return &GetLevelResponse{}
+}
+
+// OpNum returns the operation number of Level operation.
+func (o *GetLevelRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of Level operation.
+func (o *GetLevelRequest) OpName() string { return "/ITraceDataProvider/v0/Level" }
+
 // GetLevelResponse structure represents the Level operation response
 type GetLevelResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1781,8 +1846,10 @@ type xxx_GetKeywordsAnyOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of KeywordsAny operation.
 func (o *xxx_GetKeywordsAnyOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of KeywordsAny operation.
 func (o *xxx_GetKeywordsAnyOperation) OpName() string { return "/ITraceDataProvider/v0/KeywordsAny" }
 
 func (o *xxx_GetKeywordsAnyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1972,6 +2039,17 @@ func (o *GetKeywordsAnyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetKeywordsAnyRequest build a response structure from the given request structure.
+func (o *GetKeywordsAnyRequest) MakeResponse() *GetKeywordsAnyResponse {
+	return &GetKeywordsAnyResponse{}
+}
+
+// OpNum returns the operation number of KeywordsAny operation.
+func (o *GetKeywordsAnyRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of KeywordsAny operation.
+func (o *GetKeywordsAnyRequest) OpName() string { return "/ITraceDataProvider/v0/KeywordsAny" }
+
 // GetKeywordsAnyResponse structure represents the KeywordsAny operation response
 type GetKeywordsAnyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2030,8 +2108,10 @@ type xxx_GetKeywordsAllOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of KeywordsAll operation.
 func (o *xxx_GetKeywordsAllOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of KeywordsAll operation.
 func (o *xxx_GetKeywordsAllOperation) OpName() string { return "/ITraceDataProvider/v0/KeywordsAll" }
 
 func (o *xxx_GetKeywordsAllOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2221,6 +2301,17 @@ func (o *GetKeywordsAllRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetKeywordsAllRequest build a response structure from the given request structure.
+func (o *GetKeywordsAllRequest) MakeResponse() *GetKeywordsAllResponse {
+	return &GetKeywordsAllResponse{}
+}
+
+// OpNum returns the operation number of KeywordsAll operation.
+func (o *GetKeywordsAllRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of KeywordsAll operation.
+func (o *GetKeywordsAllRequest) OpName() string { return "/ITraceDataProvider/v0/KeywordsAll" }
+
 // GetKeywordsAllResponse structure represents the KeywordsAll operation response
 type GetKeywordsAllResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2279,8 +2370,10 @@ type xxx_GetPropertiesOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Properties operation.
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of Properties operation.
 func (o *xxx_GetPropertiesOperation) OpName() string { return "/ITraceDataProvider/v0/Properties" }
 
 func (o *xxx_GetPropertiesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2470,6 +2563,17 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetPropertiesRequest build a response structure from the given request structure.
+func (o *GetPropertiesRequest) MakeResponse() *GetPropertiesResponse {
+	return &GetPropertiesResponse{}
+}
+
+// OpNum returns the operation number of Properties operation.
+func (o *GetPropertiesRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of Properties operation.
+func (o *GetPropertiesRequest) OpName() string { return "/ITraceDataProvider/v0/Properties" }
+
 // GetPropertiesResponse structure represents the Properties operation response
 type GetPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2527,8 +2631,10 @@ type xxx_GetFilterEnabledOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FilterEnabled operation.
 func (o *xxx_GetFilterEnabledOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of FilterEnabled operation.
 func (o *xxx_GetFilterEnabledOperation) OpName() string {
 	return "/ITraceDataProvider/v0/FilterEnabled"
 }
@@ -2686,6 +2792,17 @@ func (o *GetFilterEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetFilterEnabledRequest build a response structure from the given request structure.
+func (o *GetFilterEnabledRequest) MakeResponse() *GetFilterEnabledResponse {
+	return &GetFilterEnabledResponse{}
+}
+
+// OpNum returns the operation number of FilterEnabled operation.
+func (o *GetFilterEnabledRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of FilterEnabled operation.
+func (o *GetFilterEnabledRequest) OpName() string { return "/ITraceDataProvider/v0/FilterEnabled" }
+
 // GetFilterEnabledResponse structure represents the FilterEnabled operation response
 type GetFilterEnabledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2736,8 +2853,10 @@ type xxx_SetFilterEnabledOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FilterEnabled operation.
 func (o *xxx_SetFilterEnabledOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of FilterEnabled operation.
 func (o *xxx_SetFilterEnabledOperation) OpName() string {
 	return "/ITraceDataProvider/v0/FilterEnabled"
 }
@@ -2898,6 +3017,17 @@ func (o *SetFilterEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetFilterEnabledRequest build a response structure from the given request structure.
+func (o *SetFilterEnabledRequest) MakeResponse() *SetFilterEnabledResponse {
+	return &SetFilterEnabledResponse{}
+}
+
+// OpNum returns the operation number of FilterEnabled operation.
+func (o *SetFilterEnabledRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of FilterEnabled operation.
+func (o *SetFilterEnabledRequest) OpName() string { return "/ITraceDataProvider/v0/FilterEnabled" }
+
 // SetFilterEnabledResponse structure represents the FilterEnabled operation response
 type SetFilterEnabledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2945,8 +3075,10 @@ type xxx_GetFilterTypeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FilterType operation.
 func (o *xxx_GetFilterTypeOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of FilterType operation.
 func (o *xxx_GetFilterTypeOperation) OpName() string { return "/ITraceDataProvider/v0/FilterType" }
 
 func (o *xxx_GetFilterTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3102,6 +3234,17 @@ func (o *GetFilterTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetFilterTypeRequest build a response structure from the given request structure.
+func (o *GetFilterTypeRequest) MakeResponse() *GetFilterTypeResponse {
+	return &GetFilterTypeResponse{}
+}
+
+// OpNum returns the operation number of FilterType operation.
+func (o *GetFilterTypeRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of FilterType operation.
+func (o *GetFilterTypeRequest) OpName() string { return "/ITraceDataProvider/v0/FilterType" }
+
 // GetFilterTypeResponse structure represents the FilterType operation response
 type GetFilterTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3152,8 +3295,10 @@ type xxx_SetFilterTypeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FilterType operation.
 func (o *xxx_SetFilterTypeOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of FilterType operation.
 func (o *xxx_SetFilterTypeOperation) OpName() string { return "/ITraceDataProvider/v0/FilterType" }
 
 func (o *xxx_SetFilterTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3312,6 +3457,17 @@ func (o *SetFilterTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSetFilterTypeRequest build a response structure from the given request structure.
+func (o *SetFilterTypeRequest) MakeResponse() *SetFilterTypeResponse {
+	return &SetFilterTypeResponse{}
+}
+
+// OpNum returns the operation number of FilterType operation.
+func (o *SetFilterTypeRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of FilterType operation.
+func (o *SetFilterTypeRequest) OpName() string { return "/ITraceDataProvider/v0/FilterType" }
+
 // SetFilterTypeResponse structure represents the FilterType operation response
 type SetFilterTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3359,8 +3515,10 @@ type xxx_GetFilterDataOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FilterData operation.
 func (o *xxx_GetFilterDataOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of FilterData operation.
 func (o *xxx_GetFilterDataOperation) OpName() string { return "/ITraceDataProvider/v0/FilterData" }
 
 func (o *xxx_GetFilterDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3550,6 +3708,17 @@ func (o *GetFilterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetFilterDataRequest build a response structure from the given request structure.
+func (o *GetFilterDataRequest) MakeResponse() *GetFilterDataResponse {
+	return &GetFilterDataResponse{}
+}
+
+// OpNum returns the operation number of FilterData operation.
+func (o *GetFilterDataRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of FilterData operation.
+func (o *GetFilterDataRequest) OpName() string { return "/ITraceDataProvider/v0/FilterData" }
+
 // GetFilterDataResponse structure represents the FilterData operation response
 type GetFilterDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3600,8 +3769,10 @@ type xxx_SetFilterDataOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FilterData operation.
 func (o *xxx_SetFilterDataOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of FilterData operation.
 func (o *xxx_SetFilterDataOperation) OpName() string { return "/ITraceDataProvider/v0/FilterData" }
 
 func (o *xxx_SetFilterDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3794,6 +3965,17 @@ func (o *SetFilterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSetFilterDataRequest build a response structure from the given request structure.
+func (o *SetFilterDataRequest) MakeResponse() *SetFilterDataResponse {
+	return &SetFilterDataResponse{}
+}
+
+// OpNum returns the operation number of FilterData operation.
+func (o *SetFilterDataRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of FilterData operation.
+func (o *SetFilterDataRequest) OpName() string { return "/ITraceDataProvider/v0/FilterData" }
+
 // SetFilterDataResponse structure represents the FilterData operation response
 type SetFilterDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3842,8 +4024,10 @@ type xxx_QueryOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Query operation.
 func (o *xxx_QueryOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of Query operation.
 func (o *xxx_QueryOperation) OpName() string { return "/ITraceDataProvider/v0/Query" }
 
 func (o *xxx_QueryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4085,6 +4269,17 @@ func (o *QueryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeQueryRequest build a response structure from the given request structure.
+func (o *QueryRequest) MakeResponse() *QueryResponse {
+	return &QueryResponse{}
+}
+
+// OpNum returns the operation number of Query operation.
+func (o *QueryRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of Query operation.
+func (o *QueryRequest) OpName() string { return "/ITraceDataProvider/v0/Query" }
+
 // QueryResponse structure represents the Query operation response
 type QueryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4132,8 +4327,10 @@ type xxx_ResolveOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Resolve operation.
 func (o *xxx_ResolveOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of Resolve operation.
 func (o *xxx_ResolveOperation) OpName() string { return "/ITraceDataProvider/v0/Resolve" }
 
 func (o *xxx_ResolveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4328,6 +4525,17 @@ func (o *ResolveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeResolveRequest build a response structure from the given request structure.
+func (o *ResolveRequest) MakeResponse() *ResolveResponse {
+	return &ResolveResponse{}
+}
+
+// OpNum returns the operation number of Resolve operation.
+func (o *ResolveRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of Resolve operation.
+func (o *ResolveRequest) OpName() string { return "/ITraceDataProvider/v0/Resolve" }
+
 // ResolveResponse structure represents the Resolve operation response
 type ResolveResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4375,8 +4583,10 @@ type xxx_SetSecurityOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetSecurity operation.
 func (o *xxx_SetSecurityOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of SetSecurity operation.
 func (o *xxx_SetSecurityOperation) OpName() string { return "/ITraceDataProvider/v0/SetSecurity" }
 
 func (o *xxx_SetSecurityOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4572,6 +4782,17 @@ func (o *SetSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeSetSecurityRequest build a response structure from the given request structure.
+func (o *SetSecurityRequest) MakeResponse() *SetSecurityResponse {
+	return &SetSecurityResponse{}
+}
+
+// OpNum returns the operation number of SetSecurity operation.
+func (o *SetSecurityRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of SetSecurity operation.
+func (o *SetSecurityRequest) OpName() string { return "/ITraceDataProvider/v0/SetSecurity" }
+
 // SetSecurityResponse structure represents the SetSecurity operation response
 type SetSecurityResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4620,8 +4841,10 @@ type xxx_GetSecurityOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSecurity operation.
 func (o *xxx_GetSecurityOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of GetSecurity operation.
 func (o *xxx_GetSecurityOperation) OpName() string { return "/ITraceDataProvider/v0/GetSecurity" }
 
 func (o *xxx_GetSecurityOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4828,6 +5051,17 @@ func (o *GetSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetSecurityRequest build a response structure from the given request structure.
+func (o *GetSecurityRequest) MakeResponse() *GetSecurityResponse {
+	return &GetSecurityResponse{}
+}
+
+// OpNum returns the operation number of GetSecurity operation.
+func (o *GetSecurityRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of GetSecurity operation.
+func (o *GetSecurityRequest) OpName() string { return "/ITraceDataProvider/v0/GetSecurity" }
+
 // GetSecurityResponse structure represents the GetSecurity operation response
 type GetSecurityResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4880,8 +5114,10 @@ type xxx_GetRegisteredProcessesOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetRegisteredProcesses operation.
 func (o *xxx_GetRegisteredProcessesOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of GetRegisteredProcesses operation.
 func (o *xxx_GetRegisteredProcessesOperation) OpName() string {
 	return "/ITraceDataProvider/v0/GetRegisteredProcesses"
 }
@@ -5071,6 +5307,19 @@ func (o *GetRegisteredProcessesRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetRegisteredProcessesRequest build a response structure from the given request structure.
+func (o *GetRegisteredProcessesRequest) MakeResponse() *GetRegisteredProcessesResponse {
+	return &GetRegisteredProcessesResponse{}
+}
+
+// OpNum returns the operation number of GetRegisteredProcesses operation.
+func (o *GetRegisteredProcessesRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of GetRegisteredProcesses operation.
+func (o *GetRegisteredProcessesRequest) OpName() string {
+	return "/ITraceDataProvider/v0/GetRegisteredProcesses"
 }
 
 // GetRegisteredProcessesResponse structure represents the GetRegisteredProcesses operation response

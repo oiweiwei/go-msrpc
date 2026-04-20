@@ -262,8 +262,10 @@ type xxx_QueryVDisksOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryVDisks operation.
 func (o *xxx_QueryVDisksOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of QueryVDisks operation.
 func (o *xxx_QueryVDisksOperation) OpName() string { return "/IVdsVdProvider/v0/QueryVDisks" }
 
 func (o *xxx_QueryVDisksOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -453,6 +455,17 @@ func (o *QueryVDisksRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeQueryVDisksRequest build a response structure from the given request structure.
+func (o *QueryVDisksRequest) MakeResponse() *QueryVDisksResponse {
+	return &QueryVDisksResponse{}
+}
+
+// OpNum returns the operation number of QueryVDisks operation.
+func (o *QueryVDisksRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of QueryVDisks operation.
+func (o *QueryVDisksRequest) OpName() string { return "/IVdsVdProvider/v0/QueryVDisks" }
+
 // QueryVDisksResponse structure represents the QueryVDisks operation response
 type QueryVDisksResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -514,8 +527,10 @@ type xxx_CreateVDiskOperation struct {
 	Return                   int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateVDisk operation.
 func (o *xxx_CreateVDiskOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of CreateVDisk operation.
 func (o *xxx_CreateVDiskOperation) OpName() string { return "/IVdsVdProvider/v0/CreateVDisk" }
 
 func (o *xxx_CreateVDiskOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -963,6 +978,17 @@ func (o *CreateVDiskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCreateVDiskRequest build a response structure from the given request structure.
+func (o *CreateVDiskRequest) MakeResponse() *CreateVDiskResponse {
+	return &CreateVDiskResponse{}
+}
+
+// OpNum returns the operation number of CreateVDisk operation.
+func (o *CreateVDiskRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of CreateVDisk operation.
+func (o *CreateVDiskRequest) OpName() string { return "/IVdsVdProvider/v0/CreateVDisk" }
+
 // CreateVDiskResponse structure represents the CreateVDisk operation response
 type CreateVDiskResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1018,8 +1044,10 @@ type xxx_AddVDiskOperation struct {
 	Return            int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddVDisk operation.
 func (o *xxx_AddVDiskOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of AddVDisk operation.
 func (o *xxx_AddVDiskOperation) OpName() string { return "/IVdsVdProvider/v0/AddVDisk" }
 
 func (o *xxx_AddVDiskOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1252,6 +1280,17 @@ func (o *AddVDiskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeAddVDiskRequest build a response structure from the given request structure.
+func (o *AddVDiskRequest) MakeResponse() *AddVDiskResponse {
+	return &AddVDiskResponse{}
+}
+
+// OpNum returns the operation number of AddVDisk operation.
+func (o *AddVDiskRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of AddVDisk operation.
+func (o *AddVDiskRequest) OpName() string { return "/IVdsVdProvider/v0/AddVDisk" }
+
 // AddVDiskResponse structure represents the AddVDisk operation response
 type AddVDiskResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1303,8 +1342,10 @@ type xxx_GetDiskFromVDiskOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetDiskFromVDisk operation.
 func (o *xxx_GetDiskFromVDiskOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of GetDiskFromVDisk operation.
 func (o *xxx_GetDiskFromVDiskOperation) OpName() string { return "/IVdsVdProvider/v0/GetDiskFromVDisk" }
 
 func (o *xxx_GetDiskFromVDiskOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1544,6 +1585,17 @@ func (o *GetDiskFromVDiskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetDiskFromVDiskRequest build a response structure from the given request structure.
+func (o *GetDiskFromVDiskRequest) MakeResponse() *GetDiskFromVDiskResponse {
+	return &GetDiskFromVDiskResponse{}
+}
+
+// OpNum returns the operation number of GetDiskFromVDisk operation.
+func (o *GetDiskFromVDiskRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of GetDiskFromVDisk operation.
+func (o *GetDiskFromVDiskRequest) OpName() string { return "/IVdsVdProvider/v0/GetDiskFromVDisk" }
+
 // GetDiskFromVDiskResponse structure represents the GetDiskFromVDisk operation response
 type GetDiskFromVDiskResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1595,8 +1647,10 @@ type xxx_GetVDiskFromDiskOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetVDiskFromDisk operation.
 func (o *xxx_GetVDiskFromDiskOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetVDiskFromDisk operation.
 func (o *xxx_GetVDiskFromDiskOperation) OpName() string { return "/IVdsVdProvider/v0/GetVDiskFromDisk" }
 
 func (o *xxx_GetVDiskFromDiskOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1835,6 +1889,17 @@ func (o *GetVDiskFromDiskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetVDiskFromDiskRequest build a response structure from the given request structure.
+func (o *GetVDiskFromDiskRequest) MakeResponse() *GetVDiskFromDiskResponse {
+	return &GetVDiskFromDiskResponse{}
+}
+
+// OpNum returns the operation number of GetVDiskFromDisk operation.
+func (o *GetVDiskFromDiskRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetVDiskFromDisk operation.
+func (o *GetVDiskFromDiskRequest) OpName() string { return "/IVdsVdProvider/v0/GetVDiskFromDisk" }
 
 // GetVDiskFromDiskResponse structure represents the GetVDiskFromDisk operation response
 type GetVDiskFromDiskResponse struct {

@@ -288,8 +288,10 @@ type xxx_AttachOperation struct {
 	Return                   int32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Attach operation.
 func (o *xxx_AttachOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Attach operation.
 func (o *xxx_AttachOperation) OpName() string { return "/IVdsOpenVDisk/v0/Attach" }
 
 func (o *xxx_AttachOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -578,6 +580,17 @@ func (o *AttachRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeAttachRequest build a response structure from the given request structure.
+func (o *AttachRequest) MakeResponse() *AttachResponse {
+	return &AttachResponse{}
+}
+
+// OpNum returns the operation number of Attach operation.
+func (o *AttachRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Attach operation.
+func (o *AttachRequest) OpName() string { return "/IVdsOpenVDisk/v0/Attach" }
+
 // AttachResponse structure represents the Attach operation response
 type AttachResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -632,8 +645,10 @@ type xxx_DetachOperation struct {
 	Return                int32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Detach operation.
 func (o *xxx_DetachOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Detach operation.
 func (o *xxx_DetachOperation) OpName() string { return "/IVdsOpenVDisk/v0/Detach" }
 
 func (o *xxx_DetachOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -810,6 +825,17 @@ func (o *DetachRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeDetachRequest build a response structure from the given request structure.
+func (o *DetachRequest) MakeResponse() *DetachResponse {
+	return &DetachResponse{}
+}
+
+// OpNum returns the operation number of Detach operation.
+func (o *DetachRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Detach operation.
+func (o *DetachRequest) OpName() string { return "/IVdsOpenVDisk/v0/Detach" }
+
 // DetachResponse structure represents the Detach operation response
 type DetachResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -858,8 +884,10 @@ type xxx_DetachAndDeleteOperation struct {
 	Return                int32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DetachAndDelete operation.
 func (o *xxx_DetachAndDeleteOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of DetachAndDelete operation.
 func (o *xxx_DetachAndDeleteOperation) OpName() string { return "/IVdsOpenVDisk/v0/DetachAndDelete" }
 
 func (o *xxx_DetachAndDeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1036,6 +1064,17 @@ func (o *DetachAndDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeDetachAndDeleteRequest build a response structure from the given request structure.
+func (o *DetachAndDeleteRequest) MakeResponse() *DetachAndDeleteResponse {
+	return &DetachAndDeleteResponse{}
+}
+
+// OpNum returns the operation number of DetachAndDelete operation.
+func (o *DetachAndDeleteRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of DetachAndDelete operation.
+func (o *DetachAndDeleteRequest) OpName() string { return "/IVdsOpenVDisk/v0/DetachAndDelete" }
+
 // DetachAndDeleteResponse structure represents the DetachAndDelete operation response
 type DetachAndDeleteResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1085,8 +1124,10 @@ type xxx_CompactOperation struct {
 	Return int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Compact operation.
 func (o *xxx_CompactOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of Compact operation.
 func (o *xxx_CompactOperation) OpName() string { return "/IVdsOpenVDisk/v0/Compact" }
 
 func (o *xxx_CompactOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1308,6 +1349,17 @@ func (o *CompactRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeCompactRequest build a response structure from the given request structure.
+func (o *CompactRequest) MakeResponse() *CompactResponse {
+	return &CompactResponse{}
+}
+
+// OpNum returns the operation number of Compact operation.
+func (o *CompactRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of Compact operation.
+func (o *CompactRequest) OpName() string { return "/IVdsOpenVDisk/v0/Compact" }
+
 // CompactResponse structure represents the Compact operation response
 type CompactResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1363,8 +1415,10 @@ type xxx_MergeOperation struct {
 	Return     int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Merge operation.
 func (o *xxx_MergeOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Merge operation.
 func (o *xxx_MergeOperation) OpName() string { return "/IVdsOpenVDisk/v0/Merge" }
 
 func (o *xxx_MergeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1593,6 +1647,17 @@ func (o *MergeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeMergeRequest build a response structure from the given request structure.
+func (o *MergeRequest) MakeResponse() *MergeResponse {
+	return &MergeResponse{}
+}
+
+// OpNum returns the operation number of Merge operation.
+func (o *MergeRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Merge operation.
+func (o *MergeRequest) OpName() string { return "/IVdsOpenVDisk/v0/Merge" }
+
 // MergeResponse structure represents the Merge operation response
 type MergeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1648,8 +1713,10 @@ type xxx_ExpandOperation struct {
 	Return  int32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Expand operation.
 func (o *xxx_ExpandOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Expand operation.
 func (o *xxx_ExpandOperation) OpName() string { return "/IVdsOpenVDisk/v0/Expand" }
 
 func (o *xxx_ExpandOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1871,6 +1938,17 @@ func (o *ExpandRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeExpandRequest build a response structure from the given request structure.
+func (o *ExpandRequest) MakeResponse() *ExpandResponse {
+	return &ExpandResponse{}
+}
+
+// OpNum returns the operation number of Expand operation.
+func (o *ExpandRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Expand operation.
+func (o *ExpandRequest) OpName() string { return "/IVdsOpenVDisk/v0/Expand" }
 
 // ExpandResponse structure represents the Expand operation response
 type ExpandResponse struct {

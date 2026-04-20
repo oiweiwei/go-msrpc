@@ -810,8 +810,10 @@ type xxx_GetSupportedVersionOperation struct {
 	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSupportedVersion operation.
 func (o *xxx_GetSupportedVersionOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of GetSupportedVersion operation.
 func (o *xxx_GetSupportedVersionOperation) OpName() string {
 	return "/FileServerVssAgent/v1/GetSupportedVersion"
 }
@@ -923,6 +925,19 @@ func (o *GetSupportedVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetSupportedVersionRequest build a response structure from the given request structure.
+func (o *GetSupportedVersionRequest) MakeResponse() *GetSupportedVersionResponse {
+	return &GetSupportedVersionResponse{}
+}
+
+// OpNum returns the operation number of GetSupportedVersion operation.
+func (o *GetSupportedVersionRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of GetSupportedVersion operation.
+func (o *GetSupportedVersionRequest) OpName() string {
+	return "/FileServerVssAgent/v1/GetSupportedVersion"
+}
+
 // GetSupportedVersionResponse structure represents the GetSupportedVersion operation response
 type GetSupportedVersionResponse struct {
 	// MinVersion:  The minimum version of the protocol that the server supports.
@@ -972,8 +987,10 @@ type xxx_SetContextOperation struct {
 	Return  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetContext operation.
 func (o *xxx_SetContextOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of SetContext operation.
 func (o *xxx_SetContextOperation) OpName() string { return "/FileServerVssAgent/v1/SetContext" }
 
 func (o *xxx_SetContextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1076,6 +1093,17 @@ func (o *SetContextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeSetContextRequest build a response structure from the given request structure.
+func (o *SetContextRequest) MakeResponse() *SetContextResponse {
+	return &SetContextResponse{}
+}
+
+// OpNum returns the operation number of SetContext operation.
+func (o *SetContextRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of SetContext operation.
+func (o *SetContextRequest) OpName() string { return "/FileServerVssAgent/v1/SetContext" }
+
 // SetContextResponse structure represents the SetContext operation response
 type SetContextResponse struct {
 	// Return: The SetContext return value.
@@ -1118,8 +1146,10 @@ type xxx_StartShadowCopySetOperation struct {
 	Return                uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of StartShadowCopySet operation.
 func (o *xxx_StartShadowCopySetOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of StartShadowCopySet operation.
 func (o *xxx_StartShadowCopySetOperation) OpName() string {
 	return "/FileServerVssAgent/v1/StartShadowCopySet"
 }
@@ -1253,6 +1283,19 @@ func (o *StartShadowCopySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeStartShadowCopySetRequest build a response structure from the given request structure.
+func (o *StartShadowCopySetRequest) MakeResponse() *StartShadowCopySetResponse {
+	return &StartShadowCopySetResponse{}
+}
+
+// OpNum returns the operation number of StartShadowCopySet operation.
+func (o *StartShadowCopySetRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of StartShadowCopySet operation.
+func (o *StartShadowCopySetRequest) OpName() string {
+	return "/FileServerVssAgent/v1/StartShadowCopySet"
+}
+
 // StartShadowCopySetResponse structure represents the StartShadowCopySet operation response
 type StartShadowCopySetResponse struct {
 	// pShadowCopySetId: The GUID of the shadow copy set, assigned by the server.
@@ -1301,8 +1344,10 @@ type xxx_AddToShadowCopySetOperation struct {
 	Return             uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddToShadowCopySet operation.
 func (o *xxx_AddToShadowCopySetOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of AddToShadowCopySet operation.
 func (o *xxx_AddToShadowCopySetOperation) OpName() string {
 	return "/FileServerVssAgent/v1/AddToShadowCopySet"
 }
@@ -1478,6 +1523,19 @@ func (o *AddToShadowCopySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeAddToShadowCopySetRequest build a response structure from the given request structure.
+func (o *AddToShadowCopySetRequest) MakeResponse() *AddToShadowCopySetResponse {
+	return &AddToShadowCopySetResponse{}
+}
+
+// OpNum returns the operation number of AddToShadowCopySet operation.
+func (o *AddToShadowCopySetRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of AddToShadowCopySet operation.
+func (o *AddToShadowCopySetRequest) OpName() string {
+	return "/FileServerVssAgent/v1/AddToShadowCopySet"
+}
+
 // AddToShadowCopySetResponse structure represents the AddToShadowCopySet operation response
 type AddToShadowCopySetResponse struct {
 	// pShadowCopyId: The GUID of the shadow copy associated with the share.
@@ -1524,8 +1582,10 @@ type xxx_CommitShadowCopySetOperation struct {
 	Return                uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CommitShadowCopySet operation.
 func (o *xxx_CommitShadowCopySetOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of CommitShadowCopySet operation.
 func (o *xxx_CommitShadowCopySetOperation) OpName() string {
 	return "/FileServerVssAgent/v1/CommitShadowCopySet"
 }
@@ -1655,6 +1715,19 @@ func (o *CommitShadowCopySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeCommitShadowCopySetRequest build a response structure from the given request structure.
+func (o *CommitShadowCopySetRequest) MakeResponse() *CommitShadowCopySetResponse {
+	return &CommitShadowCopySetResponse{}
+}
+
+// OpNum returns the operation number of CommitShadowCopySet operation.
+func (o *CommitShadowCopySetRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of CommitShadowCopySet operation.
+func (o *CommitShadowCopySetRequest) OpName() string {
+	return "/FileServerVssAgent/v1/CommitShadowCopySet"
+}
+
 // CommitShadowCopySetResponse structure represents the CommitShadowCopySet operation response
 type CommitShadowCopySetResponse struct {
 	// Return: The CommitShadowCopySet return value.
@@ -1697,8 +1770,10 @@ type xxx_ExposeShadowCopySetOperation struct {
 	Return                uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExposeShadowCopySet operation.
 func (o *xxx_ExposeShadowCopySetOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of ExposeShadowCopySet operation.
 func (o *xxx_ExposeShadowCopySetOperation) OpName() string {
 	return "/FileServerVssAgent/v1/ExposeShadowCopySet"
 }
@@ -1828,6 +1903,19 @@ func (o *ExposeShadowCopySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeExposeShadowCopySetRequest build a response structure from the given request structure.
+func (o *ExposeShadowCopySetRequest) MakeResponse() *ExposeShadowCopySetResponse {
+	return &ExposeShadowCopySetResponse{}
+}
+
+// OpNum returns the operation number of ExposeShadowCopySet operation.
+func (o *ExposeShadowCopySetRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of ExposeShadowCopySet operation.
+func (o *ExposeShadowCopySetRequest) OpName() string {
+	return "/FileServerVssAgent/v1/ExposeShadowCopySet"
+}
+
 // ExposeShadowCopySetResponse structure represents the ExposeShadowCopySet operation response
 type ExposeShadowCopySetResponse struct {
 	// Return: The ExposeShadowCopySet return value.
@@ -1869,8 +1957,10 @@ type xxx_RecoveryCompleteShadowCopySetOperation struct {
 	Return          uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RecoveryCompleteShadowCopySet operation.
 func (o *xxx_RecoveryCompleteShadowCopySetOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of RecoveryCompleteShadowCopySet operation.
 func (o *xxx_RecoveryCompleteShadowCopySetOperation) OpName() string {
 	return "/FileServerVssAgent/v1/RecoveryCompleteShadowCopySet"
 }
@@ -1983,6 +2073,19 @@ func (o *RecoveryCompleteShadowCopySetRequest) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
+// MakeRecoveryCompleteShadowCopySetRequest build a response structure from the given request structure.
+func (o *RecoveryCompleteShadowCopySetRequest) MakeResponse() *RecoveryCompleteShadowCopySetResponse {
+	return &RecoveryCompleteShadowCopySetResponse{}
+}
+
+// OpNum returns the operation number of RecoveryCompleteShadowCopySet operation.
+func (o *RecoveryCompleteShadowCopySetRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of RecoveryCompleteShadowCopySet operation.
+func (o *RecoveryCompleteShadowCopySetRequest) OpName() string {
+	return "/FileServerVssAgent/v1/RecoveryCompleteShadowCopySet"
+}
+
 // RecoveryCompleteShadowCopySetResponse structure represents the RecoveryCompleteShadowCopySet operation response
 type RecoveryCompleteShadowCopySetResponse struct {
 	// Return: The RecoveryCompleteShadowCopySet return value.
@@ -2024,8 +2127,10 @@ type xxx_AbortShadowCopySetOperation struct {
 	Return          uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AbortShadowCopySet operation.
 func (o *xxx_AbortShadowCopySetOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of AbortShadowCopySet operation.
 func (o *xxx_AbortShadowCopySetOperation) OpName() string {
 	return "/FileServerVssAgent/v1/AbortShadowCopySet"
 }
@@ -2138,6 +2243,19 @@ func (o *AbortShadowCopySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeAbortShadowCopySetRequest build a response structure from the given request structure.
+func (o *AbortShadowCopySetRequest) MakeResponse() *AbortShadowCopySetResponse {
+	return &AbortShadowCopySetResponse{}
+}
+
+// OpNum returns the operation number of AbortShadowCopySet operation.
+func (o *AbortShadowCopySetRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of AbortShadowCopySet operation.
+func (o *AbortShadowCopySetRequest) OpName() string {
+	return "/FileServerVssAgent/v1/AbortShadowCopySet"
+}
+
 // AbortShadowCopySetResponse structure represents the AbortShadowCopySet operation response
 type AbortShadowCopySetResponse struct {
 	// Return: The AbortShadowCopySet return value.
@@ -2181,8 +2299,10 @@ type xxx_IsPathSupportedOperation struct {
 	Return                  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsPathSupported operation.
 func (o *xxx_IsPathSupportedOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of IsPathSupported operation.
 func (o *xxx_IsPathSupportedOperation) OpName() string {
 	return "/FileServerVssAgent/v1/IsPathSupported"
 }
@@ -2343,6 +2463,17 @@ func (o *IsPathSupportedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeIsPathSupportedRequest build a response structure from the given request structure.
+func (o *IsPathSupportedRequest) MakeResponse() *IsPathSupportedResponse {
+	return &IsPathSupportedResponse{}
+}
+
+// OpNum returns the operation number of IsPathSupported operation.
+func (o *IsPathSupportedRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of IsPathSupported operation.
+func (o *IsPathSupportedRequest) OpName() string { return "/FileServerVssAgent/v1/IsPathSupported" }
+
 // IsPathSupportedResponse structure represents the IsPathSupported operation response
 type IsPathSupportedResponse struct {
 	// SupportedByThisProvider:  A Boolean, when set to TRUE, that indicates that shadow
@@ -2396,8 +2527,10 @@ type xxx_IsPathShadowCopiedOperation struct {
 	Return                  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsPathShadowCopied operation.
 func (o *xxx_IsPathShadowCopiedOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of IsPathShadowCopied operation.
 func (o *xxx_IsPathShadowCopiedOperation) OpName() string {
 	return "/FileServerVssAgent/v1/IsPathShadowCopied"
 }
@@ -2533,6 +2666,19 @@ func (o *IsPathShadowCopiedRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeIsPathShadowCopiedRequest build a response structure from the given request structure.
+func (o *IsPathShadowCopiedRequest) MakeResponse() *IsPathShadowCopiedResponse {
+	return &IsPathShadowCopiedResponse{}
+}
+
+// OpNum returns the operation number of IsPathShadowCopied operation.
+func (o *IsPathShadowCopiedRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of IsPathShadowCopied operation.
+func (o *IsPathShadowCopiedRequest) OpName() string {
+	return "/FileServerVssAgent/v1/IsPathShadowCopied"
+}
+
 // IsPathShadowCopiedResponse structure represents the IsPathShadowCopied operation response
 type IsPathShadowCopiedResponse struct {
 	// ShadowCopyPresent: This value is set to TRUE if the ShareName specified has a shadow
@@ -2589,8 +2735,10 @@ type xxx_GetShareMappingOperation struct {
 	Return          uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetShareMapping operation.
 func (o *xxx_GetShareMappingOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of GetShareMapping operation.
 func (o *xxx_GetShareMappingOperation) OpName() string {
 	return "/FileServerVssAgent/v1/GetShareMapping"
 }
@@ -2799,6 +2947,22 @@ func (o *GetShareMappingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetShareMappingRequest build a response structure from the given request structure.
+func (o *GetShareMappingRequest) MakeResponse() *GetShareMappingResponse {
+	if o == nil {
+		return &GetShareMappingResponse{}
+	}
+	return &GetShareMappingResponse{
+		Level: o.Level,
+	}
+}
+
+// OpNum returns the operation number of GetShareMapping operation.
+func (o *GetShareMappingRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of GetShareMapping operation.
+func (o *GetShareMappingRequest) OpName() string { return "/FileServerVssAgent/v1/GetShareMapping" }
+
 // GetShareMappingResponse structure represents the GetShareMapping operation response
 type GetShareMappingResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
@@ -2858,8 +3022,10 @@ type xxx_DeleteShareMappingOperation struct {
 	Return          uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteShareMapping operation.
 func (o *xxx_DeleteShareMappingOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of DeleteShareMapping operation.
 func (o *xxx_DeleteShareMappingOperation) OpName() string {
 	return "/FileServerVssAgent/v1/DeleteShareMapping"
 }
@@ -3013,6 +3179,19 @@ func (o *DeleteShareMappingRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeDeleteShareMappingRequest build a response structure from the given request structure.
+func (o *DeleteShareMappingRequest) MakeResponse() *DeleteShareMappingResponse {
+	return &DeleteShareMappingResponse{}
+}
+
+// OpNum returns the operation number of DeleteShareMapping operation.
+func (o *DeleteShareMappingRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of DeleteShareMapping operation.
+func (o *DeleteShareMappingRequest) OpName() string {
+	return "/FileServerVssAgent/v1/DeleteShareMapping"
+}
+
 // DeleteShareMappingResponse structure represents the DeleteShareMapping operation response
 type DeleteShareMappingResponse struct {
 	// Return: The DeleteShareMapping return value.
@@ -3055,8 +3234,10 @@ type xxx_PrepareShadowCopySetOperation struct {
 	Return                uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PrepareShadowCopySet operation.
 func (o *xxx_PrepareShadowCopySetOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of PrepareShadowCopySet operation.
 func (o *xxx_PrepareShadowCopySetOperation) OpName() string {
 	return "/FileServerVssAgent/v1/PrepareShadowCopySet"
 }
@@ -3184,6 +3365,19 @@ func (o *PrepareShadowCopySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakePrepareShadowCopySetRequest build a response structure from the given request structure.
+func (o *PrepareShadowCopySetRequest) MakeResponse() *PrepareShadowCopySetResponse {
+	return &PrepareShadowCopySetResponse{}
+}
+
+// OpNum returns the operation number of PrepareShadowCopySet operation.
+func (o *PrepareShadowCopySetRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of PrepareShadowCopySet operation.
+func (o *PrepareShadowCopySetRequest) OpName() string {
+	return "/FileServerVssAgent/v1/PrepareShadowCopySet"
 }
 
 // PrepareShadowCopySetResponse structure represents the PrepareShadowCopySet operation response

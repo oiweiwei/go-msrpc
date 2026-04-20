@@ -92,8 +92,10 @@ type xxx_MessageOperation struct {
 	Return            uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WdsRpcMessage operation.
 func (o *xxx_MessageOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of WdsRpcMessage operation.
 func (o *xxx_MessageOperation) OpName() string { return "/WdsRpc/v1/WdsRpcMessage" }
 
 func (o *xxx_MessageOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -332,6 +334,17 @@ func (o *MessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeMessageRequest build a response structure from the given request structure.
+func (o *MessageRequest) MakeResponse() *MessageResponse {
+	return &MessageResponse{}
+}
+
+// OpNum returns the operation number of WdsRpcMessage operation.
+func (o *MessageRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of WdsRpcMessage operation.
+func (o *MessageRequest) OpName() string { return "/WdsRpc/v1/WdsRpcMessage" }
 
 // MessageResponse structure represents the WdsRpcMessage operation response
 type MessageResponse struct {

@@ -147,8 +147,10 @@ type xxx_GetITransactionOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ITransaction operation.
 func (o *xxx_GetITransactionOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of ITransaction operation.
 func (o *xxx_GetITransactionOperation) OpName() string { return "/IMSMQTransaction3/v0/ITransaction" }
 
 func (o *xxx_GetITransactionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -337,6 +339,17 @@ func (o *GetITransactionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetITransactionRequest build a response structure from the given request structure.
+func (o *GetITransactionRequest) MakeResponse() *GetITransactionResponse {
+	return &GetITransactionResponse{}
+}
+
+// OpNum returns the operation number of ITransaction operation.
+func (o *GetITransactionRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of ITransaction operation.
+func (o *GetITransactionRequest) OpName() string { return "/IMSMQTransaction3/v0/ITransaction" }
 
 // GetITransactionResponse structure represents the ITransaction operation response
 type GetITransactionResponse struct {

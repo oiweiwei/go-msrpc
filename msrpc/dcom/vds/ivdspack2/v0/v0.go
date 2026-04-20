@@ -154,8 +154,10 @@ type xxx_CreateVolume2Operation struct {
 	Return         int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateVolume2 operation.
 func (o *xxx_CreateVolume2Operation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CreateVolume2 operation.
 func (o *xxx_CreateVolume2Operation) OpName() string { return "/IVdsPack2/v0/CreateVolume2" }
 
 func (o *xxx_CreateVolume2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -473,6 +475,17 @@ func (o *CreateVolume2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCreateVolume2Request build a response structure from the given request structure.
+func (o *CreateVolume2Request) MakeResponse() *CreateVolume2Response {
+	return &CreateVolume2Response{}
+}
+
+// OpNum returns the operation number of CreateVolume2 operation.
+func (o *CreateVolume2Request) OpNum() int { return 3 }
+
+// OpName returns the operation name of CreateVolume2 operation.
+func (o *CreateVolume2Request) OpName() string { return "/IVdsPack2/v0/CreateVolume2" }
 
 // CreateVolume2Response structure represents the CreateVolume2 operation response
 type CreateVolume2Response struct {

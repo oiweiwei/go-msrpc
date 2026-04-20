@@ -349,8 +349,10 @@ type xxx_GetNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Name operation.
 func (o *xxx_GetNameOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of Name operation.
 func (o *xxx_GetNameOperation) OpName() string { return "/IFsrmPropertyDefinition/v0/Name" }
 
 func (o *xxx_GetNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -540,6 +542,17 @@ func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetNameRequest build a response structure from the given request structure.
+func (o *GetNameRequest) MakeResponse() *GetNameResponse {
+	return &GetNameResponse{}
+}
+
+// OpNum returns the operation number of Name operation.
+func (o *GetNameRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of Name operation.
+func (o *GetNameRequest) OpName() string { return "/IFsrmPropertyDefinition/v0/Name" }
+
 // GetNameResponse structure represents the Name operation response
 type GetNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -590,8 +603,10 @@ type xxx_SetNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Name operation.
 func (o *xxx_SetNameOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of Name operation.
 func (o *xxx_SetNameOperation) OpName() string { return "/IFsrmPropertyDefinition/v0/Name" }
 
 func (o *xxx_SetNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -784,6 +799,17 @@ func (o *SetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetNameRequest build a response structure from the given request structure.
+func (o *SetNameRequest) MakeResponse() *SetNameResponse {
+	return &SetNameResponse{}
+}
+
+// OpNum returns the operation number of Name operation.
+func (o *SetNameRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of Name operation.
+func (o *SetNameRequest) OpName() string { return "/IFsrmPropertyDefinition/v0/Name" }
+
 // SetNameResponse structure represents the Name operation response
 type SetNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -831,8 +857,10 @@ type xxx_GetTypeOperation struct {
 	Return int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Type operation.
 func (o *xxx_GetTypeOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of Type operation.
 func (o *xxx_GetTypeOperation) OpName() string { return "/IFsrmPropertyDefinition/v0/Type" }
 
 func (o *xxx_GetTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -988,6 +1016,17 @@ func (o *GetTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetTypeRequest build a response structure from the given request structure.
+func (o *GetTypeRequest) MakeResponse() *GetTypeResponse {
+	return &GetTypeResponse{}
+}
+
+// OpNum returns the operation number of Type operation.
+func (o *GetTypeRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of Type operation.
+func (o *GetTypeRequest) OpName() string { return "/IFsrmPropertyDefinition/v0/Type" }
+
 // GetTypeResponse structure represents the Type operation response
 type GetTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1038,8 +1077,10 @@ type xxx_SetTypeOperation struct {
 	Return int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Type operation.
 func (o *xxx_SetTypeOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of Type operation.
 func (o *xxx_SetTypeOperation) OpName() string { return "/IFsrmPropertyDefinition/v0/Type" }
 
 func (o *xxx_SetTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1198,6 +1239,17 @@ func (o *SetTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetTypeRequest build a response structure from the given request structure.
+func (o *SetTypeRequest) MakeResponse() *SetTypeResponse {
+	return &SetTypeResponse{}
+}
+
+// OpNum returns the operation number of Type operation.
+func (o *SetTypeRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of Type operation.
+func (o *SetTypeRequest) OpName() string { return "/IFsrmPropertyDefinition/v0/Type" }
+
 // SetTypeResponse structure represents the Type operation response
 type SetTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1245,8 +1297,10 @@ type xxx_GetPossibleValuesOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PossibleValues operation.
 func (o *xxx_GetPossibleValuesOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of PossibleValues operation.
 func (o *xxx_GetPossibleValuesOperation) OpName() string {
 	return "/IFsrmPropertyDefinition/v0/PossibleValues"
 }
@@ -1438,6 +1492,19 @@ func (o *GetPossibleValuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetPossibleValuesRequest build a response structure from the given request structure.
+func (o *GetPossibleValuesRequest) MakeResponse() *GetPossibleValuesResponse {
+	return &GetPossibleValuesResponse{}
+}
+
+// OpNum returns the operation number of PossibleValues operation.
+func (o *GetPossibleValuesRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of PossibleValues operation.
+func (o *GetPossibleValuesRequest) OpName() string {
+	return "/IFsrmPropertyDefinition/v0/PossibleValues"
+}
+
 // GetPossibleValuesResponse structure represents the PossibleValues operation response
 type GetPossibleValuesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1488,8 +1555,10 @@ type xxx_SetPossibleValuesOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PossibleValues operation.
 func (o *xxx_SetPossibleValuesOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of PossibleValues operation.
 func (o *xxx_SetPossibleValuesOperation) OpName() string {
 	return "/IFsrmPropertyDefinition/v0/PossibleValues"
 }
@@ -1684,6 +1753,19 @@ func (o *SetPossibleValuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetPossibleValuesRequest build a response structure from the given request structure.
+func (o *SetPossibleValuesRequest) MakeResponse() *SetPossibleValuesResponse {
+	return &SetPossibleValuesResponse{}
+}
+
+// OpNum returns the operation number of PossibleValues operation.
+func (o *SetPossibleValuesRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of PossibleValues operation.
+func (o *SetPossibleValuesRequest) OpName() string {
+	return "/IFsrmPropertyDefinition/v0/PossibleValues"
+}
+
 // SetPossibleValuesResponse structure represents the PossibleValues operation response
 type SetPossibleValuesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1731,8 +1813,10 @@ type xxx_GetValueDescriptionsOperation struct {
 	Return            int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ValueDescriptions operation.
 func (o *xxx_GetValueDescriptionsOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of ValueDescriptions operation.
 func (o *xxx_GetValueDescriptionsOperation) OpName() string {
 	return "/IFsrmPropertyDefinition/v0/ValueDescriptions"
 }
@@ -1924,6 +2008,19 @@ func (o *GetValueDescriptionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetValueDescriptionsRequest build a response structure from the given request structure.
+func (o *GetValueDescriptionsRequest) MakeResponse() *GetValueDescriptionsResponse {
+	return &GetValueDescriptionsResponse{}
+}
+
+// OpNum returns the operation number of ValueDescriptions operation.
+func (o *GetValueDescriptionsRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of ValueDescriptions operation.
+func (o *GetValueDescriptionsRequest) OpName() string {
+	return "/IFsrmPropertyDefinition/v0/ValueDescriptions"
+}
+
 // GetValueDescriptionsResponse structure represents the ValueDescriptions operation response
 type GetValueDescriptionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1974,8 +2071,10 @@ type xxx_SetValueDescriptionsOperation struct {
 	Return            int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ValueDescriptions operation.
 func (o *xxx_SetValueDescriptionsOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of ValueDescriptions operation.
 func (o *xxx_SetValueDescriptionsOperation) OpName() string {
 	return "/IFsrmPropertyDefinition/v0/ValueDescriptions"
 }
@@ -2170,6 +2269,19 @@ func (o *SetValueDescriptionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeSetValueDescriptionsRequest build a response structure from the given request structure.
+func (o *SetValueDescriptionsRequest) MakeResponse() *SetValueDescriptionsResponse {
+	return &SetValueDescriptionsResponse{}
+}
+
+// OpNum returns the operation number of ValueDescriptions operation.
+func (o *SetValueDescriptionsRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of ValueDescriptions operation.
+func (o *SetValueDescriptionsRequest) OpName() string {
+	return "/IFsrmPropertyDefinition/v0/ValueDescriptions"
+}
+
 // SetValueDescriptionsResponse structure represents the ValueDescriptions operation response
 type SetValueDescriptionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2217,8 +2329,10 @@ type xxx_GetParametersOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Parameters operation.
 func (o *xxx_GetParametersOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of Parameters operation.
 func (o *xxx_GetParametersOperation) OpName() string { return "/IFsrmPropertyDefinition/v0/Parameters" }
 
 func (o *xxx_GetParametersOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2408,6 +2522,17 @@ func (o *GetParametersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetParametersRequest build a response structure from the given request structure.
+func (o *GetParametersRequest) MakeResponse() *GetParametersResponse {
+	return &GetParametersResponse{}
+}
+
+// OpNum returns the operation number of Parameters operation.
+func (o *GetParametersRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of Parameters operation.
+func (o *GetParametersRequest) OpName() string { return "/IFsrmPropertyDefinition/v0/Parameters" }
+
 // GetParametersResponse structure represents the Parameters operation response
 type GetParametersResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2458,8 +2583,10 @@ type xxx_SetParametersOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Parameters operation.
 func (o *xxx_SetParametersOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of Parameters operation.
 func (o *xxx_SetParametersOperation) OpName() string { return "/IFsrmPropertyDefinition/v0/Parameters" }
 
 func (o *xxx_SetParametersOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2651,6 +2778,17 @@ func (o *SetParametersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetParametersRequest build a response structure from the given request structure.
+func (o *SetParametersRequest) MakeResponse() *SetParametersResponse {
+	return &SetParametersResponse{}
+}
+
+// OpNum returns the operation number of Parameters operation.
+func (o *SetParametersRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of Parameters operation.
+func (o *SetParametersRequest) OpName() string { return "/IFsrmPropertyDefinition/v0/Parameters" }
 
 // SetParametersResponse structure represents the Parameters operation response
 type SetParametersResponse struct {

@@ -1055,8 +1055,10 @@ type xxx_GetClassificationReportFormatsOperation struct {
 	Return  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClassificationReportFormats operation.
 func (o *xxx_GetClassificationReportFormatsOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of ClassificationReportFormats operation.
 func (o *xxx_GetClassificationReportFormatsOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/ClassificationReportFormats"
 }
@@ -1248,6 +1250,19 @@ func (o *GetClassificationReportFormatsRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeGetClassificationReportFormatsRequest build a response structure from the given request structure.
+func (o *GetClassificationReportFormatsRequest) MakeResponse() *GetClassificationReportFormatsResponse {
+	return &GetClassificationReportFormatsResponse{}
+}
+
+// OpNum returns the operation number of ClassificationReportFormats operation.
+func (o *GetClassificationReportFormatsRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of ClassificationReportFormats operation.
+func (o *GetClassificationReportFormatsRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/ClassificationReportFormats"
+}
+
 // GetClassificationReportFormatsResponse structure represents the ClassificationReportFormats operation response
 type GetClassificationReportFormatsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1298,8 +1313,10 @@ type xxx_SetClassificationReportFormatsOperation struct {
 	Return  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClassificationReportFormats operation.
 func (o *xxx_SetClassificationReportFormatsOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ClassificationReportFormats operation.
 func (o *xxx_SetClassificationReportFormatsOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/ClassificationReportFormats"
 }
@@ -1494,6 +1511,19 @@ func (o *SetClassificationReportFormatsRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeSetClassificationReportFormatsRequest build a response structure from the given request structure.
+func (o *SetClassificationReportFormatsRequest) MakeResponse() *SetClassificationReportFormatsResponse {
+	return &SetClassificationReportFormatsResponse{}
+}
+
+// OpNum returns the operation number of ClassificationReportFormats operation.
+func (o *SetClassificationReportFormatsRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ClassificationReportFormats operation.
+func (o *SetClassificationReportFormatsRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/ClassificationReportFormats"
+}
+
 // SetClassificationReportFormatsResponse structure represents the ClassificationReportFormats operation response
 type SetClassificationReportFormatsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1541,8 +1571,10 @@ type xxx_GetLoggingOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Logging operation.
 func (o *xxx_GetLoggingOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of Logging operation.
 func (o *xxx_GetLoggingOperation) OpName() string { return "/IFsrmClassificationManager/v0/Logging" }
 
 func (o *xxx_GetLoggingOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1698,6 +1730,17 @@ func (o *GetLoggingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetLoggingRequest build a response structure from the given request structure.
+func (o *GetLoggingRequest) MakeResponse() *GetLoggingResponse {
+	return &GetLoggingResponse{}
+}
+
+// OpNum returns the operation number of Logging operation.
+func (o *GetLoggingRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of Logging operation.
+func (o *GetLoggingRequest) OpName() string { return "/IFsrmClassificationManager/v0/Logging" }
+
 // GetLoggingResponse structure represents the Logging operation response
 type GetLoggingResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1748,8 +1791,10 @@ type xxx_SetLoggingOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Logging operation.
 func (o *xxx_SetLoggingOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of Logging operation.
 func (o *xxx_SetLoggingOperation) OpName() string { return "/IFsrmClassificationManager/v0/Logging" }
 
 func (o *xxx_SetLoggingOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1908,6 +1953,17 @@ func (o *SetLoggingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeSetLoggingRequest build a response structure from the given request structure.
+func (o *SetLoggingRequest) MakeResponse() *SetLoggingResponse {
+	return &SetLoggingResponse{}
+}
+
+// OpNum returns the operation number of Logging operation.
+func (o *SetLoggingRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of Logging operation.
+func (o *SetLoggingRequest) OpName() string { return "/IFsrmClassificationManager/v0/Logging" }
+
 // SetLoggingResponse structure represents the Logging operation response
 type SetLoggingResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1955,8 +2011,10 @@ type xxx_GetClassificationReportMailToOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClassificationReportMailTo operation.
 func (o *xxx_GetClassificationReportMailToOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of ClassificationReportMailTo operation.
 func (o *xxx_GetClassificationReportMailToOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/ClassificationReportMailTo"
 }
@@ -2148,6 +2206,19 @@ func (o *GetClassificationReportMailToRequest) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
+// MakeGetClassificationReportMailToRequest build a response structure from the given request structure.
+func (o *GetClassificationReportMailToRequest) MakeResponse() *GetClassificationReportMailToResponse {
+	return &GetClassificationReportMailToResponse{}
+}
+
+// OpNum returns the operation number of ClassificationReportMailTo operation.
+func (o *GetClassificationReportMailToRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of ClassificationReportMailTo operation.
+func (o *GetClassificationReportMailToRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/ClassificationReportMailTo"
+}
+
 // GetClassificationReportMailToResponse structure represents the ClassificationReportMailTo operation response
 type GetClassificationReportMailToResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2198,8 +2269,10 @@ type xxx_SetClassificationReportMailToOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClassificationReportMailTo operation.
 func (o *xxx_SetClassificationReportMailToOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of ClassificationReportMailTo operation.
 func (o *xxx_SetClassificationReportMailToOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/ClassificationReportMailTo"
 }
@@ -2394,6 +2467,19 @@ func (o *SetClassificationReportMailToRequest) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
+// MakeSetClassificationReportMailToRequest build a response structure from the given request structure.
+func (o *SetClassificationReportMailToRequest) MakeResponse() *SetClassificationReportMailToResponse {
+	return &SetClassificationReportMailToResponse{}
+}
+
+// OpNum returns the operation number of ClassificationReportMailTo operation.
+func (o *SetClassificationReportMailToRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of ClassificationReportMailTo operation.
+func (o *SetClassificationReportMailToRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/ClassificationReportMailTo"
+}
+
 // SetClassificationReportMailToResponse structure represents the ClassificationReportMailTo operation response
 type SetClassificationReportMailToResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2441,8 +2527,10 @@ type xxx_GetClassificationReportEnabledOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClassificationReportEnabled operation.
 func (o *xxx_GetClassificationReportEnabledOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of ClassificationReportEnabled operation.
 func (o *xxx_GetClassificationReportEnabledOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/ClassificationReportEnabled"
 }
@@ -2600,6 +2688,19 @@ func (o *GetClassificationReportEnabledRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeGetClassificationReportEnabledRequest build a response structure from the given request structure.
+func (o *GetClassificationReportEnabledRequest) MakeResponse() *GetClassificationReportEnabledResponse {
+	return &GetClassificationReportEnabledResponse{}
+}
+
+// OpNum returns the operation number of ClassificationReportEnabled operation.
+func (o *GetClassificationReportEnabledRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of ClassificationReportEnabled operation.
+func (o *GetClassificationReportEnabledRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/ClassificationReportEnabled"
+}
+
 // GetClassificationReportEnabledResponse structure represents the ClassificationReportEnabled operation response
 type GetClassificationReportEnabledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2650,8 +2751,10 @@ type xxx_SetClassificationReportEnabledOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClassificationReportEnabled operation.
 func (o *xxx_SetClassificationReportEnabledOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of ClassificationReportEnabled operation.
 func (o *xxx_SetClassificationReportEnabledOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/ClassificationReportEnabled"
 }
@@ -2812,6 +2915,19 @@ func (o *SetClassificationReportEnabledRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeSetClassificationReportEnabledRequest build a response structure from the given request structure.
+func (o *SetClassificationReportEnabledRequest) MakeResponse() *SetClassificationReportEnabledResponse {
+	return &SetClassificationReportEnabledResponse{}
+}
+
+// OpNum returns the operation number of ClassificationReportEnabled operation.
+func (o *SetClassificationReportEnabledRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of ClassificationReportEnabled operation.
+func (o *SetClassificationReportEnabledRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/ClassificationReportEnabled"
+}
+
 // SetClassificationReportEnabledResponse structure represents the ClassificationReportEnabled operation response
 type SetClassificationReportEnabledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2859,8 +2975,10 @@ type xxx_GetClassificationLastReportPathWithoutExtensionOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClassificationLastReportPathWithoutExtension operation.
 func (o *xxx_GetClassificationLastReportPathWithoutExtensionOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of ClassificationLastReportPathWithoutExtension operation.
 func (o *xxx_GetClassificationLastReportPathWithoutExtensionOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/ClassificationLastReportPathWithoutExtension"
 }
@@ -3052,6 +3170,19 @@ func (o *GetClassificationLastReportPathWithoutExtensionRequest) UnmarshalNDR(ct
 	return nil
 }
 
+// MakeGetClassificationLastReportPathWithoutExtensionRequest build a response structure from the given request structure.
+func (o *GetClassificationLastReportPathWithoutExtensionRequest) MakeResponse() *GetClassificationLastReportPathWithoutExtensionResponse {
+	return &GetClassificationLastReportPathWithoutExtensionResponse{}
+}
+
+// OpNum returns the operation number of ClassificationLastReportPathWithoutExtension operation.
+func (o *GetClassificationLastReportPathWithoutExtensionRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of ClassificationLastReportPathWithoutExtension operation.
+func (o *GetClassificationLastReportPathWithoutExtensionRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/ClassificationLastReportPathWithoutExtension"
+}
+
 // GetClassificationLastReportPathWithoutExtensionResponse structure represents the ClassificationLastReportPathWithoutExtension operation response
 type GetClassificationLastReportPathWithoutExtensionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3105,8 +3236,10 @@ type xxx_GetClassificationLastErrorOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClassificationLastError operation.
 func (o *xxx_GetClassificationLastErrorOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of ClassificationLastError operation.
 func (o *xxx_GetClassificationLastErrorOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/ClassificationLastError"
 }
@@ -3298,6 +3431,19 @@ func (o *GetClassificationLastErrorRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeGetClassificationLastErrorRequest build a response structure from the given request structure.
+func (o *GetClassificationLastErrorRequest) MakeResponse() *GetClassificationLastErrorResponse {
+	return &GetClassificationLastErrorResponse{}
+}
+
+// OpNum returns the operation number of ClassificationLastError operation.
+func (o *GetClassificationLastErrorRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of ClassificationLastError operation.
+func (o *GetClassificationLastErrorRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/ClassificationLastError"
+}
+
 // GetClassificationLastErrorResponse structure represents the ClassificationLastError operation response
 type GetClassificationLastErrorResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3350,8 +3496,10 @@ type xxx_GetClassificationRunningStatusOperation struct {
 	Return        int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClassificationRunningStatus operation.
 func (o *xxx_GetClassificationRunningStatusOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of ClassificationRunningStatus operation.
 func (o *xxx_GetClassificationRunningStatusOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/ClassificationRunningStatus"
 }
@@ -3509,6 +3657,19 @@ func (o *GetClassificationRunningStatusRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeGetClassificationRunningStatusRequest build a response structure from the given request structure.
+func (o *GetClassificationRunningStatusRequest) MakeResponse() *GetClassificationRunningStatusResponse {
+	return &GetClassificationRunningStatusResponse{}
+}
+
+// OpNum returns the operation number of ClassificationRunningStatus operation.
+func (o *GetClassificationRunningStatusRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of ClassificationRunningStatus operation.
+func (o *GetClassificationRunningStatusRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/ClassificationRunningStatus"
+}
+
 // GetClassificationRunningStatusResponse structure represents the ClassificationRunningStatus operation response
 type GetClassificationRunningStatusResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3562,8 +3723,10 @@ type xxx_EnumPropertyDefinitionsOperation struct {
 	Return              int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumPropertyDefinitions operation.
 func (o *xxx_EnumPropertyDefinitionsOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of EnumPropertyDefinitions operation.
 func (o *xxx_EnumPropertyDefinitionsOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/EnumPropertyDefinitions"
 }
@@ -3772,6 +3935,19 @@ func (o *EnumPropertyDefinitionsRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeEnumPropertyDefinitionsRequest build a response structure from the given request structure.
+func (o *EnumPropertyDefinitionsRequest) MakeResponse() *EnumPropertyDefinitionsResponse {
+	return &EnumPropertyDefinitionsResponse{}
+}
+
+// OpNum returns the operation number of EnumPropertyDefinitions operation.
+func (o *EnumPropertyDefinitionsRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of EnumPropertyDefinitions operation.
+func (o *EnumPropertyDefinitionsRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/EnumPropertyDefinitions"
+}
+
 // EnumPropertyDefinitionsResponse structure represents the EnumPropertyDefinitions operation response
 type EnumPropertyDefinitionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3825,8 +4001,10 @@ type xxx_CreatePropertyDefinitionOperation struct {
 	Return             int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreatePropertyDefinition operation.
 func (o *xxx_CreatePropertyDefinitionOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of CreatePropertyDefinition operation.
 func (o *xxx_CreatePropertyDefinitionOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/CreatePropertyDefinition"
 }
@@ -4018,6 +4196,19 @@ func (o *CreatePropertyDefinitionRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeCreatePropertyDefinitionRequest build a response structure from the given request structure.
+func (o *CreatePropertyDefinitionRequest) MakeResponse() *CreatePropertyDefinitionResponse {
+	return &CreatePropertyDefinitionResponse{}
+}
+
+// OpNum returns the operation number of CreatePropertyDefinition operation.
+func (o *CreatePropertyDefinitionRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of CreatePropertyDefinition operation.
+func (o *CreatePropertyDefinitionRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/CreatePropertyDefinition"
+}
+
 // CreatePropertyDefinitionResponse structure represents the CreatePropertyDefinition operation response
 type CreatePropertyDefinitionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4074,8 +4265,10 @@ type xxx_GetPropertyDefinitionOperation struct {
 	Return             int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetPropertyDefinition operation.
 func (o *xxx_GetPropertyDefinitionOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of GetPropertyDefinition operation.
 func (o *xxx_GetPropertyDefinitionOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/GetPropertyDefinition"
 }
@@ -4317,6 +4510,19 @@ func (o *GetPropertyDefinitionRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetPropertyDefinitionRequest build a response structure from the given request structure.
+func (o *GetPropertyDefinitionRequest) MakeResponse() *GetPropertyDefinitionResponse {
+	return &GetPropertyDefinitionResponse{}
+}
+
+// OpNum returns the operation number of GetPropertyDefinition operation.
+func (o *GetPropertyDefinitionRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of GetPropertyDefinition operation.
+func (o *GetPropertyDefinitionRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/GetPropertyDefinition"
+}
+
 // GetPropertyDefinitionResponse structure represents the GetPropertyDefinition operation response
 type GetPropertyDefinitionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4374,8 +4580,10 @@ type xxx_EnumRulesOperation struct {
 	Return   int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumRules operation.
 func (o *xxx_EnumRulesOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of EnumRules operation.
 func (o *xxx_EnumRulesOperation) OpName() string { return "/IFsrmClassificationManager/v0/EnumRules" }
 
 func (o *xxx_EnumRulesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4599,6 +4807,17 @@ func (o *EnumRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeEnumRulesRequest build a response structure from the given request structure.
+func (o *EnumRulesRequest) MakeResponse() *EnumRulesResponse {
+	return &EnumRulesResponse{}
+}
+
+// OpNum returns the operation number of EnumRules operation.
+func (o *EnumRulesRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of EnumRules operation.
+func (o *EnumRulesRequest) OpName() string { return "/IFsrmClassificationManager/v0/EnumRules" }
+
 // EnumRulesResponse structure represents the EnumRules operation response
 type EnumRulesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4654,8 +4873,10 @@ type xxx_CreateRuleOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateRule operation.
 func (o *xxx_CreateRuleOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of CreateRule operation.
 func (o *xxx_CreateRuleOperation) OpName() string { return "/IFsrmClassificationManager/v0/CreateRule" }
 
 func (o *xxx_CreateRuleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4862,6 +5083,17 @@ func (o *CreateRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeCreateRuleRequest build a response structure from the given request structure.
+func (o *CreateRuleRequest) MakeResponse() *CreateRuleResponse {
+	return &CreateRuleResponse{}
+}
+
+// OpNum returns the operation number of CreateRule operation.
+func (o *CreateRuleRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of CreateRule operation.
+func (o *CreateRuleRequest) OpName() string { return "/IFsrmClassificationManager/v0/CreateRule" }
+
 // CreateRuleResponse structure represents the CreateRule operation response
 type CreateRuleResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4918,8 +5150,10 @@ type xxx_GetRuleOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetRule operation.
 func (o *xxx_GetRuleOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of GetRule operation.
 func (o *xxx_GetRuleOperation) OpName() string { return "/IFsrmClassificationManager/v0/GetRule" }
 
 func (o *xxx_GetRuleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5176,6 +5410,17 @@ func (o *GetRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetRuleRequest build a response structure from the given request structure.
+func (o *GetRuleRequest) MakeResponse() *GetRuleResponse {
+	return &GetRuleResponse{}
+}
+
+// OpNum returns the operation number of GetRule operation.
+func (o *GetRuleRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of GetRule operation.
+func (o *GetRuleRequest) OpName() string { return "/IFsrmClassificationManager/v0/GetRule" }
+
 // GetRuleResponse structure represents the GetRule operation response
 type GetRuleResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -5231,8 +5476,10 @@ type xxx_EnumModuleDefinitionsOperation struct {
 	Return            int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumModuleDefinitions operation.
 func (o *xxx_EnumModuleDefinitionsOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of EnumModuleDefinitions operation.
 func (o *xxx_EnumModuleDefinitionsOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/EnumModuleDefinitions"
 }
@@ -5458,6 +5705,19 @@ func (o *EnumModuleDefinitionsRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeEnumModuleDefinitionsRequest build a response structure from the given request structure.
+func (o *EnumModuleDefinitionsRequest) MakeResponse() *EnumModuleDefinitionsResponse {
+	return &EnumModuleDefinitionsResponse{}
+}
+
+// OpNum returns the operation number of EnumModuleDefinitions operation.
+func (o *EnumModuleDefinitionsRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of EnumModuleDefinitions operation.
+func (o *EnumModuleDefinitionsRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/EnumModuleDefinitions"
+}
+
 // EnumModuleDefinitionsResponse structure represents the EnumModuleDefinitions operation response
 type EnumModuleDefinitionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -5513,8 +5773,10 @@ type xxx_CreateModuleDefinitionOperation struct {
 	Return           int32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateModuleDefinition operation.
 func (o *xxx_CreateModuleDefinitionOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of CreateModuleDefinition operation.
 func (o *xxx_CreateModuleDefinitionOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/CreateModuleDefinition"
 }
@@ -5724,6 +5986,19 @@ func (o *CreateModuleDefinitionRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeCreateModuleDefinitionRequest build a response structure from the given request structure.
+func (o *CreateModuleDefinitionRequest) MakeResponse() *CreateModuleDefinitionResponse {
+	return &CreateModuleDefinitionResponse{}
+}
+
+// OpNum returns the operation number of CreateModuleDefinition operation.
+func (o *CreateModuleDefinitionRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of CreateModuleDefinition operation.
+func (o *CreateModuleDefinitionRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/CreateModuleDefinition"
+}
+
 // CreateModuleDefinitionResponse structure represents the CreateModuleDefinition operation response
 type CreateModuleDefinitionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -5781,8 +6056,10 @@ type xxx_GetModuleDefinitionOperation struct {
 	Return           int32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetModuleDefinition operation.
 func (o *xxx_GetModuleDefinitionOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of GetModuleDefinition operation.
 func (o *xxx_GetModuleDefinitionOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/GetModuleDefinition"
 }
@@ -6041,6 +6318,19 @@ func (o *GetModuleDefinitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetModuleDefinitionRequest build a response structure from the given request structure.
+func (o *GetModuleDefinitionRequest) MakeResponse() *GetModuleDefinitionResponse {
+	return &GetModuleDefinitionResponse{}
+}
+
+// OpNum returns the operation number of GetModuleDefinition operation.
+func (o *GetModuleDefinitionRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of GetModuleDefinition operation.
+func (o *GetModuleDefinitionRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/GetModuleDefinition"
+}
+
 // GetModuleDefinitionResponse structure represents the GetModuleDefinition operation response
 type GetModuleDefinitionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -6095,8 +6385,10 @@ type xxx_RunClassificationOperation struct {
 	Return  int32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RunClassification operation.
 func (o *xxx_RunClassificationOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of RunClassification operation.
 func (o *xxx_RunClassificationOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/RunClassification"
 }
@@ -6290,6 +6582,19 @@ func (o *RunClassificationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeRunClassificationRequest build a response structure from the given request structure.
+func (o *RunClassificationRequest) MakeResponse() *RunClassificationResponse {
+	return &RunClassificationResponse{}
+}
+
+// OpNum returns the operation number of RunClassification operation.
+func (o *RunClassificationRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of RunClassification operation.
+func (o *RunClassificationRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/RunClassification"
+}
+
 // RunClassificationResponse structure represents the RunClassification operation response
 type RunClassificationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -6338,8 +6643,10 @@ type xxx_WaitForClassificationCompletionOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WaitForClassificationCompletion operation.
 func (o *xxx_WaitForClassificationCompletionOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of WaitForClassificationCompletion operation.
 func (o *xxx_WaitForClassificationCompletionOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/WaitForClassificationCompletion"
 }
@@ -6513,6 +6820,19 @@ func (o *WaitForClassificationCompletionRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeWaitForClassificationCompletionRequest build a response structure from the given request structure.
+func (o *WaitForClassificationCompletionRequest) MakeResponse() *WaitForClassificationCompletionResponse {
+	return &WaitForClassificationCompletionResponse{}
+}
+
+// OpNum returns the operation number of WaitForClassificationCompletion operation.
+func (o *WaitForClassificationCompletionRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of WaitForClassificationCompletion operation.
+func (o *WaitForClassificationCompletionRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/WaitForClassificationCompletion"
+}
+
 // WaitForClassificationCompletionResponse structure represents the WaitForClassificationCompletion operation response
 type WaitForClassificationCompletionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -6564,8 +6884,10 @@ type xxx_CancelClassificationOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CancelClassification operation.
 func (o *xxx_CancelClassificationOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of CancelClassification operation.
 func (o *xxx_CancelClassificationOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/CancelClassification"
 }
@@ -6711,6 +7033,19 @@ func (o *CancelClassificationRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeCancelClassificationRequest build a response structure from the given request structure.
+func (o *CancelClassificationRequest) MakeResponse() *CancelClassificationResponse {
+	return &CancelClassificationResponse{}
+}
+
+// OpNum returns the operation number of CancelClassification operation.
+func (o *CancelClassificationRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of CancelClassification operation.
+func (o *CancelClassificationRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/CancelClassification"
+}
+
 // CancelClassificationResponse structure represents the CancelClassification operation response
 type CancelClassificationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -6760,8 +7095,10 @@ type xxx_EnumFilePropertiesOperation struct {
 	Return         int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumFileProperties operation.
 func (o *xxx_EnumFilePropertiesOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of EnumFileProperties operation.
 func (o *xxx_EnumFilePropertiesOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/EnumFileProperties"
 }
@@ -7023,6 +7360,19 @@ func (o *EnumFilePropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeEnumFilePropertiesRequest build a response structure from the given request structure.
+func (o *EnumFilePropertiesRequest) MakeResponse() *EnumFilePropertiesResponse {
+	return &EnumFilePropertiesResponse{}
+}
+
+// OpNum returns the operation number of EnumFileProperties operation.
+func (o *EnumFilePropertiesRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of EnumFileProperties operation.
+func (o *EnumFilePropertiesRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/EnumFileProperties"
+}
+
 // EnumFilePropertiesResponse structure represents the EnumFileProperties operation response
 type EnumFilePropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -7080,8 +7430,10 @@ type xxx_GetFilePropertyOperation struct {
 	Return       int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetFileProperty operation.
 func (o *xxx_GetFilePropertyOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of GetFileProperty operation.
 func (o *xxx_GetFilePropertyOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/GetFileProperty"
 }
@@ -7393,6 +7745,19 @@ func (o *GetFilePropertyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetFilePropertyRequest build a response structure from the given request structure.
+func (o *GetFilePropertyRequest) MakeResponse() *GetFilePropertyResponse {
+	return &GetFilePropertyResponse{}
+}
+
+// OpNum returns the operation number of GetFileProperty operation.
+func (o *GetFilePropertyRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of GetFileProperty operation.
+func (o *GetFilePropertyRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/GetFileProperty"
+}
+
 // GetFilePropertyResponse structure represents the GetFileProperty operation response
 type GetFilePropertyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -7447,8 +7812,10 @@ type xxx_SetFilePropertyOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetFileProperty operation.
 func (o *xxx_SetFilePropertyOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of SetFileProperty operation.
 func (o *xxx_SetFilePropertyOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/SetFileProperty"
 }
@@ -7747,6 +8114,19 @@ func (o *SetFilePropertyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetFilePropertyRequest build a response structure from the given request structure.
+func (o *SetFilePropertyRequest) MakeResponse() *SetFilePropertyResponse {
+	return &SetFilePropertyResponse{}
+}
+
+// OpNum returns the operation number of SetFileProperty operation.
+func (o *SetFilePropertyRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of SetFileProperty operation.
+func (o *SetFilePropertyRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/SetFileProperty"
+}
+
 // SetFilePropertyResponse structure represents the SetFileProperty operation response
 type SetFilePropertyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -7795,8 +8175,10 @@ type xxx_ClearFilePropertyOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ClearFileProperty operation.
 func (o *xxx_ClearFilePropertyOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of ClearFileProperty operation.
 func (o *xxx_ClearFilePropertyOperation) OpName() string {
 	return "/IFsrmClassificationManager/v0/ClearFileProperty"
 }
@@ -8043,6 +8425,19 @@ func (o *ClearFilePropertyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeClearFilePropertyRequest build a response structure from the given request structure.
+func (o *ClearFilePropertyRequest) MakeResponse() *ClearFilePropertyResponse {
+	return &ClearFilePropertyResponse{}
+}
+
+// OpNum returns the operation number of ClearFileProperty operation.
+func (o *ClearFilePropertyRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of ClearFileProperty operation.
+func (o *ClearFilePropertyRequest) OpName() string {
+	return "/IFsrmClassificationManager/v0/ClearFileProperty"
 }
 
 // ClearFilePropertyResponse structure represents the ClearFileProperty operation response

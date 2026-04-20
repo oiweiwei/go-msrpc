@@ -5703,8 +5703,10 @@ type xxx_EnumSubnetClientsV5Operation struct {
 	Return           uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumSubnetClientsV5 operation.
 func (o *xxx_EnumSubnetClientsV5Operation) OpNum() int { return 0 }
 
+// OpName returns the operation name of R_DhcpEnumSubnetClientsV5 operation.
 func (o *xxx_EnumSubnetClientsV5Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpEnumSubnetClientsV5"
 }
@@ -5972,6 +5974,17 @@ func (o *EnumSubnetClientsV5Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeEnumSubnetClientsV5Request build a response structure from the given request structure.
+func (o *EnumSubnetClientsV5Request) MakeResponse() *EnumSubnetClientsV5Response {
+	return &EnumSubnetClientsV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumSubnetClientsV5 operation.
+func (o *EnumSubnetClientsV5Request) OpNum() int { return 0 }
+
+// OpName returns the operation name of R_DhcpEnumSubnetClientsV5 operation.
+func (o *EnumSubnetClientsV5Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumSubnetClientsV5" }
+
 // EnumSubnetClientsV5Response structure represents the R_DhcpEnumSubnetClientsV5 operation response
 type EnumSubnetClientsV5Response struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) that
@@ -6042,8 +6055,10 @@ type xxx_SetMScopeInfoOperation struct {
 	Return          uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetMScopeInfo operation.
 func (o *xxx_SetMScopeInfoOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of R_DhcpSetMScopeInfo operation.
 func (o *xxx_SetMScopeInfoOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetMScopeInfo" }
 
 func (o *xxx_SetMScopeInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6273,6 +6288,17 @@ func (o *SetMScopeInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSetMScopeInfoRequest build a response structure from the given request structure.
+func (o *SetMScopeInfoRequest) MakeResponse() *SetMScopeInfoResponse {
+	return &SetMScopeInfoResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpSetMScopeInfo operation.
+func (o *SetMScopeInfoRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of R_DhcpSetMScopeInfo operation.
+func (o *SetMScopeInfoRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetMScopeInfo" }
+
 // SetMScopeInfoResponse structure represents the R_DhcpSetMScopeInfo operation response
 type SetMScopeInfoResponse struct {
 	// Return: The R_DhcpSetMScopeInfo return value.
@@ -6316,8 +6342,10 @@ type xxx_GetMScopeInfoOperation struct {
 	Return          uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetMScopeInfo operation.
 func (o *xxx_GetMScopeInfoOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of R_DhcpGetMScopeInfo operation.
 func (o *xxx_GetMScopeInfoOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetMScopeInfo" }
 
 func (o *xxx_GetMScopeInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6534,6 +6562,17 @@ func (o *GetMScopeInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetMScopeInfoRequest build a response structure from the given request structure.
+func (o *GetMScopeInfoRequest) MakeResponse() *GetMScopeInfoResponse {
+	return &GetMScopeInfoResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpGetMScopeInfo operation.
+func (o *GetMScopeInfoRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of R_DhcpGetMScopeInfo operation.
+func (o *GetMScopeInfoRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetMScopeInfo" }
+
 // GetMScopeInfoResponse structure represents the R_DhcpGetMScopeInfo operation response
 type GetMScopeInfoResponse struct {
 	// MScopeInfo: This is a pointer of type LPDHCP_MSCOPE_INFO (section 2.2.1.2.71) in
@@ -6586,8 +6625,10 @@ type xxx_EnumMScopesOperation struct {
 	Return           uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumMScopes operation.
 func (o *xxx_EnumMScopesOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of R_DhcpEnumMScopes operation.
 func (o *xxx_EnumMScopesOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumMScopes" }
 
 func (o *xxx_EnumMScopesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6839,6 +6880,17 @@ func (o *EnumMScopesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeEnumMScopesRequest build a response structure from the given request structure.
+func (o *EnumMScopesRequest) MakeResponse() *EnumMScopesResponse {
+	return &EnumMScopesResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumMScopes operation.
+func (o *EnumMScopesRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of R_DhcpEnumMScopes operation.
+func (o *EnumMScopesRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumMScopes" }
+
 // EnumMScopesResponse structure represents the R_DhcpEnumMScopes operation response
 type EnumMScopesResponse struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) that
@@ -6910,8 +6962,10 @@ type xxx_AddMScopeElementOperation struct {
 	Return          uint32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpAddMScopeElement operation.
 func (o *xxx_AddMScopeElementOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of R_DhcpAddMScopeElement operation.
 func (o *xxx_AddMScopeElementOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpAddMScopeElement" }
 
 func (o *xxx_AddMScopeElementOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7115,6 +7169,17 @@ func (o *AddMScopeElementRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeAddMScopeElementRequest build a response structure from the given request structure.
+func (o *AddMScopeElementRequest) MakeResponse() *AddMScopeElementResponse {
+	return &AddMScopeElementResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpAddMScopeElement operation.
+func (o *AddMScopeElementRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of R_DhcpAddMScopeElement operation.
+func (o *AddMScopeElementRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpAddMScopeElement" }
+
 // AddMScopeElementResponse structure represents the R_DhcpAddMScopeElement operation response
 type AddMScopeElementResponse struct {
 	// Return: The R_DhcpAddMScopeElement return value.
@@ -7163,8 +7228,10 @@ type xxx_EnumMScopeElementsOperation struct {
 	Return           uint32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumMScopeElements operation.
 func (o *xxx_EnumMScopeElementsOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of R_DhcpEnumMScopeElements operation.
 func (o *xxx_EnumMScopeElementsOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpEnumMScopeElements"
 }
@@ -7478,6 +7545,17 @@ func (o *EnumMScopeElementsRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeEnumMScopeElementsRequest build a response structure from the given request structure.
+func (o *EnumMScopeElementsRequest) MakeResponse() *EnumMScopeElementsResponse {
+	return &EnumMScopeElementsResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumMScopeElements operation.
+func (o *EnumMScopeElementsRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of R_DhcpEnumMScopeElements operation.
+func (o *EnumMScopeElementsRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumMScopeElements" }
+
 // EnumMScopeElementsResponse structure represents the R_DhcpEnumMScopeElements operation response
 type EnumMScopeElementsResponse struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) that
@@ -7555,8 +7633,10 @@ type xxx_RemoveMScopeElementOperation struct {
 	Return            uint32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpRemoveMScopeElement operation.
 func (o *xxx_RemoveMScopeElementOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of R_DhcpRemoveMScopeElement operation.
 func (o *xxx_RemoveMScopeElementOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpRemoveMScopeElement"
 }
@@ -7782,6 +7862,17 @@ func (o *RemoveMScopeElementRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeRemoveMScopeElementRequest build a response structure from the given request structure.
+func (o *RemoveMScopeElementRequest) MakeResponse() *RemoveMScopeElementResponse {
+	return &RemoveMScopeElementResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpRemoveMScopeElement operation.
+func (o *RemoveMScopeElementRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of R_DhcpRemoveMScopeElement operation.
+func (o *RemoveMScopeElementRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpRemoveMScopeElement" }
+
 // RemoveMScopeElementResponse structure represents the R_DhcpRemoveMScopeElement operation response
 type RemoveMScopeElementResponse struct {
 	// Return: The R_DhcpRemoveMScopeElement return value.
@@ -7825,8 +7916,10 @@ type xxx_DeleteMScopeOperation struct {
 	Return          uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpDeleteMScope operation.
 func (o *xxx_DeleteMScopeOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of R_DhcpDeleteMScope operation.
 func (o *xxx_DeleteMScopeOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpDeleteMScope" }
 
 func (o *xxx_DeleteMScopeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8016,6 +8109,17 @@ func (o *DeleteMScopeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeDeleteMScopeRequest build a response structure from the given request structure.
+func (o *DeleteMScopeRequest) MakeResponse() *DeleteMScopeResponse {
+	return &DeleteMScopeResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpDeleteMScope operation.
+func (o *DeleteMScopeRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of R_DhcpDeleteMScope operation.
+func (o *DeleteMScopeRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpDeleteMScope" }
+
 // DeleteMScopeResponse structure represents the R_DhcpDeleteMScope operation response
 type DeleteMScopeResponse struct {
 	// Return: The R_DhcpDeleteMScope return value.
@@ -8060,8 +8164,10 @@ type xxx_ScanMDatabaseOperation struct {
 	Return          uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpScanMDatabase operation.
 func (o *xxx_ScanMDatabaseOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of R_DhcpScanMDatabase operation.
 func (o *xxx_ScanMDatabaseOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpScanMDatabase" }
 
 func (o *xxx_ScanMDatabaseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8297,6 +8403,17 @@ func (o *ScanMDatabaseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeScanMDatabaseRequest build a response structure from the given request structure.
+func (o *ScanMDatabaseRequest) MakeResponse() *ScanMDatabaseResponse {
+	return &ScanMDatabaseResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpScanMDatabase operation.
+func (o *ScanMDatabaseRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of R_DhcpScanMDatabase operation.
+func (o *ScanMDatabaseRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpScanMDatabase" }
+
 // ScanMDatabaseResponse structure represents the R_DhcpScanMDatabase operation response
 type ScanMDatabaseResponse struct {
 	// ScanList: This is a pointer of type DHCP_SCAN_LIST (section 2.2.1.2.74) that points
@@ -8346,8 +8463,10 @@ type xxx_CreateMClientInfoOperation struct {
 	Return          uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpCreateMClientInfo operation.
 func (o *xxx_CreateMClientInfoOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of R_DhcpCreateMClientInfo operation.
 func (o *xxx_CreateMClientInfoOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpCreateMClientInfo"
 }
@@ -8551,6 +8670,17 @@ func (o *CreateMClientInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeCreateMClientInfoRequest build a response structure from the given request structure.
+func (o *CreateMClientInfoRequest) MakeResponse() *CreateMClientInfoResponse {
+	return &CreateMClientInfoResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpCreateMClientInfo operation.
+func (o *CreateMClientInfoRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of R_DhcpCreateMClientInfo operation.
+func (o *CreateMClientInfoRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpCreateMClientInfo" }
+
 // CreateMClientInfoResponse structure represents the R_DhcpCreateMClientInfo operation response
 type CreateMClientInfoResponse struct {
 	// Return: The R_DhcpCreateMClientInfo return value.
@@ -8593,8 +8723,10 @@ type xxx_SetMClientInfoOperation struct {
 	Return          uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetMClientInfo operation.
 func (o *xxx_SetMClientInfoOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of R_DhcpSetMClientInfo operation.
 func (o *xxx_SetMClientInfoOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetMClientInfo" }
 
 func (o *xxx_SetMClientInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8754,6 +8886,17 @@ func (o *SetMClientInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetMClientInfoRequest build a response structure from the given request structure.
+func (o *SetMClientInfoRequest) MakeResponse() *SetMClientInfoResponse {
+	return &SetMClientInfoResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpSetMClientInfo operation.
+func (o *SetMClientInfoRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of R_DhcpSetMClientInfo operation.
+func (o *SetMClientInfoRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetMClientInfo" }
+
 // SetMClientInfoResponse structure represents the R_DhcpSetMClientInfo operation response
 type SetMClientInfoResponse struct {
 	// Return: The R_DhcpSetMClientInfo return value.
@@ -8797,8 +8940,10 @@ type xxx_GetMClientInfoOperation struct {
 	Return          uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetMClientInfo operation.
 func (o *xxx_GetMClientInfoOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of R_DhcpGetMClientInfo operation.
 func (o *xxx_GetMClientInfoOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetMClientInfo" }
 
 func (o *xxx_GetMClientInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9005,6 +9150,17 @@ func (o *GetMClientInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetMClientInfoRequest build a response structure from the given request structure.
+func (o *GetMClientInfoRequest) MakeResponse() *GetMClientInfoResponse {
+	return &GetMClientInfoResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpGetMClientInfo operation.
+func (o *GetMClientInfoRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of R_DhcpGetMClientInfo operation.
+func (o *GetMClientInfoRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetMClientInfo" }
+
 // GetMClientInfoResponse structure represents the R_DhcpGetMClientInfo operation response
 type GetMClientInfoResponse struct {
 	// ClientInfo: This is a pointer of type LPDHCP_MCLIENT_INFO that points to the location
@@ -9053,8 +9209,10 @@ type xxx_DeleteMClientInfoOperation struct {
 	Return          uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpDeleteMClientInfo operation.
 func (o *xxx_DeleteMClientInfoOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of R_DhcpDeleteMClientInfo operation.
 func (o *xxx_DeleteMClientInfoOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpDeleteMClientInfo"
 }
@@ -9217,6 +9375,17 @@ func (o *DeleteMClientInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeDeleteMClientInfoRequest build a response structure from the given request structure.
+func (o *DeleteMClientInfoRequest) MakeResponse() *DeleteMClientInfoResponse {
+	return &DeleteMClientInfoResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpDeleteMClientInfo operation.
+func (o *DeleteMClientInfoRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of R_DhcpDeleteMClientInfo operation.
+func (o *DeleteMClientInfoRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpDeleteMClientInfo" }
+
 // DeleteMClientInfoResponse structure represents the R_DhcpDeleteMClientInfo operation response
 type DeleteMClientInfoResponse struct {
 	// Return: The R_DhcpDeleteMClientInfo return value.
@@ -9264,8 +9433,10 @@ type xxx_EnumMScopeClientsOperation struct {
 	Return           uint32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumMScopeClients operation.
 func (o *xxx_EnumMScopeClientsOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of R_DhcpEnumMScopeClients operation.
 func (o *xxx_EnumMScopeClientsOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpEnumMScopeClients"
 }
@@ -9559,6 +9730,17 @@ func (o *EnumMScopeClientsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeEnumMScopeClientsRequest build a response structure from the given request structure.
+func (o *EnumMScopeClientsRequest) MakeResponse() *EnumMScopeClientsResponse {
+	return &EnumMScopeClientsResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumMScopeClients operation.
+func (o *EnumMScopeClientsRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of R_DhcpEnumMScopeClients operation.
+func (o *EnumMScopeClientsRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumMScopeClients" }
+
 // EnumMScopeClientsResponse structure represents the R_DhcpEnumMScopeClients operation response
 type EnumMScopeClientsResponse struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) that
@@ -9632,8 +9814,10 @@ type xxx_CreateOptionV5Operation struct {
 	Return          uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpCreateOptionV5 operation.
 func (o *xxx_CreateOptionV5Operation) OpNum() int { return 14 }
 
+// OpName returns the operation name of R_DhcpCreateOptionV5 operation.
 func (o *xxx_CreateOptionV5Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpCreateOptionV5" }
 
 func (o *xxx_CreateOptionV5Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9926,6 +10110,17 @@ func (o *CreateOptionV5Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreateOptionV5Request build a response structure from the given request structure.
+func (o *CreateOptionV5Request) MakeResponse() *CreateOptionV5Response {
+	return &CreateOptionV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpCreateOptionV5 operation.
+func (o *CreateOptionV5Request) OpNum() int { return 14 }
+
+// OpName returns the operation name of R_DhcpCreateOptionV5 operation.
+func (o *CreateOptionV5Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpCreateOptionV5" }
+
 // CreateOptionV5Response structure represents the R_DhcpCreateOptionV5 operation response
 type CreateOptionV5Response struct {
 	// Return: The R_DhcpCreateOptionV5 return value.
@@ -9972,8 +10167,10 @@ type xxx_SetOptionInfoV5Operation struct {
 	Return          uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetOptionInfoV5 operation.
 func (o *xxx_SetOptionInfoV5Operation) OpNum() int { return 15 }
 
+// OpName returns the operation name of R_DhcpSetOptionInfoV5 operation.
 func (o *xxx_SetOptionInfoV5Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetOptionInfoV5" }
 
 func (o *xxx_SetOptionInfoV5Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10266,6 +10463,17 @@ func (o *SetOptionInfoV5Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetOptionInfoV5Request build a response structure from the given request structure.
+func (o *SetOptionInfoV5Request) MakeResponse() *SetOptionInfoV5Response {
+	return &SetOptionInfoV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpSetOptionInfoV5 operation.
+func (o *SetOptionInfoV5Request) OpNum() int { return 15 }
+
+// OpName returns the operation name of R_DhcpSetOptionInfoV5 operation.
+func (o *SetOptionInfoV5Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetOptionInfoV5" }
+
 // SetOptionInfoV5Response structure represents the R_DhcpSetOptionInfoV5 operation response
 type SetOptionInfoV5Response struct {
 	// Return: The R_DhcpSetOptionInfoV5 return value.
@@ -10312,8 +10520,10 @@ type xxx_GetOptionInfoV5Operation struct {
 	Return          uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetOptionInfoV5 operation.
 func (o *xxx_GetOptionInfoV5Operation) OpNum() int { return 16 }
 
+// OpName returns the operation name of R_DhcpGetOptionInfoV5 operation.
 func (o *xxx_GetOptionInfoV5Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetOptionInfoV5" }
 
 func (o *xxx_GetOptionInfoV5Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10620,6 +10830,17 @@ func (o *GetOptionInfoV5Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetOptionInfoV5Request build a response structure from the given request structure.
+func (o *GetOptionInfoV5Request) MakeResponse() *GetOptionInfoV5Response {
+	return &GetOptionInfoV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpGetOptionInfoV5 operation.
+func (o *GetOptionInfoV5Request) OpNum() int { return 16 }
+
+// OpName returns the operation name of R_DhcpGetOptionInfoV5 operation.
+func (o *GetOptionInfoV5Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetOptionInfoV5" }
+
 // GetOptionInfoV5Response structure represents the R_DhcpGetOptionInfoV5 operation response
 type GetOptionInfoV5Response struct {
 	// OptionInfo: This is a pointer of type DHCP_OPTION (section 2.2.1.2.25) in which the
@@ -10674,8 +10895,10 @@ type xxx_EnumOptionsV5Operation struct {
 	Return           uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumOptionsV5 operation.
 func (o *xxx_EnumOptionsV5Operation) OpNum() int { return 17 }
 
+// OpName returns the operation name of R_DhcpEnumOptionsV5 operation.
 func (o *xxx_EnumOptionsV5Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumOptionsV5" }
 
 func (o *xxx_EnumOptionsV5Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11043,6 +11266,17 @@ func (o *EnumOptionsV5Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeEnumOptionsV5Request build a response structure from the given request structure.
+func (o *EnumOptionsV5Request) MakeResponse() *EnumOptionsV5Response {
+	return &EnumOptionsV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumOptionsV5 operation.
+func (o *EnumOptionsV5Request) OpNum() int { return 17 }
+
+// OpName returns the operation name of R_DhcpEnumOptionsV5 operation.
+func (o *EnumOptionsV5Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumOptionsV5" }
+
 // EnumOptionsV5Response structure represents the R_DhcpEnumOptionsV5 operation response
 type EnumOptionsV5Response struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) that
@@ -11116,8 +11350,10 @@ type xxx_RemoveOptionV5Operation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpRemoveOptionV5 operation.
 func (o *xxx_RemoveOptionV5Operation) OpNum() int { return 18 }
 
+// OpName returns the operation name of R_DhcpRemoveOptionV5 operation.
 func (o *xxx_RemoveOptionV5Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpRemoveOptionV5" }
 
 func (o *xxx_RemoveOptionV5Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11378,6 +11614,17 @@ func (o *RemoveOptionV5Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeRemoveOptionV5Request build a response structure from the given request structure.
+func (o *RemoveOptionV5Request) MakeResponse() *RemoveOptionV5Response {
+	return &RemoveOptionV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpRemoveOptionV5 operation.
+func (o *RemoveOptionV5Request) OpNum() int { return 18 }
+
+// OpName returns the operation name of R_DhcpRemoveOptionV5 operation.
+func (o *RemoveOptionV5Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpRemoveOptionV5" }
+
 // RemoveOptionV5Response structure represents the R_DhcpRemoveOptionV5 operation response
 type RemoveOptionV5Response struct {
 	// Return: The R_DhcpRemoveOptionV5 return value.
@@ -11425,8 +11672,10 @@ type xxx_SetOptionValueV5Operation struct {
 	Return          uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetOptionValueV5 operation.
 func (o *xxx_SetOptionValueV5Operation) OpNum() int { return 19 }
 
+// OpName returns the operation name of R_DhcpSetOptionValueV5 operation.
 func (o *xxx_SetOptionValueV5Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetOptionValueV5" }
 
 func (o *xxx_SetOptionValueV5Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11761,6 +12010,17 @@ func (o *SetOptionValueV5Request) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetOptionValueV5Request build a response structure from the given request structure.
+func (o *SetOptionValueV5Request) MakeResponse() *SetOptionValueV5Response {
+	return &SetOptionValueV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpSetOptionValueV5 operation.
+func (o *SetOptionValueV5Request) OpNum() int { return 19 }
+
+// OpName returns the operation name of R_DhcpSetOptionValueV5 operation.
+func (o *SetOptionValueV5Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetOptionValueV5" }
+
 // SetOptionValueV5Response structure represents the R_DhcpSetOptionValueV5 operation response
 type SetOptionValueV5Response struct {
 	// Return: The R_DhcpSetOptionValueV5 return value.
@@ -11807,8 +12067,10 @@ type xxx_SetOptionValuesV5Operation struct {
 	Return          uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetOptionValuesV5 operation.
 func (o *xxx_SetOptionValuesV5Operation) OpNum() int { return 20 }
 
+// OpName returns the operation name of R_DhcpSetOptionValuesV5 operation.
 func (o *xxx_SetOptionValuesV5Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpSetOptionValuesV5"
 }
@@ -12121,6 +12383,17 @@ func (o *SetOptionValuesV5Request) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetOptionValuesV5Request build a response structure from the given request structure.
+func (o *SetOptionValuesV5Request) MakeResponse() *SetOptionValuesV5Response {
+	return &SetOptionValuesV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpSetOptionValuesV5 operation.
+func (o *SetOptionValuesV5Request) OpNum() int { return 20 }
+
+// OpName returns the operation name of R_DhcpSetOptionValuesV5 operation.
+func (o *SetOptionValuesV5Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetOptionValuesV5" }
+
 // SetOptionValuesV5Response structure represents the R_DhcpSetOptionValuesV5 operation response
 type SetOptionValuesV5Response struct {
 	// Return: The R_DhcpSetOptionValuesV5 return value.
@@ -12168,8 +12441,10 @@ type xxx_GetOptionValueV5Operation struct {
 	Return          uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetOptionValueV5 operation.
 func (o *xxx_GetOptionValueV5Operation) OpNum() int { return 21 }
 
+// OpName returns the operation name of R_DhcpGetOptionValueV5 operation.
 func (o *xxx_GetOptionValueV5Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetOptionValueV5" }
 
 func (o *xxx_GetOptionValueV5Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12512,6 +12787,17 @@ func (o *GetOptionValueV5Request) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetOptionValueV5Request build a response structure from the given request structure.
+func (o *GetOptionValueV5Request) MakeResponse() *GetOptionValueV5Response {
+	return &GetOptionValueV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpGetOptionValueV5 operation.
+func (o *GetOptionValueV5Request) OpNum() int { return 21 }
+
+// OpName returns the operation name of R_DhcpGetOptionValueV5 operation.
+func (o *GetOptionValueV5Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetOptionValueV5" }
+
 // GetOptionValueV5Response structure represents the R_DhcpGetOptionValueV5 operation response
 type GetOptionValueV5Response struct {
 	// OptionValue: This is a pointer of type LPDHCP_OPTION_VALUE in which the option value
@@ -12568,8 +12854,10 @@ type xxx_EnumOptionValuesV5Operation struct {
 	Return           uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumOptionValuesV5 operation.
 func (o *xxx_EnumOptionValuesV5Operation) OpNum() int { return 22 }
 
+// OpName returns the operation name of R_DhcpEnumOptionValuesV5 operation.
 func (o *xxx_EnumOptionValuesV5Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpEnumOptionValuesV5"
 }
@@ -12971,6 +13259,17 @@ func (o *EnumOptionValuesV5Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeEnumOptionValuesV5Request build a response structure from the given request structure.
+func (o *EnumOptionValuesV5Request) MakeResponse() *EnumOptionValuesV5Response {
+	return &EnumOptionValuesV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumOptionValuesV5 operation.
+func (o *EnumOptionValuesV5Request) OpNum() int { return 22 }
+
+// OpName returns the operation name of R_DhcpEnumOptionValuesV5 operation.
+func (o *EnumOptionValuesV5Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumOptionValuesV5" }
+
 // EnumOptionValuesV5Response structure represents the R_DhcpEnumOptionValuesV5 operation response
 type EnumOptionValuesV5Response struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) that
@@ -13045,8 +13344,10 @@ type xxx_RemoveOptionValueV5Operation struct {
 	Return          uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpRemoveOptionValueV5 operation.
 func (o *xxx_RemoveOptionValueV5Operation) OpNum() int { return 23 }
 
+// OpName returns the operation name of R_DhcpRemoveOptionValueV5 operation.
 func (o *xxx_RemoveOptionValueV5Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpRemoveOptionValueV5"
 }
@@ -13343,6 +13644,17 @@ func (o *RemoveOptionValueV5Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeRemoveOptionValueV5Request build a response structure from the given request structure.
+func (o *RemoveOptionValueV5Request) MakeResponse() *RemoveOptionValueV5Response {
+	return &RemoveOptionValueV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpRemoveOptionValueV5 operation.
+func (o *RemoveOptionValueV5Request) OpNum() int { return 23 }
+
+// OpName returns the operation name of R_DhcpRemoveOptionValueV5 operation.
+func (o *RemoveOptionValueV5Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpRemoveOptionValueV5" }
+
 // RemoveOptionValueV5Response structure represents the R_DhcpRemoveOptionValueV5 operation response
 type RemoveOptionValueV5Response struct {
 	// Return: The R_DhcpRemoveOptionValueV5 return value.
@@ -13386,8 +13698,10 @@ type xxx_CreateClassOperation struct {
 	Return          uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpCreateClass operation.
 func (o *xxx_CreateClassOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of R_DhcpCreateClass operation.
 func (o *xxx_CreateClassOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpCreateClass" }
 
 func (o *xxx_CreateClassOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13561,6 +13875,17 @@ func (o *CreateClassRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCreateClassRequest build a response structure from the given request structure.
+func (o *CreateClassRequest) MakeResponse() *CreateClassResponse {
+	return &CreateClassResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpCreateClass operation.
+func (o *CreateClassRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of R_DhcpCreateClass operation.
+func (o *CreateClassRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpCreateClass" }
+
 // CreateClassResponse structure represents the R_DhcpCreateClass operation response
 type CreateClassResponse struct {
 	// Return: The R_DhcpCreateClass return value.
@@ -13604,8 +13929,10 @@ type xxx_ModifyClassOperation struct {
 	Return          uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpModifyClass operation.
 func (o *xxx_ModifyClassOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of R_DhcpModifyClass operation.
 func (o *xxx_ModifyClassOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpModifyClass" }
 
 func (o *xxx_ModifyClassOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13779,6 +14106,17 @@ func (o *ModifyClassRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeModifyClassRequest build a response structure from the given request structure.
+func (o *ModifyClassRequest) MakeResponse() *ModifyClassResponse {
+	return &ModifyClassResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpModifyClass operation.
+func (o *ModifyClassRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of R_DhcpModifyClass operation.
+func (o *ModifyClassRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpModifyClass" }
+
 // ModifyClassResponse structure represents the R_DhcpModifyClass operation response
 type ModifyClassResponse struct {
 	// Return: The R_DhcpModifyClass return value.
@@ -13822,8 +14160,10 @@ type xxx_DeleteClassOperation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpDeleteClass operation.
 func (o *xxx_DeleteClassOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of R_DhcpDeleteClass operation.
 func (o *xxx_DeleteClassOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpDeleteClass" }
 
 func (o *xxx_DeleteClassOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14007,6 +14347,17 @@ func (o *DeleteClassRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeDeleteClassRequest build a response structure from the given request structure.
+func (o *DeleteClassRequest) MakeResponse() *DeleteClassResponse {
+	return &DeleteClassResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpDeleteClass operation.
+func (o *DeleteClassRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of R_DhcpDeleteClass operation.
+func (o *DeleteClassRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpDeleteClass" }
+
 // DeleteClassResponse structure represents the R_DhcpDeleteClass operation response
 type DeleteClassResponse struct {
 	// Return: The R_DhcpDeleteClass return value.
@@ -14051,8 +14402,10 @@ type xxx_GetClassInfoOperation struct {
 	Return           uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetClassInfo operation.
 func (o *xxx_GetClassInfoOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of R_DhcpGetClassInfo operation.
 func (o *xxx_GetClassInfoOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetClassInfo" }
 
 func (o *xxx_GetClassInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14273,6 +14626,17 @@ func (o *GetClassInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetClassInfoRequest build a response structure from the given request structure.
+func (o *GetClassInfoRequest) MakeResponse() *GetClassInfoResponse {
+	return &GetClassInfoResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpGetClassInfo operation.
+func (o *GetClassInfoRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of R_DhcpGetClassInfo operation.
+func (o *GetClassInfoRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetClassInfo" }
+
 // GetClassInfoResponse structure represents the R_DhcpGetClassInfo operation response
 type GetClassInfoResponse struct {
 	// FilledClassInfo: This is a pointer to type LPDHCP_CLASS_INFO (section 2.2.1.2.75)
@@ -14325,8 +14689,10 @@ type xxx_EnumClassesOperation struct {
 	Return           uint32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumClasses operation.
 func (o *xxx_EnumClassesOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of R_DhcpEnumClasses operation.
 func (o *xxx_EnumClassesOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumClasses" }
 
 func (o *xxx_EnumClassesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14591,6 +14957,17 @@ func (o *EnumClassesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeEnumClassesRequest build a response structure from the given request structure.
+func (o *EnumClassesRequest) MakeResponse() *EnumClassesResponse {
+	return &EnumClassesResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumClasses operation.
+func (o *EnumClassesRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of R_DhcpEnumClasses operation.
+func (o *EnumClassesRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumClasses" }
+
 // EnumClassesResponse structure represents the R_DhcpEnumClasses operation response
 type EnumClassesResponse struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) that
@@ -14660,8 +15037,10 @@ type xxx_GetAllOptionsOperation struct {
 	Return          uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetAllOptions operation.
 func (o *xxx_GetAllOptionsOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of R_DhcpGetAllOptions operation.
 func (o *xxx_GetAllOptionsOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetAllOptions" }
 
 func (o *xxx_GetAllOptionsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14850,6 +15229,17 @@ func (o *GetAllOptionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetAllOptionsRequest build a response structure from the given request structure.
+func (o *GetAllOptionsRequest) MakeResponse() *GetAllOptionsResponse {
+	return &GetAllOptionsResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpGetAllOptions operation.
+func (o *GetAllOptionsRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of R_DhcpGetAllOptions operation.
+func (o *GetAllOptionsRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetAllOptions" }
+
 // GetAllOptionsResponse structure represents the R_DhcpGetAllOptions operation response
 type GetAllOptionsResponse struct {
 	// OptionStruct: This is a pointer of type LPDHCP_ALL_OPTIONS (section 2.2.1.2.27) that
@@ -14900,8 +15290,10 @@ type xxx_GetAllOptionValuesOperation struct {
 	Return          uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetAllOptionValues operation.
 func (o *xxx_GetAllOptionValuesOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of R_DhcpGetAllOptionValues operation.
 func (o *xxx_GetAllOptionValuesOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpGetAllOptionValues"
 }
@@ -15127,6 +15519,17 @@ func (o *GetAllOptionValuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetAllOptionValuesRequest build a response structure from the given request structure.
+func (o *GetAllOptionValuesRequest) MakeResponse() *GetAllOptionValuesResponse {
+	return &GetAllOptionValuesResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpGetAllOptionValues operation.
+func (o *GetAllOptionValuesRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of R_DhcpGetAllOptionValues operation.
+func (o *GetAllOptionValuesRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetAllOptionValues" }
+
 // GetAllOptionValuesResponse structure represents the R_DhcpGetAllOptionValues operation response
 type GetAllOptionValuesResponse struct {
 	// Values: This is a pointer to type LPDHCP_ALL_OPTION_VALUES in which a list of vendor-specific
@@ -15174,8 +15577,10 @@ type xxx_GetMCastMIBInfoOperation struct {
 	Return          uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetMCastMibInfo operation.
 func (o *xxx_GetMCastMIBInfoOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of R_DhcpGetMCastMibInfo operation.
 func (o *xxx_GetMCastMIBInfoOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetMCastMibInfo" }
 
 func (o *xxx_GetMCastMIBInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -15349,6 +15754,17 @@ func (o *GetMCastMIBInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetMCastMIBInfoRequest build a response structure from the given request structure.
+func (o *GetMCastMIBInfoRequest) MakeResponse() *GetMCastMIBInfoResponse {
+	return &GetMCastMIBInfoResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpGetMCastMibInfo operation.
+func (o *GetMCastMIBInfoRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of R_DhcpGetMCastMibInfo operation.
+func (o *GetMCastMIBInfoRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetMCastMibInfo" }
+
 // GetMCastMIBInfoResponse structure represents the R_DhcpGetMCastMibInfo operation response
 type GetMCastMIBInfoResponse struct {
 	// MibInfo: This is of type LPDHCP_MCAST_MIB_INFO, pointing to the location that contains
@@ -15400,8 +15816,10 @@ type xxx_AuditLogSetParamsOperation struct {
 	Return            uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpAuditLogSetParams operation.
 func (o *xxx_AuditLogSetParamsOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of R_DhcpAuditLogSetParams operation.
 func (o *xxx_AuditLogSetParamsOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpAuditLogSetParams"
 }
@@ -15617,6 +16035,17 @@ func (o *AuditLogSetParamsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeAuditLogSetParamsRequest build a response structure from the given request structure.
+func (o *AuditLogSetParamsRequest) MakeResponse() *AuditLogSetParamsResponse {
+	return &AuditLogSetParamsResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpAuditLogSetParams operation.
+func (o *AuditLogSetParamsRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of R_DhcpAuditLogSetParams operation.
+func (o *AuditLogSetParamsRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpAuditLogSetParams" }
+
 // AuditLogSetParamsResponse structure represents the R_DhcpAuditLogSetParams operation response
 type AuditLogSetParamsResponse struct {
 	// Return: The R_DhcpAuditLogSetParams return value.
@@ -15663,8 +16092,10 @@ type xxx_AuditLogGetParamsOperation struct {
 	Return            uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpAuditLogGetParams operation.
 func (o *xxx_AuditLogGetParamsOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of R_DhcpAuditLogGetParams operation.
 func (o *xxx_AuditLogGetParamsOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpAuditLogGetParams"
 }
@@ -15882,6 +16313,17 @@ func (o *AuditLogGetParamsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeAuditLogGetParamsRequest build a response structure from the given request structure.
+func (o *AuditLogGetParamsRequest) MakeResponse() *AuditLogGetParamsResponse {
+	return &AuditLogGetParamsResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpAuditLogGetParams operation.
+func (o *AuditLogGetParamsRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of R_DhcpAuditLogGetParams operation.
+func (o *AuditLogGetParamsRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpAuditLogGetParams" }
+
 // AuditLogGetParamsResponse structure represents the R_DhcpAuditLogGetParams operation response
 type AuditLogGetParamsResponse struct {
 	// AuditLogDir: A pointer to a null-terminated Unicode string in which the path where
@@ -15952,8 +16394,10 @@ type xxx_ServerQueryAttributeOperation struct {
 	Return          uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpServerQueryAttribute operation.
 func (o *xxx_ServerQueryAttributeOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of R_DhcpServerQueryAttribute operation.
 func (o *xxx_ServerQueryAttributeOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpServerQueryAttribute"
 }
@@ -16160,6 +16604,19 @@ func (o *ServerQueryAttributeRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeServerQueryAttributeRequest build a response structure from the given request structure.
+func (o *ServerQueryAttributeRequest) MakeResponse() *ServerQueryAttributeResponse {
+	return &ServerQueryAttributeResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpServerQueryAttribute operation.
+func (o *ServerQueryAttributeRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of R_DhcpServerQueryAttribute operation.
+func (o *ServerQueryAttributeRequest) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpServerQueryAttribute"
+}
+
 // ServerQueryAttributeResponse structure represents the R_DhcpServerQueryAttribute operation response
 type ServerQueryAttributeResponse struct {
 	// pDhcpAttrib: This is a pointer to type LPDHCP_ATTRIB (section 2.2.1.2.78) that points
@@ -16210,8 +16667,10 @@ type xxx_ServerQueryAttributesOperation struct {
 	Return             uint32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpServerQueryAttributes operation.
 func (o *xxx_ServerQueryAttributesOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of R_DhcpServerQueryAttributes operation.
 func (o *xxx_ServerQueryAttributesOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpServerQueryAttributes"
 }
@@ -16473,6 +16932,19 @@ func (o *ServerQueryAttributesRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeServerQueryAttributesRequest build a response structure from the given request structure.
+func (o *ServerQueryAttributesRequest) MakeResponse() *ServerQueryAttributesResponse {
+	return &ServerQueryAttributesResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpServerQueryAttributes operation.
+func (o *ServerQueryAttributesRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of R_DhcpServerQueryAttributes operation.
+func (o *ServerQueryAttributesRequest) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpServerQueryAttributes"
+}
+
 // ServerQueryAttributesResponse structure represents the R_DhcpServerQueryAttributes operation response
 type ServerQueryAttributesResponse struct {
 	// pDhcpAttribArr: This is a pointer to type LPDHCP_ATTRIB_ARRAY that points to an array
@@ -16520,8 +16992,10 @@ type xxx_ServerRedoAuthorizationOperation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpServerRedoAuthorization operation.
 func (o *xxx_ServerRedoAuthorizationOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of R_DhcpServerRedoAuthorization operation.
 func (o *xxx_ServerRedoAuthorizationOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpServerRedoAuthorization"
 }
@@ -16665,6 +17139,19 @@ func (o *ServerRedoAuthorizationRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeServerRedoAuthorizationRequest build a response structure from the given request structure.
+func (o *ServerRedoAuthorizationRequest) MakeResponse() *ServerRedoAuthorizationResponse {
+	return &ServerRedoAuthorizationResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpServerRedoAuthorization operation.
+func (o *ServerRedoAuthorizationRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of R_DhcpServerRedoAuthorization operation.
+func (o *ServerRedoAuthorizationRequest) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpServerRedoAuthorization"
+}
+
 // ServerRedoAuthorizationResponse structure represents the R_DhcpServerRedoAuthorization operation response
 type ServerRedoAuthorizationResponse struct {
 	// Return: The R_DhcpServerRedoAuthorization return value.
@@ -16708,8 +17195,10 @@ type xxx_AddSubnetElementV5Operation struct {
 	Return          uint32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpAddSubnetElementV5 operation.
 func (o *xxx_AddSubnetElementV5Operation) OpNum() int { return 37 }
 
+// OpName returns the operation name of R_DhcpAddSubnetElementV5 operation.
 func (o *xxx_AddSubnetElementV5Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpAddSubnetElementV5"
 }
@@ -16894,6 +17383,17 @@ func (o *AddSubnetElementV5Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeAddSubnetElementV5Request build a response structure from the given request structure.
+func (o *AddSubnetElementV5Request) MakeResponse() *AddSubnetElementV5Response {
+	return &AddSubnetElementV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpAddSubnetElementV5 operation.
+func (o *AddSubnetElementV5Request) OpNum() int { return 37 }
+
+// OpName returns the operation name of R_DhcpAddSubnetElementV5 operation.
+func (o *AddSubnetElementV5Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpAddSubnetElementV5" }
+
 // AddSubnetElementV5Response structure represents the R_DhcpAddSubnetElementV5 operation response
 type AddSubnetElementV5Response struct {
 	// Return: The R_DhcpAddSubnetElementV5 return value.
@@ -16942,8 +17442,10 @@ type xxx_EnumSubnetElementsV5Operation struct {
 	Return           uint32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumSubnetElementsV5 operation.
 func (o *xxx_EnumSubnetElementsV5Operation) OpNum() int { return 38 }
 
+// OpName returns the operation name of R_DhcpEnumSubnetElementsV5 operation.
 func (o *xxx_EnumSubnetElementsV5Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpEnumSubnetElementsV5"
 }
@@ -17230,6 +17732,19 @@ func (o *EnumSubnetElementsV5Request) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeEnumSubnetElementsV5Request build a response structure from the given request structure.
+func (o *EnumSubnetElementsV5Request) MakeResponse() *EnumSubnetElementsV5Response {
+	return &EnumSubnetElementsV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumSubnetElementsV5 operation.
+func (o *EnumSubnetElementsV5Request) OpNum() int { return 38 }
+
+// OpName returns the operation name of R_DhcpEnumSubnetElementsV5 operation.
+func (o *EnumSubnetElementsV5Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpEnumSubnetElementsV5"
+}
+
 // EnumSubnetElementsV5Response structure represents the R_DhcpEnumSubnetElementsV5 operation response
 type EnumSubnetElementsV5Response struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) that
@@ -17305,8 +17820,10 @@ type xxx_RemoveSubnetElementV5Operation struct {
 	Return            uint32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpRemoveSubnetElementV5 operation.
 func (o *xxx_RemoveSubnetElementV5Operation) OpNum() int { return 39 }
 
+// OpName returns the operation name of R_DhcpRemoveSubnetElementV5 operation.
 func (o *xxx_RemoveSubnetElementV5Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpRemoveSubnetElementV5"
 }
@@ -17505,6 +18022,19 @@ func (o *RemoveSubnetElementV5Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeRemoveSubnetElementV5Request build a response structure from the given request structure.
+func (o *RemoveSubnetElementV5Request) MakeResponse() *RemoveSubnetElementV5Response {
+	return &RemoveSubnetElementV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpRemoveSubnetElementV5 operation.
+func (o *RemoveSubnetElementV5Request) OpNum() int { return 39 }
+
+// OpName returns the operation name of R_DhcpRemoveSubnetElementV5 operation.
+func (o *RemoveSubnetElementV5Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpRemoveSubnetElementV5"
+}
+
 // RemoveSubnetElementV5Response structure represents the R_DhcpRemoveSubnetElementV5 operation response
 type RemoveSubnetElementV5Response struct {
 	// Return: The R_DhcpRemoveSubnetElementV5 return value.
@@ -17548,8 +18078,10 @@ type xxx_GetServerBindingInfoOperation struct {
 	Return           uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetServerBindingInfo operation.
 func (o *xxx_GetServerBindingInfoOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of R_DhcpGetServerBindingInfo operation.
 func (o *xxx_GetServerBindingInfoOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpGetServerBindingInfo"
 }
@@ -17740,6 +18272,19 @@ func (o *GetServerBindingInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetServerBindingInfoRequest build a response structure from the given request structure.
+func (o *GetServerBindingInfoRequest) MakeResponse() *GetServerBindingInfoResponse {
+	return &GetServerBindingInfoResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpGetServerBindingInfo operation.
+func (o *GetServerBindingInfoRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of R_DhcpGetServerBindingInfo operation.
+func (o *GetServerBindingInfoRequest) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpGetServerBindingInfo"
+}
+
 // GetServerBindingInfoResponse structure represents the R_DhcpGetServerBindingInfo operation response
 type GetServerBindingInfoResponse struct {
 	// BindElementsInfo: This is a pointer of type LPDHCP_BIND_ELEMENT_ARRAY that points
@@ -17788,8 +18333,10 @@ type xxx_SetServerBindingInfoOperation struct {
 	Return           uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetServerBindingInfo operation.
 func (o *xxx_SetServerBindingInfoOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of R_DhcpSetServerBindingInfo operation.
 func (o *xxx_SetServerBindingInfoOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpSetServerBindingInfo"
 }
@@ -17967,6 +18514,19 @@ func (o *SetServerBindingInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeSetServerBindingInfoRequest build a response structure from the given request structure.
+func (o *SetServerBindingInfoRequest) MakeResponse() *SetServerBindingInfoResponse {
+	return &SetServerBindingInfoResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpSetServerBindingInfo operation.
+func (o *SetServerBindingInfoRequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of R_DhcpSetServerBindingInfo operation.
+func (o *SetServerBindingInfoRequest) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpSetServerBindingInfo"
+}
+
 // SetServerBindingInfoResponse structure represents the R_DhcpSetServerBindingInfo operation response
 type SetServerBindingInfoResponse struct {
 	// Return: The R_DhcpSetServerBindingInfo return value.
@@ -18012,8 +18572,10 @@ type xxx_QueryDNSRegCredentialsOperation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpQueryDnsRegCredentials operation.
 func (o *xxx_QueryDNSRegCredentialsOperation) OpNum() int { return 42 }
 
+// OpName returns the operation name of R_DhcpQueryDnsRegCredentials operation.
 func (o *xxx_QueryDNSRegCredentialsOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpQueryDnsRegCredentials"
 }
@@ -18286,6 +18848,25 @@ func (o *QueryDNSRegCredentialsRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeQueryDNSRegCredentialsRequest build a response structure from the given request structure.
+func (o *QueryDNSRegCredentialsRequest) MakeResponse() *QueryDNSRegCredentialsResponse {
+	if o == nil {
+		return &QueryDNSRegCredentialsResponse{}
+	}
+	return &QueryDNSRegCredentialsResponse{
+		UserNameSize: o.UserNameSize,
+		DomainSize:   o.DomainSize,
+	}
+}
+
+// OpNum returns the operation number of R_DhcpQueryDnsRegCredentials operation.
+func (o *QueryDNSRegCredentialsRequest) OpNum() int { return 42 }
+
+// OpName returns the operation name of R_DhcpQueryDnsRegCredentials operation.
+func (o *QueryDNSRegCredentialsRequest) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpQueryDnsRegCredentials"
+}
+
 // QueryDNSRegCredentialsResponse structure represents the R_DhcpQueryDnsRegCredentials operation response
 type QueryDNSRegCredentialsResponse struct {
 	// XXX: UnameSize is an implicit input depedency for output parameters
@@ -18359,8 +18940,10 @@ type xxx_SetDNSRegCredentialsOperation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetDnsRegCredentials operation.
 func (o *xxx_SetDNSRegCredentialsOperation) OpNum() int { return 43 }
 
+// OpName returns the operation name of R_DhcpSetDnsRegCredentials operation.
 func (o *xxx_SetDNSRegCredentialsOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpSetDnsRegCredentials"
 }
@@ -18615,6 +19198,19 @@ func (o *SetDNSRegCredentialsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeSetDNSRegCredentialsRequest build a response structure from the given request structure.
+func (o *SetDNSRegCredentialsRequest) MakeResponse() *SetDNSRegCredentialsResponse {
+	return &SetDNSRegCredentialsResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpSetDnsRegCredentials operation.
+func (o *SetDNSRegCredentialsRequest) OpNum() int { return 43 }
+
+// OpName returns the operation name of R_DhcpSetDnsRegCredentials operation.
+func (o *SetDNSRegCredentialsRequest) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpSetDnsRegCredentials"
+}
+
 // SetDNSRegCredentialsResponse structure represents the R_DhcpSetDnsRegCredentials operation response
 type SetDNSRegCredentialsResponse struct {
 	// Return: The R_DhcpSetDnsRegCredentials return value.
@@ -18657,8 +19253,10 @@ type xxx_BackupDatabaseOperation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpBackupDatabase operation.
 func (o *xxx_BackupDatabaseOperation) OpNum() int { return 44 }
 
+// OpName returns the operation name of R_DhcpBackupDatabase operation.
 func (o *xxx_BackupDatabaseOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpBackupDatabase" }
 
 func (o *xxx_BackupDatabaseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18802,6 +19400,17 @@ func (o *BackupDatabaseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeBackupDatabaseRequest build a response structure from the given request structure.
+func (o *BackupDatabaseRequest) MakeResponse() *BackupDatabaseResponse {
+	return &BackupDatabaseResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpBackupDatabase operation.
+func (o *BackupDatabaseRequest) OpNum() int { return 44 }
+
+// OpName returns the operation name of R_DhcpBackupDatabase operation.
+func (o *BackupDatabaseRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpBackupDatabase" }
+
 // BackupDatabaseResponse structure represents the R_DhcpBackupDatabase operation response
 type BackupDatabaseResponse struct {
 	// Return: The R_DhcpBackupDatabase return value.
@@ -18844,8 +19453,10 @@ type xxx_RestoreDatabaseOperation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpRestoreDatabase operation.
 func (o *xxx_RestoreDatabaseOperation) OpNum() int { return 45 }
 
+// OpName returns the operation name of R_DhcpRestoreDatabase operation.
 func (o *xxx_RestoreDatabaseOperation) OpName() string { return "/dhcpsrv2/v1/R_DhcpRestoreDatabase" }
 
 func (o *xxx_RestoreDatabaseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18989,6 +19600,17 @@ func (o *RestoreDatabaseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeRestoreDatabaseRequest build a response structure from the given request structure.
+func (o *RestoreDatabaseRequest) MakeResponse() *RestoreDatabaseResponse {
+	return &RestoreDatabaseResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpRestoreDatabase operation.
+func (o *RestoreDatabaseRequest) OpNum() int { return 45 }
+
+// OpName returns the operation name of R_DhcpRestoreDatabase operation.
+func (o *RestoreDatabaseRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpRestoreDatabase" }
+
 // RestoreDatabaseResponse structure represents the R_DhcpRestoreDatabase operation response
 type RestoreDatabaseResponse struct {
 	// Return: The R_DhcpRestoreDatabase return value.
@@ -19031,8 +19653,10 @@ type xxx_GetServerSpecificStringsOperation struct {
 	Return                uint32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetServerSpecificStrings operation.
 func (o *xxx_GetServerSpecificStringsOperation) OpNum() int { return 46 }
 
+// OpName returns the operation name of R_DhcpGetServerSpecificStrings operation.
 func (o *xxx_GetServerSpecificStringsOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpGetServerSpecificStrings"
 }
@@ -19207,6 +19831,19 @@ func (o *GetServerSpecificStringsRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeGetServerSpecificStringsRequest build a response structure from the given request structure.
+func (o *GetServerSpecificStringsRequest) MakeResponse() *GetServerSpecificStringsResponse {
+	return &GetServerSpecificStringsResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpGetServerSpecificStrings operation.
+func (o *GetServerSpecificStringsRequest) OpNum() int { return 46 }
+
+// OpName returns the operation name of R_DhcpGetServerSpecificStrings operation.
+func (o *GetServerSpecificStringsRequest) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpGetServerSpecificStrings"
+}
+
 // GetServerSpecificStringsResponse structure represents the R_DhcpGetServerSpecificStrings operation response
 type GetServerSpecificStringsResponse struct {
 	// ServerSpecificStrings: This is a pointer of type LPDHCP_SERVER_SPECIFIC_STRINGS (section
@@ -19259,8 +19896,10 @@ type xxx_CreateOptionV6Operation struct {
 	Return          uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpCreateOptionV6 operation.
 func (o *xxx_CreateOptionV6Operation) OpNum() int { return 47 }
 
+// OpName returns the operation name of R_DhcpCreateOptionV6 operation.
 func (o *xxx_CreateOptionV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpCreateOptionV6" }
 
 func (o *xxx_CreateOptionV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19551,6 +20190,17 @@ func (o *CreateOptionV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreateOptionV6Request build a response structure from the given request structure.
+func (o *CreateOptionV6Request) MakeResponse() *CreateOptionV6Response {
+	return &CreateOptionV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpCreateOptionV6 operation.
+func (o *CreateOptionV6Request) OpNum() int { return 47 }
+
+// OpName returns the operation name of R_DhcpCreateOptionV6 operation.
+func (o *CreateOptionV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpCreateOptionV6" }
+
 // CreateOptionV6Response structure represents the R_DhcpCreateOptionV6 operation response
 type CreateOptionV6Response struct {
 	// Return: The R_DhcpCreateOptionV6 return value.
@@ -19597,8 +20247,10 @@ type xxx_SetOptionInfoV6Operation struct {
 	Return          uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetOptionInfoV6 operation.
 func (o *xxx_SetOptionInfoV6Operation) OpNum() int { return 48 }
 
+// OpName returns the operation name of R_DhcpSetOptionInfoV6 operation.
 func (o *xxx_SetOptionInfoV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetOptionInfoV6" }
 
 func (o *xxx_SetOptionInfoV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19889,6 +20541,17 @@ func (o *SetOptionInfoV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetOptionInfoV6Request build a response structure from the given request structure.
+func (o *SetOptionInfoV6Request) MakeResponse() *SetOptionInfoV6Response {
+	return &SetOptionInfoV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpSetOptionInfoV6 operation.
+func (o *SetOptionInfoV6Request) OpNum() int { return 48 }
+
+// OpName returns the operation name of R_DhcpSetOptionInfoV6 operation.
+func (o *SetOptionInfoV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetOptionInfoV6" }
+
 // SetOptionInfoV6Response structure represents the R_DhcpSetOptionInfoV6 operation response
 type SetOptionInfoV6Response struct {
 	// Return: The R_DhcpSetOptionInfoV6 return value.
@@ -19935,8 +20598,10 @@ type xxx_GetOptionInfoV6Operation struct {
 	Return          uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetOptionInfoV6 operation.
 func (o *xxx_GetOptionInfoV6Operation) OpNum() int { return 49 }
 
+// OpName returns the operation name of R_DhcpGetOptionInfoV6 operation.
 func (o *xxx_GetOptionInfoV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetOptionInfoV6" }
 
 func (o *xxx_GetOptionInfoV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20241,6 +20906,17 @@ func (o *GetOptionInfoV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetOptionInfoV6Request build a response structure from the given request structure.
+func (o *GetOptionInfoV6Request) MakeResponse() *GetOptionInfoV6Response {
+	return &GetOptionInfoV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpGetOptionInfoV6 operation.
+func (o *GetOptionInfoV6Request) OpNum() int { return 49 }
+
+// OpName returns the operation name of R_DhcpGetOptionInfoV6 operation.
+func (o *GetOptionInfoV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetOptionInfoV6" }
+
 // GetOptionInfoV6Response structure represents the R_DhcpGetOptionInfoV6 operation response
 type GetOptionInfoV6Response struct {
 	// OptionInfo: This is a pointer of type LPDHCP_OPTION (section 2.2.1.2.25) in which
@@ -20295,8 +20971,10 @@ type xxx_EnumOptionsV6Operation struct {
 	Return           uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumOptionsV6 operation.
 func (o *xxx_EnumOptionsV6Operation) OpNum() int { return 50 }
 
+// OpName returns the operation name of R_DhcpEnumOptionsV6 operation.
 func (o *xxx_EnumOptionsV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumOptionsV6" }
 
 func (o *xxx_EnumOptionsV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20661,6 +21339,17 @@ func (o *EnumOptionsV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeEnumOptionsV6Request build a response structure from the given request structure.
+func (o *EnumOptionsV6Request) MakeResponse() *EnumOptionsV6Response {
+	return &EnumOptionsV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumOptionsV6 operation.
+func (o *EnumOptionsV6Request) OpNum() int { return 50 }
+
+// OpName returns the operation name of R_DhcpEnumOptionsV6 operation.
+func (o *EnumOptionsV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumOptionsV6" }
+
 // EnumOptionsV6Response structure represents the R_DhcpEnumOptionsV6 operation response
 type EnumOptionsV6Response struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) that
@@ -20734,8 +21423,10 @@ type xxx_RemoveOptionV6Operation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpRemoveOptionV6 operation.
 func (o *xxx_RemoveOptionV6Operation) OpNum() int { return 51 }
 
+// OpName returns the operation name of R_DhcpRemoveOptionV6 operation.
 func (o *xxx_RemoveOptionV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpRemoveOptionV6" }
 
 func (o *xxx_RemoveOptionV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20994,6 +21685,17 @@ func (o *RemoveOptionV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeRemoveOptionV6Request build a response structure from the given request structure.
+func (o *RemoveOptionV6Request) MakeResponse() *RemoveOptionV6Response {
+	return &RemoveOptionV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpRemoveOptionV6 operation.
+func (o *RemoveOptionV6Request) OpNum() int { return 51 }
+
+// OpName returns the operation name of R_DhcpRemoveOptionV6 operation.
+func (o *RemoveOptionV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpRemoveOptionV6" }
+
 // RemoveOptionV6Response structure represents the R_DhcpRemoveOptionV6 operation response
 type RemoveOptionV6Response struct {
 	// Return: The R_DhcpRemoveOptionV6 return value.
@@ -21041,8 +21743,10 @@ type xxx_SetOptionValueV6Operation struct {
 	Return          uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetOptionValueV6 operation.
 func (o *xxx_SetOptionValueV6Operation) OpNum() int { return 52 }
 
+// OpName returns the operation name of R_DhcpSetOptionValueV6 operation.
 func (o *xxx_SetOptionValueV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetOptionValueV6" }
 
 func (o *xxx_SetOptionValueV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -21361,6 +22065,17 @@ func (o *SetOptionValueV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetOptionValueV6Request build a response structure from the given request structure.
+func (o *SetOptionValueV6Request) MakeResponse() *SetOptionValueV6Response {
+	return &SetOptionValueV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpSetOptionValueV6 operation.
+func (o *SetOptionValueV6Request) OpNum() int { return 52 }
+
+// OpName returns the operation name of R_DhcpSetOptionValueV6 operation.
+func (o *SetOptionValueV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetOptionValueV6" }
+
 // SetOptionValueV6Response structure represents the R_DhcpSetOptionValueV6 operation response
 type SetOptionValueV6Response struct {
 	// Return: The R_DhcpSetOptionValueV6 return value.
@@ -21411,8 +22126,10 @@ type xxx_EnumOptionValuesV6Operation struct {
 	Return           uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumOptionValuesV6 operation.
 func (o *xxx_EnumOptionValuesV6Operation) OpNum() int { return 53 }
 
+// OpName returns the operation name of R_DhcpEnumOptionValuesV6 operation.
 func (o *xxx_EnumOptionValuesV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpEnumOptionValuesV6"
 }
@@ -21807,6 +22524,17 @@ func (o *EnumOptionValuesV6Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeEnumOptionValuesV6Request build a response structure from the given request structure.
+func (o *EnumOptionValuesV6Request) MakeResponse() *EnumOptionValuesV6Response {
+	return &EnumOptionValuesV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumOptionValuesV6 operation.
+func (o *EnumOptionValuesV6Request) OpNum() int { return 53 }
+
+// OpName returns the operation name of R_DhcpEnumOptionValuesV6 operation.
+func (o *EnumOptionValuesV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumOptionValuesV6" }
+
 // EnumOptionValuesV6Response structure represents the R_DhcpEnumOptionValuesV6 operation response
 type EnumOptionValuesV6Response struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) which
@@ -21881,8 +22609,10 @@ type xxx_RemoveOptionValueV6Operation struct {
 	Return          uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpRemoveOptionValueV6 operation.
 func (o *xxx_RemoveOptionValueV6Operation) OpNum() int { return 54 }
 
+// OpName returns the operation name of R_DhcpRemoveOptionValueV6 operation.
 func (o *xxx_RemoveOptionValueV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpRemoveOptionValueV6"
 }
@@ -22169,6 +22899,17 @@ func (o *RemoveOptionValueV6Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeRemoveOptionValueV6Request build a response structure from the given request structure.
+func (o *RemoveOptionValueV6Request) MakeResponse() *RemoveOptionValueV6Response {
+	return &RemoveOptionValueV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpRemoveOptionValueV6 operation.
+func (o *RemoveOptionValueV6Request) OpNum() int { return 54 }
+
+// OpName returns the operation name of R_DhcpRemoveOptionValueV6 operation.
+func (o *RemoveOptionValueV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpRemoveOptionValueV6" }
+
 // RemoveOptionValueV6Response structure represents the R_DhcpRemoveOptionValueV6 operation response
 type RemoveOptionValueV6Response struct {
 	// Return: The R_DhcpRemoveOptionValueV6 return value.
@@ -22212,8 +22953,10 @@ type xxx_GetAllOptionsV6Operation struct {
 	Return          uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetAllOptionsV6 operation.
 func (o *xxx_GetAllOptionsV6Operation) OpNum() int { return 55 }
 
+// OpName returns the operation name of R_DhcpGetAllOptionsV6 operation.
 func (o *xxx_GetAllOptionsV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetAllOptionsV6" }
 
 func (o *xxx_GetAllOptionsV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -22402,6 +23145,17 @@ func (o *GetAllOptionsV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetAllOptionsV6Request build a response structure from the given request structure.
+func (o *GetAllOptionsV6Request) MakeResponse() *GetAllOptionsV6Response {
+	return &GetAllOptionsV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpGetAllOptionsV6 operation.
+func (o *GetAllOptionsV6Request) OpNum() int { return 55 }
+
+// OpName returns the operation name of R_DhcpGetAllOptionsV6 operation.
+func (o *GetAllOptionsV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetAllOptionsV6" }
+
 // GetAllOptionsV6Response structure represents the R_DhcpGetAllOptionsV6 operation response
 type GetAllOptionsV6Response struct {
 	// OptionStruct: This is a pointer of type LPDHCP_ALL_OPTIONS that points to the location
@@ -22451,8 +23205,10 @@ type xxx_GetAllOptionValuesV6Operation struct {
 	Return          uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetAllOptionValuesV6 operation.
 func (o *xxx_GetAllOptionValuesV6Operation) OpNum() int { return 56 }
 
+// OpName returns the operation name of R_DhcpGetAllOptionValuesV6 operation.
 func (o *xxx_GetAllOptionValuesV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpGetAllOptionValuesV6"
 }
@@ -22674,6 +23430,19 @@ func (o *GetAllOptionValuesV6Request) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetAllOptionValuesV6Request build a response structure from the given request structure.
+func (o *GetAllOptionValuesV6Request) MakeResponse() *GetAllOptionValuesV6Response {
+	return &GetAllOptionValuesV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpGetAllOptionValuesV6 operation.
+func (o *GetAllOptionValuesV6Request) OpNum() int { return 56 }
+
+// OpName returns the operation name of R_DhcpGetAllOptionValuesV6 operation.
+func (o *GetAllOptionValuesV6Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpGetAllOptionValuesV6"
+}
+
 // GetAllOptionValuesV6Response structure represents the R_DhcpGetAllOptionValuesV6 operation response
 type GetAllOptionValuesV6Response struct {
 	// Values: This is a pointer of type LPDHCP_ALL_OPTION_VALUES that points to the location
@@ -22723,8 +23492,10 @@ type xxx_CreateSubnetV6Operation struct {
 	Return          uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpCreateSubnetV6 operation.
 func (o *xxx_CreateSubnetV6Operation) OpNum() int { return 57 }
 
+// OpName returns the operation name of R_DhcpCreateSubnetV6 operation.
 func (o *xxx_CreateSubnetV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpCreateSubnetV6" }
 
 func (o *xxx_CreateSubnetV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -22911,6 +23682,17 @@ func (o *CreateSubnetV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreateSubnetV6Request build a response structure from the given request structure.
+func (o *CreateSubnetV6Request) MakeResponse() *CreateSubnetV6Response {
+	return &CreateSubnetV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpCreateSubnetV6 operation.
+func (o *CreateSubnetV6Request) OpNum() int { return 57 }
+
+// OpName returns the operation name of R_DhcpCreateSubnetV6 operation.
+func (o *CreateSubnetV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpCreateSubnetV6" }
+
 // CreateSubnetV6Response structure represents the R_DhcpCreateSubnetV6 operation response
 type CreateSubnetV6Response struct {
 	// Return: The R_DhcpCreateSubnetV6 return value.
@@ -22957,8 +23739,10 @@ type xxx_EnumSubnetsV6Operation struct {
 	Return           uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumSubnetsV6 operation.
 func (o *xxx_EnumSubnetsV6Operation) OpNum() int { return 58 }
 
+// OpName returns the operation name of R_DhcpEnumSubnetsV6 operation.
 func (o *xxx_EnumSubnetsV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumSubnetsV6" }
 
 func (o *xxx_EnumSubnetsV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -23207,6 +23991,17 @@ func (o *EnumSubnetsV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeEnumSubnetsV6Request build a response structure from the given request structure.
+func (o *EnumSubnetsV6Request) MakeResponse() *EnumSubnetsV6Response {
+	return &EnumSubnetsV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumSubnetsV6 operation.
+func (o *EnumSubnetsV6Request) OpNum() int { return 58 }
+
+// OpName returns the operation name of R_DhcpEnumSubnetsV6 operation.
+func (o *EnumSubnetsV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumSubnetsV6" }
+
 // EnumSubnetsV6Response structure represents the R_DhcpEnumSubnetsV6 operation response
 type EnumSubnetsV6Response struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) that
@@ -23277,8 +24072,10 @@ type xxx_AddSubnetElementV6Operation struct {
 	Return          uint32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpAddSubnetElementV6 operation.
 func (o *xxx_AddSubnetElementV6Operation) OpNum() int { return 59 }
 
+// OpName returns the operation name of R_DhcpAddSubnetElementV6 operation.
 func (o *xxx_AddSubnetElementV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpAddSubnetElementV6"
 }
@@ -23466,6 +24263,17 @@ func (o *AddSubnetElementV6Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeAddSubnetElementV6Request build a response structure from the given request structure.
+func (o *AddSubnetElementV6Request) MakeResponse() *AddSubnetElementV6Response {
+	return &AddSubnetElementV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpAddSubnetElementV6 operation.
+func (o *AddSubnetElementV6Request) OpNum() int { return 59 }
+
+// OpName returns the operation name of R_DhcpAddSubnetElementV6 operation.
+func (o *AddSubnetElementV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpAddSubnetElementV6" }
+
 // AddSubnetElementV6Response structure represents the R_DhcpAddSubnetElementV6 operation response
 type AddSubnetElementV6Response struct {
 	// Return: The R_DhcpAddSubnetElementV6 return value.
@@ -23514,8 +24322,10 @@ type xxx_EnumSubnetElementsV6Operation struct {
 	Return           uint32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumSubnetElementsV6 operation.
 func (o *xxx_EnumSubnetElementsV6Operation) OpNum() int { return 60 }
 
+// OpName returns the operation name of R_DhcpEnumSubnetElementsV6 operation.
 func (o *xxx_EnumSubnetElementsV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpEnumSubnetElementsV6"
 }
@@ -23810,6 +24620,19 @@ func (o *EnumSubnetElementsV6Request) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeEnumSubnetElementsV6Request build a response structure from the given request structure.
+func (o *EnumSubnetElementsV6Request) MakeResponse() *EnumSubnetElementsV6Response {
+	return &EnumSubnetElementsV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumSubnetElementsV6 operation.
+func (o *EnumSubnetElementsV6Request) OpNum() int { return 60 }
+
+// OpName returns the operation name of R_DhcpEnumSubnetElementsV6 operation.
+func (o *EnumSubnetElementsV6Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpEnumSubnetElementsV6"
+}
+
 // EnumSubnetElementsV6Response structure represents the R_DhcpEnumSubnetElementsV6 operation response
 type EnumSubnetElementsV6Response struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) that
@@ -23885,8 +24708,10 @@ type xxx_RemoveSubnetElementV6Operation struct {
 	Return            uint32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpRemoveSubnetElementV6 operation.
 func (o *xxx_RemoveSubnetElementV6Operation) OpNum() int { return 61 }
 
+// OpName returns the operation name of R_DhcpRemoveSubnetElementV6 operation.
 func (o *xxx_RemoveSubnetElementV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpRemoveSubnetElementV6"
 }
@@ -24092,6 +24917,19 @@ func (o *RemoveSubnetElementV6Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeRemoveSubnetElementV6Request build a response structure from the given request structure.
+func (o *RemoveSubnetElementV6Request) MakeResponse() *RemoveSubnetElementV6Response {
+	return &RemoveSubnetElementV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpRemoveSubnetElementV6 operation.
+func (o *RemoveSubnetElementV6Request) OpNum() int { return 61 }
+
+// OpName returns the operation name of R_DhcpRemoveSubnetElementV6 operation.
+func (o *RemoveSubnetElementV6Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpRemoveSubnetElementV6"
+}
+
 // RemoveSubnetElementV6Response structure represents the R_DhcpRemoveSubnetElementV6 operation response
 type RemoveSubnetElementV6Response struct {
 	// Return: The R_DhcpRemoveSubnetElementV6 return value.
@@ -24135,8 +24973,10 @@ type xxx_DeleteSubnetV6Operation struct {
 	Return          uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpDeleteSubnetV6 operation.
 func (o *xxx_DeleteSubnetV6Operation) OpNum() int { return 62 }
 
+// OpName returns the operation name of R_DhcpDeleteSubnetV6 operation.
 func (o *xxx_DeleteSubnetV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpDeleteSubnetV6" }
 
 func (o *xxx_DeleteSubnetV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24305,6 +25145,17 @@ func (o *DeleteSubnetV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeDeleteSubnetV6Request build a response structure from the given request structure.
+func (o *DeleteSubnetV6Request) MakeResponse() *DeleteSubnetV6Response {
+	return &DeleteSubnetV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpDeleteSubnetV6 operation.
+func (o *DeleteSubnetV6Request) OpNum() int { return 62 }
+
+// OpName returns the operation name of R_DhcpDeleteSubnetV6 operation.
+func (o *DeleteSubnetV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpDeleteSubnetV6" }
+
 // DeleteSubnetV6Response structure represents the R_DhcpDeleteSubnetV6 operation response
 type DeleteSubnetV6Response struct {
 	// Return: The R_DhcpDeleteSubnetV6 return value.
@@ -24348,8 +25199,10 @@ type xxx_GetSubnetInfoV6Operation struct {
 	Return          uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetSubnetInfoV6 operation.
 func (o *xxx_GetSubnetInfoV6Operation) OpNum() int { return 63 }
 
+// OpName returns the operation name of R_DhcpGetSubnetInfoV6 operation.
 func (o *xxx_GetSubnetInfoV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetSubnetInfoV6" }
 
 func (o *xxx_GetSubnetInfoV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24548,6 +25401,17 @@ func (o *GetSubnetInfoV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetSubnetInfoV6Request build a response structure from the given request structure.
+func (o *GetSubnetInfoV6Request) MakeResponse() *GetSubnetInfoV6Response {
+	return &GetSubnetInfoV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpGetSubnetInfoV6 operation.
+func (o *GetSubnetInfoV6Request) OpNum() int { return 63 }
+
+// OpName returns the operation name of R_DhcpGetSubnetInfoV6 operation.
+func (o *GetSubnetInfoV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetSubnetInfoV6" }
+
 // GetSubnetInfoV6Response structure represents the R_DhcpGetSubnetInfoV6 operation response
 type GetSubnetInfoV6Response struct {
 	// SubnetInfo: This is a pointer of type LPDHCP_SUBNET_INFO_V6 in which the information
@@ -24600,8 +25464,10 @@ type xxx_EnumSubnetClientsV6Operation struct {
 	Return           uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumSubnetClientsV6 operation.
 func (o *xxx_EnumSubnetClientsV6Operation) OpNum() int { return 64 }
 
+// OpName returns the operation name of R_DhcpEnumSubnetClientsV6 operation.
 func (o *xxx_EnumSubnetClientsV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpEnumSubnetClientsV6"
 }
@@ -24895,6 +25761,17 @@ func (o *EnumSubnetClientsV6Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeEnumSubnetClientsV6Request build a response structure from the given request structure.
+func (o *EnumSubnetClientsV6Request) MakeResponse() *EnumSubnetClientsV6Response {
+	return &EnumSubnetClientsV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumSubnetClientsV6 operation.
+func (o *EnumSubnetClientsV6Request) OpNum() int { return 64 }
+
+// OpName returns the operation name of R_DhcpEnumSubnetClientsV6 operation.
+func (o *EnumSubnetClientsV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumSubnetClientsV6" }
+
 // EnumSubnetClientsV6Response structure represents the R_DhcpEnumSubnetClientsV6 operation response
 type EnumSubnetClientsV6Response struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_IPV6_HANDLE (section 2.2.1.1.14)
@@ -24965,8 +25842,10 @@ type xxx_ServerSetConfigV6Operation struct {
 	Return          uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpServerSetConfigV6 operation.
 func (o *xxx_ServerSetConfigV6Operation) OpNum() int { return 65 }
 
+// OpName returns the operation name of R_DhcpServerSetConfigV6 operation.
 func (o *xxx_ServerSetConfigV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpServerSetConfigV6"
 }
@@ -25189,6 +26068,17 @@ func (o *ServerSetConfigV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeServerSetConfigV6Request build a response structure from the given request structure.
+func (o *ServerSetConfigV6Request) MakeResponse() *ServerSetConfigV6Response {
+	return &ServerSetConfigV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpServerSetConfigV6 operation.
+func (o *ServerSetConfigV6Request) OpNum() int { return 65 }
+
+// OpName returns the operation name of R_DhcpServerSetConfigV6 operation.
+func (o *ServerSetConfigV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpServerSetConfigV6" }
+
 // ServerSetConfigV6Response structure represents the R_DhcpServerSetConfigV6 operation response
 type ServerSetConfigV6Response struct {
 	// Return: The R_DhcpServerSetConfigV6 return value.
@@ -25232,8 +26122,10 @@ type xxx_ServerGetConfigV6Operation struct {
 	Return          uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpServerGetConfigV6 operation.
 func (o *xxx_ServerGetConfigV6Operation) OpNum() int { return 66 }
 
+// OpName returns the operation name of R_DhcpServerGetConfigV6 operation.
 func (o *xxx_ServerGetConfigV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpServerGetConfigV6"
 }
@@ -25434,6 +26326,17 @@ func (o *ServerGetConfigV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeServerGetConfigV6Request build a response structure from the given request structure.
+func (o *ServerGetConfigV6Request) MakeResponse() *ServerGetConfigV6Response {
+	return &ServerGetConfigV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpServerGetConfigV6 operation.
+func (o *ServerGetConfigV6Request) OpNum() int { return 66 }
+
+// OpName returns the operation name of R_DhcpServerGetConfigV6 operation.
+func (o *ServerGetConfigV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpServerGetConfigV6" }
+
 // ServerGetConfigV6Response structure represents the R_DhcpServerGetConfigV6 operation response
 type ServerGetConfigV6Response struct {
 	// ConfigInfo: This is a pointer of type LPDHCP_SERVER_CONFIG_INFO_V6 that points to
@@ -25482,8 +26385,10 @@ type xxx_SetSubnetInfoV6Operation struct {
 	Return          uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetSubnetInfoV6 operation.
 func (o *xxx_SetSubnetInfoV6Operation) OpNum() int { return 67 }
 
+// OpName returns the operation name of R_DhcpSetSubnetInfoV6 operation.
 func (o *xxx_SetSubnetInfoV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetSubnetInfoV6" }
 
 func (o *xxx_SetSubnetInfoV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -25669,6 +26574,17 @@ func (o *SetSubnetInfoV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetSubnetInfoV6Request build a response structure from the given request structure.
+func (o *SetSubnetInfoV6Request) MakeResponse() *SetSubnetInfoV6Response {
+	return &SetSubnetInfoV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpSetSubnetInfoV6 operation.
+func (o *SetSubnetInfoV6Request) OpNum() int { return 67 }
+
+// OpName returns the operation name of R_DhcpSetSubnetInfoV6 operation.
+func (o *SetSubnetInfoV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetSubnetInfoV6" }
+
 // SetSubnetInfoV6Response structure represents the R_DhcpSetSubnetInfoV6 operation response
 type SetSubnetInfoV6Response struct {
 	// Return: The R_DhcpSetSubnetInfoV6 return value.
@@ -25711,8 +26627,10 @@ type xxx_GetMIBInfoV6Operation struct {
 	Return          uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetMibInfoV6 operation.
 func (o *xxx_GetMIBInfoV6Operation) OpNum() int { return 68 }
 
+// OpName returns the operation name of R_DhcpGetMibInfoV6 operation.
 func (o *xxx_GetMIBInfoV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetMibInfoV6" }
 
 func (o *xxx_GetMIBInfoV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -25885,6 +26803,17 @@ func (o *GetMIBInfoV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetMIBInfoV6Request build a response structure from the given request structure.
+func (o *GetMIBInfoV6Request) MakeResponse() *GetMIBInfoV6Response {
+	return &GetMIBInfoV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpGetMibInfoV6 operation.
+func (o *GetMIBInfoV6Request) OpNum() int { return 68 }
+
+// OpName returns the operation name of R_DhcpGetMibInfoV6 operation.
+func (o *GetMIBInfoV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetMibInfoV6" }
+
 // GetMIBInfoV6Response structure represents the R_DhcpGetMibInfoV6 operation response
 type GetMIBInfoV6Response struct {
 	// MibInfo: This is a pointer of type LPDHCP_MIB_INFO_V6 that points to the location
@@ -25933,8 +26862,10 @@ type xxx_GetServerBindingInfoV6Operation struct {
 	Return           uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetServerBindingInfoV6 operation.
 func (o *xxx_GetServerBindingInfoV6Operation) OpNum() int { return 69 }
 
+// OpName returns the operation name of R_DhcpGetServerBindingInfoV6 operation.
 func (o *xxx_GetServerBindingInfoV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpGetServerBindingInfoV6"
 }
@@ -26125,6 +27056,19 @@ func (o *GetServerBindingInfoV6Request) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetServerBindingInfoV6Request build a response structure from the given request structure.
+func (o *GetServerBindingInfoV6Request) MakeResponse() *GetServerBindingInfoV6Response {
+	return &GetServerBindingInfoV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpGetServerBindingInfoV6 operation.
+func (o *GetServerBindingInfoV6Request) OpNum() int { return 69 }
+
+// OpName returns the operation name of R_DhcpGetServerBindingInfoV6 operation.
+func (o *GetServerBindingInfoV6Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpGetServerBindingInfoV6"
+}
+
 // GetServerBindingInfoV6Response structure represents the R_DhcpGetServerBindingInfoV6 operation response
 type GetServerBindingInfoV6Response struct {
 	// BindElementsInfo: This is a pointer of type LPDHCPV6_BIND_ELEMENT_ARRAY that points
@@ -26173,8 +27117,10 @@ type xxx_SetServerBindingInfoV6Operation struct {
 	Return           uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetServerBindingInfoV6 operation.
 func (o *xxx_SetServerBindingInfoV6Operation) OpNum() int { return 70 }
 
+// OpName returns the operation name of R_DhcpSetServerBindingInfoV6 operation.
 func (o *xxx_SetServerBindingInfoV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpSetServerBindingInfoV6"
 }
@@ -26352,6 +27298,19 @@ func (o *SetServerBindingInfoV6Request) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeSetServerBindingInfoV6Request build a response structure from the given request structure.
+func (o *SetServerBindingInfoV6Request) MakeResponse() *SetServerBindingInfoV6Response {
+	return &SetServerBindingInfoV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpSetServerBindingInfoV6 operation.
+func (o *SetServerBindingInfoV6Request) OpNum() int { return 70 }
+
+// OpName returns the operation name of R_DhcpSetServerBindingInfoV6 operation.
+func (o *SetServerBindingInfoV6Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpSetServerBindingInfoV6"
+}
+
 // SetServerBindingInfoV6Response structure represents the R_DhcpSetServerBindingInfoV6 operation response
 type SetServerBindingInfoV6Response struct {
 	// Return: The R_DhcpSetServerBindingInfoV6 return value.
@@ -26394,8 +27353,10 @@ type xxx_SetClientInfoV6Operation struct {
 	Return          uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetClientInfoV6 operation.
 func (o *xxx_SetClientInfoV6Operation) OpNum() int { return 71 }
 
+// OpName returns the operation name of R_DhcpSetClientInfoV6 operation.
 func (o *xxx_SetClientInfoV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetClientInfoV6" }
 
 func (o *xxx_SetClientInfoV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -26555,6 +27516,17 @@ func (o *SetClientInfoV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetClientInfoV6Request build a response structure from the given request structure.
+func (o *SetClientInfoV6Request) MakeResponse() *SetClientInfoV6Response {
+	return &SetClientInfoV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpSetClientInfoV6 operation.
+func (o *SetClientInfoV6Request) OpNum() int { return 71 }
+
+// OpName returns the operation name of R_DhcpSetClientInfoV6 operation.
+func (o *SetClientInfoV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetClientInfoV6" }
+
 // SetClientInfoV6Response structure represents the R_DhcpSetClientInfoV6 operation response
 type SetClientInfoV6Response struct {
 	// Return: The R_DhcpSetClientInfoV6 return value.
@@ -26598,8 +27570,10 @@ type xxx_GetClientInfoV6Operation struct {
 	Return          uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetClientInfoV6 operation.
 func (o *xxx_GetClientInfoV6Operation) OpNum() int { return 72 }
 
+// OpName returns the operation name of R_DhcpGetClientInfoV6 operation.
 func (o *xxx_GetClientInfoV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetClientInfoV6" }
 
 func (o *xxx_GetClientInfoV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -26808,6 +27782,17 @@ func (o *GetClientInfoV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetClientInfoV6Request build a response structure from the given request structure.
+func (o *GetClientInfoV6Request) MakeResponse() *GetClientInfoV6Response {
+	return &GetClientInfoV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpGetClientInfoV6 operation.
+func (o *GetClientInfoV6Request) OpNum() int { return 72 }
+
+// OpName returns the operation name of R_DhcpGetClientInfoV6 operation.
+func (o *GetClientInfoV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetClientInfoV6" }
+
 // GetClientInfoV6Response structure represents the R_DhcpGetClientInfoV6 operation response
 type GetClientInfoV6Response struct {
 	// ClientInfo: This is a pointer to type LPDHCP_CLIENT_INFO_V6 that points to a location
@@ -26856,8 +27841,10 @@ type xxx_DeleteClientInfoV6Operation struct {
 	Return          uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpDeleteClientInfoV6 operation.
 func (o *xxx_DeleteClientInfoV6Operation) OpNum() int { return 73 }
 
+// OpName returns the operation name of R_DhcpDeleteClientInfoV6 operation.
 func (o *xxx_DeleteClientInfoV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpDeleteClientInfoV6"
 }
@@ -27019,6 +28006,17 @@ func (o *DeleteClientInfoV6Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeDeleteClientInfoV6Request build a response structure from the given request structure.
+func (o *DeleteClientInfoV6Request) MakeResponse() *DeleteClientInfoV6Response {
+	return &DeleteClientInfoV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpDeleteClientInfoV6 operation.
+func (o *DeleteClientInfoV6Request) OpNum() int { return 73 }
+
+// OpName returns the operation name of R_DhcpDeleteClientInfoV6 operation.
+func (o *DeleteClientInfoV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpDeleteClientInfoV6" }
+
 // DeleteClientInfoV6Response structure represents the R_DhcpDeleteClientInfoV6 operation response
 type DeleteClientInfoV6Response struct {
 	// Return: The R_DhcpDeleteClientInfoV6 return value.
@@ -27062,8 +28060,10 @@ type xxx_CreateClassV6Operation struct {
 	Return          uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpCreateClassV6 operation.
 func (o *xxx_CreateClassV6Operation) OpNum() int { return 74 }
 
+// OpName returns the operation name of R_DhcpCreateClassV6 operation.
 func (o *xxx_CreateClassV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpCreateClassV6" }
 
 func (o *xxx_CreateClassV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -27237,6 +28237,17 @@ func (o *CreateClassV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeCreateClassV6Request build a response structure from the given request structure.
+func (o *CreateClassV6Request) MakeResponse() *CreateClassV6Response {
+	return &CreateClassV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpCreateClassV6 operation.
+func (o *CreateClassV6Request) OpNum() int { return 74 }
+
+// OpName returns the operation name of R_DhcpCreateClassV6 operation.
+func (o *CreateClassV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpCreateClassV6" }
+
 // CreateClassV6Response structure represents the R_DhcpCreateClassV6 operation response
 type CreateClassV6Response struct {
 	// Return: The R_DhcpCreateClassV6 return value.
@@ -27280,8 +28291,10 @@ type xxx_ModifyClassV6Operation struct {
 	Return          uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpModifyClassV6 operation.
 func (o *xxx_ModifyClassV6Operation) OpNum() int { return 75 }
 
+// OpName returns the operation name of R_DhcpModifyClassV6 operation.
 func (o *xxx_ModifyClassV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpModifyClassV6" }
 
 func (o *xxx_ModifyClassV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -27455,6 +28468,17 @@ func (o *ModifyClassV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeModifyClassV6Request build a response structure from the given request structure.
+func (o *ModifyClassV6Request) MakeResponse() *ModifyClassV6Response {
+	return &ModifyClassV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpModifyClassV6 operation.
+func (o *ModifyClassV6Request) OpNum() int { return 75 }
+
+// OpName returns the operation name of R_DhcpModifyClassV6 operation.
+func (o *ModifyClassV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpModifyClassV6" }
+
 // ModifyClassV6Response structure represents the R_DhcpModifyClassV6 operation response
 type ModifyClassV6Response struct {
 	// Return: The R_DhcpModifyClassV6 return value.
@@ -27498,8 +28522,10 @@ type xxx_DeleteClassV6Operation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpDeleteClassV6 operation.
 func (o *xxx_DeleteClassV6Operation) OpNum() int { return 76 }
 
+// OpName returns the operation name of R_DhcpDeleteClassV6 operation.
 func (o *xxx_DeleteClassV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpDeleteClassV6" }
 
 func (o *xxx_DeleteClassV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -27683,6 +28709,17 @@ func (o *DeleteClassV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeDeleteClassV6Request build a response structure from the given request structure.
+func (o *DeleteClassV6Request) MakeResponse() *DeleteClassV6Response {
+	return &DeleteClassV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpDeleteClassV6 operation.
+func (o *DeleteClassV6Request) OpNum() int { return 76 }
+
+// OpName returns the operation name of R_DhcpDeleteClassV6 operation.
+func (o *DeleteClassV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpDeleteClassV6" }
+
 // DeleteClassV6Response structure represents the R_DhcpDeleteClassV6 operation response
 type DeleteClassV6Response struct {
 	// Return: The R_DhcpDeleteClassV6 return value.
@@ -27730,8 +28767,10 @@ type xxx_EnumClassesV6Operation struct {
 	Return           uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumClassesV6 operation.
 func (o *xxx_EnumClassesV6Operation) OpNum() int { return 77 }
 
+// OpName returns the operation name of R_DhcpEnumClassesV6 operation.
 func (o *xxx_EnumClassesV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumClassesV6" }
 
 func (o *xxx_EnumClassesV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -27996,6 +29035,17 @@ func (o *EnumClassesV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeEnumClassesV6Request build a response structure from the given request structure.
+func (o *EnumClassesV6Request) MakeResponse() *EnumClassesV6Response {
+	return &EnumClassesV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumClassesV6 operation.
+func (o *EnumClassesV6Request) OpNum() int { return 77 }
+
+// OpName returns the operation name of R_DhcpEnumClassesV6 operation.
+func (o *EnumClassesV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumClassesV6" }
+
 // EnumClassesV6Response structure represents the R_DhcpEnumClassesV6 operation response
 type EnumClassesV6Response struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) that
@@ -28069,8 +29119,10 @@ type xxx_GetOptionValueV6Operation struct {
 	Return          uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetOptionValueV6 operation.
 func (o *xxx_GetOptionValueV6Operation) OpNum() int { return 78 }
 
+// OpName returns the operation name of R_DhcpGetOptionValueV6 operation.
 func (o *xxx_GetOptionValueV6Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetOptionValueV6" }
 
 func (o *xxx_GetOptionValueV6Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -28383,6 +29435,17 @@ func (o *GetOptionValueV6Request) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetOptionValueV6Request build a response structure from the given request structure.
+func (o *GetOptionValueV6Request) MakeResponse() *GetOptionValueV6Response {
+	return &GetOptionValueV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpGetOptionValueV6 operation.
+func (o *GetOptionValueV6Request) OpNum() int { return 78 }
+
+// OpName returns the operation name of R_DhcpGetOptionValueV6 operation.
+func (o *GetOptionValueV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetOptionValueV6" }
+
 // GetOptionValueV6Response structure represents the R_DhcpGetOptionValueV6 operation response
 type GetOptionValueV6Response struct {
 	// OptionValue: This is a pointer of type LPDHCP_OPTION_VALUE in which the option value
@@ -28432,8 +29495,10 @@ type xxx_SetSubnetDelayOfferOperation struct {
 	Return                  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetSubnetDelayOffer operation.
 func (o *xxx_SetSubnetDelayOfferOperation) OpNum() int { return 79 }
 
+// OpName returns the operation name of R_DhcpSetSubnetDelayOffer operation.
 func (o *xxx_SetSubnetDelayOfferOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpSetSubnetDelayOffer"
 }
@@ -28607,6 +29672,17 @@ func (o *SetSubnetDelayOfferRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeSetSubnetDelayOfferRequest build a response structure from the given request structure.
+func (o *SetSubnetDelayOfferRequest) MakeResponse() *SetSubnetDelayOfferResponse {
+	return &SetSubnetDelayOfferResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpSetSubnetDelayOffer operation.
+func (o *SetSubnetDelayOfferRequest) OpNum() int { return 79 }
+
+// OpName returns the operation name of R_DhcpSetSubnetDelayOffer operation.
+func (o *SetSubnetDelayOfferRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetSubnetDelayOffer" }
+
 // SetSubnetDelayOfferResponse structure represents the R_DhcpSetSubnetDelayOffer operation response
 type SetSubnetDelayOfferResponse struct {
 	// Return: The R_DhcpSetSubnetDelayOffer return value.
@@ -28650,8 +29726,10 @@ type xxx_GetSubnetDelayOfferOperation struct {
 	Return                  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetSubnetDelayOffer operation.
 func (o *xxx_GetSubnetDelayOfferOperation) OpNum() int { return 80 }
 
+// OpName returns the operation name of R_DhcpGetSubnetDelayOffer operation.
 func (o *xxx_GetSubnetDelayOfferOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpGetSubnetDelayOffer"
 }
@@ -28809,6 +29887,17 @@ func (o *GetSubnetDelayOfferRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetSubnetDelayOfferRequest build a response structure from the given request structure.
+func (o *GetSubnetDelayOfferRequest) MakeResponse() *GetSubnetDelayOfferResponse {
+	return &GetSubnetDelayOfferResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpGetSubnetDelayOffer operation.
+func (o *GetSubnetDelayOfferRequest) OpNum() int { return 80 }
+
+// OpName returns the operation name of R_DhcpGetSubnetDelayOffer operation.
+func (o *GetSubnetDelayOfferRequest) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetSubnetDelayOffer" }
+
 // GetSubnetDelayOfferResponse structure represents the R_DhcpGetSubnetDelayOffer operation response
 type GetSubnetDelayOfferResponse struct {
 	// TimeDelayInMilliseconds: This is a pointer of the type USHORT, which provides the
@@ -28856,8 +29945,10 @@ type xxx_GetMIBInfoV5Operation struct {
 	Return          uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetMibInfoV5 operation.
 func (o *xxx_GetMIBInfoV5Operation) OpNum() int { return 81 }
 
+// OpName returns the operation name of R_DhcpGetMibInfoV5 operation.
 func (o *xxx_GetMIBInfoV5Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetMibInfoV5" }
 
 func (o *xxx_GetMIBInfoV5Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -29030,6 +30121,17 @@ func (o *GetMIBInfoV5Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetMIBInfoV5Request build a response structure from the given request structure.
+func (o *GetMIBInfoV5Request) MakeResponse() *GetMIBInfoV5Response {
+	return &GetMIBInfoV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpGetMibInfoV5 operation.
+func (o *GetMIBInfoV5Request) OpNum() int { return 81 }
+
+// OpName returns the operation name of R_DhcpGetMibInfoV5 operation.
+func (o *GetMIBInfoV5Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetMibInfoV5" }
+
 // GetMIBInfoV5Response structure represents the R_DhcpGetMibInfoV5 operation response
 type GetMIBInfoV5Response struct {
 	// MibInfo: This is a pointer of type LPDHCP_MIB_INFO_V5 that points to the location
@@ -29078,8 +30180,10 @@ type xxx_AddFilterV4Operation struct {
 	Return          uint32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpAddFilterV4 operation.
 func (o *xxx_AddFilterV4Operation) OpNum() int { return 82 }
 
+// OpName returns the operation name of R_DhcpAddFilterV4 operation.
 func (o *xxx_AddFilterV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpAddFilterV4" }
 
 func (o *xxx_AddFilterV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -29266,6 +30370,17 @@ func (o *AddFilterV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeAddFilterV4Request build a response structure from the given request structure.
+func (o *AddFilterV4Request) MakeResponse() *AddFilterV4Response {
+	return &AddFilterV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpAddFilterV4 operation.
+func (o *AddFilterV4Request) OpNum() int { return 82 }
+
+// OpName returns the operation name of R_DhcpAddFilterV4 operation.
+func (o *AddFilterV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpAddFilterV4" }
+
 // AddFilterV4Response structure represents the R_DhcpAddFilterV4 operation response
 type AddFilterV4Response struct {
 	// Return: The R_DhcpAddFilterV4 return value.
@@ -29308,8 +30423,10 @@ type xxx_DeleteFilterV4Operation struct {
 	Return           uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpDeleteFilterV4 operation.
 func (o *xxx_DeleteFilterV4Operation) OpNum() int { return 83 }
 
+// OpName returns the operation name of R_DhcpDeleteFilterV4 operation.
 func (o *xxx_DeleteFilterV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpDeleteFilterV4" }
 
 func (o *xxx_DeleteFilterV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -29464,6 +30581,17 @@ func (o *DeleteFilterV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeDeleteFilterV4Request build a response structure from the given request structure.
+func (o *DeleteFilterV4Request) MakeResponse() *DeleteFilterV4Response {
+	return &DeleteFilterV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpDeleteFilterV4 operation.
+func (o *DeleteFilterV4Request) OpNum() int { return 83 }
+
+// OpName returns the operation name of R_DhcpDeleteFilterV4 operation.
+func (o *DeleteFilterV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpDeleteFilterV4" }
+
 // DeleteFilterV4Response structure represents the R_DhcpDeleteFilterV4 operation response
 type DeleteFilterV4Response struct {
 	// Return: The R_DhcpDeleteFilterV4 return value.
@@ -29506,8 +30634,10 @@ type xxx_SetFilterV4Operation struct {
 	Return           uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetFilterV4 operation.
 func (o *xxx_SetFilterV4Operation) OpNum() int { return 84 }
 
+// OpName returns the operation name of R_DhcpSetFilterV4 operation.
 func (o *xxx_SetFilterV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetFilterV4" }
 
 func (o *xxx_SetFilterV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -29660,6 +30790,17 @@ func (o *SetFilterV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeSetFilterV4Request build a response structure from the given request structure.
+func (o *SetFilterV4Request) MakeResponse() *SetFilterV4Response {
+	return &SetFilterV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpSetFilterV4 operation.
+func (o *SetFilterV4Request) OpNum() int { return 84 }
+
+// OpName returns the operation name of R_DhcpSetFilterV4 operation.
+func (o *SetFilterV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpSetFilterV4" }
+
 // SetFilterV4Response structure represents the R_DhcpSetFilterV4 operation response
 type SetFilterV4Response struct {
 	// Return: The R_DhcpSetFilterV4 return value.
@@ -29702,8 +30843,10 @@ type xxx_GetFilterV4Operation struct {
 	Return           uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpGetFilterV4 operation.
 func (o *xxx_GetFilterV4Operation) OpNum() int { return 85 }
 
+// OpName returns the operation name of R_DhcpGetFilterV4 operation.
 func (o *xxx_GetFilterV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetFilterV4" }
 
 func (o *xxx_GetFilterV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -29851,6 +30994,17 @@ func (o *GetFilterV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetFilterV4Request build a response structure from the given request structure.
+func (o *GetFilterV4Request) MakeResponse() *GetFilterV4Response {
+	return &GetFilterV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpGetFilterV4 operation.
+func (o *GetFilterV4Request) OpNum() int { return 85 }
+
+// OpName returns the operation name of R_DhcpGetFilterV4 operation.
+func (o *GetFilterV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpGetFilterV4" }
+
 // GetFilterV4Response structure represents the R_DhcpGetFilterV4 operation response
 type GetFilterV4Response struct {
 	// GlobalFilterInfo: This is a pointer of type LPDHCP_FILTER_GLOBAL_INFO that contains
@@ -29905,8 +31059,10 @@ type xxx_EnumFilterV4Operation struct {
 	Return           uint32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumFilterV4 operation.
 func (o *xxx_EnumFilterV4Operation) OpNum() int { return 86 }
 
+// OpName returns the operation name of R_DhcpEnumFilterV4 operation.
 func (o *xxx_EnumFilterV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumFilterV4" }
 
 func (o *xxx_EnumFilterV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -30189,6 +31345,17 @@ func (o *EnumFilterV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeEnumFilterV4Request build a response structure from the given request structure.
+func (o *EnumFilterV4Request) MakeResponse() *EnumFilterV4Response {
+	return &EnumFilterV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumFilterV4 operation.
+func (o *EnumFilterV4Request) OpNum() int { return 86 }
+
+// OpName returns the operation name of R_DhcpEnumFilterV4 operation.
+func (o *EnumFilterV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpEnumFilterV4" }
+
 // EnumFilterV4Response structure represents the R_DhcpEnumFilterV4 operation response
 type EnumFilterV4Response struct {
 	// ResumeHandle: This is a pointer of type DHCP_ADDR_PATTERN (section 2.2.1.2.89) which
@@ -30259,8 +31426,10 @@ type xxx_SetDNSRegCredentialsV5Operation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpSetDnsRegCredentialsV5 operation.
 func (o *xxx_SetDNSRegCredentialsV5Operation) OpNum() int { return 87 }
 
+// OpName returns the operation name of R_DhcpSetDnsRegCredentialsV5 operation.
 func (o *xxx_SetDNSRegCredentialsV5Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpSetDnsRegCredentialsV5"
 }
@@ -30515,6 +31684,19 @@ func (o *SetDNSRegCredentialsV5Request) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeSetDNSRegCredentialsV5Request build a response structure from the given request structure.
+func (o *SetDNSRegCredentialsV5Request) MakeResponse() *SetDNSRegCredentialsV5Response {
+	return &SetDNSRegCredentialsV5Response{}
+}
+
+// OpNum returns the operation number of R_DhcpSetDnsRegCredentialsV5 operation.
+func (o *SetDNSRegCredentialsV5Request) OpNum() int { return 87 }
+
+// OpName returns the operation name of R_DhcpSetDnsRegCredentialsV5 operation.
+func (o *SetDNSRegCredentialsV5Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpSetDnsRegCredentialsV5"
+}
+
 // SetDNSRegCredentialsV5Response structure represents the R_DhcpSetDnsRegCredentialsV5 operation response
 type SetDNSRegCredentialsV5Response struct {
 	// Return: The R_DhcpSetDnsRegCredentialsV5 return value.
@@ -30562,8 +31744,10 @@ type xxx_EnumSubnetClientsFilterStatusInfoOperation struct {
 	Return           uint32                             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpEnumSubnetClientsFilterStatusInfo operation.
 func (o *xxx_EnumSubnetClientsFilterStatusInfoOperation) OpNum() int { return 88 }
 
+// OpName returns the operation name of R_DhcpEnumSubnetClientsFilterStatusInfo operation.
 func (o *xxx_EnumSubnetClientsFilterStatusInfoOperation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpEnumSubnetClientsFilterStatusInfo"
 }
@@ -30831,6 +32015,19 @@ func (o *EnumSubnetClientsFilterStatusInfoRequest) UnmarshalNDR(ctx context.Cont
 	return nil
 }
 
+// MakeEnumSubnetClientsFilterStatusInfoRequest build a response structure from the given request structure.
+func (o *EnumSubnetClientsFilterStatusInfoRequest) MakeResponse() *EnumSubnetClientsFilterStatusInfoResponse {
+	return &EnumSubnetClientsFilterStatusInfoResponse{}
+}
+
+// OpNum returns the operation number of R_DhcpEnumSubnetClientsFilterStatusInfo operation.
+func (o *EnumSubnetClientsFilterStatusInfoRequest) OpNum() int { return 88 }
+
+// OpName returns the operation name of R_DhcpEnumSubnetClientsFilterStatusInfo operation.
+func (o *EnumSubnetClientsFilterStatusInfoRequest) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpEnumSubnetClientsFilterStatusInfo"
+}
+
 // EnumSubnetClientsFilterStatusInfoResponse structure represents the R_DhcpEnumSubnetClientsFilterStatusInfo operation response
 type EnumSubnetClientsFilterStatusInfoResponse struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) which
@@ -30900,8 +32097,10 @@ type xxx_FailoverCreateRelationshipV4Operation struct {
 	Return          uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4FailoverCreateRelationship operation.
 func (o *xxx_FailoverCreateRelationshipV4Operation) OpNum() int { return 89 }
 
+// OpName returns the operation name of R_DhcpV4FailoverCreateRelationship operation.
 func (o *xxx_FailoverCreateRelationshipV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4FailoverCreateRelationship"
 }
@@ -31063,6 +32262,19 @@ func (o *FailoverCreateRelationshipV4Request) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeFailoverCreateRelationshipV4Request build a response structure from the given request structure.
+func (o *FailoverCreateRelationshipV4Request) MakeResponse() *FailoverCreateRelationshipV4Response {
+	return &FailoverCreateRelationshipV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4FailoverCreateRelationship operation.
+func (o *FailoverCreateRelationshipV4Request) OpNum() int { return 89 }
+
+// OpName returns the operation name of R_DhcpV4FailoverCreateRelationship operation.
+func (o *FailoverCreateRelationshipV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4FailoverCreateRelationship"
+}
+
 // FailoverCreateRelationshipV4Response structure represents the R_DhcpV4FailoverCreateRelationship operation response
 type FailoverCreateRelationshipV4Response struct {
 	// Return: The R_DhcpV4FailoverCreateRelationship return value.
@@ -31106,8 +32318,10 @@ type xxx_FailoverSetRelationshipV4Operation struct {
 	Return          uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4FailoverSetRelationship operation.
 func (o *xxx_FailoverSetRelationshipV4Operation) OpNum() int { return 90 }
 
+// OpName returns the operation name of R_DhcpV4FailoverSetRelationship operation.
 func (o *xxx_FailoverSetRelationshipV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4FailoverSetRelationship"
 }
@@ -31318,6 +32532,19 @@ func (o *FailoverSetRelationshipV4Request) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeFailoverSetRelationshipV4Request build a response structure from the given request structure.
+func (o *FailoverSetRelationshipV4Request) MakeResponse() *FailoverSetRelationshipV4Response {
+	return &FailoverSetRelationshipV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4FailoverSetRelationship operation.
+func (o *FailoverSetRelationshipV4Request) OpNum() int { return 90 }
+
+// OpName returns the operation name of R_DhcpV4FailoverSetRelationship operation.
+func (o *FailoverSetRelationshipV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4FailoverSetRelationship"
+}
+
 // FailoverSetRelationshipV4Response structure represents the R_DhcpV4FailoverSetRelationship operation response
 type FailoverSetRelationshipV4Response struct {
 	// Return: The R_DhcpV4FailoverSetRelationship return value.
@@ -31360,8 +32587,10 @@ type xxx_FailoverDeleteRelationshipV4Operation struct {
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4FailoverDeleteRelationship operation.
 func (o *xxx_FailoverDeleteRelationshipV4Operation) OpNum() int { return 91 }
 
+// OpName returns the operation name of R_DhcpV4FailoverDeleteRelationship operation.
 func (o *xxx_FailoverDeleteRelationshipV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4FailoverDeleteRelationship"
 }
@@ -31532,6 +32761,19 @@ func (o *FailoverDeleteRelationshipV4Request) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeFailoverDeleteRelationshipV4Request build a response structure from the given request structure.
+func (o *FailoverDeleteRelationshipV4Request) MakeResponse() *FailoverDeleteRelationshipV4Response {
+	return &FailoverDeleteRelationshipV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4FailoverDeleteRelationship operation.
+func (o *FailoverDeleteRelationshipV4Request) OpNum() int { return 91 }
+
+// OpName returns the operation name of R_DhcpV4FailoverDeleteRelationship operation.
+func (o *FailoverDeleteRelationshipV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4FailoverDeleteRelationship"
+}
+
 // FailoverDeleteRelationshipV4Response structure represents the R_DhcpV4FailoverDeleteRelationship operation response
 type FailoverDeleteRelationshipV4Response struct {
 	// Return: The R_DhcpV4FailoverDeleteRelationship return value.
@@ -31575,8 +32817,10 @@ type xxx_FailoverGetRelationshipV4Operation struct {
 	Return           uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4FailoverGetRelationship operation.
 func (o *xxx_FailoverGetRelationshipV4Operation) OpNum() int { return 92 }
 
+// OpName returns the operation name of R_DhcpV4FailoverGetRelationship operation.
 func (o *xxx_FailoverGetRelationshipV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4FailoverGetRelationship"
 }
@@ -31794,6 +33038,19 @@ func (o *FailoverGetRelationshipV4Request) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeFailoverGetRelationshipV4Request build a response structure from the given request structure.
+func (o *FailoverGetRelationshipV4Request) MakeResponse() *FailoverGetRelationshipV4Response {
+	return &FailoverGetRelationshipV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4FailoverGetRelationship operation.
+func (o *FailoverGetRelationshipV4Request) OpNum() int { return 92 }
+
+// OpName returns the operation name of R_DhcpV4FailoverGetRelationship operation.
+func (o *FailoverGetRelationshipV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4FailoverGetRelationship"
+}
+
 // FailoverGetRelationshipV4Response structure represents the R_DhcpV4FailoverGetRelationship operation response
 type FailoverGetRelationshipV4Response struct {
 	// pRelationship: This is a pointer of type LPDHCP_FAILOVER_RELATIONSHIP (section 2.2.1.2.98)
@@ -31846,8 +33103,10 @@ type xxx_FailoverEnumRelationshipV4Operation struct {
 	Return            uint32                           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4FailoverEnumRelationship operation.
 func (o *xxx_FailoverEnumRelationshipV4Operation) OpNum() int { return 93 }
 
+// OpName returns the operation name of R_DhcpV4FailoverEnumRelationship operation.
 func (o *xxx_FailoverEnumRelationshipV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4FailoverEnumRelationship"
 }
@@ -32096,6 +33355,19 @@ func (o *FailoverEnumRelationshipV4Request) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeFailoverEnumRelationshipV4Request build a response structure from the given request structure.
+func (o *FailoverEnumRelationshipV4Request) MakeResponse() *FailoverEnumRelationshipV4Response {
+	return &FailoverEnumRelationshipV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4FailoverEnumRelationship operation.
+func (o *FailoverEnumRelationshipV4Request) OpNum() int { return 93 }
+
+// OpName returns the operation name of R_DhcpV4FailoverEnumRelationship operation.
+func (o *FailoverEnumRelationshipV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4FailoverEnumRelationship"
+}
+
 // FailoverEnumRelationshipV4Response structure represents the R_DhcpV4FailoverEnumRelationship operation response
 type FailoverEnumRelationshipV4Response struct {
 	// ResumeHandle: This is a pointer of type DHCP_RESUME_HANDLE (section 2.2.1.2.6) that
@@ -32164,8 +33436,10 @@ type xxx_FailoverAddScopeToRelationshipV4Operation struct {
 	Return          uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4FailoverAddScopeToRelationship operation.
 func (o *xxx_FailoverAddScopeToRelationshipV4Operation) OpNum() int { return 94 }
 
+// OpName returns the operation name of R_DhcpV4FailoverAddScopeToRelationship operation.
 func (o *xxx_FailoverAddScopeToRelationshipV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4FailoverAddScopeToRelationship"
 }
@@ -32327,6 +33601,19 @@ func (o *FailoverAddScopeToRelationshipV4Request) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
+// MakeFailoverAddScopeToRelationshipV4Request build a response structure from the given request structure.
+func (o *FailoverAddScopeToRelationshipV4Request) MakeResponse() *FailoverAddScopeToRelationshipV4Response {
+	return &FailoverAddScopeToRelationshipV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4FailoverAddScopeToRelationship operation.
+func (o *FailoverAddScopeToRelationshipV4Request) OpNum() int { return 94 }
+
+// OpName returns the operation name of R_DhcpV4FailoverAddScopeToRelationship operation.
+func (o *FailoverAddScopeToRelationshipV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4FailoverAddScopeToRelationship"
+}
+
 // FailoverAddScopeToRelationshipV4Response structure represents the R_DhcpV4FailoverAddScopeToRelationship operation response
 type FailoverAddScopeToRelationshipV4Response struct {
 	// Return: The R_DhcpV4FailoverAddScopeToRelationship return value.
@@ -32369,8 +33656,10 @@ type xxx_FailoverDeleteScopeFromRelationshipV4Operation struct {
 	Return          uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4FailoverDeleteScopeFromRelationship operation.
 func (o *xxx_FailoverDeleteScopeFromRelationshipV4Operation) OpNum() int { return 95 }
 
+// OpName returns the operation name of R_DhcpV4FailoverDeleteScopeFromRelationship operation.
 func (o *xxx_FailoverDeleteScopeFromRelationshipV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4FailoverDeleteScopeFromRelationship"
 }
@@ -32532,6 +33821,19 @@ func (o *FailoverDeleteScopeFromRelationshipV4Request) UnmarshalNDR(ctx context.
 	return nil
 }
 
+// MakeFailoverDeleteScopeFromRelationshipV4Request build a response structure from the given request structure.
+func (o *FailoverDeleteScopeFromRelationshipV4Request) MakeResponse() *FailoverDeleteScopeFromRelationshipV4Response {
+	return &FailoverDeleteScopeFromRelationshipV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4FailoverDeleteScopeFromRelationship operation.
+func (o *FailoverDeleteScopeFromRelationshipV4Request) OpNum() int { return 95 }
+
+// OpName returns the operation name of R_DhcpV4FailoverDeleteScopeFromRelationship operation.
+func (o *FailoverDeleteScopeFromRelationshipV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4FailoverDeleteScopeFromRelationship"
+}
+
 // FailoverDeleteScopeFromRelationshipV4Response structure represents the R_DhcpV4FailoverDeleteScopeFromRelationship operation response
 type FailoverDeleteScopeFromRelationshipV4Response struct {
 	// Return: The R_DhcpV4FailoverDeleteScopeFromRelationship return value.
@@ -32575,8 +33877,10 @@ type xxx_FailoverGetScopeRelationshipV4Operation struct {
 	Return          uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4FailoverGetScopeRelationship operation.
 func (o *xxx_FailoverGetScopeRelationshipV4Operation) OpNum() int { return 96 }
 
+// OpName returns the operation name of R_DhcpV4FailoverGetScopeRelationship operation.
 func (o *xxx_FailoverGetScopeRelationshipV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4FailoverGetScopeRelationship"
 }
@@ -32768,6 +34072,19 @@ func (o *FailoverGetScopeRelationshipV4Request) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeFailoverGetScopeRelationshipV4Request build a response structure from the given request structure.
+func (o *FailoverGetScopeRelationshipV4Request) MakeResponse() *FailoverGetScopeRelationshipV4Response {
+	return &FailoverGetScopeRelationshipV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4FailoverGetScopeRelationship operation.
+func (o *FailoverGetScopeRelationshipV4Request) OpNum() int { return 96 }
+
+// OpName returns the operation name of R_DhcpV4FailoverGetScopeRelationship operation.
+func (o *FailoverGetScopeRelationshipV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4FailoverGetScopeRelationship"
+}
+
 // FailoverGetScopeRelationshipV4Response structure represents the R_DhcpV4FailoverGetScopeRelationship operation response
 type FailoverGetScopeRelationshipV4Response struct {
 	// pRelationship: This is a pointer of type LPDHCP_FAILOVER_RELATIONSHIP (section 2.2.1.2.98)
@@ -32817,8 +34134,10 @@ type xxx_FailoverGetScopeStatisticsV4Operation struct {
 	Return          uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4FailoverGetScopeStatistics operation.
 func (o *xxx_FailoverGetScopeStatisticsV4Operation) OpNum() int { return 97 }
 
+// OpName returns the operation name of R_DhcpV4FailoverGetScopeStatistics operation.
 func (o *xxx_FailoverGetScopeStatisticsV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4FailoverGetScopeStatistics"
 }
@@ -33011,6 +34330,19 @@ func (o *FailoverGetScopeStatisticsV4Request) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeFailoverGetScopeStatisticsV4Request build a response structure from the given request structure.
+func (o *FailoverGetScopeStatisticsV4Request) MakeResponse() *FailoverGetScopeStatisticsV4Response {
+	return &FailoverGetScopeStatisticsV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4FailoverGetScopeStatistics operation.
+func (o *FailoverGetScopeStatisticsV4Request) OpNum() int { return 97 }
+
+// OpName returns the operation name of R_DhcpV4FailoverGetScopeStatistics operation.
+func (o *FailoverGetScopeStatisticsV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4FailoverGetScopeStatistics"
+}
+
 // FailoverGetScopeStatisticsV4Response structure represents the R_DhcpV4FailoverGetScopeStatistics operation response
 type FailoverGetScopeStatisticsV4Response struct {
 	// pStats: This is a pointer of type LPDHCP_FAILOVER_STATISTICS (section 2.2.1.2.100)
@@ -33059,8 +34391,10 @@ type xxx_FailoverGetClientInfoV4Operation struct {
 	Return          uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4FailoverGetClientInfo operation.
 func (o *xxx_FailoverGetClientInfoV4Operation) OpNum() int { return 98 }
 
+// OpName returns the operation name of R_DhcpV4FailoverGetClientInfo operation.
 func (o *xxx_FailoverGetClientInfoV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4FailoverGetClientInfo"
 }
@@ -33270,6 +34604,19 @@ func (o *FailoverGetClientInfoV4Request) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeFailoverGetClientInfoV4Request build a response structure from the given request structure.
+func (o *FailoverGetClientInfoV4Request) MakeResponse() *FailoverGetClientInfoV4Response {
+	return &FailoverGetClientInfoV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4FailoverGetClientInfo operation.
+func (o *FailoverGetClientInfoV4Request) OpNum() int { return 98 }
+
+// OpName returns the operation name of R_DhcpV4FailoverGetClientInfo operation.
+func (o *FailoverGetClientInfoV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4FailoverGetClientInfo"
+}
+
 // FailoverGetClientInfoV4Response structure represents the R_DhcpV4FailoverGetClientInfo operation response
 type FailoverGetClientInfoV4Response struct {
 	// ClientInfo: This is a pointer of type LPDHCPV4_FAILOVER_CLIENT_INFO (section 2.2.1.2.101)
@@ -33319,8 +34666,10 @@ type xxx_FailoverGetSystemTimeV4Operation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4FailoverGetSystemTime operation.
 func (o *xxx_FailoverGetSystemTimeV4Operation) OpNum() int { return 99 }
 
+// OpName returns the operation name of R_DhcpV4FailoverGetSystemTime operation.
 func (o *xxx_FailoverGetSystemTimeV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4FailoverGetSystemTime"
 }
@@ -33461,6 +34810,19 @@ func (o *FailoverGetSystemTimeV4Request) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeFailoverGetSystemTimeV4Request build a response structure from the given request structure.
+func (o *FailoverGetSystemTimeV4Request) MakeResponse() *FailoverGetSystemTimeV4Response {
+	return &FailoverGetSystemTimeV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4FailoverGetSystemTime operation.
+func (o *FailoverGetSystemTimeV4Request) OpNum() int { return 99 }
+
+// OpName returns the operation name of R_DhcpV4FailoverGetSystemTime operation.
+func (o *FailoverGetSystemTimeV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4FailoverGetSystemTime"
+}
+
 // FailoverGetSystemTimeV4Response structure represents the R_DhcpV4FailoverGetSystemTime operation response
 type FailoverGetSystemTimeV4Response struct {
 	// pTime: This is a pointer to type DWORD and returns the current time, in seconds elapsed
@@ -33509,8 +34871,10 @@ type xxx_FailoverTriggerAddrAllocationV4Operation struct {
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4FailoverTriggerAddrAllocation operation.
 func (o *xxx_FailoverTriggerAddrAllocationV4Operation) OpNum() int { return 100 }
 
+// OpName returns the operation name of R_DhcpV4FailoverTriggerAddrAllocation operation.
 func (o *xxx_FailoverTriggerAddrAllocationV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4FailoverTriggerAddrAllocation"
 }
@@ -33682,6 +35046,19 @@ func (o *FailoverTriggerAddrAllocationV4Request) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeFailoverTriggerAddrAllocationV4Request build a response structure from the given request structure.
+func (o *FailoverTriggerAddrAllocationV4Request) MakeResponse() *FailoverTriggerAddrAllocationV4Response {
+	return &FailoverTriggerAddrAllocationV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4FailoverTriggerAddrAllocation operation.
+func (o *FailoverTriggerAddrAllocationV4Request) OpNum() int { return 100 }
+
+// OpName returns the operation name of R_DhcpV4FailoverTriggerAddrAllocation operation.
+func (o *FailoverTriggerAddrAllocationV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4FailoverTriggerAddrAllocation"
+}
+
 // FailoverTriggerAddrAllocationV4Response structure represents the R_DhcpV4FailoverTriggerAddrAllocation operation response
 type FailoverTriggerAddrAllocationV4Response struct {
 	// Return: The R_DhcpV4FailoverTriggerAddrAllocation return value.
@@ -33729,8 +35106,10 @@ type xxx_SetOptionValueV4Operation struct {
 	Return          uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4SetOptionValue operation.
 func (o *xxx_SetOptionValueV4Operation) OpNum() int { return 101 }
 
+// OpName returns the operation name of R_DhcpV4SetOptionValue operation.
 func (o *xxx_SetOptionValueV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4SetOptionValue" }
 
 func (o *xxx_SetOptionValueV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -34055,6 +35434,17 @@ func (o *SetOptionValueV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetOptionValueV4Request build a response structure from the given request structure.
+func (o *SetOptionValueV4Request) MakeResponse() *SetOptionValueV4Response {
+	return &SetOptionValueV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4SetOptionValue operation.
+func (o *SetOptionValueV4Request) OpNum() int { return 101 }
+
+// OpName returns the operation name of R_DhcpV4SetOptionValue operation.
+func (o *SetOptionValueV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4SetOptionValue" }
+
 // SetOptionValueV4Response structure represents the R_DhcpV4SetOptionValue operation response
 type SetOptionValueV4Response struct {
 	// Return: The R_DhcpV4SetOptionValue return value.
@@ -34101,8 +35491,10 @@ type xxx_SetOptionValuesV4Operation struct {
 	Return          uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4SetOptionValues operation.
 func (o *xxx_SetOptionValuesV4Operation) OpNum() int { return 102 }
 
+// OpName returns the operation name of R_DhcpV4SetOptionValues operation.
 func (o *xxx_SetOptionValuesV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4SetOptionValues"
 }
@@ -34414,6 +35806,17 @@ func (o *SetOptionValuesV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetOptionValuesV4Request build a response structure from the given request structure.
+func (o *SetOptionValuesV4Request) MakeResponse() *SetOptionValuesV4Response {
+	return &SetOptionValuesV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4SetOptionValues operation.
+func (o *SetOptionValuesV4Request) OpNum() int { return 102 }
+
+// OpName returns the operation name of R_DhcpV4SetOptionValues operation.
+func (o *SetOptionValuesV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4SetOptionValues" }
+
 // SetOptionValuesV4Response structure represents the R_DhcpV4SetOptionValues operation response
 type SetOptionValuesV4Response struct {
 	// Return: The R_DhcpV4SetOptionValues return value.
@@ -34461,8 +35864,10 @@ type xxx_GetOptionValueV4Operation struct {
 	Return          uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4GetOptionValue operation.
 func (o *xxx_GetOptionValueV4Operation) OpNum() int { return 103 }
 
+// OpName returns the operation name of R_DhcpV4GetOptionValue operation.
 func (o *xxx_GetOptionValueV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4GetOptionValue" }
 
 func (o *xxx_GetOptionValueV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -34802,6 +36207,17 @@ func (o *GetOptionValueV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetOptionValueV4Request build a response structure from the given request structure.
+func (o *GetOptionValueV4Request) MakeResponse() *GetOptionValueV4Response {
+	return &GetOptionValueV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4GetOptionValue operation.
+func (o *GetOptionValueV4Request) OpNum() int { return 103 }
+
+// OpName returns the operation name of R_DhcpV4GetOptionValue operation.
+func (o *GetOptionValueV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4GetOptionValue" }
+
 // GetOptionValueV4Response structure represents the R_DhcpV4GetOptionValue operation response
 type GetOptionValueV4Response struct {
 	// OptionValue: A pointer of type LPDHCP_OPTION_VALUE (section 2.2.1.2.42) that contains
@@ -34854,8 +36270,10 @@ type xxx_RemoveOptionValueV4Operation struct {
 	Return          uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4RemoveOptionValue operation.
 func (o *xxx_RemoveOptionValueV4Operation) OpNum() int { return 104 }
 
+// OpName returns the operation name of R_DhcpV4RemoveOptionValue operation.
 func (o *xxx_RemoveOptionValueV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4RemoveOptionValue"
 }
@@ -35151,6 +36569,17 @@ func (o *RemoveOptionValueV4Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeRemoveOptionValueV4Request build a response structure from the given request structure.
+func (o *RemoveOptionValueV4Request) MakeResponse() *RemoveOptionValueV4Response {
+	return &RemoveOptionValueV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4RemoveOptionValue operation.
+func (o *RemoveOptionValueV4Request) OpNum() int { return 104 }
+
+// OpName returns the operation name of R_DhcpV4RemoveOptionValue operation.
+func (o *RemoveOptionValueV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4RemoveOptionValue" }
+
 // RemoveOptionValueV4Response structure represents the R_DhcpV4RemoveOptionValue operation response
 type RemoveOptionValueV4Response struct {
 	// Return: The R_DhcpV4RemoveOptionValue return value.
@@ -35195,8 +36624,10 @@ type xxx_GetAllOptionValuesV4Operation struct {
 	Return          uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4GetAllOptionValues operation.
 func (o *xxx_GetAllOptionValuesV4Operation) OpNum() int { return 105 }
 
+// OpName returns the operation name of R_DhcpV4GetAllOptionValues operation.
 func (o *xxx_GetAllOptionValuesV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4GetAllOptionValues"
 }
@@ -35434,6 +36865,19 @@ func (o *GetAllOptionValuesV4Request) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetAllOptionValuesV4Request build a response structure from the given request structure.
+func (o *GetAllOptionValuesV4Request) MakeResponse() *GetAllOptionValuesV4Response {
+	return &GetAllOptionValuesV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4GetAllOptionValues operation.
+func (o *GetAllOptionValuesV4Request) OpNum() int { return 105 }
+
+// OpName returns the operation name of R_DhcpV4GetAllOptionValues operation.
+func (o *GetAllOptionValuesV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4GetAllOptionValues"
+}
+
 // GetAllOptionValuesV4Response structure represents the R_DhcpV4GetAllOptionValues operation response
 type GetAllOptionValuesV4Response struct {
 	// Values: This is a pointer of type LPDHCP_ALL_OPTIONS_VALUES_PB (section 2.2.1.2.109)
@@ -35483,8 +36927,10 @@ type xxx_QueryPolicyEnforcementV4Operation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4QueryPolicyEnforcement operation.
 func (o *xxx_QueryPolicyEnforcementV4Operation) OpNum() int { return 106 }
 
+// OpName returns the operation name of R_DhcpV4QueryPolicyEnforcement operation.
 func (o *xxx_QueryPolicyEnforcementV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4QueryPolicyEnforcement"
 }
@@ -35676,6 +37122,19 @@ func (o *QueryPolicyEnforcementV4Request) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeQueryPolicyEnforcementV4Request build a response structure from the given request structure.
+func (o *QueryPolicyEnforcementV4Request) MakeResponse() *QueryPolicyEnforcementV4Response {
+	return &QueryPolicyEnforcementV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4QueryPolicyEnforcement operation.
+func (o *QueryPolicyEnforcementV4Request) OpNum() int { return 106 }
+
+// OpName returns the operation name of R_DhcpV4QueryPolicyEnforcement operation.
+func (o *QueryPolicyEnforcementV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4QueryPolicyEnforcement"
+}
+
 // QueryPolicyEnforcementV4Response structure represents the R_DhcpV4QueryPolicyEnforcement operation response
 type QueryPolicyEnforcementV4Response struct {
 	// Enabled: This out parameter is a pointer to a Boolean type and indicates the state
@@ -35725,8 +37184,10 @@ type xxx_SetPolicyEnforcementV4Operation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4SetPolicyEnforcement operation.
 func (o *xxx_SetPolicyEnforcementV4Operation) OpNum() int { return 107 }
 
+// OpName returns the operation name of R_DhcpV4SetPolicyEnforcement operation.
 func (o *xxx_SetPolicyEnforcementV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4SetPolicyEnforcement"
 }
@@ -35922,6 +37383,19 @@ func (o *SetPolicyEnforcementV4Request) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeSetPolicyEnforcementV4Request build a response structure from the given request structure.
+func (o *SetPolicyEnforcementV4Request) MakeResponse() *SetPolicyEnforcementV4Response {
+	return &SetPolicyEnforcementV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4SetPolicyEnforcement operation.
+func (o *SetPolicyEnforcementV4Request) OpNum() int { return 107 }
+
+// OpName returns the operation name of R_DhcpV4SetPolicyEnforcement operation.
+func (o *SetPolicyEnforcementV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4SetPolicyEnforcement"
+}
+
 // SetPolicyEnforcementV4Response structure represents the R_DhcpV4SetPolicyEnforcement operation response
 type SetPolicyEnforcementV4Response struct {
 	// Return: The R_DhcpV4SetPolicyEnforcement return value.
@@ -35964,8 +37438,10 @@ type xxx_CreatePolicyV4Operation struct {
 	Return          uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4CreatePolicy operation.
 func (o *xxx_CreatePolicyV4Operation) OpNum() int { return 108 }
 
+// OpName returns the operation name of R_DhcpV4CreatePolicy operation.
 func (o *xxx_CreatePolicyV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4CreatePolicy" }
 
 func (o *xxx_CreatePolicyV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -36124,6 +37600,17 @@ func (o *CreatePolicyV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreatePolicyV4Request build a response structure from the given request structure.
+func (o *CreatePolicyV4Request) MakeResponse() *CreatePolicyV4Response {
+	return &CreatePolicyV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4CreatePolicy operation.
+func (o *CreatePolicyV4Request) OpNum() int { return 108 }
+
+// OpName returns the operation name of R_DhcpV4CreatePolicy operation.
+func (o *CreatePolicyV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4CreatePolicy" }
+
 // CreatePolicyV4Response structure represents the R_DhcpV4CreatePolicy operation response
 type CreatePolicyV4Response struct {
 	// Return: The R_DhcpV4CreatePolicy return value.
@@ -36169,8 +37656,10 @@ type xxx_GetPolicyV4Operation struct {
 	Return          uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4GetPolicy operation.
 func (o *xxx_GetPolicyV4Operation) OpNum() int { return 109 }
 
+// OpName returns the operation name of R_DhcpV4GetPolicy operation.
 func (o *xxx_GetPolicyV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4GetPolicy" }
 
 func (o *xxx_GetPolicyV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -36427,6 +37916,17 @@ func (o *GetPolicyV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetPolicyV4Request build a response structure from the given request structure.
+func (o *GetPolicyV4Request) MakeResponse() *GetPolicyV4Response {
+	return &GetPolicyV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4GetPolicy operation.
+func (o *GetPolicyV4Request) OpNum() int { return 109 }
+
+// OpName returns the operation name of R_DhcpV4GetPolicy operation.
+func (o *GetPolicyV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4GetPolicy" }
+
 // GetPolicyV4Response structure represents the R_DhcpV4GetPolicy operation response
 type GetPolicyV4Response struct {
 	// Policy: This out parameter is a pointer of type LPDHCP_POLICY that contains the policy
@@ -36478,8 +37978,10 @@ type xxx_SetPolicyV4Operation struct {
 	Return          uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4SetPolicy operation.
 func (o *xxx_SetPolicyV4Operation) OpNum() int { return 110 }
 
+// OpName returns the operation name of R_DhcpV4SetPolicy operation.
 func (o *xxx_SetPolicyV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4SetPolicy" }
 
 func (o *xxx_SetPolicyV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -36740,6 +38242,17 @@ func (o *SetPolicyV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeSetPolicyV4Request build a response structure from the given request structure.
+func (o *SetPolicyV4Request) MakeResponse() *SetPolicyV4Response {
+	return &SetPolicyV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4SetPolicy operation.
+func (o *SetPolicyV4Request) OpNum() int { return 110 }
+
+// OpName returns the operation name of R_DhcpV4SetPolicy operation.
+func (o *SetPolicyV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4SetPolicy" }
+
 // SetPolicyV4Response structure represents the R_DhcpV4SetPolicy operation response
 type SetPolicyV4Response struct {
 	// Return: The R_DhcpV4SetPolicy return value.
@@ -36784,8 +38297,10 @@ type xxx_DeletePolicyV4Operation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4DeletePolicy operation.
 func (o *xxx_DeletePolicyV4Operation) OpNum() int { return 111 }
 
+// OpName returns the operation name of R_DhcpV4DeletePolicy operation.
 func (o *xxx_DeletePolicyV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4DeletePolicy" }
 
 func (o *xxx_DeletePolicyV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -36996,6 +38511,17 @@ func (o *DeletePolicyV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeDeletePolicyV4Request build a response structure from the given request structure.
+func (o *DeletePolicyV4Request) MakeResponse() *DeletePolicyV4Response {
+	return &DeletePolicyV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4DeletePolicy operation.
+func (o *DeletePolicyV4Request) OpNum() int { return 111 }
+
+// OpName returns the operation name of R_DhcpV4DeletePolicy operation.
+func (o *DeletePolicyV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4DeletePolicy" }
+
 // DeletePolicyV4Response structure represents the R_DhcpV4DeletePolicy operation response
 type DeletePolicyV4Response struct {
 	// Return: The R_DhcpV4DeletePolicy return value.
@@ -37044,8 +38570,10 @@ type xxx_EnumPoliciesV4Operation struct {
 	Return           uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4EnumPolicies operation.
 func (o *xxx_EnumPoliciesV4Operation) OpNum() int { return 112 }
 
+// OpName returns the operation name of R_DhcpV4EnumPolicies operation.
 func (o *xxx_EnumPoliciesV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4EnumPolicies" }
 
 func (o *xxx_EnumPoliciesV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -37316,6 +38844,17 @@ func (o *EnumPoliciesV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeEnumPoliciesV4Request build a response structure from the given request structure.
+func (o *EnumPoliciesV4Request) MakeResponse() *EnumPoliciesV4Response {
+	return &EnumPoliciesV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4EnumPolicies operation.
+func (o *EnumPoliciesV4Request) OpNum() int { return 112 }
+
+// OpName returns the operation name of R_DhcpV4EnumPolicies operation.
+func (o *EnumPoliciesV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4EnumPolicies" }
+
 // EnumPoliciesV4Response structure represents the R_DhcpV4EnumPolicies operation response
 type EnumPoliciesV4Response struct {
 	// ResumeHandle: This is a pointer of type DWORD (see DHCP_RESUME_HANDLE data type,
@@ -37384,8 +38923,10 @@ type xxx_AddPolicyRangeV4Operation struct {
 	Return          uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4AddPolicyRange operation.
 func (o *xxx_AddPolicyRangeV4Operation) OpNum() int { return 113 }
 
+// OpName returns the operation name of R_DhcpV4AddPolicyRange operation.
 func (o *xxx_AddPolicyRangeV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4AddPolicyRange" }
 
 func (o *xxx_AddPolicyRangeV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -37598,6 +39139,17 @@ func (o *AddPolicyRangeV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeAddPolicyRangeV4Request build a response structure from the given request structure.
+func (o *AddPolicyRangeV4Request) MakeResponse() *AddPolicyRangeV4Response {
+	return &AddPolicyRangeV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4AddPolicyRange operation.
+func (o *AddPolicyRangeV4Request) OpNum() int { return 113 }
+
+// OpName returns the operation name of R_DhcpV4AddPolicyRange operation.
+func (o *AddPolicyRangeV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4AddPolicyRange" }
+
 // AddPolicyRangeV4Response structure represents the R_DhcpV4AddPolicyRange operation response
 type AddPolicyRangeV4Response struct {
 	// Return: The R_DhcpV4AddPolicyRange return value.
@@ -37642,8 +39194,10 @@ type xxx_RemovePolicyRangeV4Operation struct {
 	Return          uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4RemovePolicyRange operation.
 func (o *xxx_RemovePolicyRangeV4Operation) OpNum() int { return 114 }
 
+// OpName returns the operation name of R_DhcpV4RemovePolicyRange operation.
 func (o *xxx_RemovePolicyRangeV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4RemovePolicyRange"
 }
@@ -37858,6 +39412,17 @@ func (o *RemovePolicyRangeV4Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeRemovePolicyRangeV4Request build a response structure from the given request structure.
+func (o *RemovePolicyRangeV4Request) MakeResponse() *RemovePolicyRangeV4Response {
+	return &RemovePolicyRangeV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4RemovePolicyRange operation.
+func (o *RemovePolicyRangeV4Request) OpNum() int { return 114 }
+
+// OpName returns the operation name of R_DhcpV4RemovePolicyRange operation.
+func (o *RemovePolicyRangeV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4RemovePolicyRange" }
+
 // RemovePolicyRangeV4Response structure represents the R_DhcpV4RemovePolicyRange operation response
 type RemovePolicyRangeV4Response struct {
 	// Return: The R_DhcpV4RemovePolicyRange return value.
@@ -37905,8 +39470,10 @@ type xxx_EnumSubnetClientsV4Operation struct {
 	Return           uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4EnumSubnetClients operation.
 func (o *xxx_EnumSubnetClientsV4Operation) OpNum() int { return 115 }
 
+// OpName returns the operation name of R_DhcpV4EnumSubnetClients operation.
 func (o *xxx_EnumSubnetClientsV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4EnumSubnetClients"
 }
@@ -38174,6 +39741,17 @@ func (o *EnumSubnetClientsV4Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeEnumSubnetClientsV4Request build a response structure from the given request structure.
+func (o *EnumSubnetClientsV4Request) MakeResponse() *EnumSubnetClientsV4Response {
+	return &EnumSubnetClientsV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4EnumSubnetClients operation.
+func (o *EnumSubnetClientsV4Request) OpNum() int { return 115 }
+
+// OpName returns the operation name of R_DhcpV4EnumSubnetClients operation.
+func (o *EnumSubnetClientsV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4EnumSubnetClients" }
+
 // EnumSubnetClientsV4Response structure represents the R_DhcpV4EnumSubnetClients operation response
 type EnumSubnetClientsV4Response struct {
 	// ResumeHandle: A DHCP_RESUME_HANDLE structure that identifies the enumeration operation.
@@ -38244,8 +39822,10 @@ type xxx_SetStatelessStoreParamsV6Operation struct {
 	Return          uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV6SetStatelessStoreParams operation.
 func (o *xxx_SetStatelessStoreParamsV6Operation) OpNum() int { return 116 }
 
+// OpName returns the operation name of R_DhcpV6SetStatelessStoreParams operation.
 func (o *xxx_SetStatelessStoreParamsV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV6SetStatelessStoreParams"
 }
@@ -38482,6 +40062,19 @@ func (o *SetStatelessStoreParamsV6Request) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeSetStatelessStoreParamsV6Request build a response structure from the given request structure.
+func (o *SetStatelessStoreParamsV6Request) MakeResponse() *SetStatelessStoreParamsV6Response {
+	return &SetStatelessStoreParamsV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV6SetStatelessStoreParams operation.
+func (o *SetStatelessStoreParamsV6Request) OpNum() int { return 116 }
+
+// OpName returns the operation name of R_DhcpV6SetStatelessStoreParams operation.
+func (o *SetStatelessStoreParamsV6Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV6SetStatelessStoreParams"
+}
+
 // SetStatelessStoreParamsV6Response structure represents the R_DhcpV6SetStatelessStoreParams operation response
 type SetStatelessStoreParamsV6Response struct {
 	// Return: The R_DhcpV6SetStatelessStoreParams return value.
@@ -38526,8 +40119,10 @@ type xxx_GetStatelessStoreParamsV6Operation struct {
 	Return          uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV6GetStatelessStoreParams operation.
 func (o *xxx_GetStatelessStoreParamsV6Operation) OpNum() int { return 117 }
 
+// OpName returns the operation name of R_DhcpV6GetStatelessStoreParams operation.
 func (o *xxx_GetStatelessStoreParamsV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV6GetStatelessStoreParams"
 }
@@ -38730,6 +40325,19 @@ func (o *GetStatelessStoreParamsV6Request) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeGetStatelessStoreParamsV6Request build a response structure from the given request structure.
+func (o *GetStatelessStoreParamsV6Request) MakeResponse() *GetStatelessStoreParamsV6Response {
+	return &GetStatelessStoreParamsV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV6GetStatelessStoreParams operation.
+func (o *GetStatelessStoreParamsV6Request) OpNum() int { return 117 }
+
+// OpName returns the operation name of R_DhcpV6GetStatelessStoreParams operation.
+func (o *GetStatelessStoreParamsV6Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV6GetStatelessStoreParams"
+}
+
 // GetStatelessStoreParamsV6Response structure represents the R_DhcpV6GetStatelessStoreParams operation response
 type GetStatelessStoreParamsV6Response struct {
 	// Params: A pointer of type LPDHCPV6_STATELESS_PARAMS into which this method will place
@@ -38777,8 +40385,10 @@ type xxx_GetStatelessStatisticsV6Operation struct {
 	Return          uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV6GetStatelessStatistics operation.
 func (o *xxx_GetStatelessStatisticsV6Operation) OpNum() int { return 118 }
 
+// OpName returns the operation name of R_DhcpV6GetStatelessStatistics operation.
 func (o *xxx_GetStatelessStatisticsV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV6GetStatelessStatistics"
 }
@@ -38953,6 +40563,19 @@ func (o *GetStatelessStatisticsV6Request) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeGetStatelessStatisticsV6Request build a response structure from the given request structure.
+func (o *GetStatelessStatisticsV6Request) MakeResponse() *GetStatelessStatisticsV6Response {
+	return &GetStatelessStatisticsV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV6GetStatelessStatistics operation.
+func (o *GetStatelessStatisticsV6Request) OpNum() int { return 118 }
+
+// OpName returns the operation name of R_DhcpV6GetStatelessStatistics operation.
+func (o *GetStatelessStatisticsV6Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV6GetStatelessStatistics"
+}
+
 // GetStatelessStatisticsV6Response structure represents the R_DhcpV6GetStatelessStatistics operation response
 type GetStatelessStatisticsV6Response struct {
 	// StatelessStats: A pointer of type LPDHCPV6_STATELESS_STATS in which this method will
@@ -39005,8 +40628,10 @@ type xxx_EnumSubnetReservationsV4Operation struct {
 	Return           uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4EnumSubnetReservations operation.
 func (o *xxx_EnumSubnetReservationsV4Operation) OpNum() int { return 119 }
 
+// OpName returns the operation name of R_DhcpV4EnumSubnetReservations operation.
 func (o *xxx_EnumSubnetReservationsV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4EnumSubnetReservations"
 }
@@ -39253,6 +40878,19 @@ func (o *EnumSubnetReservationsV4Request) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeEnumSubnetReservationsV4Request build a response structure from the given request structure.
+func (o *EnumSubnetReservationsV4Request) MakeResponse() *EnumSubnetReservationsV4Response {
+	return &EnumSubnetReservationsV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4EnumSubnetReservations operation.
+func (o *EnumSubnetReservationsV4Request) OpNum() int { return 119 }
+
+// OpName returns the operation name of R_DhcpV4EnumSubnetReservations operation.
+func (o *EnumSubnetReservationsV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4EnumSubnetReservations"
+}
+
 // EnumSubnetReservationsV4Response structure represents the R_DhcpV4EnumSubnetReservations operation response
 type EnumSubnetReservationsV4Response struct {
 	// ResumeHandle: This is a pointer of DHCP_RESUME_HANDLE data type (section 2.2.1.2.6)
@@ -39324,8 +40962,10 @@ type xxx_GetFreeIPAddressV4Operation struct {
 	Return          uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4GetFreeIPAddress operation.
 func (o *xxx_GetFreeIPAddressV4Operation) OpNum() int { return 120 }
 
+// OpName returns the operation name of R_DhcpV4GetFreeIPAddress operation.
 func (o *xxx_GetFreeIPAddressV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4GetFreeIPAddress"
 }
@@ -39569,6 +41209,17 @@ func (o *GetFreeIPAddressV4Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetFreeIPAddressV4Request build a response structure from the given request structure.
+func (o *GetFreeIPAddressV4Request) MakeResponse() *GetFreeIPAddressV4Response {
+	return &GetFreeIPAddressV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4GetFreeIPAddress operation.
+func (o *GetFreeIPAddressV4Request) OpNum() int { return 120 }
+
+// OpName returns the operation name of R_DhcpV4GetFreeIPAddress operation.
+func (o *GetFreeIPAddressV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4GetFreeIPAddress" }
+
 // GetFreeIPAddressV4Response structure represents the R_DhcpV4GetFreeIPAddress operation response
 type GetFreeIPAddressV4Response struct {
 	IPAddrList *dhcpm.IPArray `idl:"name:IPAddrList" json:"ip_addr_list"`
@@ -39618,8 +41269,10 @@ type xxx_GetFreeIPAddressV6Operation struct {
 	Return          uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV6GetFreeIPAddress operation.
 func (o *xxx_GetFreeIPAddressV6Operation) OpNum() int { return 121 }
 
+// OpName returns the operation name of R_DhcpV6GetFreeIPAddress operation.
 func (o *xxx_GetFreeIPAddressV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV6GetFreeIPAddress"
 }
@@ -39890,6 +41543,17 @@ func (o *GetFreeIPAddressV6Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetFreeIPAddressV6Request build a response structure from the given request structure.
+func (o *GetFreeIPAddressV6Request) MakeResponse() *GetFreeIPAddressV6Response {
+	return &GetFreeIPAddressV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV6GetFreeIPAddress operation.
+func (o *GetFreeIPAddressV6Request) OpNum() int { return 121 }
+
+// OpName returns the operation name of R_DhcpV6GetFreeIPAddress operation.
+func (o *GetFreeIPAddressV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV6GetFreeIPAddress" }
+
 // GetFreeIPAddressV6Response structure represents the R_DhcpV6GetFreeIPAddress operation response
 type GetFreeIPAddressV6Response struct {
 	IPAddrList *dhcpm.IPArrayV6 `idl:"name:IPAddrList" json:"ip_addr_list"`
@@ -39935,8 +41599,10 @@ type xxx_CreateClientInfoV4Operation struct {
 	Return          uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4CreateClientInfo operation.
 func (o *xxx_CreateClientInfoV4Operation) OpNum() int { return 122 }
 
+// OpName returns the operation name of R_DhcpV4CreateClientInfo operation.
 func (o *xxx_CreateClientInfoV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4CreateClientInfo"
 }
@@ -40103,6 +41769,17 @@ func (o *CreateClientInfoV4Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeCreateClientInfoV4Request build a response structure from the given request structure.
+func (o *CreateClientInfoV4Request) MakeResponse() *CreateClientInfoV4Response {
+	return &CreateClientInfoV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4CreateClientInfo operation.
+func (o *CreateClientInfoV4Request) OpNum() int { return 122 }
+
+// OpName returns the operation name of R_DhcpV4CreateClientInfo operation.
+func (o *CreateClientInfoV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4CreateClientInfo" }
+
 // CreateClientInfoV4Response structure represents the R_DhcpV4CreateClientInfo operation response
 type CreateClientInfoV4Response struct {
 	// Return: The R_DhcpV4CreateClientInfo return value.
@@ -40146,8 +41823,10 @@ type xxx_GetClientInfoV4Operation struct {
 	Return          uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4GetClientInfo operation.
 func (o *xxx_GetClientInfoV4Operation) OpNum() int { return 123 }
 
+// OpName returns the operation name of R_DhcpV4GetClientInfo operation.
 func (o *xxx_GetClientInfoV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4GetClientInfo" }
 
 func (o *xxx_GetClientInfoV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -40355,6 +42034,17 @@ func (o *GetClientInfoV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetClientInfoV4Request build a response structure from the given request structure.
+func (o *GetClientInfoV4Request) MakeResponse() *GetClientInfoV4Response {
+	return &GetClientInfoV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4GetClientInfo operation.
+func (o *GetClientInfoV4Request) OpNum() int { return 123 }
+
+// OpName returns the operation name of R_DhcpV4GetClientInfo operation.
+func (o *GetClientInfoV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4GetClientInfo" }
+
 // GetClientInfoV4Response structure represents the R_DhcpV4GetClientInfo operation response
 type GetClientInfoV4Response struct {
 	// ClientInfo: A pointer of type LPDHCP_CLIENT_INFO_PB that points to the location where
@@ -40404,8 +42094,10 @@ type xxx_CreateClientInfoV6Operation struct {
 	Return          uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV6CreateClientInfo operation.
 func (o *xxx_CreateClientInfoV6Operation) OpNum() int { return 124 }
 
+// OpName returns the operation name of R_DhcpV6CreateClientInfo operation.
 func (o *xxx_CreateClientInfoV6Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV6CreateClientInfo"
 }
@@ -40571,6 +42263,17 @@ func (o *CreateClientInfoV6Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeCreateClientInfoV6Request build a response structure from the given request structure.
+func (o *CreateClientInfoV6Request) MakeResponse() *CreateClientInfoV6Response {
+	return &CreateClientInfoV6Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV6CreateClientInfo operation.
+func (o *CreateClientInfoV6Request) OpNum() int { return 124 }
+
+// OpName returns the operation name of R_DhcpV6CreateClientInfo operation.
+func (o *CreateClientInfoV6Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV6CreateClientInfo" }
+
 // CreateClientInfoV6Response structure represents the R_DhcpV6CreateClientInfo operation response
 type CreateClientInfoV6Response struct {
 	// Return: The R_DhcpV6CreateClientInfo return value.
@@ -40614,8 +42317,10 @@ type xxx_FailoverGetAddressStatusV4Operation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4FailoverGetAddressStatus operation.
 func (o *xxx_FailoverGetAddressStatusV4Operation) OpNum() int { return 125 }
 
+// OpName returns the operation name of R_DhcpV4FailoverGetAddressStatus operation.
 func (o *xxx_FailoverGetAddressStatusV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4FailoverGetAddressStatus"
 }
@@ -40773,6 +42478,19 @@ func (o *FailoverGetAddressStatusV4Request) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeFailoverGetAddressStatusV4Request build a response structure from the given request structure.
+func (o *FailoverGetAddressStatusV4Request) MakeResponse() *FailoverGetAddressStatusV4Response {
+	return &FailoverGetAddressStatusV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4FailoverGetAddressStatus operation.
+func (o *FailoverGetAddressStatusV4Request) OpNum() int { return 125 }
+
+// OpName returns the operation name of R_DhcpV4FailoverGetAddressStatus operation.
+func (o *FailoverGetAddressStatusV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4FailoverGetAddressStatus"
+}
+
 // FailoverGetAddressStatusV4Response structure represents the R_DhcpV4FailoverGetAddressStatus operation response
 type FailoverGetAddressStatusV4Response struct {
 	// pStatus: The out parameter, which represents the status of the address in the failover
@@ -40820,8 +42538,10 @@ type xxx_CreatePolicyExV4Operation struct {
 	Return          uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4CreatePolicyEx operation.
 func (o *xxx_CreatePolicyExV4Operation) OpNum() int { return 126 }
 
+// OpName returns the operation name of R_DhcpV4CreatePolicyEx operation.
 func (o *xxx_CreatePolicyExV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4CreatePolicyEx" }
 
 func (o *xxx_CreatePolicyExV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -40981,6 +42701,17 @@ func (o *CreatePolicyExV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeCreatePolicyExV4Request build a response structure from the given request structure.
+func (o *CreatePolicyExV4Request) MakeResponse() *CreatePolicyExV4Response {
+	return &CreatePolicyExV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4CreatePolicyEx operation.
+func (o *CreatePolicyExV4Request) OpNum() int { return 126 }
+
+// OpName returns the operation name of R_DhcpV4CreatePolicyEx operation.
+func (o *CreatePolicyExV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4CreatePolicyEx" }
+
 // CreatePolicyExV4Response structure represents the R_DhcpV4CreatePolicyEx operation response
 type CreatePolicyExV4Response struct {
 	// Return: The R_DhcpV4CreatePolicyEx return value.
@@ -41026,8 +42757,10 @@ type xxx_GetPolicyExV4Operation struct {
 	Return          uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4GetPolicyEx operation.
 func (o *xxx_GetPolicyExV4Operation) OpNum() int { return 127 }
 
+// OpName returns the operation name of R_DhcpV4GetPolicyEx operation.
 func (o *xxx_GetPolicyExV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4GetPolicyEx" }
 
 func (o *xxx_GetPolicyExV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -41281,6 +43014,17 @@ func (o *GetPolicyExV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetPolicyExV4Request build a response structure from the given request structure.
+func (o *GetPolicyExV4Request) MakeResponse() *GetPolicyExV4Response {
+	return &GetPolicyExV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4GetPolicyEx operation.
+func (o *GetPolicyExV4Request) OpNum() int { return 127 }
+
+// OpName returns the operation name of R_DhcpV4GetPolicyEx operation.
+func (o *GetPolicyExV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4GetPolicyEx" }
+
 // GetPolicyExV4Response structure represents the R_DhcpV4GetPolicyEx operation response
 type GetPolicyExV4Response struct {
 	// Policy: This out parameter is a pointer to a DHCP_POLICY_EX structure and contains
@@ -41333,8 +43077,10 @@ type xxx_SetPolicyExV4Operation struct {
 	Return          uint32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4SetPolicyEx operation.
 func (o *xxx_SetPolicyExV4Operation) OpNum() int { return 128 }
 
+// OpName returns the operation name of R_DhcpV4SetPolicyEx operation.
 func (o *xxx_SetPolicyExV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4SetPolicyEx" }
 
 func (o *xxx_SetPolicyExV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -41590,6 +43336,17 @@ func (o *SetPolicyExV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSetPolicyExV4Request build a response structure from the given request structure.
+func (o *SetPolicyExV4Request) MakeResponse() *SetPolicyExV4Response {
+	return &SetPolicyExV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4SetPolicyEx operation.
+func (o *SetPolicyExV4Request) OpNum() int { return 128 }
+
+// OpName returns the operation name of R_DhcpV4SetPolicyEx operation.
+func (o *SetPolicyExV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4SetPolicyEx" }
+
 // SetPolicyExV4Response structure represents the R_DhcpV4SetPolicyEx operation response
 type SetPolicyExV4Response struct {
 	// Return: The R_DhcpV4SetPolicyEx return value.
@@ -41638,8 +43395,10 @@ type xxx_EnumPoliciesExV4Operation struct {
 	Return           uint32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4EnumPoliciesEx operation.
 func (o *xxx_EnumPoliciesExV4Operation) OpNum() int { return 129 }
 
+// OpName returns the operation name of R_DhcpV4EnumPoliciesEx operation.
 func (o *xxx_EnumPoliciesExV4Operation) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4EnumPoliciesEx" }
 
 func (o *xxx_EnumPoliciesExV4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -41901,6 +43660,17 @@ func (o *EnumPoliciesExV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeEnumPoliciesExV4Request build a response structure from the given request structure.
+func (o *EnumPoliciesExV4Request) MakeResponse() *EnumPoliciesExV4Response {
+	return &EnumPoliciesExV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4EnumPoliciesEx operation.
+func (o *EnumPoliciesExV4Request) OpNum() int { return 129 }
+
+// OpName returns the operation name of R_DhcpV4EnumPoliciesEx operation.
+func (o *EnumPoliciesExV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4EnumPoliciesEx" }
+
 // EnumPoliciesExV4Response structure represents the R_DhcpV4EnumPoliciesEx operation response
 type EnumPoliciesExV4Response struct {
 	// ResumeHandle: As specified in R_DhcpV4EnumPolicies (Opnum 112).
@@ -41966,8 +43736,10 @@ type xxx_EnumSubnetClientsExV4Operation struct {
 	Return           uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4EnumSubnetClientsEx operation.
 func (o *xxx_EnumSubnetClientsExV4Operation) OpNum() int { return 130 }
 
+// OpName returns the operation name of R_DhcpV4EnumSubnetClientsEx operation.
 func (o *xxx_EnumSubnetClientsExV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4EnumSubnetClientsEx"
 }
@@ -42225,6 +43997,19 @@ func (o *EnumSubnetClientsExV4Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeEnumSubnetClientsExV4Request build a response structure from the given request structure.
+func (o *EnumSubnetClientsExV4Request) MakeResponse() *EnumSubnetClientsExV4Response {
+	return &EnumSubnetClientsExV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4EnumSubnetClientsEx operation.
+func (o *EnumSubnetClientsExV4Request) OpNum() int { return 130 }
+
+// OpName returns the operation name of R_DhcpV4EnumSubnetClientsEx operation.
+func (o *EnumSubnetClientsExV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4EnumSubnetClientsEx"
+}
+
 // EnumSubnetClientsExV4Response structure represents the R_DhcpV4EnumSubnetClientsEx operation response
 type EnumSubnetClientsExV4Response struct {
 	// ResumeHandle: As specified in R_DhcpV4EnumSubnetClients (Opnum 115).
@@ -42286,8 +44071,10 @@ type xxx_CreateClientInfoExV4Operation struct {
 	Return          uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4CreateClientInfoEx operation.
 func (o *xxx_CreateClientInfoExV4Operation) OpNum() int { return 131 }
 
+// OpName returns the operation name of R_DhcpV4CreateClientInfoEx operation.
 func (o *xxx_CreateClientInfoExV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4CreateClientInfoEx"
 }
@@ -42461,6 +44248,19 @@ func (o *CreateClientInfoExV4Request) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeCreateClientInfoExV4Request build a response structure from the given request structure.
+func (o *CreateClientInfoExV4Request) MakeResponse() *CreateClientInfoExV4Response {
+	return &CreateClientInfoExV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4CreateClientInfoEx operation.
+func (o *CreateClientInfoExV4Request) OpNum() int { return 131 }
+
+// OpName returns the operation name of R_DhcpV4CreateClientInfoEx operation.
+func (o *CreateClientInfoExV4Request) OpName() string {
+	return "/dhcpsrv2/v1/R_DhcpV4CreateClientInfoEx"
+}
+
 // CreateClientInfoExV4Response structure represents the R_DhcpV4CreateClientInfoEx operation response
 type CreateClientInfoExV4Response struct {
 	// Return: The R_DhcpV4CreateClientInfoEx return value.
@@ -42504,8 +44304,10 @@ type xxx_GetClientInfoExV4Operation struct {
 	Return          uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_DhcpV4GetClientInfoEx operation.
 func (o *xxx_GetClientInfoExV4Operation) OpNum() int { return 132 }
 
+// OpName returns the operation name of R_DhcpV4GetClientInfoEx operation.
 func (o *xxx_GetClientInfoExV4Operation) OpName() string {
 	return "/dhcpsrv2/v1/R_DhcpV4GetClientInfoEx"
 }
@@ -42710,6 +44512,17 @@ func (o *GetClientInfoExV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetClientInfoExV4Request build a response structure from the given request structure.
+func (o *GetClientInfoExV4Request) MakeResponse() *GetClientInfoExV4Response {
+	return &GetClientInfoExV4Response{}
+}
+
+// OpNum returns the operation number of R_DhcpV4GetClientInfoEx operation.
+func (o *GetClientInfoExV4Request) OpNum() int { return 132 }
+
+// OpName returns the operation name of R_DhcpV4GetClientInfoEx operation.
+func (o *GetClientInfoExV4Request) OpName() string { return "/dhcpsrv2/v1/R_DhcpV4GetClientInfoEx" }
 
 // GetClientInfoExV4Response structure represents the R_DhcpV4GetClientInfoEx operation response
 type GetClientInfoExV4Response struct {

@@ -193,8 +193,10 @@ type xxx_GetIgnoreDownloadPriorityOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IgnoreDownloadPriority operation.
 func (o *xxx_GetIgnoreDownloadPriorityOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of IgnoreDownloadPriority operation.
 func (o *xxx_GetIgnoreDownloadPriorityOperation) OpName() string {
 	return "/IUpdateSearcher2/v0/IgnoreDownloadPriority"
 }
@@ -352,6 +354,19 @@ func (o *GetIgnoreDownloadPriorityRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeGetIgnoreDownloadPriorityRequest build a response structure from the given request structure.
+func (o *GetIgnoreDownloadPriorityRequest) MakeResponse() *GetIgnoreDownloadPriorityResponse {
+	return &GetIgnoreDownloadPriorityResponse{}
+}
+
+// OpNum returns the operation number of IgnoreDownloadPriority operation.
+func (o *GetIgnoreDownloadPriorityRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of IgnoreDownloadPriority operation.
+func (o *GetIgnoreDownloadPriorityRequest) OpName() string {
+	return "/IUpdateSearcher2/v0/IgnoreDownloadPriority"
+}
+
 // GetIgnoreDownloadPriorityResponse structure represents the IgnoreDownloadPriority operation response
 type GetIgnoreDownloadPriorityResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -404,8 +419,10 @@ type xxx_SetIgnoreDownloadPriorityOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IgnoreDownloadPriority operation.
 func (o *xxx_SetIgnoreDownloadPriorityOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of IgnoreDownloadPriority operation.
 func (o *xxx_SetIgnoreDownloadPriorityOperation) OpName() string {
 	return "/IUpdateSearcher2/v0/IgnoreDownloadPriority"
 }
@@ -566,6 +583,19 @@ func (o *SetIgnoreDownloadPriorityRequest) UnmarshalNDR(ctx context.Context, r n
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetIgnoreDownloadPriorityRequest build a response structure from the given request structure.
+func (o *SetIgnoreDownloadPriorityRequest) MakeResponse() *SetIgnoreDownloadPriorityResponse {
+	return &SetIgnoreDownloadPriorityResponse{}
+}
+
+// OpNum returns the operation number of IgnoreDownloadPriority operation.
+func (o *SetIgnoreDownloadPriorityRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of IgnoreDownloadPriority operation.
+func (o *SetIgnoreDownloadPriorityRequest) OpName() string {
+	return "/IUpdateSearcher2/v0/IgnoreDownloadPriority"
 }
 
 // SetIgnoreDownloadPriorityResponse structure represents the IgnoreDownloadPriority operation response

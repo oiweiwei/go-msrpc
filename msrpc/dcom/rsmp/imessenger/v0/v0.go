@@ -165,8 +165,10 @@ type xxx_SendMessageOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SendMessage operation.
 func (o *xxx_SendMessageOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SendMessage operation.
 func (o *xxx_SendMessageOperation) OpName() string { return "/IMessenger/v0/SendMessage" }
 
 func (o *xxx_SendMessageOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -372,6 +374,17 @@ func (o *SendMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeSendMessageRequest build a response structure from the given request structure.
+func (o *SendMessageRequest) MakeResponse() *SendMessageResponse {
+	return &SendMessageResponse{}
+}
+
+// OpNum returns the operation number of SendMessage operation.
+func (o *SendMessageRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SendMessage operation.
+func (o *SendMessageRequest) OpName() string { return "/IMessenger/v0/SendMessage" }
+
 // SendMessageResponse structure represents the SendMessage operation response
 type SendMessageResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -419,8 +432,10 @@ type xxx_RecallMessageOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RecallMessage operation.
 func (o *xxx_RecallMessageOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RecallMessage operation.
 func (o *xxx_RecallMessageOperation) OpName() string { return "/IMessenger/v0/RecallMessage" }
 
 func (o *xxx_RecallMessageOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -617,6 +632,17 @@ func (o *RecallMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeRecallMessageRequest build a response structure from the given request structure.
+func (o *RecallMessageRequest) MakeResponse() *RecallMessageResponse {
+	return &RecallMessageResponse{}
+}
+
+// OpNum returns the operation number of RecallMessage operation.
+func (o *RecallMessageRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RecallMessage operation.
+func (o *RecallMessageRequest) OpName() string { return "/IMessenger/v0/RecallMessage" }
 
 // RecallMessageResponse structure represents the RecallMessage operation response
 type RecallMessageResponse struct {

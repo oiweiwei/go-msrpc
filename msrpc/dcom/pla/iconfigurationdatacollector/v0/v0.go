@@ -531,8 +531,10 @@ type xxx_GetFileMaxCountOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FileMaxCount operation.
 func (o *xxx_GetFileMaxCountOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of FileMaxCount operation.
 func (o *xxx_GetFileMaxCountOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/FileMaxCount"
 }
@@ -690,6 +692,19 @@ func (o *GetFileMaxCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetFileMaxCountRequest build a response structure from the given request structure.
+func (o *GetFileMaxCountRequest) MakeResponse() *GetFileMaxCountResponse {
+	return &GetFileMaxCountResponse{}
+}
+
+// OpNum returns the operation number of FileMaxCount operation.
+func (o *GetFileMaxCountRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of FileMaxCount operation.
+func (o *GetFileMaxCountRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/FileMaxCount"
+}
+
 // GetFileMaxCountResponse structure represents the FileMaxCount operation response
 type GetFileMaxCountResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -740,8 +755,10 @@ type xxx_SetFileMaxCountOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FileMaxCount operation.
 func (o *xxx_SetFileMaxCountOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of FileMaxCount operation.
 func (o *xxx_SetFileMaxCountOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/FileMaxCount"
 }
@@ -902,6 +919,19 @@ func (o *SetFileMaxCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetFileMaxCountRequest build a response structure from the given request structure.
+func (o *SetFileMaxCountRequest) MakeResponse() *SetFileMaxCountResponse {
+	return &SetFileMaxCountResponse{}
+}
+
+// OpNum returns the operation number of FileMaxCount operation.
+func (o *SetFileMaxCountRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of FileMaxCount operation.
+func (o *SetFileMaxCountRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/FileMaxCount"
+}
+
 // SetFileMaxCountResponse structure represents the FileMaxCount operation response
 type SetFileMaxCountResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -949,8 +979,10 @@ type xxx_GetFileMaxRecursiveDepthOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FileMaxRecursiveDepth operation.
 func (o *xxx_GetFileMaxRecursiveDepthOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of FileMaxRecursiveDepth operation.
 func (o *xxx_GetFileMaxRecursiveDepthOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/FileMaxRecursiveDepth"
 }
@@ -1108,6 +1140,19 @@ func (o *GetFileMaxRecursiveDepthRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeGetFileMaxRecursiveDepthRequest build a response structure from the given request structure.
+func (o *GetFileMaxRecursiveDepthRequest) MakeResponse() *GetFileMaxRecursiveDepthResponse {
+	return &GetFileMaxRecursiveDepthResponse{}
+}
+
+// OpNum returns the operation number of FileMaxRecursiveDepth operation.
+func (o *GetFileMaxRecursiveDepthRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of FileMaxRecursiveDepth operation.
+func (o *GetFileMaxRecursiveDepthRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/FileMaxRecursiveDepth"
+}
+
 // GetFileMaxRecursiveDepthResponse structure represents the FileMaxRecursiveDepth operation response
 type GetFileMaxRecursiveDepthResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1158,8 +1203,10 @@ type xxx_SetFileMaxRecursiveDepthOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FileMaxRecursiveDepth operation.
 func (o *xxx_SetFileMaxRecursiveDepthOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of FileMaxRecursiveDepth operation.
 func (o *xxx_SetFileMaxRecursiveDepthOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/FileMaxRecursiveDepth"
 }
@@ -1320,6 +1367,19 @@ func (o *SetFileMaxRecursiveDepthRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeSetFileMaxRecursiveDepthRequest build a response structure from the given request structure.
+func (o *SetFileMaxRecursiveDepthRequest) MakeResponse() *SetFileMaxRecursiveDepthResponse {
+	return &SetFileMaxRecursiveDepthResponse{}
+}
+
+// OpNum returns the operation number of FileMaxRecursiveDepth operation.
+func (o *SetFileMaxRecursiveDepthRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of FileMaxRecursiveDepth operation.
+func (o *SetFileMaxRecursiveDepthRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/FileMaxRecursiveDepth"
+}
+
 // SetFileMaxRecursiveDepthResponse structure represents the FileMaxRecursiveDepth operation response
 type SetFileMaxRecursiveDepthResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1367,8 +1427,10 @@ type xxx_GetFileMaxTotalSizeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FileMaxTotalSize operation.
 func (o *xxx_GetFileMaxTotalSizeOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of FileMaxTotalSize operation.
 func (o *xxx_GetFileMaxTotalSizeOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/FileMaxTotalSize"
 }
@@ -1526,6 +1588,19 @@ func (o *GetFileMaxTotalSizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetFileMaxTotalSizeRequest build a response structure from the given request structure.
+func (o *GetFileMaxTotalSizeRequest) MakeResponse() *GetFileMaxTotalSizeResponse {
+	return &GetFileMaxTotalSizeResponse{}
+}
+
+// OpNum returns the operation number of FileMaxTotalSize operation.
+func (o *GetFileMaxTotalSizeRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of FileMaxTotalSize operation.
+func (o *GetFileMaxTotalSizeRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/FileMaxTotalSize"
+}
+
 // GetFileMaxTotalSizeResponse structure represents the FileMaxTotalSize operation response
 type GetFileMaxTotalSizeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1576,8 +1651,10 @@ type xxx_SetFileMaxTotalSizeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FileMaxTotalSize operation.
 func (o *xxx_SetFileMaxTotalSizeOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of FileMaxTotalSize operation.
 func (o *xxx_SetFileMaxTotalSizeOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/FileMaxTotalSize"
 }
@@ -1738,6 +1815,19 @@ func (o *SetFileMaxTotalSizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeSetFileMaxTotalSizeRequest build a response structure from the given request structure.
+func (o *SetFileMaxTotalSizeRequest) MakeResponse() *SetFileMaxTotalSizeResponse {
+	return &SetFileMaxTotalSizeResponse{}
+}
+
+// OpNum returns the operation number of FileMaxTotalSize operation.
+func (o *SetFileMaxTotalSizeRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of FileMaxTotalSize operation.
+func (o *SetFileMaxTotalSizeRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/FileMaxTotalSize"
+}
+
 // SetFileMaxTotalSizeResponse structure represents the FileMaxTotalSize operation response
 type SetFileMaxTotalSizeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1785,8 +1875,10 @@ type xxx_GetFilesOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Files operation.
 func (o *xxx_GetFilesOperation) OpNum() int { return 38 }
 
+// OpName returns the operation name of Files operation.
 func (o *xxx_GetFilesOperation) OpName() string { return "/IConfigurationDataCollector/v0/Files" }
 
 func (o *xxx_GetFilesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1976,6 +2068,17 @@ func (o *GetFilesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeGetFilesRequest build a response structure from the given request structure.
+func (o *GetFilesRequest) MakeResponse() *GetFilesResponse {
+	return &GetFilesResponse{}
+}
+
+// OpNum returns the operation number of Files operation.
+func (o *GetFilesRequest) OpNum() int { return 38 }
+
+// OpName returns the operation name of Files operation.
+func (o *GetFilesRequest) OpName() string { return "/IConfigurationDataCollector/v0/Files" }
+
 // GetFilesResponse structure represents the Files operation response
 type GetFilesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2026,8 +2129,10 @@ type xxx_SetFilesOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Files operation.
 func (o *xxx_SetFilesOperation) OpNum() int { return 39 }
 
+// OpName returns the operation name of Files operation.
 func (o *xxx_SetFilesOperation) OpName() string { return "/IConfigurationDataCollector/v0/Files" }
 
 func (o *xxx_SetFilesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2220,6 +2325,17 @@ func (o *SetFilesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeSetFilesRequest build a response structure from the given request structure.
+func (o *SetFilesRequest) MakeResponse() *SetFilesResponse {
+	return &SetFilesResponse{}
+}
+
+// OpNum returns the operation number of Files operation.
+func (o *SetFilesRequest) OpNum() int { return 39 }
+
+// OpName returns the operation name of Files operation.
+func (o *SetFilesRequest) OpName() string { return "/IConfigurationDataCollector/v0/Files" }
+
 // SetFilesResponse structure represents the Files operation response
 type SetFilesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2267,8 +2383,10 @@ type xxx_GetManagementQueriesOperation struct {
 	Return  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ManagementQueries operation.
 func (o *xxx_GetManagementQueriesOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of ManagementQueries operation.
 func (o *xxx_GetManagementQueriesOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/ManagementQueries"
 }
@@ -2460,6 +2578,19 @@ func (o *GetManagementQueriesRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetManagementQueriesRequest build a response structure from the given request structure.
+func (o *GetManagementQueriesRequest) MakeResponse() *GetManagementQueriesResponse {
+	return &GetManagementQueriesResponse{}
+}
+
+// OpNum returns the operation number of ManagementQueries operation.
+func (o *GetManagementQueriesRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of ManagementQueries operation.
+func (o *GetManagementQueriesRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/ManagementQueries"
+}
+
 // GetManagementQueriesResponse structure represents the ManagementQueries operation response
 type GetManagementQueriesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2510,8 +2641,10 @@ type xxx_SetManagementQueriesOperation struct {
 	Return  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ManagementQueries operation.
 func (o *xxx_SetManagementQueriesOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of ManagementQueries operation.
 func (o *xxx_SetManagementQueriesOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/ManagementQueries"
 }
@@ -2706,6 +2839,19 @@ func (o *SetManagementQueriesRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeSetManagementQueriesRequest build a response structure from the given request structure.
+func (o *SetManagementQueriesRequest) MakeResponse() *SetManagementQueriesResponse {
+	return &SetManagementQueriesResponse{}
+}
+
+// OpNum returns the operation number of ManagementQueries operation.
+func (o *SetManagementQueriesRequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of ManagementQueries operation.
+func (o *SetManagementQueriesRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/ManagementQueries"
+}
+
 // SetManagementQueriesResponse structure represents the ManagementQueries operation response
 type SetManagementQueriesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2753,8 +2899,10 @@ type xxx_GetQueryNetworkAdaptersOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryNetworkAdapters operation.
 func (o *xxx_GetQueryNetworkAdaptersOperation) OpNum() int { return 42 }
 
+// OpName returns the operation name of QueryNetworkAdapters operation.
 func (o *xxx_GetQueryNetworkAdaptersOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/QueryNetworkAdapters"
 }
@@ -2912,6 +3060,19 @@ func (o *GetQueryNetworkAdaptersRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeGetQueryNetworkAdaptersRequest build a response structure from the given request structure.
+func (o *GetQueryNetworkAdaptersRequest) MakeResponse() *GetQueryNetworkAdaptersResponse {
+	return &GetQueryNetworkAdaptersResponse{}
+}
+
+// OpNum returns the operation number of QueryNetworkAdapters operation.
+func (o *GetQueryNetworkAdaptersRequest) OpNum() int { return 42 }
+
+// OpName returns the operation name of QueryNetworkAdapters operation.
+func (o *GetQueryNetworkAdaptersRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/QueryNetworkAdapters"
+}
+
 // GetQueryNetworkAdaptersResponse structure represents the QueryNetworkAdapters operation response
 type GetQueryNetworkAdaptersResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2962,8 +3123,10 @@ type xxx_SetQueryNetworkAdaptersOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryNetworkAdapters operation.
 func (o *xxx_SetQueryNetworkAdaptersOperation) OpNum() int { return 43 }
 
+// OpName returns the operation name of QueryNetworkAdapters operation.
 func (o *xxx_SetQueryNetworkAdaptersOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/QueryNetworkAdapters"
 }
@@ -3124,6 +3287,19 @@ func (o *SetQueryNetworkAdaptersRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeSetQueryNetworkAdaptersRequest build a response structure from the given request structure.
+func (o *SetQueryNetworkAdaptersRequest) MakeResponse() *SetQueryNetworkAdaptersResponse {
+	return &SetQueryNetworkAdaptersResponse{}
+}
+
+// OpNum returns the operation number of QueryNetworkAdapters operation.
+func (o *SetQueryNetworkAdaptersRequest) OpNum() int { return 43 }
+
+// OpName returns the operation name of QueryNetworkAdapters operation.
+func (o *SetQueryNetworkAdaptersRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/QueryNetworkAdapters"
+}
+
 // SetQueryNetworkAdaptersResponse structure represents the QueryNetworkAdapters operation response
 type SetQueryNetworkAdaptersResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3171,8 +3347,10 @@ type xxx_GetRegistryKeysOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RegistryKeys operation.
 func (o *xxx_GetRegistryKeysOperation) OpNum() int { return 44 }
 
+// OpName returns the operation name of RegistryKeys operation.
 func (o *xxx_GetRegistryKeysOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/RegistryKeys"
 }
@@ -3364,6 +3542,19 @@ func (o *GetRegistryKeysRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetRegistryKeysRequest build a response structure from the given request structure.
+func (o *GetRegistryKeysRequest) MakeResponse() *GetRegistryKeysResponse {
+	return &GetRegistryKeysResponse{}
+}
+
+// OpNum returns the operation number of RegistryKeys operation.
+func (o *GetRegistryKeysRequest) OpNum() int { return 44 }
+
+// OpName returns the operation name of RegistryKeys operation.
+func (o *GetRegistryKeysRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/RegistryKeys"
+}
+
 // GetRegistryKeysResponse structure represents the RegistryKeys operation response
 type GetRegistryKeysResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3414,8 +3605,10 @@ type xxx_SetRegistryKeysOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RegistryKeys operation.
 func (o *xxx_SetRegistryKeysOperation) OpNum() int { return 45 }
 
+// OpName returns the operation name of RegistryKeys operation.
 func (o *xxx_SetRegistryKeysOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/RegistryKeys"
 }
@@ -3610,6 +3803,19 @@ func (o *SetRegistryKeysRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetRegistryKeysRequest build a response structure from the given request structure.
+func (o *SetRegistryKeysRequest) MakeResponse() *SetRegistryKeysResponse {
+	return &SetRegistryKeysResponse{}
+}
+
+// OpNum returns the operation number of RegistryKeys operation.
+func (o *SetRegistryKeysRequest) OpNum() int { return 45 }
+
+// OpName returns the operation name of RegistryKeys operation.
+func (o *SetRegistryKeysRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/RegistryKeys"
+}
+
 // SetRegistryKeysResponse structure represents the RegistryKeys operation response
 type SetRegistryKeysResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3657,8 +3863,10 @@ type xxx_GetRegistryMaxRecursiveDepthOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RegistryMaxRecursiveDepth operation.
 func (o *xxx_GetRegistryMaxRecursiveDepthOperation) OpNum() int { return 46 }
 
+// OpName returns the operation name of RegistryMaxRecursiveDepth operation.
 func (o *xxx_GetRegistryMaxRecursiveDepthOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/RegistryMaxRecursiveDepth"
 }
@@ -3816,6 +4024,19 @@ func (o *GetRegistryMaxRecursiveDepthRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeGetRegistryMaxRecursiveDepthRequest build a response structure from the given request structure.
+func (o *GetRegistryMaxRecursiveDepthRequest) MakeResponse() *GetRegistryMaxRecursiveDepthResponse {
+	return &GetRegistryMaxRecursiveDepthResponse{}
+}
+
+// OpNum returns the operation number of RegistryMaxRecursiveDepth operation.
+func (o *GetRegistryMaxRecursiveDepthRequest) OpNum() int { return 46 }
+
+// OpName returns the operation name of RegistryMaxRecursiveDepth operation.
+func (o *GetRegistryMaxRecursiveDepthRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/RegistryMaxRecursiveDepth"
+}
+
 // GetRegistryMaxRecursiveDepthResponse structure represents the RegistryMaxRecursiveDepth operation response
 type GetRegistryMaxRecursiveDepthResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3866,8 +4087,10 @@ type xxx_SetRegistryMaxRecursiveDepthOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RegistryMaxRecursiveDepth operation.
 func (o *xxx_SetRegistryMaxRecursiveDepthOperation) OpNum() int { return 47 }
 
+// OpName returns the operation name of RegistryMaxRecursiveDepth operation.
 func (o *xxx_SetRegistryMaxRecursiveDepthOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/RegistryMaxRecursiveDepth"
 }
@@ -4028,6 +4251,19 @@ func (o *SetRegistryMaxRecursiveDepthRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeSetRegistryMaxRecursiveDepthRequest build a response structure from the given request structure.
+func (o *SetRegistryMaxRecursiveDepthRequest) MakeResponse() *SetRegistryMaxRecursiveDepthResponse {
+	return &SetRegistryMaxRecursiveDepthResponse{}
+}
+
+// OpNum returns the operation number of RegistryMaxRecursiveDepth operation.
+func (o *SetRegistryMaxRecursiveDepthRequest) OpNum() int { return 47 }
+
+// OpName returns the operation name of RegistryMaxRecursiveDepth operation.
+func (o *SetRegistryMaxRecursiveDepthRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/RegistryMaxRecursiveDepth"
+}
+
 // SetRegistryMaxRecursiveDepthResponse structure represents the RegistryMaxRecursiveDepth operation response
 type SetRegistryMaxRecursiveDepthResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4075,8 +4311,10 @@ type xxx_GetSystemStateFileOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SystemStateFile operation.
 func (o *xxx_GetSystemStateFileOperation) OpNum() int { return 48 }
 
+// OpName returns the operation name of SystemStateFile operation.
 func (o *xxx_GetSystemStateFileOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/SystemStateFile"
 }
@@ -4268,6 +4506,19 @@ func (o *GetSystemStateFileRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetSystemStateFileRequest build a response structure from the given request structure.
+func (o *GetSystemStateFileRequest) MakeResponse() *GetSystemStateFileResponse {
+	return &GetSystemStateFileResponse{}
+}
+
+// OpNum returns the operation number of SystemStateFile operation.
+func (o *GetSystemStateFileRequest) OpNum() int { return 48 }
+
+// OpName returns the operation name of SystemStateFile operation.
+func (o *GetSystemStateFileRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/SystemStateFile"
+}
+
 // GetSystemStateFileResponse structure represents the SystemStateFile operation response
 type GetSystemStateFileResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4318,8 +4569,10 @@ type xxx_SetSystemStateFileOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SystemStateFile operation.
 func (o *xxx_SetSystemStateFileOperation) OpNum() int { return 49 }
 
+// OpName returns the operation name of SystemStateFile operation.
 func (o *xxx_SetSystemStateFileOperation) OpName() string {
 	return "/IConfigurationDataCollector/v0/SystemStateFile"
 }
@@ -4512,6 +4765,19 @@ func (o *SetSystemStateFileRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetSystemStateFileRequest build a response structure from the given request structure.
+func (o *SetSystemStateFileRequest) MakeResponse() *SetSystemStateFileResponse {
+	return &SetSystemStateFileResponse{}
+}
+
+// OpNum returns the operation number of SystemStateFile operation.
+func (o *SetSystemStateFileRequest) OpNum() int { return 49 }
+
+// OpName returns the operation name of SystemStateFile operation.
+func (o *SetSystemStateFileRequest) OpName() string {
+	return "/IConfigurationDataCollector/v0/SystemStateFile"
 }
 
 // SetSystemStateFileResponse structure represents the SystemStateFile operation response

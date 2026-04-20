@@ -5244,8 +5244,10 @@ type xxx_BindOperation struct {
 	Return        int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiBind operation.
 func (o *xxx_BindOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of NspiBind operation.
 func (o *xxx_BindOperation) OpName() string { return "/nspi/v56/NspiBind" }
 
 func (o *xxx_BindOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5493,6 +5495,17 @@ func (o *BindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeBindRequest build a response structure from the given request structure.
+func (o *BindRequest) MakeResponse() *BindResponse {
+	return &BindResponse{}
+}
+
+// OpNum returns the operation number of NspiBind operation.
+func (o *BindRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of NspiBind operation.
+func (o *BindRequest) OpName() string { return "/nspi/v56/NspiBind" }
+
 // BindResponse structure represents the NspiBind operation response
 type BindResponse struct {
 	// pServerGuid: The value NULL or a pointer to a GUID value associated with the specific
@@ -5544,8 +5557,10 @@ type xxx_UnbindOperation struct {
 	Return        uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiUnbind operation.
 func (o *xxx_UnbindOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of NspiUnbind operation.
 func (o *xxx_UnbindOperation) OpName() string { return "/nspi/v56/NspiUnbind" }
 
 func (o *xxx_UnbindOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5692,6 +5707,17 @@ func (o *UnbindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeUnbindRequest build a response structure from the given request structure.
+func (o *UnbindRequest) MakeResponse() *UnbindResponse {
+	return &UnbindResponse{}
+}
+
+// OpNum returns the operation number of NspiUnbind operation.
+func (o *UnbindRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of NspiUnbind operation.
+func (o *UnbindRequest) OpName() string { return "/nspi/v56/NspiUnbind" }
+
 // UnbindResponse structure represents the NspiUnbind operation response
 type UnbindResponse struct {
 	// contextHandle: An RPC context handle as specified in section 2.3.9.
@@ -5740,8 +5766,10 @@ type xxx_UpdateStatOperation struct {
 	Return int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiUpdateStat operation.
 func (o *xxx_UpdateStatOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of NspiUpdateStat operation.
 func (o *xxx_UpdateStatOperation) OpName() string { return "/nspi/v56/NspiUpdateStat" }
 
 func (o *xxx_UpdateStatOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5986,6 +6014,17 @@ func (o *UpdateStatRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeUpdateStatRequest build a response structure from the given request structure.
+func (o *UpdateStatRequest) MakeResponse() *UpdateStatResponse {
+	return &UpdateStatResponse{}
+}
+
+// OpNum returns the operation number of NspiUpdateStat operation.
+func (o *UpdateStatRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of NspiUpdateStat operation.
+func (o *UpdateStatRequest) OpName() string { return "/nspi/v56/NspiUpdateStat" }
+
 // UpdateStatResponse structure represents the NspiUpdateStat operation response
 type UpdateStatResponse struct {
 	// pStat: A pointer to a STAT block describing a logical position in a specific address
@@ -6045,8 +6084,10 @@ type xxx_QueryRowsOperation struct {
 	Return       int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiQueryRows operation.
 func (o *xxx_QueryRowsOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of NspiQueryRows operation.
 func (o *xxx_QueryRowsOperation) OpName() string { return "/nspi/v56/NspiQueryRows" }
 
 func (o *xxx_QueryRowsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6434,6 +6475,17 @@ func (o *QueryRowsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeQueryRowsRequest build a response structure from the given request structure.
+func (o *QueryRowsRequest) MakeResponse() *QueryRowsResponse {
+	return &QueryRowsResponse{}
+}
+
+// OpNum returns the operation number of NspiQueryRows operation.
+func (o *QueryRowsRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of NspiQueryRows operation.
+func (o *QueryRowsRequest) OpName() string { return "/nspi/v56/NspiQueryRows" }
+
 // QueryRowsResponse structure represents the NspiQueryRows operation response
 type QueryRowsResponse struct {
 	// pStat: A pointer to a STAT block describing a logical position in a specific address
@@ -6492,8 +6544,10 @@ type xxx_SeekEntriesOperation struct {
 	Return       int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiSeekEntries operation.
 func (o *xxx_SeekEntriesOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of NspiSeekEntries operation.
 func (o *xxx_SeekEntriesOperation) OpName() string { return "/nspi/v56/NspiSeekEntries" }
 
 func (o *xxx_SeekEntriesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6847,6 +6901,17 @@ func (o *SeekEntriesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeSeekEntriesRequest build a response structure from the given request structure.
+func (o *SeekEntriesRequest) MakeResponse() *SeekEntriesResponse {
+	return &SeekEntriesResponse{}
+}
+
+// OpNum returns the operation number of NspiSeekEntries operation.
+func (o *SeekEntriesRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of NspiSeekEntries operation.
+func (o *SeekEntriesRequest) OpName() string { return "/nspi/v56/NspiSeekEntries" }
+
 // SeekEntriesResponse structure represents the NspiSeekEntries operation response
 type SeekEntriesResponse struct {
 	// pStat: A pointer to a STAT block describing a logical position in a specific address
@@ -6909,8 +6974,10 @@ type xxx_GetMatchesOperation struct {
 	Return       int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiGetMatches operation.
 func (o *xxx_GetMatchesOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of NspiGetMatches operation.
 func (o *xxx_GetMatchesOperation) OpName() string { return "/nspi/v56/NspiGetMatches" }
 
 func (o *xxx_GetMatchesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7392,6 +7459,17 @@ func (o *GetMatchesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetMatchesRequest build a response structure from the given request structure.
+func (o *GetMatchesRequest) MakeResponse() *GetMatchesResponse {
+	return &GetMatchesResponse{}
+}
+
+// OpNum returns the operation number of NspiGetMatches operation.
+func (o *GetMatchesRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of NspiGetMatches operation.
+func (o *GetMatchesRequest) OpName() string { return "/nspi/v56/NspiGetMatches" }
+
 // GetMatchesResponse structure represents the NspiGetMatches operation response
 type GetMatchesResponse struct {
 	// pStat: A reference to a STAT block describing a logical position in a specific address
@@ -7452,8 +7530,10 @@ type xxx_ResortRestrictionOperation struct {
 	Return  int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiResortRestriction operation.
 func (o *xxx_ResortRestrictionOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of NspiResortRestriction operation.
 func (o *xxx_ResortRestrictionOperation) OpName() string { return "/nspi/v56/NspiResortRestriction" }
 
 func (o *xxx_ResortRestrictionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7749,6 +7829,17 @@ func (o *ResortRestrictionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeResortRestrictionRequest build a response structure from the given request structure.
+func (o *ResortRestrictionRequest) MakeResponse() *ResortRestrictionResponse {
+	return &ResortRestrictionResponse{}
+}
+
+// OpNum returns the operation number of NspiResortRestriction operation.
+func (o *ResortRestrictionRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of NspiResortRestriction operation.
+func (o *ResortRestrictionRequest) OpName() string { return "/nspi/v56/NspiResortRestriction" }
+
 // ResortRestrictionResponse structure represents the NspiResortRestriction operation response
 type ResortRestrictionResponse struct {
 	// pStat: A reference to a STAT block describing a logical position in a specific address
@@ -7803,8 +7894,10 @@ type xxx_DNToMIDOperation struct {
 	Return  int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiDNToMId operation.
 func (o *xxx_DNToMIDOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of NspiDNToMId operation.
 func (o *xxx_DNToMIDOperation) OpName() string { return "/nspi/v56/NspiDNToMId" }
 
 func (o *xxx_DNToMIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8008,6 +8101,17 @@ func (o *DNToMIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeDNToMIDRequest build a response structure from the given request structure.
+func (o *DNToMIDRequest) MakeResponse() *DNToMIDResponse {
+	return &DNToMIDResponse{}
+}
+
+// OpNum returns the operation number of NspiDNToMId operation.
+func (o *DNToMIDRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of NspiDNToMId operation.
+func (o *DNToMIDRequest) OpName() string { return "/nspi/v56/NspiDNToMId" }
+
 // DNToMIDResponse structure represents the NspiDNToMId operation response
 type DNToMIDResponse struct {
 	// ppOutMIds: A PropertyTagArray_r value. On return, it holds a list of MIds.
@@ -8057,8 +8161,10 @@ type xxx_GetPropertyListOperation struct {
 	Return       int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiGetPropList operation.
 func (o *xxx_GetPropertyListOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of NspiGetPropList operation.
 func (o *xxx_GetPropertyListOperation) OpName() string { return "/nspi/v56/NspiGetPropList" }
 
 func (o *xxx_GetPropertyListOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8265,6 +8371,17 @@ func (o *GetPropertyListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetPropertyListRequest build a response structure from the given request structure.
+func (o *GetPropertyListRequest) MakeResponse() *GetPropertyListResponse {
+	return &GetPropertyListResponse{}
+}
+
+// OpNum returns the operation number of NspiGetPropList operation.
+func (o *GetPropertyListRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of NspiGetPropList operation.
+func (o *GetPropertyListRequest) OpName() string { return "/nspi/v56/NspiGetPropList" }
+
 // GetPropertyListResponse structure represents the NspiGetPropList operation response
 type GetPropertyListResponse struct {
 	// ppPropTags: A PropertyTagArray_r value. On return, it holds a list of properties.
@@ -8314,8 +8431,10 @@ type xxx_GetPropertiesOperation struct {
 	Return       int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiGetProps operation.
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of NspiGetProps operation.
 func (o *xxx_GetPropertiesOperation) OpName() string { return "/nspi/v56/NspiGetProps" }
 
 func (o *xxx_GetPropertiesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8567,6 +8686,17 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetPropertiesRequest build a response structure from the given request structure.
+func (o *GetPropertiesRequest) MakeResponse() *GetPropertiesResponse {
+	return &GetPropertiesResponse{}
+}
+
+// OpNum returns the operation number of NspiGetProps operation.
+func (o *GetPropertiesRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of NspiGetProps operation.
+func (o *GetPropertiesRequest) OpName() string { return "/nspi/v56/NspiGetProps" }
+
 // GetPropertiesResponse structure represents the NspiGetProps operation response
 type GetPropertiesResponse struct {
 	// ppRows: A reference to a PropertyRow_r value. Contains the address book container
@@ -8618,8 +8748,10 @@ type xxx_CompareMIDsOperation struct {
 	Return int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiCompareMIds operation.
 func (o *xxx_CompareMIDsOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of NspiCompareMIds operation.
 func (o *xxx_CompareMIDsOperation) OpName() string { return "/nspi/v56/NspiCompareMIds" }
 
 func (o *xxx_CompareMIDsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8815,6 +8947,17 @@ func (o *CompareMIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCompareMIDsRequest build a response structure from the given request structure.
+func (o *CompareMIDsRequest) MakeResponse() *CompareMIDsResponse {
+	return &CompareMIDsResponse{}
+}
+
+// OpNum returns the operation number of NspiCompareMIds operation.
+func (o *CompareMIDsRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of NspiCompareMIds operation.
+func (o *CompareMIDsRequest) OpName() string { return "/nspi/v56/NspiCompareMIds" }
+
 // CompareMIDsResponse structure represents the NspiCompareMIds operation response
 type CompareMIDsResponse struct {
 	// plResult: A DWORD value. On return, it contains the result of the comparison.
@@ -8864,8 +9007,10 @@ type xxx_ModifyPropertiesOperation struct {
 	Return       int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiModProps operation.
 func (o *xxx_ModifyPropertiesOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of NspiModProps operation.
 func (o *xxx_ModifyPropertiesOperation) OpName() string { return "/nspi/v56/NspiModProps" }
 
 func (o *xxx_ModifyPropertiesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9099,6 +9244,17 @@ func (o *ModifyPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeModifyPropertiesRequest build a response structure from the given request structure.
+func (o *ModifyPropertiesRequest) MakeResponse() *ModifyPropertiesResponse {
+	return &ModifyPropertiesResponse{}
+}
+
+// OpNum returns the operation number of NspiModProps operation.
+func (o *ModifyPropertiesRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of NspiModProps operation.
+func (o *ModifyPropertiesRequest) OpName() string { return "/nspi/v56/NspiModProps" }
+
 // ModifyPropertiesResponse structure represents the NspiModProps operation response
 type ModifyPropertiesResponse struct {
 	// Return: The NspiModProps return value.
@@ -9144,8 +9300,10 @@ type xxx_GetSpecialTableOperation struct {
 	Return  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiGetSpecialTable operation.
 func (o *xxx_GetSpecialTableOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of NspiGetSpecialTable operation.
 func (o *xxx_GetSpecialTableOperation) OpName() string { return "/nspi/v56/NspiGetSpecialTable" }
 
 func (o *xxx_GetSpecialTableOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9375,6 +9533,17 @@ func (o *GetSpecialTableRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetSpecialTableRequest build a response structure from the given request structure.
+func (o *GetSpecialTableRequest) MakeResponse() *GetSpecialTableResponse {
+	return &GetSpecialTableResponse{}
+}
+
+// OpNum returns the operation number of NspiGetSpecialTable operation.
+func (o *GetSpecialTableRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of NspiGetSpecialTable operation.
+func (o *GetSpecialTableRequest) OpName() string { return "/nspi/v56/NspiGetSpecialTable" }
+
 // GetSpecialTableResponse structure represents the NspiGetSpecialTable operation response
 type GetSpecialTableResponse struct {
 	// lpVersion: A reference to a DWORD. On input, holds the value of the version number
@@ -9432,8 +9601,10 @@ type xxx_GetTemplateInfoOperation struct {
 	Return   int32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiGetTemplateInfo operation.
 func (o *xxx_GetTemplateInfoOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of NspiGetTemplateInfo operation.
 func (o *xxx_GetTemplateInfoOperation) OpName() string { return "/nspi/v56/NspiGetTemplateInfo" }
 
 func (o *xxx_GetTemplateInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9700,6 +9871,17 @@ func (o *GetTemplateInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetTemplateInfoRequest build a response structure from the given request structure.
+func (o *GetTemplateInfoRequest) MakeResponse() *GetTemplateInfoResponse {
+	return &GetTemplateInfoResponse{}
+}
+
+// OpNum returns the operation number of NspiGetTemplateInfo operation.
+func (o *GetTemplateInfoRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of NspiGetTemplateInfo operation.
+func (o *GetTemplateInfoRequest) OpName() string { return "/nspi/v56/NspiGetTemplateInfo" }
+
 // GetTemplateInfoResponse structure represents the NspiGetTemplateInfo operation response
 type GetTemplateInfoResponse struct {
 	// ppData: A reference to a PropertyRow_r value. On return, it contains the information
@@ -9750,8 +9932,10 @@ type xxx_ModifyLinkAttributeOperation struct {
 	Return      int32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiModLinkAtt operation.
 func (o *xxx_ModifyLinkAttributeOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of NspiModLinkAtt operation.
 func (o *xxx_ModifyLinkAttributeOperation) OpName() string { return "/nspi/v56/NspiModLinkAtt" }
 
 func (o *xxx_ModifyLinkAttributeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9946,6 +10130,17 @@ func (o *ModifyLinkAttributeRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeModifyLinkAttributeRequest build a response structure from the given request structure.
+func (o *ModifyLinkAttributeRequest) MakeResponse() *ModifyLinkAttributeResponse {
+	return &ModifyLinkAttributeResponse{}
+}
+
+// OpNum returns the operation number of NspiModLinkAtt operation.
+func (o *ModifyLinkAttributeRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of NspiModLinkAtt operation.
+func (o *ModifyLinkAttributeRequest) OpName() string { return "/nspi/v56/NspiModLinkAtt" }
+
 // ModifyLinkAttributeResponse structure represents the NspiModLinkAtt operation response
 type ModifyLinkAttributeResponse struct {
 	// Return: The NspiModLinkAtt return value.
@@ -9990,8 +10185,10 @@ type xxx_QueryColumnsOperation struct {
 	Return  int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiQueryColumns operation.
 func (o *xxx_QueryColumnsOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of NspiQueryColumns operation.
 func (o *xxx_QueryColumnsOperation) OpName() string { return "/nspi/v56/NspiQueryColumns" }
 
 func (o *xxx_QueryColumnsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10180,6 +10377,17 @@ func (o *QueryColumnsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeQueryColumnsRequest build a response structure from the given request structure.
+func (o *QueryColumnsRequest) MakeResponse() *QueryColumnsResponse {
+	return &QueryColumnsResponse{}
+}
+
+// OpNum returns the operation number of NspiQueryColumns operation.
+func (o *QueryColumnsRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of NspiQueryColumns operation.
+func (o *QueryColumnsRequest) OpName() string { return "/nspi/v56/NspiQueryColumns" }
+
 // QueryColumnsResponse structure represents the NspiQueryColumns operation response
 type QueryColumnsResponse struct {
 	// ppColumns: A reference to a PropertyTagArray_r structure. On return, contains a list
@@ -10231,8 +10439,10 @@ type xxx_GetNamesFromIDsOperation struct {
 	Return               int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiGetNamesFromIDs operation.
 func (o *xxx_GetNamesFromIDsOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of NspiGetNamesFromIDs operation.
 func (o *xxx_GetNamesFromIDsOperation) OpName() string { return "/nspi/v56/NspiGetNamesFromIDs" }
 
 func (o *xxx_GetNamesFromIDsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10552,6 +10762,17 @@ func (o *GetNamesFromIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetNamesFromIDsRequest build a response structure from the given request structure.
+func (o *GetNamesFromIDsRequest) MakeResponse() *GetNamesFromIDsResponse {
+	return &GetNamesFromIDsResponse{}
+}
+
+// OpNum returns the operation number of NspiGetNamesFromIDs operation.
+func (o *GetNamesFromIDsRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of NspiGetNamesFromIDs operation.
+func (o *GetNamesFromIDsRequest) OpName() string { return "/nspi/v56/NspiGetNamesFromIDs" }
+
 // GetNamesFromIDsResponse structure represents the NspiGetNamesFromIDs operation response
 type GetNamesFromIDsResponse struct {
 	// ppReturnedPropTags: Contains an SPropTagArray. On return, it contains a list of all
@@ -10609,8 +10830,10 @@ type xxx_GetIDsFromNamesOperation struct {
 	Return             int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiGetIDsFromNames operation.
 func (o *xxx_GetIDsFromNamesOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of NspiGetIDsFromNames operation.
 func (o *xxx_GetIDsFromNamesOperation) OpName() string { return "/nspi/v56/NspiGetIDsFromNames" }
 
 func (o *xxx_GetIDsFromNamesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10905,6 +11128,17 @@ func (o *GetIDsFromNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetIDsFromNamesRequest build a response structure from the given request structure.
+func (o *GetIDsFromNamesRequest) MakeResponse() *GetIDsFromNamesResponse {
+	return &GetIDsFromNamesResponse{}
+}
+
+// OpNum returns the operation number of NspiGetIDsFromNames operation.
+func (o *GetIDsFromNamesRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of NspiGetIDsFromNames operation.
+func (o *GetIDsFromNamesRequest) OpName() string { return "/nspi/v56/NspiGetIDsFromNames" }
+
 // GetIDsFromNamesResponse structure represents the NspiGetIDsFromNames operation response
 type GetIDsFromNamesResponse struct {
 	// ppPropTags: A reference to a PropertyTagArray_r value. On successful return to the
@@ -10957,8 +11191,10 @@ type xxx_ResolveNamesOperation struct {
 	Return       int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiResolveNames operation.
 func (o *xxx_ResolveNamesOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of NspiResolveNames operation.
 func (o *xxx_ResolveNamesOperation) OpName() string { return "/nspi/v56/NspiResolveNames" }
 
 func (o *xxx_ResolveNamesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11287,6 +11523,17 @@ func (o *ResolveNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeResolveNamesRequest build a response structure from the given request structure.
+func (o *ResolveNamesRequest) MakeResponse() *ResolveNamesResponse {
+	return &ResolveNamesResponse{}
+}
+
+// OpNum returns the operation number of NspiResolveNames operation.
+func (o *ResolveNamesRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of NspiResolveNames operation.
+func (o *ResolveNamesRequest) OpName() string { return "/nspi/v56/NspiResolveNames" }
+
 // ResolveNamesResponse structure represents the NspiResolveNames operation response
 type ResolveNamesResponse struct {
 	// ppMIds: A PropertyTagArray_r value. On return, contains a list of MIds matching the
@@ -11344,8 +11591,10 @@ type xxx_ResolveNamesWOperation struct {
 	Return       int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NspiResolveNamesW operation.
 func (o *xxx_ResolveNamesWOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of NspiResolveNamesW operation.
 func (o *xxx_ResolveNamesWOperation) OpName() string { return "/nspi/v56/NspiResolveNamesW" }
 
 func (o *xxx_ResolveNamesWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11673,6 +11922,17 @@ func (o *ResolveNamesWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeResolveNamesWRequest build a response structure from the given request structure.
+func (o *ResolveNamesWRequest) MakeResponse() *ResolveNamesWResponse {
+	return &ResolveNamesWResponse{}
+}
+
+// OpNum returns the operation number of NspiResolveNamesW operation.
+func (o *ResolveNamesWRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of NspiResolveNamesW operation.
+func (o *ResolveNamesWRequest) OpName() string { return "/nspi/v56/NspiResolveNamesW" }
 
 // ResolveNamesWResponse structure represents the NspiResolveNamesW operation response
 type ResolveNamesWResponse struct {

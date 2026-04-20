@@ -93,8 +93,10 @@ type xxx_GetAvailableCapIDsOperation struct {
 	Return        int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarGetAvailableCAPIDs operation.
 func (o *xxx_GetAvailableCapIDsOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of LsarGetAvailableCAPIDs operation.
 func (o *xxx_GetAvailableCapIDsOperation) OpName() string { return "/lsacap/v1/LsarGetAvailableCAPIDs" }
 
 func (o *xxx_GetAvailableCapIDsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -206,6 +208,17 @@ func (o *GetAvailableCapIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetAvailableCapIDsRequest build a response structure from the given request structure.
+func (o *GetAvailableCapIDsRequest) MakeResponse() *GetAvailableCapIDsResponse {
+	return &GetAvailableCapIDsResponse{}
+}
+
+// OpNum returns the operation number of LsarGetAvailableCAPIDs operation.
+func (o *GetAvailableCapIDsRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of LsarGetAvailableCAPIDs operation.
+func (o *GetAvailableCapIDsRequest) OpName() string { return "/lsacap/v1/LsarGetAvailableCAPIDs" }
 
 // GetAvailableCapIDsResponse structure represents the LsarGetAvailableCAPIDs operation response
 type GetAvailableCapIDsResponse struct {

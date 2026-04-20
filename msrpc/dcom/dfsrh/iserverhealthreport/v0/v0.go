@@ -306,8 +306,10 @@ type xxx_GetReportOperation struct {
 	Return                  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetReport operation.
 func (o *xxx_GetReportOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetReport operation.
 func (o *xxx_GetReportOperation) OpName() string { return "/IServerHealthReport/v0/GetReport" }
 
 func (o *xxx_GetReportOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -746,6 +748,17 @@ func (o *GetReportRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetReportRequest build a response structure from the given request structure.
+func (o *GetReportRequest) MakeResponse() *GetReportResponse {
+	return &GetReportResponse{}
+}
+
+// OpNum returns the operation number of GetReport operation.
+func (o *GetReportRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetReport operation.
+func (o *GetReportRequest) OpName() string { return "/IServerHealthReport/v0/GetReport" }
+
 // GetReportResponse structure represents the GetReport operation response
 type GetReportResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -811,8 +824,10 @@ type xxx_GetCompressedReportOperation struct {
 	Return                  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCompressedReport operation.
 func (o *xxx_GetCompressedReportOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetCompressedReport operation.
 func (o *xxx_GetCompressedReportOperation) OpName() string {
 	return "/IServerHealthReport/v0/GetCompressedReport"
 }
@@ -1248,6 +1263,19 @@ func (o *GetCompressedReportRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetCompressedReportRequest build a response structure from the given request structure.
+func (o *GetCompressedReportRequest) MakeResponse() *GetCompressedReportResponse {
+	return &GetCompressedReportResponse{}
+}
+
+// OpNum returns the operation number of GetCompressedReport operation.
+func (o *GetCompressedReportRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetCompressedReport operation.
+func (o *GetCompressedReportRequest) OpName() string {
+	return "/IServerHealthReport/v0/GetCompressedReport"
+}
+
 // GetCompressedReportResponse structure represents the GetCompressedReport operation response
 type GetCompressedReportResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1316,8 +1344,10 @@ type xxx_GetRawReportExOperation struct {
 	Return               int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetRawReportEx operation.
 func (o *xxx_GetRawReportExOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of GetRawReportEx operation.
 func (o *xxx_GetRawReportExOperation) OpName() string {
 	return "/IServerHealthReport/v0/GetRawReportEx"
 }
@@ -1622,6 +1652,17 @@ func (o *GetRawReportExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetRawReportExRequest build a response structure from the given request structure.
+func (o *GetRawReportExRequest) MakeResponse() *GetRawReportExResponse {
+	return &GetRawReportExResponse{}
+}
+
+// OpNum returns the operation number of GetRawReportEx operation.
+func (o *GetRawReportExRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of GetRawReportEx operation.
+func (o *GetRawReportExRequest) OpName() string { return "/IServerHealthReport/v0/GetRawReportEx" }
+
 // GetRawReportExResponse structure represents the GetRawReportEx operation response
 type GetRawReportExResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1674,8 +1715,10 @@ type xxx_GetReferenceVersionVectorsOperation struct {
 	Return                  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetReferenceVersionVectors operation.
 func (o *xxx_GetReferenceVersionVectorsOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of GetReferenceVersionVectors operation.
 func (o *xxx_GetReferenceVersionVectorsOperation) OpName() string {
 	return "/IServerHealthReport/v0/GetReferenceVersionVectors"
 }
@@ -1912,6 +1955,19 @@ func (o *GetReferenceVersionVectorsRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeGetReferenceVersionVectorsRequest build a response structure from the given request structure.
+func (o *GetReferenceVersionVectorsRequest) MakeResponse() *GetReferenceVersionVectorsResponse {
+	return &GetReferenceVersionVectorsResponse{}
+}
+
+// OpNum returns the operation number of GetReferenceVersionVectors operation.
+func (o *GetReferenceVersionVectorsRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of GetReferenceVersionVectors operation.
+func (o *GetReferenceVersionVectorsRequest) OpName() string {
+	return "/IServerHealthReport/v0/GetReferenceVersionVectors"
+}
+
 // GetReferenceVersionVectorsResponse structure represents the GetReferenceVersionVectors operation response
 type GetReferenceVersionVectorsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1966,8 +2022,10 @@ type xxx_GetReferenceBacklogCountsOperation struct {
 	Return                   int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetReferenceBacklogCounts operation.
 func (o *xxx_GetReferenceBacklogCountsOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of GetReferenceBacklogCounts operation.
 func (o *xxx_GetReferenceBacklogCountsOperation) OpName() string {
 	return "/IServerHealthReport/v0/GetReferenceBacklogCounts"
 }
@@ -2248,6 +2306,19 @@ func (o *GetReferenceBacklogCountsRequest) UnmarshalNDR(ctx context.Context, r n
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetReferenceBacklogCountsRequest build a response structure from the given request structure.
+func (o *GetReferenceBacklogCountsRequest) MakeResponse() *GetReferenceBacklogCountsResponse {
+	return &GetReferenceBacklogCountsResponse{}
+}
+
+// OpNum returns the operation number of GetReferenceBacklogCounts operation.
+func (o *GetReferenceBacklogCountsRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GetReferenceBacklogCounts operation.
+func (o *GetReferenceBacklogCountsRequest) OpName() string {
+	return "/IServerHealthReport/v0/GetReferenceBacklogCounts"
 }
 
 // GetReferenceBacklogCountsResponse structure represents the GetReferenceBacklogCounts operation response

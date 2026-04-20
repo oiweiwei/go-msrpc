@@ -303,8 +303,10 @@ type xxx_GetSessionIDOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SessionID operation.
 func (o *xxx_GetSessionIDOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of SessionID operation.
 func (o *xxx_GetSessionIDOperation) OpName() string { return "/ISAFSession/v0/SessionID" }
 
 func (o *xxx_GetSessionIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -460,6 +462,17 @@ func (o *GetSessionIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetSessionIDRequest build a response structure from the given request structure.
+func (o *GetSessionIDRequest) MakeResponse() *GetSessionIDResponse {
+	return &GetSessionIDResponse{}
+}
+
+// OpNum returns the operation number of SessionID operation.
+func (o *GetSessionIDRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of SessionID operation.
+func (o *GetSessionIDRequest) OpName() string { return "/ISAFSession/v0/SessionID" }
+
 // GetSessionIDResponse structure represents the SessionID operation response
 type GetSessionIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -510,8 +523,10 @@ type xxx_SetSessionIDOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SessionID operation.
 func (o *xxx_SetSessionIDOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of SessionID operation.
 func (o *xxx_SetSessionIDOperation) OpName() string { return "/ISAFSession/v0/SessionID" }
 
 func (o *xxx_SetSessionIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -670,6 +685,17 @@ func (o *SetSessionIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeSetSessionIDRequest build a response structure from the given request structure.
+func (o *SetSessionIDRequest) MakeResponse() *SetSessionIDResponse {
+	return &SetSessionIDResponse{}
+}
+
+// OpNum returns the operation number of SessionID operation.
+func (o *SetSessionIDRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of SessionID operation.
+func (o *SetSessionIDRequest) OpName() string { return "/ISAFSession/v0/SessionID" }
+
 // SetSessionIDResponse structure represents the SessionID operation response
 type SetSessionIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -717,8 +743,10 @@ type xxx_GetSessionStateOperation struct {
 	Return int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SessionState operation.
 func (o *xxx_GetSessionStateOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of SessionState operation.
 func (o *xxx_GetSessionStateOperation) OpName() string { return "/ISAFSession/v0/SessionState" }
 
 func (o *xxx_GetSessionStateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -874,6 +902,17 @@ func (o *GetSessionStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetSessionStateRequest build a response structure from the given request structure.
+func (o *GetSessionStateRequest) MakeResponse() *GetSessionStateResponse {
+	return &GetSessionStateResponse{}
+}
+
+// OpNum returns the operation number of SessionState operation.
+func (o *GetSessionStateRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of SessionState operation.
+func (o *GetSessionStateRequest) OpName() string { return "/ISAFSession/v0/SessionState" }
+
 // GetSessionStateResponse structure represents the SessionState operation response
 type GetSessionStateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -924,8 +963,10 @@ type xxx_SetSessionStateOperation struct {
 	Return int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SessionState operation.
 func (o *xxx_SetSessionStateOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of SessionState operation.
 func (o *xxx_SetSessionStateOperation) OpName() string { return "/ISAFSession/v0/SessionState" }
 
 func (o *xxx_SetSessionStateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1084,6 +1125,17 @@ func (o *SetSessionStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetSessionStateRequest build a response structure from the given request structure.
+func (o *SetSessionStateRequest) MakeResponse() *SetSessionStateResponse {
+	return &SetSessionStateResponse{}
+}
+
+// OpNum returns the operation number of SessionState operation.
+func (o *SetSessionStateRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of SessionState operation.
+func (o *SetSessionStateRequest) OpName() string { return "/ISAFSession/v0/SessionState" }
+
 // SetSessionStateResponse structure represents the SessionState operation response
 type SetSessionStateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1131,8 +1183,10 @@ type xxx_GetDomainNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DomainName operation.
 func (o *xxx_GetDomainNameOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of DomainName operation.
 func (o *xxx_GetDomainNameOperation) OpName() string { return "/ISAFSession/v0/DomainName" }
 
 func (o *xxx_GetDomainNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1322,6 +1376,17 @@ func (o *GetDomainNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetDomainNameRequest build a response structure from the given request structure.
+func (o *GetDomainNameRequest) MakeResponse() *GetDomainNameResponse {
+	return &GetDomainNameResponse{}
+}
+
+// OpNum returns the operation number of DomainName operation.
+func (o *GetDomainNameRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of DomainName operation.
+func (o *GetDomainNameRequest) OpName() string { return "/ISAFSession/v0/DomainName" }
+
 // GetDomainNameResponse structure represents the DomainName operation response
 type GetDomainNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1372,8 +1437,10 @@ type xxx_SetDomainNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DomainName operation.
 func (o *xxx_SetDomainNameOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of DomainName operation.
 func (o *xxx_SetDomainNameOperation) OpName() string { return "/ISAFSession/v0/DomainName" }
 
 func (o *xxx_SetDomainNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1566,6 +1633,17 @@ func (o *SetDomainNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSetDomainNameRequest build a response structure from the given request structure.
+func (o *SetDomainNameRequest) MakeResponse() *SetDomainNameResponse {
+	return &SetDomainNameResponse{}
+}
+
+// OpNum returns the operation number of DomainName operation.
+func (o *SetDomainNameRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of DomainName operation.
+func (o *SetDomainNameRequest) OpName() string { return "/ISAFSession/v0/DomainName" }
+
 // SetDomainNameResponse structure represents the DomainName operation response
 type SetDomainNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1613,8 +1691,10 @@ type xxx_GetUserNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UserName operation.
 func (o *xxx_GetUserNameOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of UserName operation.
 func (o *xxx_GetUserNameOperation) OpName() string { return "/ISAFSession/v0/UserName" }
 
 func (o *xxx_GetUserNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1804,6 +1884,17 @@ func (o *GetUserNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetUserNameRequest build a response structure from the given request structure.
+func (o *GetUserNameRequest) MakeResponse() *GetUserNameResponse {
+	return &GetUserNameResponse{}
+}
+
+// OpNum returns the operation number of UserName operation.
+func (o *GetUserNameRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of UserName operation.
+func (o *GetUserNameRequest) OpName() string { return "/ISAFSession/v0/UserName" }
+
 // GetUserNameResponse structure represents the UserName operation response
 type GetUserNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1854,8 +1945,10 @@ type xxx_SetUserNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UserName operation.
 func (o *xxx_SetUserNameOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of UserName operation.
 func (o *xxx_SetUserNameOperation) OpName() string { return "/ISAFSession/v0/UserName" }
 
 func (o *xxx_SetUserNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2047,6 +2140,17 @@ func (o *SetUserNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetUserNameRequest build a response structure from the given request structure.
+func (o *SetUserNameRequest) MakeResponse() *SetUserNameResponse {
+	return &SetUserNameResponse{}
+}
+
+// OpNum returns the operation number of UserName operation.
+func (o *SetUserNameRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of UserName operation.
+func (o *SetUserNameRequest) OpName() string { return "/ISAFSession/v0/UserName" }
 
 // SetUserNameResponse structure represents the UserName operation response
 type SetUserNameResponse struct {

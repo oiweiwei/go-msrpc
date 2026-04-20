@@ -291,8 +291,10 @@ type xxx_CreateShareOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateShare operation.
 func (o *xxx_CreateShareOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CreateShare operation.
 func (o *xxx_CreateShareOperation) OpName() string { return "/IReplicationUtil/v0/CreateShare" }
 
 func (o *xxx_CreateShareOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -502,6 +504,17 @@ func (o *CreateShareRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCreateShareRequest build a response structure from the given request structure.
+func (o *CreateShareRequest) MakeResponse() *CreateShareResponse {
+	return &CreateShareResponse{}
+}
+
+// OpNum returns the operation number of CreateShare operation.
+func (o *CreateShareRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of CreateShare operation.
+func (o *CreateShareRequest) OpName() string { return "/IReplicationUtil/v0/CreateShare" }
+
 // CreateShareResponse structure represents the CreateShare operation response
 type CreateShareResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -549,8 +562,10 @@ type xxx_CreateEmptyDirOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateEmptyDir operation.
 func (o *xxx_CreateEmptyDirOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of CreateEmptyDir operation.
 func (o *xxx_CreateEmptyDirOperation) OpName() string { return "/IReplicationUtil/v0/CreateEmptyDir" }
 
 func (o *xxx_CreateEmptyDirOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -724,6 +739,17 @@ func (o *CreateEmptyDirRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreateEmptyDirRequest build a response structure from the given request structure.
+func (o *CreateEmptyDirRequest) MakeResponse() *CreateEmptyDirResponse {
+	return &CreateEmptyDirResponse{}
+}
+
+// OpNum returns the operation number of CreateEmptyDir operation.
+func (o *CreateEmptyDirRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of CreateEmptyDir operation.
+func (o *CreateEmptyDirRequest) OpName() string { return "/IReplicationUtil/v0/CreateEmptyDir" }
+
 // CreateEmptyDirResponse structure represents the CreateEmptyDir operation response
 type CreateEmptyDirResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -771,8 +797,10 @@ type xxx_RemoveShareOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RemoveShare operation.
 func (o *xxx_RemoveShareOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of RemoveShare operation.
 func (o *xxx_RemoveShareOperation) OpName() string { return "/IReplicationUtil/v0/RemoveShare" }
 
 func (o *xxx_RemoveShareOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -959,6 +987,17 @@ func (o *RemoveShareRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeRemoveShareRequest build a response structure from the given request structure.
+func (o *RemoveShareRequest) MakeResponse() *RemoveShareResponse {
+	return &RemoveShareResponse{}
+}
+
+// OpNum returns the operation number of RemoveShare operation.
+func (o *RemoveShareRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of RemoveShare operation.
+func (o *RemoveShareRequest) OpName() string { return "/IReplicationUtil/v0/RemoveShare" }
+
 // RemoveShareResponse structure represents the RemoveShare operation response
 type RemoveShareResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1006,8 +1045,10 @@ type xxx_BeginReplicationAsTargetOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BeginReplicationAsTarget operation.
 func (o *xxx_BeginReplicationAsTargetOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of BeginReplicationAsTarget operation.
 func (o *xxx_BeginReplicationAsTargetOperation) OpName() string {
 	return "/IReplicationUtil/v0/BeginReplicationAsTarget"
 }
@@ -1169,6 +1210,19 @@ func (o *BeginReplicationAsTargetRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeBeginReplicationAsTargetRequest build a response structure from the given request structure.
+func (o *BeginReplicationAsTargetRequest) MakeResponse() *BeginReplicationAsTargetResponse {
+	return &BeginReplicationAsTargetResponse{}
+}
+
+// OpNum returns the operation number of BeginReplicationAsTarget operation.
+func (o *BeginReplicationAsTargetRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of BeginReplicationAsTarget operation.
+func (o *BeginReplicationAsTargetRequest) OpName() string {
+	return "/IReplicationUtil/v0/BeginReplicationAsTarget"
+}
+
 // BeginReplicationAsTargetResponse structure represents the BeginReplicationAsTarget operation response
 type BeginReplicationAsTargetResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1218,8 +1272,10 @@ type xxx_QueryConglomerationPasswordOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryConglomerationPassword operation.
 func (o *xxx_QueryConglomerationPasswordOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of QueryConglomerationPassword operation.
 func (o *xxx_QueryConglomerationPasswordOperation) OpName() string {
 	return "/IReplicationUtil/v0/QueryConglomerationPassword"
 }
@@ -1476,6 +1532,19 @@ func (o *QueryConglomerationPasswordRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeQueryConglomerationPasswordRequest build a response structure from the given request structure.
+func (o *QueryConglomerationPasswordRequest) MakeResponse() *QueryConglomerationPasswordResponse {
+	return &QueryConglomerationPasswordResponse{}
+}
+
+// OpNum returns the operation number of QueryConglomerationPassword operation.
+func (o *QueryConglomerationPasswordRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of QueryConglomerationPassword operation.
+func (o *QueryConglomerationPasswordRequest) OpName() string {
+	return "/IReplicationUtil/v0/QueryConglomerationPassword"
+}
+
 // QueryConglomerationPasswordResponse structure represents the QueryConglomerationPassword operation response
 type QueryConglomerationPasswordResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1534,8 +1603,10 @@ type xxx_CreateReplicationDirOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateReplicationDir operation.
 func (o *xxx_CreateReplicationDirOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of CreateReplicationDir operation.
 func (o *xxx_CreateReplicationDirOperation) OpName() string {
 	return "/IReplicationUtil/v0/CreateReplicationDir"
 }
@@ -1716,6 +1787,19 @@ func (o *CreateReplicationDirRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeCreateReplicationDirRequest build a response structure from the given request structure.
+func (o *CreateReplicationDirRequest) MakeResponse() *CreateReplicationDirResponse {
+	return &CreateReplicationDirResponse{}
+}
+
+// OpNum returns the operation number of CreateReplicationDir operation.
+func (o *CreateReplicationDirRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of CreateReplicationDir operation.
+func (o *CreateReplicationDirRequest) OpName() string {
+	return "/IReplicationUtil/v0/CreateReplicationDir"
 }
 
 // CreateReplicationDirResponse structure represents the CreateReplicationDir operation response

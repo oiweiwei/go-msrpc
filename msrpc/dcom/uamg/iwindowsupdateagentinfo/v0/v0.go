@@ -152,8 +152,10 @@ type xxx_GetInfoOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetInfo operation.
 func (o *xxx_GetInfoOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetInfo operation.
 func (o *xxx_GetInfoOperation) OpName() string { return "/IWindowsUpdateAgentInfo/v0/GetInfo" }
 
 func (o *xxx_GetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -388,6 +390,17 @@ func (o *GetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetInfoRequest build a response structure from the given request structure.
+func (o *GetInfoRequest) MakeResponse() *GetInfoResponse {
+	return &GetInfoResponse{}
+}
+
+// OpNum returns the operation number of GetInfo operation.
+func (o *GetInfoRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetInfo operation.
+func (o *GetInfoRequest) OpName() string { return "/IWindowsUpdateAgentInfo/v0/GetInfo" }
 
 // GetInfoResponse structure represents the GetInfo operation response
 type GetInfoResponse struct {

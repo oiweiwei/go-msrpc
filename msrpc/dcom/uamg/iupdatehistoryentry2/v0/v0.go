@@ -156,8 +156,10 @@ type xxx_GetCategoriesOperation struct {
 	Return      int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Categories operation.
 func (o *xxx_GetCategoriesOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of Categories operation.
 func (o *xxx_GetCategoriesOperation) OpName() string { return "/IUpdateHistoryEntry2/v0/Categories" }
 
 func (o *xxx_GetCategoriesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -346,6 +348,17 @@ func (o *GetCategoriesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetCategoriesRequest build a response structure from the given request structure.
+func (o *GetCategoriesRequest) MakeResponse() *GetCategoriesResponse {
+	return &GetCategoriesResponse{}
+}
+
+// OpNum returns the operation number of Categories operation.
+func (o *GetCategoriesRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of Categories operation.
+func (o *GetCategoriesRequest) OpName() string { return "/IUpdateHistoryEntry2/v0/Categories" }
 
 // GetCategoriesResponse structure represents the Categories operation response
 type GetCategoriesResponse struct {

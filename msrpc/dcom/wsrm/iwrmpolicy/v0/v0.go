@@ -823,8 +823,10 @@ type xxx_GetPolicyInfoOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetPolicyInfo operation.
 func (o *xxx_GetPolicyInfoOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetPolicyInfo operation.
 func (o *xxx_GetPolicyInfoOperation) OpName() string { return "/IWRMPolicy/v0/GetPolicyInfo" }
 
 func (o *xxx_GetPolicyInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1065,6 +1067,17 @@ func (o *GetPolicyInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetPolicyInfoRequest build a response structure from the given request structure.
+func (o *GetPolicyInfoRequest) MakeResponse() *GetPolicyInfoResponse {
+	return &GetPolicyInfoResponse{}
+}
+
+// OpNum returns the operation number of GetPolicyInfo operation.
+func (o *GetPolicyInfoRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetPolicyInfo operation.
+func (o *GetPolicyInfoRequest) OpName() string { return "/IWRMPolicy/v0/GetPolicyInfo" }
+
 // GetPolicyInfoResponse structure represents the GetPolicyInfo operation response
 type GetPolicyInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1118,8 +1131,10 @@ type xxx_CreatePolicyOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreatePolicy operation.
 func (o *xxx_CreatePolicyOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of CreatePolicy operation.
 func (o *xxx_CreatePolicyOperation) OpName() string { return "/IWRMPolicy/v0/CreatePolicy" }
 
 func (o *xxx_CreatePolicyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1315,6 +1330,17 @@ func (o *CreatePolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCreatePolicyRequest build a response structure from the given request structure.
+func (o *CreatePolicyRequest) MakeResponse() *CreatePolicyResponse {
+	return &CreatePolicyResponse{}
+}
+
+// OpNum returns the operation number of CreatePolicy operation.
+func (o *CreatePolicyRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of CreatePolicy operation.
+func (o *CreatePolicyRequest) OpName() string { return "/IWRMPolicy/v0/CreatePolicy" }
+
 // CreatePolicyResponse structure represents the CreatePolicy operation response
 type CreatePolicyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1363,8 +1389,10 @@ type xxx_ModifyPolicyOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ModifyPolicy operation.
 func (o *xxx_ModifyPolicyOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ModifyPolicy operation.
 func (o *xxx_ModifyPolicyOperation) OpName() string { return "/IWRMPolicy/v0/ModifyPolicy" }
 
 func (o *xxx_ModifyPolicyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1602,6 +1630,17 @@ func (o *ModifyPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeModifyPolicyRequest build a response structure from the given request structure.
+func (o *ModifyPolicyRequest) MakeResponse() *ModifyPolicyResponse {
+	return &ModifyPolicyResponse{}
+}
+
+// OpNum returns the operation number of ModifyPolicy operation.
+func (o *ModifyPolicyRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ModifyPolicy operation.
+func (o *ModifyPolicyRequest) OpName() string { return "/IWRMPolicy/v0/ModifyPolicy" }
+
 // ModifyPolicyResponse structure represents the ModifyPolicy operation response
 type ModifyPolicyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1649,8 +1688,10 @@ type xxx_DeletePolicyOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeletePolicy operation.
 func (o *xxx_DeletePolicyOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of DeletePolicy operation.
 func (o *xxx_DeletePolicyOperation) OpName() string { return "/IWRMPolicy/v0/DeletePolicy" }
 
 func (o *xxx_DeletePolicyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1844,6 +1885,17 @@ func (o *DeletePolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeDeletePolicyRequest build a response structure from the given request structure.
+func (o *DeletePolicyRequest) MakeResponse() *DeletePolicyResponse {
+	return &DeletePolicyResponse{}
+}
+
+// OpNum returns the operation number of DeletePolicy operation.
+func (o *DeletePolicyRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of DeletePolicy operation.
+func (o *DeletePolicyRequest) OpName() string { return "/IWRMPolicy/v0/DeletePolicy" }
+
 // DeletePolicyResponse structure represents the DeletePolicy operation response
 type DeletePolicyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1892,8 +1944,10 @@ type xxx_RenameAllocationPolicyOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RenameAllocationPolicy operation.
 func (o *xxx_RenameAllocationPolicyOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RenameAllocationPolicy operation.
 func (o *xxx_RenameAllocationPolicyOperation) OpName() string {
 	return "/IWRMPolicy/v0/RenameAllocationPolicy"
 }
@@ -2141,6 +2195,19 @@ func (o *RenameAllocationPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeRenameAllocationPolicyRequest build a response structure from the given request structure.
+func (o *RenameAllocationPolicyRequest) MakeResponse() *RenameAllocationPolicyResponse {
+	return &RenameAllocationPolicyResponse{}
+}
+
+// OpNum returns the operation number of RenameAllocationPolicy operation.
+func (o *RenameAllocationPolicyRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RenameAllocationPolicy operation.
+func (o *RenameAllocationPolicyRequest) OpName() string {
+	return "/IWRMPolicy/v0/RenameAllocationPolicy"
+}
+
 // RenameAllocationPolicyResponse structure represents the RenameAllocationPolicy operation response
 type RenameAllocationPolicyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2190,8 +2257,10 @@ type xxx_MoveBeforeOperation struct {
 	Return                     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MoveBefore operation.
 func (o *xxx_MoveBeforeOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of MoveBefore operation.
 func (o *xxx_MoveBeforeOperation) OpName() string { return "/IWRMPolicy/v0/MoveBefore" }
 
 func (o *xxx_MoveBeforeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2485,6 +2554,17 @@ func (o *MoveBeforeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeMoveBeforeRequest build a response structure from the given request structure.
+func (o *MoveBeforeRequest) MakeResponse() *MoveBeforeResponse {
+	return &MoveBeforeResponse{}
+}
+
+// OpNum returns the operation number of MoveBefore operation.
+func (o *MoveBeforeRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of MoveBefore operation.
+func (o *MoveBeforeRequest) OpName() string { return "/IWRMPolicy/v0/MoveBefore" }
+
 // MoveBeforeResponse structure represents the MoveBefore operation response
 type MoveBeforeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2534,8 +2614,10 @@ type xxx_MoveAfterOperation struct {
 	Return                     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MoveAfter operation.
 func (o *xxx_MoveAfterOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of MoveAfter operation.
 func (o *xxx_MoveAfterOperation) OpName() string { return "/IWRMPolicy/v0/MoveAfter" }
 
 func (o *xxx_MoveAfterOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2831,6 +2913,17 @@ func (o *MoveAfterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeMoveAfterRequest build a response structure from the given request structure.
+func (o *MoveAfterRequest) MakeResponse() *MoveAfterResponse {
+	return &MoveAfterResponse{}
+}
+
+// OpNum returns the operation number of MoveAfter operation.
+func (o *MoveAfterRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of MoveAfter operation.
+func (o *MoveAfterRequest) OpName() string { return "/IWRMPolicy/v0/MoveAfter" }
+
 // MoveAfterResponse structure represents the MoveAfter operation response
 type MoveAfterResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2878,8 +2971,10 @@ type xxx_SetCALDefaultPolicyNameOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetCalDefaultPolicyName operation.
 func (o *xxx_SetCALDefaultPolicyNameOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of SetCalDefaultPolicyName operation.
 func (o *xxx_SetCALDefaultPolicyNameOperation) OpName() string {
 	return "/IWRMPolicy/v0/SetCalDefaultPolicyName"
 }
@@ -3075,6 +3170,19 @@ func (o *SetCALDefaultPolicyNameRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeSetCALDefaultPolicyNameRequest build a response structure from the given request structure.
+func (o *SetCALDefaultPolicyNameRequest) MakeResponse() *SetCALDefaultPolicyNameResponse {
+	return &SetCALDefaultPolicyNameResponse{}
+}
+
+// OpNum returns the operation number of SetCalDefaultPolicyName operation.
+func (o *SetCALDefaultPolicyNameRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of SetCalDefaultPolicyName operation.
+func (o *SetCALDefaultPolicyNameRequest) OpName() string {
+	return "/IWRMPolicy/v0/SetCalDefaultPolicyName"
+}
+
 // SetCALDefaultPolicyNameResponse structure represents the SetCalDefaultPolicyName operation response
 type SetCALDefaultPolicyNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3122,8 +3230,10 @@ type xxx_GetCALDefaultPolicyNameOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCalDefaultPolicyName operation.
 func (o *xxx_GetCALDefaultPolicyNameOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of GetCalDefaultPolicyName operation.
 func (o *xxx_GetCALDefaultPolicyNameOperation) OpName() string {
 	return "/IWRMPolicy/v0/GetCalDefaultPolicyName"
 }
@@ -3315,6 +3425,19 @@ func (o *GetCALDefaultPolicyNameRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeGetCALDefaultPolicyNameRequest build a response structure from the given request structure.
+func (o *GetCALDefaultPolicyNameRequest) MakeResponse() *GetCALDefaultPolicyNameResponse {
+	return &GetCALDefaultPolicyNameResponse{}
+}
+
+// OpNum returns the operation number of GetCalDefaultPolicyName operation.
+func (o *GetCALDefaultPolicyNameRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of GetCalDefaultPolicyName operation.
+func (o *GetCALDefaultPolicyNameRequest) OpName() string {
+	return "/IWRMPolicy/v0/GetCalDefaultPolicyName"
+}
+
 // GetCALDefaultPolicyNameResponse structure represents the GetCalDefaultPolicyName operation response
 type GetCALDefaultPolicyNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3367,8 +3490,10 @@ type xxx_GetProcessListOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetProcessList operation.
 func (o *xxx_GetProcessListOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of GetProcessList operation.
 func (o *xxx_GetProcessListOperation) OpName() string { return "/IWRMPolicy/v0/GetProcessList" }
 
 func (o *xxx_GetProcessListOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3608,6 +3733,17 @@ func (o *GetProcessListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetProcessListRequest build a response structure from the given request structure.
+func (o *GetProcessListRequest) MakeResponse() *GetProcessListResponse {
+	return &GetProcessListResponse{}
+}
+
+// OpNum returns the operation number of GetProcessList operation.
+func (o *GetProcessListRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of GetProcessList operation.
+func (o *GetProcessListRequest) OpName() string { return "/IWRMPolicy/v0/GetProcessList" }
+
 // GetProcessListResponse structure represents the GetProcessList operation response
 type GetProcessListResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3662,8 +3798,10 @@ type xxx_GetCurrentPolicyOperation struct {
 	Return            int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCurrentPolicy operation.
 func (o *xxx_GetCurrentPolicyOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of GetCurrentPolicy operation.
 func (o *xxx_GetCurrentPolicyOperation) OpName() string { return "/IWRMPolicy/v0/GetCurrentPolicy" }
 
 func (o *xxx_GetCurrentPolicyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3865,6 +4003,17 @@ func (o *GetCurrentPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetCurrentPolicyRequest build a response structure from the given request structure.
+func (o *GetCurrentPolicyRequest) MakeResponse() *GetCurrentPolicyResponse {
+	return &GetCurrentPolicyResponse{}
+}
+
+// OpNum returns the operation number of GetCurrentPolicy operation.
+func (o *GetCurrentPolicyRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of GetCurrentPolicy operation.
+func (o *GetCurrentPolicyRequest) OpName() string { return "/IWRMPolicy/v0/GetCurrentPolicy" }
+
 // GetCurrentPolicyResponse structure represents the GetCurrentPolicy operation response
 type GetCurrentPolicyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3926,8 +4075,10 @@ type xxx_SetCurrentPolicyOperation struct {
 	Return     int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetCurrentPolicy operation.
 func (o *xxx_SetCurrentPolicyOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of SetCurrentPolicy operation.
 func (o *xxx_SetCurrentPolicyOperation) OpName() string { return "/IWRMPolicy/v0/SetCurrentPolicy" }
 
 func (o *xxx_SetCurrentPolicyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4142,6 +4293,17 @@ func (o *SetCurrentPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetCurrentPolicyRequest build a response structure from the given request structure.
+func (o *SetCurrentPolicyRequest) MakeResponse() *SetCurrentPolicyResponse {
+	return &SetCurrentPolicyResponse{}
+}
+
+// OpNum returns the operation number of SetCurrentPolicy operation.
+func (o *SetCurrentPolicyRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of SetCurrentPolicy operation.
+func (o *SetCurrentPolicyRequest) OpName() string { return "/IWRMPolicy/v0/SetCurrentPolicy" }
+
 // SetCurrentPolicyResponse structure represents the SetCurrentPolicy operation response
 type SetCurrentPolicyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4190,8 +4352,10 @@ type xxx_GetCurrentStateAndActivePolicyNameOperation struct {
 	Return            int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCurrentStateAndActivePolicyName operation.
 func (o *xxx_GetCurrentStateAndActivePolicyNameOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of GetCurrentStateAndActivePolicyName operation.
 func (o *xxx_GetCurrentStateAndActivePolicyNameOperation) OpName() string {
 	return "/IWRMPolicy/v0/GetCurrentStateAndActivePolicyName"
 }
@@ -4395,6 +4559,19 @@ func (o *GetCurrentStateAndActivePolicyNameRequest) UnmarshalNDR(ctx context.Con
 	return nil
 }
 
+// MakeGetCurrentStateAndActivePolicyNameRequest build a response structure from the given request structure.
+func (o *GetCurrentStateAndActivePolicyNameRequest) MakeResponse() *GetCurrentStateAndActivePolicyNameResponse {
+	return &GetCurrentStateAndActivePolicyNameResponse{}
+}
+
+// OpNum returns the operation number of GetCurrentStateAndActivePolicyName operation.
+func (o *GetCurrentStateAndActivePolicyNameRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of GetCurrentStateAndActivePolicyName operation.
+func (o *GetCurrentStateAndActivePolicyNameRequest) OpName() string {
+	return "/IWRMPolicy/v0/GetCurrentStateAndActivePolicyName"
+}
+
 // GetCurrentStateAndActivePolicyNameResponse structure represents the GetCurrentStateAndActivePolicyName operation response
 type GetCurrentStateAndActivePolicyNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4453,8 +4630,10 @@ type xxx_GetConditionalPolicyOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetConditionalPolicy operation.
 func (o *xxx_GetConditionalPolicyOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of GetConditionalPolicy operation.
 func (o *xxx_GetConditionalPolicyOperation) OpName() string {
 	return "/IWRMPolicy/v0/GetConditionalPolicy"
 }
@@ -4697,6 +4876,17 @@ func (o *GetConditionalPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetConditionalPolicyRequest build a response structure from the given request structure.
+func (o *GetConditionalPolicyRequest) MakeResponse() *GetConditionalPolicyResponse {
+	return &GetConditionalPolicyResponse{}
+}
+
+// OpNum returns the operation number of GetConditionalPolicy operation.
+func (o *GetConditionalPolicyRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of GetConditionalPolicy operation.
+func (o *GetConditionalPolicyRequest) OpName() string { return "/IWRMPolicy/v0/GetConditionalPolicy" }
+
 // GetConditionalPolicyResponse structure represents the GetConditionalPolicy operation response
 type GetConditionalPolicyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4750,8 +4940,10 @@ type xxx_SetConditionalPolicyOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetConditionalPolicy operation.
 func (o *xxx_SetConditionalPolicyOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of SetConditionalPolicy operation.
 func (o *xxx_SetConditionalPolicyOperation) OpName() string {
 	return "/IWRMPolicy/v0/SetConditionalPolicy"
 }
@@ -4948,6 +5140,17 @@ func (o *SetConditionalPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetConditionalPolicyRequest build a response structure from the given request structure.
+func (o *SetConditionalPolicyRequest) MakeResponse() *SetConditionalPolicyResponse {
+	return &SetConditionalPolicyResponse{}
+}
+
+// OpNum returns the operation number of SetConditionalPolicy operation.
+func (o *SetConditionalPolicyRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of SetConditionalPolicy operation.
+func (o *SetConditionalPolicyRequest) OpName() string { return "/IWRMPolicy/v0/SetConditionalPolicy" }
 
 // SetConditionalPolicyResponse structure represents the SetConditionalPolicy operation response
 type SetConditionalPolicyResponse struct {

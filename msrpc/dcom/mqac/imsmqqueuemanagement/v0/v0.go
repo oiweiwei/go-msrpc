@@ -256,8 +256,10 @@ type xxx_GetJournalMessageCountOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of JournalMessageCount operation.
 func (o *xxx_GetJournalMessageCountOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of JournalMessageCount operation.
 func (o *xxx_GetJournalMessageCountOperation) OpName() string {
 	return "/IMSMQQueueManagement/v0/JournalMessageCount"
 }
@@ -415,6 +417,19 @@ func (o *GetJournalMessageCountRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetJournalMessageCountRequest build a response structure from the given request structure.
+func (o *GetJournalMessageCountRequest) MakeResponse() *GetJournalMessageCountResponse {
+	return &GetJournalMessageCountResponse{}
+}
+
+// OpNum returns the operation number of JournalMessageCount operation.
+func (o *GetJournalMessageCountRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of JournalMessageCount operation.
+func (o *GetJournalMessageCountRequest) OpName() string {
+	return "/IMSMQQueueManagement/v0/JournalMessageCount"
+}
+
 // GetJournalMessageCountResponse structure represents the JournalMessageCount operation response
 type GetJournalMessageCountResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -467,8 +482,10 @@ type xxx_GetBytesInJournalOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BytesInJournal operation.
 func (o *xxx_GetBytesInJournalOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of BytesInJournal operation.
 func (o *xxx_GetBytesInJournalOperation) OpName() string {
 	return "/IMSMQQueueManagement/v0/BytesInJournal"
 }
@@ -660,6 +677,17 @@ func (o *GetBytesInJournalRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetBytesInJournalRequest build a response structure from the given request structure.
+func (o *GetBytesInJournalRequest) MakeResponse() *GetBytesInJournalResponse {
+	return &GetBytesInJournalResponse{}
+}
+
+// OpNum returns the operation number of BytesInJournal operation.
+func (o *GetBytesInJournalRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of BytesInJournal operation.
+func (o *GetBytesInJournalRequest) OpName() string { return "/IMSMQQueueManagement/v0/BytesInJournal" }
+
 // GetBytesInJournalResponse structure represents the BytesInJournal operation response
 type GetBytesInJournalResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -713,8 +741,10 @@ type xxx_EODGetReceiveInfoOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EodGetReceiveInfo operation.
 func (o *xxx_EODGetReceiveInfoOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of EodGetReceiveInfo operation.
 func (o *xxx_EODGetReceiveInfoOperation) OpName() string {
 	return "/IMSMQQueueManagement/v0/EodGetReceiveInfo"
 }
@@ -904,6 +934,19 @@ func (o *EODGetReceiveInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeEODGetReceiveInfoRequest build a response structure from the given request structure.
+func (o *EODGetReceiveInfoRequest) MakeResponse() *EODGetReceiveInfoResponse {
+	return &EODGetReceiveInfoResponse{}
+}
+
+// OpNum returns the operation number of EodGetReceiveInfo operation.
+func (o *EODGetReceiveInfoRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of EodGetReceiveInfo operation.
+func (o *EODGetReceiveInfoRequest) OpName() string {
+	return "/IMSMQQueueManagement/v0/EodGetReceiveInfo"
 }
 
 // EODGetReceiveInfoResponse structure represents the EodGetReceiveInfo operation response

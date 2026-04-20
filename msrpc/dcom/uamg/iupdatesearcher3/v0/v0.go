@@ -197,8 +197,10 @@ type xxx_GetSearchScopeOperation struct {
 	Return      int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SearchScope operation.
 func (o *xxx_GetSearchScopeOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of SearchScope operation.
 func (o *xxx_GetSearchScopeOperation) OpName() string { return "/IUpdateSearcher3/v0/SearchScope" }
 
 func (o *xxx_GetSearchScopeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -354,6 +356,17 @@ func (o *GetSearchScopeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetSearchScopeRequest build a response structure from the given request structure.
+func (o *GetSearchScopeRequest) MakeResponse() *GetSearchScopeResponse {
+	return &GetSearchScopeResponse{}
+}
+
+// OpNum returns the operation number of SearchScope operation.
+func (o *GetSearchScopeRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of SearchScope operation.
+func (o *GetSearchScopeRequest) OpName() string { return "/IUpdateSearcher3/v0/SearchScope" }
+
 // GetSearchScopeResponse structure represents the SearchScope operation response
 type GetSearchScopeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -406,8 +419,10 @@ type xxx_SetSearchScopeOperation struct {
 	Return int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SearchScope operation.
 func (o *xxx_SetSearchScopeOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of SearchScope operation.
 func (o *xxx_SetSearchScopeOperation) OpName() string { return "/IUpdateSearcher3/v0/SearchScope" }
 
 func (o *xxx_SetSearchScopeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -568,6 +583,17 @@ func (o *SetSearchScopeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetSearchScopeRequest build a response structure from the given request structure.
+func (o *SetSearchScopeRequest) MakeResponse() *SetSearchScopeResponse {
+	return &SetSearchScopeResponse{}
+}
+
+// OpNum returns the operation number of SearchScope operation.
+func (o *SetSearchScopeRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of SearchScope operation.
+func (o *SetSearchScopeRequest) OpName() string { return "/IUpdateSearcher3/v0/SearchScope" }
 
 // SetSearchScopeResponse structure represents the SearchScope operation response
 type SetSearchScopeResponse struct {

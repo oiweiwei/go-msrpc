@@ -17821,8 +17821,10 @@ type xxx_OpenPrinterOperation struct {
 	Return           uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncOpenPrinter operation.
 func (o *xxx_OpenPrinterOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RpcAsyncOpenPrinter operation.
 func (o *xxx_OpenPrinterOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncOpenPrinter" }
 
 func (o *xxx_OpenPrinterOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18084,6 +18086,17 @@ func (o *OpenPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeOpenPrinterRequest build a response structure from the given request structure.
+func (o *OpenPrinterRequest) MakeResponse() *OpenPrinterResponse {
+	return &OpenPrinterResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncOpenPrinter operation.
+func (o *OpenPrinterRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RpcAsyncOpenPrinter operation.
+func (o *OpenPrinterRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncOpenPrinter" }
+
 // OpenPrinterResponse structure represents the RpcAsyncOpenPrinter operation response
 type OpenPrinterResponse struct {
 	Handle *Printer `idl:"name:pHandle" json:"handle"`
@@ -18133,8 +18146,10 @@ type xxx_AddPrinterOperation struct {
 	Return            uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncAddPrinter operation.
 func (o *xxx_AddPrinterOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RpcAsyncAddPrinter operation.
 func (o *xxx_AddPrinterOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncAddPrinter" }
 
 func (o *xxx_AddPrinterOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18401,6 +18416,17 @@ func (o *AddPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeAddPrinterRequest build a response structure from the given request structure.
+func (o *AddPrinterRequest) MakeResponse() *AddPrinterResponse {
+	return &AddPrinterResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncAddPrinter operation.
+func (o *AddPrinterRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RpcAsyncAddPrinter operation.
+func (o *AddPrinterRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncAddPrinter" }
+
 // AddPrinterResponse structure represents the RpcAsyncAddPrinter operation response
 type AddPrinterResponse struct {
 	Handle *Printer `idl:"name:pHandle" json:"handle"`
@@ -18448,8 +18474,10 @@ type xxx_SetJobOperation struct {
 	Return       uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncSetJob operation.
 func (o *xxx_SetJobOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of RpcAsyncSetJob operation.
 func (o *xxx_SetJobOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncSetJob" }
 
 func (o *xxx_SetJobOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18640,6 +18668,17 @@ func (o *SetJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetJobRequest build a response structure from the given request structure.
+func (o *SetJobRequest) MakeResponse() *SetJobResponse {
+	return &SetJobResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncSetJob operation.
+func (o *SetJobRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of RpcAsyncSetJob operation.
+func (o *SetJobRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncSetJob" }
+
 // SetJobResponse structure represents the RpcAsyncSetJob operation response
 type SetJobResponse struct {
 	// Return: The RpcAsyncSetJob return value.
@@ -18686,8 +18725,10 @@ type xxx_GetJobOperation struct {
 	Return       uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncGetJob operation.
 func (o *xxx_GetJobOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RpcAsyncGetJob operation.
 func (o *xxx_GetJobOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncGetJob" }
 
 func (o *xxx_GetJobOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19002,6 +19043,22 @@ func (o *GetJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetJobRequest build a response structure from the given request structure.
+func (o *GetJobRequest) MakeResponse() *GetJobResponse {
+	if o == nil {
+		return &GetJobResponse{}
+	}
+	return &GetJobResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncGetJob operation.
+func (o *GetJobRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RpcAsyncGetJob operation.
+func (o *GetJobRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncGetJob" }
+
 // GetJobResponse structure represents the RpcAsyncGetJob operation response
 type GetJobResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -19067,8 +19124,10 @@ type xxx_EnumJobsOperation struct {
 	Return        uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEnumJobs operation.
 func (o *xxx_EnumJobsOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RpcAsyncEnumJobs operation.
 func (o *xxx_EnumJobsOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncEnumJobs" }
 
 func (o *xxx_EnumJobsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19410,6 +19469,22 @@ func (o *EnumJobsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeEnumJobsRequest build a response structure from the given request structure.
+func (o *EnumJobsRequest) MakeResponse() *EnumJobsResponse {
+	if o == nil {
+		return &EnumJobsResponse{}
+	}
+	return &EnumJobsResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncEnumJobs operation.
+func (o *EnumJobsRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RpcAsyncEnumJobs operation.
+func (o *EnumJobsRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncEnumJobs" }
+
 // EnumJobsResponse structure represents the RpcAsyncEnumJobs operation response
 type EnumJobsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -19475,8 +19550,10 @@ type xxx_AddJobOperation struct {
 	Return       uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncAddJob operation.
 func (o *xxx_AddJobOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of RpcAsyncAddJob operation.
 func (o *xxx_AddJobOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncAddJob" }
 
 func (o *xxx_AddJobOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19776,6 +19853,22 @@ func (o *AddJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeAddJobRequest build a response structure from the given request structure.
+func (o *AddJobRequest) MakeResponse() *AddJobResponse {
+	if o == nil {
+		return &AddJobResponse{}
+	}
+	return &AddJobResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncAddJob operation.
+func (o *AddJobRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of RpcAsyncAddJob operation.
+func (o *AddJobRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncAddJob" }
+
 // AddJobResponse structure represents the RpcAsyncAddJob operation response
 type AddJobResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -19835,8 +19928,10 @@ type xxx_ScheduleJobOperation struct {
 	Return  uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncScheduleJob operation.
 func (o *xxx_ScheduleJobOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of RpcAsyncScheduleJob operation.
 func (o *xxx_ScheduleJobOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncScheduleJob" }
 
 func (o *xxx_ScheduleJobOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19963,6 +20058,17 @@ func (o *ScheduleJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeScheduleJobRequest build a response structure from the given request structure.
+func (o *ScheduleJobRequest) MakeResponse() *ScheduleJobResponse {
+	return &ScheduleJobResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncScheduleJob operation.
+func (o *ScheduleJobRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of RpcAsyncScheduleJob operation.
+func (o *ScheduleJobRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncScheduleJob" }
+
 // ScheduleJobResponse structure represents the RpcAsyncScheduleJob operation response
 type ScheduleJobResponse struct {
 	// Return: The RpcAsyncScheduleJob return value.
@@ -20004,8 +20110,10 @@ type xxx_DeletePrinterOperation struct {
 	Return  uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncDeletePrinter operation.
 func (o *xxx_DeletePrinterOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of RpcAsyncDeletePrinter operation.
 func (o *xxx_DeletePrinterOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinter"
 }
@@ -20119,6 +20227,17 @@ func (o *DeletePrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeDeletePrinterRequest build a response structure from the given request structure.
+func (o *DeletePrinterRequest) MakeResponse() *DeletePrinterResponse {
+	return &DeletePrinterResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncDeletePrinter operation.
+func (o *DeletePrinterRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of RpcAsyncDeletePrinter operation.
+func (o *DeletePrinterRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncDeletePrinter" }
+
 // DeletePrinterResponse structure represents the RpcAsyncDeletePrinter operation response
 type DeletePrinterResponse struct {
 	// Return: The RpcAsyncDeletePrinter return value.
@@ -20164,8 +20283,10 @@ type xxx_SetPrinterOperation struct {
 	Return            uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncSetPrinter operation.
 func (o *xxx_SetPrinterOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RpcAsyncSetPrinter operation.
 func (o *xxx_SetPrinterOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncSetPrinter" }
 
 func (o *xxx_SetPrinterOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20382,6 +20503,17 @@ func (o *SetPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeSetPrinterRequest build a response structure from the given request structure.
+func (o *SetPrinterRequest) MakeResponse() *SetPrinterResponse {
+	return &SetPrinterResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncSetPrinter operation.
+func (o *SetPrinterRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of RpcAsyncSetPrinter operation.
+func (o *SetPrinterRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncSetPrinter" }
+
 // SetPrinterResponse structure represents the RpcAsyncSetPrinter operation response
 type SetPrinterResponse struct {
 	// Return: The RpcAsyncSetPrinter return value.
@@ -20427,8 +20559,10 @@ type xxx_GetPrinterOperation struct {
 	Return        uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncGetPrinter operation.
 func (o *xxx_GetPrinterOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RpcAsyncGetPrinter operation.
 func (o *xxx_GetPrinterOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncGetPrinter" }
 
 func (o *xxx_GetPrinterOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20728,6 +20862,22 @@ func (o *GetPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeGetPrinterRequest build a response structure from the given request structure.
+func (o *GetPrinterRequest) MakeResponse() *GetPrinterResponse {
+	if o == nil {
+		return &GetPrinterResponse{}
+	}
+	return &GetPrinterResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncGetPrinter operation.
+func (o *GetPrinterRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RpcAsyncGetPrinter operation.
+func (o *GetPrinterRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncGetPrinter" }
+
 // GetPrinterResponse structure represents the RpcAsyncGetPrinter operation response
 type GetPrinterResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -20788,8 +20938,10 @@ type xxx_StartDocPrinterOperation struct {
 	Return           uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncStartDocPrinter operation.
 func (o *xxx_StartDocPrinterOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of RpcAsyncStartDocPrinter operation.
 func (o *xxx_StartDocPrinterOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncStartDocPrinter"
 }
@@ -20945,6 +21097,19 @@ func (o *StartDocPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeStartDocPrinterRequest build a response structure from the given request structure.
+func (o *StartDocPrinterRequest) MakeResponse() *StartDocPrinterResponse {
+	return &StartDocPrinterResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncStartDocPrinter operation.
+func (o *StartDocPrinterRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of RpcAsyncStartDocPrinter operation.
+func (o *StartDocPrinterRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncStartDocPrinter"
+}
+
 // StartDocPrinterResponse structure represents the RpcAsyncStartDocPrinter operation response
 type StartDocPrinterResponse struct {
 	JobID uint32 `idl:"name:pJobId" json:"job_id"`
@@ -20989,8 +21154,10 @@ type xxx_StartPagePrinterOperation struct {
 	Return  uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncStartPagePrinter operation.
 func (o *xxx_StartPagePrinterOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RpcAsyncStartPagePrinter operation.
 func (o *xxx_StartPagePrinterOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncStartPagePrinter"
 }
@@ -21104,6 +21271,19 @@ func (o *StartPagePrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeStartPagePrinterRequest build a response structure from the given request structure.
+func (o *StartPagePrinterRequest) MakeResponse() *StartPagePrinterResponse {
+	return &StartPagePrinterResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncStartPagePrinter operation.
+func (o *StartPagePrinterRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RpcAsyncStartPagePrinter operation.
+func (o *StartPagePrinterRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncStartPagePrinter"
+}
+
 // StartPagePrinterResponse structure represents the RpcAsyncStartPagePrinter operation response
 type StartPagePrinterResponse struct {
 	// Return: The RpcAsyncStartPagePrinter return value.
@@ -21148,8 +21328,10 @@ type xxx_WritePrinterOperation struct {
 	Return       uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncWritePrinter operation.
 func (o *xxx_WritePrinterOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of RpcAsyncWritePrinter operation.
 func (o *xxx_WritePrinterOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncWritePrinter"
 }
@@ -21341,6 +21523,17 @@ func (o *WritePrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeWritePrinterRequest build a response structure from the given request structure.
+func (o *WritePrinterRequest) MakeResponse() *WritePrinterResponse {
+	return &WritePrinterResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncWritePrinter operation.
+func (o *WritePrinterRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of RpcAsyncWritePrinter operation.
+func (o *WritePrinterRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncWritePrinter" }
+
 // WritePrinterResponse structure represents the RpcAsyncWritePrinter operation response
 type WritePrinterResponse struct {
 	WrittenCount uint32 `idl:"name:pcWritten" json:"written_count"`
@@ -21385,8 +21578,10 @@ type xxx_EndPagePrinterOperation struct {
 	Return  uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEndPagePrinter operation.
 func (o *xxx_EndPagePrinterOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of RpcAsyncEndPagePrinter operation.
 func (o *xxx_EndPagePrinterOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncEndPagePrinter"
 }
@@ -21500,6 +21695,17 @@ func (o *EndPagePrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeEndPagePrinterRequest build a response structure from the given request structure.
+func (o *EndPagePrinterRequest) MakeResponse() *EndPagePrinterResponse {
+	return &EndPagePrinterResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncEndPagePrinter operation.
+func (o *EndPagePrinterRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of RpcAsyncEndPagePrinter operation.
+func (o *EndPagePrinterRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncEndPagePrinter" }
+
 // EndPagePrinterResponse structure represents the RpcAsyncEndPagePrinter operation response
 type EndPagePrinterResponse struct {
 	// Return: The RpcAsyncEndPagePrinter return value.
@@ -21541,8 +21747,10 @@ type xxx_EndDocPrinterOperation struct {
 	Return  uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEndDocPrinter operation.
 func (o *xxx_EndDocPrinterOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of RpcAsyncEndDocPrinter operation.
 func (o *xxx_EndDocPrinterOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncEndDocPrinter"
 }
@@ -21656,6 +21864,17 @@ func (o *EndDocPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeEndDocPrinterRequest build a response structure from the given request structure.
+func (o *EndDocPrinterRequest) MakeResponse() *EndDocPrinterResponse {
+	return &EndDocPrinterResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncEndDocPrinter operation.
+func (o *EndDocPrinterRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of RpcAsyncEndDocPrinter operation.
+func (o *EndDocPrinterRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncEndDocPrinter" }
+
 // EndDocPrinterResponse structure represents the RpcAsyncEndDocPrinter operation response
 type EndDocPrinterResponse struct {
 	// Return: The RpcAsyncEndDocPrinter return value.
@@ -21697,8 +21916,10 @@ type xxx_AbortPrinterOperation struct {
 	Return  uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncAbortPrinter operation.
 func (o *xxx_AbortPrinterOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of RpcAsyncAbortPrinter operation.
 func (o *xxx_AbortPrinterOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncAbortPrinter"
 }
@@ -21812,6 +22033,17 @@ func (o *AbortPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeAbortPrinterRequest build a response structure from the given request structure.
+func (o *AbortPrinterRequest) MakeResponse() *AbortPrinterResponse {
+	return &AbortPrinterResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncAbortPrinter operation.
+func (o *AbortPrinterRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of RpcAsyncAbortPrinter operation.
+func (o *AbortPrinterRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncAbortPrinter" }
+
 // AbortPrinterResponse structure represents the RpcAsyncAbortPrinter operation response
 type AbortPrinterResponse struct {
 	// Return: The RpcAsyncAbortPrinter return value.
@@ -21858,8 +22090,10 @@ type xxx_GetPrinterDataOperation struct {
 	Return       uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncGetPrinterData operation.
 func (o *xxx_GetPrinterDataOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of RpcAsyncGetPrinterData operation.
 func (o *xxx_GetPrinterDataOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncGetPrinterData"
 }
@@ -22072,6 +22306,22 @@ func (o *GetPrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetPrinterDataRequest build a response structure from the given request structure.
+func (o *GetPrinterDataRequest) MakeResponse() *GetPrinterDataResponse {
+	if o == nil {
+		return &GetPrinterDataResponse{}
+	}
+	return &GetPrinterDataResponse{
+		Size: o.Size,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncGetPrinterData operation.
+func (o *GetPrinterDataRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of RpcAsyncGetPrinterData operation.
+func (o *GetPrinterDataRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncGetPrinterData" }
+
 // GetPrinterDataResponse structure represents the RpcAsyncGetPrinterData operation response
 type GetPrinterDataResponse struct {
 	// XXX: nSize is an implicit input depedency for output parameters
@@ -22139,8 +22389,10 @@ type xxx_GetPrinterDataExOperation struct {
 	Return       uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncGetPrinterDataEx operation.
 func (o *xxx_GetPrinterDataExOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of RpcAsyncGetPrinterDataEx operation.
 func (o *xxx_GetPrinterDataExOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncGetPrinterDataEx"
 }
@@ -22368,6 +22620,24 @@ func (o *GetPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetPrinterDataExRequest build a response structure from the given request structure.
+func (o *GetPrinterDataExRequest) MakeResponse() *GetPrinterDataExResponse {
+	if o == nil {
+		return &GetPrinterDataExResponse{}
+	}
+	return &GetPrinterDataExResponse{
+		Size: o.Size,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncGetPrinterDataEx operation.
+func (o *GetPrinterDataExRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of RpcAsyncGetPrinterDataEx operation.
+func (o *GetPrinterDataExRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncGetPrinterDataEx"
+}
+
 // GetPrinterDataExResponse structure represents the RpcAsyncGetPrinterDataEx operation response
 type GetPrinterDataExResponse struct {
 	// XXX: nSize is an implicit input depedency for output parameters
@@ -22433,8 +22703,10 @@ type xxx_SetPrinterDataOperation struct {
 	Return     uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncSetPrinterData operation.
 func (o *xxx_SetPrinterDataOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of RpcAsyncSetPrinterData operation.
 func (o *xxx_SetPrinterDataOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncSetPrinterData"
 }
@@ -22644,6 +22916,17 @@ func (o *SetPrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetPrinterDataRequest build a response structure from the given request structure.
+func (o *SetPrinterDataRequest) MakeResponse() *SetPrinterDataResponse {
+	return &SetPrinterDataResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncSetPrinterData operation.
+func (o *SetPrinterDataRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of RpcAsyncSetPrinterData operation.
+func (o *SetPrinterDataRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncSetPrinterData" }
+
 // SetPrinterDataResponse structure represents the RpcAsyncSetPrinterData operation response
 type SetPrinterDataResponse struct {
 	// Return: The RpcAsyncSetPrinterData return value.
@@ -22690,8 +22973,10 @@ type xxx_SetPrinterDataExOperation struct {
 	Return     uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncSetPrinterDataEx operation.
 func (o *xxx_SetPrinterDataExOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of RpcAsyncSetPrinterDataEx operation.
 func (o *xxx_SetPrinterDataExOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncSetPrinterDataEx"
 }
@@ -22916,6 +23201,19 @@ func (o *SetPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetPrinterDataExRequest build a response structure from the given request structure.
+func (o *SetPrinterDataExRequest) MakeResponse() *SetPrinterDataExResponse {
+	return &SetPrinterDataExResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncSetPrinterDataEx operation.
+func (o *SetPrinterDataExRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of RpcAsyncSetPrinterDataEx operation.
+func (o *SetPrinterDataExRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncSetPrinterDataEx"
+}
+
 // SetPrinterDataExResponse structure represents the RpcAsyncSetPrinterDataEx operation response
 type SetPrinterDataExResponse struct {
 	// Return: The RpcAsyncSetPrinterDataEx return value.
@@ -22957,8 +23255,10 @@ type xxx_ClosePrinterOperation struct {
 	Return  uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncClosePrinter operation.
 func (o *xxx_ClosePrinterOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of RpcAsyncClosePrinter operation.
 func (o *xxx_ClosePrinterOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncClosePrinter"
 }
@@ -23093,6 +23393,17 @@ func (o *ClosePrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeClosePrinterRequest build a response structure from the given request structure.
+func (o *ClosePrinterRequest) MakeResponse() *ClosePrinterResponse {
+	return &ClosePrinterResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncClosePrinter operation.
+func (o *ClosePrinterRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of RpcAsyncClosePrinter operation.
+func (o *ClosePrinterRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncClosePrinter" }
+
 // ClosePrinterResponse structure represents the RpcAsyncClosePrinter operation response
 type ClosePrinterResponse struct {
 	// phPrinter: A pointer to the handle for a printer object, server object, job object,
@@ -23140,8 +23451,10 @@ type xxx_AddFormOperation struct {
 	Return            uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncAddForm operation.
 func (o *xxx_AddFormOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of RpcAsyncAddForm operation.
 func (o *xxx_AddFormOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncAddForm" }
 
 func (o *xxx_AddFormOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -23283,6 +23596,17 @@ func (o *AddFormRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeAddFormRequest build a response structure from the given request structure.
+func (o *AddFormRequest) MakeResponse() *AddFormResponse {
+	return &AddFormResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncAddForm operation.
+func (o *AddFormRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of RpcAsyncAddForm operation.
+func (o *AddFormRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncAddForm" }
+
 // AddFormResponse structure represents the RpcAsyncAddForm operation response
 type AddFormResponse struct {
 	// Return: The RpcAsyncAddForm return value.
@@ -23325,8 +23649,10 @@ type xxx_DeleteFormOperation struct {
 	Return   uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncDeleteForm operation.
 func (o *xxx_DeleteFormOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of RpcAsyncDeleteForm operation.
 func (o *xxx_DeleteFormOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncDeleteForm" }
 
 func (o *xxx_DeleteFormOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -23453,6 +23779,17 @@ func (o *DeleteFormRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeDeleteFormRequest build a response structure from the given request structure.
+func (o *DeleteFormRequest) MakeResponse() *DeleteFormResponse {
+	return &DeleteFormResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncDeleteForm operation.
+func (o *DeleteFormRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of RpcAsyncDeleteForm operation.
+func (o *DeleteFormRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncDeleteForm" }
+
 // DeleteFormResponse structure represents the RpcAsyncDeleteForm operation response
 type DeleteFormResponse struct {
 	// Return: The RpcAsyncDeleteForm return value.
@@ -23499,8 +23836,10 @@ type xxx_GetFormOperation struct {
 	Return       uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncGetForm operation.
 func (o *xxx_GetFormOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of RpcAsyncGetForm operation.
 func (o *xxx_GetFormOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncGetForm" }
 
 func (o *xxx_GetFormOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -23815,6 +24154,22 @@ func (o *GetFormRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetFormRequest build a response structure from the given request structure.
+func (o *GetFormRequest) MakeResponse() *GetFormResponse {
+	if o == nil {
+		return &GetFormResponse{}
+	}
+	return &GetFormResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncGetForm operation.
+func (o *GetFormRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of RpcAsyncGetForm operation.
+func (o *GetFormRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncGetForm" }
+
 // GetFormResponse structure represents the RpcAsyncGetForm operation response
 type GetFormResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -23875,8 +24230,10 @@ type xxx_SetFormOperation struct {
 	Return            uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncSetForm operation.
 func (o *xxx_SetFormOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of RpcAsyncSetForm operation.
 func (o *xxx_SetFormOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncSetForm" }
 
 func (o *xxx_SetFormOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24033,6 +24390,17 @@ func (o *SetFormRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetFormRequest build a response structure from the given request structure.
+func (o *SetFormRequest) MakeResponse() *SetFormResponse {
+	return &SetFormResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncSetForm operation.
+func (o *SetFormRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of RpcAsyncSetForm operation.
+func (o *SetFormRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncSetForm" }
+
 // SetFormResponse structure represents the RpcAsyncSetForm operation response
 type SetFormResponse struct {
 	// Return: The RpcAsyncSetForm return value.
@@ -24079,8 +24447,10 @@ type xxx_EnumFormsOperation struct {
 	Return        uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEnumForms operation.
 func (o *xxx_EnumFormsOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of RpcAsyncEnumForms operation.
 func (o *xxx_EnumFormsOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncEnumForms" }
 
 func (o *xxx_EnumFormsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24392,6 +24762,22 @@ func (o *EnumFormsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeEnumFormsRequest build a response structure from the given request structure.
+func (o *EnumFormsRequest) MakeResponse() *EnumFormsResponse {
+	if o == nil {
+		return &EnumFormsResponse{}
+	}
+	return &EnumFormsResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncEnumForms operation.
+func (o *EnumFormsRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of RpcAsyncEnumForms operation.
+func (o *EnumFormsRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncEnumForms" }
+
 // EnumFormsResponse structure represents the RpcAsyncEnumForms operation response
 type EnumFormsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -24462,8 +24848,10 @@ type xxx_GetPrinterDriverOperation struct {
 	Return             uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncGetPrinterDriver operation.
 func (o *xxx_GetPrinterDriverOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of RpcAsyncGetPrinterDriver operation.
 func (o *xxx_GetPrinterDriverOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncGetPrinterDriver"
 }
@@ -24859,6 +25247,24 @@ func (o *GetPrinterDriverRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetPrinterDriverRequest build a response structure from the given request structure.
+func (o *GetPrinterDriverRequest) MakeResponse() *GetPrinterDriverResponse {
+	if o == nil {
+		return &GetPrinterDriverResponse{}
+	}
+	return &GetPrinterDriverResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncGetPrinterDriver operation.
+func (o *GetPrinterDriverRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of RpcAsyncGetPrinterDriver operation.
+func (o *GetPrinterDriverRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncGetPrinterDriver"
+}
+
 // GetPrinterDriverResponse structure represents the RpcAsyncGetPrinterDriver operation response
 type GetPrinterDriverResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -24931,8 +25337,10 @@ type xxx_EnumPrinterDataOperation struct {
 	Return             uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEnumPrinterData operation.
 func (o *xxx_EnumPrinterDataOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of RpcAsyncEnumPrinterData operation.
 func (o *xxx_EnumPrinterDataOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncEnumPrinterData"
 }
@@ -25223,6 +25631,25 @@ func (o *EnumPrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeEnumPrinterDataRequest build a response structure from the given request structure.
+func (o *EnumPrinterDataRequest) MakeResponse() *EnumPrinterDataResponse {
+	if o == nil {
+		return &EnumPrinterDataResponse{}
+	}
+	return &EnumPrinterDataResponse{
+		ValueNameInLength: o.ValueNameInLength,
+		DataInLength:      o.DataInLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncEnumPrinterData operation.
+func (o *EnumPrinterDataRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of RpcAsyncEnumPrinterData operation.
+func (o *EnumPrinterDataRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncEnumPrinterData"
+}
+
 // EnumPrinterDataResponse structure represents the RpcAsyncEnumPrinterData operation response
 type EnumPrinterDataResponse struct {
 	// XXX: cbValueNameIn is an implicit input depedency for output parameters
@@ -25301,8 +25728,10 @@ type xxx_EnumPrinterDataExOperation struct {
 	Return              uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEnumPrinterDataEx operation.
 func (o *xxx_EnumPrinterDataExOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of RpcAsyncEnumPrinterDataEx operation.
 func (o *xxx_EnumPrinterDataExOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncEnumPrinterDataEx"
 }
@@ -25515,6 +25944,24 @@ func (o *EnumPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeEnumPrinterDataExRequest build a response structure from the given request structure.
+func (o *EnumPrinterDataExRequest) MakeResponse() *EnumPrinterDataExResponse {
+	if o == nil {
+		return &EnumPrinterDataExResponse{}
+	}
+	return &EnumPrinterDataExResponse{
+		EnumValuesInLength: o.EnumValuesInLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncEnumPrinterDataEx operation.
+func (o *EnumPrinterDataExRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of RpcAsyncEnumPrinterDataEx operation.
+func (o *EnumPrinterDataExRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncEnumPrinterDataEx"
+}
+
 // EnumPrinterDataExResponse structure represents the RpcAsyncEnumPrinterDataEx operation response
 type EnumPrinterDataExResponse struct {
 	// XXX: cbEnumValuesIn is an implicit input depedency for output parameters
@@ -25580,8 +26027,10 @@ type xxx_EnumPrinterKeyOperation struct {
 	Return          uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEnumPrinterKey operation.
 func (o *xxx_EnumPrinterKeyOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of RpcAsyncEnumPrinterKey operation.
 func (o *xxx_EnumPrinterKeyOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncEnumPrinterKey"
 }
@@ -25788,6 +26237,22 @@ func (o *EnumPrinterKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeEnumPrinterKeyRequest build a response structure from the given request structure.
+func (o *EnumPrinterKeyRequest) MakeResponse() *EnumPrinterKeyResponse {
+	if o == nil {
+		return &EnumPrinterKeyResponse{}
+	}
+	return &EnumPrinterKeyResponse{
+		SubkeyInLength: o.SubkeyInLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncEnumPrinterKey operation.
+func (o *EnumPrinterKeyRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of RpcAsyncEnumPrinterKey operation.
+func (o *EnumPrinterKeyRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncEnumPrinterKey" }
+
 // EnumPrinterKeyResponse structure represents the RpcAsyncEnumPrinterKey operation response
 type EnumPrinterKeyResponse struct {
 	// XXX: cbSubkeyIn is an implicit input depedency for output parameters
@@ -25847,8 +26312,10 @@ type xxx_DeletePrinterDataOperation struct {
 	Return    uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncDeletePrinterData operation.
 func (o *xxx_DeletePrinterDataOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of RpcAsyncDeletePrinterData operation.
 func (o *xxx_DeletePrinterDataOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterData"
 }
@@ -25977,6 +26444,19 @@ func (o *DeletePrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeDeletePrinterDataRequest build a response structure from the given request structure.
+func (o *DeletePrinterDataRequest) MakeResponse() *DeletePrinterDataResponse {
+	return &DeletePrinterDataResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncDeletePrinterData operation.
+func (o *DeletePrinterDataRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of RpcAsyncDeletePrinterData operation.
+func (o *DeletePrinterDataRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterData"
+}
+
 // DeletePrinterDataResponse structure represents the RpcAsyncDeletePrinterData operation response
 type DeletePrinterDataResponse struct {
 	// Return: The RpcAsyncDeletePrinterData return value.
@@ -26020,8 +26500,10 @@ type xxx_DeletePrinterDataExOperation struct {
 	Return    uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncDeletePrinterDataEx operation.
 func (o *xxx_DeletePrinterDataExOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of RpcAsyncDeletePrinterDataEx operation.
 func (o *xxx_DeletePrinterDataExOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterDataEx"
 }
@@ -26165,6 +26647,19 @@ func (o *DeletePrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeDeletePrinterDataExRequest build a response structure from the given request structure.
+func (o *DeletePrinterDataExRequest) MakeResponse() *DeletePrinterDataExResponse {
+	return &DeletePrinterDataExResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncDeletePrinterDataEx operation.
+func (o *DeletePrinterDataExRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of RpcAsyncDeletePrinterDataEx operation.
+func (o *DeletePrinterDataExRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterDataEx"
+}
+
 // DeletePrinterDataExResponse structure represents the RpcAsyncDeletePrinterDataEx operation response
 type DeletePrinterDataExResponse struct {
 	// Return: The RpcAsyncDeletePrinterDataEx return value.
@@ -26207,8 +26702,10 @@ type xxx_DeletePrinterKeyOperation struct {
 	Return  uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncDeletePrinterKey operation.
 func (o *xxx_DeletePrinterKeyOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of RpcAsyncDeletePrinterKey operation.
 func (o *xxx_DeletePrinterKeyOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterKey"
 }
@@ -26337,6 +26834,19 @@ func (o *DeletePrinterKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeDeletePrinterKeyRequest build a response structure from the given request structure.
+func (o *DeletePrinterKeyRequest) MakeResponse() *DeletePrinterKeyResponse {
+	return &DeletePrinterKeyResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncDeletePrinterKey operation.
+func (o *DeletePrinterKeyRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of RpcAsyncDeletePrinterKey operation.
+func (o *DeletePrinterKeyRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterKey"
+}
+
 // DeletePrinterKeyResponse structure represents the RpcAsyncDeletePrinterKey operation response
 type DeletePrinterKeyResponse struct {
 	// Return: The RpcAsyncDeletePrinterKey return value.
@@ -26385,8 +26895,10 @@ type xxx_XcvDataOperation struct {
 	Return             uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncXcvData operation.
 func (o *xxx_XcvDataOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of RpcAsyncXcvData operation.
 func (o *xxx_XcvDataOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncXcvData" }
 
 func (o *xxx_XcvDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -26678,6 +27190,22 @@ func (o *XcvDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeXcvDataRequest build a response structure from the given request structure.
+func (o *XcvDataRequest) MakeResponse() *XcvDataResponse {
+	if o == nil {
+		return &XcvDataResponse{}
+	}
+	return &XcvDataResponse{
+		OutputDataLength: o.OutputDataLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncXcvData operation.
+func (o *XcvDataRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of RpcAsyncXcvData operation.
+func (o *XcvDataRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncXcvData" }
+
 // XcvDataResponse structure represents the RpcAsyncXcvData operation response
 type XcvDataResponse struct {
 	// XXX: cbOutputData is an implicit input depedency for output parameters
@@ -26742,8 +27270,10 @@ type xxx_SendRecvBIDIDataOperation struct {
 	Return       uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncSendRecvBidiData operation.
 func (o *xxx_SendRecvBIDIDataOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of RpcAsyncSendRecvBidiData operation.
 func (o *xxx_SendRecvBIDIDataOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncSendRecvBidiData"
 }
@@ -26973,6 +27503,19 @@ func (o *SendRecvBIDIDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSendRecvBIDIDataRequest build a response structure from the given request structure.
+func (o *SendRecvBIDIDataRequest) MakeResponse() *SendRecvBIDIDataResponse {
+	return &SendRecvBIDIDataResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncSendRecvBidiData operation.
+func (o *SendRecvBIDIDataRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of RpcAsyncSendRecvBidiData operation.
+func (o *SendRecvBIDIDataRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncSendRecvBidiData"
+}
+
 // SendRecvBIDIDataResponse structure represents the RpcAsyncSendRecvBidiData operation response
 type SendRecvBIDIDataResponse struct {
 	ResponseData *BIDIResponseContainer `idl:"name:ppRespData" json:"response_data"`
@@ -27019,8 +27562,10 @@ type xxx_CreatePrinterICOperation struct {
 	Return           uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncCreatePrinterIC operation.
 func (o *xxx_CreatePrinterICOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of RpcAsyncCreatePrinterIC operation.
 func (o *xxx_CreatePrinterICOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncCreatePrinterIC"
 }
@@ -27186,6 +27731,19 @@ func (o *CreatePrinterICRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeCreatePrinterICRequest build a response structure from the given request structure.
+func (o *CreatePrinterICRequest) MakeResponse() *CreatePrinterICResponse {
+	return &CreatePrinterICResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncCreatePrinterIC operation.
+func (o *CreatePrinterICRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of RpcAsyncCreatePrinterIC operation.
+func (o *CreatePrinterICRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncCreatePrinterIC"
+}
+
 // CreatePrinterICResponse structure represents the RpcAsyncCreatePrinterIC operation response
 type CreatePrinterICResponse struct {
 	Handle *GDI `idl:"name:pHandle" json:"handle"`
@@ -27235,8 +27793,10 @@ type xxx_PlayGDIScriptOnPrinterICOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncPlayGdiScriptOnPrinterIC operation.
 func (o *xxx_PlayGDIScriptOnPrinterICOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of RpcAsyncPlayGdiScriptOnPrinterIC operation.
 func (o *xxx_PlayGDIScriptOnPrinterICOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncPlayGdiScriptOnPrinterIC"
 }
@@ -27491,6 +28051,24 @@ func (o *PlayGDIScriptOnPrinterICRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakePlayGDIScriptOnPrinterICRequest build a response structure from the given request structure.
+func (o *PlayGDIScriptOnPrinterICRequest) MakeResponse() *PlayGDIScriptOnPrinterICResponse {
+	if o == nil {
+		return &PlayGDIScriptOnPrinterICResponse{}
+	}
+	return &PlayGDIScriptOnPrinterICResponse{
+		OutCount: o.OutCount,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncPlayGdiScriptOnPrinterIC operation.
+func (o *PlayGDIScriptOnPrinterICRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of RpcAsyncPlayGdiScriptOnPrinterIC operation.
+func (o *PlayGDIScriptOnPrinterICRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncPlayGdiScriptOnPrinterIC"
+}
+
 // PlayGDIScriptOnPrinterICResponse structure represents the RpcAsyncPlayGdiScriptOnPrinterIC operation response
 type PlayGDIScriptOnPrinterICResponse struct {
 	// XXX: cOut is an implicit input depedency for output parameters
@@ -27546,8 +28124,10 @@ type xxx_DeletePrinterICOperation struct {
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncDeletePrinterIC operation.
 func (o *xxx_DeletePrinterICOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of RpcAsyncDeletePrinterIC operation.
 func (o *xxx_DeletePrinterICOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterIC"
 }
@@ -27682,6 +28262,19 @@ func (o *DeletePrinterICRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeDeletePrinterICRequest build a response structure from the given request structure.
+func (o *DeletePrinterICRequest) MakeResponse() *DeletePrinterICResponse {
+	return &DeletePrinterICResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncDeletePrinterIC operation.
+func (o *DeletePrinterICRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of RpcAsyncDeletePrinterIC operation.
+func (o *DeletePrinterICRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterIC"
+}
+
 // DeletePrinterICResponse structure represents the RpcAsyncDeletePrinterIC operation response
 type DeletePrinterICResponse struct {
 	// phPrinterIC: A non-NULL pointer to a printer information context handle ([MS-RPRN]
@@ -27734,8 +28327,10 @@ type xxx_EnumPrintersOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEnumPrinters operation.
 func (o *xxx_EnumPrintersOperation) OpNum() int { return 38 }
 
+// OpName returns the operation name of RpcAsyncEnumPrinters operation.
 func (o *xxx_EnumPrintersOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncEnumPrinters"
 }
@@ -28078,6 +28673,22 @@ func (o *EnumPrintersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeEnumPrintersRequest build a response structure from the given request structure.
+func (o *EnumPrintersRequest) MakeResponse() *EnumPrintersResponse {
+	if o == nil {
+		return &EnumPrintersResponse{}
+	}
+	return &EnumPrintersResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncEnumPrinters operation.
+func (o *EnumPrintersRequest) OpNum() int { return 38 }
+
+// OpName returns the operation name of RpcAsyncEnumPrinters operation.
+func (o *EnumPrintersRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncEnumPrinters" }
+
 // EnumPrintersResponse structure represents the RpcAsyncEnumPrinters operation response
 type EnumPrintersResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -28141,8 +28752,10 @@ type xxx_AddPrinterDriverOperation struct {
 	Return          uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncAddPrinterDriver operation.
 func (o *xxx_AddPrinterDriverOperation) OpNum() int { return 39 }
 
+// OpName returns the operation name of RpcAsyncAddPrinterDriver operation.
 func (o *xxx_AddPrinterDriverOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncAddPrinterDriver"
 }
@@ -28315,6 +28928,19 @@ func (o *AddPrinterDriverRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeAddPrinterDriverRequest build a response structure from the given request structure.
+func (o *AddPrinterDriverRequest) MakeResponse() *AddPrinterDriverResponse {
+	return &AddPrinterDriverResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncAddPrinterDriver operation.
+func (o *AddPrinterDriverRequest) OpNum() int { return 39 }
+
+// OpName returns the operation name of RpcAsyncAddPrinterDriver operation.
+func (o *AddPrinterDriverRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncAddPrinterDriver"
+}
+
 // AddPrinterDriverResponse structure represents the RpcAsyncAddPrinterDriver operation response
 type AddPrinterDriverResponse struct {
 	// Return: The RpcAsyncAddPrinterDriver return value.
@@ -28362,8 +28988,10 @@ type xxx_EnumPrinterDriversOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEnumPrinterDrivers operation.
 func (o *xxx_EnumPrinterDriversOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of RpcAsyncEnumPrinterDrivers operation.
 func (o *xxx_EnumPrinterDriversOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncEnumPrinterDrivers"
 }
@@ -28731,6 +29359,24 @@ func (o *EnumPrinterDriversRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeEnumPrinterDriversRequest build a response structure from the given request structure.
+func (o *EnumPrinterDriversRequest) MakeResponse() *EnumPrinterDriversResponse {
+	if o == nil {
+		return &EnumPrinterDriversResponse{}
+	}
+	return &EnumPrinterDriversResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncEnumPrinterDrivers operation.
+func (o *EnumPrinterDriversRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of RpcAsyncEnumPrinterDrivers operation.
+func (o *EnumPrinterDriversRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncEnumPrinterDrivers"
+}
+
 // EnumPrinterDriversResponse structure represents the RpcAsyncEnumPrinterDrivers operation response
 type EnumPrinterDriversResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -28797,8 +29443,10 @@ type xxx_GetPrinterDriverDirectoryOperation struct {
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncGetPrinterDriverDirectory operation.
 func (o *xxx_GetPrinterDriverDirectoryOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of RpcAsyncGetPrinterDriverDirectory operation.
 func (o *xxx_GetPrinterDriverDirectoryOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncGetPrinterDriverDirectory"
 }
@@ -29154,6 +29802,24 @@ func (o *GetPrinterDriverDirectoryRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeGetPrinterDriverDirectoryRequest build a response structure from the given request structure.
+func (o *GetPrinterDriverDirectoryRequest) MakeResponse() *GetPrinterDriverDirectoryResponse {
+	if o == nil {
+		return &GetPrinterDriverDirectoryResponse{}
+	}
+	return &GetPrinterDriverDirectoryResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncGetPrinterDriverDirectory operation.
+func (o *GetPrinterDriverDirectoryRequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of RpcAsyncGetPrinterDriverDirectory operation.
+func (o *GetPrinterDriverDirectoryRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncGetPrinterDriverDirectory"
+}
+
 // GetPrinterDriverDirectoryResponse structure represents the RpcAsyncGetPrinterDriverDirectory operation response
 type GetPrinterDriverDirectoryResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -29214,8 +29880,10 @@ type xxx_DeletePrinterDriverOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncDeletePrinterDriver operation.
 func (o *xxx_DeletePrinterDriverOperation) OpNum() int { return 42 }
 
+// OpName returns the operation name of RpcAsyncDeletePrinterDriver operation.
 func (o *xxx_DeletePrinterDriverOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterDriver"
 }
@@ -29373,6 +30041,19 @@ func (o *DeletePrinterDriverRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeDeletePrinterDriverRequest build a response structure from the given request structure.
+func (o *DeletePrinterDriverRequest) MakeResponse() *DeletePrinterDriverResponse {
+	return &DeletePrinterDriverResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncDeletePrinterDriver operation.
+func (o *DeletePrinterDriverRequest) OpNum() int { return 42 }
+
+// OpName returns the operation name of RpcAsyncDeletePrinterDriver operation.
+func (o *DeletePrinterDriverRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterDriver"
+}
+
 // DeletePrinterDriverResponse structure represents the RpcAsyncDeletePrinterDriver operation response
 type DeletePrinterDriverResponse struct {
 	// Return: The RpcAsyncDeletePrinterDriver return value.
@@ -29418,8 +30099,10 @@ type xxx_DeletePrinterDriverExOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncDeletePrinterDriverEx operation.
 func (o *xxx_DeletePrinterDriverExOperation) OpNum() int { return 43 }
 
+// OpName returns the operation name of RpcAsyncDeletePrinterDriverEx operation.
 func (o *xxx_DeletePrinterDriverExOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterDriverEx"
 }
@@ -29607,6 +30290,19 @@ func (o *DeletePrinterDriverExRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeDeletePrinterDriverExRequest build a response structure from the given request structure.
+func (o *DeletePrinterDriverExRequest) MakeResponse() *DeletePrinterDriverExResponse {
+	return &DeletePrinterDriverExResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncDeletePrinterDriverEx operation.
+func (o *DeletePrinterDriverExRequest) OpNum() int { return 43 }
+
+// OpName returns the operation name of RpcAsyncDeletePrinterDriverEx operation.
+func (o *DeletePrinterDriverExRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterDriverEx"
+}
+
 // DeletePrinterDriverExResponse structure represents the RpcAsyncDeletePrinterDriverEx operation response
 type DeletePrinterDriverExResponse struct {
 	// Return: The RpcAsyncDeletePrinterDriverEx return value.
@@ -29651,8 +30347,10 @@ type xxx_AddPrintProcessorOperation struct {
 	Return             uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncAddPrintProcessor operation.
 func (o *xxx_AddPrintProcessorOperation) OpNum() int { return 44 }
 
+// OpName returns the operation name of RpcAsyncAddPrintProcessor operation.
 func (o *xxx_AddPrintProcessorOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncAddPrintProcessor"
 }
@@ -29825,6 +30523,19 @@ func (o *AddPrintProcessorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeAddPrintProcessorRequest build a response structure from the given request structure.
+func (o *AddPrintProcessorRequest) MakeResponse() *AddPrintProcessorResponse {
+	return &AddPrintProcessorResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncAddPrintProcessor operation.
+func (o *AddPrintProcessorRequest) OpNum() int { return 44 }
+
+// OpName returns the operation name of RpcAsyncAddPrintProcessor operation.
+func (o *AddPrintProcessorRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncAddPrintProcessor"
+}
+
 // AddPrintProcessorResponse structure represents the RpcAsyncAddPrintProcessor operation response
 type AddPrintProcessorResponse struct {
 	// Return: The RpcAsyncAddPrintProcessor return value.
@@ -29872,8 +30583,10 @@ type xxx_EnumPrintProcessorsOperation struct {
 	Return             uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEnumPrintProcessors operation.
 func (o *xxx_EnumPrintProcessorsOperation) OpNum() int { return 45 }
 
+// OpName returns the operation name of RpcAsyncEnumPrintProcessors operation.
 func (o *xxx_EnumPrintProcessorsOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncEnumPrintProcessors"
 }
@@ -30241,6 +30954,24 @@ func (o *EnumPrintProcessorsRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeEnumPrintProcessorsRequest build a response structure from the given request structure.
+func (o *EnumPrintProcessorsRequest) MakeResponse() *EnumPrintProcessorsResponse {
+	if o == nil {
+		return &EnumPrintProcessorsResponse{}
+	}
+	return &EnumPrintProcessorsResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncEnumPrintProcessors operation.
+func (o *EnumPrintProcessorsRequest) OpNum() int { return 45 }
+
+// OpName returns the operation name of RpcAsyncEnumPrintProcessors operation.
+func (o *EnumPrintProcessorsRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncEnumPrintProcessors"
+}
+
 // EnumPrintProcessorsResponse structure represents the RpcAsyncEnumPrintProcessors operation response
 type EnumPrintProcessorsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -30307,8 +31038,10 @@ type xxx_GetPrintProcessorDirectoryOperation struct {
 	Return                  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncGetPrintProcessorDirectory operation.
 func (o *xxx_GetPrintProcessorDirectoryOperation) OpNum() int { return 46 }
 
+// OpName returns the operation name of RpcAsyncGetPrintProcessorDirectory operation.
 func (o *xxx_GetPrintProcessorDirectoryOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncGetPrintProcessorDirectory"
 }
@@ -30664,6 +31397,24 @@ func (o *GetPrintProcessorDirectoryRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeGetPrintProcessorDirectoryRequest build a response structure from the given request structure.
+func (o *GetPrintProcessorDirectoryRequest) MakeResponse() *GetPrintProcessorDirectoryResponse {
+	if o == nil {
+		return &GetPrintProcessorDirectoryResponse{}
+	}
+	return &GetPrintProcessorDirectoryResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncGetPrintProcessorDirectory operation.
+func (o *GetPrintProcessorDirectoryRequest) OpNum() int { return 46 }
+
+// OpName returns the operation name of RpcAsyncGetPrintProcessorDirectory operation.
+func (o *GetPrintProcessorDirectoryRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncGetPrintProcessorDirectory"
+}
+
 // GetPrintProcessorDirectoryResponse structure represents the RpcAsyncGetPrintProcessorDirectory operation response
 type GetPrintProcessorDirectoryResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -30727,8 +31478,10 @@ type xxx_EnumPortsOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEnumPorts operation.
 func (o *xxx_EnumPortsOperation) OpNum() int { return 47 }
 
+// OpName returns the operation name of RpcAsyncEnumPorts operation.
 func (o *xxx_EnumPortsOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncEnumPorts" }
 
 func (o *xxx_EnumPortsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -31054,6 +31807,22 @@ func (o *EnumPortsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeEnumPortsRequest build a response structure from the given request structure.
+func (o *EnumPortsRequest) MakeResponse() *EnumPortsResponse {
+	if o == nil {
+		return &EnumPortsResponse{}
+	}
+	return &EnumPortsResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncEnumPorts operation.
+func (o *EnumPortsRequest) OpNum() int { return 47 }
+
+// OpName returns the operation name of RpcAsyncEnumPorts operation.
+func (o *EnumPortsRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncEnumPorts" }
+
 // EnumPortsResponse structure represents the RpcAsyncEnumPorts operation response
 type EnumPortsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -31120,8 +31889,10 @@ type xxx_EnumMonitorsOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEnumMonitors operation.
 func (o *xxx_EnumMonitorsOperation) OpNum() int { return 48 }
 
+// OpName returns the operation name of RpcAsyncEnumMonitors operation.
 func (o *xxx_EnumMonitorsOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncEnumMonitors"
 }
@@ -31449,6 +32220,22 @@ func (o *EnumMonitorsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeEnumMonitorsRequest build a response structure from the given request structure.
+func (o *EnumMonitorsRequest) MakeResponse() *EnumMonitorsResponse {
+	if o == nil {
+		return &EnumMonitorsResponse{}
+	}
+	return &EnumMonitorsResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncEnumMonitors operation.
+func (o *EnumMonitorsRequest) OpNum() int { return 48 }
+
+// OpName returns the operation name of RpcAsyncEnumMonitors operation.
+func (o *EnumMonitorsRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncEnumMonitors" }
+
 // EnumMonitorsResponse structure represents the RpcAsyncEnumMonitors operation response
 type EnumMonitorsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -31513,8 +32300,10 @@ type xxx_AddPortOperation struct {
 	Return           uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncAddPort operation.
 func (o *xxx_AddPortOperation) OpNum() int { return 49 }
 
+// OpName returns the operation name of RpcAsyncAddPort operation.
 func (o *xxx_AddPortOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncAddPort" }
 
 func (o *xxx_AddPortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -31715,6 +32504,17 @@ func (o *AddPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeAddPortRequest build a response structure from the given request structure.
+func (o *AddPortRequest) MakeResponse() *AddPortResponse {
+	return &AddPortResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncAddPort operation.
+func (o *AddPortRequest) OpNum() int { return 49 }
+
+// OpName returns the operation name of RpcAsyncAddPort operation.
+func (o *AddPortRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncAddPort" }
+
 // AddPortResponse structure represents the RpcAsyncAddPort operation response
 type AddPortResponse struct {
 	// Return: The RpcAsyncAddPort return value.
@@ -31758,8 +32558,10 @@ type xxx_SetPortOperation struct {
 	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncSetPort operation.
 func (o *xxx_SetPortOperation) OpNum() int { return 50 }
 
+// OpName returns the operation name of RpcAsyncSetPort operation.
 func (o *xxx_SetPortOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncSetPort" }
 
 func (o *xxx_SetPortOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -31955,6 +32757,17 @@ func (o *SetPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeSetPortRequest build a response structure from the given request structure.
+func (o *SetPortRequest) MakeResponse() *SetPortResponse {
+	return &SetPortResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncSetPort operation.
+func (o *SetPortRequest) OpNum() int { return 50 }
+
+// OpName returns the operation name of RpcAsyncSetPort operation.
+func (o *SetPortRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncSetPort" }
+
 // SetPortResponse structure represents the RpcAsyncSetPort operation response
 type SetPortResponse struct {
 	// Return: The RpcAsyncSetPort return value.
@@ -31997,8 +32810,10 @@ type xxx_AddMonitorOperation struct {
 	Return           uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncAddMonitor operation.
 func (o *xxx_AddMonitorOperation) OpNum() int { return 51 }
 
+// OpName returns the operation name of RpcAsyncAddMonitor operation.
 func (o *xxx_AddMonitorOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncAddMonitor" }
 
 func (o *xxx_AddMonitorOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -32154,6 +32969,17 @@ func (o *AddMonitorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeAddMonitorRequest build a response structure from the given request structure.
+func (o *AddMonitorRequest) MakeResponse() *AddMonitorResponse {
+	return &AddMonitorResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncAddMonitor operation.
+func (o *AddMonitorRequest) OpNum() int { return 51 }
+
+// OpName returns the operation name of RpcAsyncAddMonitor operation.
+func (o *AddMonitorRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncAddMonitor" }
+
 // AddMonitorResponse structure represents the RpcAsyncAddMonitor operation response
 type AddMonitorResponse struct {
 	// Return: The RpcAsyncAddMonitor return value.
@@ -32197,8 +33023,10 @@ type xxx_DeleteMonitorOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncDeleteMonitor operation.
 func (o *xxx_DeleteMonitorOperation) OpNum() int { return 52 }
 
+// OpName returns the operation name of RpcAsyncDeleteMonitor operation.
 func (o *xxx_DeleteMonitorOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncDeleteMonitor"
 }
@@ -32381,6 +33209,17 @@ func (o *DeleteMonitorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeDeleteMonitorRequest build a response structure from the given request structure.
+func (o *DeleteMonitorRequest) MakeResponse() *DeleteMonitorResponse {
+	return &DeleteMonitorResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncDeleteMonitor operation.
+func (o *DeleteMonitorRequest) OpNum() int { return 52 }
+
+// OpName returns the operation name of RpcAsyncDeleteMonitor operation.
+func (o *DeleteMonitorRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncDeleteMonitor" }
+
 // DeleteMonitorResponse structure represents the RpcAsyncDeleteMonitor operation response
 type DeleteMonitorResponse struct {
 	// Return: The RpcAsyncDeleteMonitor return value.
@@ -32424,8 +33263,10 @@ type xxx_DeletePrintProcessorOperation struct {
 	Return             uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncDeletePrintProcessor operation.
 func (o *xxx_DeletePrintProcessorOperation) OpNum() int { return 53 }
 
+// OpName returns the operation name of RpcAsyncDeletePrintProcessor operation.
 func (o *xxx_DeletePrintProcessorOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncDeletePrintProcessor"
 }
@@ -32608,6 +33449,19 @@ func (o *DeletePrintProcessorRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeDeletePrintProcessorRequest build a response structure from the given request structure.
+func (o *DeletePrintProcessorRequest) MakeResponse() *DeletePrintProcessorResponse {
+	return &DeletePrintProcessorResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncDeletePrintProcessor operation.
+func (o *DeletePrintProcessorRequest) OpNum() int { return 53 }
+
+// OpName returns the operation name of RpcAsyncDeletePrintProcessor operation.
+func (o *DeletePrintProcessorRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncDeletePrintProcessor"
+}
+
 // DeletePrintProcessorResponse structure represents the RpcAsyncDeletePrintProcessor operation response
 type DeletePrintProcessorResponse struct {
 	// Return: The RpcAsyncDeletePrintProcessor return value.
@@ -32655,8 +33509,10 @@ type xxx_EnumPrintProcessorDataTypesOperation struct {
 	Return             uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEnumPrintProcessorDatatypes operation.
 func (o *xxx_EnumPrintProcessorDataTypesOperation) OpNum() int { return 54 }
 
+// OpName returns the operation name of RpcAsyncEnumPrintProcessorDatatypes operation.
 func (o *xxx_EnumPrintProcessorDataTypesOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncEnumPrintProcessorDatatypes"
 }
@@ -33024,6 +33880,24 @@ func (o *EnumPrintProcessorDataTypesRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeEnumPrintProcessorDataTypesRequest build a response structure from the given request structure.
+func (o *EnumPrintProcessorDataTypesRequest) MakeResponse() *EnumPrintProcessorDataTypesResponse {
+	if o == nil {
+		return &EnumPrintProcessorDataTypesResponse{}
+	}
+	return &EnumPrintProcessorDataTypesResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncEnumPrintProcessorDatatypes operation.
+func (o *EnumPrintProcessorDataTypesRequest) OpNum() int { return 54 }
+
+// OpName returns the operation name of RpcAsyncEnumPrintProcessorDatatypes operation.
+func (o *EnumPrintProcessorDataTypesRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncEnumPrintProcessorDatatypes"
+}
+
 // EnumPrintProcessorDataTypesResponse structure represents the RpcAsyncEnumPrintProcessorDatatypes operation response
 type EnumPrintProcessorDataTypesResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -33088,8 +33962,10 @@ type xxx_AddPerMachineConnectionOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncAddPerMachineConnection operation.
 func (o *xxx_AddPerMachineConnectionOperation) OpNum() int { return 55 }
 
+// OpName returns the operation name of RpcAsyncAddPerMachineConnection operation.
 func (o *xxx_AddPerMachineConnectionOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncAddPerMachineConnection"
 }
@@ -33262,6 +34138,19 @@ func (o *AddPerMachineConnectionRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeAddPerMachineConnectionRequest build a response structure from the given request structure.
+func (o *AddPerMachineConnectionRequest) MakeResponse() *AddPerMachineConnectionResponse {
+	return &AddPerMachineConnectionResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncAddPerMachineConnection operation.
+func (o *AddPerMachineConnectionRequest) OpNum() int { return 55 }
+
+// OpName returns the operation name of RpcAsyncAddPerMachineConnection operation.
+func (o *AddPerMachineConnectionRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncAddPerMachineConnection"
+}
+
 // AddPerMachineConnectionResponse structure represents the RpcAsyncAddPerMachineConnection operation response
 type AddPerMachineConnectionResponse struct {
 	// Return: The RpcAsyncAddPerMachineConnection return value.
@@ -33304,8 +34193,10 @@ type xxx_DeletePerMachineConnectionOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncDeletePerMachineConnection operation.
 func (o *xxx_DeletePerMachineConnectionOperation) OpNum() int { return 56 }
 
+// OpName returns the operation name of RpcAsyncDeletePerMachineConnection operation.
 func (o *xxx_DeletePerMachineConnectionOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncDeletePerMachineConnection"
 }
@@ -33448,6 +34339,19 @@ func (o *DeletePerMachineConnectionRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeDeletePerMachineConnectionRequest build a response structure from the given request structure.
+func (o *DeletePerMachineConnectionRequest) MakeResponse() *DeletePerMachineConnectionResponse {
+	return &DeletePerMachineConnectionResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncDeletePerMachineConnection operation.
+func (o *DeletePerMachineConnectionRequest) OpNum() int { return 56 }
+
+// OpName returns the operation name of RpcAsyncDeletePerMachineConnection operation.
+func (o *DeletePerMachineConnectionRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncDeletePerMachineConnection"
+}
+
 // DeletePerMachineConnectionResponse structure represents the RpcAsyncDeletePerMachineConnection operation response
 type DeletePerMachineConnectionResponse struct {
 	// Return: The RpcAsyncDeletePerMachineConnection return value.
@@ -33493,8 +34397,10 @@ type xxx_EnumPerMachineConnectionsOperation struct {
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEnumPerMachineConnections operation.
 func (o *xxx_EnumPerMachineConnectionsOperation) OpNum() int { return 57 }
 
+// OpName returns the operation name of RpcAsyncEnumPerMachineConnections operation.
 func (o *xxx_EnumPerMachineConnectionsOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncEnumPerMachineConnections"
 }
@@ -33807,6 +34713,24 @@ func (o *EnumPerMachineConnectionsRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeEnumPerMachineConnectionsRequest build a response structure from the given request structure.
+func (o *EnumPerMachineConnectionsRequest) MakeResponse() *EnumPerMachineConnectionsResponse {
+	if o == nil {
+		return &EnumPerMachineConnectionsResponse{}
+	}
+	return &EnumPerMachineConnectionsResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncEnumPerMachineConnections operation.
+func (o *EnumPerMachineConnectionsRequest) OpNum() int { return 57 }
+
+// OpName returns the operation name of RpcAsyncEnumPerMachineConnections operation.
+func (o *EnumPerMachineConnectionsRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncEnumPerMachineConnections"
+}
+
 // EnumPerMachineConnectionsResponse structure represents the RpcAsyncEnumPerMachineConnections operation response
 type EnumPerMachineConnectionsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -33870,8 +34794,10 @@ type xxx_SyncRegisterForRemoteNotificationsOperation struct {
 	Return       int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcSyncRegisterForRemoteNotifications operation.
 func (o *xxx_SyncRegisterForRemoteNotificationsOperation) OpNum() int { return 58 }
 
+// OpName returns the operation name of RpcSyncRegisterForRemoteNotifications operation.
 func (o *xxx_SyncRegisterForRemoteNotificationsOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcSyncRegisterForRemoteNotifications"
 }
@@ -34038,6 +34964,19 @@ func (o *SyncRegisterForRemoteNotificationsRequest) UnmarshalNDR(ctx context.Con
 	return nil
 }
 
+// MakeSyncRegisterForRemoteNotificationsRequest build a response structure from the given request structure.
+func (o *SyncRegisterForRemoteNotificationsRequest) MakeResponse() *SyncRegisterForRemoteNotificationsResponse {
+	return &SyncRegisterForRemoteNotificationsResponse{}
+}
+
+// OpNum returns the operation number of RpcSyncRegisterForRemoteNotifications operation.
+func (o *SyncRegisterForRemoteNotificationsRequest) OpNum() int { return 58 }
+
+// OpName returns the operation name of RpcSyncRegisterForRemoteNotifications operation.
+func (o *SyncRegisterForRemoteNotificationsRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcSyncRegisterForRemoteNotifications"
+}
+
 // SyncRegisterForRemoteNotificationsResponse structure represents the RpcSyncRegisterForRemoteNotifications operation response
 type SyncRegisterForRemoteNotificationsResponse struct {
 	// phRpcHandle: A pointer to a variable that receives the remote notification handle.
@@ -34083,8 +35022,10 @@ type xxx_SyncUnregisterForRemoteNotificationsOperation struct {
 	Return    int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcSyncUnRegisterForRemoteNotifications operation.
 func (o *xxx_SyncUnregisterForRemoteNotificationsOperation) OpNum() int { return 59 }
 
+// OpName returns the operation name of RpcSyncUnRegisterForRemoteNotifications operation.
 func (o *xxx_SyncUnregisterForRemoteNotificationsOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcSyncUnRegisterForRemoteNotifications"
 }
@@ -34219,6 +35160,19 @@ func (o *SyncUnregisterForRemoteNotificationsRequest) UnmarshalNDR(ctx context.C
 	return nil
 }
 
+// MakeSyncUnregisterForRemoteNotificationsRequest build a response structure from the given request structure.
+func (o *SyncUnregisterForRemoteNotificationsRequest) MakeResponse() *SyncUnregisterForRemoteNotificationsResponse {
+	return &SyncUnregisterForRemoteNotificationsResponse{}
+}
+
+// OpNum returns the operation number of RpcSyncUnRegisterForRemoteNotifications operation.
+func (o *SyncUnregisterForRemoteNotificationsRequest) OpNum() int { return 59 }
+
+// OpName returns the operation name of RpcSyncUnRegisterForRemoteNotifications operation.
+func (o *SyncUnregisterForRemoteNotificationsRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcSyncUnRegisterForRemoteNotifications"
+}
+
 // SyncUnregisterForRemoteNotificationsResponse structure represents the RpcSyncUnRegisterForRemoteNotifications operation response
 type SyncUnregisterForRemoteNotificationsResponse struct {
 	// phRpcHandle: A pointer to the remote notification handle from which the user no longer
@@ -34267,8 +35221,10 @@ type xxx_SyncRefreshRemoteNotificationsOperation struct {
 	Return       int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcSyncRefreshRemoteNotifications operation.
 func (o *xxx_SyncRefreshRemoteNotificationsOperation) OpNum() int { return 60 }
 
+// OpName returns the operation name of RpcSyncRefreshRemoteNotifications operation.
 func (o *xxx_SyncRefreshRemoteNotificationsOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcSyncRefreshRemoteNotifications"
 }
@@ -34460,6 +35416,19 @@ func (o *SyncRefreshRemoteNotificationsRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeSyncRefreshRemoteNotificationsRequest build a response structure from the given request structure.
+func (o *SyncRefreshRemoteNotificationsRequest) MakeResponse() *SyncRefreshRemoteNotificationsResponse {
+	return &SyncRefreshRemoteNotificationsResponse{}
+}
+
+// OpNum returns the operation number of RpcSyncRefreshRemoteNotifications operation.
+func (o *SyncRefreshRemoteNotificationsRequest) OpNum() int { return 60 }
+
+// OpName returns the operation name of RpcSyncRefreshRemoteNotifications operation.
+func (o *SyncRefreshRemoteNotificationsRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcSyncRefreshRemoteNotifications"
+}
+
 // SyncRefreshRemoteNotificationsResponse structure represents the RpcSyncRefreshRemoteNotifications operation response
 type SyncRefreshRemoteNotificationsResponse struct {
 	// ppNotifyData: A pointer to a variable that receives a pointer to an RpcPrintPropertiesCollection
@@ -34507,8 +35476,10 @@ type xxx_GetRemoteNotificationsOperation struct {
 	Return     int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncGetRemoteNotifications operation.
 func (o *xxx_GetRemoteNotificationsOperation) OpNum() int { return 61 }
 
+// OpName returns the operation name of RpcAsyncGetRemoteNotifications operation.
 func (o *xxx_GetRemoteNotificationsOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncGetRemoteNotifications"
 }
@@ -34668,6 +35639,19 @@ func (o *GetRemoteNotificationsRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetRemoteNotificationsRequest build a response structure from the given request structure.
+func (o *GetRemoteNotificationsRequest) MakeResponse() *GetRemoteNotificationsResponse {
+	return &GetRemoteNotificationsResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncGetRemoteNotifications operation.
+func (o *GetRemoteNotificationsRequest) OpNum() int { return 61 }
+
+// OpName returns the operation name of RpcAsyncGetRemoteNotifications operation.
+func (o *GetRemoteNotificationsRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncGetRemoteNotifications"
+}
+
 // GetRemoteNotificationsResponse structure represents the RpcAsyncGetRemoteNotifications operation response
 type GetRemoteNotificationsResponse struct {
 	// ppNotifyData: A pointer to a variable that receives a pointer to an RpcPrintPropertiesCollection
@@ -34718,8 +35702,10 @@ type xxx_InstallPrinterDriverFromPackageOperation struct {
 	Return      int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncInstallPrinterDriverFromPackage operation.
 func (o *xxx_InstallPrinterDriverFromPackageOperation) OpNum() int { return 62 }
 
+// OpName returns the operation name of RpcAsyncInstallPrinterDriverFromPackage operation.
 func (o *xxx_InstallPrinterDriverFromPackageOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncInstallPrinterDriverFromPackage"
 }
@@ -34955,6 +35941,19 @@ func (o *InstallPrinterDriverFromPackageRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeInstallPrinterDriverFromPackageRequest build a response structure from the given request structure.
+func (o *InstallPrinterDriverFromPackageRequest) MakeResponse() *InstallPrinterDriverFromPackageResponse {
+	return &InstallPrinterDriverFromPackageResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncInstallPrinterDriverFromPackage operation.
+func (o *InstallPrinterDriverFromPackageRequest) OpNum() int { return 62 }
+
+// OpName returns the operation name of RpcAsyncInstallPrinterDriverFromPackage operation.
+func (o *InstallPrinterDriverFromPackageRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncInstallPrinterDriverFromPackage"
+}
+
 // InstallPrinterDriverFromPackageResponse structure represents the RpcAsyncInstallPrinterDriverFromPackage operation response
 type InstallPrinterDriverFromPackageResponse struct {
 	// Return: The RpcAsyncInstallPrinterDriverFromPackage return value.
@@ -35001,8 +36000,10 @@ type xxx_UploadPrinterDriverPackageOperation struct {
 	Return                   int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncUploadPrinterDriverPackage operation.
 func (o *xxx_UploadPrinterDriverPackageOperation) OpNum() int { return 63 }
 
+// OpName returns the operation name of RpcAsyncUploadPrinterDriverPackage operation.
 func (o *xxx_UploadPrinterDriverPackageOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncUploadPrinterDriverPackage"
 }
@@ -35400,6 +36401,19 @@ func (o *UploadPrinterDriverPackageRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeUploadPrinterDriverPackageRequest build a response structure from the given request structure.
+func (o *UploadPrinterDriverPackageRequest) MakeResponse() *UploadPrinterDriverPackageResponse {
+	return &UploadPrinterDriverPackageResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncUploadPrinterDriverPackage operation.
+func (o *UploadPrinterDriverPackageRequest) OpNum() int { return 63 }
+
+// OpName returns the operation name of RpcAsyncUploadPrinterDriverPackage operation.
+func (o *UploadPrinterDriverPackageRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncUploadPrinterDriverPackage"
+}
+
 // UploadPrinterDriverPackageResponse structure represents the RpcAsyncUploadPrinterDriverPackage operation response
 type UploadPrinterDriverPackageResponse struct {
 	// pszDestInfPath: A pointer to a buffer that receives a string that specifies the full
@@ -35458,8 +36472,10 @@ type xxx_GetCorePrinterDriversOperation struct {
 	Return                  int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncGetCorePrinterDrivers operation.
 func (o *xxx_GetCorePrinterDriversOperation) OpNum() int { return 64 }
 
+// OpName returns the operation name of RpcAsyncGetCorePrinterDrivers operation.
 func (o *xxx_GetCorePrinterDriversOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncGetCorePrinterDrivers"
 }
@@ -35774,6 +36790,24 @@ func (o *GetCorePrinterDriversRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetCorePrinterDriversRequest build a response structure from the given request structure.
+func (o *GetCorePrinterDriversRequest) MakeResponse() *GetCorePrinterDriversResponse {
+	if o == nil {
+		return &GetCorePrinterDriversResponse{}
+	}
+	return &GetCorePrinterDriversResponse{
+		CorePrinterDriversCount: o.CorePrinterDriversCount,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncGetCorePrinterDrivers operation.
+func (o *GetCorePrinterDriversRequest) OpNum() int { return 64 }
+
+// OpName returns the operation name of RpcAsyncGetCorePrinterDrivers operation.
+func (o *GetCorePrinterDriversRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncGetCorePrinterDrivers"
+}
+
 // GetCorePrinterDriversResponse structure represents the RpcAsyncGetCorePrinterDrivers operation response
 type GetCorePrinterDriversResponse struct {
 	// XXX: cCorePrinterDrivers is an implicit input depedency for output parameters
@@ -35836,8 +36870,10 @@ type xxx_CorePrinterDriverInstalledOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncCorePrinterDriverInstalled operation.
 func (o *xxx_CorePrinterDriverInstalledOperation) OpNum() int { return 65 }
 
+// OpName returns the operation name of RpcAsyncCorePrinterDriverInstalled operation.
 func (o *xxx_CorePrinterDriverInstalledOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncCorePrinterDriverInstalled"
 }
@@ -36066,6 +37102,19 @@ func (o *CorePrinterDriverInstalledRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeCorePrinterDriverInstalledRequest build a response structure from the given request structure.
+func (o *CorePrinterDriverInstalledRequest) MakeResponse() *CorePrinterDriverInstalledResponse {
+	return &CorePrinterDriverInstalledResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncCorePrinterDriverInstalled operation.
+func (o *CorePrinterDriverInstalledRequest) OpNum() int { return 65 }
+
+// OpName returns the operation name of RpcAsyncCorePrinterDriverInstalled operation.
+func (o *CorePrinterDriverInstalledRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncCorePrinterDriverInstalled"
+}
+
 // CorePrinterDriverInstalledResponse structure represents the RpcAsyncCorePrinterDriverInstalled operation response
 type CorePrinterDriverInstalledResponse struct {
 	// pbDriverInstalled: A pointer to a variable that receives one of the following values.
@@ -36128,8 +37177,10 @@ type xxx_GetPrinterDriverPackagePathOperation struct {
 	Return                 int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncGetPrinterDriverPackagePath operation.
 func (o *xxx_GetPrinterDriverPackagePathOperation) OpNum() int { return 66 }
 
+// OpName returns the operation name of RpcAsyncGetPrinterDriverPackagePath operation.
 func (o *xxx_GetPrinterDriverPackagePathOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncGetPrinterDriverPackagePath"
 }
@@ -36531,6 +37582,24 @@ func (o *GetPrinterDriverPackagePathRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeGetPrinterDriverPackagePathRequest build a response structure from the given request structure.
+func (o *GetPrinterDriverPackagePathRequest) MakeResponse() *GetPrinterDriverPackagePathResponse {
+	if o == nil {
+		return &GetPrinterDriverPackagePathResponse{}
+	}
+	return &GetPrinterDriverPackagePathResponse{
+		DriverPackageCabLength: o.DriverPackageCabLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncGetPrinterDriverPackagePath operation.
+func (o *GetPrinterDriverPackagePathRequest) OpNum() int { return 66 }
+
+// OpName returns the operation name of RpcAsyncGetPrinterDriverPackagePath operation.
+func (o *GetPrinterDriverPackagePathRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncGetPrinterDriverPackagePath"
+}
+
 // GetPrinterDriverPackagePathResponse structure represents the RpcAsyncGetPrinterDriverPackagePath operation response
 type GetPrinterDriverPackagePathResponse struct {
 	// XXX: cchDriverPackageCab is an implicit input depedency for output parameters
@@ -36597,8 +37666,10 @@ type xxx_DeletePrinterDriverPackageOperation struct {
 	Return      int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncDeletePrinterDriverPackage operation.
 func (o *xxx_DeletePrinterDriverPackageOperation) OpNum() int { return 67 }
 
+// OpName returns the operation name of RpcAsyncDeletePrinterDriverPackage operation.
 func (o *xxx_DeletePrinterDriverPackageOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterDriverPackage"
 }
@@ -36768,6 +37839,19 @@ func (o *DeletePrinterDriverPackageRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeDeletePrinterDriverPackageRequest build a response structure from the given request structure.
+func (o *DeletePrinterDriverPackageRequest) MakeResponse() *DeletePrinterDriverPackageResponse {
+	return &DeletePrinterDriverPackageResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncDeletePrinterDriverPackage operation.
+func (o *DeletePrinterDriverPackageRequest) OpNum() int { return 67 }
+
+// OpName returns the operation name of RpcAsyncDeletePrinterDriverPackage operation.
+func (o *DeletePrinterDriverPackageRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncDeletePrinterDriverPackage"
+}
+
 // DeletePrinterDriverPackageResponse structure represents the RpcAsyncDeletePrinterDriverPackage operation response
 type DeletePrinterDriverPackageResponse struct {
 	// Return: The RpcAsyncDeletePrinterDriverPackage return value.
@@ -36812,8 +37896,10 @@ type xxx_ReadPrinterOperation struct {
 	Return           uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncReadPrinter operation.
 func (o *xxx_ReadPrinterOperation) OpNum() int { return 68 }
 
+// OpName returns the operation name of RpcAsyncReadPrinter operation.
 func (o *xxx_ReadPrinterOperation) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncReadPrinter" }
 
 func (o *xxx_ReadPrinterOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -36997,6 +38083,22 @@ func (o *ReadPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeReadPrinterRequest build a response structure from the given request structure.
+func (o *ReadPrinterRequest) MakeResponse() *ReadPrinterResponse {
+	if o == nil {
+		return &ReadPrinterResponse{}
+	}
+	return &ReadPrinterResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RpcAsyncReadPrinter operation.
+func (o *ReadPrinterRequest) OpNum() int { return 68 }
+
+// OpName returns the operation name of RpcAsyncReadPrinter operation.
+func (o *ReadPrinterRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncReadPrinter" }
+
 // ReadPrinterResponse structure represents the RpcAsyncReadPrinter operation response
 type ReadPrinterResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
@@ -37057,8 +38159,10 @@ type xxx_ResetPrinterOperation struct {
 	Return           uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncResetPrinter operation.
 func (o *xxx_ResetPrinterOperation) OpNum() int { return 69 }
 
+// OpName returns the operation name of RpcAsyncResetPrinter operation.
 func (o *xxx_ResetPrinterOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncResetPrinter"
 }
@@ -37242,6 +38346,17 @@ func (o *ResetPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeResetPrinterRequest build a response structure from the given request structure.
+func (o *ResetPrinterRequest) MakeResponse() *ResetPrinterResponse {
+	return &ResetPrinterResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncResetPrinter operation.
+func (o *ResetPrinterRequest) OpNum() int { return 69 }
+
+// OpName returns the operation name of RpcAsyncResetPrinter operation.
+func (o *ResetPrinterRequest) OpName() string { return "/IRemoteWinspool/v1/RpcAsyncResetPrinter" }
+
 // ResetPrinterResponse structure represents the RpcAsyncResetPrinter operation response
 type ResetPrinterResponse struct {
 	// Return: The RpcAsyncResetPrinter return value.
@@ -37286,8 +38401,10 @@ type xxx_GetJobNamedPropertyValueOperation struct {
 	Return  uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncGetJobNamedPropertyValue operation.
 func (o *xxx_GetJobNamedPropertyValueOperation) OpNum() int { return 70 }
 
+// OpName returns the operation name of RpcAsyncGetJobNamedPropertyValue operation.
 func (o *xxx_GetJobNamedPropertyValueOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncGetJobNamedPropertyValue"
 }
@@ -37458,6 +38575,19 @@ func (o *GetJobNamedPropertyValueRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeGetJobNamedPropertyValueRequest build a response structure from the given request structure.
+func (o *GetJobNamedPropertyValueRequest) MakeResponse() *GetJobNamedPropertyValueResponse {
+	return &GetJobNamedPropertyValueResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncGetJobNamedPropertyValue operation.
+func (o *GetJobNamedPropertyValueRequest) OpNum() int { return 70 }
+
+// OpName returns the operation name of RpcAsyncGetJobNamedPropertyValue operation.
+func (o *GetJobNamedPropertyValueRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncGetJobNamedPropertyValue"
+}
+
 // GetJobNamedPropertyValueResponse structure represents the RpcAsyncGetJobNamedPropertyValue operation response
 type GetJobNamedPropertyValueResponse struct {
 	Value *PrintJobPropertyValue `idl:"name:pValue" json:"value"`
@@ -37504,8 +38634,10 @@ type xxx_SetJobNamedPropertyOperation struct {
 	Return   uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncSetJobNamedProperty operation.
 func (o *xxx_SetJobNamedPropertyOperation) OpNum() int { return 71 }
 
+// OpName returns the operation name of RpcAsyncSetJobNamedProperty operation.
 func (o *xxx_SetJobNamedPropertyOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncSetJobNamedProperty"
 }
@@ -37664,6 +38796,19 @@ func (o *SetJobNamedPropertyRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeSetJobNamedPropertyRequest build a response structure from the given request structure.
+func (o *SetJobNamedPropertyRequest) MakeResponse() *SetJobNamedPropertyResponse {
+	return &SetJobNamedPropertyResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncSetJobNamedProperty operation.
+func (o *SetJobNamedPropertyRequest) OpNum() int { return 71 }
+
+// OpName returns the operation name of RpcAsyncSetJobNamedProperty operation.
+func (o *SetJobNamedPropertyRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncSetJobNamedProperty"
+}
+
 // SetJobNamedPropertyResponse structure represents the RpcAsyncSetJobNamedProperty operation response
 type SetJobNamedPropertyResponse struct {
 	// Return: The RpcAsyncSetJobNamedProperty return value.
@@ -37707,8 +38852,10 @@ type xxx_DeleteJobNamedPropertyOperation struct {
 	Return  uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncDeleteJobNamedProperty operation.
 func (o *xxx_DeleteJobNamedPropertyOperation) OpNum() int { return 72 }
 
+// OpName returns the operation name of RpcAsyncDeleteJobNamedProperty operation.
 func (o *xxx_DeleteJobNamedPropertyOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncDeleteJobNamedProperty"
 }
@@ -37852,6 +38999,19 @@ func (o *DeleteJobNamedPropertyRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeDeleteJobNamedPropertyRequest build a response structure from the given request structure.
+func (o *DeleteJobNamedPropertyRequest) MakeResponse() *DeleteJobNamedPropertyResponse {
+	return &DeleteJobNamedPropertyResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncDeleteJobNamedProperty operation.
+func (o *DeleteJobNamedPropertyRequest) OpNum() int { return 72 }
+
+// OpName returns the operation name of RpcAsyncDeleteJobNamedProperty operation.
+func (o *DeleteJobNamedPropertyRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncDeleteJobNamedProperty"
+}
+
 // DeleteJobNamedPropertyResponse structure represents the RpcAsyncDeleteJobNamedProperty operation response
 type DeleteJobNamedPropertyResponse struct {
 	// Return: The RpcAsyncDeleteJobNamedProperty return value.
@@ -37896,8 +39056,10 @@ type xxx_EnumJobNamedPropertiesOperation struct {
 	Return          uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncEnumJobNamedProperties operation.
 func (o *xxx_EnumJobNamedPropertiesOperation) OpNum() int { return 73 }
 
+// OpName returns the operation name of RpcAsyncEnumJobNamedProperties operation.
 func (o *xxx_EnumJobNamedPropertiesOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncEnumJobNamedProperties"
 }
@@ -38120,6 +39282,19 @@ func (o *EnumJobNamedPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeEnumJobNamedPropertiesRequest build a response structure from the given request structure.
+func (o *EnumJobNamedPropertiesRequest) MakeResponse() *EnumJobNamedPropertiesResponse {
+	return &EnumJobNamedPropertiesResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncEnumJobNamedProperties operation.
+func (o *EnumJobNamedPropertiesRequest) OpNum() int { return 73 }
+
+// OpName returns the operation name of RpcAsyncEnumJobNamedProperties operation.
+func (o *EnumJobNamedPropertiesRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncEnumJobNamedProperties"
+}
+
 // EnumJobNamedPropertiesResponse structure represents the RpcAsyncEnumJobNamedProperties operation response
 type EnumJobNamedPropertiesResponse struct {
 	PropertiesCount uint32                   `idl:"name:pcProperties" json:"properties_count"`
@@ -38168,8 +39343,10 @@ type xxx_LogJobInfoForBranchOfficeOperation struct {
 	Return                       uint32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcAsyncLogJobInfoForBranchOffice operation.
 func (o *xxx_LogJobInfoForBranchOfficeOperation) OpNum() int { return 74 }
 
+// OpName returns the operation name of RpcAsyncLogJobInfoForBranchOffice operation.
 func (o *xxx_LogJobInfoForBranchOfficeOperation) OpName() string {
 	return "/IRemoteWinspool/v1/RpcAsyncLogJobInfoForBranchOffice"
 }
@@ -38311,6 +39488,19 @@ func (o *LogJobInfoForBranchOfficeRequest) UnmarshalNDR(ctx context.Context, r n
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeLogJobInfoForBranchOfficeRequest build a response structure from the given request structure.
+func (o *LogJobInfoForBranchOfficeRequest) MakeResponse() *LogJobInfoForBranchOfficeResponse {
+	return &LogJobInfoForBranchOfficeResponse{}
+}
+
+// OpNum returns the operation number of RpcAsyncLogJobInfoForBranchOffice operation.
+func (o *LogJobInfoForBranchOfficeRequest) OpNum() int { return 74 }
+
+// OpName returns the operation name of RpcAsyncLogJobInfoForBranchOffice operation.
+func (o *LogJobInfoForBranchOfficeRequest) OpName() string {
+	return "/IRemoteWinspool/v1/RpcAsyncLogJobInfoForBranchOffice"
 }
 
 // LogJobInfoForBranchOfficeResponse structure represents the RpcAsyncLogJobInfoForBranchOffice operation response

@@ -234,8 +234,10 @@ type xxx_GetSeqAndTxViaExportOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSeqAndTxViaExport operation.
 func (o *xxx_GetSeqAndTxViaExportOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetSeqAndTxViaExport operation.
 func (o *xxx_GetSeqAndTxViaExportOperation) OpName() string {
 	return "/ITransactionStream/v0/GetSeqAndTxViaExport"
 }
@@ -564,6 +566,19 @@ func (o *GetSeqAndTxViaExportRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetSeqAndTxViaExportRequest build a response structure from the given request structure.
+func (o *GetSeqAndTxViaExportRequest) MakeResponse() *GetSeqAndTxViaExportResponse {
+	return &GetSeqAndTxViaExportResponse{}
+}
+
+// OpNum returns the operation number of GetSeqAndTxViaExport operation.
+func (o *GetSeqAndTxViaExportRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetSeqAndTxViaExport operation.
+func (o *GetSeqAndTxViaExportRequest) OpName() string {
+	return "/ITransactionStream/v0/GetSeqAndTxViaExport"
+}
+
 // GetSeqAndTxViaExportResponse structure represents the GetSeqAndTxViaExport operation response
 type GetSeqAndTxViaExportResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -627,8 +642,10 @@ type xxx_GetSeqAndTxViaTransmitterOperation struct {
 	Return                  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSeqAndTxViaTransmitter operation.
 func (o *xxx_GetSeqAndTxViaTransmitterOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetSeqAndTxViaTransmitter operation.
 func (o *xxx_GetSeqAndTxViaTransmitterOperation) OpName() string {
 	return "/ITransactionStream/v0/GetSeqAndTxViaTransmitter"
 }
@@ -887,6 +904,19 @@ func (o *GetSeqAndTxViaTransmitterRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeGetSeqAndTxViaTransmitterRequest build a response structure from the given request structure.
+func (o *GetSeqAndTxViaTransmitterRequest) MakeResponse() *GetSeqAndTxViaTransmitterResponse {
+	return &GetSeqAndTxViaTransmitterResponse{}
+}
+
+// OpNum returns the operation number of GetSeqAndTxViaTransmitter operation.
+func (o *GetSeqAndTxViaTransmitterRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetSeqAndTxViaTransmitter operation.
+func (o *GetSeqAndTxViaTransmitterRequest) OpName() string {
+	return "/ITransactionStream/v0/GetSeqAndTxViaTransmitter"
+}
+
 // GetSeqAndTxViaTransmitterResponse structure represents the GetSeqAndTxViaTransmitter operation response
 type GetSeqAndTxViaTransmitterResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -950,8 +980,10 @@ type xxx_GetTxViaExportOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetTxViaExport operation.
 func (o *xxx_GetTxViaExportOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of GetTxViaExport operation.
 func (o *xxx_GetTxViaExportOperation) OpName() string { return "/ITransactionStream/v0/GetTxViaExport" }
 
 func (o *xxx_GetTxViaExportOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1265,6 +1297,17 @@ func (o *GetTxViaExportRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetTxViaExportRequest build a response structure from the given request structure.
+func (o *GetTxViaExportRequest) MakeResponse() *GetTxViaExportResponse {
+	return &GetTxViaExportResponse{}
+}
+
+// OpNum returns the operation number of GetTxViaExport operation.
+func (o *GetTxViaExportRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of GetTxViaExport operation.
+func (o *GetTxViaExportRequest) OpName() string { return "/ITransactionStream/v0/GetTxViaExport" }
+
 // GetTxViaExportResponse structure represents the GetTxViaExport operation response
 type GetTxViaExportResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1323,8 +1366,10 @@ type xxx_GetTxViaTransmitterOperation struct {
 	Return                  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetTxViaTransmitter operation.
 func (o *xxx_GetTxViaTransmitterOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of GetTxViaTransmitter operation.
 func (o *xxx_GetTxViaTransmitterOperation) OpName() string {
 	return "/ITransactionStream/v0/GetTxViaTransmitter"
 }
@@ -1569,6 +1614,19 @@ func (o *GetTxViaTransmitterRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetTxViaTransmitterRequest build a response structure from the given request structure.
+func (o *GetTxViaTransmitterRequest) MakeResponse() *GetTxViaTransmitterResponse {
+	return &GetTxViaTransmitterResponse{}
+}
+
+// OpNum returns the operation number of GetTxViaTransmitter operation.
+func (o *GetTxViaTransmitterRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of GetTxViaTransmitter operation.
+func (o *GetTxViaTransmitterRequest) OpName() string {
+	return "/ITransactionStream/v0/GetTxViaTransmitter"
 }
 
 // GetTxViaTransmitterResponse structure represents the GetTxViaTransmitter operation response

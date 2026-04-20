@@ -262,8 +262,10 @@ type xxx_GetCanRequestUserInputOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CanRequestUserInput operation.
 func (o *xxx_GetCanRequestUserInputOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of CanRequestUserInput operation.
 func (o *xxx_GetCanRequestUserInputOperation) OpName() string {
 	return "/IInstallationBehavior/v0/CanRequestUserInput"
 }
@@ -421,6 +423,19 @@ func (o *GetCanRequestUserInputRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetCanRequestUserInputRequest build a response structure from the given request structure.
+func (o *GetCanRequestUserInputRequest) MakeResponse() *GetCanRequestUserInputResponse {
+	return &GetCanRequestUserInputResponse{}
+}
+
+// OpNum returns the operation number of CanRequestUserInput operation.
+func (o *GetCanRequestUserInputRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of CanRequestUserInput operation.
+func (o *GetCanRequestUserInputRequest) OpName() string {
+	return "/IInstallationBehavior/v0/CanRequestUserInput"
+}
+
 // GetCanRequestUserInputResponse structure represents the CanRequestUserInput operation response
 type GetCanRequestUserInputResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -473,8 +488,10 @@ type xxx_GetImpactOperation struct {
 	Return      int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Impact operation.
 func (o *xxx_GetImpactOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of Impact operation.
 func (o *xxx_GetImpactOperation) OpName() string { return "/IInstallationBehavior/v0/Impact" }
 
 func (o *xxx_GetImpactOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -630,6 +647,17 @@ func (o *GetImpactRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetImpactRequest build a response structure from the given request structure.
+func (o *GetImpactRequest) MakeResponse() *GetImpactResponse {
+	return &GetImpactResponse{}
+}
+
+// OpNum returns the operation number of Impact operation.
+func (o *GetImpactRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of Impact operation.
+func (o *GetImpactRequest) OpName() string { return "/IInstallationBehavior/v0/Impact" }
+
 // GetImpactResponse structure represents the Impact operation response
 type GetImpactResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -682,8 +710,10 @@ type xxx_GetRebootBehaviorOperation struct {
 	Return      int32                           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RebootBehavior operation.
 func (o *xxx_GetRebootBehaviorOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RebootBehavior operation.
 func (o *xxx_GetRebootBehaviorOperation) OpName() string {
 	return "/IInstallationBehavior/v0/RebootBehavior"
 }
@@ -841,6 +871,17 @@ func (o *GetRebootBehaviorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetRebootBehaviorRequest build a response structure from the given request structure.
+func (o *GetRebootBehaviorRequest) MakeResponse() *GetRebootBehaviorResponse {
+	return &GetRebootBehaviorResponse{}
+}
+
+// OpNum returns the operation number of RebootBehavior operation.
+func (o *GetRebootBehaviorRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RebootBehavior operation.
+func (o *GetRebootBehaviorRequest) OpName() string { return "/IInstallationBehavior/v0/RebootBehavior" }
+
 // GetRebootBehaviorResponse structure represents the RebootBehavior operation response
 type GetRebootBehaviorResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -893,8 +934,10 @@ type xxx_GetRequiresNetworkConnectivityOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RequiresNetworkConnectivity operation.
 func (o *xxx_GetRequiresNetworkConnectivityOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of RequiresNetworkConnectivity operation.
 func (o *xxx_GetRequiresNetworkConnectivityOperation) OpName() string {
 	return "/IInstallationBehavior/v0/RequiresNetworkConnectivity"
 }
@@ -1050,6 +1093,19 @@ func (o *GetRequiresNetworkConnectivityRequest) UnmarshalNDR(ctx context.Context
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetRequiresNetworkConnectivityRequest build a response structure from the given request structure.
+func (o *GetRequiresNetworkConnectivityRequest) MakeResponse() *GetRequiresNetworkConnectivityResponse {
+	return &GetRequiresNetworkConnectivityResponse{}
+}
+
+// OpNum returns the operation number of RequiresNetworkConnectivity operation.
+func (o *GetRequiresNetworkConnectivityRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of RequiresNetworkConnectivity operation.
+func (o *GetRequiresNetworkConnectivityRequest) OpName() string {
+	return "/IInstallationBehavior/v0/RequiresNetworkConnectivity"
 }
 
 // GetRequiresNetworkConnectivityResponse structure represents the RequiresNetworkConnectivity operation response

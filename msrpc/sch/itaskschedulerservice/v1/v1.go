@@ -695,8 +695,10 @@ type xxx_HighestVersionOperation struct {
 	Return  int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcHighestVersion operation.
 func (o *xxx_HighestVersionOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of SchRpcHighestVersion operation.
 func (o *xxx_HighestVersionOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcHighestVersion"
 }
@@ -796,6 +798,19 @@ func (o *HighestVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeHighestVersionRequest build a response structure from the given request structure.
+func (o *HighestVersionRequest) MakeResponse() *HighestVersionResponse {
+	return &HighestVersionResponse{}
+}
+
+// OpNum returns the operation number of SchRpcHighestVersion operation.
+func (o *HighestVersionRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of SchRpcHighestVersion operation.
+func (o *HighestVersionRequest) OpName() string {
+	return "/ITaskSchedulerService/v1/SchRpcHighestVersion"
+}
+
 // HighestVersionResponse structure represents the SchRpcHighestVersion operation response
 type HighestVersionResponse struct {
 	// pVersion: The server MUST return the highest version of the Task Scheduler Remoting
@@ -865,8 +880,10 @@ type xxx_RegisterTaskOperation struct {
 	Return     int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcRegisterTask operation.
 func (o *xxx_RegisterTaskOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of SchRpcRegisterTask operation.
 func (o *xxx_RegisterTaskOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcRegisterTask"
 }
@@ -1312,6 +1329,17 @@ func (o *RegisterTaskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeRegisterTaskRequest build a response structure from the given request structure.
+func (o *RegisterTaskRequest) MakeResponse() *RegisterTaskResponse {
+	return &RegisterTaskResponse{}
+}
+
+// OpNum returns the operation number of SchRpcRegisterTask operation.
+func (o *RegisterTaskRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of SchRpcRegisterTask operation.
+func (o *RegisterTaskRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcRegisterTask" }
+
 // RegisterTaskResponse structure represents the SchRpcRegisterTask operation response
 type RegisterTaskResponse struct {
 	// pActualPath: If this parameter is non-NULL, the server MUST return the task's actual
@@ -1366,8 +1394,10 @@ type xxx_RetrieveTaskOperation struct {
 	Return          int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcRetrieveTask operation.
 func (o *xxx_RetrieveTaskOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of SchRpcRetrieveTask operation.
 func (o *xxx_RetrieveTaskOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcRetrieveTask"
 }
@@ -1544,6 +1574,17 @@ func (o *RetrieveTaskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeRetrieveTaskRequest build a response structure from the given request structure.
+func (o *RetrieveTaskRequest) MakeResponse() *RetrieveTaskResponse {
+	return &RetrieveTaskResponse{}
+}
+
+// OpNum returns the operation number of SchRpcRetrieveTask operation.
+func (o *RetrieveTaskRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of SchRpcRetrieveTask operation.
+func (o *RetrieveTaskRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcRetrieveTask" }
+
 // RetrieveTaskResponse structure represents the SchRpcRetrieveTask operation response
 type RetrieveTaskResponse struct {
 	// pXml: MUST contain the task definition in XML format, localized using the language
@@ -1593,8 +1634,10 @@ type xxx_CreateFolderOperation struct {
 	Return int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcCreateFolder operation.
 func (o *xxx_CreateFolderOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SchRpcCreateFolder operation.
 func (o *xxx_CreateFolderOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcCreateFolder"
 }
@@ -1755,6 +1798,17 @@ func (o *CreateFolderRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCreateFolderRequest build a response structure from the given request structure.
+func (o *CreateFolderRequest) MakeResponse() *CreateFolderResponse {
+	return &CreateFolderResponse{}
+}
+
+// OpNum returns the operation number of SchRpcCreateFolder operation.
+func (o *CreateFolderRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SchRpcCreateFolder operation.
+func (o *CreateFolderRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcCreateFolder" }
+
 // CreateFolderResponse structure represents the SchRpcCreateFolder operation response
 type CreateFolderResponse struct {
 	// Return: The SchRpcCreateFolder return value.
@@ -1798,8 +1852,10 @@ type xxx_SetSecurityOperation struct {
 	Return int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcSetSecurity operation.
 func (o *xxx_SetSecurityOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of SchRpcSetSecurity operation.
 func (o *xxx_SetSecurityOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcSetSecurity"
 }
@@ -1960,6 +2016,17 @@ func (o *SetSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeSetSecurityRequest build a response structure from the given request structure.
+func (o *SetSecurityRequest) MakeResponse() *SetSecurityResponse {
+	return &SetSecurityResponse{}
+}
+
+// OpNum returns the operation number of SchRpcSetSecurity operation.
+func (o *SetSecurityRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of SchRpcSetSecurity operation.
+func (o *SetSecurityRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcSetSecurity" }
+
 // SetSecurityResponse structure represents the SchRpcSetSecurity operation response
 type SetSecurityResponse struct {
 	// Return: The SchRpcSetSecurity return value.
@@ -2003,8 +2070,10 @@ type xxx_GetSecurityOperation struct {
 	Return              int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcGetSecurity operation.
 func (o *xxx_GetSecurityOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of SchRpcGetSecurity operation.
 func (o *xxx_GetSecurityOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcGetSecurity"
 }
@@ -2163,6 +2232,17 @@ func (o *GetSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetSecurityRequest build a response structure from the given request structure.
+func (o *GetSecurityRequest) MakeResponse() *GetSecurityResponse {
+	return &GetSecurityResponse{}
+}
+
+// OpNum returns the operation number of SchRpcGetSecurity operation.
+func (o *GetSecurityRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of SchRpcGetSecurity operation.
+func (o *GetSecurityRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcGetSecurity" }
+
 // GetSecurityResponse structure represents the SchRpcGetSecurity operation response
 type GetSecurityResponse struct {
 	// sddl: MUST point to a buffer that will receive security information in string format.
@@ -2214,8 +2294,10 @@ type xxx_EnumFoldersOperation struct {
 	Return         int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcEnumFolders operation.
 func (o *xxx_EnumFoldersOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of SchRpcEnumFolders operation.
 func (o *xxx_EnumFoldersOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcEnumFolders"
 }
@@ -2509,6 +2591,17 @@ func (o *EnumFoldersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeEnumFoldersRequest build a response structure from the given request structure.
+func (o *EnumFoldersRequest) MakeResponse() *EnumFoldersResponse {
+	return &EnumFoldersResponse{}
+}
+
+// OpNum returns the operation number of SchRpcEnumFolders operation.
+func (o *EnumFoldersRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of SchRpcEnumFolders operation.
+func (o *EnumFoldersRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcEnumFolders" }
+
 // EnumFoldersResponse structure represents the SchRpcEnumFolders operation response
 type EnumFoldersResponse struct {
 	// pStartIndex: MUST contain the index at which to start enumeration. If the server
@@ -2569,8 +2662,10 @@ type xxx_EnumTasksOperation struct {
 	Return         int32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcEnumTasks operation.
 func (o *xxx_EnumTasksOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of SchRpcEnumTasks operation.
 func (o *xxx_EnumTasksOperation) OpName() string { return "/ITaskSchedulerService/v1/SchRpcEnumTasks" }
 
 func (o *xxx_EnumTasksOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2860,6 +2955,17 @@ func (o *EnumTasksRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeEnumTasksRequest build a response structure from the given request structure.
+func (o *EnumTasksRequest) MakeResponse() *EnumTasksResponse {
+	return &EnumTasksResponse{}
+}
+
+// OpNum returns the operation number of SchRpcEnumTasks operation.
+func (o *EnumTasksRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of SchRpcEnumTasks operation.
+func (o *EnumTasksRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcEnumTasks" }
+
 // EnumTasksResponse structure represents the SchRpcEnumTasks operation response
 type EnumTasksResponse struct {
 	// startIndex: MUST contain the index at which to start enumeration. If the server returns
@@ -2919,8 +3025,10 @@ type xxx_EnumInstancesOperation struct {
 	Return     int32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcEnumInstances operation.
 func (o *xxx_EnumInstancesOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of SchRpcEnumInstances operation.
 func (o *xxx_EnumInstancesOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcEnumInstances"
 }
@@ -3179,6 +3287,19 @@ func (o *EnumInstancesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeEnumInstancesRequest build a response structure from the given request structure.
+func (o *EnumInstancesRequest) MakeResponse() *EnumInstancesResponse {
+	return &EnumInstancesResponse{}
+}
+
+// OpNum returns the operation number of SchRpcEnumInstances operation.
+func (o *EnumInstancesRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of SchRpcEnumInstances operation.
+func (o *EnumInstancesRequest) OpName() string {
+	return "/ITaskSchedulerService/v1/SchRpcEnumInstances"
+}
+
 // EnumInstancesResponse structure represents the SchRpcEnumInstances operation response
 type EnumInstancesResponse struct {
 	// pcGuids: MUST contain the number of instances.
@@ -3235,8 +3356,10 @@ type xxx_GetInstanceInfoOperation struct {
 	Return              int32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcGetInstanceInfo operation.
 func (o *xxx_GetInstanceInfoOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of SchRpcGetInstanceInfo operation.
 func (o *xxx_GetInstanceInfoOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcGetInstanceInfo"
 }
@@ -3578,6 +3701,19 @@ func (o *GetInstanceInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetInstanceInfoRequest build a response structure from the given request structure.
+func (o *GetInstanceInfoRequest) MakeResponse() *GetInstanceInfoResponse {
+	return &GetInstanceInfoResponse{}
+}
+
+// OpNum returns the operation number of SchRpcGetInstanceInfo operation.
+func (o *GetInstanceInfoRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of SchRpcGetInstanceInfo operation.
+func (o *GetInstanceInfoRequest) OpName() string {
+	return "/ITaskSchedulerService/v1/SchRpcGetInstanceInfo"
+}
+
 // GetInstanceInfoResponse structure represents the SchRpcGetInstanceInfo operation response
 type GetInstanceInfoResponse struct {
 	// pPath: MUST be the location where a string containing the task's path is to be returned
@@ -3654,8 +3790,10 @@ type xxx_StopInstanceOperation struct {
 	Return int32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcStopInstance operation.
 func (o *xxx_StopInstanceOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of SchRpcStopInstance operation.
 func (o *xxx_StopInstanceOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcStopInstance"
 }
@@ -3784,6 +3922,17 @@ func (o *StopInstanceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeStopInstanceRequest build a response structure from the given request structure.
+func (o *StopInstanceRequest) MakeResponse() *StopInstanceResponse {
+	return &StopInstanceResponse{}
+}
+
+// OpNum returns the operation number of SchRpcStopInstance operation.
+func (o *StopInstanceRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of SchRpcStopInstance operation.
+func (o *StopInstanceRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcStopInstance" }
+
 // StopInstanceResponse structure represents the SchRpcStopInstance operation response
 type StopInstanceResponse struct {
 	// Return: The SchRpcStopInstance return value.
@@ -3826,8 +3975,10 @@ type xxx_StopOperation struct {
 	Return int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcStop operation.
 func (o *xxx_StopOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of SchRpcStop operation.
 func (o *xxx_StopOperation) OpName() string { return "/ITaskSchedulerService/v1/SchRpcStop" }
 
 func (o *xxx_StopOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3971,6 +4122,17 @@ func (o *StopRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeStopRequest build a response structure from the given request structure.
+func (o *StopRequest) MakeResponse() *StopResponse {
+	return &StopResponse{}
+}
+
+// OpNum returns the operation number of SchRpcStop operation.
+func (o *StopRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of SchRpcStop operation.
+func (o *StopRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcStop" }
+
 // StopResponse structure represents the SchRpcStop operation response
 type StopResponse struct {
 	// Return: The SchRpcStop return value.
@@ -4018,8 +4180,10 @@ type xxx_RunOperation struct {
 	Return    int32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcRun operation.
 func (o *xxx_RunOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of SchRpcRun operation.
 func (o *xxx_RunOperation) OpName() string { return "/ITaskSchedulerService/v1/SchRpcRun" }
 
 func (o *xxx_RunOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4360,6 +4524,17 @@ func (o *RunRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeRunRequest build a response structure from the given request structure.
+func (o *RunRequest) MakeResponse() *RunResponse {
+	return &RunResponse{}
+}
+
+// OpNum returns the operation number of SchRpcRun operation.
+func (o *RunRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of SchRpcRun operation.
+func (o *RunRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcRun" }
+
 // RunResponse structure represents the SchRpcRun operation response
 type RunResponse struct {
 	// pGuid: MUST contain a GUID for the task instance created as result of this call.
@@ -4406,8 +4581,10 @@ type xxx_DeleteOperation struct {
 	Return int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcDelete operation.
 func (o *xxx_DeleteOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of SchRpcDelete operation.
 func (o *xxx_DeleteOperation) OpName() string { return "/ITaskSchedulerService/v1/SchRpcDelete" }
 
 func (o *xxx_DeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4527,6 +4704,17 @@ func (o *DeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeDeleteRequest build a response structure from the given request structure.
+func (o *DeleteRequest) MakeResponse() *DeleteResponse {
+	return &DeleteResponse{}
+}
+
+// OpNum returns the operation number of SchRpcDelete operation.
+func (o *DeleteRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of SchRpcDelete operation.
+func (o *DeleteRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcDelete" }
+
 // DeleteResponse structure represents the SchRpcDelete operation response
 type DeleteResponse struct {
 	// Return: The SchRpcDelete return value.
@@ -4570,8 +4758,10 @@ type xxx_RenameOperation struct {
 	Return  int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcRename operation.
 func (o *xxx_RenameOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of SchRpcRename operation.
 func (o *xxx_RenameOperation) OpName() string { return "/ITaskSchedulerService/v1/SchRpcRename" }
 
 func (o *xxx_RenameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4706,6 +4896,17 @@ func (o *RenameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeRenameRequest build a response structure from the given request structure.
+func (o *RenameRequest) MakeResponse() *RenameResponse {
+	return &RenameResponse{}
+}
+
+// OpNum returns the operation number of SchRpcRename operation.
+func (o *RenameRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of SchRpcRename operation.
+func (o *RenameRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcRename" }
+
 // RenameResponse structure represents the SchRpcRename operation response
 type RenameResponse struct {
 	// Return: The SchRpcRename return value.
@@ -4753,8 +4954,10 @@ type xxx_ScheduledRuntimesOperation struct {
 	Return         int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcScheduledRuntimes operation.
 func (o *xxx_ScheduledRuntimesOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of SchRpcScheduledRuntimes operation.
 func (o *xxx_ScheduledRuntimesOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcScheduledRuntimes"
 }
@@ -5090,6 +5293,19 @@ func (o *ScheduledRuntimesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeScheduledRuntimesRequest build a response structure from the given request structure.
+func (o *ScheduledRuntimesRequest) MakeResponse() *ScheduledRuntimesResponse {
+	return &ScheduledRuntimesResponse{}
+}
+
+// OpNum returns the operation number of SchRpcScheduledRuntimes operation.
+func (o *ScheduledRuntimesRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of SchRpcScheduledRuntimes operation.
+func (o *ScheduledRuntimesRequest) OpName() string {
+	return "/ITaskSchedulerService/v1/SchRpcScheduledRuntimes"
+}
+
 // ScheduledRuntimesResponse structure represents the SchRpcScheduledRuntimes operation response
 type ScheduledRuntimesResponse struct {
 	// pcRuntimes: MUST contain the number of runtimes actually returned. The server MUST
@@ -5143,8 +5359,10 @@ type xxx_GetLastRunInfoOperation struct {
 	Return         int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcGetLastRunInfo operation.
 func (o *xxx_GetLastRunInfoOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of SchRpcGetLastRunInfo operation.
 func (o *xxx_GetLastRunInfoOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcGetLastRunInfo"
 }
@@ -5282,6 +5500,19 @@ func (o *GetLastRunInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetLastRunInfoRequest build a response structure from the given request structure.
+func (o *GetLastRunInfoRequest) MakeResponse() *GetLastRunInfoResponse {
+	return &GetLastRunInfoResponse{}
+}
+
+// OpNum returns the operation number of SchRpcGetLastRunInfo operation.
+func (o *GetLastRunInfoRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of SchRpcGetLastRunInfo operation.
+func (o *GetLastRunInfoRequest) OpName() string {
+	return "/ITaskSchedulerService/v1/SchRpcGetLastRunInfo"
+}
+
 // GetLastRunInfoResponse structure represents the SchRpcGetLastRunInfo operation response
 type GetLastRunInfoResponse struct {
 	// pLastRuntime: The server MUST return an error if this parameter is NULL. The server
@@ -5338,8 +5569,10 @@ type xxx_GetTaskInfoOperation struct {
 	Return  int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcGetTaskInfo operation.
 func (o *xxx_GetTaskInfoOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of SchRpcGetTaskInfo operation.
 func (o *xxx_GetTaskInfoOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcGetTaskInfo"
 }
@@ -5503,6 +5736,17 @@ func (o *GetTaskInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetTaskInfoRequest build a response structure from the given request structure.
+func (o *GetTaskInfoRequest) MakeResponse() *GetTaskInfoResponse {
+	return &GetTaskInfoResponse{}
+}
+
+// OpNum returns the operation number of SchRpcGetTaskInfo operation.
+func (o *GetTaskInfoRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of SchRpcGetTaskInfo operation.
+func (o *GetTaskInfoRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcGetTaskInfo" }
+
 // GetTaskInfoResponse structure represents the SchRpcGetTaskInfo operation response
 type GetTaskInfoResponse struct {
 	// pEnabled: MUST be a pointer to a Boolean that indicates whether the task is currently
@@ -5556,8 +5800,10 @@ type xxx_GetNumberOfMissedRunsOperation struct {
 	Return             int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcGetNumberOfMissedRuns operation.
 func (o *xxx_GetNumberOfMissedRunsOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of SchRpcGetNumberOfMissedRuns operation.
 func (o *xxx_GetNumberOfMissedRunsOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcGetNumberOfMissedRuns"
 }
@@ -5673,6 +5919,19 @@ func (o *GetNumberOfMissedRunsRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetNumberOfMissedRunsRequest build a response structure from the given request structure.
+func (o *GetNumberOfMissedRunsRequest) MakeResponse() *GetNumberOfMissedRunsResponse {
+	return &GetNumberOfMissedRunsResponse{}
+}
+
+// OpNum returns the operation number of SchRpcGetNumberOfMissedRuns operation.
+func (o *GetNumberOfMissedRunsRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of SchRpcGetNumberOfMissedRuns operation.
+func (o *GetNumberOfMissedRunsRequest) OpName() string {
+	return "/ITaskSchedulerService/v1/SchRpcGetNumberOfMissedRuns"
+}
+
 // GetNumberOfMissedRunsResponse structure represents the SchRpcGetNumberOfMissedRuns operation response
 type GetNumberOfMissedRunsResponse struct {
 	// pNumberOfMissedRuns: MUST be the address of a DWORD that receives the number of times
@@ -5720,8 +5979,10 @@ type xxx_EnableTaskOperation struct {
 	Return  int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SchRpcEnableTask operation.
 func (o *xxx_EnableTaskOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of SchRpcEnableTask operation.
 func (o *xxx_EnableTaskOperation) OpName() string {
 	return "/ITaskSchedulerService/v1/SchRpcEnableTask"
 }
@@ -5842,6 +6103,17 @@ func (o *EnableTaskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeEnableTaskRequest build a response structure from the given request structure.
+func (o *EnableTaskRequest) MakeResponse() *EnableTaskResponse {
+	return &EnableTaskResponse{}
+}
+
+// OpNum returns the operation number of SchRpcEnableTask operation.
+func (o *EnableTaskRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of SchRpcEnableTask operation.
+func (o *EnableTaskRequest) OpName() string { return "/ITaskSchedulerService/v1/SchRpcEnableTask" }
 
 // EnableTaskResponse structure represents the SchRpcEnableTask operation response
 type EnableTaskResponse struct {

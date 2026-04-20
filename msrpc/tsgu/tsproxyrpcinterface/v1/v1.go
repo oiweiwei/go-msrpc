@@ -4603,8 +4603,10 @@ type xxx_CreateTunnelOperation struct {
 	Return         int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TsProxyCreateTunnel operation.
 func (o *xxx_CreateTunnelOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of TsProxyCreateTunnel operation.
 func (o *xxx_CreateTunnelOperation) OpName() string {
 	return "/TsProxyRpcInterface/v1.3/TsProxyCreateTunnel"
 }
@@ -4813,6 +4815,17 @@ func (o *CreateTunnelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCreateTunnelRequest build a response structure from the given request structure.
+func (o *CreateTunnelRequest) MakeResponse() *CreateTunnelResponse {
+	return &CreateTunnelResponse{}
+}
+
+// OpNum returns the operation number of TsProxyCreateTunnel operation.
+func (o *CreateTunnelRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of TsProxyCreateTunnel operation.
+func (o *CreateTunnelRequest) OpName() string { return "/TsProxyRpcInterface/v1.3/TsProxyCreateTunnel" }
+
 // CreateTunnelResponse structure represents the TsProxyCreateTunnel operation response
 type CreateTunnelResponse struct {
 	// TSGPacketResponse: Pointer to the TSG_PACKET structure. If TSG_MESSAGING_CAP_CONSENT_SIGN
@@ -4883,8 +4896,10 @@ type xxx_AuthorizeTunnelOperation struct {
 	Return         int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TsProxyAuthorizeTunnel operation.
 func (o *xxx_AuthorizeTunnelOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of TsProxyAuthorizeTunnel operation.
 func (o *xxx_AuthorizeTunnelOperation) OpName() string {
 	return "/TsProxyRpcInterface/v1.3/TsProxyAuthorizeTunnel"
 }
@@ -5079,6 +5094,19 @@ func (o *AuthorizeTunnelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeAuthorizeTunnelRequest build a response structure from the given request structure.
+func (o *AuthorizeTunnelRequest) MakeResponse() *AuthorizeTunnelResponse {
+	return &AuthorizeTunnelResponse{}
+}
+
+// OpNum returns the operation number of TsProxyAuthorizeTunnel operation.
+func (o *AuthorizeTunnelRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of TsProxyAuthorizeTunnel operation.
+func (o *AuthorizeTunnelRequest) OpName() string {
+	return "/TsProxyRpcInterface/v1.3/TsProxyAuthorizeTunnel"
+}
+
 // AuthorizeTunnelResponse structure represents the TsProxyAuthorizeTunnel operation response
 type AuthorizeTunnelResponse struct {
 	// TSGPacketResponse: Pointer to the TSG_PACKET structure. The value of the packetId
@@ -5129,8 +5157,10 @@ type xxx_MakeTunnelCallOperation struct {
 	Return         int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TsProxyMakeTunnelCall operation.
 func (o *xxx_MakeTunnelCallOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of TsProxyMakeTunnelCall operation.
 func (o *xxx_MakeTunnelCallOperation) OpName() string {
 	return "/TsProxyRpcInterface/v1.3/TsProxyMakeTunnelCall"
 }
@@ -5353,6 +5383,19 @@ func (o *MakeTunnelCallRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeMakeTunnelCallRequest build a response structure from the given request structure.
+func (o *MakeTunnelCallRequest) MakeResponse() *MakeTunnelCallResponse {
+	return &MakeTunnelCallResponse{}
+}
+
+// OpNum returns the operation number of TsProxyMakeTunnelCall operation.
+func (o *MakeTunnelCallRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of TsProxyMakeTunnelCall operation.
+func (o *MakeTunnelCallRequest) OpName() string {
+	return "/TsProxyRpcInterface/v1.3/TsProxyMakeTunnelCall"
+}
+
 // MakeTunnelCallResponse structure represents the TsProxyMakeTunnelCall operation response
 type MakeTunnelCallResponse struct {
 	// TSGPacketResponse: Pointer to the TSG_PACKET structure. If procId is TSG_TUNNEL_CANCEL_ASYNC_MSG_REQUEST
@@ -5405,8 +5448,10 @@ type xxx_CreateChannelOperation struct {
 	Return         int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TsProxyCreateChannel operation.
 func (o *xxx_CreateChannelOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of TsProxyCreateChannel operation.
 func (o *xxx_CreateChannelOperation) OpName() string {
 	return "/TsProxyRpcInterface/v1.3/TsProxyCreateChannel"
 }
@@ -5592,6 +5637,19 @@ func (o *CreateChannelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeCreateChannelRequest build a response structure from the given request structure.
+func (o *CreateChannelRequest) MakeResponse() *CreateChannelResponse {
+	return &CreateChannelResponse{}
+}
+
+// OpNum returns the operation number of TsProxyCreateChannel operation.
+func (o *CreateChannelRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of TsProxyCreateChannel operation.
+func (o *CreateChannelRequest) OpName() string {
+	return "/TsProxyRpcInterface/v1.3/TsProxyCreateChannel"
+}
+
 // CreateChannelResponse structure represents the TsProxyCreateChannel operation response
 type CreateChannelResponse struct {
 	// channelContext: A RPC context handle that represents context-specific information
@@ -5647,8 +5705,10 @@ type xxx_CloseChannelOperation struct {
 	Return  int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TsProxyCloseChannel operation.
 func (o *xxx_CloseChannelOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of TsProxyCloseChannel operation.
 func (o *xxx_CloseChannelOperation) OpName() string {
 	return "/TsProxyRpcInterface/v1.3/TsProxyCloseChannel"
 }
@@ -5783,6 +5843,17 @@ func (o *CloseChannelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCloseChannelRequest build a response structure from the given request structure.
+func (o *CloseChannelRequest) MakeResponse() *CloseChannelResponse {
+	return &CloseChannelResponse{}
+}
+
+// OpNum returns the operation number of TsProxyCloseChannel operation.
+func (o *CloseChannelRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of TsProxyCloseChannel operation.
+func (o *CloseChannelRequest) OpName() string { return "/TsProxyRpcInterface/v1.3/TsProxyCloseChannel" }
+
 // CloseChannelResponse structure represents the TsProxyCloseChannel operation response
 type CloseChannelResponse struct {
 	// context: The RDG client MUST provide the RDG server with the same context handle
@@ -5829,8 +5900,10 @@ type xxx_CloseTunnelOperation struct {
 	Return  int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TsProxyCloseTunnel operation.
 func (o *xxx_CloseTunnelOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of TsProxyCloseTunnel operation.
 func (o *xxx_CloseTunnelOperation) OpName() string {
 	return "/TsProxyRpcInterface/v1.3/TsProxyCloseTunnel"
 }
@@ -5965,6 +6038,17 @@ func (o *CloseTunnelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCloseTunnelRequest build a response structure from the given request structure.
+func (o *CloseTunnelRequest) MakeResponse() *CloseTunnelResponse {
+	return &CloseTunnelResponse{}
+}
+
+// OpNum returns the operation number of TsProxyCloseTunnel operation.
+func (o *CloseTunnelRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of TsProxyCloseTunnel operation.
+func (o *CloseTunnelRequest) OpName() string { return "/TsProxyRpcInterface/v1.3/TsProxyCloseTunnel" }
+
 // CloseTunnelResponse structure represents the TsProxyCloseTunnel operation response
 type CloseTunnelResponse struct {
 	// context: The RDG client MUST provide the RDG server with the same context handle
@@ -6011,8 +6095,10 @@ type xxx_SetupReceivePipeOperation struct {
 	Return  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TsProxySetupReceivePipe operation.
 func (o *xxx_SetupReceivePipeOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of TsProxySetupReceivePipe operation.
 func (o *xxx_SetupReceivePipeOperation) OpName() string {
 	return "/TsProxyRpcInterface/v1.3/TsProxySetupReceivePipe"
 }
@@ -6152,6 +6238,19 @@ func (o *SetupReceivePipeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetupReceivePipeRequest build a response structure from the given request structure.
+func (o *SetupReceivePipeRequest) MakeResponse() *SetupReceivePipeResponse {
+	return &SetupReceivePipeResponse{}
+}
+
+// OpNum returns the operation number of TsProxySetupReceivePipe operation.
+func (o *SetupReceivePipeRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of TsProxySetupReceivePipe operation.
+func (o *SetupReceivePipeRequest) OpName() string {
+	return "/TsProxyRpcInterface/v1.3/TsProxySetupReceivePipe"
+}
+
 // SetupReceivePipeResponse structure represents the TsProxySetupReceivePipe operation response
 type SetupReceivePipeResponse struct {
 	// Return: The TsProxySetupReceivePipe return value.
@@ -6193,8 +6292,10 @@ type xxx_SendToServerOperation struct {
 	Return  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TsProxySendToServer operation.
 func (o *xxx_SendToServerOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of TsProxySendToServer operation.
 func (o *xxx_SendToServerOperation) OpName() string {
 	return "/TsProxyRpcInterface/v1.3/TsProxySendToServer"
 }
@@ -6333,6 +6434,17 @@ func (o *SendToServerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSendToServerRequest build a response structure from the given request structure.
+func (o *SendToServerRequest) MakeResponse() *SendToServerResponse {
+	return &SendToServerResponse{}
+}
+
+// OpNum returns the operation number of TsProxySendToServer operation.
+func (o *SendToServerRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of TsProxySendToServer operation.
+func (o *SendToServerRequest) OpName() string { return "/TsProxyRpcInterface/v1.3/TsProxySendToServer" }
 
 // SendToServerResponse structure represents the TsProxySendToServer operation response
 type SendToServerResponse struct {

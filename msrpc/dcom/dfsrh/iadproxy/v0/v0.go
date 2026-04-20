@@ -266,8 +266,10 @@ type xxx_CreateObjectOperation struct {
 	Return                         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateObject operation.
 func (o *xxx_CreateObjectOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CreateObject operation.
 func (o *xxx_CreateObjectOperation) OpName() string { return "/IADProxy/v0/CreateObject" }
 
 func (o *xxx_CreateObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -642,6 +644,17 @@ func (o *CreateObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCreateObjectRequest build a response structure from the given request structure.
+func (o *CreateObjectRequest) MakeResponse() *CreateObjectResponse {
+	return &CreateObjectResponse{}
+}
+
+// OpNum returns the operation number of CreateObject operation.
+func (o *CreateObjectRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of CreateObject operation.
+func (o *CreateObjectRequest) OpName() string { return "/IADProxy/v0/CreateObject" }
+
 // CreateObjectResponse structure represents the CreateObject operation response
 type CreateObjectResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -690,8 +703,10 @@ type xxx_DeleteObjectOperation struct {
 	Return               int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteObject operation.
 func (o *xxx_DeleteObjectOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of DeleteObject operation.
 func (o *xxx_DeleteObjectOperation) OpName() string { return "/IADProxy/v0/DeleteObject" }
 
 func (o *xxx_DeleteObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -946,6 +961,17 @@ func (o *DeleteObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeDeleteObjectRequest build a response structure from the given request structure.
+func (o *DeleteObjectRequest) MakeResponse() *DeleteObjectResponse {
+	return &DeleteObjectResponse{}
+}
+
+// OpNum returns the operation number of DeleteObject operation.
+func (o *DeleteObjectRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of DeleteObject operation.
+func (o *DeleteObjectRequest) OpName() string { return "/IADProxy/v0/DeleteObject" }
+
 // DeleteObjectResponse structure represents the DeleteObject operation response
 type DeleteObjectResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -995,8 +1021,10 @@ type xxx_ModifyObjectOperation struct {
 	Return               int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ModifyObject operation.
 func (o *xxx_ModifyObjectOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of ModifyObject operation.
 func (o *xxx_ModifyObjectOperation) OpName() string { return "/IADProxy/v0/ModifyObject" }
 
 func (o *xxx_ModifyObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1321,6 +1349,17 @@ func (o *ModifyObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeModifyObjectRequest build a response structure from the given request structure.
+func (o *ModifyObjectRequest) MakeResponse() *ModifyObjectResponse {
+	return &ModifyObjectResponse{}
+}
+
+// OpNum returns the operation number of ModifyObject operation.
+func (o *ModifyObjectRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of ModifyObject operation.
+func (o *ModifyObjectRequest) OpName() string { return "/IADProxy/v0/ModifyObject" }
 
 // ModifyObjectResponse structure represents the ModifyObject operation response
 type ModifyObjectResponse struct {

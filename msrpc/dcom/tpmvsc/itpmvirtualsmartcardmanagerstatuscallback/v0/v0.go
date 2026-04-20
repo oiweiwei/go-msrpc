@@ -187,8 +187,10 @@ type xxx_ReportProgressOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ReportProgress operation.
 func (o *xxx_ReportProgressOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ReportProgress operation.
 func (o *xxx_ReportProgressOperation) OpName() string {
 	return "/ITpmVirtualSmartCardManagerStatusCallback/v0/ReportProgress"
 }
@@ -350,6 +352,19 @@ func (o *ReportProgressRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeReportProgressRequest build a response structure from the given request structure.
+func (o *ReportProgressRequest) MakeResponse() *ReportProgressResponse {
+	return &ReportProgressResponse{}
+}
+
+// OpNum returns the operation number of ReportProgress operation.
+func (o *ReportProgressRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ReportProgress operation.
+func (o *ReportProgressRequest) OpName() string {
+	return "/ITpmVirtualSmartCardManagerStatusCallback/v0/ReportProgress"
+}
+
 // ReportProgressResponse structure represents the ReportProgress operation response
 type ReportProgressResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -397,8 +412,10 @@ type xxx_ReportErrorOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ReportError operation.
 func (o *xxx_ReportErrorOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of ReportError operation.
 func (o *xxx_ReportErrorOperation) OpName() string {
 	return "/ITpmVirtualSmartCardManagerStatusCallback/v0/ReportError"
 }
@@ -558,6 +575,19 @@ func (o *ReportErrorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeReportErrorRequest build a response structure from the given request structure.
+func (o *ReportErrorRequest) MakeResponse() *ReportErrorResponse {
+	return &ReportErrorResponse{}
+}
+
+// OpNum returns the operation number of ReportError operation.
+func (o *ReportErrorRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of ReportError operation.
+func (o *ReportErrorRequest) OpName() string {
+	return "/ITpmVirtualSmartCardManagerStatusCallback/v0/ReportError"
 }
 
 // ReportErrorResponse structure represents the ReportError operation response

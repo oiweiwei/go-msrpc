@@ -283,8 +283,10 @@ type xxx_RegisterOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Register operation.
 func (o *xxx_RegisterOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Register operation.
 func (o *xxx_RegisterOperation) OpName() string { return "/IRunningObjectTable/v0/Register" }
 
 func (o *xxx_RegisterOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -553,6 +555,17 @@ func (o *RegisterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeRegisterRequest build a response structure from the given request structure.
+func (o *RegisterRequest) MakeResponse() *RegisterResponse {
+	return &RegisterResponse{}
+}
+
+// OpNum returns the operation number of Register operation.
+func (o *RegisterRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Register operation.
+func (o *RegisterRequest) OpName() string { return "/IRunningObjectTable/v0/Register" }
+
 // RegisterResponse structure represents the Register operation response
 type RegisterResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -603,8 +616,10 @@ type xxx_RevokeOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Revoke operation.
 func (o *xxx_RevokeOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Revoke operation.
 func (o *xxx_RevokeOperation) OpName() string { return "/IRunningObjectTable/v0/Revoke" }
 
 func (o *xxx_RevokeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -763,6 +778,17 @@ func (o *RevokeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeRevokeRequest build a response structure from the given request structure.
+func (o *RevokeRequest) MakeResponse() *RevokeResponse {
+	return &RevokeResponse{}
+}
+
+// OpNum returns the operation number of Revoke operation.
+func (o *RevokeRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Revoke operation.
+func (o *RevokeRequest) OpName() string { return "/IRunningObjectTable/v0/Revoke" }
+
 // RevokeResponse structure represents the Revoke operation response
 type RevokeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -810,8 +836,10 @@ type xxx_IsRunningOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsRunning operation.
 func (o *xxx_IsRunningOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of IsRunning operation.
 func (o *xxx_IsRunningOperation) OpName() string { return "/IRunningObjectTable/v0/IsRunning" }
 
 func (o *xxx_IsRunningOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1004,6 +1032,17 @@ func (o *IsRunningRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeIsRunningRequest build a response structure from the given request structure.
+func (o *IsRunningRequest) MakeResponse() *IsRunningResponse {
+	return &IsRunningResponse{}
+}
+
+// OpNum returns the operation number of IsRunning operation.
+func (o *IsRunningRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of IsRunning operation.
+func (o *IsRunningRequest) OpName() string { return "/IRunningObjectTable/v0/IsRunning" }
+
 // IsRunningResponse structure represents the IsRunning operation response
 type IsRunningResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1052,8 +1091,10 @@ type xxx_GetObjectOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetObject operation.
 func (o *xxx_GetObjectOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of GetObject operation.
 func (o *xxx_GetObjectOperation) OpName() string { return "/IRunningObjectTable/v0/GetObject" }
 
 func (o *xxx_GetObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1292,6 +1333,17 @@ func (o *GetObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetObjectRequest build a response structure from the given request structure.
+func (o *GetObjectRequest) MakeResponse() *GetObjectResponse {
+	return &GetObjectResponse{}
+}
+
+// OpNum returns the operation number of GetObject operation.
+func (o *GetObjectRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of GetObject operation.
+func (o *GetObjectRequest) OpName() string { return "/IRunningObjectTable/v0/GetObject" }
+
 // GetObjectResponse structure represents the GetObject operation response
 type GetObjectResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1343,8 +1395,10 @@ type xxx_NoteChangeTimeOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of NoteChangeTime operation.
 func (o *xxx_NoteChangeTimeOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of NoteChangeTime operation.
 func (o *xxx_NoteChangeTimeOperation) OpName() string {
 	return "/IRunningObjectTable/v0/NoteChangeTime"
 }
@@ -1529,6 +1583,17 @@ func (o *NoteChangeTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeNoteChangeTimeRequest build a response structure from the given request structure.
+func (o *NoteChangeTimeRequest) MakeResponse() *NoteChangeTimeResponse {
+	return &NoteChangeTimeResponse{}
+}
+
+// OpNum returns the operation number of NoteChangeTime operation.
+func (o *NoteChangeTimeRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of NoteChangeTime operation.
+func (o *NoteChangeTimeRequest) OpName() string { return "/IRunningObjectTable/v0/NoteChangeTime" }
+
 // NoteChangeTimeResponse structure represents the NoteChangeTime operation response
 type NoteChangeTimeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1577,8 +1642,10 @@ type xxx_GetTimeOfLastChangeOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetTimeOfLastChange operation.
 func (o *xxx_GetTimeOfLastChangeOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of GetTimeOfLastChange operation.
 func (o *xxx_GetTimeOfLastChangeOperation) OpName() string {
 	return "/IRunningObjectTable/v0/GetTimeOfLastChange"
 }
@@ -1794,6 +1861,19 @@ func (o *GetTimeOfLastChangeRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetTimeOfLastChangeRequest build a response structure from the given request structure.
+func (o *GetTimeOfLastChangeRequest) MakeResponse() *GetTimeOfLastChangeResponse {
+	return &GetTimeOfLastChangeResponse{}
+}
+
+// OpNum returns the operation number of GetTimeOfLastChange operation.
+func (o *GetTimeOfLastChangeRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GetTimeOfLastChange operation.
+func (o *GetTimeOfLastChangeRequest) OpName() string {
+	return "/IRunningObjectTable/v0/GetTimeOfLastChange"
+}
+
 // GetTimeOfLastChangeResponse structure represents the GetTimeOfLastChange operation response
 type GetTimeOfLastChangeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1844,8 +1924,10 @@ type xxx_EnumRunningOperation struct {
 	Return  int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumRunning operation.
 func (o *xxx_EnumRunningOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of EnumRunning operation.
 func (o *xxx_EnumRunningOperation) OpName() string { return "/IRunningObjectTable/v0/EnumRunning" }
 
 func (o *xxx_EnumRunningOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2034,6 +2116,17 @@ func (o *EnumRunningRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeEnumRunningRequest build a response structure from the given request structure.
+func (o *EnumRunningRequest) MakeResponse() *EnumRunningResponse {
+	return &EnumRunningResponse{}
+}
+
+// OpNum returns the operation number of EnumRunning operation.
+func (o *EnumRunningRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of EnumRunning operation.
+func (o *EnumRunningRequest) OpName() string { return "/IRunningObjectTable/v0/EnumRunning" }
 
 // EnumRunningResponse structure represents the EnumRunning operation response
 type EnumRunningResponse struct {

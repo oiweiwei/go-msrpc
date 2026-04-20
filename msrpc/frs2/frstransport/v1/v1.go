@@ -753,8 +753,10 @@ type xxx_CheckConnectivityOperation struct {
 	Return       uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CheckConnectivity operation.
 func (o *xxx_CheckConnectivityOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of CheckConnectivity operation.
 func (o *xxx_CheckConnectivityOperation) OpName() string { return "/FrsTransport/v1/CheckConnectivity" }
 
 func (o *xxx_CheckConnectivityOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -892,6 +894,17 @@ func (o *CheckConnectivityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeCheckConnectivityRequest build a response structure from the given request structure.
+func (o *CheckConnectivityRequest) MakeResponse() *CheckConnectivityResponse {
+	return &CheckConnectivityResponse{}
+}
+
+// OpNum returns the operation number of CheckConnectivity operation.
+func (o *CheckConnectivityRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of CheckConnectivity operation.
+func (o *CheckConnectivityRequest) OpName() string { return "/FrsTransport/v1/CheckConnectivity" }
+
 // CheckConnectivityResponse structure represents the CheckConnectivity operation response
 type CheckConnectivityResponse struct {
 	// Return: The CheckConnectivity return value.
@@ -938,8 +951,10 @@ type xxx_EstablishConnectionOperation struct {
 	Return                    uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EstablishConnection operation.
 func (o *xxx_EstablishConnectionOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of EstablishConnection operation.
 func (o *xxx_EstablishConnectionOperation) OpName() string {
 	return "/FrsTransport/v1/EstablishConnection"
 }
@@ -1137,6 +1152,17 @@ func (o *EstablishConnectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeEstablishConnectionRequest build a response structure from the given request structure.
+func (o *EstablishConnectionRequest) MakeResponse() *EstablishConnectionResponse {
+	return &EstablishConnectionResponse{}
+}
+
+// OpNum returns the operation number of EstablishConnection operation.
+func (o *EstablishConnectionRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of EstablishConnection operation.
+func (o *EstablishConnectionRequest) OpName() string { return "/FrsTransport/v1/EstablishConnection" }
+
 // EstablishConnectionResponse structure represents the EstablishConnection operation response
 type EstablishConnectionResponse struct {
 	// upstreamProtocolVersion: Receives the version of the DFS-R protocol implemented by
@@ -1191,8 +1217,10 @@ type xxx_EstablishSessionOperation struct {
 	Return       uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EstablishSession operation.
 func (o *xxx_EstablishSessionOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of EstablishSession operation.
 func (o *xxx_EstablishSessionOperation) OpName() string { return "/FrsTransport/v1/EstablishSession" }
 
 func (o *xxx_EstablishSessionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1331,6 +1359,17 @@ func (o *EstablishSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeEstablishSessionRequest build a response structure from the given request structure.
+func (o *EstablishSessionRequest) MakeResponse() *EstablishSessionResponse {
+	return &EstablishSessionResponse{}
+}
+
+// OpNum returns the operation number of EstablishSession operation.
+func (o *EstablishSessionRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of EstablishSession operation.
+func (o *EstablishSessionRequest) OpName() string { return "/FrsTransport/v1/EstablishSession" }
+
 // EstablishSessionResponse structure represents the EstablishSession operation response
 type EstablishSessionResponse struct {
 	// Return: The EstablishSession return value.
@@ -1383,8 +1422,10 @@ type xxx_RequestUpdatesOperation struct {
 	Return                 uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RequestUpdates operation.
 func (o *xxx_RequestUpdatesOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RequestUpdates operation.
 func (o *xxx_RequestUpdatesOperation) OpName() string { return "/FrsTransport/v1/RequestUpdates" }
 
 func (o *xxx_RequestUpdatesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1803,6 +1844,22 @@ func (o *RequestUpdatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeRequestUpdatesRequest build a response structure from the given request structure.
+func (o *RequestUpdatesRequest) MakeResponse() *RequestUpdatesResponse {
+	if o == nil {
+		return &RequestUpdatesResponse{}
+	}
+	return &RequestUpdatesResponse{
+		CreditsAvailable: o.CreditsAvailable,
+	}
+}
+
+// OpNum returns the operation number of RequestUpdates operation.
+func (o *RequestUpdatesRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RequestUpdates operation.
+func (o *RequestUpdatesRequest) OpName() string { return "/FrsTransport/v1/RequestUpdates" }
+
 // RequestUpdatesResponse structure represents the RequestUpdates operation response
 type RequestUpdatesResponse struct {
 	// XXX: creditsAvailable is an implicit input depedency for output parameters
@@ -1883,8 +1940,10 @@ type xxx_RequestVersionVectorOperation struct {
 	Return         uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RequestVersionVector operation.
 func (o *xxx_RequestVersionVectorOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RequestVersionVector operation.
 func (o *xxx_RequestVersionVectorOperation) OpName() string {
 	return "/FrsTransport/v1/RequestVersionVector"
 }
@@ -2104,6 +2163,17 @@ func (o *RequestVersionVectorRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeRequestVersionVectorRequest build a response structure from the given request structure.
+func (o *RequestVersionVectorRequest) MakeResponse() *RequestVersionVectorResponse {
+	return &RequestVersionVectorResponse{}
+}
+
+// OpNum returns the operation number of RequestVersionVector operation.
+func (o *RequestVersionVectorRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RequestVersionVector operation.
+func (o *RequestVersionVectorRequest) OpName() string { return "/FrsTransport/v1/RequestVersionVector" }
+
 // RequestVersionVectorResponse structure represents the RequestVersionVector operation response
 type RequestVersionVectorResponse struct {
 	// Return: The RequestVersionVector return value.
@@ -2146,8 +2216,10 @@ type xxx_AsyncPollOperation struct {
 	Return       uint32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AsyncPoll operation.
 func (o *xxx_AsyncPollOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of AsyncPoll operation.
 func (o *xxx_AsyncPollOperation) OpName() string { return "/FrsTransport/v1/AsyncPoll" }
 
 func (o *xxx_AsyncPollOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2287,6 +2359,17 @@ func (o *AsyncPollRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeAsyncPollRequest build a response structure from the given request structure.
+func (o *AsyncPollRequest) MakeResponse() *AsyncPollResponse {
+	return &AsyncPollResponse{}
+}
+
+// OpNum returns the operation number of AsyncPoll operation.
+func (o *AsyncPollRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of AsyncPoll operation.
+func (o *AsyncPollRequest) OpName() string { return "/FrsTransport/v1/AsyncPoll" }
+
 // AsyncPollResponse structure represents the AsyncPoll operation response
 type AsyncPollResponse struct {
 	// response: The FRS_ASYNC_RESPONSE_CONTEXT structure that contains the context for
@@ -2341,8 +2424,10 @@ type xxx_RequestRecordsOperation struct {
 	Return            uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RequestRecords operation.
 func (o *xxx_RequestRecordsOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of RequestRecords operation.
 func (o *xxx_RequestRecordsOperation) OpName() string { return "/FrsTransport/v1/RequestRecords" }
 
 func (o *xxx_RequestRecordsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2665,6 +2750,17 @@ func (o *RequestRecordsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeRequestRecordsRequest build a response structure from the given request structure.
+func (o *RequestRecordsRequest) MakeResponse() *RequestRecordsResponse {
+	return &RequestRecordsResponse{}
+}
+
+// OpNum returns the operation number of RequestRecords operation.
+func (o *RequestRecordsRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of RequestRecords operation.
+func (o *RequestRecordsRequest) OpName() string { return "/FrsTransport/v1/RequestRecords" }
+
 // RequestRecordsResponse structure represents the RequestRecords operation response
 type RequestRecordsResponse struct {
 	// maxRecords: The maximum number of records that the server can send to the client.
@@ -2732,8 +2828,10 @@ type xxx_UpdateCancelOperation struct {
 	Return       uint32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UpdateCancel operation.
 func (o *xxx_UpdateCancelOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of UpdateCancel operation.
 func (o *xxx_UpdateCancelOperation) OpName() string { return "/FrsTransport/v1/UpdateCancel" }
 
 func (o *xxx_UpdateCancelOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2867,6 +2965,17 @@ func (o *UpdateCancelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeUpdateCancelRequest build a response structure from the given request structure.
+func (o *UpdateCancelRequest) MakeResponse() *UpdateCancelResponse {
+	return &UpdateCancelResponse{}
+}
+
+// OpNum returns the operation number of UpdateCancel operation.
+func (o *UpdateCancelRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of UpdateCancel operation.
+func (o *UpdateCancelRequest) OpName() string { return "/FrsTransport/v1/UpdateCancel" }
+
 // UpdateCancelResponse structure represents the UpdateCancel operation response
 type UpdateCancelResponse struct {
 	// Return: The UpdateCancel return value.
@@ -2912,8 +3021,10 @@ type xxx_RawGetFileDataOperation struct {
 	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RawGetFileData operation.
 func (o *xxx_RawGetFileDataOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RawGetFileData operation.
 func (o *xxx_RawGetFileDataOperation) OpName() string { return "/FrsTransport/v1/RawGetFileData" }
 
 func (o *xxx_RawGetFileDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3160,6 +3271,22 @@ func (o *RawGetFileDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeRawGetFileDataRequest build a response structure from the given request structure.
+func (o *RawGetFileDataRequest) MakeResponse() *RawGetFileDataResponse {
+	if o == nil {
+		return &RawGetFileDataResponse{}
+	}
+	return &RawGetFileDataResponse{
+		BufferSize: o.BufferSize,
+	}
+}
+
+// OpNum returns the operation number of RawGetFileData operation.
+func (o *RawGetFileDataRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of RawGetFileData operation.
+func (o *RawGetFileDataRequest) OpName() string { return "/FrsTransport/v1/RawGetFileData" }
+
 // RawGetFileDataResponse structure represents the RawGetFileData operation response
 type RawGetFileDataResponse struct {
 	// XXX: bufferSize is an implicit input depedency for output parameters
@@ -3239,8 +3366,10 @@ type xxx_GetSignaturesOperation struct {
 	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RdcGetSignatures operation.
 func (o *xxx_GetSignaturesOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RdcGetSignatures operation.
 func (o *xxx_GetSignaturesOperation) OpName() string { return "/FrsTransport/v1/RdcGetSignatures" }
 
 func (o *xxx_GetSignaturesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3491,6 +3620,22 @@ func (o *GetSignaturesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetSignaturesRequest build a response structure from the given request structure.
+func (o *GetSignaturesRequest) MakeResponse() *GetSignaturesResponse {
+	if o == nil {
+		return &GetSignaturesResponse{}
+	}
+	return &GetSignaturesResponse{
+		Length: o.Length,
+	}
+}
+
+// OpNum returns the operation number of RdcGetSignatures operation.
+func (o *GetSignaturesRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RdcGetSignatures operation.
+func (o *GetSignaturesRequest) OpName() string { return "/FrsTransport/v1/RdcGetSignatures" }
+
 // GetSignaturesResponse structure represents the RdcGetSignatures operation response
 type GetSignaturesResponse struct {
 	// XXX: length is an implicit input depedency for output parameters
@@ -3553,8 +3698,10 @@ type xxx_PushSourceNeedsOperation struct {
 	Return        uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RdcPushSourceNeeds operation.
 func (o *xxx_PushSourceNeedsOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of RdcPushSourceNeeds operation.
 func (o *xxx_PushSourceNeedsOperation) OpName() string { return "/FrsTransport/v1/RdcPushSourceNeeds" }
 
 func (o *xxx_PushSourceNeedsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3749,6 +3896,17 @@ func (o *PushSourceNeedsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakePushSourceNeedsRequest build a response structure from the given request structure.
+func (o *PushSourceNeedsRequest) MakeResponse() *PushSourceNeedsResponse {
+	return &PushSourceNeedsResponse{}
+}
+
+// OpNum returns the operation number of RdcPushSourceNeeds operation.
+func (o *PushSourceNeedsRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of RdcPushSourceNeeds operation.
+func (o *PushSourceNeedsRequest) OpName() string { return "/FrsTransport/v1/RdcPushSourceNeeds" }
+
 // PushSourceNeedsResponse structure represents the RdcPushSourceNeeds operation response
 type PushSourceNeedsResponse struct {
 	// Return: The RdcPushSourceNeeds return value.
@@ -3793,8 +3951,10 @@ type xxx_GetFileDataOperation struct {
 	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RdcGetFileData operation.
 func (o *xxx_GetFileDataOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RdcGetFileData operation.
 func (o *xxx_GetFileDataOperation) OpName() string { return "/FrsTransport/v1/RdcGetFileData" }
 
 func (o *xxx_GetFileDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4007,6 +4167,22 @@ func (o *GetFileDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetFileDataRequest build a response structure from the given request structure.
+func (o *GetFileDataRequest) MakeResponse() *GetFileDataResponse {
+	if o == nil {
+		return &GetFileDataResponse{}
+	}
+	return &GetFileDataResponse{
+		BufferSize: o.BufferSize,
+	}
+}
+
+// OpNum returns the operation number of RdcGetFileData operation.
+func (o *GetFileDataRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RdcGetFileData operation.
+func (o *GetFileDataRequest) OpName() string { return "/FrsTransport/v1/RdcGetFileData" }
+
 // GetFileDataResponse structure represents the RdcGetFileData operation response
 type GetFileDataResponse struct {
 	// XXX: bufferSize is an implicit input depedency for output parameters
@@ -4067,8 +4243,10 @@ type xxx_CloseOperation struct {
 	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RdcClose operation.
 func (o *xxx_CloseOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of RdcClose operation.
 func (o *xxx_CloseOperation) OpName() string { return "/FrsTransport/v1/RdcClose" }
 
 func (o *xxx_CloseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4202,6 +4380,17 @@ func (o *CloseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeCloseRequest build a response structure from the given request structure.
+func (o *CloseRequest) MakeResponse() *CloseResponse {
+	return &CloseResponse{}
+}
+
+// OpNum returns the operation number of RdcClose operation.
+func (o *CloseRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of RdcClose operation.
+func (o *CloseRequest) OpName() string { return "/FrsTransport/v1/RdcClose" }
+
 // CloseResponse structure represents the RdcClose operation response
 type CloseResponse struct {
 	// serverContext: The context handle that represents the requested file replication
@@ -4258,8 +4447,10 @@ type xxx_InitializeFileTransferAsyncOperation struct {
 	Return        uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of InitializeFileTransferAsync operation.
 func (o *xxx_InitializeFileTransferAsyncOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of InitializeFileTransferAsync operation.
 func (o *xxx_InitializeFileTransferAsyncOperation) OpName() string {
 	return "/FrsTransport/v1/InitializeFileTransferAsync"
 }
@@ -4658,6 +4849,24 @@ func (o *InitializeFileTransferAsyncRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeInitializeFileTransferAsyncRequest build a response structure from the given request structure.
+func (o *InitializeFileTransferAsyncRequest) MakeResponse() *InitializeFileTransferAsyncResponse {
+	if o == nil {
+		return &InitializeFileTransferAsyncResponse{}
+	}
+	return &InitializeFileTransferAsyncResponse{
+		BufferSize: o.BufferSize,
+	}
+}
+
+// OpNum returns the operation number of InitializeFileTransferAsync operation.
+func (o *InitializeFileTransferAsyncRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of InitializeFileTransferAsync operation.
+func (o *InitializeFileTransferAsyncRequest) OpName() string {
+	return "/FrsTransport/v1/InitializeFileTransferAsync"
+}
+
 // InitializeFileTransferAsyncResponse structure represents the InitializeFileTransferAsync operation response
 type InitializeFileTransferAsyncResponse struct {
 	// XXX: bufferSize is an implicit input depedency for output parameters
@@ -4754,8 +4963,10 @@ type xxx_RawGetFileDataAsyncOperation struct {
 	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RawGetFileDataAsync operation.
 func (o *xxx_RawGetFileDataAsyncOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of RawGetFileDataAsync operation.
 func (o *xxx_RawGetFileDataAsyncOperation) OpName() string {
 	return "/FrsTransport/v1/RawGetFileDataAsync"
 }
@@ -4944,6 +5155,17 @@ func (o *RawGetFileDataAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeRawGetFileDataAsyncRequest build a response structure from the given request structure.
+func (o *RawGetFileDataAsyncRequest) MakeResponse() *RawGetFileDataAsyncResponse {
+	return &RawGetFileDataAsyncResponse{}
+}
+
+// OpNum returns the operation number of RawGetFileDataAsync operation.
+func (o *RawGetFileDataAsyncRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of RawGetFileDataAsync operation.
+func (o *RawGetFileDataAsyncRequest) OpName() string { return "/FrsTransport/v1/RawGetFileDataAsync" }
+
 // RawGetFileDataAsyncResponse structure represents the RawGetFileDataAsync operation response
 type RawGetFileDataAsyncResponse struct {
 	// bytePipe: The asynchronous RPC byte pipe that contains returned file data.
@@ -4990,8 +5212,10 @@ type xxx_GetFileDataAsyncOperation struct {
 	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RdcGetFileDataAsync operation.
 func (o *xxx_GetFileDataAsyncOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of RdcGetFileDataAsync operation.
 func (o *xxx_GetFileDataAsyncOperation) OpName() string {
 	return "/FrsTransport/v1/RdcGetFileDataAsync"
 }
@@ -5181,6 +5405,17 @@ func (o *GetFileDataAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetFileDataAsyncRequest build a response structure from the given request structure.
+func (o *GetFileDataAsyncRequest) MakeResponse() *GetFileDataAsyncResponse {
+	return &GetFileDataAsyncResponse{}
+}
+
+// OpNum returns the operation number of RdcGetFileDataAsync operation.
+func (o *GetFileDataAsyncRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of RdcGetFileDataAsync operation.
+func (o *GetFileDataAsyncRequest) OpName() string { return "/FrsTransport/v1/RdcGetFileDataAsync" }
+
 // GetFileDataAsyncResponse structure represents the RdcGetFileDataAsync operation response
 type GetFileDataAsyncResponse struct {
 	// bytePipe: The asynchronous RPC byte pipe that contains returned file data.
@@ -5226,8 +5461,10 @@ type xxx_FileDataTransferKeepAliveOperation struct {
 	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RdcFileDataTransferKeepAlive operation.
 func (o *xxx_FileDataTransferKeepAliveOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of RdcFileDataTransferKeepAlive operation.
 func (o *xxx_FileDataTransferKeepAliveOperation) OpName() string {
 	return "/FrsTransport/v1/RdcFileDataTransferKeepAlive"
 }
@@ -5340,6 +5577,19 @@ func (o *FileDataTransferKeepAliveRequest) UnmarshalNDR(ctx context.Context, r n
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeFileDataTransferKeepAliveRequest build a response structure from the given request structure.
+func (o *FileDataTransferKeepAliveRequest) MakeResponse() *FileDataTransferKeepAliveResponse {
+	return &FileDataTransferKeepAliveResponse{}
+}
+
+// OpNum returns the operation number of RdcFileDataTransferKeepAlive operation.
+func (o *FileDataTransferKeepAliveRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of RdcFileDataTransferKeepAlive operation.
+func (o *FileDataTransferKeepAliveRequest) OpName() string {
+	return "/FrsTransport/v1/RdcFileDataTransferKeepAlive"
 }
 
 // FileDataTransferKeepAliveResponse structure represents the RdcFileDataTransferKeepAlive operation response

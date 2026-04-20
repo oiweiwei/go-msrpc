@@ -168,8 +168,10 @@ type xxx_QueryInterfaceOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryInterface operation.
 func (o *xxx_QueryInterfaceOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of QueryInterface operation.
 func (o *xxx_QueryInterfaceOperation) OpName() string { return "/IUnknown/v0/QueryInterface" }
 
 func (o *xxx_QueryInterfaceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -370,6 +372,17 @@ func (o *QueryInterfaceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeQueryInterfaceRequest build a response structure from the given request structure.
+func (o *QueryInterfaceRequest) MakeResponse() *QueryInterfaceResponse {
+	return &QueryInterfaceResponse{}
+}
+
+// OpNum returns the operation number of QueryInterface operation.
+func (o *QueryInterfaceRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of QueryInterface operation.
+func (o *QueryInterfaceRequest) OpName() string { return "/IUnknown/v0/QueryInterface" }
+
 // QueryInterfaceResponse structure represents the QueryInterface operation response
 type QueryInterfaceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -419,8 +432,10 @@ type xxx_AddReferenceOperation struct {
 	Return uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddRef operation.
 func (o *xxx_AddReferenceOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of AddRef operation.
 func (o *xxx_AddReferenceOperation) OpName() string { return "/IUnknown/v0/AddRef" }
 
 func (o *xxx_AddReferenceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -564,6 +579,17 @@ func (o *AddReferenceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeAddReferenceRequest build a response structure from the given request structure.
+func (o *AddReferenceRequest) MakeResponse() *AddReferenceResponse {
+	return &AddReferenceResponse{}
+}
+
+// OpNum returns the operation number of AddRef operation.
+func (o *AddReferenceRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of AddRef operation.
+func (o *AddReferenceRequest) OpName() string { return "/IUnknown/v0/AddRef" }
+
 // AddReferenceResponse structure represents the AddRef operation response
 type AddReferenceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -610,8 +636,10 @@ type xxx_ReleaseOperation struct {
 	Return uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Release operation.
 func (o *xxx_ReleaseOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of Release operation.
 func (o *xxx_ReleaseOperation) OpName() string { return "/IUnknown/v0/Release" }
 
 func (o *xxx_ReleaseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -754,6 +782,17 @@ func (o *ReleaseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeReleaseRequest build a response structure from the given request structure.
+func (o *ReleaseRequest) MakeResponse() *ReleaseResponse {
+	return &ReleaseResponse{}
+}
+
+// OpNum returns the operation number of Release operation.
+func (o *ReleaseRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of Release operation.
+func (o *ReleaseRequest) OpName() string { return "/IUnknown/v0/Release" }
 
 // ReleaseResponse structure represents the Release operation response
 type ReleaseResponse struct {

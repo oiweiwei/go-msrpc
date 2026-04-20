@@ -195,8 +195,10 @@ type xxx_GetAutoSelectionOperation struct {
 	Return      int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AutoSelection operation.
 func (o *xxx_GetAutoSelectionOperation) OpNum() int { return 58 }
 
+// OpName returns the operation name of AutoSelection operation.
 func (o *xxx_GetAutoSelectionOperation) OpName() string { return "/IUpdate5/v0/AutoSelection" }
 
 func (o *xxx_GetAutoSelectionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -352,6 +354,17 @@ func (o *GetAutoSelectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetAutoSelectionRequest build a response structure from the given request structure.
+func (o *GetAutoSelectionRequest) MakeResponse() *GetAutoSelectionResponse {
+	return &GetAutoSelectionResponse{}
+}
+
+// OpNum returns the operation number of AutoSelection operation.
+func (o *GetAutoSelectionRequest) OpNum() int { return 58 }
+
+// OpName returns the operation name of AutoSelection operation.
+func (o *GetAutoSelectionRequest) OpName() string { return "/IUpdate5/v0/AutoSelection" }
+
 // GetAutoSelectionResponse structure represents the AutoSelection operation response
 type GetAutoSelectionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -407,8 +420,10 @@ type xxx_GetAutoDownloadOperation struct {
 	Return      int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AutoDownload operation.
 func (o *xxx_GetAutoDownloadOperation) OpNum() int { return 59 }
 
+// OpName returns the operation name of AutoDownload operation.
 func (o *xxx_GetAutoDownloadOperation) OpName() string { return "/IUpdate5/v0/AutoDownload" }
 
 func (o *xxx_GetAutoDownloadOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -563,6 +578,17 @@ func (o *GetAutoDownloadRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetAutoDownloadRequest build a response structure from the given request structure.
+func (o *GetAutoDownloadRequest) MakeResponse() *GetAutoDownloadResponse {
+	return &GetAutoDownloadResponse{}
+}
+
+// OpNum returns the operation number of AutoDownload operation.
+func (o *GetAutoDownloadRequest) OpNum() int { return 59 }
+
+// OpName returns the operation name of AutoDownload operation.
+func (o *GetAutoDownloadRequest) OpName() string { return "/IUpdate5/v0/AutoDownload" }
 
 // GetAutoDownloadResponse structure represents the AutoDownload operation response
 type GetAutoDownloadResponse struct {

@@ -236,8 +236,10 @@ type xxx_GetAdminSectionOperation struct {
 	Return       int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetAdminSection operation.
 func (o *xxx_GetAdminSectionOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetAdminSection operation.
 func (o *xxx_GetAdminSectionOperation) OpName() string {
 	return "/IAppHostAdminManager/v0/GetAdminSection"
 }
@@ -527,6 +529,17 @@ func (o *GetAdminSectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetAdminSectionRequest build a response structure from the given request structure.
+func (o *GetAdminSectionRequest) MakeResponse() *GetAdminSectionResponse {
+	return &GetAdminSectionResponse{}
+}
+
+// OpNum returns the operation number of GetAdminSection operation.
+func (o *GetAdminSectionRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetAdminSection operation.
+func (o *GetAdminSectionRequest) OpName() string { return "/IAppHostAdminManager/v0/GetAdminSection" }
+
 // GetAdminSectionResponse structure represents the GetAdminSection operation response
 type GetAdminSectionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -578,8 +591,10 @@ type xxx_GetMetadataOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetMetadata operation.
 func (o *xxx_GetMetadataOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of GetMetadata operation.
 func (o *xxx_GetMetadataOperation) OpName() string { return "/IAppHostAdminManager/v0/GetMetadata" }
 
 func (o *xxx_GetMetadataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -818,6 +833,17 @@ func (o *GetMetadataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetMetadataRequest build a response structure from the given request structure.
+func (o *GetMetadataRequest) MakeResponse() *GetMetadataResponse {
+	return &GetMetadataResponse{}
+}
+
+// OpNum returns the operation number of GetMetadata operation.
+func (o *GetMetadataRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of GetMetadata operation.
+func (o *GetMetadataRequest) OpName() string { return "/IAppHostAdminManager/v0/GetMetadata" }
+
 // GetMetadataResponse structure represents the GetMetadata operation response
 type GetMetadataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -869,8 +895,10 @@ type xxx_SetMetadataOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetMetadata operation.
 func (o *xxx_SetMetadataOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of SetMetadata operation.
 func (o *xxx_SetMetadataOperation) OpName() string { return "/IAppHostAdminManager/v0/SetMetadata" }
 
 func (o *xxx_SetMetadataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1093,6 +1121,17 @@ func (o *SetMetadataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeSetMetadataRequest build a response structure from the given request structure.
+func (o *SetMetadataRequest) MakeResponse() *SetMetadataResponse {
+	return &SetMetadataResponse{}
+}
+
+// OpNum returns the operation number of SetMetadata operation.
+func (o *SetMetadataRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of SetMetadata operation.
+func (o *SetMetadataRequest) OpName() string { return "/IAppHostAdminManager/v0/SetMetadata" }
+
 // SetMetadataResponse structure represents the SetMetadata operation response
 type SetMetadataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1140,8 +1179,10 @@ type xxx_GetConfigManagerOperation struct {
 	Return        int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ConfigManager operation.
 func (o *xxx_GetConfigManagerOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of ConfigManager operation.
 func (o *xxx_GetConfigManagerOperation) OpName() string {
 	return "/IAppHostAdminManager/v0/ConfigManager"
 }
@@ -1332,6 +1373,17 @@ func (o *GetConfigManagerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetConfigManagerRequest build a response structure from the given request structure.
+func (o *GetConfigManagerRequest) MakeResponse() *GetConfigManagerResponse {
+	return &GetConfigManagerResponse{}
+}
+
+// OpNum returns the operation number of ConfigManager operation.
+func (o *GetConfigManagerRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of ConfigManager operation.
+func (o *GetConfigManagerRequest) OpName() string { return "/IAppHostAdminManager/v0/ConfigManager" }
 
 // GetConfigManagerResponse structure represents the ConfigManager operation response
 type GetConfigManagerResponse struct {

@@ -113,8 +113,10 @@ type xxx_CertServerRequestOperation struct {
 	Return             uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CertServerRequest operation.
 func (o *xxx_CertServerRequestOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of CertServerRequest operation.
 func (o *xxx_CertServerRequestOperation) OpName() string { return "/ICertPassage/v0/CertServerRequest" }
 
 func (o *xxx_CertServerRequestOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -450,6 +452,17 @@ func (o *CertServerRequestRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCertServerRequestRequest build a response structure from the given request structure.
+func (o *CertServerRequestRequest) MakeResponse() *CertServerRequestResponse {
+	return &CertServerRequestResponse{}
+}
+
+// OpNum returns the operation number of CertServerRequest operation.
+func (o *CertServerRequestRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of CertServerRequest operation.
+func (o *CertServerRequestRequest) OpName() string { return "/ICertPassage/v0/CertServerRequest" }
 
 // CertServerRequestResponse structure represents the CertServerRequest operation response
 type CertServerRequestResponse struct {

@@ -146,8 +146,10 @@ type xxx_OnSectionChangesOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OnSectionChanges operation.
 func (o *xxx_OnSectionChangesOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of OnSectionChanges operation.
 func (o *xxx_OnSectionChangesOperation) OpName() string {
 	return "/IAppHostChangeHandler/v0/OnSectionChanges"
 }
@@ -393,6 +395,19 @@ func (o *OnSectionChangesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeOnSectionChangesRequest build a response structure from the given request structure.
+func (o *OnSectionChangesRequest) MakeResponse() *OnSectionChangesResponse {
+	return &OnSectionChangesResponse{}
+}
+
+// OpNum returns the operation number of OnSectionChanges operation.
+func (o *OnSectionChangesRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of OnSectionChanges operation.
+func (o *OnSectionChangesRequest) OpName() string {
+	return "/IAppHostChangeHandler/v0/OnSectionChanges"
 }
 
 // OnSectionChangesResponse structure represents the OnSectionChanges operation response

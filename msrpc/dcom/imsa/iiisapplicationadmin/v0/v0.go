@@ -424,8 +424,10 @@ type xxx_CreateApplicationOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateApplication operation.
 func (o *xxx_CreateApplicationOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of CreateApplication operation.
 func (o *xxx_CreateApplicationOperation) OpName() string {
 	return "/IIISApplicationAdmin/v0/CreateApplication"
 }
@@ -711,6 +713,19 @@ func (o *CreateApplicationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeCreateApplicationRequest build a response structure from the given request structure.
+func (o *CreateApplicationRequest) MakeResponse() *CreateApplicationResponse {
+	return &CreateApplicationResponse{}
+}
+
+// OpNum returns the operation number of CreateApplication operation.
+func (o *CreateApplicationRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of CreateApplication operation.
+func (o *CreateApplicationRequest) OpName() string {
+	return "/IIISApplicationAdmin/v0/CreateApplication"
+}
+
 // CreateApplicationResponse structure represents the CreateApplication operation response
 type CreateApplicationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -759,8 +774,10 @@ type xxx_DeleteApplicationOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteApplication operation.
 func (o *xxx_DeleteApplicationOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of DeleteApplication operation.
 func (o *xxx_DeleteApplicationOperation) OpName() string {
 	return "/IIISApplicationAdmin/v0/DeleteApplication"
 }
@@ -973,6 +990,19 @@ func (o *DeleteApplicationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeDeleteApplicationRequest build a response structure from the given request structure.
+func (o *DeleteApplicationRequest) MakeResponse() *DeleteApplicationResponse {
+	return &DeleteApplicationResponse{}
+}
+
+// OpNum returns the operation number of DeleteApplication operation.
+func (o *DeleteApplicationRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of DeleteApplication operation.
+func (o *DeleteApplicationRequest) OpName() string {
+	return "/IIISApplicationAdmin/v0/DeleteApplication"
+}
+
 // DeleteApplicationResponse structure represents the DeleteApplication operation response
 type DeleteApplicationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1020,8 +1050,10 @@ type xxx_CreateApplicationPoolOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateApplicationPool operation.
 func (o *xxx_CreateApplicationPoolOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of CreateApplicationPool operation.
 func (o *xxx_CreateApplicationPoolOperation) OpName() string {
 	return "/IIISApplicationAdmin/v0/CreateApplicationPool"
 }
@@ -1209,6 +1241,19 @@ func (o *CreateApplicationPoolRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeCreateApplicationPoolRequest build a response structure from the given request structure.
+func (o *CreateApplicationPoolRequest) MakeResponse() *CreateApplicationPoolResponse {
+	return &CreateApplicationPoolResponse{}
+}
+
+// OpNum returns the operation number of CreateApplicationPool operation.
+func (o *CreateApplicationPoolRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of CreateApplicationPool operation.
+func (o *CreateApplicationPoolRequest) OpName() string {
+	return "/IIISApplicationAdmin/v0/CreateApplicationPool"
+}
+
 // CreateApplicationPoolResponse structure represents the CreateApplicationPool operation response
 type CreateApplicationPoolResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1256,8 +1301,10 @@ type xxx_DeleteApplicationPoolOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteApplicationPool operation.
 func (o *xxx_DeleteApplicationPoolOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of DeleteApplicationPool operation.
 func (o *xxx_DeleteApplicationPoolOperation) OpName() string {
 	return "/IIISApplicationAdmin/v0/DeleteApplicationPool"
 }
@@ -1445,6 +1492,19 @@ func (o *DeleteApplicationPoolRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeDeleteApplicationPoolRequest build a response structure from the given request structure.
+func (o *DeleteApplicationPoolRequest) MakeResponse() *DeleteApplicationPoolResponse {
+	return &DeleteApplicationPoolResponse{}
+}
+
+// OpNum returns the operation number of DeleteApplicationPool operation.
+func (o *DeleteApplicationPoolRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of DeleteApplicationPool operation.
+func (o *DeleteApplicationPoolRequest) OpName() string {
+	return "/IIISApplicationAdmin/v0/DeleteApplicationPool"
+}
+
 // DeleteApplicationPoolResponse structure represents the DeleteApplicationPool operation response
 type DeleteApplicationPoolResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1493,8 +1553,10 @@ type xxx_EnumerateApplicationsInPoolOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumerateApplicationsInPool operation.
 func (o *xxx_EnumerateApplicationsInPoolOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of EnumerateApplicationsInPool operation.
 func (o *xxx_EnumerateApplicationsInPoolOperation) OpName() string {
 	return "/IIISApplicationAdmin/v0/EnumerateApplicationsInPool"
 }
@@ -1728,6 +1790,19 @@ func (o *EnumerateApplicationsInPoolRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeEnumerateApplicationsInPoolRequest build a response structure from the given request structure.
+func (o *EnumerateApplicationsInPoolRequest) MakeResponse() *EnumerateApplicationsInPoolResponse {
+	return &EnumerateApplicationsInPoolResponse{}
+}
+
+// OpNum returns the operation number of EnumerateApplicationsInPool operation.
+func (o *EnumerateApplicationsInPoolRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of EnumerateApplicationsInPool operation.
+func (o *EnumerateApplicationsInPoolRequest) OpName() string {
+	return "/IIISApplicationAdmin/v0/EnumerateApplicationsInPool"
+}
+
 // EnumerateApplicationsInPoolResponse structure represents the EnumerateApplicationsInPool operation response
 type EnumerateApplicationsInPoolResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1782,8 +1857,10 @@ type xxx_RecycleApplicationPoolOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RecycleApplicationPool operation.
 func (o *xxx_RecycleApplicationPoolOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RecycleApplicationPool operation.
 func (o *xxx_RecycleApplicationPoolOperation) OpName() string {
 	return "/IIISApplicationAdmin/v0/RecycleApplicationPool"
 }
@@ -1971,6 +2048,19 @@ func (o *RecycleApplicationPoolRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeRecycleApplicationPoolRequest build a response structure from the given request structure.
+func (o *RecycleApplicationPoolRequest) MakeResponse() *RecycleApplicationPoolResponse {
+	return &RecycleApplicationPoolResponse{}
+}
+
+// OpNum returns the operation number of RecycleApplicationPool operation.
+func (o *RecycleApplicationPoolRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of RecycleApplicationPool operation.
+func (o *RecycleApplicationPoolRequest) OpName() string {
+	return "/IIISApplicationAdmin/v0/RecycleApplicationPool"
+}
+
 // RecycleApplicationPoolResponse structure represents the RecycleApplicationPool operation response
 type RecycleApplicationPoolResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2018,8 +2108,10 @@ type xxx_GetProcessModeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetProcessMode operation.
 func (o *xxx_GetProcessModeOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of GetProcessMode operation.
 func (o *xxx_GetProcessModeOperation) OpName() string {
 	return "/IIISApplicationAdmin/v0/GetProcessMode"
 }
@@ -2176,6 +2268,17 @@ func (o *GetProcessModeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetProcessModeRequest build a response structure from the given request structure.
+func (o *GetProcessModeRequest) MakeResponse() *GetProcessModeResponse {
+	return &GetProcessModeResponse{}
+}
+
+// OpNum returns the operation number of GetProcessMode operation.
+func (o *GetProcessModeRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of GetProcessMode operation.
+func (o *GetProcessModeRequest) OpName() string { return "/IIISApplicationAdmin/v0/GetProcessMode" }
 
 // GetProcessModeResponse structure represents the GetProcessMode operation response
 type GetProcessModeResponse struct {

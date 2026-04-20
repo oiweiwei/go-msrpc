@@ -995,8 +995,10 @@ type xxx_GetClientDataOperation struct {
 	Return              int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetClientData operation.
 func (o *xxx_GetClientDataOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RpcGetClientData operation.
 func (o *xxx_GetClientDataOperation) OpName() string { return "/RCMPublic/v1/RpcGetClientData" }
 
 func (o *xxx_GetClientDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1183,6 +1185,17 @@ func (o *GetClientDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetClientDataRequest build a response structure from the given request structure.
+func (o *GetClientDataRequest) MakeResponse() *GetClientDataResponse {
+	return &GetClientDataResponse{}
+}
+
+// OpNum returns the operation number of RpcGetClientData operation.
+func (o *GetClientDataRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RpcGetClientData operation.
+func (o *GetClientDataRequest) OpName() string { return "/RCMPublic/v1/RpcGetClientData" }
+
 // GetClientDataResponse structure represents the RpcGetClientData operation response
 type GetClientDataResponse struct {
 	// ppBuff:  The buffer that contains the client data. This data is of type PWINSTATIONCLIENT,
@@ -1235,8 +1248,10 @@ type xxx_GetConfigDataOperation struct {
 	Return              int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetConfigData operation.
 func (o *xxx_GetConfigDataOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RpcGetConfigData operation.
 func (o *xxx_GetConfigDataOperation) OpName() string { return "/RCMPublic/v1/RpcGetConfigData" }
 
 func (o *xxx_GetConfigDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1424,6 +1439,17 @@ func (o *GetConfigDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetConfigDataRequest build a response structure from the given request structure.
+func (o *GetConfigDataRequest) MakeResponse() *GetConfigDataResponse {
+	return &GetConfigDataResponse{}
+}
+
+// OpNum returns the operation number of RpcGetConfigData operation.
+func (o *GetConfigDataRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RpcGetConfigData operation.
+func (o *GetConfigDataRequest) OpName() string { return "/RCMPublic/v1/RpcGetConfigData" }
+
 // GetConfigDataResponse structure represents the RpcGetConfigData operation response
 type GetConfigDataResponse struct {
 	// ppBuff:  The buffer that will contain the client configuration data. This will be
@@ -1477,8 +1503,10 @@ type xxx_GetProtocolStatusOperation struct {
 	Return            int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetProtocolStatus operation.
 func (o *xxx_GetProtocolStatusOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of RpcGetProtocolStatus operation.
 func (o *xxx_GetProtocolStatusOperation) OpName() string { return "/RCMPublic/v1/RpcGetProtocolStatus" }
 
 func (o *xxx_GetProtocolStatusOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1681,6 +1709,17 @@ func (o *GetProtocolStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetProtocolStatusRequest build a response structure from the given request structure.
+func (o *GetProtocolStatusRequest) MakeResponse() *GetProtocolStatusResponse {
+	return &GetProtocolStatusResponse{}
+}
+
+// OpNum returns the operation number of RpcGetProtocolStatus operation.
+func (o *GetProtocolStatusRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of RpcGetProtocolStatus operation.
+func (o *GetProtocolStatusRequest) OpName() string { return "/RCMPublic/v1/RpcGetProtocolStatus" }
+
 // GetProtocolStatusResponse structure represents the RpcGetProtocolStatus operation response
 type GetProtocolStatusResponse struct {
 	// ppProtoStatus:  The buffer that will contain protocol status data. This data is
@@ -1732,8 +1771,10 @@ type xxx_GetLastInputTimeOperation struct {
 	Return        int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetLastInputTime operation.
 func (o *xxx_GetLastInputTimeOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RpcGetLastInputTime operation.
 func (o *xxx_GetLastInputTimeOperation) OpName() string { return "/RCMPublic/v1/RpcGetLastInputTime" }
 
 func (o *xxx_GetLastInputTimeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1847,6 +1888,17 @@ func (o *GetLastInputTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetLastInputTimeRequest build a response structure from the given request structure.
+func (o *GetLastInputTimeRequest) MakeResponse() *GetLastInputTimeResponse {
+	return &GetLastInputTimeResponse{}
+}
+
+// OpNum returns the operation number of RpcGetLastInputTime operation.
+func (o *GetLastInputTimeRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RpcGetLastInputTime operation.
+func (o *GetLastInputTimeRequest) OpName() string { return "/RCMPublic/v1/RpcGetLastInputTime" }
+
 // GetLastInputTimeResponse structure represents the RpcGetLastInputTime operation response
 type GetLastInputTimeResponse struct {
 	// pLastInputTime:  The time when the last user input was received by the server. This
@@ -1895,8 +1947,10 @@ type xxx_GetRemoteAddressOperation struct {
 	Return        int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetRemoteAddress operation.
 func (o *xxx_GetRemoteAddressOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RpcGetRemoteAddress operation.
 func (o *xxx_GetRemoteAddressOperation) OpName() string { return "/RCMPublic/v1/RpcGetRemoteAddress" }
 
 func (o *xxx_GetRemoteAddressOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2019,6 +2073,17 @@ func (o *GetRemoteAddressRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetRemoteAddressRequest build a response structure from the given request structure.
+func (o *GetRemoteAddressRequest) MakeResponse() *GetRemoteAddressResponse {
+	return &GetRemoteAddressResponse{}
+}
+
+// OpNum returns the operation number of RpcGetRemoteAddress operation.
+func (o *GetRemoteAddressRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RpcGetRemoteAddress operation.
+func (o *GetRemoteAddressRequest) OpName() string { return "/RCMPublic/v1/RpcGetRemoteAddress" }
+
 // GetRemoteAddressResponse structure represents the RpcGetRemoteAddress operation response
 type GetRemoteAddressResponse struct {
 	// pRemoteAddress: The address of the client computer that is connected to the session.
@@ -2067,8 +2132,10 @@ type xxx_GetAllListenersOperation struct {
 	Return       int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetAllListeners operation.
 func (o *xxx_GetAllListenersOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RpcGetAllListeners operation.
 func (o *xxx_GetAllListenersOperation) OpName() string { return "/RCMPublic/v1/RpcGetAllListeners" }
 
 func (o *xxx_GetAllListenersOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2265,6 +2332,17 @@ func (o *GetAllListenersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetAllListenersRequest build a response structure from the given request structure.
+func (o *GetAllListenersRequest) MakeResponse() *GetAllListenersResponse {
+	return &GetAllListenersResponse{}
+}
+
+// OpNum returns the operation number of RpcGetAllListeners operation.
+func (o *GetAllListenersRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of RpcGetAllListeners operation.
+func (o *GetAllListenersRequest) OpName() string { return "/RCMPublic/v1/RpcGetAllListeners" }
+
 // GetAllListenersResponse structure represents the RpcGetAllListeners operation response
 type GetAllListenersResponse struct {
 	// ppListeners:  The list of Terminal Services listeners running on the terminal server.
@@ -2319,8 +2397,10 @@ type xxx_GetSessionProtocolLastInputTimeOperation struct {
 	Return            int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetSessionProtocolLastInputTime operation.
 func (o *xxx_GetSessionProtocolLastInputTimeOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RpcGetSessionProtocolLastInputTime operation.
 func (o *xxx_GetSessionProtocolLastInputTimeOperation) OpName() string {
 	return "/RCMPublic/v1/RpcGetSessionProtocolLastInputTime"
 }
@@ -2537,6 +2617,19 @@ func (o *GetSessionProtocolLastInputTimeRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
+// MakeGetSessionProtocolLastInputTimeRequest build a response structure from the given request structure.
+func (o *GetSessionProtocolLastInputTimeRequest) MakeResponse() *GetSessionProtocolLastInputTimeResponse {
+	return &GetSessionProtocolLastInputTimeResponse{}
+}
+
+// OpNum returns the operation number of RpcGetSessionProtocolLastInputTime operation.
+func (o *GetSessionProtocolLastInputTimeRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RpcGetSessionProtocolLastInputTime operation.
+func (o *GetSessionProtocolLastInputTimeRequest) OpName() string {
+	return "/RCMPublic/v1/RpcGetSessionProtocolLastInputTime"
+}
+
 // GetSessionProtocolLastInputTimeResponse structure represents the RpcGetSessionProtocolLastInputTime operation response
 type GetSessionProtocolLastInputTimeResponse struct {
 	// ppProtoStatus:  The buffer that contains protocol status data. This data is of type
@@ -2597,8 +2690,10 @@ type xxx_GetUserCertificatesOperation struct {
 	Return      int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcGetUserCertificates operation.
 func (o *xxx_GetUserCertificatesOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of RpcGetUserCertificates operation.
 func (o *xxx_GetUserCertificatesOperation) OpName() string {
 	return "/RCMPublic/v1/RpcGetUserCertificates"
 }
@@ -2799,6 +2894,17 @@ func (o *GetUserCertificatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetUserCertificatesRequest build a response structure from the given request structure.
+func (o *GetUserCertificatesRequest) MakeResponse() *GetUserCertificatesResponse {
+	return &GetUserCertificatesResponse{}
+}
+
+// OpNum returns the operation number of RpcGetUserCertificates operation.
+func (o *GetUserCertificatesRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of RpcGetUserCertificates operation.
+func (o *GetUserCertificatesRequest) OpName() string { return "/RCMPublic/v1/RpcGetUserCertificates" }
+
 // GetUserCertificatesResponse structure represents the RpcGetUserCertificates operation response
 type GetUserCertificatesResponse struct {
 	// pcCerts: The number of client certificates returned.
@@ -2859,8 +2965,10 @@ type xxx_QuerySessionDataOperation struct {
 	Return              int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcQuerySessionData operation.
 func (o *xxx_QuerySessionDataOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RpcQuerySessionData operation.
 func (o *xxx_QuerySessionDataOperation) OpName() string { return "/RCMPublic/v1/RpcQuerySessionData" }
 
 func (o *xxx_QuerySessionDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3185,6 +3293,22 @@ func (o *QuerySessionDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeQuerySessionDataRequest build a response structure from the given request structure.
+func (o *QuerySessionDataRequest) MakeResponse() *QuerySessionDataResponse {
+	if o == nil {
+		return &QuerySessionDataResponse{}
+	}
+	return &QuerySessionDataResponse{
+		SessionDataLength: o.SessionDataLength,
+	}
+}
+
+// OpNum returns the operation number of RpcQuerySessionData operation.
+func (o *QuerySessionDataRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RpcQuerySessionData operation.
+func (o *QuerySessionDataRequest) OpName() string { return "/RCMPublic/v1/RpcQuerySessionData" }
 
 // QuerySessionDataResponse structure represents the RpcQuerySessionData operation response
 type QuerySessionDataResponse struct {

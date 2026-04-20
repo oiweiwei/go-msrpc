@@ -145,8 +145,10 @@ type xxx_GetSmartEnumOperation struct {
 	Return    int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetSmartEnum operation.
 func (o *xxx_GetSmartEnumOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetSmartEnum operation.
 func (o *xxx_GetSmartEnumOperation) OpName() string { return "/IWbemFetchSmartEnum/v0/GetSmartEnum" }
 
 func (o *xxx_GetSmartEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -335,6 +337,17 @@ func (o *GetSmartEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetSmartEnumRequest build a response structure from the given request structure.
+func (o *GetSmartEnumRequest) MakeResponse() *GetSmartEnumResponse {
+	return &GetSmartEnumResponse{}
+}
+
+// OpNum returns the operation number of GetSmartEnum operation.
+func (o *GetSmartEnumRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetSmartEnum operation.
+func (o *GetSmartEnumRequest) OpName() string { return "/IWbemFetchSmartEnum/v0/GetSmartEnum" }
 
 // GetSmartEnumResponse structure represents the GetSmartEnum operation response
 type GetSmartEnumResponse struct {

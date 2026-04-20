@@ -182,8 +182,10 @@ type xxx_ResolveOXIDOperation struct {
 	Return                          uint32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ResolveOxid operation.
 func (o *xxx_ResolveOXIDOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of ResolveOxid operation.
 func (o *xxx_ResolveOXIDOperation) OpName() string { return "/IObjectExporter/v0/ResolveOxid" }
 
 func (o *xxx_ResolveOXIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -434,6 +436,17 @@ func (o *ResolveOXIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeResolveOXIDRequest build a response structure from the given request structure.
+func (o *ResolveOXIDRequest) MakeResponse() *ResolveOXIDResponse {
+	return &ResolveOXIDResponse{}
+}
+
+// OpNum returns the operation number of ResolveOxid operation.
+func (o *ResolveOXIDRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of ResolveOxid operation.
+func (o *ResolveOXIDRequest) OpName() string { return "/IObjectExporter/v0/ResolveOxid" }
+
 // ResolveOXIDResponse structure represents the ResolveOxid operation response
 type ResolveOXIDResponse struct {
 	// ppdsaOxidBindings: This MUST contain the string and security bindings supported by
@@ -492,8 +505,10 @@ type xxx_SimplePingOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SimplePing operation.
 func (o *xxx_SimplePingOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of SimplePing operation.
 func (o *xxx_SimplePingOperation) OpName() string { return "/IObjectExporter/v0/SimplePing" }
 
 func (o *xxx_SimplePingOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -596,6 +611,17 @@ func (o *SimplePingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeSimplePingRequest build a response structure from the given request structure.
+func (o *SimplePingRequest) MakeResponse() *SimplePingResponse {
+	return &SimplePingResponse{}
+}
+
+// OpNum returns the operation number of SimplePing operation.
+func (o *SimplePingRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of SimplePing operation.
+func (o *SimplePingRequest) OpName() string { return "/IObjectExporter/v0/SimplePing" }
+
 // SimplePingResponse structure represents the SimplePing operation response
 type SimplePingResponse struct {
 	// Return: The SimplePing return value.
@@ -643,8 +669,10 @@ type xxx_ComplexPingOperation struct {
 	Return             uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ComplexPing operation.
 func (o *xxx_ComplexPingOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of ComplexPing operation.
 func (o *xxx_ComplexPingOperation) OpName() string { return "/IObjectExporter/v0/ComplexPing" }
 
 func (o *xxx_ComplexPingOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -976,6 +1004,17 @@ func (o *ComplexPingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeComplexPingRequest build a response structure from the given request structure.
+func (o *ComplexPingRequest) MakeResponse() *ComplexPingResponse {
+	return &ComplexPingResponse{}
+}
+
+// OpNum returns the operation number of ComplexPing operation.
+func (o *ComplexPingRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of ComplexPing operation.
+func (o *ComplexPingRequest) OpName() string { return "/IObjectExporter/v0/ComplexPing" }
+
 // ComplexPingResponse structure represents the ComplexPing operation response
 type ComplexPingResponse struct {
 	// pSetId: This MUST specify the SETID of the ping set to ping. If the SETID specified
@@ -1029,8 +1068,10 @@ type xxx_ServerAliveOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ServerAlive operation.
 func (o *xxx_ServerAliveOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ServerAlive operation.
 func (o *xxx_ServerAliveOperation) OpName() string { return "/IObjectExporter/v0/ServerAlive" }
 
 func (o *xxx_ServerAliveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1116,6 +1157,17 @@ func (o *ServerAliveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeServerAliveRequest build a response structure from the given request structure.
+func (o *ServerAliveRequest) MakeResponse() *ServerAliveResponse {
+	return &ServerAliveResponse{}
+}
+
+// OpNum returns the operation number of ServerAlive operation.
+func (o *ServerAliveRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ServerAlive operation.
+func (o *ServerAliveRequest) OpName() string { return "/IObjectExporter/v0/ServerAlive" }
+
 // ServerAliveResponse structure represents the ServerAlive operation response
 type ServerAliveResponse struct {
 	// Return: The ServerAlive return value.
@@ -1163,8 +1215,10 @@ type xxx_ResolveOxid2Operation struct {
 	Return                          uint32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ResolveOxid2 operation.
 func (o *xxx_ResolveOxid2Operation) OpNum() int { return 4 }
 
+// OpName returns the operation name of ResolveOxid2 operation.
 func (o *xxx_ResolveOxid2Operation) OpName() string { return "/IObjectExporter/v0/ResolveOxid2" }
 
 func (o *xxx_ResolveOxid2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1436,6 +1490,17 @@ func (o *ResolveOxid2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeResolveOxid2Request build a response structure from the given request structure.
+func (o *ResolveOxid2Request) MakeResponse() *ResolveOxid2Response {
+	return &ResolveOxid2Response{}
+}
+
+// OpNum returns the operation number of ResolveOxid2 operation.
+func (o *ResolveOxid2Request) OpNum() int { return 4 }
+
+// OpName returns the operation name of ResolveOxid2 operation.
+func (o *ResolveOxid2Request) OpName() string { return "/IObjectExporter/v0/ResolveOxid2" }
+
 // ResolveOxid2Response structure represents the ResolveOxid2 operation response
 type ResolveOxid2Response struct {
 	// ppdsaOxidBindings:  This MUST contain the string and security bindings supported
@@ -1501,8 +1566,10 @@ type xxx_ServerAlive2Operation struct {
 	Return                 uint32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ServerAlive2 operation.
 func (o *xxx_ServerAlive2Operation) OpNum() int { return 5 }
 
+// OpName returns the operation name of ServerAlive2 operation.
 func (o *xxx_ServerAlive2Operation) OpName() string { return "/IObjectExporter/v0/ServerAlive2" }
 
 func (o *xxx_ServerAlive2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1669,6 +1736,17 @@ func (o *ServerAlive2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeServerAlive2Request build a response structure from the given request structure.
+func (o *ServerAlive2Request) MakeResponse() *ServerAlive2Response {
+	return &ServerAlive2Response{}
+}
+
+// OpNum returns the operation number of ServerAlive2 operation.
+func (o *ServerAlive2Request) OpNum() int { return 5 }
+
+// OpName returns the operation name of ServerAlive2 operation.
+func (o *ServerAlive2Request) OpName() string { return "/IObjectExporter/v0/ServerAlive2" }
 
 // ServerAlive2Response structure represents the ServerAlive2 operation response
 type ServerAlive2Response struct {

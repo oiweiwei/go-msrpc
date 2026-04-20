@@ -165,8 +165,10 @@ type xxx_DetectNowOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DetectNow operation.
 func (o *xxx_DetectNowOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of DetectNow operation.
 func (o *xxx_DetectNowOperation) OpName() string { return "/IAutomaticUpdates/v0/DetectNow" }
 
 func (o *xxx_DetectNowOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -309,6 +311,17 @@ func (o *DetectNowRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeDetectNowRequest build a response structure from the given request structure.
+func (o *DetectNowRequest) MakeResponse() *DetectNowResponse {
+	return &DetectNowResponse{}
+}
+
+// OpNum returns the operation number of DetectNow operation.
+func (o *DetectNowRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of DetectNow operation.
+func (o *DetectNowRequest) OpName() string { return "/IAutomaticUpdates/v0/DetectNow" }
 
 // DetectNowResponse structure represents the DetectNow operation response
 type DetectNowResponse struct {

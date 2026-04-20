@@ -10463,8 +10463,10 @@ type xxx_CloseOperation struct {
 	Return int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarClose operation.
 func (o *xxx_CloseOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of LsarClose operation.
 func (o *xxx_CloseOperation) OpName() string { return "/lsarpc/v0/LsarClose" }
 
 func (o *xxx_CloseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10596,6 +10598,17 @@ func (o *CloseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeCloseRequest build a response structure from the given request structure.
+func (o *CloseRequest) MakeResponse() *CloseResponse {
+	return &CloseResponse{}
+}
+
+// OpNum returns the operation number of LsarClose operation.
+func (o *CloseRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of LsarClose operation.
+func (o *CloseRequest) OpName() string { return "/lsarpc/v0/LsarClose" }
+
 // CloseResponse structure represents the LsarClose operation response
 type CloseResponse struct {
 	// ObjectHandle: The context handle to be freed. On response, it MUST be set to 0.
@@ -10644,8 +10657,10 @@ type xxx_EnumeratePrivilegesOperation struct {
 	Return                 int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarEnumeratePrivileges operation.
 func (o *xxx_EnumeratePrivilegesOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of LsarEnumeratePrivileges operation.
 func (o *xxx_EnumeratePrivilegesOperation) OpName() string {
 	return "/lsarpc/v0/LsarEnumeratePrivileges"
 }
@@ -10831,6 +10846,17 @@ func (o *EnumeratePrivilegesRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeEnumeratePrivilegesRequest build a response structure from the given request structure.
+func (o *EnumeratePrivilegesRequest) MakeResponse() *EnumeratePrivilegesResponse {
+	return &EnumeratePrivilegesResponse{}
+}
+
+// OpNum returns the operation number of LsarEnumeratePrivileges operation.
+func (o *EnumeratePrivilegesRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of LsarEnumeratePrivileges operation.
+func (o *EnumeratePrivilegesRequest) OpName() string { return "/lsarpc/v0/LsarEnumeratePrivileges" }
+
 // EnumeratePrivilegesResponse structure represents the LsarEnumeratePrivileges operation response
 type EnumeratePrivilegesResponse struct {
 	// EnumerationContext: A pointer to a context value that is used to resume enumeration,
@@ -10884,8 +10910,10 @@ type xxx_QuerySecurityObjectOperation struct {
 	Return              int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarQuerySecurityObject operation.
 func (o *xxx_QuerySecurityObjectOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of LsarQuerySecurityObject operation.
 func (o *xxx_QuerySecurityObjectOperation) OpName() string {
 	return "/lsarpc/v0/LsarQuerySecurityObject"
 }
@@ -11061,6 +11089,17 @@ func (o *QuerySecurityObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeQuerySecurityObjectRequest build a response structure from the given request structure.
+func (o *QuerySecurityObjectRequest) MakeResponse() *QuerySecurityObjectResponse {
+	return &QuerySecurityObjectResponse{}
+}
+
+// OpNum returns the operation number of LsarQuerySecurityObject operation.
+func (o *QuerySecurityObjectRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of LsarQuerySecurityObject operation.
+func (o *QuerySecurityObjectRequest) OpName() string { return "/lsarpc/v0/LsarQuerySecurityObject" }
+
 // QuerySecurityObjectResponse structure represents the LsarQuerySecurityObject operation response
 type QuerySecurityObjectResponse struct {
 	// SecurityDescriptor: Used to return the security descriptor containing the elements
@@ -11109,8 +11148,10 @@ type xxx_SetSecurityObjectOperation struct {
 	Return              int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarSetSecurityObject operation.
 func (o *xxx_SetSecurityObjectOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of LsarSetSecurityObject operation.
 func (o *xxx_SetSecurityObjectOperation) OpName() string { return "/lsarpc/v0/LsarSetSecurityObject" }
 
 func (o *xxx_SetSecurityObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11269,6 +11310,17 @@ func (o *SetSecurityObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetSecurityObjectRequest build a response structure from the given request structure.
+func (o *SetSecurityObjectRequest) MakeResponse() *SetSecurityObjectResponse {
+	return &SetSecurityObjectResponse{}
+}
+
+// OpNum returns the operation number of LsarSetSecurityObject operation.
+func (o *SetSecurityObjectRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of LsarSetSecurityObject operation.
+func (o *SetSecurityObjectRequest) OpName() string { return "/lsarpc/v0/LsarSetSecurityObject" }
+
 // SetSecurityObjectResponse structure represents the LsarSetSecurityObject operation response
 type SetSecurityObjectResponse struct {
 	// Return: The LsarSetSecurityObject return value.
@@ -11313,8 +11365,10 @@ type xxx_OpenPolicyOperation struct {
 	Return           int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarOpenPolicy operation.
 func (o *xxx_OpenPolicyOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of LsarOpenPolicy operation.
 func (o *xxx_OpenPolicyOperation) OpName() string { return "/lsarpc/v0/LsarOpenPolicy" }
 
 func (o *xxx_OpenPolicyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -11513,6 +11567,17 @@ func (o *OpenPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeOpenPolicyRequest build a response structure from the given request structure.
+func (o *OpenPolicyRequest) MakeResponse() *OpenPolicyResponse {
+	return &OpenPolicyResponse{}
+}
+
+// OpNum returns the operation number of LsarOpenPolicy operation.
+func (o *OpenPolicyRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of LsarOpenPolicy operation.
+func (o *OpenPolicyRequest) OpName() string { return "/lsarpc/v0/LsarOpenPolicy" }
+
 // OpenPolicyResponse structure represents the LsarOpenPolicy operation response
 type OpenPolicyResponse struct {
 	// PolicyHandle: An RPC context handle (as specified in section 2.2.2.1) that represents
@@ -11562,8 +11627,10 @@ type xxx_QueryInformationPolicyOperation struct {
 	Return            int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarQueryInformationPolicy operation.
 func (o *xxx_QueryInformationPolicyOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of LsarQueryInformationPolicy operation.
 func (o *xxx_QueryInformationPolicyOperation) OpName() string {
 	return "/lsarpc/v0/LsarQueryInformationPolicy"
 }
@@ -11741,6 +11808,24 @@ func (o *QueryInformationPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeQueryInformationPolicyRequest build a response structure from the given request structure.
+func (o *QueryInformationPolicyRequest) MakeResponse() *QueryInformationPolicyResponse {
+	if o == nil {
+		return &QueryInformationPolicyResponse{}
+	}
+	return &QueryInformationPolicyResponse{
+		InformationClass: o.InformationClass,
+	}
+}
+
+// OpNum returns the operation number of LsarQueryInformationPolicy operation.
+func (o *QueryInformationPolicyRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of LsarQueryInformationPolicy operation.
+func (o *QueryInformationPolicyRequest) OpName() string {
+	return "/lsarpc/v0/LsarQueryInformationPolicy"
+}
+
 // QueryInformationPolicyResponse structure represents the LsarQueryInformationPolicy operation response
 type QueryInformationPolicyResponse struct {
 	// XXX: InformationClass is an implicit input depedency for output parameters
@@ -11799,8 +11884,10 @@ type xxx_SetInformationPolicyOperation struct {
 	Return            int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarSetInformationPolicy operation.
 func (o *xxx_SetInformationPolicyOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of LsarSetInformationPolicy operation.
 func (o *xxx_SetInformationPolicyOperation) OpName() string {
 	return "/lsarpc/v0/LsarSetInformationPolicy"
 }
@@ -11963,6 +12050,17 @@ func (o *SetInformationPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeSetInformationPolicyRequest build a response structure from the given request structure.
+func (o *SetInformationPolicyRequest) MakeResponse() *SetInformationPolicyResponse {
+	return &SetInformationPolicyResponse{}
+}
+
+// OpNum returns the operation number of LsarSetInformationPolicy operation.
+func (o *SetInformationPolicyRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of LsarSetInformationPolicy operation.
+func (o *SetInformationPolicyRequest) OpName() string { return "/lsarpc/v0/LsarSetInformationPolicy" }
+
 // SetInformationPolicyResponse structure represents the LsarSetInformationPolicy operation response
 type SetInformationPolicyResponse struct {
 	// Return: The LsarSetInformationPolicy return value.
@@ -12007,8 +12105,10 @@ type xxx_CreateAccountOperation struct {
 	Return        int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarCreateAccount operation.
 func (o *xxx_CreateAccountOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of LsarCreateAccount operation.
 func (o *xxx_CreateAccountOperation) OpName() string { return "/lsarpc/v0/LsarCreateAccount" }
 
 func (o *xxx_CreateAccountOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12182,6 +12282,17 @@ func (o *CreateAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeCreateAccountRequest build a response structure from the given request structure.
+func (o *CreateAccountRequest) MakeResponse() *CreateAccountResponse {
+	return &CreateAccountResponse{}
+}
+
+// OpNum returns the operation number of LsarCreateAccount operation.
+func (o *CreateAccountRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of LsarCreateAccount operation.
+func (o *CreateAccountRequest) OpName() string { return "/lsarpc/v0/LsarCreateAccount" }
+
 // CreateAccountResponse structure represents the LsarCreateAccount operation response
 type CreateAccountResponse struct {
 	// AccountHandle: Used to return a handle to the newly created account object.
@@ -12230,8 +12341,10 @@ type xxx_EnumerateAccountsOperation struct {
 	Return                 int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarEnumerateAccounts operation.
 func (o *xxx_EnumerateAccountsOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of LsarEnumerateAccounts operation.
 func (o *xxx_EnumerateAccountsOperation) OpName() string { return "/lsarpc/v0/LsarEnumerateAccounts" }
 
 func (o *xxx_EnumerateAccountsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12415,6 +12528,17 @@ func (o *EnumerateAccountsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeEnumerateAccountsRequest build a response structure from the given request structure.
+func (o *EnumerateAccountsRequest) MakeResponse() *EnumerateAccountsResponse {
+	return &EnumerateAccountsResponse{}
+}
+
+// OpNum returns the operation number of LsarEnumerateAccounts operation.
+func (o *EnumerateAccountsRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of LsarEnumerateAccounts operation.
+func (o *EnumerateAccountsRequest) OpName() string { return "/lsarpc/v0/LsarEnumerateAccounts" }
+
 // EnumerateAccountsResponse structure represents the LsarEnumerateAccounts operation response
 type EnumerateAccountsResponse struct {
 	// EnumerationContext: A pointer to a context value that is used to resume enumeration,
@@ -12469,8 +12593,10 @@ type xxx_CreateTrustedDomainOperation struct {
 	Return                   int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarCreateTrustedDomain operation.
 func (o *xxx_CreateTrustedDomainOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of LsarCreateTrustedDomain operation.
 func (o *xxx_CreateTrustedDomainOperation) OpName() string {
 	return "/lsarpc/v0/LsarCreateTrustedDomain"
 }
@@ -12652,6 +12778,17 @@ func (o *CreateTrustedDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeCreateTrustedDomainRequest build a response structure from the given request structure.
+func (o *CreateTrustedDomainRequest) MakeResponse() *CreateTrustedDomainResponse {
+	return &CreateTrustedDomainResponse{}
+}
+
+// OpNum returns the operation number of LsarCreateTrustedDomain operation.
+func (o *CreateTrustedDomainRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of LsarCreateTrustedDomain operation.
+func (o *CreateTrustedDomainRequest) OpName() string { return "/lsarpc/v0/LsarCreateTrustedDomain" }
+
 // CreateTrustedDomainResponse structure represents the LsarCreateTrustedDomain operation response
 type CreateTrustedDomainResponse struct {
 	// TrustedDomainHandle: Used to return the handle for the newly created TDO.
@@ -12700,8 +12837,10 @@ type xxx_EnumerateTrustedDomainsOperation struct {
 	Return                 int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarEnumerateTrustedDomains operation.
 func (o *xxx_EnumerateTrustedDomainsOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of LsarEnumerateTrustedDomains operation.
 func (o *xxx_EnumerateTrustedDomainsOperation) OpName() string {
 	return "/lsarpc/v0/LsarEnumerateTrustedDomains"
 }
@@ -12887,6 +13026,19 @@ func (o *EnumerateTrustedDomainsRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeEnumerateTrustedDomainsRequest build a response structure from the given request structure.
+func (o *EnumerateTrustedDomainsRequest) MakeResponse() *EnumerateTrustedDomainsResponse {
+	return &EnumerateTrustedDomainsResponse{}
+}
+
+// OpNum returns the operation number of LsarEnumerateTrustedDomains operation.
+func (o *EnumerateTrustedDomainsRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of LsarEnumerateTrustedDomains operation.
+func (o *EnumerateTrustedDomainsRequest) OpName() string {
+	return "/lsarpc/v0/LsarEnumerateTrustedDomains"
+}
+
 // EnumerateTrustedDomainsResponse structure represents the LsarEnumerateTrustedDomains operation response
 type EnumerateTrustedDomainsResponse struct {
 	// EnumerationContext: A pointer to a context value that is used to resume enumeration,
@@ -12941,8 +13093,10 @@ type xxx_CreateSecretOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarCreateSecret operation.
 func (o *xxx_CreateSecretOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of LsarCreateSecret operation.
 func (o *xxx_CreateSecretOperation) OpName() string { return "/lsarpc/v0/LsarCreateSecret" }
 
 func (o *xxx_CreateSecretOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13122,6 +13276,17 @@ func (o *CreateSecretRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCreateSecretRequest build a response structure from the given request structure.
+func (o *CreateSecretRequest) MakeResponse() *CreateSecretResponse {
+	return &CreateSecretResponse{}
+}
+
+// OpNum returns the operation number of LsarCreateSecret operation.
+func (o *CreateSecretRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of LsarCreateSecret operation.
+func (o *CreateSecretRequest) OpName() string { return "/lsarpc/v0/LsarCreateSecret" }
+
 // CreateSecretResponse structure represents the LsarCreateSecret operation response
 type CreateSecretResponse struct {
 	// SecretHandle: Used to return a handle to the newly created secret object.
@@ -13170,8 +13335,10 @@ type xxx_OpenAccountOperation struct {
 	Return        int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarOpenAccount operation.
 func (o *xxx_OpenAccountOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of LsarOpenAccount operation.
 func (o *xxx_OpenAccountOperation) OpName() string { return "/lsarpc/v0/LsarOpenAccount" }
 
 func (o *xxx_OpenAccountOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13345,6 +13512,17 @@ func (o *OpenAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeOpenAccountRequest build a response structure from the given request structure.
+func (o *OpenAccountRequest) MakeResponse() *OpenAccountResponse {
+	return &OpenAccountResponse{}
+}
+
+// OpNum returns the operation number of LsarOpenAccount operation.
+func (o *OpenAccountRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of LsarOpenAccount operation.
+func (o *OpenAccountRequest) OpName() string { return "/lsarpc/v0/LsarOpenAccount" }
+
 // OpenAccountResponse structure represents the LsarOpenAccount operation response
 type OpenAccountResponse struct {
 	// AccountHandle: Used to return a handle to the opened account object.
@@ -13391,8 +13569,10 @@ type xxx_EnumeratePrivilegesAccountOperation struct {
 	Return     int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarEnumeratePrivilegesAccount operation.
 func (o *xxx_EnumeratePrivilegesAccountOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of LsarEnumeratePrivilegesAccount operation.
 func (o *xxx_EnumeratePrivilegesAccountOperation) OpName() string {
 	return "/lsarpc/v0/LsarEnumeratePrivilegesAccount"
 }
@@ -13552,6 +13732,19 @@ func (o *EnumeratePrivilegesAccountRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeEnumeratePrivilegesAccountRequest build a response structure from the given request structure.
+func (o *EnumeratePrivilegesAccountRequest) MakeResponse() *EnumeratePrivilegesAccountResponse {
+	return &EnumeratePrivilegesAccountResponse{}
+}
+
+// OpNum returns the operation number of LsarEnumeratePrivilegesAccount operation.
+func (o *EnumeratePrivilegesAccountRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of LsarEnumeratePrivilegesAccount operation.
+func (o *EnumeratePrivilegesAccountRequest) OpName() string {
+	return "/lsarpc/v0/LsarEnumeratePrivilegesAccount"
+}
+
 // EnumeratePrivilegesAccountResponse structure represents the LsarEnumeratePrivilegesAccount operation response
 type EnumeratePrivilegesAccountResponse struct {
 	// Privileges: Used to return a list of privileges granted to the account.
@@ -13598,8 +13791,10 @@ type xxx_AddPrivilegesToAccountOperation struct {
 	Return     int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarAddPrivilegesToAccount operation.
 func (o *xxx_AddPrivilegesToAccountOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of LsarAddPrivilegesToAccount operation.
 func (o *xxx_AddPrivilegesToAccountOperation) OpName() string {
 	return "/lsarpc/v0/LsarAddPrivilegesToAccount"
 }
@@ -13738,6 +13933,19 @@ func (o *AddPrivilegesToAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeAddPrivilegesToAccountRequest build a response structure from the given request structure.
+func (o *AddPrivilegesToAccountRequest) MakeResponse() *AddPrivilegesToAccountResponse {
+	return &AddPrivilegesToAccountResponse{}
+}
+
+// OpNum returns the operation number of LsarAddPrivilegesToAccount operation.
+func (o *AddPrivilegesToAccountRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of LsarAddPrivilegesToAccount operation.
+func (o *AddPrivilegesToAccountRequest) OpName() string {
+	return "/lsarpc/v0/LsarAddPrivilegesToAccount"
+}
+
 // AddPrivilegesToAccountResponse structure represents the LsarAddPrivilegesToAccount operation response
 type AddPrivilegesToAccountResponse struct {
 	// Return: The LsarAddPrivilegesToAccount return value.
@@ -13781,8 +13989,10 @@ type xxx_RemovePrivilegesFromAccountOperation struct {
 	Return        int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarRemovePrivilegesFromAccount operation.
 func (o *xxx_RemovePrivilegesFromAccountOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of LsarRemovePrivilegesFromAccount operation.
 func (o *xxx_RemovePrivilegesFromAccountOperation) OpName() string {
 	return "/lsarpc/v0/LsarRemovePrivilegesFromAccount"
 }
@@ -13964,6 +14174,19 @@ func (o *RemovePrivilegesFromAccountRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeRemovePrivilegesFromAccountRequest build a response structure from the given request structure.
+func (o *RemovePrivilegesFromAccountRequest) MakeResponse() *RemovePrivilegesFromAccountResponse {
+	return &RemovePrivilegesFromAccountResponse{}
+}
+
+// OpNum returns the operation number of LsarRemovePrivilegesFromAccount operation.
+func (o *RemovePrivilegesFromAccountRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of LsarRemovePrivilegesFromAccount operation.
+func (o *RemovePrivilegesFromAccountRequest) OpName() string {
+	return "/lsarpc/v0/LsarRemovePrivilegesFromAccount"
+}
+
 // RemovePrivilegesFromAccountResponse structure represents the LsarRemovePrivilegesFromAccount operation response
 type RemovePrivilegesFromAccountResponse struct {
 	// Return: The LsarRemovePrivilegesFromAccount return value.
@@ -14006,8 +14229,10 @@ type xxx_GetSystemAccessAccountOperation struct {
 	Return       int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarGetSystemAccessAccount operation.
 func (o *xxx_GetSystemAccessAccountOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of LsarGetSystemAccessAccount operation.
 func (o *xxx_GetSystemAccessAccountOperation) OpName() string {
 	return "/lsarpc/v0/LsarGetSystemAccessAccount"
 }
@@ -14133,6 +14358,19 @@ func (o *GetSystemAccessAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetSystemAccessAccountRequest build a response structure from the given request structure.
+func (o *GetSystemAccessAccountRequest) MakeResponse() *GetSystemAccessAccountResponse {
+	return &GetSystemAccessAccountResponse{}
+}
+
+// OpNum returns the operation number of LsarGetSystemAccessAccount operation.
+func (o *GetSystemAccessAccountRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of LsarGetSystemAccessAccount operation.
+func (o *GetSystemAccessAccountRequest) OpName() string {
+	return "/lsarpc/v0/LsarGetSystemAccessAccount"
+}
+
 // GetSystemAccessAccountResponse structure represents the LsarGetSystemAccessAccount operation response
 type GetSystemAccessAccountResponse struct {
 	// SystemAccess: Used to return a bitmask of access flags associated with the account.
@@ -14179,8 +14417,10 @@ type xxx_SetSystemAccessAccountOperation struct {
 	Return       int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarSetSystemAccessAccount operation.
 func (o *xxx_SetSystemAccessAccountOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of LsarSetSystemAccessAccount operation.
 func (o *xxx_SetSystemAccessAccountOperation) OpName() string {
 	return "/lsarpc/v0/LsarSetSystemAccessAccount"
 }
@@ -14310,6 +14550,19 @@ func (o *SetSystemAccessAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeSetSystemAccessAccountRequest build a response structure from the given request structure.
+func (o *SetSystemAccessAccountRequest) MakeResponse() *SetSystemAccessAccountResponse {
+	return &SetSystemAccessAccountResponse{}
+}
+
+// OpNum returns the operation number of LsarSetSystemAccessAccount operation.
+func (o *SetSystemAccessAccountRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of LsarSetSystemAccessAccount operation.
+func (o *SetSystemAccessAccountRequest) OpName() string {
+	return "/lsarpc/v0/LsarSetSystemAccessAccount"
+}
+
 // SetSystemAccessAccountResponse structure represents the LsarSetSystemAccessAccount operation response
 type SetSystemAccessAccountResponse struct {
 	// Return: The LsarSetSystemAccessAccount return value.
@@ -14354,8 +14607,10 @@ type xxx_OpenTrustedDomainOperation struct {
 	Return           int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarOpenTrustedDomain operation.
 func (o *xxx_OpenTrustedDomainOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of LsarOpenTrustedDomain operation.
 func (o *xxx_OpenTrustedDomainOperation) OpName() string { return "/lsarpc/v0/LsarOpenTrustedDomain" }
 
 func (o *xxx_OpenTrustedDomainOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14528,6 +14783,17 @@ func (o *OpenTrustedDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeOpenTrustedDomainRequest build a response structure from the given request structure.
+func (o *OpenTrustedDomainRequest) MakeResponse() *OpenTrustedDomainResponse {
+	return &OpenTrustedDomainResponse{}
+}
+
+// OpNum returns the operation number of LsarOpenTrustedDomain operation.
+func (o *OpenTrustedDomainRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of LsarOpenTrustedDomain operation.
+func (o *OpenTrustedDomainRequest) OpName() string { return "/lsarpc/v0/LsarOpenTrustedDomain" }
+
 // OpenTrustedDomainResponse structure represents the LsarOpenTrustedDomain operation response
 type OpenTrustedDomainResponse struct {
 	// TrustedDomainHandle: Used to return the trusted domain object handle.
@@ -14575,8 +14841,10 @@ type xxx_QueryInfoTrustedDomainOperation struct {
 	Return                   int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarQueryInfoTrustedDomain operation.
 func (o *xxx_QueryInfoTrustedDomainOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of LsarQueryInfoTrustedDomain operation.
 func (o *xxx_QueryInfoTrustedDomainOperation) OpName() string {
 	return "/lsarpc/v0/LsarQueryInfoTrustedDomain"
 }
@@ -14754,6 +15022,24 @@ func (o *QueryInfoTrustedDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeQueryInfoTrustedDomainRequest build a response structure from the given request structure.
+func (o *QueryInfoTrustedDomainRequest) MakeResponse() *QueryInfoTrustedDomainResponse {
+	if o == nil {
+		return &QueryInfoTrustedDomainResponse{}
+	}
+	return &QueryInfoTrustedDomainResponse{
+		InformationClass: o.InformationClass,
+	}
+}
+
+// OpNum returns the operation number of LsarQueryInfoTrustedDomain operation.
+func (o *QueryInfoTrustedDomainRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of LsarQueryInfoTrustedDomain operation.
+func (o *QueryInfoTrustedDomainRequest) OpName() string {
+	return "/lsarpc/v0/LsarQueryInfoTrustedDomain"
+}
+
 // QueryInfoTrustedDomainResponse structure represents the LsarQueryInfoTrustedDomain operation response
 type QueryInfoTrustedDomainResponse struct {
 	// XXX: InformationClass is an implicit input depedency for output parameters
@@ -14813,8 +15099,10 @@ type xxx_SetInformationTrustedDomainOperation struct {
 	Return                   int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarSetInformationTrustedDomain operation.
 func (o *xxx_SetInformationTrustedDomainOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of LsarSetInformationTrustedDomain operation.
 func (o *xxx_SetInformationTrustedDomainOperation) OpName() string {
 	return "/lsarpc/v0/LsarSetInformationTrustedDomain"
 }
@@ -14976,6 +15264,19 @@ func (o *SetInformationTrustedDomainRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeSetInformationTrustedDomainRequest build a response structure from the given request structure.
+func (o *SetInformationTrustedDomainRequest) MakeResponse() *SetInformationTrustedDomainResponse {
+	return &SetInformationTrustedDomainResponse{}
+}
+
+// OpNum returns the operation number of LsarSetInformationTrustedDomain operation.
+func (o *SetInformationTrustedDomainRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of LsarSetInformationTrustedDomain operation.
+func (o *SetInformationTrustedDomainRequest) OpName() string {
+	return "/lsarpc/v0/LsarSetInformationTrustedDomain"
+}
+
 // SetInformationTrustedDomainResponse structure represents the LsarSetInformationTrustedDomain operation response
 type SetInformationTrustedDomainResponse struct {
 	// Return: The LsarSetInformationTrustedDomain return value.
@@ -15020,8 +15321,10 @@ type xxx_OpenSecretOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarOpenSecret operation.
 func (o *xxx_OpenSecretOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of LsarOpenSecret operation.
 func (o *xxx_OpenSecretOperation) OpName() string { return "/lsarpc/v0/LsarOpenSecret" }
 
 func (o *xxx_OpenSecretOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -15200,6 +15503,17 @@ func (o *OpenSecretRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeOpenSecretRequest build a response structure from the given request structure.
+func (o *OpenSecretRequest) MakeResponse() *OpenSecretResponse {
+	return &OpenSecretResponse{}
+}
+
+// OpNum returns the operation number of LsarOpenSecret operation.
+func (o *OpenSecretRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of LsarOpenSecret operation.
+func (o *OpenSecretRequest) OpName() string { return "/lsarpc/v0/LsarOpenSecret" }
+
 // OpenSecretResponse structure represents the LsarOpenSecret operation response
 type OpenSecretResponse struct {
 	// SecretHandle: Used to return the handle to the opened secret object.
@@ -15247,8 +15561,10 @@ type xxx_SetSecretOperation struct {
 	Return                int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarSetSecret operation.
 func (o *xxx_SetSecretOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of LsarSetSecret operation.
 func (o *xxx_SetSecretOperation) OpName() string { return "/lsarpc/v0/LsarSetSecret" }
 
 func (o *xxx_SetSecretOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -15462,6 +15778,17 @@ func (o *SetSecretRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeSetSecretRequest build a response structure from the given request structure.
+func (o *SetSecretRequest) MakeResponse() *SetSecretResponse {
+	return &SetSecretResponse{}
+}
+
+// OpNum returns the operation number of LsarSetSecret operation.
+func (o *SetSecretRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of LsarSetSecret operation.
+func (o *SetSecretRequest) OpName() string { return "/lsarpc/v0/LsarSetSecret" }
+
 // SetSecretResponse structure represents the LsarSetSecret operation response
 type SetSecretResponse struct {
 	// Return: The LsarSetSecret return value.
@@ -15507,8 +15834,10 @@ type xxx_QuerySecretOperation struct {
 	Return                int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarQuerySecret operation.
 func (o *xxx_QuerySecretOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of LsarQuerySecret operation.
 func (o *xxx_QuerySecretOperation) OpName() string { return "/lsarpc/v0/LsarQuerySecret" }
 
 func (o *xxx_QuerySecretOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -16081,6 +16410,17 @@ func (o *QuerySecretRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeQuerySecretRequest build a response structure from the given request structure.
+func (o *QuerySecretRequest) MakeResponse() *QuerySecretResponse {
+	return &QuerySecretResponse{}
+}
+
+// OpNum returns the operation number of LsarQuerySecret operation.
+func (o *QuerySecretRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of LsarQuerySecret operation.
+func (o *QuerySecretRequest) OpName() string { return "/lsarpc/v0/LsarQuerySecret" }
+
 // QuerySecretResponse structure represents the LsarQuerySecret operation response
 type QuerySecretResponse struct {
 	// EncryptedCurrentValue: Used to return the encrypted current value of the secret object.
@@ -16142,8 +16482,10 @@ type xxx_LookupPrivilegeValueOperation struct {
 	Return int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarLookupPrivilegeValue operation.
 func (o *xxx_LookupPrivilegeValueOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of LsarLookupPrivilegeValue operation.
 func (o *xxx_LookupPrivilegeValueOperation) OpName() string {
 	return "/lsarpc/v0/LsarLookupPrivilegeValue"
 }
@@ -16308,6 +16650,17 @@ func (o *LookupPrivilegeValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeLookupPrivilegeValueRequest build a response structure from the given request structure.
+func (o *LookupPrivilegeValueRequest) MakeResponse() *LookupPrivilegeValueResponse {
+	return &LookupPrivilegeValueResponse{}
+}
+
+// OpNum returns the operation number of LsarLookupPrivilegeValue operation.
+func (o *LookupPrivilegeValueRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of LsarLookupPrivilegeValue operation.
+func (o *LookupPrivilegeValueRequest) OpName() string { return "/lsarpc/v0/LsarLookupPrivilegeValue" }
+
 // LookupPrivilegeValueResponse structure represents the LsarLookupPrivilegeValue operation response
 type LookupPrivilegeValueResponse struct {
 	// Value: Used to return a LUID assigned by the server to the privilege by this name.
@@ -16355,8 +16708,10 @@ type xxx_LookupPrivilegeNameOperation struct {
 	Return int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarLookupPrivilegeName operation.
 func (o *xxx_LookupPrivilegeNameOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of LsarLookupPrivilegeName operation.
 func (o *xxx_LookupPrivilegeNameOperation) OpName() string {
 	return "/lsarpc/v0/LsarLookupPrivilegeName"
 }
@@ -16540,6 +16895,17 @@ func (o *LookupPrivilegeNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeLookupPrivilegeNameRequest build a response structure from the given request structure.
+func (o *LookupPrivilegeNameRequest) MakeResponse() *LookupPrivilegeNameResponse {
+	return &LookupPrivilegeNameResponse{}
+}
+
+// OpNum returns the operation number of LsarLookupPrivilegeName operation.
+func (o *LookupPrivilegeNameRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of LsarLookupPrivilegeName operation.
+func (o *LookupPrivilegeNameRequest) OpName() string { return "/lsarpc/v0/LsarLookupPrivilegeName" }
+
 // LookupPrivilegeNameResponse structure represents the LsarLookupPrivilegeName operation response
 type LookupPrivilegeNameResponse struct {
 	// Name: Used to return the string name corresponding to the supplied LUID.
@@ -16590,8 +16956,10 @@ type xxx_LookupPrivilegeDisplayNameOperation struct {
 	Return                      int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarLookupPrivilegeDisplayName operation.
 func (o *xxx_LookupPrivilegeDisplayNameOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of LsarLookupPrivilegeDisplayName operation.
 func (o *xxx_LookupPrivilegeDisplayNameOperation) OpName() string {
 	return "/lsarpc/v0/LsarLookupPrivilegeDisplayName"
 }
@@ -16826,6 +17194,19 @@ func (o *LookupPrivilegeDisplayNameRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeLookupPrivilegeDisplayNameRequest build a response structure from the given request structure.
+func (o *LookupPrivilegeDisplayNameRequest) MakeResponse() *LookupPrivilegeDisplayNameResponse {
+	return &LookupPrivilegeDisplayNameResponse{}
+}
+
+// OpNum returns the operation number of LsarLookupPrivilegeDisplayName operation.
+func (o *LookupPrivilegeDisplayNameRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of LsarLookupPrivilegeDisplayName operation.
+func (o *LookupPrivilegeDisplayNameRequest) OpName() string {
+	return "/lsarpc/v0/LsarLookupPrivilegeDisplayName"
+}
+
 // LookupPrivilegeDisplayNameResponse structure represents the LsarLookupPrivilegeDisplayName operation response
 type LookupPrivilegeDisplayNameResponse struct {
 	// DisplayName: Used to return the display name of the privilege in the language pointed
@@ -16876,8 +17257,10 @@ type xxx_DeleteObjectOperation struct {
 	Return int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarDeleteObject operation.
 func (o *xxx_DeleteObjectOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of LsarDeleteObject operation.
 func (o *xxx_DeleteObjectOperation) OpName() string { return "/lsarpc/v0/LsarDeleteObject" }
 
 func (o *xxx_DeleteObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -17010,6 +17393,17 @@ func (o *DeleteObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeDeleteObjectRequest build a response structure from the given request structure.
+func (o *DeleteObjectRequest) MakeResponse() *DeleteObjectResponse {
+	return &DeleteObjectResponse{}
+}
+
+// OpNum returns the operation number of LsarDeleteObject operation.
+func (o *DeleteObjectRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of LsarDeleteObject operation.
+func (o *DeleteObjectRequest) OpName() string { return "/lsarpc/v0/LsarDeleteObject" }
+
 // DeleteObjectResponse structure represents the LsarDeleteObject operation response
 type DeleteObjectResponse struct {
 	// ObjectHandle: A handle to an open object of the correct type to be deleted. After
@@ -17058,8 +17452,10 @@ type xxx_EnumerateAccountsWithUserRightOperation struct {
 	Return            int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarEnumerateAccountsWithUserRight operation.
 func (o *xxx_EnumerateAccountsWithUserRightOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of LsarEnumerateAccountsWithUserRight operation.
 func (o *xxx_EnumerateAccountsWithUserRightOperation) OpName() string {
 	return "/lsarpc/v0/LsarEnumerateAccountsWithUserRight"
 }
@@ -17249,6 +17645,19 @@ func (o *EnumerateAccountsWithUserRightRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeEnumerateAccountsWithUserRightRequest build a response structure from the given request structure.
+func (o *EnumerateAccountsWithUserRightRequest) MakeResponse() *EnumerateAccountsWithUserRightResponse {
+	return &EnumerateAccountsWithUserRightResponse{}
+}
+
+// OpNum returns the operation number of LsarEnumerateAccountsWithUserRight operation.
+func (o *EnumerateAccountsWithUserRightRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of LsarEnumerateAccountsWithUserRight operation.
+func (o *EnumerateAccountsWithUserRightRequest) OpName() string {
+	return "/lsarpc/v0/LsarEnumerateAccountsWithUserRight"
+}
+
 // EnumerateAccountsWithUserRightResponse structure represents the LsarEnumerateAccountsWithUserRight operation response
 type EnumerateAccountsWithUserRightResponse struct {
 	// EnumerationBuffer: Used to return the list of account objects that have the specified
@@ -17297,8 +17706,10 @@ type xxx_EnumerateAccountRightsOperation struct {
 	Return     int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarEnumerateAccountRights operation.
 func (o *xxx_EnumerateAccountRightsOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of LsarEnumerateAccountRights operation.
 func (o *xxx_EnumerateAccountRightsOperation) OpName() string {
 	return "/lsarpc/v0/LsarEnumerateAccountRights"
 }
@@ -17463,6 +17874,19 @@ func (o *EnumerateAccountRightsRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeEnumerateAccountRightsRequest build a response structure from the given request structure.
+func (o *EnumerateAccountRightsRequest) MakeResponse() *EnumerateAccountRightsResponse {
+	return &EnumerateAccountRightsResponse{}
+}
+
+// OpNum returns the operation number of LsarEnumerateAccountRights operation.
+func (o *EnumerateAccountRightsRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of LsarEnumerateAccountRights operation.
+func (o *EnumerateAccountRightsRequest) OpName() string {
+	return "/lsarpc/v0/LsarEnumerateAccountRights"
+}
+
 // EnumerateAccountRightsResponse structure represents the LsarEnumerateAccountRights operation response
 type EnumerateAccountRightsResponse struct {
 	// UserRights: Used to return a list of right names associated with the account.
@@ -17510,8 +17934,10 @@ type xxx_AddAccountRightsOperation struct {
 	Return     int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarAddAccountRights operation.
 func (o *xxx_AddAccountRightsOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of LsarAddAccountRights operation.
 func (o *xxx_AddAccountRightsOperation) OpName() string { return "/lsarpc/v0/LsarAddAccountRights" }
 
 func (o *xxx_AddAccountRightsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -17678,6 +18104,17 @@ func (o *AddAccountRightsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeAddAccountRightsRequest build a response structure from the given request structure.
+func (o *AddAccountRightsRequest) MakeResponse() *AddAccountRightsResponse {
+	return &AddAccountRightsResponse{}
+}
+
+// OpNum returns the operation number of LsarAddAccountRights operation.
+func (o *AddAccountRightsRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of LsarAddAccountRights operation.
+func (o *AddAccountRightsRequest) OpName() string { return "/lsarpc/v0/LsarAddAccountRights" }
+
 // AddAccountRightsResponse structure represents the LsarAddAccountRights operation response
 type AddAccountRightsResponse struct {
 	// Return: The LsarAddAccountRights return value.
@@ -17722,8 +18159,10 @@ type xxx_RemoveAccountRightsOperation struct {
 	Return     int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarRemoveAccountRights operation.
 func (o *xxx_RemoveAccountRightsOperation) OpNum() int { return 38 }
 
+// OpName returns the operation name of LsarRemoveAccountRights operation.
 func (o *xxx_RemoveAccountRightsOperation) OpName() string {
 	return "/lsarpc/v0/LsarRemoveAccountRights"
 }
@@ -17908,6 +18347,17 @@ func (o *RemoveAccountRightsRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeRemoveAccountRightsRequest build a response structure from the given request structure.
+func (o *RemoveAccountRightsRequest) MakeResponse() *RemoveAccountRightsResponse {
+	return &RemoveAccountRightsResponse{}
+}
+
+// OpNum returns the operation number of LsarRemoveAccountRights operation.
+func (o *RemoveAccountRightsRequest) OpNum() int { return 38 }
+
+// OpName returns the operation name of LsarRemoveAccountRights operation.
+func (o *RemoveAccountRightsRequest) OpName() string { return "/lsarpc/v0/LsarRemoveAccountRights" }
+
 // RemoveAccountRightsResponse structure represents the LsarRemoveAccountRights operation response
 type RemoveAccountRightsResponse struct {
 	// Return: The LsarRemoveAccountRights return value.
@@ -17952,8 +18402,10 @@ type xxx_QueryTrustedDomainInfoOperation struct {
 	Return                   int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarQueryTrustedDomainInfo operation.
 func (o *xxx_QueryTrustedDomainInfoOperation) OpNum() int { return 39 }
 
+// OpName returns the operation name of LsarQueryTrustedDomainInfo operation.
 func (o *xxx_QueryTrustedDomainInfoOperation) OpName() string {
 	return "/lsarpc/v0/LsarQueryTrustedDomainInfo"
 }
@@ -18155,6 +18607,24 @@ func (o *QueryTrustedDomainInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeQueryTrustedDomainInfoRequest build a response structure from the given request structure.
+func (o *QueryTrustedDomainInfoRequest) MakeResponse() *QueryTrustedDomainInfoResponse {
+	if o == nil {
+		return &QueryTrustedDomainInfoResponse{}
+	}
+	return &QueryTrustedDomainInfoResponse{
+		InformationClass: o.InformationClass,
+	}
+}
+
+// OpNum returns the operation number of LsarQueryTrustedDomainInfo operation.
+func (o *QueryTrustedDomainInfoRequest) OpNum() int { return 39 }
+
+// OpName returns the operation name of LsarQueryTrustedDomainInfo operation.
+func (o *QueryTrustedDomainInfoRequest) OpName() string {
+	return "/lsarpc/v0/LsarQueryTrustedDomainInfo"
+}
+
 // QueryTrustedDomainInfoResponse structure represents the LsarQueryTrustedDomainInfo operation response
 type QueryTrustedDomainInfoResponse struct {
 	// XXX: InformationClass is an implicit input depedency for output parameters
@@ -18215,8 +18685,10 @@ type xxx_SetTrustedDomainInfoOperation struct {
 	Return                   int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarSetTrustedDomainInfo operation.
 func (o *xxx_SetTrustedDomainInfoOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of LsarSetTrustedDomainInfo operation.
 func (o *xxx_SetTrustedDomainInfoOperation) OpName() string {
 	return "/lsarpc/v0/LsarSetTrustedDomainInfo"
 }
@@ -18404,6 +18876,17 @@ func (o *SetTrustedDomainInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeSetTrustedDomainInfoRequest build a response structure from the given request structure.
+func (o *SetTrustedDomainInfoRequest) MakeResponse() *SetTrustedDomainInfoResponse {
+	return &SetTrustedDomainInfoResponse{}
+}
+
+// OpNum returns the operation number of LsarSetTrustedDomainInfo operation.
+func (o *SetTrustedDomainInfoRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of LsarSetTrustedDomainInfo operation.
+func (o *SetTrustedDomainInfoRequest) OpName() string { return "/lsarpc/v0/LsarSetTrustedDomainInfo" }
+
 // SetTrustedDomainInfoResponse structure represents the LsarSetTrustedDomainInfo operation response
 type SetTrustedDomainInfoResponse struct {
 	// Return: The LsarSetTrustedDomainInfo return value.
@@ -18446,8 +18929,10 @@ type xxx_DeleteTrustedDomainOperation struct {
 	Return           int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarDeleteTrustedDomain operation.
 func (o *xxx_DeleteTrustedDomainOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of LsarDeleteTrustedDomain operation.
 func (o *xxx_DeleteTrustedDomainOperation) OpName() string {
 	return "/lsarpc/v0/LsarDeleteTrustedDomain"
 }
@@ -18585,6 +19070,17 @@ func (o *DeleteTrustedDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeDeleteTrustedDomainRequest build a response structure from the given request structure.
+func (o *DeleteTrustedDomainRequest) MakeResponse() *DeleteTrustedDomainResponse {
+	return &DeleteTrustedDomainResponse{}
+}
+
+// OpNum returns the operation number of LsarDeleteTrustedDomain operation.
+func (o *DeleteTrustedDomainRequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of LsarDeleteTrustedDomain operation.
+func (o *DeleteTrustedDomainRequest) OpName() string { return "/lsarpc/v0/LsarDeleteTrustedDomain" }
+
 // DeleteTrustedDomainResponse structure represents the LsarDeleteTrustedDomain operation response
 type DeleteTrustedDomainResponse struct {
 	// Return: The LsarDeleteTrustedDomain return value.
@@ -18628,8 +19124,10 @@ type xxx_StorePrivateDataOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarStorePrivateData operation.
 func (o *xxx_StorePrivateDataOperation) OpNum() int { return 42 }
 
+// OpName returns the operation name of LsarStorePrivateData operation.
 func (o *xxx_StorePrivateDataOperation) OpName() string { return "/lsarpc/v0/LsarStorePrivateData" }
 
 func (o *xxx_StorePrivateDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18821,6 +19319,17 @@ func (o *StorePrivateDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeStorePrivateDataRequest build a response structure from the given request structure.
+func (o *StorePrivateDataRequest) MakeResponse() *StorePrivateDataResponse {
+	return &StorePrivateDataResponse{}
+}
+
+// OpNum returns the operation number of LsarStorePrivateData operation.
+func (o *StorePrivateDataRequest) OpNum() int { return 42 }
+
+// OpName returns the operation name of LsarStorePrivateData operation.
+func (o *StorePrivateDataRequest) OpName() string { return "/lsarpc/v0/LsarStorePrivateData" }
+
 // StorePrivateDataResponse structure represents the LsarStorePrivateData operation response
 type StorePrivateDataResponse struct {
 	// Return: The LsarStorePrivateData return value.
@@ -18864,8 +19373,10 @@ type xxx_RetrievePrivateDataOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarRetrievePrivateData operation.
 func (o *xxx_RetrievePrivateDataOperation) OpNum() int { return 43 }
 
+// OpName returns the operation name of LsarRetrievePrivateData operation.
 func (o *xxx_RetrievePrivateDataOperation) OpName() string {
 	return "/lsarpc/v0/LsarRetrievePrivateData"
 }
@@ -19105,6 +19616,17 @@ func (o *RetrievePrivateDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeRetrievePrivateDataRequest build a response structure from the given request structure.
+func (o *RetrievePrivateDataRequest) MakeResponse() *RetrievePrivateDataResponse {
+	return &RetrievePrivateDataResponse{}
+}
+
+// OpNum returns the operation number of LsarRetrievePrivateData operation.
+func (o *RetrievePrivateDataRequest) OpNum() int { return 43 }
+
+// OpName returns the operation name of LsarRetrievePrivateData operation.
+func (o *RetrievePrivateDataRequest) OpName() string { return "/lsarpc/v0/LsarRetrievePrivateData" }
+
 // RetrievePrivateDataResponse structure represents the LsarRetrievePrivateData operation response
 type RetrievePrivateDataResponse struct {
 	// EncryptedData: Receives the encrypted value of the secret object.
@@ -19153,8 +19675,10 @@ type xxx_OpenPolicy2Operation struct {
 	Return           int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarOpenPolicy2 operation.
 func (o *xxx_OpenPolicy2Operation) OpNum() int { return 44 }
 
+// OpName returns the operation name of LsarOpenPolicy2 operation.
 func (o *xxx_OpenPolicy2Operation) OpName() string { return "/lsarpc/v0/LsarOpenPolicy2" }
 
 func (o *xxx_OpenPolicy2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19353,6 +19877,17 @@ func (o *OpenPolicy2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeOpenPolicy2Request build a response structure from the given request structure.
+func (o *OpenPolicy2Request) MakeResponse() *OpenPolicy2Response {
+	return &OpenPolicy2Response{}
+}
+
+// OpNum returns the operation number of LsarOpenPolicy2 operation.
+func (o *OpenPolicy2Request) OpNum() int { return 44 }
+
+// OpName returns the operation name of LsarOpenPolicy2 operation.
+func (o *OpenPolicy2Request) OpName() string { return "/lsarpc/v0/LsarOpenPolicy2" }
+
 // OpenPolicy2Response structure represents the LsarOpenPolicy2 operation response
 type OpenPolicy2Response struct {
 	// PolicyHandle: An RPC context handle (as specified in section 2.2.2.1) that represents
@@ -19402,8 +19937,10 @@ type xxx_QueryInformationPolicy2Operation struct {
 	Return            int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarQueryInformationPolicy2 operation.
 func (o *xxx_QueryInformationPolicy2Operation) OpNum() int { return 46 }
 
+// OpName returns the operation name of LsarQueryInformationPolicy2 operation.
 func (o *xxx_QueryInformationPolicy2Operation) OpName() string {
 	return "/lsarpc/v0/LsarQueryInformationPolicy2"
 }
@@ -19581,6 +20118,24 @@ func (o *QueryInformationPolicy2Request) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeQueryInformationPolicy2Request build a response structure from the given request structure.
+func (o *QueryInformationPolicy2Request) MakeResponse() *QueryInformationPolicy2Response {
+	if o == nil {
+		return &QueryInformationPolicy2Response{}
+	}
+	return &QueryInformationPolicy2Response{
+		InformationClass: o.InformationClass,
+	}
+}
+
+// OpNum returns the operation number of LsarQueryInformationPolicy2 operation.
+func (o *QueryInformationPolicy2Request) OpNum() int { return 46 }
+
+// OpName returns the operation name of LsarQueryInformationPolicy2 operation.
+func (o *QueryInformationPolicy2Request) OpName() string {
+	return "/lsarpc/v0/LsarQueryInformationPolicy2"
+}
+
 // QueryInformationPolicy2Response structure represents the LsarQueryInformationPolicy2 operation response
 type QueryInformationPolicy2Response struct {
 	// XXX: InformationClass is an implicit input depedency for output parameters
@@ -19639,8 +20194,10 @@ type xxx_SetInformationPolicy2Operation struct {
 	Return            int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarSetInformationPolicy2 operation.
 func (o *xxx_SetInformationPolicy2Operation) OpNum() int { return 47 }
 
+// OpName returns the operation name of LsarSetInformationPolicy2 operation.
 func (o *xxx_SetInformationPolicy2Operation) OpName() string {
 	return "/lsarpc/v0/LsarSetInformationPolicy2"
 }
@@ -19803,6 +20360,17 @@ func (o *SetInformationPolicy2Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeSetInformationPolicy2Request build a response structure from the given request structure.
+func (o *SetInformationPolicy2Request) MakeResponse() *SetInformationPolicy2Response {
+	return &SetInformationPolicy2Response{}
+}
+
+// OpNum returns the operation number of LsarSetInformationPolicy2 operation.
+func (o *SetInformationPolicy2Request) OpNum() int { return 47 }
+
+// OpName returns the operation name of LsarSetInformationPolicy2 operation.
+func (o *SetInformationPolicy2Request) OpName() string { return "/lsarpc/v0/LsarSetInformationPolicy2" }
+
 // SetInformationPolicy2Response structure represents the LsarSetInformationPolicy2 operation response
 type SetInformationPolicy2Response struct {
 	// Return: The LsarSetInformationPolicy2 return value.
@@ -19847,8 +20415,10 @@ type xxx_QueryTrustedDomainInfoByNameOperation struct {
 	Return                   int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarQueryTrustedDomainInfoByName operation.
 func (o *xxx_QueryTrustedDomainInfoByNameOperation) OpNum() int { return 48 }
 
+// OpName returns the operation name of LsarQueryTrustedDomainInfoByName operation.
 func (o *xxx_QueryTrustedDomainInfoByNameOperation) OpName() string {
 	return "/lsarpc/v0/LsarQueryTrustedDomainInfoByName"
 }
@@ -20057,6 +20627,24 @@ func (o *QueryTrustedDomainInfoByNameRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeQueryTrustedDomainInfoByNameRequest build a response structure from the given request structure.
+func (o *QueryTrustedDomainInfoByNameRequest) MakeResponse() *QueryTrustedDomainInfoByNameResponse {
+	if o == nil {
+		return &QueryTrustedDomainInfoByNameResponse{}
+	}
+	return &QueryTrustedDomainInfoByNameResponse{
+		InformationClass: o.InformationClass,
+	}
+}
+
+// OpNum returns the operation number of LsarQueryTrustedDomainInfoByName operation.
+func (o *QueryTrustedDomainInfoByNameRequest) OpNum() int { return 48 }
+
+// OpName returns the operation name of LsarQueryTrustedDomainInfoByName operation.
+func (o *QueryTrustedDomainInfoByNameRequest) OpName() string {
+	return "/lsarpc/v0/LsarQueryTrustedDomainInfoByName"
+}
+
 // QueryTrustedDomainInfoByNameResponse structure represents the LsarQueryTrustedDomainInfoByName operation response
 type QueryTrustedDomainInfoByNameResponse struct {
 	// XXX: InformationClass is an implicit input depedency for output parameters
@@ -20116,8 +20704,10 @@ type xxx_SetTrustedDomainInfoByNameOperation struct {
 	Return                   int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarSetTrustedDomainInfoByName operation.
 func (o *xxx_SetTrustedDomainInfoByNameOperation) OpNum() int { return 49 }
 
+// OpName returns the operation name of LsarSetTrustedDomainInfoByName operation.
 func (o *xxx_SetTrustedDomainInfoByNameOperation) OpName() string {
 	return "/lsarpc/v0/LsarSetTrustedDomainInfoByName"
 }
@@ -20311,6 +20901,19 @@ func (o *SetTrustedDomainInfoByNameRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeSetTrustedDomainInfoByNameRequest build a response structure from the given request structure.
+func (o *SetTrustedDomainInfoByNameRequest) MakeResponse() *SetTrustedDomainInfoByNameResponse {
+	return &SetTrustedDomainInfoByNameResponse{}
+}
+
+// OpNum returns the operation number of LsarSetTrustedDomainInfoByName operation.
+func (o *SetTrustedDomainInfoByNameRequest) OpNum() int { return 49 }
+
+// OpName returns the operation name of LsarSetTrustedDomainInfoByName operation.
+func (o *SetTrustedDomainInfoByNameRequest) OpName() string {
+	return "/lsarpc/v0/LsarSetTrustedDomainInfoByName"
+}
+
 // SetTrustedDomainInfoByNameResponse structure represents the LsarSetTrustedDomainInfoByName operation response
 type SetTrustedDomainInfoByNameResponse struct {
 	// Return: The LsarSetTrustedDomainInfoByName return value.
@@ -20355,8 +20958,10 @@ type xxx_EnumerateTrustedDomainsExOperation struct {
 	Return                 int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarEnumerateTrustedDomainsEx operation.
 func (o *xxx_EnumerateTrustedDomainsExOperation) OpNum() int { return 50 }
 
+// OpName returns the operation name of LsarEnumerateTrustedDomainsEx operation.
 func (o *xxx_EnumerateTrustedDomainsExOperation) OpName() string {
 	return "/lsarpc/v0/LsarEnumerateTrustedDomainsEx"
 }
@@ -20542,6 +21147,19 @@ func (o *EnumerateTrustedDomainsExRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeEnumerateTrustedDomainsExRequest build a response structure from the given request structure.
+func (o *EnumerateTrustedDomainsExRequest) MakeResponse() *EnumerateTrustedDomainsExResponse {
+	return &EnumerateTrustedDomainsExResponse{}
+}
+
+// OpNum returns the operation number of LsarEnumerateTrustedDomainsEx operation.
+func (o *EnumerateTrustedDomainsExRequest) OpNum() int { return 50 }
+
+// OpName returns the operation name of LsarEnumerateTrustedDomainsEx operation.
+func (o *EnumerateTrustedDomainsExRequest) OpName() string {
+	return "/lsarpc/v0/LsarEnumerateTrustedDomainsEx"
+}
+
 // EnumerateTrustedDomainsExResponse structure represents the LsarEnumerateTrustedDomainsEx operation response
 type EnumerateTrustedDomainsExResponse struct {
 	// EnumerationContext: Used to keep track of the state of the enumeration in cases where
@@ -20596,8 +21214,10 @@ type xxx_CreateTrustedDomainExOperation struct {
 	Return                    int32                         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarCreateTrustedDomainEx operation.
 func (o *xxx_CreateTrustedDomainExOperation) OpNum() int { return 51 }
 
+// OpName returns the operation name of LsarCreateTrustedDomainEx operation.
 func (o *xxx_CreateTrustedDomainExOperation) OpName() string {
 	return "/lsarpc/v0/LsarCreateTrustedDomainEx"
 }
@@ -20809,6 +21429,17 @@ func (o *CreateTrustedDomainExRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeCreateTrustedDomainExRequest build a response structure from the given request structure.
+func (o *CreateTrustedDomainExRequest) MakeResponse() *CreateTrustedDomainExResponse {
+	return &CreateTrustedDomainExResponse{}
+}
+
+// OpNum returns the operation number of LsarCreateTrustedDomainEx operation.
+func (o *CreateTrustedDomainExRequest) OpNum() int { return 51 }
+
+// OpName returns the operation name of LsarCreateTrustedDomainEx operation.
+func (o *CreateTrustedDomainExRequest) OpName() string { return "/lsarpc/v0/LsarCreateTrustedDomainEx" }
+
 // CreateTrustedDomainExResponse structure represents the LsarCreateTrustedDomainEx operation response
 type CreateTrustedDomainExResponse struct {
 	// TrustedDomainHandle: Used to return the handle for the newly created TDO.
@@ -20856,8 +21487,10 @@ type xxx_QueryDomainInformationPolicyOperation struct {
 	Return                  int32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarQueryDomainInformationPolicy operation.
 func (o *xxx_QueryDomainInformationPolicyOperation) OpNum() int { return 53 }
 
+// OpName returns the operation name of LsarQueryDomainInformationPolicy operation.
 func (o *xxx_QueryDomainInformationPolicyOperation) OpName() string {
 	return "/lsarpc/v0/LsarQueryDomainInformationPolicy"
 }
@@ -21035,6 +21668,24 @@ func (o *QueryDomainInformationPolicyRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeQueryDomainInformationPolicyRequest build a response structure from the given request structure.
+func (o *QueryDomainInformationPolicyRequest) MakeResponse() *QueryDomainInformationPolicyResponse {
+	if o == nil {
+		return &QueryDomainInformationPolicyResponse{}
+	}
+	return &QueryDomainInformationPolicyResponse{
+		InformationClass: o.InformationClass,
+	}
+}
+
+// OpNum returns the operation number of LsarQueryDomainInformationPolicy operation.
+func (o *QueryDomainInformationPolicyRequest) OpNum() int { return 53 }
+
+// OpName returns the operation name of LsarQueryDomainInformationPolicy operation.
+func (o *QueryDomainInformationPolicyRequest) OpName() string {
+	return "/lsarpc/v0/LsarQueryDomainInformationPolicy"
+}
+
 // QueryDomainInformationPolicyResponse structure represents the LsarQueryDomainInformationPolicy operation response
 type QueryDomainInformationPolicyResponse struct {
 	// XXX: InformationClass is an implicit input depedency for output parameters
@@ -21094,8 +21745,10 @@ type xxx_SetDomainInformationPolicyOperation struct {
 	Return                  int32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarSetDomainInformationPolicy operation.
 func (o *xxx_SetDomainInformationPolicyOperation) OpNum() int { return 54 }
 
+// OpName returns the operation name of LsarSetDomainInformationPolicy operation.
 func (o *xxx_SetDomainInformationPolicyOperation) OpName() string {
 	return "/lsarpc/v0/LsarSetDomainInformationPolicy"
 }
@@ -21277,6 +21930,19 @@ func (o *SetDomainInformationPolicyRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeSetDomainInformationPolicyRequest build a response structure from the given request structure.
+func (o *SetDomainInformationPolicyRequest) MakeResponse() *SetDomainInformationPolicyResponse {
+	return &SetDomainInformationPolicyResponse{}
+}
+
+// OpNum returns the operation number of LsarSetDomainInformationPolicy operation.
+func (o *SetDomainInformationPolicyRequest) OpNum() int { return 54 }
+
+// OpName returns the operation name of LsarSetDomainInformationPolicy operation.
+func (o *SetDomainInformationPolicyRequest) OpName() string {
+	return "/lsarpc/v0/LsarSetDomainInformationPolicy"
+}
+
 // SetDomainInformationPolicyResponse structure represents the LsarSetDomainInformationPolicy operation response
 type SetDomainInformationPolicyResponse struct {
 	// Return: The LsarSetDomainInformationPolicy return value.
@@ -21321,8 +21987,10 @@ type xxx_OpenTrustedDomainByNameOperation struct {
 	Return            int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarOpenTrustedDomainByName operation.
 func (o *xxx_OpenTrustedDomainByNameOperation) OpNum() int { return 55 }
 
+// OpName returns the operation name of LsarOpenTrustedDomainByName operation.
 func (o *xxx_OpenTrustedDomainByNameOperation) OpName() string {
 	return "/lsarpc/v0/LsarOpenTrustedDomainByName"
 }
@@ -21503,6 +22171,19 @@ func (o *OpenTrustedDomainByNameRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeOpenTrustedDomainByNameRequest build a response structure from the given request structure.
+func (o *OpenTrustedDomainByNameRequest) MakeResponse() *OpenTrustedDomainByNameResponse {
+	return &OpenTrustedDomainByNameResponse{}
+}
+
+// OpNum returns the operation number of LsarOpenTrustedDomainByName operation.
+func (o *OpenTrustedDomainByNameRequest) OpNum() int { return 55 }
+
+// OpName returns the operation name of LsarOpenTrustedDomainByName operation.
+func (o *OpenTrustedDomainByNameRequest) OpName() string {
+	return "/lsarpc/v0/LsarOpenTrustedDomainByName"
+}
+
 // OpenTrustedDomainByNameResponse structure represents the LsarOpenTrustedDomainByName operation response
 type OpenTrustedDomainByNameResponse struct {
 	// TrustedDomainHandle: Used to return the opened trusted domain handle.
@@ -21552,8 +22233,10 @@ type xxx_CreateTrustedDomainEx2Operation struct {
 	Return                    int32                                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarCreateTrustedDomainEx2 operation.
 func (o *xxx_CreateTrustedDomainEx2Operation) OpNum() int { return 59 }
 
+// OpName returns the operation name of LsarCreateTrustedDomainEx2 operation.
 func (o *xxx_CreateTrustedDomainEx2Operation) OpName() string {
 	return "/lsarpc/v0/LsarCreateTrustedDomainEx2"
 }
@@ -21765,6 +22448,19 @@ func (o *CreateTrustedDomainEx2Request) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeCreateTrustedDomainEx2Request build a response structure from the given request structure.
+func (o *CreateTrustedDomainEx2Request) MakeResponse() *CreateTrustedDomainEx2Response {
+	return &CreateTrustedDomainEx2Response{}
+}
+
+// OpNum returns the operation number of LsarCreateTrustedDomainEx2 operation.
+func (o *CreateTrustedDomainEx2Request) OpNum() int { return 59 }
+
+// OpName returns the operation name of LsarCreateTrustedDomainEx2 operation.
+func (o *CreateTrustedDomainEx2Request) OpName() string {
+	return "/lsarpc/v0/LsarCreateTrustedDomainEx2"
+}
+
 // CreateTrustedDomainEx2Response structure represents the LsarCreateTrustedDomainEx2 operation response
 type CreateTrustedDomainEx2Response struct {
 	// TrustedDomainHandle: Used to return the handle for the newly created TDO.
@@ -21813,8 +22509,10 @@ type xxx_QueryForestTrustInformationOperation struct {
 	Return            int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarQueryForestTrustInformation operation.
 func (o *xxx_QueryForestTrustInformationOperation) OpNum() int { return 73 }
 
+// OpName returns the operation name of LsarQueryForestTrustInformation operation.
 func (o *xxx_QueryForestTrustInformationOperation) OpName() string {
 	return "/lsarpc/v0/LsarQueryForestTrustInformation"
 }
@@ -22021,6 +22719,19 @@ func (o *QueryForestTrustInformationRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeQueryForestTrustInformationRequest build a response structure from the given request structure.
+func (o *QueryForestTrustInformationRequest) MakeResponse() *QueryForestTrustInformationResponse {
+	return &QueryForestTrustInformationResponse{}
+}
+
+// OpNum returns the operation number of LsarQueryForestTrustInformation operation.
+func (o *QueryForestTrustInformationRequest) OpNum() int { return 73 }
+
+// OpName returns the operation name of LsarQueryForestTrustInformation operation.
+func (o *QueryForestTrustInformationRequest) OpName() string {
+	return "/lsarpc/v0/LsarQueryForestTrustInformation"
+}
+
 // QueryForestTrustInformationResponse structure represents the LsarQueryForestTrustInformation operation response
 type QueryForestTrustInformationResponse struct {
 	// ForestTrustInfo: Used to return the forest trust information.
@@ -22071,8 +22782,10 @@ type xxx_SetForestTrustInformationOperation struct {
 	Return            int32                            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LsarSetForestTrustInformation operation.
 func (o *xxx_SetForestTrustInformationOperation) OpNum() int { return 74 }
 
+// OpName returns the operation name of LsarSetForestTrustInformation operation.
 func (o *xxx_SetForestTrustInformationOperation) OpName() string {
 	return "/lsarpc/v0/LsarSetForestTrustInformation"
 }
@@ -22326,6 +23039,19 @@ func (o *SetForestTrustInformationRequest) UnmarshalNDR(ctx context.Context, r n
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetForestTrustInformationRequest build a response structure from the given request structure.
+func (o *SetForestTrustInformationRequest) MakeResponse() *SetForestTrustInformationResponse {
+	return &SetForestTrustInformationResponse{}
+}
+
+// OpNum returns the operation number of LsarSetForestTrustInformation operation.
+func (o *SetForestTrustInformationRequest) OpNum() int { return 74 }
+
+// OpName returns the operation name of LsarSetForestTrustInformation operation.
+func (o *SetForestTrustInformationRequest) OpName() string {
+	return "/lsarpc/v0/LsarSetForestTrustInformation"
 }
 
 // SetForestTrustInformationResponse structure represents the LsarSetForestTrustInformation operation response

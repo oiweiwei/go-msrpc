@@ -31479,8 +31479,10 @@ type xxx_BindOperation struct {
 	Return    uint32      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSBind operation.
 func (o *xxx_BindOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of IDL_DRSBind operation.
 func (o *xxx_BindOperation) OpName() string { return "/drsuapi/v4/IDL_DRSBind" }
 
 func (o *xxx_BindOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -31733,6 +31735,17 @@ func (o *BindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeBindRequest build a response structure from the given request structure.
+func (o *BindRequest) MakeResponse() *BindResponse {
+	return &BindResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSBind operation.
+func (o *BindRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of IDL_DRSBind operation.
+func (o *BindRequest) OpName() string { return "/drsuapi/v4/IDL_DRSBind" }
+
 // BindResponse structure represents the IDL_DRSBind operation response
 type BindResponse struct {
 	// ppextServer: A pointer to a pointer to server capabilities, for use in version negotiation.
@@ -31783,8 +31796,10 @@ type xxx_UnbindOperation struct {
 	Return uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSUnbind operation.
 func (o *xxx_UnbindOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of IDL_DRSUnbind operation.
 func (o *xxx_UnbindOperation) OpName() string { return "/drsuapi/v4/IDL_DRSUnbind" }
 
 func (o *xxx_UnbindOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -31917,6 +31932,17 @@ func (o *UnbindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeUnbindRequest build a response structure from the given request structure.
+func (o *UnbindRequest) MakeResponse() *UnbindResponse {
+	return &UnbindResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSUnbind operation.
+func (o *UnbindRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of IDL_DRSUnbind operation.
+func (o *UnbindRequest) OpName() string { return "/drsuapi/v4/IDL_DRSUnbind" }
+
 // UnbindResponse structure represents the IDL_DRSUnbind operation response
 type UnbindResponse struct {
 	// phDrs: A pointer to the RPC context handle returned by the IDL_DRSBind method. The
@@ -31965,8 +31991,10 @@ type xxx_SyncReplicaOperation struct {
 	Return  uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSReplicaSync operation.
 func (o *xxx_SyncReplicaOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of IDL_DRSReplicaSync operation.
 func (o *xxx_SyncReplicaOperation) OpName() string { return "/drsuapi/v4/IDL_DRSReplicaSync" }
 
 func (o *xxx_SyncReplicaOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -32126,6 +32154,17 @@ func (o *SyncReplicaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeSyncReplicaRequest build a response structure from the given request structure.
+func (o *SyncReplicaRequest) MakeResponse() *SyncReplicaResponse {
+	return &SyncReplicaResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSReplicaSync operation.
+func (o *SyncReplicaRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of IDL_DRSReplicaSync operation.
+func (o *SyncReplicaRequest) OpName() string { return "/drsuapi/v4/IDL_DRSReplicaSync" }
+
 // SyncReplicaResponse structure represents the IDL_DRSReplicaSync operation response
 type SyncReplicaResponse struct {
 	// Return: The IDL_DRSReplicaSync return value.
@@ -32171,8 +32210,10 @@ type xxx_GetNCChangesOperation struct {
 	Return     uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSGetNCChanges operation.
 func (o *xxx_GetNCChangesOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of IDL_DRSGetNCChanges operation.
 func (o *xxx_GetNCChangesOperation) OpName() string { return "/drsuapi/v4/IDL_DRSGetNCChanges" }
 
 func (o *xxx_GetNCChangesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -32373,6 +32414,17 @@ func (o *GetNCChangesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetNCChangesRequest build a response structure from the given request structure.
+func (o *GetNCChangesRequest) MakeResponse() *GetNCChangesResponse {
+	return &GetNCChangesResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSGetNCChanges operation.
+func (o *GetNCChangesRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of IDL_DRSGetNCChanges operation.
+func (o *GetNCChangesRequest) OpName() string { return "/drsuapi/v4/IDL_DRSGetNCChanges" }
+
 // GetNCChangesResponse structure represents the IDL_DRSGetNCChanges operation response
 type GetNCChangesResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message.
@@ -32424,8 +32476,10 @@ type xxx_UpdateReferencesOperation struct {
 	Return           uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSUpdateRefs operation.
 func (o *xxx_UpdateReferencesOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of IDL_DRSUpdateRefs operation.
 func (o *xxx_UpdateReferencesOperation) OpName() string { return "/drsuapi/v4/IDL_DRSUpdateRefs" }
 
 func (o *xxx_UpdateReferencesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -32585,6 +32639,17 @@ func (o *UpdateReferencesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeUpdateReferencesRequest build a response structure from the given request structure.
+func (o *UpdateReferencesRequest) MakeResponse() *UpdateReferencesResponse {
+	return &UpdateReferencesResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSUpdateRefs operation.
+func (o *UpdateReferencesRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of IDL_DRSUpdateRefs operation.
+func (o *UpdateReferencesRequest) OpName() string { return "/drsuapi/v4/IDL_DRSUpdateRefs" }
+
 // UpdateReferencesResponse structure represents the IDL_DRSUpdateRefs operation response
 type UpdateReferencesResponse struct {
 	// Return: The IDL_DRSUpdateRefs return value.
@@ -32628,8 +32693,10 @@ type xxx_AddReplicaOperation struct {
 	Return  uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSReplicaAdd operation.
 func (o *xxx_AddReplicaOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of IDL_DRSReplicaAdd operation.
 func (o *xxx_AddReplicaOperation) OpName() string { return "/drsuapi/v4/IDL_DRSReplicaAdd" }
 
 func (o *xxx_AddReplicaOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -32789,6 +32856,17 @@ func (o *AddReplicaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeAddReplicaRequest build a response structure from the given request structure.
+func (o *AddReplicaRequest) MakeResponse() *AddReplicaResponse {
+	return &AddReplicaResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSReplicaAdd operation.
+func (o *AddReplicaRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of IDL_DRSReplicaAdd operation.
+func (o *AddReplicaRequest) OpName() string { return "/drsuapi/v4/IDL_DRSReplicaAdd" }
+
 // AddReplicaResponse structure represents the IDL_DRSReplicaAdd operation response
 type AddReplicaResponse struct {
 	// Return: The IDL_DRSReplicaAdd return value.
@@ -32832,8 +32910,10 @@ type xxx_DeleteReplicaOperation struct {
 	Return  uint32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSReplicaDel operation.
 func (o *xxx_DeleteReplicaOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of IDL_DRSReplicaDel operation.
 func (o *xxx_DeleteReplicaOperation) OpName() string { return "/drsuapi/v4/IDL_DRSReplicaDel" }
 
 func (o *xxx_DeleteReplicaOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -32993,6 +33073,17 @@ func (o *DeleteReplicaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeDeleteReplicaRequest build a response structure from the given request structure.
+func (o *DeleteReplicaRequest) MakeResponse() *DeleteReplicaResponse {
+	return &DeleteReplicaResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSReplicaDel operation.
+func (o *DeleteReplicaRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of IDL_DRSReplicaDel operation.
+func (o *DeleteReplicaRequest) OpName() string { return "/drsuapi/v4/IDL_DRSReplicaDel" }
+
 // DeleteReplicaResponse structure represents the IDL_DRSReplicaDel operation response
 type DeleteReplicaResponse struct {
 	// Return: The IDL_DRSReplicaDel return value.
@@ -33036,8 +33127,10 @@ type xxx_ModifyReplicaOperation struct {
 	Return  uint32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSReplicaModify operation.
 func (o *xxx_ModifyReplicaOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of IDL_DRSReplicaModify operation.
 func (o *xxx_ModifyReplicaOperation) OpName() string { return "/drsuapi/v4/IDL_DRSReplicaModify" }
 
 func (o *xxx_ModifyReplicaOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -33197,6 +33290,17 @@ func (o *ModifyReplicaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeModifyReplicaRequest build a response structure from the given request structure.
+func (o *ModifyReplicaRequest) MakeResponse() *ModifyReplicaResponse {
+	return &ModifyReplicaResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSReplicaModify operation.
+func (o *ModifyReplicaRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of IDL_DRSReplicaModify operation.
+func (o *ModifyReplicaRequest) OpName() string { return "/drsuapi/v4/IDL_DRSReplicaModify" }
+
 // ModifyReplicaResponse structure represents the IDL_DRSReplicaModify operation response
 type ModifyReplicaResponse struct {
 	// Return: The IDL_DRSReplicaModify return value.
@@ -33242,8 +33346,10 @@ type xxx_VerifyNamesOperation struct {
 	Return     uint32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSVerifyNames operation.
 func (o *xxx_VerifyNamesOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of IDL_DRSVerifyNames operation.
 func (o *xxx_VerifyNamesOperation) OpName() string { return "/drsuapi/v4/IDL_DRSVerifyNames" }
 
 func (o *xxx_VerifyNamesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -33444,6 +33550,17 @@ func (o *VerifyNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeVerifyNamesRequest build a response structure from the given request structure.
+func (o *VerifyNamesRequest) MakeResponse() *VerifyNamesResponse {
+	return &VerifyNamesResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSVerifyNames operation.
+func (o *VerifyNamesRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of IDL_DRSVerifyNames operation.
+func (o *VerifyNamesRequest) OpName() string { return "/drsuapi/v4/IDL_DRSVerifyNames" }
+
 // VerifyNamesResponse structure represents the IDL_DRSVerifyNames operation response
 type VerifyNamesResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message.
@@ -33497,8 +33614,10 @@ type xxx_GetMembershipsOperation struct {
 	Return     uint32                           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSGetMemberships operation.
 func (o *xxx_GetMembershipsOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of IDL_DRSGetMemberships operation.
 func (o *xxx_GetMembershipsOperation) OpName() string { return "/drsuapi/v4/IDL_DRSGetMemberships" }
 
 func (o *xxx_GetMembershipsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -33699,6 +33818,17 @@ func (o *GetMembershipsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetMembershipsRequest build a response structure from the given request structure.
+func (o *GetMembershipsRequest) MakeResponse() *GetMembershipsResponse {
+	return &GetMembershipsResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSGetMemberships operation.
+func (o *GetMembershipsRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of IDL_DRSGetMemberships operation.
+func (o *GetMembershipsRequest) OpName() string { return "/drsuapi/v4/IDL_DRSGetMemberships" }
+
 // GetMembershipsResponse structure represents the IDL_DRSGetMemberships operation response
 type GetMembershipsResponse struct {
 	// pdwOutVersion: Pointer to the version of the response message.
@@ -33752,8 +33882,10 @@ type xxx_InterdomainMoveOperation struct {
 	Return     uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSInterDomainMove operation.
 func (o *xxx_InterdomainMoveOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of IDL_DRSInterDomainMove operation.
 func (o *xxx_InterdomainMoveOperation) OpName() string { return "/drsuapi/v4/IDL_DRSInterDomainMove" }
 
 func (o *xxx_InterdomainMoveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -33954,6 +34086,17 @@ func (o *InterdomainMoveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeInterdomainMoveRequest build a response structure from the given request structure.
+func (o *InterdomainMoveRequest) MakeResponse() *InterdomainMoveResponse {
+	return &InterdomainMoveResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSInterDomainMove operation.
+func (o *InterdomainMoveRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of IDL_DRSInterDomainMove operation.
+func (o *InterdomainMoveRequest) OpName() string { return "/drsuapi/v4/IDL_DRSInterDomainMove" }
+
 // InterdomainMoveResponse structure represents the IDL_DRSInterDomainMove operation response
 type InterdomainMoveResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message.
@@ -34007,8 +34150,10 @@ type xxx_GetNT4ChangeLogOperation struct {
 	Return     uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSGetNT4ChangeLog operation.
 func (o *xxx_GetNT4ChangeLogOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of IDL_DRSGetNT4ChangeLog operation.
 func (o *xxx_GetNT4ChangeLogOperation) OpName() string { return "/drsuapi/v4/IDL_DRSGetNT4ChangeLog" }
 
 func (o *xxx_GetNT4ChangeLogOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -34209,6 +34354,17 @@ func (o *GetNT4ChangeLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetNT4ChangeLogRequest build a response structure from the given request structure.
+func (o *GetNT4ChangeLogRequest) MakeResponse() *GetNT4ChangeLogResponse {
+	return &GetNT4ChangeLogResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSGetNT4ChangeLog operation.
+func (o *GetNT4ChangeLogRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of IDL_DRSGetNT4ChangeLog operation.
+func (o *GetNT4ChangeLogRequest) OpName() string { return "/drsuapi/v4/IDL_DRSGetNT4ChangeLog" }
+
 // GetNT4ChangeLogResponse structure represents the IDL_DRSGetNT4ChangeLog operation response
 type GetNT4ChangeLogResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message.
@@ -34262,8 +34418,10 @@ type xxx_CrackNamesOperation struct {
 	Return     uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSCrackNames operation.
 func (o *xxx_CrackNamesOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of IDL_DRSCrackNames operation.
 func (o *xxx_CrackNamesOperation) OpName() string { return "/drsuapi/v4/IDL_DRSCrackNames" }
 
 func (o *xxx_CrackNamesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -34464,6 +34622,17 @@ func (o *CrackNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeCrackNamesRequest build a response structure from the given request structure.
+func (o *CrackNamesRequest) MakeResponse() *CrackNamesResponse {
+	return &CrackNamesResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSCrackNames operation.
+func (o *CrackNamesRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of IDL_DRSCrackNames operation.
+func (o *CrackNamesRequest) OpName() string { return "/drsuapi/v4/IDL_DRSCrackNames" }
+
 // CrackNamesResponse structure represents the IDL_DRSCrackNames operation response
 type CrackNamesResponse struct {
 	// pdwOutVersion: Pointer to the version of the response message.
@@ -34517,8 +34686,10 @@ type xxx_WriteSPNOperation struct {
 	Return     uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSWriteSPN operation.
 func (o *xxx_WriteSPNOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of IDL_DRSWriteSPN operation.
 func (o *xxx_WriteSPNOperation) OpName() string { return "/drsuapi/v4/IDL_DRSWriteSPN" }
 
 func (o *xxx_WriteSPNOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -34714,6 +34885,17 @@ func (o *WriteSPNRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeWriteSPNRequest build a response structure from the given request structure.
+func (o *WriteSPNRequest) MakeResponse() *WriteSPNResponse {
+	return &WriteSPNResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSWriteSPN operation.
+func (o *WriteSPNRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of IDL_DRSWriteSPN operation.
+func (o *WriteSPNRequest) OpName() string { return "/drsuapi/v4/IDL_DRSWriteSPN" }
+
 // WriteSPNResponse structure represents the IDL_DRSWriteSPN operation response
 type WriteSPNResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message. The value must be
@@ -34768,8 +34950,10 @@ type xxx_RemoveDSServerOperation struct {
 	Return     uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSRemoveDsServer operation.
 func (o *xxx_RemoveDSServerOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of IDL_DRSRemoveDsServer operation.
 func (o *xxx_RemoveDSServerOperation) OpName() string { return "/drsuapi/v4/IDL_DRSRemoveDsServer" }
 
 func (o *xxx_RemoveDSServerOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -34965,6 +35149,17 @@ func (o *RemoveDSServerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeRemoveDSServerRequest build a response structure from the given request structure.
+func (o *RemoveDSServerRequest) MakeResponse() *RemoveDSServerResponse {
+	return &RemoveDSServerResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSRemoveDsServer operation.
+func (o *RemoveDSServerRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of IDL_DRSRemoveDsServer operation.
+func (o *RemoveDSServerRequest) OpName() string { return "/drsuapi/v4/IDL_DRSRemoveDsServer" }
+
 // RemoveDSServerResponse structure represents the IDL_DRSRemoveDsServer operation response
 type RemoveDSServerResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message. The value must be
@@ -35019,8 +35214,10 @@ type xxx_RemoveDSDomainOperation struct {
 	Return     uint32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSRemoveDsDomain operation.
 func (o *xxx_RemoveDSDomainOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of IDL_DRSRemoveDsDomain operation.
 func (o *xxx_RemoveDSDomainOperation) OpName() string { return "/drsuapi/v4/IDL_DRSRemoveDsDomain" }
 
 func (o *xxx_RemoveDSDomainOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -35216,6 +35413,17 @@ func (o *RemoveDSDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeRemoveDSDomainRequest build a response structure from the given request structure.
+func (o *RemoveDSDomainRequest) MakeResponse() *RemoveDSDomainResponse {
+	return &RemoveDSDomainResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSRemoveDsDomain operation.
+func (o *RemoveDSDomainRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of IDL_DRSRemoveDsDomain operation.
+func (o *RemoveDSDomainRequest) OpName() string { return "/drsuapi/v4/IDL_DRSRemoveDsDomain" }
+
 // RemoveDSDomainResponse structure represents the IDL_DRSRemoveDsDomain operation response
 type RemoveDSDomainResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message. The value must be
@@ -35270,8 +35478,10 @@ type xxx_DomainControllerInfoOperation struct {
 	Return     uint32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSDomainControllerInfo operation.
 func (o *xxx_DomainControllerInfoOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of IDL_DRSDomainControllerInfo operation.
 func (o *xxx_DomainControllerInfoOperation) OpName() string {
 	return "/drsuapi/v4/IDL_DRSDomainControllerInfo"
 }
@@ -35474,6 +35684,19 @@ func (o *DomainControllerInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeDomainControllerInfoRequest build a response structure from the given request structure.
+func (o *DomainControllerInfoRequest) MakeResponse() *DomainControllerInfoResponse {
+	return &DomainControllerInfoResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSDomainControllerInfo operation.
+func (o *DomainControllerInfoRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of IDL_DRSDomainControllerInfo operation.
+func (o *DomainControllerInfoRequest) OpName() string {
+	return "/drsuapi/v4/IDL_DRSDomainControllerInfo"
+}
+
 // DomainControllerInfoResponse structure represents the IDL_DRSDomainControllerInfo operation response
 type DomainControllerInfoResponse struct {
 	// pdwOutVersion: Pointer to the version of the response message.
@@ -35527,8 +35750,10 @@ type xxx_AddEntryOperation struct {
 	Return     uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSAddEntry operation.
 func (o *xxx_AddEntryOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of IDL_DRSAddEntry operation.
 func (o *xxx_AddEntryOperation) OpName() string { return "/drsuapi/v4/IDL_DRSAddEntry" }
 
 func (o *xxx_AddEntryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -35729,6 +35954,17 @@ func (o *AddEntryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeAddEntryRequest build a response structure from the given request structure.
+func (o *AddEntryRequest) MakeResponse() *AddEntryResponse {
+	return &AddEntryResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSAddEntry operation.
+func (o *AddEntryRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of IDL_DRSAddEntry operation.
+func (o *AddEntryRequest) OpName() string { return "/drsuapi/v4/IDL_DRSAddEntry" }
+
 // AddEntryResponse structure represents the IDL_DRSAddEntry operation response
 type AddEntryResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message.
@@ -35780,8 +36016,10 @@ type xxx_ExecuteKCCOperation struct {
 	Return    uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSExecuteKCC operation.
 func (o *xxx_ExecuteKCCOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of IDL_DRSExecuteKCC operation.
 func (o *xxx_ExecuteKCCOperation) OpName() string { return "/drsuapi/v4/IDL_DRSExecuteKCC" }
 
 func (o *xxx_ExecuteKCCOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -35935,6 +36173,17 @@ func (o *ExecuteKCCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeExecuteKCCRequest build a response structure from the given request structure.
+func (o *ExecuteKCCRequest) MakeResponse() *ExecuteKCCResponse {
+	return &ExecuteKCCResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSExecuteKCC operation.
+func (o *ExecuteKCCRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of IDL_DRSExecuteKCC operation.
+func (o *ExecuteKCCRequest) OpName() string { return "/drsuapi/v4/IDL_DRSExecuteKCC" }
+
 // ExecuteKCCResponse structure represents the IDL_DRSExecuteKCC operation response
 type ExecuteKCCResponse struct {
 	// Return: The IDL_DRSExecuteKCC return value.
@@ -35980,8 +36229,10 @@ type xxx_GetReplicationInfoOperation struct {
 	Return     uint32                            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSGetReplInfo operation.
 func (o *xxx_GetReplicationInfoOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of IDL_DRSGetReplInfo operation.
 func (o *xxx_GetReplicationInfoOperation) OpName() string { return "/drsuapi/v4/IDL_DRSGetReplInfo" }
 
 func (o *xxx_GetReplicationInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -36182,6 +36433,17 @@ func (o *GetReplicationInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetReplicationInfoRequest build a response structure from the given request structure.
+func (o *GetReplicationInfoRequest) MakeResponse() *GetReplicationInfoResponse {
+	return &GetReplicationInfoResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSGetReplInfo operation.
+func (o *GetReplicationInfoRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of IDL_DRSGetReplInfo operation.
+func (o *GetReplicationInfoRequest) OpName() string { return "/drsuapi/v4/IDL_DRSGetReplInfo" }
+
 // GetReplicationInfoResponse structure represents the IDL_DRSGetReplInfo operation response
 type GetReplicationInfoResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message.
@@ -36235,8 +36497,10 @@ type xxx_AddSIDHistoryOperation struct {
 	Return     uint32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSAddSidHistory operation.
 func (o *xxx_AddSIDHistoryOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of IDL_DRSAddSidHistory operation.
 func (o *xxx_AddSIDHistoryOperation) OpName() string { return "/drsuapi/v4/IDL_DRSAddSidHistory" }
 
 func (o *xxx_AddSIDHistoryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -36432,6 +36696,17 @@ func (o *AddSIDHistoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeAddSIDHistoryRequest build a response structure from the given request structure.
+func (o *AddSIDHistoryRequest) MakeResponse() *AddSIDHistoryResponse {
+	return &AddSIDHistoryResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSAddSidHistory operation.
+func (o *AddSIDHistoryRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of IDL_DRSAddSidHistory operation.
+func (o *AddSIDHistoryRequest) OpName() string { return "/drsuapi/v4/IDL_DRSAddSidHistory" }
+
 // AddSIDHistoryResponse structure represents the IDL_DRSAddSidHistory operation response
 type AddSIDHistoryResponse struct {
 	// pdwOutVersion: Pointer to the version of the response message. The value must be
@@ -36486,8 +36761,10 @@ type xxx_GetMemberships2Operation struct {
 	Return     uint32                         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSGetMemberships2 operation.
 func (o *xxx_GetMemberships2Operation) OpNum() int { return 21 }
 
+// OpName returns the operation name of IDL_DRSGetMemberships2 operation.
 func (o *xxx_GetMemberships2Operation) OpName() string { return "/drsuapi/v4/IDL_DRSGetMemberships2" }
 
 func (o *xxx_GetMemberships2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -36688,6 +36965,17 @@ func (o *GetMemberships2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetMemberships2Request build a response structure from the given request structure.
+func (o *GetMemberships2Request) MakeResponse() *GetMemberships2Response {
+	return &GetMemberships2Response{}
+}
+
+// OpNum returns the operation number of IDL_DRSGetMemberships2 operation.
+func (o *GetMemberships2Request) OpNum() int { return 21 }
+
+// OpName returns the operation name of IDL_DRSGetMemberships2 operation.
+func (o *GetMemberships2Request) OpName() string { return "/drsuapi/v4/IDL_DRSGetMemberships2" }
+
 // GetMemberships2Response structure represents the IDL_DRSGetMemberships2 operation response
 type GetMemberships2Response struct {
 	// pdwOutVersion: Pointer to the version of the response message.
@@ -36739,8 +37027,10 @@ type xxx_VerifyObjectsReplicaOperation struct {
 	Return  uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSReplicaVerifyObjects operation.
 func (o *xxx_VerifyObjectsReplicaOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of IDL_DRSReplicaVerifyObjects operation.
 func (o *xxx_VerifyObjectsReplicaOperation) OpName() string {
 	return "/drsuapi/v4/IDL_DRSReplicaVerifyObjects"
 }
@@ -36902,6 +37192,19 @@ func (o *VerifyObjectsReplicaRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeVerifyObjectsReplicaRequest build a response structure from the given request structure.
+func (o *VerifyObjectsReplicaRequest) MakeResponse() *VerifyObjectsReplicaResponse {
+	return &VerifyObjectsReplicaResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSReplicaVerifyObjects operation.
+func (o *VerifyObjectsReplicaRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of IDL_DRSReplicaVerifyObjects operation.
+func (o *VerifyObjectsReplicaRequest) OpName() string {
+	return "/drsuapi/v4/IDL_DRSReplicaVerifyObjects"
+}
+
 // VerifyObjectsReplicaResponse structure represents the IDL_DRSReplicaVerifyObjects operation response
 type VerifyObjectsReplicaResponse struct {
 	// Return: The IDL_DRSReplicaVerifyObjects return value.
@@ -36947,8 +37250,10 @@ type xxx_GetObjectExistenceOperation struct {
 	Return     uint32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSGetObjectExistence operation.
 func (o *xxx_GetObjectExistenceOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of IDL_DRSGetObjectExistence operation.
 func (o *xxx_GetObjectExistenceOperation) OpName() string {
 	return "/drsuapi/v4/IDL_DRSGetObjectExistence"
 }
@@ -37151,6 +37456,17 @@ func (o *GetObjectExistenceRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetObjectExistenceRequest build a response structure from the given request structure.
+func (o *GetObjectExistenceRequest) MakeResponse() *GetObjectExistenceResponse {
+	return &GetObjectExistenceResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSGetObjectExistence operation.
+func (o *GetObjectExistenceRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of IDL_DRSGetObjectExistence operation.
+func (o *GetObjectExistenceRequest) OpName() string { return "/drsuapi/v4/IDL_DRSGetObjectExistence" }
+
 // GetObjectExistenceResponse structure represents the IDL_DRSGetObjectExistence operation response
 type GetObjectExistenceResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message.
@@ -37204,8 +37520,10 @@ type xxx_QuerySitesByCostOperation struct {
 	Return     uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSQuerySitesByCost operation.
 func (o *xxx_QuerySitesByCostOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of IDL_DRSQuerySitesByCost operation.
 func (o *xxx_QuerySitesByCostOperation) OpName() string { return "/drsuapi/v4/IDL_DRSQuerySitesByCost" }
 
 func (o *xxx_QuerySitesByCostOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -37406,6 +37724,17 @@ func (o *QuerySitesByCostRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeQuerySitesByCostRequest build a response structure from the given request structure.
+func (o *QuerySitesByCostRequest) MakeResponse() *QuerySitesByCostResponse {
+	return &QuerySitesByCostResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSQuerySitesByCost operation.
+func (o *QuerySitesByCostRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of IDL_DRSQuerySitesByCost operation.
+func (o *QuerySitesByCostRequest) OpName() string { return "/drsuapi/v4/IDL_DRSQuerySitesByCost" }
+
 // QuerySitesByCostResponse structure represents the IDL_DRSQuerySitesByCost operation response
 type QuerySitesByCostResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message.
@@ -37459,8 +37788,10 @@ type xxx_InitDemotionOperation struct {
 	Return     uint32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSInitDemotion operation.
 func (o *xxx_InitDemotionOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of IDL_DRSInitDemotion operation.
 func (o *xxx_InitDemotionOperation) OpName() string { return "/drsuapi/v4/IDL_DRSInitDemotion" }
 
 func (o *xxx_InitDemotionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -37649,6 +37980,17 @@ func (o *InitDemotionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeInitDemotionRequest build a response structure from the given request structure.
+func (o *InitDemotionRequest) MakeResponse() *InitDemotionResponse {
+	return &InitDemotionResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSInitDemotion operation.
+func (o *InitDemotionRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of IDL_DRSInitDemotion operation.
+func (o *InitDemotionRequest) OpName() string { return "/drsuapi/v4/IDL_DRSInitDemotion" }
+
 // InitDemotionResponse structure represents the IDL_DRSInitDemotion operation response
 type InitDemotionResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message.
@@ -37702,8 +38044,10 @@ type xxx_DemotionReplicaOperation struct {
 	Return     uint32                         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSReplicaDemotion operation.
 func (o *xxx_DemotionReplicaOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of IDL_DRSReplicaDemotion operation.
 func (o *xxx_DemotionReplicaOperation) OpName() string { return "/drsuapi/v4/IDL_DRSReplicaDemotion" }
 
 func (o *xxx_DemotionReplicaOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -37898,6 +38242,17 @@ func (o *DemotionReplicaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeDemotionReplicaRequest build a response structure from the given request structure.
+func (o *DemotionReplicaRequest) MakeResponse() *DemotionReplicaResponse {
+	return &DemotionReplicaResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSReplicaDemotion operation.
+func (o *DemotionReplicaRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of IDL_DRSReplicaDemotion operation.
+func (o *DemotionReplicaRequest) OpName() string { return "/drsuapi/v4/IDL_DRSReplicaDemotion" }
+
 // DemotionReplicaResponse structure represents the IDL_DRSReplicaDemotion operation response
 type DemotionReplicaResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message.
@@ -37951,8 +38306,10 @@ type xxx_FinishDemotionOperation struct {
 	Return     uint32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSFinishDemotion operation.
 func (o *xxx_FinishDemotionOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of IDL_DRSFinishDemotion operation.
 func (o *xxx_FinishDemotionOperation) OpName() string { return "/drsuapi/v4/IDL_DRSFinishDemotion" }
 
 func (o *xxx_FinishDemotionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -38147,6 +38504,17 @@ func (o *FinishDemotionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeFinishDemotionRequest build a response structure from the given request structure.
+func (o *FinishDemotionRequest) MakeResponse() *FinishDemotionResponse {
+	return &FinishDemotionResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSFinishDemotion operation.
+func (o *FinishDemotionRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of IDL_DRSFinishDemotion operation.
+func (o *FinishDemotionRequest) OpName() string { return "/drsuapi/v4/IDL_DRSFinishDemotion" }
+
 // FinishDemotionResponse structure represents the IDL_DRSFinishDemotion operation response
 type FinishDemotionResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message.
@@ -38200,8 +38568,10 @@ type xxx_AddCloneDCOperation struct {
 	Return     uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSAddCloneDC operation.
 func (o *xxx_AddCloneDCOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of IDL_DRSAddCloneDC operation.
 func (o *xxx_AddCloneDCOperation) OpName() string { return "/drsuapi/v4/IDL_DRSAddCloneDC" }
 
 func (o *xxx_AddCloneDCOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -38402,6 +38772,17 @@ func (o *AddCloneDCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeAddCloneDCRequest build a response structure from the given request structure.
+func (o *AddCloneDCRequest) MakeResponse() *AddCloneDCResponse {
+	return &AddCloneDCResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSAddCloneDC operation.
+func (o *AddCloneDCRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of IDL_DRSAddCloneDC operation.
+func (o *AddCloneDCRequest) OpName() string { return "/drsuapi/v4/IDL_DRSAddCloneDC" }
+
 // AddCloneDCResponse structure represents the IDL_DRSAddCloneDC operation response
 type AddCloneDCResponse struct {
 	// pdwOutVersion: A pointer to the version of the response message.
@@ -38455,8 +38836,10 @@ type xxx_WriteNGCKeyOperation struct {
 	Return     uint32                     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSWriteNgcKey operation.
 func (o *xxx_WriteNGCKeyOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of IDL_DRSWriteNgcKey operation.
 func (o *xxx_WriteNGCKeyOperation) OpName() string { return "/drsuapi/v4/IDL_DRSWriteNgcKey" }
 
 func (o *xxx_WriteNGCKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -38648,6 +39031,17 @@ func (o *WriteNGCKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeWriteNGCKeyRequest build a response structure from the given request structure.
+func (o *WriteNGCKeyRequest) MakeResponse() *WriteNGCKeyResponse {
+	return &WriteNGCKeyResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSWriteNgcKey operation.
+func (o *WriteNGCKeyRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of IDL_DRSWriteNgcKey operation.
+func (o *WriteNGCKeyRequest) OpName() string { return "/drsuapi/v4/IDL_DRSWriteNgcKey" }
+
 // WriteNGCKeyResponse structure represents the IDL_DRSWriteNgcKey operation response
 type WriteNGCKeyResponse struct {
 	OutVersion uint32                   `idl:"name:pdwOutVersion;pointer:ref" json:"out_version"`
@@ -38699,8 +39093,10 @@ type xxx_ReadNGCKeyOperation struct {
 	Return     uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IDL_DRSReadNgcKey operation.
 func (o *xxx_ReadNGCKeyOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of IDL_DRSReadNgcKey operation.
 func (o *xxx_ReadNGCKeyOperation) OpName() string { return "/drsuapi/v4/IDL_DRSReadNgcKey" }
 
 func (o *xxx_ReadNGCKeyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -38897,6 +39293,17 @@ func (o *ReadNGCKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeReadNGCKeyRequest build a response structure from the given request structure.
+func (o *ReadNGCKeyRequest) MakeResponse() *ReadNGCKeyResponse {
+	return &ReadNGCKeyResponse{}
+}
+
+// OpNum returns the operation number of IDL_DRSReadNgcKey operation.
+func (o *ReadNGCKeyRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of IDL_DRSReadNgcKey operation.
+func (o *ReadNGCKeyRequest) OpName() string { return "/drsuapi/v4/IDL_DRSReadNgcKey" }
 
 // ReadNGCKeyResponse structure represents the IDL_DRSReadNgcKey operation response
 type ReadNGCKeyResponse struct {

@@ -9277,8 +9277,10 @@ type xxx_CloseServiceOperation struct {
 	Return        uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RCloseServiceHandle operation.
 func (o *xxx_CloseServiceOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RCloseServiceHandle operation.
 func (o *xxx_CloseServiceOperation) OpName() string { return "/svcctl/v2/RCloseServiceHandle" }
 
 func (o *xxx_CloseServiceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9412,6 +9414,17 @@ func (o *CloseServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCloseServiceRequest build a response structure from the given request structure.
+func (o *CloseServiceRequest) MakeResponse() *CloseServiceResponse {
+	return &CloseServiceResponse{}
+}
+
+// OpNum returns the operation number of RCloseServiceHandle operation.
+func (o *CloseServiceRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RCloseServiceHandle operation.
+func (o *CloseServiceRequest) OpName() string { return "/svcctl/v2/RCloseServiceHandle" }
+
 // CloseServiceResponse structure represents the RCloseServiceHandle operation response
 type CloseServiceResponse struct {
 	// hSCObject: An SC_RPC_HANDLE (section 2.2.4) data type that defines the handle to
@@ -9461,8 +9474,10 @@ type xxx_ControlServiceOperation struct {
 	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RControlService operation.
 func (o *xxx_ControlServiceOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RControlService operation.
 func (o *xxx_ControlServiceOperation) OpName() string { return "/svcctl/v2/RControlService" }
 
 func (o *xxx_ControlServiceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9670,6 +9685,17 @@ func (o *ControlServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeControlServiceRequest build a response structure from the given request structure.
+func (o *ControlServiceRequest) MakeResponse() *ControlServiceResponse {
+	return &ControlServiceResponse{}
+}
+
+// OpNum returns the operation number of RControlService operation.
+func (o *ControlServiceRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RControlService operation.
+func (o *ControlServiceRequest) OpName() string { return "/svcctl/v2/RControlService" }
+
 // ControlServiceResponse structure represents the RControlService operation response
 type ControlServiceResponse struct {
 	// lpServiceStatus: Pointer to a SERVICE_STATUS (section 2.2.47) structure that receives
@@ -9717,8 +9743,10 @@ type xxx_DeleteServiceOperation struct {
 	Return  uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RDeleteService operation.
 func (o *xxx_DeleteServiceOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of RDeleteService operation.
 func (o *xxx_DeleteServiceOperation) OpName() string { return "/svcctl/v2/RDeleteService" }
 
 func (o *xxx_DeleteServiceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -9832,6 +9860,17 @@ func (o *DeleteServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeDeleteServiceRequest build a response structure from the given request structure.
+func (o *DeleteServiceRequest) MakeResponse() *DeleteServiceResponse {
+	return &DeleteServiceResponse{}
+}
+
+// OpNum returns the operation number of RDeleteService operation.
+func (o *DeleteServiceRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of RDeleteService operation.
+func (o *DeleteServiceRequest) OpName() string { return "/svcctl/v2/RDeleteService" }
+
 // DeleteServiceResponse structure represents the RDeleteService operation response
 type DeleteServiceResponse struct {
 	// Return: The RDeleteService return value.
@@ -9874,8 +9913,10 @@ type xxx_LockServiceDatabaseOperation struct {
 	Return         uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RLockServiceDatabase operation.
 func (o *xxx_LockServiceDatabaseOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of RLockServiceDatabase operation.
 func (o *xxx_LockServiceDatabaseOperation) OpName() string { return "/svcctl/v2/RLockServiceDatabase" }
 
 func (o *xxx_LockServiceDatabaseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10010,6 +10051,17 @@ func (o *LockServiceDatabaseRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeLockServiceDatabaseRequest build a response structure from the given request structure.
+func (o *LockServiceDatabaseRequest) MakeResponse() *LockServiceDatabaseResponse {
+	return &LockServiceDatabaseResponse{}
+}
+
+// OpNum returns the operation number of RLockServiceDatabase operation.
+func (o *LockServiceDatabaseRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of RLockServiceDatabase operation.
+func (o *LockServiceDatabaseRequest) OpName() string { return "/svcctl/v2/RLockServiceDatabase" }
+
 // LockServiceDatabaseResponse structure represents the RLockServiceDatabase operation response
 type LockServiceDatabaseResponse struct {
 	// lpLock: An LPSC_RPC_LOCK (section 2.2.5) data type that defines the handle to the
@@ -10060,8 +10112,10 @@ type xxx_QueryServiceObjectSecurityOperation struct {
 	Return              uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RQueryServiceObjectSecurity operation.
 func (o *xxx_QueryServiceObjectSecurityOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of RQueryServiceObjectSecurity operation.
 func (o *xxx_QueryServiceObjectSecurityOperation) OpName() string {
 	return "/svcctl/v2/RQueryServiceObjectSecurity"
 }
@@ -10270,6 +10324,24 @@ func (o *QueryServiceObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeQueryServiceObjectSecurityRequest build a response structure from the given request structure.
+func (o *QueryServiceObjectSecurityRequest) MakeResponse() *QueryServiceObjectSecurityResponse {
+	if o == nil {
+		return &QueryServiceObjectSecurityResponse{}
+	}
+	return &QueryServiceObjectSecurityResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RQueryServiceObjectSecurity operation.
+func (o *QueryServiceObjectSecurityRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of RQueryServiceObjectSecurity operation.
+func (o *QueryServiceObjectSecurityRequest) OpName() string {
+	return "/svcctl/v2/RQueryServiceObjectSecurity"
+}
+
 // QueryServiceObjectSecurityResponse structure represents the RQueryServiceObjectSecurity operation response
 type QueryServiceObjectSecurityResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
@@ -10336,8 +10408,10 @@ type xxx_SetServiceObjectSecurityOperation struct {
 	Return              uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RSetServiceObjectSecurity operation.
 func (o *xxx_SetServiceObjectSecurityOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of RSetServiceObjectSecurity operation.
 func (o *xxx_SetServiceObjectSecurityOperation) OpName() string {
 	return "/svcctl/v2/RSetServiceObjectSecurity"
 }
@@ -10538,6 +10612,19 @@ func (o *SetServiceObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeSetServiceObjectSecurityRequest build a response structure from the given request structure.
+func (o *SetServiceObjectSecurityRequest) MakeResponse() *SetServiceObjectSecurityResponse {
+	return &SetServiceObjectSecurityResponse{}
+}
+
+// OpNum returns the operation number of RSetServiceObjectSecurity operation.
+func (o *SetServiceObjectSecurityRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of RSetServiceObjectSecurity operation.
+func (o *SetServiceObjectSecurityRequest) OpName() string {
+	return "/svcctl/v2/RSetServiceObjectSecurity"
+}
+
 // SetServiceObjectSecurityResponse structure represents the RSetServiceObjectSecurity operation response
 type SetServiceObjectSecurityResponse struct {
 	// Return: The RSetServiceObjectSecurity return value.
@@ -10580,8 +10667,10 @@ type xxx_QueryServiceStatusOperation struct {
 	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RQueryServiceStatus operation.
 func (o *xxx_QueryServiceStatusOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of RQueryServiceStatus operation.
 func (o *xxx_QueryServiceStatusOperation) OpName() string { return "/svcctl/v2/RQueryServiceStatus" }
 
 func (o *xxx_QueryServiceStatusOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10716,6 +10805,17 @@ func (o *QueryServiceStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeQueryServiceStatusRequest build a response structure from the given request structure.
+func (o *QueryServiceStatusRequest) MakeResponse() *QueryServiceStatusResponse {
+	return &QueryServiceStatusResponse{}
+}
+
+// OpNum returns the operation number of RQueryServiceStatus operation.
+func (o *QueryServiceStatusRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of RQueryServiceStatus operation.
+func (o *QueryServiceStatusRequest) OpName() string { return "/svcctl/v2/RQueryServiceStatus" }
+
 // QueryServiceStatusResponse structure represents the RQueryServiceStatus operation response
 type QueryServiceStatusResponse struct {
 	// lpServiceStatus: Pointer to a SERVICE_STATUS (section 2.2.47) structure that contains
@@ -10763,8 +10863,10 @@ type xxx_SetServiceStatusOperation struct {
 	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RSetServiceStatus operation.
 func (o *xxx_SetServiceStatusOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of RSetServiceStatus operation.
 func (o *xxx_SetServiceStatusOperation) OpName() string { return "/svcctl/v2/RSetServiceStatus" }
 
 func (o *xxx_SetServiceStatusOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -10904,6 +11006,17 @@ func (o *SetServiceStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetServiceStatusRequest build a response structure from the given request structure.
+func (o *SetServiceStatusRequest) MakeResponse() *SetServiceStatusResponse {
+	return &SetServiceStatusResponse{}
+}
+
+// OpNum returns the operation number of RSetServiceStatus operation.
+func (o *SetServiceStatusRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of RSetServiceStatus operation.
+func (o *SetServiceStatusRequest) OpName() string { return "/svcctl/v2/RSetServiceStatus" }
+
 // SetServiceStatusResponse structure represents the RSetServiceStatus operation response
 type SetServiceStatusResponse struct {
 	// Return: The RSetServiceStatus return value.
@@ -10945,8 +11058,10 @@ type xxx_UnlockServiceDatabaseOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RUnlockServiceDatabase operation.
 func (o *xxx_UnlockServiceDatabaseOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of RUnlockServiceDatabase operation.
 func (o *xxx_UnlockServiceDatabaseOperation) OpName() string {
 	return "/svcctl/v2/RUnlockServiceDatabase"
 }
@@ -11081,6 +11196,17 @@ func (o *UnlockServiceDatabaseRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeUnlockServiceDatabaseRequest build a response structure from the given request structure.
+func (o *UnlockServiceDatabaseRequest) MakeResponse() *UnlockServiceDatabaseResponse {
+	return &UnlockServiceDatabaseResponse{}
+}
+
+// OpNum returns the operation number of RUnlockServiceDatabase operation.
+func (o *UnlockServiceDatabaseRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of RUnlockServiceDatabase operation.
+func (o *UnlockServiceDatabaseRequest) OpName() string { return "/svcctl/v2/RUnlockServiceDatabase" }
+
 // UnlockServiceDatabaseResponse structure represents the RUnlockServiceDatabase operation response
 type UnlockServiceDatabaseResponse struct {
 	// Lock: An LPSC_RPC_LOCK (section 2.2.5) data type that defines the database lock context
@@ -11128,8 +11254,10 @@ type xxx_NotifyBootConfigStatusOperation struct {
 	Return         uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RNotifyBootConfigStatus operation.
 func (o *xxx_NotifyBootConfigStatusOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RNotifyBootConfigStatus operation.
 func (o *xxx_NotifyBootConfigStatusOperation) OpName() string {
 	return "/svcctl/v2/RNotifyBootConfigStatus"
 }
@@ -11291,6 +11419,17 @@ func (o *NotifyBootConfigStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeNotifyBootConfigStatusRequest build a response structure from the given request structure.
+func (o *NotifyBootConfigStatusRequest) MakeResponse() *NotifyBootConfigStatusResponse {
+	return &NotifyBootConfigStatusResponse{}
+}
+
+// OpNum returns the operation number of RNotifyBootConfigStatus operation.
+func (o *NotifyBootConfigStatusRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RNotifyBootConfigStatus operation.
+func (o *NotifyBootConfigStatusRequest) OpName() string { return "/svcctl/v2/RNotifyBootConfigStatus" }
+
 // NotifyBootConfigStatusResponse structure represents the RNotifyBootConfigStatus operation response
 type NotifyBootConfigStatusResponse struct {
 	// Return: The RNotifyBootConfigStatus return value.
@@ -11344,8 +11483,10 @@ type xxx_ChangeServiceConfigWOperation struct {
 	Return           uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RChangeServiceConfigW operation.
 func (o *xxx_ChangeServiceConfigWOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RChangeServiceConfigW operation.
 func (o *xxx_ChangeServiceConfigWOperation) OpName() string {
 	return "/svcctl/v2/RChangeServiceConfigW"
 }
@@ -12055,6 +12196,17 @@ func (o *ChangeServiceConfigWRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeChangeServiceConfigWRequest build a response structure from the given request structure.
+func (o *ChangeServiceConfigWRequest) MakeResponse() *ChangeServiceConfigWResponse {
+	return &ChangeServiceConfigWResponse{}
+}
+
+// OpNum returns the operation number of RChangeServiceConfigW operation.
+func (o *ChangeServiceConfigWRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RChangeServiceConfigW operation.
+func (o *ChangeServiceConfigWRequest) OpName() string { return "/svcctl/v2/RChangeServiceConfigW" }
+
 // ChangeServiceConfigWResponse structure represents the RChangeServiceConfigW operation response
 type ChangeServiceConfigWResponse struct {
 	// lpdwTagId: A Tag value for the service record (section 3.1.1) as a pointer to a variable
@@ -12117,8 +12269,10 @@ type xxx_CreateServiceWOperation struct {
 	Return           uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RCreateServiceW operation.
 func (o *xxx_CreateServiceWOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of RCreateServiceW operation.
 func (o *xxx_CreateServiceWOperation) OpName() string { return "/svcctl/v2/RCreateServiceW" }
 
 func (o *xxx_CreateServiceWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -12836,6 +12990,17 @@ func (o *CreateServiceWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreateServiceWRequest build a response structure from the given request structure.
+func (o *CreateServiceWRequest) MakeResponse() *CreateServiceWResponse {
+	return &CreateServiceWResponse{}
+}
+
+// OpNum returns the operation number of RCreateServiceW operation.
+func (o *CreateServiceWRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of RCreateServiceW operation.
+func (o *CreateServiceWRequest) OpName() string { return "/svcctl/v2/RCreateServiceW" }
+
 // CreateServiceWResponse structure represents the RCreateServiceW operation response
 type CreateServiceWResponse struct {
 	// lpdwTagId: A pointer to a variable that receives a tag value. The value is unique
@@ -12892,8 +13057,10 @@ type xxx_EnumDependentServicesWOperation struct {
 	Return            uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of REnumDependentServicesW operation.
 func (o *xxx_EnumDependentServicesWOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of REnumDependentServicesW operation.
 func (o *xxx_EnumDependentServicesWOperation) OpName() string {
 	return "/svcctl/v2/REnumDependentServicesW"
 }
@@ -13134,6 +13301,22 @@ func (o *EnumDependentServicesWRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeEnumDependentServicesWRequest build a response structure from the given request structure.
+func (o *EnumDependentServicesWRequest) MakeResponse() *EnumDependentServicesWResponse {
+	if o == nil {
+		return &EnumDependentServicesWResponse{}
+	}
+	return &EnumDependentServicesWResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of REnumDependentServicesW operation.
+func (o *EnumDependentServicesWRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of REnumDependentServicesW operation.
+func (o *EnumDependentServicesWRequest) OpName() string { return "/svcctl/v2/REnumDependentServicesW" }
+
 // EnumDependentServicesWResponse structure represents the REnumDependentServicesW operation response
 type EnumDependentServicesWResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
@@ -13209,8 +13392,10 @@ type xxx_EnumServicesStatusWOperation struct {
 	Return            uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of REnumServicesStatusW operation.
 func (o *xxx_EnumServicesStatusWOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of REnumServicesStatusW operation.
 func (o *xxx_EnumServicesStatusWOperation) OpName() string { return "/svcctl/v2/REnumServicesStatusW" }
 
 func (o *xxx_EnumServicesStatusWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13558,6 +13743,22 @@ func (o *EnumServicesStatusWRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeEnumServicesStatusWRequest build a response structure from the given request structure.
+func (o *EnumServicesStatusWRequest) MakeResponse() *EnumServicesStatusWResponse {
+	if o == nil {
+		return &EnumServicesStatusWResponse{}
+	}
+	return &EnumServicesStatusWResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of REnumServicesStatusW operation.
+func (o *EnumServicesStatusWRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of REnumServicesStatusW operation.
+func (o *EnumServicesStatusWRequest) OpName() string { return "/svcctl/v2/REnumServicesStatusW" }
+
 // EnumServicesStatusWResponse structure represents the REnumServicesStatusW operation response
 type EnumServicesStatusWResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
@@ -13637,8 +13838,10 @@ type xxx_OpenSCMWOperation struct {
 	Return        uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ROpenSCManagerW operation.
 func (o *xxx_OpenSCMWOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of ROpenSCManagerW operation.
 func (o *xxx_OpenSCMWOperation) OpName() string { return "/svcctl/v2/ROpenSCManagerW" }
 
 func (o *xxx_OpenSCMWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -13853,6 +14056,17 @@ func (o *OpenSCMWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeOpenSCMWRequest build a response structure from the given request structure.
+func (o *OpenSCMWRequest) MakeResponse() *OpenSCMWResponse {
+	return &OpenSCMWResponse{}
+}
+
+// OpNum returns the operation number of ROpenSCManagerW operation.
+func (o *OpenSCMWRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of ROpenSCManagerW operation.
+func (o *OpenSCMWRequest) OpName() string { return "/svcctl/v2/ROpenSCManagerW" }
+
 // OpenSCMWResponse structure represents the ROpenSCManagerW operation response
 type OpenSCMWResponse struct {
 	// lpScHandle: An LPSC_RPC_HANDLE data type that defines the handle to the newly opened
@@ -13902,8 +14116,10 @@ type xxx_OpenServiceWOperation struct {
 	Return         uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ROpenServiceW operation.
 func (o *xxx_OpenServiceWOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of ROpenServiceW operation.
 func (o *xxx_OpenServiceWOperation) OpName() string { return "/svcctl/v2/ROpenServiceW" }
 
 func (o *xxx_OpenServiceWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14076,6 +14292,17 @@ func (o *OpenServiceWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeOpenServiceWRequest build a response structure from the given request structure.
+func (o *OpenServiceWRequest) MakeResponse() *OpenServiceWResponse {
+	return &OpenServiceWResponse{}
+}
+
+// OpNum returns the operation number of ROpenServiceW operation.
+func (o *OpenServiceWRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of ROpenServiceW operation.
+func (o *OpenServiceWRequest) OpName() string { return "/svcctl/v2/ROpenServiceW" }
+
 // OpenServiceWResponse structure represents the ROpenServiceW operation response
 type OpenServiceWResponse struct {
 	// lpServiceHandle: An LPSC_RPC_HANDLE (section 2.2.4) data type that defines the handle
@@ -14125,8 +14352,10 @@ type xxx_QueryServiceConfigWOperation struct {
 	Return            uint32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RQueryServiceConfigW operation.
 func (o *xxx_QueryServiceConfigWOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of RQueryServiceConfigW operation.
 func (o *xxx_QueryServiceConfigWOperation) OpName() string { return "/svcctl/v2/RQueryServiceConfigW" }
 
 func (o *xxx_QueryServiceConfigWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14298,6 +14527,17 @@ func (o *QueryServiceConfigWRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeQueryServiceConfigWRequest build a response structure from the given request structure.
+func (o *QueryServiceConfigWRequest) MakeResponse() *QueryServiceConfigWResponse {
+	return &QueryServiceConfigWResponse{}
+}
+
+// OpNum returns the operation number of RQueryServiceConfigW operation.
+func (o *QueryServiceConfigWRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of RQueryServiceConfigW operation.
+func (o *QueryServiceConfigWRequest) OpName() string { return "/svcctl/v2/RQueryServiceConfigW" }
+
 // QueryServiceConfigWResponse structure represents the RQueryServiceConfigW operation response
 type QueryServiceConfigWResponse struct {
 	// lpServiceConfig: A pointer to a buffer that contains the QUERY_SERVICE_CONFIGW (section
@@ -14353,8 +14593,10 @@ type xxx_QueryServiceLockStatusWOperation struct {
 	Return            uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RQueryServiceLockStatusW operation.
 func (o *xxx_QueryServiceLockStatusWOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of RQueryServiceLockStatusW operation.
 func (o *xxx_QueryServiceLockStatusWOperation) OpName() string {
 	return "/svcctl/v2/RQueryServiceLockStatusW"
 }
@@ -14528,6 +14770,19 @@ func (o *QueryServiceLockStatusWRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeQueryServiceLockStatusWRequest build a response structure from the given request structure.
+func (o *QueryServiceLockStatusWRequest) MakeResponse() *QueryServiceLockStatusWResponse {
+	return &QueryServiceLockStatusWResponse{}
+}
+
+// OpNum returns the operation number of RQueryServiceLockStatusW operation.
+func (o *QueryServiceLockStatusWRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of RQueryServiceLockStatusW operation.
+func (o *QueryServiceLockStatusWRequest) OpName() string {
+	return "/svcctl/v2/RQueryServiceLockStatusW"
+}
+
 // QueryServiceLockStatusWResponse structure represents the RQueryServiceLockStatusW operation response
 type QueryServiceLockStatusWResponse struct {
 	// lpLockStatus: A pointer to a buffer that contains QUERY_SERVICE_LOCK_STATUSW (section
@@ -14582,8 +14837,10 @@ type xxx_StartServiceWOperation struct {
 	Return  uint32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RStartServiceW operation.
 func (o *xxx_StartServiceWOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of RStartServiceW operation.
 func (o *xxx_StartServiceWOperation) OpName() string { return "/svcctl/v2/RStartServiceW" }
 
 func (o *xxx_StartServiceWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -14804,6 +15061,17 @@ func (o *StartServiceWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeStartServiceWRequest build a response structure from the given request structure.
+func (o *StartServiceWRequest) MakeResponse() *StartServiceWResponse {
+	return &StartServiceWResponse{}
+}
+
+// OpNum returns the operation number of RStartServiceW operation.
+func (o *StartServiceWRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of RStartServiceW operation.
+func (o *StartServiceWRequest) OpName() string { return "/svcctl/v2/RStartServiceW" }
+
 // StartServiceWResponse structure represents the RStartServiceW operation response
 type StartServiceWResponse struct {
 	// Return: The RStartServiceW return value.
@@ -14848,8 +15116,10 @@ type xxx_GetServiceDisplayNameWOperation struct {
 	Return         uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RGetServiceDisplayNameW operation.
 func (o *xxx_GetServiceDisplayNameWOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of RGetServiceDisplayNameW operation.
 func (o *xxx_GetServiceDisplayNameWOperation) OpName() string {
 	return "/svcctl/v2/RGetServiceDisplayNameW"
 }
@@ -15093,6 +15363,17 @@ func (o *GetServiceDisplayNameWRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetServiceDisplayNameWRequest build a response structure from the given request structure.
+func (o *GetServiceDisplayNameWRequest) MakeResponse() *GetServiceDisplayNameWResponse {
+	return &GetServiceDisplayNameWResponse{}
+}
+
+// OpNum returns the operation number of RGetServiceDisplayNameW operation.
+func (o *GetServiceDisplayNameWRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of RGetServiceDisplayNameW operation.
+func (o *GetServiceDisplayNameWRequest) OpName() string { return "/svcctl/v2/RGetServiceDisplayNameW" }
+
 // GetServiceDisplayNameWResponse structure represents the RGetServiceDisplayNameW operation response
 type GetServiceDisplayNameWResponse struct {
 	// lpDisplayName: A pointer to a buffer that receives the null-terminated UNICODE string
@@ -15148,8 +15429,10 @@ type xxx_GetServiceKeyNameWOperation struct {
 	Return         uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RGetServiceKeyNameW operation.
 func (o *xxx_GetServiceKeyNameWOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of RGetServiceKeyNameW operation.
 func (o *xxx_GetServiceKeyNameWOperation) OpName() string { return "/svcctl/v2/RGetServiceKeyNameW" }
 
 func (o *xxx_GetServiceKeyNameWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -15391,6 +15674,17 @@ func (o *GetServiceKeyNameWRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetServiceKeyNameWRequest build a response structure from the given request structure.
+func (o *GetServiceKeyNameWRequest) MakeResponse() *GetServiceKeyNameWResponse {
+	return &GetServiceKeyNameWResponse{}
+}
+
+// OpNum returns the operation number of RGetServiceKeyNameW operation.
+func (o *GetServiceKeyNameWRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of RGetServiceKeyNameW operation.
+func (o *GetServiceKeyNameWRequest) OpName() string { return "/svcctl/v2/RGetServiceKeyNameW" }
+
 // GetServiceKeyNameWResponse structure represents the RGetServiceKeyNameW operation response
 type GetServiceKeyNameWResponse struct {
 	// lpServiceName: A pointer to a buffer that receives the null-terminated UNICODE string
@@ -15455,8 +15749,10 @@ type xxx_ChangeServiceConfigAOperation struct {
 	Return           uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RChangeServiceConfigA operation.
 func (o *xxx_ChangeServiceConfigAOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of RChangeServiceConfigA operation.
 func (o *xxx_ChangeServiceConfigAOperation) OpName() string {
 	return "/svcctl/v2/RChangeServiceConfigA"
 }
@@ -16165,6 +16461,17 @@ func (o *ChangeServiceConfigARequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeChangeServiceConfigARequest build a response structure from the given request structure.
+func (o *ChangeServiceConfigARequest) MakeResponse() *ChangeServiceConfigAResponse {
+	return &ChangeServiceConfigAResponse{}
+}
+
+// OpNum returns the operation number of RChangeServiceConfigA operation.
+func (o *ChangeServiceConfigARequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of RChangeServiceConfigA operation.
+func (o *ChangeServiceConfigARequest) OpName() string { return "/svcctl/v2/RChangeServiceConfigA" }
+
 // ChangeServiceConfigAResponse structure represents the RChangeServiceConfigA operation response
 type ChangeServiceConfigAResponse struct {
 	// lpdwTagId: A Tag value for the service record (section 3.1.1) as a pointer to a variable
@@ -16227,8 +16534,10 @@ type xxx_CreateServiceAOperation struct {
 	Return           uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RCreateServiceA operation.
 func (o *xxx_CreateServiceAOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of RCreateServiceA operation.
 func (o *xxx_CreateServiceAOperation) OpName() string { return "/svcctl/v2/RCreateServiceA" }
 
 func (o *xxx_CreateServiceAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -16947,6 +17256,17 @@ func (o *CreateServiceARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreateServiceARequest build a response structure from the given request structure.
+func (o *CreateServiceARequest) MakeResponse() *CreateServiceAResponse {
+	return &CreateServiceAResponse{}
+}
+
+// OpNum returns the operation number of RCreateServiceA operation.
+func (o *CreateServiceARequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of RCreateServiceA operation.
+func (o *CreateServiceARequest) OpName() string { return "/svcctl/v2/RCreateServiceA" }
+
 // CreateServiceAResponse structure represents the RCreateServiceA operation response
 type CreateServiceAResponse struct {
 	// lpdwTagId: A pointer to a variable that receives a tag value. The value is unique
@@ -17003,8 +17323,10 @@ type xxx_EnumDependentServicesAOperation struct {
 	Return            uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of REnumDependentServicesA operation.
 func (o *xxx_EnumDependentServicesAOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of REnumDependentServicesA operation.
 func (o *xxx_EnumDependentServicesAOperation) OpName() string {
 	return "/svcctl/v2/REnumDependentServicesA"
 }
@@ -17246,6 +17568,22 @@ func (o *EnumDependentServicesARequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeEnumDependentServicesARequest build a response structure from the given request structure.
+func (o *EnumDependentServicesARequest) MakeResponse() *EnumDependentServicesAResponse {
+	if o == nil {
+		return &EnumDependentServicesAResponse{}
+	}
+	return &EnumDependentServicesAResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of REnumDependentServicesA operation.
+func (o *EnumDependentServicesARequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of REnumDependentServicesA operation.
+func (o *EnumDependentServicesARequest) OpName() string { return "/svcctl/v2/REnumDependentServicesA" }
+
 // EnumDependentServicesAResponse structure represents the REnumDependentServicesA operation response
 type EnumDependentServicesAResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
@@ -17321,8 +17659,10 @@ type xxx_EnumServicesStatusAOperation struct {
 	Return            uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of REnumServicesStatusA operation.
 func (o *xxx_EnumServicesStatusAOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of REnumServicesStatusA operation.
 func (o *xxx_EnumServicesStatusAOperation) OpName() string { return "/svcctl/v2/REnumServicesStatusA" }
 
 func (o *xxx_EnumServicesStatusAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -17669,6 +18009,22 @@ func (o *EnumServicesStatusARequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeEnumServicesStatusARequest build a response structure from the given request structure.
+func (o *EnumServicesStatusARequest) MakeResponse() *EnumServicesStatusAResponse {
+	if o == nil {
+		return &EnumServicesStatusAResponse{}
+	}
+	return &EnumServicesStatusAResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of REnumServicesStatusA operation.
+func (o *EnumServicesStatusARequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of REnumServicesStatusA operation.
+func (o *EnumServicesStatusARequest) OpName() string { return "/svcctl/v2/REnumServicesStatusA" }
+
 // EnumServicesStatusAResponse structure represents the REnumServicesStatusA operation response
 type EnumServicesStatusAResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
@@ -17749,8 +18105,10 @@ type xxx_OpenSCMAOperation struct {
 	Return        uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ROpenSCManagerA operation.
 func (o *xxx_OpenSCMAOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of ROpenSCManagerA operation.
 func (o *xxx_OpenSCMAOperation) OpName() string { return "/svcctl/v2/ROpenSCManagerA" }
 
 func (o *xxx_OpenSCMAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -17965,6 +18323,17 @@ func (o *OpenSCMARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeOpenSCMARequest build a response structure from the given request structure.
+func (o *OpenSCMARequest) MakeResponse() *OpenSCMAResponse {
+	return &OpenSCMAResponse{}
+}
+
+// OpNum returns the operation number of ROpenSCManagerA operation.
+func (o *OpenSCMARequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of ROpenSCManagerA operation.
+func (o *OpenSCMARequest) OpName() string { return "/svcctl/v2/ROpenSCManagerA" }
+
 // OpenSCMAResponse structure represents the ROpenSCManagerA operation response
 type OpenSCMAResponse struct {
 	// lpScHandle: An LPSC_RPC_HANDLE (section 2.2.4) data type that defines the handle
@@ -18014,8 +18383,10 @@ type xxx_OpenServiceAOperation struct {
 	Return         uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ROpenServiceA operation.
 func (o *xxx_OpenServiceAOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of ROpenServiceA operation.
 func (o *xxx_OpenServiceAOperation) OpName() string { return "/svcctl/v2/ROpenServiceA" }
 
 func (o *xxx_OpenServiceAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18185,6 +18556,17 @@ func (o *OpenServiceARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeOpenServiceARequest build a response structure from the given request structure.
+func (o *OpenServiceARequest) MakeResponse() *OpenServiceAResponse {
+	return &OpenServiceAResponse{}
+}
+
+// OpNum returns the operation number of ROpenServiceA operation.
+func (o *OpenServiceARequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of ROpenServiceA operation.
+func (o *OpenServiceARequest) OpName() string { return "/svcctl/v2/ROpenServiceA" }
+
 // OpenServiceAResponse structure represents the ROpenServiceA operation response
 type OpenServiceAResponse struct {
 	// lpServiceHandle: An LPSC_RPC_HANDLE (section 2.2.4) data type that defines the handle
@@ -18234,8 +18616,10 @@ type xxx_QueryServiceConfigAOperation struct {
 	Return            uint32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RQueryServiceConfigA operation.
 func (o *xxx_QueryServiceConfigAOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of RQueryServiceConfigA operation.
 func (o *xxx_QueryServiceConfigAOperation) OpName() string { return "/svcctl/v2/RQueryServiceConfigA" }
 
 func (o *xxx_QueryServiceConfigAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18407,6 +18791,17 @@ func (o *QueryServiceConfigARequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeQueryServiceConfigARequest build a response structure from the given request structure.
+func (o *QueryServiceConfigARequest) MakeResponse() *QueryServiceConfigAResponse {
+	return &QueryServiceConfigAResponse{}
+}
+
+// OpNum returns the operation number of RQueryServiceConfigA operation.
+func (o *QueryServiceConfigARequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of RQueryServiceConfigA operation.
+func (o *QueryServiceConfigARequest) OpName() string { return "/svcctl/v2/RQueryServiceConfigA" }
+
 // QueryServiceConfigAResponse structure represents the RQueryServiceConfigA operation response
 type QueryServiceConfigAResponse struct {
 	// lpServiceConfig: A pointer to a buffer that contains the QUERY_SERVICE_CONFIGA structure.
@@ -18461,8 +18856,10 @@ type xxx_QueryServiceLockStatusAOperation struct {
 	Return            uint32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RQueryServiceLockStatusA operation.
 func (o *xxx_QueryServiceLockStatusAOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of RQueryServiceLockStatusA operation.
 func (o *xxx_QueryServiceLockStatusAOperation) OpName() string {
 	return "/svcctl/v2/RQueryServiceLockStatusA"
 }
@@ -18636,6 +19033,19 @@ func (o *QueryServiceLockStatusARequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeQueryServiceLockStatusARequest build a response structure from the given request structure.
+func (o *QueryServiceLockStatusARequest) MakeResponse() *QueryServiceLockStatusAResponse {
+	return &QueryServiceLockStatusAResponse{}
+}
+
+// OpNum returns the operation number of RQueryServiceLockStatusA operation.
+func (o *QueryServiceLockStatusARequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of RQueryServiceLockStatusA operation.
+func (o *QueryServiceLockStatusARequest) OpName() string {
+	return "/svcctl/v2/RQueryServiceLockStatusA"
+}
+
 // QueryServiceLockStatusAResponse structure represents the RQueryServiceLockStatusA operation response
 type QueryServiceLockStatusAResponse struct {
 	// lpLockStatus: A pointer to a buffer that contains the QUERY_SERVICE_LOCK_STATUSA
@@ -18690,8 +19100,10 @@ type xxx_StartServiceAOperation struct {
 	Return  uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RStartServiceA operation.
 func (o *xxx_StartServiceAOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of RStartServiceA operation.
 func (o *xxx_StartServiceAOperation) OpName() string { return "/svcctl/v2/RStartServiceA" }
 
 func (o *xxx_StartServiceAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18912,6 +19324,17 @@ func (o *StartServiceARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeStartServiceARequest build a response structure from the given request structure.
+func (o *StartServiceARequest) MakeResponse() *StartServiceAResponse {
+	return &StartServiceAResponse{}
+}
+
+// OpNum returns the operation number of RStartServiceA operation.
+func (o *StartServiceARequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of RStartServiceA operation.
+func (o *StartServiceARequest) OpName() string { return "/svcctl/v2/RStartServiceA" }
+
 // StartServiceAResponse structure represents the RStartServiceA operation response
 type StartServiceAResponse struct {
 	// Return: The RStartServiceA return value.
@@ -18956,8 +19379,10 @@ type xxx_GetServiceDisplayNameAOperation struct {
 	Return         uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RGetServiceDisplayNameA operation.
 func (o *xxx_GetServiceDisplayNameAOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of RGetServiceDisplayNameA operation.
 func (o *xxx_GetServiceDisplayNameAOperation) OpName() string {
 	return "/svcctl/v2/RGetServiceDisplayNameA"
 }
@@ -19199,6 +19624,17 @@ func (o *GetServiceDisplayNameARequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetServiceDisplayNameARequest build a response structure from the given request structure.
+func (o *GetServiceDisplayNameARequest) MakeResponse() *GetServiceDisplayNameAResponse {
+	return &GetServiceDisplayNameAResponse{}
+}
+
+// OpNum returns the operation number of RGetServiceDisplayNameA operation.
+func (o *GetServiceDisplayNameARequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of RGetServiceDisplayNameA operation.
+func (o *GetServiceDisplayNameARequest) OpName() string { return "/svcctl/v2/RGetServiceDisplayNameA" }
+
 // GetServiceDisplayNameAResponse structure represents the RGetServiceDisplayNameA operation response
 type GetServiceDisplayNameAResponse struct {
 	// lpDisplayName: A pointer to a buffer that receives the null-terminated ANSI string
@@ -19254,8 +19690,10 @@ type xxx_GetServiceKeyNameAOperation struct {
 	Return         uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RGetServiceKeyNameA operation.
 func (o *xxx_GetServiceKeyNameAOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of RGetServiceKeyNameA operation.
 func (o *xxx_GetServiceKeyNameAOperation) OpName() string { return "/svcctl/v2/RGetServiceKeyNameA" }
 
 func (o *xxx_GetServiceKeyNameAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19495,6 +19933,17 @@ func (o *GetServiceKeyNameARequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetServiceKeyNameARequest build a response structure from the given request structure.
+func (o *GetServiceKeyNameARequest) MakeResponse() *GetServiceKeyNameAResponse {
+	return &GetServiceKeyNameAResponse{}
+}
+
+// OpNum returns the operation number of RGetServiceKeyNameA operation.
+func (o *GetServiceKeyNameARequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of RGetServiceKeyNameA operation.
+func (o *GetServiceKeyNameARequest) OpName() string { return "/svcctl/v2/RGetServiceKeyNameA" }
+
 // GetServiceKeyNameAResponse structure represents the RGetServiceKeyNameA operation response
 type GetServiceKeyNameAResponse struct {
 	// lpKeyName: A pointer to a buffer that receives the null-terminated ANSI string that
@@ -19555,8 +20004,10 @@ type xxx_EnumServiceGroupWOperation struct {
 	Return            uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of REnumServiceGroupW operation.
 func (o *xxx_EnumServiceGroupWOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of REnumServiceGroupW operation.
 func (o *xxx_EnumServiceGroupWOperation) OpName() string { return "/svcctl/v2/REnumServiceGroupW" }
 
 func (o *xxx_EnumServiceGroupWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19947,6 +20398,22 @@ func (o *EnumServiceGroupWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeEnumServiceGroupWRequest build a response structure from the given request structure.
+func (o *EnumServiceGroupWRequest) MakeResponse() *EnumServiceGroupWResponse {
+	if o == nil {
+		return &EnumServiceGroupWResponse{}
+	}
+	return &EnumServiceGroupWResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of REnumServiceGroupW operation.
+func (o *EnumServiceGroupWRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of REnumServiceGroupW operation.
+func (o *EnumServiceGroupWRequest) OpName() string { return "/svcctl/v2/REnumServiceGroupW" }
+
 // EnumServiceGroupWResponse structure represents the REnumServiceGroupW operation response
 type EnumServiceGroupWResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
@@ -20025,8 +20492,10 @@ type xxx_ChangeServiceConfig2AOperation struct {
 	Return  uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RChangeServiceConfig2A operation.
 func (o *xxx_ChangeServiceConfig2AOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of RChangeServiceConfig2A operation.
 func (o *xxx_ChangeServiceConfig2AOperation) OpName() string {
 	return "/svcctl/v2/RChangeServiceConfig2A"
 }
@@ -20174,6 +20643,17 @@ func (o *ChangeServiceConfig2ARequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeChangeServiceConfig2ARequest build a response structure from the given request structure.
+func (o *ChangeServiceConfig2ARequest) MakeResponse() *ChangeServiceConfig2AResponse {
+	return &ChangeServiceConfig2AResponse{}
+}
+
+// OpNum returns the operation number of RChangeServiceConfig2A operation.
+func (o *ChangeServiceConfig2ARequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of RChangeServiceConfig2A operation.
+func (o *ChangeServiceConfig2ARequest) OpName() string { return "/svcctl/v2/RChangeServiceConfig2A" }
+
 // ChangeServiceConfig2AResponse structure represents the RChangeServiceConfig2A operation response
 type ChangeServiceConfig2AResponse struct {
 	// Return: The RChangeServiceConfig2A return value.
@@ -20216,8 +20696,10 @@ type xxx_ChangeServiceConfig2WOperation struct {
 	Return  uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RChangeServiceConfig2W operation.
 func (o *xxx_ChangeServiceConfig2WOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of RChangeServiceConfig2W operation.
 func (o *xxx_ChangeServiceConfig2WOperation) OpName() string {
 	return "/svcctl/v2/RChangeServiceConfig2W"
 }
@@ -20365,6 +20847,17 @@ func (o *ChangeServiceConfig2WRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeChangeServiceConfig2WRequest build a response structure from the given request structure.
+func (o *ChangeServiceConfig2WRequest) MakeResponse() *ChangeServiceConfig2WResponse {
+	return &ChangeServiceConfig2WResponse{}
+}
+
+// OpNum returns the operation number of RChangeServiceConfig2W operation.
+func (o *ChangeServiceConfig2WRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of RChangeServiceConfig2W operation.
+func (o *ChangeServiceConfig2WRequest) OpName() string { return "/svcctl/v2/RChangeServiceConfig2W" }
+
 // ChangeServiceConfig2WResponse structure represents the RChangeServiceConfig2W operation response
 type ChangeServiceConfig2WResponse struct {
 	// Return: The RChangeServiceConfig2W return value.
@@ -20410,8 +20903,10 @@ type xxx_QueryServiceConfig2AOperation struct {
 	Return            uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RQueryServiceConfig2A operation.
 func (o *xxx_QueryServiceConfig2AOperation) OpNum() int { return 38 }
 
+// OpName returns the operation name of RQueryServiceConfig2A operation.
 func (o *xxx_QueryServiceConfig2AOperation) OpName() string {
 	return "/svcctl/v2/RQueryServiceConfig2A"
 }
@@ -20646,6 +21141,22 @@ func (o *QueryServiceConfig2ARequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeQueryServiceConfig2ARequest build a response structure from the given request structure.
+func (o *QueryServiceConfig2ARequest) MakeResponse() *QueryServiceConfig2AResponse {
+	if o == nil {
+		return &QueryServiceConfig2AResponse{}
+	}
+	return &QueryServiceConfig2AResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RQueryServiceConfig2A operation.
+func (o *QueryServiceConfig2ARequest) OpNum() int { return 38 }
+
+// OpName returns the operation name of RQueryServiceConfig2A operation.
+func (o *QueryServiceConfig2ARequest) OpName() string { return "/svcctl/v2/RQueryServiceConfig2A" }
+
 // QueryServiceConfig2AResponse structure represents the RQueryServiceConfig2A operation response
 type QueryServiceConfig2AResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
@@ -20713,8 +21224,10 @@ type xxx_QueryServiceConfig2WOperation struct {
 	Return            uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RQueryServiceConfig2W operation.
 func (o *xxx_QueryServiceConfig2WOperation) OpNum() int { return 39 }
 
+// OpName returns the operation name of RQueryServiceConfig2W operation.
 func (o *xxx_QueryServiceConfig2WOperation) OpName() string {
 	return "/svcctl/v2/RQueryServiceConfig2W"
 }
@@ -20951,6 +21464,22 @@ func (o *QueryServiceConfig2WRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeQueryServiceConfig2WRequest build a response structure from the given request structure.
+func (o *QueryServiceConfig2WRequest) MakeResponse() *QueryServiceConfig2WResponse {
+	if o == nil {
+		return &QueryServiceConfig2WResponse{}
+	}
+	return &QueryServiceConfig2WResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RQueryServiceConfig2W operation.
+func (o *QueryServiceConfig2WRequest) OpNum() int { return 39 }
+
+// OpName returns the operation name of RQueryServiceConfig2W operation.
+func (o *QueryServiceConfig2WRequest) OpName() string { return "/svcctl/v2/RQueryServiceConfig2W" }
+
 // QueryServiceConfig2WResponse structure represents the RQueryServiceConfig2W operation response
 type QueryServiceConfig2WResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
@@ -21018,8 +21547,10 @@ type xxx_QueryServiceStatusExOperation struct {
 	Return            uint32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RQueryServiceStatusEx operation.
 func (o *xxx_QueryServiceStatusExOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of RQueryServiceStatusEx operation.
 func (o *xxx_QueryServiceStatusExOperation) OpName() string {
 	return "/svcctl/v2/RQueryServiceStatusEx"
 }
@@ -21228,6 +21759,22 @@ func (o *QueryServiceStatusExRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeQueryServiceStatusExRequest build a response structure from the given request structure.
+func (o *QueryServiceStatusExRequest) MakeResponse() *QueryServiceStatusExResponse {
+	if o == nil {
+		return &QueryServiceStatusExResponse{}
+	}
+	return &QueryServiceStatusExResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of RQueryServiceStatusEx operation.
+func (o *QueryServiceStatusExRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of RQueryServiceStatusEx operation.
+func (o *QueryServiceStatusExRequest) OpName() string { return "/svcctl/v2/RQueryServiceStatusEx" }
+
 // QueryServiceStatusExResponse structure represents the RQueryServiceStatusEx operation response
 type QueryServiceStatusExResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
@@ -21300,8 +21847,10 @@ type xxx_EnumServicesStatusExAOperation struct {
 	Return            uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of REnumServicesStatusExA operation.
 func (o *xxx_EnumServicesStatusExAOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of REnumServicesStatusExA operation.
 func (o *xxx_EnumServicesStatusExAOperation) OpName() string {
 	return "/svcctl/v2/REnumServicesStatusExA"
 }
@@ -21710,6 +22259,22 @@ func (o *EnumServicesStatusExARequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeEnumServicesStatusExARequest build a response structure from the given request structure.
+func (o *EnumServicesStatusExARequest) MakeResponse() *EnumServicesStatusExAResponse {
+	if o == nil {
+		return &EnumServicesStatusExAResponse{}
+	}
+	return &EnumServicesStatusExAResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of REnumServicesStatusExA operation.
+func (o *EnumServicesStatusExARequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of REnumServicesStatusExA operation.
+func (o *EnumServicesStatusExARequest) OpName() string { return "/svcctl/v2/REnumServicesStatusExA" }
+
 // EnumServicesStatusExAResponse structure represents the REnumServicesStatusExA operation response
 type EnumServicesStatusExAResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
@@ -21795,8 +22360,10 @@ type xxx_EnumServicesStatusExWOperation struct {
 	Return            uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of REnumServicesStatusExW operation.
 func (o *xxx_EnumServicesStatusExWOperation) OpNum() int { return 42 }
 
+// OpName returns the operation name of REnumServicesStatusExW operation.
 func (o *xxx_EnumServicesStatusExWOperation) OpName() string {
 	return "/svcctl/v2/REnumServicesStatusExW"
 }
@@ -22205,6 +22772,22 @@ func (o *EnumServicesStatusExWRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeEnumServicesStatusExWRequest build a response structure from the given request structure.
+func (o *EnumServicesStatusExWRequest) MakeResponse() *EnumServicesStatusExWResponse {
+	if o == nil {
+		return &EnumServicesStatusExWResponse{}
+	}
+	return &EnumServicesStatusExWResponse{
+		BufferLength: o.BufferLength,
+	}
+}
+
+// OpNum returns the operation number of REnumServicesStatusExW operation.
+func (o *EnumServicesStatusExWRequest) OpNum() int { return 42 }
+
+// OpName returns the operation name of REnumServicesStatusExW operation.
+func (o *EnumServicesStatusExWRequest) OpName() string { return "/svcctl/v2/REnumServicesStatusExW" }
+
 // EnumServicesStatusExWResponse structure represents the REnumServicesStatusExW operation response
 type EnumServicesStatusExWResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
@@ -22297,8 +22880,10 @@ type xxx_CreateServiceWOW64AOperation struct {
 	Return           uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RCreateServiceWOW64A operation.
 func (o *xxx_CreateServiceWOW64AOperation) OpNum() int { return 44 }
 
+// OpName returns the operation name of RCreateServiceWOW64A operation.
 func (o *xxx_CreateServiceWOW64AOperation) OpName() string { return "/svcctl/v2/RCreateServiceWOW64A" }
 
 func (o *xxx_CreateServiceWOW64AOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -23016,6 +23601,17 @@ func (o *CreateServiceWOW64ARequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeCreateServiceWOW64ARequest build a response structure from the given request structure.
+func (o *CreateServiceWOW64ARequest) MakeResponse() *CreateServiceWOW64AResponse {
+	return &CreateServiceWOW64AResponse{}
+}
+
+// OpNum returns the operation number of RCreateServiceWOW64A operation.
+func (o *CreateServiceWOW64ARequest) OpNum() int { return 44 }
+
+// OpName returns the operation name of RCreateServiceWOW64A operation.
+func (o *CreateServiceWOW64ARequest) OpName() string { return "/svcctl/v2/RCreateServiceWOW64A" }
+
 // CreateServiceWOW64AResponse structure represents the RCreateServiceWOW64A operation response
 type CreateServiceWOW64AResponse struct {
 	// lpdwTagId: A pointer to a variable that receives a tag value. The value is unique
@@ -23082,8 +23678,10 @@ type xxx_CreateServiceWOW64WOperation struct {
 	Return           uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RCreateServiceWOW64W operation.
 func (o *xxx_CreateServiceWOW64WOperation) OpNum() int { return 45 }
 
+// OpName returns the operation name of RCreateServiceWOW64W operation.
 func (o *xxx_CreateServiceWOW64WOperation) OpName() string { return "/svcctl/v2/RCreateServiceWOW64W" }
 
 func (o *xxx_CreateServiceWOW64WOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -23801,6 +24399,17 @@ func (o *CreateServiceWOW64WRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeCreateServiceWOW64WRequest build a response structure from the given request structure.
+func (o *CreateServiceWOW64WRequest) MakeResponse() *CreateServiceWOW64WResponse {
+	return &CreateServiceWOW64WResponse{}
+}
+
+// OpNum returns the operation number of RCreateServiceWOW64W operation.
+func (o *CreateServiceWOW64WRequest) OpNum() int { return 45 }
+
+// OpName returns the operation name of RCreateServiceWOW64W operation.
+func (o *CreateServiceWOW64WRequest) OpName() string { return "/svcctl/v2/RCreateServiceWOW64W" }
+
 // CreateServiceWOW64WResponse structure represents the RCreateServiceWOW64W operation response
 type CreateServiceWOW64WResponse struct {
 	// lpdwTagId: A pointer to a variable that receives a tag value. The value is unique
@@ -23857,8 +24466,10 @@ type xxx_NotifyServiceStatusChangeOperation struct {
 	Return            uint32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RNotifyServiceStatusChange operation.
 func (o *xxx_NotifyServiceStatusChangeOperation) OpNum() int { return 47 }
 
+// OpName returns the operation name of RNotifyServiceStatusChange operation.
 func (o *xxx_NotifyServiceStatusChangeOperation) OpName() string {
 	return "/svcctl/v2/RNotifyServiceStatusChange"
 }
@@ -24096,6 +24707,19 @@ func (o *NotifyServiceStatusChangeRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeNotifyServiceStatusChangeRequest build a response structure from the given request structure.
+func (o *NotifyServiceStatusChangeRequest) MakeResponse() *NotifyServiceStatusChangeResponse {
+	return &NotifyServiceStatusChangeResponse{}
+}
+
+// OpNum returns the operation number of RNotifyServiceStatusChange operation.
+func (o *NotifyServiceStatusChangeRequest) OpNum() int { return 47 }
+
+// OpName returns the operation name of RNotifyServiceStatusChange operation.
+func (o *NotifyServiceStatusChangeRequest) OpName() string {
+	return "/svcctl/v2/RNotifyServiceStatusChange"
+}
+
 // NotifyServiceStatusChangeResponse structure represents the RNotifyServiceStatusChange operation response
 type NotifyServiceStatusChangeResponse struct {
 	// pSCMProcessGuid: Not used. This MUST be ignored.
@@ -24151,8 +24775,10 @@ type xxx_GetNotifyResultsOperation struct {
 	Return       uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RGetNotifyResults operation.
 func (o *xxx_GetNotifyResultsOperation) OpNum() int { return 48 }
 
+// OpName returns the operation name of RGetNotifyResults operation.
 func (o *xxx_GetNotifyResultsOperation) OpName() string { return "/svcctl/v2/RGetNotifyResults" }
 
 func (o *xxx_GetNotifyResultsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24311,6 +24937,17 @@ func (o *GetNotifyResultsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetNotifyResultsRequest build a response structure from the given request structure.
+func (o *GetNotifyResultsRequest) MakeResponse() *GetNotifyResultsResponse {
+	return &GetNotifyResultsResponse{}
+}
+
+// OpNum returns the operation number of RGetNotifyResults operation.
+func (o *GetNotifyResultsRequest) OpNum() int { return 48 }
+
+// OpName returns the operation name of RGetNotifyResults operation.
+func (o *GetNotifyResultsRequest) OpName() string { return "/svcctl/v2/RGetNotifyResults" }
+
 // GetNotifyResultsResponse structure represents the RGetNotifyResults operation response
 type GetNotifyResultsResponse struct {
 	// ppNotifyParams: A pointer to a buffer that receives an SC_RPC_NOTIFY_PARAMS_LIST
@@ -24358,8 +24995,10 @@ type xxx_CloseNotifyOperation struct {
 	Return   uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RCloseNotifyHandle operation.
 func (o *xxx_CloseNotifyOperation) OpNum() int { return 49 }
 
+// OpName returns the operation name of RCloseNotifyHandle operation.
 func (o *xxx_CloseNotifyOperation) OpName() string { return "/svcctl/v2/RCloseNotifyHandle" }
 
 func (o *xxx_CloseNotifyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24513,6 +25152,17 @@ func (o *CloseNotifyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCloseNotifyRequest build a response structure from the given request structure.
+func (o *CloseNotifyRequest) MakeResponse() *CloseNotifyResponse {
+	return &CloseNotifyResponse{}
+}
+
+// OpNum returns the operation number of RCloseNotifyHandle operation.
+func (o *CloseNotifyRequest) OpNum() int { return 49 }
+
+// OpName returns the operation name of RCloseNotifyHandle operation.
+func (o *CloseNotifyRequest) OpName() string { return "/svcctl/v2/RCloseNotifyHandle" }
+
 // CloseNotifyResponse structure represents the RCloseNotifyHandle operation response
 type CloseNotifyResponse struct {
 	// phNotify: An SC_NOTIFY_RPC_HANDLE (section 2.2.6) data type that defines a handle
@@ -24568,8 +25218,10 @@ type xxx_ControlServiceExAOperation struct {
 	Return           uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RControlServiceExA operation.
 func (o *xxx_ControlServiceExAOperation) OpNum() int { return 50 }
 
+// OpName returns the operation name of RControlServiceExA operation.
 func (o *xxx_ControlServiceExAOperation) OpName() string { return "/svcctl/v2/RControlServiceExA" }
 
 func (o *xxx_ControlServiceExAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24836,6 +25488,22 @@ func (o *ControlServiceExARequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeControlServiceExARequest build a response structure from the given request structure.
+func (o *ControlServiceExARequest) MakeResponse() *ControlServiceExAResponse {
+	if o == nil {
+		return &ControlServiceExAResponse{}
+	}
+	return &ControlServiceExAResponse{
+		InfoLevel: o.InfoLevel,
+	}
+}
+
+// OpNum returns the operation number of RControlServiceExA operation.
+func (o *ControlServiceExARequest) OpNum() int { return 50 }
+
+// OpName returns the operation name of RControlServiceExA operation.
+func (o *ControlServiceExARequest) OpName() string { return "/svcctl/v2/RControlServiceExA" }
+
 // ControlServiceExAResponse structure represents the RControlServiceExA operation response
 type ControlServiceExAResponse struct {
 	// XXX: dwInfoLevel is an implicit input depedency for output parameters
@@ -24897,8 +25565,10 @@ type xxx_ControlServiceExWOperation struct {
 	Return           uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RControlServiceExW operation.
 func (o *xxx_ControlServiceExWOperation) OpNum() int { return 51 }
 
+// OpName returns the operation name of RControlServiceExW operation.
 func (o *xxx_ControlServiceExWOperation) OpName() string { return "/svcctl/v2/RControlServiceExW" }
 
 func (o *xxx_ControlServiceExWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -25165,6 +25835,22 @@ func (o *ControlServiceExWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeControlServiceExWRequest build a response structure from the given request structure.
+func (o *ControlServiceExWRequest) MakeResponse() *ControlServiceExWResponse {
+	if o == nil {
+		return &ControlServiceExWResponse{}
+	}
+	return &ControlServiceExWResponse{
+		InfoLevel: o.InfoLevel,
+	}
+}
+
+// OpNum returns the operation number of RControlServiceExW operation.
+func (o *ControlServiceExWRequest) OpNum() int { return 51 }
+
+// OpName returns the operation name of RControlServiceExW operation.
+func (o *ControlServiceExWRequest) OpName() string { return "/svcctl/v2/RControlServiceExW" }
+
 // ControlServiceExWResponse structure represents the RControlServiceExW operation response
 type ControlServiceExWResponse struct {
 	// XXX: dwInfoLevel is an implicit input depedency for output parameters
@@ -25224,8 +25910,10 @@ type xxx_QueryServiceConfigExOperation struct {
 	Return    uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RQueryServiceConfigEx operation.
 func (o *xxx_QueryServiceConfigExOperation) OpNum() int { return 56 }
 
+// OpName returns the operation name of RQueryServiceConfigEx operation.
 func (o *xxx_QueryServiceConfigExOperation) OpName() string {
 	return "/svcctl/v2/RQueryServiceConfigEx"
 }
@@ -25385,6 +26073,17 @@ func (o *QueryServiceConfigExRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeQueryServiceConfigExRequest build a response structure from the given request structure.
+func (o *QueryServiceConfigExRequest) MakeResponse() *QueryServiceConfigExResponse {
+	return &QueryServiceConfigExResponse{}
+}
+
+// OpNum returns the operation number of RQueryServiceConfigEx operation.
+func (o *QueryServiceConfigExRequest) OpNum() int { return 56 }
+
+// OpName returns the operation name of RQueryServiceConfigEx operation.
+func (o *QueryServiceConfigExRequest) OpName() string { return "/svcctl/v2/RQueryServiceConfigEx" }
+
 // QueryServiceConfigExResponse structure represents the RQueryServiceConfigEx operation response
 type QueryServiceConfigExResponse struct {
 	// pInfo: A pointer to an SC_RPC_CONFIG_INFOW (section 2.2.22) structure that contains
@@ -25447,8 +26146,10 @@ type xxx_CreateWOWServiceOperation struct {
 	Return           uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RCreateWowService operation.
 func (o *xxx_CreateWOWServiceOperation) OpNum() int { return 60 }
 
+// OpName returns the operation name of RCreateWowService operation.
 func (o *xxx_CreateWOWServiceOperation) OpName() string { return "/svcctl/v2/RCreateWowService" }
 
 func (o *xxx_CreateWOWServiceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -26256,6 +26957,17 @@ func (o *CreateWOWServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeCreateWOWServiceRequest build a response structure from the given request structure.
+func (o *CreateWOWServiceRequest) MakeResponse() *CreateWOWServiceResponse {
+	return &CreateWOWServiceResponse{}
+}
+
+// OpNum returns the operation number of RCreateWowService operation.
+func (o *CreateWOWServiceRequest) OpNum() int { return 60 }
+
+// OpName returns the operation name of RCreateWowService operation.
+func (o *CreateWOWServiceRequest) OpName() string { return "/svcctl/v2/RCreateWowService" }
+
 // CreateWOWServiceResponse structure represents the RCreateWowService operation response
 type CreateWOWServiceResponse struct {
 	// lpdwTagId: A pointer to a variable that receives a tag value. The value is unique
@@ -26309,8 +27021,10 @@ type xxx_OpenSCM2Operation struct {
 	Return        uint32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ROpenSCManager2 operation.
 func (o *xxx_OpenSCM2Operation) OpNum() int { return 61 }
 
+// OpName returns the operation name of ROpenSCManager2 operation.
 func (o *xxx_OpenSCM2Operation) OpName() string { return "/svcctl/v2/ROpenSCManager2" }
 
 func (o *xxx_OpenSCM2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -26474,6 +27188,17 @@ func (o *OpenSCM2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeOpenSCM2Request build a response structure from the given request structure.
+func (o *OpenSCM2Request) MakeResponse() *OpenSCM2Response {
+	return &OpenSCM2Response{}
+}
+
+// OpNum returns the operation number of ROpenSCManager2 operation.
+func (o *OpenSCM2Request) OpNum() int { return 61 }
+
+// OpName returns the operation name of ROpenSCManager2 operation.
+func (o *OpenSCM2Request) OpName() string { return "/svcctl/v2/ROpenSCManager2" }
 
 // OpenSCM2Response structure represents the ROpenSCManager2 operation response
 type OpenSCM2Response struct {

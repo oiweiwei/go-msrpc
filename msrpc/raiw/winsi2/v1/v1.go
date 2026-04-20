@@ -144,8 +144,10 @@ type xxx_TombstoneDBRecordsOperation struct {
 	Return    uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsTombstoneDbRecs operation.
 func (o *xxx_TombstoneDBRecordsOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of R_WinsTombstoneDbRecs operation.
 func (o *xxx_TombstoneDBRecordsOperation) OpName() string { return "/winsi2/v1/R_WinsTombstoneDbRecs" }
 
 func (o *xxx_TombstoneDBRecordsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -307,6 +309,17 @@ func (o *TombstoneDBRecordsRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeTombstoneDBRecordsRequest build a response structure from the given request structure.
+func (o *TombstoneDBRecordsRequest) MakeResponse() *TombstoneDBRecordsResponse {
+	return &TombstoneDBRecordsResponse{}
+}
+
+// OpNum returns the operation number of R_WinsTombstoneDbRecs operation.
+func (o *TombstoneDBRecordsRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of R_WinsTombstoneDbRecs operation.
+func (o *TombstoneDBRecordsRequest) OpName() string { return "/winsi2/v1/R_WinsTombstoneDbRecs" }
+
 // TombstoneDBRecordsResponse structure represents the R_WinsTombstoneDbRecs operation response
 type TombstoneDBRecordsResponse struct {
 	// Return: The R_WinsTombstoneDbRecs return value.
@@ -348,8 +361,10 @@ type xxx_CheckAccessOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of R_WinsCheckAccess operation.
 func (o *xxx_CheckAccessOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of R_WinsCheckAccess operation.
 func (o *xxx_CheckAccessOperation) OpName() string { return "/winsi2/v1/R_WinsCheckAccess" }
 
 func (o *xxx_CheckAccessOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -446,6 +461,17 @@ func (o *CheckAccessRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeCheckAccessRequest build a response structure from the given request structure.
+func (o *CheckAccessRequest) MakeResponse() *CheckAccessResponse {
+	return &CheckAccessResponse{}
+}
+
+// OpNum returns the operation number of R_WinsCheckAccess operation.
+func (o *CheckAccessRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of R_WinsCheckAccess operation.
+func (o *CheckAccessRequest) OpName() string { return "/winsi2/v1/R_WinsCheckAccess" }
 
 // CheckAccessResponse structure represents the R_WinsCheckAccess operation response
 type CheckAccessResponse struct {

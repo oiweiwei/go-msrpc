@@ -205,8 +205,10 @@ type xxx_QueryVolumeGUIDPathnamesOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryVolumeGuidPathnames operation.
 func (o *xxx_QueryVolumeGUIDPathnamesOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of QueryVolumeGuidPathnames operation.
 func (o *xxx_QueryVolumeGUIDPathnamesOperation) OpName() string {
 	return "/IVdsVolumeMF3/v0/QueryVolumeGuidPathnames"
 }
@@ -456,6 +458,19 @@ func (o *QueryVolumeGUIDPathnamesRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeQueryVolumeGUIDPathnamesRequest build a response structure from the given request structure.
+func (o *QueryVolumeGUIDPathnamesRequest) MakeResponse() *QueryVolumeGUIDPathnamesResponse {
+	return &QueryVolumeGUIDPathnamesResponse{}
+}
+
+// OpNum returns the operation number of QueryVolumeGuidPathnames operation.
+func (o *QueryVolumeGUIDPathnamesRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of QueryVolumeGuidPathnames operation.
+func (o *QueryVolumeGUIDPathnamesRequest) OpName() string {
+	return "/IVdsVolumeMF3/v0/QueryVolumeGuidPathnames"
+}
+
 // QueryVolumeGUIDPathnamesResponse structure represents the QueryVolumeGuidPathnames operation response
 type QueryVolumeGUIDPathnamesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -517,8 +532,10 @@ type xxx_FormatEx2Operation struct {
 	Return                    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FormatEx2 operation.
 func (o *xxx_FormatEx2Operation) OpNum() int { return 4 }
 
+// OpName returns the operation name of FormatEx2 operation.
 func (o *xxx_FormatEx2Operation) OpName() string { return "/IVdsVolumeMF3/v0/FormatEx2" }
 
 func (o *xxx_FormatEx2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -847,6 +864,17 @@ func (o *FormatEx2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeFormatEx2Request build a response structure from the given request structure.
+func (o *FormatEx2Request) MakeResponse() *FormatEx2Response {
+	return &FormatEx2Response{}
+}
+
+// OpNum returns the operation number of FormatEx2 operation.
+func (o *FormatEx2Request) OpNum() int { return 4 }
+
+// OpName returns the operation name of FormatEx2 operation.
+func (o *FormatEx2Request) OpName() string { return "/IVdsVolumeMF3/v0/FormatEx2" }
+
 // FormatEx2Response structure represents the FormatEx2 operation response
 type FormatEx2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -899,8 +927,10 @@ type xxx_OfflineVolumeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OfflineVolume operation.
 func (o *xxx_OfflineVolumeOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of OfflineVolume operation.
 func (o *xxx_OfflineVolumeOperation) OpName() string { return "/IVdsVolumeMF3/v0/OfflineVolume" }
 
 func (o *xxx_OfflineVolumeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1043,6 +1073,17 @@ func (o *OfflineVolumeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeOfflineVolumeRequest build a response structure from the given request structure.
+func (o *OfflineVolumeRequest) MakeResponse() *OfflineVolumeResponse {
+	return &OfflineVolumeResponse{}
+}
+
+// OpNum returns the operation number of OfflineVolume operation.
+func (o *OfflineVolumeRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of OfflineVolume operation.
+func (o *OfflineVolumeRequest) OpName() string { return "/IVdsVolumeMF3/v0/OfflineVolume" }
 
 // OfflineVolumeResponse structure represents the OfflineVolume operation response
 type OfflineVolumeResponse struct {

@@ -756,8 +756,10 @@ type xxx_GetCalendarInfoOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCalendarInfo operation.
 func (o *xxx_GetCalendarInfoOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetCalendarInfo operation.
 func (o *xxx_GetCalendarInfoOperation) OpName() string { return "/IWRMCalendar/v0/GetCalendarInfo" }
 
 func (o *xxx_GetCalendarInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -998,6 +1000,17 @@ func (o *GetCalendarInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetCalendarInfoRequest build a response structure from the given request structure.
+func (o *GetCalendarInfoRequest) MakeResponse() *GetCalendarInfoResponse {
+	return &GetCalendarInfoResponse{}
+}
+
+// OpNum returns the operation number of GetCalendarInfo operation.
+func (o *GetCalendarInfoRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetCalendarInfo operation.
+func (o *GetCalendarInfoRequest) OpName() string { return "/IWRMCalendar/v0/GetCalendarInfo" }
+
 // GetCalendarInfoResponse structure represents the GetCalendarInfo operation response
 type GetCalendarInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1056,8 +1069,10 @@ type xxx_CreateCalendarOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateCalendar operation.
 func (o *xxx_CreateCalendarOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of CreateCalendar operation.
 func (o *xxx_CreateCalendarOperation) OpName() string { return "/IWRMCalendar/v0/CreateCalendar" }
 
 func (o *xxx_CreateCalendarOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1292,6 +1307,17 @@ func (o *CreateCalendarRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreateCalendarRequest build a response structure from the given request structure.
+func (o *CreateCalendarRequest) MakeResponse() *CreateCalendarResponse {
+	return &CreateCalendarResponse{}
+}
+
+// OpNum returns the operation number of CreateCalendar operation.
+func (o *CreateCalendarRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of CreateCalendar operation.
+func (o *CreateCalendarRequest) OpName() string { return "/IWRMCalendar/v0/CreateCalendar" }
+
 // CreateCalendarResponse structure represents the CreateCalendar operation response
 type CreateCalendarResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1341,8 +1367,10 @@ type xxx_ModifyCalendarOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ModifyCalendar operation.
 func (o *xxx_ModifyCalendarOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of ModifyCalendar operation.
 func (o *xxx_ModifyCalendarOperation) OpName() string { return "/IWRMCalendar/v0/ModifyCalendar" }
 
 func (o *xxx_ModifyCalendarOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1619,6 +1647,17 @@ func (o *ModifyCalendarRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeModifyCalendarRequest build a response structure from the given request structure.
+func (o *ModifyCalendarRequest) MakeResponse() *ModifyCalendarResponse {
+	return &ModifyCalendarResponse{}
+}
+
+// OpNum returns the operation number of ModifyCalendar operation.
+func (o *ModifyCalendarRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of ModifyCalendar operation.
+func (o *ModifyCalendarRequest) OpName() string { return "/IWRMCalendar/v0/ModifyCalendar" }
+
 // ModifyCalendarResponse structure represents the ModifyCalendar operation response
 type ModifyCalendarResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1667,8 +1706,10 @@ type xxx_DeleteCalendarOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteCalendar operation.
 func (o *xxx_DeleteCalendarOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of DeleteCalendar operation.
 func (o *xxx_DeleteCalendarOperation) OpName() string { return "/IWRMCalendar/v0/DeleteCalendar" }
 
 func (o *xxx_DeleteCalendarOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1903,6 +1944,17 @@ func (o *DeleteCalendarRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeDeleteCalendarRequest build a response structure from the given request structure.
+func (o *DeleteCalendarRequest) MakeResponse() *DeleteCalendarResponse {
+	return &DeleteCalendarResponse{}
+}
+
+// OpNum returns the operation number of DeleteCalendar operation.
+func (o *DeleteCalendarRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of DeleteCalendar operation.
+func (o *DeleteCalendarRequest) OpName() string { return "/IWRMCalendar/v0/DeleteCalendar" }
+
 // DeleteCalendarResponse structure represents the DeleteCalendar operation response
 type DeleteCalendarResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1951,8 +2003,10 @@ type xxx_RenameCalendarOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RenameCalendar operation.
 func (o *xxx_RenameCalendarOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RenameCalendar operation.
 func (o *xxx_RenameCalendarOperation) OpName() string { return "/IWRMCalendar/v0/RenameCalendar" }
 
 func (o *xxx_RenameCalendarOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2197,6 +2251,17 @@ func (o *RenameCalendarRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeRenameCalendarRequest build a response structure from the given request structure.
+func (o *RenameCalendarRequest) MakeResponse() *RenameCalendarResponse {
+	return &RenameCalendarResponse{}
+}
+
+// OpNum returns the operation number of RenameCalendar operation.
+func (o *RenameCalendarRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RenameCalendar operation.
+func (o *RenameCalendarRequest) OpName() string { return "/IWRMCalendar/v0/RenameCalendar" }
+
 // RenameCalendarResponse structure represents the RenameCalendar operation response
 type RenameCalendarResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2248,8 +2313,10 @@ type xxx_ComputeEventsOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ComputeEvents operation.
 func (o *xxx_ComputeEventsOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of ComputeEvents operation.
 func (o *xxx_ComputeEventsOperation) OpName() string { return "/IWRMCalendar/v0/ComputeEvents" }
 
 func (o *xxx_ComputeEventsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2627,6 +2694,17 @@ func (o *ComputeEventsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeComputeEventsRequest build a response structure from the given request structure.
+func (o *ComputeEventsRequest) MakeResponse() *ComputeEventsResponse {
+	return &ComputeEventsResponse{}
+}
+
+// OpNum returns the operation number of ComputeEvents operation.
+func (o *ComputeEventsRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of ComputeEvents operation.
+func (o *ComputeEventsRequest) OpName() string { return "/IWRMCalendar/v0/ComputeEvents" }
+
 // ComputeEventsResponse structure represents the ComputeEvents operation response
 type ComputeEventsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2687,8 +2765,10 @@ type xxx_GetScheduleInfoOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetScheduleInfo operation.
 func (o *xxx_GetScheduleInfoOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of GetScheduleInfo operation.
 func (o *xxx_GetScheduleInfoOperation) OpName() string { return "/IWRMCalendar/v0/GetScheduleInfo" }
 
 func (o *xxx_GetScheduleInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2929,6 +3009,17 @@ func (o *GetScheduleInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetScheduleInfoRequest build a response structure from the given request structure.
+func (o *GetScheduleInfoRequest) MakeResponse() *GetScheduleInfoResponse {
+	return &GetScheduleInfoResponse{}
+}
+
+// OpNum returns the operation number of GetScheduleInfo operation.
+func (o *GetScheduleInfoRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of GetScheduleInfo operation.
+func (o *GetScheduleInfoRequest) OpName() string { return "/IWRMCalendar/v0/GetScheduleInfo" }
+
 // GetScheduleInfoResponse structure represents the GetScheduleInfo operation response
 type GetScheduleInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2982,8 +3073,10 @@ type xxx_CreateScheduleOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateSchedule operation.
 func (o *xxx_CreateScheduleOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of CreateSchedule operation.
 func (o *xxx_CreateScheduleOperation) OpName() string { return "/IWRMCalendar/v0/CreateSchedule" }
 
 func (o *xxx_CreateScheduleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3178,6 +3271,17 @@ func (o *CreateScheduleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeCreateScheduleRequest build a response structure from the given request structure.
+func (o *CreateScheduleRequest) MakeResponse() *CreateScheduleResponse {
+	return &CreateScheduleResponse{}
+}
+
+// OpNum returns the operation number of CreateSchedule operation.
+func (o *CreateScheduleRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of CreateSchedule operation.
+func (o *CreateScheduleRequest) OpName() string { return "/IWRMCalendar/v0/CreateSchedule" }
+
 // CreateScheduleResponse structure represents the CreateSchedule operation response
 type CreateScheduleResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3227,8 +3331,10 @@ type xxx_ModifyScheduleOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ModifySchedule operation.
 func (o *xxx_ModifyScheduleOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of ModifySchedule operation.
 func (o *xxx_ModifyScheduleOperation) OpName() string { return "/IWRMCalendar/v0/ModifySchedule" }
 
 func (o *xxx_ModifyScheduleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3506,6 +3612,17 @@ func (o *ModifyScheduleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeModifyScheduleRequest build a response structure from the given request structure.
+func (o *ModifyScheduleRequest) MakeResponse() *ModifyScheduleResponse {
+	return &ModifyScheduleResponse{}
+}
+
+// OpNum returns the operation number of ModifySchedule operation.
+func (o *ModifyScheduleRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of ModifySchedule operation.
+func (o *ModifyScheduleRequest) OpName() string { return "/IWRMCalendar/v0/ModifySchedule" }
+
 // ModifyScheduleResponse structure represents the ModifySchedule operation response
 type ModifyScheduleResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3553,8 +3670,10 @@ type xxx_DeleteScheduleOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteSchedule operation.
 func (o *xxx_DeleteScheduleOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of DeleteSchedule operation.
 func (o *xxx_DeleteScheduleOperation) OpName() string { return "/IWRMCalendar/v0/DeleteSchedule" }
 
 func (o *xxx_DeleteScheduleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3748,6 +3867,17 @@ func (o *DeleteScheduleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeDeleteScheduleRequest build a response structure from the given request structure.
+func (o *DeleteScheduleRequest) MakeResponse() *DeleteScheduleResponse {
+	return &DeleteScheduleResponse{}
+}
+
+// OpNum returns the operation number of DeleteSchedule operation.
+func (o *DeleteScheduleRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of DeleteSchedule operation.
+func (o *DeleteScheduleRequest) OpName() string { return "/IWRMCalendar/v0/DeleteSchedule" }
+
 // DeleteScheduleResponse structure represents the DeleteSchedule operation response
 type DeleteScheduleResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3796,8 +3926,10 @@ type xxx_RenameScheduleOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RenameSchedule operation.
 func (o *xxx_RenameScheduleOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of RenameSchedule operation.
 func (o *xxx_RenameScheduleOperation) OpName() string { return "/IWRMCalendar/v0/RenameSchedule" }
 
 func (o *xxx_RenameScheduleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4042,6 +4174,17 @@ func (o *RenameScheduleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeRenameScheduleRequest build a response structure from the given request structure.
+func (o *RenameScheduleRequest) MakeResponse() *RenameScheduleResponse {
+	return &RenameScheduleResponse{}
+}
+
+// OpNum returns the operation number of RenameSchedule operation.
+func (o *RenameScheduleRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of RenameSchedule operation.
+func (o *RenameScheduleRequest) OpName() string { return "/IWRMCalendar/v0/RenameSchedule" }
+
 // RenameScheduleResponse structure represents the RenameSchedule operation response
 type RenameScheduleResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4091,8 +4234,10 @@ type xxx_MoveBeforeCalendarOperation struct {
 	Return                int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MoveBeforeCalendar operation.
 func (o *xxx_MoveBeforeCalendarOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of MoveBeforeCalendar operation.
 func (o *xxx_MoveBeforeCalendarOperation) OpName() string {
 	return "/IWRMCalendar/v0/MoveBeforeCalendar"
 }
@@ -4378,6 +4523,17 @@ func (o *MoveBeforeCalendarRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeMoveBeforeCalendarRequest build a response structure from the given request structure.
+func (o *MoveBeforeCalendarRequest) MakeResponse() *MoveBeforeCalendarResponse {
+	return &MoveBeforeCalendarResponse{}
+}
+
+// OpNum returns the operation number of MoveBeforeCalendar operation.
+func (o *MoveBeforeCalendarRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of MoveBeforeCalendar operation.
+func (o *MoveBeforeCalendarRequest) OpName() string { return "/IWRMCalendar/v0/MoveBeforeCalendar" }
+
 // MoveBeforeCalendarResponse structure represents the MoveBeforeCalendar operation response
 type MoveBeforeCalendarResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4427,8 +4583,10 @@ type xxx_MoveAfterCalendarOperation struct {
 	Return                int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MoveAfterCalendar operation.
 func (o *xxx_MoveAfterCalendarOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of MoveAfterCalendar operation.
 func (o *xxx_MoveAfterCalendarOperation) OpName() string { return "/IWRMCalendar/v0/MoveAfterCalendar" }
 
 func (o *xxx_MoveAfterCalendarOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4712,6 +4870,17 @@ func (o *MoveAfterCalendarRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeMoveAfterCalendarRequest build a response structure from the given request structure.
+func (o *MoveAfterCalendarRequest) MakeResponse() *MoveAfterCalendarResponse {
+	return &MoveAfterCalendarResponse{}
+}
+
+// OpNum returns the operation number of MoveAfterCalendar operation.
+func (o *MoveAfterCalendarRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of MoveAfterCalendar operation.
+func (o *MoveAfterCalendarRequest) OpName() string { return "/IWRMCalendar/v0/MoveAfterCalendar" }
+
 // MoveAfterCalendarResponse structure represents the MoveAfterCalendar operation response
 type MoveAfterCalendarResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4759,8 +4928,10 @@ type xxx_GetServerTimeZoneOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetServerTimeZone operation.
 func (o *xxx_GetServerTimeZoneOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of GetServerTimeZone operation.
 func (o *xxx_GetServerTimeZoneOperation) OpName() string { return "/IWRMCalendar/v0/GetServerTimeZone" }
 
 func (o *xxx_GetServerTimeZoneOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4915,6 +5086,17 @@ func (o *GetServerTimeZoneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetServerTimeZoneRequest build a response structure from the given request structure.
+func (o *GetServerTimeZoneRequest) MakeResponse() *GetServerTimeZoneResponse {
+	return &GetServerTimeZoneResponse{}
+}
+
+// OpNum returns the operation number of GetServerTimeZone operation.
+func (o *GetServerTimeZoneRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of GetServerTimeZone operation.
+func (o *GetServerTimeZoneRequest) OpName() string { return "/IWRMCalendar/v0/GetServerTimeZone" }
 
 // GetServerTimeZoneResponse structure represents the GetServerTimeZone operation response
 type GetServerTimeZoneResponse struct {

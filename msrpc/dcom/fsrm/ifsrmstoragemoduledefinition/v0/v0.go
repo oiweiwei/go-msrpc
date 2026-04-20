@@ -255,8 +255,10 @@ type xxx_GetCapabilitiesOperation struct {
 	Return       int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Capabilities operation.
 func (o *xxx_GetCapabilitiesOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of Capabilities operation.
 func (o *xxx_GetCapabilitiesOperation) OpName() string {
 	return "/IFsrmStorageModuleDefinition/v0/Capabilities"
 }
@@ -414,6 +416,19 @@ func (o *GetCapabilitiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetCapabilitiesRequest build a response structure from the given request structure.
+func (o *GetCapabilitiesRequest) MakeResponse() *GetCapabilitiesResponse {
+	return &GetCapabilitiesResponse{}
+}
+
+// OpNum returns the operation number of Capabilities operation.
+func (o *GetCapabilitiesRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of Capabilities operation.
+func (o *GetCapabilitiesRequest) OpName() string {
+	return "/IFsrmStorageModuleDefinition/v0/Capabilities"
+}
+
 // GetCapabilitiesResponse structure represents the Capabilities operation response
 type GetCapabilitiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -464,8 +479,10 @@ type xxx_SetCapabilitiesOperation struct {
 	Return       int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Capabilities operation.
 func (o *xxx_SetCapabilitiesOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of Capabilities operation.
 func (o *xxx_SetCapabilitiesOperation) OpName() string {
 	return "/IFsrmStorageModuleDefinition/v0/Capabilities"
 }
@@ -626,6 +643,19 @@ func (o *SetCapabilitiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetCapabilitiesRequest build a response structure from the given request structure.
+func (o *SetCapabilitiesRequest) MakeResponse() *SetCapabilitiesResponse {
+	return &SetCapabilitiesResponse{}
+}
+
+// OpNum returns the operation number of Capabilities operation.
+func (o *SetCapabilitiesRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of Capabilities operation.
+func (o *SetCapabilitiesRequest) OpName() string {
+	return "/IFsrmStorageModuleDefinition/v0/Capabilities"
+}
+
 // SetCapabilitiesResponse structure represents the Capabilities operation response
 type SetCapabilitiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -673,8 +703,10 @@ type xxx_GetStorageTypeOperation struct {
 	Return      int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of StorageType operation.
 func (o *xxx_GetStorageTypeOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of StorageType operation.
 func (o *xxx_GetStorageTypeOperation) OpName() string {
 	return "/IFsrmStorageModuleDefinition/v0/StorageType"
 }
@@ -832,6 +864,19 @@ func (o *GetStorageTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetStorageTypeRequest build a response structure from the given request structure.
+func (o *GetStorageTypeRequest) MakeResponse() *GetStorageTypeResponse {
+	return &GetStorageTypeResponse{}
+}
+
+// OpNum returns the operation number of StorageType operation.
+func (o *GetStorageTypeRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of StorageType operation.
+func (o *GetStorageTypeRequest) OpName() string {
+	return "/IFsrmStorageModuleDefinition/v0/StorageType"
+}
+
 // GetStorageTypeResponse structure represents the StorageType operation response
 type GetStorageTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -882,8 +927,10 @@ type xxx_SetStorageTypeOperation struct {
 	Return      int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of StorageType operation.
 func (o *xxx_SetStorageTypeOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of StorageType operation.
 func (o *xxx_SetStorageTypeOperation) OpName() string {
 	return "/IFsrmStorageModuleDefinition/v0/StorageType"
 }
@@ -1044,6 +1091,19 @@ func (o *SetStorageTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetStorageTypeRequest build a response structure from the given request structure.
+func (o *SetStorageTypeRequest) MakeResponse() *SetStorageTypeResponse {
+	return &SetStorageTypeResponse{}
+}
+
+// OpNum returns the operation number of StorageType operation.
+func (o *SetStorageTypeRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of StorageType operation.
+func (o *SetStorageTypeRequest) OpName() string {
+	return "/IFsrmStorageModuleDefinition/v0/StorageType"
+}
+
 // SetStorageTypeResponse structure represents the StorageType operation response
 type SetStorageTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1091,8 +1151,10 @@ type xxx_GetUpdatesFileContentOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UpdatesFileContent operation.
 func (o *xxx_GetUpdatesFileContentOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of UpdatesFileContent operation.
 func (o *xxx_GetUpdatesFileContentOperation) OpName() string {
 	return "/IFsrmStorageModuleDefinition/v0/UpdatesFileContent"
 }
@@ -1250,6 +1312,19 @@ func (o *GetUpdatesFileContentRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetUpdatesFileContentRequest build a response structure from the given request structure.
+func (o *GetUpdatesFileContentRequest) MakeResponse() *GetUpdatesFileContentResponse {
+	return &GetUpdatesFileContentResponse{}
+}
+
+// OpNum returns the operation number of UpdatesFileContent operation.
+func (o *GetUpdatesFileContentRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of UpdatesFileContent operation.
+func (o *GetUpdatesFileContentRequest) OpName() string {
+	return "/IFsrmStorageModuleDefinition/v0/UpdatesFileContent"
+}
+
 // GetUpdatesFileContentResponse structure represents the UpdatesFileContent operation response
 type GetUpdatesFileContentResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1300,8 +1375,10 @@ type xxx_SetUpdatesFileContentOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UpdatesFileContent operation.
 func (o *xxx_SetUpdatesFileContentOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of UpdatesFileContent operation.
 func (o *xxx_SetUpdatesFileContentOperation) OpName() string {
 	return "/IFsrmStorageModuleDefinition/v0/UpdatesFileContent"
 }
@@ -1460,6 +1537,19 @@ func (o *SetUpdatesFileContentRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetUpdatesFileContentRequest build a response structure from the given request structure.
+func (o *SetUpdatesFileContentRequest) MakeResponse() *SetUpdatesFileContentResponse {
+	return &SetUpdatesFileContentResponse{}
+}
+
+// OpNum returns the operation number of UpdatesFileContent operation.
+func (o *SetUpdatesFileContentRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of UpdatesFileContent operation.
+func (o *SetUpdatesFileContentRequest) OpName() string {
+	return "/IFsrmStorageModuleDefinition/v0/UpdatesFileContent"
 }
 
 // SetUpdatesFileContentResponse structure represents the UpdatesFileContent operation response

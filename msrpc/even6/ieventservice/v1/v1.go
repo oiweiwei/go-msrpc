@@ -2698,8 +2698,10 @@ type xxx_RegisterRemoteSubscriptionOperation struct {
 	Return               uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcRegisterRemoteSubscription operation.
 func (o *xxx_RegisterRemoteSubscriptionOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of EvtRpcRegisterRemoteSubscription operation.
 func (o *xxx_RegisterRemoteSubscriptionOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcRegisterRemoteSubscription"
 }
@@ -3112,6 +3114,19 @@ func (o *RegisterRemoteSubscriptionRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeRegisterRemoteSubscriptionRequest build a response structure from the given request structure.
+func (o *RegisterRemoteSubscriptionRequest) MakeResponse() *RegisterRemoteSubscriptionResponse {
+	return &RegisterRemoteSubscriptionResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcRegisterRemoteSubscription operation.
+func (o *RegisterRemoteSubscriptionRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of EvtRpcRegisterRemoteSubscription operation.
+func (o *RegisterRemoteSubscriptionRequest) OpName() string {
+	return "/IEventService/v1/EvtRpcRegisterRemoteSubscription"
+}
+
 // RegisterRemoteSubscriptionResponse structure represents the EvtRpcRegisterRemoteSubscription operation response
 type RegisterRemoteSubscriptionResponse struct {
 	// handle: A context handle for the subscription. This parameter is an RPC context handle,
@@ -3187,8 +3202,10 @@ type xxx_RemoteSubscriptionNextAsyncOperation struct {
 	Return                 uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcRemoteSubscriptionNextAsync operation.
 func (o *xxx_RemoteSubscriptionNextAsyncOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of EvtRpcRemoteSubscriptionNextAsync operation.
 func (o *xxx_RemoteSubscriptionNextAsyncOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcRemoteSubscriptionNextAsync"
 }
@@ -3588,6 +3605,19 @@ func (o *RemoteSubscriptionNextAsyncRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeRemoteSubscriptionNextAsyncRequest build a response structure from the given request structure.
+func (o *RemoteSubscriptionNextAsyncRequest) MakeResponse() *RemoteSubscriptionNextAsyncResponse {
+	return &RemoteSubscriptionNextAsyncResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcRemoteSubscriptionNextAsync operation.
+func (o *RemoteSubscriptionNextAsyncRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of EvtRpcRemoteSubscriptionNextAsync operation.
+func (o *RemoteSubscriptionNextAsyncRequest) OpName() string {
+	return "/IEventService/v1/EvtRpcRemoteSubscriptionNextAsync"
+}
+
 // RemoteSubscriptionNextAsyncResponse structure represents the EvtRpcRemoteSubscriptionNextAsync operation response
 type RemoteSubscriptionNextAsyncResponse struct {
 	// numActualRecords: A pointer to a 32-bit unsigned integer that contains the value
@@ -3665,8 +3695,10 @@ type xxx_RemoteSubscriptionNextOperation struct {
 	Return                 uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcRemoteSubscriptionNext operation.
 func (o *xxx_RemoteSubscriptionNextOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of EvtRpcRemoteSubscriptionNext operation.
 func (o *xxx_RemoteSubscriptionNextOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcRemoteSubscriptionNext"
 }
@@ -4083,6 +4115,19 @@ func (o *RemoteSubscriptionNextRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeRemoteSubscriptionNextRequest build a response structure from the given request structure.
+func (o *RemoteSubscriptionNextRequest) MakeResponse() *RemoteSubscriptionNextResponse {
+	return &RemoteSubscriptionNextResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcRemoteSubscriptionNext operation.
+func (o *RemoteSubscriptionNextRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of EvtRpcRemoteSubscriptionNext operation.
+func (o *RemoteSubscriptionNextRequest) OpName() string {
+	return "/IEventService/v1/EvtRpcRemoteSubscriptionNext"
+}
+
 // RemoteSubscriptionNextResponse structure represents the EvtRpcRemoteSubscriptionNext operation response
 type RemoteSubscriptionNextResponse struct {
 	// numActualRecords: A pointer to a 32-bit unsigned integer that contains the value
@@ -4153,8 +4198,10 @@ type xxx_RemoteSubscriptionWaitAsyncOperation struct {
 	Return uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcRemoteSubscriptionWaitAsync operation.
 func (o *xxx_RemoteSubscriptionWaitAsyncOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of EvtRpcRemoteSubscriptionWaitAsync operation.
 func (o *xxx_RemoteSubscriptionWaitAsyncOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcRemoteSubscriptionWaitAsync"
 }
@@ -4269,6 +4316,19 @@ func (o *RemoteSubscriptionWaitAsyncRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeRemoteSubscriptionWaitAsyncRequest build a response structure from the given request structure.
+func (o *RemoteSubscriptionWaitAsyncRequest) MakeResponse() *RemoteSubscriptionWaitAsyncResponse {
+	return &RemoteSubscriptionWaitAsyncResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcRemoteSubscriptionWaitAsync operation.
+func (o *RemoteSubscriptionWaitAsyncRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of EvtRpcRemoteSubscriptionWaitAsync operation.
+func (o *RemoteSubscriptionWaitAsyncRequest) OpName() string {
+	return "/IEventService/v1/EvtRpcRemoteSubscriptionWaitAsync"
+}
+
 // RemoteSubscriptionWaitAsyncResponse structure represents the EvtRpcRemoteSubscriptionWaitAsync operation response
 type RemoteSubscriptionWaitAsyncResponse struct {
 	// Return: The EvtRpcRemoteSubscriptionWaitAsync return value.
@@ -4310,8 +4370,10 @@ type xxx_RegisterControllableOperationOperation struct {
 	Return uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcRegisterControllableOperation operation.
 func (o *xxx_RegisterControllableOperationOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of EvtRpcRegisterControllableOperation operation.
 func (o *xxx_RegisterControllableOperationOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcRegisterControllableOperation"
 }
@@ -4420,6 +4482,19 @@ func (o *RegisterControllableOperationRequest) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
+// MakeRegisterControllableOperationRequest build a response structure from the given request structure.
+func (o *RegisterControllableOperationRequest) MakeResponse() *RegisterControllableOperationResponse {
+	return &RegisterControllableOperationResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcRegisterControllableOperation operation.
+func (o *RegisterControllableOperationRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of EvtRpcRegisterControllableOperation operation.
+func (o *RegisterControllableOperationRequest) OpName() string {
+	return "/IEventService/v1/EvtRpcRegisterControllableOperation"
+}
+
 // RegisterControllableOperationResponse structure represents the EvtRpcRegisterControllableOperation operation response
 type RegisterControllableOperationResponse struct {
 	// handle: A context handle for a control object. This parameter MUST be an RPC context
@@ -4474,8 +4549,10 @@ type xxx_RegisterLogQueryOperation struct {
 	Return               uint32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcRegisterLogQuery operation.
 func (o *xxx_RegisterLogQueryOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of EvtRpcRegisterLogQuery operation.
 func (o *xxx_RegisterLogQueryOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcRegisterLogQuery"
 }
@@ -4846,6 +4923,17 @@ func (o *RegisterLogQueryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeRegisterLogQueryRequest build a response structure from the given request structure.
+func (o *RegisterLogQueryRequest) MakeResponse() *RegisterLogQueryResponse {
+	return &RegisterLogQueryResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcRegisterLogQuery operation.
+func (o *RegisterLogQueryRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of EvtRpcRegisterLogQuery operation.
+func (o *RegisterLogQueryRequest) OpName() string { return "/IEventService/v1/EvtRpcRegisterLogQuery" }
+
 // RegisterLogQueryResponse structure represents the EvtRpcRegisterLogQuery operation response
 type RegisterLogQueryResponse struct {
 	// handle: A pointer to a query handle. This parameter MUST be an RPC context handle,
@@ -4921,8 +5009,10 @@ type xxx_ClearLogOperation struct {
 	Return      uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcClearLog operation.
 func (o *xxx_ClearLogOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of EvtRpcClearLog operation.
 func (o *xxx_ClearLogOperation) OpName() string { return "/IEventService/v1/EvtRpcClearLog" }
 
 func (o *xxx_ClearLogOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5138,6 +5228,17 @@ func (o *ClearLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeClearLogRequest build a response structure from the given request structure.
+func (o *ClearLogRequest) MakeResponse() *ClearLogResponse {
+	return &ClearLogResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcClearLog operation.
+func (o *ClearLogRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of EvtRpcClearLog operation.
+func (o *ClearLogRequest) OpName() string { return "/IEventService/v1/EvtRpcClearLog" }
+
 // ClearLogResponse structure represents the EvtRpcClearLog operation response
 type ClearLogResponse struct {
 	// error: The method MUST return ERROR_SUCCESS (0x00000000) on success; otherwise, it
@@ -5189,8 +5290,10 @@ type xxx_ExportLogOperation struct {
 	Return      uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcExportLog operation.
 func (o *xxx_ExportLogOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of EvtRpcExportLog operation.
 func (o *xxx_ExportLogOperation) OpName() string { return "/IEventService/v1/EvtRpcExportLog" }
 
 func (o *xxx_ExportLogOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -5449,6 +5552,17 @@ func (o *ExportLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeExportLogRequest build a response structure from the given request structure.
+func (o *ExportLogRequest) MakeResponse() *ExportLogResponse {
+	return &ExportLogResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcExportLog operation.
+func (o *ExportLogRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of EvtRpcExportLog operation.
+func (o *ExportLogRequest) OpName() string { return "/IEventService/v1/EvtRpcExportLog" }
+
 // ExportLogResponse structure represents the EvtRpcExportLog operation response
 type ExportLogResponse struct {
 	// error: A pointer to an RpcInfo (section 2.2.1) structure in which to place error
@@ -5503,8 +5617,10 @@ type xxx_LocalizeExportLogOperation struct {
 	Return      uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcLocalizeExportLog operation.
 func (o *xxx_LocalizeExportLogOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of EvtRpcLocalizeExportLog operation.
 func (o *xxx_LocalizeExportLogOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcLocalizeExportLog"
 }
@@ -5693,6 +5809,19 @@ func (o *LocalizeExportLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeLocalizeExportLogRequest build a response structure from the given request structure.
+func (o *LocalizeExportLogRequest) MakeResponse() *LocalizeExportLogResponse {
+	return &LocalizeExportLogResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcLocalizeExportLog operation.
+func (o *LocalizeExportLogRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of EvtRpcLocalizeExportLog operation.
+func (o *LocalizeExportLogRequest) OpName() string {
+	return "/IEventService/v1/EvtRpcLocalizeExportLog"
+}
+
 // LocalizeExportLogResponse structure represents the EvtRpcLocalizeExportLog operation response
 type LocalizeExportLogResponse struct {
 	// error: A pointer to an RpcInfo (section 2.2.1) structure in which to place error
@@ -5752,8 +5881,10 @@ type xxx_MessageRenderOperation struct {
 	Return                uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcMessageRender operation.
 func (o *xxx_MessageRenderOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of EvtRpcMessageRender operation.
 func (o *xxx_MessageRenderOperation) OpName() string { return "/IEventService/v1/EvtRpcMessageRender" }
 
 func (o *xxx_MessageRenderOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -6183,6 +6314,17 @@ func (o *MessageRenderRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeMessageRenderRequest build a response structure from the given request structure.
+func (o *MessageRenderRequest) MakeResponse() *MessageRenderResponse {
+	return &MessageRenderResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcMessageRender operation.
+func (o *MessageRenderRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of EvtRpcMessageRender operation.
+func (o *MessageRenderRequest) OpName() string { return "/IEventService/v1/EvtRpcMessageRender" }
+
 // MessageRenderResponse structure represents the EvtRpcMessageRender operation response
 type MessageRenderResponse struct {
 	// actualSizeString: A pointer to a 32-bit unsigned integer that, on return, contains
@@ -6257,8 +6399,10 @@ type xxx_MessageRenderDefaultOperation struct {
 	Return           uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcMessageRenderDefault operation.
 func (o *xxx_MessageRenderDefaultOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of EvtRpcMessageRenderDefault operation.
 func (o *xxx_MessageRenderDefaultOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcMessageRenderDefault"
 }
@@ -6653,6 +6797,19 @@ func (o *MessageRenderDefaultRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeMessageRenderDefaultRequest build a response structure from the given request structure.
+func (o *MessageRenderDefaultRequest) MakeResponse() *MessageRenderDefaultResponse {
+	return &MessageRenderDefaultResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcMessageRenderDefault operation.
+func (o *MessageRenderDefaultRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of EvtRpcMessageRenderDefault operation.
+func (o *MessageRenderDefaultRequest) OpName() string {
+	return "/IEventService/v1/EvtRpcMessageRenderDefault"
+}
+
 // MessageRenderDefaultResponse structure represents the EvtRpcMessageRenderDefault operation response
 type MessageRenderDefaultResponse struct {
 	// actualSizeString: A pointer to a 32-bit unsigned integer that contains the actual
@@ -6731,8 +6888,10 @@ type xxx_QueryNextOperation struct {
 	Return                 uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcQueryNext operation.
 func (o *xxx_QueryNextOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of EvtRpcQueryNext operation.
 func (o *xxx_QueryNextOperation) OpName() string { return "/IEventService/v1/EvtRpcQueryNext" }
 
 func (o *xxx_QueryNextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7148,6 +7307,17 @@ func (o *QueryNextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeQueryNextRequest build a response structure from the given request structure.
+func (o *QueryNextRequest) MakeResponse() *QueryNextResponse {
+	return &QueryNextResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcQueryNext operation.
+func (o *QueryNextRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of EvtRpcQueryNext operation.
+func (o *QueryNextRequest) OpName() string { return "/IEventService/v1/EvtRpcQueryNext" }
+
 // QueryNextResponse structure represents the EvtRpcQueryNext operation response
 type QueryNextResponse struct {
 	// numActualRecords: A pointer to a 32-bit unsigned integer that contains the value
@@ -7221,8 +7391,10 @@ type xxx_QuerySeekOperation struct {
 	Return      uint32    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcQuerySeek operation.
 func (o *xxx_QuerySeekOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of EvtRpcQuerySeek operation.
 func (o *xxx_QuerySeekOperation) OpName() string { return "/IEventService/v1/EvtRpcQuerySeek" }
 
 func (o *xxx_QuerySeekOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7487,6 +7659,17 @@ func (o *QuerySeekRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeQuerySeekRequest build a response structure from the given request structure.
+func (o *QuerySeekRequest) MakeResponse() *QuerySeekResponse {
+	return &QuerySeekResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcQuerySeek operation.
+func (o *QuerySeekRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of EvtRpcQuerySeek operation.
+func (o *QuerySeekRequest) OpName() string { return "/IEventService/v1/EvtRpcQuerySeek" }
+
 // QuerySeekResponse structure represents the EvtRpcQuerySeek operation response
 type QuerySeekResponse struct {
 	// error: A pointer to an RpcInfo (section 2.2.1) structure in which to place error
@@ -7538,8 +7721,10 @@ type xxx_CloseOperation struct {
 	Return uint32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcClose operation.
 func (o *xxx_CloseOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of EvtRpcClose operation.
 func (o *xxx_CloseOperation) OpName() string { return "/IEventService/v1/EvtRpcClose" }
 
 func (o *xxx_CloseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7672,6 +7857,17 @@ func (o *CloseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeCloseRequest build a response structure from the given request structure.
+func (o *CloseRequest) MakeResponse() *CloseResponse {
+	return &CloseResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcClose operation.
+func (o *CloseRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of EvtRpcClose operation.
+func (o *CloseRequest) OpName() string { return "/IEventService/v1/EvtRpcClose" }
+
 // CloseResponse structure represents the EvtRpcClose operation response
 type CloseResponse struct {
 	// handle: This parameter is an RPC context handle, as specified in [C706], Context
@@ -7718,8 +7914,10 @@ type xxx_CancelOperation struct {
 	Return uint32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcCancel operation.
 func (o *xxx_CancelOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of EvtRpcCancel operation.
 func (o *xxx_CancelOperation) OpName() string { return "/IEventService/v1/EvtRpcCancel" }
 
 func (o *xxx_CancelOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -7831,6 +8029,17 @@ func (o *CancelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeCancelRequest build a response structure from the given request structure.
+func (o *CancelRequest) MakeResponse() *CancelResponse {
+	return &CancelResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcCancel operation.
+func (o *CancelRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of EvtRpcCancel operation.
+func (o *CancelRequest) OpName() string { return "/IEventService/v1/EvtRpcCancel" }
+
 // CancelResponse structure represents the EvtRpcCancel operation response
 type CancelResponse struct {
 	// Return: The EvtRpcCancel return value.
@@ -7873,8 +8082,10 @@ type xxx_AssertConfigOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcAssertConfig operation.
 func (o *xxx_AssertConfigOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of EvtRpcAssertConfig operation.
 func (o *xxx_AssertConfigOperation) OpName() string { return "/IEventService/v1/EvtRpcAssertConfig" }
 
 func (o *xxx_AssertConfigOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8006,6 +8217,17 @@ func (o *AssertConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeAssertConfigRequest build a response structure from the given request structure.
+func (o *AssertConfigRequest) MakeResponse() *AssertConfigResponse {
+	return &AssertConfigResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcAssertConfig operation.
+func (o *AssertConfigRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of EvtRpcAssertConfig operation.
+func (o *AssertConfigRequest) OpName() string { return "/IEventService/v1/EvtRpcAssertConfig" }
+
 // AssertConfigResponse structure represents the EvtRpcAssertConfig operation response
 type AssertConfigResponse struct {
 	// Return: The EvtRpcAssertConfig return value.
@@ -8048,8 +8270,10 @@ type xxx_RetractConfigOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcRetractConfig operation.
 func (o *xxx_RetractConfigOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of EvtRpcRetractConfig operation.
 func (o *xxx_RetractConfigOperation) OpName() string { return "/IEventService/v1/EvtRpcRetractConfig" }
 
 func (o *xxx_RetractConfigOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8182,6 +8406,17 @@ func (o *RetractConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeRetractConfigRequest build a response structure from the given request structure.
+func (o *RetractConfigRequest) MakeResponse() *RetractConfigResponse {
+	return &RetractConfigResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcRetractConfig operation.
+func (o *RetractConfigRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of EvtRpcRetractConfig operation.
+func (o *RetractConfigRequest) OpName() string { return "/IEventService/v1/EvtRpcRetractConfig" }
+
 // RetractConfigResponse structure represents the EvtRpcRetractConfig operation response
 type RetractConfigResponse struct {
 	// Return: The EvtRpcRetractConfig return value.
@@ -8226,8 +8461,10 @@ type xxx_OpenLogOperation struct {
 	Return  uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcOpenLogHandle operation.
 func (o *xxx_OpenLogOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of EvtRpcOpenLogHandle operation.
 func (o *xxx_OpenLogOperation) OpName() string { return "/IEventService/v1/EvtRpcOpenLogHandle" }
 
 func (o *xxx_OpenLogOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -8401,6 +8638,17 @@ func (o *OpenLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeOpenLogRequest build a response structure from the given request structure.
+func (o *OpenLogRequest) MakeResponse() *OpenLogResponse {
+	return &OpenLogResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcOpenLogHandle operation.
+func (o *OpenLogRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of EvtRpcOpenLogHandle operation.
+func (o *OpenLogRequest) OpName() string { return "/IEventService/v1/EvtRpcOpenLogHandle" }
+
 // OpenLogResponse structure represents the EvtRpcOpenLogHandle operation response
 type OpenLogResponse struct {
 	// handle: A pointer to a log handle. This parameter is an RPC context handle, as specified
@@ -8458,8 +8706,10 @@ type xxx_GetLogFileInfoOperation struct {
 	Return                    uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcGetLogFileInfo operation.
 func (o *xxx_GetLogFileInfoOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of EvtRpcGetLogFileInfo operation.
 func (o *xxx_GetLogFileInfoOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcGetLogFileInfo"
 }
@@ -8705,6 +8955,22 @@ func (o *GetLogFileInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetLogFileInfoRequest build a response structure from the given request structure.
+func (o *GetLogFileInfoRequest) MakeResponse() *GetLogFileInfoResponse {
+	if o == nil {
+		return &GetLogFileInfoResponse{}
+	}
+	return &GetLogFileInfoResponse{
+		PropertyValueBufferSize: o.PropertyValueBufferSize,
+	}
+}
+
+// OpNum returns the operation number of EvtRpcGetLogFileInfo operation.
+func (o *GetLogFileInfoRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of EvtRpcGetLogFileInfo operation.
+func (o *GetLogFileInfoRequest) OpName() string { return "/IEventService/v1/EvtRpcGetLogFileInfo" }
+
 // GetLogFileInfoResponse structure represents the EvtRpcGetLogFileInfo operation response
 type GetLogFileInfoResponse struct {
 	// XXX: propertyValueBufferSize is an implicit input depedency for output parameters
@@ -8768,8 +9034,10 @@ type xxx_GetChannelListOperation struct {
 	Return             uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcGetChannelList operation.
 func (o *xxx_GetChannelListOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of EvtRpcGetChannelList operation.
 func (o *xxx_GetChannelListOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcGetChannelList"
 }
@@ -8981,6 +9249,17 @@ func (o *GetChannelListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetChannelListRequest build a response structure from the given request structure.
+func (o *GetChannelListRequest) MakeResponse() *GetChannelListResponse {
+	return &GetChannelListResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcGetChannelList operation.
+func (o *GetChannelListRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of EvtRpcGetChannelList operation.
+func (o *GetChannelListRequest) OpName() string { return "/IEventService/v1/EvtRpcGetChannelList" }
+
 // GetChannelListResponse structure represents the EvtRpcGetChannelList operation response
 type GetChannelListResponse struct {
 	// numChannelPaths:  A pointer to a 32-bit unsigned integer that contains the number
@@ -9033,8 +9312,10 @@ type xxx_GetChannelConfigOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcGetChannelConfig operation.
 func (o *xxx_GetChannelConfigOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of EvtRpcGetChannelConfig operation.
 func (o *xxx_GetChannelConfigOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcGetChannelConfig"
 }
@@ -9185,6 +9466,17 @@ func (o *GetChannelConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetChannelConfigRequest build a response structure from the given request structure.
+func (o *GetChannelConfigRequest) MakeResponse() *GetChannelConfigResponse {
+	return &GetChannelConfigResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcGetChannelConfig operation.
+func (o *GetChannelConfigRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of EvtRpcGetChannelConfig operation.
+func (o *GetChannelConfigRequest) OpName() string { return "/IEventService/v1/EvtRpcGetChannelConfig" }
 
 // GetChannelConfigResponse structure represents the EvtRpcGetChannelConfig operation response
 type GetChannelConfigResponse struct {
@@ -9367,8 +9659,10 @@ type xxx_PutChannelConfigOperation struct {
 	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcPutChannelConfig operation.
 func (o *xxx_PutChannelConfigOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of EvtRpcPutChannelConfig operation.
 func (o *xxx_PutChannelConfigOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcPutChannelConfig"
 }
@@ -9645,6 +9939,17 @@ func (o *PutChannelConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakePutChannelConfigRequest build a response structure from the given request structure.
+func (o *PutChannelConfigRequest) MakeResponse() *PutChannelConfigResponse {
+	return &PutChannelConfigResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcPutChannelConfig operation.
+func (o *PutChannelConfigRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of EvtRpcPutChannelConfig operation.
+func (o *PutChannelConfigRequest) OpName() string { return "/IEventService/v1/EvtRpcPutChannelConfig" }
+
 // PutChannelConfigResponse structure represents the EvtRpcPutChannelConfig operation response
 type PutChannelConfigResponse struct {
 	// error: A pointer to an RpcInfo (section 2.2.1) structure in which to place error
@@ -9696,8 +10001,10 @@ type xxx_GetPublisherListOperation struct {
 	Return             uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcGetPublisherList operation.
 func (o *xxx_GetPublisherListOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of EvtRpcGetPublisherList operation.
 func (o *xxx_GetPublisherListOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcGetPublisherList"
 }
@@ -9909,6 +10216,17 @@ func (o *GetPublisherListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetPublisherListRequest build a response structure from the given request structure.
+func (o *GetPublisherListRequest) MakeResponse() *GetPublisherListResponse {
+	return &GetPublisherListResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcGetPublisherList operation.
+func (o *GetPublisherListRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of EvtRpcGetPublisherList operation.
+func (o *GetPublisherListRequest) OpName() string { return "/IEventService/v1/EvtRpcGetPublisherList" }
+
 // GetPublisherListResponse structure represents the EvtRpcGetPublisherList operation response
 type GetPublisherListResponse struct {
 	// numPublisherIds: A pointer to a 32-bit unsigned integer that contains the number
@@ -9962,8 +10280,10 @@ type xxx_GetPublisherListForChannelOperation struct {
 	Return             uint32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcGetPublisherListForChannel operation.
 func (o *xxx_GetPublisherListForChannelOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of EvtRpcGetPublisherListForChannel operation.
 func (o *xxx_GetPublisherListForChannelOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcGetPublisherListForChannel"
 }
@@ -10192,6 +10512,19 @@ func (o *GetPublisherListForChannelRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeGetPublisherListForChannelRequest build a response structure from the given request structure.
+func (o *GetPublisherListForChannelRequest) MakeResponse() *GetPublisherListForChannelResponse {
+	return &GetPublisherListForChannelResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcGetPublisherListForChannel operation.
+func (o *GetPublisherListForChannelRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of EvtRpcGetPublisherListForChannel operation.
+func (o *GetPublisherListForChannelRequest) OpName() string {
+	return "/IEventService/v1/EvtRpcGetPublisherListForChannel"
+}
+
 // GetPublisherListForChannelResponse structure represents the EvtRpcGetPublisherListForChannel operation response
 type GetPublisherListForChannelResponse struct {
 	// numPublisherIds: A pointer to a 32-bit unsigned integer that contains the number
@@ -10247,8 +10580,10 @@ type xxx_GetPublisherMetadataOperation struct {
 	Return                      uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcGetPublisherMetadata operation.
 func (o *xxx_GetPublisherMetadataOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of EvtRpcGetPublisherMetadata operation.
 func (o *xxx_GetPublisherMetadataOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcGetPublisherMetadata"
 }
@@ -10507,6 +10842,19 @@ func (o *GetPublisherMetadataRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetPublisherMetadataRequest build a response structure from the given request structure.
+func (o *GetPublisherMetadataRequest) MakeResponse() *GetPublisherMetadataResponse {
+	return &GetPublisherMetadataResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcGetPublisherMetadata operation.
+func (o *GetPublisherMetadataRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of EvtRpcGetPublisherMetadata operation.
+func (o *GetPublisherMetadataRequest) OpName() string {
+	return "/IEventService/v1/EvtRpcGetPublisherMetadata"
+}
+
 // GetPublisherMetadataResponse structure represents the EvtRpcGetPublisherMetadata operation response
 type GetPublisherMetadataResponse struct {
 	// pubMetadataProps: A pointer to an EvtRpcVariantList (section 2.2.9) structure containing
@@ -10562,8 +10910,10 @@ type xxx_GetPublisherResourceMetadataOperation struct {
 	Return                      uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcGetPublisherResourceMetadata operation.
 func (o *xxx_GetPublisherResourceMetadataOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of EvtRpcGetPublisherResourceMetadata operation.
 func (o *xxx_GetPublisherResourceMetadataOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcGetPublisherResourceMetadata"
 }
@@ -10757,6 +11107,19 @@ func (o *GetPublisherResourceMetadataRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeGetPublisherResourceMetadataRequest build a response structure from the given request structure.
+func (o *GetPublisherResourceMetadataRequest) MakeResponse() *GetPublisherResourceMetadataResponse {
+	return &GetPublisherResourceMetadataResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcGetPublisherResourceMetadata operation.
+func (o *GetPublisherResourceMetadataRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of EvtRpcGetPublisherResourceMetadata operation.
+func (o *GetPublisherResourceMetadataRequest) OpName() string {
+	return "/IEventService/v1/EvtRpcGetPublisherResourceMetadata"
+}
+
 // GetPublisherResourceMetadataResponse structure represents the EvtRpcGetPublisherResourceMetadata operation response
 type GetPublisherResourceMetadataResponse struct {
 	// pubMetadataProps: Pointer to an EvtRpcVariantList (section 2.2.9) structure. This
@@ -10806,8 +11169,10 @@ type xxx_GetEventMetadataEnumOperation struct {
 	Return            uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcGetEventMetadataEnum operation.
 func (o *xxx_GetEventMetadataEnumOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of EvtRpcGetEventMetadataEnum operation.
 func (o *xxx_GetEventMetadataEnumOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcGetEventMetadataEnum"
 }
@@ -11004,6 +11369,19 @@ func (o *GetEventMetadataEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetEventMetadataEnumRequest build a response structure from the given request structure.
+func (o *GetEventMetadataEnumRequest) MakeResponse() *GetEventMetadataEnumResponse {
+	return &GetEventMetadataEnumResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcGetEventMetadataEnum operation.
+func (o *GetEventMetadataEnumRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of EvtRpcGetEventMetadataEnum operation.
+func (o *GetEventMetadataEnumRequest) OpName() string {
+	return "/IEventService/v1/EvtRpcGetEventMetadataEnum"
+}
+
 // GetEventMetadataEnumResponse structure represents the EvtRpcGetEventMetadataEnum operation response
 type GetEventMetadataEnumResponse struct {
 	// eventMetaDataEnum: A pointer to an event numeration handle. This parameter is an
@@ -11054,8 +11432,10 @@ type xxx_GetNextEventMetadataOperation struct {
 	Return                 uint32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcGetNextEventMetadata operation.
 func (o *xxx_GetNextEventMetadataOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of EvtRpcGetNextEventMetadata operation.
 func (o *xxx_GetNextEventMetadataOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcGetNextEventMetadata"
 }
@@ -11303,6 +11683,19 @@ func (o *GetNextEventMetadataRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetNextEventMetadataRequest build a response structure from the given request structure.
+func (o *GetNextEventMetadataRequest) MakeResponse() *GetNextEventMetadataResponse {
+	return &GetNextEventMetadataResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcGetNextEventMetadata operation.
+func (o *GetNextEventMetadataRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of EvtRpcGetNextEventMetadata operation.
+func (o *GetNextEventMetadataRequest) OpName() string {
+	return "/IEventService/v1/EvtRpcGetNextEventMetadata"
+}
+
 // GetNextEventMetadataResponse structure represents the EvtRpcGetNextEventMetadata operation response
 type GetNextEventMetadataResponse struct {
 	// numReturned: A pointer to a 32-bit unsigned integer that contains the number of events
@@ -11357,8 +11750,10 @@ type xxx_GetClassicLogDisplayNameOperation struct {
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EvtRpcGetClassicLogDisplayName operation.
 func (o *xxx_GetClassicLogDisplayNameOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of EvtRpcGetClassicLogDisplayName operation.
 func (o *xxx_GetClassicLogDisplayNameOperation) OpName() string {
 	return "/IEventService/v1/EvtRpcGetClassicLogDisplayName"
 }
@@ -11547,6 +11942,19 @@ func (o *GetClassicLogDisplayNameRequest) UnmarshalNDR(ctx context.Context, r nd
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetClassicLogDisplayNameRequest build a response structure from the given request structure.
+func (o *GetClassicLogDisplayNameRequest) MakeResponse() *GetClassicLogDisplayNameResponse {
+	return &GetClassicLogDisplayNameResponse{}
+}
+
+// OpNum returns the operation number of EvtRpcGetClassicLogDisplayName operation.
+func (o *GetClassicLogDisplayNameRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of EvtRpcGetClassicLogDisplayName operation.
+func (o *GetClassicLogDisplayNameRequest) OpName() string {
+	return "/IEventService/v1/EvtRpcGetClassicLogDisplayName"
 }
 
 // GetClassicLogDisplayNameResponse structure represents the EvtRpcGetClassicLogDisplayName operation response

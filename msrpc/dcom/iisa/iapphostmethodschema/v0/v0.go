@@ -249,8 +249,10 @@ type xxx_GetNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Name operation.
 func (o *xxx_GetNameOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Name operation.
 func (o *xxx_GetNameOperation) OpName() string { return "/IAppHostMethodSchema/v0/Name" }
 
 func (o *xxx_GetNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -440,6 +442,17 @@ func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetNameRequest build a response structure from the given request structure.
+func (o *GetNameRequest) MakeResponse() *GetNameResponse {
+	return &GetNameResponse{}
+}
+
+// OpNum returns the operation number of Name operation.
+func (o *GetNameRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Name operation.
+func (o *GetNameRequest) OpName() string { return "/IAppHostMethodSchema/v0/Name" }
+
 // GetNameResponse structure represents the Name operation response
 type GetNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -490,8 +503,10 @@ type xxx_GetInputSchemaOperation struct {
 	Return      int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of InputSchema operation.
 func (o *xxx_GetInputSchemaOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of InputSchema operation.
 func (o *xxx_GetInputSchemaOperation) OpName() string { return "/IAppHostMethodSchema/v0/InputSchema" }
 
 func (o *xxx_GetInputSchemaOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -681,6 +696,17 @@ func (o *GetInputSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetInputSchemaRequest build a response structure from the given request structure.
+func (o *GetInputSchemaRequest) MakeResponse() *GetInputSchemaResponse {
+	return &GetInputSchemaResponse{}
+}
+
+// OpNum returns the operation number of InputSchema operation.
+func (o *GetInputSchemaRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of InputSchema operation.
+func (o *GetInputSchemaRequest) OpName() string { return "/IAppHostMethodSchema/v0/InputSchema" }
+
 // GetInputSchemaResponse structure represents the InputSchema operation response
 type GetInputSchemaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -732,8 +758,10 @@ type xxx_GetOutputSchemaOperation struct {
 	Return       int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of OutputSchema operation.
 func (o *xxx_GetOutputSchemaOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of OutputSchema operation.
 func (o *xxx_GetOutputSchemaOperation) OpName() string {
 	return "/IAppHostMethodSchema/v0/OutputSchema"
 }
@@ -925,6 +953,17 @@ func (o *GetOutputSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetOutputSchemaRequest build a response structure from the given request structure.
+func (o *GetOutputSchemaRequest) MakeResponse() *GetOutputSchemaResponse {
+	return &GetOutputSchemaResponse{}
+}
+
+// OpNum returns the operation number of OutputSchema operation.
+func (o *GetOutputSchemaRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of OutputSchema operation.
+func (o *GetOutputSchemaRequest) OpName() string { return "/IAppHostMethodSchema/v0/OutputSchema" }
+
 // GetOutputSchemaResponse structure represents the OutputSchema operation response
 type GetOutputSchemaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -977,8 +1016,10 @@ type xxx_GetMetadataOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetMetadata operation.
 func (o *xxx_GetMetadataOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of GetMetadata operation.
 func (o *xxx_GetMetadataOperation) OpName() string { return "/IAppHostMethodSchema/v0/GetMetadata" }
 
 func (o *xxx_GetMetadataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1216,6 +1257,17 @@ func (o *GetMetadataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetMetadataRequest build a response structure from the given request structure.
+func (o *GetMetadataRequest) MakeResponse() *GetMetadataResponse {
+	return &GetMetadataResponse{}
+}
+
+// OpNum returns the operation number of GetMetadata operation.
+func (o *GetMetadataRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of GetMetadata operation.
+func (o *GetMetadataRequest) OpName() string { return "/IAppHostMethodSchema/v0/GetMetadata" }
 
 // GetMetadataResponse structure represents the GetMetadata operation response
 type GetMetadataResponse struct {

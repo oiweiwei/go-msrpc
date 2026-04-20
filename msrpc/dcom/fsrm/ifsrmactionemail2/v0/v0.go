@@ -161,8 +161,10 @@ type xxx_GetAttachmentFileListSizeOperation struct {
 	Return                 int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AttachmentFileListSize operation.
 func (o *xxx_GetAttachmentFileListSizeOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of AttachmentFileListSize operation.
 func (o *xxx_GetAttachmentFileListSizeOperation) OpName() string {
 	return "/IFsrmActionEmail2/v0/AttachmentFileListSize"
 }
@@ -320,6 +322,19 @@ func (o *GetAttachmentFileListSizeRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeGetAttachmentFileListSizeRequest build a response structure from the given request structure.
+func (o *GetAttachmentFileListSizeRequest) MakeResponse() *GetAttachmentFileListSizeResponse {
+	return &GetAttachmentFileListSizeResponse{}
+}
+
+// OpNum returns the operation number of AttachmentFileListSize operation.
+func (o *GetAttachmentFileListSizeRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of AttachmentFileListSize operation.
+func (o *GetAttachmentFileListSizeRequest) OpName() string {
+	return "/IFsrmActionEmail2/v0/AttachmentFileListSize"
+}
+
 // GetAttachmentFileListSizeResponse structure represents the AttachmentFileListSize operation response
 type GetAttachmentFileListSizeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -370,8 +385,10 @@ type xxx_SetAttachmentFileListSizeOperation struct {
 	Return                 int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AttachmentFileListSize operation.
 func (o *xxx_SetAttachmentFileListSizeOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of AttachmentFileListSize operation.
 func (o *xxx_SetAttachmentFileListSizeOperation) OpName() string {
 	return "/IFsrmActionEmail2/v0/AttachmentFileListSize"
 }
@@ -530,6 +547,19 @@ func (o *SetAttachmentFileListSizeRequest) UnmarshalNDR(ctx context.Context, r n
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetAttachmentFileListSizeRequest build a response structure from the given request structure.
+func (o *SetAttachmentFileListSizeRequest) MakeResponse() *SetAttachmentFileListSizeResponse {
+	return &SetAttachmentFileListSizeResponse{}
+}
+
+// OpNum returns the operation number of AttachmentFileListSize operation.
+func (o *SetAttachmentFileListSizeRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of AttachmentFileListSize operation.
+func (o *SetAttachmentFileListSizeRequest) OpName() string {
+	return "/IFsrmActionEmail2/v0/AttachmentFileListSize"
 }
 
 // SetAttachmentFileListSizeResponse structure represents the AttachmentFileListSize operation response

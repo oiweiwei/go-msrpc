@@ -786,8 +786,10 @@ type xxx_GetPrimaryDomainInformationOperation struct {
 	Return     uint32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DsRolerGetPrimaryDomainInformation operation.
 func (o *xxx_GetPrimaryDomainInformationOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of DsRolerGetPrimaryDomainInformation operation.
 func (o *xxx_GetPrimaryDomainInformationOperation) OpName() string {
 	return "/dssetup/v0/DsRolerGetPrimaryDomainInformation"
 }
@@ -938,6 +940,24 @@ func (o *GetPrimaryDomainInformationRequest) UnmarshalNDR(ctx context.Context, r
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetPrimaryDomainInformationRequest build a response structure from the given request structure.
+func (o *GetPrimaryDomainInformationRequest) MakeResponse() *GetPrimaryDomainInformationResponse {
+	if o == nil {
+		return &GetPrimaryDomainInformationResponse{}
+	}
+	return &GetPrimaryDomainInformationResponse{
+		InfoLevel: o.InfoLevel,
+	}
+}
+
+// OpNum returns the operation number of DsRolerGetPrimaryDomainInformation operation.
+func (o *GetPrimaryDomainInformationRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of DsRolerGetPrimaryDomainInformation operation.
+func (o *GetPrimaryDomainInformationRequest) OpName() string {
+	return "/dssetup/v0/DsRolerGetPrimaryDomainInformation"
 }
 
 // GetPrimaryDomainInformationResponse structure represents the DsRolerGetPrimaryDomainInformation operation response

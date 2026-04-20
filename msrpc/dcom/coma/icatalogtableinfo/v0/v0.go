@@ -165,8 +165,10 @@ type xxx_GetClientTableInfoOperation struct {
 	Return                int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetClientTableInfo operation.
 func (o *xxx_GetClientTableInfoOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetClientTableInfo operation.
 func (o *xxx_GetClientTableInfoOperation) OpName() string {
 	return "/ICatalogTableInfo/v0/GetClientTableInfo"
 }
@@ -963,6 +965,19 @@ func (o *GetClientTableInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetClientTableInfoRequest build a response structure from the given request structure.
+func (o *GetClientTableInfoRequest) MakeResponse() *GetClientTableInfoResponse {
+	return &GetClientTableInfoResponse{}
+}
+
+// OpNum returns the operation number of GetClientTableInfo operation.
+func (o *GetClientTableInfoRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetClientTableInfo operation.
+func (o *GetClientTableInfoRequest) OpName() string {
+	return "/ICatalogTableInfo/v0/GetClientTableInfo"
 }
 
 // GetClientTableInfoResponse structure represents the GetClientTableInfo operation response

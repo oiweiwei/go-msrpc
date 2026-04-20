@@ -188,8 +188,10 @@ type xxx_GetExcludeFoldersOperation struct {
 	Return  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExcludeFolders operation.
 func (o *xxx_GetExcludeFoldersOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of ExcludeFolders operation.
 func (o *xxx_GetExcludeFoldersOperation) OpName() string {
 	return "/IFsrmAutoApplyQuota/v0/ExcludeFolders"
 }
@@ -381,6 +383,17 @@ func (o *GetExcludeFoldersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetExcludeFoldersRequest build a response structure from the given request structure.
+func (o *GetExcludeFoldersRequest) MakeResponse() *GetExcludeFoldersResponse {
+	return &GetExcludeFoldersResponse{}
+}
+
+// OpNum returns the operation number of ExcludeFolders operation.
+func (o *GetExcludeFoldersRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of ExcludeFolders operation.
+func (o *GetExcludeFoldersRequest) OpName() string { return "/IFsrmAutoApplyQuota/v0/ExcludeFolders" }
+
 // GetExcludeFoldersResponse structure represents the ExcludeFolders operation response
 type GetExcludeFoldersResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -431,8 +444,10 @@ type xxx_SetExcludeFoldersOperation struct {
 	Return  int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExcludeFolders operation.
 func (o *xxx_SetExcludeFoldersOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of ExcludeFolders operation.
 func (o *xxx_SetExcludeFoldersOperation) OpName() string {
 	return "/IFsrmAutoApplyQuota/v0/ExcludeFolders"
 }
@@ -627,6 +642,17 @@ func (o *SetExcludeFoldersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetExcludeFoldersRequest build a response structure from the given request structure.
+func (o *SetExcludeFoldersRequest) MakeResponse() *SetExcludeFoldersResponse {
+	return &SetExcludeFoldersResponse{}
+}
+
+// OpNum returns the operation number of ExcludeFolders operation.
+func (o *SetExcludeFoldersRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of ExcludeFolders operation.
+func (o *SetExcludeFoldersRequest) OpName() string { return "/IFsrmAutoApplyQuota/v0/ExcludeFolders" }
+
 // SetExcludeFoldersResponse structure represents the ExcludeFolders operation response
 type SetExcludeFoldersResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -676,8 +702,10 @@ type xxx_CommitAndUpdateDerivedOperation struct {
 	Return               int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CommitAndUpdateDerived operation.
 func (o *xxx_CommitAndUpdateDerivedOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of CommitAndUpdateDerived operation.
 func (o *xxx_CommitAndUpdateDerivedOperation) OpName() string {
 	return "/IFsrmAutoApplyQuota/v0/CommitAndUpdateDerived"
 }
@@ -897,6 +925,19 @@ func (o *CommitAndUpdateDerivedRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeCommitAndUpdateDerivedRequest build a response structure from the given request structure.
+func (o *CommitAndUpdateDerivedRequest) MakeResponse() *CommitAndUpdateDerivedResponse {
+	return &CommitAndUpdateDerivedResponse{}
+}
+
+// OpNum returns the operation number of CommitAndUpdateDerived operation.
+func (o *CommitAndUpdateDerivedRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of CommitAndUpdateDerived operation.
+func (o *CommitAndUpdateDerivedRequest) OpName() string {
+	return "/IFsrmAutoApplyQuota/v0/CommitAndUpdateDerived"
 }
 
 // CommitAndUpdateDerivedResponse structure represents the CommitAndUpdateDerived operation response

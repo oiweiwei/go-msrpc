@@ -190,8 +190,10 @@ type xxx_PauseOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Pause operation.
 func (o *xxx_PauseOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of Pause operation.
 func (o *xxx_PauseOperation) OpName() string { return "/IWbemBackupRestoreEx/v0/Pause" }
 
 func (o *xxx_PauseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -335,6 +337,17 @@ func (o *PauseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakePauseRequest build a response structure from the given request structure.
+func (o *PauseRequest) MakeResponse() *PauseResponse {
+	return &PauseResponse{}
+}
+
+// OpNum returns the operation number of Pause operation.
+func (o *PauseRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of Pause operation.
+func (o *PauseRequest) OpName() string { return "/IWbemBackupRestoreEx/v0/Pause" }
+
 // PauseResponse structure represents the Pause operation response
 type PauseResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -381,8 +394,10 @@ type xxx_ResumeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Resume operation.
 func (o *xxx_ResumeOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of Resume operation.
 func (o *xxx_ResumeOperation) OpName() string { return "/IWbemBackupRestoreEx/v0/Resume" }
 
 func (o *xxx_ResumeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -525,6 +540,17 @@ func (o *ResumeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeResumeRequest build a response structure from the given request structure.
+func (o *ResumeRequest) MakeResponse() *ResumeResponse {
+	return &ResumeResponse{}
+}
+
+// OpNum returns the operation number of Resume operation.
+func (o *ResumeRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of Resume operation.
+func (o *ResumeRequest) OpName() string { return "/IWbemBackupRestoreEx/v0/Resume" }
 
 // ResumeResponse structure represents the Resume operation response
 type ResumeResponse struct {

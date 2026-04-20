@@ -544,8 +544,10 @@ type xxx_GetConfigOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetConfig operation.
 func (o *xxx_GetConfigOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetConfig operation.
 func (o *xxx_GetConfigOperation) OpName() string { return "/IWRMConfig/v0/GetConfig" }
 
 func (o *xxx_GetConfigOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -768,6 +770,17 @@ func (o *GetConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetConfigRequest build a response structure from the given request structure.
+func (o *GetConfigRequest) MakeResponse() *GetConfigResponse {
+	return &GetConfigResponse{}
+}
+
+// OpNum returns the operation number of GetConfig operation.
+func (o *GetConfigRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetConfig operation.
+func (o *GetConfigRequest) OpName() string { return "/IWRMConfig/v0/GetConfig" }
+
 // GetConfigResponse structure represents the GetConfig operation response
 type GetConfigResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -821,8 +834,10 @@ type xxx_SetConfigOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetConfig operation.
 func (o *xxx_SetConfigOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of SetConfig operation.
 func (o *xxx_SetConfigOperation) OpName() string { return "/IWRMConfig/v0/SetConfig" }
 
 func (o *xxx_SetConfigOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1050,6 +1065,17 @@ func (o *SetConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeSetConfigRequest build a response structure from the given request structure.
+func (o *SetConfigRequest) MakeResponse() *SetConfigResponse {
+	return &SetConfigResponse{}
+}
+
+// OpNum returns the operation number of SetConfig operation.
+func (o *SetConfigRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of SetConfig operation.
+func (o *SetConfigRequest) OpName() string { return "/IWRMConfig/v0/SetConfig" }
+
 // SetConfigResponse structure represents the SetConfig operation response
 type SetConfigResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1098,8 +1124,10 @@ type xxx_IsEnabledOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsEnabled operation.
 func (o *xxx_IsEnabledOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of IsEnabled operation.
 func (o *xxx_IsEnabledOperation) OpName() string { return "/IWRMConfig/v0/IsEnabled" }
 
 func (o *xxx_IsEnabledOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1280,6 +1308,17 @@ func (o *IsEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeIsEnabledRequest build a response structure from the given request structure.
+func (o *IsEnabledRequest) MakeResponse() *IsEnabledResponse {
+	return &IsEnabledResponse{}
+}
+
+// OpNum returns the operation number of IsEnabled operation.
+func (o *IsEnabledRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of IsEnabled operation.
+func (o *IsEnabledRequest) OpName() string { return "/IWRMConfig/v0/IsEnabled" }
+
 // IsEnabledResponse structure represents the IsEnabled operation response
 type IsEnabledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1333,8 +1372,10 @@ type xxx_EnableDisableOperation struct {
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnableDisable operation.
 func (o *xxx_EnableDisableOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of EnableDisable operation.
 func (o *xxx_EnableDisableOperation) OpName() string { return "/IWRMConfig/v0/EnableDisable" }
 
 func (o *xxx_EnableDisableOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1532,6 +1573,17 @@ func (o *EnableDisableRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeEnableDisableRequest build a response structure from the given request structure.
+func (o *EnableDisableRequest) MakeResponse() *EnableDisableResponse {
+	return &EnableDisableResponse{}
+}
+
+// OpNum returns the operation number of EnableDisable operation.
+func (o *EnableDisableRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of EnableDisable operation.
+func (o *EnableDisableRequest) OpName() string { return "/IWRMConfig/v0/EnableDisable" }
+
 // EnableDisableResponse structure represents the EnableDisable operation response
 type EnableDisableResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1580,8 +1632,10 @@ type xxx_GetExclusionListOperation struct {
 	Return        int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetExclusionList operation.
 func (o *xxx_GetExclusionListOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of GetExclusionList operation.
 func (o *xxx_GetExclusionListOperation) OpName() string { return "/IWRMConfig/v0/GetExclusionList" }
 
 func (o *xxx_GetExclusionListOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1788,6 +1842,17 @@ func (o *GetExclusionListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetExclusionListRequest build a response structure from the given request structure.
+func (o *GetExclusionListRequest) MakeResponse() *GetExclusionListResponse {
+	return &GetExclusionListResponse{}
+}
+
+// OpNum returns the operation number of GetExclusionList operation.
+func (o *GetExclusionListRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of GetExclusionList operation.
+func (o *GetExclusionListRequest) OpName() string { return "/IWRMConfig/v0/GetExclusionList" }
+
 // GetExclusionListResponse structure represents the GetExclusionList operation response
 type GetExclusionListResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1841,8 +1906,10 @@ type xxx_SetExclusionListOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetExclusionList operation.
 func (o *xxx_SetExclusionListOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of SetExclusionList operation.
 func (o *xxx_SetExclusionListOperation) OpName() string { return "/IWRMConfig/v0/SetExclusionList" }
 
 func (o *xxx_SetExclusionListOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2037,6 +2104,17 @@ func (o *SetExclusionListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetExclusionListRequest build a response structure from the given request structure.
+func (o *SetExclusionListRequest) MakeResponse() *SetExclusionListResponse {
+	return &SetExclusionListResponse{}
+}
+
+// OpNum returns the operation number of SetExclusionList operation.
+func (o *SetExclusionListRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of SetExclusionList operation.
+func (o *SetExclusionListRequest) OpName() string { return "/IWRMConfig/v0/SetExclusionList" }
+
 // SetExclusionListResponse structure represents the SetExclusionList operation response
 type SetExclusionListResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2084,8 +2162,10 @@ type xxx_WSRMActivateOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of WSRMActivate operation.
 func (o *xxx_WSRMActivateOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of WSRMActivate operation.
 func (o *xxx_WSRMActivateOperation) OpName() string { return "/IWRMConfig/v0/WSRMActivate" }
 
 func (o *xxx_WSRMActivateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2264,6 +2344,17 @@ func (o *WSRMActivateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeWSRMActivateRequest build a response structure from the given request structure.
+func (o *WSRMActivateRequest) MakeResponse() *WSRMActivateResponse {
+	return &WSRMActivateResponse{}
+}
+
+// OpNum returns the operation number of WSRMActivate operation.
+func (o *WSRMActivateRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of WSRMActivate operation.
+func (o *WSRMActivateRequest) OpName() string { return "/IWRMConfig/v0/WSRMActivate" }
+
 // WSRMActivateResponse structure represents the WSRMActivate operation response
 type WSRMActivateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2311,8 +2402,10 @@ type xxx_IsWSRMActivatedOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsWSRMActivated operation.
 func (o *xxx_IsWSRMActivatedOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of IsWSRMActivated operation.
 func (o *xxx_IsWSRMActivatedOperation) OpName() string { return "/IWRMConfig/v0/IsWSRMActivated" }
 
 func (o *xxx_IsWSRMActivatedOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2476,6 +2569,17 @@ func (o *IsWSRMActivatedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeIsWSRMActivatedRequest build a response structure from the given request structure.
+func (o *IsWSRMActivatedRequest) MakeResponse() *IsWSRMActivatedResponse {
+	return &IsWSRMActivatedResponse{}
+}
+
+// OpNum returns the operation number of IsWSRMActivated operation.
+func (o *IsWSRMActivatedRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of IsWSRMActivated operation.
+func (o *IsWSRMActivatedRequest) OpName() string { return "/IWRMConfig/v0/IsWSRMActivated" }
+
 // IsWSRMActivatedResponse structure represents the IsWSRMActivated operation response
 type IsWSRMActivatedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2527,8 +2631,10 @@ type xxx_RestoreExclusionListOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RestoreExclusionList operation.
 func (o *xxx_RestoreExclusionListOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of RestoreExclusionList operation.
 func (o *xxx_RestoreExclusionListOperation) OpName() string {
 	return "/IWRMConfig/v0/RestoreExclusionList"
 }
@@ -2673,6 +2779,17 @@ func (o *RestoreExclusionListRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeRestoreExclusionListRequest build a response structure from the given request structure.
+func (o *RestoreExclusionListRequest) MakeResponse() *RestoreExclusionListResponse {
+	return &RestoreExclusionListResponse{}
+}
+
+// OpNum returns the operation number of RestoreExclusionList operation.
+func (o *RestoreExclusionListRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of RestoreExclusionList operation.
+func (o *RestoreExclusionListRequest) OpName() string { return "/IWRMConfig/v0/RestoreExclusionList" }
 
 // RestoreExclusionListResponse structure represents the RestoreExclusionList operation response
 type RestoreExclusionListResponse struct {

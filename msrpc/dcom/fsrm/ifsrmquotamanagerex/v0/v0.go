@@ -160,8 +160,10 @@ type xxx_IsAffectedByQuotaOperation struct {
 	Return   int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsAffectedByQuota operation.
 func (o *xxx_IsAffectedByQuotaOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of IsAffectedByQuota operation.
 func (o *xxx_IsAffectedByQuotaOperation) OpName() string {
 	return "/IFsrmQuotaManagerEx/v0/IsAffectedByQuota"
 }
@@ -386,6 +388,19 @@ func (o *IsAffectedByQuotaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeIsAffectedByQuotaRequest build a response structure from the given request structure.
+func (o *IsAffectedByQuotaRequest) MakeResponse() *IsAffectedByQuotaResponse {
+	return &IsAffectedByQuotaResponse{}
+}
+
+// OpNum returns the operation number of IsAffectedByQuota operation.
+func (o *IsAffectedByQuotaRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of IsAffectedByQuota operation.
+func (o *IsAffectedByQuotaRequest) OpName() string {
+	return "/IFsrmQuotaManagerEx/v0/IsAffectedByQuota"
 }
 
 // IsAffectedByQuotaResponse structure represents the IsAffectedByQuota operation response

@@ -241,8 +241,10 @@ type xxx_GetRemoteUserCategoriesOperation struct {
 	Return                   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetRemoteUserCategories operation.
 func (o *xxx_GetRemoteUserCategoriesOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetRemoteUserCategories operation.
 func (o *xxx_GetRemoteUserCategoriesOperation) OpName() string {
 	return "/IWRMRemoteSessionMgmt/v0/GetRemoteUserCategories"
 }
@@ -434,6 +436,19 @@ func (o *GetRemoteUserCategoriesRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeGetRemoteUserCategoriesRequest build a response structure from the given request structure.
+func (o *GetRemoteUserCategoriesRequest) MakeResponse() *GetRemoteUserCategoriesResponse {
+	return &GetRemoteUserCategoriesResponse{}
+}
+
+// OpNum returns the operation number of GetRemoteUserCategories operation.
+func (o *GetRemoteUserCategoriesRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetRemoteUserCategories operation.
+func (o *GetRemoteUserCategoriesRequest) OpName() string {
+	return "/IWRMRemoteSessionMgmt/v0/GetRemoteUserCategories"
+}
+
 // GetRemoteUserCategoriesResponse structure represents the GetRemoteUserCategories operation response
 type GetRemoteUserCategoriesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -486,8 +501,10 @@ type xxx_SetRemoteUserCategoriesOperation struct {
 	Return                   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetRemoteUserCategories operation.
 func (o *xxx_SetRemoteUserCategoriesOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of SetRemoteUserCategories operation.
 func (o *xxx_SetRemoteUserCategoriesOperation) OpName() string {
 	return "/IWRMRemoteSessionMgmt/v0/SetRemoteUserCategories"
 }
@@ -684,6 +701,19 @@ func (o *SetRemoteUserCategoriesRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeSetRemoteUserCategoriesRequest build a response structure from the given request structure.
+func (o *SetRemoteUserCategoriesRequest) MakeResponse() *SetRemoteUserCategoriesResponse {
+	return &SetRemoteUserCategoriesResponse{}
+}
+
+// OpNum returns the operation number of SetRemoteUserCategories operation.
+func (o *SetRemoteUserCategoriesRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of SetRemoteUserCategories operation.
+func (o *SetRemoteUserCategoriesRequest) OpName() string {
+	return "/IWRMRemoteSessionMgmt/v0/SetRemoteUserCategories"
+}
+
 // SetRemoteUserCategoriesResponse structure represents the SetRemoteUserCategories operation response
 type SetRemoteUserCategoriesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -732,8 +762,10 @@ type xxx_RefreshRemoteSessionWeightsOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RefreshRemoteSessionWeights operation.
 func (o *xxx_RefreshRemoteSessionWeightsOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of RefreshRemoteSessionWeights operation.
 func (o *xxx_RefreshRemoteSessionWeightsOperation) OpName() string {
 	return "/IWRMRemoteSessionMgmt/v0/RefreshRemoteSessionWeights"
 }
@@ -964,6 +996,19 @@ func (o *RefreshRemoteSessionWeightsRequest) UnmarshalNDR(ctx context.Context, r
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeRefreshRemoteSessionWeightsRequest build a response structure from the given request structure.
+func (o *RefreshRemoteSessionWeightsRequest) MakeResponse() *RefreshRemoteSessionWeightsResponse {
+	return &RefreshRemoteSessionWeightsResponse{}
+}
+
+// OpNum returns the operation number of RefreshRemoteSessionWeights operation.
+func (o *RefreshRemoteSessionWeightsRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of RefreshRemoteSessionWeights operation.
+func (o *RefreshRemoteSessionWeightsRequest) OpName() string {
+	return "/IWRMRemoteSessionMgmt/v0/RefreshRemoteSessionWeights"
 }
 
 // RefreshRemoteSessionWeightsResponse structure represents the RefreshRemoteSessionWeights operation response

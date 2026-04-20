@@ -760,8 +760,10 @@ type xxx_GetTypeKindOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetTypeKind operation.
 func (o *xxx_GetTypeKindOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of GetTypeKind operation.
 func (o *xxx_GetTypeKindOperation) OpName() string { return "/ITypeInfo2/v0/GetTypeKind" }
 
 func (o *xxx_GetTypeKindOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -917,6 +919,17 @@ func (o *GetTypeKindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetTypeKindRequest build a response structure from the given request structure.
+func (o *GetTypeKindRequest) MakeResponse() *GetTypeKindResponse {
+	return &GetTypeKindResponse{}
+}
+
+// OpNum returns the operation number of GetTypeKind operation.
+func (o *GetTypeKindRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of GetTypeKind operation.
+func (o *GetTypeKindRequest) OpName() string { return "/ITypeInfo2/v0/GetTypeKind" }
+
 // GetTypeKindResponse structure represents the GetTypeKind operation response
 type GetTypeKindResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -969,8 +982,10 @@ type xxx_GetTypeFlagsOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetTypeFlags operation.
 func (o *xxx_GetTypeFlagsOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of GetTypeFlags operation.
 func (o *xxx_GetTypeFlagsOperation) OpName() string { return "/ITypeInfo2/v0/GetTypeFlags" }
 
 func (o *xxx_GetTypeFlagsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1126,6 +1141,17 @@ func (o *GetTypeFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetTypeFlagsRequest build a response structure from the given request structure.
+func (o *GetTypeFlagsRequest) MakeResponse() *GetTypeFlagsResponse {
+	return &GetTypeFlagsResponse{}
+}
+
+// OpNum returns the operation number of GetTypeFlags operation.
+func (o *GetTypeFlagsRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of GetTypeFlags operation.
+func (o *GetTypeFlagsRequest) OpName() string { return "/ITypeInfo2/v0/GetTypeFlags" }
+
 // GetTypeFlagsResponse structure represents the GetTypeFlags operation response
 type GetTypeFlagsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1180,8 +1206,10 @@ type xxx_GetFuncIndexOfMemberIDsOperation struct {
 	Return    int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetFuncIndexOfMemId operation.
 func (o *xxx_GetFuncIndexOfMemberIDsOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of GetFuncIndexOfMemId operation.
 func (o *xxx_GetFuncIndexOfMemberIDsOperation) OpName() string {
 	return "/ITypeInfo2/v0/GetFuncIndexOfMemId"
 }
@@ -1372,6 +1400,17 @@ func (o *GetFuncIndexOfMemberIDsRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeGetFuncIndexOfMemberIDsRequest build a response structure from the given request structure.
+func (o *GetFuncIndexOfMemberIDsRequest) MakeResponse() *GetFuncIndexOfMemberIDsResponse {
+	return &GetFuncIndexOfMemberIDsResponse{}
+}
+
+// OpNum returns the operation number of GetFuncIndexOfMemId operation.
+func (o *GetFuncIndexOfMemberIDsRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of GetFuncIndexOfMemId operation.
+func (o *GetFuncIndexOfMemberIDsRequest) OpName() string { return "/ITypeInfo2/v0/GetFuncIndexOfMemId" }
+
 // GetFuncIndexOfMemberIDsResponse structure represents the GetFuncIndexOfMemId operation response
 type GetFuncIndexOfMemberIDsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1430,8 +1469,10 @@ type xxx_GetVarIndexOfMemberIDsOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetVarIndexOfMemId operation.
 func (o *xxx_GetVarIndexOfMemberIDsOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of GetVarIndexOfMemId operation.
 func (o *xxx_GetVarIndexOfMemberIDsOperation) OpName() string {
 	return "/ITypeInfo2/v0/GetVarIndexOfMemId"
 }
@@ -1605,6 +1646,17 @@ func (o *GetVarIndexOfMemberIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetVarIndexOfMemberIDsRequest build a response structure from the given request structure.
+func (o *GetVarIndexOfMemberIDsRequest) MakeResponse() *GetVarIndexOfMemberIDsResponse {
+	return &GetVarIndexOfMemberIDsResponse{}
+}
+
+// OpNum returns the operation number of GetVarIndexOfMemId operation.
+func (o *GetVarIndexOfMemberIDsRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of GetVarIndexOfMemId operation.
+func (o *GetVarIndexOfMemberIDsRequest) OpName() string { return "/ITypeInfo2/v0/GetVarIndexOfMemId" }
+
 // GetVarIndexOfMemberIDsResponse structure represents the GetVarIndexOfMemId operation response
 type GetVarIndexOfMemberIDsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1659,8 +1711,10 @@ type xxx_GetCustomDataOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetCustData operation.
 func (o *xxx_GetCustomDataOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of GetCustData operation.
 func (o *xxx_GetCustomDataOperation) OpName() string { return "/ITypeInfo2/v0/GetCustData" }
 
 func (o *xxx_GetCustomDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1878,6 +1932,17 @@ func (o *GetCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetCustomDataRequest build a response structure from the given request structure.
+func (o *GetCustomDataRequest) MakeResponse() *GetCustomDataResponse {
+	return &GetCustomDataResponse{}
+}
+
+// OpNum returns the operation number of GetCustData operation.
+func (o *GetCustomDataRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of GetCustData operation.
+func (o *GetCustomDataRequest) OpName() string { return "/ITypeInfo2/v0/GetCustData" }
+
 // GetCustomDataResponse structure represents the GetCustData operation response
 type GetCustomDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1936,8 +2001,10 @@ type xxx_GetFuncCustomDataOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetFuncCustData operation.
 func (o *xxx_GetFuncCustomDataOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of GetFuncCustData operation.
 func (o *xxx_GetFuncCustomDataOperation) OpName() string { return "/ITypeInfo2/v0/GetFuncCustData" }
 
 func (o *xxx_GetFuncCustomDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2171,6 +2238,17 @@ func (o *GetFuncCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetFuncCustomDataRequest build a response structure from the given request structure.
+func (o *GetFuncCustomDataRequest) MakeResponse() *GetFuncCustomDataResponse {
+	return &GetFuncCustomDataResponse{}
+}
+
+// OpNum returns the operation number of GetFuncCustData operation.
+func (o *GetFuncCustomDataRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of GetFuncCustData operation.
+func (o *GetFuncCustomDataRequest) OpName() string { return "/ITypeInfo2/v0/GetFuncCustData" }
+
 // GetFuncCustomDataResponse structure represents the GetFuncCustData operation response
 type GetFuncCustomDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2226,8 +2304,10 @@ type xxx_GetParamCustomDataOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetParamCustData operation.
 func (o *xxx_GetParamCustomDataOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of GetParamCustData operation.
 func (o *xxx_GetParamCustomDataOperation) OpName() string { return "/ITypeInfo2/v0/GetParamCustData" }
 
 func (o *xxx_GetParamCustomDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2480,6 +2560,17 @@ func (o *GetParamCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetParamCustomDataRequest build a response structure from the given request structure.
+func (o *GetParamCustomDataRequest) MakeResponse() *GetParamCustomDataResponse {
+	return &GetParamCustomDataResponse{}
+}
+
+// OpNum returns the operation number of GetParamCustData operation.
+func (o *GetParamCustomDataRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of GetParamCustData operation.
+func (o *GetParamCustomDataRequest) OpName() string { return "/ITypeInfo2/v0/GetParamCustData" }
+
 // GetParamCustomDataResponse structure represents the GetParamCustData operation response
 type GetParamCustomDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2534,8 +2625,10 @@ type xxx_GetVarCustomDataOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetVarCustData operation.
 func (o *xxx_GetVarCustomDataOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of GetVarCustData operation.
 func (o *xxx_GetVarCustomDataOperation) OpName() string { return "/ITypeInfo2/v0/GetVarCustData" }
 
 func (o *xxx_GetVarCustomDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2769,6 +2862,17 @@ func (o *GetVarCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetVarCustomDataRequest build a response structure from the given request structure.
+func (o *GetVarCustomDataRequest) MakeResponse() *GetVarCustomDataResponse {
+	return &GetVarCustomDataResponse{}
+}
+
+// OpNum returns the operation number of GetVarCustData operation.
+func (o *GetVarCustomDataRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of GetVarCustData operation.
+func (o *GetVarCustomDataRequest) OpName() string { return "/ITypeInfo2/v0/GetVarCustData" }
+
 // GetVarCustomDataResponse structure represents the GetVarCustData operation response
 type GetVarCustomDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2823,8 +2927,10 @@ type xxx_GetImplTypeCustomDataOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetImplTypeCustData operation.
 func (o *xxx_GetImplTypeCustomDataOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of GetImplTypeCustData operation.
 func (o *xxx_GetImplTypeCustomDataOperation) OpName() string {
 	return "/ITypeInfo2/v0/GetImplTypeCustData"
 }
@@ -3060,6 +3166,17 @@ func (o *GetImplTypeCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetImplTypeCustomDataRequest build a response structure from the given request structure.
+func (o *GetImplTypeCustomDataRequest) MakeResponse() *GetImplTypeCustomDataResponse {
+	return &GetImplTypeCustomDataResponse{}
+}
+
+// OpNum returns the operation number of GetImplTypeCustData operation.
+func (o *GetImplTypeCustomDataRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of GetImplTypeCustData operation.
+func (o *GetImplTypeCustomDataRequest) OpName() string { return "/ITypeInfo2/v0/GetImplTypeCustData" }
+
 // GetImplTypeCustomDataResponse structure represents the GetImplTypeCustData operation response
 type GetImplTypeCustomDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3117,8 +3234,10 @@ type xxx_GetDocumentation2Operation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetDocumentation2 operation.
 func (o *xxx_GetDocumentation2Operation) OpNum() int { return 31 }
 
+// OpName returns the operation name of GetDocumentation2 operation.
 func (o *xxx_GetDocumentation2Operation) OpName() string { return "/ITypeInfo2/v0/GetDocumentation2" }
 
 func (o *xxx_GetDocumentation2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3434,6 +3553,17 @@ func (o *GetDocumentation2Request) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetDocumentation2Request build a response structure from the given request structure.
+func (o *GetDocumentation2Request) MakeResponse() *GetDocumentation2Response {
+	return &GetDocumentation2Response{}
+}
+
+// OpNum returns the operation number of GetDocumentation2 operation.
+func (o *GetDocumentation2Request) OpNum() int { return 31 }
+
+// OpName returns the operation name of GetDocumentation2 operation.
+func (o *GetDocumentation2Request) OpName() string { return "/ITypeInfo2/v0/GetDocumentation2" }
+
 // GetDocumentation2Response structure represents the GetDocumentation2 operation response
 type GetDocumentation2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3513,8 +3643,10 @@ type xxx_GetAllCustomDataOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetAllCustData operation.
 func (o *xxx_GetAllCustomDataOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of GetAllCustData operation.
 func (o *xxx_GetAllCustomDataOperation) OpName() string { return "/ITypeInfo2/v0/GetAllCustData" }
 
 func (o *xxx_GetAllCustomDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3685,6 +3817,17 @@ func (o *GetAllCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetAllCustomDataRequest build a response structure from the given request structure.
+func (o *GetAllCustomDataRequest) MakeResponse() *GetAllCustomDataResponse {
+	return &GetAllCustomDataResponse{}
+}
+
+// OpNum returns the operation number of GetAllCustData operation.
+func (o *GetAllCustomDataRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of GetAllCustData operation.
+func (o *GetAllCustomDataRequest) OpName() string { return "/ITypeInfo2/v0/GetAllCustData" }
+
 // GetAllCustomDataResponse structure represents the GetAllCustData operation response
 type GetAllCustomDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3745,8 +3888,10 @@ type xxx_GetAllFuncCustomDataOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetAllFuncCustData operation.
 func (o *xxx_GetAllFuncCustomDataOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of GetAllFuncCustData operation.
 func (o *xxx_GetAllFuncCustomDataOperation) OpName() string {
 	return "/ITypeInfo2/v0/GetAllFuncCustData"
 }
@@ -3937,6 +4082,17 @@ func (o *GetAllFuncCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetAllFuncCustomDataRequest build a response structure from the given request structure.
+func (o *GetAllFuncCustomDataRequest) MakeResponse() *GetAllFuncCustomDataResponse {
+	return &GetAllFuncCustomDataResponse{}
+}
+
+// OpNum returns the operation number of GetAllFuncCustData operation.
+func (o *GetAllFuncCustomDataRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of GetAllFuncCustData operation.
+func (o *GetAllFuncCustomDataRequest) OpName() string { return "/ITypeInfo2/v0/GetAllFuncCustData" }
+
 // GetAllFuncCustomDataResponse structure represents the GetAllFuncCustData operation response
 type GetAllFuncCustomDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3993,8 +4149,10 @@ type xxx_GetAllParamCustomDataOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetAllParamCustData operation.
 func (o *xxx_GetAllParamCustomDataOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of GetAllParamCustData operation.
 func (o *xxx_GetAllParamCustomDataOperation) OpName() string {
 	return "/ITypeInfo2/v0/GetAllParamCustData"
 }
@@ -4204,6 +4362,17 @@ func (o *GetAllParamCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetAllParamCustomDataRequest build a response structure from the given request structure.
+func (o *GetAllParamCustomDataRequest) MakeResponse() *GetAllParamCustomDataResponse {
+	return &GetAllParamCustomDataResponse{}
+}
+
+// OpNum returns the operation number of GetAllParamCustData operation.
+func (o *GetAllParamCustomDataRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of GetAllParamCustData operation.
+func (o *GetAllParamCustomDataRequest) OpName() string { return "/ITypeInfo2/v0/GetAllParamCustData" }
+
 // GetAllParamCustomDataResponse structure represents the GetAllParamCustData operation response
 type GetAllParamCustomDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4259,8 +4428,10 @@ type xxx_GetAllVarCustomDataOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetAllVarCustData operation.
 func (o *xxx_GetAllVarCustomDataOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of GetAllVarCustData operation.
 func (o *xxx_GetAllVarCustomDataOperation) OpName() string { return "/ITypeInfo2/v0/GetAllVarCustData" }
 
 func (o *xxx_GetAllVarCustomDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -4449,6 +4620,17 @@ func (o *GetAllVarCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeGetAllVarCustomDataRequest build a response structure from the given request structure.
+func (o *GetAllVarCustomDataRequest) MakeResponse() *GetAllVarCustomDataResponse {
+	return &GetAllVarCustomDataResponse{}
+}
+
+// OpNum returns the operation number of GetAllVarCustData operation.
+func (o *GetAllVarCustomDataRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of GetAllVarCustData operation.
+func (o *GetAllVarCustomDataRequest) OpName() string { return "/ITypeInfo2/v0/GetAllVarCustData" }
+
 // GetAllVarCustomDataResponse structure represents the GetAllVarCustData operation response
 type GetAllVarCustomDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4504,8 +4686,10 @@ type xxx_GetAllImplTypeCustomDataOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetAllImplTypeCustData operation.
 func (o *xxx_GetAllImplTypeCustomDataOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of GetAllImplTypeCustData operation.
 func (o *xxx_GetAllImplTypeCustomDataOperation) OpName() string {
 	return "/ITypeInfo2/v0/GetAllImplTypeCustData"
 }
@@ -4694,6 +4878,19 @@ func (o *GetAllImplTypeCustomDataRequest) UnmarshalNDR(ctx context.Context, r nd
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetAllImplTypeCustomDataRequest build a response structure from the given request structure.
+func (o *GetAllImplTypeCustomDataRequest) MakeResponse() *GetAllImplTypeCustomDataResponse {
+	return &GetAllImplTypeCustomDataResponse{}
+}
+
+// OpNum returns the operation number of GetAllImplTypeCustData operation.
+func (o *GetAllImplTypeCustomDataRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of GetAllImplTypeCustData operation.
+func (o *GetAllImplTypeCustomDataRequest) OpName() string {
+	return "/ITypeInfo2/v0/GetAllImplTypeCustData"
 }
 
 // GetAllImplTypeCustomDataResponse structure represents the GetAllImplTypeCustData operation response

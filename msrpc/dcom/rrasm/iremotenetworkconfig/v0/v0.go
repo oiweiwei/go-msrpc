@@ -160,8 +160,10 @@ type xxx_UpgradeRouterConfigOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of UpgradeRouterConfig operation.
 func (o *xxx_UpgradeRouterConfigOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of UpgradeRouterConfig operation.
 func (o *xxx_UpgradeRouterConfigOperation) OpName() string {
 	return "/IRemoteNetworkConfig/v0/UpgradeRouterConfig"
 }
@@ -307,6 +309,19 @@ func (o *UpgradeRouterConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeUpgradeRouterConfigRequest build a response structure from the given request structure.
+func (o *UpgradeRouterConfigRequest) MakeResponse() *UpgradeRouterConfigResponse {
+	return &UpgradeRouterConfigResponse{}
+}
+
+// OpNum returns the operation number of UpgradeRouterConfig operation.
+func (o *UpgradeRouterConfigRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of UpgradeRouterConfig operation.
+func (o *UpgradeRouterConfigRequest) OpName() string {
+	return "/IRemoteNetworkConfig/v0/UpgradeRouterConfig"
+}
+
 // UpgradeRouterConfigResponse structure represents the UpgradeRouterConfig operation response
 type UpgradeRouterConfigResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -355,8 +370,10 @@ type xxx_SetUserConfigOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetUserConfig operation.
 func (o *xxx_SetUserConfigOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of SetUserConfig operation.
 func (o *xxx_SetUserConfigOperation) OpName() string { return "/IRemoteNetworkConfig/v0/SetUserConfig" }
 
 func (o *xxx_SetUserConfigOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -529,6 +546,17 @@ func (o *SetUserConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetUserConfigRequest build a response structure from the given request structure.
+func (o *SetUserConfigRequest) MakeResponse() *SetUserConfigResponse {
+	return &SetUserConfigResponse{}
+}
+
+// OpNum returns the operation number of SetUserConfig operation.
+func (o *SetUserConfigRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of SetUserConfig operation.
+func (o *SetUserConfigRequest) OpName() string { return "/IRemoteNetworkConfig/v0/SetUserConfig" }
 
 // SetUserConfigResponse structure represents the SetUserConfig operation response
 type SetUserConfigResponse struct {

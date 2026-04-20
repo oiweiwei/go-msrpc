@@ -709,8 +709,10 @@ type xxx_GetNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Name operation.
 func (o *xxx_GetNameOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Name operation.
 func (o *xxx_GetNameOperation) OpName() string { return "/IAppHostPropertySchema/v0/Name" }
 
 func (o *xxx_GetNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -900,6 +902,17 @@ func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetNameRequest build a response structure from the given request structure.
+func (o *GetNameRequest) MakeResponse() *GetNameResponse {
+	return &GetNameResponse{}
+}
+
+// OpNum returns the operation number of Name operation.
+func (o *GetNameRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Name operation.
+func (o *GetNameRequest) OpName() string { return "/IAppHostPropertySchema/v0/Name" }
+
 // GetNameResponse structure represents the Name operation response
 type GetNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -950,8 +963,10 @@ type xxx_GetTypeOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Type operation.
 func (o *xxx_GetTypeOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Type operation.
 func (o *xxx_GetTypeOperation) OpName() string { return "/IAppHostPropertySchema/v0/Type" }
 
 func (o *xxx_GetTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1141,6 +1156,17 @@ func (o *GetTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetTypeRequest build a response structure from the given request structure.
+func (o *GetTypeRequest) MakeResponse() *GetTypeResponse {
+	return &GetTypeResponse{}
+}
+
+// OpNum returns the operation number of Type operation.
+func (o *GetTypeRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Type operation.
+func (o *GetTypeRequest) OpName() string { return "/IAppHostPropertySchema/v0/Type" }
+
 // GetTypeResponse structure represents the Type operation response
 type GetTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1191,8 +1217,10 @@ type xxx_GetDefaultValueOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DefaultValue operation.
 func (o *xxx_GetDefaultValueOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of DefaultValue operation.
 func (o *xxx_GetDefaultValueOperation) OpName() string {
 	return "/IAppHostPropertySchema/v0/DefaultValue"
 }
@@ -1384,6 +1412,17 @@ func (o *GetDefaultValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeGetDefaultValueRequest build a response structure from the given request structure.
+func (o *GetDefaultValueRequest) MakeResponse() *GetDefaultValueResponse {
+	return &GetDefaultValueResponse{}
+}
+
+// OpNum returns the operation number of DefaultValue operation.
+func (o *GetDefaultValueRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of DefaultValue operation.
+func (o *GetDefaultValueRequest) OpName() string { return "/IAppHostPropertySchema/v0/DefaultValue" }
+
 // GetDefaultValueResponse structure represents the DefaultValue operation response
 type GetDefaultValueResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1435,8 +1474,10 @@ type xxx_GetIsRequiredOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsRequired operation.
 func (o *xxx_GetIsRequiredOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of IsRequired operation.
 func (o *xxx_GetIsRequiredOperation) OpName() string { return "/IAppHostPropertySchema/v0/IsRequired" }
 
 func (o *xxx_GetIsRequiredOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1592,6 +1633,17 @@ func (o *GetIsRequiredRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetIsRequiredRequest build a response structure from the given request structure.
+func (o *GetIsRequiredRequest) MakeResponse() *GetIsRequiredResponse {
+	return &GetIsRequiredResponse{}
+}
+
+// OpNum returns the operation number of IsRequired operation.
+func (o *GetIsRequiredRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of IsRequired operation.
+func (o *GetIsRequiredRequest) OpName() string { return "/IAppHostPropertySchema/v0/IsRequired" }
+
 // GetIsRequiredResponse structure represents the IsRequired operation response
 type GetIsRequiredResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1644,8 +1696,10 @@ type xxx_GetIsUniqueKeyOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsUniqueKey operation.
 func (o *xxx_GetIsUniqueKeyOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of IsUniqueKey operation.
 func (o *xxx_GetIsUniqueKeyOperation) OpName() string {
 	return "/IAppHostPropertySchema/v0/IsUniqueKey"
 }
@@ -1803,6 +1857,17 @@ func (o *GetIsUniqueKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetIsUniqueKeyRequest build a response structure from the given request structure.
+func (o *GetIsUniqueKeyRequest) MakeResponse() *GetIsUniqueKeyResponse {
+	return &GetIsUniqueKeyResponse{}
+}
+
+// OpNum returns the operation number of IsUniqueKey operation.
+func (o *GetIsUniqueKeyRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of IsUniqueKey operation.
+func (o *GetIsUniqueKeyRequest) OpName() string { return "/IAppHostPropertySchema/v0/IsUniqueKey" }
+
 // GetIsUniqueKeyResponse structure represents the IsUniqueKey operation response
 type GetIsUniqueKeyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1855,8 +1920,10 @@ type xxx_GetIsCombinedKeyOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsCombinedKey operation.
 func (o *xxx_GetIsCombinedKeyOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of IsCombinedKey operation.
 func (o *xxx_GetIsCombinedKeyOperation) OpName() string {
 	return "/IAppHostPropertySchema/v0/IsCombinedKey"
 }
@@ -2014,6 +2081,17 @@ func (o *GetIsCombinedKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetIsCombinedKeyRequest build a response structure from the given request structure.
+func (o *GetIsCombinedKeyRequest) MakeResponse() *GetIsCombinedKeyResponse {
+	return &GetIsCombinedKeyResponse{}
+}
+
+// OpNum returns the operation number of IsCombinedKey operation.
+func (o *GetIsCombinedKeyRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of IsCombinedKey operation.
+func (o *GetIsCombinedKeyRequest) OpName() string { return "/IAppHostPropertySchema/v0/IsCombinedKey" }
+
 // GetIsCombinedKeyResponse structure represents the IsCombinedKey operation response
 type GetIsCombinedKeyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2066,8 +2144,10 @@ type xxx_GetIsExpandedOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsExpanded operation.
 func (o *xxx_GetIsExpandedOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of IsExpanded operation.
 func (o *xxx_GetIsExpandedOperation) OpName() string { return "/IAppHostPropertySchema/v0/IsExpanded" }
 
 func (o *xxx_GetIsExpandedOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2223,6 +2303,17 @@ func (o *GetIsExpandedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetIsExpandedRequest build a response structure from the given request structure.
+func (o *GetIsExpandedRequest) MakeResponse() *GetIsExpandedResponse {
+	return &GetIsExpandedResponse{}
+}
+
+// OpNum returns the operation number of IsExpanded operation.
+func (o *GetIsExpandedRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of IsExpanded operation.
+func (o *GetIsExpandedRequest) OpName() string { return "/IAppHostPropertySchema/v0/IsExpanded" }
+
 // GetIsExpandedResponse structure represents the IsExpanded operation response
 type GetIsExpandedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2275,8 +2366,10 @@ type xxx_GetValidationTypeOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ValidationType operation.
 func (o *xxx_GetValidationTypeOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of ValidationType operation.
 func (o *xxx_GetValidationTypeOperation) OpName() string {
 	return "/IAppHostPropertySchema/v0/ValidationType"
 }
@@ -2468,6 +2561,19 @@ func (o *GetValidationTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetValidationTypeRequest build a response structure from the given request structure.
+func (o *GetValidationTypeRequest) MakeResponse() *GetValidationTypeResponse {
+	return &GetValidationTypeResponse{}
+}
+
+// OpNum returns the operation number of ValidationType operation.
+func (o *GetValidationTypeRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of ValidationType operation.
+func (o *GetValidationTypeRequest) OpName() string {
+	return "/IAppHostPropertySchema/v0/ValidationType"
+}
+
 // GetValidationTypeResponse structure represents the ValidationType operation response
 type GetValidationTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2519,8 +2625,10 @@ type xxx_GetValidationParameterOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ValidationParameter operation.
 func (o *xxx_GetValidationParameterOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of ValidationParameter operation.
 func (o *xxx_GetValidationParameterOperation) OpName() string {
 	return "/IAppHostPropertySchema/v0/ValidationParameter"
 }
@@ -2712,6 +2820,19 @@ func (o *GetValidationParameterRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeGetValidationParameterRequest build a response structure from the given request structure.
+func (o *GetValidationParameterRequest) MakeResponse() *GetValidationParameterResponse {
+	return &GetValidationParameterResponse{}
+}
+
+// OpNum returns the operation number of ValidationParameter operation.
+func (o *GetValidationParameterRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of ValidationParameter operation.
+func (o *GetValidationParameterRequest) OpName() string {
+	return "/IAppHostPropertySchema/v0/ValidationParameter"
+}
+
 // GetValidationParameterResponse structure represents the ValidationParameter operation response
 type GetValidationParameterResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2764,8 +2885,10 @@ type xxx_GetMetadataOperation struct {
 	Return       int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetMetadata operation.
 func (o *xxx_GetMetadataOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of GetMetadata operation.
 func (o *xxx_GetMetadataOperation) OpName() string { return "/IAppHostPropertySchema/v0/GetMetadata" }
 
 func (o *xxx_GetMetadataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -3004,6 +3127,17 @@ func (o *GetMetadataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeGetMetadataRequest build a response structure from the given request structure.
+func (o *GetMetadataRequest) MakeResponse() *GetMetadataResponse {
+	return &GetMetadataResponse{}
+}
+
+// OpNum returns the operation number of GetMetadata operation.
+func (o *GetMetadataRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of GetMetadata operation.
+func (o *GetMetadataRequest) OpName() string { return "/IAppHostPropertySchema/v0/GetMetadata" }
+
 // GetMetadataResponse structure represents the GetMetadata operation response
 type GetMetadataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3054,8 +3188,10 @@ type xxx_GetIsCaseSensitiveOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsCaseSensitive operation.
 func (o *xxx_GetIsCaseSensitiveOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of IsCaseSensitive operation.
 func (o *xxx_GetIsCaseSensitiveOperation) OpName() string {
 	return "/IAppHostPropertySchema/v0/IsCaseSensitive"
 }
@@ -3213,6 +3349,19 @@ func (o *GetIsCaseSensitiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetIsCaseSensitiveRequest build a response structure from the given request structure.
+func (o *GetIsCaseSensitiveRequest) MakeResponse() *GetIsCaseSensitiveResponse {
+	return &GetIsCaseSensitiveResponse{}
+}
+
+// OpNum returns the operation number of IsCaseSensitive operation.
+func (o *GetIsCaseSensitiveRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of IsCaseSensitive operation.
+func (o *GetIsCaseSensitiveRequest) OpName() string {
+	return "/IAppHostPropertySchema/v0/IsCaseSensitive"
+}
+
 // GetIsCaseSensitiveResponse structure represents the IsCaseSensitive operation response
 type GetIsCaseSensitiveResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3264,8 +3413,10 @@ type xxx_GetPossibleValuesOperation struct {
 	Return int32                                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PossibleValues operation.
 func (o *xxx_GetPossibleValuesOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of PossibleValues operation.
 func (o *xxx_GetPossibleValuesOperation) OpName() string {
 	return "/IAppHostPropertySchema/v0/PossibleValues"
 }
@@ -3457,6 +3608,19 @@ func (o *GetPossibleValuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetPossibleValuesRequest build a response structure from the given request structure.
+func (o *GetPossibleValuesRequest) MakeResponse() *GetPossibleValuesResponse {
+	return &GetPossibleValuesResponse{}
+}
+
+// OpNum returns the operation number of PossibleValues operation.
+func (o *GetPossibleValuesRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of PossibleValues operation.
+func (o *GetPossibleValuesRequest) OpName() string {
+	return "/IAppHostPropertySchema/v0/PossibleValues"
+}
+
 // GetPossibleValuesResponse structure represents the PossibleValues operation response
 type GetPossibleValuesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3508,8 +3672,10 @@ type xxx_GetDoesAllowInfiniteOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DoesAllowInfinite operation.
 func (o *xxx_GetDoesAllowInfiniteOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of DoesAllowInfinite operation.
 func (o *xxx_GetDoesAllowInfiniteOperation) OpName() string {
 	return "/IAppHostPropertySchema/v0/DoesAllowInfinite"
 }
@@ -3667,6 +3833,19 @@ func (o *GetDoesAllowInfiniteRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetDoesAllowInfiniteRequest build a response structure from the given request structure.
+func (o *GetDoesAllowInfiniteRequest) MakeResponse() *GetDoesAllowInfiniteResponse {
+	return &GetDoesAllowInfiniteResponse{}
+}
+
+// OpNum returns the operation number of DoesAllowInfinite operation.
+func (o *GetDoesAllowInfiniteRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of DoesAllowInfinite operation.
+func (o *GetDoesAllowInfiniteRequest) OpName() string {
+	return "/IAppHostPropertySchema/v0/DoesAllowInfinite"
+}
+
 // GetDoesAllowInfiniteResponse structure represents the DoesAllowInfinite operation response
 type GetDoesAllowInfiniteResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3720,8 +3899,10 @@ type xxx_GetIsEncryptedOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsEncrypted operation.
 func (o *xxx_GetIsEncryptedOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of IsEncrypted operation.
 func (o *xxx_GetIsEncryptedOperation) OpName() string {
 	return "/IAppHostPropertySchema/v0/IsEncrypted"
 }
@@ -3879,6 +4060,17 @@ func (o *GetIsEncryptedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetIsEncryptedRequest build a response structure from the given request structure.
+func (o *GetIsEncryptedRequest) MakeResponse() *GetIsEncryptedResponse {
+	return &GetIsEncryptedResponse{}
+}
+
+// OpNum returns the operation number of IsEncrypted operation.
+func (o *GetIsEncryptedRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of IsEncrypted operation.
+func (o *GetIsEncryptedRequest) OpName() string { return "/IAppHostPropertySchema/v0/IsEncrypted" }
+
 // GetIsEncryptedResponse structure represents the IsEncrypted operation response
 type GetIsEncryptedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3932,8 +4124,10 @@ type xxx_GetTimeSpanFormatOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of TimeSpanFormat operation.
 func (o *xxx_GetTimeSpanFormatOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of TimeSpanFormat operation.
 func (o *xxx_GetTimeSpanFormatOperation) OpName() string {
 	return "/IAppHostPropertySchema/v0/TimeSpanFormat"
 }
@@ -4123,6 +4317,19 @@ func (o *GetTimeSpanFormatRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetTimeSpanFormatRequest build a response structure from the given request structure.
+func (o *GetTimeSpanFormatRequest) MakeResponse() *GetTimeSpanFormatResponse {
+	return &GetTimeSpanFormatResponse{}
+}
+
+// OpNum returns the operation number of TimeSpanFormat operation.
+func (o *GetTimeSpanFormatRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of TimeSpanFormat operation.
+func (o *GetTimeSpanFormatRequest) OpName() string {
+	return "/IAppHostPropertySchema/v0/TimeSpanFormat"
 }
 
 // GetTimeSpanFormatResponse structure represents the TimeSpanFormat operation response

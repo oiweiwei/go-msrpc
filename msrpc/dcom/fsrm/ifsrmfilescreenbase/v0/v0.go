@@ -283,8 +283,10 @@ type xxx_GetBlockedFileGroupsOperation struct {
 	Return    int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BlockedFileGroups operation.
 func (o *xxx_GetBlockedFileGroupsOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of BlockedFileGroups operation.
 func (o *xxx_GetBlockedFileGroupsOperation) OpName() string {
 	return "/IFsrmFileScreenBase/v0/BlockedFileGroups"
 }
@@ -476,6 +478,19 @@ func (o *GetBlockedFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetBlockedFileGroupsRequest build a response structure from the given request structure.
+func (o *GetBlockedFileGroupsRequest) MakeResponse() *GetBlockedFileGroupsResponse {
+	return &GetBlockedFileGroupsResponse{}
+}
+
+// OpNum returns the operation number of BlockedFileGroups operation.
+func (o *GetBlockedFileGroupsRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of BlockedFileGroups operation.
+func (o *GetBlockedFileGroupsRequest) OpName() string {
+	return "/IFsrmFileScreenBase/v0/BlockedFileGroups"
+}
+
 // GetBlockedFileGroupsResponse structure represents the BlockedFileGroups operation response
 type GetBlockedFileGroupsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -526,8 +541,10 @@ type xxx_SetBlockedFileGroupsOperation struct {
 	Return    int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BlockedFileGroups operation.
 func (o *xxx_SetBlockedFileGroupsOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of BlockedFileGroups operation.
 func (o *xxx_SetBlockedFileGroupsOperation) OpName() string {
 	return "/IFsrmFileScreenBase/v0/BlockedFileGroups"
 }
@@ -722,6 +739,19 @@ func (o *SetBlockedFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeSetBlockedFileGroupsRequest build a response structure from the given request structure.
+func (o *SetBlockedFileGroupsRequest) MakeResponse() *SetBlockedFileGroupsResponse {
+	return &SetBlockedFileGroupsResponse{}
+}
+
+// OpNum returns the operation number of BlockedFileGroups operation.
+func (o *SetBlockedFileGroupsRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of BlockedFileGroups operation.
+func (o *SetBlockedFileGroupsRequest) OpName() string {
+	return "/IFsrmFileScreenBase/v0/BlockedFileGroups"
+}
+
 // SetBlockedFileGroupsResponse structure represents the BlockedFileGroups operation response
 type SetBlockedFileGroupsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -769,8 +799,10 @@ type xxx_GetFileScreenFlagsOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FileScreenFlags operation.
 func (o *xxx_GetFileScreenFlagsOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of FileScreenFlags operation.
 func (o *xxx_GetFileScreenFlagsOperation) OpName() string {
 	return "/IFsrmFileScreenBase/v0/FileScreenFlags"
 }
@@ -928,6 +960,17 @@ func (o *GetFileScreenFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetFileScreenFlagsRequest build a response structure from the given request structure.
+func (o *GetFileScreenFlagsRequest) MakeResponse() *GetFileScreenFlagsResponse {
+	return &GetFileScreenFlagsResponse{}
+}
+
+// OpNum returns the operation number of FileScreenFlags operation.
+func (o *GetFileScreenFlagsRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of FileScreenFlags operation.
+func (o *GetFileScreenFlagsRequest) OpName() string { return "/IFsrmFileScreenBase/v0/FileScreenFlags" }
+
 // GetFileScreenFlagsResponse structure represents the FileScreenFlags operation response
 type GetFileScreenFlagsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -978,8 +1021,10 @@ type xxx_SetFileScreenFlagsOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FileScreenFlags operation.
 func (o *xxx_SetFileScreenFlagsOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of FileScreenFlags operation.
 func (o *xxx_SetFileScreenFlagsOperation) OpName() string {
 	return "/IFsrmFileScreenBase/v0/FileScreenFlags"
 }
@@ -1140,6 +1185,17 @@ func (o *SetFileScreenFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetFileScreenFlagsRequest build a response structure from the given request structure.
+func (o *SetFileScreenFlagsRequest) MakeResponse() *SetFileScreenFlagsResponse {
+	return &SetFileScreenFlagsResponse{}
+}
+
+// OpNum returns the operation number of FileScreenFlags operation.
+func (o *SetFileScreenFlagsRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of FileScreenFlags operation.
+func (o *SetFileScreenFlagsRequest) OpName() string { return "/IFsrmFileScreenBase/v0/FileScreenFlags" }
+
 // SetFileScreenFlagsResponse structure represents the FileScreenFlags operation response
 type SetFileScreenFlagsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1188,8 +1244,10 @@ type xxx_CreateActionOperation struct {
 	Return     int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateAction operation.
 func (o *xxx_CreateActionOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of CreateAction operation.
 func (o *xxx_CreateActionOperation) OpName() string { return "/IFsrmFileScreenBase/v0/CreateAction" }
 
 func (o *xxx_CreateActionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1395,6 +1453,17 @@ func (o *CreateActionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeCreateActionRequest build a response structure from the given request structure.
+func (o *CreateActionRequest) MakeResponse() *CreateActionResponse {
+	return &CreateActionResponse{}
+}
+
+// OpNum returns the operation number of CreateAction operation.
+func (o *CreateActionRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of CreateAction operation.
+func (o *CreateActionRequest) OpName() string { return "/IFsrmFileScreenBase/v0/CreateAction" }
+
 // CreateActionResponse structure represents the CreateAction operation response
 type CreateActionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1448,8 +1517,10 @@ type xxx_EnumActionsOperation struct {
 	Return  int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumActions operation.
 func (o *xxx_EnumActionsOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of EnumActions operation.
 func (o *xxx_EnumActionsOperation) OpName() string { return "/IFsrmFileScreenBase/v0/EnumActions" }
 
 func (o *xxx_EnumActionsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1638,6 +1709,17 @@ func (o *EnumActionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeEnumActionsRequest build a response structure from the given request structure.
+func (o *EnumActionsRequest) MakeResponse() *EnumActionsResponse {
+	return &EnumActionsResponse{}
+}
+
+// OpNum returns the operation number of EnumActions operation.
+func (o *EnumActionsRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of EnumActions operation.
+func (o *EnumActionsRequest) OpName() string { return "/IFsrmFileScreenBase/v0/EnumActions" }
 
 // EnumActionsResponse structure represents the EnumActions operation response
 type EnumActionsResponse struct {

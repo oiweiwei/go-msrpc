@@ -533,8 +533,10 @@ type xxx_MountNTMSMediaOperation struct {
 	Return           int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MountNtmsMedia operation.
 func (o *xxx_MountNTMSMediaOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of MountNtmsMedia operation.
 func (o *xxx_MountNTMSMediaOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/MountNtmsMedia"
 }
@@ -1043,6 +1045,22 @@ func (o *MountNTMSMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeMountNTMSMediaRequest build a response structure from the given request structure.
+func (o *MountNTMSMediaRequest) MakeResponse() *MountNTMSMediaResponse {
+	if o == nil {
+		return &MountNTMSMediaResponse{}
+	}
+	return &MountNTMSMediaResponse{
+		Count: o.Count,
+	}
+}
+
+// OpNum returns the operation number of MountNtmsMedia operation.
+func (o *MountNTMSMediaRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of MountNtmsMedia operation.
+func (o *MountNTMSMediaRequest) OpName() string { return "/INtmsMediaServices1/v0/MountNtmsMedia" }
+
 // MountNTMSMediaResponse structure represents the MountNtmsMedia operation response
 type MountNTMSMediaResponse struct {
 	// XXX: dwCount is an implicit input depedency for output parameters
@@ -1162,8 +1180,10 @@ type xxx_DismountNTMSMediaOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DismountNtmsMedia operation.
 func (o *xxx_DismountNTMSMediaOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of DismountNtmsMedia operation.
 func (o *xxx_DismountNTMSMediaOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/DismountNtmsMedia"
 }
@@ -1436,6 +1456,19 @@ func (o *DismountNTMSMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeDismountNTMSMediaRequest build a response structure from the given request structure.
+func (o *DismountNTMSMediaRequest) MakeResponse() *DismountNTMSMediaResponse {
+	return &DismountNTMSMediaResponse{}
+}
+
+// OpNum returns the operation number of DismountNtmsMedia operation.
+func (o *DismountNTMSMediaRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of DismountNtmsMedia operation.
+func (o *DismountNTMSMediaRequest) OpName() string {
+	return "/INtmsMediaServices1/v0/DismountNtmsMedia"
+}
+
 // DismountNTMSMediaResponse structure represents the DismountNtmsMedia operation response
 type DismountNTMSMediaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1488,8 +1521,10 @@ type xxx_AllocateNTMSMediaOperation struct {
 	Return              int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AllocateNtmsMedia operation.
 func (o *xxx_AllocateNTMSMediaOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of AllocateNtmsMedia operation.
 func (o *xxx_AllocateNTMSMediaOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/AllocateNtmsMedia"
 }
@@ -1889,6 +1924,19 @@ func (o *AllocateNTMSMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeAllocateNTMSMediaRequest build a response structure from the given request structure.
+func (o *AllocateNTMSMediaRequest) MakeResponse() *AllocateNTMSMediaResponse {
+	return &AllocateNTMSMediaResponse{}
+}
+
+// OpNum returns the operation number of AllocateNtmsMedia operation.
+func (o *AllocateNTMSMediaRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of AllocateNtmsMedia operation.
+func (o *AllocateNTMSMediaRequest) OpName() string {
+	return "/INtmsMediaServices1/v0/AllocateNtmsMedia"
+}
+
 // AllocateNTMSMediaResponse structure represents the AllocateNtmsMedia operation response
 type AllocateNTMSMediaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1982,8 +2030,10 @@ type xxx_DeallocateNTMSMediaOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeallocateNtmsMedia operation.
 func (o *xxx_DeallocateNTMSMediaOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of DeallocateNtmsMedia operation.
 func (o *xxx_DeallocateNTMSMediaOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/DeallocateNtmsMedia"
 }
@@ -2191,6 +2241,19 @@ func (o *DeallocateNTMSMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeDeallocateNTMSMediaRequest build a response structure from the given request structure.
+func (o *DeallocateNTMSMediaRequest) MakeResponse() *DeallocateNTMSMediaResponse {
+	return &DeallocateNTMSMediaResponse{}
+}
+
+// OpNum returns the operation number of DeallocateNtmsMedia operation.
+func (o *DeallocateNTMSMediaRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of DeallocateNtmsMedia operation.
+func (o *DeallocateNTMSMediaRequest) OpName() string {
+	return "/INtmsMediaServices1/v0/DeallocateNtmsMedia"
+}
+
 // DeallocateNTMSMediaResponse structure represents the DeallocateNtmsMedia operation response
 type DeallocateNTMSMediaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2239,8 +2302,10 @@ type xxx_SwapNTMSMediaOperation struct {
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SwapNtmsMedia operation.
 func (o *xxx_SwapNTMSMediaOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of SwapNtmsMedia operation.
 func (o *xxx_SwapNTMSMediaOperation) OpName() string { return "/INtmsMediaServices1/v0/SwapNtmsMedia" }
 
 func (o *xxx_SwapNTMSMediaOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2460,6 +2525,17 @@ func (o *SwapNTMSMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeSwapNTMSMediaRequest build a response structure from the given request structure.
+func (o *SwapNTMSMediaRequest) MakeResponse() *SwapNTMSMediaResponse {
+	return &SwapNTMSMediaResponse{}
+}
+
+// OpNum returns the operation number of SwapNtmsMedia operation.
+func (o *SwapNTMSMediaRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of SwapNtmsMedia operation.
+func (o *SwapNTMSMediaRequest) OpName() string { return "/INtmsMediaServices1/v0/SwapNtmsMedia" }
+
 // SwapNTMSMediaResponse structure represents the SwapNtmsMedia operation response
 type SwapNTMSMediaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2507,8 +2583,10 @@ type xxx_DecommissionNTMSMediaOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DecommissionNtmsMedia operation.
 func (o *xxx_DecommissionNTMSMediaOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of DecommissionNtmsMedia operation.
 func (o *xxx_DecommissionNTMSMediaOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/DecommissionNtmsMedia"
 }
@@ -2703,6 +2781,19 @@ func (o *DecommissionNTMSMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeDecommissionNTMSMediaRequest build a response structure from the given request structure.
+func (o *DecommissionNTMSMediaRequest) MakeResponse() *DecommissionNTMSMediaResponse {
+	return &DecommissionNTMSMediaResponse{}
+}
+
+// OpNum returns the operation number of DecommissionNtmsMedia operation.
+func (o *DecommissionNTMSMediaRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of DecommissionNtmsMedia operation.
+func (o *DecommissionNTMSMediaRequest) OpName() string {
+	return "/INtmsMediaServices1/v0/DecommissionNtmsMedia"
+}
+
 // DecommissionNTMSMediaResponse structure represents the DecommissionNtmsMedia operation response
 type DecommissionNTMSMediaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2750,8 +2841,10 @@ type xxx_SetNTMSMediaCompleteOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetNtmsMediaComplete operation.
 func (o *xxx_SetNTMSMediaCompleteOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of SetNtmsMediaComplete operation.
 func (o *xxx_SetNTMSMediaCompleteOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/SetNtmsMediaComplete"
 }
@@ -2948,6 +3041,19 @@ func (o *SetNTMSMediaCompleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeSetNTMSMediaCompleteRequest build a response structure from the given request structure.
+func (o *SetNTMSMediaCompleteRequest) MakeResponse() *SetNTMSMediaCompleteResponse {
+	return &SetNTMSMediaCompleteResponse{}
+}
+
+// OpNum returns the operation number of SetNtmsMediaComplete operation.
+func (o *SetNTMSMediaCompleteRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of SetNtmsMediaComplete operation.
+func (o *SetNTMSMediaCompleteRequest) OpName() string {
+	return "/INtmsMediaServices1/v0/SetNtmsMediaComplete"
+}
+
 // SetNTMSMediaCompleteResponse structure represents the SetNtmsMediaComplete operation response
 type SetNTMSMediaCompleteResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2995,8 +3101,10 @@ type xxx_DeleteNTMSMediaOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteNtmsMedia operation.
 func (o *xxx_DeleteNTMSMediaOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of DeleteNtmsMedia operation.
 func (o *xxx_DeleteNTMSMediaOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/DeleteNtmsMedia"
 }
@@ -3193,6 +3301,17 @@ func (o *DeleteNTMSMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeDeleteNTMSMediaRequest build a response structure from the given request structure.
+func (o *DeleteNTMSMediaRequest) MakeResponse() *DeleteNTMSMediaResponse {
+	return &DeleteNTMSMediaResponse{}
+}
+
+// OpNum returns the operation number of DeleteNtmsMedia operation.
+func (o *DeleteNTMSMediaRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of DeleteNtmsMedia operation.
+func (o *DeleteNTMSMediaRequest) OpName() string { return "/INtmsMediaServices1/v0/DeleteNtmsMedia" }
+
 // DeleteNTMSMediaResponse structure represents the DeleteNtmsMedia operation response
 type DeleteNTMSMediaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3244,8 +3363,10 @@ type xxx_CreateNTMSMediaPoolAOperation struct {
 	Return             int32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateNtmsMediaPoolA operation.
 func (o *xxx_CreateNTMSMediaPoolAOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of CreateNtmsMediaPoolA operation.
 func (o *xxx_CreateNTMSMediaPoolAOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/CreateNtmsMediaPoolA"
 }
@@ -3550,6 +3671,19 @@ func (o *CreateNTMSMediaPoolARequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeCreateNTMSMediaPoolARequest build a response structure from the given request structure.
+func (o *CreateNTMSMediaPoolARequest) MakeResponse() *CreateNTMSMediaPoolAResponse {
+	return &CreateNTMSMediaPoolAResponse{}
+}
+
+// OpNum returns the operation number of CreateNtmsMediaPoolA operation.
+func (o *CreateNTMSMediaPoolARequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of CreateNtmsMediaPoolA operation.
+func (o *CreateNTMSMediaPoolARequest) OpName() string {
+	return "/INtmsMediaServices1/v0/CreateNtmsMediaPoolA"
+}
+
 // CreateNTMSMediaPoolAResponse structure represents the CreateNtmsMediaPoolA operation response
 type CreateNTMSMediaPoolAResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -3632,8 +3766,10 @@ type xxx_CreateNTMSMediaPoolWOperation struct {
 	Return             int32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateNtmsMediaPoolW operation.
 func (o *xxx_CreateNTMSMediaPoolWOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of CreateNtmsMediaPoolW operation.
 func (o *xxx_CreateNTMSMediaPoolWOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/CreateNtmsMediaPoolW"
 }
@@ -3939,6 +4075,19 @@ func (o *CreateNTMSMediaPoolWRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeCreateNTMSMediaPoolWRequest build a response structure from the given request structure.
+func (o *CreateNTMSMediaPoolWRequest) MakeResponse() *CreateNTMSMediaPoolWResponse {
+	return &CreateNTMSMediaPoolWResponse{}
+}
+
+// OpNum returns the operation number of CreateNtmsMediaPoolW operation.
+func (o *CreateNTMSMediaPoolWRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of CreateNtmsMediaPoolW operation.
+func (o *CreateNTMSMediaPoolWRequest) OpName() string {
+	return "/INtmsMediaServices1/v0/CreateNtmsMediaPoolW"
+}
+
 // CreateNTMSMediaPoolWResponse structure represents the CreateNtmsMediaPoolW operation response
 type CreateNTMSMediaPoolWResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -4020,8 +4169,10 @@ type xxx_GetNTMSMediaPoolNameAOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsMediaPoolNameA operation.
 func (o *xxx_GetNTMSMediaPoolNameAOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of GetNtmsMediaPoolNameA operation.
 func (o *xxx_GetNTMSMediaPoolNameAOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/GetNtmsMediaPoolNameA"
 }
@@ -4286,6 +4437,24 @@ func (o *GetNTMSMediaPoolNameARequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetNTMSMediaPoolNameARequest build a response structure from the given request structure.
+func (o *GetNTMSMediaPoolNameARequest) MakeResponse() *GetNTMSMediaPoolNameAResponse {
+	if o == nil {
+		return &GetNTMSMediaPoolNameAResponse{}
+	}
+	return &GetNTMSMediaPoolNameAResponse{
+		NameSizeBuffer: o.NameSizeBuffer,
+	}
+}
+
+// OpNum returns the operation number of GetNtmsMediaPoolNameA operation.
+func (o *GetNTMSMediaPoolNameARequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of GetNtmsMediaPoolNameA operation.
+func (o *GetNTMSMediaPoolNameARequest) OpName() string {
+	return "/INtmsMediaServices1/v0/GetNtmsMediaPoolNameA"
+}
+
 // GetNTMSMediaPoolNameAResponse structure represents the GetNtmsMediaPoolNameA operation response
 type GetNTMSMediaPoolNameAResponse struct {
 	// XXX: lpdwNameSizeBuf is an implicit input depedency for output parameters
@@ -4375,8 +4544,10 @@ type xxx_GetNTMSMediaPoolNameWOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetNtmsMediaPoolNameW operation.
 func (o *xxx_GetNTMSMediaPoolNameWOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of GetNtmsMediaPoolNameW operation.
 func (o *xxx_GetNTMSMediaPoolNameWOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/GetNtmsMediaPoolNameW"
 }
@@ -4648,6 +4819,24 @@ func (o *GetNTMSMediaPoolNameWRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeGetNTMSMediaPoolNameWRequest build a response structure from the given request structure.
+func (o *GetNTMSMediaPoolNameWRequest) MakeResponse() *GetNTMSMediaPoolNameWResponse {
+	if o == nil {
+		return &GetNTMSMediaPoolNameWResponse{}
+	}
+	return &GetNTMSMediaPoolNameWResponse{
+		NameSizeBuffer: o.NameSizeBuffer,
+	}
+}
+
+// OpNum returns the operation number of GetNtmsMediaPoolNameW operation.
+func (o *GetNTMSMediaPoolNameWRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of GetNtmsMediaPoolNameW operation.
+func (o *GetNTMSMediaPoolNameWRequest) OpName() string {
+	return "/INtmsMediaServices1/v0/GetNtmsMediaPoolNameW"
+}
+
 // GetNTMSMediaPoolNameWResponse structure represents the GetNtmsMediaPoolNameW operation response
 type GetNTMSMediaPoolNameWResponse struct {
 	// XXX: lpdwNameSizeBuf is an implicit input depedency for output parameters
@@ -4735,8 +4924,10 @@ type xxx_MoveToNTMSMediaPoolOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of MoveToNtmsMediaPool operation.
 func (o *xxx_MoveToNTMSMediaPoolOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of MoveToNtmsMediaPool operation.
 func (o *xxx_MoveToNTMSMediaPoolOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/MoveToNtmsMediaPool"
 }
@@ -4962,6 +5153,19 @@ func (o *MoveToNTMSMediaPoolRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeMoveToNTMSMediaPoolRequest build a response structure from the given request structure.
+func (o *MoveToNTMSMediaPoolRequest) MakeResponse() *MoveToNTMSMediaPoolResponse {
+	return &MoveToNTMSMediaPoolResponse{}
+}
+
+// OpNum returns the operation number of MoveToNtmsMediaPool operation.
+func (o *MoveToNTMSMediaPoolRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of MoveToNtmsMediaPool operation.
+func (o *MoveToNTMSMediaPoolRequest) OpName() string {
+	return "/INtmsMediaServices1/v0/MoveToNtmsMediaPool"
+}
+
 // MoveToNTMSMediaPoolResponse structure represents the MoveToNtmsMediaPool operation response
 type MoveToNTMSMediaPoolResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -5009,8 +5213,10 @@ type xxx_DeleteNTMSMediaPoolOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteNtmsMediaPool operation.
 func (o *xxx_DeleteNTMSMediaPoolOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of DeleteNtmsMediaPool operation.
 func (o *xxx_DeleteNTMSMediaPoolOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/DeleteNtmsMediaPool"
 }
@@ -5209,6 +5415,19 @@ func (o *DeleteNTMSMediaPoolRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeDeleteNTMSMediaPoolRequest build a response structure from the given request structure.
+func (o *DeleteNTMSMediaPoolRequest) MakeResponse() *DeleteNTMSMediaPoolResponse {
+	return &DeleteNTMSMediaPoolResponse{}
+}
+
+// OpNum returns the operation number of DeleteNtmsMediaPool operation.
+func (o *DeleteNTMSMediaPoolRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of DeleteNtmsMediaPool operation.
+func (o *DeleteNTMSMediaPoolRequest) OpName() string {
+	return "/INtmsMediaServices1/v0/DeleteNtmsMediaPool"
+}
+
 // DeleteNTMSMediaPoolResponse structure represents the DeleteNtmsMediaPool operation response
 type DeleteNTMSMediaPoolResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -5257,8 +5476,10 @@ type xxx_AddNTMSMediaTypeOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddNtmsMediaType operation.
 func (o *xxx_AddNTMSMediaTypeOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of AddNtmsMediaType operation.
 func (o *xxx_AddNTMSMediaTypeOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/AddNtmsMediaType"
 }
@@ -5490,6 +5711,17 @@ func (o *AddNTMSMediaTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeAddNTMSMediaTypeRequest build a response structure from the given request structure.
+func (o *AddNTMSMediaTypeRequest) MakeResponse() *AddNTMSMediaTypeResponse {
+	return &AddNTMSMediaTypeResponse{}
+}
+
+// OpNum returns the operation number of AddNtmsMediaType operation.
+func (o *AddNTMSMediaTypeRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of AddNtmsMediaType operation.
+func (o *AddNTMSMediaTypeRequest) OpName() string { return "/INtmsMediaServices1/v0/AddNtmsMediaType" }
+
 // AddNTMSMediaTypeResponse structure represents the AddNtmsMediaType operation response
 type AddNTMSMediaTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -5538,8 +5770,10 @@ type xxx_DeleteNTMSMediaTypeOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteNtmsMediaType operation.
 func (o *xxx_DeleteNTMSMediaTypeOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of DeleteNtmsMediaType operation.
 func (o *xxx_DeleteNTMSMediaTypeOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/DeleteNtmsMediaType"
 }
@@ -5760,6 +5994,19 @@ func (o *DeleteNTMSMediaTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeDeleteNTMSMediaTypeRequest build a response structure from the given request structure.
+func (o *DeleteNTMSMediaTypeRequest) MakeResponse() *DeleteNTMSMediaTypeResponse {
+	return &DeleteNTMSMediaTypeResponse{}
+}
+
+// OpNum returns the operation number of DeleteNtmsMediaType operation.
+func (o *DeleteNTMSMediaTypeRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of DeleteNtmsMediaType operation.
+func (o *DeleteNTMSMediaTypeRequest) OpName() string {
+	return "/INtmsMediaServices1/v0/DeleteNtmsMediaType"
+}
+
 // DeleteNTMSMediaTypeResponse structure represents the DeleteNtmsMediaType operation response
 type DeleteNTMSMediaTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -5808,8 +6055,10 @@ type xxx_ChangeNTMSMediaTypeOperation struct {
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ChangeNtmsMediaType operation.
 func (o *xxx_ChangeNTMSMediaTypeOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of ChangeNtmsMediaType operation.
 func (o *xxx_ChangeNTMSMediaTypeOperation) OpName() string {
 	return "/INtmsMediaServices1/v0/ChangeNtmsMediaType"
 }
@@ -6027,6 +6276,19 @@ func (o *ChangeNTMSMediaTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeChangeNTMSMediaTypeRequest build a response structure from the given request structure.
+func (o *ChangeNTMSMediaTypeRequest) MakeResponse() *ChangeNTMSMediaTypeResponse {
+	return &ChangeNTMSMediaTypeResponse{}
+}
+
+// OpNum returns the operation number of ChangeNtmsMediaType operation.
+func (o *ChangeNTMSMediaTypeRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of ChangeNtmsMediaType operation.
+func (o *ChangeNTMSMediaTypeRequest) OpName() string {
+	return "/INtmsMediaServices1/v0/ChangeNtmsMediaType"
 }
 
 // ChangeNTMSMediaTypeResponse structure represents the ChangeNtmsMediaType operation response

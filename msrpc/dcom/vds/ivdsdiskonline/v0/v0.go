@@ -170,8 +170,10 @@ type xxx_OnlineOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Online operation.
 func (o *xxx_OnlineOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Online operation.
 func (o *xxx_OnlineOperation) OpName() string { return "/IVdsDiskOnline/v0/Online" }
 
 func (o *xxx_OnlineOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -315,6 +317,17 @@ func (o *OnlineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeOnlineRequest build a response structure from the given request structure.
+func (o *OnlineRequest) MakeResponse() *OnlineResponse {
+	return &OnlineResponse{}
+}
+
+// OpNum returns the operation number of Online operation.
+func (o *OnlineRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Online operation.
+func (o *OnlineRequest) OpName() string { return "/IVdsDiskOnline/v0/Online" }
+
 // OnlineResponse structure represents the Online operation response
 type OnlineResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -361,8 +374,10 @@ type xxx_OfflineOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Offline operation.
 func (o *xxx_OfflineOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Offline operation.
 func (o *xxx_OfflineOperation) OpName() string { return "/IVdsDiskOnline/v0/Offline" }
 
 func (o *xxx_OfflineOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -505,6 +520,17 @@ func (o *OfflineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeOfflineRequest build a response structure from the given request structure.
+func (o *OfflineRequest) MakeResponse() *OfflineResponse {
+	return &OfflineResponse{}
+}
+
+// OpNum returns the operation number of Offline operation.
+func (o *OfflineRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Offline operation.
+func (o *OfflineRequest) OpName() string { return "/IVdsDiskOnline/v0/Offline" }
 
 // OfflineResponse structure represents the Offline operation response
 type OfflineResponse struct {

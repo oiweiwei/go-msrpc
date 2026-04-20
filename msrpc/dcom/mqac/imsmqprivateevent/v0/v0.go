@@ -203,8 +203,10 @@ type xxx_GetHandleOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Hwnd operation.
 func (o *xxx_GetHandleOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of Hwnd operation.
 func (o *xxx_GetHandleOperation) OpName() string { return "/IMSMQPrivateEvent/v0/Hwnd" }
 
 func (o *xxx_GetHandleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -360,6 +362,17 @@ func (o *GetHandleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetHandleRequest build a response structure from the given request structure.
+func (o *GetHandleRequest) MakeResponse() *GetHandleResponse {
+	return &GetHandleResponse{}
+}
+
+// OpNum returns the operation number of Hwnd operation.
+func (o *GetHandleRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of Hwnd operation.
+func (o *GetHandleRequest) OpName() string { return "/IMSMQPrivateEvent/v0/Hwnd" }
+
 // GetHandleResponse structure represents the Hwnd operation response
 type GetHandleResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -413,8 +426,10 @@ type xxx_FireArrivedEventOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FireArrivedEvent operation.
 func (o *xxx_FireArrivedEventOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of FireArrivedEvent operation.
 func (o *xxx_FireArrivedEventOperation) OpName() string {
 	return "/IMSMQPrivateEvent/v0/FireArrivedEvent"
 }
@@ -630,6 +645,17 @@ func (o *FireArrivedEventRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeFireArrivedEventRequest build a response structure from the given request structure.
+func (o *FireArrivedEventRequest) MakeResponse() *FireArrivedEventResponse {
+	return &FireArrivedEventResponse{}
+}
+
+// OpNum returns the operation number of FireArrivedEvent operation.
+func (o *FireArrivedEventRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of FireArrivedEvent operation.
+func (o *FireArrivedEventRequest) OpName() string { return "/IMSMQPrivateEvent/v0/FireArrivedEvent" }
+
 // FireArrivedEventResponse structure represents the FireArrivedEvent operation response
 type FireArrivedEventResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -679,8 +705,10 @@ type xxx_FireArrivedErrorEventOperation struct {
 	Return        int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of FireArrivedErrorEvent operation.
 func (o *xxx_FireArrivedErrorEventOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of FireArrivedErrorEvent operation.
 func (o *xxx_FireArrivedErrorEventOperation) OpName() string {
 	return "/IMSMQPrivateEvent/v0/FireArrivedErrorEvent"
 }
@@ -911,6 +939,19 @@ func (o *FireArrivedErrorEventRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeFireArrivedErrorEventRequest build a response structure from the given request structure.
+func (o *FireArrivedErrorEventRequest) MakeResponse() *FireArrivedErrorEventResponse {
+	return &FireArrivedErrorEventResponse{}
+}
+
+// OpNum returns the operation number of FireArrivedErrorEvent operation.
+func (o *FireArrivedErrorEventRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of FireArrivedErrorEvent operation.
+func (o *FireArrivedErrorEventRequest) OpName() string {
+	return "/IMSMQPrivateEvent/v0/FireArrivedErrorEvent"
 }
 
 // FireArrivedErrorEventResponse structure represents the FireArrivedErrorEvent operation response

@@ -259,8 +259,10 @@ type xxx_GetPropertyDefinitionFlagsOperation struct {
 	Return                  int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of PropertyDefinitionFlags operation.
 func (o *xxx_GetPropertyDefinitionFlagsOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of PropertyDefinitionFlags operation.
 func (o *xxx_GetPropertyDefinitionFlagsOperation) OpName() string {
 	return "/IFsrmPropertyDefinition2/v0/PropertyDefinitionFlags"
 }
@@ -418,6 +420,19 @@ func (o *GetPropertyDefinitionFlagsRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeGetPropertyDefinitionFlagsRequest build a response structure from the given request structure.
+func (o *GetPropertyDefinitionFlagsRequest) MakeResponse() *GetPropertyDefinitionFlagsResponse {
+	return &GetPropertyDefinitionFlagsResponse{}
+}
+
+// OpNum returns the operation number of PropertyDefinitionFlags operation.
+func (o *GetPropertyDefinitionFlagsRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of PropertyDefinitionFlags operation.
+func (o *GetPropertyDefinitionFlagsRequest) OpName() string {
+	return "/IFsrmPropertyDefinition2/v0/PropertyDefinitionFlags"
+}
+
 // GetPropertyDefinitionFlagsResponse structure represents the PropertyDefinitionFlags operation response
 type GetPropertyDefinitionFlagsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -471,8 +486,10 @@ type xxx_GetDisplayNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DisplayName operation.
 func (o *xxx_GetDisplayNameOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of DisplayName operation.
 func (o *xxx_GetDisplayNameOperation) OpName() string {
 	return "/IFsrmPropertyDefinition2/v0/DisplayName"
 }
@@ -664,6 +681,17 @@ func (o *GetDisplayNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeGetDisplayNameRequest build a response structure from the given request structure.
+func (o *GetDisplayNameRequest) MakeResponse() *GetDisplayNameResponse {
+	return &GetDisplayNameResponse{}
+}
+
+// OpNum returns the operation number of DisplayName operation.
+func (o *GetDisplayNameRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of DisplayName operation.
+func (o *GetDisplayNameRequest) OpName() string { return "/IFsrmPropertyDefinition2/v0/DisplayName" }
+
 // GetDisplayNameResponse structure represents the DisplayName operation response
 type GetDisplayNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -714,8 +742,10 @@ type xxx_SetDisplayNameOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DisplayName operation.
 func (o *xxx_SetDisplayNameOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of DisplayName operation.
 func (o *xxx_SetDisplayNameOperation) OpName() string {
 	return "/IFsrmPropertyDefinition2/v0/DisplayName"
 }
@@ -910,6 +940,17 @@ func (o *SetDisplayNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeSetDisplayNameRequest build a response structure from the given request structure.
+func (o *SetDisplayNameRequest) MakeResponse() *SetDisplayNameResponse {
+	return &SetDisplayNameResponse{}
+}
+
+// OpNum returns the operation number of DisplayName operation.
+func (o *SetDisplayNameRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of DisplayName operation.
+func (o *SetDisplayNameRequest) OpName() string { return "/IFsrmPropertyDefinition2/v0/DisplayName" }
+
 // SetDisplayNameResponse structure represents the DisplayName operation response
 type SetDisplayNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -957,8 +998,10 @@ type xxx_GetAppliesToOperation struct {
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AppliesTo operation.
 func (o *xxx_GetAppliesToOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of AppliesTo operation.
 func (o *xxx_GetAppliesToOperation) OpName() string { return "/IFsrmPropertyDefinition2/v0/AppliesTo" }
 
 func (o *xxx_GetAppliesToOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1114,6 +1157,17 @@ func (o *GetAppliesToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetAppliesToRequest build a response structure from the given request structure.
+func (o *GetAppliesToRequest) MakeResponse() *GetAppliesToResponse {
+	return &GetAppliesToResponse{}
+}
+
+// OpNum returns the operation number of AppliesTo operation.
+func (o *GetAppliesToRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of AppliesTo operation.
+func (o *GetAppliesToRequest) OpName() string { return "/IFsrmPropertyDefinition2/v0/AppliesTo" }
+
 // GetAppliesToResponse structure represents the AppliesTo operation response
 type GetAppliesToResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1164,8 +1218,10 @@ type xxx_GetValueDefinitionsOperation struct {
 	Return           int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ValueDefinitions operation.
 func (o *xxx_GetValueDefinitionsOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of ValueDefinitions operation.
 func (o *xxx_GetValueDefinitionsOperation) OpName() string {
 	return "/IFsrmPropertyDefinition2/v0/ValueDefinitions"
 }
@@ -1355,6 +1411,19 @@ func (o *GetValueDefinitionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeGetValueDefinitionsRequest build a response structure from the given request structure.
+func (o *GetValueDefinitionsRequest) MakeResponse() *GetValueDefinitionsResponse {
+	return &GetValueDefinitionsResponse{}
+}
+
+// OpNum returns the operation number of ValueDefinitions operation.
+func (o *GetValueDefinitionsRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of ValueDefinitions operation.
+func (o *GetValueDefinitionsRequest) OpName() string {
+	return "/IFsrmPropertyDefinition2/v0/ValueDefinitions"
 }
 
 // GetValueDefinitionsResponse structure represents the ValueDefinitions operation response

@@ -15549,8 +15549,10 @@ type xxx_ConnectOperation struct {
 	Return        int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrConnect operation.
 func (o *xxx_ConnectOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of SamrConnect operation.
 func (o *xxx_ConnectOperation) OpName() string { return "/samr/v1/SamrConnect" }
 
 func (o *xxx_ConnectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -15716,6 +15718,17 @@ func (o *ConnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeConnectRequest build a response structure from the given request structure.
+func (o *ConnectRequest) MakeResponse() *ConnectResponse {
+	return &ConnectResponse{}
+}
+
+// OpNum returns the operation number of SamrConnect operation.
+func (o *ConnectRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of SamrConnect operation.
+func (o *ConnectRequest) OpName() string { return "/samr/v1/SamrConnect" }
+
 // ConnectResponse structure represents the SamrConnect operation response
 type ConnectResponse struct {
 	// ServerHandle: An RPC context handle, as specified in section 2.2.7.2.
@@ -15761,8 +15774,10 @@ type xxx_CloseHandleOperation struct {
 	Return    int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrCloseHandle operation.
 func (o *xxx_CloseHandleOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of SamrCloseHandle operation.
 func (o *xxx_CloseHandleOperation) OpName() string { return "/samr/v1/SamrCloseHandle" }
 
 func (o *xxx_CloseHandleOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -15899,6 +15914,17 @@ func (o *CloseHandleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeCloseHandleRequest build a response structure from the given request structure.
+func (o *CloseHandleRequest) MakeResponse() *CloseHandleResponse {
+	return &CloseHandleResponse{}
+}
+
+// OpNum returns the operation number of SamrCloseHandle operation.
+func (o *CloseHandleRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of SamrCloseHandle operation.
+func (o *CloseHandleRequest) OpName() string { return "/samr/v1/SamrCloseHandle" }
+
 // CloseHandleResponse structure represents the SamrCloseHandle operation response
 type CloseHandleResponse struct {
 	// SamHandle: An RPC context handle, as specified in section 2.2.7.2, representing any
@@ -15951,8 +15977,10 @@ type xxx_SetSecurityObjectOperation struct {
 	Return              int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrSetSecurityObject operation.
 func (o *xxx_SetSecurityObjectOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of SamrSetSecurityObject operation.
 func (o *xxx_SetSecurityObjectOperation) OpName() string { return "/samr/v1/SamrSetSecurityObject" }
 
 func (o *xxx_SetSecurityObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -16136,6 +16164,17 @@ func (o *SetSecurityObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeSetSecurityObjectRequest build a response structure from the given request structure.
+func (o *SetSecurityObjectRequest) MakeResponse() *SetSecurityObjectResponse {
+	return &SetSecurityObjectResponse{}
+}
+
+// OpNum returns the operation number of SamrSetSecurityObject operation.
+func (o *SetSecurityObjectRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of SamrSetSecurityObject operation.
+func (o *SetSecurityObjectRequest) OpName() string { return "/samr/v1/SamrSetSecurityObject" }
+
 // SetSecurityObjectResponse structure represents the SamrSetSecurityObject operation response
 type SetSecurityObjectResponse struct {
 	// Return: The SamrSetSecurityObject return value.
@@ -16179,8 +16218,10 @@ type xxx_QuerySecurityObjectOperation struct {
 	Return              int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrQuerySecurityObject operation.
 func (o *xxx_QuerySecurityObjectOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of SamrQuerySecurityObject operation.
 func (o *xxx_QuerySecurityObjectOperation) OpName() string { return "/samr/v1/SamrQuerySecurityObject" }
 
 func (o *xxx_QuerySecurityObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -16377,6 +16418,17 @@ func (o *QuerySecurityObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeQuerySecurityObjectRequest build a response structure from the given request structure.
+func (o *QuerySecurityObjectRequest) MakeResponse() *QuerySecurityObjectResponse {
+	return &QuerySecurityObjectResponse{}
+}
+
+// OpNum returns the operation number of SamrQuerySecurityObject operation.
+func (o *QuerySecurityObjectRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of SamrQuerySecurityObject operation.
+func (o *QuerySecurityObjectRequest) OpName() string { return "/samr/v1/SamrQuerySecurityObject" }
+
 // QuerySecurityObjectResponse structure represents the SamrQuerySecurityObject operation response
 type QuerySecurityObjectResponse struct {
 	// SecurityDescriptor: A security descriptor expressing accesses that are specific to
@@ -16430,8 +16482,10 @@ type xxx_LookupDomainInSAMServerOperation struct {
 	Return   int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrLookupDomainInSamServer operation.
 func (o *xxx_LookupDomainInSAMServerOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of SamrLookupDomainInSamServer operation.
 func (o *xxx_LookupDomainInSAMServerOperation) OpName() string {
 	return "/samr/v1/SamrLookupDomainInSamServer"
 }
@@ -16622,6 +16676,19 @@ func (o *LookupDomainInSAMServerRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeLookupDomainInSAMServerRequest build a response structure from the given request structure.
+func (o *LookupDomainInSAMServerRequest) MakeResponse() *LookupDomainInSAMServerResponse {
+	return &LookupDomainInSAMServerResponse{}
+}
+
+// OpNum returns the operation number of SamrLookupDomainInSamServer operation.
+func (o *LookupDomainInSAMServerRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of SamrLookupDomainInSamServer operation.
+func (o *LookupDomainInSAMServerRequest) OpName() string {
+	return "/samr/v1/SamrLookupDomainInSamServer"
+}
+
 // LookupDomainInSAMServerResponse structure represents the SamrLookupDomainInSamServer operation response
 type LookupDomainInSAMServerResponse struct {
 	// DomainId: A SID value of a domain that corresponds to the Name passed in. The match
@@ -16677,8 +16744,10 @@ type xxx_EnumerateDomainsInSAMServerOperation struct {
 	Return                 int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrEnumerateDomainsInSamServer operation.
 func (o *xxx_EnumerateDomainsInSAMServerOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of SamrEnumerateDomainsInSamServer operation.
 func (o *xxx_EnumerateDomainsInSAMServerOperation) OpName() string {
 	return "/samr/v1/SamrEnumerateDomainsInSamServer"
 }
@@ -16897,6 +16966,19 @@ func (o *EnumerateDomainsInSAMServerRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeEnumerateDomainsInSAMServerRequest build a response structure from the given request structure.
+func (o *EnumerateDomainsInSAMServerRequest) MakeResponse() *EnumerateDomainsInSAMServerResponse {
+	return &EnumerateDomainsInSAMServerResponse{}
+}
+
+// OpNum returns the operation number of SamrEnumerateDomainsInSamServer operation.
+func (o *EnumerateDomainsInSAMServerRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of SamrEnumerateDomainsInSamServer operation.
+func (o *EnumerateDomainsInSAMServerRequest) OpName() string {
+	return "/samr/v1/SamrEnumerateDomainsInSamServer"
+}
+
 // EnumerateDomainsInSAMServerResponse structure represents the SamrEnumerateDomainsInSamServer operation response
 type EnumerateDomainsInSAMServerResponse struct {
 	// EnumerationContext: This value is a cookie that the server can use to continue an
@@ -16960,8 +17042,10 @@ type xxx_OpenDomainOperation struct {
 	Return        int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrOpenDomain operation.
 func (o *xxx_OpenDomainOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of SamrOpenDomain operation.
 func (o *xxx_OpenDomainOperation) OpName() string { return "/samr/v1/SamrOpenDomain" }
 
 func (o *xxx_OpenDomainOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -17135,6 +17219,17 @@ func (o *OpenDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeOpenDomainRequest build a response structure from the given request structure.
+func (o *OpenDomainRequest) MakeResponse() *OpenDomainResponse {
+	return &OpenDomainResponse{}
+}
+
+// OpNum returns the operation number of SamrOpenDomain operation.
+func (o *OpenDomainRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of SamrOpenDomain operation.
+func (o *OpenDomainRequest) OpName() string { return "/samr/v1/SamrOpenDomain" }
+
 // OpenDomainResponse structure represents the SamrOpenDomain operation response
 type OpenDomainResponse struct {
 	// DomainHandle: An RPC context handle, as specified in section 2.2.7.2.
@@ -17186,8 +17281,10 @@ type xxx_QueryInformationDomainOperation struct {
 	Return                 int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrQueryInformationDomain operation.
 func (o *xxx_QueryInformationDomainOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of SamrQueryInformationDomain operation.
 func (o *xxx_QueryInformationDomainOperation) OpName() string {
 	return "/samr/v1/SamrQueryInformationDomain"
 }
@@ -17362,6 +17459,22 @@ func (o *QueryInformationDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeQueryInformationDomainRequest build a response structure from the given request structure.
+func (o *QueryInformationDomainRequest) MakeResponse() *QueryInformationDomainResponse {
+	if o == nil {
+		return &QueryInformationDomainResponse{}
+	}
+	return &QueryInformationDomainResponse{
+		DomainInformationClass: o.DomainInformationClass,
+	}
+}
+
+// OpNum returns the operation number of SamrQueryInformationDomain operation.
+func (o *QueryInformationDomainRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of SamrQueryInformationDomain operation.
+func (o *QueryInformationDomainRequest) OpName() string { return "/samr/v1/SamrQueryInformationDomain" }
+
 // QueryInformationDomainResponse structure represents the SamrQueryInformationDomain operation response
 type QueryInformationDomainResponse struct {
 	// XXX: DomainInformationClass is an implicit input depedency for output parameters
@@ -17419,8 +17532,10 @@ type xxx_SetInformationDomainOperation struct {
 	Return                 int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrSetInformationDomain operation.
 func (o *xxx_SetInformationDomainOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of SamrSetInformationDomain operation.
 func (o *xxx_SetInformationDomainOperation) OpName() string {
 	return "/samr/v1/SamrSetInformationDomain"
 }
@@ -17589,6 +17704,17 @@ func (o *SetInformationDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeSetInformationDomainRequest build a response structure from the given request structure.
+func (o *SetInformationDomainRequest) MakeResponse() *SetInformationDomainResponse {
+	return &SetInformationDomainResponse{}
+}
+
+// OpNum returns the operation number of SamrSetInformationDomain operation.
+func (o *SetInformationDomainRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of SamrSetInformationDomain operation.
+func (o *SetInformationDomainRequest) OpName() string { return "/samr/v1/SamrSetInformationDomain" }
+
 // SetInformationDomainResponse structure represents the SamrSetInformationDomain operation response
 type SetInformationDomainResponse struct {
 	// Return: The SamrSetInformationDomain return value.
@@ -17634,8 +17760,10 @@ type xxx_CreateGroupInDomainOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrCreateGroupInDomain operation.
 func (o *xxx_CreateGroupInDomainOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of SamrCreateGroupInDomain operation.
 func (o *xxx_CreateGroupInDomainOperation) OpName() string { return "/samr/v1/SamrCreateGroupInDomain" }
 
 func (o *xxx_CreateGroupInDomainOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -17829,6 +17957,17 @@ func (o *CreateGroupInDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeCreateGroupInDomainRequest build a response structure from the given request structure.
+func (o *CreateGroupInDomainRequest) MakeResponse() *CreateGroupInDomainResponse {
+	return &CreateGroupInDomainResponse{}
+}
+
+// OpNum returns the operation number of SamrCreateGroupInDomain operation.
+func (o *CreateGroupInDomainRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of SamrCreateGroupInDomain operation.
+func (o *CreateGroupInDomainRequest) OpName() string { return "/samr/v1/SamrCreateGroupInDomain" }
+
 // CreateGroupInDomainResponse structure represents the SamrCreateGroupInDomain operation response
 type CreateGroupInDomainResponse struct {
 	// GroupHandle: An RPC context handle, as specified in section 2.2.7.2.
@@ -17890,8 +18029,10 @@ type xxx_EnumerateGroupsInDomainOperation struct {
 	Return                 int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrEnumerateGroupsInDomain operation.
 func (o *xxx_EnumerateGroupsInDomainOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of SamrEnumerateGroupsInDomain operation.
 func (o *xxx_EnumerateGroupsInDomainOperation) OpName() string {
 	return "/samr/v1/SamrEnumerateGroupsInDomain"
 }
@@ -18110,6 +18251,19 @@ func (o *EnumerateGroupsInDomainRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeEnumerateGroupsInDomainRequest build a response structure from the given request structure.
+func (o *EnumerateGroupsInDomainRequest) MakeResponse() *EnumerateGroupsInDomainResponse {
+	return &EnumerateGroupsInDomainResponse{}
+}
+
+// OpNum returns the operation number of SamrEnumerateGroupsInDomain operation.
+func (o *EnumerateGroupsInDomainRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of SamrEnumerateGroupsInDomain operation.
+func (o *EnumerateGroupsInDomainRequest) OpName() string {
+	return "/samr/v1/SamrEnumerateGroupsInDomain"
+}
+
 // EnumerateGroupsInDomainResponse structure represents the SamrEnumerateGroupsInDomain operation response
 type EnumerateGroupsInDomainResponse struct {
 	// EnumerationContext: This value is a cookie that the server can use to continue an
@@ -18190,8 +18344,10 @@ type xxx_CreateUserInDomainOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrCreateUserInDomain operation.
 func (o *xxx_CreateUserInDomainOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of SamrCreateUserInDomain operation.
 func (o *xxx_CreateUserInDomainOperation) OpName() string { return "/samr/v1/SamrCreateUserInDomain" }
 
 func (o *xxx_CreateUserInDomainOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18385,6 +18541,17 @@ func (o *CreateUserInDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeCreateUserInDomainRequest build a response structure from the given request structure.
+func (o *CreateUserInDomainRequest) MakeResponse() *CreateUserInDomainResponse {
+	return &CreateUserInDomainResponse{}
+}
+
+// OpNum returns the operation number of SamrCreateUserInDomain operation.
+func (o *CreateUserInDomainRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of SamrCreateUserInDomain operation.
+func (o *CreateUserInDomainRequest) OpName() string { return "/samr/v1/SamrCreateUserInDomain" }
+
 // CreateUserInDomainResponse structure represents the SamrCreateUserInDomain operation response
 type CreateUserInDomainResponse struct {
 	// UserHandle: An RPC context handle, as specified in section 2.2.7.2.
@@ -18443,8 +18610,10 @@ type xxx_EnumerateUsersInDomainOperation struct {
 	Return                 int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrEnumerateUsersInDomain operation.
 func (o *xxx_EnumerateUsersInDomainOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of SamrEnumerateUsersInDomain operation.
 func (o *xxx_EnumerateUsersInDomainOperation) OpName() string {
 	return "/samr/v1/SamrEnumerateUsersInDomain"
 }
@@ -18679,6 +18848,17 @@ func (o *EnumerateUsersInDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeEnumerateUsersInDomainRequest build a response structure from the given request structure.
+func (o *EnumerateUsersInDomainRequest) MakeResponse() *EnumerateUsersInDomainResponse {
+	return &EnumerateUsersInDomainResponse{}
+}
+
+// OpNum returns the operation number of SamrEnumerateUsersInDomain operation.
+func (o *EnumerateUsersInDomainRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of SamrEnumerateUsersInDomain operation.
+func (o *EnumerateUsersInDomainRequest) OpName() string { return "/samr/v1/SamrEnumerateUsersInDomain" }
+
 // EnumerateUsersInDomainResponse structure represents the SamrEnumerateUsersInDomain operation response
 type EnumerateUsersInDomainResponse struct {
 	// EnumerationContext: This value is a cookie that the server can use to continue an
@@ -18777,8 +18957,10 @@ type xxx_CreateAliasInDomainOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrCreateAliasInDomain operation.
 func (o *xxx_CreateAliasInDomainOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of SamrCreateAliasInDomain operation.
 func (o *xxx_CreateAliasInDomainOperation) OpName() string { return "/samr/v1/SamrCreateAliasInDomain" }
 
 func (o *xxx_CreateAliasInDomainOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -18972,6 +19154,17 @@ func (o *CreateAliasInDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeCreateAliasInDomainRequest build a response structure from the given request structure.
+func (o *CreateAliasInDomainRequest) MakeResponse() *CreateAliasInDomainResponse {
+	return &CreateAliasInDomainResponse{}
+}
+
+// OpNum returns the operation number of SamrCreateAliasInDomain operation.
+func (o *CreateAliasInDomainRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of SamrCreateAliasInDomain operation.
+func (o *CreateAliasInDomainRequest) OpName() string { return "/samr/v1/SamrCreateAliasInDomain" }
+
 // CreateAliasInDomainResponse structure represents the SamrCreateAliasInDomain operation response
 type CreateAliasInDomainResponse struct {
 	// AliasHandle: An RPC context handle, as specified in section 2.2.7.2.
@@ -19033,8 +19226,10 @@ type xxx_EnumerateAliasesInDomainOperation struct {
 	Return                 int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrEnumerateAliasesInDomain operation.
 func (o *xxx_EnumerateAliasesInDomainOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of SamrEnumerateAliasesInDomain operation.
 func (o *xxx_EnumerateAliasesInDomainOperation) OpName() string {
 	return "/samr/v1/SamrEnumerateAliasesInDomain"
 }
@@ -19253,6 +19448,19 @@ func (o *EnumerateAliasesInDomainRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeEnumerateAliasesInDomainRequest build a response structure from the given request structure.
+func (o *EnumerateAliasesInDomainRequest) MakeResponse() *EnumerateAliasesInDomainResponse {
+	return &EnumerateAliasesInDomainResponse{}
+}
+
+// OpNum returns the operation number of SamrEnumerateAliasesInDomain operation.
+func (o *EnumerateAliasesInDomainRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of SamrEnumerateAliasesInDomain operation.
+func (o *EnumerateAliasesInDomainRequest) OpName() string {
+	return "/samr/v1/SamrEnumerateAliasesInDomain"
+}
+
 // EnumerateAliasesInDomainResponse structure represents the SamrEnumerateAliasesInDomain operation response
 type EnumerateAliasesInDomainResponse struct {
 	// EnumerationContext: This value is a cookie that the server can use to continue an
@@ -19331,8 +19539,10 @@ type xxx_GetAliasMembershipOperation struct {
 	Return     int32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrGetAliasMembership operation.
 func (o *xxx_GetAliasMembershipOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of SamrGetAliasMembership operation.
 func (o *xxx_GetAliasMembershipOperation) OpName() string { return "/samr/v1/SamrGetAliasMembership" }
 
 func (o *xxx_GetAliasMembershipOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19502,6 +19712,17 @@ func (o *GetAliasMembershipRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetAliasMembershipRequest build a response structure from the given request structure.
+func (o *GetAliasMembershipRequest) MakeResponse() *GetAliasMembershipResponse {
+	return &GetAliasMembershipResponse{}
+}
+
+// OpNum returns the operation number of SamrGetAliasMembership operation.
+func (o *GetAliasMembershipRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of SamrGetAliasMembership operation.
+func (o *GetAliasMembershipRequest) OpName() string { return "/samr/v1/SamrGetAliasMembership" }
+
 // GetAliasMembershipResponse structure represents the SamrGetAliasMembership operation response
 type GetAliasMembershipResponse struct {
 	// Membership: The union of all aliases (represented by RIDs) that all SIDs in SidArray
@@ -19556,8 +19777,10 @@ type xxx_LookupNamesInDomainOperation struct {
 	Return      int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrLookupNamesInDomain operation.
 func (o *xxx_LookupNamesInDomainOperation) OpNum() int { return 17 }
 
+// OpName returns the operation name of SamrLookupNamesInDomain operation.
 func (o *xxx_LookupNamesInDomainOperation) OpName() string { return "/samr/v1/SamrLookupNamesInDomain" }
 
 func (o *xxx_LookupNamesInDomainOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -19831,6 +20054,17 @@ func (o *LookupNamesInDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeLookupNamesInDomainRequest build a response structure from the given request structure.
+func (o *LookupNamesInDomainRequest) MakeResponse() *LookupNamesInDomainResponse {
+	return &LookupNamesInDomainResponse{}
+}
+
+// OpNum returns the operation number of SamrLookupNamesInDomain operation.
+func (o *LookupNamesInDomainRequest) OpNum() int { return 17 }
+
+// OpName returns the operation name of SamrLookupNamesInDomain operation.
+func (o *LookupNamesInDomainRequest) OpName() string { return "/samr/v1/SamrLookupNamesInDomain" }
+
 // LookupNamesInDomainResponse structure represents the SamrLookupNamesInDomain operation response
 type LookupNamesInDomainResponse struct {
 	// RelativeIds: An array of RIDs of accounts that correspond to the elements in Names.
@@ -19889,8 +20123,10 @@ type xxx_LookupIDsInDomainOperation struct {
 	Return      int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrLookupIdsInDomain operation.
 func (o *xxx_LookupIDsInDomainOperation) OpNum() int { return 18 }
 
+// OpName returns the operation name of SamrLookupIdsInDomain operation.
 func (o *xxx_LookupIDsInDomainOperation) OpName() string { return "/samr/v1/SamrLookupIdsInDomain" }
 
 func (o *xxx_LookupIDsInDomainOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20149,6 +20385,17 @@ func (o *LookupIDsInDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeLookupIDsInDomainRequest build a response structure from the given request structure.
+func (o *LookupIDsInDomainRequest) MakeResponse() *LookupIDsInDomainResponse {
+	return &LookupIDsInDomainResponse{}
+}
+
+// OpNum returns the operation number of SamrLookupIdsInDomain operation.
+func (o *LookupIDsInDomainRequest) OpNum() int { return 18 }
+
+// OpName returns the operation name of SamrLookupIdsInDomain operation.
+func (o *LookupIDsInDomainRequest) OpName() string { return "/samr/v1/SamrLookupIdsInDomain" }
+
 // LookupIDsInDomainResponse structure represents the SamrLookupIdsInDomain operation response
 type LookupIDsInDomainResponse struct {
 	// Names: A structure containing an array of account names that correspond to the elements
@@ -20207,8 +20454,10 @@ type xxx_OpenGroupOperation struct {
 	Return        int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrOpenGroup operation.
 func (o *xxx_OpenGroupOperation) OpNum() int { return 19 }
 
+// OpName returns the operation name of SamrOpenGroup operation.
 func (o *xxx_OpenGroupOperation) OpName() string { return "/samr/v1/SamrOpenGroup" }
 
 func (o *xxx_OpenGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20374,6 +20623,17 @@ func (o *OpenGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeOpenGroupRequest build a response structure from the given request structure.
+func (o *OpenGroupRequest) MakeResponse() *OpenGroupResponse {
+	return &OpenGroupResponse{}
+}
+
+// OpNum returns the operation number of SamrOpenGroup operation.
+func (o *OpenGroupRequest) OpNum() int { return 19 }
+
+// OpName returns the operation name of SamrOpenGroup operation.
+func (o *OpenGroupRequest) OpName() string { return "/samr/v1/SamrOpenGroup" }
+
 // OpenGroupResponse structure represents the SamrOpenGroup operation response
 type OpenGroupResponse struct {
 	// GroupHandle: An RPC context handle, as specified in section 2.2.7.2.
@@ -20425,8 +20685,10 @@ type xxx_QueryInformationGroupOperation struct {
 	Return                int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrQueryInformationGroup operation.
 func (o *xxx_QueryInformationGroupOperation) OpNum() int { return 20 }
 
+// OpName returns the operation name of SamrQueryInformationGroup operation.
 func (o *xxx_QueryInformationGroupOperation) OpName() string {
 	return "/samr/v1/SamrQueryInformationGroup"
 }
@@ -20605,6 +20867,22 @@ func (o *QueryInformationGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeQueryInformationGroupRequest build a response structure from the given request structure.
+func (o *QueryInformationGroupRequest) MakeResponse() *QueryInformationGroupResponse {
+	if o == nil {
+		return &QueryInformationGroupResponse{}
+	}
+	return &QueryInformationGroupResponse{
+		GroupInformationClass: o.GroupInformationClass,
+	}
+}
+
+// OpNum returns the operation number of SamrQueryInformationGroup operation.
+func (o *QueryInformationGroupRequest) OpNum() int { return 20 }
+
+// OpName returns the operation name of SamrQueryInformationGroup operation.
+func (o *QueryInformationGroupRequest) OpName() string { return "/samr/v1/SamrQueryInformationGroup" }
+
 // QueryInformationGroupResponse structure represents the SamrQueryInformationGroup operation response
 type QueryInformationGroupResponse struct {
 	// XXX: GroupInformationClass is an implicit input depedency for output parameters
@@ -20667,8 +20945,10 @@ type xxx_SetInformationGroupOperation struct {
 	Return                int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrSetInformationGroup operation.
 func (o *xxx_SetInformationGroupOperation) OpNum() int { return 21 }
 
+// OpName returns the operation name of SamrSetInformationGroup operation.
 func (o *xxx_SetInformationGroupOperation) OpName() string { return "/samr/v1/SamrSetInformationGroup" }
 
 func (o *xxx_SetInformationGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -20835,6 +21115,17 @@ func (o *SetInformationGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeSetInformationGroupRequest build a response structure from the given request structure.
+func (o *SetInformationGroupRequest) MakeResponse() *SetInformationGroupResponse {
+	return &SetInformationGroupResponse{}
+}
+
+// OpNum returns the operation number of SamrSetInformationGroup operation.
+func (o *SetInformationGroupRequest) OpNum() int { return 21 }
+
+// OpName returns the operation name of SamrSetInformationGroup operation.
+func (o *SetInformationGroupRequest) OpName() string { return "/samr/v1/SamrSetInformationGroup" }
+
 // SetInformationGroupResponse structure represents the SamrSetInformationGroup operation response
 type SetInformationGroupResponse struct {
 	// Return: The SamrSetInformationGroup return value.
@@ -20878,8 +21169,10 @@ type xxx_AddMemberToGroupOperation struct {
 	Return      int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrAddMemberToGroup operation.
 func (o *xxx_AddMemberToGroupOperation) OpNum() int { return 22 }
 
+// OpName returns the operation name of SamrAddMemberToGroup operation.
 func (o *xxx_AddMemberToGroupOperation) OpName() string { return "/samr/v1/SamrAddMemberToGroup" }
 
 func (o *xxx_AddMemberToGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -21028,6 +21321,17 @@ func (o *AddMemberToGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeAddMemberToGroupRequest build a response structure from the given request structure.
+func (o *AddMemberToGroupRequest) MakeResponse() *AddMemberToGroupResponse {
+	return &AddMemberToGroupResponse{}
+}
+
+// OpNum returns the operation number of SamrAddMemberToGroup operation.
+func (o *AddMemberToGroupRequest) OpNum() int { return 22 }
+
+// OpName returns the operation name of SamrAddMemberToGroup operation.
+func (o *AddMemberToGroupRequest) OpName() string { return "/samr/v1/SamrAddMemberToGroup" }
+
 // AddMemberToGroupResponse structure represents the SamrAddMemberToGroup operation response
 type AddMemberToGroupResponse struct {
 	// Return: The SamrAddMemberToGroup return value.
@@ -21069,8 +21373,10 @@ type xxx_DeleteGroupOperation struct {
 	Return      int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrDeleteGroup operation.
 func (o *xxx_DeleteGroupOperation) OpNum() int { return 23 }
 
+// OpName returns the operation name of SamrDeleteGroup operation.
 func (o *xxx_DeleteGroupOperation) OpName() string { return "/samr/v1/SamrDeleteGroup" }
 
 func (o *xxx_DeleteGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -21207,6 +21513,17 @@ func (o *DeleteGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeDeleteGroupRequest build a response structure from the given request structure.
+func (o *DeleteGroupRequest) MakeResponse() *DeleteGroupResponse {
+	return &DeleteGroupResponse{}
+}
+
+// OpNum returns the operation number of SamrDeleteGroup operation.
+func (o *DeleteGroupRequest) OpNum() int { return 23 }
+
+// OpName returns the operation name of SamrDeleteGroup operation.
+func (o *DeleteGroupRequest) OpName() string { return "/samr/v1/SamrDeleteGroup" }
+
 // DeleteGroupResponse structure represents the SamrDeleteGroup operation response
 type DeleteGroupResponse struct {
 	// GroupHandle: An RPC context handle, as specified in section 2.2.7.2, representing
@@ -21258,8 +21575,10 @@ type xxx_RemoveMemberFromGroupOperation struct {
 	Return      int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrRemoveMemberFromGroup operation.
 func (o *xxx_RemoveMemberFromGroupOperation) OpNum() int { return 24 }
 
+// OpName returns the operation name of SamrRemoveMemberFromGroup operation.
 func (o *xxx_RemoveMemberFromGroupOperation) OpName() string {
 	return "/samr/v1/SamrRemoveMemberFromGroup"
 }
@@ -21393,6 +21712,17 @@ func (o *RemoveMemberFromGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeRemoveMemberFromGroupRequest build a response structure from the given request structure.
+func (o *RemoveMemberFromGroupRequest) MakeResponse() *RemoveMemberFromGroupResponse {
+	return &RemoveMemberFromGroupResponse{}
+}
+
+// OpNum returns the operation number of SamrRemoveMemberFromGroup operation.
+func (o *RemoveMemberFromGroupRequest) OpNum() int { return 24 }
+
+// OpName returns the operation name of SamrRemoveMemberFromGroup operation.
+func (o *RemoveMemberFromGroupRequest) OpName() string { return "/samr/v1/SamrRemoveMemberFromGroup" }
+
 // RemoveMemberFromGroupResponse structure represents the SamrRemoveMemberFromGroup operation response
 type RemoveMemberFromGroupResponse struct {
 	// Return: The SamrRemoveMemberFromGroup return value.
@@ -21435,8 +21765,10 @@ type xxx_GetMembersInGroupOperation struct {
 	Return      int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrGetMembersInGroup operation.
 func (o *xxx_GetMembersInGroupOperation) OpNum() int { return 25 }
 
+// OpName returns the operation name of SamrGetMembersInGroup operation.
 func (o *xxx_GetMembersInGroupOperation) OpName() string { return "/samr/v1/SamrGetMembersInGroup" }
 
 func (o *xxx_GetMembersInGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -21594,6 +21926,17 @@ func (o *GetMembersInGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetMembersInGroupRequest build a response structure from the given request structure.
+func (o *GetMembersInGroupRequest) MakeResponse() *GetMembersInGroupResponse {
+	return &GetMembersInGroupResponse{}
+}
+
+// OpNum returns the operation number of SamrGetMembersInGroup operation.
+func (o *GetMembersInGroupRequest) OpNum() int { return 25 }
+
+// OpName returns the operation name of SamrGetMembersInGroup operation.
+func (o *GetMembersInGroupRequest) OpName() string { return "/samr/v1/SamrGetMembersInGroup" }
+
 // GetMembersInGroupResponse structure represents the SamrGetMembersInGroup operation response
 type GetMembersInGroupResponse struct {
 	// Members: A structure containing an array of RIDs, as well as an array of attribute
@@ -21646,8 +21989,10 @@ type xxx_SetMemberAttributesOfGroupOperation struct {
 	Return      int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrSetMemberAttributesOfGroup operation.
 func (o *xxx_SetMemberAttributesOfGroupOperation) OpNum() int { return 26 }
 
+// OpName returns the operation name of SamrSetMemberAttributesOfGroup operation.
 func (o *xxx_SetMemberAttributesOfGroupOperation) OpName() string {
 	return "/samr/v1/SamrSetMemberAttributesOfGroup"
 }
@@ -21798,6 +22143,19 @@ func (o *SetMemberAttributesOfGroupRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeSetMemberAttributesOfGroupRequest build a response structure from the given request structure.
+func (o *SetMemberAttributesOfGroupRequest) MakeResponse() *SetMemberAttributesOfGroupResponse {
+	return &SetMemberAttributesOfGroupResponse{}
+}
+
+// OpNum returns the operation number of SamrSetMemberAttributesOfGroup operation.
+func (o *SetMemberAttributesOfGroupRequest) OpNum() int { return 26 }
+
+// OpName returns the operation name of SamrSetMemberAttributesOfGroup operation.
+func (o *SetMemberAttributesOfGroupRequest) OpName() string {
+	return "/samr/v1/SamrSetMemberAttributesOfGroup"
+}
+
 // SetMemberAttributesOfGroupResponse structure represents the SamrSetMemberAttributesOfGroup operation response
 type SetMemberAttributesOfGroupResponse struct {
 	// Return: The SamrSetMemberAttributesOfGroup return value.
@@ -21842,8 +22200,10 @@ type xxx_OpenAliasOperation struct {
 	Return        int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrOpenAlias operation.
 func (o *xxx_OpenAliasOperation) OpNum() int { return 27 }
 
+// OpName returns the operation name of SamrOpenAlias operation.
 func (o *xxx_OpenAliasOperation) OpName() string { return "/samr/v1/SamrOpenAlias" }
 
 func (o *xxx_OpenAliasOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -22009,6 +22369,17 @@ func (o *OpenAliasRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeOpenAliasRequest build a response structure from the given request structure.
+func (o *OpenAliasRequest) MakeResponse() *OpenAliasResponse {
+	return &OpenAliasResponse{}
+}
+
+// OpNum returns the operation number of SamrOpenAlias operation.
+func (o *OpenAliasRequest) OpNum() int { return 27 }
+
+// OpName returns the operation name of SamrOpenAlias operation.
+func (o *OpenAliasRequest) OpName() string { return "/samr/v1/SamrOpenAlias" }
+
 // OpenAliasResponse structure represents the SamrOpenAlias operation response
 type OpenAliasResponse struct {
 	// AliasHandle: An RPC context handle, as specified in section 2.2.7.2.
@@ -22060,8 +22431,10 @@ type xxx_QueryInformationAliasOperation struct {
 	Return                int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrQueryInformationAlias operation.
 func (o *xxx_QueryInformationAliasOperation) OpNum() int { return 28 }
 
+// OpName returns the operation name of SamrQueryInformationAlias operation.
 func (o *xxx_QueryInformationAliasOperation) OpName() string {
 	return "/samr/v1/SamrQueryInformationAlias"
 }
@@ -22240,6 +22613,22 @@ func (o *QueryInformationAliasRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeQueryInformationAliasRequest build a response structure from the given request structure.
+func (o *QueryInformationAliasRequest) MakeResponse() *QueryInformationAliasResponse {
+	if o == nil {
+		return &QueryInformationAliasResponse{}
+	}
+	return &QueryInformationAliasResponse{
+		AliasInformationClass: o.AliasInformationClass,
+	}
+}
+
+// OpNum returns the operation number of SamrQueryInformationAlias operation.
+func (o *QueryInformationAliasRequest) OpNum() int { return 28 }
+
+// OpName returns the operation name of SamrQueryInformationAlias operation.
+func (o *QueryInformationAliasRequest) OpName() string { return "/samr/v1/SamrQueryInformationAlias" }
+
 // QueryInformationAliasResponse structure represents the SamrQueryInformationAlias operation response
 type QueryInformationAliasResponse struct {
 	// XXX: AliasInformationClass is an implicit input depedency for output parameters
@@ -22302,8 +22691,10 @@ type xxx_SetInformationAliasOperation struct {
 	Return                int32                 `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrSetInformationAlias operation.
 func (o *xxx_SetInformationAliasOperation) OpNum() int { return 29 }
 
+// OpName returns the operation name of SamrSetInformationAlias operation.
 func (o *xxx_SetInformationAliasOperation) OpName() string { return "/samr/v1/SamrSetInformationAlias" }
 
 func (o *xxx_SetInformationAliasOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -22470,6 +22861,17 @@ func (o *SetInformationAliasRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeSetInformationAliasRequest build a response structure from the given request structure.
+func (o *SetInformationAliasRequest) MakeResponse() *SetInformationAliasResponse {
+	return &SetInformationAliasResponse{}
+}
+
+// OpNum returns the operation number of SamrSetInformationAlias operation.
+func (o *SetInformationAliasRequest) OpNum() int { return 29 }
+
+// OpName returns the operation name of SamrSetInformationAlias operation.
+func (o *SetInformationAliasRequest) OpName() string { return "/samr/v1/SamrSetInformationAlias" }
+
 // SetInformationAliasResponse structure represents the SamrSetInformationAlias operation response
 type SetInformationAliasResponse struct {
 	// Return: The SamrSetInformationAlias return value.
@@ -22511,8 +22913,10 @@ type xxx_DeleteAliasOperation struct {
 	Return      int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrDeleteAlias operation.
 func (o *xxx_DeleteAliasOperation) OpNum() int { return 30 }
 
+// OpName returns the operation name of SamrDeleteAlias operation.
 func (o *xxx_DeleteAliasOperation) OpName() string { return "/samr/v1/SamrDeleteAlias" }
 
 func (o *xxx_DeleteAliasOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -22649,6 +23053,17 @@ func (o *DeleteAliasRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeDeleteAliasRequest build a response structure from the given request structure.
+func (o *DeleteAliasRequest) MakeResponse() *DeleteAliasResponse {
+	return &DeleteAliasResponse{}
+}
+
+// OpNum returns the operation number of SamrDeleteAlias operation.
+func (o *DeleteAliasRequest) OpNum() int { return 30 }
+
+// OpName returns the operation name of SamrDeleteAlias operation.
+func (o *DeleteAliasRequest) OpName() string { return "/samr/v1/SamrDeleteAlias" }
+
 // DeleteAliasResponse structure represents the SamrDeleteAlias operation response
 type DeleteAliasResponse struct {
 	// AliasHandle: An RPC context handle, as specified in section 2.2.7.2, representing
@@ -22700,8 +23115,10 @@ type xxx_AddMemberToAliasOperation struct {
 	Return      int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrAddMemberToAlias operation.
 func (o *xxx_AddMemberToAliasOperation) OpNum() int { return 31 }
 
+// OpName returns the operation name of SamrAddMemberToAlias operation.
 func (o *xxx_AddMemberToAliasOperation) OpName() string { return "/samr/v1/SamrAddMemberToAlias" }
 
 func (o *xxx_AddMemberToAliasOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -22842,6 +23259,17 @@ func (o *AddMemberToAliasRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeAddMemberToAliasRequest build a response structure from the given request structure.
+func (o *AddMemberToAliasRequest) MakeResponse() *AddMemberToAliasResponse {
+	return &AddMemberToAliasResponse{}
+}
+
+// OpNum returns the operation number of SamrAddMemberToAlias operation.
+func (o *AddMemberToAliasRequest) OpNum() int { return 31 }
+
+// OpName returns the operation name of SamrAddMemberToAlias operation.
+func (o *AddMemberToAliasRequest) OpName() string { return "/samr/v1/SamrAddMemberToAlias" }
+
 // AddMemberToAliasResponse structure represents the SamrAddMemberToAlias operation response
 type AddMemberToAliasResponse struct {
 	// Return: The SamrAddMemberToAlias return value.
@@ -22884,8 +23312,10 @@ type xxx_RemoveMemberFromAliasOperation struct {
 	Return      int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrRemoveMemberFromAlias operation.
 func (o *xxx_RemoveMemberFromAliasOperation) OpNum() int { return 32 }
 
+// OpName returns the operation name of SamrRemoveMemberFromAlias operation.
 func (o *xxx_RemoveMemberFromAliasOperation) OpName() string {
 	return "/samr/v1/SamrRemoveMemberFromAlias"
 }
@@ -23028,6 +23458,17 @@ func (o *RemoveMemberFromAliasRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeRemoveMemberFromAliasRequest build a response structure from the given request structure.
+func (o *RemoveMemberFromAliasRequest) MakeResponse() *RemoveMemberFromAliasResponse {
+	return &RemoveMemberFromAliasResponse{}
+}
+
+// OpNum returns the operation number of SamrRemoveMemberFromAlias operation.
+func (o *RemoveMemberFromAliasRequest) OpNum() int { return 32 }
+
+// OpName returns the operation name of SamrRemoveMemberFromAlias operation.
+func (o *RemoveMemberFromAliasRequest) OpName() string { return "/samr/v1/SamrRemoveMemberFromAlias" }
+
 // RemoveMemberFromAliasResponse structure represents the SamrRemoveMemberFromAlias operation response
 type RemoveMemberFromAliasResponse struct {
 	// Return: The SamrRemoveMemberFromAlias return value.
@@ -23070,8 +23511,10 @@ type xxx_GetMembersInAliasOperation struct {
 	Return      int32        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrGetMembersInAlias operation.
 func (o *xxx_GetMembersInAliasOperation) OpNum() int { return 33 }
 
+// OpName returns the operation name of SamrGetMembersInAlias operation.
 func (o *xxx_GetMembersInAliasOperation) OpName() string { return "/samr/v1/SamrGetMembersInAlias" }
 
 func (o *xxx_GetMembersInAliasOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -23210,6 +23653,17 @@ func (o *GetMembersInAliasRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
+// MakeGetMembersInAliasRequest build a response structure from the given request structure.
+func (o *GetMembersInAliasRequest) MakeResponse() *GetMembersInAliasResponse {
+	return &GetMembersInAliasResponse{}
+}
+
+// OpNum returns the operation number of SamrGetMembersInAlias operation.
+func (o *GetMembersInAliasRequest) OpNum() int { return 33 }
+
+// OpName returns the operation name of SamrGetMembersInAlias operation.
+func (o *GetMembersInAliasRequest) OpName() string { return "/samr/v1/SamrGetMembersInAlias" }
+
 // GetMembersInAliasResponse structure represents the SamrGetMembersInAlias operation response
 type GetMembersInAliasResponse struct {
 	// Members: A structure containing an array of SIDs that represent the membership list
@@ -23263,8 +23717,10 @@ type xxx_OpenUserOperation struct {
 	Return        int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrOpenUser operation.
 func (o *xxx_OpenUserOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of SamrOpenUser operation.
 func (o *xxx_OpenUserOperation) OpName() string { return "/samr/v1/SamrOpenUser" }
 
 func (o *xxx_OpenUserOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -23430,6 +23886,17 @@ func (o *OpenUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeOpenUserRequest build a response structure from the given request structure.
+func (o *OpenUserRequest) MakeResponse() *OpenUserResponse {
+	return &OpenUserResponse{}
+}
+
+// OpNum returns the operation number of SamrOpenUser operation.
+func (o *OpenUserRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of SamrOpenUser operation.
+func (o *OpenUserRequest) OpName() string { return "/samr/v1/SamrOpenUser" }
+
 // OpenUserResponse structure represents the SamrOpenUser operation response
 type OpenUserResponse struct {
 	// UserHandle: An RPC context handle, as specified in section 2.2.7.2.
@@ -23479,8 +23946,10 @@ type xxx_DeleteUserOperation struct {
 	Return     int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrDeleteUser operation.
 func (o *xxx_DeleteUserOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of SamrDeleteUser operation.
 func (o *xxx_DeleteUserOperation) OpName() string { return "/samr/v1/SamrDeleteUser" }
 
 func (o *xxx_DeleteUserOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -23617,6 +24086,17 @@ func (o *DeleteUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeDeleteUserRequest build a response structure from the given request structure.
+func (o *DeleteUserRequest) MakeResponse() *DeleteUserResponse {
+	return &DeleteUserResponse{}
+}
+
+// OpNum returns the operation number of SamrDeleteUser operation.
+func (o *DeleteUserRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of SamrDeleteUser operation.
+func (o *DeleteUserRequest) OpName() string { return "/samr/v1/SamrDeleteUser" }
+
 // DeleteUserResponse structure represents the SamrDeleteUser operation response
 type DeleteUserResponse struct {
 	// UserHandle: An RPC context handle, as specified in section 2.2.7.2, representing
@@ -23669,8 +24149,10 @@ type xxx_QueryInformationUserOperation struct {
 	Return               int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrQueryInformationUser operation.
 func (o *xxx_QueryInformationUserOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of SamrQueryInformationUser operation.
 func (o *xxx_QueryInformationUserOperation) OpName() string {
 	return "/samr/v1/SamrQueryInformationUser"
 }
@@ -23845,6 +24327,22 @@ func (o *QueryInformationUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeQueryInformationUserRequest build a response structure from the given request structure.
+func (o *QueryInformationUserRequest) MakeResponse() *QueryInformationUserResponse {
+	if o == nil {
+		return &QueryInformationUserResponse{}
+	}
+	return &QueryInformationUserResponse{
+		UserInformationClass: o.UserInformationClass,
+	}
+}
+
+// OpNum returns the operation number of SamrQueryInformationUser operation.
+func (o *QueryInformationUserRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of SamrQueryInformationUser operation.
+func (o *QueryInformationUserRequest) OpName() string { return "/samr/v1/SamrQueryInformationUser" }
+
 // QueryInformationUserResponse structure represents the SamrQueryInformationUser operation response
 type QueryInformationUserResponse struct {
 	// XXX: UserInformationClass is an implicit input depedency for output parameters
@@ -23902,8 +24400,10 @@ type xxx_SetInformationUserOperation struct {
 	Return               int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrSetInformationUser operation.
 func (o *xxx_SetInformationUserOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of SamrSetInformationUser operation.
 func (o *xxx_SetInformationUserOperation) OpName() string { return "/samr/v1/SamrSetInformationUser" }
 
 func (o *xxx_SetInformationUserOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24060,6 +24560,17 @@ func (o *SetInformationUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetInformationUserRequest build a response structure from the given request structure.
+func (o *SetInformationUserRequest) MakeResponse() *SetInformationUserResponse {
+	return &SetInformationUserResponse{}
+}
+
+// OpNum returns the operation number of SamrSetInformationUser operation.
+func (o *SetInformationUserRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of SamrSetInformationUser operation.
+func (o *SetInformationUserRequest) OpName() string { return "/samr/v1/SamrSetInformationUser" }
+
 // SetInformationUserResponse structure represents the SamrSetInformationUser operation response
 type SetInformationUserResponse struct {
 	// Return: The SamrSetInformationUser return value.
@@ -24111,8 +24622,10 @@ type xxx_ChangePasswordUserOperation struct {
 	Return                   int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrChangePasswordUser operation.
 func (o *xxx_ChangePasswordUserOperation) OpNum() int { return 38 }
 
+// OpName returns the operation name of SamrChangePasswordUser operation.
 func (o *xxx_ChangePasswordUserOperation) OpName() string { return "/samr/v1/SamrChangePasswordUser" }
 
 func (o *xxx_ChangePasswordUserOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24610,6 +25123,17 @@ func (o *ChangePasswordUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeChangePasswordUserRequest build a response structure from the given request structure.
+func (o *ChangePasswordUserRequest) MakeResponse() *ChangePasswordUserResponse {
+	return &ChangePasswordUserResponse{}
+}
+
+// OpNum returns the operation number of SamrChangePasswordUser operation.
+func (o *ChangePasswordUserRequest) OpNum() int { return 38 }
+
+// OpName returns the operation name of SamrChangePasswordUser operation.
+func (o *ChangePasswordUserRequest) OpName() string { return "/samr/v1/SamrChangePasswordUser" }
+
 // ChangePasswordUserResponse structure represents the SamrChangePasswordUser operation response
 type ChangePasswordUserResponse struct {
 	// Return: The SamrChangePasswordUser return value.
@@ -24652,8 +25176,10 @@ type xxx_GetGroupsForUserOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrGetGroupsForUser operation.
 func (o *xxx_GetGroupsForUserOperation) OpNum() int { return 39 }
 
+// OpName returns the operation name of SamrGetGroupsForUser operation.
 func (o *xxx_GetGroupsForUserOperation) OpName() string { return "/samr/v1/SamrGetGroupsForUser" }
 
 func (o *xxx_GetGroupsForUserOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -24811,6 +25337,17 @@ func (o *GetGroupsForUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetGroupsForUserRequest build a response structure from the given request structure.
+func (o *GetGroupsForUserRequest) MakeResponse() *GetGroupsForUserResponse {
+	return &GetGroupsForUserResponse{}
+}
+
+// OpNum returns the operation number of SamrGetGroupsForUser operation.
+func (o *GetGroupsForUserRequest) OpNum() int { return 39 }
+
+// OpName returns the operation name of SamrGetGroupsForUser operation.
+func (o *GetGroupsForUserRequest) OpName() string { return "/samr/v1/SamrGetGroupsForUser" }
+
 // GetGroupsForUserResponse structure represents the SamrGetGroupsForUser operation response
 type GetGroupsForUserResponse struct {
 	// Groups: An array of RIDs of the groups that the user referenced by UserHandle is
@@ -24868,8 +25405,10 @@ type xxx_QueryDisplayInformationOperation struct {
 	Return                  int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrQueryDisplayInformation operation.
 func (o *xxx_QueryDisplayInformationOperation) OpNum() int { return 40 }
 
+// OpName returns the operation name of SamrQueryDisplayInformation operation.
 func (o *xxx_QueryDisplayInformationOperation) OpName() string {
 	return "/samr/v1/SamrQueryDisplayInformation"
 }
@@ -25094,6 +25633,24 @@ func (o *QueryDisplayInformationRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeQueryDisplayInformationRequest build a response structure from the given request structure.
+func (o *QueryDisplayInformationRequest) MakeResponse() *QueryDisplayInformationResponse {
+	if o == nil {
+		return &QueryDisplayInformationResponse{}
+	}
+	return &QueryDisplayInformationResponse{
+		DisplayInformationClass: o.DisplayInformationClass,
+	}
+}
+
+// OpNum returns the operation number of SamrQueryDisplayInformation operation.
+func (o *QueryDisplayInformationRequest) OpNum() int { return 40 }
+
+// OpName returns the operation name of SamrQueryDisplayInformation operation.
+func (o *QueryDisplayInformationRequest) OpName() string {
+	return "/samr/v1/SamrQueryDisplayInformation"
+}
+
 // QueryDisplayInformationResponse structure represents the SamrQueryDisplayInformation operation response
 type QueryDisplayInformationResponse struct {
 	// XXX: DisplayInformationClass is an implicit input depedency for output parameters
@@ -25158,8 +25715,10 @@ type xxx_GetDisplayEnumerationIndexOperation struct {
 	Return                  int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrGetDisplayEnumerationIndex operation.
 func (o *xxx_GetDisplayEnumerationIndexOperation) OpNum() int { return 41 }
 
+// OpName returns the operation name of SamrGetDisplayEnumerationIndex operation.
 func (o *xxx_GetDisplayEnumerationIndexOperation) OpName() string {
 	return "/samr/v1/SamrGetDisplayEnumerationIndex"
 }
@@ -25328,6 +25887,19 @@ func (o *GetDisplayEnumerationIndexRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeGetDisplayEnumerationIndexRequest build a response structure from the given request structure.
+func (o *GetDisplayEnumerationIndexRequest) MakeResponse() *GetDisplayEnumerationIndexResponse {
+	return &GetDisplayEnumerationIndexResponse{}
+}
+
+// OpNum returns the operation number of SamrGetDisplayEnumerationIndex operation.
+func (o *GetDisplayEnumerationIndexRequest) OpNum() int { return 41 }
+
+// OpName returns the operation name of SamrGetDisplayEnumerationIndex operation.
+func (o *GetDisplayEnumerationIndexRequest) OpName() string {
+	return "/samr/v1/SamrGetDisplayEnumerationIndex"
+}
+
 // GetDisplayEnumerationIndexResponse structure represents the SamrGetDisplayEnumerationIndex operation response
 type GetDisplayEnumerationIndexResponse struct {
 	Index uint32 `idl:"name:Index" json:"index"`
@@ -25373,8 +25945,10 @@ type xxx_GetUserDomainPasswordInformationOperation struct {
 	Return              int32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrGetUserDomainPasswordInformation operation.
 func (o *xxx_GetUserDomainPasswordInformationOperation) OpNum() int { return 44 }
 
+// OpName returns the operation name of SamrGetUserDomainPasswordInformation operation.
 func (o *xxx_GetUserDomainPasswordInformationOperation) OpName() string {
 	return "/samr/v1/SamrGetUserDomainPasswordInformation"
 }
@@ -25509,6 +26083,19 @@ func (o *GetUserDomainPasswordInformationRequest) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
+// MakeGetUserDomainPasswordInformationRequest build a response structure from the given request structure.
+func (o *GetUserDomainPasswordInformationRequest) MakeResponse() *GetUserDomainPasswordInformationResponse {
+	return &GetUserDomainPasswordInformationResponse{}
+}
+
+// OpNum returns the operation number of SamrGetUserDomainPasswordInformation operation.
+func (o *GetUserDomainPasswordInformationRequest) OpNum() int { return 44 }
+
+// OpName returns the operation name of SamrGetUserDomainPasswordInformation operation.
+func (o *GetUserDomainPasswordInformationRequest) OpName() string {
+	return "/samr/v1/SamrGetUserDomainPasswordInformation"
+}
+
 // GetUserDomainPasswordInformationResponse structure represents the SamrGetUserDomainPasswordInformation operation response
 type GetUserDomainPasswordInformationResponse struct {
 	// PasswordInformation: Password policy information from the user's domain.
@@ -25559,8 +26146,10 @@ type xxx_RemoveMemberFromForeignDomainOperation struct {
 	Return    int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrRemoveMemberFromForeignDomain operation.
 func (o *xxx_RemoveMemberFromForeignDomainOperation) OpNum() int { return 45 }
 
+// OpName returns the operation name of SamrRemoveMemberFromForeignDomain operation.
 func (o *xxx_RemoveMemberFromForeignDomainOperation) OpName() string {
 	return "/samr/v1/SamrRemoveMemberFromForeignDomain"
 }
@@ -25703,6 +26292,19 @@ func (o *RemoveMemberFromForeignDomainRequest) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
+// MakeRemoveMemberFromForeignDomainRequest build a response structure from the given request structure.
+func (o *RemoveMemberFromForeignDomainRequest) MakeResponse() *RemoveMemberFromForeignDomainResponse {
+	return &RemoveMemberFromForeignDomainResponse{}
+}
+
+// OpNum returns the operation number of SamrRemoveMemberFromForeignDomain operation.
+func (o *RemoveMemberFromForeignDomainRequest) OpNum() int { return 45 }
+
+// OpName returns the operation name of SamrRemoveMemberFromForeignDomain operation.
+func (o *RemoveMemberFromForeignDomainRequest) OpName() string {
+	return "/samr/v1/SamrRemoveMemberFromForeignDomain"
+}
+
 // RemoveMemberFromForeignDomainResponse structure represents the SamrRemoveMemberFromForeignDomain operation response
 type RemoveMemberFromForeignDomainResponse struct {
 	// Return: The SamrRemoveMemberFromForeignDomain return value.
@@ -25746,8 +26348,10 @@ type xxx_QueryInformationDomain2Operation struct {
 	Return                 int32                  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrQueryInformationDomain2 operation.
 func (o *xxx_QueryInformationDomain2Operation) OpNum() int { return 46 }
 
+// OpName returns the operation name of SamrQueryInformationDomain2 operation.
 func (o *xxx_QueryInformationDomain2Operation) OpName() string {
 	return "/samr/v1/SamrQueryInformationDomain2"
 }
@@ -25926,6 +26530,24 @@ func (o *QueryInformationDomain2Request) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeQueryInformationDomain2Request build a response structure from the given request structure.
+func (o *QueryInformationDomain2Request) MakeResponse() *QueryInformationDomain2Response {
+	if o == nil {
+		return &QueryInformationDomain2Response{}
+	}
+	return &QueryInformationDomain2Response{
+		DomainInformationClass: o.DomainInformationClass,
+	}
+}
+
+// OpNum returns the operation number of SamrQueryInformationDomain2 operation.
+func (o *QueryInformationDomain2Request) OpNum() int { return 46 }
+
+// OpName returns the operation name of SamrQueryInformationDomain2 operation.
+func (o *QueryInformationDomain2Request) OpName() string {
+	return "/samr/v1/SamrQueryInformationDomain2"
+}
+
 // QueryInformationDomain2Response structure represents the SamrQueryInformationDomain2 operation response
 type QueryInformationDomain2Response struct {
 	// XXX: DomainInformationClass is an implicit input depedency for output parameters
@@ -25988,8 +26610,10 @@ type xxx_QueryInformationUser2Operation struct {
 	Return               int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrQueryInformationUser2 operation.
 func (o *xxx_QueryInformationUser2Operation) OpNum() int { return 47 }
 
+// OpName returns the operation name of SamrQueryInformationUser2 operation.
 func (o *xxx_QueryInformationUser2Operation) OpName() string {
 	return "/samr/v1/SamrQueryInformationUser2"
 }
@@ -26168,6 +26792,22 @@ func (o *QueryInformationUser2Request) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+// MakeQueryInformationUser2Request build a response structure from the given request structure.
+func (o *QueryInformationUser2Request) MakeResponse() *QueryInformationUser2Response {
+	if o == nil {
+		return &QueryInformationUser2Response{}
+	}
+	return &QueryInformationUser2Response{
+		UserInformationClass: o.UserInformationClass,
+	}
+}
+
+// OpNum returns the operation number of SamrQueryInformationUser2 operation.
+func (o *QueryInformationUser2Request) OpNum() int { return 47 }
+
+// OpName returns the operation name of SamrQueryInformationUser2 operation.
+func (o *QueryInformationUser2Request) OpName() string { return "/samr/v1/SamrQueryInformationUser2" }
+
 // QueryInformationUser2Response structure represents the SamrQueryInformationUser2 operation response
 type QueryInformationUser2Response struct {
 	// XXX: UserInformationClass is an implicit input depedency for output parameters
@@ -26235,8 +26875,10 @@ type xxx_QueryDisplayInformation2Operation struct {
 	Return                  int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrQueryDisplayInformation2 operation.
 func (o *xxx_QueryDisplayInformation2Operation) OpNum() int { return 48 }
 
+// OpName returns the operation name of SamrQueryDisplayInformation2 operation.
 func (o *xxx_QueryDisplayInformation2Operation) OpName() string {
 	return "/samr/v1/SamrQueryDisplayInformation2"
 }
@@ -26461,6 +27103,24 @@ func (o *QueryDisplayInformation2Request) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeQueryDisplayInformation2Request build a response structure from the given request structure.
+func (o *QueryDisplayInformation2Request) MakeResponse() *QueryDisplayInformation2Response {
+	if o == nil {
+		return &QueryDisplayInformation2Response{}
+	}
+	return &QueryDisplayInformation2Response{
+		DisplayInformationClass: o.DisplayInformationClass,
+	}
+}
+
+// OpNum returns the operation number of SamrQueryDisplayInformation2 operation.
+func (o *QueryDisplayInformation2Request) OpNum() int { return 48 }
+
+// OpName returns the operation name of SamrQueryDisplayInformation2 operation.
+func (o *QueryDisplayInformation2Request) OpName() string {
+	return "/samr/v1/SamrQueryDisplayInformation2"
+}
+
 // QueryDisplayInformation2Response structure represents the SamrQueryDisplayInformation2 operation response
 type QueryDisplayInformation2Response struct {
 	// XXX: DisplayInformationClass is an implicit input depedency for output parameters
@@ -26525,8 +27185,10 @@ type xxx_GetDisplayEnumerationIndex2Operation struct {
 	Return                  int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrGetDisplayEnumerationIndex2 operation.
 func (o *xxx_GetDisplayEnumerationIndex2Operation) OpNum() int { return 49 }
 
+// OpName returns the operation name of SamrGetDisplayEnumerationIndex2 operation.
 func (o *xxx_GetDisplayEnumerationIndex2Operation) OpName() string {
 	return "/samr/v1/SamrGetDisplayEnumerationIndex2"
 }
@@ -26704,6 +27366,19 @@ func (o *GetDisplayEnumerationIndex2Request) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
+// MakeGetDisplayEnumerationIndex2Request build a response structure from the given request structure.
+func (o *GetDisplayEnumerationIndex2Request) MakeResponse() *GetDisplayEnumerationIndex2Response {
+	return &GetDisplayEnumerationIndex2Response{}
+}
+
+// OpNum returns the operation number of SamrGetDisplayEnumerationIndex2 operation.
+func (o *GetDisplayEnumerationIndex2Request) OpNum() int { return 49 }
+
+// OpName returns the operation name of SamrGetDisplayEnumerationIndex2 operation.
+func (o *GetDisplayEnumerationIndex2Request) OpName() string {
+	return "/samr/v1/SamrGetDisplayEnumerationIndex2"
+}
+
 // GetDisplayEnumerationIndex2Response structure represents the SamrGetDisplayEnumerationIndex2 operation response
 type GetDisplayEnumerationIndex2Response struct {
 	// Index: A value to use as input to SamrQueryDisplayInformation3 in order to control
@@ -26760,8 +27435,10 @@ type xxx_CreateUser2InDomainOperation struct {
 	Return        int32               `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrCreateUser2InDomain operation.
 func (o *xxx_CreateUser2InDomainOperation) OpNum() int { return 50 }
 
+// OpName returns the operation name of SamrCreateUser2InDomain operation.
 func (o *xxx_CreateUser2InDomainOperation) OpName() string { return "/samr/v1/SamrCreateUser2InDomain" }
 
 func (o *xxx_CreateUser2InDomainOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -26984,6 +27661,17 @@ func (o *CreateUser2InDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeCreateUser2InDomainRequest build a response structure from the given request structure.
+func (o *CreateUser2InDomainRequest) MakeResponse() *CreateUser2InDomainResponse {
+	return &CreateUser2InDomainResponse{}
+}
+
+// OpNum returns the operation number of SamrCreateUser2InDomain operation.
+func (o *CreateUser2InDomainRequest) OpNum() int { return 50 }
+
+// OpName returns the operation name of SamrCreateUser2InDomain operation.
+func (o *CreateUser2InDomainRequest) OpName() string { return "/samr/v1/SamrCreateUser2InDomain" }
+
 // CreateUser2InDomainResponse structure represents the SamrCreateUser2InDomain operation response
 type CreateUser2InDomainResponse struct {
 	// UserHandle: An RPC context handle, as specified in section 2.2.7.2.
@@ -27048,8 +27736,10 @@ type xxx_QueryDisplayInformation3Operation struct {
 	Return                  int32                    `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrQueryDisplayInformation3 operation.
 func (o *xxx_QueryDisplayInformation3Operation) OpNum() int { return 51 }
 
+// OpName returns the operation name of SamrQueryDisplayInformation3 operation.
 func (o *xxx_QueryDisplayInformation3Operation) OpName() string {
 	return "/samr/v1/SamrQueryDisplayInformation3"
 }
@@ -27283,6 +27973,24 @@ func (o *QueryDisplayInformation3Request) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeQueryDisplayInformation3Request build a response structure from the given request structure.
+func (o *QueryDisplayInformation3Request) MakeResponse() *QueryDisplayInformation3Response {
+	if o == nil {
+		return &QueryDisplayInformation3Response{}
+	}
+	return &QueryDisplayInformation3Response{
+		DisplayInformationClass: o.DisplayInformationClass,
+	}
+}
+
+// OpNum returns the operation number of SamrQueryDisplayInformation3 operation.
+func (o *QueryDisplayInformation3Request) OpNum() int { return 51 }
+
+// OpName returns the operation name of SamrQueryDisplayInformation3 operation.
+func (o *QueryDisplayInformation3Request) OpName() string {
+	return "/samr/v1/SamrQueryDisplayInformation3"
+}
+
 // QueryDisplayInformation3Response structure represents the SamrQueryDisplayInformation3 operation response
 type QueryDisplayInformation3Response struct {
 	// XXX: DisplayInformationClass is an implicit input depedency for output parameters
@@ -27353,8 +28061,10 @@ type xxx_AddMultipleMembersToAliasOperation struct {
 	Return        int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrAddMultipleMembersToAlias operation.
 func (o *xxx_AddMultipleMembersToAliasOperation) OpNum() int { return 52 }
 
+// OpName returns the operation name of SamrAddMultipleMembersToAlias operation.
 func (o *xxx_AddMultipleMembersToAliasOperation) OpName() string {
 	return "/samr/v1/SamrAddMultipleMembersToAlias"
 }
@@ -27503,6 +28213,19 @@ func (o *AddMultipleMembersToAliasRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeAddMultipleMembersToAliasRequest build a response structure from the given request structure.
+func (o *AddMultipleMembersToAliasRequest) MakeResponse() *AddMultipleMembersToAliasResponse {
+	return &AddMultipleMembersToAliasResponse{}
+}
+
+// OpNum returns the operation number of SamrAddMultipleMembersToAlias operation.
+func (o *AddMultipleMembersToAliasRequest) OpNum() int { return 52 }
+
+// OpName returns the operation name of SamrAddMultipleMembersToAlias operation.
+func (o *AddMultipleMembersToAliasRequest) OpName() string {
+	return "/samr/v1/SamrAddMultipleMembersToAlias"
+}
+
 // AddMultipleMembersToAliasResponse structure represents the SamrAddMultipleMembersToAlias operation response
 type AddMultipleMembersToAliasResponse struct {
 	// Return: The SamrAddMultipleMembersToAlias return value.
@@ -27545,8 +28268,10 @@ type xxx_RemoveMultipleMembersFromAliasOperation struct {
 	Return        int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrRemoveMultipleMembersFromAlias operation.
 func (o *xxx_RemoveMultipleMembersFromAliasOperation) OpNum() int { return 53 }
 
+// OpName returns the operation name of SamrRemoveMultipleMembersFromAlias operation.
 func (o *xxx_RemoveMultipleMembersFromAliasOperation) OpName() string {
 	return "/samr/v1/SamrRemoveMultipleMembersFromAlias"
 }
@@ -27696,6 +28421,19 @@ func (o *RemoveMultipleMembersFromAliasRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
+// MakeRemoveMultipleMembersFromAliasRequest build a response structure from the given request structure.
+func (o *RemoveMultipleMembersFromAliasRequest) MakeResponse() *RemoveMultipleMembersFromAliasResponse {
+	return &RemoveMultipleMembersFromAliasResponse{}
+}
+
+// OpNum returns the operation number of SamrRemoveMultipleMembersFromAlias operation.
+func (o *RemoveMultipleMembersFromAliasRequest) OpNum() int { return 53 }
+
+// OpName returns the operation name of SamrRemoveMultipleMembersFromAlias operation.
+func (o *RemoveMultipleMembersFromAliasRequest) OpName() string {
+	return "/samr/v1/SamrRemoveMultipleMembersFromAlias"
+}
+
 // RemoveMultipleMembersFromAliasResponse structure represents the SamrRemoveMultipleMembersFromAlias operation response
 type RemoveMultipleMembersFromAliasResponse struct {
 	// Return: The SamrRemoveMultipleMembersFromAlias return value.
@@ -27740,8 +28478,10 @@ type xxx_OEMChangePasswordUser2Operation struct {
 	Return                             int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrOemChangePasswordUser2 operation.
 func (o *xxx_OEMChangePasswordUser2Operation) OpNum() int { return 54 }
 
+// OpName returns the operation name of SamrOemChangePasswordUser2 operation.
 func (o *xxx_OEMChangePasswordUser2Operation) OpName() string {
 	return "/samr/v1/SamrOemChangePasswordUser2"
 }
@@ -28021,6 +28761,17 @@ func (o *OEMChangePasswordUser2Request) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeOEMChangePasswordUser2Request build a response structure from the given request structure.
+func (o *OEMChangePasswordUser2Request) MakeResponse() *OEMChangePasswordUser2Response {
+	return &OEMChangePasswordUser2Response{}
+}
+
+// OpNum returns the operation number of SamrOemChangePasswordUser2 operation.
+func (o *OEMChangePasswordUser2Request) OpNum() int { return 54 }
+
+// OpName returns the operation name of SamrOemChangePasswordUser2 operation.
+func (o *OEMChangePasswordUser2Request) OpName() string { return "/samr/v1/SamrOemChangePasswordUser2" }
+
 // OEMChangePasswordUser2Response structure represents the SamrOemChangePasswordUser2 operation response
 type OEMChangePasswordUser2Response struct {
 	// Return: The SamrOemChangePasswordUser2 return value.
@@ -28068,8 +28819,10 @@ type xxx_UnicodeChangePasswordUser2Operation struct {
 	Return                             int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrUnicodeChangePasswordUser2 operation.
 func (o *xxx_UnicodeChangePasswordUser2Operation) OpNum() int { return 55 }
 
+// OpName returns the operation name of SamrUnicodeChangePasswordUser2 operation.
 func (o *xxx_UnicodeChangePasswordUser2Operation) OpName() string {
 	return "/samr/v1/SamrUnicodeChangePasswordUser2"
 }
@@ -28468,6 +29221,19 @@ func (o *UnicodeChangePasswordUser2Request) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeUnicodeChangePasswordUser2Request build a response structure from the given request structure.
+func (o *UnicodeChangePasswordUser2Request) MakeResponse() *UnicodeChangePasswordUser2Response {
+	return &UnicodeChangePasswordUser2Response{}
+}
+
+// OpNum returns the operation number of SamrUnicodeChangePasswordUser2 operation.
+func (o *UnicodeChangePasswordUser2Request) OpNum() int { return 55 }
+
+// OpName returns the operation name of SamrUnicodeChangePasswordUser2 operation.
+func (o *UnicodeChangePasswordUser2Request) OpName() string {
+	return "/samr/v1/SamrUnicodeChangePasswordUser2"
+}
+
 // UnicodeChangePasswordUser2Response structure represents the SamrUnicodeChangePasswordUser2 operation response
 type UnicodeChangePasswordUser2Response struct {
 	// Return: The SamrUnicodeChangePasswordUser2 return value.
@@ -28510,8 +29276,10 @@ type xxx_GetDomainPasswordInformationOperation struct {
 	Return              int32                          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrGetDomainPasswordInformation operation.
 func (o *xxx_GetDomainPasswordInformationOperation) OpNum() int { return 56 }
 
+// OpName returns the operation name of SamrGetDomainPasswordInformation operation.
 func (o *xxx_GetDomainPasswordInformationOperation) OpName() string {
 	return "/samr/v1/SamrGetDomainPasswordInformation"
 }
@@ -28651,6 +29419,19 @@ func (o *GetDomainPasswordInformationRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// MakeGetDomainPasswordInformationRequest build a response structure from the given request structure.
+func (o *GetDomainPasswordInformationRequest) MakeResponse() *GetDomainPasswordInformationResponse {
+	return &GetDomainPasswordInformationResponse{}
+}
+
+// OpNum returns the operation number of SamrGetDomainPasswordInformation operation.
+func (o *GetDomainPasswordInformationRequest) OpNum() int { return 56 }
+
+// OpName returns the operation name of SamrGetDomainPasswordInformation operation.
+func (o *GetDomainPasswordInformationRequest) OpName() string {
+	return "/samr/v1/SamrGetDomainPasswordInformation"
+}
+
 // GetDomainPasswordInformationResponse structure represents the SamrGetDomainPasswordInformation operation response
 type GetDomainPasswordInformationResponse struct {
 	// PasswordInformation: Password policy information from the account domain.
@@ -28701,8 +29482,10 @@ type xxx_Connect2Operation struct {
 	Return        int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrConnect2 operation.
 func (o *xxx_Connect2Operation) OpNum() int { return 57 }
 
+// OpName returns the operation name of SamrConnect2 operation.
 func (o *xxx_Connect2Operation) OpName() string { return "/samr/v1/SamrConnect2" }
 
 func (o *xxx_Connect2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -28868,6 +29651,17 @@ func (o *Connect2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeConnect2Request build a response structure from the given request structure.
+func (o *Connect2Request) MakeResponse() *Connect2Response {
+	return &Connect2Response{}
+}
+
+// OpNum returns the operation number of SamrConnect2 operation.
+func (o *Connect2Request) OpNum() int { return 57 }
+
+// OpName returns the operation name of SamrConnect2 operation.
+func (o *Connect2Request) OpName() string { return "/samr/v1/SamrConnect2" }
+
 // Connect2Response structure represents the SamrConnect2 operation response
 type Connect2Response struct {
 	// ServerHandle: An RPC context handle, as specified in section 2.2.7.2.
@@ -28915,8 +29709,10 @@ type xxx_SetInformationUser2Operation struct {
 	Return               int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrSetInformationUser2 operation.
 func (o *xxx_SetInformationUser2Operation) OpNum() int { return 58 }
 
+// OpName returns the operation name of SamrSetInformationUser2 operation.
 func (o *xxx_SetInformationUser2Operation) OpName() string { return "/samr/v1/SamrSetInformationUser2" }
 
 func (o *xxx_SetInformationUser2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -29083,6 +29879,17 @@ func (o *SetInformationUser2Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeSetInformationUser2Request build a response structure from the given request structure.
+func (o *SetInformationUser2Request) MakeResponse() *SetInformationUser2Response {
+	return &SetInformationUser2Response{}
+}
+
+// OpNum returns the operation number of SamrSetInformationUser2 operation.
+func (o *SetInformationUser2Request) OpNum() int { return 58 }
+
+// OpName returns the operation name of SamrSetInformationUser2 operation.
+func (o *SetInformationUser2Request) OpName() string { return "/samr/v1/SamrSetInformationUser2" }
+
 // SetInformationUser2Response structure represents the SamrSetInformationUser2 operation response
 type SetInformationUser2Response struct {
 	// Return: The SamrSetInformationUser2 return value.
@@ -29127,8 +29934,10 @@ type xxx_Connect4Operation struct {
 	Return         int32   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrConnect4 operation.
 func (o *xxx_Connect4Operation) OpNum() int { return 62 }
 
+// OpName returns the operation name of SamrConnect4 operation.
 func (o *xxx_Connect4Operation) OpName() string { return "/samr/v1/SamrConnect4" }
 
 func (o *xxx_Connect4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -29311,6 +30120,17 @@ func (o *Connect4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeConnect4Request build a response structure from the given request structure.
+func (o *Connect4Request) MakeResponse() *Connect4Response {
+	return &Connect4Response{}
+}
+
+// OpNum returns the operation number of SamrConnect4 operation.
+func (o *Connect4Request) OpNum() int { return 62 }
+
+// OpName returns the operation name of SamrConnect4 operation.
+func (o *Connect4Request) OpName() string { return "/samr/v1/SamrConnect4" }
+
 // Connect4Response structure represents the SamrConnect4 operation response
 type Connect4Response struct {
 	// ServerHandle: An RPC context handle, as specified in section 2.2.7.2.
@@ -29362,8 +30182,10 @@ type xxx_Connect5Operation struct {
 	Return          int32         `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrConnect5 operation.
 func (o *xxx_Connect5Operation) OpNum() int { return 64 }
 
+// OpName returns the operation name of SamrConnect5 operation.
 func (o *xxx_Connect5Operation) OpName() string { return "/samr/v1/SamrConnect5" }
 
 func (o *xxx_Connect5Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -29608,6 +30430,17 @@ func (o *Connect5Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeConnect5Request build a response structure from the given request structure.
+func (o *Connect5Request) MakeResponse() *Connect5Response {
+	return &Connect5Response{}
+}
+
+// OpNum returns the operation number of SamrConnect5 operation.
+func (o *Connect5Request) OpNum() int { return 64 }
+
+// OpName returns the operation name of SamrConnect5 operation.
+func (o *Connect5Request) OpName() string { return "/samr/v1/SamrConnect5" }
+
 // Connect5Response structure represents the SamrConnect5 operation response
 type Connect5Response struct {
 	// OutVersion: Indicates which field of the OutRevisionInfo union is used.
@@ -29664,8 +30497,10 @@ type xxx_RIDToSIDOperation struct {
 	Return int32     `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrRidToSid operation.
 func (o *xxx_RIDToSIDOperation) OpNum() int { return 65 }
 
+// OpName returns the operation name of SamrRidToSid operation.
 func (o *xxx_RIDToSIDOperation) OpName() string { return "/samr/v1/SamrRidToSid" }
 
 func (o *xxx_RIDToSIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -29840,6 +30675,17 @@ func (o *RIDToSIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeRIDToSIDRequest build a response structure from the given request structure.
+func (o *RIDToSIDRequest) MakeResponse() *RIDToSIDResponse {
+	return &RIDToSIDResponse{}
+}
+
+// OpNum returns the operation number of SamrRidToSid operation.
+func (o *RIDToSIDRequest) OpNum() int { return 65 }
+
+// OpName returns the operation name of SamrRidToSid operation.
+func (o *RIDToSIDRequest) OpName() string { return "/samr/v1/SamrRidToSid" }
+
 // RIDToSIDResponse structure represents the SamrRidToSid operation response
 type RIDToSIDResponse struct {
 	// Sid: The SID of the account referenced by Rid.
@@ -29891,8 +30737,10 @@ type xxx_SetDSRMPasswordOperation struct {
 	Return                 int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrSetDSRMPassword operation.
 func (o *xxx_SetDSRMPasswordOperation) OpNum() int { return 66 }
 
+// OpName returns the operation name of SamrSetDSRMPassword operation.
 func (o *xxx_SetDSRMPasswordOperation) OpName() string { return "/samr/v1/SamrSetDSRMPassword" }
 
 func (o *xxx_SetDSRMPasswordOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -30078,6 +30926,17 @@ func (o *SetDSRMPasswordRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeSetDSRMPasswordRequest build a response structure from the given request structure.
+func (o *SetDSRMPasswordRequest) MakeResponse() *SetDSRMPasswordResponse {
+	return &SetDSRMPasswordResponse{}
+}
+
+// OpNum returns the operation number of SamrSetDSRMPassword operation.
+func (o *SetDSRMPasswordRequest) OpNum() int { return 66 }
+
+// OpName returns the operation name of SamrSetDSRMPassword operation.
+func (o *SetDSRMPasswordRequest) OpName() string { return "/samr/v1/SamrSetDSRMPassword" }
+
 // SetDSRMPasswordResponse structure represents the SamrSetDSRMPassword operation response
 type SetDSRMPasswordResponse struct {
 	// Return: The SamrSetDSRMPassword return value.
@@ -30121,8 +30980,10 @@ type xxx_ValidatePasswordOperation struct {
 	Return         int32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SamrValidatePassword operation.
 func (o *xxx_ValidatePasswordOperation) OpNum() int { return 67 }
 
+// OpName returns the operation name of SamrValidatePassword operation.
 func (o *xxx_ValidatePasswordOperation) OpName() string { return "/samr/v1/SamrValidatePassword" }
 
 func (o *xxx_ValidatePasswordOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -30304,6 +31165,22 @@ func (o *ValidatePasswordRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeValidatePasswordRequest build a response structure from the given request structure.
+func (o *ValidatePasswordRequest) MakeResponse() *ValidatePasswordResponse {
+	if o == nil {
+		return &ValidatePasswordResponse{}
+	}
+	return &ValidatePasswordResponse{
+		ValidationType: o.ValidationType,
+	}
+}
+
+// OpNum returns the operation number of SamrValidatePassword operation.
+func (o *ValidatePasswordRequest) OpNum() int { return 67 }
+
+// OpName returns the operation name of SamrValidatePassword operation.
+func (o *ValidatePasswordRequest) OpName() string { return "/samr/v1/SamrValidatePassword" }
 
 // ValidatePasswordResponse structure represents the SamrValidatePassword operation response
 type ValidatePasswordResponse struct {

@@ -318,8 +318,10 @@ type xxx_CreateFileGroupOperation struct {
 	Return    int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateFileGroup operation.
 func (o *xxx_CreateFileGroupOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of CreateFileGroup operation.
 func (o *xxx_CreateFileGroupOperation) OpName() string {
 	return "/IFsrmFileGroupManager/v0/CreateFileGroup"
 }
@@ -511,6 +513,17 @@ func (o *CreateFileGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeCreateFileGroupRequest build a response structure from the given request structure.
+func (o *CreateFileGroupRequest) MakeResponse() *CreateFileGroupResponse {
+	return &CreateFileGroupResponse{}
+}
+
+// OpNum returns the operation number of CreateFileGroup operation.
+func (o *CreateFileGroupRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of CreateFileGroup operation.
+func (o *CreateFileGroupRequest) OpName() string { return "/IFsrmFileGroupManager/v0/CreateFileGroup" }
+
 // CreateFileGroupResponse structure represents the CreateFileGroup operation response
 type CreateFileGroupResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -567,8 +580,10 @@ type xxx_GetFileGroupOperation struct {
 	Return    int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetFileGroup operation.
 func (o *xxx_GetFileGroupOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of GetFileGroup operation.
 func (o *xxx_GetFileGroupOperation) OpName() string { return "/IFsrmFileGroupManager/v0/GetFileGroup" }
 
 func (o *xxx_GetFileGroupOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -809,6 +824,17 @@ func (o *GetFileGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetFileGroupRequest build a response structure from the given request structure.
+func (o *GetFileGroupRequest) MakeResponse() *GetFileGroupResponse {
+	return &GetFileGroupResponse{}
+}
+
+// OpNum returns the operation number of GetFileGroup operation.
+func (o *GetFileGroupRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GetFileGroup operation.
+func (o *GetFileGroupRequest) OpName() string { return "/IFsrmFileGroupManager/v0/GetFileGroup" }
+
 // GetFileGroupResponse structure represents the GetFileGroup operation response
 type GetFileGroupResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -863,8 +889,10 @@ type xxx_EnumFileGroupsOperation struct {
 	Return     int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumFileGroups operation.
 func (o *xxx_EnumFileGroupsOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of EnumFileGroups operation.
 func (o *xxx_EnumFileGroupsOperation) OpName() string {
 	return "/IFsrmFileGroupManager/v0/EnumFileGroups"
 }
@@ -1073,6 +1101,17 @@ func (o *EnumFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeEnumFileGroupsRequest build a response structure from the given request structure.
+func (o *EnumFileGroupsRequest) MakeResponse() *EnumFileGroupsResponse {
+	return &EnumFileGroupsResponse{}
+}
+
+// OpNum returns the operation number of EnumFileGroups operation.
+func (o *EnumFileGroupsRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of EnumFileGroups operation.
+func (o *EnumFileGroupsRequest) OpName() string { return "/IFsrmFileGroupManager/v0/EnumFileGroups" }
+
 // EnumFileGroupsResponse structure represents the EnumFileGroups operation response
 type EnumFileGroupsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1127,8 +1166,10 @@ type xxx_ExportFileGroupsOperation struct {
 	Return               int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExportFileGroups operation.
 func (o *xxx_ExportFileGroupsOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of ExportFileGroups operation.
 func (o *xxx_ExportFileGroupsOperation) OpName() string {
 	return "/IFsrmFileGroupManager/v0/ExportFileGroups"
 }
@@ -1371,6 +1412,19 @@ func (o *ExportFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeExportFileGroupsRequest build a response structure from the given request structure.
+func (o *ExportFileGroupsRequest) MakeResponse() *ExportFileGroupsResponse {
+	return &ExportFileGroupsResponse{}
+}
+
+// OpNum returns the operation number of ExportFileGroups operation.
+func (o *ExportFileGroupsRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of ExportFileGroups operation.
+func (o *ExportFileGroupsRequest) OpName() string {
+	return "/IFsrmFileGroupManager/v0/ExportFileGroups"
+}
+
 // ExportFileGroupsResponse structure represents the ExportFileGroups operation response
 type ExportFileGroupsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1425,8 +1479,10 @@ type xxx_ImportFileGroupsOperation struct {
 	Return               int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ImportFileGroups operation.
 func (o *xxx_ImportFileGroupsOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of ImportFileGroups operation.
 func (o *xxx_ImportFileGroupsOperation) OpName() string {
 	return "/IFsrmFileGroupManager/v0/ImportFileGroups"
 }
@@ -1718,6 +1774,19 @@ func (o *ImportFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeImportFileGroupsRequest build a response structure from the given request structure.
+func (o *ImportFileGroupsRequest) MakeResponse() *ImportFileGroupsResponse {
+	return &ImportFileGroupsResponse{}
+}
+
+// OpNum returns the operation number of ImportFileGroups operation.
+func (o *ImportFileGroupsRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of ImportFileGroups operation.
+func (o *ImportFileGroupsRequest) OpName() string {
+	return "/IFsrmFileGroupManager/v0/ImportFileGroups"
 }
 
 // ImportFileGroupsResponse structure represents the ImportFileGroups operation response

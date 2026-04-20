@@ -140,8 +140,10 @@ type xxx_GetProperties2Operation struct {
 	Return           int32                `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetProperties2 operation.
 func (o *xxx_GetProperties2Operation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetProperties2 operation.
 func (o *xxx_GetProperties2Operation) OpName() string { return "/IVdsVolume2/v0/GetProperties2" }
 
 func (o *xxx_GetProperties2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -311,6 +313,17 @@ func (o *GetProperties2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetProperties2Request build a response structure from the given request structure.
+func (o *GetProperties2Request) MakeResponse() *GetProperties2Response {
+	return &GetProperties2Response{}
+}
+
+// OpNum returns the operation number of GetProperties2 operation.
+func (o *GetProperties2Request) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetProperties2 operation.
+func (o *GetProperties2Request) OpName() string { return "/IVdsVolume2/v0/GetProperties2" }
 
 // GetProperties2Response structure represents the GetProperties2 operation response
 type GetProperties2Response struct {

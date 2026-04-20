@@ -505,8 +505,10 @@ type xxx_EnumReportJobsOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumReportJobs operation.
 func (o *xxx_EnumReportJobsOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of EnumReportJobs operation.
 func (o *xxx_EnumReportJobsOperation) OpName() string { return "/IFsrmReportManager/v1/EnumReportJobs" }
 
 func (o *xxx_EnumReportJobsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -713,6 +715,17 @@ func (o *EnumReportJobsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeEnumReportJobsRequest build a response structure from the given request structure.
+func (o *EnumReportJobsRequest) MakeResponse() *EnumReportJobsResponse {
+	return &EnumReportJobsResponse{}
+}
+
+// OpNum returns the operation number of EnumReportJobs operation.
+func (o *EnumReportJobsRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of EnumReportJobs operation.
+func (o *EnumReportJobsRequest) OpName() string { return "/IFsrmReportManager/v1/EnumReportJobs" }
+
 // EnumReportJobsResponse structure represents the EnumReportJobs operation response
 type EnumReportJobsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -766,8 +779,10 @@ type xxx_CreateReportJobOperation struct {
 	Return    int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateReportJob operation.
 func (o *xxx_CreateReportJobOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of CreateReportJob operation.
 func (o *xxx_CreateReportJobOperation) OpName() string {
 	return "/IFsrmReportManager/v1/CreateReportJob"
 }
@@ -959,6 +974,17 @@ func (o *CreateReportJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+// MakeCreateReportJobRequest build a response structure from the given request structure.
+func (o *CreateReportJobRequest) MakeResponse() *CreateReportJobResponse {
+	return &CreateReportJobResponse{}
+}
+
+// OpNum returns the operation number of CreateReportJob operation.
+func (o *CreateReportJobRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of CreateReportJob operation.
+func (o *CreateReportJobRequest) OpName() string { return "/IFsrmReportManager/v1/CreateReportJob" }
+
 // CreateReportJobResponse structure represents the CreateReportJob operation response
 type CreateReportJobResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1015,8 +1041,10 @@ type xxx_GetReportJobOperation struct {
 	Return    int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetReportJob operation.
 func (o *xxx_GetReportJobOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of GetReportJob operation.
 func (o *xxx_GetReportJobOperation) OpName() string { return "/IFsrmReportManager/v1/GetReportJob" }
 
 func (o *xxx_GetReportJobOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1257,6 +1285,17 @@ func (o *GetReportJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+// MakeGetReportJobRequest build a response structure from the given request structure.
+func (o *GetReportJobRequest) MakeResponse() *GetReportJobResponse {
+	return &GetReportJobResponse{}
+}
+
+// OpNum returns the operation number of GetReportJob operation.
+func (o *GetReportJobRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of GetReportJob operation.
+func (o *GetReportJobRequest) OpName() string { return "/IFsrmReportManager/v1/GetReportJob" }
+
 // GetReportJobResponse structure represents the GetReportJob operation response
 type GetReportJobResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1311,8 +1350,10 @@ type xxx_GetOutputDirectoryOperation struct {
 	Return  int32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetOutputDirectory operation.
 func (o *xxx_GetOutputDirectoryOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of GetOutputDirectory operation.
 func (o *xxx_GetOutputDirectoryOperation) OpName() string {
 	return "/IFsrmReportManager/v1/GetOutputDirectory"
 }
@@ -1521,6 +1562,19 @@ func (o *GetOutputDirectoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetOutputDirectoryRequest build a response structure from the given request structure.
+func (o *GetOutputDirectoryRequest) MakeResponse() *GetOutputDirectoryResponse {
+	return &GetOutputDirectoryResponse{}
+}
+
+// OpNum returns the operation number of GetOutputDirectory operation.
+func (o *GetOutputDirectoryRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of GetOutputDirectory operation.
+func (o *GetOutputDirectoryRequest) OpName() string {
+	return "/IFsrmReportManager/v1/GetOutputDirectory"
+}
+
 // GetOutputDirectoryResponse structure represents the GetOutputDirectory operation response
 type GetOutputDirectoryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1574,8 +1628,10 @@ type xxx_SetOutputDirectoryOperation struct {
 	Return  int32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetOutputDirectory operation.
 func (o *xxx_SetOutputDirectoryOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of SetOutputDirectory operation.
 func (o *xxx_SetOutputDirectoryOperation) OpName() string {
 	return "/IFsrmReportManager/v1/SetOutputDirectory"
 }
@@ -1789,6 +1845,19 @@ func (o *SetOutputDirectoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeSetOutputDirectoryRequest build a response structure from the given request structure.
+func (o *SetOutputDirectoryRequest) MakeResponse() *SetOutputDirectoryResponse {
+	return &SetOutputDirectoryResponse{}
+}
+
+// OpNum returns the operation number of SetOutputDirectory operation.
+func (o *SetOutputDirectoryRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of SetOutputDirectory operation.
+func (o *SetOutputDirectoryRequest) OpName() string {
+	return "/IFsrmReportManager/v1/SetOutputDirectory"
+}
+
 // SetOutputDirectoryResponse structure represents the SetOutputDirectory operation response
 type SetOutputDirectoryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1838,8 +1907,10 @@ type xxx_IsFilterValidForReportTypeOperation struct {
 	Return     int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of IsFilterValidForReportType operation.
 func (o *xxx_IsFilterValidForReportTypeOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of IsFilterValidForReportType operation.
 func (o *xxx_IsFilterValidForReportTypeOperation) OpName() string {
 	return "/IFsrmReportManager/v1/IsFilterValidForReportType"
 }
@@ -2029,6 +2100,19 @@ func (o *IsFilterValidForReportTypeRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
+// MakeIsFilterValidForReportTypeRequest build a response structure from the given request structure.
+func (o *IsFilterValidForReportTypeRequest) MakeResponse() *IsFilterValidForReportTypeResponse {
+	return &IsFilterValidForReportTypeResponse{}
+}
+
+// OpNum returns the operation number of IsFilterValidForReportType operation.
+func (o *IsFilterValidForReportTypeRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of IsFilterValidForReportType operation.
+func (o *IsFilterValidForReportTypeRequest) OpName() string {
+	return "/IFsrmReportManager/v1/IsFilterValidForReportType"
+}
+
 // IsFilterValidForReportTypeResponse structure represents the IsFilterValidForReportType operation response
 type IsFilterValidForReportTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2083,8 +2167,10 @@ type xxx_GetDefaultFilterOperation struct {
 	Return      int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetDefaultFilter operation.
 func (o *xxx_GetDefaultFilterOperation) OpNum() int { return 13 }
 
+// OpName returns the operation name of GetDefaultFilter operation.
 func (o *xxx_GetDefaultFilterOperation) OpName() string {
 	return "/IFsrmReportManager/v1/GetDefaultFilter"
 }
@@ -2308,6 +2394,17 @@ func (o *GetDefaultFilterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeGetDefaultFilterRequest build a response structure from the given request structure.
+func (o *GetDefaultFilterRequest) MakeResponse() *GetDefaultFilterResponse {
+	return &GetDefaultFilterResponse{}
+}
+
+// OpNum returns the operation number of GetDefaultFilter operation.
+func (o *GetDefaultFilterRequest) OpNum() int { return 13 }
+
+// OpName returns the operation name of GetDefaultFilter operation.
+func (o *GetDefaultFilterRequest) OpName() string { return "/IFsrmReportManager/v1/GetDefaultFilter" }
+
 // GetDefaultFilterResponse structure represents the GetDefaultFilter operation response
 type GetDefaultFilterResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2362,8 +2459,10 @@ type xxx_SetDefaultFilterOperation struct {
 	Return      int32             `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetDefaultFilter operation.
 func (o *xxx_SetDefaultFilterOperation) OpNum() int { return 14 }
 
+// OpName returns the operation name of SetDefaultFilter operation.
 func (o *xxx_SetDefaultFilterOperation) OpName() string {
 	return "/IFsrmReportManager/v1/SetDefaultFilter"
 }
@@ -2573,6 +2672,17 @@ func (o *SetDefaultFilterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+// MakeSetDefaultFilterRequest build a response structure from the given request structure.
+func (o *SetDefaultFilterRequest) MakeResponse() *SetDefaultFilterResponse {
+	return &SetDefaultFilterResponse{}
+}
+
+// OpNum returns the operation number of SetDefaultFilter operation.
+func (o *SetDefaultFilterRequest) OpNum() int { return 14 }
+
+// OpName returns the operation name of SetDefaultFilter operation.
+func (o *SetDefaultFilterRequest) OpName() string { return "/IFsrmReportManager/v1/SetDefaultFilter" }
+
 // SetDefaultFilterResponse structure represents the SetDefaultFilter operation response
 type SetDefaultFilterResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2621,8 +2731,10 @@ type xxx_GetReportSizeLimitOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetReportSizeLimit operation.
 func (o *xxx_GetReportSizeLimitOperation) OpNum() int { return 15 }
 
+// OpName returns the operation name of GetReportSizeLimit operation.
 func (o *xxx_GetReportSizeLimitOperation) OpName() string {
 	return "/IFsrmReportManager/v1/GetReportSizeLimit"
 }
@@ -2831,6 +2943,19 @@ func (o *GetReportSizeLimitRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeGetReportSizeLimitRequest build a response structure from the given request structure.
+func (o *GetReportSizeLimitRequest) MakeResponse() *GetReportSizeLimitResponse {
+	return &GetReportSizeLimitResponse{}
+}
+
+// OpNum returns the operation number of GetReportSizeLimit operation.
+func (o *GetReportSizeLimitRequest) OpNum() int { return 15 }
+
+// OpName returns the operation name of GetReportSizeLimit operation.
+func (o *GetReportSizeLimitRequest) OpName() string {
+	return "/IFsrmReportManager/v1/GetReportSizeLimit"
+}
+
 // GetReportSizeLimitResponse structure represents the GetReportSizeLimit operation response
 type GetReportSizeLimitResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2884,8 +3009,10 @@ type xxx_SetReportSizeLimitOperation struct {
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetReportSizeLimit operation.
 func (o *xxx_SetReportSizeLimitOperation) OpNum() int { return 16 }
 
+// OpName returns the operation name of SetReportSizeLimit operation.
 func (o *xxx_SetReportSizeLimitOperation) OpName() string {
 	return "/IFsrmReportManager/v1/SetReportSizeLimit"
 }
@@ -3077,6 +3204,19 @@ func (o *SetReportSizeLimitRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeSetReportSizeLimitRequest build a response structure from the given request structure.
+func (o *SetReportSizeLimitRequest) MakeResponse() *SetReportSizeLimitResponse {
+	return &SetReportSizeLimitResponse{}
+}
+
+// OpNum returns the operation number of SetReportSizeLimit operation.
+func (o *SetReportSizeLimitRequest) OpNum() int { return 16 }
+
+// OpName returns the operation name of SetReportSizeLimit operation.
+func (o *SetReportSizeLimitRequest) OpName() string {
+	return "/IFsrmReportManager/v1/SetReportSizeLimit"
 }
 
 // SetReportSizeLimitResponse structure represents the SetReportSizeLimit operation response

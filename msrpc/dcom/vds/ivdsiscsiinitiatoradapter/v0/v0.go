@@ -175,8 +175,10 @@ type xxx_GetPropertiesOperation struct {
 	Return                   int32                              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetProperties operation.
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of GetProperties operation.
 func (o *xxx_GetPropertiesOperation) OpName() string {
 	return "/IVdsIscsiInitiatorAdapter/v0/GetProperties"
 }
@@ -349,6 +351,17 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
+// MakeGetPropertiesRequest build a response structure from the given request structure.
+func (o *GetPropertiesRequest) MakeResponse() *GetPropertiesResponse {
+	return &GetPropertiesResponse{}
+}
+
+// OpNum returns the operation number of GetProperties operation.
+func (o *GetPropertiesRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of GetProperties operation.
+func (o *GetPropertiesRequest) OpName() string { return "/IVdsIscsiInitiatorAdapter/v0/GetProperties" }
+
 // GetPropertiesResponse structure represents the GetProperties operation response
 type GetPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -399,8 +412,10 @@ type xxx_QueryInitiatorPortalsOperation struct {
 	Return int32           `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryInitiatorPortals operation.
 func (o *xxx_QueryInitiatorPortalsOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of QueryInitiatorPortals operation.
 func (o *xxx_QueryInitiatorPortalsOperation) OpName() string {
 	return "/IVdsIscsiInitiatorAdapter/v0/QueryInitiatorPortals"
 }
@@ -590,6 +605,19 @@ func (o *QueryInitiatorPortalsRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeQueryInitiatorPortalsRequest build a response structure from the given request structure.
+func (o *QueryInitiatorPortalsRequest) MakeResponse() *QueryInitiatorPortalsResponse {
+	return &QueryInitiatorPortalsResponse{}
+}
+
+// OpNum returns the operation number of QueryInitiatorPortals operation.
+func (o *QueryInitiatorPortalsRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of QueryInitiatorPortals operation.
+func (o *QueryInitiatorPortalsRequest) OpName() string {
+	return "/IVdsIscsiInitiatorAdapter/v0/QueryInitiatorPortals"
 }
 
 // QueryInitiatorPortalsResponse structure represents the QueryInitiatorPortals operation response

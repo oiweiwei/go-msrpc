@@ -262,8 +262,10 @@ type xxx_GetCountOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Count operation.
 func (o *xxx_GetCountOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Count operation.
 func (o *xxx_GetCountOperation) OpName() string { return "/IAppHostConfigLocationCollection/v0/Count" }
 
 func (o *xxx_GetCountOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -419,6 +421,17 @@ func (o *GetCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeGetCountRequest build a response structure from the given request structure.
+func (o *GetCountRequest) MakeResponse() *GetCountResponse {
+	return &GetCountResponse{}
+}
+
+// OpNum returns the operation number of Count operation.
+func (o *GetCountRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Count operation.
+func (o *GetCountRequest) OpName() string { return "/IAppHostConfigLocationCollection/v0/Count" }
+
 // GetCountResponse structure represents the Count operation response
 type GetCountResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -470,8 +483,10 @@ type xxx_GetItemOperation struct {
 	Return   int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Item operation.
 func (o *xxx_GetItemOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Item operation.
 func (o *xxx_GetItemOperation) OpName() string { return "/IAppHostConfigLocationCollection/v0/Item" }
 
 func (o *xxx_GetItemOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -691,6 +706,17 @@ func (o *GetItemRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeGetItemRequest build a response structure from the given request structure.
+func (o *GetItemRequest) MakeResponse() *GetItemResponse {
+	return &GetItemResponse{}
+}
+
+// OpNum returns the operation number of Item operation.
+func (o *GetItemRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Item operation.
+func (o *GetItemRequest) OpName() string { return "/IAppHostConfigLocationCollection/v0/Item" }
+
 // GetItemResponse structure represents the Item operation response
 type GetItemResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -742,8 +768,10 @@ type xxx_AddLocationOperation struct {
 	Return       int32                       `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddLocation operation.
 func (o *xxx_AddLocationOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of AddLocation operation.
 func (o *xxx_AddLocationOperation) OpName() string {
 	return "/IAppHostConfigLocationCollection/v0/AddLocation"
 }
@@ -985,6 +1013,19 @@ func (o *AddLocationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeAddLocationRequest build a response structure from the given request structure.
+func (o *AddLocationRequest) MakeResponse() *AddLocationResponse {
+	return &AddLocationResponse{}
+}
+
+// OpNum returns the operation number of AddLocation operation.
+func (o *AddLocationRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of AddLocation operation.
+func (o *AddLocationRequest) OpName() string {
+	return "/IAppHostConfigLocationCollection/v0/AddLocation"
+}
+
 // AddLocationResponse structure represents the AddLocation operation response
 type AddLocationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1036,8 +1077,10 @@ type xxx_DeleteLocationOperation struct {
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteLocation operation.
 func (o *xxx_DeleteLocationOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of DeleteLocation operation.
 func (o *xxx_DeleteLocationOperation) OpName() string {
 	return "/IAppHostConfigLocationCollection/v0/DeleteLocation"
 }
@@ -1216,6 +1259,19 @@ func (o *DeleteLocationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeDeleteLocationRequest build a response structure from the given request structure.
+func (o *DeleteLocationRequest) MakeResponse() *DeleteLocationResponse {
+	return &DeleteLocationResponse{}
+}
+
+// OpNum returns the operation number of DeleteLocation operation.
+func (o *DeleteLocationRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of DeleteLocation operation.
+func (o *DeleteLocationRequest) OpName() string {
+	return "/IAppHostConfigLocationCollection/v0/DeleteLocation"
 }
 
 // DeleteLocationResponse structure represents the DeleteLocation operation response

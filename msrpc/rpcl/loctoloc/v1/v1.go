@@ -239,8 +239,10 @@ type xxx_LookupBeginOperation struct {
 	Status          uint16         `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of I_nsi_lookup_begin operation.
 func (o *xxx_LookupBeginOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of I_nsi_lookup_begin operation.
 func (o *xxx_LookupBeginOperation) OpName() string { return "/LocToLoc/v1/I_nsi_lookup_begin" }
 
 func (o *xxx_LookupBeginOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -602,6 +604,17 @@ func (o *LookupBeginRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeLookupBeginRequest build a response structure from the given request structure.
+func (o *LookupBeginRequest) MakeResponse() *LookupBeginResponse {
+	return &LookupBeginResponse{}
+}
+
+// OpNum returns the operation number of I_nsi_lookup_begin operation.
+func (o *LookupBeginRequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of I_nsi_lookup_begin operation.
+func (o *LookupBeginRequest) OpName() string { return "/LocToLoc/v1/I_nsi_lookup_begin" }
+
 // LookupBeginResponse structure represents the I_nsi_lookup_begin operation response
 type LookupBeginResponse struct {
 	// import_context: On successful completion of this method, returns a context handle
@@ -651,8 +664,10 @@ type xxx_LookupDoneOperation struct {
 	Status        uint16        `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of I_nsi_lookup_done operation.
 func (o *xxx_LookupDoneOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of I_nsi_lookup_done operation.
 func (o *xxx_LookupDoneOperation) OpName() string { return "/LocToLoc/v1/I_nsi_lookup_done" }
 
 func (o *xxx_LookupDoneOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -786,6 +801,17 @@ func (o *LookupDoneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeLookupDoneRequest build a response structure from the given request structure.
+func (o *LookupDoneRequest) MakeResponse() *LookupDoneResponse {
+	return &LookupDoneResponse{}
+}
+
+// OpNum returns the operation number of I_nsi_lookup_done operation.
+func (o *LookupDoneRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of I_nsi_lookup_done operation.
+func (o *LookupDoneRequest) OpName() string { return "/LocToLoc/v1/I_nsi_lookup_done" }
+
 // LookupDoneResponse structure represents the I_nsi_lookup_done operation response
 type LookupDoneResponse struct {
 	// import_context: A context handle returned by the server from a preceding call to
@@ -837,8 +863,10 @@ type xxx_LookupNextOperation struct {
 	Status        uint16              `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of I_nsi_lookup_next operation.
 func (o *xxx_LookupNextOperation) OpNum() int { return 2 }
 
+// OpName returns the operation name of I_nsi_lookup_next operation.
 func (o *xxx_LookupNextOperation) OpName() string { return "/LocToLoc/v1/I_nsi_lookup_next" }
 
 func (o *xxx_LookupNextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -996,6 +1024,17 @@ func (o *LookupNextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+// MakeLookupNextRequest build a response structure from the given request structure.
+func (o *LookupNextRequest) MakeResponse() *LookupNextResponse {
+	return &LookupNextResponse{}
+}
+
+// OpNum returns the operation number of I_nsi_lookup_next operation.
+func (o *LookupNextRequest) OpNum() int { return 2 }
+
+// OpName returns the operation name of I_nsi_lookup_next operation.
+func (o *LookupNextRequest) OpName() string { return "/LocToLoc/v1/I_nsi_lookup_next" }
+
 // LookupNextResponse structure represents the I_nsi_lookup_next operation response
 type LookupNextResponse struct {
 	// binding_vector: On successful completion, returns a vector containing bindings that
@@ -1064,8 +1103,10 @@ type xxx_EntryObjectInquireNextOperation struct {
 	Status         uint16           `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of I_nsi_entry_object_inq_next operation.
 func (o *xxx_EntryObjectInquireNextOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of I_nsi_entry_object_inq_next operation.
 func (o *xxx_EntryObjectInquireNextOperation) OpName() string {
 	return "/LocToLoc/v1/I_nsi_entry_object_inq_next"
 }
@@ -1225,6 +1266,19 @@ func (o *EntryObjectInquireNextRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeEntryObjectInquireNextRequest build a response structure from the given request structure.
+func (o *EntryObjectInquireNextRequest) MakeResponse() *EntryObjectInquireNextResponse {
+	return &EntryObjectInquireNextResponse{}
+}
+
+// OpNum returns the operation number of I_nsi_entry_object_inq_next operation.
+func (o *EntryObjectInquireNextRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of I_nsi_entry_object_inq_next operation.
+func (o *EntryObjectInquireNextRequest) OpName() string {
+	return "/LocToLoc/v1/I_nsi_entry_object_inq_next"
+}
+
 // EntryObjectInquireNextResponse structure represents the I_nsi_entry_object_inq_next operation response
 type EntryObjectInquireNextResponse struct {
 	// uuid_vec: On successful completion, returns a vector of object UUIDs for the name
@@ -1273,8 +1327,10 @@ type xxx_PingLocatorOperation struct {
 	Status uint32 `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of I_nsi_ping_locator operation.
 func (o *xxx_PingLocatorOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of I_nsi_ping_locator operation.
 func (o *xxx_PingLocatorOperation) OpName() string { return "/LocToLoc/v1/I_nsi_ping_locator" }
 
 func (o *xxx_PingLocatorOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1360,6 +1416,17 @@ func (o *PingLocatorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakePingLocatorRequest build a response structure from the given request structure.
+func (o *PingLocatorRequest) MakeResponse() *PingLocatorResponse {
+	return &PingLocatorResponse{}
+}
+
+// OpNum returns the operation number of I_nsi_ping_locator operation.
+func (o *PingLocatorRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of I_nsi_ping_locator operation.
+func (o *PingLocatorRequest) OpName() string { return "/LocToLoc/v1/I_nsi_ping_locator" }
+
 // PingLocatorResponse structure represents the I_nsi_ping_locator operation response
 type PingLocatorResponse struct {
 	// status: A 32-bit value that indicates the results of the method call. In case of
@@ -1404,8 +1471,10 @@ type xxx_EntryObjectInquireDoneOperation struct {
 	Status         uint16        `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of I_nsi_entry_object_inq_done operation.
 func (o *xxx_EntryObjectInquireDoneOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of I_nsi_entry_object_inq_done operation.
 func (o *xxx_EntryObjectInquireDoneOperation) OpName() string {
 	return "/LocToLoc/v1/I_nsi_entry_object_inq_done"
 }
@@ -1541,6 +1610,19 @@ func (o *EntryObjectInquireDoneRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+// MakeEntryObjectInquireDoneRequest build a response structure from the given request structure.
+func (o *EntryObjectInquireDoneRequest) MakeResponse() *EntryObjectInquireDoneResponse {
+	return &EntryObjectInquireDoneResponse{}
+}
+
+// OpNum returns the operation number of I_nsi_entry_object_inq_done operation.
+func (o *EntryObjectInquireDoneRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of I_nsi_entry_object_inq_done operation.
+func (o *EntryObjectInquireDoneRequest) OpName() string {
+	return "/LocToLoc/v1/I_nsi_entry_object_inq_done"
+}
+
 // EntryObjectInquireDoneResponse structure represents the I_nsi_entry_object_inq_done operation response
 type EntryObjectInquireDoneResponse struct {
 	// InqContext: A context handle returned by the server from a preceding I_nsi_entry_object_inq_begin
@@ -1593,8 +1675,10 @@ type xxx_EntryObjectInquireBeginOperation struct {
 	Status          uint16        `idl:"name:status" json:"status"`
 }
 
+// OpNum returns the operation number of I_nsi_entry_object_inq_begin operation.
 func (o *xxx_EntryObjectInquireBeginOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of I_nsi_entry_object_inq_begin operation.
 func (o *xxx_EntryObjectInquireBeginOperation) OpName() string {
 	return "/LocToLoc/v1/I_nsi_entry_object_inq_begin"
 }
@@ -1761,6 +1845,19 @@ func (o *EntryObjectInquireBeginRequest) UnmarshalNDR(ctx context.Context, r ndr
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeEntryObjectInquireBeginRequest build a response structure from the given request structure.
+func (o *EntryObjectInquireBeginRequest) MakeResponse() *EntryObjectInquireBeginResponse {
+	return &EntryObjectInquireBeginResponse{}
+}
+
+// OpNum returns the operation number of I_nsi_entry_object_inq_begin operation.
+func (o *EntryObjectInquireBeginRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of I_nsi_entry_object_inq_begin operation.
+func (o *EntryObjectInquireBeginRequest) OpName() string {
+	return "/LocToLoc/v1/I_nsi_entry_object_inq_begin"
 }
 
 // EntryObjectInquireBeginResponse structure represents the I_nsi_entry_object_inq_begin operation response

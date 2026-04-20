@@ -169,8 +169,10 @@ type xxx_QueryMaxReclaimableBytesOperation struct {
 	Return                          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryMaxReclaimableBytes operation.
 func (o *xxx_QueryMaxReclaimableBytesOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of QueryMaxReclaimableBytes operation.
 func (o *xxx_QueryMaxReclaimableBytesOperation) OpName() string {
 	return "/IVdsVolumeShrink/v0/QueryMaxReclaimableBytes"
 }
@@ -328,6 +330,19 @@ func (o *QueryMaxReclaimableBytesRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
+// MakeQueryMaxReclaimableBytesRequest build a response structure from the given request structure.
+func (o *QueryMaxReclaimableBytesRequest) MakeResponse() *QueryMaxReclaimableBytesResponse {
+	return &QueryMaxReclaimableBytesResponse{}
+}
+
+// OpNum returns the operation number of QueryMaxReclaimableBytes operation.
+func (o *QueryMaxReclaimableBytesRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of QueryMaxReclaimableBytes operation.
+func (o *QueryMaxReclaimableBytesRequest) OpName() string {
+	return "/IVdsVolumeShrink/v0/QueryMaxReclaimableBytes"
+}
+
 // QueryMaxReclaimableBytesResponse structure represents the QueryMaxReclaimableBytes operation response
 type QueryMaxReclaimableBytesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -384,8 +399,10 @@ type xxx_ShrinkOperation struct {
 	Return                          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Shrink operation.
 func (o *xxx_ShrinkOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of Shrink operation.
 func (o *xxx_ShrinkOperation) OpName() string { return "/IVdsVolumeShrink/v0/Shrink" }
 
 func (o *xxx_ShrinkOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -604,6 +621,17 @@ func (o *ShrinkRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeShrinkRequest build a response structure from the given request structure.
+func (o *ShrinkRequest) MakeResponse() *ShrinkResponse {
+	return &ShrinkResponse{}
+}
+
+// OpNum returns the operation number of Shrink operation.
+func (o *ShrinkRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of Shrink operation.
+func (o *ShrinkRequest) OpName() string { return "/IVdsVolumeShrink/v0/Shrink" }
 
 // ShrinkResponse structure represents the Shrink operation response
 type ShrinkResponse struct {

@@ -385,8 +385,10 @@ type xxx_GetResourceGroupInfoOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of GetResourceGroupInfo operation.
 func (o *xxx_GetResourceGroupInfoOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of GetResourceGroupInfo operation.
 func (o *xxx_GetResourceGroupInfoOperation) OpName() string {
 	return "/IWRMResourceGroup/v0/GetResourceGroupInfo"
 }
@@ -628,6 +630,19 @@ func (o *GetResourceGroupInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+// MakeGetResourceGroupInfoRequest build a response structure from the given request structure.
+func (o *GetResourceGroupInfoRequest) MakeResponse() *GetResourceGroupInfoResponse {
+	return &GetResourceGroupInfoResponse{}
+}
+
+// OpNum returns the operation number of GetResourceGroupInfo operation.
+func (o *GetResourceGroupInfoRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of GetResourceGroupInfo operation.
+func (o *GetResourceGroupInfoRequest) OpName() string {
+	return "/IWRMResourceGroup/v0/GetResourceGroupInfo"
+}
+
 // GetResourceGroupInfoResponse structure represents the GetResourceGroupInfo operation response
 type GetResourceGroupInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -682,8 +697,10 @@ type xxx_ModifyResourceGroupOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ModifyResourceGroup operation.
 func (o *xxx_ModifyResourceGroupOperation) OpNum() int { return 8 }
 
+// OpName returns the operation name of ModifyResourceGroup operation.
 func (o *xxx_ModifyResourceGroupOperation) OpName() string {
 	return "/IWRMResourceGroup/v0/ModifyResourceGroup"
 }
@@ -924,6 +941,19 @@ func (o *ModifyResourceGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeModifyResourceGroupRequest build a response structure from the given request structure.
+func (o *ModifyResourceGroupRequest) MakeResponse() *ModifyResourceGroupResponse {
+	return &ModifyResourceGroupResponse{}
+}
+
+// OpNum returns the operation number of ModifyResourceGroup operation.
+func (o *ModifyResourceGroupRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of ModifyResourceGroup operation.
+func (o *ModifyResourceGroupRequest) OpName() string {
+	return "/IWRMResourceGroup/v0/ModifyResourceGroup"
+}
+
 // ModifyResourceGroupResponse structure represents the ModifyResourceGroup operation response
 type ModifyResourceGroupResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -971,8 +1001,10 @@ type xxx_CreateResourceGroupOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of CreateResourceGroup operation.
 func (o *xxx_CreateResourceGroupOperation) OpNum() int { return 9 }
 
+// OpName returns the operation name of CreateResourceGroup operation.
 func (o *xxx_CreateResourceGroupOperation) OpName() string {
 	return "/IWRMResourceGroup/v0/CreateResourceGroup"
 }
@@ -1170,6 +1202,19 @@ func (o *CreateResourceGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeCreateResourceGroupRequest build a response structure from the given request structure.
+func (o *CreateResourceGroupRequest) MakeResponse() *CreateResourceGroupResponse {
+	return &CreateResourceGroupResponse{}
+}
+
+// OpNum returns the operation number of CreateResourceGroup operation.
+func (o *CreateResourceGroupRequest) OpNum() int { return 9 }
+
+// OpName returns the operation name of CreateResourceGroup operation.
+func (o *CreateResourceGroupRequest) OpName() string {
+	return "/IWRMResourceGroup/v0/CreateResourceGroup"
+}
+
 // CreateResourceGroupResponse structure represents the CreateResourceGroup operation response
 type CreateResourceGroupResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1217,8 +1262,10 @@ type xxx_DeleteResourceGroupOperation struct {
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DeleteResourceGroup operation.
 func (o *xxx_DeleteResourceGroupOperation) OpNum() int { return 10 }
 
+// OpName returns the operation name of DeleteResourceGroup operation.
 func (o *xxx_DeleteResourceGroupOperation) OpName() string {
 	return "/IWRMResourceGroup/v0/DeleteResourceGroup"
 }
@@ -1415,6 +1462,19 @@ func (o *DeleteResourceGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeDeleteResourceGroupRequest build a response structure from the given request structure.
+func (o *DeleteResourceGroupRequest) MakeResponse() *DeleteResourceGroupResponse {
+	return &DeleteResourceGroupResponse{}
+}
+
+// OpNum returns the operation number of DeleteResourceGroup operation.
+func (o *DeleteResourceGroupRequest) OpNum() int { return 10 }
+
+// OpName returns the operation name of DeleteResourceGroup operation.
+func (o *DeleteResourceGroupRequest) OpName() string {
+	return "/IWRMResourceGroup/v0/DeleteResourceGroup"
+}
+
 // DeleteResourceGroupResponse structure represents the DeleteResourceGroup operation response
 type DeleteResourceGroupResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1463,8 +1523,10 @@ type xxx_RenameResourceGroupOperation struct {
 	Return               int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RenameResourceGroup operation.
 func (o *xxx_RenameResourceGroupOperation) OpNum() int { return 11 }
 
+// OpName returns the operation name of RenameResourceGroup operation.
 func (o *xxx_RenameResourceGroupOperation) OpName() string {
 	return "/IWRMResourceGroup/v0/RenameResourceGroup"
 }
@@ -1709,6 +1771,19 @@ func (o *RenameResourceGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeRenameResourceGroupRequest build a response structure from the given request structure.
+func (o *RenameResourceGroupRequest) MakeResponse() *RenameResourceGroupResponse {
+	return &RenameResourceGroupResponse{}
+}
+
+// OpNum returns the operation number of RenameResourceGroup operation.
+func (o *RenameResourceGroupRequest) OpNum() int { return 11 }
+
+// OpName returns the operation name of RenameResourceGroup operation.
+func (o *RenameResourceGroupRequest) OpName() string {
+	return "/IWRMResourceGroup/v0/RenameResourceGroup"
 }
 
 // RenameResourceGroupResponse structure represents the RenameResourceGroup operation response

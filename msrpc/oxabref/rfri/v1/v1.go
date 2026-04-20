@@ -117,8 +117,10 @@ type xxx_GetNewDSAOperation struct {
 	Return int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RfrGetNewDSA operation.
 func (o *xxx_GetNewDSAOperation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RfrGetNewDSA operation.
 func (o *xxx_GetNewDSAOperation) OpName() string { return "/rfri/v1/RfrGetNewDSA" }
 
 func (o *xxx_GetNewDSAOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -426,6 +428,17 @@ func (o *GetNewDSARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+// MakeGetNewDSARequest build a response structure from the given request structure.
+func (o *GetNewDSARequest) MakeResponse() *GetNewDSAResponse {
+	return &GetNewDSAResponse{}
+}
+
+// OpNum returns the operation number of RfrGetNewDSA operation.
+func (o *GetNewDSARequest) OpNum() int { return 0 }
+
+// OpName returns the operation name of RfrGetNewDSA operation.
+func (o *GetNewDSARequest) OpName() string { return "/rfri/v1/RfrGetNewDSA" }
+
 // GetNewDSAResponse structure represents the RfrGetNewDSA operation response
 type GetNewDSAResponse struct {
 	// ppszServer: A string. If the server does not return an error, ppszServer contains
@@ -475,8 +488,10 @@ type xxx_GetFQDNFromServerDNOperation struct {
 	Return                int32  `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RfrGetFQDNFromServerDN operation.
 func (o *xxx_GetFQDNFromServerDNOperation) OpNum() int { return 1 }
 
+// OpName returns the operation name of RfrGetFQDNFromServerDN operation.
 func (o *xxx_GetFQDNFromServerDNOperation) OpName() string { return "/rfri/v1/RfrGetFQDNFromServerDN" }
 
 func (o *xxx_GetFQDNFromServerDNOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -728,6 +743,17 @@ func (o *GetFQDNFromServerDNRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetFQDNFromServerDNRequest build a response structure from the given request structure.
+func (o *GetFQDNFromServerDNRequest) MakeResponse() *GetFQDNFromServerDNResponse {
+	return &GetFQDNFromServerDNResponse{}
+}
+
+// OpNum returns the operation number of RfrGetFQDNFromServerDN operation.
+func (o *GetFQDNFromServerDNRequest) OpNum() int { return 1 }
+
+// OpName returns the operation name of RfrGetFQDNFromServerDN operation.
+func (o *GetFQDNFromServerDNRequest) OpName() string { return "/rfri/v1/RfrGetFQDNFromServerDN" }
 
 // GetFQDNFromServerDNResponse structure represents the RfrGetFQDNFromServerDN operation response
 type GetFQDNFromServerDNResponse struct {

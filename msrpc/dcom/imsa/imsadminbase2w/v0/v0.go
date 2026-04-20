@@ -431,8 +431,10 @@ type xxx_BackupWithPasswordOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of BackupWithPasswd operation.
 func (o *xxx_BackupWithPasswordOperation) OpNum() int { return 34 }
 
+// OpName returns the operation name of BackupWithPasswd operation.
 func (o *xxx_BackupWithPasswordOperation) OpName() string {
 	return "/IMSAdminBase2W/v0/BackupWithPasswd"
 }
@@ -722,6 +724,17 @@ func (o *BackupWithPasswordRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+// MakeBackupWithPasswordRequest build a response structure from the given request structure.
+func (o *BackupWithPasswordRequest) MakeResponse() *BackupWithPasswordResponse {
+	return &BackupWithPasswordResponse{}
+}
+
+// OpNum returns the operation number of BackupWithPasswd operation.
+func (o *BackupWithPasswordRequest) OpNum() int { return 34 }
+
+// OpName returns the operation name of BackupWithPasswd operation.
+func (o *BackupWithPasswordRequest) OpName() string { return "/IMSAdminBase2W/v0/BackupWithPasswd" }
+
 // BackupWithPasswordResponse structure represents the BackupWithPasswd operation response
 type BackupWithPasswordResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -772,8 +785,10 @@ type xxx_RestoreWithPasswordOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RestoreWithPasswd operation.
 func (o *xxx_RestoreWithPasswordOperation) OpNum() int { return 35 }
 
+// OpName returns the operation name of RestoreWithPasswd operation.
 func (o *xxx_RestoreWithPasswordOperation) OpName() string {
 	return "/IMSAdminBase2W/v0/RestoreWithPasswd"
 }
@@ -1047,6 +1062,17 @@ func (o *RestoreWithPasswordRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+// MakeRestoreWithPasswordRequest build a response structure from the given request structure.
+func (o *RestoreWithPasswordRequest) MakeResponse() *RestoreWithPasswordResponse {
+	return &RestoreWithPasswordResponse{}
+}
+
+// OpNum returns the operation number of RestoreWithPasswd operation.
+func (o *RestoreWithPasswordRequest) OpNum() int { return 35 }
+
+// OpName returns the operation name of RestoreWithPasswd operation.
+func (o *RestoreWithPasswordRequest) OpName() string { return "/IMSAdminBase2W/v0/RestoreWithPasswd" }
+
 // RestoreWithPasswordResponse structure represents the RestoreWithPasswd operation response
 type RestoreWithPasswordResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1097,8 +1123,10 @@ type xxx_ExportOperation struct {
 	Return     int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Export operation.
 func (o *xxx_ExportOperation) OpNum() int { return 36 }
 
+// OpName returns the operation name of Export operation.
 func (o *xxx_ExportOperation) OpName() string { return "/IMSAdminBase2W/v0/Export" }
 
 func (o *xxx_ExportOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1397,6 +1425,17 @@ func (o *ExportRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeExportRequest build a response structure from the given request structure.
+func (o *ExportRequest) MakeResponse() *ExportResponse {
+	return &ExportResponse{}
+}
+
+// OpNum returns the operation number of Export operation.
+func (o *ExportRequest) OpNum() int { return 36 }
+
+// OpName returns the operation name of Export operation.
+func (o *ExportRequest) OpName() string { return "/IMSAdminBase2W/v0/Export" }
+
 // ExportResponse structure represents the Export operation response
 type ExportResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1448,8 +1487,10 @@ type xxx_ImportOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Import operation.
 func (o *xxx_ImportOperation) OpNum() int { return 37 }
 
+// OpName returns the operation name of Import operation.
 func (o *xxx_ImportOperation) OpName() string { return "/IMSAdminBase2W/v0/Import" }
 
 func (o *xxx_ImportOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -1799,6 +1840,17 @@ func (o *ImportRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+// MakeImportRequest build a response structure from the given request structure.
+func (o *ImportRequest) MakeResponse() *ImportResponse {
+	return &ImportResponse{}
+}
+
+// OpNum returns the operation number of Import operation.
+func (o *ImportRequest) OpNum() int { return 37 }
+
+// OpName returns the operation name of Import operation.
+func (o *ImportRequest) OpName() string { return "/IMSAdminBase2W/v0/Import" }
+
 // ImportResponse structure represents the Import operation response
 type ImportResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1849,8 +1901,10 @@ type xxx_RestoreHistoryOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RestoreHistory operation.
 func (o *xxx_RestoreHistoryOperation) OpNum() int { return 38 }
 
+// OpName returns the operation name of RestoreHistory operation.
 func (o *xxx_RestoreHistoryOperation) OpName() string { return "/IMSAdminBase2W/v0/RestoreHistory" }
 
 func (o *xxx_RestoreHistoryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2100,6 +2154,17 @@ func (o *RestoreHistoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+// MakeRestoreHistoryRequest build a response structure from the given request structure.
+func (o *RestoreHistoryRequest) MakeResponse() *RestoreHistoryResponse {
+	return &RestoreHistoryResponse{}
+}
+
+// OpNum returns the operation number of RestoreHistory operation.
+func (o *RestoreHistoryRequest) OpNum() int { return 38 }
+
+// OpName returns the operation name of RestoreHistory operation.
+func (o *RestoreHistoryRequest) OpName() string { return "/IMSAdminBase2W/v0/RestoreHistory" }
+
 // RestoreHistoryResponse structure represents the RestoreHistory operation response
 type RestoreHistoryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -2151,8 +2216,10 @@ type xxx_EnumHistoryOperation struct {
 	Return          int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of EnumHistory operation.
 func (o *xxx_EnumHistoryOperation) OpNum() int { return 39 }
 
+// OpName returns the operation name of EnumHistory operation.
 func (o *xxx_EnumHistoryOperation) OpName() string { return "/IMSAdminBase2W/v0/EnumHistory" }
 
 func (o *xxx_EnumHistoryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -2471,6 +2538,17 @@ func (o *EnumHistoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeEnumHistoryRequest build a response structure from the given request structure.
+func (o *EnumHistoryRequest) MakeResponse() *EnumHistoryResponse {
+	return &EnumHistoryResponse{}
+}
+
+// OpNum returns the operation number of EnumHistory operation.
+func (o *EnumHistoryRequest) OpNum() int { return 39 }
+
+// OpName returns the operation name of EnumHistory operation.
+func (o *EnumHistoryRequest) OpName() string { return "/IMSAdminBase2W/v0/EnumHistory" }
 
 // EnumHistoryResponse structure represents the EnumHistory operation response
 type EnumHistoryResponse struct {

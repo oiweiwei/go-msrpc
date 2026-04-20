@@ -187,8 +187,10 @@ type xxx_IndicateOperation struct {
 	Return      int32              `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of Indicate operation.
 func (o *xxx_IndicateOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of Indicate operation.
 func (o *xxx_IndicateOperation) OpName() string { return "/IWbemObjectSink/v0/Indicate" }
 
 func (o *xxx_IndicateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -435,6 +437,17 @@ func (o *IndicateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+// MakeIndicateRequest build a response structure from the given request structure.
+func (o *IndicateRequest) MakeResponse() *IndicateResponse {
+	return &IndicateResponse{}
+}
+
+// OpNum returns the operation number of Indicate operation.
+func (o *IndicateRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of Indicate operation.
+func (o *IndicateRequest) OpName() string { return "/IWbemObjectSink/v0/Indicate" }
+
 // IndicateResponse structure represents the Indicate operation response
 type IndicateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -485,8 +498,10 @@ type xxx_SetStatusOperation struct {
 	Return      int32            `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of SetStatus operation.
 func (o *xxx_SetStatusOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of SetStatus operation.
 func (o *xxx_SetStatusOperation) OpName() string { return "/IWbemObjectSink/v0/SetStatus" }
 
 func (o *xxx_SetStatusOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -782,6 +797,17 @@ func (o *SetStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSetStatusRequest build a response structure from the given request structure.
+func (o *SetStatusRequest) MakeResponse() *SetStatusResponse {
+	return &SetStatusResponse{}
+}
+
+// OpNum returns the operation number of SetStatus operation.
+func (o *SetStatusRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of SetStatus operation.
+func (o *SetStatusRequest) OpName() string { return "/IWbemObjectSink/v0/SetStatus" }
 
 // SetStatusResponse structure represents the SetStatus operation response
 type SetStatusResponse struct {

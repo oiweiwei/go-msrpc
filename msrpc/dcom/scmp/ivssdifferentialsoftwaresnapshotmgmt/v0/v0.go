@@ -351,8 +351,10 @@ type xxx_AddDiffAreaOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of AddDiffArea operation.
 func (o *xxx_AddDiffAreaOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of AddDiffArea operation.
 func (o *xxx_AddDiffAreaOperation) OpName() string {
 	return "/IVssDifferentialSoftwareSnapshotMgmt/v0/AddDiffArea"
 }
@@ -603,6 +605,19 @@ func (o *AddDiffAreaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
+// MakeAddDiffAreaRequest build a response structure from the given request structure.
+func (o *AddDiffAreaRequest) MakeResponse() *AddDiffAreaResponse {
+	return &AddDiffAreaResponse{}
+}
+
+// OpNum returns the operation number of AddDiffArea operation.
+func (o *AddDiffAreaRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of AddDiffArea operation.
+func (o *AddDiffAreaRequest) OpName() string {
+	return "/IVssDifferentialSoftwareSnapshotMgmt/v0/AddDiffArea"
+}
+
 // AddDiffAreaResponse structure represents the AddDiffArea operation response
 type AddDiffAreaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -652,8 +667,10 @@ type xxx_ChangeDiffAreaMaximumSizeOperation struct {
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ChangeDiffAreaMaximumSize operation.
 func (o *xxx_ChangeDiffAreaMaximumSizeOperation) OpNum() int { return 4 }
 
+// OpName returns the operation name of ChangeDiffAreaMaximumSize operation.
 func (o *xxx_ChangeDiffAreaMaximumSizeOperation) OpName() string {
 	return "/IVssDifferentialSoftwareSnapshotMgmt/v0/ChangeDiffAreaMaximumSize"
 }
@@ -904,6 +921,19 @@ func (o *ChangeDiffAreaMaximumSizeRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
+// MakeChangeDiffAreaMaximumSizeRequest build a response structure from the given request structure.
+func (o *ChangeDiffAreaMaximumSizeRequest) MakeResponse() *ChangeDiffAreaMaximumSizeResponse {
+	return &ChangeDiffAreaMaximumSizeResponse{}
+}
+
+// OpNum returns the operation number of ChangeDiffAreaMaximumSize operation.
+func (o *ChangeDiffAreaMaximumSizeRequest) OpNum() int { return 4 }
+
+// OpName returns the operation name of ChangeDiffAreaMaximumSize operation.
+func (o *ChangeDiffAreaMaximumSizeRequest) OpName() string {
+	return "/IVssDifferentialSoftwareSnapshotMgmt/v0/ChangeDiffAreaMaximumSize"
+}
+
 // ChangeDiffAreaMaximumSizeResponse structure represents the ChangeDiffAreaMaximumSize operation response
 type ChangeDiffAreaMaximumSizeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -952,8 +982,10 @@ type xxx_QueryVolumesSupportedForDiffAreasOperation struct {
 	Return             int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryVolumesSupportedForDiffAreas operation.
 func (o *xxx_QueryVolumesSupportedForDiffAreasOperation) OpNum() int { return 5 }
 
+// OpName returns the operation name of QueryVolumesSupportedForDiffAreas operation.
 func (o *xxx_QueryVolumesSupportedForDiffAreasOperation) OpName() string {
 	return "/IVssDifferentialSoftwareSnapshotMgmt/v0/QueryVolumesSupportedForDiffAreas"
 }
@@ -1187,6 +1219,19 @@ func (o *QueryVolumesSupportedForDiffAreasRequest) UnmarshalNDR(ctx context.Cont
 	return nil
 }
 
+// MakeQueryVolumesSupportedForDiffAreasRequest build a response structure from the given request structure.
+func (o *QueryVolumesSupportedForDiffAreasRequest) MakeResponse() *QueryVolumesSupportedForDiffAreasResponse {
+	return &QueryVolumesSupportedForDiffAreasResponse{}
+}
+
+// OpNum returns the operation number of QueryVolumesSupportedForDiffAreas operation.
+func (o *QueryVolumesSupportedForDiffAreasRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of QueryVolumesSupportedForDiffAreas operation.
+func (o *QueryVolumesSupportedForDiffAreasRequest) OpName() string {
+	return "/IVssDifferentialSoftwareSnapshotMgmt/v0/QueryVolumesSupportedForDiffAreas"
+}
+
 // QueryVolumesSupportedForDiffAreasResponse structure represents the QueryVolumesSupportedForDiffAreas operation response
 type QueryVolumesSupportedForDiffAreasResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1243,8 +1288,10 @@ type xxx_QueryDiffAreasForVolumeOperation struct {
 	Return     int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryDiffAreasForVolume operation.
 func (o *xxx_QueryDiffAreasForVolumeOperation) OpNum() int { return 6 }
 
+// OpName returns the operation name of QueryDiffAreasForVolume operation.
 func (o *xxx_QueryDiffAreasForVolumeOperation) OpName() string {
 	return "/IVssDifferentialSoftwareSnapshotMgmt/v0/QueryDiffAreasForVolume"
 }
@@ -1479,6 +1526,19 @@ func (o *QueryDiffAreasForVolumeRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+// MakeQueryDiffAreasForVolumeRequest build a response structure from the given request structure.
+func (o *QueryDiffAreasForVolumeRequest) MakeResponse() *QueryDiffAreasForVolumeResponse {
+	return &QueryDiffAreasForVolumeResponse{}
+}
+
+// OpNum returns the operation number of QueryDiffAreasForVolume operation.
+func (o *QueryDiffAreasForVolumeRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of QueryDiffAreasForVolume operation.
+func (o *QueryDiffAreasForVolumeRequest) OpName() string {
+	return "/IVssDifferentialSoftwareSnapshotMgmt/v0/QueryDiffAreasForVolume"
+}
+
 // QueryDiffAreasForVolumeResponse structure represents the QueryDiffAreasForVolume operation response
 type QueryDiffAreasForVolumeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
@@ -1535,8 +1595,10 @@ type xxx_QueryDiffAreasOnVolumeOperation struct {
 	Return     int32                      `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of QueryDiffAreasOnVolume operation.
 func (o *xxx_QueryDiffAreasOnVolumeOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of QueryDiffAreasOnVolume operation.
 func (o *xxx_QueryDiffAreasOnVolumeOperation) OpName() string {
 	return "/IVssDifferentialSoftwareSnapshotMgmt/v0/QueryDiffAreasOnVolume"
 }
@@ -1769,6 +1831,19 @@ func (o *QueryDiffAreasOnVolumeRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	}
 	o.xxx_FromOp(ctx, _o)
 	return nil
+}
+
+// MakeQueryDiffAreasOnVolumeRequest build a response structure from the given request structure.
+func (o *QueryDiffAreasOnVolumeRequest) MakeResponse() *QueryDiffAreasOnVolumeResponse {
+	return &QueryDiffAreasOnVolumeResponse{}
+}
+
+// OpNum returns the operation number of QueryDiffAreasOnVolume operation.
+func (o *QueryDiffAreasOnVolumeRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of QueryDiffAreasOnVolume operation.
+func (o *QueryDiffAreasOnVolumeRequest) OpName() string {
+	return "/IVssDifferentialSoftwareSnapshotMgmt/v0/QueryDiffAreasOnVolume"
 }
 
 // QueryDiffAreasOnVolumeResponse structure represents the QueryDiffAreasOnVolume operation response

@@ -214,8 +214,10 @@ type xxx_Shadow2Operation struct {
 	Return            int32                   `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of RpcShadow2 operation.
 func (o *xxx_Shadow2Operation) OpNum() int { return 0 }
 
+// OpName returns the operation name of RpcShadow2 operation.
 func (o *xxx_Shadow2Operation) OpName() string { return "/SessEnvPublicRpc/v1/RpcShadow2" }
 
 func (o *xxx_Shadow2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -455,6 +457,22 @@ func (o *Shadow2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeShadow2Request build a response structure from the given request structure.
+func (o *Shadow2Request) MakeResponse() *Shadow2Response {
+	if o == nil {
+		return &Shadow2Response{}
+	}
+	return &Shadow2Response{
+		InvitationLength: o.InvitationLength,
+	}
+}
+
+// OpNum returns the operation number of RpcShadow2 operation.
+func (o *Shadow2Request) OpNum() int { return 0 }
+
+// OpName returns the operation name of RpcShadow2 operation.
+func (o *Shadow2Request) OpName() string { return "/SessEnvPublicRpc/v1/RpcShadow2" }
 
 // Shadow2Response structure represents the RpcShadow2 operation response
 type Shadow2Response struct {

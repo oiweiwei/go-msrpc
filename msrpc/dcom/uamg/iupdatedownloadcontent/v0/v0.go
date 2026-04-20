@@ -153,8 +153,10 @@ type xxx_GetDownloadURLOperation struct {
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of DownloadUrl operation.
 func (o *xxx_GetDownloadURLOperation) OpNum() int { return 7 }
 
+// OpName returns the operation name of DownloadUrl operation.
 func (o *xxx_GetDownloadURLOperation) OpName() string {
 	return "/IUpdateDownloadContent/v0/DownloadUrl"
 }
@@ -345,6 +347,17 @@ func (o *GetDownloadURLRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeGetDownloadURLRequest build a response structure from the given request structure.
+func (o *GetDownloadURLRequest) MakeResponse() *GetDownloadURLResponse {
+	return &GetDownloadURLResponse{}
+}
+
+// OpNum returns the operation number of DownloadUrl operation.
+func (o *GetDownloadURLRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of DownloadUrl operation.
+func (o *GetDownloadURLRequest) OpName() string { return "/IUpdateDownloadContent/v0/DownloadUrl" }
 
 // GetDownloadURLResponse structure represents the DownloadUrl operation response
 type GetDownloadURLResponse struct {

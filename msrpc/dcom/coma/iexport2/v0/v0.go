@@ -157,8 +157,10 @@ type xxx_ExportPartitionOperation struct {
 	Return           int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ExportPartition operation.
 func (o *xxx_ExportPartitionOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ExportPartition operation.
 func (o *xxx_ExportPartitionOperation) OpName() string { return "/IExport2/v0/ExportPartition" }
 
 func (o *xxx_ExportPartitionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -391,6 +393,17 @@ func (o *ExportPartitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeExportPartitionRequest build a response structure from the given request structure.
+func (o *ExportPartitionRequest) MakeResponse() *ExportPartitionResponse {
+	return &ExportPartitionResponse{}
+}
+
+// OpNum returns the operation number of ExportPartition operation.
+func (o *ExportPartitionRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ExportPartition operation.
+func (o *ExportPartitionRequest) OpName() string { return "/IExport2/v0/ExportPartition" }
 
 // ExportPartitionResponse structure represents the ExportPartition operation response
 type ExportPartitionResponse struct {

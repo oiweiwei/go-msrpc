@@ -239,8 +239,10 @@ type xxx_SearchMachineOperation struct {
 	Return        int32                        `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of LnkSearchMachine operation.
 func (o *xxx_SearchMachineOperation) OpNum() int { return 12 }
 
+// OpName returns the operation name of LnkSearchMachine operation.
 func (o *xxx_SearchMachineOperation) OpName() string { return "/trkwks/v1.2/LnkSearchMachine" }
 
 func (o *xxx_SearchMachineOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -530,6 +532,17 @@ func (o *SearchMachineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeSearchMachineRequest build a response structure from the given request structure.
+func (o *SearchMachineRequest) MakeResponse() *SearchMachineResponse {
+	return &SearchMachineResponse{}
+}
+
+// OpNum returns the operation number of LnkSearchMachine operation.
+func (o *SearchMachineRequest) OpNum() int { return 12 }
+
+// OpName returns the operation name of LnkSearchMachine operation.
+func (o *SearchMachineRequest) OpName() string { return "/trkwks/v1.2/LnkSearchMachine" }
 
 // SearchMachineResponse structure represents the LnkSearchMachine operation response
 type SearchMachineResponse struct {

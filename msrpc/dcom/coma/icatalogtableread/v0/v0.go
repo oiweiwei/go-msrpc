@@ -162,8 +162,10 @@ type xxx_ReadTableOperation struct {
 	Return                    int32          `idl:"name:Return" json:"return"`
 }
 
+// OpNum returns the operation number of ReadTable operation.
 func (o *xxx_ReadTableOperation) OpNum() int { return 3 }
 
+// OpName returns the operation name of ReadTable operation.
 func (o *xxx_ReadTableOperation) OpName() string { return "/ICatalogTableRead/v0/ReadTable" }
 
 func (o *xxx_ReadTableOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
@@ -951,6 +953,17 @@ func (o *ReadTableRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	o.xxx_FromOp(ctx, _o)
 	return nil
 }
+
+// MakeReadTableRequest build a response structure from the given request structure.
+func (o *ReadTableRequest) MakeResponse() *ReadTableResponse {
+	return &ReadTableResponse{}
+}
+
+// OpNum returns the operation number of ReadTable operation.
+func (o *ReadTableRequest) OpNum() int { return 3 }
+
+// OpName returns the operation name of ReadTable operation.
+func (o *ReadTableRequest) OpName() string { return "/ICatalogTableRead/v0/ReadTable" }
 
 // ReadTableResponse structure represents the ReadTable operation response
 type ReadTableResponse struct {
