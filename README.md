@@ -296,34 +296,6 @@ but for most of the situations, provide a way to generate the
 names that comply with golang naming convention and give more intuition behind
 this or that field.
 
-### Generated Stubs
-
-## MIDL Implementation Limitations
-
- * L.0001: `#define` statements are applicable only for constant declaration;
-
- * L.0002: `cpp_quote` contents are limited only for constant declaration;
-
- * L.0005: `int const` declaration is not supported.
-
- * L.0006: `wchar_t`, `status_error_t` are predefined.
-
-# TODO
-
- * Testing (I don't have much time)
-
- * Handle reserved arguments/structure fields used for `switch_is` and `size_is` statements.
-
- * Derive the type from field name, like `^f[A-Z]` -> `boolean`.
-
- * Callbacks Support / Server-Side Support
-
- * Static strings
-
- * Investigate: Association Group ID is not shared across several named pipe connections. (each NP requires dedicated connection).
-
- * Convenient way to combine SPNEGO and NTLM/KRB5 within connection option.
-
 # Open Questions
 
  * Why IObjectExporter does not support NDR64?

@@ -34,12 +34,13 @@ MSIDLPATH ?= $(shell pwd)/idl:$(shell pwd)/idl/h
 
 .PHONY: %.go
 %.go:
-	MSIDLPATH=$(MSIDLPATH) ./bin/midl-gen-go \
-		-I "github.com/oiweiwei/go-msrpc/msrpc/" \
-		-dir ./msrpc/ \
-		-format=$(FORMAT) \
-		-doc-cache ./.cache/doc/ \
-		-f "$(basename $@).idl"
+	./bin/midl-gen-go generate \
+		-I $(shell pwd)/idl \
+		-I $(shell pwd)/idl/h \
+		--pkg "github.com/oiweiwei/go-msrpc/msrpc/" \
+		--output ./msrpc/ \
+		--doc-cache ./.cache/doc/ \
+		"$(basename $@).idl"
 
 .PHONY: %.json
 %.json:
