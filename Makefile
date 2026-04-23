@@ -26,27 +26,38 @@ build: bin gen
 
 .PHONY: test-idl
 test-idl:
-	@for f in $(shell pwd)/idl/*.idl; do ./bin/parse -j $$f &>/dev/null && echo ok $$f || echo fail $$f; done
+	@for f in $(shell pwd)/idl/*.idl; do $(DUMP_RUNNER) $$f &>/dev/null && echo ok $$f || echo fail $$f; done
 
 FORMAT ?= true
 
 MSIDLPATH ?= $(shell pwd)/idl:$(shell pwd)/idl/h
 
+DOCKER_IMAGE ?= ghcr.io/oiweiwei/midl-gen-go
+
+DUMP_RUNNER ?= docker run --rm \
+	-v $(shell pwd):/work \
+	-u $(shell id -u):$(shell id -g) \
+	$(DOCKER_IMAGE) dump \
+	-I /work/idl \
+	-I /work/idl/h
+
+DOCKER_RUNNER ?= docker run --rm \
+	-v $(shell pwd):/work \
+	-u $(shell id -u):$(shell id -g) \
+	$(DOCKER_IMAGE) generate \
+	--pkg "github.com/oiweiwei/go-msrpc/msrpc/" \
+	-I /work/idl \
+	-I /work/idl/h \
+	--output /work/msrpc/ \
+	--doc-cache /work/.cache/doc/
+
 .PHONY: %.go
 %.go:
-	./bin/midl-gen-go generate \
-		-I $(shell pwd)/idl \
-		-I $(shell pwd)/idl/h \
-		--pkg "github.com/oiweiwei/go-msrpc/msrpc/" \
-		--output ./msrpc/ \
-		--doc-cache ./.cache/doc/ \
-		"$(basename $@).idl"
+	$(DOCKER_RUNNER) $(basename $@).idl
 
 .PHONY: %.json
 %.json:
-	MSIDLPATH=$(MSIDLPATH) ./bin/parse \
-		-j -f "$(basename $@).idl"
-
+	$(DUMP_RUNNER) $(basename $@).idl
 
 .PHONY: all
 all:
