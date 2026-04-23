@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/oiweiwei/go-msrpc/text/encoding/oem"
+	"github.com/oiweiwei/go-oem"
 )
 
 type StringCodec = oem.Encoding

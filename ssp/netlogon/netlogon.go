@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/oiweiwei/go-msrpc/text/encoding/oem"
+	"github.com/oiweiwei/go-oem"
 )
 
 type NegFlag uint32
