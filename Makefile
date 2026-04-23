@@ -1,34 +1,14 @@
-default: build
-
-.PHONY: gen
-gen:
-	@goyacc -v midl/y.out -o midl/parse.go -p RPC midl/parse.y
-
-.PHONY: gen-oem
-gen-oem:
-	@go generate ./...
-
-.PHONY: bin
-bin:
-	@mkdir -p bin/
-
-.PHONY: build
-build: bin gen
-	@CGO_ENABLED=0 go build -o bin/parse codegen/main.go
-
 .PHONY: %.idl
 %.idl:
-	@./bin/parse -j $@
+	@$(DUMP_RUNNER) $@
 
 .PHONY: %.h
 %.h:
-	@./bin/parse -j $@
+	@$(DUMP_RUNNER) $@
 
 .PHONY: test-idl
 test-idl:
 	@for f in $(shell pwd)/idl/*.idl; do $(DUMP_RUNNER) $$f &>/dev/null && echo ok $$f || echo fail $$f; done
-
-FORMAT ?= true
 
 MSIDLPATH ?= $(shell pwd)/idl:$(shell pwd)/idl/h
 
@@ -169,12 +149,4 @@ all:
 
 .PHONY: test
 test:
-	go test ./example/...
-
-.PHONY: develop-up
-vagrant-up:
-	cd ./develop && vagrant up dc01
-
-.PHONY: develop-provision
-vagrant-provision:
-	cd ./develop && vagrant up dc01 --provision
+	go test ./msrpc/...
