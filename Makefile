@@ -1,55 +1,47 @@
-default: build
-
-.PHONY: gen
-gen:
-	@goyacc -v midl/y.out -o midl/parse.go -p RPC midl/parse.y
-
-.PHONY: gen-oem
-gen-oem:
-	@go generate ./...
-
-.PHONY: bin
-bin:
-	@mkdir -p bin/
-
-.PHONY: build
-build: bin gen
-	@CGO_ENABLED=0 go build -o bin/parse codegen/main.go
-
 .PHONY: %.idl
 %.idl:
-	@./bin/parse -j $@
+	@$(DUMP_RUNNER) $@
 
 .PHONY: %.h
 %.h:
-	@./bin/parse -j $@
+	@$(DUMP_RUNNER) $@
 
 .PHONY: test-idl
 test-idl:
-	@for f in $(shell pwd)/idl/*.idl; do ./bin/parse -j $$f &>/dev/null && echo ok $$f || echo fail $$f; done
-
-FORMAT ?= true
+	@for f in $(shell pwd)/idl/*.idl; do $(DUMP_RUNNER) $$f &>/dev/null && echo ok $$f || echo fail $$f; done
 
 MSIDLPATH ?= $(shell pwd)/idl:$(shell pwd)/idl/h
 
+DOCKER_IMAGE ?= ghcr.io/oiweiwei/midl-gen-go
+
+DUMP_RUNNER ?= docker run --rm \
+	-v $(shell pwd):/work \
+	-u $(shell id -u):$(shell id -g) \
+	$(DOCKER_IMAGE) dump \
+	-I /work/idl \
+	-I /work/idl/h
+
+DOCKER_RUNNER ?= docker run --rm \
+	-v $(shell pwd):/work \
+	-u $(shell id -u):$(shell id -g) \
+	$(DOCKER_IMAGE) generate \
+	--pkg "github.com/oiweiwei/go-msrpc/msrpc/" \
+	-I /work/idl \
+	-I /work/idl/h \
+	--output /work/msrpc/ \
+	--doc-cache /work/.cache/doc/
+
 .PHONY: %.go
 %.go:
-	MSIDLPATH=$(MSIDLPATH) ./bin/parse \
-		-I "github.com/oiweiwei/go-msrpc/msrpc/" \
-		-dir ./msrpc/ \
-		-format=$(FORMAT) \
-		-doc-cache ./.cache/doc/ \
-		-f "$(basename $@).idl"
+	$(DOCKER_RUNNER) $(basename $@).idl
 
 .PHONY: %.json
 %.json:
-	MSIDLPATH=$(MSIDLPATH) ./bin/parse \
-		-j -f "$(basename $@).idl"
-
+	$(DUMP_RUNNER) $(basename $@).idl
 
 .PHONY: all
 all:
-	$(MAKE) build \
+	$(MAKE) \
 		adts.go \
 		adts/claims.go \
 		bkrp.go \
@@ -157,12 +149,4 @@ all:
 
 .PHONY: test
 test:
-	go test ./example/...
-
-.PHONY: develop-up
-vagrant-up:
-	cd ./develop && vagrant up dc01
-
-.PHONY: develop-provision
-vagrant-provision:
-	cd ./develop && vagrant up dc01 --provision
+	go test ./msrpc/...
