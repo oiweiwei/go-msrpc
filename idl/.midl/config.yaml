@@ -1,0 +1,8 @@
+go:
+  # pkg is the base package for the generated code.
+  # The generated code will be placed in this package.
+  pkg: github.com/oiweiwei/go-msrpc/msrpc
+# gonames configuration.
+gonames:
+  # The relative path to gonames configuration files.
+  path: "./gonames"

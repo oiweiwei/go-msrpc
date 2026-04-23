@@ -34,7 +34,7 @@ MSIDLPATH ?= $(shell pwd)/idl:$(shell pwd)/idl/h
 
 .PHONY: %.go
 %.go:
-	MSIDLPATH=$(MSIDLPATH) ./bin/parse \
+	MSIDLPATH=$(MSIDLPATH) ./bin/midl-gen-go \
 		-I "github.com/oiweiwei/go-msrpc/msrpc/" \
 		-dir ./msrpc/ \
 		-format=$(FORMAT) \
@@ -49,7 +49,7 @@ MSIDLPATH ?= $(shell pwd)/idl:$(shell pwd)/idl/h
 
 .PHONY: all
 all:
-	$(MAKE) build \
+	$(MAKE) \
 		adts.go \
 		adts/claims.go \
 		bkrp.go \
