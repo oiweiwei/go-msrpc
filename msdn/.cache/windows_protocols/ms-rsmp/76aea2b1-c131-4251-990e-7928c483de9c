@@ -1,0 +1,60 @@
+<div class="content" name="NTMS_IEPORTINFORMATION" uuid="76aea2b1-c131-4251-990e-7928c483de9c"><p>The NTMS_IEPORTINFORMATION structure defines properties
+specific to an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e2c6dee3-9f37-4fe2-b970-ae3c00a8ed70" data-linktype="relative-path">IE port</a>
+object.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_IEPORTINFORMATION {
+   DWORD Number;
+   DWORD Content;
+   DWORD Position;
+   unsigned short MaxExtendSecs;
+   NTMS_GUID Library;
+ } NTMS_IEPORTINFORMATION;
+</pre></div>
+</dd></dl><p><b>Number:</b>   The library <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a> number. </p><p><b>Content:</b>  The full/empty state of
+the NTMS_IEPORT object. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>NTMS_PORTCONTENT_UNKNOWN 0x00000000</td>
+  <td>The content of the port is not known.</td>
+ </tr><tr>
+  <td>NTMS_PORTCONTENT_FULL 0x00000001</td>
+  <td>The port is full.</td>
+ </tr><tr>
+  <td>NTMS_PORTCONTENT_EMPTY 0x00000002</td>
+  <td>The port is empty.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Position:</b>  The position of the
+NTMS_IEPORT object. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>NTMS_PORTPOSITION_UNKNOWN 0x00000000</td>
+  <td>The port position is unknown.</td>
+ </tr><tr>
+  <td>NTMS_PORTPOSITION_EXTENDED 0x00000001</td>
+  <td>The port is extended.</td>
+ </tr><tr>
+  <td>NTMS_PORTPOSITION_RETRACTED 0x00000002</td>
+  <td>The port is retracted.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>MaxExtendSecs:</b>  The maximum number
+of seconds the port is allowed to remain open before an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator request</a> is issued.
+Valid values are between zero and 65,535 seconds.</p><p><b>Library:</b>  The library that contains
+the port.</p></div>

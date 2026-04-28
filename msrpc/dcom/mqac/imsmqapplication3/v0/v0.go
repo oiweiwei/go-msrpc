@@ -1220,6 +1220,10 @@ type GetDirectoryServiceServerResponse struct {
 	// pbstrDirectoryServiceServer: A pointer to a BSTR that, when successfully completed,
 	// contains the name of the directory computer in DNS or NetBIOS format, prefixed by
 	// "\\". The string MUST use the following format, which is specified in ABNF.
+	//
+	// DirectoryServer ="\\" Name
+	//  Alpha           = %x41-5A / %x61-7A
+	//  Name            =1*255Alpha
 	DirectoryServiceServer *oaut.String `idl:"name:pbstrDirectoryServiceServer" json:"directory_service_server"`
 	// Return: The DirectoryServiceServer return value.
 	Return int32 `idl:"name:Return" json:"return"`

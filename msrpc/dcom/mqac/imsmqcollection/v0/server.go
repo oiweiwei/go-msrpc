@@ -45,7 +45,13 @@ type CollectionServer interface {
 	// error HRESULT on failure.
 	GetCount(context.Context, *GetCountRequest) (*GetCountResponse, error)
 
-	// _NewEnum operation.
+	// The _NewEnum method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return a pointer to an IUnknown interface pointer that represents
+	// an enumerator instance for this collection. _NewEnum implements the IEnumVARIANT
+	// server functionality, as described in [MS-OAUT] section 3.3.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	_NewEnum(context.Context, *_NewEnumRequest) (*_NewEnumResponse, error)
 }
 

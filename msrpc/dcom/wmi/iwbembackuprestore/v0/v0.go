@@ -56,6 +56,8 @@ type BackupRestoreClient interface {
 	// as specified in [MS-ERREF] section 2.1. The actual HRESULT value is implementation
 	// dependent.
 	//
+	// WBEM_S_NO_ERROR (0x00)
+	//
 	// The IWbemBackupRestore::Backup method MUST be called on the interface that is obtained
 	// from the DCOM Remote Protocol activation of a CLSID_WbemBackupRestore interface,
 	// as specified in this section.
@@ -74,6 +76,8 @@ type BackupRestoreClient interface {
 	// In case of failure, the server MUST return an HRESULT whose S (severity) bit is set
 	// as specified in [MS-ERREF] section 2.1. The actual HRESULT value is implementation
 	// dependent.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	Restore(context.Context, *RestoreRequest, ...dcerpc.CallOption) (*RestoreResponse, error)
 
 	// AlterContext alters the client context.

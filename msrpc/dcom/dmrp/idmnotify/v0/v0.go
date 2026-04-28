@@ -376,6 +376,12 @@ type ObjectsChangedRequest struct {
 	// ByteStream also appear in other interfaces as RPC-marshaled structures. In these
 	// interfaces, the structure fields will be marshaled in NDR format.
 	//
+	// The byte stream contains a sequence of one or more notification frames. Each frame
+	// is made up of a sequence of the following fields: size, type, action, and a structure
+	// of the type specified in the type field. Some of the structures contain character
+	// pointer fields. These fields contain pointers to variable-length character strings,
+	// and the following technique is used at the server to load the byte stream:
+	//
 	// *
 	//
 	// The structure is copied one byte at a time from memory into ByteStream beginning

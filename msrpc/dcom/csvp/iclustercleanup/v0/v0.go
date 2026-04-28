@@ -70,6 +70,10 @@ type ClusterCleanupClient interface {
 	//	| 0x80070102 WAIT_TIMEOUT | The Cleanup Timer (section 3.8.2.2) expired before cleanup was completed. |
 	//	+-------------------------+---------------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -95,6 +99,10 @@ type ClusterCleanupClient interface {
 	//	+---------------------------------+--------------------------+
 	//	| 0x80070002 ERROR_FILE_NOT_FOUND | The disk was not found.  |
 	//	+---------------------------------+--------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].

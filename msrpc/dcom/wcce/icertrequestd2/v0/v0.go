@@ -997,146 +997,160 @@ type GetCAPropertyRequest struct {
 	Authority string `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
 	// PropID:  An integer value that specifies the property to be returned.
 	//
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	|             PROPERTY             |    NUMERICAL    |                 |                                                                                  |
-	//	|               NAME               |      VALUE      |   TYPE/INDEX    |                                     MEANING                                      |
-	//	|                                  |                 |                 |                                                                                  |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_FILEVERSION              | 0x00000001      | String          | A string that MUST contain the CA version information.                           |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_PRODUCTVERSION           | 0x00000002      | String          | A string that MUST contain the build number of the CA.                           |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_EXITCOUNT                | 0x00000003      | Long            | MUST be the number of exit algorithms registered on the CA.                      |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_EXITDESCRIPTION          | 0x00000004      | String indexed  | A string that MUST contain the name of the exit algorithm identified by the      |
-	//	|                                  |                 |                 | PropIndex parameter.                                                             |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_POLICYDESCRIPTION        | 0x00000005      | String          | A string that MUST contain the description of the policy algorithm on the CA.    |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CANAME                   | 0x00000006      | String          | A string that MUST contain the CN, as specified in [RFC3280], of a CA.           |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_SANITIZEDCANAME          | 0x00000007      | String          | A string that MUST contain the sanitized name of the CA. More information about  |
-	//	|                                  |                 |                 | sanitized name is specified in section 3.1.1.4.1.1.                              |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_SHAREDFOLDER             | 0x00000008      | String          | A string that MUST contain the UNC path of a folder that contains the CA         |
-	//	|                                  |                 |                 | information and signature certificates.                                          |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_PARENTCA                 | 0x00000009      | String          | A string that MUST contain the name of the parent CA to the current CA.          |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CATYPE                   | 0x0000000A      | Long            | MUST be a CAINFO structure that MUST contain the CA type. More information is    |
-	//	|                                  |                 |                 | specified in section 3.2.1.4.3.2.10.                                             |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CASIGCERTCOUNT           | 0x0000000B      | Long            | MUST be the number of signing certificates on the CA.                            |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CASIGCERT                | 0x0000000C      | Binary, indexed | MUST be a binary object that contains a signing certificate identified by the    |
-	//	|                                  |                 |                 | PropIndex parameter.                                                             |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CASIGCERTCHAIN           | 0x0000000D      | Binary, indexed | MUST be a binary object that contains the certificate chain for a signing        |
-	//	|                                  |                 |                 | certificate identified by the PropIndex parameter.                               |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CAXCHGCERTCOUNT          | 0x0000000E      | Long            | MUST be 0x1.                                                                     |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CAXCHGCERT               | 0x0000000F      | Binary, indexed | MUST be a binary object that contains the CA's current exchange certificate      |
-	//	|                                  |                 |                 | from the Current_CA_Exchange_Cert datum. The PropIndex parameter MUST be 0x0 or  |
-	//	|                                  |                 |                 | 0xFFFFFFFF.                                                                      |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CAXCHGCERTCHAIN          | 0x00000010      | Binary, indexed | MUST be a binary object that contains the certificate chain for the CA's current |
-	//	|                                  |                 |                 | exchange certificate from the Current_CA_Exchange_Cert datum. The PropIndex      |
-	//	|                                  |                 |                 | parameter MUST be 0x0 or 0xFFFFFFFF.                                             |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_BASECRL                  | 0x00000011      | Binary, indexed | MUST be a CRL, for a CA signing certificate identified by the PropIndex          |
-	//	|                                  |                 |                 | parameter.                                                                       |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_DELTACRL                 | 0x00000012      | Binary, indexed | MUST be a delta CRL, for a CA signing certificate identified by the PropIndex    |
-	//	|                                  |                 |                 | parameter. For more information about delta CRLs, see [MSFT-CRL]. Additional     |
-	//	|                                  |                 |                 | information is specified in [RFC3280] section 5.2.                               |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CACERTSTATE              | 0x00000013      | Long indexed    | MUST be a byte array that contains the disposition status of all CA signing      |
-	//	|                                  |                 |                 | certificates. Disposition status is specified in section 3.2.1.4.3.2.19.         |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CRLSTATE                 | 0x00000014      | Long indexed    | MUST be a byte array that contains the status for all the CRLs of the CA.        |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CAPROPIDMAX              | 0x00000015      | Long            | MUST be the maximum property identifier supported by the CA.                     |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_DNSNAME                  | 0x00000016      | String          | MUST be the fully qualified domain name (FQDN) of the computer on which the CA   |
-	//	|                                  |                 |                 | is installed.                                                                    |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_ROLESEPARATIONENABLED    | 0x00000017      | Long            | Indicates whether administrative role separation has been enabled on the CA.     |
-	//	|                                  |                 |                 | A nonzero return value means that role separation has been enabled. Zero means   |
-	//	|                                  |                 |                 | that role separation has not been enabled.                                       |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_KRACERTUSEDCOUNT         | 0x00000018      | Long            | MUST be the minimum number of KRAs to use when archiving a private key. For more |
-	//	|                                  |                 |                 | information about KRA usage, see [MSFT-ARCHIVE].                                 |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_KRACERTCOUNT             | 0x00000019      | Long            | MUST be the maximum number of KRA certificates available on the CA.              |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_KRACERT                  | 0x0000001A      | Binary, indexed | A KRA certificate identified by the PropIndex parameter.                         |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_KRACERTSTATE             | 0x0000001B      | Long, indexed   | MUST be a byte array that contains the status of the KRA certificates registered |
-	//	|                                  |                 |                 | with the CA.                                                                     |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_ADVANCEDSERVER           | 0x0000001C      | Long            | MUST identify whether the CA operating system is an advanced server platform.    |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_TEMPLATES                | 0x0000001D      | String          | MUST be a collection of name and OID pairs that identify the templates supported |
-	//	|                                  |                 |                 | by a CA.                                                                         |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_BASECRLPUBLISHSTATUS     | 0x0000001E      | Long, indexed   | MUST be the publishing status of a signing certificate base CRL identified by    |
-	//	|                                  |                 |                 | the PropIndex parameter.                                                         |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_DELTACRLPUBLISHSTATUS    | 0x0000001F      | Long, indexed   | MUST be the publishing status of a signing certificate delta CRL identified by   |
-	//	|                                  |                 |                 | the PropIndex parameter.                                                         |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CASIGCERTCRLCHAIN        | 0x00000020      | Binary, indexed | MUST be a binary object that contains the certificate chain for a signing        |
-	//	|                                  |                 |                 | certificate and the CRL for the certificates in the chain identified by the      |
-	//	|                                  |                 |                 | PropIndex parameter.                                                             |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CAXCHGCERTCRLCHAIN       | 0x00000021      | Binary, indexed | MUST be a binary object for a chain containing CRLs for the CA's current         |
-	//	|                                  |                 |                 | exchange certificate from the Current_CA_Exchange_Cert datum. The PropIndex      |
-	//	|                                  |                 |                 | parameter MUST be 0x00000000 or 0xFFFFFFFF.                                      |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CACERTSTATUSCODE         | 0x00000022      | Long, indexed   | MUST be an HRESULT that identifies the result of certificate validation, as      |
-	//	|                                  |                 |                 | specified in [RFC3280], by the CA for the CA signing certificates identified by  |
-	//	|                                  |                 |                 | the PropIndex parameter.                                                         |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CAFORWARDCROSSCERT       | 0x00000023      | Binary, indexed | MUST be a forward cross certificate, by index, from a CA. For more information   |
-	//	|                                  |                 |                 | about cross certificates, see [MSFT-CROSSCERT].                                  |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CABACKWARDCROSSCERT      | 0x00000024      | Binary, indexed | MUST be a backward cross certificate, by index, from a CA. For more information  |
-	//	|                                  |                 |                 | about cross certificates.                                                        |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CAFORWARDCROSSCERTSTATE  | 0x00000025      | Long, indexed   | MUST be a byte array that identifies the status of all backward cross            |
-	//	|                                  |                 |                 | certificates for a CA.                                                           |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CABACKWARDCROSSCERTSTATE | 0x00000026      | Long, indexed   | MUST be a byte array that identifies the disposition status of all forward cross |
-	//	|                                  |                 |                 | certificates for a CA.                                                           |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CACERTVERSION            | 0x00000027      | Long, indexed   | MUST be an indexed 32-bit integer that contains the version number of a CA       |
-	//	|                                  |                 |                 | signing certificate.                                                             |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_SANITIZEDCASHORTNAME     | 0x00000028      | String          | The property MUST return the sanitized shortened name of the CA. More            |
-	//	|                                  |                 |                 | information about the sanitized name is specified in section 3.1.1.4.1.1.        |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CERTCDPURLS              | 0x00000029      | String, indexed | MUST be a null-terminated [UNICODE] string of the format "String1\nString2\n",   |
-	//	|                                  |                 |                 | where each string (separated by '\n') MUST represent a URI to be part of a CRL   |
-	//	|                                  |                 |                 | Distribution Point (CDP) extension, as specified in [RFC3280] section 4.2.1.14.  |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CERTAIAURLS              | 0x0000002A      | String, indexed | MUST be a null-terminated [UNICODE] string of the format "String1\nString2\n",   |
-	//	|                                  |                 |                 | where each string (separated by '\n') MUST represent a URI to be part of         |
-	//	|                                  |                 |                 | Authority Information Access extension, as specified in [RFC3280] section        |
-	//	|                                  |                 |                 | 4.2.2.1.                                                                         |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_CERTAIAOCSPRLS           | 0x0000002B      | String, indexed | MUST be a null-terminated [UNICODE] string of the format "String1\nString2\n",   |
-	//	|                                  |                 |                 | where each string (separated by '\n') MUST represent the OCSP URLs configured on |
-	//	|                                  |                 |                 | the CA, as specified in [RFC3280] section 4.2.2.1.                               |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_LOCALENAME               | 0x0000002C      | String          | MUST be a null-terminated [UNICODE] string in the 'Language-Region' format (as   |
-	//	|                                  |                 |                 | specified in [RFC4646]) that represents the locale of the CA.                    |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
-	//	| CR_PROP_SUBJECTTEMPLATE_OIDS     | 0x0000002D      | String          | MUST be a null-terminated [UNICODE] string of the format "OID1\nOID2\n", where   |
-	//	|                                  |                 |                 | each OID (separated by '\n') MUST represent a Relative Distinguished Name that   |
-	//	|                                  |                 |                 | is in a certificate Subject Distinguished Name.                                  |
-	//	+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	|                 PROPERTY                  |    NUMERICAL    |                 |                                                                                  |
+	//	|                   NAME                    |      VALUE      |   TYPE/INDEX    |                                     MEANING                                      |
+	//	|                                           |                 |                 |                                                                                  |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_FILEVERSION                       | 0x00000001      | String          | A string that MUST contain the CA version information.                           |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_PRODUCTVERSION                    | 0x00000002      | String          | A string that MUST contain the build number of the CA.                           |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_EXITCOUNT                         | 0x00000003      | Long            | MUST be the number of exit algorithms registered on the CA.                      |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_EXITDESCRIPTION                   | 0x00000004      | String indexed  | A string that MUST contain the name of the exit algorithm identified by the      |
+	//	|                                           |                 |                 | PropIndex parameter.                                                             |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_POLICYDESCRIPTION                 | 0x00000005      | String          | A string that MUST contain the description of the policy algorithm on the CA.    |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CANAME                            | 0x00000006      | String          | A string that MUST contain the CN, as specified in [RFC3280], of a CA.           |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_SANITIZEDCANAME                   | 0x00000007      | String          | A string that MUST contain the sanitized name of the CA. More information about  |
+	//	|                                           |                 |                 | sanitized name is specified in section 3.1.1.4.1.1.                              |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_SHAREDFOLDER                      | 0x00000008      | String          | A string that MUST contain the UNC path of a folder that contains the CA         |
+	//	|                                           |                 |                 | information and signature certificates.                                          |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_PARENTCA                          | 0x00000009      | String          | A string that MUST contain the name of the parent CA to the current CA.          |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CATYPE                            | 0x0000000A      | Long            | MUST be a CAINFO structure that MUST contain the CA type. More information is    |
+	//	|                                           |                 |                 | specified in section 3.2.1.4.3.2.10.                                             |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CASIGCERTCOUNT                    | 0x0000000B      | Long            | MUST be the number of signing certificates on the CA.                            |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CASIGCERT                         | 0x0000000C      | Binary, indexed | MUST be a binary object that contains a signing certificate identified by the    |
+	//	|                                           |                 |                 | PropIndex parameter.                                                             |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CASIGCERTCHAIN                    | 0x0000000D      | Binary, indexed | MUST be a binary object that contains the certificate chain for a signing        |
+	//	|                                           |                 |                 | certificate identified by the PropIndex parameter.                               |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CAXCHGCERTCOUNT                   | 0x0000000E      | Long            | MUST be 0x1.                                                                     |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CAXCHGCERT                        | 0x0000000F      | Binary, indexed | MUST be a binary object that contains the CA's current exchange certificate      |
+	//	|                                           |                 |                 | from the Current_CA_Exchange_Cert datum. The PropIndex parameter MUST be 0x0 or  |
+	//	|                                           |                 |                 | 0xFFFFFFFF.                                                                      |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CAXCHGCERTCHAIN                   | 0x00000010      | Binary, indexed | MUST be a binary object that contains the certificate chain for the CA's current |
+	//	|                                           |                 |                 | exchange certificate from the Current_CA_Exchange_Cert datum. The PropIndex      |
+	//	|                                           |                 |                 | parameter MUST be 0x0 or 0xFFFFFFFF.                                             |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_BASECRL                           | 0x00000011      | Binary, indexed | MUST be a base CRL, for a CA signing certificate identified by the PropIndex     |
+	//	|                                           |                 |                 | parameter.                                                                       |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_DELTACRL                          | 0x00000012      | Binary, indexed | MUST be a delta CRL, for a CA signing certificate identified by the PropIndex    |
+	//	|                                           |                 |                 | parameter. For more information about delta CRLs, see [MSFT-CRL]. Additional     |
+	//	|                                           |                 |                 | information is specified in [RFC3280] section 5.2.                               |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CACERTSTATE                       | 0x00000013      | Long indexed    | MUST be a byte array that contains the disposition status of all CA signing      |
+	//	|                                           |                 |                 | certificates. Disposition status is specified in section 3.2.1.4.3.2.19.         |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CRLSTATE                          | 0x00000014      | Long indexed    | MUST be a byte array that contains the status for all the CRLs of the CA.        |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CAPROPIDMAX                       | 0x00000015      | Long            | MUST be the maximum property identifier supported by the CA.                     |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_DNSNAME                           | 0x00000016      | String          | MUST be the fully qualified domain name (FQDN) of the computer on which the CA   |
+	//	|                                           |                 |                 | is installed.                                                                    |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_ROLESEPARATIONENABLED             | 0x00000017      | Long            | Indicates whether administrative role separation has been enabled on the CA.     |
+	//	|                                           |                 |                 | A nonzero return value means that role separation has been enabled. Zero means   |
+	//	|                                           |                 |                 | that role separation has not been enabled.                                       |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_KRACERTUSEDCOUNT                  | 0x00000018      | Long            | MUST be the minimum number of KRAs to use when archiving a private key. For more |
+	//	|                                           |                 |                 | information about KRA usage, see [MSFT-ARCHIVE].                                 |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_KRACERTCOUNT                      | 0x00000019      | Long            | MUST be the maximum number of KRA certificates available on the CA.              |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_KRACERT                           | 0x0000001A      | Binary, indexed | A KRA certificate identified by the PropIndex parameter.                         |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_KRACERTSTATE                      | 0x0000001B      | Long, indexed   | MUST be a byte array that contains the status of the KRA certificates registered |
+	//	|                                           |                 |                 | with the CA.                                                                     |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_ADVANCEDSERVER                    | 0x0000001C      | Long            | MUST identify whether the CA operating system is an advanced server platform.    |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_TEMPLATES                         | 0x0000001D      | String          | MUST be a collection of name and OID pairs that identify the templates supported |
+	//	|                                           |                 |                 | by a CA.                                                                         |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_BASECRLPUBLISHSTATUS              | 0x0000001E      | Long, indexed   | MUST be the publishing status of a signing certificate base CRL identified by    |
+	//	|                                           |                 |                 | the PropIndex parameter.                                                         |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_DELTACRLPUBLISHSTATUS             | 0x0000001F      | Long, indexed   | MUST be the publishing status of a signing certificate delta CRL identified by   |
+	//	|                                           |                 |                 | the PropIndex parameter.                                                         |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CASIGCERTCRLCHAIN                 | 0x00000020      | Binary, indexed | MUST be a binary object that contains the certificate chain for a signing        |
+	//	|                                           |                 |                 | certificate and the CRL for the certificates in the chain identified by the      |
+	//	|                                           |                 |                 | PropIndex parameter.                                                             |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CAXCHGCERTCRLCHAIN                | 0x00000021      | Binary, indexed | MUST be a binary object for a chain containing CRLs for the CA's current         |
+	//	|                                           |                 |                 | exchange certificate from the Current_CA_Exchange_Cert datum. The PropIndex      |
+	//	|                                           |                 |                 | parameter MUST be 0x00000000 or 0xFFFFFFFF.                                      |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CACERTSTATUSCODE                  | 0x00000022      | Long, indexed   | MUST be an HRESULT that identifies the result of certificate validation, as      |
+	//	|                                           |                 |                 | specified in [RFC3280], by the CA for the CA signing certificates identified by  |
+	//	|                                           |                 |                 | the PropIndex parameter.                                                         |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CAFORWARDCROSSCERT                | 0x00000023      | Binary, indexed | MUST be a forward cross certificate, by index, from a CA. For more information   |
+	//	|                                           |                 |                 | about cross certificates, see [MSFT-CROSSCERT].                                  |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CABACKWARDCROSSCERT               | 0x00000024      | Binary, indexed | MUST be a backward cross certificate, by index, from a CA. For more information  |
+	//	|                                           |                 |                 | about cross certificates.                                                        |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CAFORWARDCROSSCERTSTATE           | 0x00000025      | Long, indexed   | MUST be a byte array that identifies the status of all backward cross            |
+	//	|                                           |                 |                 | certificates for a CA.                                                           |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CABACKWARDCROSSCERTSTATE          | 0x00000026      | Long, indexed   | MUST be a byte array that identifies the disposition status of all forward cross |
+	//	|                                           |                 |                 | certificates for a CA.                                                           |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CACERTVERSION                     | 0x00000027      | Long, indexed   | MUST be an indexed 32-bit integer that contains the version number of a CA       |
+	//	|                                           |                 |                 | signing certificate.                                                             |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_SANITIZEDCASHORTNAME              | 0x00000028      | String          | The property MUST return the sanitized shortened name of the CA. More            |
+	//	|                                           |                 |                 | information about the sanitized name is specified in section 3.1.1.4.1.1.        |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CERTCDPURLS                       | 0x00000029      | String, indexed | MUST be a null-terminated [UNICODE] string of the format "String1\nString2\n",   |
+	//	|                                           |                 |                 | where each string (separated by '\n') MUST represent a URI to be part of a CRL   |
+	//	|                                           |                 |                 | Distribution Point (CDP) extension, as specified in [RFC3280] section 4.2.1.14.  |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CERTAIAURLS                       | 0x0000002A      | String, indexed | MUST be a null-terminated [UNICODE] string of the format "String1\nString2\n",   |
+	//	|                                           |                 |                 | where each string (separated by '\n') MUST represent a URI to be part of         |
+	//	|                                           |                 |                 | Authority Information Access extension, as specified in [RFC3280] section        |
+	//	|                                           |                 |                 | 4.2.2.1.                                                                         |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CERTAIAOCSPRLS                    | 0x0000002B      | String, indexed | MUST be a null-terminated [UNICODE] string of the format "String1\nString2\n",   |
+	//	|                                           |                 |                 | where each string (separated by '\n') MUST represent the OCSP URLs configured on |
+	//	|                                           |                 |                 | the CA, as specified in [RFC3280] section 4.2.2.1.                               |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_LOCALENAME                        | 0x0000002C      | String          | MUST be a null-terminated [UNICODE] string in the 'Language-Region' format (as   |
+	//	|                                           |                 |                 | specified in [RFC4646]) that represents the locale of the CA.                    |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_SUBJECTTEMPLATE_OIDS              | 0x0000002D      | String          | MUST be a null-terminated [UNICODE] string of the format "OID1\nOID2\n", where   |
+	//	|                                           |                 |                 | each OID (separated by '\n') MUST represent a Relative Distinguished Name that   |
+	//	|                                           |                 |                 | is in a certificate Subject Distinguished Name.                                  |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_CRLPARTITIONCOUNT                 | 0x0000002E      | Long            | MUST be the maximum number of CRL partitions configured at the CA.               |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_PARTITIONED_BASECRL               | 0x0000002F      | Binary, indexed | MUST be a base CRL, for a CA signing certificate and partition identified by the |
+	//	|                                           |                 |                 | PropIndex parameter.                                                             |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_PARTITIONED_DELTACRL              | 0x00000030      | Binary, indexed | MUST be a delta CRL, for a CA signing certificate and partition identified by    |
+	//	|                                           |                 |                 | the PropIndex parameter.                                                         |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_PARTITIONED_BASECRLPUBLISHSTATUS  | 0x00000031      | Long, indexed   | MUST be the publishing status of a base CRL, for a CA signing certificate and    |
+	//	|                                           |                 |                 | partition identified by the PropIndex parameter.                                 |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
+	//	| CR_PROP_PARTITIONED_DELTACRLPUBLISHSTATUS | 0x00000032      | Long, indexed   | MUST be the publishing status of a delta CRL, for a CA signing certificate and   |
+	//	|                                           |                 |                 | partition identified by the PropIndex parameter.                                 |
+	//	+-------------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+
 	PropertyID int32 `idl:"name:PropID" json:"property_id"`
 	// PropIndex: This parameter is used as the index to a property that can contain multiple
 	// values.
@@ -1213,6 +1227,9 @@ type GetCAPropertyResponse struct {
 	// pctbPropertyValue: If the function succeeds, this method returns a CERTTRANSBLOB
 	// structure in this parameter that contains the property value. If the function fails,
 	// the content of this parameter is undefined.
+	//
+	// The data type of the value returned depends on the value specified in the PropType
+	// parameter and the property specified in the PropID parameter.
 	PropertyValue *wcce.CertTransportBlob `idl:"name:pctbPropertyValue;pointer:ref" json:"property_value"`
 	// Return: The GetCAProperty return value.
 	Return int32 `idl:"name:Return" json:"return"`

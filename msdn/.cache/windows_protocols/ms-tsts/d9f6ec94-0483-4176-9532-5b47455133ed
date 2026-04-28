@@ -1,0 +1,242 @@
+<div class="content" name="LegacyApi" uuid="d9f6ec94-0483-4176-9532-5b47455133ed"><p>The LegacyApi provides legacy methods that manipulate a
+terminal client. The version for this interface is 1.0.</p><p>For <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoints</a></span>, <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+values, and versions, see sections <span><a href="ac0535d0-a847-4386-ae3e-e93a50ff2484" data-linktype="relative-path">2.1</a></span> and <span><a href="4f5ff568-2887-4c50-8b36-38bb85170b58" data-linktype="relative-path">1.9</a></span>.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>RpcWinStationOpenServer</td>
+  <td>Returns a server handle that can be used in other WinStation API methods for querying information on the WinStation (sessions) on the server. Opnum: 0</td>
+ </tr><tr>
+  <td>RpcWinStationCloseServer</td>
+  <td>Closes the server handle for WinStation APIs. Opnum: 1</td>
+ </tr><tr>
+  <td>RpcIcaServerPing</td>
+  <td>Verifies that the server is alive. Opnum: 2</td>
+ </tr><tr>
+  <td>RpcWinStationEnumerate</td>
+  <td>Retrieves a list of LOGONID structures for sessions on a terminal server. Opnum: 3</td>
+ </tr><tr>
+  <td>RpcWinStationRename</td>
+  <td>Enables the caller to change the name of the session. Opnum: 4</td>
+ </tr><tr>
+  <td>RpcWinStationQueryInformation</td>
+  <td>Retrieves various types of configuration information on a session. Opnum: 5</td>
+ </tr><tr>
+  <td>RpcWinStationSetInformation</td>
+  <td>Sets various types of configuration information for a session. Opnum: 6</td>
+ </tr><tr>
+  <td>RpcWinStationSendMessage</td>
+  <td>Displays a message box on a given terminal server session and, optionally, waits for a reply. Opnum: 7</td>
+ </tr><tr>
+  <td>RpcLogonIdFromWinStationName</td>
+  <td>Given a session name, returns the session&#39;s session ID. Opnum: 8</td>
+ </tr><tr>
+  <td>RpcWinStationNameFromLogonId</td>
+  <td>Retrieves the Windows Station (WinStation) name for a specific session. Opnum: 9</td>
+ </tr><tr>
+  <td>RpcWinStationConnect</td>
+  <td>Connects a user&#39;s terminal server client from a given terminal server session to a different terminal server session. Opnum: 10</td>
+ </tr><tr>
+  <td>Opnum11NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 11</td>
+ </tr><tr>
+  <td>Opnum12NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 12</td>
+ </tr><tr>
+  <td>RpcWinStationDisconnect</td>
+  <td>On the server, disconnects the terminal server client from a session. Opnum: 13</td>
+ </tr><tr>
+  <td>RpcWinStationReset</td>
+  <td>Resets a session. Opnum: 14</td>
+ </tr><tr>
+  <td>RpcWinStationShutdownSystem</td>
+  <td>Shuts down the system and, optionally, logs off all sessions. May also reboot the system. Opnum: 15</td>
+ </tr><tr>
+  <td>RpcWinStationWaitSystemEvent</td>
+  <td>Waits synchronously for a system event from an RPC API request on behalf of the caller. Opnum: 16</td>
+ </tr><tr>
+  <td>RpcWinStationShadow</td>
+  <td>Starts a shadow operation (remote control) of another terminal server session. Opnum: 17</td>
+ </tr><tr>
+  <td>Opnum18NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 18</td>
+ </tr><tr>
+  <td>Opnum19NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 19</td>
+ </tr><tr>
+  <td>Opnum20NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 20</td>
+ </tr><tr>
+  <td>Opnum21NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 21</td>
+ </tr><tr>
+  <td>Opnum22NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 22</td>
+ </tr><tr>
+  <td>Opnum23NotUsedOnWire</td>
+  <td>Reserved for local use. Not implemented. Opnum: 23</td>
+ </tr><tr>
+  <td>Opnum24NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 24</td>
+ </tr><tr>
+  <td>Opnum25NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 25</td>
+ </tr><tr>
+  <td>Opnum26NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 26</td>
+ </tr><tr>
+  <td>Opnum27NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 27</td>
+ </tr><tr>
+  <td>Opnum28NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 28</td>
+ </tr><tr>
+  <td>RpcWinStationBreakPoint</td>
+  <td>Breaks into the debugger in either the session process of a specific session or in the terminal server service process. Opnum: 29</td>
+ </tr><tr>
+  <td>RpcWinStationReadRegistry</td>
+  <td>Tells the server to reread from the registry the configuration data for all the WinStations. Opnum: 30</td>
+ </tr><tr>
+  <td>Opnum31NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 31</td>
+ </tr><tr>
+  <td>Opnum32NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 32</td>
+ </tr><tr>
+  <td>Opnum33NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 33</td>
+ </tr><tr>
+  <td>OldRpcWinStationEnumerateProcesses</td>
+  <td>This function in turn calls the RpcWinStationEnumerateProcesses function. Opnum: 34</td>
+ </tr><tr>
+  <td>Opnum35NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 35</td>
+ </tr><tr>
+  <td>RpcWinStationEnumerateProcesses</td>
+  <td>Returns the process information for an NT4 terminal server. Supported only for backward compatibility with that platform. Opnum: 36</td>
+ </tr><tr>
+  <td>RpcWinStationTerminateProcess</td>
+  <td>Terminates the specified process. Opnum: 37</td>
+ </tr><tr>
+  <td>Opnum38NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 38</td>
+ </tr><tr>
+  <td>Opnum39NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 39</td>
+ </tr><tr>
+  <td>Opnum40NotUsedOnWire</td>
+  <td>Not implemented. Opnum: 40</td>
+ </tr><tr>
+  <td>Opnum41NotUsedOnWire</td>
+  <td>Not implemented. Opnum: 41</td>
+ </tr><tr>
+  <td>Opnum42NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 42</td>
+ </tr><tr>
+  <td>RpcWinStationGetAllProcesses</td>
+  <td>Retrieves a list of the processes on a remote server on which the caller has permission to receive information. Opnum: 43</td>
+ </tr><tr>
+  <td>RpcWinStationGetProcessSid</td>
+  <td>Retrieves the process SID for a given process ID and process start time combination. Opnum: 44</td>
+ </tr><tr>
+  <td>RpcWinStationGetTermSrvCountersValue</td>
+  <td>Retrieves the current value of requested terminal server performance counters. Opnum: 45</td>
+ </tr><tr>
+  <td>RpcWinStationReInitializeSecurity</td>
+  <td>Reinitializes security for all non-console WinStation remote connection protocols specified in the registry. Opnum: 46</td>
+ </tr><tr>
+  <td>Opnum47NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 47</td>
+ </tr><tr>
+  <td>Opnum48NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 48</td>
+ </tr><tr>
+  <td>Opnum49NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 49</td>
+ </tr><tr>
+  <td>Opnum50NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 50</td>
+ </tr><tr>
+  <td>Opnum51NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 51</td>
+ </tr><tr>
+  <td>Opnum52NotUsedOnWire</td>
+  <td>Not implemented. Opnum: 52</td>
+ </tr><tr>
+  <td>RpcWinStationGetLanAdapterName</td>
+  <td>Returns the LAN adapter GUID as a string. Opnum: 53</td>
+ </tr><tr>
+  <td>Opnum54NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 54</td>
+ </tr><tr>
+  <td>Opnum55NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 55</td>
+ </tr><tr>
+  <td>Opnum56NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 56</td>
+ </tr><tr>
+  <td>Opnum57NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 57</td>
+ </tr><tr>
+  <td>RpcWinStationUpdateSettings</td>
+  <td>Rereads settings for all WinStations. Opnum: 58</td>
+ </tr><tr>
+  <td>RpcWinStationShadowStop</td>
+  <td>Stops all shadow operations on the specified session. Opnum: 59</td>
+ </tr><tr>
+  <td>RpcWinStationCloseServerEx</td>
+  <td>Closes the server handle for WinStation APIs. Opnum: 60</td>
+ </tr><tr>
+  <td>RpcWinStationIsHelpAssistantSession</td>
+  <td>Determines whether a session is created by a HelpAssistant account (used for Remote Assistance). Opnum: 61</td>
+ </tr><tr>
+  <td>RpcWinStationGetMachinePolicy</td>
+  <td>Returns a copy of the terminal server machine policy to the caller. Opnum: 62</td>
+ </tr><tr>
+  <td>Opnum63NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 63</td>
+ </tr><tr>
+  <td>Opnum64NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 64</td>
+ </tr><tr>
+  <td>RpcWinStationCheckLoopBack</td>
+  <td>Checks if there is a loopback when a client tries to connect. Opnum: 65</td>
+ </tr><tr>
+  <td>RpcConnectCallback</td>
+  <td>Initiates a connection back to the Remote Assistance (RA) client. Opnum: 66</td>
+ </tr><tr>
+  <td>Opnum67NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 67</td>
+ </tr><tr>
+  <td>Opnum68NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 68</td>
+ </tr><tr>
+  <td>Opnum69NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 69</td>
+ </tr><tr>
+  <td>RpcWinStationGetAllProcesses_NT6</td>
+  <td>Retrieves the processes running a remote server on which the caller has access to retrieve information. Opnum: 70</td>
+ </tr><tr>
+  <td>Opnum71NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 71</td>
+ </tr><tr>
+  <td>Opnum72NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 72</td>
+ </tr><tr>
+  <td>Opnum73NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 73</td>
+ </tr><tr>
+  <td>Opnum74NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 74</td>
+ </tr><tr>
+  <td>RpcWinStationOpenSessionDirectory</td>
+  <td>Pings the Session Directory to see if it can accept RPC calls. Opnum: 75</td>
+ </tr></tbody></table><p>In the preceding table, the phrase &#34;Reserved for local
+use&#34; means that the client MUST NOT send the opnum, and the server
+behavior is undefined, because it does not affect interoperability.<a id="Appendix_A_Target_160"></a><a aria-label="Product behavior note 160" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_160" data-linktype="relative-path">&lt;160&gt;</a></p></div>

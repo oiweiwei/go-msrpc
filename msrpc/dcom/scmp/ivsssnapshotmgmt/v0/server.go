@@ -49,6 +49,9 @@ type SnapshotManagementServer interface {
 	//	|                                          | perform the operation.                                                           |
 	//	+------------------------------------------+----------------------------------------------------------------------------------+
 	//
+	// For any other conditions, the method MUST return zero when it has succeeded or an
+	// implementation-specific nonzero error code on failure.
+	//
 	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
 	// [MS-RPCE].
 	GetProviderManagementInterface(context.Context, *GetProviderManagementInterfaceRequest) (*GetProviderManagementInterfaceResponse, error)

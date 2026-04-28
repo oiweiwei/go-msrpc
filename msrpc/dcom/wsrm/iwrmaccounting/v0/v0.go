@@ -120,6 +120,18 @@ type AccountingClient interface {
 	// column while there are some columns in the group column collection. The following
 	// sample AccountingQueryCondition XML (section 2.2.5.5) SHOULD return this error:
 	//
+	// <AccountingQueryCondition>
+	//      <SelectFieldCollection>
+	//          <Column>ProcessName</Column>
+	//          <Column>ProcessId</Column>
+	//      </SelectFieldCollection>
+	//      <GroupColumnCollection>
+	//          <Column>ProcessName</Column>
+	//      </GroupColumnCollection>
+	//      <OrderColumnCollection />
+	//      <HavingClause />
+	//  </AccountingQueryCondition>
+	//
 	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	ExecuteAccountingQuery(context.Context, *ExecuteAccountingQueryRequest, ...dcerpc.CallOption) (*ExecuteAccountingQueryResponse, error)
 
@@ -1867,6 +1879,12 @@ type ExecuteAccountingQueryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pbstrResult: A pointer to a string that returns the requested data.
+	//
+	// This string is formatted as a set of rows representing accounting process entries.
+	// Rows are delimited by carriage return escape characters (\r). Each row is a set of
+	// columns delimited by newline escape characters (\n). The columns correspond in number
+	// and order to the columns specified in the AccountingQueryCondition element in the
+	// bstrAccountingQuery parameter.
 	Result *oaut.String `idl:"name:pbstrResult" json:"result"`
 	// pbIsThereMoreData: A pointer to a Boolean value that specifies whether more data
 	// is available.
@@ -3704,6 +3722,8 @@ type RegisterAccountingClientRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrClientId: A string that specifies a client machine name.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ClientID *oaut.String `idl:"name:bstrClientId" json:"client_id"`
 }
 
@@ -3964,6 +3984,8 @@ type DumpAccountingDataRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrAccountingData: A string that specifies the accounting data to be dumped, in
 	// the form of an AccountingProcessList element (section 2.2.5.4).
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	AccountingData *oaut.String `idl:"name:bstrAccountingData" json:"accounting_data"`
 }
 
@@ -4484,6 +4506,8 @@ type SetAccountingClientStatusRequest struct {
 	// in the form of an AccountingClientList element (section 2.2.5.1). For an example,
 	// see section 4.2.1. The value of the Enabled attribute specifies the accounting functionality
 	// status of the accounting clients.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ClientIDs *oaut.String `idl:"name:bstrClientIds" json:"client_ids"`
 }
 

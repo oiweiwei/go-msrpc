@@ -98,6 +98,8 @@ var (
 	HelperErrorsEnumNotLocalAdmin HelperErrorsEnum = 2147753985
 	// dfsrHelperErrorCreateVerifyServerControl: Cannot create LDAP_SERVER_VERIFY_NAME_OID
 	// control for the LDAP command.
+	//
+	// For more information about this LDAP control command, see [MS-ADTS] section 3.1.1.3.4.1.16.
 	HelperErrorsEnumCreateVerifyServerControl HelperErrorsEnum = 2147753986
 	// dfsrHelperLdapErrorBase:  This is the base value for LDAP errors.
 	HelperErrorsEnumLDAPErrorBase HelperErrorsEnum = 2147758080
@@ -148,12 +150,46 @@ func (o ReportingFlags) String() string {
 }
 
 // ADAttributeData structure represents _AdAttributeData RPC structure.
+//
+// The AdAttributeData structure provides information about an Active Directory operation.
+// This structure describes the Active Directory operation that is requested by the
+// client. The UUID for this structure is {D3766938-9FB7-4392-AF2F-2CE8749DBBD0}.
 type ADAttributeData struct {
-	Operation      int32        `idl:"name:operation" json:"operation"`
-	AttributeName  *oaut.String `idl:"name:attributeName" json:"attribute_name"`
+	// operation:  Specifies the LDAP operation that MUST be executed for the attribute
+	// that is specified by the attributeName parameter. This value MUST be specified by
+	// using rules for the operation field of the LDAP ModifyRequest. For information about
+	// ModifyRequest, see [RFC2251] section 4.6.
+	Operation int32 `idl:"name:operation" json:"operation"`
+	// attributeName:  MUST be the name of the attribute on which to execute the LDAP operation
+	// that is specified by the operation parameter.
+	AttributeName *oaut.String `idl:"name:attributeName" json:"attribute_name"`
+	// attributeValue:  The value of the attribute that is specified by the attributeName
+	// parameter. The value of this parameter MUST be built by using the following rules:
+	//
+	// * If the value can be represented as a string, the attributeValue field MUST contain
+	// the string representation of the value.
+	//
+	// * If the value contains raw binary data, the attributeValue field MUST contain the
+	// binary data encoded in the BSTR ( ../ms-oaut/1c9d2cfc-cf7d-4f4b-95bf-584be5defd81
+	// ) according to the following rules:
+	//
+	// * The length, in bytes, of the BSTR buffer MUST be greater than or equal to the value
+	// of the size of the binary data that is to be encoded.
+	//
+	// * The BSTR buffer MUST be filled by the bytes that compose the in-memory representation
+	// of the binary data that is being encoded. The part of the buffer between offsets
+	// 0 and "length - 1" MUST be passed to the LDAP protocol by the server. The remainder
+	// of the BSTR buffer, if any, MUST be ignored by the server.
 	AttributeValue *oaut.String `idl:"name:attributeValue" json:"attribute_value"`
-	IsString       int16        `idl:"name:isString" json:"is_string"`
-	Length         int32        `idl:"name:length" json:"length"`
+	// isString:  Specifies whether the value that is passed in the attributeValue field
+	// is a string. The value of this field MUST be VARIANT_FALSE (as specified in [MS-OAUT]
+	// section 2.2.27) if the attributeValue field contains a binary value. Otherwise, the
+	// value MUST be VARIANT_TRUE.
+	IsString int16 `idl:"name:isString" json:"is_string"`
+	// length:  For a binary value, the length, in bytes, of the value MUST be provided
+	// in this field. For string data, this field MUST be set to the length, in bytes, of
+	// the Unicode string (see [UNICODE4.0].
+	Length int32 `idl:"name:length" json:"length"`
 }
 
 func (o *ADAttributeData) xxx_PreparePayload(ctx context.Context) error {
@@ -274,11 +310,54 @@ func (o *ADAttributeData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 }
 
 // VersionVectorData structure represents _VersionVectorData RPC structure.
+//
+// The VersionVectorData structure provides information about the DFS-R version vector.
+// The DFS-R version vector is an array of identifiers and versions of modified files
+// in a replicated folder. The version vector is specified in [MS-FRS2] section 2.2.1.4.1.
+// The UUID for this structure is {7A2323C7-9EBE-494a-A33C-3CC329A18E1D}.
 type VersionVectorData struct {
-	UncompressedSize int32         `idl:"name:uncompressedSize" json:"uncompressed_size"`
-	BacklogCount     int32         `idl:"name:backlogCount" json:"backlog_count"`
-	ContentSetGUID   *oaut.String  `idl:"name:contentSetGuid" json:"content_set_guid"`
-	VersionVector    *oaut.Variant `idl:"name:versionVector" json:"version_vector"`
+	// uncompressedSize:  MUST be the number of bytes in the uncompressed version vector.
+	// The version vector is defined by FRS_ASYNC_VERSION_VECTOR_RESPONSE, as specified
+	// in [MS-FRS2] section 2.2.1.4.12.
+	UncompressedSize int32 `idl:"name:uncompressedSize" json:"uncompressed_size"`
+	// backlogCount:  MUST be the number of backlogged transactions for the replicated folder
+	// on the server.
+	BacklogCount int32 `idl:"name:backlogCount" json:"backlog_count"`
+	// contentSetGuid:  MUST be a string representation of the GUID of the replicated folder.
+	ContentSetGUID *oaut.String `idl:"name:contentSetGuid" json:"content_set_guid"`
+	// versionVector:  MUST be the version vector for the replicated folder whose GUID is
+	// specified by the contentSetGuid field.
+	//
+	// The version vector is either compressed (that is, an encoded field whose format is
+	// specified by the DFS-R compression algorithm (as specified in [MS-FRS2] section 3.1.1.1)
+	// or uncompressed. The version vector MUST be represented by a VARIANT field that has
+	// a VT_BSTR variant type.
+	//
+	// The client MUST determine whether the version vector is compressed by applying the
+	// following rules:
+	//
+	// * If the sum of the number of characters, including the terminating null character
+	// in the BSTR ( ../ms-dtyp/692a42a9-06ce-4394-b9bc-5d2a50440168 ) , multiplied by the
+	// size, in bytes, of a Unicode ( acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8
+	// ) character (2 bytes) is less than the value of the *uncompressedSize* field, the
+	// version vector is sent in compressed form. See [UNICODE4.0] ( https://go.microsoft.com/fwlink/?LinkId=90552
+	// ).
+	//
+	// * Otherwise, the version vector is uncompressed.
+	//
+	// The compressed or uncompressed version vector MUST be encoded in a BSTR and passed
+	// by using the *versionVector.bstrVal* field.
+	//
+	// The compressed or uncompressed version vector buffer MUST be encoded in a BSTR by
+	// applying the following rules:
+	//
+	// * The length, in bytes, of the BSTR buffer MUST be greater than or equal to the value
+	// of the size of the binary data that is to be encoded.
+	//
+	// * The part of the BSTR buffer between offsets 0 and "length - 1" MUST be filled by
+	// the compressed or uncompressed data, as specified previously. The remainder of the
+	// BSTR buffer (if any) MUST be ignored by the server.
+	VersionVector *oaut.Variant `idl:"name:versionVector" json:"version_vector"`
 }
 
 func (o *VersionVectorData) xxx_PreparePayload(ctx context.Context) error {

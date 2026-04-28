@@ -1,0 +1,140 @@
+<div class="content" name="NETLOGON_INFO_1" uuid="afeb873c-4826-4beb-a35c-ae73a708b108"><p>The <b>NETLOGON_INFO_1</b> structure defines information
+returned as part of an administrative query, as detailed in the description of
+the <b>NetrLogonControl2Ex </b>method in section <span><a href="df7e5dd1-ebcc-4754-9da0-2e0bded82d29" data-linktype="relative-path">3.5.4.9.1</a></span>. This
+structure is used to convey information about the state and properties of the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure
+channel</a></span> to a <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> in the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_387021de-3d6b-4372-835f-0d68c50cb496" data-linktype="relative-path">primary
+domain</a></span> of the queried server. Additionally, this structure MAY<a id="Appendix_A_Target_60"></a><a aria-label="Product behavior note 60" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_60" data-linktype="relative-path">&lt;60&gt;</a> contain information about the
+state of the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a></span>
+synchronization.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_INFO_1 {
+   DWORD netlog1_flags;
+   NET_API_STATUS netlog1_pdc_connection_status;
+ } NETLOGON_INFO_1,
+  *PNETLOGON_INFO_1;
+</pre></div>
+</dd></dl><p><b>netlog1_flags:</b> A set of bit flags that are
+defined in the following table. A flag SHOULD<a id="Appendix_A_Target_61"></a><a aria-label="Product behavior note 61" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_61" data-linktype="relative-path">&lt;61&gt;</a> be TRUE
+(or set) if its value is equal to 1. The value is constructed from zero or more
+bit flags from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>G</td>
+  <td>F</td>
+  <td>E</td>
+  <td>D</td>
+  <td>C</td>
+  <td>B</td>
+  <td>A</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p> </p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>A</td>
+  <td>One of the databases is out-of-date, and replication is needed.</td>
+ </tr><tr>
+  <td>B</td>
+  <td>At least one of the databases is currently being replicated.</td>
+ </tr><tr>
+  <td>C</td>
+  <td>At least one of the databases requires a full synchronization update.</td>
+ </tr><tr>
+  <td>D</td>
+  <td>At least one database record requires an update.</td>
+ </tr><tr>
+  <td>E</td>
+  <td>The DC used on the secure channel is reachable over TCP/IP. If this flag is not set, then the DC does not have a known IP address.</td>
+ </tr><tr>
+  <td>F</td>
+  <td>The DC used on the secure channel runs W32Time.</td>
+ </tr><tr>
+  <td>G</td>
+  <td>The last update of one of the DNS records on the DC failed.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero and MUST be
+ignored on receipt.</p>
+</dd>
+<dd>
+<p>To a client, bit D will appear arbitrarily set to 0
+or 1 and the client is not expected to perform any action based on this value.
+For more information, see the server to server database synchronization topic
+in section <span><a href="f28f9dc8-eeb2-4112-9eec-a466f639c761" data-linktype="relative-path">3.6</a></span>.</p>
+</dd></dl><p><b>netlog1_pdc_connection_status:</b> The integer value
+that indicates the connection status, as defined in <b>Setting ConnectionStatus</b>
+(section <span><a href="739115d0-0d16-460f-96c8-775fde606bd5" data-linktype="relative-path">3.4.5.3.1</a></span>), of the
+secure channel to a DC in the primary domain of the queried server.</p></div>

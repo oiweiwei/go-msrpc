@@ -737,6 +737,13 @@ type LookupQueueRequest struct {
 	// QueueGuid: Pointer to a VARIANT containing a BSTR that contains a string representation
 	// of a Queue.Identifier. The string MUST adhere to the following format, specified
 	// using ABNF.
+	//
+	// guid = "{" dword-part "-" word-part "-" word-part "-"
+	//                    2byte-part "-" 6byte-part "}"
+	//  dword-part = 2word-part
+	//  word-part  = 2byte-part
+	//  byte-part  = 2hex-digit
+	//  hex-digit  = %x30-39 / %x41-46 / %x61-66
 	QueueGUID *oaut.Variant `idl:"name:QueueGuid" json:"queue_guid"`
 	// ServiceTypeGuid: Pointer to a VARIANT containing a BSTR that contains a string representation
 	// of a Queue.Type. The string MUST adhere to the same format defined for QueueGuid.

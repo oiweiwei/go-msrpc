@@ -1309,7 +1309,7 @@ type RepairResponse struct {
 	// completed, receives the IVdsAsync interface to monitor and control this operation.
 	// Callers MUST release the interface when they are done with it. If the Wait method
 	// is called on the interface, the interface returned in the VDS_ASYNC_OUTPUT structure
-	// MUST be released as well. For information on asynchronous tasks, see section 3.4.5.1.9.
+	// MUST be released as well. For details on asynchronous tasks, see section 3.4.5.1.9.
 	Async *vds.Async `idl:"name:ppAsync" json:"async"`
 	// Return: The Repair return value.
 	Return int32 `idl:"name:Return" json:"return"`

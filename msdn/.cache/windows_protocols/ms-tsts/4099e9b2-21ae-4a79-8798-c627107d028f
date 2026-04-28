@@ -1,0 +1,21 @@
+<div class="content" name="SHADOWCLASS" uuid="4099e9b2-21ae-4a79-8798-c627107d028f"><p>The <b>SHADOWCLASS</b> enumeration is used to indicate the
+shadow-related settings for a session running on a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum _SHADOWCLASS
+ {
+   Shadow_Disable,
+   Shadow_EnableInputNotify,
+   Shadow_EnableInputNoNotify,
+   Shadow_EnableNoInputNotify,
+   Shadow_EnableNoInputNoNotify,
+ } SHADOWCLASS;
+</pre></div>
+</dd></dl><p><b>Shadow_Disable:  </b>Shadowing is disabled.</p><p><b>Shadow_EnableInputNotify:  </b>Permission is asked
+first from the session being shadowed. The shadower is also permitted keyboard
+and mouse input.</p><p><b>Shadow_EnableInputNoNotify:  </b>Permission is not
+asked first from the session being shadowed. The shadower is also permitted
+keyboard and mouse input.</p><p><b>Shadow_EnableNoInputNotify:  </b>Permission is
+asked first from the session being shadowed. The shadower is not permitted
+keyboard and mouse input and MUST observe the shadowed session.</p><p><b>Shadow_EnableNoInputNoNotify:  </b>Permission is
+not asked first from the session being shadowed. The shadower is not permitted
+keyboard and mouse input and MUST observe the shadowed session.</p></div>

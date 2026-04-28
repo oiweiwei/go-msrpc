@@ -6482,6 +6482,10 @@ type BaseRegQueryInfoKeyResponse struct {
 	// with the longest name, or a greater size, as the number of TCHAR elements.
 	//
 	// TCHAR elements are defined as follows.
+	//
+	// #ifdef UNICODE
+	//  #typedef WCHAR TCHAR;
+	//  #endif
 	MaxSubKeyLength uint32 `idl:"name:lpcbMaxSubKeyLen" json:"max_sub_key_length"`
 	// lpcbMaxClassLen: A pointer to a DWORD that receives the size of the longest string
 	// that specifies a subkey class, or a greater size, in Unicode characters.
@@ -7089,6 +7093,9 @@ type BaseRegQueryValueRequest struct {
 	// buffer that is pointed to by the lpData parameter. On output, the variable receives
 	// the number of bytes that are returned in lpData. This length variable MUST be set
 	// to 0 by the server if the client provides NULL for the lpData parameter.
+	//
+	// If the client sets lpcbData to NULL, the server MUST fail this method and return
+	// ERROR_INVALID_PARAMETER.
 	DataLength uint32 `idl:"name:lpcbData;pointer:unique" json:"data_length"`
 	// lpcbLen: A pointer to a variable that contains the number of bytes to transmit to
 	// the client. On input, the client MUST allocate the memory for this parameter and
@@ -7163,6 +7170,9 @@ type BaseRegQueryValueResponse struct {
 	// buffer that is pointed to by the lpData parameter. On output, the variable receives
 	// the number of bytes that are returned in lpData. This length variable MUST be set
 	// to 0 by the server if the client provides NULL for the lpData parameter.
+	//
+	// If the client sets lpcbData to NULL, the server MUST fail this method and return
+	// ERROR_INVALID_PARAMETER.
 	DataLength uint32 `idl:"name:lpcbData;pointer:unique" json:"data_length"`
 	// lpcbLen: A pointer to a variable that contains the number of bytes to transmit to
 	// the client. On input, the client MUST allocate the memory for this parameter and
@@ -9614,6 +9624,9 @@ type BaseRegQueryMultipleValuesRequest struct {
 	// parameter.
 	Buffer []byte `idl:"name:lpvalueBuf;size_is:(ldwTotsize);length_is:(ldwTotsize);pointer:unique" json:"buffer"`
 	// ldwTotsize: The value that indicates the length in bytes of the lpvalueBuf parameter.
+	//
+	// If lpvalueBuf is not large enough to contain all the data, it returns the size of
+	// the lpvalueBuf parameter that is required to return all the requested data.
 	TotalSize uint32 `idl:"name:ldwTotsize;pointer:ref" json:"total_size"`
 }
 
@@ -9684,6 +9697,9 @@ type BaseRegQueryMultipleValuesResponse struct {
 	// parameter.
 	Buffer []byte `idl:"name:lpvalueBuf;size_is:(ldwTotsize);length_is:(ldwTotsize);pointer:unique" json:"buffer"`
 	// ldwTotsize: The value that indicates the length in bytes of the lpvalueBuf parameter.
+	//
+	// If lpvalueBuf is not large enough to contain all the data, it returns the size of
+	// the lpvalueBuf parameter that is required to return all the requested data.
 	TotalSize uint32 `idl:"name:ldwTotsize;pointer:ref" json:"total_size"`
 	// Return: The BaseRegQueryMultipleValues return value.
 	Return uint32 `idl:"name:Return" json:"return"`

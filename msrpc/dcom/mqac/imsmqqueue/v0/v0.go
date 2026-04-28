@@ -2165,6 +2165,9 @@ type ReceiveRequest struct {
 	//
 	// A VT_I4 that corresponds to one of the MQTRANSACTION (section 2.2.2.1) enumeration
 	// values.
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value MQ_MTS_TRANSACTION (0x00000001) in place of the unspecified value.
 	Transaction *oaut.Variant `idl:"name:Transaction" json:"transaction"`
 	// WantDestinationQueue: A pointer to a VARIANT (VT_BOOL).
 	//
@@ -2205,6 +2208,9 @@ type ReceiveRequest struct {
 	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
 	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
 	// message to arrive.
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value INFINITE (0xFFFFFFFF).
 	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
 }
 
@@ -2650,6 +2656,9 @@ type PeekRequest struct {
 	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
 	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
 	// message to arrive.
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value INFINITE (0xFFFFFFFF).
 	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
 }
 
@@ -3012,10 +3021,16 @@ type EnableNotificationRequest struct {
 	Event *mqac.Event `idl:"name:Event" json:"event"`
 	// Cursor: A VARIANT pointer to a signed integer that corresponds to one of the MQMSGCURSOR
 	// ( section 2.2.2.8) enumeration values.
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value MQMSG_FIRST (0x00000000).
 	Cursor *oaut.Variant `idl:"name:Cursor" json:"cursor"`
 	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
 	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
 	// message to arrive.
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value INFINITE (0xFFFFFFFF).
 	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
 }
 
@@ -3672,6 +3687,9 @@ type ReceiveCurrentRequest struct {
 	//
 	// A VT_I4 that corresponds to one of the MQTRANSACTION (section 2.2.2.1) enumeration
 	// values.
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value MQ_MTS_TRANSACTION (0x00000001) in place of the unspecified value.
 	Transaction *oaut.Variant `idl:"name:Transaction" json:"transaction"`
 	// WantDestinationQueue: A pointer to a VARIANT (VT_BOOL).
 	//
@@ -3712,6 +3730,9 @@ type ReceiveCurrentRequest struct {
 	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
 	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
 	// message to arrive.
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value INFINITE (0xFFFFFFFF).
 	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
 }
 
@@ -4157,6 +4178,9 @@ type PeekNextRequest struct {
 	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
 	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
 	// message to arrive.
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value INFINITE (0xFFFFFFFF).
 	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
 }
 
@@ -4600,6 +4624,9 @@ type PeekCurrentRequest struct {
 	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
 	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
 	// message to arrive.
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value INFINITE (0xFFFFFFFF).
 	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
 }
 

@@ -1,0 +1,42 @@
+<div class="content" name="RESP_ASYNC_NOTIFY" uuid="77057389-6642-4ffe-bc26-9e4e8e939f5a"><p>The RESP_ASYNC_NOTIFY structure contains the resource change
+type.</p><dl>
+<dd>
+<div><pre> typedef struct _RESP_ASYNC_NOTIFY {
+     UINT MessageType;
+     UINT Length;
+     UINT NumberOfMessages;
+     [size_is(Length)] [unique] PBYTE MessageBuffer;
+ } RESP_ASYNC_NOTIFY, *PRESP_ASYNC_NOTIFY;
+            
+            
+</pre></div>
+</dd></dl><p><b>MessageType:</b>  Specifies the notification type.
+This field MUST contain one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>1</td>
+  <td>RESOURCE_CHANGE_NOTIFICATION</td>
+ </tr><tr>
+  <td>2</td>
+  <td>CLIENT_MOVE_NOTIFICATION</td>
+ </tr><tr>
+  <td>3</td>
+  <td>SHARE_MOVE_NOTIFICATION This value is applicable only for the server that implements version 2.</td>
+ </tr><tr>
+  <td>4</td>
+  <td>IP_CHANGE_NOTIFICATION This value is applicable only for the server that implements version 2.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Length:</b>  Specifies the size of the <b>MessageBuffer</b>
+field, in bytes.</p><p><b>NumberOfMessages:</b>  Total number of
+notifications in the <b>MessageBuffer</b> field.</p><p><b>MessageBuffer:</b>  Contains an array of
+notification information structures whose type is determined by the <b>MessageType</b>
+field.</p></div>

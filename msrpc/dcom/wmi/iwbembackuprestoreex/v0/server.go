@@ -43,6 +43,8 @@ type BackupRestoreExServer interface {
 	// HRESULT whose S (severity) bit is set as specified in [MS-ERREF] section 2.1. The
 	// actual HRESULT value is implementation dependent.
 	//
+	// WBEM_S_NO_ERROR (0x00)
+	//
 	// The IWbemBackupRestoreEx::Pause method MUST be called on the interface that is obtained
 	// from the DCOM Remote Protocol activation of the CLSID_WbemBackupRestore interface,
 	// as specified in this section.
@@ -63,6 +65,8 @@ type BackupRestoreExServer interface {
 	// In case of any other failure, the server MUST return an HRESULT whose S (severity)
 	// bit is set as specified in [MS-ERREF] section 2.1. The actual HRESULT value is implementation
 	// dependent.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	Resume(context.Context, *ResumeRequest) (*ResumeResponse, error)
 }
 

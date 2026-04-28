@@ -1,0 +1,78 @@
+<div class="content" name="LsarQueryTrustedDomainInfo" uuid="862cdc4f-79e3-4973-8fd3-2e7836010eb5"><p>The LsarQueryTrustedDomainInfo method is invoked to retrieve
+information on a <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain object</a></span>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarQueryTrustedDomainInfo(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PRPC_SID TrustedDomainSid,
+   [in] TRUSTED_INFORMATION_CLASS InformationClass,
+   [out, switch_is(InformationClass)] 
+     PLSAPR_TRUSTED_DOMAIN_INFO* TrustedDomainInformation
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+obtained from either <span><a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a></span> or <span><a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a></span>.</p><p><b>TrustedDomainSid: </b>A <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a></span>
+of the trusted domain object.</p><p><b>InformationClass: </b>Identifies the type of information
+the caller is interested in.</p><p><b>TrustedDomainInformation: </b>Used to return the
+information on the trusted domain object to the caller.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the message
+processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 STATUS_SUCCESS</td>
+  <td>The request was successfully completed.</td>
+ </tr><tr>
+  <td>0xC0000022 STATUS_ACCESS_DENIED</td>
+  <td>The caller does not have the permissions to perform this operation.</td>
+ </tr><tr>
+  <td>0xC000000D STATUS_INVALID_PARAMETER</td>
+  <td>One or more of the supplied parameters was invalid.</td>
+ </tr><tr>
+  <td>0xC0000002 STATUS_NOT_IMPLEMENTED</td>
+  <td>The specified information class is not supported.</td>
+ </tr><tr>
+  <td>0xC0000003 STATUS_INVALID_INFO_CLASS</td>
+  <td>The InformationClass argument is outside the allowed range.</td>
+ </tr><tr>
+  <td>0xC0000008 STATUS_INVALID_HANDLE</td>
+  <td>PolicyHandle is not a valid handle.</td>
+ </tr><tr>
+  <td>0xC00000DF STATUS_NO_SUCH_DOMAIN</td>
+  <td>The specified trusted domain object does not exist.</td>
+ </tr><tr>
+  <td>0xC00002B1 STATUS_DIRECTORY_SERVICE_REQUIRED</td>
+  <td>The Active Directory service was not available on the server.</td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>If Active Directory is not running on this machine, the
+server MUST return STATUS_DIRECTORY_SERVICE_REQUIRED.</p><p>This message takes four arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <span><a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a></span> with
+RequiredAccess set as specified in section <span><a href="e74460c7-db03-45c3-ac3c-a72a840e4943" data-linktype="relative-path">3.1.4.7.13</a></span>.</p><p><i>TrustedDomainSid</i>: The <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span> of the trusted
+domain object to query. The server MUST verify that the caller has supplied a
+valid <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span> SID for this
+parameter and fail the request with STATUS_INVALID_PARAMETER if the check
+fails. The server MUST verify that a trusted domain object with this SID exists
+in its policy database and fail the request with STATUS_NO_SUCH_DOMAIN
+otherwise.</p><p><i>InformationClass</i>: A value from the <span><a href="36069113-6c38-45e8-920e-17f8ef36f578" data-linktype="relative-path">TRUSTED_INFORMATION_CLASS</a></span>
+enumeration that specifies which type of information the caller is requesting.
+Not all values are valid. For values outside the TRUSTED_INFORMATION_CLASS
+enumeration range, the server MUST reject the request with
+STATUS_INVALID_PARAMETER. For <i>InformationClass</i> values
+TrustedControllersInformation, TrustedDomainAuthInformationInternal, TrustedDomainFullInformationInternal,
+and for any values that would be rejected by an LsarQueryInfoTrustedDomain
+call, the server MUST reject the request with an implementation-specific error.
+For all other <i>InformationClass</i> values, the server MUST behave as if it is
+processing an LsarQueryInfoTrustedDomain call with a <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domain</a></span>
+handle to the trusted domain identified by the <i>TrustedDomainSid</i>
+parameter.</p><p><i>TrustedDomainInformation</i>: Used to return the requested
+information.</p></div>

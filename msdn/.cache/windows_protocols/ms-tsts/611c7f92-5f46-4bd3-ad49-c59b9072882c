@@ -1,0 +1,14 @@
+<div class="content" name="RECEIVEFLOWCONTROLCLASS" uuid="611c7f92-5f46-4bd3-ad49-c59b9072882c"><p>The <b>RECEIVEFLOWCONTROLCLASS</b> enumeration specifies
+which, if any, means of receive flow control are supported.</p><dl>
+<dd>
+<div><pre> typedef  enum _RECEIVEFLOWCONTROLCLASS
+ {
+   ReceiveFlowControl_None,
+   ReceiveFlowControl_RTS,
+   ReceiveFlowControl_DTR,
+ } RECEIVEFLOWCONTROLCLASS;
+</pre></div>
+</dd></dl><p><b>ReceiveFlowControl_None:  </b>No receive flow
+control currently.</p><p><b>ReceiveFlowControl_RTS:  </b>Receive flow control
+Request to Send (RTS).</p><p><b>ReceiveFlowControl_DTR:  </b>Receive flow control
+Data Terminal Ready (DTR).</p></div>

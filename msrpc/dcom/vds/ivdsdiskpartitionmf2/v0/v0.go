@@ -54,6 +54,9 @@ type DiskPartitionMF2Client interface {
 	// [MS-ERREF]) to indicate success, or return an implementation-specific nonzero error
 	// code to indicate failure. For the HRESULT values predefined by the Virtual Disk Service
 	// Remote Protocol, see section 2.2.3.
+	//
+	// Note  This method is not valid on CD/DVD or super floppy devices. These devices do
+	// not support partition tables.
 	FormatPartitionEx2(context.Context, *FormatPartitionEx2Request, ...dcerpc.CallOption) (*FormatPartitionEx2Response, error)
 
 	// AlterContext alters the client context.

@@ -1,0 +1,44 @@
+<div class="content" name="ServerControl" uuid="f2f0e4b8-b4fe-441a-8191-78caec425585"><p>The ServerControl method is used to force the <span><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span>
+server to unregister the ICertAdminD and ICertAdminD2 interfaces.</p><dl>
+<dd>
+<div><pre> HRESULT ServerControl(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD dwControlFlags,
+   [out, ref] CERTTRANSBLOB* pctbOut
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See the <i>pwszAuthority</i>
+definition in section <span><a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a></span>. </p><p><b>dwControlFlags: </b>An unsigned integer value that
+specifies the control to be sent to the <span><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a></span> server.
+It MUST take one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x000000001</td>
+  <td>Request unregister for DCOM interfaces for the certificate server.</td>
+ </tr><tr>
+  <td>0x000000002</td>
+  <td>Not currently used.</td>
+ </tr><tr>
+  <td>0x000000003</td>
+  <td>Not currently used.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>pctbOut: </b>All fields of this parameter MUST be
+set to 0 on return.</p><p>The following processing rules apply.</p><p>The CA MUST check the control flags and MUST take the
+following action:</p><ol><li><p><span>    </span>If the value of
+the <i>dwControlFlags</i> parameter is 1, the CA MUST unregister the
+ICertAdminD and ICertAdminD2 interfaces.</p>
+</li><li><p><span>    </span>If the value of
+the <i>dwControlFlags</i> parameter is 2 or 3, the CA returns successfully.</p>
+</li><li><p><span>    </span>If the value of
+the <i>dwControlFlags</i> parameter is not 1, 2, or 3, the CA MUST return an error.
+The error code SHOULD be &#34;0x80070057&#34;.</p>
+</li></ol></div>

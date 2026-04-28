@@ -1,0 +1,67 @@
+<div class="content" name="ITraceDataProviderCollection" uuid="3fc15333-0e7b-4f4e-9245-c37799b4af49"><p>The ITraceDataProviderCollection interface is used to manage
+a collection of TraceDataProvider objects.</p><p>The following properties MUST be implemented by the objects
+that implement the ITraceDataProviderCollection interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>_NewEnum</td>
+  <td>R</td>
+  <td>An enumeration object of type IEnumVariant containing a snapshot of the ITraceDataProvider objects in this collection. The enumeration object is specified in [MS-OAUT] section 3.3.</td>
+ </tr><tr>
+  <td>Count</td>
+  <td>R</td>
+  <td>Number of trace data providers in this collection.</td>
+ </tr><tr>
+  <td>Item</td>
+  <td>R</td>
+  <td>Retrieves the requested trace data provider from the collection.</td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Count (Get)</td>
+  <td>Retrieves the Count property. Opnum: 7</td>
+ </tr><tr>
+  <td>Item (Get)</td>
+  <td>Retrieves the Item property. Opnum: 8</td>
+ </tr><tr>
+  <td>_NewEnum (Get)</td>
+  <td>Retrieves the NewEnum property. Opnum: 9</td>
+ </tr><tr>
+  <td>Add</td>
+  <td>Adds a trace provider to the collection. Opnum: 10</td>
+ </tr><tr>
+  <td>Remove</td>
+  <td>Removes a trace provider from the collection. Opnum: 11</td>
+ </tr><tr>
+  <td>Clear</td>
+  <td>Removes all trace providers from the collection. Opnum: 12</td>
+ </tr><tr>
+  <td>AddRange</td>
+  <td>Adds one or more trace providers to the collection. Opnum: 13</td>
+ </tr><tr>
+  <td>CreateTraceDataProvider</td>
+  <td>Creates a trace data provider object. Opnum: 14</td>
+ </tr><tr>
+  <td>GetTraceDataProviders</td>
+  <td>Populates the collection with the registered trace providers. Opnum: 15</td>
+ </tr><tr>
+  <td>GetTraceDataProvidersByProcess</td>
+  <td>Populates the collection with the list of providers that were registered by the given process. Opnum: 16</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. </p></div>

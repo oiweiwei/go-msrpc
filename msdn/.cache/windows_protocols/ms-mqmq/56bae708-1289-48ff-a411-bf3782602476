@@ -1,0 +1,127 @@
+<div class="content" name="UserMessage" uuid="56bae708-1289-48ff-a411-bf3782602476"><p>A UserMessage Packet always contains an entire message. The
+UserMessage Packet is used to communicate application-defined and
+administration acknowledgment messages between a sender and receiver.</p><p> A UserMessage Packet contains a number of required headers
+and can contain additional optional headers. The required headers that MUST
+appear in all UserMessage Packets are: <a href="058cdeb4-7a3c-405b-989c-d32b9d6bddae" data-linktype="relative-path">BaseHeader</a>, <a href="056b43bc-2466-4342-8504-1630310d5965" data-linktype="relative-path">UserHeader</a>, and <a href="b219bdf4-1bf6-4688-94d8-25fdba45e5ec" data-linktype="relative-path">MessagePropertiesHeader</a>.
+Optional headers include: <a href="47f8bbd7-9a41-4a22-ade5-b1c7a1af2f5c" data-linktype="relative-path">TransactionHeader</a>,
+<a href="303416bb-b821-4a18-ac0d-adc3ea44cc77" data-linktype="relative-path">SecurityHeader</a>, <a href="4637f756-8d0d-480c-bdd2-2c69fc6c7391" data-linktype="relative-path">DebugHeader</a>, <a href="bbedcc76-ae38-4a69-94a9-950cd2bc77a7" data-linktype="relative-path">SoapHeader</a>, <a href="790c8148-160e-4650-8530-bb117fee835a" data-linktype="relative-path">MultiQueueFormatHeader</a>,
+and <a href="fd405c40-0c50-4f7e-8096-433d10206fa3" data-linktype="relative-path">SessionHeader</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">BaseHeader (16 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">UserHeader (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">TransactionHeader (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">SecurityHeader (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">MessagePropertiesHeader (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">DebugHeader (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">SoapHeader (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">MultiQueueFormatHeader (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">SessionHeader (16 bytes, optional)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>BaseHeader (16 bytes): </b>A BaseHeader (section
+2.2.19.1) packet that contains information to identify and manage protocol
+packets. The <b>BaseHeader.Flags.IN</b> field MUST NOT be set.</p><p><b>UserHeader (variable): </b>A UserHeader (section
+2.2.19.2) packet that contains source and destination <a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a> information.</p><p><b>TransactionHeader (variable): </b>A
+TransactionHeader (section 2.2.20.5) packet that contains flags and sequence
+information for the packet. This header MUST be present when <b>UserHeader.Flags.TH</b>
+is set and MUST NOT be present if it is clear.</p><p><b>SecurityHeader (variable): </b>A SecurityHeader
+(section 2.2.20.6) packet that contains security information. This header MUST
+be present when <b>UserHeader.Flags.SH</b> is set and MUST NOT be present if it
+is clear.</p><p><b>MessagePropertiesHeader (variable): </b>A
+MessagePropertiesHeader (section 2.2.19.3) packet that contains property
+information about a UserMessage Packet and the application-defined message
+payload. This header MUST be present.</p><p><b>DebugHeader (variable): </b>A DebugHeader (section
+2.2.20.8) packet that specifies the queue to receive trace <a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a> for this
+UserMessage Packet. This header specifies the queue where trace messages are
+sent. This header MUST be present if and only if <b>BaseHeader.Flags.DH</b> is
+set.</p><p><b>SoapHeader (variable): </b>A SoapHeader (section
+2.2.20.7) packet that contains application-defined information. This header
+MUST be present if and only if <b>UserHeader.Flags.HH</b> is set.</p><p><b>MultiQueueFormatHeader (variable): </b>A
+MultiQueueFormatHeader (section 2.2.20.1) packet that is included when a
+message is destined for multiple queues. This header MUST be present if and
+only if <b>UserHeader.Flags.MQ</b> is set.</p><p><b>SessionHeader (16 bytes): </b>A SessionHeader
+(section 2.2.20.4) packet that is used to acknowledge express and recoverable
+UserMessage Packets received by the <a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_1c892b3d-e961-498c-9f84-30a652a70341" data-linktype="relative-path">message transfer protocols</a>.
+This header MUST be present if and only if <b>BaseHeader.Flags.SH</b> is set.</p></div>

@@ -1,0 +1,16 @@
+<div class="content" name="WINSTATIONVIDEODATA" uuid="5f95f657-89d2-472d-b4ab-b0595618dbd1"><p>The WINSTATIONVIDEODATA structure defines the resolution and
+color depth of a session.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSTATIONVIDEODATA {
+   USHORT HResolution;
+   USHORT VResolution;
+   USHORT fColorDepth;
+ } WINSTATIONVIDEODATA,
+  *PWINSTATIONVIDEODATA;
+</pre></div>
+</dd></dl><p><b>HResolution:</b>  Specifies the
+horizontal resolution, in pixels.</p><p><b>VResolution:</b>  Specifies the vertical
+resolution, in pixels.</p><p><b>fColorDepth:</b>  Specifies the color
+depth. The supported values 1, 2, 4, 8, and 16 are translated, respectively, as
+the following number of colors supported: 16 (4 bpp), 256 (8 bpp), 65,536 (16
+bpp), 16 million (24 bpp), 32,768 (15 bpp).<a id="Appendix_A_Target_128"></a><a aria-label="Product behavior note 128" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_128" data-linktype="relative-path">&lt;128&gt;</a></p></div>

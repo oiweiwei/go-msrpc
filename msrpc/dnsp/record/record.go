@@ -39,6 +39,11 @@
 // partitions will only be visible to directory servers enlisted in those partitions,
 // thus allowing for granular control over replication.
 //
+// The DNS Server Management Protocol supports remote configuration of DNS over HTTPS
+// (DoH) settings on a DNS server. This enables administrators to enable, disable, and
+// manage encrypted DNS communication in compliance with [RFC8484], providing enhanced
+// privacy and security for DNS queries and responses.
+//
 // A typical remote management involves the client querying or setting the configuration
 // parameters of the DNS server. The client can also enumerate DNS zones and the DNS
 // records stored in one or more zones. The client can modify the configuration of the
@@ -382,6 +387,12 @@ type Record struct {
 	//	+----------------------------+--------------------------------+
 	//	| DNS_TYPE_WINSR 0xFF02      | DNS_RPC_RECORD_WINSR           |
 	//	+----------------------------+--------------------------------+
+	//
+	// Other type values that are not explicitly defined in the preceding table MUST be
+	// enumerable, including values defined by [IANA-DNS], and they MUST use the DNS_RPC_RECORD_NULL
+	// (section 2.2.2.2.4.4) structure. If the dwFlags field is set to DNS_RPC_FLAG_RECORD_WIRE_FORMAT,
+	// the DNS_RPC_RECORD_UNKNOWN (section 2.2.2.2.4.27) structure MUST be used for all
+	// resource record types.
 	Buffer []byte         `idl:"name:Buffer;size_is:(wDataLength)" json:"buffer"`
 	Record *Record_Record `idl:"name:Record;switch_is:wType" json:"record"`
 }

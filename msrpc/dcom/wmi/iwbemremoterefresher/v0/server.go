@@ -39,6 +39,8 @@ type RemoteRefresherServer interface {
 	// The server MUST return WBEM_S_NO_ERROR (specified in section 2.2.11) to indicate
 	// the successful completion of the method.
 	//
+	// WBEM_S_NO_ERROR (0x00)
+	//
 	// The IWbemRemoteRefresher::RemoteRefresh method MUST be called on the IWbemRemoteRefresher
 	// interface pointer returned as a member of the _WBEM_REFRESH_INFO structure from IWbemRefreshingServices
 	// methods or on the interface returned by IWbemRefreshingServices::GetRemoteRefresher
@@ -53,6 +55,8 @@ type RemoteRefresherServer interface {
 	// of the method call. In case of success, the server MUST return WBEM_S_NO_ERROR (as
 	// specified in section 2.2.11) to indicate the successful completion of the method.
 	//
+	// WBEM_S_NO_ERROR (0x00)
+	//
 	// The IWbemRemoteRefresher::StopRefreshing method MUST be called on the IWbemRemoteRefresher
 	// interface pointer that is returned as a member of the _WBEM_REFRESH_INFO structure
 	// from the methods of the IWbemRefreshingServices interface or on the interface that
@@ -65,6 +69,10 @@ type RemoteRefresherServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// In case of failure, the server MUST return an HRESULT whose S (severity) bit is set
+	// as specified in [MS-ERREF] section 2.1. The actual HRESULT value is implementation
+	// dependent.
 	//
 	// Opnum5NotUsedOnWire
 }

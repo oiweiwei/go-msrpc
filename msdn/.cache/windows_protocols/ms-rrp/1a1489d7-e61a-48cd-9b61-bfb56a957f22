@@ -1,0 +1,64 @@
+<div class="content" name="RVALENT" uuid="1a1489d7-e61a-48cd-9b61-bfb56a957f22"><p>The RVALENT structure is used to store the <a href="261b039d-95d9-4749-9680-db1851d03945#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">values</a> and data that are
+associated with a <a href="261b039d-95d9-4749-9680-db1851d03945#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a>,
+as specified in section <a href="1cb48b52-d32d-4a2a-9533-250f595078b8" data-linktype="relative-path">3.1.5.26</a>.
+The format of the RVALENT structure is as follows.</p><dl>
+<dd>
+<div><pre> typedef struct value_ent {
+   PRPC_UNICODE_STRING ve_valuename;
+   DWORD ve_valuelen;
+   LPDWORD ve_valueptr;
+   DWORD ve_type;
+ } RVALENT,
+  *PRVALENT;
+</pre></div>
+</dd></dl><p><b>ve_valuename:</b>  A pointer to an <a href="c0c90f11-a4c4-496a-ac09-8a8a3697ceef" data-linktype="relative-path">RRP_UNICODE_STRING</a>
+structure that MUST contain the name of the specified value to be retrieved.</p><p><b>ve_valuelen:</b>   The length in bytes
+of the <b>ve_valueptr</b> buffer. </p><p><b>ve_valueptr:</b>  A pointer to the data
+that is associated with a specified value.</p><p><b>ve_type:</b>  The type of the data that
+is associated with a specified value. For additional specification of the
+possible values, see section <a href="3d64dbea-f016-4373-8cac-e43bf343837d" data-linktype="relative-path">3.1.1.5</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>REG_BINARY 3</td>
+  <td>Binary data in any form.</td>
+ </tr><tr>
+  <td>REG_DWORD 4</td>
+  <td>A 32-bit number.</td>
+ </tr><tr>
+  <td>REG_DWORD_LITTLE_ENDIAN 4</td>
+  <td>A 32-bit number in little-endian format.</td>
+ </tr><tr>
+  <td>REG_DWORD_BIG_ENDIAN 5</td>
+  <td>A 32-bit number in big-endian format.</td>
+ </tr><tr>
+  <td>REG_EXPAND_SZ 2</td>
+  <td>A null-terminated string that contains unexpanded references to environment variables (for example, &#34;%PATH%&#34;). It will be a Unicode or system code page string, depending on the functions used to manipulate the string.</td>
+ </tr><tr>
+  <td>REG_LINK 6</td>
+  <td>A symbolic link.</td>
+ </tr><tr>
+  <td>REG_MULTI_SZ 7</td>
+  <td>A sequence of null-terminated strings, terminated by an empty string (\0). For example:   String1\0String2\0String3\0LastString\0\0   The first \0 terminates the first string, the second to the last \0 terminates the last string, and the final \0 terminates the sequence. Note that the final terminator MUST be factored into the length of the string.</td>
+ </tr><tr>
+  <td>REG_NONE 0</td>
+  <td>No defined value type.</td>
+ </tr><tr>
+  <td>REG_QWORD 11</td>
+  <td>A 64-bit number.</td>
+ </tr><tr>
+  <td>REG_QWORD_LITTLE_ENDIAN 11</td>
+  <td>A 64-bit number in little-endian format.</td>
+ </tr><tr>
+  <td>REG_SZ 1</td>
+  <td>A null-terminated string. This string is either a Unicode or an system code page string, depending on the functions used to manipulate the string.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

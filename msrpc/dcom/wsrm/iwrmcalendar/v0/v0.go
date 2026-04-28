@@ -1254,6 +1254,8 @@ type CreateCalendarRequest struct {
 	// bstrCalendarXML: A string that specifies the new calendar event, in the form of a
 	// Calendar element (section 2.2.5.7). For an example, see Calendar Example (section
 	// 4.2.8).
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	CalendarXML *oaut.String `idl:"name:bstrCalendarXML" json:"calendar_xml"`
 	// bChangeActivePolicy: A Boolean value that specifies whether the configuration changes
 	// made by this method call SHOULD change the current active policy, if applicable,
@@ -1571,6 +1573,8 @@ type ModifyCalendarRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrCalendarXML: A string that specifies the calendar event, in the form of a Calendar
 	// element (section 2.2.5.7).
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	CalendarXML *oaut.String `idl:"name:bstrCalendarXML" json:"calendar_xml"`
 	// bOverwrite: A Boolean value that specifies whether to ignore the timestamp of the
 	// specified calendar event when validating.
@@ -2213,6 +2217,8 @@ type RenameCalendarRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrOldCalendarName: A string that specifies the current name of the calendar event
 	// to be renamed.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	OldCalendarName *oaut.String `idl:"name:bstrOldCalendarName" json:"old_calendar_name"`
 	// bstrNewCalendarName: A string that specifies the new name of the calendar event.
 	NewCalendarName *oaut.String `idl:"name:bstrNewCalendarName" json:"new_calendar_name"`
@@ -2975,6 +2981,8 @@ type GetScheduleInfoRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrScheduleName: A string that specifies the name of the schedule object for which
 	// information is required.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ScheduleName *oaut.String `idl:"name:bstrScheduleName" json:"schedule_name"`
 }
 
@@ -3237,6 +3245,8 @@ type CreateScheduleRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrScheduleXML: A string that specifies the new schedule, in the form of a Schedule
 	// element (section 2.2.5.26). Sample XML is provided in Schedule Example (section 4.2.22).
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ScheduleXML *oaut.String `idl:"name:bstrScheduleXML" json:"schedule_xml"`
 }
 
@@ -3536,6 +3546,8 @@ type ModifyScheduleRequest struct {
 	// bstrScheduleXML: A string that specifies the modified schedule, in the form of a
 	// Schedule element (section 2.2.5.26). Sample XML is provided in Schedule Example (section
 	// 4.2.22).
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ScheduleXML *oaut.String `idl:"name:bstrScheduleXML" json:"schedule_xml"`
 	// bOverwrite: A Boolean value that specifies whether to ignore the timestamp of the
 	// specified schedule object when validating.
@@ -3833,6 +3845,8 @@ type DeleteScheduleRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrScheduleName: A string that specifies the name of the schedule object to be deleted.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ScheduleName *oaut.String `idl:"name:bstrScheduleName" json:"schedule_name"`
 }
 
@@ -4136,6 +4150,8 @@ type RenameScheduleRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrOldScheduleName: A string that specifies the current name of the schedule object
 	// to be renamed.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	OldScheduleName *oaut.String `idl:"name:bstrOldScheduleName" json:"old_schedule_name"`
 	// bstrNewScheduleName: A string that specifies the new name of the schedule object.
 	NewScheduleName *oaut.String `idl:"name:bstrNewScheduleName" json:"new_schedule_name"`
@@ -4465,9 +4481,13 @@ type MoveBeforeCalendarRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrCalendarName: A string that specifies the name of the calendar event to be moved.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	CalendarName *oaut.String `idl:"name:bstrCalendarName" json:"calendar_name"`
 	// bstrRefCalendarName: A string that specifies the name of a reference calendar event,
 	// before which the specified event is to be moved.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ReferenceCalendarName *oaut.String `idl:"name:bstrRefCalendarName" json:"reference_calendar_name"`
 	// bChangeActivePolicy: A Boolean value that specifies whether the configuration changes
 	// made by this method call SHOULD change the current active policy, if applicable,
@@ -4812,9 +4832,13 @@ type MoveAfterCalendarRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrCalendarName: A string that specifies the name of the calendar event to be moved.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	CalendarName *oaut.String `idl:"name:bstrCalendarName" json:"calendar_name"`
 	// bstrRefCalendarName: A string that specifies the name of a reference calendar event,
 	// after which the specified event is to be moved.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ReferenceCalendarName *oaut.String `idl:"name:bstrRefCalendarName" json:"reference_calendar_name"`
 	// bChangeActivePolicy: A Boolean value that specifies whether the configuration changes
 	// made by this method call SHOULD change the current active policy, if applicable,
@@ -5104,6 +5128,8 @@ type GetServerTimeZoneResponse struct {
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pnServerTimeZone: A pointer to a 32-bit signed integer that returns the server time
 	// zone.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ServerTimeZone int32 `idl:"name:pnServerTimeZone" json:"server_time_zone"`
 	// Return: The GetServerTimeZone return value.
 	Return int32 `idl:"name:Return" json:"return"`

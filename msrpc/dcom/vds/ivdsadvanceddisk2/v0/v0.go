@@ -55,6 +55,9 @@ type AdvancedDisk2Client interface {
 	// code to indicate failure. For the HRESULT values predefined by the Virtual Disk Service
 	// Remote Protocol, see section 2.2.3.
 	//
+	// Note  This method is not valid for CD/DVD or super floppy devices. These devices
+	// do not support partition tables.
+	//
 	// ERROR_SUCCESS (0x00000000)
 	ChangePartitionType(context.Context, *ChangePartitionTypeRequest, ...dcerpc.CallOption) (*ChangePartitionTypeResponse, error)
 

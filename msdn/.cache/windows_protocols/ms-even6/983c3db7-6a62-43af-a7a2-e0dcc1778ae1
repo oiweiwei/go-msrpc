@@ -1,0 +1,19 @@
+<div class="content" name="tag_EvtRpcVariantType" uuid="983c3db7-6a62-43af-a7a2-e0dcc1778ae1"><p>The EvtRpcVariantType enumeration is used by the <a href="9c6673b7-4bf2-42b0-9ab7-242d45ead8ff" data-linktype="relative-path">EvtRpcVariant (section 2.2.7)</a>
+type.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tag_EvtRpcVariantType
+ {
+   EvtRpcVarTypeNull = 0,
+   EvtRpcVarTypeBoolean,
+   EvtRpcVarTypeUInt32,
+   EvtRpcVarTypeUInt64,
+   EvtRpcVarTypeString,
+   EvtRpcVarTypeGuid,
+   EvtRpcVarTypeBooleanArray,
+   EvtRpcVarTypeUInt32Array,
+   EvtRpcVarTypeUInt64Array,
+   EvtRpcVarTypeStringArray,
+   EvtRpcVarTypeGuidArray
+ } EvtRpcVariantType;
+</pre></div>
+</dd></dl></div>

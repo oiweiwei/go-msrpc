@@ -3065,6 +3065,10 @@ type ObjectReference struct {
 	Flags ObjectReferenceType `idl:"name:flags" json:"flags"`
 	// iid (16 bytes):  The IID for which this OBJREF was marshaled; this MUST NOT be set
 	// to GUID_NULL.
+	//
+	// The iid MUST be specified either by the uuid IDL attribute (as specified in [C706]
+	// section 4.2.4.1) of the interface type method parameter, or it MUST be specified
+	// using the iid_is IDL Attribute.
 	IID *IID `idl:"name:iid" json:"iid"`
 	// u_objref (variable):  A structure specified by the value of the preceding flags.
 	ObjectReference *ObjectReference_ObjectReference `idl:"name:u_objref;switch_is:Flags" json:"object_reference"`
@@ -4335,6 +4339,9 @@ type CustomRemoteRequestSCMInfo struct {
 	ClientImpLevel uint32 `idl:"name:ClientImpLevel" json:"client_imp_level"`
 	// cRequestedProtseqs:   This MUST contain the number of elements in the pRequestedProtseqs
 	// array and SHOULD be at least 1.
+	//
+	// MAX_REQUESTED_PROTSEQS (see section 2.2.28.1) specifies the upper bound for the range
+	// of permissible values in cRequestedProtseqs.
 	RequestedProtocolSequencesCount uint16 `idl:"name:cRequestedProtseqs" json:"requested_protocol_sequences_count"`
 	// pRequestedProtseqs:  This MUST contain an array of RPC protocol sequence identifiers
 	// supported by the client.
@@ -6121,6 +6128,19 @@ type SpecialPropertiesData struct {
 	// Reserved3:  This can contain arbitrary values and MUST be ignored on receipt.
 	//
 	// This structure has an alternate definition that is specified as follows.
+	//
+	// typedef struct tagSpecialPropertiesData_Alternate {
+	//    unsigned long dwSessionId;
+	//    long fRemoteThisSessionId;
+	//    long fClientImpersonating;
+	//    long fPartitionIDPresent;
+	//    DWORD dwDefaultAuthnLvl;
+	//    GUID guidPartition;
+	//    DWORD dwPRTFlags;
+	//    DWORD dwOrigClsctx;
+	//    DWORD dwFlags;
+	//    DWORD Reserved3[8];
+	//  } SpecialPropertiesData_Alternate;
 	//
 	// All the fields have the same meaning as the corresponding fields in the first structure.
 	// A DCOM server MUST accept as valid both definitions. A DCOM client SHOULD<29> use

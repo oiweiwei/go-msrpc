@@ -1,0 +1,55 @@
+<div class="content" name="FAX_SetOutboundGroup" uuid="c72ba43e-75c3-4171-bb7a-70e8161b10c4"><p>The fax client application calls the <b>FAX_SetOutboundGroup
+(Opnum 52)</b> method to set a new device list to an existing group. The name
+of the group to remove is specified using the <i>lpwstrGroupName</i> parameter.
+The value for <i>lpwstrGroupName</i> can be obtained using <b>FAX_EnumOutboundGroups</b> (section
+<a href="4e08c709-ab72-48f5-bc1d-36b1dcf274ba" data-linktype="relative-path">3.1.4.1.26</a>).</p><p>In response, the server MUST validate whether the client&#39;s
+fax user account has access to set the outbound <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_20b15ad8-82b1-47ef-a494-561c9cdee7fa" data-linktype="relative-path">routing groups</a>. It MUST
+validate whether the <b>dwSizeOfStruct</b> field passed in pGroup is equal to
+the size of <b>RPC_FAX_OUTBOUND_ROUTING_GROUPW</b> (section <a href="e092f31d-1f00-432c-8a05-f5f4685a1d2e" data-linktype="relative-path">2.2.39</a>) structure. On
+success, the server MUST modify its outbound routing groups as specified by the
+client.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_SetOutboundGroup(
+   [in] handle_t hFaxHandle,
+   [in, ref] PRPC_FAX_OUTBOUND_ROUTING_GROUPW pGroup
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a>) or <b>FAX_ConnectionRefCount</b> (section
+<a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a>) method call
+used to connect to the fax server.</p><p><b>pGroup: </b>A pointer to an <b>RPC_FAX_OUTBOUND_ROUTING_GROUPW</b> buffer
+to set.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>The client&#39;s fax user account does not have the required FAX_ACCESS_MANAGE_CONFIG authorization for this operation.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect. This error code is returned when any of the following conditions occur: § The dwSizeOfStruct member of the pGroup parameter is not equal to the correct size of the RPC_FAX_OUTBOUND_ROUTING_GROUPW. § The lpwstrGroupName member of pGroup is set to a NULL pointer value. § The lpdwDevices member of pGroup is set to NULL and the dwNumDevices member of the same pGroup is set to a value greater than zero. § The fax server tried to return FAX_ERR_NOT_SUPPORTED_ON_THIS_SKU but the client fax API version (FAX_API_VERSION_0, described in section 3.1.4.1.10) does not support this error code.</td>
+ </tr><tr>
+  <td>ERROR_BUFFER_OVERFLOW 0x0000006F</td>
+  <td>The length (excluding the terminating null character) of the character string pointed at by the lpwstrGroupName member of pGroup is longer than 128 characters.</td>
+ </tr><tr>
+  <td>ERROR_REGISTRY_CORRUPT 0x000003F7</td>
+  <td>The registry is corrupted. The structure of one of the files containing registry data is corrupted, or the system&#39;s memory image of the file is corrupted, or the file could not be recovered because the alternate copy or log was absent or corrupted.</td>
+ </tr><tr>
+  <td>FAX_ERR_NOT_SUPPORTED_ON_THIS_SKU 0x00001B63</td>
+  <td>The fax client module API version (described in section 3.1.4.1.10) is FAX_API_VERSION_1 or above, and the fax server is running on a version of the operating system that does not support the requested operation.&lt;163&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

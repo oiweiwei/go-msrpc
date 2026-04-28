@@ -547,6 +547,9 @@ type RegisterCertificateRequest struct {
 	//	|                                         | if no certificate is registered in the internal store. This option cannot be     |
 	//	|                                         | used with ExternalCertificate.                                                   |
 	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// If not specified by the client, the server MUST use the default value MQCERT_REGISTER_ALWAYS
+	// (0x00000001) instead of the unspecified value.
 	Flags *oaut.Variant `idl:"name:Flags" json:"flags"`
 	// ExternalCertificate: A pointer to a VARIANT that contains a byte array (VT_ARRAY|VT_UI1) or a pointer (VT_BYREF) to a byte array that specifies the binary representation of the MQUSERSIGNCERT ([MS-MQMQ] section 2.2.22) that is to be registered. The MQUSERSIGNCERT MUST contain an X.509-encoded certificate, as specified in [RFC3280].
 	ExternalCertificate *oaut.Variant `idl:"name:ExternalCertificate" json:"external_certificate"`

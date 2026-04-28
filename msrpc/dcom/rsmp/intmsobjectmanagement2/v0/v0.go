@@ -546,6 +546,13 @@ type EnumerateNTMSObjectRRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// lpContainerId: A pointer to the identifier of the container for which to enumerate
 	// objects. If this parameter is set to NULL, top-level objects MUST be enumerated.
+	//
+	// If the lpContainerId parameter is set to NULL, the server MUST enumerate top-level
+	// objects (such as libraries). If more than one object is listed, the object can be
+	// enumerated from more than one container. The NULL container is the highest-level
+	// container, and enumerates all objects in a system. lpContainerId can be an object
+	// identifier (for example, a library identifier) which would return the objects associated
+	// with it, depending on the type of object chosen in the dwType parameter.
 	ContainerID *dtyp.GUID `idl:"name:lpContainerId;pointer:unique" json:"container_id"`
 	// lpdwListBufferSize: A pointer to the size, in bytes, of the lpList buffer.
 	ListBufferSize uint32 `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`

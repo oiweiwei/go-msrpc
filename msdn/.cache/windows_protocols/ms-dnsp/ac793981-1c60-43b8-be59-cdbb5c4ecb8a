@@ -1,0 +1,234 @@
+<div class="content" name="DNS_FLAT_RECORD" uuid="ac793981-1c60-43b8-be59-cdbb5c4ecb8a"><p> </p><p>The <b>DNS_RPC_RECORD</b> structure is used to specify a
+single DNS record&#39;s parameters and data. This structure is returned by the DNS
+server in response to an R_DnssrvEnumRecords2 (section <span><a href="0d236e58-9944-4cdf-ae98-f92460202e29" data-linktype="relative-path">3.1.4.9</a></span>)
+method call.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcRecord {
+   WORD wDataLength;
+   WORD wType;
+   DWORD dwFlags;
+   DWORD dwSerial;
+   DWORD dwTtlSeconds;
+   DWORD dwTimeStamp;
+   DWORD dwReserved;
+   [size_is(wDataLength)] BYTE Buffer[];
+ } DNS_RPC_RECORD,
+  *PDNS_RPC_RECORD,
+  DNS_FLAT_RECORD,
+  *PDNS_FLAT_RECORD;
+</pre></div>
+</dd></dl><p><b>wDataLength:</b> The total size of the
+variable buffer, in bytes. Note that the DNS_RPC_RECORD structure is always
+4-byte aligned, which means there can be 0-3 bytes of padding at the end of the
+structure. The pad bytes are not included in the wDataLength count.</p><p><b>wType:</b> The type of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource
+record</a></span>, as specified in section <span><a href="39b03b89-2264-4063-8198-d62f62a6441a" data-linktype="relative-path">2.2.2.1.1</a></span>
+DNS_RECORD_TYPE.</p><p><b>dwFlags:</b> Resource record properties. This
+field can contain one of the RANK* flags in the low-order bits and one of the
+DNS_RPC_FLAGS* in the high-order bits.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>RANK_CACHE_BIT 0x00000001</td>
+  <td>The record came from the cache.</td>
+ </tr><tr>
+  <td>RANK_ROOT_HINT 0x00000008</td>
+  <td>The record is a preconfigured root hint.</td>
+ </tr><tr>
+  <td>RANK_OUTSIDE_GLUE 0x00000020</td>
+  <td>This value is not used.</td>
+ </tr><tr>
+  <td>RANK_CACHE_NA_ADDITIONAL 0x00000031</td>
+  <td>The record was cached from the additional section of a non-authoritative response.</td>
+ </tr><tr>
+  <td>RANK_CACHE_NA_AUTHORITY 0x00000041</td>
+  <td>The record was cached from the authority section of a non-authoritative response.</td>
+ </tr><tr>
+  <td>RANK_CACHE_A_ADDITIONAL 0x00000051</td>
+  <td>The record was cached from the additional section of an authoritative response.</td>
+ </tr><tr>
+  <td>RANK_CACHE_NA_ANSWER 0x00000061</td>
+  <td>The record was cached from the answer section of a non-authoritative response.</td>
+ </tr><tr>
+  <td>RANK_CACHE_A_AUTHORITY 0x00000071</td>
+  <td>The record was cached from the authority section of an authoritative response.</td>
+ </tr><tr>
+  <td>RANK_GLUE 0x00000080</td>
+  <td>The record is a glue record in an authoritative zone.</td>
+ </tr><tr>
+  <td>RANK_NS_GLUE 0x00000082</td>
+  <td>The record is a delegation  (type NS) record in an authoritative zone.</td>
+ </tr><tr>
+  <td>RANK_CACHE_A_ANSWER 0x000000C1</td>
+  <td>The record was cached from the answer section of an authoritative response.</td>
+ </tr><tr>
+  <td>RANK_ZONE 0x000000F0</td>
+  <td>The record comes from an authoritative zone.</td>
+ </tr><tr>
+  <td>DNS_RPC_FLAG_ZONE_ROOT 0x40000000</td>
+  <td>The record is at the root of a zone (not necessarily a zone hosted by this server; the record could have come from the cache).</td>
+ </tr><tr>
+  <td>DNS_RPC_FLAG_AUTH_ZONE_ROOT 0x20000000</td>
+  <td>The record is at the root of a zone that is locally hosted on this server.</td>
+ </tr><tr>
+  <td>DNS_RPC_FLAG_CACHE_DATA 0x80000000</td>
+  <td>The record came from the cache.</td>
+ </tr><tr>
+  <td>DNS_RPC_FLAG_RECORD_WIRE_FORMAT 0x00100000</td>
+  <td>The record SHOULD&lt;25&gt; be treated as a resource record of unknown type ([RFC3597] section 2) by the DNS server.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwSerial:</b> This MUST be set to 0x00000000
+when sent by the client or server, and ignored on receipt by the server or
+client.</p><p><b>dwTtlSeconds:</b> The duration, in seconds,
+after which this record will expire.</p><p><b>dwTimeStamp:</b> The <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_391ec606-c265-48f2-aeeb-3245b5503121" data-linktype="relative-path">time
+stamp</a></span>, in hours, for the record when it received the last update.</p><p><b>dwReserved:</b> This value MUST be set to
+0x00000000 when sent by the client and ignored on receipt by the server.</p><p><b>Buffer:</b> Record data in
+DNS_RPC_RECORD_DATA (section <span><a href="38b87392-7f61-4e30-9263-9f0fb832d084" data-linktype="relative-path">2.2.2.2.4</a></span>) format
+where type is specified by the value <b>wType</b>.<a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DNS_TYPE_ZERO 0x0000</td>
+  <td>DNS_RPC_RECORD_TS</td>
+ </tr><tr>
+  <td>DNS_TYPE_A 0x0001</td>
+  <td>DNS_RPC_RECORD_A</td>
+ </tr><tr>
+  <td>DNS_TYPE_NS 0x0002</td>
+  <td>DNS_RPC_RECORD_NODE_NAME</td>
+ </tr><tr>
+  <td>DNS_TYPE_MD 0x0003</td>
+  <td>DNS_RPC_RECORD_NODE_NAME</td>
+ </tr><tr>
+  <td>DNS_TYPE_MF 0x0004</td>
+  <td>DNS_RPC_RECORD_NODE_NAME</td>
+ </tr><tr>
+  <td>DNS_TYPE_CNAME 0x0005</td>
+  <td>DNS_RPC_RECORD_NODE_NAME</td>
+ </tr><tr>
+  <td>DNS_TYPE_SOA 0x0006</td>
+  <td>DNS_RPC_RECORD_SOA</td>
+ </tr><tr>
+  <td>DNS_TYPE_MB 0x0007</td>
+  <td>DNS_RPC_RECORD_NODE_NAME</td>
+ </tr><tr>
+  <td>DNS_TYPE_MG 0x0008</td>
+  <td>DNS_RPC_RECORD_NODE_NAME</td>
+ </tr><tr>
+  <td>DNS_TYPE_MR 0x0009</td>
+  <td>DNS_RPC_RECORD_NODE_NAME</td>
+ </tr><tr>
+  <td>DNS_TYPE_NULL 0x000A</td>
+  <td>DNS_RPC_RECORD_NULL</td>
+ </tr><tr>
+  <td>DNS_TYPE_WKS 0x000B</td>
+  <td>DNS_RPC_RECORD_WKS</td>
+ </tr><tr>
+  <td>DNS_TYPE_PTR 0x000C</td>
+  <td>DNS_RPC_RECORD_NODE_NAME</td>
+ </tr><tr>
+  <td>DNS_TYPE_HINFO 0x000D</td>
+  <td>DNS_RPC_RECORD_STRING</td>
+ </tr><tr>
+  <td>DNS_TYPE_MINFO 0x000E</td>
+  <td>DNS_RPC_RECORD_MAIL_ERROR</td>
+ </tr><tr>
+  <td>DNS_TYPE_MX 0x000F</td>
+  <td>DNS_RPC_RECORD_NAME_PREFERENCE</td>
+ </tr><tr>
+  <td>DNS_TYPE_TXT 0x0010</td>
+  <td>DNS_RPC_RECORD_STRING</td>
+ </tr><tr>
+  <td>DNS_TYPE_RP 0x0011</td>
+  <td>DNS_RPC_RECORD_MAIL_ERROR</td>
+ </tr><tr>
+  <td>DNS_TYPE_AFSDB 0x0012</td>
+  <td>DNS_RPC_RECORD_NAME_PREFERENCE</td>
+ </tr><tr>
+  <td>DNS_TYPE_X25 0x0013</td>
+  <td>DNS_RPC_RECORD_STRING</td>
+ </tr><tr>
+  <td>DNS_TYPE_ISDN 0x0014</td>
+  <td>DNS_RPC_RECORD_STRING</td>
+ </tr><tr>
+  <td>DNS_TYPE_RT 0x0015</td>
+  <td>DNS_RPC_RECORD_NAME_PREFERENCE</td>
+ </tr><tr>
+  <td>DNS_TYPE_SIG 0x0018</td>
+  <td>DNS_RPC_RECORD_SIG</td>
+ </tr><tr>
+  <td>DNS_TYPE_KEY 0x0019</td>
+  <td>DNS_RPC_RECORD_KEY</td>
+ </tr><tr>
+  <td>DNS_TYPE_AAAA 0x001C</td>
+  <td>DNS_RPC_RECORD_AAAA</td>
+ </tr><tr>
+  <td>DNS_TYPE_NXT 0x001E</td>
+  <td>DNS_RPC_RECORD_NXT</td>
+ </tr><tr>
+  <td>DNS_TYPE_SRV 0x0021</td>
+  <td>DNS_RPC_RECORD_SRV</td>
+ </tr><tr>
+  <td>DNS_TYPE_ATMA 0x0022</td>
+  <td>DNS_RPC_RECORD_ATMA</td>
+ </tr><tr>
+  <td>DNS_TYPE_NAPTR 0x0023</td>
+  <td>DNS_RPC_RECORD_NAPTR</td>
+ </tr><tr>
+  <td>DNS_TYPE_DNAME 0x0027</td>
+  <td>DNS_RPC_RECORD_NODE_NAME</td>
+ </tr><tr>
+  <td>DNS_TYPE_DS 0x002B</td>
+  <td>DNS_RPC_RECORD_DS</td>
+ </tr><tr>
+  <td>DNS_TYPE_RRSIG 0x002E</td>
+  <td>DNS_RPC_RECORD_RRSIG</td>
+ </tr><tr>
+  <td>DNS_TYPE_NSEC 0x002F</td>
+  <td>DNS_RPC_RECORD_NSEC</td>
+ </tr><tr>
+  <td>DNS_TYPE_DNSKEY 0x0030</td>
+  <td>DNS_RPC_RECORD_DNSKEY</td>
+ </tr><tr>
+  <td>DNS_TYPE_DHCID 0x0031</td>
+  <td>DNS_RPC_RECORD_DHCID</td>
+ </tr><tr>
+  <td>DNS_TYPE_NSEC3 0x0032</td>
+  <td>DNS_RPC_RECORD_NSEC3</td>
+ </tr><tr>
+  <td>DNS_TYPE_NSEC3PARAM 0x0033</td>
+  <td>DNS_RPC_RECORD_NSEC3PARAM</td>
+ </tr><tr>
+  <td>DNS_TYPE_TLSA 0x0034</td>
+  <td>DNS_RPC_RECORD_TLSA</td>
+ </tr><tr>
+  <td>DNS_TYPE_WINS 0xFF01</td>
+  <td>DNS_RPC_RECORD_WINS</td>
+ </tr><tr>
+  <td>DNS_TYPE_WINSR 0xFF02</td>
+  <td>DNS_RPC_RECORD_WINSR</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Other type values that are not explicitly defined in
+the preceding table MUST be enumerable, including values defined by <span><a href="https://go.microsoft.com/fwlink/?LinkId=148574" data-linktype="external">[IANA-DNS]</a></span>,
+and they MUST use the DNS_RPC_RECORD_NULL (section <span><a href="308da71d-67db-4a0b-96b1-d0120aaf0017" data-linktype="relative-path">2.2.2.2.4.4</a></span>)
+structure. If the <b>dwFlags</b> field is set to
+DNS_RPC_FLAG_RECORD_WIRE_FORMAT, the DNS_RPC_RECORD_UNKNOWN (section <span><a href="48645c73-12e8-4b60-baf7-c28f80a14ac4" data-linktype="relative-path">2.2.2.2.4.27</a></span>)
+structure MUST be used for all resource record types.</p>
+</dd></dl></div>

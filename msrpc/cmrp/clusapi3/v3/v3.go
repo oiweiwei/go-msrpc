@@ -2561,6 +2561,10 @@ type EnumEntry struct {
 	//
 	// If the ENUM_LIST is returned by a call to ApiCreateEnumEx, it contains the return
 	// data specified in section 3.1.4.2.124.
+	//
+	// Otherwise, a null-terminated Unicode string that specifies the name of the object
+	// that is represented by the list element. See section 3.1.4 for information about
+	// the maximum length of this string.
 	Name string `idl:"name:Name;string" json:"name"`
 }
 
@@ -35628,6 +35632,10 @@ type OpenClusterExResponse struct {
 	//	+---------------------------------------+----------------------------------------------------------------------------------+
 	//	| RPC_S_PROCNUM_OUT_OF_RANGE 0x000006D1 | The server does not support this method.                                         |
 	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// For any other condition, the server sets Status to a value that is not one of the
+	// values listed in the preceding table. The client MUST treat all values that are not
+	// listed in the preceding table the same, except as specified in section 3.2.4.6.
 	Status uint32 `idl:"name:Status" json:"status"`
 	// Return: The ApiOpenClusterEx return value.
 	Return *Cluster `idl:"name:Return" json:"return"`
@@ -35883,6 +35891,10 @@ type OpenNodeExResponse struct {
 	//	+-----------------------------------------+----------------------------------------------------------------------------------+
 	//	| RPC_S_PROCNUM_OUT_OF_RANGE 0x000006D1   | The server does not support this method.                                         |
 	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// For any other condition, the server sets Status to a value that is not one of the
+	// values listed in the preceding table. The client MUST treat all values not listed
+	// in the preceding table the same, except as specified in section 3.2.4.6.
 	Status uint32 `idl:"name:Status" json:"status"`
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
 	// MUST indicate, by writing to this parameter, whether it succeeded in executing this
@@ -36148,6 +36160,10 @@ type OpenGroupExResponse struct {
 	//	| ERROR_GROUP_NOT_FOUND 0x00001395      | A group that matches the name lpszGroupName was not found in the cluster         |
 	//	|                                       | configuration.                                                                   |
 	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// For any other condition, the server sets Status to a value that is not one of the
+	// values listed in the preceding table. The client MUST treat all values that are not
+	// listed in the preceding table the same, except as specified in section 3.2.4.6.
 	Status uint32 `idl:"name:Status" json:"status"`
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
 	// MUST indicate, by writing to this parameter, whether it succeeded in executing this
@@ -36409,6 +36425,10 @@ type OpenResourceExResponse struct {
 	//	| ERROR_RESOURCE_NOT_FOUND 0x0000138f   | A resource that matches name lpszResourceName was not found in the cluster       |
 	//	|                                       | configuration.                                                                   |
 	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// For any other condition, the server sets Status to a value that is not one of the
+	// values listed in the preceding table. The client MUST treat all values that are not
+	// listed in the preceding table the same, except as specified in section 3.2.4.6.
 	Status uint32 `idl:"name:Status" json:"status"`
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
 	// MUST indicate, by writing to this parameter, whether it succeeded in executing this
@@ -36669,6 +36689,10 @@ type OpenNetworkExResponse struct {
 	//	| ERROR_CLUSTER_NETWORK_NOT_FOUND 0x000013B5 | A cluster network that matches the name lpszNetworkName was not found in the     |
 	//	|                                            | cluster configuration.                                                           |
 	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// For any other condition, the server sets Status to a value that is not one of the
+	// values listed in the preceding table. The client MUST treat all values that are not
+	// listed in the preceding table the same, except as specified in section 3.2.4.6.
 	Status uint32 `idl:"name:Status" json:"status"`
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
 	// MUST indicate, by writing to this parameter, whether it succeeded in executing this
@@ -36931,6 +36955,10 @@ type OpenNetInterfaceExResponse struct {
 	//	| ERROR_CLUSTER_NETINTERFACE_NOT_FOUND 0x000013b7 | A cluster network interface that matches the name lpszNetInterfaceName was not   |
 	//	|                                                 | found in the cluster configuration.                                              |
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// For any other condition, the server sets Status to a value that is not one of the
+	// values listed in the preceding table. The client MUST treat all values that are not
+	// listed in the preceding table the same, except as specified in section 3.2.4.6.
 	Status uint32 `idl:"name:Status" json:"status"`
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
 	// MUST indicate, by writing to this parameter, whether it succeeded in executing this
@@ -38862,6 +38890,10 @@ type CreateGroupExResponse struct {
 	//	+----------------------------------------+--------------------------------------------------------------------+
 	//	| 0x00001392 ERROR_OBJECT_ALREADY_EXISTS | A group with the designated name already exists.                   |
 	//	+----------------------------------------+--------------------------------------------------------------------+
+	//
+	// For any other condition, the server sets the Status parameter to a value that is
+	// not one of the values listed in this table. The client MUST treat all values not
+	// listed in this table identically, except as specified in section 3.2.4.6.
 	Status uint32 `idl:"name:Status" json:"status"`
 	// rpc_status: A 32-bit integer used to indicate success or failure. The RPC runtime
 	// MUST indicate, by writing to this parameter, whether it succeeded in executing this
@@ -41855,6 +41887,9 @@ type GetNotifyV2Response struct {
 	// Each NOTIFICATION_RPC structure contains a NOTIFICATION_DATA_RPC (section 2.2.3.23)
 	// structure, which is populated according to the particular notification event.
 	//
+	// For event indications pertaining to a cluster object, as specified for CLUSTER_OBJECT_TYPE_CLUSTER
+	// (section 2.2.2.11), the server MUST set the NOTIFICATION_DATA_RPC structure as follows:
+	//
 	// * FilterAndType.dwObjectType: CLUSTER_OBJECT_TYPE_CLUSTER (section 2.2.2.11).
 	//
 	// * FilterAndType.FilterFlags: one flag from the CLUSTER_CHANGE_CLUSTER_V2 (section
@@ -41900,6 +41935,9 @@ type GetNotifyV2Response struct {
 	//	+------------------------------------------------+----------------------------------------------------------------------------------+--------------------------------+-----------------------------------------------+------------------------------------+
 	//	| CLUSTER_CHANGE_CLUSTER _UPGRADED_V2            | A DWORD containing the cluster operating version.                                | An empty Unicode string.       | An empty Unicode string.                      | An empty Unicode string.           |
 	//	+------------------------------------------------+----------------------------------------------------------------------------------+--------------------------------+-----------------------------------------------+------------------------------------+
+	//
+	// For event indications pertaining to a group object as specified for CLUSTER_OBJECT_TYPE_GROUP
+	// (section 2.2.2.11), the server MUST set the NOTIFICATION_DATA_RPC structure as follows:
 	//
 	// * FilterAndType.dwObjectType: CLUSTER_OBJECT_TYPE_GROUP (section 2.2.2.11).
 	//
@@ -41947,6 +41985,9 @@ type GetNotifyV2Response struct {
 	//	|                                          | (section 3.1.4.2.11) or ApiChangeResourceGroup (section 3.1.4.2.26) or           |                                                                                  |                                                                                  |
 	//	|                                          | ApiChangeResourceGroupEx (section 3.1.4.2.166).                                  |                                                                                  |                                                                                  |
 	//	+------------------------------------------+----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// For event indications pertaining to a resource object as specified for CLUSTER_OBJECT_TYPE_RESOURCE
+	// (section 2.2.2.11), the server MUST set the NOTIFICATION_DATA_RPC structure as follows:
 	//
 	// * FilterAndType.dwObjectType: CLUSTER_OBJECT_TYPE_RESOURCE (section 2.2.2.11).
 	//
@@ -41996,6 +42037,9 @@ type GetNotifyV2Response struct {
 	//	|                                             | 3.1.4.3.1.27).                                                                   |
 	//	+---------------------------------------------+----------------------------------------------------------------------------------+
 	//
+	// For event indications pertaining to a resource type object as specified for CLUSTER_OBJECT_TYPE_RESOURCE_TYPE
+	// (section 2.2.2.11), the server MUST set the NOTIFICATION_DATA_RPC structure as follows:
+	//
 	// * FilterAndType.dwObjectType: CLUSTER_OBJECT_TYPE_RESOURCE_TYPE (section 2.2.2.11).
 	//
 	// * FilterAndType.FilterFlags: one flag from the CLUSTER_CHANGE_RESOURCE_TYPE_V2 (section
@@ -42036,6 +42080,10 @@ type GetNotifyV2Response struct {
 	//	| CLUSTER_RESOURCE_TYPE_SPECIFIC_V2                | The same buffer field that a resource DLL used when it raised the notification.  |
 	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
 	//
+	// For event indications pertaining to a cluster network interface as specified for
+	// CLUSTER_OBJECT_TYPE_NETWORK_INTERFACE (section 2.2.2.11), the server MUST set the
+	// NOTIFICATION_DATA_RPC structure as follows:
+	//
 	// * FilterAndType.dwObjectType: CLUSTER_OBJECT_TYPE_NETWORK_INTERFACE (section 2.2.2.11).
 	//
 	// * FilterAndType.FilterFlags: one flag from the CLUSTER_CHANGE_NETINTERFACE_V2 (section
@@ -42073,6 +42121,9 @@ type GetNotifyV2Response struct {
 	//	|                                                 | a call to ApiGetNetInterfaceState (section 3.1.4.2.94).                          |
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
 	//
+	// For event indications pertaining to a cluster network object as specified for CLUSTER_OBJECT_TYPE_NETWORK
+	// (section 2.2.2.11), the server MUST set the NOTIFICATION_DATA_RPC structure as follows:
+	//
 	// * FilterAndType.dwObjectType: CLUSTER_OBJECT_TYPE_NETWORK (section 2.2.2.11).
 	//
 	// * FilterAndType.FilterFlags: one flag from the CLUSTER_CHANGE_NETWORK_V2 (section
@@ -42109,6 +42160,9 @@ type GetNotifyV2Response struct {
 	//	| CLUSTER_CHANGE_NETWORK_STATE_V2            | A DWORD containing the cluster network state, as would be returned by a call to  |
 	//	|                                            | ApiGetNetworkState (section 3.1.4.2.83).                                         |
 	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// For event indications pertaining to a cluster node object as specified for CLUSTER_OBJECT_TYPE_NODE
+	// (section 2.2.2.11), the server MUST set the NOTIFICATION_DATA_RPC structure as follows:
 	//
 	// * FilterAndType.dwObjectType: CLUSTER_OBJECT_TYPE_NODE (section 2.2.2.11).
 	//
@@ -42149,6 +42203,10 @@ type GetNotifyV2Response struct {
 	//	| CLUSTER_CHANGE_NODE_GROUP_LOST_V2         | The ID of the group that has moved away from this node.                          | The ID of the cluster node.              | The name of the cluster node.              |
 	//	+-------------------------------------------+----------------------------------------------------------------------------------+------------------------------------------+--------------------------------------------+
 	//
+	// For event indications pertaining to a cluster registry key object as specified for
+	// CLUSTER_OBJECT_TYPE_REGISTRY (section 2.2.2.11), the server MUST set the NOTIFICATION_DATA_RPC
+	// structure as follows:
+	//
 	// * FilterAndType.dwObjectType: CLUSTER_OBJECT_TYPE_REGISTRY (section 2.2.2.11).
 	//
 	// * FilterAndType.FilterFlags: one flag from the CLUSTER_CHANGE_REGISTRY_V2 (section
@@ -42181,6 +42239,9 @@ type GetNotifyV2Response struct {
 	//	| CLUSTER_CHANGE_REGISTRY_VALUE_V2      | The name of the changed value. | Relative name of the changed cluster database key.                  |
 	//	+---------------------------------------+--------------------------------+---------------------------------------------------------------------+
 	//
+	// For event indications pertaining to a cluster quorum as specified for CLUSTER_OBJECT_TYPE_QUORUM
+	// (section 2.2.2.11), the server MUST set the NOTIFICATION_DATA_RPC structure as follows:
+	//
 	// * FilterAndType.dwObjectType: CLUSTER_OBJECT_TYPE_QUORUM (section 2.2.2.11).
 	//
 	// * FilterAndType.FilterFlags: one flag from the CLUSTER_CHANGE_QUORUM_V2 (section
@@ -42208,6 +42269,10 @@ type GetNotifyV2Response struct {
 	// Note  For the CLUSTER_CHANGE_QUORUM_STATE_V2 value, if and only if a quorum disk
 	// resource is included, a payload will also be provided and the target will be the
 	// resource.
+	//
+	// For event indications pertaining to a shared volume as specified for CLUSTER_OBJECT_TYPE_SHARED_VOLUME
+	// (section 2.2.2.11), the server SHOULD<125> set the NOTIFICATION_DATA_RPC structure
+	// as follows:
 	//
 	// * FilterAndType.dwObjectType: CLUSTER_OBJECT_TYPE_SHARED_VOLUME (section 2.2.2.11).
 	//

@@ -78,6 +78,9 @@ type UpdateSession3Client interface {
 	//
 	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
 	//
+	// If the startIndex value is less than 0x00000000 or greater than or equal to the number
+	// of items in the collection, the server MUST return an error.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	QueryHistory(context.Context, *QueryHistoryRequest, ...dcerpc.CallOption) (*QueryHistoryResponse, error)

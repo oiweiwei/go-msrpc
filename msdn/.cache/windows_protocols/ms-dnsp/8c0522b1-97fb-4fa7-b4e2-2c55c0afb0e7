@@ -1,0 +1,129 @@
+<div class="content" name="R_DnssrvOperation2" uuid="8c0522b1-97fb-4fa7-b4e2-2c55c0afb0e7"><p>The R_DnssrvOperation2 method is used to invoke a set of
+server functions specified by the caller. The DNS server SHOULD implement
+R_DnssrvOperation2.</p><p>All parameters are as specified by the R_DnssrvOperation
+method (section <span><a href="9500a7e8-165d-4b13-be86-0ddc43100eef" data-linktype="relative-path">3.1.4.1</a></span>) with the
+following exceptions:</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvOperation2(
+   [in]                               handle_t                    hBindingHandle,
+   [in]                               DWORD                       dwClientVersion,
+   [in]                               DWORD                       dwSettingFlags,
+   [in, unique, string]               LPCWSTR                     pwszServerName,
+   [in, unique, string]               LPCSTR                      pszZone,
+   [in]                               DWORD                       dwContext,
+   [in, unique, string]               LPCSTR                      pszOperation,
+   [in]                               DWORD                       dwTypeId,
+   [in, switch_is(dwTypeId)]          DNSSRV_RPC_UNION            pData
+ );
+</pre></div>
+</dd></dl><p><b>dwClientVersion: </b>The client version in <b>DNS_RPC_CURRENT_CLIENT_VER</b>
+(section <span><a href="a237781b-b048-495d-844b-10ffb38df2a8" data-linktype="relative-path">2.2.1.2.1</a></span>) format.</p><p><b>dwSettingFlags: </b>Reserved for future use. MUST
+be set to zero by clients and MUST be ignored by servers.</p><p><b>pszOperation: </b>In addition to the operations
+specified in R_DnssrvOperation method, the following operations are specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>SetEncryptionConfig</td>
+  <td>Specifies encryption configuration for DNS over HTTPS (DoH). The dwTypeId parameter MUST be set to DNSSRV_TYPEID_ENCRYPTION_CONFIG, and pData MUST point to a structure of type DNS_RPC_ENCRYPTION_CONFIG.&lt;281&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The method MUST return
+ERROR_SUCCESS (0x00000000) on success or a nonzero Win32 error code value if an
+error occurred. See <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>
+or section <span><a href="aa521c99-3e44-4b75-9faa-c0c1ebcca5b6" data-linktype="relative-path">2.2.1.1.5</a></span>. All
+error values MUST be treated the same.</p><p>When processing this call, the server MUST perform the same
+actions as for the R_DnssrvOperation method (section 3.1.4.1) except in the
+event the dwClientVersion is greater than the server version, in which case the
+server MUST return the highest version number known to the server. </p><p>If pszOperation is set to &#34;SetEncryptionConfig&#34;,
+the server MUST do the following.</p><p><span>§<span> 
+</span></span>If <b>dwTypeId</b> is <b>DNSSRV_TYPEID_ENCRYPTION_CONFIG </b>and <i>dwDnsEncryptionType
+</i>parameter in <b>DNS_RPC_ENCRYPTION_CONFIG </b>contains a value other than
+specified in section <span><a href="79b16b67-49b7-41c0-b637-66eda269bbcc" data-linktype="relative-path">2.2.4.1.3</a></span>, the
+server MUST fail the request with<b> </b>ERROR_INVALID_PARAMETER.</p><p><span>§<span> 
+</span></span>If <b>dwTypeId</b> is <b>DNSSRV_TYPEID_ENCRYPTION_CONFIG, </b>dwDnsEncryptionType
+is set to DnsEncryptionDoH<b> </b>and<b> </b><i>pwszUriTemplate</i><b> </b>parameter
+in <b>DNS_RPC_ENCRYPTION_CONFIG</b> does not conform with any of the following,
+the server MUST fail the request with ERROR_INVALID_PARAMETER.</p><dl>
+<dd>
+<p><span>§<span> 
+</span></span>pwszUriTemplate is NULL or empty string or if any individual URI
+template does not conform to <span><a href="https://go.microsoft.com/fwlink/?linkid=2347506" data-linktype="external">[RFC8484]</a></span>.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>pwszUriTemplate exceeds the maximum length specified in section <span><a href="f14b0491-3b0d-4e9c-be4e-14dbede9b248" data-linktype="relative-path">2.2.4.2.3</a></span>.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>pwszUriTemplate MUST contain between one and three non-empty URI
+template entries separated by the ‘|’ character.  </p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>For each template the server MUST further verify,</p>
+<dl>
+<dd>
+<p><span>§<span> 
+</span></span>The URI template does not contain URI Template variable expansion
+syntax as defined in <span><a href="https://go.microsoft.com/fwlink/?linkid=2347603" data-linktype="external">[RFC6570]</a></span>.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>The host name component of each URI template MUST NOT exceed 255
+characters.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>IPv4 addresses and bracketed IPv6 literal addresses MUST be
+accepted as the host component of the URI template.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>Each URI template MUST use the <b>“</b>https<b>”</b> scheme.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>If a port value is specified in the URI template, the port value
+MUST be a decimal integer in the range 1 through 65535.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>Each URI template MUST NOT contain either a query or fragment
+component.</p>
+</dd></dl></dd></dl><ul><li><p><span><span> 
+</span></span>Duplicate URI template entries MUST be treated as a single entry.
+The presence of duplicate entries MUST NOT cause the operation to fail.</p>
+</li><li><p><span><span> 
+</span></span>If <b>dwTypeId</b> is <b>DNSSRV_TYPEID_ENCRYPTION_CONFIG</b>, the
+server MUST ignore <i>pszZone</i><b> </b>parameter.</p>
+</li><li><p><span><span> 
+</span></span>If <b>dwTypeId</b> is <b>DNSSRV_TYPEID_ENCRYPTION_CONFIG</b>, the
+server MUST perform the following:</p>
+<ul><li><p><span><span>  </span></span><b>EnableEncryptedDNSFeatures</b>
+MUST be set to dwDnsEncryptionType.</p>
+<ul><li><p><span><span> 
+</span></span>If dwDnsEncryptionType is set to DnsEncryptionDoH (0x00000001),
+DNS over HTTPS MUST be enabled on the server using the URI templates derived
+from pwszUriTemplate. <b>DoHUrlTemplates</b> MUST be set to<b> </b><i>pwszUriTemplate</i>.</p>
+</li><li><p><span><span> 
+</span></span>If pwszUriTemplate is NULL or an empty string, the server will
+use its own host name on port 443 with /dns-query as the default URI template.
+For example,</p>
+<div><pre>       https://&lt;DNSServerName&gt;:443/dns-query
+</pre></div>
+</li><li><p><span><span> 
+</span></span>If dwDnsEncryptionType is set to DnsEncryptionNone (0x00000000),
+the server MUST ignore pwszUriTemplate parameter. DNS over HTTPS MUST be
+disabled and <b>DOHUrlTemplates</b> MUST be set to empty. </p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Changes to the DNS encryption configuration are persisted
+immediately but do not take effect until the DNS Server is restarted.            </p>
+</li></ul></div>

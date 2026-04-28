@@ -1422,6 +1422,9 @@ type GetFuncIndexOfMemberIDsResponse struct {
 	// If invKind is not 0, the specified element is the one whose MEMBERID matches the
 	// value of memid, and whose associated INVOKEKIND constant (see FUNCDESC) matches the
 	// value of invKind.
+	//
+	// If invKind is 0, the specified element is the one with the lowest ordinal position
+	// in the method table whose MEMBERID matches the value of memid.
 	FuncIndex uint32 `idl:"name:pFuncIndex" json:"func_index"`
 	// Return: The GetFuncIndexOfMemId return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -3492,6 +3495,11 @@ type GetDocumentation2Request struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// memid: MUST be the MEMBERID of a member of the type (as specified in section 2.2.35),
 	// or MEMBERID_NIL.
+	//
+	// If memid is MEMBERID_NIL, the values of pBstrHelpString, pdwHelpStringContext, and
+	// pBstrHelpStringDll MUST correspond to the attributes declared with the type as specified
+	// in 2.2.49.3. Otherwise, they MUST correspond to the attributes declared with the
+	// specified member of the type.
 	MemberID int32 `idl:"name:memid" json:"member_id"`
 	// lcid: MUST be the locale ID of the specified type or type library.
 	//

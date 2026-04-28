@@ -163,7 +163,7 @@ type RemoteFwServer interface {
 	//	|                                    | validations that are specified in the definition of the FW_RULE data type. One   |
 	//	|                                    | of the required values is not specified. A policy store does not support rules   |
 	//	|                                    | with profile conditions other than ALL profiles. The wszLocalApplication field   |
-	//	|                                    | of the rule contains a string that was determined to be an invalid path.<33>     |
+	//	|                                    | of the rule contains a string that was determined to be an invalid path.<34>     |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//
 	// Exceptions Thrown: No exceptions are thrown except those that are thrown by the underlying
@@ -1016,7 +1016,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000032 ERROR_NOT_SUPPORTED     | The store handle is not of the dynamic store.                                    |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required and not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required and not        |
 	//	|                                    | specified.                                                                       |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//
@@ -1071,7 +1071,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000032 ERROR_NOT_SUPPORTED     | The store handle is not of the dynamic store.                                    |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified.                                                                       |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//
@@ -1099,7 +1099,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x000000B7 ERROR_ALREADY_EXISTS    | The specified rule has a rule ID that already exists in the specified store.     |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified.                                                                       |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//
@@ -1128,7 +1128,7 @@ type RemoteFwServer interface {
 	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified set referenced by the wszRuleID member STRING of the FW_MM_RULE    |
 	//	|                                    | data type is not found in the policy store.                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified.                                                                       |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//
@@ -1158,7 +1158,7 @@ type RemoteFwServer interface {
 	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified set referenced by the wszRuleID member string of the FW_MM_RULE    |
 	//	|                                    | data type is not found in the policy store.                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified.                                                                       |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//
@@ -1213,7 +1213,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters for this method is incorrect or is required but not        |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters for this method is incorrect, or is required but not       |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | parameters did not meet the required constraints. - The dwProfileFilter          |
 	//	|                                    | parameter contains invalid profiles.                                             |
@@ -1242,7 +1242,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | parameters did not meet the required constraints. - The pQuery parameter         |
 	//	|                                    | contains invalid profiles.                                                       |
@@ -1254,7 +1254,34 @@ type RemoteFwServer interface {
 	// protocols via the return value.
 	QueryFirewallRules(context.Context, *QueryFirewallRulesRequest) (*QueryFirewallRulesResponse, error)
 
-	// RRPC_FWQueryConnectionSecurityRules2_10 operation.
+	// The RRPC_FWQueryConnectionSecurityRules (Opnum 38) method requests the server to
+	// return all the connection security rules that match the specified query object that
+	// are contained in the store referenced by the hPolicy handle. The method returns a
+	// linked list of all the connection security rule objects. The only method supported
+	// is binary version 0x020A.
+	//
+	// Return Values: The method returns 0 if successful; if failed, it returns a nonzero
+	// error code. The field can take any specific error code value, as specified in [MS-ERREF].
+	// The following return values are common.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
+	//	|                                    | specified. This error can be returned in the following cases: § One of the       |
+	//	|                                    | parameters did not meet the required constraints. § The pQuery parameter         |
+	//	|                                    | contains invalid profiles.                                                       |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol, as specified in [MS-RPCE]. If any lower-layer errors are reported by
+	// RPC exception, this exception is converted to an error code and reported to higher-layer
+	// protocols via the return value.
 	QueryConnectionSecurityRules210(context.Context, *QueryConnectionSecurityRules210Request) (*QueryConnectionSecurityRules210Response, error)
 
 	// The RRPC_FWQueryMainModeRules (Opnum 39) method requests the server to return all
@@ -1274,7 +1301,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | parameters did not meet the required constraints. - The pQuery parameter         |
 	//	|                                    | contains invalid profiles.                                                       |
@@ -1303,7 +1330,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
 	//	|                                    | invalid profiles.                                                                |
@@ -1332,7 +1359,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | parameters did not meet the required constraints. - The pQuery parameter         |
 	//	|                                    | contains invalid profiles.                                                       |
@@ -1417,7 +1444,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000032 ERROR_NOT_SUPPORTED     | The specified store type does not support this method.                           |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified. This error can be returned because: The specific configuration option |
 	//	|                                    | is not meant to be available in the specified store. The specified configuration |
 	//	|                                    | option is not defined. One of the required values is not specified. The buffer   |
@@ -1455,7 +1482,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x000000EA ERROR_MORE_DATA         | The buffer is not big enough to hold the configuration option value.             |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified. This error can be returned because: The specific configuration option |
 	//	|                                    | is not meant to be available in the specified store. The specified configuration |
 	//	|                                    | option is not defined. One of the required values is not specified. The buffer   |
@@ -1491,13 +1518,13 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified. This error can be returned because: The pRule object did not pass the |
 	//	|                                    | firewall rule validations specified in the definition of the FW_RULE data type.  |
 	//	|                                    | One of the required values is not specified. A policy store does not support     |
 	//	|                                    | rules with profile conditions other than ALL profiles. The wszLocalApplication   |
 	//	|                                    | parameter contains a string that at enforcement time does not represent a valid  |
-	//	|                                    | file path.<34>                                                                   |
+	//	|                                    | file path.<35>                                                                   |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
@@ -1534,7 +1561,7 @@ type RemoteFwServer interface {
 	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified rule referenced by the wszRuleID member string of the FW_RULE data |
 	//	|                                    | type is not found in the policy store.                                           |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified. This error can be returned because: The pRule object did not pass the |
 	//	|                                    | firewall rule validations specified in the definition of the FW_RULE data type.  |
 	//	|                                    | One of the required values is not specified. A policy store does not support     |
@@ -1566,7 +1593,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
 	//	|                                    | invalid profiles.                                                                |
@@ -1601,9 +1628,9 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
-	//	|                                    | specified. This error can be returned because: The pRule object did not pass     |
-	//	|                                    | the firewall rule validations specified in the definition of the FW_CS_RULE      |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and     |
+	//	|                                    | not specified. This error can be returned because: The pRule object did not      |
+	//	|                                    | pass the firewall rule validations specified in the definition of the FW_CS_RULE |
 	//	|                                    | data type. One of the required values is not specified. A policy store does not  |
 	//	|                                    | support rules with profile conditions other than ALL profiles.                   |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
@@ -1642,9 +1669,9 @@ type RemoteFwServer interface {
 	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified rule referenced by the wszRuleID member string of the FW_CS_RULE   |
 	//	|                                    | data type is not found in the policy store.                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
-	//	|                                    | specified. This error can be returned because: The pRule object did not pass     |
-	//	|                                    | the firewall rule validations specified in the definition of the FW_CS_RULE      |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and     |
+	//	|                                    | not specified. This error can be returned because: The pRule object did not      |
+	//	|                                    | pass the firewall rule validations specified in the definition of the FW_CS_RULE |
 	//	|                                    | data type. One of the required values is not specified. A policy store does not  |
 	//	|                                    | support rules with profile conditions other than ALL profiles.                   |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
@@ -1674,7 +1701,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
 	//	|                                    | invalid profiles.                                                                |
@@ -1709,7 +1736,7 @@ type RemoteFwServer interface {
 	//	|                                    | also returned if the client does not have the required credentials to call the   |
 	//	|                                    | method.                                                                          |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified. This error can be returned because: The pAuth object did not pass the |
 	//	|                                    | firewall rule validations specified in the definition of the FW_AUTH_SET data    |
 	//	|                                    | type. One of the required values is not specified.                               |
@@ -1749,7 +1776,7 @@ type RemoteFwServer interface {
 	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified rule referenced by the wszSetId member string of the FW_AUTH_SET   |
 	//	|                                    | data type is not found in the policy store.                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified. This error can be returned because: The pAuth object did not pass the |
 	//	|                                    | firewall rule validations specified in the definition of the FW_AUTH_SET data    |
 	//	|                                    | type. One of the required values is not specified.                               |
@@ -1780,7 +1807,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
 	//	|                                    | invalid profiles.                                                                |
@@ -1815,7 +1842,7 @@ type RemoteFwServer interface {
 	//	|                                    | also returned if the client does not have the required credentials to call the   |
 	//	|                                    | method.                                                                          |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified. This error can be returned because: The pCrypto object did not pass   |
 	//	|                                    | the crypto set validations specified in the definition of the FW_CRYPTO_SET data |
 	//	|                                    | type. One of the required values is not specified.                               |
@@ -1855,7 +1882,7 @@ type RemoteFwServer interface {
 	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified rule referenced by the wszSetId member string of the FW_CRYPTO_SET |
 	//	|                                    | data type is not found in the policy store.                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified. This error can be returned because: The pCrypto object did not pass   |
 	//	|                                    | the crypto set validations specified in the definition of the FW_CRYPTO_SET data |
 	//	|                                    | type. One of the required values is not specified.                               |
@@ -1886,7 +1913,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
 	//	|                                    | invalid profiles.                                                                |
@@ -1921,9 +1948,9 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
-	//	|                                    | specified. This error can be returned because: The pRule object did not pass     |
-	//	|                                    | the firewall rule validations specified in the definition of the FW_CS_RULE      |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and     |
+	//	|                                    | not specified. This error can be returned because: The pRule object did not      |
+	//	|                                    | pass the firewall rule validations specified in the definition of the FW_CS_RULE |
 	//	|                                    | data type. One of the required values is not specified. A policy store does not  |
 	//	|                                    | support rules with profile conditions other than ALL profiles.                   |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
@@ -1962,9 +1989,9 @@ type RemoteFwServer interface {
 	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified rule referenced by the wszRuleID member string of the FW_CS_RULE   |
 	//	|                                    | data type is not found in the policy store.                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
-	//	|                                    | specified. This error can be returned because: The pRule object did not pass     |
-	//	|                                    | the firewall rule validations specified in the definition of the FW_CS_RULE      |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and     |
+	//	|                                    | not specified. This error can be returned because: The pRule object did not      |
+	//	|                                    | pass the firewall rule validations specified in the definition of the FW_CS_RULE |
 	//	|                                    | data type. One of the required values is not specified. A policy store does not  |
 	//	|                                    | support rules with profile conditions other than ALL profiles.                   |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
@@ -2021,7 +2048,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
 	//	|                                    | invalid profiles.                                                                |
@@ -2146,7 +2173,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
 	//	|                                    | invalid profiles.                                                                |
@@ -2178,7 +2205,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified. This error can be returned because: The pRule object did not pass the |
 	//	|                                    | firewall rule validations specified in the definition of the FW_RULE data type.  |
 	//	|                                    | One of the required values is not specified. A policy store does not support     |
@@ -2221,7 +2248,7 @@ type RemoteFwServer interface {
 	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified rule referenced by the wszRuleID member string of the FW_RULE data |
 	//	|                                    | type is not found in the policy store.                                           |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect or is required and not  |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method either is incorrect, or is required and not |
 	//	|                                    | specified. This error can be returned because: The pRule object did not pass the |
 	//	|                                    | firewall rule validations specified in the definition of the FW_RULE data type.  |
 	//	|                                    | One of the required values is not specified. A policy store does not support     |
@@ -2253,7 +2280,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
 	//	|                                    | invalid profiles.                                                                |
@@ -2283,7 +2310,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The pQuery parameter contains invalid        |
 	//	|                                    | profiles.                                                                        |
@@ -2318,7 +2345,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - The pRule        |
 	//	|                                    | object did not pass the firewall rule validations specified in the definition    |
 	//	|                                    | of the FW_RULE data type. - One of the required values is not specified. -       |
@@ -2361,7 +2388,7 @@ type RemoteFwServer interface {
 	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified rule referenced by the wszRuleID member string of the FW_RULE data |
 	//	|                                    | type is not found in the policy store.                                           |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - The pRule object |
 	//	|                                    | did not pass the firewall rule validations specified in the definition of the    |
 	//	|                                    | FW_RULE data type. - One of the required values is not specified. - A policy     |
@@ -2393,7 +2420,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
 	//	|                                    | invalid profiles.                                                                |
@@ -2423,7 +2450,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The pQuery parameter contains invalid        |
 	//	|                                    | conditions.                                                                      |
@@ -2458,7 +2485,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - The pRule        |
 	//	|                                    | object did not pass the firewall rule validations specified in the definition    |
 	//	|                                    | of the FW_RULE data type. - One of the required values is not specified. -       |
@@ -2501,7 +2528,7 @@ type RemoteFwServer interface {
 	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified rule referenced by the wszRuleID member string of the FW_RULE data |
 	//	|                                    | type is not found in the policy store.                                           |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - The pRule object |
 	//	|                                    | did not pass the firewall rule validations specified in the definition of the    |
 	//	|                                    | FW_RULE data type. - One of the required values is not specified. - A policy     |
@@ -2533,7 +2560,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
 	//	|                                    | invalid profiles.                                                                |
@@ -2563,7 +2590,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The pQuery parameter contains invalid        |
 	//	|                                    | conditions.                                                                      |
@@ -2598,7 +2625,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - The pRule        |
 	//	|                                    | object did not pass the firewall rule validations specified in the definition    |
 	//	|                                    | of the FW_RULE data type. - One of the required values is not specified. -       |
@@ -2641,7 +2668,7 @@ type RemoteFwServer interface {
 	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified rule referenced by the wszRuleID member string of the FW_RULE data |
 	//	|                                    | type is not found in the policy store.                                           |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - The pRule object |
 	//	|                                    | did not pass the firewall rule validations specified in the definition of the    |
 	//	|                                    | FW_RULE data type. - One of the required values is not specified. - A policy     |
@@ -2673,7 +2700,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
 	//	|                                    | invalid profiles.                                                                |
@@ -2703,7 +2730,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The pQuery parameter contains invalid        |
 	//	|                                    | conditions.                                                                      |
@@ -2738,7 +2765,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - The pRule        |
 	//	|                                    | object did not pass the firewall rule validations specified in the definition    |
 	//	|                                    | of the FW_RULE data type (section 2.2.37). - One of the required values is       |
@@ -2781,7 +2808,7 @@ type RemoteFwServer interface {
 	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified rule referenced by the wszRuleID member string of the FW_RULE data |
 	//	|                                    | type (section 2.2.37) is not found in the policy store.                          |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - The pRule        |
 	//	|                                    | object did not pass the firewall rule validations specified in the definition    |
 	//	|                                    | of the FW_RULE data type (section 2.2.37). - One of the required values is not   |
@@ -2814,7 +2841,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
 	//	|                                    | invalid profiles.                                                                |
@@ -2844,7 +2871,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The pQuery parameter contains invalid        |
 	//	|                                    | conditions.                                                                      |
@@ -2879,7 +2906,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - The pRule        |
 	//	|                                    | object did not pass the firewall rule validations specified in the definition    |
 	//	|                                    | of the FW_RULE data type (section 2.2.37). - One of the required values is       |
@@ -2922,7 +2949,7 @@ type RemoteFwServer interface {
 	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified rule referenced by the wszRuleID member string of the FW_RULE data |
 	//	|                                    | type (section 2.2.37) is not found in the policy store.                          |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - The pRule        |
 	//	|                                    | object did not pass the firewall rule validations specified in the definition    |
 	//	|                                    | of the FW_RULE data type (section 2.2.37). - One of the required values is not   |
@@ -2955,7 +2982,7 @@ type RemoteFwServer interface {
 	//	|                                    | is also returned if the client does not have the required credentials to call    |
 	//	|                                    | the method.                                                                      |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
 	//	|                                    | invalid profiles.                                                                |
@@ -2985,7 +3012,7 @@ type RemoteFwServer interface {
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect or is required but not         |
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
 	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
 	//	|                                    | required values is not specified. - The pQuery parameter contains invalid        |
 	//	|                                    | conditions.                                                                      |

@@ -1,0 +1,102 @@
+<div class="content" name="IValueMap" uuid="b028335d-97c1-4b1c-bc07-8748d4956b8a"><p>The IValueMap interface is used to manage a collection of
+named-value pairs.</p><p>Objects that implement this interface represent value maps.
+The following properties MUST be implemented by the objects that implement the
+IValueMap interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>_NewEnum</td>
+  <td>R</td>
+  <td>An enumeration object of type IEnumVariant containing a snapshot of the IValueMapItem objects in this collection. The enumeration object is specified in [MS-OAUT] section 3.3.</td>
+ </tr><tr>
+  <td>Count</td>
+  <td>R</td>
+  <td>The number of value map items in the value map.</td>
+ </tr><tr>
+  <td>Description</td>
+  <td>RW</td>
+  <td>Specifies the description of the value map.</td>
+ </tr><tr>
+  <td>Item</td>
+  <td>R</td>
+  <td>Retrieves the requested value map item from the value map.</td>
+ </tr><tr>
+  <td>Value</td>
+  <td>RW</td>
+  <td>Specifies the value of the value map. The value is stored in a VARIANT. Any VARIANT is a legal value for this type. The Value property can be used for several purposes. Most commonly, the APIs described in this document use the Value property to indicate which ValueMapItem is considered to be currently selected. In these cases, the ValueMapItems each represent a possible value for a ValueMap, and the Value property stores the key to the ValueMapItem that is currently selected.</td>
+ </tr><tr>
+  <td>ValueMapType</td>
+  <td>RW</td>
+  <td>Specifies the type of the value map. The possible types of the value map are specified in section 2.2.2.11.</td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Count (Get)</td>
+  <td>Retrieves the Count property. Opnum: 7</td>
+ </tr><tr>
+  <td>Item (Get)</td>
+  <td>Retrieves the Item property. Opnum: 8</td>
+ </tr><tr>
+  <td>_NewEnum (Get)</td>
+  <td>Retrieves the NewEnum property. Opnum: 9</td>
+ </tr><tr>
+  <td>Description (Get)</td>
+  <td>Retrieves the Description property. Opnum: 10</td>
+ </tr><tr>
+  <td>Description (Put)</td>
+  <td>Sets the Description property. Opnum: 11</td>
+ </tr><tr>
+  <td>Value (Get)</td>
+  <td>Retrieves the Value property. Opnum: 12</td>
+ </tr><tr>
+  <td>Value (Put)</td>
+  <td>Sets the Value property. Opnum: 13</td>
+ </tr><tr>
+  <td>ValueMapType (Get)</td>
+  <td>Retrieves the ValueMapType property. Opnum: 14</td>
+ </tr><tr>
+  <td>ValueMapType (Put)</td>
+  <td>Sets the ValueMapType property. Opnum: 15</td>
+ </tr><tr>
+  <td>Add</td>
+  <td>Adds an item to the collection. Opnum: 16</td>
+ </tr><tr>
+  <td>Remove</td>
+  <td>Removes an item from the collection. Opnum: 17</td>
+ </tr><tr>
+  <td>Clear</td>
+  <td>Removes all items from the collection Opnum: 18</td>
+ </tr><tr>
+  <td>AddRange</td>
+  <td>Adds one or more items to the collection. Opnum: 19</td>
+ </tr><tr>
+  <td>CreateValueMapItem</td>
+  <td>Creates a value map item object. Opnum: 20</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface.</p><p>The IValueMap is used by the Performance Logs and Alerts
+Protocol for primarily two purposes. The first use of the IValueMap is to
+return properties of the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data
+collector set</a> (or its encapsulated objects) that could not be set by the
+server. Sections <a href="b7b0e0f8-327c-46de-b034-3d598306890e" data-linktype="relative-path">3.2.4.1.54</a>,
+<a href="dc40db82-6894-4e47-96f8-df0ba863594d" data-linktype="relative-path">3.2.4.1.58</a>, <a href="f84a6227-7a15-4704-ae99-098934876f4f" data-linktype="relative-path">3.2.4.2.24</a>, <a href="6f99ca8b-2197-43eb-b17a-7761c529787c" data-linktype="relative-path">3.2.4.5.22</a>, and <a href="bf21bda1-fd42-4796-ad06-1933e7e1aa96" data-linktype="relative-path">3.2.4.15.8</a> provide more
+information on how the IValueMap is used for this purpose. The second primary use
+of IValueMap in the Performance Logs and Alerts Protocol is to return
+information about a trace provider in the ITraceDataProvider interface.
+Sections <a href="075034e9-d905-4ced-a6b3-ddc7a83db246" data-linktype="relative-path">3.2.4.11.5</a>, <a href="c263d8d0-f97c-4d20-bf9d-386331db6741" data-linktype="relative-path">3.2.4.11.6</a>, and <a href="451feb4b-e34f-4f9b-931c-7f7f0065570e" data-linktype="relative-path">3.2.4.11.7</a> detail how
+information about the trace provider is returned using the IValueMap. </p></div>

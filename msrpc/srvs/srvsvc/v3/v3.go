@@ -70,6 +70,16 @@ type SrvsvcClient interface {
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
 	// code value, as specified in [MS-ERREF] section 2.2.
+	//
+	// In response to a NetrConnectionEnum request, the server MUST enumerate the tree connection
+	// entries in TreeConnectList based on the value of the ResumeHandle parameter. For
+	// each entry, the server MUST query treeconnect properties by invoking underlying server
+	// events as specified in [MS-CIFS] section 3.3.4.15 and [MS-SMB2] section 3.3.4.19,
+	// providing TreeConnect.GlobalTreeConnectId as the input parameter. When the server
+	// receives STATUS SUCCESS for a treeConnect.GlobalTreeConnectId from either a CIFS
+	// or SMB2 server, the server MUST consider the received CONNECTION_INFO_1 structure
+	// as valid, and it MUST continue to query all other treeconnects that are established
+	// on the server.
 	ConnectionEnum(context.Context, *ConnectionEnumRequest, ...dcerpc.CallOption) (*ConnectionEnumResponse, error)
 
 	// The NetrFileEnum method MUST return information about some or all open files on a
@@ -166,9 +176,9 @@ type SrvsvcClient interface {
 	// If either CIFS or SMB2 servers return STATUS_SUCCESS, the server MUST return NERR_Success.
 	// Otherwise, the server MUST fail the call with a NERR_FileIdNotFound error code.
 	//
-	// The server SHOULD<49> enforce security measures to verify that the caller has the
+	// The server SHOULD<50> enforce security measures to verify that the caller has the
 	// required permissions to execute this routine. If the caller does not have the required
-	// credentials, the server SHOULD<50> fail the call.
+	// credentials, the server SHOULD<51> fail the call.
 	FileClose(context.Context, *FileCloseRequest, ...dcerpc.CallOption) (*FileCloseResponse, error)
 
 	// The NetrSessionEnum method MUST return information about sessions that are established
@@ -346,9 +356,9 @@ type SrvsvcClient interface {
 	//	+-----------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000906 NERR_NetNameNotFound         | The share name does not exist.                                                   |
 	//	+-----------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000032 ERROR_NOT_SUPPORTED          | The server does not support branch cache. <62>                                   |
+	//	| 0x00000032 ERROR_NOT_SUPPORTED          | The server does not support branch cache. <63>                                   |
 	//	+-----------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0x00000424 ERROR_SERVICE_DOES_NOT_EXIST | The branch cache component does not exist as an installed service. <63>          |
+	//	| 0x00000424 ERROR_SERVICE_DOES_NOT_EXIST | The branch cache component does not exist as an installed service. <64>          |
 	//	+-----------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x0000007C ERROR_INVALID_LEVEL          | The system call level is not correct.                                            |
 	//	+-----------------------------------------+----------------------------------------------------------------------------------+
@@ -356,7 +366,7 @@ type SrvsvcClient interface {
 
 	// The NetrShareDel method deletes a share name from the ShareList, which disconnects
 	// all connections to the shared resource. If the share is sticky, all information about
-	// the share is also deleted from permanent storage.<67>
+	// the share is also deleted from permanent storage.<68>
 	//
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
@@ -393,7 +403,7 @@ type SrvsvcClient interface {
 	//
 	// The primary use of this method is to delete a sticky share whose root directory has
 	// been deleted (thus preventing actual re-creation of the share) but whose entry still
-	// exists in permanent storage.<72> This method can also be used to remove the persistence
+	// exists in permanent storage.<73> This method can also be used to remove the persistence
 	// of a share without deleting the current incarnation of the share.
 	//
 	// If ServerName does not match any Transport.ServerName in TransportList with the SVTI2_SCOPED_NAME
@@ -449,7 +459,7 @@ type SrvsvcClient interface {
 
 	// The NetrServerSetInfo method sets server operating parameters for CIFS and SMB Version
 	// 1.0 file servers; it can set them individually or collectively. The information is
-	// stored in a way that allows it to remain in effect after the system is reinitialized.<81>
+	// stored in a way that allows it to remain in effect after the system is reinitialized.<82>
 	//
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
@@ -537,9 +547,9 @@ type SrvsvcClient interface {
 	// message, except that it MUST allow only level 0 (that is, SERVER_TRANSPORT_INFO_0).
 	// The NetrServerTransportAddEx message is specified in section 3.1.4.23.
 	//
-	// The server MAY<91> enforce security measures to verify that the caller has the required
+	// The server MAY<92> enforce security measures to verify that the caller has the required
 	// permissions to execute this call. If the server enforces these security measures
-	// and the caller does not have the required credentials, the server SHOULD<92> fail
+	// and the caller does not have the required credentials, the server SHOULD<93> fail
 	// the call.
 	TransportAdd(context.Context, *TransportAddRequest, ...dcerpc.CallOption) (*TransportAddResponse, error)
 
@@ -599,9 +609,9 @@ type SrvsvcClient interface {
 	// message, except that it MUST allow only level 0 (that is, SERVER_TRANSPORT_INFO_0).
 	// The processing for this message is specified in section 3.1.4.26.
 	//
-	// The server MAY<97> enforce security measures to verify that the caller has the required
+	// The server MAY<98> enforce security measures to verify that the caller has the required
 	// permissions to execute this call. If the server enforces these security measures
-	// and the caller does not have the required credentials, the server SHOULD<98> fail
+	// and the caller does not have the required credentials, the server SHOULD<99> fail
 	// the call.
 	TransportDelete(context.Context, *TransportDeleteRequest, ...dcerpc.CallOption) (*TransportDeleteResponse, error)
 
@@ -629,7 +639,7 @@ type SrvsvcClient interface {
 	// code value, as specified in [MS-ERREF] section 2.2.
 	//
 	// If the Flags parameter is not equal to zero, the server SHOULD fail the call with
-	// an implementation-specific error code.<110>
+	// an implementation-specific error code.<111>
 	PathCanonicalize(context.Context, *PathCanonicalizeRequest, ...dcerpc.CallOption) (*PathCanonicalizeResponse, error)
 
 	// The NetprPathCompare method performs comparison of two paths.
@@ -648,7 +658,7 @@ type SrvsvcClient interface {
 	// code value, as specified in [MS-ERREF] section 2.2.
 	//
 	// If the Flags parameter is not equal to zero, the server SHOULD fail the call with
-	// an implementation-specific error code.<119>
+	// an implementation-specific error code.<120>
 	NameValidate(context.Context, *NameValidateRequest, ...dcerpc.CallOption) (*NameValidateResponse, error)
 
 	// The NetprNameCanonicalize method converts a name to the canonical format for the
@@ -774,9 +784,9 @@ type SrvsvcClient interface {
 	//	| 0x00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough storage is available to process this command. |
 	//	+------------------------------------+----------------------------------------------------------+
 	//
-	// The server SHOULD<93> enforce security measures to verify that the caller has the
+	// The server SHOULD<94> enforce security measures to verify that the caller has the
 	// required permissions to execute this call. If the caller does not have the required
-	// credentials, the server SHOULD<94> fail the call.
+	// credentials, the server SHOULD<95> fail the call.
 	//
 	// The Level parameter determines the type of structure that the client has used to
 	// specify information about the new transport. The value MUST be 0, 1, 2, or 3. If
@@ -800,7 +810,7 @@ type SrvsvcClient interface {
 	// Opnum42NotUsedOnWire
 
 	// The NetrDfsGetVersion method checks whether the server is a DFS server and if so,
-	// returns the DFS version. An implementation MAY<127> choose to support this method.
+	// returns the DFS version. An implementation MAY<128> choose to support this method.
 	//
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
@@ -810,7 +820,7 @@ type SrvsvcClient interface {
 	// The NetrDfsCreateLocalPartition method marks a share as being a DFS share. In addition,
 	// if the RelationInfo parameter is non-NULL, it creates DFS links, as specified in
 	// [MS-DFSC], for each of the entries in the RelationInfo parameter. An implementation
-	// MAY<132> choose to support this method.
+	// MAY<133> choose to support this method.
 	//
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
@@ -818,7 +828,7 @@ type SrvsvcClient interface {
 	CreateLocalPartition(context.Context, *CreateLocalPartitionRequest, ...dcerpc.CallOption) (*CreateLocalPartitionResponse, error)
 
 	// The NetrDfsDeleteLocalPartition method deletes a DFS share (Prefix) on the server.
-	// An implementation MAY<138> choose to support this method.
+	// An implementation MAY<139> choose to support this method.
 	//
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
@@ -826,7 +836,7 @@ type SrvsvcClient interface {
 	DeleteLocalPartition(context.Context, *DeleteLocalPartitionRequest, ...dcerpc.CallOption) (*DeleteLocalPartitionResponse, error)
 
 	// The NetrDfsSetLocalVolumeState method sets a local DFS share online or offline. An
-	// implementation MAY<142> choose to support this method.
+	// implementation MAY<143> choose to support this method.
 	//
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
@@ -837,7 +847,7 @@ type SrvsvcClient interface {
 	// Opnum47NotUsedOnWire
 
 	// The NetrDfsCreateExitPoint method creates a DFS link on the server. An implementation
-	// MAY<146> choose to support this method.
+	// MAY<147> choose to support this method.
 	//
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
@@ -845,7 +855,7 @@ type SrvsvcClient interface {
 	CreateExitPoint(context.Context, *CreateExitPointRequest, ...dcerpc.CallOption) (*CreateExitPointResponse, error)
 
 	// The NetrDfsDeleteExitPoint method deletes a DFS link on the server. An implementation
-	// MAY<155> choose to support this method.
+	// MAY<156> choose to support this method.
 	//
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
@@ -853,7 +863,7 @@ type SrvsvcClient interface {
 	DeleteExitPoint(context.Context, *DeleteExitPointRequest, ...dcerpc.CallOption) (*DeleteExitPointResponse, error)
 
 	// The NetrDfsModifyPrefix method changes the path that corresponds to a DFS link on
-	// the server. An implementation MAY<151> choose to support this method.
+	// the server. An implementation MAY<152> choose to support this method.
 	//
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
@@ -861,16 +871,16 @@ type SrvsvcClient interface {
 	ModifyPrefix(context.Context, *ModifyPrefixRequest, ...dcerpc.CallOption) (*ModifyPrefixResponse, error)
 
 	// The NetrDfsFixLocalVolume method provides knowledge of a new DFS share on the server.
-	// An implementation MAY<159> choose to support this method.
+	// An implementation MAY<160> choose to support this method.
 	//
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
 	// code value, as specified in [MS-ERREF] section 2.2.
 	FixLocalVolume(context.Context, *FixLocalVolumeRequest, ...dcerpc.CallOption) (*FixLocalVolumeResponse, error)
 
-	// The NetrDfsManagerReportSiteInfo method obtains a list of names that SHOULD<165>
+	// The NetrDfsManagerReportSiteInfo method obtains a list of names that SHOULD<166>
 	// correspond to the Active Directory sites covered by the specified server. An implementation
-	// MAY<166> choose to support this method.
+	// MAY<167> choose to support this method.
 	//
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
@@ -881,11 +891,11 @@ type SrvsvcClient interface {
 	// is returned. That structure has a cSites member that the server SHOULD set to the
 	// number of sites returned. The information about the sites themselves MUST be returned
 	// in the Site member, which is an array of DFS_SITENAME_INFO structures. The sites
-	// the server returns are implementation-specific.<167>
+	// the server returns are implementation-specific.<168>
 	//
-	// The server MAY<168> enforce security measures to verify that the caller has the required
+	// The server MAY<169> enforce security measures to verify that the caller has the required
 	// permissions to execute this call. If the server enforces these security measures
-	// and the caller does not have the required credentials, the server SHOULD<169> fail
+	// and the caller does not have the required credentials, the server SHOULD<170> fail
 	// the call.
 	ManagerReportSiteInfo(context.Context, *ManagerReportSiteInfoRequest, ...dcerpc.CallOption) (*ManagerReportSiteInfoResponse, error)
 
@@ -897,7 +907,7 @@ type SrvsvcClient interface {
 	//
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
-	// code value, as specified in [MS-ERREF] section 2.2.<99>
+	// code value, as specified in [MS-ERREF] section 2.2.<100>
 	//
 	// The Level parameter determines the type of structure the client has used to specify
 	// information about the new transport. Valid values are 0 and 1. If the Level parameter
@@ -1003,7 +1013,7 @@ type SrvsvcClient interface {
 
 	// The NetrShareDelEx method deletes a share from the ShareList, which disconnects all
 	// connections to the shared resource. If the share is sticky, all information about
-	// the share is also deleted from permanent storage.<176>
+	// the share is also deleted from permanent storage.<177>
 	//
 	// Return Values: The method returns 0x00000000 (NERR_Success) to indicate success;
 	// otherwise, it returns a nonzero error code. The method can take any specific error
@@ -5104,7 +5114,7 @@ func (o *ShareInfo503Container) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 // ShareInfo1501I structure represents SHARE_INFO_1501_I RPC structure.
 //
 // The SHARE_INFO_1501_I structure contains a security descriptor in self-relative format
-// and a DWORD that contains its length.<16> For a description of the fields in this
+// and a DWORD that contains its length.<17> For a description of the fields in this
 // structure, see the description for the SHARE_INFO_502_I (section 2.2.4.26) structure
 // (shi1501_xxx denotes the same information as shi502_xxx).
 type ShareInfo1501I struct {
@@ -6969,7 +6979,7 @@ type ShareInfo1005 struct {
 	//	+------------------------------------------------------+----------------------------------------------------------------------------------+
 	//	| SHI1005_FLAGS_ENCRYPT_DATA 0x00008000                | A share on which remote file access is encrypted.<15>                            |
 	//	+------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| SHI1005_FLAGS_COMPRESS_DATA 0x00100000               | A share on which remote file access is requested to be compressed.               |
+	//	| SHI1005_FLAGS_COMPRESS_DATA 0x00100000               | A share on which remote file access is requested to be compressed.<16>           |
 	//	+------------------------------------------------------+----------------------------------------------------------------------------------+
 	Flags uint32 `idl:"name:shi1005_flags" json:"flags"`
 }
@@ -8016,16 +8026,18 @@ type ServerInfo103 struct {
 	PlatformID uint32 `idl:"name:sv103_platform_id" json:"platform_id"`
 	// sv103_name:  A pointer to a null-terminated Unicode UTF-16 Internet host name or
 	// NetBIOS host name of a server.
+	//
+	// The server MUST ignore this field during a NetrServerSetInfo operation.
 	Name string `idl:"name:sv103_name;string" json:"name"`
 	// sv103_version_major:  Specifies the major release version number of the operating
 	// system. The server MUST ignore this field during a NetrServerSetInfo operation. The
 	// server MUST set this field to an implementation-specific major release version number
-	// that corresponds to the host operating system on a NetrServerGetInfo operation.<17>
+	// that corresponds to the host operating system on a NetrServerGetInfo operation.<18>
 	VersionMajor uint32 `idl:"name:sv103_version_major" json:"version_major"`
 	// sv103_version_minor:  Specifies the minor release version number of the operating
 	// system. The server MUST ignore this field during a NetrServerSetInfo operation. The
 	// server MUST set this field to an implementation-specific minor release version number
-	// that corresponds to the host operating system on a NetrServerGetInfo operation.<18>
+	// that corresponds to the host operating system on a NetrServerGetInfo operation.<19>
 	VersionMinor uint32 `idl:"name:sv103_version_minor" json:"version_minor"`
 	// sv103_type:  Specifies the type of software the computer is running. This member
 	// MUST be a combination of one or more of the values that are listed in section 2.2.2.7.
@@ -8083,7 +8095,7 @@ type ServerInfo103 struct {
 	//	+------------------------------------+----------------------------------------------------------------------------+
 	//	| SRV_SUPPORT_HASH_GENERATION 0x0001 | Hash generation for branch cache functionality is supported by the server. |
 	//	+------------------------------------+----------------------------------------------------------------------------+
-	//	| SRV_HASH_GENERATION_ACTIVE 0x0002  | The branch cache component is installed.<19>                               |
+	//	| SRV_HASH_GENERATION_ACTIVE 0x0002  | The branch cache component is installed.<20>                               |
 	//	+------------------------------------+----------------------------------------------------------------------------+
 	Capabilities uint32 `idl:"name:sv103_capabilities" json:"capabilities"`
 }
@@ -8787,7 +8799,7 @@ func (o *ServerInfo503) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 // For more information, see section 3.1.4.18.
 type ServerInfo599 struct {
 	// sv599_sessopens:  Specifies the number of files that can be open in one session.
-	// The range of values MUST be from 1 to 16384, inclusive.<20>
+	// The range of values MUST be from 1 to 16384, inclusive.<21>
 	SessionOpens uint32 `idl:"name:sv599_sessopens" json:"session_opens"`
 	// sv599_sessvcs:  Specifies the maximum number of sessions that are permitted per client.
 	// This value MUST be set to one.
@@ -8797,7 +8809,7 @@ type ServerInfo599 struct {
 	OpenSearch uint32 `idl:"name:sv599_opensearch" json:"open_search"`
 	// sv599_sizreqbuf:  Specifies the size, in bytes, of each server buffer. This field
 	// MUST be ignored by the server on receipt for set operations. The range of values
-	// MUST be 1,024 to 65,535, inclusive.<21>
+	// MUST be 1,024 to 65,535, inclusive.<22>
 	SizeRequestBuffer uint32 `idl:"name:sv599_sizreqbuf" json:"size_request_buffer"`
 	// sv599_initworkitems:  Specifies the initial number of receive buffers, or work items,
 	// that the server uses. The range of values for get operations MUST be from 1 to 512,
@@ -8816,7 +8828,7 @@ type ServerInfo599 struct {
 	RawWorkItems uint32 `idl:"name:sv599_rawworkitems" json:"raw_work_items"`
 	// sv599_irpstacksize:  Specifies the number of stack locations that the server allocated
 	// in I/O request packets (IRPs). This field MUST be ignored by the server on receipt
-	// for set operations. The range of values MUST be 11 to 50, inclusive.<22>
+	// for set operations. The range of values MUST be 11 to 50, inclusive.<23>
 	IRPStackSize uint32 `idl:"name:sv599_irpstacksize" json:"irp_stack_size"`
 	// sv599_maxrawbuflen:  The server MUST validate the value on receipt. This value MUST
 	// be set to 65,535. Due to historical reasons, the server does not store this value.
@@ -8829,11 +8841,11 @@ type ServerInfo599 struct {
 	SessionConnections uint32 `idl:"name:sv599_sessconns" json:"session_connections"`
 	// sv599_maxpagedmemoryusage:  Specifies the maximum size of pageable memory, in bytes,
 	// that the server can allocate at any one time. The range of values MUST be from 0x00400000
-	// to 0xFFFFFFFF, inclusive.<23>
+	// to 0xFFFFFFFF, inclusive.<24>
 	MaxPagedMemoryUsage uint32 `idl:"name:sv599_maxpagedmemoryusage" json:"max_paged_memory_usage"`
 	// sv599_maxnonpagedmemoryusage:  Specifies the maximum size of nonpaged memory in bytes
 	// that the server can allocate at any one time. The range of values MUST be from 0x00400000
-	// to 0xFFFFFFFF, inclusive.<24>
+	// to 0xFFFFFFFF, inclusive.<25>
 	MaxNonPagedMemoryUsage uint32 `idl:"name:sv599_maxnonpagedmemoryusage" json:"max_non_paged_memory_usage"`
 	// sv599_enablesoftcompat:  A Boolean that specifies the SoftCompatibility capability
 	// of the server. This field MUST be set to TRUE (1) to enable the SoftCompatibility
@@ -8968,12 +8980,12 @@ type ServerInfo599 struct {
 	// sv599_minfreeconnections:  Specifies the minimum number of free connection blocks
 	// that are maintained per endpoint. The server MUST set these aside to handle bursts
 	// of requests by clients to connect to the server. The range of values MUST be from
-	// 2 to 1,024.<25>
+	// 2 to 1,024.<26>
 	MinFreeConnections uint32 `idl:"name:sv599_minfreeconnections" json:"min_free_connections"`
 	// sv599_maxfreeconnections:  Specifies the maximum number of free connection blocks
 	// that are maintained per endpoint. The server MUST set these aside to handle bursts
 	// of requests by clients to connect to the server. The range of values MUST be from
-	// 2 to 16,384.<26>
+	// 2 to 16,384.<27>
 	MaxFreeConnections uint32 `idl:"name:sv599_maxfreeconnections" json:"max_free_connections"`
 	// sv599_initsesstable:  Specifies the initial session table size for the server in
 	// terms of the number of records (session structures used by the server internally
@@ -16251,18 +16263,22 @@ type ServerTransportInfo3 struct {
 	// svti3_transportname:   A pointer to a null-terminated Unicode string that contains
 	// the implementation-specific name of a device that implements support for the transport.
 	// This field is provided by the transport driver and can depend on the physical network
-	// adapter over which the transport runs.<27>
+	// adapter over which the transport runs.<28>
 	TransportName string `idl:"name:svti3_transportname;string" json:"transport_name"`
 	// svti3_transportaddress:  A pointer to a variable that contains the transport address
 	// that the server is using on the transport device that is specified by the svti3_transportname
-	// member. <28>
+	// member. <29>
+	//
+	// This member is usually the NetBIOS name that the server is using. In these instances,
+	// the name MUST be 16 characters long, and the last character MUST be a blank character
+	// (0x20).
 	TransportAddress []byte `idl:"name:svti3_transportaddress;size_is:(svti3_transportaddresslength)" json:"transport_address"`
 	// svti3_transportaddresslength:  Specifies a DWORD value that contains the length,
-	// in bytes, of the svti3_transportaddress member.<29>
+	// in bytes, of the svti3_transportaddress member.<30>
 	TransportAddressLength uint32 `idl:"name:svti3_transportaddresslength" json:"transport_address_length"`
 	// svti3_networkaddress:  A pointer to a null-terminated character string that contains
 	// the address that the network adapter is using. The string is transport-specific.
-	// The server MUST ignore this field on receipt.<30>
+	// The server MUST ignore this field on receipt.<31>
 	NetworkAddress string `idl:"name:svti3_networkaddress;string" json:"network_address"`
 	// svti3_domain:  A pointer to a null-terminated character string that contains the
 	// name of the domain to which the server announces its presence.
@@ -19787,6 +19803,9 @@ type ConnectionEnumRequest struct {
 	// be stored. If this parameter is not NULL and the method returns ERROR_MORE_DATA,
 	// this parameter receives an implementation-specific nonzero value that can be passed
 	// in subsequent calls to this method to continue with the enumeration.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the TreeConnectList.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
@@ -19854,6 +19873,9 @@ type ConnectionEnumResponse struct {
 	// be stored. If this parameter is not NULL and the method returns ERROR_MORE_DATA,
 	// this parameter receives an implementation-specific nonzero value that can be passed
 	// in subsequent calls to this method to continue with the enumeration.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the TreeConnectList.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 	// Return: The NetrConnectionEnum return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -20244,6 +20266,9 @@ type FileEnumRequest struct {
 	// If this parameter is not NULL and the method returns ERROR_MORE_DATA, this parameter
 	// receives an implementation-specific nonzero value that can be passed in subsequent
 	// calls to this method to continue with the enumeration.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the list of the currently active connections.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
@@ -20312,6 +20337,9 @@ type FileEnumResponse struct {
 	// If this parameter is not NULL and the method returns ERROR_MORE_DATA, this parameter
 	// receives an implementation-specific nonzero value that can be passed in subsequent
 	// calls to this method to continue with the enumeration.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the list of the currently active connections.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 	// Return: The NetrFileEnum return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -20757,6 +20785,10 @@ type FileCloseRequest struct {
 	// 4.3.5 and 5.1.5.2). The server MUST ignore this parameter.
 	ServerName string `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
 	// FileId: Specifies the file identifier of the open file, device, or pipe to close.
+	//
+	// Note  The FileId parameter that is returned in a previous NetrFileEnum method call
+	// is not guaranteed to be valid. Therefore, the NetrFileClose method is not guaranteed
+	// to succeed based on the validity of the FileId parameter.
 	FileID uint32 `idl:"name:FileId" json:"file_id"`
 }
 
@@ -21191,6 +21223,9 @@ type SessionEnumRequest struct {
 	// is not NULL and the method returns ERROR_MORE_DATA, this parameter receives an implementation-specific
 	// nonzero value that can be passed in subsequent calls to this method to continue with
 	// the enumeration.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the SessionList.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
@@ -21260,6 +21295,9 @@ type SessionEnumResponse struct {
 	// is not NULL and the method returns ERROR_MORE_DATA, this parameter receives an implementation-specific
 	// nonzero value that can be passed in subsequent calls to this method to continue with
 	// the enumeration.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the SessionList.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 	// Return: The NetrSessionEnum return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -22172,6 +22210,9 @@ type ShareEnumRequest struct {
 	// no resume handle MUST be stored. If this parameter is not NULL and the method returns
 	// ERROR_MORE_DATA, this parameter receives a nonzero value that can be passed in subsequent
 	// calls to this method to continue with the enumeration in ShareList.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the ShareList.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
@@ -22237,6 +22278,9 @@ type ShareEnumResponse struct {
 	// no resume handle MUST be stored. If this parameter is not NULL and the method returns
 	// ERROR_MORE_DATA, this parameter receives a nonzero value that can be passed in subsequent
 	// calls to this method to continue with the enumeration in ShareList.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the ShareList.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 	// Return: The NetrShareEnum return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -25493,6 +25537,9 @@ type TransportEnumRequest struct {
 	// handle MUST be stored. If this parameter is not NULL and the method returns ERROR_MORE_DATA,
 	// this parameter receives an implementation-specific nonzero value that can be passed
 	// in subsequent calls to this method to continue with the enumeration.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the list of the currently active connections.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
@@ -25559,6 +25606,9 @@ type TransportEnumResponse struct {
 	// handle MUST be stored. If this parameter is not NULL and the method returns ERROR_MORE_DATA,
 	// this parameter receives an implementation-specific nonzero value that can be passed
 	// in subsequent calls to this method to continue with the enumeration.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the list of the currently active connections.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 	// Return: The NetrServerTransportEnum return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -28070,6 +28120,9 @@ type ShareEnumStickyRequest struct {
 	// MUST NOT be stored. If this parameter is not NULL and the method returns ERROR_MORE_DATA,
 	// this parameter receives an implementation-specific nonzero value that can be passed
 	// in subsequent calls to this method to continue with the enumeration.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the list of the currently active connections.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
@@ -28135,6 +28188,9 @@ type ShareEnumStickyResponse struct {
 	// MUST NOT be stored. If this parameter is not NULL and the method returns ERROR_MORE_DATA,
 	// this parameter receives an implementation-specific nonzero value that can be passed
 	// in subsequent calls to this method to continue with the enumeration.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the list of the currently active connections.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 	// Return: The NetrShareEnumSticky return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -29891,7 +29947,7 @@ type CreateLocalPartitionRequest struct {
 	// a local disk share on the server to add to DFS.
 	ShareName string `idl:"name:ShareName;string" json:"share_name"`
 	// EntryUid: A pointer to a GUID type that specifies the GUID for this DFS share. The
-	// GUID for this share MUST NOT match a GUID for an existing local partition.<133>
+	// GUID for this share MUST NOT match a GUID for an existing local partition.<134>
 	EntryUID *dtyp.GUID `idl:"name:EntryUid" json:"entry_uid"`
 	// EntryPrefix: A pointer to a null-terminated UTF-16 string that specifies the path
 	// of the DFS share.
@@ -30775,7 +30831,7 @@ type CreateExitPointResponse struct {
 	ShortPrefixLength uint32 `idl:"name:ShortPrefixLen" json:"short_prefix_length"`
 
 	// ShortPrefix: A pointer to a null-terminated UTF-16 string that is the buffer where
-	// the name of the DFS namespace root or link is returned.<147>
+	// the name of the DFS namespace root or link is returned.<148>
 	ShortPrefix string `idl:"name:ShortPrefix;size_is:(ShortPrefixLen)" json:"short_prefix"`
 	// Return: The NetrDfsCreateExitPoint return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -31533,7 +31589,7 @@ type FixLocalVolumeRequest struct {
 	// 4.3.5 and 5.1.5.2). The server MUST ignore this parameter.
 	ServerName string `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
 	// VolumeName: A pointer to a null-terminated UTF-16 string that specifies the target
-	// for the DFS root share. This target MUST be local to the server; for example, \??\C:\DfsShare.<160>
+	// for the DFS root share. This target MUST be local to the server; for example, \??\C:\DfsShare.<161>
 	// This target SHOULD NOT contain a directory that is in DFS, and it SHOULD NOT be a
 	// child of a DFS share. If the specified volume name is not valid, the server SHOULD
 	// fail the call by using an implementation-specific error code.
@@ -32792,6 +32848,9 @@ type AliasEnumRequest struct {
 	// no resume handle MUST be stored. If this parameter is not NULL and the method returns
 	// ERROR_MORE_DATA, this parameter receives an implementation-specific nonzero value
 	// that can be passed in subsequent calls to this method to continue with the enumeration.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the AliasList.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
@@ -32857,6 +32916,9 @@ type AliasEnumResponse struct {
 	// no resume handle MUST be stored. If this parameter is not NULL and the method returns
 	// ERROR_MORE_DATA, this parameter receives an implementation-specific nonzero value
 	// that can be passed in subsequent calls to this method to continue with the enumeration.
+	//
+	// If this parameter is NULL or points to 0x00000000, the enumeration starts from the
+	// beginning of the AliasList.
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 	// Return: The NetrServerAliasEnum return value.
 	Return uint32 `idl:"name:Return" json:"return"`

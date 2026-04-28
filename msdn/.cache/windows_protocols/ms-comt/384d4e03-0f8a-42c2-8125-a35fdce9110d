@@ -1,0 +1,96 @@
+<div class="content" name="TrackingInfoCollection" uuid="384d4e03-0f8a-42c2-8125-a35fdce9110d"><p>The TrackingInfoCollection MUST be marshaled using the
+OBJREF_CUSTOM format (as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section <a href="../ms-dcom/88fdb261-7c9a-41ea-bfac-31583bdc65e6" data-linktype="relative-path">2.2.18.6</a>).
+The <b>CLSID</b> field of the OBJREF_CUSTOM instance MUST be set to
+{ECABAFCD-7f19-11D2-978E-0000F8757E2A} (CLSID_TrkInfoCollUnmarshal). The format
+of the OBJREF_CUSTOM.pObjectData buffer for CLSID_TrkInfoCollUnmarshal is as
+follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">MaxVersion</td>
+  <td colspan="16">MinVersion</td>
+ </tr>
+ <tr>
+  <td colspan="32">CollectionType</td>
+ </tr>
+ <tr>
+  <td colspan="32">ObjectCount</td>
+ </tr>
+ <tr>
+  <td colspan="32">PropertyNameCount</td>
+ </tr>
+ <tr>
+  <td colspan="32">PropertyNames (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">ChildObjects (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>MaxVersion (2 bytes): </b>The major version of
+this marshaled format; this MUST be set to 0x0001.</p><p><b>MinVersion (2 bytes): </b>The minor version of
+this marshaled format; this MUST be set to 0x0001.</p><p><b>CollectionType (4 bytes): </b>The type of
+collection; this MUST be one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>TRKCOLL_PROCESSES 0x00000000</td>
+  <td>A collection of processes.</td>
+ </tr><tr>
+  <td>TRKCOLL_CONTAINERS 0x00000001</td>
+  <td>A collection of instance containers.</td>
+ </tr><tr>
+  <td>TRKCOLL_COMPONENTS 0x00000002</td>
+  <td>A collection of components.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>ObjectCount (4 bytes): </b>The (unsigned) number
+of elements in the <b>ChildObjects</b> field.</p><p><b>PropertyNameCount (4 bytes): </b>The (unsigned)
+number of elements in the <b>Properties</b> field.</p><p><b>PropertyNames (variable): </b>An array of <a href="53b25ea4-811c-4948-a9f7-e3ae1a0e170f" data-linktype="relative-path">LengthPrefixedName (section
+2.2.5.1)</a> that contains the descriptive names for the elements in the <b>ChildObjects</b>
+field.</p><p><b>ChildObjects (variable): </b>An array of <a href="ca5a2035-abd6-4f1b-ac60-814ca2175d99" data-linktype="relative-path">TrackingInfoObject (section
+2.2.5.4)</a> structures.</p></div>

@@ -2630,6 +2630,8 @@ var (
 	QueueFormatTypeMulticast QueueFormatType = 7
 	// QUEUE_FORMAT_TYPE_SUBQUEUE:  The QUEUE_FORMAT structure contains a direct name string
 	// that identifies a subqueue.
+	//
+	// Note  QUEUE_FORMAT_TYPE_SUBQUEUE was introduced in MSMQ version 4.
 	QueueFormatTypeSubqueue QueueFormatType = 8
 )
 
@@ -3308,6 +3310,8 @@ type QueueFormat_DirectSubqueueID struct {
 	//
 	// The value MUST conform to the ABNF for DirectName and contain the optional <Subqueue>
 	// element, as specified in section 2.1.
+	//
+	// The full QUEUE_FORMAT IDL is specified in [MS-MQMR] Appendix A (section 6).
 	DirectSubqueueID string `idl:"name:m_pDirectSubqueueID;string" json:"direct_subqueue_id"`
 }
 

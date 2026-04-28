@@ -66,6 +66,10 @@ type ClusterLogClient interface {
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -89,13 +93,17 @@ type ClusterLogClient interface {
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in a consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
 	// The opnum field value for this method is 4.
 	GenerateTimeSpanLog(context.Context, *GenerateTimeSpanLogRequest, ...dcerpc.CallOption) (*GenerateTimeSpanLogResponse, error)
 
-	// The GenerateClusterLogInLocalTime method<41> writes a file that contains diagnostic
+	// The GenerateClusterLogInLocalTime method<39> writes a file that contains diagnostic
 	// information about failover clusters for the server on which it executes. The file
 	// uses local time instead of GMT. The content and format of the file are implementation-specific
 	// but SHOULD contain diagnostic information.
@@ -115,13 +123,17 @@ type ClusterLogClient interface {
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in a consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
 	// The opnum field value for this method is 5.
 	GenerateClusterLogInLocalTime(context.Context, *GenerateClusterLogInLocalTimeRequest, ...dcerpc.CallOption) (*GenerateClusterLogInLocalTimeResponse, error)
 
-	// The GenerateTimeSpanLogInLocalTime method<42> writes a file that contains diagnostic
+	// The GenerateTimeSpanLogInLocalTime method<40> writes a file that contains diagnostic
 	// information about failover clusters for the server on which it executes. The log
 	// entries in the file date back only for the specified number of minutes. The file
 	// uses local time instead of GMT. The content and format of the file is implementation-specific
@@ -138,6 +150,10 @@ type ClusterLogClient interface {
 	//	+-------------------+--------------------------+
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in a consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].

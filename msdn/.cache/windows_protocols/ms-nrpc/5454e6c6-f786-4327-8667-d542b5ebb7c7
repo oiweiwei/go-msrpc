@@ -1,0 +1,122 @@
+<div class="content" name="NETLOGON_SID_AND_ATTRIBUTES" uuid="5454e6c6-f786-4327-8667-d542b5ebb7c7"><p>The <b>NETLOGON_SID_AND_ATTRIBUTES</b> structure contains a <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security
+identifier (SID)</a></span> and its attributes.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_SID_AND_ATTRIBUTES {
+   PRPC_SID Sid;
+   ULONG Attributes;
+ } NETLOGON_SID_AND_ATTRIBUTES,
+  *PNETLOGON_SID_AND_ATTRIBUTES;
+</pre></div>
+</dd></dl><p><b>Sid:</b> A pointer to a security identifier (SID),
+as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">2.4.2.3</a></span>.</p><p><b>Attributes:</b> A set of bit flags that contains
+the set of security attributes assigned to this SID. A bit is TRUE (or set) if
+its value is equal to 1.  The value is constructed from one or more bit flags
+from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>0</td>
+  <td>D</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>C</td>
+  <td>B</td>
+  <td>A</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>A</td>
+  <td>The SID cannot have the SE_GROUP_ENABLED attribute removed.  Corresponds to the SID attribute SE_GROUP_MANDATORY. This attribute prevents the user from disabling the group. Disabling a group causes the group to be ignored by access validation routines.</td>
+ </tr><tr>
+  <td>B</td>
+  <td>The SID is enabled by default (as opposed to being enabled by an application). Corresponds to the SID attribute SE_GROUP_ENABLED_BY_DEFAULT.</td>
+ </tr><tr>
+  <td>C</td>
+  <td>The SID is enabled for access checks.  Corresponds to the SID attribute SE_GROUP_ENABLED.</td>
+ </tr><tr>
+  <td>D</td>
+  <td>This group is a domain local group. Corresponds to SE_GROUP_RESOURCE.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero and MUST be
+ignored on receipt. For more information, see <span><a href="https://go.microsoft.com/fwlink/?linkid=2101788" data-linktype="external">[MSDOCS-TokenGrp]</a></span>.</p>
+</dd></dl><p>These values are opaque to the Netlogon protocol. They are
+not used or processed directly. All fields of this structure have the same
+meaning as the identically named fields in the <b>KERB_SID_AND_ATTRIBUTES</b>
+structure as specified in <span><a href="../ms-pac/166d8064-c863-41e1-9c23-edaaa5f36962" data-linktype="relative-path">[MS-PAC]</a></span>
+section <span><a href="../ms-pac/311aab27-ebdf-47f7-b939-13dc99b15341" data-linktype="relative-path">2.2.1</a></span>.</p></div>

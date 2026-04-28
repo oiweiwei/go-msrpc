@@ -57,6 +57,8 @@ type LoginHelperClient interface {
 	// If the method fails, the server MUST return an HRESULT whose S (severity) bit is
 	// set as specified in [MS-ERREF] section 2.1. The actual HRESULT value is implementation
 	// dependent.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	SetEvent(context.Context, *SetEventRequest, ...dcerpc.CallOption) (*SetEventResponse, error)
 
 	// AlterContext alters the client context.

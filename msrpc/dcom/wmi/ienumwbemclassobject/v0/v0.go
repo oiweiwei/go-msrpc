@@ -57,6 +57,8 @@ type EnumClassObjectClient interface {
 	// 2.2.11) to indicate the successful completion of the method. If the IEnumWbemClassObject::Reset
 	// method is invoked on an enumerator that does not support reset capability, the server
 	// MUST return WBEM_E_INVALID_OPERATION.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	Reset(context.Context, *ResetRequest, ...dcerpc.CallOption) (*ResetResponse, error)
 
 	// Next operation.
@@ -73,6 +75,8 @@ type EnumClassObjectClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	NextAsync(context.Context, *NextAsyncRequest, ...dcerpc.CallOption) (*NextAsyncResponse, error)
 
 	// The IEnumWbemClassObject::Clone method makes a logical copy of the entire enumerator.
@@ -81,6 +85,8 @@ type EnumClassObjectClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	Clone(context.Context, *CloneRequest, ...dcerpc.CallOption) (*CloneResponse, error)
 
 	// When the IEnumWbemClassObject::Skip method is invoked, the server MUST move the current
@@ -91,6 +97,8 @@ type EnumClassObjectClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	Skip(context.Context, *SkipRequest, ...dcerpc.CallOption) (*SkipResponse, error)
 
 	// AlterContext alters the client context.

@@ -65,6 +65,10 @@ type ClusterUpdateClient interface {
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in an identical manner for
+	// all return values not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -87,6 +91,10 @@ type ClusterUpdateClient interface {
 	//	+-------------------+--------------------------+
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in an identical manner for
+	// all return values not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -436,6 +444,10 @@ type GetUpdatesResponse struct {
 	// with the name "version" with a value set to 1.0.
 	//
 	// <updates version="1.0">
+	//
+	// Next, for each ClusterUpdate entry in the ClusterUpdates collection, there is an
+	// XML element with the name "update". These elements MUST contain the following child
+	// elements:
 	//
 	// * "id", with text containing the value of *ClusterUpdate.Id*.
 	//

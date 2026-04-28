@@ -244,7 +244,7 @@ type DrsuapiServer interface {
 	//
 	// Exceptions Thrown: This method might throw the following exceptions beyond those
 	// thrown by the underlying RPC protocol (as specified in [MS-RPCE]): ERROR_INVALID_HANDLE,
-	// ERROR_DS_DRS_EXTENSIONS_CHANGED, ERROR_DS_DIFFERENT_REPL_EPOCHS, and  ERROR_INVALID_PARAMETER.
+	// ERROR_DS_DRS_EXTENSIONS_CHANGED, ERROR_DS_DIFFERENT_REPL_EPOCHS, and  ERROR_INVALID_PARAMETER.
 	VerifyObjectsReplica(context.Context, *VerifyObjectsReplicaRequest) (*VerifyObjectsReplicaResponse, error)
 
 	// The IDL_DRSGetObjectExistence method helps the client check the consistency of object

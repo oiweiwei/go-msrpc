@@ -988,6 +988,8 @@ type RegisterClientRequest struct {
 	//
 	// This UNC name MUST be in the following format:
 	//
+	// "\\" SERVER_NAME "\" LOCAL_PRINTER_NAME
+	//
 	// SERVER_NAME is a DNS, NetBIOS, IPv4, or IPv6 host name.
 	//
 	// LOCAL_PRINTER_NAME is a string that MUST NOT contain the characters "\" or ",".
@@ -1514,6 +1516,11 @@ func (o *GetNewChannelRequest) OpName() string {
 type GetNewChannelResponse struct {
 	// pNoOfChannels: MUST specify the number of notification channels returned. The array
 	// of notification channels is specified by the ppChannelCtxt parameter.
+	//
+	// The server SHOULD return all not-yet-acquired bidirectional channels in response
+	// to a single IRPCAsyncNotify_GetNewChannel call. The server SHOULD return such channels
+	// regardless of whether they were created before or after client registration or the
+	// call to IRPCAsyncNotify_GetNewChannel.
 	NumberOfChannels uint32 `idl:"name:pNoOfChannels" json:"number_of_channels"`
 	// ppChannelCtxt: MUST specify a pointer to the array of returned notification channels.
 	// This data is represented by a Bidirectional Notification Channel structure in the
@@ -1944,6 +1951,11 @@ type GetNotificationSendResponseRequest struct {
 	// pInNotificationType: A NULL value or a pointer to a PrintAsyncNotificationType structure
 	// that specifies the notification type identifier of the notification type in which
 	// the registered client is interested.
+	//
+	// On the first call to this method, the value of pInNotificationType MUST be NULL.
+	// On subsequent calls to this method, the value of pInNotificationType MUST be a pointer
+	// to a PrintAsyncNotificationType structure that specifies the notification type identifier
+	// for which the client has registered.
 	InNotificationType *NotificationType `idl:"name:pInNotificationType;pointer:unique" json:"in_notification_type"`
 	// InSize: The size, in bytes, of the input data that the pInNotificationData parameter
 	// points to. The server SHOULD impose an upper limit of 0x00A00000 on this value. If
@@ -1957,6 +1969,8 @@ type GetNotificationSendResponseRequest struct {
 	// calls to this method, the response format MUST conform to the requirements of the
 	// notification channel's notification type, and those notification type requirements
 	// determine whether or a not a zero-byte response is acceptable.
+	//
+	// If the value of InSize is not 0x00000000, pInNotificationData MUST NOT be NULL.
 	InNotificationData []byte `idl:"name:pInNotificationData;size_is:(InSize);pointer:unique" json:"in_notification_data"`
 }
 

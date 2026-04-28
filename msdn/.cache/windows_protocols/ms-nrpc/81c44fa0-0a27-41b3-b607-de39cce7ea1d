@@ -1,0 +1,158 @@
+<div class="content" name="NETLOGON_LOGON_IDENTITY_INFO" uuid="81c44fa0-0a27-41b3-b607-de39cce7ea1d"><p>The <b>NETLOGON_LOGON_IDENTITY_INFO</b> structure defines a
+logon identity within a <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_LOGON_IDENTITY_INFO {
+   UNICODE_STRING LogonDomainName;
+   ULONG ParameterControl;
+   OLD_LARGE_INTEGER Reserved;
+   UNICODE_STRING UserName;
+   UNICODE_STRING Workstation;
+ } NETLOGON_LOGON_IDENTITY_INFO,
+  *PNETLOGON_LOGON_IDENTITY_INFO;
+</pre></div>
+</dd></dl><p><b>LogonDomainName:</b> Contains the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS
+name</a></span> of the domain of the account. The case of the domain name MUST
+be preserved across all messages.</p><p><b>ParameterControl:</b> A set of bit flags that
+contain information pertaining to the logon validation processing. A flag is
+TRUE (or set) if its value is equal to 1. The value is constructed from zero or
+more bit flags from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>X</td>
+  <td>W</td>
+  <td>V</td>
+  <td>U</td>
+  <td>T</td>
+  <td>S</td>
+  <td>R</td>
+  <td>Q</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>P</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>O</td>
+  <td>0</td>
+  <td>N</td>
+  <td>M</td>
+  <td>L</td>
+  <td>K</td>
+  <td>J</td>
+  <td>I</td>
+  <td>H</td>
+  <td>G</td>
+  <td>F</td>
+  <td>E</td>
+  <td>D</td>
+  <td>C</td>
+  <td>B</td>
+  <td>A</td>
+  <td>0</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>A</td>
+  <td>Clear text passwords can be transmitted for this logon identity.</td>
+ </tr><tr>
+  <td>B</td>
+  <td>Update the logon statistics for this account upon successful logon.</td>
+ </tr><tr>
+  <td>C</td>
+  <td>Return the user parameter list for this account upon successful logon.</td>
+ </tr><tr>
+  <td>D</td>
+  <td>Do not attempt to log this account on as a guest upon logon failure.</td>
+ </tr><tr>
+  <td>E</td>
+  <td>Allow this account to log on with the domain controller account.</td>
+ </tr><tr>
+  <td>F</td>
+  <td>Return the password expiration date and time upon successful logon.</td>
+ </tr><tr>
+  <td>G</td>
+  <td>Send a client challenge upon logon request.</td>
+ </tr><tr>
+  <td>H</td>
+  <td>Attempt logon as a guest for this account only.</td>
+ </tr><tr>
+  <td>I</td>
+  <td>Return the profile path upon successful logon.</td>
+ </tr><tr>
+  <td>J</td>
+  <td>Attempt logon to the specified domain only.</td>
+ </tr><tr>
+  <td>K</td>
+  <td>Allow this account to log on with the computer account.</td>
+ </tr><tr>
+  <td>L</td>
+  <td>Disable allowing fallback to guest account for this account.</td>
+ </tr><tr>
+  <td>M</td>
+  <td>Force the logon of this account as a guest if the password is incorrect.</td>
+ </tr><tr>
+  <td>N</td>
+  <td>This account has supplied a clear text password.</td>
+ </tr><tr>
+  <td>O</td>
+  <td>Allow NTLMv1 authentication ([MS-NLMP]) when only NTLMv2 ([NTLM]) is allowed.</td>
+ </tr><tr>
+  <td>P</td>
+  <td>Use sub-authentication ([MS-APDS] section 3.1.5.2.1).</td>
+ </tr><tr>
+  <td>Q - X</td>
+  <td>Encode the sub-authentication package identifier. Bits Q–X are used to encode the integer value of the sub-authentication package identifier (this is in little-endian order).</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved:</b> MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>UserName:</b> Contains the name of the user.</p><p><b>Workstation:</b> Contains the NetBIOS name of the
+workstation from which the user is logging on.</p></div>

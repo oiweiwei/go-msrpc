@@ -77,6 +77,8 @@ type RasrpcClient interface {
 	//
 	// The opnum field value for this method is 5.
 	//
+	// When processing this call, the RRASM server SHOULD do the following:
+	//
 	// * Validate as specified in section 3.3.4 ( 83a083ac-cd43-44bf-a301-7c88e64a32fe )
 	// whether this method was called by a client which is an administrator of the RRASM
 	// server.
@@ -130,6 +132,8 @@ type RasrpcClient interface {
 	//
 	// The Opnum field value for this method is 9.
 	//
+	// When processing this call, the RRASM SHOULD do the following:
+	//
 	// * Validate as specified in section 3.3.4 ( 83a083ac-cd43-44bf-a301-7c88e64a32fe )
 	// whether this method was called by a client that is an administrator of the RRASM
 	// server. <336> ( 3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_336 )
@@ -166,6 +170,8 @@ type RasrpcClient interface {
 	// permission to perform the operation.<337>
 	//
 	// The opnum field value for this method is 10.
+	//
+	// When processing this call, the RRASM SHOULD do the following:
 	//
 	// * Validate as specified in section 3.3.4 ( 83a083ac-cd43-44bf-a301-7c88e64a32fe )
 	// whether this method was called by a client that is an administrator of the RRASM
@@ -204,6 +210,8 @@ type RasrpcClient interface {
 	// permission to perform the operation.<338>
 	//
 	// The Opnum field value for this method is 11.
+	//
+	// When processing this call, the RRASM server SHOULD do the following:
 	//
 	// * Validate as specified in section 3.3.4 ( 83a083ac-cd43-44bf-a301-7c88e64a32fe )
 	// whether this method was called by a client that is an administrator of the RRASM
@@ -285,6 +293,8 @@ type RasrpcClient interface {
 	//
 	// The opnum field value for this method is 14.
 	//
+	// When processing this call, the RRASM server SHOULD do the following:
+	//
 	// * Validate as specified in section 3.3.4 ( 83a083ac-cd43-44bf-a301-7c88e64a32fe )
 	// whether this method was called by a client that is an administrator of the RRASM
 	// server.
@@ -318,6 +328,8 @@ type RasrpcClient interface {
 	// permission to perform the operation.<348>
 	//
 	// The opnum field value for this method is 15.
+	//
+	// When processing this call, the RRAM server SHOULD do the following:
 	//
 	// * Validate as specified in section 3.3.4 ( 83a083ac-cd43-44bf-a301-7c88e64a32fe )
 	// whether this method was called by a client that is an administrator of the RRASM

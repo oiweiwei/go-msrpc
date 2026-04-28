@@ -1010,6 +1010,8 @@ type SetConfigRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrConfigInfo: A string that contains WSRM configuration information. The type of
 	// information is determined by the value of the enumConfigType parameter.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ConfigInfo *oaut.String `idl:"name:bstrConfigInfo" json:"config_info"`
 	// enumConfigType: A CONFIGTYPE enumeration (section 2.2.3.1) value that specifies the
 	// type of WSRM configuration information to set.
@@ -1537,6 +1539,9 @@ type EnableDisableRequest struct {
 	EnableDisable bool `idl:"name:bEnableDisable" json:"enable_disable"`
 	// enumConfigType: A CONFIGTYPE enumeration (section 2.2.3.1) value that specifies the
 	// type of WSRM configuration to enable or disable.
+	//
+	// If this parameter value is outside the range of the CONFIGTYPE enumeration, E_INVALIDARG
+	// MUST be returned.
 	EnumConfigType wsrm.ConfigType `idl:"name:enumConfigType" json:"enum_config_type"`
 }
 
@@ -2586,6 +2591,8 @@ type IsWSRMActivatedResponse struct {
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pbActivated: A pointer to a Boolean value that returns whether the WSRM server is
 	// in the active management state. If TRUE, WSRM is active; otherwise, it is inactive.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	Activated bool `idl:"name:pbActivated" json:"activated"`
 	// Return: The IsWSRMActivated return value.
 	Return int32 `idl:"name:Return" json:"return"`

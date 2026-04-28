@@ -1,0 +1,119 @@
+<div class="content" name="DIM_MIB_ENTRY_CONTAINER" uuid="4305d67f-9273-49fe-a067-909b6ae8a341"><p>The <b>DIM_MIB_ENTRY_CONTAINER</b> structure contains the
+size and the data for the management information base (MIB) entries that are
+either set or retrieved from the MIB variables. This structure is used in the
+following methods:</p><ul><li><p><span><span> 
+</span></span><a href="4a8dc1a9-4b2a-4eba-bd0e-df9e8dc97908" data-linktype="relative-path"><b>RMIBEntryCreate (section 3.1.4.27)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="a8ed0e17-9395-4aef-9f4e-9b3e93cf3f4c" data-linktype="relative-path"><b>RMIBEntryDelete (section 3.1.4.28)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="61ae7aea-8604-4bf3-8ae5-88542152cf8e" data-linktype="relative-path"><b>RMIBEntrySet (section 3.1.4.29)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a></p>
+<div><pre> typedef struct _DIM_MIB_ENTRY_CONTAINER 
+ {
+   DWORD dwMibInEntrySize;
+   [size_is(dwMibInEntrySize)] LPBYTE pMibInEntry;
+   DWORD dwMibOutEntrySize;
+   [size_is(dwMibOutEntrySize)] LPBYTE pMibOutEntry;
+ } DIM_MIB_ENTRY_CONTAINER,
+  *PDIM_MIB_ENTRY_CONTAINER;
+</pre></div>
+</li></ul><p><b>dwMibInEntrySize: </b>This field gives the size of
+the MIB entry data being input. It represents the size of the data contained in
+<b>pMibInEntry</b>.</p><p><b>pMibInEntry: </b>A pointer to a protocol-specific
+structure that contains input data.</p><p><b>dwMibOutEntrySize: </b>This field gives the size
+of the MIB entry data being output. It represents the size of the data
+contained in <b>pMibOutEntry</b>.</p><p><b>pMibOutEntry: </b>This member points to the
+protocol-specific structure that points to the MIB.</p><dl>
+<dd>
+<p>The contents of pMibInEntry and pMibOutEntry are
+based on the transport and the routing protocol for which the MIB information
+is requested.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Transport</p>
+   </th>
+   <th>
+   <p>Routing Protocol</p>
+   </th>
+   <th>
+   <p>pMibInEntry</p>
+   </th>
+   <th>
+   <p>pMibOutEntry</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>PID_IP 0x00000021</td>
+  <td>IPRTRMGR_PID 0x00002710</td>
+  <td>MIB_OPAQUE_QUERY (section 2.2.1.2.53)</td>
+  <td>MIB_OPAQUE_QUERY (section 2.2.1.2.53)</td>
+ </tr><tr>
+  <td>PID_IP 0x00000021</td>
+  <td>MS_IP_BOOTP 0x0000270F</td>
+  <td>IPBOOT_MIB_GET_INPUT_DATA (section 2.2.1.2.151)</td>
+  <td>IPBOOTP_MIB_GET_OUTPUT_DATA (section 2.2.1.2.152)</td>
+ </tr><tr>
+  <td>PID_IP 0x00000021</td>
+  <td>MS_IP_NAT 0x81372715</td>
+  <td>IP_NAT_MIB_QUERY (section 2.2.1.2.182)</td>
+  <td>IP_NAT_MIB_QUERY (section 2.2.1.2.182)</td>
+ </tr><tr>
+  <td>PID_IP 0x00000021</td>
+  <td>MS_IP_DNS_PROXY 0x81372713</td>
+  <td>IP_DNS_PROXY_MIB_QUERY (section 2.2.1.2.186)</td>
+  <td>IP_DNS_PROXY_MIB_QUERY (section 2.2.1.2.186)</td>
+ </tr><tr>
+  <td>PID_IP 0x00000021</td>
+  <td>MS_IP_DHCP_ALLOCATOR 0x81372714</td>
+  <td>IP_AUTO_DHCP_MIB_QUERY (section 2.2.1.2.188)</td>
+  <td>IP_AUTO_DHCP_MIB_QUERY (section 2.2.1.2.188)</td>
+ </tr><tr>
+  <td>PID_IP 0x00000021</td>
+  <td>MS_IP_OSPF 0x0000000D</td>
+  <td>MIB_DA_MSG (section 2.2.1.2.190)</td>
+  <td>MIB_DA_MSG (section 2.2.1.2.190)</td>
+ </tr><tr>
+  <td>PID_IP 0x00000021</td>
+  <td>MS_IP_RIP 0x00000008</td>
+  <td>IPRIP_MIB_GET_INPUT_DATA (section 2.2.1.2.161)</td>
+  <td>IPRIP_MIB_GET_OUTPUT_DATA (section 2.2.1.2.162)</td>
+ </tr><tr>
+  <td>PID_IP 0x00000021</td>
+  <td>MS_IP_IGMP 0x4137000A</td>
+  <td>IGMP_MIB_GET_INPUT_DATA (section 2.2.1.2.171)</td>
+  <td>IGMP_MIB_GET_OUTPUT_DATA (section 2.2.1.2.172)</td>
+ </tr><tr>
+  <td>PID_IPV6 0x00000057</td>
+  <td>MS_IPV6_DHCP 0x000003E7</td>
+  <td>DHCPV6R_MIB_GET_INPUT_DATA (section 2.2.1.2.160)</td>
+  <td>DHCPV6R_MIB_GET_OUTPUT_DATA (section 2.2.1.2.156)</td>
+ </tr><tr>
+  <td>PID_IPV6 0x00000057</td>
+  <td>IPRTRMGR_PID 0x00002710</td>
+  <td>MIB_OPAQUE_QUERY (section 2.2.1.2.53)</td>
+  <td>MIB_OPAQUE_QUERY (section 2.2.1.2.53)</td>
+ </tr><tr>
+  <td>PID_IPX 0x0000002B</td>
+  <td>IPX_PROTOCOL_BASE 0x0001FFFF</td>
+  <td>IPX_MIB_GET_INPUT_DATA (section 2.2.1.2.105)</td>
+  <td>IPX_MIB_GET_INPUT_DATA (section 2.2.1.2.105)</td>
+ </tr><tr>
+  <td>PID_IPX 0x0000002B</td>
+  <td>IPX_PROTOCOL_RIP 0x00020000</td>
+  <td>RIP_MIB_GET_INPUT_DATA (section 2.2.1.2.125)</td>
+  <td>RIP_MIB_GET_INPUT_DATA (section 2.2.1.2.125)</td>
+ </tr><tr>
+  <td>PID_IPX 0x0000002B</td>
+  <td>IPX_PROTOCOL_SAP 0x00020000</td>
+  <td>SAP_MIB_GET_INPUT_DATA (section 2.2.1.2.118)</td>
+  <td>SAP_MIB_GET_INPUT_DATA (section 2.2.1.2.118)</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -2154,6 +2154,8 @@ type ACEHeader struct {
 	//	| SYSTEM_SCOPED_POLICY_ID_ACE_TYPE 0x13        | A central policy ID ACE that uses the SYSTEM_SCOPED_POLICY_ID_ACE (section       |
 	//	|                                              | 2.4.4.16)                                                                        |
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The term "callback" in this context does not relate to RPC call backs. <53>
 	ACEType uint8 `idl:"name:AceType" json:"ace_type"`
 	// AceFlags (1 byte): An unsigned 8-bit integer that specifies a set of ACE type-specific
 	// control flags. This field can be a combination of the following values.
@@ -2409,15 +2411,15 @@ type AccessAllowedObjectACE struct {
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000000                                   | Neither ObjectType nor InheritedObjectType are valid.                            |
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
-	//	| ACE_OBJECT_TYPE_PRESENT 0x00000001           | ObjectType is valid.                                                             |
+	//	| ACE_OBJECT_TYPE_PRESENT 0x00000001           | ObjectType is present.                                                           |
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
-	//	| ACE_INHERITED_OBJECT_TYPE_PRESENT 0x00000002 | InheritedObjectType is valid. If this value is not specified, all types of child |
-	//	|                                              | objects can inherit the ACE.                                                     |
+	//	| ACE_INHERITED_OBJECT_TYPE_PRESENT 0x00000002 | InheritedObjectType is present. If this value is not specified, all types of     |
+	//	|                                              | child objects can inherit the ACE.                                               |
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 	// ObjectType (16 bytes): A GUID that identifies a property set, property, extended
 	// right, or type of child object. The purpose of this GUID depends on the user rights
-	// specified in the Mask field. This field is valid only if the ACE _OBJECT_TYPE_PRESENT
+	// specified in the Mask field. This field is present only if the ACE _OBJECT_TYPE_PRESENT
 	// bit is set in the Flags field. Otherwise, the ObjectType field is ignored. For information
 	// on access rights and for a mapping of the control access rights to the corresponding
 	// GUID value that identifies each right, see [MS-ADTS] sections 5.1.3.2 and 5.1.3.2.1.
@@ -2430,8 +2432,8 @@ type AccessAllowedObjectACE struct {
 	// InheritedObjectType (16 bytes): A GUID that identifies the type of child object that
 	// can inherit the ACE. Inheritance is also controlled by the inheritance flags in the
 	// ACE_HEADER, as well as by any protection against inheritance placed on the child
-	// objects. This field is valid only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit is
-	// set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
+	// objects. This field is present only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit
+	// is set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
 	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:(Flags 2 &)" json:"inherited_object_type"`
 	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
 	// 4.
@@ -2870,24 +2872,29 @@ type AccessDeniedObjectACE struct {
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000000                                   | Neither ObjectType nor InheritedObjectType is valid.                             |
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
-	//	| ACE_OBJECT_TYPE_PRESENT 0x00000001           | ObjectType is valid.                                                             |
+	//	| ACE_OBJECT_TYPE_PRESENT 0x00000001           | ObjectType is present.                                                           |
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
-	//	| ACE_INHERITED_OBJECT_TYPE_PRESENT 0x00000002 | InheritedObjectType is valid. If this value is not specified, all types of child |
-	//	|                                              | objects can inherit the ACE.                                                     |
+	//	| ACE_INHERITED_OBJECT_TYPE_PRESENT 0x00000002 | InheritedObjectType is present. If this value is not specified, all types of     |
+	//	|                                              | child objects can inherit the ACE.                                               |
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 	// ObjectType (16 bytes): A GUID that identifies a property set, a property, an extended
 	// right, or a type of child object. The purpose of this GUID depends on the user rights
-	// specified in the Mask field. This field is valid only if the ACE _OBJECT_TYPE_PRESENT
+	// specified in the Mask field. This field is present only if the ACE _OBJECT_TYPE_PRESENT
 	// bit is set in the Flags field. Otherwise, the ObjectType field is ignored. For information
 	// about access rights and for a mapping of the control access rights to the corresponding
 	// GUID value that identifies each right, see [MS-ADTS] sections 5.1.3.2 and 5.1.3.2.1.
+	//
+	// ACCESS_MASK bits are not mutually exclusive. Therefore, the ObjectType field can
+	// be set in an ACE with any ACCESS_MASK. If the AccessCheck algorithm calls this ACE
+	// and does not find an appropriate GUID, that ACE will be ignored. For more information
+	// about access checks and object access, see [MS-ADTS] section 5.1.3.3.3.
 	ObjectType *ACEGUID `idl:"name:ObjectType;switch_is:(Flags 1 &)" json:"object_type"`
 	// InheritedObjectType (16 bytes): A GUID that identifies the type of child object that
 	// can inherit the ACE. Inheritance is also controlled by the inheritance flags in the
 	// ACE_HEADER, as well as by any protection against inheritance placed on the child
-	// objects. This field is valid only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit is
-	// set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
+	// objects. This field is present only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit
+	// is set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
 	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:(Flags 2 &)" json:"inherited_object_type"`
 	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
 	// 4.
@@ -3374,22 +3381,22 @@ type AccessAllowedCallbackObjectACE struct {
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000000                                   | Neither ObjectType nor InheritedObjectType are valid.                            |
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
-	//	| ACE_OBJECT_TYPE_PRESENT 0x00000001           | ObjectType is valid.                                                             |
+	//	| ACE_OBJECT_TYPE_PRESENT 0x00000001           | ObjectType is present.                                                           |
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
-	//	| ACE_INHERITED_OBJECT_TYPE_PRESENT 0x00000002 | InheritedObjectType is valid. If this value is not specified, all types of child |
-	//	|                                              | objects can inherit the ACE.                                                     |
+	//	| ACE_INHERITED_OBJECT_TYPE_PRESENT 0x00000002 | InheritedObjectType is present. If this value is not specified, all types of     |
+	//	|                                              | child objects can inherit the ACE.                                               |
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 	// ObjectType (16 bytes): A GUID that identifies a property set, property, extended
 	// right, or type of child object. The purpose of this GUID depends on the user rights
-	// specified in the Mask field. This field is valid only if the ACE _OBJECT_TYPE_PRESENT
+	// specified in the Mask field. This field is present only if the ACE _OBJECT_TYPE_PRESENT
 	// bit is set in the Flags field. Otherwise, the ObjectType field is ignored.
 	ObjectType *ACEGUID `idl:"name:ObjectType;switch_is:(Flags 1 &)" json:"object_type"`
 	// InheritedObjectType (16 bytes): A GUID that identifies the type of child object that
 	// can inherit the ACE. Inheritance is also controlled by the inheritance flags in the
 	// ACE_HEADER, as well as by any protection against inheritance placed on the child
-	// objects. This field is valid only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit is
-	// set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
+	// objects. This field is present only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit
+	// is set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
 	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:(Flags 2 &)" json:"inherited_object_type"`
 	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
 	// 4.
@@ -3649,22 +3656,22 @@ type AccessDeniedCallbackObjectACE struct {
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0x00000000                                   | Neither ObjectType nor InheritedObjectType are valid.                            |
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
-	//	| ACE_OBJECT_TYPE_PRESENT 0x00000001           | ObjectType is valid.                                                             |
+	//	| ACE_OBJECT_TYPE_PRESENT 0x00000001           | ObjectType is present.                                                           |
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
-	//	| ACE_INHERITED_OBJECT_TYPE_PRESENT 0x00000002 | InheritedObjectType is valid. If this value is not specified, all types of child |
-	//	|                                              | objects can inherit the ACE.                                                     |
+	//	| ACE_INHERITED_OBJECT_TYPE_PRESENT 0x00000002 | InheritedObjectType is present. If this value is not specified, all types of     |
+	//	|                                              | child objects can inherit the ACE.                                               |
 	//	+----------------------------------------------+----------------------------------------------------------------------------------+
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 	// ObjectType (16 bytes): A GUID that identifies a property set, property, extended
 	// right, or type of child object. The purpose of this GUID depends on the user rights
-	// specified in the Mask field. This field is valid only if the ACE _OBJECT_TYPE_PRESENT
+	// specified in the Mask field. This field is present only if the ACE _OBJECT_TYPE_PRESENT
 	// bit is set in the Flags field. Otherwise, the ObjectType field is ignored.
 	ObjectType *ACEGUID `idl:"name:ObjectType;switch_is:(Flags 1 &)" json:"object_type"`
 	// InheritedObjectType (16 bytes): A GUID that identifies the type of child object that
 	// can inherit the ACE. Inheritance is also controlled by the inheritance flags in the
 	// ACE_HEADER, as well as by any protection against inheritance placed on the child
-	// objects. This field is valid only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit is
-	// set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
+	// objects. This field is present only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit
+	// is set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
 	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:(Flags 2 &)" json:"inherited_object_type"`
 	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
 	// 4.

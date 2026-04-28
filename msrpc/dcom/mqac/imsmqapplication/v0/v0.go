@@ -358,6 +358,9 @@ type MachineIDOfMachineNameRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// MachineName: A BSTR that specifies the NETBIOS or DNS computer name for which a GUID
 	// is to be retrieved.
+	//
+	// If this input parameter is NULL, the local QueueManager.ComputerName MUST be used
+	// as the value of this input parameter.
 	MachineName *oaut.String `idl:"name:MachineName" json:"machine_name"`
 }
 
@@ -413,6 +416,13 @@ type MachineIDOfMachineNameResponse struct {
 	// representation of the specified machine GUID. The server MUST NOT include the surrounding
 	// curly braces ({ }) with the returned GUID. The string MUST use the following format,
 	// which is specified in ABNF.
+	//
+	// guid       = dword-part "-" word-part "-" word-part "-"
+	//       2byte-part "-" 6byte-part
+	//  dword-part = 2word-part
+	//  word-part  = 2byte-part
+	//  byte-part  = 2hex-digit
+	//  hex-digit  = %x30-39 / %x41-46 / %x61-66
 	GUID *oaut.String `idl:"name:pbstrGuid" json:"guid"`
 	// Return: The MachineIdOfMachineName return value.
 	Return int32 `idl:"name:Return" json:"return"`

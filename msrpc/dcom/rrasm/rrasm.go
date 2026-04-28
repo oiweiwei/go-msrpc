@@ -647,6 +647,8 @@ type InformationContainer struct {
 	// The information contained in this buffer is specific to the API in which this structure
 	// is used.
 	//
+	// This information can be any of the following structures:
+	//
 	// * MPR_SERVER_0 ( 5d243bef-8203-46ea-970a-962590f56200 )
 	//
 	// * MPR_SERVER_1 ( 12ffcd88-5613-4ccb-ba5c-c281aec368cb )
@@ -6101,6 +6103,11 @@ type SSTPCertInfo1 struct {
 	//	+-------+-----------------------------------------------------------------------+
 	//	| FALSE | The SSTP certificate hash values are configured by the administrator. |
 	//	+-------+-----------------------------------------------------------------------+
+	//
+	// This value SHOULD be set to FALSE when sent. The RRAS server specifies TRUE for this
+	// value if administrator has not configured the certificate and default certificate
+	// selection logic is used. This value is FALSE if the administrator has configured
+	// the certificate.
 	IsDefault bool `idl:"name:isDefault" json:"is_default"`
 	// certBlob (variable): This MUST be a CERT_BLOB_1. This contains the Certificate HASH
 	// Length and Certificate Hash. It accepts ONLY SHA256 HASH as the valid HASH. Thus,
@@ -8391,6 +8398,8 @@ type FilterInfo struct {
 	//	+------------+---------+
 	//	| 0x00000011 | UDP     |
 	//	+------------+---------+
+	//
+	// The complete list is specified in [RFC1700].
 	Protocol uint32 `idl:"name:dwProtocol" json:"protocol"`
 	// fLateBound: A 32-bit, unsigned integer in little-endian byte order that indicates
 	// to the RRAS server if the fields in the filter can be dynamically replaced by the
@@ -12412,6 +12421,8 @@ type MIBIPMulticastBoundary struct {
 	// dwGroupAddress: The 32-bit integer representation of the IPv4 group address which,
 	// when combined with the corresponding value in dwGroupMask, identifies the group range
 	// for which the scoped boundary exists.
+	//
+	// Note  Scoped addresses MUST come from the range 239.*.*.* as specified in [RFC2365].
 	GroupAddress uint32 `idl:"name:dwGroupAddress" json:"group_address"`
 	// dwGroupMask: The 32-bit integer representation of the IPv4 group address mask which,
 	// when combined with the corresponding value in dwGroupAddress, identifies the group
@@ -13423,6 +13434,9 @@ type MIBIPMulticastScope struct {
 	// dwGroupAddress: A 32-bit integer representation of the IPv4 group address which,
 	// when combined with the corresponding value in dwGroupMask, identifies the group range
 	// for which the multicast scope exists.
+	//
+	// Note  Scoped addresses MUST come from the range 239.0.0.0 to 239.255.255.255 as specified
+	// in [RFC2365].
 	GroupAddress uint32 `idl:"name:dwGroupAddress" json:"group_address"`
 	// dwGroupMask: A 32-bit integer representation of the IPv4 group address mask which,
 	// when combined with the corresponding value in dwGroupAddress, identifies the group
@@ -13430,6 +13444,11 @@ type MIBIPMulticastScope struct {
 	GroupMask uint32 `idl:"name:dwGroupMask" json:"group_mask"`
 	// snNameBuffer: A Unicode string, suitable for display to multicast application users,
 	// that contains the text name associated with the multicast scope.
+	//
+	// If no name is specified, the default name is the string representation of the scoped
+	// address in dwGroupAddress with the address and mask length appended and separated
+	// by a backslash "/" character, of the form "239.*.*.*.x/y", where x is the address
+	// length and y is the mask length.
 	NameBuffer []uint16 `idl:"name:snNameBuffer" json:"name_buffer"`
 	// dwStatus: A status value that describes the current status of this row in an MFE
 	// scope table.
@@ -15541,10 +15560,16 @@ type PPPIPCPInfo struct {
 	Error uint32 `idl:"name:dwError" json:"error"`
 	// wszAddress: Specifies a null-terminated Unicode string that holds the local computer's
 	// IP address for the connection. This string has the form a.b.c.d; for example, "10.102.235.84".
+	//
+	// If a remote access client is connecting to a RRAS server, this member holds the IP
+	// address of the server.
 	Address []uint16 `idl:"name:wszAddress" json:"address"`
 	// wszRemoteAddress: Specifies a null-terminated Unicode string that holds the IP address
 	// of the remote computer. This string has the form a.b.c.d. If the address is not available,
 	// this member is an empty string.
+	//
+	// If a remote access client is connecting to a RRAS server, this member holds the IP
+	// address of the client.
 	RemoteAddress []uint16 `idl:"name:wszRemoteAddress" json:"remote_address"`
 }
 
@@ -15639,6 +15664,10 @@ type PPPIPCPInfo2 struct {
 	// wszRemoteAddress: See wszRemoteAddress in PPP_IPCP_INFO.
 	RemoteAddress []uint16 `idl:"name:wszRemoteAddress" json:"remote_address"`
 	// dwOptions: Specifies IP Configuration Parameters (IPCP) options for the local computer.
+	//
+	// When set to PPP_IPCP_VJ (0x00000001), indicates that IP datagrams sent by the local
+	// computer are compressed using Van Jacobson compression [RFC1144]. Otherwise, set
+	// to 0x00000000.
 	Options uint32 `idl:"name:dwOptions" json:"options"`
 	// dwRemoteOptons: Uses the same values as dwOptions but applies to datagrams received
 	// by the local computer.
@@ -18035,6 +18064,9 @@ type Interface1 struct {
 	// null characters as in the following example:
 	//
 	// 2 09:00-12:00 13:00-17:30<NULL>4 09:00-12:00 13:00-17:30<NULL><NULL>
+	//
+	// The preceding string restricts dial-out to Tuesdays and Thursdays from 9:00 A.M.
+	// to 12:00 P.M. and from 1:00 P.M. to 5:30 P.M.
 	DialoutHoursRestriction string `idl:"name:lpwsDialoutHoursRestriction" json:"dialout_hours_restriction"`
 }
 
@@ -18545,20 +18577,32 @@ type Interface2 struct {
 	// an additional subentry when the total bandwidth that is used exceeds the percentage
 	// limit (dwDialExtraPercent) of the available bandwidth for at least dwDialExtraSampleSeconds
 	// seconds.
+	//
+	// This member is ignored unless the dwDialMode member specifies the MPRDM_DialAsNeeded
+	// flag.
 	DialExtraPercent uint32 `idl:"name:dwDialExtraPercent" json:"dial_extra_percent"`
 	// dwDialExtraSampleSeconds: A value that specifies the time, in seconds, for which
 	// current bandwidth usage MUST exceed the threshold that is specified by dwHangUpExtraSampleSeconds
 	// before the RRAS server dials an additional subentry.
+	//
+	// This member is ignored unless the dwDialMode member specifies the MPRDM_DialAsNeeded
+	// flag.
 	DialExtraSampleSeconds uint32 `idl:"name:dwDialExtraSampleSeconds" json:"dial_extra_sample_seconds"`
 	// dwHangUpExtraPercent: A value that specifies the percentage of the total bandwidth
 	// that is available from the currently connected subentries. The RRAS server terminates
 	// (hangs up) an existing subentry connection when the total bandwidth used is less
 	// than the percentage limit, indicated by dwHangUpExtraPercent, of the available bandwidth
 	// for at least dwHangUpExtraSampleSeconds seconds.
+	//
+	// This member is ignored unless the dwDialMode member specifies the MPRDM_DialAsNeeded
+	// flag.
 	HangUpExtraPercent uint32 `idl:"name:dwHangUpExtraPercent" json:"hang_up_extra_percent"`
 	// dwHangUpExtraSampleSeconds: A value that specifies the time, in seconds, for which
 	// current bandwidth usage MUST be less than the threshold that is specified by dwHangUpExtraPercent
 	// before the RRAS server terminates an existing subentry connection.
+	//
+	// This member is ignored unless the dwDialMode member specifies the MPRDM_DialAsNeeded
+	// flag.
 	HangUpExtraSampleSeconds uint32 `idl:"name:dwHangUpExtraSampleSeconds" json:"hang_up_extra_sample_seconds"`
 	// dwIdleDisconnectSeconds: A value that specifies the time, in seconds, after which
 	// an idle connection is terminated. Unless the idle time-out is disabled, the entire
@@ -18611,6 +18655,10 @@ type Interface2 struct {
 	//	+------------------------------+----------------------------------+
 	//	| MPR_ET_Optional 0x00000003   | If possible, use encryption.     |
 	//	+------------------------------+----------------------------------+
+	//
+	// The value of the dwEncryptionType does not affect how passwords are encrypted. Whether
+	// passwords are encrypted and how passwords are encrypted is determined by the authentication
+	// protocol (for example: PAP, [MS-CHAP], or EAP).
 	EncryptionType uint32 `idl:"name:dwEncryptionType" json:"encryption_type"`
 	// dwCustomAuthKey: A value that specifies the authentication key to be provided to
 	// an EAP vendor.
@@ -19439,20 +19487,31 @@ type Interface3 struct {
 	// that is available from the currently connected subentries. The RRAS server dials
 	// an additional subentry when the total bandwidth that is used exceeds dwDialExtraPercent
 	// percent of the available bandwidth for at least dwDialExtraSampleSeconds seconds.
+	//
+	// This member is ignored unless the dwDialMode member specifies the MPRDM_DialAsNeeded
+	// flag.
 	DialExtraPercent uint32 `idl:"name:dwDialExtraPercent" json:"dial_extra_percent"`
 	// dwDialExtraSampleSeconds: A value that specifies the time, in seconds, for which
 	// current bandwidth usage MUST exceed the threshold that is specified by dwDialExtraPercent
 	// before the RRAS server dials an additional subentry.
+	//
+	// This member is ignored unless the dwDialMode member specifies the MPRDM_DialAsNeeded.
 	DialExtraSampleSeconds uint32 `idl:"name:dwDialExtraSampleSeconds" json:"dial_extra_sample_seconds"`
 	// dwHangUpExtraPercent: A value that specifies the percentage of the total bandwidth
 	// that is available from the currently connected subentries. The RRAS server terminates
 	// (hangs up) an existing subentry connection when the total bandwidth used is less
 	// than dwHangUpExtraPercent percent of the available bandwidth for at least dwHangUpExtraSampleSeconds
 	// seconds.
+	//
+	// This member is ignored unless the dwDialMode member specifies the MPRDM_DialAsNeeded
+	// flag.
 	HangUpExtraPercent uint32 `idl:"name:dwHangUpExtraPercent" json:"hang_up_extra_percent"`
 	// dwHangUpExtraSampleSeconds: A value that specifies the time, in seconds, for which
 	// current bandwidth usage MUST be less than the threshold that is specified by dwHangUpExtraPercent
 	// before the RRAS server terminates an existing subentry connection.
+	//
+	// This member is ignored unless the dwDialMode member specifies the MPRDM_DialAsNeeded
+	// flag.
 	HangUpExtraSampleSeconds uint32 `idl:"name:dwHangUpExtraSampleSeconds" json:"hang_up_extra_sample_seconds"`
 	// dwIdleDisconnectSeconds: A value that specifies the time, in seconds, after which
 	// an inactive connection is terminated. Unless the idle time-out is disabled, the entire
@@ -19505,6 +19564,10 @@ type Interface3 struct {
 	//	+------------------------------+----------------------------------+
 	//	| MPR_ET_Optional 0x00000003   | If possible, use encryption.     |
 	//	+------------------------------+----------------------------------+
+	//
+	// The value of dwEncryptionType does not affect how passwords are encrypted. Whether
+	// passwords are encrypted and how passwords are encrypted is determined by the authentication
+	// protocol, for example: PAP, MS-CHAP, or EAP.
 	EncryptionType uint32 `idl:"name:dwEncryptionType" json:"encryption_type"`
 	// dwCustomAuthKey: A value that specifies the authentication key to be provided to
 	// an EAP ([MS-PEAP]) vendor.
@@ -21082,6 +21145,8 @@ type IPXAdapterInfo struct {
 	//	+--------+----------------------------------------------------------+
 	PacketType uint32 `idl:"name:PacketType" json:"packet_type"`
 	// AdapterName: Name of the adapter. The MAX_ADAPTER_NAME_LEN value is defined as follows.
+	//
+	// #define MAX_ADAPTOR_NAME_LEN 48
 	AdapterName []uint16 `idl:"name:AdapterName" json:"adapter_name"`
 }
 
@@ -21990,6 +22055,8 @@ type IpxmibBase struct {
 	// PrimaryNetNumber: Every IPX WAN router has a "primary network number". This is an
 	// IPX network number unique to the entire internet. This number will be a permanently
 	// assigned network number for the router.
+	//
+	// A 32-bit number assigned by a network administrator; set to 0 on the local network.
 	PrimaryNetNumber []byte `idl:"name:PrimaryNetNumber" json:"primary_net_number"`
 	// Node: A 48-bit number that identifies the LAN hardware address. If the node number
 	// is FFFF FFFF FFFF, it means broadcast. If the node number is 0000 0000 0001, that
@@ -23610,6 +23677,8 @@ type SAPMIBGetInputData struct {
 	// ULONG InterfaceIndex;
 	//
 	// } SAP_MIB_GET_INPUT_DATA,
+	//
+	// InterfaceIndex: MUST be the interface index of the interface.
 	InterfaceIndex uint32 `idl:"name:InterfaceIndex" json:"interface_index"`
 }
 
@@ -28568,6 +28637,10 @@ type IPNATEnumerateSessionMappings struct {
 	// EnumerateTotalHint (4 bytes): Count of the total number of entries.
 	EnumerateTotalHint uint32 `idl:"name:EnumerateTotalHint" json:"enumerate_total_hint"`
 	// EnumerateTable (variable): This MUST be IP_NAT_SESSION_MAPPING structures.
+	//
+	// Note  The EnumerateTable field is of variable size depending on the value of EnumerateCount.
+	// While calculating the structure size, the size of EnumerateTable MUST NOT be added
+	// if value of EnumerateCount is zero.
 	EnumerateTable []*IPNATSessionMapping `idl:"name:EnumerateTable" json:"enumerate_table"`
 }
 
@@ -28823,6 +28896,10 @@ type IPDNSProxyMIBQuery_Field2 struct {
 	// Index (4 bytes): This MUST be the index of the interface.
 	Index uint32 `idl:"name:Index" json:"index"`
 	// Data (variable): This MUST be an IP_DNS_PROXY_STATISTICS structure.
+	//
+	// Note  Index and Data are of variable size and while calculating the structure size,
+	// the size of Index or Data needs to be added. Data is unused and has been kept for
+	// extensibility.
 	Data uint8 `idl:"name:Data" json:"data"`
 }
 
@@ -28977,6 +29054,9 @@ type IPAutoDHCPMIBQuery_Field2 struct {
 	// Index: This MUST be index of the interface.
 	Index uint32 `idl:"name:Index" json:"index"`
 	// Data: This MUST be an IP_AUTO_DHCP_STATISTICS structure.
+	//
+	// Note  Index and Data are variable-sized arrays. While calculating the structure size,
+	// the size of Index or Data is added. Data is unused and has been kept for extensibility.
 	Data uint8 `idl:"name:Data" json:"data"`
 }
 
@@ -31954,6 +32034,9 @@ var (
 	// RDT_Null_Modem: Specifies modem device class like Modem, Isdn, Irda.
 	RASDeviceTypeNullModem RASDeviceType = 262144
 	// RDT_Broadband: Specifies broadband device class like PPPoE.<13>
+	//
+	// The final four values (RDT_Tunnel, RDT_Direct, RDT_Null_Modem, RDT_Broadband) are
+	// used to specify the class of the device.
 	RASDeviceTypeBroadband RASDeviceType = 524288
 )
 

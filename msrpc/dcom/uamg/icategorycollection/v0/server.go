@@ -68,6 +68,8 @@ type CategoryCollectionServer interface {
 	// If the index is less than 0x00000000 or greater than or equal to the number of items
 	// in the collection, the server SHOULD return WU_E_INVALIDINDEX (0x80240007).
 	//
+	// If the collection is read-only, the server SHOULD return WU_E_NOT_SUPPORTED (0x80240037).
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -75,7 +77,39 @@ type CategoryCollectionServer interface {
 	// the given value.
 	GetItem(context.Context, *GetItemRequest) (*GetItemResponse, error)
 
-	// _NewEnum operation.
+	// The ICategoryCollection::_NewEnum (opnum 9) method retrieves an enumerator that can
+	// be used to enumerate the collection of ICategory instances.
+	//
+	// The IUpdateDownloadContentCollection::_NewEnum (opnum 9) method retrieves an enumerator
+	// over the collection.
+	//
+	// The IWindowsDriverUpdateEntryCollection::_NewEnum (opnum 9) method retrieves an enumerator
+	// that can be used to enumerate the collection of IWindowsDriverUpdateEntry instances.
+	//
+	// The IUpdateHistoryEntryCollection::_NewEnum (opnum 9) method retrieves an enumerator
+	// over the collection.
+	//
+	// The IUpdateExceptionCollection::_NewEnum (opnum 9) method retrieves an enumerator
+	// over the collection.
+	//
+	// The IUpdateCollection::_NewEnum (opnum 10) method returns an enumerator over the
+	// collection.
+	//
+	// The IUpdateServiceCollection::_NewEnum (opnum 9) method retrieves an enumerator over
+	// the collection.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD create a new object that implements the IEnumVARIANT interface
+	// and enumerates over the List ADM element.
 	Get_NewEnum(context.Context, *Get_NewEnumRequest) (*Get_NewEnumResponse, error)
 
 	// The IUpdateExceptionCollection::Count (opnum 10) method retrieves the number of items

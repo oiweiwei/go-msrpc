@@ -1,0 +1,209 @@
+<div class="content" name="DFSRootOrLinkIDBLOB" uuid="4ccdd530-9696-4572-968f-27d689b33999"><p>This <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">BLOB</a>
+contains name and other information about the <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS namespace</a> root or the <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS link</a>.</p><ul><li><p><span><span> 
+</span></span>If the PKT_ENTRY_TYPE_REFERRAL_SVC (0x00000080) bit is set in the
+<b>Type</b> field, then this BLOB describes the <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a> and is, hence,
+part of the <a href="9f18db22-cfcc-429f-88eb-364a5ae7482c" data-linktype="relative-path">DFSNamespaceRootBLOB</a>.</p>
+</li><li><p><span><span> 
+</span></span>If the PKT_ENTRY_TYPE_REFERRAL_SVC (0x00000080) bit is not set in
+the <b>Type</b> field, then this BLOB describes a link and is, hence, part of
+the DFSNamespaceLinkBLOB.</p>
+</li></ul><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">RootOrLinkGuid (16 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="16">PrefixSize</td>
+  <td colspan="16">Prefix (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="16">ShortPrefixSize</td>
+  <td colspan="16">ShortPrefix (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">Type</td>
+ </tr>
+ <tr>
+  <td colspan="32">State</td>
+ </tr>
+ <tr>
+  <td colspan="16">CommentSize</td>
+  <td colspan="16">Comment (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">PrefixTimeStamp</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">StateTimeStamp</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">CommentTimeStamp</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">Version</td>
+ </tr>
+</tbody></table><p><b>RootOrLinkGuid (16 bytes): </b>A <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> that identifies the
+DFS root or the DFS link. It is used to generate the name &#34;\&lt;domainroot&gt;\&lt;GUIDString&gt;&#34;
+in the <b>BLOBName</b> field of the DFSNamespaceLinkBLOB, where
+&lt;GUIDString&gt; represents the string form of the GUID, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90460" data-linktype="external">[RFC4122]</a>, section 3.</p><p><b>PrefixSize (2 bytes): </b>The size, in bytes, of
+the <b>Prefix</b> field, stored as an unsigned, 16-bit, <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> integer.</p><p><b>Prefix (variable): </b>The name of the DFS
+namespace root or the DFS link. The <b>Prefix</b> is stored as a string of <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> characters and MUST
+be a <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">UNC</a> path string
+with one leading backslash, instead of the usual two, without a null
+termination.</p><p><b>ShortPrefixSize (2 bytes): </b>The size, in bytes,
+of the <b>ShortPrefix</b> field, stored as an unsigned, 16-bit, little-endian
+integer.</p><p><b>ShortPrefix (variable): </b>The name of the DFS
+namespace root or the DFS link, stored as a string of Unicode characters. This
+MUST be a UNC path string with one leading backslash, instead of the usual two,
+without a null termination. The string MAY be the same as that in the <b>Prefix</b>
+field or its <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_d2302116-d3d3-4465-a72e-c07a7737b7ae" data-linktype="relative-path">8.3 name</a>.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><p><b>Type (4 bytes): </b>A bit field, stored as 32-bits
+in little-endian order, which describes this BLOB.</p><dl>
+<dd>
+<p>For domainv1 roots, the <b>Type</b> field parallels
+the functionality of the <b>msDFS-Propertiesv2</b> attribute used for <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8099f7c1-2a31-4a20-81e6-824689bd9c5a" data-linktype="relative-path">domainv2-based DFS namespaces</a>
+(see section <a href="ccf69b5a-c82b-4d32-8a3e-8c6549b5efe1" data-linktype="relative-path">2.3.4.2</a>)
+and domainv2-based DFS links (see section <a href="95aa7184-b9a1-44ca-890a-2b4ac579b957" data-linktype="relative-path">2.3.4.3</a>).</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>PKT_ENTRY_TYPE_DFS 0x00000001</td>
+  <td>This value is reserved and the Type field MUST always be set with this value.</td>
+ </tr><tr>
+  <td>PKT_ENTRY_TYPE_OUTSIDE_MY_DOM 0x00000010</td>
+  <td>The DFS interlink property. This MUST be set only when at least one DFS link target points to another DFS namespace. This MUST NOT be set for a DFS root.</td>
+ </tr><tr>
+  <td>PKT_ENTRY_TYPE_INSITE_ONLY 0x00000020</td>
+  <td>The DFS in-site referral mode property. When set, instructs the DFS server to enable the DFS in-site referral mode.</td>
+ </tr><tr>
+  <td>PKT_ENTRY_TYPE_COST_BASED_SITE_SELECTION 0x00000040</td>
+  <td>The DFS referral site costing property. Enables DFS referral site costing. This SHOULD be supported.&lt;13&gt;</td>
+ </tr><tr>
+  <td>PKT_ENTRY_TYPE_REFERRAL_SVC 0x00000080</td>
+  <td>This identifies the DFS namespace root.</td>
+ </tr><tr>
+  <td>PKT_ENTRY_TYPE_ROOT_SCALABILITY 0x00000200</td>
+  <td>The DFS root scalability mode property. This enables DFS root scalability mode. This SHOULD be supported.&lt;14&gt;</td>
+ </tr><tr>
+  <td>PKT_ENTRY_TYPE_TARGET_FAILBACK 0x00008000</td>
+  <td>The DFS client target failback property. This enables DFS client target failback for targets of this root or link. This SHOULD be supported.&lt;15&gt;</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Undefined bit positions MUST be set to 0 on writes
+and ignored on reads.</p>
+</dd></dl><p><b>State (4 bytes): </b>The status of the DFS root or
+DFS link stored as an unsigned, 32-bit, little-endian integer. The
+DFS_VOLUME_STATES bitmask (0x0000000F) MUST be used to access the following DFS
+root or DFS link state from this field. For more information about some of
+these states, see section <a href="23dff7a2-3ba8-4fd7-95dd-8e518024362b" data-linktype="relative-path">2.2.2.13</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DFS_VOLUME_STATE_OK 0x00000001</td>
+  <td>The DFS root or DFS link state is okay.</td>
+ </tr><tr>
+  <td>RESERVED 0x00000002</td>
+  <td>This value is reserved and MUST NOT be used.</td>
+ </tr><tr>
+  <td>DFS_VOLUME_STATE_OFFLINE 0x00000003</td>
+  <td>The DFS link is offline and not available for use.</td>
+ </tr><tr>
+  <td>DFS_VOLUME_STATE_ONLINE 0x00000004</td>
+  <td>The DFS link is online and available for use.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Undefined bit positions of this field MUST be set to
+0 on writes and ignored on reads.</p>
+</dd></dl><p><b>CommentSize (2 bytes): </b>The size, in bytes, of
+the <b>Comment</b> field and stored as an unsigned, 16-bit, little-endian
+integer.</p><p><b>Comment (variable): </b>A string of Unicode
+characters whose size in bytes is specified by the <b>CommentSize</b> field.
+The <b>Comment</b> field is associated with the namespace root or link and is
+for informational purposes. The comment is meant for human consumption and does
+not affect server functionality.</p><p><b>PrefixTimeStamp (8 bytes): </b>The time of the
+last <b>Prefix</b> field modification, stored as FILETIME, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a>.
+This SHOULD be set to the last modification time of this BLOB.</p><p><b>StateTimeStamp (8 bytes): </b>The time of the last
+<b>State</b> field modification, stored as FILETIME, as specified in [MS-DTYP]
+section 2.3.3. This SHOULD be set to the last modification time of this BLOB.</p><p><b>CommentTimeStamp (8 bytes): </b>The time of the
+last <b>Comment</b> field modification, stored as FILETIME, as specified in
+[MS-DTYP] section 2.3.3. This SHOULD be set to the last modification time of
+this BLOB.</p><p><b>Version (4 bytes): </b>The version number of
+DFSRootOrLinkIDBLOB, stored as an unsigned, 32-bit, little-endian integer. When
+creating a new DFSRootOrLinkIDBLOB, this MUST be set to 0x00000003. When
+updating an existing DFSRootOrLinkIDBLOB, the existing value MUST be preserved.</p></div>

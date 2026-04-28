@@ -1,0 +1,38 @@
+<div class="content" name="SESSIONENUM_EX" uuid="35a722eb-00a0-4ba0-8e4c-735d06378675"><p>The PSESSIONENUM_EX is a pointer to a structure containing
+information about the sessions running on the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>. It
+is returned by <span><a href="cb2be084-41dd-44ec-81dc-52d371a28554" data-linktype="relative-path">RpcGetEnumResultEx</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _SESSIONENUM_EX {
+   DWORD Level;
+   [switch_is(Level)] SessionInfo_Ex Data;
+ } SESSIONENUM_EX,
+  *PSESSIONENUM_EX;
+</pre></div>
+</dd></dl><p><b>Level:</b>  The level of information
+contained in <b>Data</b>; the valid values are 1, 2, and 3.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>1</td>
+  <td>The union SessionInfo_Ex has the SessionEnum_Level1 structure.</td>
+ </tr><tr>
+  <td>2</td>
+  <td>The union SessionInfo_Ex has the SessionEnum_Level2 structure.</td>
+ </tr><tr>
+  <td>3</td>
+  <td>The union SessionInfo_Ex has the SessionEnum_Level3 structure.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Data:</b>  Contains information at a
+specified level of detail about sessions running on a computer. This parameter
+is of type SessionInfo_Ex. If Level is set to 1, the union SessionInfo_Ex has
+the SessionEnum_Level1 structure. If Level is set to 2, the union
+SessionInfo_Ex has the SessionEnum_Level2 structure. If Level is set to 3, the
+union SessionInfo_Ex has the SessionEnum_Level3 structure.</p></div>

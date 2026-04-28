@@ -1,0 +1,160 @@
+<div class="content" name="TS_TRACE" uuid="ad349575-5369-4830-a174-1920a7af8d5f"><p>The TS_TRACE structure specifies fields used for configuring
+tracing operations in TS binaries if they are checked.</p><dl>
+<dd>
+<div><pre> typedef struct _TS_TRACE {
+   WCHAR TraceFile[256];
+   BOOLEAN fDebugger;
+   BOOLEAN fTimestamp;
+   ULONG TraceClass;
+   ULONG TraceEnable;
+   WCHAR TraceOption[64];
+ } TS_TRACE,
+  *PTS_TRACE;
+</pre></div>
+</dd></dl><p><b>TraceFile:</b>  Specifies the file name,
+if any, to which to write debug information.</p><p><b>fDebugger:</b>  Specifies whether
+debugger is attached.</p><p><b>fTimestamp:</b>  Specifies whether to
+append time stamp to the traces logged.</p><p><b>TraceClass:</b>  Classes of tracing to
+log. They enable tracing for the various <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>
+binaries/functionalities. It MUST be a bitwise OR combination of one or more of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>TC_ICASRV 0x00000001</td>
+  <td>Enable tracing for the Terminal Services Service.&lt;134&gt;</td>
+ </tr><tr>
+  <td>TC_ICAAPI 0x00000002</td>
+  <td>Enable tracing for the DLL providing the API for Terminal Services to communicate with the WinStation Driver.&lt;135&gt;</td>
+ </tr><tr>
+  <td>TC_ICADD 0x00000004</td>
+  <td>Enable tracing for the Terminal Services Device Driver.&lt;136&gt;</td>
+ </tr><tr>
+  <td>TC_WD 0x00000008</td>
+  <td>Enable tracing for the WinStation Driver.&lt;137&gt;</td>
+ </tr><tr>
+  <td>TC_CD 0x00000010</td>
+  <td>Enable tracing for the Connection Driver.&lt;138&gt;</td>
+ </tr><tr>
+  <td>TC_PD 0x00000020</td>
+  <td>Enable tracing for the Protocol Driver.&lt;139&gt;</td>
+ </tr><tr>
+  <td>TC_TD 0x00000040</td>
+  <td>Enable tracing for the Transport Driver.&lt;140&gt;</td>
+ </tr><tr>
+  <td>TC_RELIABLE 0x00000100</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>TC_FRAME 0x00000200</td>
+  <td>Enable tracing for the Frame Protocol Driver.&lt;141&gt;</td>
+ </tr><tr>
+  <td>TC_COMP 0x00000400</td>
+  <td>Enable tracing for the Compression library.&lt;142&gt;</td>
+ </tr><tr>
+  <td>TC_CRYPT 0x00000800</td>
+  <td>Enable tracing for the Encryption binary.&lt;143&gt;</td>
+ </tr><tr>
+  <td>TC_TW 0x10000000</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>TC_DISPLAY 0x10000000</td>
+  <td>Enable tracing for the Display Driver.&lt;144&gt;</td>
+ </tr><tr>
+  <td>TC_WFSHELL 0x20000000</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>TC_WX 0x40000000</td>
+  <td>Enable tracing for the WinStation Extension.&lt;145&gt;</td>
+ </tr><tr>
+  <td>TC_LOAD 0x80000000</td>
+  <td>Enable tracing for the Load balancing binary.&lt;146&gt;</td>
+ </tr><tr>
+  <td>TC_ALL 0xffffffff</td>
+  <td>Everything.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>TraceEnable:</b>  Type of tracing calls
+log. It MUST be a bitwise OR combination of one or more of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>TT_API1 0x00000001</td>
+  <td>API level 1.</td>
+ </tr><tr>
+  <td>TT_API2 0x00000002</td>
+  <td>API level 2.</td>
+ </tr><tr>
+  <td>TT_API3 0x00000004</td>
+  <td>API level 3.</td>
+ </tr><tr>
+  <td>TT_API4 0x00000008</td>
+  <td>API level 4.</td>
+ </tr><tr>
+  <td>TT_OUT1 0x00000010</td>
+  <td>Output level 1.</td>
+ </tr><tr>
+  <td>TT_OUT2 0x00000020</td>
+  <td>Output level 2.</td>
+ </tr><tr>
+  <td>TT_OUT3 0x00000040</td>
+  <td>Output level 3.</td>
+ </tr><tr>
+  <td>TT_OUT4 0x00000080</td>
+  <td>Output level 4.</td>
+ </tr><tr>
+  <td>TT_IN1 0x00000100</td>
+  <td>Input level 1.</td>
+ </tr><tr>
+  <td>TT_IN2 0x00000200</td>
+  <td>Input level 2.</td>
+ </tr><tr>
+  <td>TT_IN3 0x00000400</td>
+  <td>Input level 3.</td>
+ </tr><tr>
+  <td>TT_IN4 0x00000800</td>
+  <td>Input level 4.</td>
+ </tr><tr>
+  <td>TT_ORAW 0x00001000</td>
+  <td>Raw output data.</td>
+ </tr><tr>
+  <td>TT_IRAW 0x00002000</td>
+  <td>Raw input data.</td>
+ </tr><tr>
+  <td>TT_OCOOK 0x00004000</td>
+  <td>Cooked output data.</td>
+ </tr><tr>
+  <td>TT_ICOOK 0x00008000</td>
+  <td>Cooked input data.</td>
+ </tr><tr>
+  <td>TT_SEM 0x00010000</td>
+  <td>Semaphores.</td>
+ </tr><tr>
+  <td>TT_NONE 0x10000000</td>
+  <td>Only view errors.</td>
+ </tr><tr>
+  <td>TT_ERROR 0xffffffff</td>
+  <td>Error condition.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>TraceOption:</b>  Trace option string.
+This SHOULD be in the format &#34;&lt;filename&gt;(start-end)&#34;, where
+&lt;filename&gt; is the name of the file that requires trace to be collected
+and (start-end) is the starting and ending line numbers during which trace is
+to be collected. This is an optional parameter and can be an empty string
+meaning collect trace for all files belonging to TraceClass and all lines in
+those files.</p></div>

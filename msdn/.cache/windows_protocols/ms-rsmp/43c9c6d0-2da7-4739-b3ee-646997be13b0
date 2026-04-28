@@ -1,0 +1,56 @@
+<div class="content" name="DeleteNtmsLibrary" uuid="43c9c6d0-2da7-4739-b3ee-646997be13b0"><p>The DeleteNtmsLibrary method deletes a library and all the
+devices in it. Any media in the library are moved to the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f248d7b8-b3e9-421e-96c4-78551324fd86" data-linktype="relative-path">offline library</a>.</p><dl>
+<dd>
+<div><pre> HRESULT DeleteNtmsLibrary(
+   [in] LPNTMS_GUID lpLibraryId
+ );
+</pre></div>
+</dd></dl><p><b>lpLibraryId: </b>A pointer to the identifier of
+the media library to delete.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>0x80070005 ERROR_ACCESS_DENIED</td>
+  <td>Access to the object was denied.</td>
+ </tr><tr>
+  <td>0x80070008 ERROR_NOT_ENOUGH_MEMORY</td>
+  <td>An allocation failure occurred during processing.</td>
+ </tr><tr>
+  <td>0x80070057 ERROR_INVALID_PARAMETER</td>
+  <td>A parameter is not valid.</td>
+ </tr><tr>
+  <td>0x800710CD ERROR_INVALID_LIBRARY</td>
+  <td>The library identifier is invalid.</td>
+ </tr><tr>
+  <td>0x800710D9 ERROR_DATABASE_FAILURE</td>
+  <td>The database is inaccessible or damaged.</td>
+ </tr><tr>
+  <td>0x800710DA ERROR_DATABASE_FULL</td>
+  <td>The database is full.</td>
+ </tr><tr>
+  <td>0x8007139F ERROR_INVALID_STATE</td>
+  <td>The library is not in expected state for this operation.</td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpLibrary</i>
+is not NULL. If it is NULL, the server MUST immediately fail the operation and
+return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If the parameter validation succeeds, the server MUST check
+access rights to the library and verify that the library is enabled and offline
+before further processing. If the client does not have the required access
+rights, NTMS_MODIFY_ACCESS to the library is denied and the server MUST return
+ERROR_ACCESS_DENIED (0x80070005). Other security errors are possible but
+indicate a security subsystem error. If the library is disabled or online, the
+server MUST return ERROR_INVALID_STATE (0x80071139F).</p><p>If validation is successful, the DeleteNtmsLibrary method
+deletes the library and all devices contained within the library from the
+server database after all media in the library are moved to a location in an
+offline library.</p></div>

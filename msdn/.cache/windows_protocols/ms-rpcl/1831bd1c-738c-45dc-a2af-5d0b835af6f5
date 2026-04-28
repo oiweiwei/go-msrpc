@@ -1,0 +1,62 @@
+<div class="content" name="RPC_SYNTAX_IDENTIFIER" uuid="1831bd1c-738c-45dc-a2af-5d0b835af6f5"><p> This structure MUST contain a <a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> and version
+information (<a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/9c8e51ab-f916-4f4e-9106-3a1d67b21f0a" data-linktype="relative-path">2.2.2.7</a>).
+It is identical to the RPC_SYNTAX_IDENTIFIER structure used in the LocToLoc
+interface in section <a href="bdd4e0ad-0210-4357-9bee-2851b0cbf8ce" data-linktype="relative-path">3.1.4</a>.
+This structure is used to represent the following:</p><ul><li><p><span><span> 
+</span></span>Identifier and version of an interface.</p>
+</li><li><p><span><span> 
+</span></span>Identifier and version of <a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_01216ea7-ac8a-4cc8-9d19-b901bc424c09" data-linktype="relative-path">transfer syntax</a> for an
+interface.</p>
+</li></ul><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">SyntaxGUID (16 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="16">SyntaxVersion.MajorVersion</td>
+  <td colspan="16">SyntaxVersion.MinorVersion</td>
+ </tr>
+</tbody></table><p><b>SyntaxGUID (16 bytes): </b>As specified in
+[MS-RPCE] section 2.2.2.7.</p><p><b>SyntaxVersion.MajorVersion (2 bytes): </b>As
+specified in [MS-RPCE] section 2.2.2.7.</p><p><b>SyntaxVersion.MinorVersion (2 bytes): </b>As
+specified in [MS-RPCE] section 2.2.2.7.</p></div>

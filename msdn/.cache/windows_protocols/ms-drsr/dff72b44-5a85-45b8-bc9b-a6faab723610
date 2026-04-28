@@ -1,0 +1,10 @@
+<div class="content" name="RevealSecretsPolicy" uuid="dff72b44-5a85-45b8-bc9b-a6faab723610"><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   RevealSecretsDeny = 0,
+   RevealSecretsAllow = 1,
+   RevealSecretsNoPolicy = 2
+ } RevealSecretsPolicy;
+</pre></div>
+</dd></dl></div>

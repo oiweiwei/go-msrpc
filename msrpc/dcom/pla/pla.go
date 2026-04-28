@@ -173,6 +173,8 @@ var (
 	// time. There will be a large number of these rows. The GUID, CounterID, and RecordIndex
 	// fields make up the primary key for this table.
 	//
+	// The CounterData table defines the following fields:
+	//
 	// * GUID(uniqueidentifier, NOT NULL): GUID, as specified in [MS-DTYP] ( ../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2
 	// ) section 2.3.4 ( ../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a ) , for this data
 	// set. Use this key to join with the DisplayToID table.

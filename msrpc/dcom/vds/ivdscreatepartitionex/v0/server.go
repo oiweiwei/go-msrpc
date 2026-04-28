@@ -39,6 +39,9 @@ type CreatePartitionExServer interface {
 	//
 	// Note  Creating or deleting partitions on dynamic disks is not supported.
 	//
+	// Note  This method is not valid on CD/DVD or super floppy devices. These devices do
+	// not support partition tables.
+	//
 	// ERROR_SUCCESS (0x00000000)
 	CreatePartitionEx(context.Context, *CreatePartitionExRequest) (*CreatePartitionExResponse, error)
 }

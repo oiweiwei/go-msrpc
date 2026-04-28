@@ -2969,6 +2969,9 @@ type StartReceive2Request struct {
 	// The client MUST provide all parameters of lpRemoteReadDesc2.pRemoteReadDesc that
 	// are marked as to be set by the client in section 2.2.2.1.
 	//
+	// The lpRemoteReadDesc2.pRemoteReadDesc.ulAction parameter MUST be one of the following
+	// values.
+	//
 	//	+-----------------------------------+----------------------------------------------------------------------------------+
 	//	|             VALUE OF              |                                                                                  |
 	//	|             ULACTION              |                                     MEANING                                      |
@@ -2989,6 +2992,9 @@ type StartReceive2Request struct {
 	//	|                                   | message, walking toward the end of the queue. The hCursor parameter MUST be set  |
 	//	|                                   | to a nonzero cursor handle.                                                      |
 	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The hCursor member of lpRemoteReadDesc specifies a handle to an opened cursor. A
+	// value of zero indicates that a cursor is not used for this operation.
 	//
 	// The dwRequestID member of the lpRemoteReadDesc parameter is used in a subsequent
 	// call to RemoteQMEndReceive or RemoteQMCancelReceive to correlate that call with the
@@ -3052,6 +3058,9 @@ type StartReceive2Response struct {
 	// The client MUST provide all parameters of lpRemoteReadDesc2.pRemoteReadDesc that
 	// are marked as to be set by the client in section 2.2.2.1.
 	//
+	// The lpRemoteReadDesc2.pRemoteReadDesc.ulAction parameter MUST be one of the following
+	// values.
+	//
 	//	+-----------------------------------+----------------------------------------------------------------------------------+
 	//	|             VALUE OF              |                                                                                  |
 	//	|             ULACTION              |                                     MEANING                                      |
@@ -3072,6 +3081,9 @@ type StartReceive2Response struct {
 	//	|                                   | message, walking toward the end of the queue. The hCursor parameter MUST be set  |
 	//	|                                   | to a nonzero cursor handle.                                                      |
 	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The hCursor member of lpRemoteReadDesc specifies a handle to an opened cursor. A
+	// value of zero indicates that a cursor is not used for this operation.
 	//
 	// The dwRequestID member of the lpRemoteReadDesc parameter is used in a subsequent
 	// call to RemoteQMEndReceive or RemoteQMCancelReceive to correlate that call with the
@@ -3283,6 +3295,8 @@ type StartReceiveByLookupIDRequest struct {
 	// The client must provide all parameters of lpRemoteReadDesc2.pRemoteReadDesc that
 	// are marked as to be set by the client in section 2.2.2.1.
 	//
+	// lpRemoteReadDesc2.pRemoteReadDesc.ulAction MUST be set to one of the following values.
+	//
 	//	+--------------------------------------+----------------------------------------------------------------------------------+
 	//	|               VALUE OF               |                                                                                  |
 	//	|               ULACTION               |                                     MEANING                                      |
@@ -3388,6 +3402,8 @@ type StartReceiveByLookupIDResponse struct {
 	//
 	// The client must provide all parameters of lpRemoteReadDesc2.pRemoteReadDesc that
 	// are marked as to be set by the client in section 2.2.2.1.
+	//
+	// lpRemoteReadDesc2.pRemoteReadDesc.ulAction MUST be set to one of the following values.
 	//
 	//	+--------------------------------------+----------------------------------------------------------------------------------+
 	//	|               VALUE OF               |                                                                                  |

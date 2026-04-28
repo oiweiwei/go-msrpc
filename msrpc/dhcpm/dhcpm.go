@@ -8812,6 +8812,9 @@ type ClientInfoV5 struct {
 	//
 	// The following tables show the various bit representation values and their meanings.
 	//
+	// BIT 0 and BIT 1 signify the state of the leased IPv4 address, as shown in the table
+	// that follows.
+	//
 	//	+----------------------------+----------------------------------------------------------------------------------+
 	//	|                            |                                                                                  |
 	//	|           VALUE            |                                     MEANING                                      |

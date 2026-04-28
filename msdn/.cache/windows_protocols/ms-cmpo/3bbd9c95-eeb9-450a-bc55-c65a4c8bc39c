@@ -1,0 +1,103 @@
+<div class="content" name="NegotiateResources" uuid="3bbd9c95-eeb9-450a-bc55-c65a4c8bc39c"><p>The NegotiateResources method is invoked by one <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a> to request that the
+other partner allocate resources for future use.</p><dl>
+<dd>
+<div><pre> HRESULT NegotiateResources(
+   [in] PCONTEXT_HANDLE phContext,
+   [in] RESOURCE_TYPE resourceType,
+   [in] DWORD dwcRequested,
+   [in, out] DWORD* pdwcAccepted
+ );
+</pre></div>
+</dd></dl><p><b>phContext: </b>An <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context, returned by a
+call to <a href="bdb686a6-1190-4900-9dd5-2f9aac6ca621" data-linktype="relative-path">BuildContext</a> or
+<a href="fc4bf100-2799-4acf-a537-625f9c98500b" data-linktype="relative-path">BuildContextW</a>,
+correlated with a <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">session</a>
+object that is in the Active state. For context handles, see <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>resourceType: </b>A <a href="59d76002-2b21-407d-93d2-70dbc20864bd" data-linktype="relative-path">RESOURCE_TYPE</a> enumerated
+value indicating the resource type to be negotiated.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>RT_CONNECTIONS 0x00</td>
+  <td>The resource to be negotiated is a connection.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwcRequested: </b>An unsigned 32-bit integer that
+specifies the number of resources to allocate. This value MUST be greater than
+0x00 and less than 1,000.</p><p><b>pdwcAccepted: </b>A pointer to an unsigned 32-bit
+integer that receives the number of resources that were allocated on behalf of
+the caller. This value SHOULD be smaller than the value of dwcRequested if the
+partner was incapable of allocating all of the requested resources. On input,
+this value MUST be set to 0x00000000.</p><p><b>Return Values: </b>This method MUST return zero
+(0x00000000) on success. On failure, it MUST return either one of the values
+described in the following table of return values or an implementation-specific
+HRESULT. A client MUST NOT depend on implementation-specific failure <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values. For more information about how the client SHOULD behave based on the
+possible return values, see section <a href="4e0a43cb-0afa-4955-86c2-b1f24e30b4f0" data-linktype="relative-path">3.4.6.4</a>. Standard errors
+are defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 ERROR_STATUS</td>
+  <td>The return value indicates success.</td>
+ </tr><tr>
+  <td>0x80000127 E_CM_OUTOFRESOURCES</td>
+  <td>The server was unable to allocate the resources requested and will continue to operate with the current set of resources.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The following table of return values describes the
+possible errors that SHOULD be returned by this method.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>This value is returned in the following scenarios:  If the resource type that was passed in the resourceType parameter is not a valid resource.  If the value of the dwcRequested parameter is not between 1 and 1000.</td>
+ </tr><tr>
+  <td>0x80000123 E_CM_SERVER_NOT_READY</td>
+  <td>The session object is not in the Active state.</td>
+ </tr></tbody></table>
+</dd></dl><p>The <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 2. See [C706].</p><p>For the structure and sequence of data on the wire, see
+[C706] Transfer Syntax <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_9ebf9540-2c31-43bc-bc56-4a932faabf2d" data-linktype="relative-path">Network
+Data Representation (NDR)</a> topics.</p><p>On receiving this method call, the receiving partner MUST
+verify that the contextHandle parameter is associated with a session object
+that is in the Active state. For context handles, see [C706]. If the session
+object is not in the Active state, the partner MUST return from this method
+with an error code. Otherwise, if the session object is not in the Active
+state, the server SHOULD return a 0x80000123 (E_CM_SERVER_NOT_READY) error
+code.</p><p>The operation of this method is determined by the <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_1fa6a098-338d-4a4e-aeab-aacf60ff44d3" data-linktype="relative-path">level-two protocol</a> that is
+layered on top of the MSDTC Connection Manager: OleTx Transports Protocol; it
+is this protocol that defines the range of valid values for the resourceType
+parameter. If the resourceType parameter does not identify a valid resource,
+the partner MUST return from this method one of the errors specified on the
+table above. The server SHOULD return E_INVALIDARG. See [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a> for
+the error code. If the level-two protocol cannot reserve any resources at all,
+the partner MUST return 0x80000127 (E_CM_OUTOFRESOURCES). Otherwise, if at
+least one resource is allocated, the partner MUST set the pdwcAccepted
+parameter to the number of resources allocated by this request, and then return
+S_OK.</p></div>

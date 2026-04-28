@@ -1,0 +1,34 @@
+<div class="content" name="SchRpcEnableTask" uuid="609994ba-d25a-476a-ad2d-5b8b0340f647"><p>The SchRpcEnableTask method MUST enable or disable a task.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcEnableTask(
+   [in, string] const wchar_t* path,
+   [in] DWORD enabled
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>MUST contain the full path to the task,
+in the format specified in section <a href="fa8809c8-4f0f-4c6d-994a-6c10308757c1" data-linktype="relative-path">2.3.11</a>.</p><p><b>enabled: </b>If TRUE, the server MUST enable the
+task. Otherwise, the server MUST disable the task.</p><p><b>Return Values: </b>For more information about
+return codes, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section 2.</p><p>Upon receipt of the SchRpcEnableTask call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_INVALIDARG if the <i>path</i> parameter is NULL or is
+the root.</p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x8007007B, the <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+form of the Win32 error <b>ERROR_INVALID_NAME</b>, if the specified <i>path</i>
+is not in the format specified in section 2.3.11.</p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x80070003, the HRESULT form of the Win32 error
+ERROR_PATH_NOT_FOUND, if the specified <i>path</i> does not exist on the server
+in the <a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a> <a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task store</a>.</p>
+</li><li><p><span><span> 
+</span></span>Return the HRESULT form of the Win32 error ERROR_FILE_NOT_FOUND
+if the specified task does not exist on the server in the XML task store.</p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the caller does not have write access to
+the task.</p>
+</li><li><p><span><span> 
+</span></span>Save the value of the enabled parameter in the enabled/disabled
+Boolean value associated with the task in the task store.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK.</p>
+</li></ul></div>

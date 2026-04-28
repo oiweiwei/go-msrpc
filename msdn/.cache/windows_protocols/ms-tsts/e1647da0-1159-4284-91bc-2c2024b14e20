@@ -1,0 +1,65 @@
+<div class="content" name="RpcWinStationGetAllProcesses_NT6" uuid="e1647da0-1159-4284-91bc-2c2024b14e20"><p>The RpcWinStationGetAllProcesses_NT6 method retrieves the
+processes running a remote server machine. Only the processes from the sessions
+on which the caller has WINSTATION_QUERY permission will be retrieved. The
+method checks whether the caller has WINSTATION_QUERY permission (section <span><a href="4507e852-be3d-45b6-bc47-8ca0b552c94d" data-linktype="relative-path">3.1.1</a></span>)
+by setting it as the Access Request mask, and fails if the caller does not have
+the permission.</p><dl>
+<dd>
+<div><pre> BOOLEAN RpcWinStationGetAllProcesses_NT6(
+   [in] SERVER_HANDLE hServer,
+   [out] DWORD* pResult,
+   [in] ULONG Level,
+   [in, out] BOUNDED_ULONG* pNumberOfProcesses,
+   [out, size_is(,*pNumberOfProcesses)] 
+     PTS_ALL_PROCESSES_INFO_NT6* ppTsAllProcessesInfo
+ );
+</pre></div>
+</dd></dl><p><b>hServer: </b>Handle to the server object. This is
+of type <span><a href="49484cdf-2feb-4de9-a588-5d01cf8995dc" data-linktype="relative-path">SERVER_HANDLE</a></span>. The <i>hServer</i>
+argument MUST be obtained from a previous call to <span><a href="fd6f339d-f5dd-452c-a9a9-ec753c22a36a" data-linktype="relative-path">RpcWinStationOpenServer</a></span>.</p><p><b>pResult: </b> Failure error code if the call to RpcWinStationGetAllProcesses_NT6
+failed. If the call was successful, this parameter MUST be STATUS_SUCCESS
+(0x00000000).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>STATUS_SUCCESS 0x00000000</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>STATUS_ACCESS_DENIED 0xC0000022</td>
+  <td>The caller does not have permission for the operation.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Level: </b> MUST be GAP_LEVEL_BASIC (0). Any other
+value will lead to the method returning FALSE.</p><p><b>pNumberOfProcesses: </b> The number of processes
+requested by the caller. On return, this indicates the number of processes
+actually stored in the ppTsAllProcessesInfo parameter.</p><p><b>ppTsAllProcessesInfo: </b> Pointer to an array of
+processes allocated and returned by the method. *ppTsAllProcessesInfo is
+allocated by the method to be an array of <span><a href="d60fc588-2cc7-4464-9c53-879142f5a58d" data-linktype="relative-path">TS_ALL_PROCESSES_INFO_NT6</a></span>
+structures. The array returned by the method MUST be freed by the caller.</p><p><b>Return Values: </b> Returns TRUE if the call
+succeeded, and FALSE if the lookup failed. On failure, pResult indicates the
+failure status code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x01 TRUE</td>
+  <td>Successful completion.</td>
+ </tr><tr>
+  <td>0x00 FALSE</td>
+  <td>Method call failed.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

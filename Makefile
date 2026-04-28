@@ -14,6 +14,11 @@ MSIDLPATH ?= $(shell pwd)/idl:$(shell pwd)/idl/h
 
 DOCKER_IMAGE ?= ghcr.io/oiweiwei/midl-gen-go
 
+# verbose mode
+ifeq ($(DEBUG),1)
+DOCKER_RUNNER_FLAGS += --verbose
+endif
+
 DUMP_RUNNER ?= docker run --rm \
 	-v $(shell pwd):/work \
 	-u $(shell id -u):$(shell id -g) \
@@ -29,7 +34,10 @@ DOCKER_RUNNER ?= docker run --rm \
 	-I /work/idl \
 	-I /work/idl/h \
 	--output /work/msrpc/ \
-	--doc-cache /work/.cache/doc/
+	--msdn-openspecs-indexer-file /work/msdn/index.yaml \
+	$(DOCKER_RUNNER_FLAGS) \
+	--msdn-openspecs-indexer-extra-file /work/msdn/extra.yaml \
+	--msdn-openspecs-cache-dir /work/msdn/.cache/
 
 .PHONY: %.go
 %.go:

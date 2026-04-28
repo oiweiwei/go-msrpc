@@ -1,0 +1,42 @@
+<div class="content" name="IAppHostSectionDefinition" uuid="ee57746a-a5ab-4b78-8fbf-34ae7ca75d23"><p>The IAppHostSectionDefinition <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+that access a declaration of the <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a> object
+that is supported by the administration system. A declaration is distinct from
+the existence of an IAppHostElement in the administration system.</p><p>The IAppHostSectionDefinition interface inherits opnums 0–2
+from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Name</td>
+  <td>Opnum: 3</td>
+ </tr><tr>
+  <td>Type</td>
+  <td>&#34;getter&#34; Opnum: 4</td>
+ </tr><tr>
+  <td>Type</td>
+  <td>&#34;setter&#34; Opnum: 5</td>
+ </tr><tr>
+  <td>OverrideModeDefault</td>
+  <td>&#34;getter&#34; Opnum: 6</td>
+ </tr><tr>
+  <td>OverrideModeDefault</td>
+  <td>&#34;setter&#34; Opnum: 7</td>
+ </tr><tr>
+  <td>AllowDefinition</td>
+  <td>&#34;getter&#34; Opnum: 8</td>
+ </tr><tr>
+  <td>AllowDefinition</td>
+  <td>&#34;setter&#34; Opnum: 9</td>
+ </tr><tr>
+  <td>AllowLocation</td>
+  <td>&#34;getter&#34; Opnum: 10</td>
+ </tr><tr>
+  <td>AllowLocation</td>
+  <td>&#34;setter&#34; Opnum: 11</td>
+ </tr></tbody></table><p> </p></div>

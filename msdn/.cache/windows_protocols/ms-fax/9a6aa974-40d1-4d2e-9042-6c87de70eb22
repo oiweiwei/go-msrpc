@@ -1,0 +1,56 @@
+<div class="content" name="FAX_RemoveOutboundRule" uuid="9a6aa974-40d1-4d2e-9042-6c87de70eb22"><p>The <b>FAX_RemoveOutboundRule (Opnum 57)</b> method removes
+an existing outbound <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_e3969a6a-4722-476e-9a36-bb63311ae950" data-linktype="relative-path">routing
+rule</a> from the rules map. The <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_55b83622-7c69-4432-bde7-c22efd981725" data-linktype="relative-path">default outbound rule</a>
+cannot be removed.</p><p>In response, the server MUST validate that the client&#39;s fax
+user account has access to manage configuration. The country/region code MUST
+NOT be 0, because the country/region code indicates that the access corresponds
+to any country/region.</p><p>On success, the server MUST remove the specified outbound
+routing rule from the rules map.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_RemoveOutboundRule(
+   [in] handle_t hFaxHandle,
+   [in] DWORD dwAreaCode,
+   [in] DWORD dwCountryCode
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a>) or <b>FAX_ConnectionRefCount</b> (section
+<a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a>) method call
+used to connect to the fax server.</p><p><b>dwAreaCode: </b>The area code of the rule. The
+combination of the <i>dwAreaCode</i> and <i>dwCountryCode</i> parameters are a
+unique key.</p><p><b>dwCountryCode: </b>The country code of the rule.
+The combination of <i>dwAreaCode</i> and <i>dwCountryCode</i> are a unique key.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. The client&#39;s fax user account does not have the required FAX_ACCESS_MANAGE_CONFIG access rights to perform this operation.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect. The country code specified by the dwCountryCode argument is ROUTING_RULE_COUNTRY_CODE_ANY. Also returned if the fax server tried to return FAX_ERR_NOT_SUPPORTED_ON_THIS_SKU but the client fax API version (FAX_API_VERSION_0, described in section 3.1.4.1.10) does not support this error code.</td>
+ </tr><tr>
+  <td>ERROR_REGISTRY_CORRUPT 0x000003F7</td>
+  <td>The fax server encountered a registry error when attempting to remove the specified outbound rule registration. The registry could be corrupt.</td>
+ </tr><tr>
+  <td>FAX_ERR_RULE_NOT_FOUND 0x00001B5D</td>
+  <td>The fax server failed to locate an outbound routing rule by country/region code and area code.</td>
+ </tr><tr>
+  <td>FAX_ERR_NOT_SUPPORTED_ON_THIS_SKU 0x00001B63</td>
+  <td>The fax server is running on a version of the operating system that does not support the requested operation.&lt;151&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

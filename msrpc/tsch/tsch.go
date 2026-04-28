@@ -205,6 +205,8 @@ type ATInfo struct {
 	// More than one bit can be set to 1.
 	//
 	// x: Unused. Can be set to zero when sent and ignored on receipt.<6>
+	//
+	// Bit 0 is not used.
 	DaysOfMonth uint32 `idl:"name:DaysOfMonth" json:"days_of_month"`
 	// DaysOfWeek:  Contains individual bit flags that specify the day of the week on which
 	// the task is to run. The mapping of bit to day of week is as follows.

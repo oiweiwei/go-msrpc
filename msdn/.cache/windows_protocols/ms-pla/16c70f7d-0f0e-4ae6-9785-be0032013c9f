@@ -1,0 +1,149 @@
+<div class="content" name="IDataManager" uuid="16c70f7d-0f0e-4ae6-9785-be0032013c9f"><p>The IDataManager interface is used to manage data generated
+by the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_3184c8c5-f13b-4d77-b04a-b92feff97f61" data-linktype="relative-path">data collectors</a>,
+including report generation, data retention policy, and data transfer.</p><p>The following properties MUST be implemented by the objects
+that implement the IDataManager interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CheckBeforeRunning</td>
+  <td>RW</td>
+  <td>Indicates whether maximum folder count and minimum free disk space thresholds MUST be checked before running the data collector set. If set to VARIANT_TRUE and either one of the conditions is not met, the data collector set MUST fail the start. If set to VARIANT_FALSE, the thresholds will still be used after collection to determine if the resource policy will be invoked. The ResourcePolicy property is defined below. The MaxSize threshold is never checked before running an IDataManager, irrespective of the value of this property.</td>
+ </tr><tr>
+  <td>Enabled</td>
+  <td>RW</td>
+  <td>Determines whether data management is enabled. If set to VARIANT_FALSE, all other settings of this object are ignored and no data management operations (such as creating a report) execute; the data manager is not run. If set to VARIANT_TRUE, all other properties of this object are used and the data manager is run. The properties that are used when the data manager runs are as follows:  CheckBeforeRunning  EventsFileName  FolderAction  MaxFolderCount  MaxSize  MinFreeDisk  ReportFileName  ReportSchema  ResourcePolicy  Rules  RulesTargetFileName</td>
+ </tr><tr>
+  <td>EventsFileName</td>
+  <td>RW</td>
+  <td>Specifies the name of the file that MUST be created by the Performance Logs and Alerts Protocol, during report generation. This file contains all the events that were collected, serialized to XML. This file differs from the report file because the events are not normalized, performance data is not included, and rules are not run against this file.</td>
+ </tr><tr>
+  <td>FolderActions</td>
+  <td>R</td>
+  <td>List of actions to be performed on the subfolders that match the criteria. The IFolderAction interface is specified in section 3.2.4.3.</td>
+ </tr><tr>
+  <td>MaxFolderCount</td>
+  <td>RW</td>
+  <td>Specifies the threshold for the maximum number of subfolders under the data collector sets root path. If this threshold is violated, the action specified by the ResourcePolicy property is invoked. If this property is set to zero, there is no maximum. The default value is zero. Any unsigned long is a valid value for this property.</td>
+ </tr><tr>
+  <td>MaxSize</td>
+  <td>RW</td>
+  <td>Specifies the maximum size, in megabytes, of all files under the data collector set root path. If this threshold is violated, the action specified by the ResourcePolicy property is invoked. If this property is set to zero, there is no maximum. The default value is zero. Any unsigned long is a valid value for this property.</td>
+ </tr><tr>
+  <td>MinFreeDisk</td>
+  <td>RW</td>
+  <td>Specifies the minimum free space, in MB, that MUST remain available in the data collector set root path volume. If this threshold is violated, the data collector set will not start collecting data. If this property is set to zero, there is no minimum. The default value is zero. Any unsigned long is a valid value for this property.</td>
+ </tr><tr>
+  <td>ReportFileName</td>
+  <td>RW</td>
+  <td>Specifies the name of the HTML file that results from converting the file in RuleTargetFileName from XML to HTML.</td>
+ </tr><tr>
+  <td>ReportSchema</td>
+  <td>RW</td>
+  <td>Specifies the XML used to customize the report generated from the data. The XSD that defines the format of the XML is specified in section 2.2.3.3 .</td>
+ </tr><tr>
+  <td>ResourcePolicy</td>
+  <td>RW</td>
+  <td>Specifies the action to be performed if one of the disk resource limits is violated. The limits are the maximum folder count, the maximum size and the minimum free disk space. The possible actions are described in the ResourcePolicy enumeration in section 2.2.2.9.</td>
+ </tr><tr>
+  <td>Rules</td>
+  <td>RW</td>
+  <td>The rules to be applied to the report file. The rules are specified in an XML format, which is specified in section 2.2.3.4.</td>
+ </tr><tr>
+  <td>RuleTargetFileName</td>
+  <td>RW</td>
+  <td>Specifies the name of the file where the report data is stored before rules are run against it and it is converted to HTML.</td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Enabled (Get)</td>
+  <td>Retrieves the Enabled property. Opnum: 7</td>
+ </tr><tr>
+  <td>Enabled (Put)</td>
+  <td>Sets the Enabled property. Opnum: 8</td>
+ </tr><tr>
+  <td>CheckBeforeRunning (Get)</td>
+  <td>Retrieves the CheckBeforeRunning property. Opnum: 9</td>
+ </tr><tr>
+  <td>CheckBeforeRunning (Put)</td>
+  <td>Sets the CheckBeforeRunning property. Opnum: 10</td>
+ </tr><tr>
+  <td>MinFreeDisk (Get)</td>
+  <td>Retrieves the MinFreeDisk property. Opnum: 11</td>
+ </tr><tr>
+  <td>MinFreeDisk (Put)</td>
+  <td>Sets the MinFreeDisk property. Opnum: 12</td>
+ </tr><tr>
+  <td>MaxSize (Get)</td>
+  <td>Retrieves the MaxSize property. Opnum: 13</td>
+ </tr><tr>
+  <td>MaxSize (Put)</td>
+  <td>Sets the MaxSize property. Opnum: 14</td>
+ </tr><tr>
+  <td>MaxFolderCount (Get)</td>
+  <td>Retrieves the MaxFolderCount property. Opnum: 15</td>
+ </tr><tr>
+  <td>MaxFolderCount (Put)</td>
+  <td>Sets the MaxFolderCount property. Opnum: 16</td>
+ </tr><tr>
+  <td>ResourcePolicy (Get)</td>
+  <td>Retrieves the ResourcePolicy property. Opnum: 17</td>
+ </tr><tr>
+  <td>ResourcePolicy (Put)</td>
+  <td>Sets the ResourcePolicy property. Opnum: 18</td>
+ </tr><tr>
+  <td>FolderActions (Get)</td>
+  <td>Retrieves the FolderAction property. Opnum: 19</td>
+ </tr><tr>
+  <td>ReportSchema (Get)</td>
+  <td>Retrieves the ReportSchema property. Opnum: 20</td>
+ </tr><tr>
+  <td>ReportSchema (Put)</td>
+  <td>Sets the ReportSchema property. Opnum: 21</td>
+ </tr><tr>
+  <td>ReportFileName (Get)</td>
+  <td>Retrieves the ReportFileName property. Opnum: 22</td>
+ </tr><tr>
+  <td>ReportFileName (Put)</td>
+  <td>Sets the ReportFileName property. Opnum: 23</td>
+ </tr><tr>
+  <td>RuleTargetFileName (Get)</td>
+  <td>Retrieves the RuleTargetFileName property. Opnum: 24</td>
+ </tr><tr>
+  <td>RuleTargetFileName (Put)</td>
+  <td>Sets the RuleTargetFileName property. Opnum: 25</td>
+ </tr><tr>
+  <td>EventsFileName (Get)</td>
+  <td>Retrieves the EventsFileName property. Opnum: 26</td>
+ </tr><tr>
+  <td>EventsFileName (Put)</td>
+  <td>Sets the EventsFileName property. Opnum: 27</td>
+ </tr><tr>
+  <td>Rules (Get)</td>
+  <td>Retrieves the Rules property. Opnum: 28</td>
+ </tr><tr>
+  <td>Rules (Put)</td>
+  <td>Sets the Rules property. Opnum: 29</td>
+ </tr><tr>
+  <td>Run</td>
+  <td>Manually runs the data manager. Opnum: 30</td>
+ </tr><tr>
+  <td>Extract</td>
+  <td>Extracts the specified CAB file. Opnum: 31</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface.</p></div>

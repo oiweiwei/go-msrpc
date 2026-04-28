@@ -1,0 +1,48 @@
+<div class="content" name="LsarLookupPrivilegeName" uuid="b4ae2755-3897-4117-8a83-2b98874e3982"><p>The LsarLookupPrivilegeName method is invoked to map the <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_96b64af9-1896-4bde-b988-54d469c5affd" data-linktype="relative-path">LUID</a></span>
+of a <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privilege</a></span>
+into a string name by which the privilege is known on the server.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarLookupPrivilegeName(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PLUID Value,
+   [out] PRPC_UNICODE_STRING* Name
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+obtained from either <span><a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a></span> or <span><a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a></span>.</p><p><b>Value: </b>A LUID that the caller wishes to map to
+a string name.</p><p><b>Name: </b>Used to return the string name
+corresponding to the supplied LUID.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 STATUS_SUCCESS</td>
+  <td>The request was successfully completed.</td>
+ </tr><tr>
+  <td>0xC0000022 STATUS_ACCESS_DENIED</td>
+  <td>The caller does not have the permissions to perform this operation.</td>
+ </tr><tr>
+  <td>0xC0000060 STATUS_NO_SUCH_PRIVILEGE</td>
+  <td>The supplied LUID is not recognized by the server.</td>
+ </tr><tr>
+  <td>0xC0000008 STATUS_INVALID_HANDLE</td>
+  <td>PolicyHandle is not a valid handle.</td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes three arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <span><a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a></span> with
+RequiredAccess set to POLICY_LOOKUP_NAMES.</p><p><i>Value</i>: The LUID of the privilege.</p><p><i>Name</i>: Used to return the name corresponding to the
+LUID contained in the <i>Value</i> argument.</p><p>If the LUID in the <i>Value</i> argument is not recognized
+by the server, the server MUST fail the request with STATUS_NO_SUCH_PRIVILEGE.
+The privileges recognized by the server are specified in section <span><a href="1a92af76-d45f-42c3-b67c-f1dc61bd6ee1" data-linktype="relative-path">3.1.1.2.1</a></span>.</p></div>

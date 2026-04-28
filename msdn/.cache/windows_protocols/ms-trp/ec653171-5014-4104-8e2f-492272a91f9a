@@ -1,0 +1,78 @@
+<div class="content" name="LINE_CREATE" uuid="ec653171-5014-4104-8e2f-492272a91f9a"><p>The LINE_CREATE packet is sent to inform the application of
+the creation of a new line device.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">TotalSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">InitContext</td>
+ </tr>
+ <tr>
+  <td colspan="32">fnPostProcessProcHandle</td>
+ </tr>
+ <tr>
+  <td colspan="32">hDevice</td>
+ </tr>
+ <tr>
+  <td colspan="32">Msg</td>
+ </tr>
+ <tr>
+  <td colspan="32">OpenContext</td>
+ </tr>
+ <tr>
+  <td colspan="32">Param1</td>
+ </tr>
+ <tr>
+  <td colspan="32">Param2</td>
+ </tr>
+ <tr>
+  <td colspan="32">Param3</td>
+ </tr>
+ <tr>
+  <td colspan="32">Param4</td>
+ </tr>
+</tbody></table><p><b>TotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size of the asynchronous event packet.</p><p><b>InitContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque, client-specified session value that MUST be equal to the
+InitContext value that is specified in the original scoping of the line <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a> request.</p><p><b>fnPostProcessProcHandle (4 bytes): </b>An unsigned
+32-bit integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hDevice (4 bytes): </b>An unsigned 32-bit integer.
+MUST be set to zero when sent and MUST be ignored on receipt.</p><p><b>Msg (4 bytes): </b>An unsigned 32-bit integer. The
+packet type; MUST be set to 0x00000013 (LINE_CREATE).</p><p><b>OpenContext (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>Param1 (4 bytes): </b>An unsigned 32-bit integer.
+The device identifier of the newly created device.</p><p><b>Param2 (4 bytes): </b>An unsigned 32-bit integer.
+This MUST be ignored on receipt and can be any value.  </p><p><b>Param3 (4 bytes): </b>An unsigned 32-bit integer.
+This MUST be ignored on receipt and can be any value.  </p><p><b>Param4 (4 bytes): </b>An unsigned 32-bit integer.
+This MUST be ignored on receipt and can be any value.  </p></div>

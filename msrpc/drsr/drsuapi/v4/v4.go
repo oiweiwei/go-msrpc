@@ -260,7 +260,7 @@ type DrsuapiClient interface {
 	//
 	// Exceptions Thrown: This method might throw the following exceptions beyond those
 	// thrown by the underlying RPC protocol (as specified in [MS-RPCE]): ERROR_INVALID_HANDLE,
-	// ERROR_DS_DRS_EXTENSIONS_CHANGED, ERROR_DS_DIFFERENT_REPL_EPOCHS, and  ERROR_INVALID_PARAMETER.
+	// ERROR_DS_DRS_EXTENSIONS_CHANGED, ERROR_DS_DIFFERENT_REPL_EPOCHS, and  ERROR_INVALID_PARAMETER.
 	VerifyObjectsReplica(context.Context, *VerifyObjectsReplicaRequest, ...dcerpc.CallOption) (*VerifyObjectsReplicaResponse, error)
 
 	// The IDL_DRSGetObjectExistence method helps the client check the consistency of object
@@ -2416,6 +2416,9 @@ type EntityInfo struct {
 	// M (ENTINF_FROM_MASTER, 0x00000001): Retrieved from a full replica.
 	//
 	// DO (ENTINF_DYNAMIC_OBJECT, 0x00000002): A dynamic object.
+	//
+	// RM (ENTINF_REMOTE_MODIFY, 0x00010000): A remote modify request to IDL_DRSAddEntry
+	// (section 4.1.1.3).
 	Flags uint32 `idl:"name:ulFlags" json:"flags"`
 	// AttrBlock:  Some of all of the attributes for this object, as determined by the particular
 	// method. See section 1.3.3 for an overview of methods using type ENTINF.
@@ -9605,6 +9608,9 @@ type ExtensionsInt struct {
 	//
 	// R2 (DRS_EXT_RESERVED_FOR_WIN2K_OR_DOTNET_PART2, 0x40000000): Unused. MUST be 0 and
 	// ignored.
+	//
+	// R3 (DRS_EXT_RESERVED_FOR_WIN2K_OR_DOTNET_PART3, 0x80000000): Unused. MUST be 0 and
+	// ignored.
 	Flags uint32 `idl:"name:dwFlags" json:"flags"`
 	// SiteObjGuid (16 bytes): A GUID. The objectGUID of the site object of which the DC's
 	// DSA object is a descendant. For non-DC client callers, this field SHOULD be set to
@@ -9650,6 +9656,10 @@ type ExtensionsInt struct {
 	//
 	// GR9 (DRS_EXT_GETCHGREPLY_V9, 0x00000100): If present, signifies that the DC supports
 	// DRS_MSG_GETCHGREPLY_V9.
+	//
+	// CID (DRS_EXT_RPC_CORRELATIONID_1, 0x00000400): If present, signifies that the DC
+	// supports DRS_MSG_GETCHGREQ_V11 (section 4.1.10.2.8), DRS_MSG_REPADD_V3 (section 4.1.19.1.4),
+	// DRS_MSG_REPSYNC_V2 (section 4.1.23.1.3), and DRS_MSG_UPDREFS_V2 (section 4.1.26.1.3).
 	FlagsExt uint32 `idl:"name:dwFlagsExt" json:"flags_ext"`
 	// ConfigObjGUID (16 bytes): A GUID. This field is set to zero by all client callers.
 	// The server sets this field by assigning it the value of the objectGUID of the config
@@ -9670,6 +9680,12 @@ type ExtensionsInt struct {
 	// then the corresponding bit in dwExtCaps MUST be set. If a bit in dwExtCaps is not
 	// set, it is assumed that the corresponding bit in dwFlagsExt will not and cannot be
 	// set.
+	//
+	// Note  The dwExtCaps field is relevant only for capabilities that are labeled as "optional
+	// features" in the bit descriptions of dwFlagsExt. The bits in dwExtCaps that correspond
+	// to capabilities in dwFlagsExt that are not labeled as "optional features" MUST NOT
+	// be different from the setting of the dwFlagsExt bits. Currently, the capabilities
+	// represented by the DA and LH bits fit into this category.
 	ExtCaps uint32 `idl:"name:dwExtCaps" json:"ext_caps"`
 }
 
@@ -13311,7 +13327,7 @@ var (
 	CompressionAlgorithmTypeUnused CompAlgorithmType = 1
 	// DRS_COMP_ALG_MSZIP:  MSZIP algorithm.
 	CompressionAlgorithmTypeMSZIP CompAlgorithmType = 2
-	// DRS_COMP_ALG_WIN2K3:  Windows Server 2003 operating system compression.
+	// DRS_COMP_ALG_WIN2K3:  Windows Server 2003 operating system compression.
 	CompressionAlgorithmTypeWIN2K3 CompAlgorithmType = 3
 )
 
@@ -15731,6 +15747,9 @@ type MessageModifyReplicaV1 struct {
 	//
 	// UA (DRS_UPDATE_ADDRESS, 0x00000002): Updates the transport-specific address associated
 	// with the server.
+	//
+	// US (DRS_UPDATE_SCHEDULE, 0x00000004): Updates the replication schedule associated
+	// with the server.
 	ModifyFields uint32 `idl:"name:ulModifyFields" json:"modify_fields"`
 	// ulOptions:  The DRS_OPTIONS flags for execution of this method.
 	Options uint32 `idl:"name:ulOptions" json:"options"`
@@ -16660,6 +16679,9 @@ type MessageReverseMembershipRequestV1 struct {
 	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 	//
 	// X: Unused. MUST be zero and ignored.
+	//
+	// A (DRS_REVMEMB_FLAG_GET_ATTRIBUTES, 0x00000001): Query the attributes that correspond
+	// to the group membership.
 	Flags uint32 `idl:"name:dwFlags" json:"flags"`
 	// OperationType: The type of group membership evaluation to be performed.
 	OperationType ReverseMembershipOperationType `idl:"name:OperationType" json:"operation_type"`
@@ -17637,6 +17659,10 @@ type SecurityBuffer struct {
 	//	+-------------------------------------+----------------------------------------------------------------------------------+
 	//	| SECBUFFER_STREAM_HEADER 0x00000007  | Indicates a protocol-specific header for a particular record.                    |
 	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// RO (SECBUFFER_READONLY, 0x80000000): The buffer is read-only. This flag is intended
+	// for sending header data to the security package for checksumming. The package can
+	// read this buffer but cannot modify it.
 	BufferType uint32 `idl:"name:BufferType" json:"buffer_type"`
 	// pvBuffer:  Authentication data.
 	Buffer []byte `idl:"name:pvBuffer;size_is:(cbBuffer)" json:"buffer"`
@@ -18706,6 +18732,10 @@ type MessageCrackNamesRequestV1 struct {
 	//
 	// TR (DS_NAME_FLAG_TRUST_REFERRAL, 0x00000008): If set and the lookup fails on the
 	// server, referrals are returned to trusted forests where the lookup might succeed.
+	//
+	// FPO (DS_NAME_FLAG_PRIVATE_RESOLVE_FPOS, 0x80000000): If set and the named object
+	// is a foreign security principal, indicate this by using the status of the lookup
+	// operation.
 	Flags uint32 `idl:"name:dwFlags" json:"flags"`
 	// formatOffered:  The format of the names in rpNames. This can be one of the values
 	// from DS_NAME_FORMAT (section 4.1.4.1.3) or one of the following.
@@ -19255,6 +19285,9 @@ type MessageNT4ChangeLogRequestV1 struct {
 	//
 	// CL (DRS_NT4_CHGLOG_GET_CHANGE_LOG, 0x00000001): If set, the server returns the PDC
 	// change log.
+	//
+	// SN (DRS_NT4_CHGLOG_GET_SERIAL_NUMBERS, 0x00000002): If set, the server returns the
+	// NT4 replication state.
 	Flags uint32 `idl:"name:dwFlags" json:"flags"`
 	// PreferredMaximumLength:  The maximum size, in bytes, of the change log data that
 	// is to be retrieved in a single operation.
@@ -23667,6 +23700,10 @@ type MessageKCCExecuteV1 struct {
 	// X: Unused. MUST be zero and ignored.
 	//
 	// AS (DS_KCC_FLAG_ASYNC_OP, 0x00000001): Request the KCC to run, then return immediately.
+	//
+	// DP (DS_KCC_FLAG_DAMPED, 0x00000002): Request the KCC to run unless there is already
+	// such a request pending according to implementation-defined rules. Implementations
+	// MAY choose to ignore this flag and always request the KCC to run.
 	Flags uint32 `idl:"name:dwFlags" json:"flags"`
 }
 
@@ -24508,6 +24545,9 @@ type MessageGetReplicationInfoRequestV2 struct {
 	//	+---+---+---+---+---+---+---+-----+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 	//
 	// X: Unused. MUST be zero and ignored.
+	//
+	// MT (DS_REPL_INFO_FLAG_IMPROVE_LINKED_ATTRS, 0x00000001): Return attribute stamps
+	// for linked values.
 	Flags uint32 `idl:"name:ulFlags" json:"flags"`
 	// pszAttributeName:  Null, or the lDAPDisplayName of a link attribute.
 	AttributeName string `idl:"name:pszAttributeName;string" json:"attribute_name"`
@@ -28935,6 +28975,8 @@ type MessageReplicaDemotionRequestV1 struct {
 	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 	//
 	// X: Unused. MUST be zero.
+	//
+	// T (DS_REPLICA_DEMOTE_TRY_ALL_SRCS, 0x00000001): MUST be set.
 	Flags uint32 `idl:"name:dwFlags" json:"flags"`
 	// uuidHelperDest:  Unused. Must be NULL GUID and ignored.
 	HelperDestination *dtyp.UUID `idl:"name:uuidHelperDest" json:"helper_destination"`
@@ -29344,6 +29386,9 @@ type MessageFinishDemotionRequestV1 struct {
 	// U2 (DS_DEMOTE_UNREGISTER_SPNS, 0x00000010): Delete any AD LDS SPNs from the object
 	// (in the external AD DS domain) that corresponds to the security principal that the
 	// AD LDS service is running as; see RemoveADLDSSPNs (section 4.1.7.2.3).
+	//
+	// F (DS_DEMOTE_OPT_FAIL_ON_UNKNOWN_OP, 0x80000000): If this flag is present, then the
+	// request fails.
 	Operations uint32 `idl:"name:dwOperations" json:"operations"`
 	// uuidHelperDest: Unused. Must be NULL GUID and ignored.
 	HelperDestination *dtyp.UUID `idl:"name:uuidHelperDest" json:"helper_destination"`

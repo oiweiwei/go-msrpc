@@ -27748,6 +27748,9 @@ type GetClientInfoV6Request struct {
 	//
 	// For this call with SearchType of Dhcpv6ClientDUID (section 2.2.1.1.12), ERROR_INVALID_PARAMETER
 	// is returned.
+	//
+	// For this call SearchType of Dhcpv6ClientName (section 2.2.1.1.12), ERROR_INVALID_PARAMETER
+	// is returned.
 	SearchInfo *dhcpm.SearchInfoV6 `idl:"name:SearchInfo;pointer:ref" json:"search_info"`
 }
 
@@ -35390,6 +35393,14 @@ type SetOptionValueV4Request struct {
 	// OptionValue: A pointer to a type DHCP_OPTION_DATA structure (section 2.2.1.2.24)
 	// that contains the option value that is set for an option corresponding to the OptionId
 	// parameter.
+	//
+	// The method does not perform any checks to ensure that the OptionValue parameter passed
+	// in is of the same OptionType member value as that of the option corresponding to
+	// the OptionId parameter passed in. It is the responsibility of the caller to ensure
+	// that the correct OptionType member value is used for the OptionValue parameter passed
+	// in. In case the OptionType member of the OptionValue parameter passed in is different
+	// from that of the option corresponding to the OptionId parameter, the behavior is
+	// undefined.
 	OptionValue *dhcpm.OptionData `idl:"name:OptionValue" json:"option_value"`
 }
 
@@ -36223,6 +36234,14 @@ type GetOptionValueV4Response struct {
 	// OptionValue: A pointer of type LPDHCP_OPTION_VALUE (section 2.2.1.2.42) that contains
 	// the option value that is set for an option corresponding to the OptionId parameter.
 	// For Dynamic DNS update settings, see section 3.3.1.
+	//
+	// The method does not perform any checks to ensure that the OptionValue parameter passed
+	// in is of the same OptionType member value as that of the option corresponding to
+	// the OptionId parameter passed in. It is the responsibility of the caller to ensure
+	// that the correct OptionType member value is used for the OptionValue parameter passed
+	// in. In case the OptionType member value of the OptionValue parameter passed in is
+	// different from that of the option corresponding to the OptionId parameter, the behavior
+	// is undefined.
 	OptionValue *dhcpm.OptionValue `idl:"name:OptionValue" json:"option_value"`
 	// Return: The R_DhcpV4GetOptionValue return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -44209,11 +44228,6 @@ type CreateClientInfoExV4Request struct {
 	// identified by the ClientIpAddress member. <89>
 	//
 	// The DHCP_PROPERTY elements that are supported are as follows:
-	//
-	// The opnum field value for this method is 131.
-	//
-	// The remainder of the processing behavior for this method is as defined for the R_DhcpV4CreateClientInfo
-	// method.
 	ClientInfo *dhcpm.ClientInfoEx `idl:"name:ClientInfo;pointer:ref" json:"client_info"`
 }
 

@@ -667,6 +667,9 @@ type JobParamW struct {
 	//
 	// * *Reserved[2]* SHOULD be ignored.
 	//
+	// If the fax job is part of a broadcast sequence executed by the client to send the
+	// same fax to multiple recipients, the Reserved values SHOULD be as follows:
+	//
 	// * *Reserved[0]* SHOULD be set to 0xFFFFFFFE (on 32-bit) or 0x00000000FFFFFFFE (on
 	// 64-bit).
 	//
@@ -1283,9 +1286,15 @@ func (o ConfigOption) String() string {
 // structure is used in _FAX_CONFIGURATIONW (section 2.2.29), _FAX_OUTBOX_CONFIG (section
 // 2.2.17), FAX_GENERAL_CONFIG (section 2.2.31) structures.
 type Time struct {
+	// Hour (2 bytes): A 16-bit unsigned integer that holds the current hour. This value
+	// MUST be between 0 and 23 inclusive.
+	//
 	// Hour: A 16-bit unsigned integer that holds the current hour. This value MUST be between
 	// 0 and 23 inclusive.
 	Hour uint16 `idl:"name:Hour" json:"hour"`
+	// Minute (2 bytes): A 16-bit unsigned integer that holds the current minute. This value
+	// MUST be between 0 and 59 inclusive.
+	//
 	// Minute: A 16-bit unsigned integer that holds the current minute. This value MUST
 	// be between 0 and 59 inclusive.
 	Minute uint16 `idl:"name:Minute" json:"minute"`
@@ -1360,37 +1369,68 @@ func (o *Time) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 // The information contained by this structure describes the delivery receipt support
 // fax server configuration (section 3.1.1).
 type ReceiptsConfigW struct {
+	// dwSizeOfStruct (4 bytes): A DWORD ([MS-DTYP] section 2.2.9) value that holds the
+	// size of the Fixed_Portion block, in bytes. This value MUST be 40 bytes.
+	//
 	// dwSizeOfStruct: A DWORD ([MS-DTYP] section 2.2.9) value that holds the total size
 	// of the structure, in bytes. This value MUST be 40 or 72 bytes. When filled in on
 	// a 32-bit implementation, this value SHOULD be 40 bytes. When filled in on a 64-bit
 	// implementation, this value SHOULD be 72 bytes.
 	StructureSize uint32 `idl:"name:dwSizeOfStruct" json:"structure_size"`
+	// dwAllowedReceipts (4 bytes): A DWORD that holds the type of receipts that the server
+	// supports. This field MUST be one of the values defined in FAX_ENUM_DELIVERY_REPORT_TYPES
+	// (section 2.2.76).
+	//
 	// dwAllowedReceipts: A DWORD that holds the type of receipts that the server supports.
 	// This member MUST be one of the values defined in FAX_ENUM_DELIVERY_REPORT_TYPES (section
 	// 2.2.76).
 	AllowedReceipts uint32 `idl:"name:dwAllowedReceipts" json:"allowed_receipts"`
+	// SMTPAuthOption (4 bytes): A type of SMTP authentication that the server will use
+	// for SMTP connections. The options MUST be one of the enumerations defined in FAX_ENUM_SMTP_AUTH_OPTIONS
+	// (section 2.2.56).
+	//
 	// SMTPAuthOption: A type of SMTP authentication that the server will use for SMTP connections.
 	// The options MUST be one of the enumerations defined in FAX_ENUM_SMTP_AUTH_OPTIONS
 	// (section 2.2.56).
 	SMTPAuthOption SMTPAuthOptions `idl:"name:SMTPAuthOption" json:"smtp_auth_option"`
 	// lpwstrReserved: A reserved pointer, which MUST be set to NULL.
 	_ string `idl:"name:lpwstrReserved;string"`
+	// lpwstrSMTPServer (variable): A null-terminated character string that holds the SMTP
+	// server name.
+	//
 	// lpwstrSMTPServer: A null-terminated character string that holds the SMTP server name.
 	SMTPServer string `idl:"name:lpwstrSMTPServer;string" json:"smtp_server"`
+	// dwSMTPPort (4 bytes): A DWORD that holds the port number of the SMTP server.
+	//
 	// dwSMTPPort: A DWORD that holds the port number of the SMTP server.
 	SMTPPort uint32 `idl:"name:dwSMTPPort" json:"smtp_port"`
+	// lpwstrSMTPFrom (variable): A null-terminated character string that holds the SMTP
+	// email address of the sender of the fax receipt messages.
+	//
 	// lpwstrSMTPFrom: A null-terminated character string that holds the SMTP email address
 	// of the sender of the fax receipt messages.
 	SMTPFrom string `idl:"name:lpwstrSMTPFrom;string" json:"smtp_from"`
+	// lpwstrSMTPUserName (variable): A null-terminated character string that holds the
+	// user name to use for Basic-authenticated SMTP connections.
+	//
 	// lpwstrSMTPUserName: A null-terminated character string that holds the user name to
 	// use for Basic-authenticated SMTP connections.
 	SMTPUserName string `idl:"name:lpwstrSMTPUserName;string" json:"smtp_user_name"`
+	// lpwstrSMTPPassword (variable): A null-terminated character string that holds the
+	// password to use for Basic-authenticated SMTP connections. For anonymous access, no
+	// user name and password is required. For Basic and Integrated authentication, a clear
+	// text password is sent over the wire. It is for the server to use the password that
+	// depends on the authentication mode.
+	//
 	// lpwstrSMTPPassword: A null-terminated character string that holds the password to
 	// use for Basic-authenticated SMTP connections. For anonymous access, no user name
 	// and password is required. For Basic and Integrated authentication, a cleartext password
 	// is sent over the wire. It is for the server to use the password that depends on the
 	// authentication mode.
 	SMTPPassword string `idl:"name:lpwstrSMTPPassword;string" json:"smtp_password"`
+	// bIsToUseForMSRouteThroughEmailMethod (4 bytes): If set to TRUE, the routing extension
+	// MUST use the DRT_EMAIL receipts settings to route incoming faxes by email.
+	//
 	// bIsToUseForMSRouteThroughEmailMethod: If set to TRUE, the routing extension MUST
 	// use the DRT_EMAIL receipts settings to route incoming faxes by email.
 	IsToUseForMsRouteThroughEmailMethod bool `idl:"name:bIsToUseForMSRouteThroughEmailMethod" json:"is_to_use_for_ms_route_through_email_method"`
@@ -1617,38 +1657,74 @@ func (o *ReceiptsConfigW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 // (section 2.2.31) structure, this data structure describes the general configuration
 // of the fax server.
 type ConfigW struct {
+	// SizeOfStruct (4 bytes): A DWORD ([MS-DTYP] section 2.2.9) that contains the size,
+	// in bytes, of the structure. MUST be set to 52 bytes.
+	//
 	// SizeOfStruct: A DWORD ([MS-DTYP] section 2.2.9) value that holds the total size of
 	// the structure, in bytes. This value MUST be either 52 or 64 bytes. When filled in
 	// on a 32-bit implementation, this value SHOULD be 52 bytes. When filled in on a 64-bit
 	// implementation, this value SHOULD be 64 bytes.
 	StructureSize uint32 `idl:"name:SizeOfStruct" json:"structure_size"`
+	// Retries (4 bytes): A DWORD variable that contains the value of the fax transmission
+	// retries fax server configuration setting (section 3.1.1).
+	//
 	// Retries: A DWORD variable that contains the value of the fax transmission retries
 	// fax server configuration setting (section 3.1.1).
 	Retries uint32 `idl:"name:Retries" json:"retries"`
+	// RetryDelay (4 bytes): A DWORD variable that contains the value of the fax transmission
+	// retry delay fax server configuration setting.
+	//
 	// RetryDelay: A DWORD variable that contains the value of the fax transmission retry
 	// delay fax server configuration setting.
 	RetryDelay uint32 `idl:"name:RetryDelay" json:"retry_delay"`
+	// DirtyDays (4 bytes): A DWORD variable that contains the value of the dirty days fax
+	// server configuration setting.
+	//
 	// DirtyDays: A DWORD variable that contains the value of the dirty days fax server
 	// configuration setting.
 	DirtyDays uint32 `idl:"name:DirtyDays" json:"dirty_days"`
+	// Branding (4 bytes): A Boolean flag that specifies whether the fax server generates
+	// a brand (banner) at the top of outgoing fax transmissions. If this field is TRUE,
+	// the fax server generates a brand that contains transmission-related information like
+	// the transmitting subscriber identifier, date, time, and page count. This flag configures
+	// the Branding fax server configuration setting.
+	//
 	// Branding: A Boolean flag that specifies whether the fax server generates a brand
 	// (banner) at the top of outgoing fax transmissions. If this member is TRUE, the fax
 	// server generates a brand that contains transmission-related information like the
 	// transmitting subscriber identifier, date, time, and page count. This flag configures
 	// the Branding fax server configuration setting.
 	Branding bool `idl:"name:Branding" json:"branding"`
+	// UseDeviceTsid (4 bytes): A Boolean flag that specifies whether the fax server uses
+	// the device's transmitting subscriber identifier instead of the value specified in
+	// the Tsid field of the FAX_JOB_PARAMW (section 2.2.13) structure. If this field is
+	// TRUE, the server uses the device's transmitting subscriber identifier. This flag
+	// configures the "use of the device's TSID" fax server configuration setting.
+	//
 	// UseDeviceTsid: A Boolean flag that specifies whether the fax server uses the device's
 	// transmitting subscriber identifier instead of the value specified in the Tsid member
 	// of the FAX_JOB_PARAMW (section 2.2.13) structure. If this member is TRUE, the server
 	// uses the device's transmitting subscriber identifier. This flag configures the "use
 	// of the device's TSID" fax server configuration setting.
 	UseDeviceTSID bool `idl:"name:UseDeviceTsid" json:"use_device_tsid"`
+	// ServerCp (4 bytes): A Boolean flag that specifies whether fax client applications
+	// can include a user-designed cover page template with the fax transmission. If this
+	// field is TRUE, the client MUST use a common cover page template stored on the fax
+	// server. If this field is FALSE, the client can use a personal cover page template.
+	// This flag configures the personal cover page support fax server configuration setting.
+	//
 	// ServerCp: A Boolean flag that specifies whether fax client applications can include
 	// a user-designed cover page template with the fax transmission. If this member is
 	// TRUE, the client MUST use a common cover page template stored on the fax server.
 	// If this member is FALSE, the client can use a personal cover page template. This
 	// flag configures the personal cover page support fax server configuration setting.
 	ServerCreatePartition bool `idl:"name:ServerCp" json:"server_create_partition"`
+	// PauseServerQueue (4 bytes): A Boolean flag that specifies whether the fax server
+	// has paused the outgoing fax queue. If this field is TRUE, the outgoing fax queue
+	// is paused and the Queue State (section 3.1.1) is set to FAX_OUTBOX_PAUSED (0x00000004).
+	// If this field is FALSE, the outgoing fax queue is not paused, and the Queue State
+	// is either 0x00000000 or FAX_OUTBOX_BLOCKED (0x00000002).
+	//
 	// PauseServerQueue: A Boolean flag that specifies whether the fax server has paused
 	// the outgoing fax queue. If this member is TRUE, the outgoing fax queue is paused
 	// and the Queue State (section 3.1.1) is set to FAX_OUTBOX_PAUSED (0x00000004). If
@@ -1661,19 +1737,36 @@ type ConfigW struct {
 	// StopCheapTime: Contains a FAX_TIME that indicates the hour and minute values of the
 	// current stop cheap time fax server configuration setting.
 	StopCheapTime *Time `idl:"name:StopCheapTime" json:"stop_cheap_time"`
+	// ArchiveOutgoingFaxes (4 bytes): A Boolean flag that specifies whether the fax server
+	// archives fax transmissions. If this field is TRUE, the server archives fax transmissions.
+	// This flag corresponds to the Archive Enabled fax server configuration setting.
+	//
 	// ArchiveOutgoingFaxes: A Boolean flag that specifies whether the fax server archives
 	// fax transmissions. If this member is TRUE, the server archives transmissions in the
 	// directory specified by the ArchiveDirectory member. This flag configures the Archive
 	// Enabled fax server configuration setting.<6>
 	ArchiveOutgoingFaxes bool `idl:"name:ArchiveOutgoingFaxes" json:"archive_outgoing_faxes"`
+	// ArchiveDirectory (variable): A null-terminated character string that holds the fully
+	// qualified path of the Fax Archive Folder fax server configuration setting. The path
+	// can be a UNC path or a path that begins with a drive letter.
+	//
 	// ArchiveDirectory: A pointer to a constant, null-terminated character string that
 	// holds the fully qualified path of the Fax Archive Folder fax server configuration
 	// setting. The path can be a UNC path or a path that begins with a drive letter. The
 	// fax server ignores this member if the ArchiveOutgoingFaxes member is FALSE. This
 	// member can be NULL if the ArchiveOutgoingFaxes member is FALSE.<7>
 	ArchiveDirectory string `idl:"name:ArchiveDirectory;string" json:"archive_directory"`
+	// ProfileName (variable): Reserved and MUST be ignored when this structure is used
+	// for FAX_GetConfiguration (section 3.1.4.1.36).
+	//
+	// When used for FaxObs_GetConfiguration (section 3.1.4.2.24), this member is a null-terminated
+	// character string containing the profile name fax server configuration setting.
+	//
 	// ProfileName: Reserved (not used) when this structure is used for FAX_SetConfiguration
 	// (section 3.1.4.1.76).
+	//
+	// When used for FaxObs_SetConfiguration (section 3.1.4.2.25), this member is a null-terminated
+	// character string containing the profile name fax server configuration setting.
 	ProfileName string `idl:"name:ProfileName;string" json:"profile_name"`
 }
 
@@ -1912,28 +2005,53 @@ type GlobalRoutingInfoW struct {
 	// structure, in bytes. This value MUST be 28 bytes or 48 bytes. When filled in on a
 	// 32-bit implementation, this value SHOULD be 28 bytes. When filled in on a 64-bit
 	// implementation, this value SHOULD be 48 bytes.
+	//
+	// SizeOfStruct (4 bytes): A DWORD ([MS-DTYP] section 2.2.9) that holds the size of
+	// the Fixed_Portion block, in bytes. This value MUST be 28 bytes.
 	StructureSize uint32 `idl:"name:SizeOfStruct" json:"structure_size"`
 	// Priority: A DWORD variable that holds the priority of the fax routing method. The
 	// priority determines the relative order in which the fax service calls the fax routing
 	// methods when the service receives a fax document. Values for this member MUST be
 	// 1 through the maximum DWORD value (0xFFFFFFFF or 4,294,967,295), where 1 is the highest
 	// priority.
+	//
+	// Priority (4 bytes): See the Priority field for the FAX_GLOBAL_ROUTING_INFOW (section
+	// 2.2.32) structure.
 	Priority uint32 `idl:"name:Priority" json:"priority"`
 	// Guid: A pointer to a constant, null-terminated character string that holds the GUID
 	// that uniquely identifies the fax routing method of interest.
+	//
+	// Guid (variable): A null-terminated character string that holds the GUID that uniquely
+	// identifies the fax routing method of interest.
 	GUID string `idl:"name:Guid;string" json:"guid"`
 	// FriendlyName: A pointer to a constant, null-terminated character string that holds
 	// the user-friendly name to display for the fax routing method.
+	//
+	// FriendlyName (variable): A null-terminated character string that holds the user-friendly
+	// name to display for the fax routing method.
 	FriendlyName string `idl:"name:FriendlyName;string" json:"friendly_name"`
 	// FunctionName: A pointer to a null-terminated character string that holds the name
 	// of the function that executes the specified fax routing method.
+	//
+	// FunctionName (4 bytes): Offset to the FunctionName field in the Variable_Data portion
+	// of the structure.
+	//
+	// FunctionName (variable): A null-terminated character string that holds the name of
+	// the function that executes the specified fax routing method.
 	FunctionName string `idl:"name:FunctionName;string" json:"function_name"`
 	// ExtensionImageName: A pointer to a constant, null-terminated character string that
 	// holds the name of the fax routing extensions that implements the fax routing method.
+	//
+	// ExtensionImageName (variable): A null-terminated character string that holds the
+	// name of the fax routing extensions that implements the fax routing method.
 	ExtensionImageName string `idl:"name:ExtensionImageName;string" json:"extension_image_name"`
 	// ExtensionFriendlyName: A pointer to a constant, null-terminated character string
 	// that holds the user-friendly name to display for the fax routing extensions that
 	// implement the fax routing method.
+	//
+	// ExtensionFriendlyName (variable): A null-terminated character string that holds the
+	// user-friendly name to display for the fax routing extensions that implements the
+	// fax routing method.
 	ExtensionFriendlyName string `idl:"name:ExtensionFriendlyName;string" json:"extension_friendly_name"`
 }
 
@@ -2154,6 +2272,8 @@ type JobParamExW struct {
 	// Priority: A value specifying the priority level of the outgoing fax.
 	Priority PriorityType `idl:"name:Priority" json:"priority"`
 	// hCall: Reserved.
+	//
+	// Note  This value MUST be set to NULL.
 	HCall uint32 `idl:"name:hCall" json:"h_call"`
 	// dwReserved: This field SHOULD be set to zero.
 	_ []uint64 `idl:"name:dwReserved"`
@@ -2347,20 +2467,39 @@ func (o *JobParamExW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 //
 // For reference, the data type definition is shown as follows.
 type OutboundRoutingGroupw struct {
+	// dwSizeOfStruct (4 bytes): A DWORD ([MS-DTYP] section 2.2.9) value that holds the
+	// size, in bytes, of this structure. MUST be set to 16 bytes.
+	//
 	// dwSizeOfStruct: A DWORD ([MS-DTYP] section 2.2.9) value that holds the total size
 	// of the structure, in bytes. This value MUST be 20 or 40 bytes. When filled in on
 	// a 32-bit implementation, this value SHOULD be 20 bytes. When filled in on a 64-bit
 	// implementation, this value SHOULD be 40 bytes.
 	StructureSize uint32 `idl:"name:dwSizeOfStruct" json:"structure_size"`
+	// lpwstrGroupName (variable): A null-terminated character string containing the group
+	// name. The length of this string MUST be between 1 and 128 characters, excluding the
+	// length of the terminating null character. The group name is case-insensitive.
+	//
 	// lpwstrGroupName: A null-terminated character string containing the group name. The
 	// length of this string MUST be between 1 and 128 characters, excluding the length
 	// of the terminating null character. The group name is case-insensitive.
 	GroupName string `idl:"name:lpwstrGroupName;string" json:"group_name"`
+	// dwNumDevices (4 bytes): A DWORD value that holds the number of devices in the group.
+	// The value MUST be in the range between 0 and 1,000. The dwNumDevices parameter also
+	// indicates the length of the lpdwDevices array, which MUST NOT be larger than the
+	// actual number of devices.
+	//
 	// dwNumDevices: A DWORD value that holds the number of devices in the group. The value
 	// MUST be in the range between 0 and 1,000. The dwNumDevices parameter also indicates
 	// the length of the lpdwDevices array, which is not larger than the actual number of
 	// devices.
 	DevicesLength uint32 `idl:"name:dwNumDevices" json:"devices_length"`
+	// lpdwDevices (variable): A pointer to an array which contains dwNumDevices entries.
+	// Each DWORD value specifies one device identifier in the group. A device MUST appear
+	// only once in a group's device list. A single device can belong to one or more groups.
+	// Groups are not set to store invalid devices. The order of the devices in the array
+	// determines the order the devices are to be used to send faxes, when the group is
+	// selected.
+	//
 	// lpdwDevices: A pointer to a DWORD array which contains dwNumDevices entries. Each
 	// DWORD value specifies one device identifier in the group. A device MUST only appear
 	// once in a group's device list. A single device can belong to one or more groups.
@@ -2368,6 +2507,9 @@ type OutboundRoutingGroupw struct {
 	// determines the order the devices are to be used to send faxes, when the group is
 	// selected.
 	Devices []uint32 `idl:"name:lpdwDevices;size_is:(dwNumDevices);pointer:unique" json:"devices"`
+	// Status (4 bytes): Current status of the group from the enumeration FAX_ENUM_GROUP_STATUS
+	// (section 2.2.59).
+	//
 	// Status: Current status of the group from the enumeration FAX_ENUM_GROUP_STATUS (section
 	// 2.2.59).
 	Status GroupStatus `idl:"name:Status" json:"status"`
@@ -2562,51 +2704,19 @@ func (o *OutboundRoutingGroupw) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 //	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 //	| ...                                                                                                                           |
 //	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//
-// The _FAX_PORT_INFO data structure is the custom-marshaled variant of the FAX_PORT_INFO
-// (section 2.2.7) data structure. This structure describes one fax port. The data includes,
-// among other items, a device identifier, the port's name and current status, and subscriber
-// identifiers.
-//
-// If an application calls the FAX_EnumPorts (section 3.1.4.1.28) function to enumerate
-// all the fax devices currently attached to a fax server, the function returns a byte
-// array of _FAX_PORT_INFO structures. Each structure describes one device in detail.
-//
-// If an application calls the FAX_GetPort (section 3.1.4.1.51) function to query one
-// device, that function returns information about the device in one _FAX_PORT_INFO.
-//
-// This structure is also returned as a single structure by the FaxObs_GetPort (section
-// 3.1.4.2.16) method and as an array of structures by the FaxObs_EnumPorts (section
-// 3.1.4.2.15) method.
-//
-// This data structure is custom marshaled as follows and uses the custom-marshaling
-// rules defined in section 2.2.1.
-//
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
-//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| Fixed_Portion (36 bytes)                                                                                                      |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| ...                                                                                                                           |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| ...                                                                                                                           |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| ...                                                                                                                           |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| Variable_Data (variable)                                                                                                      |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| ...                                                                                                                           |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 type PortInfo struct {
 	// SizeOfStruct: A DWORD ([MS-DTYP] section 2.2.9) that holds the size of the structure,
 	// in bytes. This value MUST be 36 bytes or 48 bytes. When filled in on a 32-bit implementation,
 	// this value SHOULD be 36 bytes. When filled in on a 64-bit implementation, this value
 	// SHOULD be 48 bytes.
+	//
+	// SizeOfStruct (4 bytes): A DWORD ([MS-DTYP] section 2.2.9) that holds the size of
+	// the Fixed_Portion block, in bytes. This value MUST be 36 bytes.
 	StructureSize uint32 `idl:"name:SizeOfStruct" json:"structure_size"`
 	// DeviceId: A DWORD variable that holds the line identifier for the fax device (port)
 	// of interest.
+	//
+	// DeviceId (4 bytes): See the DeviceId field for FAX_PORT_INFO.
 	DeviceID uint32 `idl:"name:DeviceId" json:"device_id"`
 	// State: A DWORD variable that holds a fax device status code or value. This member
 	// can be one of the following predefined device status codes.
@@ -2667,6 +2777,8 @@ type PortInfo struct {
 	//	+---------------------------------+----------------------------------------------------------------------------------+
 	//	| FPS_ANSWERED 0x20800000         | The device answered a new call.                                                  |
 	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//
+	// State (4 bytes): See the State field for FAX_PORT_INFO.
 	State uint32 `idl:"name:State" json:"state"`
 	// Flags: A DWORD variable that holds a set of bit flags that specify the capability
 	// of the fax port. This member can be a bitwise OR combination of the following flag
@@ -2688,10 +2800,14 @@ type PortInfo struct {
 	//	|                        | When FAX_SetPort (section 3.1.4.1.88) is called, the service will only relate to |
 	//	|                        | the FPF_RECEIVE and FPF_SEND values.                                             |
 	//	+------------------------+----------------------------------------------------------------------------------+
+	//
+	// Flags (4 bytes): See the Flags field for FAX_PORT_INFO.
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 	// Rings: A DWORD variable that holds the number of times an incoming fax call rings
 	// before the specified device answers the call. Values can be from 0 to 99 inclusive.
 	// This value SHOULD be ignored unless the FPF_RECEIVE port capability bit flag is set.
+	//
+	// Rings (4 bytes): See the Rings field for FAX_PORT_INFO.
 	Rings uint32 `idl:"name:Rings" json:"rings"`
 	// Priority: A DWORD variable that holds the priority that determines the relative order
 	// in which available fax devices send outgoing transmissions. Values for this member
@@ -2701,19 +2817,30 @@ type PortInfo struct {
 	// highest priority and FPF_SEND port capability. If that device is not available, the
 	// server selects the next available device that follows in rank order, and so on. The
 	// value of the Priority member has no effect on incoming transmissions.
+	//
+	// Priority (4 bytes): See the Priority field for FAX_PORT_INFO.
 	Priority uint32 `idl:"name:Priority" json:"priority"`
 	// DeviceName: A pointer to a constant null-terminated character string that holds the
 	// name of the fax device of interest.
+	//
+	// DeviceName (variable): A null-terminated string that holds the name of the fax device
+	// of interest.
 	DeviceName string `idl:"name:DeviceName;string" json:"device_name"`
 	// Tsid: A pointer to a constant null-terminated character string that holds the transmitting
 	// subscriber identifier (TSID). This identifier is usually a telephone number. Only
 	// English letters, numeric symbols, and punctuation marks (ASCII range 0x20 to 0x7F)
 	// can be used in a TSID.
+	//
+	// Tsid (variable): A null-terminated string that holds the transmitting subscriber
+	// identifier (TSID) with same description as for the Tsid field of FAX_PORT_INFO.
 	TSID string `idl:"name:Tsid;string" json:"tsid"`
 	// Csid: A pointer to a constant null-terminated character string that holds the called
 	// subscriber identifier (CSID). This identifier is usually a telephone number. Only
 	// English letters, numeric symbols, and punctuation marks (ASCII range 0x20 to 0x7F)
 	// can be used in a CSID.
+	//
+	// Csid (variable): A null-terminated string that holds the called subscriber identifier
+	// (CSID) with same description as for the Csid field of FAX_PORT_INFO.
 	CSID string `idl:"name:Csid;string" json:"csid"`
 }
 
@@ -3094,19 +3221,34 @@ type OutboundRoutingRuleW struct {
 	// of the structure, in bytes. This value MUST be 24 or 40 bytes. When filled in on
 	// a 32-bit implementation, this value SHOULD be 24 bytes. When filled in on a 64-bit
 	// implementation this value SHOULD be 40 bytes.
+	//
+	// dwSizeOfStruct (4 bytes): A DWORD ([MS-DTYP] section 2.2.9) that holds the size of
+	// this structure. MUST be set to 24 bytes.
 	StructureSize uint32 `idl:"name:dwSizeOfStruct" json:"structure_size"`
 	// dwAreaCode: A DWORD that contains the area code of the rule. A value of zero indicates
 	// the special any-area value ROUTING_RULE_AREA_CODE_ANY. The dwAreaCode and dwCountryCode
 	// members MUST form a unique key. This value is unrestricted.
+	//
+	// dwAreaCode (4 bytes): A DWORD that holds the area code of the rule. A value of zero
+	// indicates the special any-area value ROUTING_RULE_AREA_CODE_ANY. The dwAreaCode and
+	// dwCountryCode fields MUST form a unique key. This value is unrestricted.
 	AreaCode uint32 `idl:"name:dwAreaCode" json:"area_code"`
 	// dwCountryCode: A DWORD that contains the country/region code of the rule. A value
 	// of zero indicates the special any-country, any-region value ROUTING_RULE_COUNTRY_CODE_ANY.
+	// The dwAreaCode and dwCountryCode numeric values MUST form a unique key. Clients can
+	// obtain valid values with the FAX_GetCountryList (section 3.1.4.1.37) method.
+	//
+	// dwCountryCode (4 bytes): A DWORD that holds the country/region code of the rule.
+	// A value of zero indicates the special any-country, any-region value ROUTING_RULE_COUNTRY_CODE_ANY.
 	// The dwAreaCode and dwCountryCode numeric values MUST form a unique key. Clients can
 	// obtain valid values with the FAX_GetCountryList (section 3.1.4.1.37) method.
 	CountryCode uint32 `idl:"name:dwCountryCode" json:"country_code"`
 	// lpwstrCountryName: A pointer to a null-terminated string that contains the country/region
 	// name indicated by the dwCountryCode parameter if known; otherwise, a NULL pointer.
 	// If dwCountryCode is zero, this pointer MUST be NULL.
+	//
+	// lpwstrCountryName (variable): A null-terminated string that specifies the country/region
+	// name indicated by the dwCountryCode field.
 	CountryName string `idl:"name:lpwstrCountryName;string" json:"country_name"`
 	// Destination: A FAX_RULE_DESTINATION (section 2.2.81) union that contains the destination
 	// of the rule. When bUseGroup is FALSE, this union value MUST hold a device identifier;
@@ -3116,6 +3258,10 @@ type OutboundRoutingRuleW struct {
 	// bUseGroup: A Boolean value that indicates whether the group is used in the destination.
 	// If TRUE, the group MUST be used as the rule's destination. If FALSE, the device MUST
 	// be used as the rule's destination.
+	//
+	// bUseGroup (4 bytes): A Boolean value that indicates whether the group is used in
+	// the destination. If TRUE, the group MUST be used as the rule's destination. If FALSE,
+	// the device MUST be used as the rule's destination.
 	UseGroup bool `idl:"name:bUseGroup" json:"use_group"`
 }
 
@@ -3264,19 +3410,37 @@ func (o *OutboundRoutingRuleW) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 // The FAX_VERSION structure contains information about the version of the fax server
 // components. This structure is used by FAX_GetVersion (section 3.1.4.1.64).
 type Version struct {
+	// dwSizeOfStruct (4 bytes): A DWORD ([MS-DTYP] section 2.2.9) value that holds the
+	// total size of the structure, in bytes. This value MUST be 20 bytes.
+	//
 	// dwSizeOfStruct: A DWORD ([MS-DTYP] section 2.2.9) value that holds the total size
 	// of the structure, in bytes. This value MUST be 20 bytes.
 	StructureSize uint32 `idl:"name:dwSizeOfStruct" json:"structure_size"`
+	// bValid (4 bytes): See the bValid field for FAX_VERSION.
+	//
 	// bValid: A Boolean value indicating the validity of the version information returned.
+	//
+	// Note  This value MUST be set to false if no version information is returned in this
+	// structure.
 	Valid bool `idl:"name:bValid" json:"valid"`
+	// wMajorVersion (2 bytes): See the wMajorVersion field for FAX_VERSION.
+	//
 	// wMajorVersion: A WORD containing the major version number of the fax server component.
 	MajorVersion uint16 `idl:"name:wMajorVersion" json:"major_version"`
+	// wMinorVersion (2 bytes): See the wMinorVersion field for FAX_VERSION.
+	//
 	// wMinorVersion: A WORD containing the minor version number of the fax server component.
 	MinorVersion uint16 `idl:"name:wMinorVersion" json:"minor_version"`
+	// wMajorBuildNumber (2 bytes): See the wMajorBuildNumber field for FAX_VERSION.
+	//
 	// wMajorBuildNumber: A WORD containing the major build number of the fax server component.
 	MajorBuildNumber uint16 `idl:"name:wMajorBuildNumber" json:"major_build_number"`
+	// wMinorBuildNumber (2 bytes): See the wMinorBuildNumber field for FAX_VERSION.
+	//
 	// wMinorBuildNumber: A WORD containing the minor build number of the fax server component.
 	MinorBuildNumber uint16 `idl:"name:wMinorBuildNumber" json:"minor_build_number"`
+	// dwFlags (4 bytes): See the dwFlags field for FAX_VERSION.
+	//
 	// dwFlags: A DWORD that MUST contain one of the following values.
 	//
 	//	+------------------------------------+----------------------------------------------------------------------------------+
@@ -3400,39 +3564,75 @@ func (o *Version) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 type OutboxConfig struct {
 	// dwSizeOfStruct: A DWORD ([MS-DTYP] section 2.2.9) value that holds the total size
 	// of the structure, in bytes. This value MUST be 36 bytes.
+	//
+	// dwSizeOfStruct (4 bytes): A DWORD ([MS-DTYP] section 2.2.9) that holds the size of
+	// the structure. MUST be set to 36 bytes.
 	StructureSize uint32 `idl:"name:dwSizeOfStruct" json:"structure_size"`
 	// bAllowPersonalCP: A Boolean that indicates whether fax client applications can include
 	// a user-designed cover page template with the fax transmission. If this member is
 	// TRUE, the client can provide a personal cover page template. If this member is FALSE,
 	// the client MUST use a common cover page stored on the fax server.
+	//
+	// bAllowPersonalCP (4 bytes): A Boolean that indicates whether fax client applications
+	// can include a user-designed cover page template with the fax transmission. If this
+	// field is TRUE, the client can provide a personal cover page template. If this field
+	// is FALSE, the client MUST use a common cover page template stored on the fax server.
 	AllowPersonalCreatePartition bool `idl:"name:bAllowPersonalCP" json:"allow_personal_create_partition"`
 	// bUseDeviceTSID: A Boolean variable that indicates whether the fax server MAY use
 	// the devices transmitting subscriber identifier instead of the value specified when
 	// submitting a new job. If this member is TRUE, the server SHOULD use the devices transmitting
 	// subscriber identifier.
+	//
+	// bUseDeviceTSID (4 bytes): A Boolean variable that indicates whether the fax server
+	// can use the device's transmitting subscriber identifier instead of the value specified
+	// when a new job is submitted. If this field is TRUE, the server SHOULD use the device's
+	// transmitting subscriber identifier.
 	UseDeviceTSID bool `idl:"name:bUseDeviceTSID" json:"use_device_tsid"`
 	// dwRetries: A DWORD that holds the number of times the fax server will attempt to
 	// retransmit an outgoing fax if the initial transmission fails.
+	//
+	// dwRetries (4 bytes): A DWORD that holds the number of times the fax server will attempt
+	// to retransmit an outgoing fax if the initial transmission fails.
 	Retries uint32 `idl:"name:dwRetries" json:"retries"`
 	// dwRetryDelay: A DWORD that holds the minimum number of minutes that will elapse between
 	// retransmission attempts by the fax server.
+	//
+	// dwRetryDelay (4 bytes): A DWORD that holds the minimum number of minutes that will
+	// elapse between retransmission attempts by the fax server.
 	RetryDelay uint32 `idl:"name:dwRetryDelay" json:"retry_delay"`
 	// dtDiscountStart: A FAX_TIME (section 2.2.61) structure that MUST specify the hour
 	// and minute at which the discount period begins. The discount period applies only
 	// to outgoing transmissions.
+	//
+	// dtDiscountStart (4 bytes): A FAX_TIME (section 2.2.61) structure that holds the hour
+	// and minute at which the discount period begins. The discount period applies only
+	// to outgoing transmissions.
 	DiscountStart *Time `idl:"name:dtDiscountStart" json:"discount_start"`
 	// dtDiscountEnd: A FAX_TIME structure that holds the hour and minute at which the discount
+	// period ends. The discount period applies only to outgoing transmissions.
+	//
+	// dtDiscountEnd (4 bytes): A FAX_TIME that holds the hour and minute at which the discount
 	// period ends. The discount period applies only to outgoing transmissions.
 	DiscountEnd *Time `idl:"name:dtDiscountEnd" json:"discount_end"`
 	// dwAgeLimit: A DWORD variable that holds the number of days the fax server will keep
 	// unsuccessful fax messages in its outbox queue. If a fax message stays in the outbox
 	// queue longer than the value specified, it MAY be automatically deleted. If this value
 	// is zero, the time limit MUST NOT be used.
+	//
+	// dwAgeLimit (4 bytes): A DWORD variable that holds the number of days the fax server
+	// will keep unsuccessful fax messages in its outbox queue. If a fax message stays in
+	// the outbox queue longer than the value specified, it MAY be automatically deleted.
+	// If this value is zero, the time limit MUST NOT be used.
 	AgeLimit uint32 `idl:"name:dwAgeLimit" json:"age_limit"`
 	// bBranding: A Boolean that indicates whether the fax server generates a brand (banner)
 	// at the top of outgoing fax transmissions. If this member is TRUE, the fax server
 	// SHOULD generate a brand that contains transmission-related information such as the
 	// transmitting subscriber identifier, date, time, and page count.
+	//
+	// bBranding (4 bytes): A Boolean that indicates whether the fax server has to generate
+	// a brand (banner) at the top of outgoing fax transmissions. If this field is TRUE,
+	// the fax server generates a brand that contains transmission-related information such
+	// as the transmitting subscriber identifier, date, time, and page count.
 	Branding bool `idl:"name:bBranding" json:"branding"`
 }
 
@@ -3689,70 +3889,85 @@ func (o *ActivityLoggingConfigW) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 //	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 //	| ...                                                                                                                           |
 //	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//
-// The _FAX_PORT_INFO_EXW data type is the custom-marshaled variant of the FAX_PORT_INFO_EXW
-// (section 2.2.45) structure. This data type is used for FAX_EnumPortsEx (section 3.1.4.1.29)
-// and FAX_GetPortEx (section 3.1.4.1.52).
-//
-// This data structure is custom marshaled as follows and uses the custom-marshaling
-// rules defined in section 2.2.1.
-//
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
-//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| Fixed_Portion (48 bytes)                                                                                                      |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| ...                                                                                                                           |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| ...                                                                                                                           |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| ...                                                                                                                           |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| Variable_Data (variable)                                                                                                      |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-//	| ...                                                                                                                           |
-//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 type PortInfoExW struct {
 	// dwSizeOfStruct: DWORD ([MS-DTYP] section 2.2.9) value that holds the total size of
 	// the structure, in bytes. This value MUST be 48 or 72 bytes. When filled in on a 32-bit
 	// implementation, this value SHOULD be 48 bytes. When filled in on a 64-bit implementation,
 	// this value SHOULD be 72 bytes.
+	//
+	// dwSizeOfStruct (4 bytes): A DWORD ([MS-DTYP] section 2.2.9) value that holds the
+	// size of the Fixed_Portion block, in bytes. This value MUST be 48 bytes.
 	StructureSize uint32 `idl:"name:dwSizeOfStruct" json:"structure_size"`
 	// dwDeviceID: A DWORD that holds the line identifier for the specified fax device (port).
+	//
+	// dwDeviceID (4 bytes): A DWORD that holds the line identifier for the specified fax
+	// device (port).
 	DeviceID uint32 `idl:"name:dwDeviceID" json:"device_id"`
 	// lpcwstrDeviceName: A null-terminated character string that holds the name of the
 	// fax device.
+	//
+	// lpcwstrDeviceName (variable): A null-terminated character string that holds the name
+	// of the fax device.
 	DeviceName string `idl:"name:lpcwstrDeviceName;string" json:"device_name"`
 	// lpwstrDescription: A null-terminated character string that holds the description
+	// of the fax device. The length of this string MUST NOT exceed MAX_FAX_STRING_LEN (section
+	// 2.2.86) characters, including the length of the terminating null character.
+	//
+	// lpwstrDescription (variable): A null-terminated character string that holds the description
 	// of the fax device. The length of this string MUST NOT exceed MAX_FAX_STRING_LEN (section
 	// 2.2.86) characters, including the length of the terminating null character.
 	Description string `idl:"name:lpwstrDescription;string" json:"description"`
 	// lpcwstrProviderName: A null-terminated character string that holds the name of the
 	// fax device provider.
+	//
+	// lpcwstrProviderName (variable): A null-terminated character string that holds the
+	// name of the fax device provider.
 	ProviderName string `idl:"name:lpcwstrProviderName;string" json:"provider_name"`
 	// lpcwstrProviderGUID: A null-terminated character string that holds the GUID of the
 	// fax device provider.
+	//
+	// lpcwstrProviderGUID (variable): A null-terminated character string that holds the
+	// GUID of the fax device provider.
 	ProviderGUID string `idl:"name:lpcwstrProviderGUID;string" json:"provider_guid"`
 	// bSend: A Boolean value that indicates whether the fax device is enabled to send faxes.
+	//
+	// bSend (4 bytes): A Boolean value that indicates whether the fax device is enabled
+	// to send faxes.
 	Send bool `idl:"name:bSend" json:"send"`
 	// ReceiveMode: An FAX_ENUM_DEVICE_RECEIVE_MODE (section 2.2.55) enumeration value that
 	// indicates whether the fax device is enabled to receive faxes and whether the calls
 	// are manually or automatically answered.
+	//
+	// ReceiveMode (4 bytes): An FAX_ENUM_DEVICE_RECEIVE_MODE (section 2.2.55) enumerated
+	// value that indicates whether the fax device is enabled to receive faxes and whether
+	// the calls are manually or automatically answered.
 	ReceiveMode DeviceReceiveMode `idl:"name:ReceiveMode" json:"receive_mode"`
 	// dwStatus: A DWORD that holds the current status of the device. It SHOULD contain
 	// any combination of values from the FAX_ENUM_DEVICE_STATUS (section 2.2.64) enumeration
 	// or 0 (meaning: status unknown).
+	//
+	// dwStatus (4 bytes): A DWORD that holds the current status of the device. It SHOULD
+	// contain any combination of values from the FAX_ENUM_DEVICE_STATUS (section 2.2.64)
+	// enumeration or 0 (meaning: status unknown).
 	Status uint32 `idl:"name:dwStatus" json:"status"`
 	// dwRings: A DWORD that holds the number of times an incoming fax call rings before
 	// the specified device answers the call.
+	//
+	// dwRings (4 bytes): A DWORD that holds the number of times an incoming fax call rings
+	// before the specified device answers the call.
 	Rings uint32 `idl:"name:dwRings" json:"rings"`
 	// lpwstrCsid: A null-terminated character string that holds the called subscriber identifier
 	// for faxes sent using this device. This identifier can be a telephone number.
+	//
+	// lpwstrCsid (variable): A null-terminated character string that holds the called subscriber
+	// identifier for faxes sent using this device. This identifier can be a telephone number.
 	CSID string `idl:"name:lpwstrCsid;string" json:"csid"`
 	// lpwstrTsid: A null-terminated character string that holds the transmitting subscriber
 	// identifier for faxes sent using this device. This identifier can be a telephone number.
+	//
+	// lpwstrTsid (variable): A null-terminated character string that holds the transmitting
+	// subscriber identifier for faxes sent using this device. This identifier can be a
+	// telephone number.
 	TSID string `idl:"name:lpwstrTsid;string" json:"tsid"`
 }
 
@@ -4004,9 +4219,14 @@ func (o *PortInfoExW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 // activity and the events reported by the fax server. This structure is used as an
 // argument for FAX_GetServerActivity (section 3.1.4.1.61).
 type ServerActivity struct {
+	// dwSizeOfStruct (4 bytes): A DWORD ([MS-DTYP] section 2.2.9) value that holds the
+	// total size of the structure, in bytes. MUST be set to 36 bytes.
+	//
 	// dwSizeOfStruct: A DWORD ([MS-DTYP] section 2.2.9) value that holds the total size
 	// of the structure, in bytes. This value MUST be 36 bytes.
 	StructureSize uint32 `idl:"name:dwSizeOfStruct" json:"structure_size"`
+	// dwIncomingMessages (4 bytes): See the dwIncomingMessages field for FAX_SERVER_ACTIVITY.
+	//
 	// dwIncomingMessages: A DWORD that indicates the number of messages currently being
 	// received by the fax server. This variable MAY also be set to the count of the number
 	// of incoming messages that were successfully received and are currently being routed
@@ -4015,9 +4235,13 @@ type ServerActivity struct {
 	// when the routing restarts. If this value is nonzero, stopping the server MAY result
 	// in the loss of incoming messages.
 	IncomingMessages uint32 `idl:"name:dwIncomingMessages" json:"incoming_messages"`
+	// dwRoutingMessages (4 bytes): See the dwRoutingMessages field for FAX_SERVER_ACTIVITY.
+	//
 	// dwRoutingMessages: A DWORD that indicates the number of incoming messages being rerouted
 	// after a routing failure.
 	RoutingMessages uint32 `idl:"name:dwRoutingMessages" json:"routing_messages"`
+	// dwOutgoingMessages (4 bytes): See the dwOutgoingMessages field for FAX_SERVER_ACTIVITY.
+	//
 	// dwOutgoingMessages: A DWORD that indicates the number of messages currently being
 	// sent by the fax server. If this value is nonzero, stopping the server MAY result
 	// in the loss of outgoing messages.
@@ -4026,15 +4250,23 @@ type ServerActivity struct {
 	// being sent by a Fax Service Provider on behalf of the fax server. The fax server
 	// is not currently sending these messages.
 	DelegatedOutgoingMessages uint32 `idl:"name:dwDelegatedOutgoingMessages" json:"delegated_outgoing_messages"`
+	// dwQueuedMessages (4 bytes): See the dwQueuedMessages field for FAX_SERVER_ACTIVITY.
+	//
 	// dwQueuedMessages: A DWORD that indicates the number of outgoing messages waiting
 	// to be processed in the server's fax queue.
 	QueuedMessages uint32 `idl:"name:dwQueuedMessages" json:"queued_messages"`
+	// dwErrorEvents (4 bytes): See the dwErrorEvents field for FAX_SERVER_ACTIVITY.
+	//
 	// dwErrorEvents: A DWORD that indicates the number of error entries added to the system
 	// event log since the last time the fax server was started.
 	ErrorEvents uint32 `idl:"name:dwErrorEvents" json:"error_events"`
+	// dwWarningEvents (4 bytes): See the dwWarningEvents field for FAX_SERVER_ACTIVITY.
+	//
 	// dwWarningEvents: A DWORD that indicates the number of warning entries added to the
 	// system event log since the last time the fax server was started.
 	WarningEvents uint32 `idl:"name:dwWarningEvents" json:"warning_events"`
+	// dwInformationEvents (4 bytes): See the dwInformation field for FAX_SERVER_ACTIVITY.
+	//
 	// dwInformationEvents: A DWORD that indicates the number of information entries added
 	// to the system event log since the last time the fax server was started.
 	InformationEvents uint32 `idl:"name:dwInformationEvents" json:"information_events"`
@@ -4414,13 +4646,23 @@ type JobEntry struct {
 	// of the FAX_JOB_ENTRY structure. This value MUST be 92 or 136 bytes. When filled in
 	// on a 32-bit implementation, this value SHOULD be 92 bytes. When filled in on a 64-bit
 	// implementation, this value SHOULD be 136 bytes.
+	//
+	// SizeOfStruct (4 bytes): A DWORD ([MS-DTYP] section 2.2.9) that indicates the size,
+	// in bytes, of the _FAX_JOB_ENTRY structure. MUST be set to 92 bytes.
 	StructureSize uint32 `idl:"name:SizeOfStruct" json:"structure_size"`
 	// JobId: A DWORD that indicates a unique number that identifies the fax jobs of interest.
 	// This is the same kind of job identifier number as the JobId parameter for the FAX_SetJob
 	// (section 3.1.4.1.82) function.
+	//
+	// JobId (4 bytes): A DWORD that indicates a unique number that identifies the fax jobs
+	// of interest. This is the same kind of job identifier number as the JobId parameter
+	// for the FAX_SetJob (section 3.1.4.1.82) function.
 	JobID uint32 `idl:"name:JobId" json:"job_id"`
 	// UserName: A null-terminated character string that contains the name of the fax user
 	// account that submitted the fax job, if known; otherwise, a NULL pointer.
+	//
+	// UserName (variable): A null-terminated character string that contains the name of
+	// the fax user account that submitted the fax job.
 	UserName string `idl:"name:UserName" json:"user_name"`
 	// JobType: A DWORD that indicates the type of the fax job of interest. This field is
 	// one of the following values, which are defined in section 3.1.1.
@@ -4441,10 +4683,37 @@ type JobEntry struct {
 	//	+------------+----------------------------------+
 	//	| 0x00000004 | The job type is JT_FAIL_RECEIVE. |
 	//	+------------+----------------------------------+
+	//
+	// JobType (4 bytes): A DWORD variable that indicates the type of the fax job of interest.
+	// This field is one of the following values, which are defined in section 3.1.1.
+	//
+	//	+------------+----------------------------------+
+	//	|            |                                  |
+	//	| VALUE/CODE |             MEANING              |
+	//	|            |                                  |
+	//	+------------+----------------------------------+
+	//	+------------+----------------------------------+
+	//	| 0x00000000 | The job type is JT_UNKNOWN.      |
+	//	+------------+----------------------------------+
+	//	| 0x00000001 | The job type is JT_SEND.         |
+	//	+------------+----------------------------------+
+	//	| 0x00000002 | The job type is JT_RECEIVE.      |
+	//	+------------+----------------------------------+
+	//	| 0x00000003 | The job type is JT_ ROUTING.     |
+	//	+------------+----------------------------------+
+	//	| 0x00000004 | The job type is JT_FAIL_RECEIVE. |
+	//	+------------+----------------------------------+
+	//	| 0x00000020 | The job type is JT_BROADCAST.<2> |
+	//	+------------+----------------------------------+
 	JobType uint32 `idl:"name:JobType" json:"job_type"`
 	// QueueStatus: A DWORD variable containing a set of bit flags indicating the job status
 	// of the fax job identified by the JobId field. This value MUST be a bitwise OR combination
 	// of one or more of the Job Status values listed in section 3.1.1.
+	//
+	// QueueStatus (4 bytes): A DWORD variable containing a set of bit flags indicating
+	// the job status of the fax job identified by the JobId field. This field MUST be a
+	// bitwise OR combination of one or more of the Job Status values listed in section
+	// 3.1.1.
 	QueueStatus uint32 `idl:"name:QueueStatus" json:"queue_status"`
 	// Status: A DWORD that specifies the status of the fax device (or port) that received
 	// or sent the fax job described by this structure, captured at the time the job information
@@ -4510,44 +4779,138 @@ type JobEntry struct {
 	//	+---------------------------------+----------------------------------------------------------------------------------+
 	//	| FPS_ANSWERED 0x20800000         | The device answered a new call.                                                  |
 	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Status (4 bytes): A DWORD that specifies the status of the fax device that received
+	// or sent the fax job described by this structure, captured at the time the job information
+	// was recorded. This value MUST be one of the following predefined device status codes.
+	//
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	|                                 |                                                                                  |
+	//	|           VALUE/CODE            |                                     MEANING                                      |
+	//	|                                 |                                                                                  |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_UNKNOWN 0x00000000          | The status of the device is unknown.                                             |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_DIALING 0x20000001          | The device is dialing a fax number.                                              |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_SENDING 0x20000002          | The device is sending a fax document.                                            |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_RECEIVING 0x20000004        | The device is receiving a fax document.                                          |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_COMPLETED 0x20000008        | The device completed sending or receiving a fax transmission.                    |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_HANDLED 0x20000010          | The fax service processed the outbound fax document; the fax service provider    |
+	//	|                                 | (FSP) will transmit the fax document.                                            |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_UNAVAILABLE 0x20000020      | The device is not available because it is in use by another application.         |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_BUSY 0x20000040             | The device encountered a busy signal.                                            |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_NO_ANSWER 0x20000080        | The receiving device did not answer the call.                                    |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_BAD_ADDRESS 0x20000100      | The device dialed an invalid fax number.                                         |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_NO_DIAL_TONE 0x20000200     | The sending device cannot complete the call because it does not detect a dial    |
+	//	|                                 | tone.                                                                            |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_DISCONNECTED 0x20000400     | The fax call was disconnected by the sender or the caller.                       |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_FATAL_ERROR 0x20000800      | The device has encountered a fatal protocol error.                               |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_NOT_FAX_CALL 0x20001000     | The device received a call that was a data call or a voice call.                 |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_CALL_DELAYED 0x20002000     | The device delayed a fax call because the sending device received a busy signal  |
+	//	|                                 | multiple times. The device cannot retry the call because dialing restrictions    |
+	//	|                                 | exist (some countries and regions restrict the number of retry attempts when a   |
+	//	|                                 | number is busy).                                                                 |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_CALL_BLACKLISTED 0x20004000 | The device could not complete a call because the telephone number was blocked or |
+	//	|                                 | reserved; emergency numbers such as 911 are blocked.                             |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_INITIALIZING 0x20008000     | The device is initializing a call.                                               |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_OFFLINE 0x20010000          | The device is offline and unavailable.                                           |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_RINGING 0x20020000          | The device is ringing.                                                           |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_AVAILABLE 0x20100000        | The device is available.                                                         |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_ABORTING 0x20200000         | The device is aborting a fax job.                                                |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_ROUTING 0x20400000          | The device is routing a received fax document.                                   |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| FPS_ANSWERED 0x20800000         | The device answered a new call.                                                  |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
 	Status uint32 `idl:"name:Status" json:"status"`
 	// Size: A DWORD variable that indicates the total size, in bytes, of the fax document
 	// to transmit, if known, or zero otherwise.  The size, if known, includes the size
 	// of the cover page, if a cover page is present, and the size of the fax body, if a
 	// fax body is present. The size MUST NOT exceed 4 gigabytes.
+	//
+	// Size (4 bytes): A DWORD variable that indicates the total size, in bytes, of the
+	// fax document received or sent, including the size of the cover page, if a cover page
+	// is present, and the size of the fax body, if a fax body is present. The size MUST
+	// NOT exceed 4 gigabytes.
 	Size uint32 `idl:"name:Size" json:"size"`
 	// PageCount: A DWORD that indicates the total number of pages in the fax transmission,
 	// including the cover page, if any, and the fax body, if any, of the fax submitted
 	// with this fax job. If the fax is sent to multiple recipients, this total number of
 	// pages is the number of fax pages sent to each individual recipient (not the sum of
 	// the fax pages sent to all recipients).
+	//
+	// PageCount (4 bytes): A DWORD variable that indicates the total number of pages in
+	// the fax transmission.
 	PageCount uint32 `idl:"name:PageCount" json:"page_count"`
 	// RecipientNumber: A null-terminated character string that contains the fax number
 	// of the recipient of the fax transmission, if known, or a NULL pointer otherwise.
 	// This information comes from the recipient's personal profile.
+	//
+	// RecipientNumber (variable): A null-terminated character string that contains the
+	// fax number of the recipient of the fax transmission. This information comes from
+	// the recipient's personal profile.
 	RecipientNumber string `idl:"name:RecipientNumber" json:"recipient_number"`
 	// RecipientName: A null-terminated character string that contains the name of the recipient
 	// of the fax, if known, or a NULL pointer otherwise. This information comes from the
 	// recipient's personal profile.
+	//
+	// RecipientName (variable): A null-terminated character string that contains the name
+	// of the recipient of the fax. This information comes from the recipient's personal
+	// profile.
 	RecipientName string `idl:"name:RecipientName" json:"recipient_name"`
 	// Tsid: A null-terminated character string that contains the transmitting subscriber
 	// identifier (TSID), if known, or a NULL pointer otherwise. This information comes
 	// from the sender's personal profile.
+	//
+	// Tsid (variable): A null-terminated character string that contains the transmitting
+	// subscriber identifier (TSID). This information comes from the sender's personal profile.
 	TSID string `idl:"name:Tsid" json:"tsid"`
 	// SenderName: A null-terminated character string that contains the fax sender name,
 	// if known, or a NULL pointer otherwise. This information comes from the sender's personal
 	// profile.
+	//
+	// SenderName (variable): A null-terminated character string that contains the fax sender
+	// name. This information comes from the sender's personal profile.
 	SenderName string `idl:"name:SenderName" json:"sender_name"`
 	// SenderCompany: A null-terminated character string that contains the fax sender company,
 	// if known, or a NULL pointer otherwise. This information comes from the sender's personal
 	// profile.
+	//
+	// SenderCompany (variable): A null-terminated character string that contains the fax
+	// sender company. This information comes from the sender's personal profile.
 	SenderCompany string `idl:"name:SenderCompany" json:"sender_company"`
 	// SenderDept: A null-terminated character string that contains the fax sender department,
 	// if known, or a NULL pointer otherwise. This information comes from the sender's personal
 	// profile.
+	//
+	// SenderDept (variable): A null-terminated character string that contains the fax sender
+	// department. This information comes from the sender's personal profile.
 	SenderDept string `idl:"name:SenderDept" json:"sender_dept"`
 	// BillingCode: A null-terminated character string that contains the fax billing code,
 	// if known, or a NULL pointer otherwise.
+	//
+	// BillingCode (variable): A null-terminated character string that contains the fax
+	// billing code.
 	BillingCode string `idl:"name:BillingCode" json:"billing_code"`
 	// ScheduleAction: A DWORD that indicates when the fax is to be sent. This can be one
 	// of the following values:
@@ -4567,21 +4930,57 @@ type JobEntry struct {
 	//	|                                | FaxObs_GetConfiguration (section 3.1.4.2.24) method can be called to retrieve    |
 	//	|                                | the discount period for the fax server.                                          |
 	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//
+	// ScheduleAction (4 bytes): A DWORD variable that indicates how the fax was configured
+	// or is configured to be sent if this job is an outgoing fax transmission; otherwise,
+	// this parameter SHOULD be ignored. This value can be one of the following values.
+	//
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	|                                |                                                                                  |
+	//	|           VALUE/CODE           |                                     MEANING                                      |
+	//	|                                |                                                                                  |
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	| JSA_NOW 0x00000000             | The fax is to be sent as soon as a fax device is available.                      |
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	| JSA_SPECIFIC_TIME 0x00000001   | The fax is to be sent at the time specified by the ScheduleTime field of this    |
+	//	|                                | _FAX_JOB_ENTRY structure.                                                        |
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	| JSA_DISCOUNT_PERIOD 0x00000002 | The fax is to be sent during the discount rate period. The FAX_GetConfiguration  |
+	//	|                                | (section 3.1.4.1.36) or the FaxObs_GetConfiguration (section 3.1.4.2.24) method  |
+	//	|                                | can be called to retrieve the discount period for the fax server.                |
+	//	+--------------------------------+----------------------------------------------------------------------------------+
 	ScheduleAction uint32 `idl:"name:ScheduleAction" json:"schedule_action"`
 	// ScheduleTime: A SYSTEMTIME ([MS-DTYP] section 2.3.13) structure indicating the local
 	// date and time to send the fax, in Coordinated Universal Time (UTC) format. This parameter
 	// MUST be ignored unless the ScheduleAction parameter is set to 1 (JSA_SPECIFIC_TIME).
+	//
+	// ScheduleTime (16 bytes): A SYSTEMTIME ([MS-DTYP] section 2.3.13) structure indicating
+	// the local date and time when the fax was sent or configured to be sent, in UTC format.
+	// This parameter SHOULD be ignored unless the ScheduleAction parameter is set to 1
+	// (JSA_SPECIFIC_TIME) and this job is an outgoing fax transmission.
 	ScheduleTime *dtyp.SystemTime `idl:"name:ScheduleTime" json:"schedule_time"`
 	// DeliveryReportType: A DWORD variable that indicates the fax delivery report type.
 	// This value MUST be one of the FAX_ENUM_DELIVERY_REPORT_TYPES (section 2.2.76) enumeration
 	// values. The DRT_ATTACH_FAX value can be combined with the DRT_EMAIL value by an OR
 	// operation.
+	//
+	// DeliveryReportType (4 bytes): A DWORD variable that indicates the fax delivery report
+	// type. This value can be one of the FAX_ENUM_DELIVERY_REPORT_TYPES (section 2.2.76)
+	// enumeration values. The DRT_ATTACH_FAX value can be combined with the DRT_EMAIL value
+	// in one value by an OR operation.
 	DeliveryReportType uint32 `idl:"name:DeliveryReportType" json:"delivery_report_type"`
 	// DeliveryReportAddress: A null-terminated character string that contains the email
 	// address for the delivery report, if known, or a NULL pointer otherwise.
+	//
+	// DeliveryReportAddress (variable): A null-terminated character string that contains
+	// the email address for the delivery report.
 	DeliveryReportAddress string `idl:"name:DeliveryReportAddress" json:"delivery_report_address"`
 	// DocumentName: A null-terminated character string that contains the document name,
 	// if known, or a NULL pointer otherwise.
+	//
+	// DocumentName (variable): A null-terminated character string that contains the document
+	// name.
 	DocumentName string `idl:"name:DocumentName" json:"document_name"`
 }
 

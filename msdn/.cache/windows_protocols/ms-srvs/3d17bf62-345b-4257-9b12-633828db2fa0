@@ -1,0 +1,16 @@
+<div class="content" name="SERVER_ALIAS_INFO" uuid="3d17bf62-345b-4257-9b12-633828db2fa0"><p>The SERVER_ALIAS_INFO union contains information about an
+alias attached to a <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+name.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(unsigned long)] 
+ union _SERVER_ALIAS_INFO {
+   [case(0)] 
+     LPSERVER_ALIAS_INFO_0 ServerAliasInfo0;
+ } SERVER_ALIAS_INFO,
+  *PSERVER_ALIAS_INFO,
+  *LPSERVER_ALIAS_INFO;
+</pre></div>
+</dd></dl><p><b>ServerAliasInfo0:</b>  A pointer to a
+structure containing information about an alias attached to a server, as
+specified in section <a href="02a5b8d8-9725-475d-981c-d058c446bb8d" data-linktype="relative-path">2.2.4.102</a>.</p></div>

@@ -1,0 +1,36 @@
+<div class="content" name="FILE_ENUM_STRUCT" uuid="91c92279-331e-4dba-8573-4aff01c0d859"><p>The FILE_ENUM_STRUCT structure specifies the information
+level that the <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>
+requests in the <a href="c5433da3-e2a5-4cdb-850b-0f9ce0795b8b" data-linktype="relative-path">NetrFileEnum</a>
+method and encapsulates the <a href="8ad1c2e9-46cd-43c9-9983-804034143678" data-linktype="relative-path">FILE_ENUM_UNION</a>
+union that receives the entries that are enumerated by the <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _FILE_ENUM_STRUCT {
+   DWORD Level;
+   [switch_is(Level)] FILE_ENUM_UNION FileInfo;
+ } FILE_ENUM_STRUCT,
+  *PFILE_ENUM_STRUCT,
+  *LPFILE_ENUM_STRUCT;
+</pre></div>
+</dd></dl><p><b>Level:</b>  Specifies the information
+level of the data. This parameter MUST have one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>2</td>
+  <td>FILE_INFO_2_CONTAINER</td>
+ </tr><tr>
+  <td>3</td>
+  <td>FILE_INFO_3_CONTAINER</td>
+ </tr></tbody></table>
+</dd></dl><p><b>FileInfo:</b>  Contains a file info
+container structure whose type is determined by the <i>Level</i> parameter as
+shown in the preceding table. The enumerated elements are returned in this
+member.</p></div>

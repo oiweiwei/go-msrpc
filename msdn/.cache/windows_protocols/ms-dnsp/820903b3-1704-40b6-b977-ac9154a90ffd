@@ -1,0 +1,81 @@
+<div class="content" name="ExportedKeyPair" uuid="820903b3-1704-40b6-b977-ac9154a90ffd"><p>The <b>Exported Key Pair</b> structure is used to wrap a ZSK
+for secure storage in the Active Directory database.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved1</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved2</td>
+ </tr>
+ <tr>
+  <td colspan="32">LengthOfAlgorithmName</td>
+ </tr>
+ <tr>
+  <td colspan="32">LengthOfProtectedKeyBlob</td>
+ </tr>
+ <tr>
+  <td colspan="32">LengthOfKeyName</td>
+ </tr>
+ <tr>
+  <td colspan="32">AlgorithmName (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">ProtectedKeyBlob (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">KeyName (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>Reserved1 (4 bytes): </b>MUST be 0x00000014.</p><p><b>Reserved2 (4 bytes): </b>MUST be 0x4B545250.</p><p><b>LengthOfAlgorithmName (4 bytes): </b>A 32-bit
+unsigned integer, encoded using little-endian format. This MUST be equal to the
+length of the <b>AlgorithmName</b> field, in bytes. </p><p><b>LengthOfProtectedKeyBlob (4 bytes): </b>A 32-bit
+unsigned integer, encoded using little-endian format. This MUST be equal to the
+length of the <b>ProtectedKeyBlob</b> field, in bytes.</p><p><b>LengthOfKeyName (4 bytes): </b>A 32-bit unsigned
+integer, encoded using little-endian format. This MUST be equal to the length
+of the <b>KeyName</b> field, in bytes.</p><p><b>AlgorithmName (variable): </b>The Cryptographic
+Algorithm Name, as specified in section <span><a href="a430d9bd-ec99-4fa1-a2f9-d982018d7f44" data-linktype="relative-path">2.2.11.1.1</a></span>, of the
+digital signature algorithm that the key encapsulated in the <b>ProtectedKeyBlob</b>
+field is intended for use with. </p><p><b>ProtectedKeyBlob (variable): </b>A BLOB containing
+the encrypted key pair, constructed as specified in section <span><a href="bdac5142-4baf-4b62-bcce-d49eafc9c3e6" data-linktype="relative-path">3.1</a></span>.</p><p><b>KeyName (variable): </b>A null-terminated Unicode
+string containing implementation-dependent data.</p></div>

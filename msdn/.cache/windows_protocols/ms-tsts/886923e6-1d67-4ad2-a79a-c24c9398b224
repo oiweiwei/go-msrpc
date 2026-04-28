@@ -1,0 +1,30 @@
+<div class="content" name="RpcUnRegisterAsyncNotification" uuid="886923e6-1d67-4ad2-a79a-c24c9398b224"><p>The RpcUnRegisterAsyncNotification method cancels the
+asynchronous operation of waiting for notification from the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal
+server</a></span>. This MUST be called after <span><a href="bb3d1c58-f397-472e-82ed-44c242846464" data-linktype="relative-path">RpcRegisterAsyncNotification</a></span>.
+The call to this method MUST be serialized if there are multiple threads
+running otherwise the behavior of this function is unknown. No special
+permissions are required to call this method.</p><dl>
+<dd>
+<div><pre> HRESULT RpcUnRegisterAsyncNotification(
+   [in, out] NOTIFY_HANDLE* phNotify
+ );
+</pre></div>
+</dd></dl><p><b>phNotify: </b>The notification <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>
+returned by RpcRegisterAsyncNotification. This is of type <span><a href="557683a8-2f4a-416a-bb15-fa353fdc4aed" data-linktype="relative-path">NOTIFY_HANDLE</a></span>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Successful completion.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

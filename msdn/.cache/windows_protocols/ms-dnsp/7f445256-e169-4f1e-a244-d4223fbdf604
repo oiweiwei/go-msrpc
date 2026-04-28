@@ -1,0 +1,46 @@
+<div class="content" name="DNS_RPC_ENLIST_DP" uuid="7f445256-e169-4f1e-a244-d4223fbdf604"><p>The <b>DNS_RPC_ENLIST_DP</b> structure contains the
+information required to create, delete, or enumerate <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_68dc613a-d602-41ae-9acc-76ffe97877c4" data-linktype="relative-path">application directory
+partitions</a></span>.<a id="Appendix_A_Target_60"></a><a aria-label="Product behavior note 60" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_60" data-linktype="relative-path">&lt;60&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcEnlistDirPart {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [string] char* pszDpFqdn;
+   DWORD dwOperation;
+ } DNS_RPC_ENLIST_DP,
+  *PDNS_RPC_ENLIST_DP;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS management
+structure version number; this value MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> As specified in section <span><a href="bd2a817d-6a69-40d3-befc-0c198a9c6e80" data-linktype="relative-path">2.2.7.2.1</a></span>.</p><p><b>pszDpFqdn:</b> As specified in section 2.2.7.2.1.</p><p><b>dwOperation:</b> The application directory
+partition operation to be performed by the DNS server; this MUST be set to one
+of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DNS_DP_OP_CREATE 0x00000001</td>
+  <td>Create and enlist (DNS_DP_OP_ENLIST) a new application directory partition.</td>
+ </tr><tr>
+  <td>DNS_DP_OP_DELETE 0x00000002</td>
+  <td>Delete an existing application directory partition. If the application directory partition has been marked DNS_DP_AUTOCREATED, DNS_DP_LEGACY, DNS_DP_DOMAIN_DEFAULT, DNS_DP_FOREST_DEFAULT, or DNS_DP_DELETED, as specified in section 2.2.7.1.1, or if the DNS server cannot connect and bind to the FSMO role owner, then the server MUST return an error.</td>
+ </tr><tr>
+  <td>DNS_DP_OP_ENLIST 0x00000003</td>
+  <td>Enlist this DNS server in an existing application directory partition. If the application directory partition has been marked DNS_DP_ENLISTED or DNS_DP_DELETED, as specified in section 2.2.7.1.1, then the DNS server MUST return an error.</td>
+ </tr><tr>
+  <td>DNS_DP_OP_UNENLIST 0x00000004</td>
+  <td>Un-enlist this DNS server from an existing application directory partition. If the application directory partition has been marked DNS_DP_DELETED, as specified in section 2.2.7.1.1, then the DNS server MUST return an error.</td>
+ </tr><tr>
+  <td>DNS_DP_OP_CREATE_DOMAIN 0x00000005</td>
+  <td>Create a domain partition on the directory server if one does not already exist.</td>
+ </tr><tr>
+  <td>DNS_DP_OP_CREATE_FOREST 0x00000006</td>
+  <td>Create a forest partition on the directory server if it does not already exist.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

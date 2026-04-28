@@ -31,6 +31,8 @@ type InetinfoServer interface {
 	// it returns a nonzero error code, as specified in [MS-ERREF] section 2.2 or [MS-ERREF]
 	// section 2.3.1.
 	//
+	// ERROR_SUCCESS (0x00000000)
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol, as specified in [MS-RPCE].
 	//
@@ -111,6 +113,8 @@ type InetinfoServer interface {
 	// Return Values: The method returns 0 (ERROR_SUCCESS) to indicate success; otherwise,
 	// it returns a nonzero error code, as specified in [MS-ERREF] section 2.2 or [MS-ERREF]
 	// section 2.3.1.
+	//
+	// ERROR_SUCCESS (0x00000000)
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol, as specified in [MS-RPCE].
@@ -209,6 +213,8 @@ type InetinfoServer interface {
 	// Return Values:  The method returns 0 (ERROR_SUCCESS) to indicate success; otherwise,
 	// it returns a nonzero error code, as specified in [MS-ERREF] section 2.2 or [MS-ERREF]
 	// section 2.3.1.
+	//
+	// ERROR_SUCCESS (0x00000000)
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol, as specified in [MS-RPCE].

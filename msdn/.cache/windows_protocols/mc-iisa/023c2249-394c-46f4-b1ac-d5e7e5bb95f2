@@ -1,0 +1,35 @@
+<div class="content" name="IsCaseSensitive" uuid="023c2249-394c-46f4-b1ac-d5e7e5bb95f2"><p>The IsCaseSensitive method is received by the server in an
+RPC_REQUEST packet. In response, the server returns whether the corresponding
+property is compared to others in a case-sensitive manner, when determining
+equality for key (combined/unique) evaluation.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT IsCaseSensitive(
+   [out, retval] VARIANT_BOOL* pfIsCaseSensitive
+ );
+</pre></div>
+</dd></dl><p><b>pfIsCaseSensitive: </b>A Boolean value about
+whether the property is treated as case-sensitive.</p><p><b>Return Values: </b>The server MUST return zero if
+it successfully processes the message that is received from the client. If
+processing fails, the server MUST return a nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+code as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following table describes the error conditions that MUST be handled and the
+corresponding error codes. A server MAY return additional implementation-specific
+error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0X00000000 NO_ERROR</td>
+  <td>The operation completed successfully.</td>
+ </tr><tr>
+  <td>0X80070057 ERROR_INVALID_PARAMETER</td>
+  <td>One or more parameters are incorrect or null.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

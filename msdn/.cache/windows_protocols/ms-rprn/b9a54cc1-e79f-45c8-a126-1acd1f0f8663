@@ -1,0 +1,318 @@
+<div class="content" name="DRIVER_INFO_3" uuid="b9a54cc1-e79f-45c8-a126-1acd1f0f8663"><p>The <b>_DRIVER_INFO_3</b> structure specifies <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer
+driver</a></span> information.<a id="Appendix_A_Target_103"></a><a aria-label="Product behavior note 103" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_103" data-linktype="relative-path">&lt;103&gt;</a> It is
+a custom-<span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_37e89d91-2800-49d1-9d17-45ebe167ad87" data-linktype="relative-path">marshaled</a></span> form of the
+<b>RPC_DRIVER_INFO_3</b> (section <span><a href="b4d3b5f3-c631-4fc3-9348-4c983590a0d8" data-linktype="relative-path">2.2.1.5.3)</a></span>
+structure.<span> </span></p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Fixed_Portion (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">Variable_Data (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (variable): </b>An array of one or
+more groups of fixed-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">cVersion</td>
+ </tr>
+ <tr>
+  <td colspan="32">NameOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">EnvironmentOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">DriverPathOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">DataFileOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">ConfigFileOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">HelpFileOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">DependentFilesOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">MonitorNameOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">DefaultDataTypeOffset</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>cVersion (4 bytes):</b> A
+DWORD that has an implementation-specific value that identifies the driver
+version and the operating system version for which the printer driver was
+written, as specified in section <span><a href="4464eaf0-f34f-40d5-b970-736437a21913" data-linktype="relative-path">2.2.1.3.1</a></span>.</p>
+</dd>
+<dd>
+<p><b>NameOffset (4 bytes):</b>
+A 32-bit unsigned integer that specifies the number of bytes from the start of
+the structure to the <b>NameArray</b> member.</p>
+</dd>
+<dd>
+<p><b>EnvironmentOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>EnvironmentArray</b> member. </p>
+</dd>
+<dd>
+<p><b>DriverPathOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>DriverPathArray</b> member. </p>
+</dd>
+<dd>
+<p><b>DataFileOffset (4 bytes):</b>
+An unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>DataFileArray</b> member. </p>
+</dd>
+<dd>
+<p><b>ConfigFileOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>ConfigFileArray</b> member. </p>
+</dd>
+<dd>
+<p><b>HelpFileOffset (4 bytes):</b>
+An unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>HelpFileArray</b> member. </p>
+</dd>
+<dd>
+<p><b>DependentFilesOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>DependentFilesArray</b> member. </p>
+</dd>
+<dd>
+<p><b>MonitorNameOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>MonitorNameArray</b> member. </p>
+</dd>
+<dd>
+<p><b>DefaultDataTypeOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>DefaultDataTypeArray</b> member.</p>
+</dd></dl><p><b>Variable_Data (variable):</b> An array of zero or
+more groups of optional, variable-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">DefaultDataTypeArray (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">MonitorNameArray (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">DependentFilesArray (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">HelpFileArray (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">ConfigFileArray (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">DataFileArray (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">DriverPathArray (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">EnvironmentArray (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">NameArray (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>DefaultDataTypeArray
+(variable):</b> A string that specifies the default data type of print jobs
+created by the driver. The location of this buffer is determined by the value
+of the <b>DefaultDataTypeOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>MonitorNameArray
+(variable):</b> A string that specifies a language monitor. The location of
+this buffer is determined by the value of the <b>MonitorNameOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>DependentFilesArray
+(variable):</b> A multisz that specifies the names of the files that the
+printer driver is dependent on. The location of this buffer is determined by
+the value of the <b>DependentFilesOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>HelpFileArray (variable):</b>
+A string that specifies a file name or a full path and file name for the
+printer driver help file. The location of this buffer is determined by the
+value of the <b>HelpFileOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>ConfigFileArray
+(variable):</b> A string that specifies a file name or a full path and file
+name for the printer driver configuration module. The location of this buffer
+is determined by the value of the <b>ConfigFileOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>DataFileArray (variable):</b>
+A string that specifies a file name or a full path and file name for the file
+that contains printer driver data. The location of this buffer is determined by
+the value of the <b>DataFileOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>DriverPathArray
+(variable):</b> A string that specifies a file name or full path and file name
+for the file that contains the printer driver. The location of this buffer is
+determined by the value of the <b>DependentFilesOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>EnvironmentArray
+(variable):</b> A string that specifies the environment that the printer driver
+supports. The location of this buffer is determined by the value of the <b>EnvironmentOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>NameArray (variable):</b>
+This member MUST contain a string that specifies the print processor name. The
+location of this buffer is determined by the value of the <b>NameOffset</b>
+member. For rules governing print processor names, see section <span><a href="807e0bdd-21a5-4a72-9a6a-1a7fb1b08a8e" data-linktype="relative-path">2.2.4.11</a></span>.</p>
+</dd></dl></div>

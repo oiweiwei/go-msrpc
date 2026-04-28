@@ -1,0 +1,71 @@
+<div class="content" name="DFS_INFO_101" uuid="af9d607e-04e5-4722-8d00-76cf9c7b69f9"><p>The DFS_INFO_101 structure describes the storage state on a
+root, link, root target, or link target.</p><p>The DFS_INFO_101 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_101 {
+   unsigned long State;
+ } DFS_INFO_101;
+</pre></div>
+</dd></dl><p><b>State:</b>   The state of the root,
+link, root target, or link target.</p><dl>
+<dd>
+<p>The following table lists the valid states that can
+be set for a root or a link. Some of these states are used to perform a server
+operation and are not persisted to the DFS metadata, as specified below. For
+more information about some of these states, see section <a href="23dff7a2-3ba8-4fd7-95dd-8e518024362b" data-linktype="relative-path">2.2.2.13</a>.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DFS_VOLUME_STATE_OK 0x00000001</td>
+  <td>The specified DFS root or DFS link is in the normal state.</td>
+ </tr><tr>
+  <td>DFS_VOLUME_STATE_OFFLINE 0x00000003</td>
+  <td>The specified DFS link is offline or unavailable. This flag is valid only for a DFS link. This state is persisted to the DFS metadata.</td>
+ </tr><tr>
+  <td>DFS_VOLUME_STATE_ONLINE 0x00000004</td>
+  <td>The specified DFS link is available. This flag is valid only for a DFS link. This state is persisted to the DFS metadata.</td>
+ </tr><tr>
+  <td>DFS_VOLUME_STATE_RESYNCHRONIZE 0x00000010</td>
+  <td>Forces a resynchronization on the DFS root. This flag is valid only for a DFS root. This operation is an incremental synchronization that picks up only changed objects in the metadata. This state is used to perform a server operation. It is not persisted to the DFS metadata.</td>
+ </tr><tr>
+  <td>DFS_VOLUME_STATE_STANDBY 0x00000020</td>
+  <td>Sets a root volume to standby mode. This flag is valid only for a clustered DFS root. This state is used to perform a server operation. It is not persisted to the DFS metadata.</td>
+ </tr><tr>
+  <td>DFS_VOLUME_STATE_FORCE_SYNC 0x00000040</td>
+  <td>Forces a full resynchronization operation on the DFS root target of a specified domainv2-based DFS namespace or stand-alone DFS namespace to identify DFS links that have been added or deleted. This is not supported on a domainv1-based DFS namespace. DFS links MUST NOT be specified. This state is used to perform a server operation. It is not persisted to the DFS metadata.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>DFS_VOLUME_STATES (0x0000000F) is not relevant here,
+because it is a mask used when reading the volume state, not for setting it.</p>
+</dd>
+<dd>
+<p>The following table lists the valid states that can
+be set for a root target or a link target.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DFS_STORAGE_STATE_OFFLINE 0x00000001</td>
+  <td>This target is offline and unavailable for use.</td>
+ </tr><tr>
+  <td>DFS_STORAGE_STATE_ONLINE 0x00000002</td>
+  <td>This target is online and available for use.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

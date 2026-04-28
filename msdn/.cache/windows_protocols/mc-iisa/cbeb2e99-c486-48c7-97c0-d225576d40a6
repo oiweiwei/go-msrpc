@@ -1,0 +1,26 @@
+<div class="content" name="IAppHostPropertyException" uuid="cbeb2e99-c486-48c7-97c0-d225576d40a6"><p>The IAppHostPropertyException <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+that access the exception information that the administration system
+encountered when processing the corresponding <a href="564b4c1f-13a0-40c4-974b-1cbbd41764b3" data-linktype="relative-path">IAppHostProperty</a>. The
+administration system can indicate errors as encountered by filling in this
+exception. This behavior is defined by the <a href="0d8b3e85-b028-42a1-a373-3fbb8be6e57e" data-linktype="relative-path">IAppHostAdminManager</a>
+metadata &#34;ignoreInvalidAttributes&#34;.</p><p>The IAppHostPropertyException interface inherits opnums 0–9
+from the <a href="e5a97286-155d-40c8-81de-41d7ee0933de" data-linktype="relative-path">IAppHostConfigException</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>InvalidValue</td>
+  <td>Opnum: 10</td>
+ </tr><tr>
+  <td>ValidationFailureReason</td>
+  <td>Opnum: 11</td>
+ </tr><tr>
+  <td>ValidationFailureParameters</td>
+  <td>Opnum: 12</td>
+ </tr></tbody></table><p> </p></div>

@@ -1,0 +1,12 @@
+<div class="content" name="LSAPR_SID_INFORMATION" uuid="f04a771b-c018-4098-81b5-2a819f9b5db8"><p>The LSAPR_SID_INFORMATION structure contains a PRPC_SID
+value.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_SID_INFORMATION {
+   PRPC_SID Sid;
+ } LSAPR_SID_INFORMATION,
+  *PLSAPR_SID_INFORMATION;
+</pre></div>
+</dd></dl><p><b>Sid:</b>  Contains the PRPC_SID value,
+as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">2.4.2.3</a>.
+This field MUST be non-NULL.</p></div>

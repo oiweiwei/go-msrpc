@@ -306,7 +306,7 @@ type LsarpcClient interface {
 	LookupSids2(context.Context, *LookupSids2Request, ...dcerpc.CallOption) (*LookupSids2Response, error)
 
 	// The LsarLookupNames2 method translates a batch of security principal names to their
-	// SID form. It also returns the domains that these names are a part of.<30>
+	// SID form. It also returns the domains that these names are a part of.<31>
 	//
 	// Return Values: The following table contains a summary of the return values that an
 	// implementation MUST return, as specified by the message processing shown after the
@@ -358,7 +358,7 @@ type LsarpcClient interface {
 	// Opnum67NotUsedOnWire
 
 	// The LsarLookupNames3 method translates a batch of security principal names to their
-	// SID form. It also returns the domains that these names are a part of.<28>
+	// SID form. It also returns the domains that these names are a part of.<29>
 	//
 	// Return Values: The following table contains a summary of the return values that an
 	// implementation MUST return, as specified by the message processing shown after the
@@ -2245,6 +2245,8 @@ type TranslatedNameEx struct {
 	//	| 0x00000004 | The SID was found by matching against the last database view, defined in section |
 	//	|            | 3.1.1.1.1.                                                                       |
 	//	+------------+----------------------------------------------------------------------------------+
+	//
+	// All other bits MUST be 0 and ignored on receipt.<11>
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 }
 
@@ -2469,6 +2471,8 @@ type TranslatedSIDEx struct {
 	//	| 0x00000004 | The name was found by matching against the last database view, as defined in     |
 	//	|            | section 3.1.1.1.1.                                                               |
 	//	+------------+----------------------------------------------------------------------------------+
+	//
+	// All other bits MUST be 0 and ignored on receipt.<13>
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 }
 
@@ -2677,6 +2681,8 @@ type TranslatedSIDEx2 struct {
 	//	| 0x00000004 | The name was found by matching against the last database view (see section       |
 	//	|            | 3.1.1.1.1).                                                                      |
 	//	+------------+----------------------------------------------------------------------------------+
+	//
+	// All other bits MUST be 0 and ignored on receipt.<15>
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 }
 
@@ -3797,7 +3803,7 @@ func (o *xxx_LookupNamesOperation) UnmarshalNDRResponse(ctx context.Context, w n
 type LookupNamesRequest struct {
 	// PolicyHandle: Context handle obtained by an LsarOpenPolicy or LsarOpenPolicy2 call.
 	Policy *Handle `idl:"name:PolicyHandle" json:"policy"`
-	// Count: Number of names in the Names array.<32>
+	// Count: Number of names in the Names array.<33>
 	Count uint32 `idl:"name:Count" json:"count"`
 	// Names: Contains the security principal names to translate, as specified in section
 	// 3.1.4.5.
@@ -5268,7 +5274,7 @@ type LookupSids2Request struct {
 	// to their name forms. It MUST be ignored on input.
 	MappedCount uint32 `idl:"name:MappedCount" json:"mapped_count"`
 	// LookupOptions: Flags that control the lookup operation. This parameter is reserved
-	// for future use and SHOULD<33> be set to 0.
+	// for future use and SHOULD<35> be set to 0.
 	LookupOptions uint32 `idl:"name:LookupOptions" json:"lookup_options"`
 	// ClientRevision: Version of the client, which implies the client's capabilities. For
 	// possible values and their meanings, see section 3.1.4.5.
@@ -5713,7 +5719,7 @@ func (o *xxx_LookupNames2Operation) UnmarshalNDRResponse(ctx context.Context, w 
 type LookupNames2Request struct {
 	// PolicyHandle: Context handle obtained by an LsarOpenPolicy or LsarOpenPolicy2 call.
 	Policy *Handle `idl:"name:PolicyHandle" json:"policy"`
-	// Count: Number of security principal names to look up.<31>
+	// Count: Number of security principal names to look up.<32>
 	Count uint32 `idl:"name:Count" json:"count"`
 	// Names: Contains the security principal names to translate, as specified in section
 	// 3.1.4.5.
@@ -6177,7 +6183,7 @@ func (o *xxx_LookupNames3Operation) UnmarshalNDRResponse(ctx context.Context, w 
 type LookupNames3Request struct {
 	// PolicyHandle: Context handle obtained by an LsarOpenPolicy or LsarOpenPolicy2 call.
 	Policy *Handle `idl:"name:PolicyHandle" json:"policy"`
-	// Count: Number of security principal names to look up.<29>
+	// Count: Number of security principal names to look up.<30>
 	Count uint32 `idl:"name:Count" json:"count"`
 	// Names: Contains the security principal names to translate, as specified in section
 	// 3.1.4.5.
@@ -7003,6 +7009,8 @@ type LookupNames4Request struct {
 	// Names: Contains the security principal names to translate. The RPC_UNICODE_STRING
 	// structure is defined in [MS-DTYP] section 2.3.10.
 	//
+	// The following name forms MUST be supported:
+	//
 	// * User principal names (UPNs) ( e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_9d606f55-b798-4def-bf96-97b878bb92c6
 	// ) , such as user_name@example.example.com.
 	//
@@ -7013,6 +7021,9 @@ type LookupNames4Request struct {
 	// ).
 	//
 	// * Unqualified or isolated names, such as user_name.
+	//
+	// The comparisons used by the RPC server MUST NOT be case-sensitive, so case for inputs
+	// is not important.
 	Names []*dtyp.UnicodeString `idl:"name:Names;size_is:(Count)" json:"names"`
 	// TranslatedSids: On successful return, contains the corresponding SID form for security
 	// principal names in the Names parameter. It MUST be ignored on input.
@@ -7057,6 +7068,9 @@ type LookupNames4Request struct {
 	//	|            | STATUS_TRUSTED_RELATIONSHIP_FAILURE, which are not returned for ClientRevision   |
 	//	|            | of 0x00000001. For more information on error codes, see [MS-ERREF].              |
 	//	+------------+----------------------------------------------------------------------------------+
+	//
+	// Values smaller than 0x00000002 SHOULD be assumed to be 0x00000001, and other values
+	// SHOULD be assumed to be 0x00000002.
 	ClientRevision uint32 `idl:"name:ClientRevision" json:"client_revision"`
 }
 

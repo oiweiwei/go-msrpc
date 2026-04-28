@@ -2196,6 +2196,9 @@ type FileInfo struct {
 	// rdcSignatureLevels:  The depth of the RDC signatures that are available for the client
 	// to retrieve. The server MUST allow the client to get signatures at least to this
 	// depth (using RdcGetSignatures (section 3.2.4.1.10)).<7>
+	//
+	// A value of 0 indicates that the file to be served is not suitable for the RDC protocol,
+	// or a non-RDC file transfer is required.
 	SignatureLevels uint8 `idl:"name:rdcSignatureLevels" json:"signature_levels"`
 	// compressionAlgorithm:  This field MUST be set to RDC_UNCOMPRESSED and MUST be ignored
 	// on receipt. Despite the name of this field, data compression is always used as specified

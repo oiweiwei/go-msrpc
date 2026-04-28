@@ -49,7 +49,13 @@ type EventObjectCollectionClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
-	// _NewEnum operation.
+	// The get_NewEnum method gets an IEnumEventObject-based object for enumerating the
+	// underlying collection.
+	//
+	// The get__NewEnum method gets a DCOM object for enumerating the underlying collection.
+	//
+	// Return Values: An HRESULT specifying success or failure. All success codes MUST be
+	// treated the same, and all failure codes MUST be treated the same.
 	Get_NewEnum(context.Context, *Get_NewEnumRequest, ...dcerpc.CallOption) (*Get_NewEnumResponse, error)
 
 	// The get_Item method gets the item in the collection with a specified ID.
@@ -482,8 +488,10 @@ func (o *Get_NewEnumRequest) OpName() string { return "/IEventObjectCollection/v
 // Get_NewEnumResponse structure represents the _NewEnum operation response
 type Get_NewEnumResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	UnknownEnum *dcom.Unknown  `idl:"name:ppUnkEnum" json:"unknown_enum"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppUnkEnum: If the function returns a success HRESULT, this MUST contain a DCOM object
+	// which implements the IEnumEventObject interface.
+	UnknownEnum *dcom.Unknown `idl:"name:ppUnkEnum" json:"unknown_enum"`
 	// Return: The _NewEnum return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

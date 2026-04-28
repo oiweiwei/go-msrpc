@@ -706,6 +706,13 @@ func (o *xxx_CloseConnectionOperation) UnmarshalNDRResponse(ctx context.Context,
 type CloseConnectionRequest struct {
 	// FaxHandle: A pointer to an RPC_FAX_HANDLE that indicates a context handle to close.
 	// For more information about RPC_FAX_HANDLE, see FAX Data Types (section 2.2.74).
+	//
+	// This method returns ERROR_SUCCESS (0x00000000) for success. The ERROR_SUCCESS code
+	// is also returned for failure when the fax handle specified by the FaxHandle argument
+	// indicates an invalid connection context with the intent to mask the failure for a
+	// malicious caller. Otherwise, if an unexpected failure happens for a valid fax handle,
+	// the method returns one of the standard errors that are defined in [MS-ERREF] section
+	// 2.2.
 	Fax *fax.Fax `idl:"name:FaxHandle" json:"fax"`
 }
 
@@ -753,6 +760,13 @@ func (o *CloseConnectionRequest) OpName() string { return "/faxclient/v3/FAX_Clo
 type CloseConnectionResponse struct {
 	// FaxHandle: A pointer to an RPC_FAX_HANDLE that indicates a context handle to close.
 	// For more information about RPC_FAX_HANDLE, see FAX Data Types (section 2.2.74).
+	//
+	// This method returns ERROR_SUCCESS (0x00000000) for success. The ERROR_SUCCESS code
+	// is also returned for failure when the fax handle specified by the FaxHandle argument
+	// indicates an invalid connection context with the intent to mask the failure for a
+	// malicious caller. Otherwise, if an unexpected failure happens for a valid fax handle,
+	// the method returns one of the standard errors that are defined in [MS-ERREF] section
+	// 2.2.
 	Fax *fax.Fax `idl:"name:FaxHandle" json:"fax"`
 	// Return: The FAX_CloseConnection return value.
 	Return uint32 `idl:"name:Return" json:"return"`

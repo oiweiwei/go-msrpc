@@ -1,0 +1,197 @@
+<div class="content" name="GetRawAccountingData" uuid="7955c1aa-14ca-4aa5-a6cf-098cc7ca255e"><p>The GetRawAccountingData method returns raw <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1156c8ef-4d49-462b-9f76-aebcb6c57011" data-linktype="relative-path">accounting</a> data from the
+accounting database (section <a href="c0a51f88-04b5-4945-ba86-e8e8cf2df1fe" data-linktype="relative-path">3.2.1.2</a>).</p><dl>
+<dd>
+<div><pre> [id(4), helpstring(&#34;method GetRawAccountingData&#34;)] HRESULT GetRawAccountingData(
+   [in] BSTR bstrStartingDate,
+   [in] BSTR bstrEndingDate,
+   [in] BSTR bstrMachineName,
+   [out] BSTR* pbstrResult,
+   [out] BOOL* pbIsThereMoreData
+ );
+</pre></div>
+</dd></dl><p><b>bstrStartingDate: </b>A string that specifies the
+starting date of the data, in <a href="edaf1cfc-12b2-4093-8ff8-227c21f9bff5" data-linktype="relative-path">date-and-time</a> format
+(section 2.2.1.3). If this value is not in the correct format, the date range
+is ignored and the complete set of accounting data is returned.</p><p><b>bstrEndingDate: </b>A string that specifies the
+ending date of the data, in date-and-time format. If this value is not in the
+correct format, the date range is ignored and the complete set of accounting
+data is returned.</p><p><b>bstrMachineName: </b>A string that specifies the
+machine name of the accounting database server. A default accounting database
+SHOULD<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a> be defined.</p><p><b>pbstrResult: </b>A pointer to a string that
+returns raw accounting data.</p><dl>
+<dd>
+<p>The string is formatted as a set of rows
+representing <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_9a8eeb7e-bb30-4936-8793-51d73698344e" data-linktype="relative-path">accounting
+process</a> entries. Rows are delimited by carriage return escape characters
+(\r). Each row of raw accounting data contains 38 columns delimited by newline
+escape characters (\n).</p>
+</dd>
+<dd>
+<p>The following table lists the 38 columns in order of
+their position in the row.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Column</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>TimeStamp</td>
+  <td>See CreationSystemTime of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>ComputerName</td>
+  <td>See ComputerName of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>ProcessId</td>
+  <td>See ProcessId of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>ProcessName</td>
+  <td>See ImageName of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>Domain</td>
+  <td>See DomainName of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>User</td>
+  <td>See UserName of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>PolicyName</td>
+  <td>See PolicyName of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>PolicySetTime</td>
+  <td>See PolicySetTime of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>ProcessMatchingCriteria</td>
+  <td>See ResourceGroupName of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>CreationTime</td>
+  <td>See CreationTime of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>EndTime</td>
+  <td>See EndTime of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>ProgramPath</td>
+  <td>See ImagePath of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>CommandLine</td>
+  <td>See ProcessCommandLine of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>SessionId</td>
+  <td>See SessionId of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>ThreadCount</td>
+  <td>See ThreadCount of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>TotalCPU</td>
+  <td>See TotalCPU of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>ElapsedTime</td>
+  <td>See ElapsedTime of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>KernelModeTime</td>
+  <td>See KernelModeTime of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>UserModeTime</td>
+  <td>See UserModeTime of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>PageFileUsage</td>
+  <td>See PageFileUsage of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>PeakPageFileUsage</td>
+  <td>See PeakPageFileUsage of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>PageFaultCount</td>
+  <td>See PageFaultCount of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>VirtualSize</td>
+  <td>See VirtualSize of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>PeakVirtualSize</td>
+  <td>See PeakVirtualSize of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>WorkingSetSize</td>
+  <td>See WorkingSetSize of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>PeakWorkingSetSize</td>
+  <td>See PeakWorkingSetSize of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>PrivatePageCount</td>
+  <td>See PrivatePageCount of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>QuotaPagedPoolUsage</td>
+  <td>See QuotaPagedPoolUsage of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>QuotaPeakPagedPoolUsage</td>
+  <td>See QuotaPeakPagedPoolUsage of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>QuotaNonPagedPoolUsage</td>
+  <td>See QuotaNonPagedPoolUsage of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>QuotaPeakNonPagedPoolUsage</td>
+  <td>See QuotaPeakNonPagedPoolUsage of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>ReadOperationCount</td>
+  <td>See ReadOperationCount of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>ReadTransferCount</td>
+  <td>See ReadTransferCount of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>WriteOperationCount</td>
+  <td>See WriteOperationCount of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>WriteTransferCount</td>
+  <td>See WriteTransferCount of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>OtherOperationCount</td>
+  <td>See OtherOperationCount of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>OtherTransferCount</td>
+  <td>See OtherTransferCount of accounting database in section 3.2.1.2.</td>
+ </tr><tr>
+  <td>GroupId</td>
+  <td>See GroupId of accounting database in section 3.2.1.2.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>pbIsThereMoreData: </b>A pointer to a Boolean
+value that returns whether more data is available.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success, or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Operation successful.</td>
+ </tr><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>One or more arguments are invalid.</td>
+ </tr><tr>
+  <td>0xC1FF01F7 WRM_ERR_ACCOUNTING_FAILED</td>
+  <td>WSRM encountered an error in accounting.</td>
+ </tr><tr>
+  <td>0xC1FF01FA WRM_ERR_WYUKON_NOT_CONNECTABLE</td>
+  <td>Cannot establish a connection to the accounting database due to an error other than one of the errors of the WRM_ERR_WYUKON_CORRUPTED return value.</td>
+ </tr><tr>
+  <td>0xC1FF01FB WRM_ERR_WYUKON_CORRUPTED</td>
+  <td>Cannot establish a connection to the accounting database; either the database is in single-user mode and already connected, or it is in an invalid or corrupted state.</td>
+ </tr><tr>
+  <td>0xC1FF01FC WRM_ERR_WYUKON_NOT_INSTALLED</td>
+  <td>The accounting database is not installed on the specified server.</td>
+ </tr><tr>
+  <td>0xC1FF0203 WRM_ERR_JET_SERVER_TOO_BUSY</td>
+  <td>The server can service only one accounting request at a time.&lt;44&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="d5942816-752f-480a-9712-38ef0a248b6a" data-linktype="relative-path">IWRMAccounting</a> interface
+methods are specified in section 3.2.4.3.</p></div>

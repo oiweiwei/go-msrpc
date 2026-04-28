@@ -1,0 +1,59 @@
+<div class="content" name="RenameResourceGroup" uuid="d7b8429a-dc3b-430d-bb3c-def363c21162"><p>The RenameResourceGroup renames an existing <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_04c2dc43-6f4a-432d-bca6-ceeef2d5f2ae" data-linktype="relative-path">resource group</a>.</p><dl>
+<dd>
+<div><pre> [id(5), helpstring(&#34;method RenameResourceGroup&#34;)] HRESULT RenameResourceGroup(
+   [in] BSTR bstrNewResourceGroupName,
+   [in] BSTR bstrOldResourceGroupName
+ );
+</pre></div>
+</dd></dl><p><b>bstrNewResourceGroupName: </b>A string that
+specifies the new name of the resource group.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bstrOldResourceGroupName: </b>A string that
+specifies the name of the resource group to be renamed.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>One or more arguments are invalid.</td>
+ </tr><tr>
+  <td>0xC1FF006F WRM_ERR_ID_VALUE</td>
+  <td>The specified name contains characters that are valid. The name cannot start with a hyphen (&#34;-&#34;), cannot contain spaces, and cannot contain any of the following characters:   \   / ? * | : &lt; &gt; &#34; , ;</td>
+ </tr><tr>
+  <td>0xC1FF012D WRM_ERR_TOO_LONG_RESOURCE_GROUP_ID</td>
+  <td>The resource group name has exceeded an implementation-defined limit. &lt;121&gt;.</td>
+ </tr><tr>
+  <td>0xC1FF012E WRM_ERR_RESOURCEGROUPID_INVALID</td>
+  <td>The specified resource group does not exist.</td>
+ </tr><tr>
+  <td>0Xc1FF012F WRM_ERR_RESOURCEGROUPID_ALREADY_EXISTS</td>
+  <td>A resource group with the specified name already exists.</td>
+ </tr><tr>
+  <td>0xC1FF0130 WRM_ERR_RESOURCEGROUPID_RESERVED_WORD</td>
+  <td>&#34;\&#34; is a reserved name for resource group identifiers.</td>
+ </tr><tr>
+  <td>0xC1FF0138 WRM_ERR_RESERVED_RESOURCEGROUP</td>
+  <td>The specified resource group is built-in. It cannot be modified.</td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a314adf4-0bff-40d1-a5b2-d909dcf176a3" data-linktype="relative-path">IWRMResourceGroup</a>
+interface methods are specified in section 3.2.4.10.</p></div>

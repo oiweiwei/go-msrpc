@@ -1,0 +1,39 @@
+<div class="content" name="ApiCloseBatchPort" uuid="6698ab67-aa8d-47f9-99ca-a1196f9f2f6d"><p>(Protocol Version 3) The ApiCloseBatchPort method instructs
+the <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+to free any context information that is created in a previous <span><a href="8f8778db-0dbe-473b-b786-30d4c2c54978" data-linktype="relative-path">ApiCreateBatchPort</a></span>
+method.</p><p>The server SHOULD accept an ApiCloseBatchPort request if its
+<span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_a93e2fea-3006-4a06-b48f-fdb36d9abac9" data-linktype="relative-path">protocol
+server state</a></span> is read-only, and the server MUST accept the request
+for processing if it is in the read/write state, as specified in section <span><a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a></span>.</p><p>The server SHOULD accept an ApiCloseBatchPort request if the
+client&#39;s access level is at least &#34;Read&#34; (section <span><a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a></span>).</p><dl>
+<dd>
+<div><pre> error_status_t ApiCloseBatchPort(
+   [in, out] HBATCH_PORT_RPC * phBatchPort
+ );
+</pre></div>
+</dd></dl><p><b>phBatchPort: </b>A pointer to an <span><a href="e273a61a-e2e6-4901-a3fa-2d3a21ca42f5" data-linktype="relative-path">HBATCH_PORT_RPC</a></span>
+context handle that was obtained in a previous ApiCreateBatchPort method call.
+Upon success, the server MUST set to NULL (0x00000000) the context handle
+pointed to by this parameter.</p><p><b>Return Values: </b>The method MUST return the
+following error codes for the specified conditions.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 ERROR_SUCCESS</td>
+  <td>Success.</td>
+ </tr><tr>
+  <td>0x00000006 ERROR_INVALID_HANDLE</td>
+  <td>The data that is pointed to by the phBatchPort parameter does not represent a valid HBATCH_PORT_RPC context handle.</td>
+ </tr></tbody></table>
+</dd></dl><p>For any other condition, this method MUST return a value
+that is not one of the values listed in the preceding table. The <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p></div>

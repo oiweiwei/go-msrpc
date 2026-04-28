@@ -1,0 +1,73 @@
+<div class="content" name="LsarCreateTrustedDomainEx" uuid="6817095d-d341-4d03-93d7-e9bdca2d3eef"><p>The LsarCreateTrustedDomainEx method is invoked to create a
+new <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted
+domain object (TDO)</a></span>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarCreateTrustedDomainEx(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PLSAPR_TRUSTED_DOMAIN_INFORMATION_EX TrustedDomainInformation,
+   [in] PLSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION AuthenticationInformation,
+   [in] ACCESS_MASK DesiredAccess,
+   [out] LSAPR_HANDLE* TrustedDomainHandle
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+obtained from either <span><a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a></span> or <span><a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a></span>.</p><p><b>TrustedDomainInformation: </b>Information about
+the new TDO to be created.</p><p><b>AuthenticationInformation: </b>Encrypted
+authentication information for the new TDO.</p><p><b>DesiredAccess: </b>An access mask that specifies
+desired access to the TDO handle.</p><p><b>TrustedDomainHandle: </b>Used to return the handle
+for the newly created TDO.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 STATUS_SUCCESS</td>
+  <td>The request was successfully completed.</td>
+ </tr><tr>
+  <td>0xC0000022 STATUS_ACCESS_DENIED</td>
+  <td>The caller does not have the permissions to perform this operation.</td>
+ </tr><tr>
+  <td>0xC000000D STATUS_INVALID_PARAMETER</td>
+  <td>One of the supplied arguments is invalid.</td>
+ </tr><tr>
+  <td>0xC0000300 STATUS_NOT_SUPPORTED_ON_SBS</td>
+  <td>The operation is not supported on a particular product.&lt;104&gt;</td>
+ </tr><tr>
+  <td>0xC00000DD STATUS_INVALID_DOMAIN_STATE</td>
+  <td>The operation cannot complete in the current state of the domain.</td>
+ </tr><tr>
+  <td>0xC00002B1 STATUS_DIRECTORY_SERVICE_REQUIRED</td>
+  <td>The Active Directory service was not available on the server.</td>
+ </tr><tr>
+  <td>0xC0000078 STATUS_INVALID_SID</td>
+  <td>The security identifier of the trusted domain is not valid.</td>
+ </tr><tr>
+  <td>0xC00002E9 STATUS_CURRENT_DOMAIN_NOT_ALLOWED</td>
+  <td>Trust cannot be established with the current domain.</td>
+ </tr><tr>
+  <td>0xC0000035 STATUS_OBJECT_NAME_COLLISION</td>
+  <td>Another TDO already exists that matches some of the identifying information of the supplied information.</td>
+ </tr><tr>
+  <td>0xC0000008 STATUS_INVALID_HANDLE</td>
+  <td>PolicyHandle is not a valid handle.</td>
+ </tr><tr>
+  <td>0xC0000401 STATUS_PER_USER_TRUST_QUOTA_EXCEEDED</td>
+  <td>The caller&#39;s quota for the maximum number of TDOs that can be created by control access right Create-Inbound-Trust is exceeded.</td>
+ </tr><tr>
+  <td>0xC0000402 STATUS_ALL_USER_TRUST_QUOTA_EXCEEDED</td>
+  <td>The combined users&#39; quota for the maximum number of TDOs that can be created by control access right Create-Inbound-Trust is exceeded.</td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message MUST be processed in an identical manner to <span><a href="cc86a55d-b619-48fd-998a-65cca15efeb9" data-linktype="relative-path">LsarCreateTrustedDomainEx2</a></span>,
+with the following exceptions.</p><p><i>AuthenticationInformation</i> is a structure containing
+authentication information for the trusted domain. The authentication
+information is not encrypted, which makes this an insecure message to call. As
+a result, callers SHOULD NOT invoke this message and SHOULD instead call
+LsarCreateTrustedDomainEx2.</p></div>

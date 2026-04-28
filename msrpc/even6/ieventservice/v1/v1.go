@@ -5512,6 +5512,8 @@ type ExportLogRequest struct {
 	//	|                                        | that are specified in the query are present, or if the channelPath parameter     |
 	//	|                                        | specifies channels that do not exist.                                            |
 	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The server MAY ignore unrecognized flag combinations.<28>
 	Flags uint32 `idl:"name:flags" json:"flags"`
 }
 

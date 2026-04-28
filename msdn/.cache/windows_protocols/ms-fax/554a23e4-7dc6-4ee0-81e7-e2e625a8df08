@@ -1,0 +1,188 @@
+<div class="content" name="FAX_TAPI_LINECOUNTRY_ENTRY" uuid="554a23e4-7dc6-4ee0-81e7-e2e625a8df08"><p>The <b>FAX_TAPI_LINECOUNTRY_ENTRYW</b> data type defines the
+arrangement of data inside the <b>FAX_TAPI_LINECOUNTRY_LISTW</b> (section <a href="a49a1eba-5cfb-4fec-848b-cf55a9e1c8e2" data-linktype="relative-path">2.2.51</a>) structure, which
+can be passed as an out parameter to <b>FAX_GetCountryList</b> (section <a href="8619db79-4289-4563-b7fe-ad423b072622" data-linktype="relative-path">3.1.4.1.37</a>). This
+structure holds information about a specific country/region in the array of <b>FAX_TAPI_LINECOUNTRY_LISTW</b>.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Fixed_Portion (16 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">Variable_Data (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (16 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">dwCountryID</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwCountryCode</td>
+ </tr>
+ <tr>
+  <td colspan="32">lpcwstrCountryNameOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">lpcwstrLongDistanceRuleOffset</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwCountryID (4 bytes): </b>A
+<b>DWORD</b> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+that holds the country/region identifier.</p>
+</dd>
+<dd>
+<p><b>dwCountryCode (4 bytes): </b>A
+<b>DWORD</b> that holds the country/region code.</p>
+</dd>
+<dd>
+<p><b>lpcwstrCountryNameOffset
+(4 bytes): </b>Offset to the <b>lpwstrCountryName</b> field in the <b>Variable_Data</b>
+block.</p>
+</dd>
+<dd>
+<p><b>lpcwstrLongDistanceRuleOffset
+(4 bytes): </b>Offset to the <b>lpwstrLongDistanceRule</b> field in the <b>Variable_Data</b>
+block.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">lpcwstrCountryName (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">lpcwstrLongDistanceRule (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>lpcwstrCountryName
+(variable): </b>A null-terminated character string that holds the
+country/region name.</p>
+</dd>
+<dd>
+<p><b>lpcwstrLongDistanceRule
+(variable): </b>A null-terminated character string that holds the dialing rule
+for directly dialed calls to other areas in the same country/region.</p>
+</dd></dl></div>

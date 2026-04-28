@@ -1,0 +1,11 @@
+<div class="content" name="LsarOpenPolicy2" uuid="40a316ae-1bae-4aa1-92cd-650cdaae1863"><p>The LsarOpenPolicy2 method opens a context handle to the <a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_ae65dac0-cd24-4e83-a946-6d1097b71553" data-linktype="relative-path">RPC server</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarOpenPolicy2(
+   [in, unique, string] wchar_t* SystemName,
+   [in] PLSAPR_OBJECT_ATTRIBUTES ObjectAttributes,
+   [in] ACCESS_MASK DesiredAccess,
+   [out] LSAPR_HANDLE* PolicyHandle
+ );
+</pre></div>
+</dd></dl><p>Processing rules for this message are defined in <a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a>
+section <a href="../ms-lsad/9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">3.1.4.4.1</a>.</p></div>

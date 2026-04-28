@@ -73,9 +73,9 @@ type ServiceISCSIClient interface {
 	// Opnum07NotUsedOnWire operation.
 	// Opnum07NotUsedOnWire
 
-	// The SetInitiatorSharedSecret method sets the initiator CHAP shared secret that is
-	// used for mutual CHAP authentication when the initiator authenticates the target.
-	// For more information on CHAP, see [MS-CHAP].<74>
+	// The SetInitiatorSharedSecret method sets the initiator CHAP shared secret ([MS-CHAP])
+	// that is used for mutual CHAP authentication when the initiator authenticates the
+	// target.<74>
 	//
 	// Return Values: The method MUST return zero or a non-error HRESULT (as specified in
 	// [MS-ERREF]) to indicate success, or return an implementation-specific nonzero error

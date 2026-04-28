@@ -1,0 +1,55 @@
+<div class="content" name="SamrQueryDisplayInformation2" uuid="9aa37aa4-f77e-49b1-9993-5c92ba97cd62"><p>The SamrQueryDisplayInformation2 method obtains a list of
+accounts in ascending name-sorted order, starting at a specified index.</p><dl>
+<dd>
+<div><pre> long SamrQueryDisplayInformation2(
+   [in] SAMPR_HANDLE DomainHandle,
+   [in] DOMAIN_DISPLAY_INFORMATION DisplayInformationClass,
+   [in] unsigned long Index,
+   [in] unsigned long EntryCount,
+   [in] unsigned long PreferredMaximumLength,
+   [out] unsigned long* TotalAvailable,
+   [out] unsigned long* TotalReturned,
+   [out, switch_is(DisplayInformationClass)] 
+     PSAMPR_DISPLAY_INFO_BUFFER Buffer
+ );
+</pre></div>
+</dd></dl><p>See the description of <span><a href="7cd1c6d0-8819-4a58-9721-5be588c1d4ad" data-linktype="relative-path">SamrQueryDisplayInformation3 (section 3.1.5.3.1)</a></span>
+for details, because the method-interface arguments and message processing are
+identical.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a></span>.</p><p>The server MUST behave as with a call to
+SamrQueryDisplayInformation3, with the following parameter values.</p><table><thead>
+  <tr>
+   <th>
+   <p>Parameter name</p>
+   </th>
+   <th>
+   <p>Parameter value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DomainHandle</td>
+  <td>SamrQueryDisplayInformation2.DomainHandle</td>
+ </tr><tr>
+  <td>DisplayInformationClass</td>
+  <td>SamrQueryDisplayInformation2.DisplayInformationClass</td>
+ </tr><tr>
+  <td>Index</td>
+  <td>SamrQueryDisplayInformation2.Index</td>
+ </tr><tr>
+  <td>EntryCount</td>
+  <td>SamrQueryDisplayInformation2.EntryCount</td>
+ </tr><tr>
+  <td>PreferredMaximumLength</td>
+  <td>SamrQueryDisplayInformation2.PreferredMaximumLength</td>
+ </tr><tr>
+  <td>TotalAvailable</td>
+  <td>SamrQueryDisplayInformation2.TotalAvailable</td>
+ </tr><tr>
+  <td>TotalReturned</td>
+  <td>SamrQueryDisplayInformation2.TotalReturned</td>
+ </tr><tr>
+  <td>Buffer</td>
+  <td>SamrQueryDisplayInformation2.Buffer</td>
+ </tr></tbody></table><p> </p></div>

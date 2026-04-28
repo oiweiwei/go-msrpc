@@ -42,6 +42,9 @@ type TapsrvServer interface {
 	//	|                                    | user credentials of the client do not have administrator access on the server.   |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
 	//
+	// On success, the server adds the client to the client list and updates the client's
+	// machine name and the user's domain account name.
+	//
 	// Exceptions Thrown:
 	//
 	// No exceptions are thrown beyond those thrown by the underlying RPC protocol, as specified

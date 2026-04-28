@@ -1,0 +1,10 @@
+<div class="content" name="THINWIRECACHE" uuid="3adaf1a0-f632-4440-aeca-103d9e4097ea"><p>The ThinWireCache structure used for the terminal server&#39;s
+display for RESERVED_CACHE.</p><dl>
+<dd>
+<div><pre> typedef struct _THINWIRECACHE {
+   ULONG CacheReads;
+   ULONG CacheHits;
+ } THINWIRECACHE,
+  *PTHINWIRECACHE;
+</pre></div>
+</dd></dl><p><b>CacheReads:</b>  Number of cache reads.</p><p><b>CacheHits:</b>  Number of cache hits.</p></div>

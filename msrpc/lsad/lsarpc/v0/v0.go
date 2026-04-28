@@ -268,7 +268,7 @@ type LsarpcClient interface {
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0xC000000D STATUS_INVALID_PARAMETER             | One of the supplied arguments is invalid.                                        |
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0xC0000300 STATUS_NOT_SUPPORTED_ON_SBS          | The operation is not supported on a particular product.<101>                     |
+	//	| 0xC0000300 STATUS_NOT_SUPPORTED_ON_SBS          | The operation is not supported on a particular product.<105>                     |
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0xC00002B1 STATUS_DIRECTORY_SERVICE_REQUIRED    | The Active Directory service was not available on the server.                    |
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
@@ -1118,7 +1118,7 @@ type LsarpcClient interface {
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0xC000000D STATUS_INVALID_PARAMETER             | One of the supplied arguments is invalid.                                        |
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0xC0000300 STATUS_NOT_SUPPORTED_ON_SBS          | The operation is not supported on a particular product.<100>                     |
+	//	| 0xC0000300 STATUS_NOT_SUPPORTED_ON_SBS          | The operation is not supported on a particular product.<104>                     |
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0xC00000DD STATUS_INVALID_DOMAIN_STATE          | The operation cannot complete in the current state of the domain.                |
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
@@ -1230,7 +1230,7 @@ type LsarpcClient interface {
 	// LSATM58
 
 	// The LsarCreateTrustedDomainEx2 method is invoked to create a new trusted domain object
-	// (TDO).<96>
+	// (TDO).<100>
 	//
 	// Return Values: The following is a summary of the return values that an implementation
 	// MUST return, as specified by the message processing that follows.
@@ -1247,7 +1247,7 @@ type LsarpcClient interface {
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0xC000000D STATUS_INVALID_PARAMETER             | One of the supplied arguments is invalid.                                        |
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| 0xC0000300 STATUS_NOT_SUPPORTED_ON_SBS          | The operation is not supported on a particular product.<97>                      |
+	//	| 0xC0000300 STATUS_NOT_SUPPORTED_ON_SBS          | The operation is not supported on a particular product.<101>                     |
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
 	//	| 0xC00000DD STATUS_INVALID_DOMAIN_STATE          | The operation cannot complete in the current state of the domain.                |
 	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
@@ -2012,7 +2012,7 @@ func (o *SecurityQualityOfService) UnmarshalNDR(ctx context.Context, w ndr.Reade
 // ObjectAttributes structure represents LSAPR_OBJECT_ATTRIBUTES RPC structure.
 //
 // The LSAPR_OBJECT_ATTRIBUTES structure specifies an object and its properties. This
-// structure MUST be ignored except for the RootDirectory field, which MUST be NULL.<17>
+// structure MUST be ignored except for the RootDirectory field, which MUST be NULL.<18>
 type ObjectAttributes struct {
 	// Length:  The length of the structure, in bytes. This field is not used and MUST be
 	// ignored.
@@ -2358,7 +2358,7 @@ var (
 	PolicyInformationClassMachineAccountInformation PolicyInformationClass = 15
 	// PolicyLastEntry: Not used in this protocol. Present to mark the end of the enumeration.
 	//
-	// The following citation contains a timeline of when each enumeration value was introduced.<20>
+	// The following citation contains a timeline of when each enumeration value was introduced.<22>
 	//
 	// The values in this enumeration are used to define the contents of the LSAPR_POLICY_INFORMATION
 	// (section 2.2.4.2) union, where the structure associated with each enumeration value
@@ -2611,6 +2611,8 @@ type PolicyAuditLogInfo struct {
 	// After a shutdown has been initiated, this flag MUST be set to TRUE (nonzero). If
 	// an administrator can correct the situation before the shutdown becomes irreversible,
 	// this flag MUST be reset to FALSE (0).
+	//
+	// This field MUST be ignored for set operations.
 	AuditLogFullShutdownInProgress uint8 `idl:"name:AuditLogFullShutdownInProgress" json:"audit_log_full_shutdown_in_progress"`
 	// TimeToShutdown:  A 64-bit value that represents the number of 100-nanosecond intervals
 	// since January 1, 1601, UTC. If the AuditLogFullShutdownInProgress flag is set, this
@@ -3271,7 +3273,7 @@ func (o ForestTrustRecordType) String() string {
 // The LSA_FOREST_TRUST_BINARY_DATA structure is used to communicate a forest trust
 // record. This structure is not used in the current version of the protocol.
 type ForestTrustBinaryData struct {
-	// Length:  The count of bytes in Buffer.<37>
+	// Length:  The count of bytes in Buffer.<39>
 	Length uint32 `idl:"name:Length" json:"length"`
 	// Buffer:  The trust record. If the Length field has a value other than 0, this field
 	// MUST NOT be NULL.
@@ -3811,7 +3813,7 @@ func (o *ForestTrustData_Data) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 // The LSA_FOREST_TRUST_INFORMATION structure is a collection of LSA_FOREST_TRUST_RECORD
 // (section 2.2.7.21) structures.
 type ForestTrustInformation struct {
-	// RecordCount:  A count of elements in the Entries array.<38>
+	// RecordCount:  A count of elements in the Entries array.<40>
 	RecordCount uint32 `idl:"name:RecordCount" json:"record_count"`
 	// Entries:  An array of LSA_FOREST_TRUST_RECORD structures. If the RecordCount field
 	// has a value other than 0, this field MUST NOT be NULL.
@@ -4383,7 +4385,7 @@ func (o *AccountEnumBuffer) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 // The LSAPR_SR_SECURITY_DESCRIPTOR structure is used to communicate a self-relative
 // security descriptor, as specified in [MS-DTYP] section 2.4.6.
 type SrSecurityDescriptor struct {
-	// Length:  The count of bytes in SecurityDescriptor.<18>
+	// Length:  The count of bytes in SecurityDescriptor.<19>
 	Length uint32 `idl:"name:Length" json:"length"`
 	// SecurityDescriptor:  The contiguous buffer containing the self-relative security
 	// descriptor. This field MUST contain the Length number of bytes. If the Length field
@@ -4511,6 +4513,8 @@ type LUIDAndAttributes struct {
 	// D: The privilege is enabled by default.
 	//
 	// E: The privilege is enabled.
+	//
+	// All other bits SHOULD be 0 and ignored upon receipt.
 	Attributes uint32 `idl:"name:Attributes" json:"attributes"`
 }
 
@@ -4564,7 +4568,7 @@ func (o *LUIDAndAttributes) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 //
 // The LSAPR_PRIVILEGE_SET structure defines a set of privileges that belong to an account.
 type PrivilegeSet struct {
-	// PrivilegeCount:  This field contains the number of privileges.<26>
+	// PrivilegeCount:  This field contains the number of privileges.<28>
 	PrivilegeCount uint32 `idl:"name:PrivilegeCount" json:"privilege_count"`
 	// Control:  This field contains bitmapped values that define the properties of the
 	// privilege set.
@@ -4579,6 +4583,8 @@ type PrivilegeSet struct {
 	//
 	// O: Valid for a set operation indicating that all specified privileges that are not
 	// already assigned are to be assigned.
+	//
+	// All other bits SHOULD be set to zero when sent, and ignored on receipt.
 	Control uint32 `idl:"name:Control" json:"control"`
 	// Privilege:  An array of LSAPR_LUID_AND_ATTRIBUTES structures. If the PrivilegeCount
 	// field has a value different than 0, this field MUST NOT be NULL.
@@ -4888,9 +4894,9 @@ func (o *PrivilegeEnumBuffer) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 // The LSAPR_CR_CIPHER_VALUE structure is a counted buffer of bytes containing a secret
 // object.
 type CRCipherValue struct {
-	// Length:  This field contains the number of valid bytes in the Buffer field.<27>
+	// Length:  This field contains the number of valid bytes in the Buffer field.<29>
 	Length uint32 `idl:"name:Length" json:"length"`
-	// MaximumLength:  This field contains the number of allocated bytes in the Buffer field.<28>
+	// MaximumLength:  This field contains the number of allocated bytes in the Buffer field.<30>
 	MaximumLength uint32 `idl:"name:MaximumLength" json:"maximum_length"`
 	// Buffer:  This field contains the actual secret data. If the value of the MaximumLength
 	// field is greater than 0, this field MUST contain a non-NULL value. This field is
@@ -5151,7 +5157,7 @@ func (o *TrustedEnumBuffer) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 type PolicyAccountDomInfo struct {
 	// DomainName:  This field contains a name for the account domain that is subjected
 	// to the restrictions of a NetBIOS name, as specified in [RFC1088]. This value SHOULD
-	// be used (by implementations external to this protocol) to identify the domain  via
+	// be used (by implementations external to this protocol) to identify the domain via
 	// the NetBIOS API, as specified in [RFC1088].
 	DomainName *dtyp.UnicodeString `idl:"name:DomainName" json:"domain_name"`
 	// DomainSid:  The SID of the account domain. This field MUST NOT be NULL.
@@ -5325,7 +5331,7 @@ func (o *PolicyPrimaryDomInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 // PolicyDNSDomainInfo structure represents LSAPR_POLICY_DNS_DOMAIN_INFO RPC structure.
 //
 // The LSAPR_POLICY_DNS_DOMAIN_INFO structure is used to allow callers to query and
-// set the server's primary domain.<22>
+// set the server's primary domain.<24>
 //
 // The following structure corresponds to the PolicyDnsDomainInformation and PolicyDnsDomainInformationInt
 // information classes.
@@ -5472,6 +5478,11 @@ func (o *PolicyDNSDomainInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 type PolicyPDAccountInfo struct {
 	// Name: Represents the name of an account in the domain that is to be used for authentication
 	// and name/ID lookup requests.
+	//
+	// typedef struct _LSAPR_POLICY_PD_ACCOUNT_INFO {
+	//    RPC_UNICODE_STRING Name;
+	//  } LSAPR_POLICY_PD_ACCOUNT_INFO,
+	//   *PLSAPR_POLICY_PD_ACCOUNT_INFO;
 	Name *dtyp.UnicodeString `idl:"name:Name" json:"name"`
 }
 
@@ -5617,7 +5628,7 @@ type PolicyAuditEventsInfo struct {
 	//	|                                         | given type.                                                                      |
 	//	+-----------------------------------------+----------------------------------------------------------------------------------+
 	EventAuditingOptions []uint32 `idl:"name:EventAuditingOptions;size_is:(MaximumAuditEventCount)" json:"event_auditing_options"`
-	// MaximumAuditEventCount:  The number of entries in the EventAuditingOptions array.<21>
+	// MaximumAuditEventCount:  The number of entries in the EventAuditingOptions array.<23>
 	MaximumAuditEventCount uint32 `idl:"name:MaximumAuditEventCount" json:"maximum_audit_event_count"`
 }
 
@@ -6674,7 +6685,7 @@ type PolicyDomainEFSInfo struct {
 	// InfoLength:  The count of bytes in the EfsBlob.
 	InfoLength uint32 `idl:"name:InfoLength" json:"info_length"`
 	// EfsBlob:  An array of bytes, of size InfoLength bytes. If the value of InfoLength
-	// is other than 0, this field MUST NOT be NULL. The syntax of this blob SHOULD<24>
+	// is other than 0, this field MUST NOT be NULL. The syntax of this blob SHOULD<26>
 	// conform to the layout specified in [MS-GPEF] section 2.2.1.2.1.
 	Blob []byte `idl:"name:EfsBlob;size_is:(InfoLength)" json:"blob"`
 }
@@ -7063,7 +7074,7 @@ func (o *TrustedDomainNameInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 // of domain controllers (DCs) in a trusted domain. The following structure corresponds
 // to the TrustedControllersInformation information class.
 type TrustedControllersInfo struct {
-	// Entries:  The count of names.<31>
+	// Entries:  The count of names.<33>
 	Entries uint32 `idl:"name:Entries" json:"entries"`
 	// Names:  This field contains an array of DC names that are subject to the restrictions
 	// of a NetBIOS name, as specified in [RFC1088]. This field SHOULD be used (by implementations
@@ -7319,6 +7330,8 @@ type TrustedDomainInformationEx struct {
 	// O: The trust is outbound.
 	//
 	// All other bits SHOULD be 0 and ignored upon receipt.
+	//
+	// Maps to the Trust Direction field, as specified in section 3.1.1.5.
 	TrustDirection uint32 `idl:"name:TrustDirection" json:"trust_direction"`
 	// TrustType:  This field specifies the type of trust between the local domain and the
 	// named domain.
@@ -7341,52 +7354,56 @@ type TrustedDomainInformationEx struct {
 	//	+------------+----------------------------------------------------------------------------------+
 	//
 	// Note  Other values SHOULD NOT be set.
+	//
+	// Maps to the Trust Type field, as specified in section 3.1.1.5.
 	TrustType uint32 `idl:"name:TrustType" json:"trust_type"`
 	// TrustAttributes:  This field contains bitmapped values that define the attributes
-	// of the trust.<32>
+	// of the trust.<34>
 	//
-	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---------+---------+---+---------+---------+---------+---------+---------+---------+---------+---------+
-	//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 |    1    |    2    | 3 |    4    |    5    |    6    |    7    |    8    |    9    |    3    |    1    |
-	//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |         |         |   |         |         |         |         |         |         |    0    |         |
-	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---------+---------+---+---------+---------+---------+---------+---------+---------+---------+---------+
-	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---------+---------+---+---------+---------+---------+---------+---------+---------+---------+---------+
-	//	| R | R | R | R | R | R | R | R | O | O | R | R | R | R | R | R | R | R | R | R | R | T A P T | T A N C | R | T A R C | T A T E | T A W F | T A C O | T A F T | T A Q D | T A U O | T A N T |
-	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---------+---------+---+---------+---------+---------+---------+---------+---------+---------+---------+
+	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---------+---------+---------+---+---------+---------+---------+---------+---------+---------+---------+---------+
+	//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |    2    |    1    |    2    | 3 |    4    |    5    |    6    |    7    |    8    |    9    |    3    |    1    |
+	//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   |    0    |         |         |   |         |         |         |         |         |         |    0    |         |
+	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---------+---------+---------+---+---------+---------+---------+---------+---------+---------+---------+---------+
+	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---------+---------+---------+---+---------+---------+---------+---------+---------+---------+---------+---------+
+	//	| R | R | R | R | R | R | R | R | O | O | R | R | R | R | R | R | R | R | R | R | T A E C | T A P T | T A N C | R | T A R C | T A T E | T A W F | T A C O | T A F T | T A Q D | T A U O | T A N T |
+	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---------+---------+---------+---+---------+---------+---------+---------+---------+---------+---------+---------+
 	//
 	// TrustAttribute values are described in section 3.1.1.5. The following table shows
 	// how these values map to the Trust Attributes field in section 3.1.1.5.
 	//
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	|                                                             |                                                                                  |
-	//	|                            VALUE                            |                                     MAPPING                                      |
-	//	|                                                             |                                                                                  |
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| TANT (TRUST_ATTRIBUTE_NON_TRANSITIVE)                       | Trust Attributes: Non-transitive                                                 |
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| TAUO (TRUST_ATTRIBUTE_UPLEVEL_ONLY)                         | Trust Attributes: Uplevel only                                                   |
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| TAQD (TRUST_ATTRIBUTE_QUARANTINED_DOMAIN)                   | Trust Attributes: Quarantined                                                    |
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| TAFT (TRUST_ATTRIBUTE_FOREST_TRANSITIVE)                    | Trust Attributes: Forest trust                                                   |
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| TACO (TRUST_ATTRIBUTE_CROSS_ORGANIZATION)                   | Trust Attributes: Cross organization                                             |
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| TAWF (TRUST_ATTRIBUTE_WITHIN_FOREST)                        | Trust Attributes: Within forest                                                  |
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| TATE (TRUST_ATTRIBUTE_TREAT_AS_EXTERNAL)                    | Trust Attributes: Treat as external                                              |
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| TARC (TRUST_ATTRIBUTE_USES_RC4_ENCRYPTION)                  | Trust Attributes: Use RC4 Encryption (for more information about RC4, see        |
-	//	|                                                             | [SCHNEIER] section 17.1).                                                        |
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| TANC (TRUST_ATTRIBUTE_CROSS_ORGANIZATION_NO_TGT_DELEGATION) | Trust Attributes: Tokens must not be trusted for delegation.                     |
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| TAPT (TRUST_ATTRIBUTE_PIM_TRUST)                            | Trust Attributes: PrivilegedIdentityManagement (PIM) trust.                      |
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| O                                                           | Obsolete. SHOULD be set to 0.                                                    |
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
-	//	| R                                                           | Reserved for future use. SHOULD be set to zero.                                  |
-	//	+-------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                                                 |                                                                                  |
+	//	|                              VALUE                              |                                     MAPPING                                      |
+	//	|                                                                 |                                                                                  |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TANT (TRUST_ATTRIBUTE_NON_TRANSITIVE)                           | Trust Attributes: Non-transitive                                                 |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TAUO (TRUST_ATTRIBUTE_UPLEVEL_ONLY)                             | Trust Attributes: Uplevel only                                                   |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TAQD (TRUST_ATTRIBUTE_QUARANTINED_DOMAIN)                       | Trust Attributes: Quarantined                                                    |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TAFT (TRUST_ATTRIBUTE_FOREST_TRANSITIVE)                        | Trust Attributes: Forest trust                                                   |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TACO (TRUST_ATTRIBUTE_CROSS_ORGANIZATION)                       | Trust Attributes: Cross organization                                             |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TAWF (TRUST_ATTRIBUTE_WITHIN_FOREST)                            | Trust Attributes: Within forest                                                  |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TATE (TRUST_ATTRIBUTE_TREAT_AS_EXTERNAL)                        | Trust Attributes: Treat as external                                              |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TARC (TRUST_ATTRIBUTE_USES_RC4_ENCRYPTION)                      | Trust Attributes: Use RC4 Encryption (for more information about RC4, see        |
+	//	|                                                                 | [SCHNEIER] section 17.1).                                                        |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TANC (TRUST_ATTRIBUTE_CROSS_ORGANIZATION_NO_TGT_DELEGATION)     | Trust Attributes: Do not trust tokens for delegation.                            |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TAPT (TRUST_ATTRIBUTE_PIM_TRUST)                                | Trust Attributes: PrivilegedIdentityManagement (PIM) trust.                      |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TAEC (TRUST_ATTRIBUTE_CROSS_ORGANIZATION_ENABLE_TGT_DELEGATION) | Trust Attributes: Tokens must be trusted for delegation.                         |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| O                                                               | Obsolete. SHOULD be set to 0.                                                    |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| R                                                               | Reserved for future use. SHOULD be set to zero.                                  |
+	//	+-----------------------------------------------------------------+----------------------------------------------------------------------------------+
 	TrustAttributes uint32 `idl:"name:TrustAttributes" json:"trust_attributes"`
 }
 
@@ -7534,7 +7551,7 @@ type AuthInformation struct {
 	//	|            | consisting of 32 bits.                                                           |
 	//	+------------+----------------------------------------------------------------------------------+
 	AuthType uint32 `idl:"name:AuthType" json:"auth_type"`
-	// AuthInfoLength:  The count of bytes in AuthInfo buffer.<36>
+	// AuthInfoLength:  The count of bytes in AuthInfo buffer.<38>
 	AuthInfoLength uint32 `idl:"name:AuthInfoLength" json:"auth_info_length"`
 	// AuthInfo:  Authentication data that depends on the AuthType.
 	//
@@ -7694,7 +7711,7 @@ func (o *AuthInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 // section 3.1.1.5.
 type TrustedDomainAuthInformation struct {
 	// IncomingAuthInfos:  The count of LSAPR_AUTH_INFORMATION entries (section 2.2.7.17)
-	// in the IncomingAuthenticationInformation field.<33>
+	// in the IncomingAuthenticationInformation field.<35>
 	IncomingAuthInfos uint32 `idl:"name:IncomingAuthInfos" json:"incoming_auth_infos"`
 	// IncomingAuthenticationInformation:  An array of LSAPR_AUTH_INFORMATION structures.
 	// The values are used to compute keys used in inbound trust validation, as specified
@@ -7704,7 +7721,7 @@ type TrustedDomainAuthInformation struct {
 	// but the data is the previous version of the authentication information.
 	IncomingPreviousAuthenticationInformation *AuthInformation `idl:"name:IncomingPreviousAuthenticationInformation" json:"incoming_previous_authentication_information"`
 	// OutgoingAuthInfos:  The count of LSAPR_AUTH_INFORMATION entries in the OutgoingAuthenticationInformation
-	// field.<34>
+	// field.<36>
 	OutgoingAuthInfos uint32 `idl:"name:OutgoingAuthInfos" json:"outgoing_auth_infos"`
 	// OutgoingAuthenticationInformation:  An array of LSAPR_AUTH_INFORMATION structures.
 	// The values are used to compute keys used in outbound trust validation, as specified
@@ -8065,7 +8082,7 @@ func (o *TrustedDomainInformationBasic) UnmarshalNDR(ctx context.Context, w ndr.
 // The LSAPR_TRUSTED_DOMAIN_AUTH_BLOB structure contains a counted buffer of authentication
 // material. Domain trust authentication is specified in [MS-ADTS] section 6.1.6.9.1.
 type TrustedDomainAuthBlob struct {
-	// AuthSize:  The count of bytes in AuthBlob.<35>
+	// AuthSize:  The count of bytes in AuthBlob.<37>
 	AuthSize uint32 `idl:"name:AuthSize" json:"auth_size"`
 	// AuthBlob:  An array of bytes containing the authentication material. If the AuthSize
 	// field has a value other than 0, this field MUST NOT be NULL. Always encrypted using
@@ -8182,6 +8199,10 @@ type TrustedDomainAuthBlob struct {
 	// OutgoingAuthInfoSize (4 bytes): Specifies the size, in bytes, of the subportion of
 	// the structure from the beginning of the CountOutgoingAuthInfos field through the
 	// end of the of the PreviousOutgoingAuthInfos field.
+	//
+	// IncomingAuthInfoSize (4 bytes): Specifies the size, in bytes, of the sub-portion
+	// of the structure from the beginning of the CountIncomingAuthInfos field through the
+	// end of the of the PreviousIncomingAuthInfos field.
 	AuthBlob []byte `idl:"name:AuthBlob;size_is:(AuthSize)" json:"auth_blob"`
 }
 
@@ -8746,6 +8767,8 @@ type TrustedDomainSupportedEncryptionTypes struct {
 	// A: Supports HMAC-SHA1-96-AES128, as specified in [RFC3961] page 31.
 	//
 	// S: Supports HMAC-SHA1-96-AES256, as specified in [RFC3961] page 31.
+	//
+	// All other bits SHOULD be 0 and ignored upon receipt.
 	SupportedEncryptionTypes uint32 `idl:"name:SupportedEncryptionTypes" json:"supported_encryption_types"`
 }
 
@@ -9553,7 +9576,7 @@ func (o *TrustedDomainInfo_TrustedDomainSETs) UnmarshalNDR(ctx context.Context, 
 //
 // The LSAPR_USER_RIGHT_SET structure specifies a collection of user rights.
 type UserRightSet struct {
-	// Entries:  This field contains the number of rights.<25>
+	// Entries:  This field contains the number of rights.<27>
 	Entries uint32 `idl:"name:Entries" json:"entries"`
 	// UserRights:  An array of strings specifying the rights. These can be string names
 	// corresponding to either privilege names or system access names, as specified in section
@@ -11271,7 +11294,8 @@ type SetSecurityObjectRequest struct {
 	// ObjectHandle: An open handle to an existing object.
 	Object *Handle `idl:"name:ObjectHandle" json:"object"`
 	// SecurityInformation: A bitmask specifying which portions of the security descriptor
-	// are to be set.
+	// are to be set. The server MUST reject calls that specify a bit that is not defined
+	// in section 2.2.1.3.<114>
 	SecurityInformation uint32 `idl:"name:SecurityInformation" json:"security_information"`
 	// SecurityDescriptor: The security descriptor to be set.
 	SecurityDescriptor *SrSecurityDescriptor `idl:"name:SecurityDescriptor" json:"security_descriptor"`
@@ -11526,7 +11550,7 @@ type OpenPolicyRequest struct {
 	// environment. It MUST be ignored on receipt.
 	SystemName string `idl:"name:SystemName;pointer:unique" json:"system_name"`
 	// ObjectAttributes: This parameter does not have any effect on message processing in
-	// any environment. All fields MUST<60> be ignored except RootDirectory, which MUST
+	// any environment. All fields MUST<62> be ignored except RootDirectory, which MUST
 	// be NULL.
 	ObjectAttributes *ObjectAttributes `idl:"name:ObjectAttributes" json:"object_attributes"`
 	// DesiredAccess: An ACCESS_MASK value that specifies the requested access rights that
@@ -16364,6 +16388,17 @@ type QuerySecretRequest struct {
 	// EncryptedCurrentValue: Used to return the encrypted current value of the secret object.
 	EncryptedCurrentValue *CRCipherValue `idl:"name:EncryptedCurrentValue;pointer:unique" json:"encrypted_current_value"`
 	// CurrentValueSetTime: Used to return the time when the current value was set.
+	//
+	// CurrentValueSetTime:  The time corresponding to the instant that the current value
+	// was last changed. This parameter can be NULL if the caller is not interested in this
+	// information.
+	//
+	// EncryptedOldValue: Used to return the old value of the secret, encrypted as specified
+	// in section 5.1.2. This parameter can be NULL if the caller is not interested in this
+	// information.<86>
+	//
+	// OldValueSetTime: The time corresponding to the instance that the old value was last
+	// changed. This parameter can be NULL if the caller is not interested in this information.
 	CurrentValueSetTime *dtyp.LargeInteger `idl:"name:CurrentValueSetTime;pointer:unique" json:"current_value_set_time"`
 	// EncryptedOldValue: A BLOB representing the encrypted old value. It is valid for this
 	// parameter to be NULL, in which case the current value in the policy database is copied.
@@ -16426,6 +16461,17 @@ type QuerySecretResponse struct {
 	// EncryptedCurrentValue: Used to return the encrypted current value of the secret object.
 	EncryptedCurrentValue *CRCipherValue `idl:"name:EncryptedCurrentValue;pointer:unique" json:"encrypted_current_value"`
 	// CurrentValueSetTime: Used to return the time when the current value was set.
+	//
+	// CurrentValueSetTime:  The time corresponding to the instant that the current value
+	// was last changed. This parameter can be NULL if the caller is not interested in this
+	// information.
+	//
+	// EncryptedOldValue: Used to return the old value of the secret, encrypted as specified
+	// in section 5.1.2. This parameter can be NULL if the caller is not interested in this
+	// information.<86>
+	//
+	// OldValueSetTime: The time corresponding to the instance that the old value was last
+	// changed. This parameter can be NULL if the caller is not interested in this information.
 	CurrentValueSetTime *dtyp.LargeInteger `idl:"name:CurrentValueSetTime;pointer:unique" json:"current_value_set_time"`
 	// EncryptedOldValue: A BLOB representing the encrypted old value. It is valid for this
 	// parameter to be NULL, in which case the current value in the policy database is copied.
@@ -19836,7 +19882,7 @@ type OpenPolicy2Request struct {
 	// environment. It MUST be ignored on receipt.
 	SystemName string `idl:"name:SystemName;string;pointer:unique" json:"system_name"`
 	// ObjectAttributes: This parameter does not have any effect on message processing in
-	// any environment. All fields MUST<59> be ignored except RootDirectory which MUST be
+	// any environment. All fields MUST<61> be ignored except RootDirectory which MUST be
 	// NULL.
 	ObjectAttributes *ObjectAttributes `idl:"name:ObjectAttributes" json:"object_attributes"`
 	// DesiredAccess: An ACCESS_MASK value that specifies the requested access rights that

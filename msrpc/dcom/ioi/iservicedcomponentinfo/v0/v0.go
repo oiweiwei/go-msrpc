@@ -348,6 +348,10 @@ type GetComponentInfoRequest struct {
 	//	| 0x00000004 | The serviced component's remote URI [RFC3986], which represents the server       |
 	//	|            | object identity.                                                                 |
 	//	+------------+----------------------------------------------------------------------------------+
+	//
+	// On input, the bits set indicate the information the client is requesting that the
+	// server return.  On output, the bits set indicate the information actually returned
+	// in the infoArray.
 	InfoMask int32 `idl:"name:infoMask" json:"info_mask"`
 }
 
@@ -414,6 +418,10 @@ type GetComponentInfoResponse struct {
 	//	| 0x00000004 | The serviced component's remote URI [RFC3986], which represents the server       |
 	//	|            | object identity.                                                                 |
 	//	+------------+----------------------------------------------------------------------------------+
+	//
+	// On input, the bits set indicate the information the client is requesting that the
+	// server return.  On output, the bits set indicate the information actually returned
+	// in the infoArray.
 	InfoMask int32 `idl:"name:infoMask" json:"info_mask"`
 	// infoArray: An array that contains a set of values returned by the server corresponding
 	// to the bits set in infoMask.

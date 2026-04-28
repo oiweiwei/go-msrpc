@@ -58,8 +58,6 @@ type TaskSchedulerServiceServer interface {
 	// The SchRpcGetSecurity method MUST get the security descriptor associated with a task
 	// or folder.
 	//
-	// HRESULT SchRpcGetSecurity( [in, string] const wchar_t* path,
-	//
 	// Return Values: For more information on return codes, see section 2.3.14, or Win32
 	// Error Codes in [MS-ERREF] section 2.1.
 	GetSecurity(context.Context, *GetSecurityRequest) (*GetSecurityResponse, error)

@@ -593,7 +593,14 @@ type RemoteConnectionParametersRequest struct {
 	// names of the expert requesting a Remote Assistance Connection String. The format
 	// of the string is as follows.
 	//
+	// <Length of the string>;
+	//  <"UNSOLICITED=1"> (Note: no semicolon)
+	//  <Length of the DomainName\UserName string>;
+	//  <ID=DomainName\UserName>  (Note: characters 'ID=' count toward string length)
+	//
 	// The following is an example.
+	//
+	// "13;UNSOLICITED=118;ID=EXDOMAIN\EXUSER"
 	UserHelpBlob *oaut.String `idl:"name:bstrUserHelpBlob" json:"user_help_blob"`
 }
 

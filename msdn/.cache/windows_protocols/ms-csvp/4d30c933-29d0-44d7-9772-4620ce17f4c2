@@ -1,0 +1,72 @@
+<div class="content" name="ADAPTERLIST2" uuid="4d30c933-29d0-44d7-9772-4620ce17f4c2"><p>An ADAPTERLIST2 contains a list of information about the
+network adapters on a given system.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">AdapterList2IdentifierLength</td>
+  <td colspan="16">AdapterList2Identifier</td>
+ </tr>
+ <tr>
+  <td colspan="16">ServerNameLength</td>
+  <td colspan="16">ServerName (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="16">NumberOfAdapter2s</td>
+  <td colspan="16">Adapter2 (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="16">NumberOfGuids</td>
+  <td colspan="16">Guid (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>AdapterList2IdentifierLength (2 bytes): </b>An
+unsigned short that MUST contain the value 0x0002.</p><p><b>AdapterList2Identifier (2 bytes): </b>An unsigned
+short that MUST contain the value 0x227A.</p><p><b>ServerNameLength (2 bytes): </b>An unsigned short
+that MUST contain the size, in bytes, of the <b>ServerName</b> field.</p><p><b>ServerName (variable): </b>This field MUST be the <span><a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully
+qualified domain name (FQDN)</a></span> of the server represented as a Unicode
+string without a terminating null character.</p><p><b>NumberOfAdapter2s (2 bytes): </b>An unsigned short
+that MUST contain the number of <b>Adapter</b> items that follow it.</p><p><b>Adapter2 (variable): </b>This field MUST be a
+valid <span><a href="6b19652b-ea18-420e-9971-53d909e70796" data-linktype="relative-path">ADAPTER2</a></span> structure.</p><p><b>NumberOfGuids (2 bytes): </b>An unsigned short
+that MUST contain the number of <b>Guid</b> items that follow it.</p><p><b>Guid (variable): </b>This field MUST be a valid <span><a href="3f5995ff-9633-4395-b7fd-917492716390" data-linktype="relative-path">SERIALIZEDGUID</a></span>
+structure. The number of <b>Guids</b> MUST be greater than or equal to 2
+multiplied by the value of <b>NumberOfAdapters</b>.</p></div>

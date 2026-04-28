@@ -1,0 +1,132 @@
+<div class="content" name="FAX_EVENT" uuid="26974d69-9306-4683-b4b8-23fda467e717"><p>The <b>FAX_EVENT</b> structure represents the contents of an
+input/output (I/O) completion packet. The fax server sends the completion
+packet to notify a fax client application about an asynchronous fax server
+event.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD SizeOfStruct;
+   FILETIME TimeStamp;
+   DWORD DeviceId;
+   DWORD EventId;
+   DWORD JobId;
+ } FAX_EVENT,
+  *PFAX_EVENT;
+</pre></div>
+</dd></dl><p><b>SizeOfStruct:</b> A <b>DWORD</b> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+value that holds the total size of the structure, in bytes. This value MUST be
+24 bytes.</p><p><b>TimeStamp:</b> Specifies a <b>FILETIME</b>
+([MS-DTYP] section <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a>)
+structure that contains the time at which the fax server generated the event.</p><p><b>DeviceId:</b> Specifies a <b>DWORD</b> variable
+that indicates the line identifier for the fax device (port) of interest.</p><p><b>EventId:</b> Specifies a <b>DWORD</b> variable
+that identifies the current asynchronous event that occurred within the fax
+server. The following table lists the possible events and their meanings.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FEI_DIALING 0x00000001</td>
+  <td>The sending device is dialing a fax number.</td>
+ </tr><tr>
+  <td>FEI_SENDING 0x00000002</td>
+  <td>The sending device is transmitting a page of fax data.</td>
+ </tr><tr>
+  <td>FEI_RECEIVING 0x00000003</td>
+  <td>The receiving device is receiving a page of fax data.</td>
+ </tr><tr>
+  <td>FEI_COMPLETED 0x00000004</td>
+  <td>The device has completed a fax transmission call.</td>
+ </tr><tr>
+  <td>FEI_BUSY 0x00000005</td>
+  <td>The sending device has encountered a busy signal.</td>
+ </tr><tr>
+  <td>FEI_NO_ANSWER 0x00000006</td>
+  <td>The receiving device does not answer.</td>
+ </tr><tr>
+  <td>FEI_BAD_ADDRESS 0x00000007</td>
+  <td>The sending device cannot complete the call because the fax number is invalid.</td>
+ </tr><tr>
+  <td>FEI_NO_DIAL_TONE 0x00000008</td>
+  <td>The sending device cannot complete the call because it does not detect a dial tone.</td>
+ </tr><tr>
+  <td>FEI_DISCONNECTED 0x00000009</td>
+  <td>The device cannot complete the call because a fax device was disconnected or because the fax call itself was disconnected.</td>
+ </tr><tr>
+  <td>FEI_FATAL_ERROR 0x0000000A</td>
+  <td>The device encountered a fatal protocol error.</td>
+ </tr><tr>
+  <td>FEI_NOT_FAX_CALL 0x0000000B</td>
+  <td>The modem device received a data call or a voice call.</td>
+ </tr><tr>
+  <td>FEI_CALL_DELAYED 0x0000000C</td>
+  <td>The sending device received a busy signal multiple times. The device cannot retry the call because dialing restrictions exist (some countries and regions restrict the number of retry attempts when a number is busy).</td>
+ </tr><tr>
+  <td>FEI_CALL_BLACKLISTED 0x0000000D</td>
+  <td>The device cannot complete the call because the telephone number is blocked or reserved; numbers such as 911 are blocked.</td>
+ </tr><tr>
+  <td>FEI_RINGING 0x0000000E</td>
+  <td>The receiving device is ringing.</td>
+ </tr><tr>
+  <td>FEI_ABORTING 0x0000000F</td>
+  <td>The device is aborting a fax job.</td>
+ </tr><tr>
+  <td>FEI_ROUTING 0x00000010</td>
+  <td>The receiving device is routing a received fax document.</td>
+ </tr><tr>
+  <td>FEI_MODEM_POWERED_ON 0x000000011</td>
+  <td>The modem device was turned on.</td>
+ </tr><tr>
+  <td>FEI_MODEM_POWERED_OFF 0x000000012</td>
+  <td>The modem device was turned off.</td>
+ </tr><tr>
+  <td>FEI_IDLE 0x000000013</td>
+  <td>The device is idle.</td>
+ </tr><tr>
+  <td>FEI_FAXSVC_ENDED 0x000000014</td>
+  <td>The fax service has terminated. For more information, see the following Remarks section.</td>
+ </tr><tr>
+  <td>FEI_ANSWERED 0x000000015</td>
+  <td>The receiving device answered a new call.</td>
+ </tr><tr>
+  <td>FEI_JOB_QUEUED 0x000000016</td>
+  <td>The fax job has been queued.</td>
+ </tr><tr>
+  <td>FEI_DELETED 0x00000017</td>
+  <td>The fax job has been processed. The job identifier for the job is no longer valid.</td>
+ </tr><tr>
+  <td>FEI_INITIALIZING 0x00000018</td>
+  <td>The modem device is being initialized.</td>
+ </tr><tr>
+  <td>FEI_LINE_UNAVAILABLE 0x00000019</td>
+  <td>The device cannot complete the call because the requested line is unavailable.</td>
+ </tr><tr>
+  <td>FEI_HANDLED 0x0000001A</td>
+  <td>The fax job has been processed.</td>
+ </tr><tr>
+  <td>FEI_FAXSVC_STARTED 0x0000001B</td>
+  <td>The fax service has started. For more information, see the following Remarks section. Interchangeable with FEI_NEVENTS.</td>
+ </tr><tr>
+  <td>FEI_NEVENTS 0x0000001B</td>
+  <td>The total number of fax events received. For more information, see the following Remarks section. Interchangeable with FEI_FAXSVC_STARTED.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>JobId:</b> Specifies a unique number that identifies
+the fax job of interest. If this member is equal to the value 0xffffffff, it
+indicates an inactive fax job. Note that this number is not a print spooler
+identification number.</p><p>After a fax client application receives the FEI_FAXSVC_ENDED
+message from the fax service, it will no longer receive fax events. To resume
+receiving fax events, the application MUST call the FaxInitializeEventQueue
+function again when the fax service restarts. The application can determine
+whether the fax service is running by using the service control manager.</p><p>If the application receives events by means of notification
+messages, it can use the FEI_NEVENTS event. If the message is between the
+application&#39;s base window message and the base window message + FEI_NEVENTS,
+then the application can process the message as a fax window message. An
+application specifies the base window message by using the <i>MessageStart</i>
+parameter in the FaxInitializeEventQueue function; the base window message MUST
+be greater than the WM_USER message.</p></div>

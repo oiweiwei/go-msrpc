@@ -100,7 +100,7 @@ type DNSServerClient interface {
 
 	// The R_DnssrvQuery2 method queries the DNS server for information. The type of information
 	// queried for is specified by the client using the pszZone and pszOperation parameters.
-	// The DNS server SHOULD implement R_ DnssrvQuery2 <280>.
+	// The DNS server SHOULD implement R_ DnssrvQuery2 <282>.
 	//
 	// All parameters are as specified by the R_DnssrvQuery method (section 3.1.4.2) with
 	// the following exceptions:
@@ -122,7 +122,7 @@ type DNSServerClient interface {
 	ComplexOperation2(context.Context, *ComplexOperation2Request, ...dcerpc.CallOption) (*ComplexOperation2Response, error)
 
 	// The R_DnssrvEnumRecords2 method enumerates DNS records on the server. The DNS server
-	// SHOULD implement R_DnssrvEnumRecords2 <281>.
+	// SHOULD implement R_DnssrvEnumRecords2 <284>.
 	//
 	// All parameters are as specified by the R_DnssrvEnumRecords method (section 3.1.4.4)
 	// with the following exceptions:
@@ -132,7 +132,7 @@ type DNSServerClient interface {
 	EnumRecords2(context.Context, *EnumRecords2Request, ...dcerpc.CallOption) (*EnumRecords2Response, error)
 
 	// The R_DnssrvUpdateRecord2 method is used to add a new DNS record or modify/delete
-	// an existing DNS record at the server. The DNS server SHOULD implement R_ DnssrvEnumRecords2.<282>
+	// an existing DNS record at the server. The DNS server SHOULD implement R_ DnssrvEnumRecords2.<285>
 	//
 	// All parameters are as specified by the R_DnssrvUpdateRecord method (section 3.1.4.5)
 	// with the following exceptions:
@@ -146,14 +146,14 @@ type DNSServerClient interface {
 
 	// The R_DnssrvUpdateRecord3 method is used to add a new DNS record or modify or delete
 	// an existing DNS record in a zone or in a zone scope, or in a cache zone or cache
-	// scope, if specified. The DNS server SHOULD<283> implement R_DnssrvUpdateRecord3.
+	// scope, if specified. The DNS server SHOULD<286> implement R_DnssrvUpdateRecord3.
 	//
 	// All parameters are as specified by the methods R_DnssrvUpdateRecord (section 3.1.4.5)
 	// and R_DnssrvUpdateRecord2 (section 3.1.4.10) with the following exceptions:
 	UpdateRecord3(context.Context, *UpdateRecord3Request, ...dcerpc.CallOption) (*UpdateRecord3Response, error)
 
 	// The R_DnssrvEnumRecords3 method enumerates DNS records on a zone or a zone scope,
-	// or cache zone or a cache scope, if specified. The DNS server SHOULD<284> implement
+	// or cache zone or a cache scope, if specified. The DNS server SHOULD<287> implement
 	// R_DnssrvEnumRecords3.
 	//
 	// All parameters are as specified by the R_DnssrvEnumRecords method (section 3.1.4.4)
@@ -162,7 +162,7 @@ type DNSServerClient interface {
 	EnumRecords3(context.Context, *EnumRecords3Request, ...dcerpc.CallOption) (*EnumRecords3Response, error)
 
 	// The R_DnssrvOperation3 method is used to invoke a set of server functions specified
-	// by the caller on the zone scope or cache scope if specified. The DNS server SHOULD<285>
+	// by the caller on the zone scope or cache scope if specified. The DNS server SHOULD<288>
 	// implement R_DnssrvOperation3.
 	//
 	// All parameters are as specified by the methods R_DnssrvOperation (section 3.1.4.1)
@@ -171,7 +171,7 @@ type DNSServerClient interface {
 
 	// The R_DnssrvQuery3 method queries the DNS server for information. The type of information
 	// queried for is specified by the client using the pszZone, pwszZoneScopeName, and
-	// pszOperation parameters. The DNS server SHOULD<287> implement R_DnssrvQuery3.
+	// pszOperation parameters. The DNS server SHOULD<290> implement R_DnssrvQuery3.
 	//
 	// All the parameters are as specified by the R_DnssrvQuery2 method with the following
 	// exceptions:
@@ -180,7 +180,7 @@ type DNSServerClient interface {
 	// The R_DnssrvComplexOperation3 method is used to invoke a set of server functions
 	// specified by the caller. These functions generally return more complex structures
 	// than simple 32-bit integer values, unlike the operations accessible through R_DnssrvOperation
-	// (section 3.1.4.1). The DNS server SHOULD<289> implement R_DnssrvComplexOperation2
+	// (section 3.1.4.1). The DNS server SHOULD<292> implement R_DnssrvComplexOperation2
 	// (section 3.1.4.8).
 	//
 	// All parameters are as specified by the R_DnssrvComplexOperation method (section 3.1.4.3)
@@ -188,7 +188,7 @@ type DNSServerClient interface {
 	ComplexOperation3(context.Context, *ComplexOperation3Request, ...dcerpc.CallOption) (*ComplexOperation3Response, error)
 
 	// The R_DnssrvOperation4 method is used to invoke a set of server functions specified
-	// by the caller on the virtualization instance, if specified. The DNS server SHOULD<290>
+	// by the caller on the virtualization instance, if specified. The DNS server SHOULD<293>
 	// implement R_DnssrvOperation4.
 	//
 	// All parameters are as specified by the R_DnssrvOperation3 (section 3.1.4.13) method
@@ -202,7 +202,7 @@ type DNSServerClient interface {
 
 	// The R_DnssrvQuery4 method queries the DNS server for information. The type of information
 	// queried for is specified by the client using the pwszVirtualizationInstanceID, and
-	// pszOperation parameters. The DNS server SHOULD<291> implement R_DnssrvQuery4.
+	// pszOperation parameters. The DNS server SHOULD<294> implement R_DnssrvQuery4.
 	//
 	// All the parameters are as specified by the R_DnssrvQuery2 method (section 3.1.4.7)
 	// method with the following exceptions:
@@ -215,14 +215,14 @@ type DNSServerClient interface {
 
 	// The R_DnssrvUpdateRecord4 method is used to add a new DNS record or to modify or
 	// delete an existing DNS record in a zone or in a zone scope under a virtualization
-	// instance, if specified. The DNS server SHOULD<292> implement R_DnssrvUpdateRecord4.
+	// instance, if specified. The DNS server SHOULD<295> implement R_DnssrvUpdateRecord4.
 	//
 	// All parameters are as specified by the R_DnssrvUpdateRecord3 (section 3.1.4.11) method
 	// with the following exceptions:
 	UpdateRecord4(context.Context, *UpdateRecord4Request, ...dcerpc.CallOption) (*UpdateRecord4Response, error)
 
 	// The R_DnssrvEnumRecords4 method enumerates DNS records on a zone or a zone scope
-	// in a virtualization instance, if specified. The DNS server SHOULD<293> implement
+	// in a virtualization instance, if specified. The DNS server SHOULD<296> implement
 	// R_DnssrvEnumRecords4.
 	//
 	// All parameters are as specified by the R_DnssrvEnumRecords3 method (section 3.1.4.12)
@@ -3110,17 +3110,25 @@ type UpdateRecordRequest struct {
 	// pDeleteRecord: A pointer to a structure of type DNS_RPC_RECORD (section 2.2.2.2.5)
 	// that contains information based on the operation being performed as specified below.
 	//
+	// To add a record:
+	//
 	// * pAddRecord: The DNS RR data of the new record.
 	//
 	// * pDeleteRecord: MUST be set to NULL.
+	//
+	// To delete a record:
 	//
 	// * pAddRecord: MUST be set to NULL.
 	//
 	// * pDeleteRecord: Individual DNS RR data of the record to be deleted.
 	//
+	// To replace a record:
+	//
 	// * pAddRecord: New record data.
 	//
 	// * pDeleteRecord: Old record data.
+	//
+	// To add an empty node:
 	//
 	// * pAddRecord: MUST be set to NULL.
 	//
@@ -3477,13 +3485,26 @@ type Operation2Request struct {
 	ClientVersion uint32 `idl:"name:dwClientVersion" json:"client_version"`
 	// dwSettingFlags: Reserved for future use. MUST be set to zero by clients and MUST
 	// be ignored by servers.
-	SettingFlags uint32      `idl:"name:dwSettingFlags" json:"setting_flags"`
-	ServerName   string      `idl:"name:pwszServerName;string;pointer:unique" json:"server_name"`
-	Zone         string      `idl:"name:pszZone;string;pointer:unique" json:"zone"`
-	Context      uint32      `idl:"name:dwContext" json:"context"`
-	Operation    string      `idl:"name:pszOperation;string;pointer:unique" json:"operation"`
-	TypeID       uint32      `idl:"name:dwTypeId" json:"type_id"`
-	Data         *dnsp.Union `idl:"name:pData;switch_is:dwTypeId" json:"data"`
+	SettingFlags uint32 `idl:"name:dwSettingFlags" json:"setting_flags"`
+	ServerName   string `idl:"name:pwszServerName;string;pointer:unique" json:"server_name"`
+	Zone         string `idl:"name:pszZone;string;pointer:unique" json:"zone"`
+	Context      uint32 `idl:"name:dwContext" json:"context"`
+	// pszOperation: In addition to the operations specified in R_DnssrvOperation method,
+	// the following operations are specified.
+	//
+	//	+---------------------+----------------------------------------------------------------------------------+
+	//	|                     |                                                                                  |
+	//	|        VALUE        |                                     MEANING                                      |
+	//	|                     |                                                                                  |
+	//	+---------------------+----------------------------------------------------------------------------------+
+	//	+---------------------+----------------------------------------------------------------------------------+
+	//	| SetEncryptionConfig | Specifies encryption configuration for DNS over HTTPS (DoH). The dwTypeId        |
+	//	|                     | parameter MUST be set to DNSSRV_TYPEID_ENCRYPTION_CONFIG, and pData MUST point   |
+	//	|                     | to a structure of type DNS_RPC_ENCRYPTION_CONFIG.<281>                           |
+	//	+---------------------+----------------------------------------------------------------------------------+
+	Operation string      `idl:"name:pszOperation;string;pointer:unique" json:"operation"`
+	TypeID    uint32      `idl:"name:dwTypeId" json:"type_id"`
+	Data      *dnsp.Union `idl:"name:pData;switch_is:dwTypeId" json:"data"`
 }
 
 func (o *Operation2Request) xxx_ToOp(ctx context.Context, op *xxx_Operation2Operation) *xxx_Operation2Operation {
@@ -3831,7 +3852,19 @@ type Query2Request struct {
 	SettingFlags uint32 `idl:"name:dwSettingFlags" json:"setting_flags"`
 	ServerName   string `idl:"name:pwszServerName;string;pointer:unique" json:"server_name"`
 	Zone         string `idl:"name:pszZone;string;pointer:unique" json:"zone"`
-	Operation    string `idl:"name:pszOperation;string;pointer:unique" json:"operation"`
+	// pszOperation: In addition to the operations specified in R_DnssrvQuery method, the
+	// following operations are specified.
+	//
+	//	+---------------------+----------------------------------------------------------------------------------+
+	//	|                     |                                                                                  |
+	//	|        VALUE        |                                     MEANING                                      |
+	//	|                     |                                                                                  |
+	//	+---------------------+----------------------------------------------------------------------------------+
+	//	+---------------------+----------------------------------------------------------------------------------+
+	//	| GetEncryptionConfig | On success, the server MUST set pdwTypeId to DNSSRV_TYPEID_ENCRYPTION_CONFIG and |
+	//	|                     | ppData to DNS_RPC_ENCRYPTION_CONFIG.<283>                                        |
+	//	+---------------------+----------------------------------------------------------------------------------+
+	Operation string `idl:"name:pszOperation;string;pointer:unique" json:"operation"`
 }
 
 func (o *Query2Request) xxx_ToOp(ctx context.Context, op *xxx_Query2Operation) *xxx_Query2Operation {
@@ -6600,7 +6633,7 @@ type Operation3Request struct {
 	//	|                      |                                                                                  |
 	//	+----------------------+----------------------------------------------------------------------------------+
 	//	+----------------------+----------------------------------------------------------------------------------+
-	//	| "Forwarders"         | On input, dwTypeId SHOULD<286> be set to DNSSRV_TYPEID_FORWARDERS, and pData     |
+	//	| "Forwarders"         | On input, dwTypeId SHOULD<289> be set to DNSSRV_TYPEID_FORWARDERS, and pData     |
 	//	|                      | MUST point to a structure of one of the types specified in DNS_RPC_FORWARDERS    |
 	//	|                      | (section 2.2.5.2.10), which contains information about new IP addresses to which |
 	//	|                      | the DNS server SHOULD forward queries. These IP addresses are part of the server |

@@ -2774,6 +2774,13 @@ type RequestRecordsResponse struct {
 	BytesLength uint32 `idl:"name:numBytes" json:"bytes_length"`
 	// compressedRecords: The data records, compressed using the algorithm specified in
 	// section 3.1.1.1.
+	//
+	// The compressedRecords bytes correspond to an array of FRS_ID_GVSN entries. DFS-R
+	// uses custom marshaling in this RPC call to compress the set of transmitted records.
+	// The size of the FRS_ID_GVSN array is given by the numRecords parameter. The decompression
+	// algorithm specified in section 3.1.1.2 can be used to decompress the received data
+	// into a buffer of sizeof(FRS_ID_GVSN)*numRecords bytes, which can be re-interpreted
+	// as an array of FRS_ID_GVSN entries.
 	CompressedRecords []byte `idl:"name:compressedRecords;size_is:(, numBytes)" json:"compressed_records"`
 	// recordsStatus: The value from the RECORDS_STATUS enumeration that indicates whether
 	// more update records are available.

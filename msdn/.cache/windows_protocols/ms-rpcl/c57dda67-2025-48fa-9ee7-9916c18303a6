@@ -1,0 +1,18 @@
+<div class="content" name="NSI_BINDING_T" uuid="c57dda67-2025-48fa-9ee7-9916c18303a6"><p>The NSI_BINDING_T type defines an association of a <a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a> with a server
+entry.</p><dl>
+<dd>
+<div><pre> typedef struct _NSI_BINDING_T {
+   NSI_STRING_BINDING_T string;
+   unsigned long entry_name_syntax;
+   STRING_T entry_name;
+ } NSI_BINDING_T;
+</pre></div>
+</dd></dl><p><b>string:</b>  A Unicode <a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a> string that
+contains a string binding. For more information, see section &#34;String
+Bindings&#34; in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+Part 2.</p><p><b>entry_name_syntax:</b>  An unsigned
+32-bit integer specifying the syntax of the entry_name field. This value MUST
+be RPC_C_NS_SYNTAX_DCE.</p><p><b>entry_name:</b>  A Unicode [UNICODE]
+string specifying the entry name of the <a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_6cfe4abe-94bd-43b6-b666-3618d9093373" data-linktype="relative-path">name service entry</a>, using
+the syntax identified by the entry_name_syntax parameter as specified in
+section <a href="99becf64-89ed-4bd8-adf0-470add859d15" data-linktype="relative-path">2.2.2</a>.</p></div>

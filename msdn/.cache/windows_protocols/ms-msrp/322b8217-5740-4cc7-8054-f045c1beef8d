@@ -1,0 +1,45 @@
+<div class="content" name="SMB_COM_SEND_MESSAGE_Response" uuid="322b8217-5740-4cc7-8054-f045c1beef8d"><p>The payload of the <a href="b9fd5523-4efc-40dd-a06d-274f4553c56a" data-linktype="relative-path">SMB_COM_SEND_MESSAGE</a>
+response message is specified as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">WordCount</td>
+  <td colspan="16">ByteCount</td>
+  
+ </tr>
+</tbody></table><p><b>WordCount (1 byte): </b>An 8-bit value that MUST
+be zero for this message.</p><p><b>ByteCount (2 bytes): </b>A 16-bit value that MUST
+be zero for this message.</p><p>The request message to SMB_COM_SEND_MESSAGE is specified in
+section <a href="03a90663-6bfc-4883-bca4-621702c348e4" data-linktype="relative-path">2.2.3.1.1</a>.</p></div>

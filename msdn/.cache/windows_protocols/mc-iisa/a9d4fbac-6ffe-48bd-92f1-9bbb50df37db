@@ -1,0 +1,42 @@
+<div class="content" name="TimeSpanFormat" uuid="a9d4fbac-6ffe-48bd-92f1-9bbb50df37db"><p>The TimeSpanFormat method is received by the server in an
+RPC_REQUEST packet. In response, the server returns a format string that
+describes how the corresponding property is supposed to be formatted if the
+property represents a time span.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT TimeSpanFormat(
+   [out, retval] BSTR* pbstrTimeSpanFormat
+ );
+</pre></div>
+</dd></dl><p><b>pbstrTimeSpanFormat: </b>Contains the format
+string of the time span for the property.</p><p><b>Return Values: </b>The server MUST return zero if
+it successfully processes the message that is received from the client. In this
+case, *pbstrTimeSpanFormat is not NULL. If processing fails, the server MUST
+return a nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+code as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following table describes the error conditions that MUST be handled and the
+corresponding error codes. A server MAY return additional
+implementation-specific error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0X00000000 NO_ERROR</td>
+  <td>The operation completed successfully.</td>
+ </tr><tr>
+  <td>0X80070057 ERROR_INVALID_PARAMETER</td>
+  <td>One or more parameters are incorrect or null.</td>
+ </tr><tr>
+  <td>0X00000008 ERROR_NOT_ENOUGH_MEMORY</td>
+  <td>Not enough memory is available to process this command.</td>
+ </tr><tr>
+  <td>0X80070013 ERROR_INVALID_DATA</td>
+  <td>Configuration data or schema on the server are malformed or corrupted.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

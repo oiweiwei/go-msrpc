@@ -1,0 +1,92 @@
+<div class="content" name="SID_IDENTIFIER_AUTHORITY" uuid="c6ce4275-3d90-4890-ab3a-514745e4637e"><p>The SID_IDENTIFIER_AUTHORITY structure represents the
+top-level authority of a security identifier (SID).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Value</td>
+ </tr>
+ <tr>
+  <td colspan="16">...</td>
+  
+ </tr>
+</tbody></table><p><b>Value (6 bytes): </b>An array of six 8-bit
+unsigned integers that specify the top-level authority of a <a href="78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a>, <a href="5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">RPC_SID</a>, and <a href="../ms-lsat/f04a771b-c018-4098-81b5-2a819f9b5db8" data-linktype="relative-path">LSAPR_SID_INFORMATION</a>.</p><dl>
+<dd>
+<p>The identifier authority value identifies the domain
+security authority that issued the SID. The following identifier authorities
+are predefined for wire traffic.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Identifier Authority</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>NULL_SID_AUTHORITY {0x00, 0x00, 0x00, 0x00, 0x00, 0x00}</td>
+  <td>Specifies the NULL SID authority. It defines only the NULL well-known-SID: S-1-0-0.</td>
+ </tr><tr>
+  <td>WORLD_SID_AUTHORITY {0x00, 0x00, 0x00, 0x00, 0x00, 0x01}</td>
+  <td>Specifies the World SID authority. It only defines the Everyone well-known-SID: S-1-1-0.</td>
+ </tr><tr>
+  <td>LOCAL_SID_AUTHORITY {0x00, 0x00, 0x00, 0x00, 0x00, 0x02}</td>
+  <td>Specifies the Local SID authority. It defines only the Local well-known-SID: S-1-2-0.</td>
+ </tr><tr>
+  <td>CREATOR_SID_AUTHORITY {0x00, 0x00, 0x00, 0x00, 0x00, 0x03}</td>
+  <td>Specifies the Creator SID authority. It defines the Creator Owner, Creator Group, and Creator Owner Server well-known-SIDs: S-1-3-0, S-1-3-1, and S-1-3-2. These SIDs are used as placeholders in an access control list (ACL) and are replaced by the user, group, and machine SIDs of the security principal.</td>
+ </tr><tr>
+  <td>NON_UNIQUE_AUTHORITY {0x00, 0x00, 0x00, 0x00, 0x00, 0x04}</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>SECURITY_NT_AUTHORITY {0x00, 0x00, 0x00, 0x00, 0x00, 0x05}</td>
+  <td>Specifies the Windows NT operating system security subsystem SID authority. It defines all other SIDs in the forest.</td>
+ </tr><tr>
+  <td>SECURITY_APP_PACKAGE_AUTHORITY {0x00, 0x00, 0x00, 0x00, 0x00, 0x0F}</td>
+  <td>Specifies the application package authority. It defines application capability SIDs.</td>
+ </tr><tr>
+  <td>SECURITY_MANDATORY_LABEL_AUTHORITY {0x00, 0x00, 0x00, 0x00, 0x00, 0x10}</td>
+  <td>Specifies the Mandatory label authority. It defines the integrity level SIDs.</td>
+ </tr><tr>
+  <td>SECURITY_SCOPED_POLICY_ID_AUTHORITY {0x00, 0x00, 0x00, 0x00, 0x00, 0x11}</td>
+  <td>Specifies the Scoped Policy Authority. It defines all other scoped policy SIDs in the forest.&lt;5&gt;</td>
+ </tr><tr>
+  <td>SECURITY_AUTHENTICATION_AUTHORITY {0x00, 0x00, 0x00, 0x00, 0x00, 0x12}</td>
+  <td>Specifies the authentication authority asserting the client’s identity. It defines only the following well-known SIDs: S-1-18-1, and S-1-18-2.&lt;6&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

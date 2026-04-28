@@ -1,0 +1,27 @@
+<div class="content" name="SYSTEM_THREAD_INFORMATION" uuid="e82d73e4-cedb-4077-9099-d58f3459722f"><p>The <b>SYSTEM_THREAD_INFORMATION</b> structure contains
+information about a thread running on a system.</p><dl>
+<dd>
+<div><pre> typedef struct _SYSTEM_THREAD_INFORMATION {
+   LARGE_INTEGER KernelTime;
+   LARGE_INTEGER UserTime;
+   LARGE_INTEGER CreateTime;
+   ULONG WaitTime;
+   PVOID StartAddress;
+   CLIENT_ID ClientId;
+   LONG Priority;
+   LONG BasePriority;
+   ULONG ContextSwitches;
+   ULONG ThreadState;
+   ULONG WaitReason;
+ } SYSTEM_THREAD_INFORMATION,
+  *PSYSTEM_THREAD_INFORMATION;
+</pre></div>
+</dd></dl><p><b>KernelTime:</b>  Number of
+100-nanosecond intervals spent executing kernel code.</p><p><b>UserTime:</b>  Number of 100-nanosecond
+intervals spent executing user code.</p><p><b>CreateTime:</b>  System time when the
+thread was created.</p><p><b>WaitTime:</b>  Time spent in ready queue
+or waiting (depending on the thread state).</p><p><b>StartAddress:</b>  Start address of the
+thread.</p><p><b>ClientId:</b>  ID of the thread and the
+process owning the thread.</p><p><b>Priority:</b>  Dynamic thread priority.</p><p><b>BasePriority:</b>  Base thread priority.</p><p><b>ContextSwitches:</b>  Total context
+switches.</p><p><b>ThreadState:</b>  Current thread state.</p><p><b>WaitReason:</b>  The reason the thread
+is waiting.</p></div>

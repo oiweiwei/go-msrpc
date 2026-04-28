@@ -536,13 +536,13 @@ func (o *ClusterSCSIAddress) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 
 // DiskProperties structure represents DISK_PROPS RPC structure.
 //
-// The DISK_PROPS structure holds information about a single disk.<3>
+// The DISK_PROPS structure holds information about a single disk.<1>
 type DiskProperties struct {
 	// DiskNumber:  The zero-based device number assigned to the disk by the operating system.
 	DiskNumber uint32 `idl:"name:DiskNumber" json:"disk_number"`
 	// DiskId:  A valid CPREP_DISKID structure with the correct identifier for the disk.
 	DiskID *ClusterDiskID `idl:"name:DiskId" json:"disk_id"`
-	// DiskBusType:  The type of bus to which the disk is attached. It MAY<4> be one of
+	// DiskBusType:  The type of bus to which the disk is attached. It MAY<2> be one of
 	// the following values.
 	//
 	//	+-------------------------------------+--------------------------------------------------------------+
@@ -603,7 +603,7 @@ type DiskProperties struct {
 	// NumPaths:  The number of IO paths to the disk. A Multipath I/O (MPIO) disk has a
 	// number greater than 1.
 	PathsLength uint32 `idl:"name:NumPaths" json:"paths_length"`
-	// Flags:  Information about the disk. It MAY<5> be one or more of the following values
+	// Flags:  Information about the disk. It MAY<3> be one or more of the following values
 	// bitwise OR'd together.
 	//
 	//	+-----------------------------------------+----------------------------------------------------------------------------------+
@@ -798,7 +798,7 @@ func (o *DiskProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 // DiskPropertiesEx structure represents DISK_PROPS_EX RPC structure.
 //
 // The DISK_PROPS_EX structure holds information about a single disk. This structure
-// SHOULD<6> be supported and is required for the IClusterStorage3 interface.
+// SHOULD<4> be supported and is required for the IClusterStorage3 interface.
 type DiskPropertiesEx struct {
 	// DiskNumber:  The zero-based device number assigned to the disk by the operating system.
 	DiskNumber uint32 `idl:"name:DiskNumber" json:"disk_number"`
@@ -963,6 +963,8 @@ type DiskPropertiesEx struct {
 	// pwszPoolName:  A null-terminated string indicating the name of the storage pool that
 	// the disk is a member of. If the disk is not a member of a storage pool, this field
 	// MUST be initialized to NULL.
+	//
+	// Memory is allocated by the server and MUST be freed by the client.
 	PoolName string `idl:"name:pwszPoolName;string" json:"pool_name"`
 	// pwszPage83Id:  A null-terminated string containing a VPD 83h identifier (see [SPC-3]
 	// section 7.6.3) associated with the addressed logical unit number. The VPD 83h ASSOCIATION
@@ -972,6 +974,8 @@ type DiskPropertiesEx struct {
 	// The order of precedence when choosing a VPD 83h identifier to return is: SCSI name
 	// string type has precedence over NAA or EUI-64 based, and NAA has precedence over
 	// EUI-64 based.
+	//
+	// Memory is allocated by the server and MUST be freed by the client.
 	Page83ID string `idl:"name:pwszPage83Id;string" json:"page83_id"`
 	// pwszSerialNumber:  A null-terminated string containing the VPD page 80h (Unit Serial
 	// Number see [SPC-3]section 7.6.10). This field is optional, as defined in [SPC-3]
@@ -1264,7 +1268,7 @@ func (o ClusterNetworkProfile) String() string {
 
 // NodeRouteInfo structure represents NODE_ROUTE_INFO RPC structure.
 //
-// A client uses a NODE_ROUTE_INFO structure<7> to add routes that share the same remoteVirtualIP
+// A client uses a NODE_ROUTE_INFO structure<5> to add routes that share the same remoteVirtualIP
 // IP address field.
 //
 // The IP addresses in the remoteVirtualIP field and the elements of the localUnicastIPs
@@ -1450,7 +1454,7 @@ func (o *NodeRouteInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 
 // AddRoutesRequest structure represents ADD_ROUTES_REQUEST RPC structure.
 //
-// The ADD_ROUTES_REQUEST structure<8> designates a collection of communication routes
+// The ADD_ROUTES_REQUEST structure<6> designates a collection of communication routes
 // to monitor for status and packet loss. The manifestation of a communication route
 // is implementation-specific. A communication route includes network endpoints, identified
 // by IP addresses, between which packets can be sent and received.
@@ -1561,7 +1565,7 @@ func (o *AddRoutesRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 
 // RouteStatus type represents ROUTE_STATUS RPC enumeration.
 //
-// The ROUTE_STATUS enumeration<9> defines the possible states of a communication route.
+// The ROUTE_STATUS enumeration<7> defines the possible states of a communication route.
 type RouteStatus uint16
 
 var (
@@ -1591,7 +1595,7 @@ func (o RouteStatus) String() string {
 
 // RouteLossAndState structure represents ROUTE_LOSS_AND_STATE RPC structure.
 //
-// The ROUTE_LOSS_AND_STATE structure<10> contains information about a route’s packet
+// The ROUTE_LOSS_AND_STATE structure<8> contains information about a route’s packet
 // loss and its status.
 type RouteLossAndState struct {
 	// packetLoss:  A value between 0x00000000 and 0x00000064. Designates the reliability
@@ -1649,7 +1653,7 @@ func (o *RouteLossAndState) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 
 // AddRoutesReply structure represents ADD_ROUTES_REPLY RPC structure.
 //
-// The ADD_ROUTES_REPLY structure<11> contains information about packet loss and route
+// The ADD_ROUTES_REPLY structure<9> contains information about packet loss and route
 // status for routes previously added by the client.
 type AddRoutesReply struct {
 	// indices:  An array of unsigned integers matching the indices previously designated

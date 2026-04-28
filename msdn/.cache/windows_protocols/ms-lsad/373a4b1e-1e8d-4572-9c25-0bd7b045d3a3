@@ -1,0 +1,80 @@
+<div class="content" name="LsarCreateTrustedDomain" uuid="373a4b1e-1e8d-4572-9c25-0bd7b045d3a3"><p>The LsarCreateTrustedDomain method is invoked to create an
+object of type <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domain</a></span> in
+the server&#39;s database.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarCreateTrustedDomain(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PLSAPR_TRUST_INFORMATION TrustedDomainInformation,
+   [in] ACCESS_MASK DesiredAccess,
+   [out] LSAPR_HANDLE* TrustedDomainHandle
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+obtained from either <span><a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a></span> or <span><a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a></span>.</p><p><b>TrustedDomainInformation: </b>Information about
+the new <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain object (TDO)</a></span>
+to be created.</p><p><b>DesiredAccess: </b>An access mask that specifies
+the desired access to the TDO handle.</p><p><b>TrustedDomainHandle: </b>Used to return the handle
+for the newly created TDO.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 STATUS_SUCCESS</td>
+  <td>The request was successfully completed.</td>
+ </tr><tr>
+  <td>0xC0000022 STATUS_ACCESS_DENIED</td>
+  <td>The caller does not have the permissions to perform this operation.</td>
+ </tr><tr>
+  <td>0xC000000D STATUS_INVALID_PARAMETER</td>
+  <td>One of the supplied arguments is invalid.</td>
+ </tr><tr>
+  <td>0xC0000300 STATUS_NOT_SUPPORTED_ON_SBS</td>
+  <td>The operation is not supported on a particular product.&lt;105&gt;</td>
+ </tr><tr>
+  <td>0xC00002B1 STATUS_DIRECTORY_SERVICE_REQUIRED</td>
+  <td>The Active Directory service was not available on the server.</td>
+ </tr><tr>
+  <td>0xC0000078 STATUS_INVALID_SID</td>
+  <td>The security identifier of the trusted domain is not valid.</td>
+ </tr><tr>
+  <td>0xC00002E9 STATUS_CURRENT_DOMAIN_NOT_ALLOWED</td>
+  <td>Trust cannot be established with the current domain.</td>
+ </tr><tr>
+  <td>0xC0000035 STATUS_OBJECT_NAME_COLLISION</td>
+  <td>Another TDO already exists that matches some of the identifying information of the supplied information.</td>
+ </tr><tr>
+  <td>0xC0000008 STATUS_INVALID_HANDLE</td>
+  <td>PolicyHandle is not a valid handle.</td>
+ </tr><tr>
+  <td>0xC0000401 STATUS_PER_USER_TRUST_QUOTA_EXCEEDED</td>
+  <td>The caller&#39;s quota for the maximum number of TDOs that can be created by control access right Create-Inbound-Trust is exceeded.</td>
+ </tr><tr>
+  <td>0xC0000402 STATUS_ALL_USER_TRUST_QUOTA_EXCEEDED</td>
+  <td>The combined users&#39; quota for the maximum number of TDOs that can be created by control access right Create-Inbound-Trust is exceeded.</td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message MUST be processed in an identical manner to <span><a href="6817095d-d341-4d03-93d7-e9bdca2d3eef" data-linktype="relative-path">LsarCreateTrustedDomainEx</a></span>
+with the following mapping as input parameters.</p><p><i>PolicyHandle</i>: Same.</p><p><i>TrustedDomainInformation</i>:</p><ul><li><p><span><span> 
+</span></span><b>Name:</b> Comes from <i>TrustedDomainInformation</i>. Name
+input parameter.</p>
+</li><li><p><span><span> 
+</span></span><b>FlatName:</b> Comes from <i>TrustedDomainInformation</i>. Name
+input parameter.</p>
+</li><li><p><span><span> 
+</span></span><b>SID:</b> Comes from <i>TrustedDomainInformation</i>. Security
+identifier (SID) input parameter.</p>
+</li><li><p><span><span> 
+</span></span><b>TrustDirection:</b> TRUST_DIRECTION_OUTBOUND.</p>
+</li><li><p><span><span> 
+</span></span><b>TrustType:</b> TRUST_TYPE_DOWNLEVEL.</p>
+</li><li><p><span><span> 
+</span></span><b>TrustAttributes:</b> 0.</p>
+</li></ul><p><i>AuthenticationInformation</i>: NULL.</p><p><i>DesiredAccess</i>: Same.</p><p><i>TrustedDomainHandle</i>: Same.</p></div>

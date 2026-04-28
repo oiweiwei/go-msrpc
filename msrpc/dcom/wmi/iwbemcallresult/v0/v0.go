@@ -58,6 +58,8 @@ type CallResultClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	GetResultObject(context.Context, *GetResultObjectRequest, ...dcerpc.CallOption) (*GetResultObjectResponse, error)
 
 	// When the IWbemCallResult::GetResultString method is called, the server MUST return
@@ -67,6 +69,8 @@ type CallResultClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	GetResultString(context.Context, *GetResultStringRequest, ...dcerpc.CallOption) (*GetResultStringResponse, error)
 
 	// When the IWbemCallResult::GetResultServices method is called, the server MUST retrieve
@@ -76,6 +80,8 @@ type CallResultClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	GetResultServices(context.Context, *GetResultServicesRequest, ...dcerpc.CallOption) (*GetResultServicesResponse, error)
 
 	// When the IWbemCallResult::GetCallStatus method is invoked, the server MUST return
@@ -84,6 +90,8 @@ type CallResultClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	GetCallStatus(context.Context, *GetCallStatusRequest, ...dcerpc.CallOption) (*GetCallStatusResponse, error)
 
 	// AlterContext alters the client context.

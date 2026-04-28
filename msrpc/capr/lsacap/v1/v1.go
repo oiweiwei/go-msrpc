@@ -45,6 +45,9 @@ type LsacapClient interface {
 	// Return Values:
 	//
 	// If the method succeeds, the function MUST return 0x00000000 (ERROR_SUCCESS).
+	//
+	// If the method fails, it MUST return a nonzero error code from the values defined
+	// in [MS-ERREF].
 	GetAvailableCapIDs(context.Context, *GetAvailableCapIDsRequest, ...dcerpc.CallOption) (*GetAvailableCapIDsResponse, error)
 
 	// AlterContext alters the client context.

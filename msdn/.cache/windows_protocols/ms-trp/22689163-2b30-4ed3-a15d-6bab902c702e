@@ -1,0 +1,281 @@
+<div class="content" name="RSPSetEventFilterMasks" uuid="22689163-2b30-4ed3-a15d-6bab902c702e"><p>The RSPSetEventFilterMasks packet controls what packets get
+sent to TAPI version 3.0 and newer <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">clients</a>. Clients that
+negotiate versions that are lower than 3.0 do not receive this filtering.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Req_Func</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved1</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwObjType</td>
+ </tr>
+ <tr>
+  <td colspan="32">lObjectID</td>
+ </tr>
+ <tr>
+  <td colspan="32">fSubMask</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwSubMasks</td>
+ </tr>
+ <tr>
+  <td colspan="32">ulEventMasksLo</td>
+ </tr>
+ <tr>
+  <td colspan="32">ulEventMasksHi</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved2</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved3</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved4</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved5</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved6</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved7</td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>The identifier of the
+function that will be invoked on the remote <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>. This value MUST be
+set to 161.</p><dl>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+MUST contain the result of the encapsulated telephony request. A value of zero
+indicates success, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates failure.</p>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>dwObjType (4 bytes): </b>An unsigned 32-bit
+integer. An ordinal that describes the type of lObjectID.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000</td>
+  <td>lObjectID is ignored.</td>
+ </tr><tr>
+  <td>0x00000001</td>
+  <td>lObjectID is of type HLINEAPP.</td>
+ </tr><tr>
+  <td>0x00000002</td>
+  <td>lObjectID is of type HLINE.</td>
+ </tr><tr>
+  <td>0x00000003</td>
+  <td>lObjectID is of type HCALL.</td>
+ </tr><tr>
+  <td>0x00000004</td>
+  <td>lObjectID is of type HPHONEAPP.</td>
+ </tr><tr>
+  <td>0x00000005</td>
+  <td>lObjectID is of type HPHONE.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>lObjectID (4 bytes): </b>An unsigned 32-bit
+integer. The handle of the object. </p><p><b>fSubMask (4 bytes): </b>A <a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a>.
+The flag that indicates filters on packets to be sent to the client.</p><dl>
+<dd>
+<p>If the value is TRUE, the ulEventMasksLo and
+ulEventMasksHi fields MUST have only one valid bit that is set for both of them
+(for example, EM_LINE_CALLSTATE, referring to the LINE_CALLSTATE packet). The
+dwSubMasks field is treated as a bit array of sub-types of that packet (for
+example, LINE_CALLSTATE_* values). A bit that is set to 1 allows packets of the
+corresponding sub-type to be sent to the client. A bit that is set to 0
+prevents packets of the corresponding sub-type from being sent to the client.</p>
+</dd>
+<dd>
+<p>If the value is FALSE, the ulEventMasksLo and
+ulEventMasksHi fields are treated as bit arrays. A bit that is set to 1 allows
+packets of the corresponding sub-type to be sent to the client. A bit that is
+set to zero prevents packets of the corresponding sub-type from being sent to
+the client.</p>
+</dd></dl><p><b>dwSubMasks (4 bytes): </b>An unsigned 32-bit
+integer. If the fSubMask value is TRUE, the ulEventMasksLo and ulEventMasksHi
+fields MUST have only one valid bit that is set for both of them (for example,
+EM_LINE_CALLSTATE, referring to the LINE_CALLSTATE packet). The dwSubMasks
+field is treated as a bit array of sub-types of that packet (for example,
+LINE_CALLSTATE_* values). A bit that is set to 1 allows packets of the
+corresponding sub-type to be sent to the client. A bit that is set to 0
+prevents packets of the corresponding sub-type from being sent to the client.</p><p><b>ulEventMasksLo (4 bytes): </b>An unsigned 32-bit
+integer. If fSubMask is set to true, this MUST contain a bit that is set
+referencing the packet (for example, LINE_CALLSTATE) to allow or prevent the
+subevents that are specified by the dwSubMasks field (for example,
+LINE_CALLSTATE_* values). If fSubMask is set to false, each mask bit that is
+set to correspond to a valid LINE_* or PHONE_* event, allows all events of this
+type to be sent to the client. Each cleared mask bit that is set to correspond
+to a valid LINE_* or PHONE_* event, prevents all events of this type from being
+sent to the client.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>EM_LINE_ADDRESSSTATE</td>
+  <td>0x00000001</td>
+ </tr><tr>
+  <td>EM_LINE_LINEDEVSTATE</td>
+  <td>0x00000002</td>
+ </tr><tr>
+  <td>EM_LINE_CALLINFO</td>
+  <td>0x00000004</td>
+ </tr><tr>
+  <td>EM_LINE_CALLSTATE</td>
+  <td>0x00000008</td>
+ </tr><tr>
+  <td>EM_LINE_APPNEWCALL</td>
+  <td>0x00000010</td>
+ </tr><tr>
+  <td>EM_LINE_CREATE</td>
+  <td>0x00000020</td>
+ </tr><tr>
+  <td>EM_LINE_REMOVE</td>
+  <td>0x00000040</td>
+ </tr><tr>
+  <td>EM_LINE_CLOSE</td>
+  <td>0x00000080</td>
+ </tr><tr>
+  <td>EM_LINE_PROXYREQUEST</td>
+  <td>0x00000100</td>
+ </tr><tr>
+  <td>EM_LINE_DEVSPECIFIC</td>
+  <td>0x00000200</td>
+ </tr><tr>
+  <td>EM_LINE_DEVSPECIFICFEATURE</td>
+  <td>0x00000400</td>
+ </tr><tr>
+  <td>EM_LINE_AGENTSTATUS</td>
+  <td>0x00000800</td>
+ </tr><tr>
+  <td>EM_LINE_AGENTSTATUSEX</td>
+  <td>0x00001000</td>
+ </tr><tr>
+  <td>EM_LINE_AGENTSPECIFIC</td>
+  <td>0x00002000</td>
+ </tr><tr>
+  <td>EM_LINE_AGENTSESSIONSTATUS</td>
+  <td>0x00004000</td>
+ </tr><tr>
+  <td>EM_LINE_QUEUESTATUS</td>
+  <td>0x00008000</td>
+ </tr><tr>
+  <td>EM_LINE_GROUPSTATUS</td>
+  <td>0x00010000</td>
+ </tr><tr>
+  <td>EM_LINE_PROXYSTATUS</td>
+  <td>0x00020000</td>
+ </tr><tr>
+  <td>EM_LINE_APPNEWCALLHUB</td>
+  <td>0x00040000</td>
+ </tr><tr>
+  <td>EM_LINE_CALLHUBCLOSE</td>
+  <td>0x00080000</td>
+ </tr><tr>
+  <td>EM_LINE_DEVSPECIFICEX</td>
+  <td>0x00100000</td>
+ </tr><tr>
+  <td>EM_LINE_QOSINFO</td>
+  <td>0x00200000</td>
+ </tr><tr>
+  <td>EM_PHONE_CREATE</td>
+  <td>0x01000000</td>
+ </tr><tr>
+  <td>EM_PHONE_REMOVE</td>
+  <td>0x02000000</td>
+ </tr><tr>
+  <td>EM_PHONE_CLOSE</td>
+  <td>0x04000000</td>
+ </tr><tr>
+  <td>EM_PHONE_STATE</td>
+  <td>0x08000000</td>
+ </tr><tr>
+  <td>EM_PHONE_DEVSPECIFIC</td>
+  <td>0x10000000</td>
+ </tr><tr>
+  <td>EM_PHONE_BUTTONMODE</td>
+  <td>0x20000000</td>
+ </tr><tr>
+  <td>EM_PHONE_BUTTONSTATE</td>
+  <td>0x40000000</td>
+ </tr><tr>
+  <td>EM_ALL</td>
+  <td>0x7FFFFFFF</td>
+ </tr><tr>
+  <td>EM_NUM_MASKS</td>
+  <td>0x0000001F</td>
+ </tr></tbody></table>
+</dd></dl><p><b>ulEventMasksHi (4 bytes): </b>An unsigned 32-bit
+integer. If fSubMask is set to true, this MUST contain a bit that is set to
+reference the packet (for example, LINE_CALLSTATE) to allow or prevent the
+subevents that are specified by the dwSubMasks field (for example,
+LINE_CALLSTATE_* values). If fSubMask is set to false, each mask bit that is set
+to correspond to a valid LINE_* or PHONE_* event, allows all events of this
+type to be sent to the client. Each mask bit that is cleared to correspond to a
+valid LINE_* or PHONE_* event, prevents all events of this type from being sent
+to the client.</p><dl>
+<dd>
+<p>There are 31 EM_* bits that are reserved for the
+existing LINE_* and PHONE_* packets. To provide extensibility for future
+packets that might be added, a 64-bit value that is composed of a
+ulEventMasksLo (the low 32 bits) and ulEventMasksHi (the high 32 bits) was
+chosen over a single 32-bit ulEventMask value.   </p>
+</dd></dl><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p>The RSPSetEventFilterMasks packet controls packets that are
+sent to clients of TAPI versions 3.0 and 3.1. Clients that negotiate TAPI
+versions prior to 3.0 do not receive this filtering. </p></div>

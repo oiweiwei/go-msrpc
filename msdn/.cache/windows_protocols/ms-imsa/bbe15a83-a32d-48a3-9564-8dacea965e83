@@ -1,0 +1,38 @@
+<div class="content" name="IIS_CRYPTO_BLOB" uuid="bbe15a83-a32d-48a3-9564-8dacea965e83"><p>The IIS_CRYPTO_BLOB message defines a block of data,
+possibly encrypted, that is transferred between client and server. It is used
+to transfer <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public keys</a>,
+hash information, and encrypted and cleartext data.</p><dl>
+<dd>
+<div><pre> typedef struct _IIS_CRYPTO_BLOB{
+     DWORD BlobSignature;
+     DWORD BlobDataLength;
+     [size_is(BlobDataLength)] unsigned char BlobData[*];
+ } IIS_CRYPTO_BLOB;
+</pre></div>
+</dd></dl><p><b>BlobSignature:</b>  The structure signature for
+this binary large object (BLOB).</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>SESSION_KEY_BLOB_SIGNATURE 0x624b6349</td>
+  <td>The BlobData member contains the session key used to encrypt sensitive data exchanged between client and server. See SESSION_KEY_BLOB (section 2.2.2.2) for more information about the BlobData layout.</td>
+ </tr><tr>
+  <td>PUBLIC_KEY_BLOB_SIGNATURE 0x62506349</td>
+  <td>The BlobData member contains the public key for a particular IIS encryption behavior. See PUBLIC_KEY_BLOB (section 2.2.2.1) for more information about the BlobData layout.</td>
+ </tr><tr>
+  <td>ENCRYPTED_DATA_BLOB_SIGNATURE 0x62446349</td>
+  <td>The BlobData member contains encrypted data. See ENCRYPTED_DATA_BLOB (section 2.2.2.5) for more information about the BlobData layout.</td>
+ </tr><tr>
+  <td>HASH_BLOB_SIGNATURE 0x62486349</td>
+  <td>The BlobData member contains a hash. See HASH_BLOB (section 2.2.2.3) for more information about the BlobData layout.</td>
+ </tr><tr>
+  <td>CLEARTEXT_DATA_BLOB_SIGNATURE 0x62436349</td>
+  <td>The BlobData member contains cleartext data. See CLEARTEXT DATA_BLOB (section 2.2.2.4) for more information about the BlobData layout.</td>
+ </tr></tbody></table><p><b>BlobDataLength:</b>  The size, in bytes, of <b>BlobData</b>.</p><p><b>BlobData:</b>  A block of bytes that can be
+interpreted based on <b>BlobSignature</b>.</p></div>

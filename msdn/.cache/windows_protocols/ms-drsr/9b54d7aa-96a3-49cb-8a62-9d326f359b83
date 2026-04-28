@@ -1,0 +1,71 @@
+<div class="content" name="CONTREF_DRS_WIRE_V1" uuid="9b54d7aa-96a3-49cb-8a62-9d326f359b83"><p>The CONTREF_DRS_WIRE_V1 structure defines a linked list
+entry for a continuation referral.</p><dl>
+<dd>
+<div><pre> typedef struct CONTREF_DRS_WIRE_V1 {
+   DSNAME* pTarget;
+   NAMERESOP_DRS_WIRE_V1 OpState;
+   USHORT aliasRDN;
+   USHORT RDNsInternal;
+   USHORT refType;
+   USHORT count;
+   DSA_ADDRESS_LIST_DRS_WIRE_V1* pDAL;
+   struct CONTREF_DRS_WIRE_V1* pNextContRef;
+   BOOL bNewChoice;
+   UCHAR choice;
+ } CONTREF_DRS_WIRE_V1;
+</pre></div>
+</dd></dl><p><b>pTarget:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+to which the referral is directed.</p><p><b>OpState:</b>  The operation state.</p><p><b>aliasRDN:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>RDNsInternal:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>refType:</b>  The type of referral. This
+field MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CH_REFTYPE_SUPERIOR 0x0000</td>
+  <td>A referral to a superior DC.</td>
+ </tr><tr>
+  <td>CH_REFTYPE_SUBORDINATE 0x0001</td>
+  <td>A referral to a subordinate DC (for example, to a child domain).</td>
+ </tr><tr>
+  <td>CH_REFTYPE_NSSR 0x0002</td>
+  <td>Not in use.</td>
+ </tr><tr>
+  <td>CH_REFTYPE_CROSS 0x0003</td>
+  <td>A referral to an external crossRef object. See [MS-ADTS] section 6.1.1.2.1.1.1.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>count:</b>  The count of items in the <b>pDAL</b>
+linked list.</p><p><b>pDAL:</b>  A list of network names of
+the DCs to which the referral is directed.</p><p><b>pNextContRef:</b>  Null, or the next
+item in the linked list.</p><p><b>bNewChoice:</b>  True if and only if a
+new choice is specified.</p><p><b>choice:</b>  The choice to use in the
+continuation referral. This field MUST be one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>SE_CHOICE_BASE_ONLY 0x00</td>
+  <td>A base search is to be performed.</td>
+ </tr><tr>
+  <td>SE_CHOICE_IMMED_CHLDRN 0x01</td>
+  <td>A one-level search is to be performed.</td>
+ </tr><tr>
+  <td>SE_CHOICE_WHOLE_SUBTREE 0x02</td>
+  <td>A subtree search is to be performed.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

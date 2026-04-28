@@ -1,0 +1,89 @@
+<div class="content" name="NL_DNS_NAME_INFO" uuid="1c7e6520-45a2-43e1-ac0b-43e771f85b14"><p>The <b>NL_DNS_NAME_INFO</b> structure provides the
+information on a <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a></span> name (record)
+(as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90381" data-linktype="external">[RFC2782]</a></span>) to
+be updated by the <b>DsrUpdateReadOnlyServerDnsRecords</b><span> </span>method (section <span><a href="e83df161-5c13-4520-ae5a-79218ed0bb19" data-linktype="relative-path">3.5.4.3.11</a></span>). <b>DsrUpdateReadOnlyServerDnsRecords</b>
+method will update DNS as requested by the <b>Register</b> field&#39;s value in
+this structure.</p><dl>
+<dd>
+<div><pre> typedef struct _NL_DNS_NAME_INFO {
+   ULONG Type;
+   [string,range(0,256)] wchar_t* DnsDomainInfo;
+   ULONG DnsDomainInfoType;
+   ULONG Priority;
+   ULONG Weight;
+   ULONG Port;
+   UCHAR Register;
+   ULONG Status;
+ } NL_DNS_NAME_INFO,
+  *PNL_DNS_NAME_INFO;
+</pre></div>
+</dd></dl><p><b>Type:</b> The type of DNS name, which MUST be one,
+and only one, of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>NlDnsLdapAtSite 22</td>
+  <td>_ldap._tcp.&lt;SiteName&gt;._sites.&lt;DnsDomainName&gt;. Allows a client to find an LDAP server in the domain named by &lt;DnsDomainName&gt; and is in the site named by &lt;SiteName&gt;.</td>
+ </tr><tr>
+  <td>NlDnsGcAtSite 25</td>
+  <td>_ldap._tcp.&lt;SiteName&gt;._sites.gc._msdcs.&lt;DnsForestName&gt;. Allows a client to find a DC serving a global catalog (GC) in the forest named by &lt;DnsForestName&gt; and is in the site named by &lt;SiteName&gt;.</td>
+ </tr><tr>
+  <td>NlDnsDsaCname 28</td>
+  <td>&lt;DsaGuid&gt;._msdcs.&lt;DnsForestName&gt;. Allows a client to find a DC in the forest named by &lt;DnsForestName&gt; based on the DSA GUID. For a definition of DSA GUID, see [MS-ADTS] section 1.1.</td>
+ </tr><tr>
+  <td>NlDnsKdcAtSite 30</td>
+  <td>_kerberos._tcp.&lt;SiteName&gt;._sites.dc._msdcs.&lt;DnsDomainName&gt;. Allows a client to find a DC running a Kerberos KDC in the domain named by &lt;DnsDomainName&gt; and is in the site named by &lt;SiteName&gt;.</td>
+ </tr><tr>
+  <td>NlDnsDcAtSite 32</td>
+  <td>_ldap._tcp.&lt;SiteName&gt;._sites.dc._msdcs.&lt;DnsDomainName&gt;. Allows a client to find a DC in the domain named by &lt;DnsDomainName&gt; and is in the site named by &lt;SiteName&gt;.</td>
+ </tr><tr>
+  <td>NlDnsRfc1510KdcAtSite 34</td>
+  <td>_kerberos._tcp.&lt;SiteName&gt;._sites.&lt;DnsDomainName&gt;. Allows a client to find an RFC-1510 compliant Kerberos KDC in the domain named by &lt;DnsDomainName&gt; and is in the site named by &lt;SiteName&gt;.</td>
+ </tr><tr>
+  <td>NlDnsGenericGcAtSite 36</td>
+  <td>_gc._tcp.&lt;SiteName&gt;._sites.&lt;DnsForestName&gt;. Allows a client to find a global catalog (GC) server in the forest named by &lt;DnsForestName&gt; and is in the site named by &lt;SiteName&gt;.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>DnsDomainInfo:</b> The string that will be based
+on the <b>DnsDomainInfoType</b> field defined below.</p><p><b>DnsDomainInfoType:</b> The type of <b>DnsDomainInfo</b>
+member, which MUST be one, and only one, of the following:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>NlDnsDomainName 1</td>
+  <td>The DnsDomainInfo member is a DNS domain name.</td>
+ </tr><tr>
+  <td>NlDnsDomainNameAlias 2</td>
+  <td>The DnsDomainInfo member is a DNS domain name alias.</td>
+ </tr><tr>
+  <td>NlDnsForestName 3</td>
+  <td>The DnsDomainInfo member is a DNS forest name.</td>
+ </tr><tr>
+  <td>NlDnsForestNameAlias 4</td>
+  <td>The DnsDomainInfo member is a DNS forest name alias.</td>
+ </tr><tr>
+  <td>NlDnsNdncDomainName 5</td>
+  <td>The DnsDomainInfo member is a non-domain NC (application NC) name. For a definition of application NC, see [MS-ADTS] section 1.1.</td>
+ </tr><tr>
+  <td>NlDnsRecordName 6</td>
+  <td>The DnsDomainInfo member is a DNS record name that is required to be deregistered. This is valid only for deregistration in which the Register value is set to FALSE. For the types of DNS record name, see [MS-ADTS] section 6.3.2.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Priority:</b> The priority for DNS SRV records.</p><p><b>Weight:</b> The weight for DNS SRV records.</p><p><b>Port:</b> The port for the DNS SRV record.</p><p><b>Register:</b> Zero indicates to deregister the DNS
+name; other values indicate to register the DNS name.</p><p><b>Status:</b> The update status of the DNS name.
+Status SHOULD<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a> be set to 0x00000000 on
+success; otherwise, it contains a nonzero error code. </p></div>

@@ -987,6 +987,8 @@ type BindTypeResponse struct {
 	// a type defined in its automation scope whose name matches the value of szName according
 	// to the string-matching criteria specified in section 2.2.50, or be set to NULL if
 	// no such type exists.
+	//
+	// MUST be set to NULL if the ITypeComp server is associated with an ITypeInfo server.
 	TypeInfo *oaut.TypeInfo `idl:"name:ppTInfo" json:"type_info"`
 	// Return: The BindType return value.
 	Return int32 `idl:"name:Return" json:"return"`

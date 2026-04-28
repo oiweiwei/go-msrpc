@@ -4148,6 +4148,9 @@ type OperationRequestInformationW struct {
 	//
 	// If Request = NTMS_OPREQ_DEVICESERVICE (0x00000003), Arg1 MUST be set to the identifier
 	// of the device requiring service.
+	//
+	// If Request = NTMS_OPREQ_MOVEMEDIA (0x00000004), Arg1 MUST be set to the identifier
+	// of the physical medium to move.
 	Arg1 *GUID `idl:"name:Arg1" json:"arg1"`
 	// Arg2Type:  A value from the NtmsObjectsTypes enumeration that specifies the type
 	// of object in Arg2.
@@ -4156,6 +4159,9 @@ type OperationRequestInformationW struct {
 	//
 	// If Request = NTMS_OPREQ_NEWMEDIA (0x00000001), Arg2 MAY be set to the identifier
 	// of the library in which the new media MUST be placed.
+	//
+	// If Request = NTMS_OPREQ_MOVEMEDIA (0x00000004), Arg2 MUST be set to the identifier
+	// of the library to which the physical medium MUST be moved.
 	Arg2 *GUID `idl:"name:Arg2" json:"arg2"`
 	// szApplication:   A null-terminated sequence of Unicode characters that specifies
 	// the name of the application that submitted the operator request.

@@ -1,0 +1,14 @@
+<div class="content" name="FILE_INFO_3_CONTAINER" uuid="1f3c8ddb-08d2-4e4f-8dfc-9da13c46d161"><p>The FILE_INFO_3_CONTAINER structure contains a value that
+indicates the number of entries that the <a href="c5433da3-e2a5-4cdb-850b-0f9ce0795b8b" data-linktype="relative-path">NetrFileEnum</a> method
+returns and a pointer to the buffer that contains the entries.</p><dl>
+<dd>
+<div><pre> typedef struct _FILE_INFO_3_CONTAINER {
+   DWORD EntriesRead;
+   [size_is(EntriesRead)] LPFILE_INFO_3 Buffer;
+ } FILE_INFO_3_CONTAINER,
+  *PFILE_INFO_3_CONTAINER,
+  *LPFILE_INFO_3_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of entries
+returned by the method.</p><p><b>Buffer:</b>  A pointer to the <a href="1ce89330-a817-408d-975b-eb2852481238" data-linktype="relative-path">FILE_INFO_3</a> entries
+returned by the method.</p></div>

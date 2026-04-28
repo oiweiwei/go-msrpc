@@ -1,0 +1,103 @@
+<div class="content" name="FaxObs_AccessCheck" uuid="ea5df8ec-b13b-44ce-bcaa-6a5100266d1a"><p>The <b>FaxObs_AccessCheck (Opnum 34)</b> method is called by
+the client to check whether the currently logged-on client user account has
+access permissions to execute specific fax operations on the fax server.</p><p>In response, the server MUST validate access of the fax
+clients currently logged-on user account against the requested access.</p><dl>
+<dd>
+<div><pre> error_status_t FaxObs_AccessCheck(
+   [in] handle_t hBinding,
+   [in] DWORD AccessMask,
+   [out] LPDWORD fAccess
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FaxObs_ConnectionRefCount</b> (section <a href="9430f7e2-d21d-4a38-a859-367b74f68a1a" data-linktype="relative-path">3.1.4.2.2</a>) method call
+used to connect to the fax server.</p><p><b>AccessMask: </b>A <b>DWORD</b> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+containing a set of bit flags that define the fax access permissions to check
+for the fax client user account. This parameter MUST be a bitwise OR
+combination of generic FaxObs access rights and specific FaxObs access rights
+that are described in the following tables.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Generic FaxObs Access Rights</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FAX_WRITE 0x00020001</td>
+  <td>Includes the read-only rights that are granted by the following specific FaxObs access rights in combination with the standard access rights STANDARD_RIGHTS_WRITE: § FAX_JOB_SUBMIT</td>
+ </tr><tr>
+  <td>FAX_READ 0x00020016</td>
+  <td>Includes the read-only rights that are granted by the following specific FaxObs access rights in combination with the standard access rights STANDARD_RIGHTS_READ: § FAX_JOB_QUERY § FAX_CONFIG_QUERY § FAX_PORT_QUERY</td>
+ </tr><tr>
+  <td>FAX_ALL_ACCESS 0x001F007F</td>
+  <td>Includes the read-only rights that are granted by the following specific FaxObs access rights in combination with the standard access rights STANDARD_RIGHTS_ALL: § FAX_JOB_SUBMIT § FAX_JOB_QUERY § FAX_CONFIG_QUERY § FAX_CONFIG_SET § FAX_PORT_QUERY § FAX_PORT_SET § FAX_JOB_MANAGE</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The generic FaxObs access rights are bitwise OR
+combination of specific FaxObs access rights and standard access rights. For
+more information about the standard access rights, see <a href="https://go.microsoft.com/fwlink/?LinkId=90120" data-linktype="external">[MSDN-SAR]</a>. </p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Specific FaxObs access rights</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FAX_JOB_SUBMIT 0x00000001</td>
+  <td>The user can submit documents to be faxed. Example method: FaxObs_SendDocument (section 3.1.4.2.7).</td>
+ </tr><tr>
+  <td>FAX_JOB_QUERY 0x00000002</td>
+  <td>The user can query information about submitted fax jobs. Example method: FaxObs_EnumJobs (section 3.1.4.2.9).</td>
+ </tr><tr>
+  <td>FAX_CONFIG_QUERY 0x00000004</td>
+  <td>The user can query the fax server configuration. Example method: FaxObs_GetConfiguration (section 3.1.4.2.24).</td>
+ </tr><tr>
+  <td>FAX_CONFIG_SET 0x00000008</td>
+  <td>The user can change the fax server configuration. Example method: FaxObs_SetConfiguration (section 3.1.4.2.25).</td>
+ </tr><tr>
+  <td>FAX_PORT_QUERY 0x00000010</td>
+  <td>The user can query information about the fax ports (devices) installed on the fax server. Example method: FaxObs_EnumPorts (section 3.1.4.2.15).</td>
+ </tr><tr>
+  <td>FAX_PORT_SET 0x00000020</td>
+  <td>The user can change the configuration of the fax ports (devices) installed on the fax server. Example method: FaxObs_SetPort (section 3.1.4.2.17).</td>
+ </tr><tr>
+  <td>FAX_JOB_MANAGE 0x00000040</td>
+  <td>The user can pause, resume, and cancel submitted fax jobs. Example method: FaxObs_SetJob (section 3.1.4.2.11).</td>
+ </tr></tbody></table>
+</dd></dl><p><b>fAccess: </b>A pointer to a BOOL variable to
+receive on successful return the access check return value. A TRUE value
+indicates that access is allowed. A FALSE value indicates that access is
+denied.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect. This error code is returned if any of the following conditions are met: § The hBinding parameter is set to a NULL value. &lt;216&gt; § The fAccess parameter is set to a NULL pointer value. &lt;217&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol, <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

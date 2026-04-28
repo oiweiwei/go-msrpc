@@ -37,6 +37,8 @@ type ServicesServer interface {
 	// of the method call. The server MUST return WBEM_S_NO_ERROR, as specified in section
 	// 2.2.11, to indicate the successful completion of the method.
 	//
+	// WBEM_S_NO_ERROR (0x00)
+	//
 	// Requirements described in the parameter definitions are checked, and if the requirements
 	// are not met, the server returns WBEM_E_INVALID_PARAMETER.
 	OpenNamespace(context.Context, *OpenNamespaceRequest) (*OpenNamespaceResponse, error)
@@ -65,6 +67,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	QueryObjectSink(context.Context, *QueryObjectSinkRequest) (*QueryObjectSinkResponse, error)
 
 	// The IWbemServices::GetObject method retrieves a CIM class or a CIM instance. This
@@ -75,6 +79,8 @@ type ServicesServer interface {
 	// the method call. The HRESULT MUST have the type and values as specified in section
 	// 2.2.11. The server MUST return WBEM_S_NO_ERROR (as specified in section 2.2.11) to
 	// indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error)
 
 	// The IWbemServices::GetObjectAsync method is the asynchronous version of the IWbemServices::GetObject
@@ -83,6 +89,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	GetObjectAsync(context.Context, *GetObjectAsyncRequest) (*GetObjectAsyncResponse, error)
 
 	// The IWbemServices::PutClass method creates a new class or updates an existing class
@@ -95,6 +103,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	PutClass(context.Context, *PutClassRequest) (*PutClassResponse, error)
 
 	// The IWbemServices::PutClassAsync method is the asynchronous version of the IWbemServices::PutClass
@@ -107,6 +117,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	PutClassAsync(context.Context, *PutClassAsyncRequest) (*PutClassAsyncResponse, error)
 
 	// The IWbemServices::DeleteClass method MUST delete a specified class from the namespace
@@ -115,6 +127,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	DeleteClass(context.Context, *DeleteClassRequest) (*DeleteClassResponse, error)
 
 	// The IWbemServices::DeleteClassAsync method is the asynchronous version of the IWbemServices::DeleteClass
@@ -123,6 +137,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	DeleteClassAsync(context.Context, *DeleteClassAsyncRequest) (*DeleteClassAsyncResponse, error)
 
 	// The IWbemServices::CreateClassEnum method provides a class enumeration. When this
@@ -132,6 +148,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	CreateClassEnum(context.Context, *CreateClassEnumRequest) (*CreateClassEnumResponse, error)
 
 	// The IWbemServices::CreateClassEnumAsync method provides an asynchronous class enumeration.
@@ -142,6 +160,8 @@ type ServicesServer interface {
 	// of the method call. The HRESULT MUST have the type and values as specified in section
 	// 2.2.11. The server MUST return WBEM_S_NO_ERROR (specified in section 2.2.11) to indicate
 	// the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	CreateClassEnumAsync(context.Context, *CreateClassEnumAsyncRequest) (*CreateClassEnumAsyncResponse, error)
 
 	// The IWbemServices::PutInstance method creates or updates an instance of an existing
@@ -152,6 +172,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	PutInstance(context.Context, *PutInstanceRequest) (*PutInstanceResponse, error)
 
 	// The IWbemServices::PutInstanceAsync method is the asynchronous version of the PutInstance
@@ -161,6 +183,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	PutInstanceAsync(context.Context, *PutInstanceAsyncRequest) (*PutInstanceAsyncResponse, error)
 
 	// The IWbemServices::DeleteInstance method deletes an instance of an existing class
@@ -170,6 +194,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	DeleteInstance(context.Context, *DeleteInstanceRequest) (*DeleteInstanceResponse, error)
 
 	// The IWbemServices::DeleteInstanceAsync method is the asynchronous version of the
@@ -180,6 +206,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	DeleteInstanceAsync(context.Context, *DeleteInstanceAsyncRequest) (*DeleteInstanceAsyncResponse, error)
 
 	// The IWbemServices::CreateInstanceEnum method provides an instance enumeration. When
@@ -189,6 +217,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return the following value (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	CreateInstanceEnum(context.Context, *CreateInstanceEnumRequest) (*CreateInstanceEnumResponse, error)
 
 	// The IWbemServices::CreateInstanceEnumAsync method provides an asynchronous instance
@@ -198,6 +228,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	CreateInstanceEnumAsync(context.Context, *CreateInstanceEnumAsyncRequest) (*CreateInstanceEnumAsyncResponse, error)
 
 	// The IWbemServices::ExecQuery method returns an enumerable collection of IWbemClassObject
@@ -206,6 +238,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	ExecQuery(context.Context, *ExecQueryRequest) (*ExecQueryResponse, error)
 
 	// The IWbemServices::ExecQueryAsync method is the asynchronous version of the IWbemServices::ExecQuery
@@ -215,6 +249,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	ExecQueryAsync(context.Context, *ExecQueryAsyncRequest) (*ExecQueryAsyncResponse, error)
 
 	// The IWbemServices::ExecNotificationQuery method provides a subscription for event
@@ -226,6 +262,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	ExecNotificationQuery(context.Context, *ExecNotificationQueryRequest) (*ExecNotificationQueryResponse, error)
 
 	// The IWbemServices::ExecNotificationQueryAsync method is the asynchronous version
@@ -238,6 +276,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR, as specified in section
 	// 2.2.11, to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	ExecNotificationQueryAsync(context.Context, *ExecNotificationQueryAsyncRequest) (*ExecNotificationQueryAsyncResponse, error)
 
 	// The IWbemServices::ExecMethod method executes a CIM method that is implemented by
@@ -247,6 +287,8 @@ type ServicesServer interface {
 	// of the method call. HRESULT MUST have the type and values as specified in section
 	// 2.2.11. The server MUST return WBEM_S_NO_ERROR (specified in section 2.2.11) to indicate
 	// the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	ExecMethod(context.Context, *ExecMethodRequest) (*ExecMethodResponse, error)
 
 	// The IWbemServices::ExecMethodAsync method asynchronously executes a CIM method that
@@ -256,6 +298,8 @@ type ServicesServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	ExecMethodAsync(context.Context, *ExecMethodAsyncRequest) (*ExecMethodAsyncResponse, error)
 }
 

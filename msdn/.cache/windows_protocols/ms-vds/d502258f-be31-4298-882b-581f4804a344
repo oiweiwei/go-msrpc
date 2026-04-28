@@ -1,0 +1,33 @@
+<div class="content" name="VDS_PACK_NOTIFICATION" uuid="d502258f-be31-4298-882b-581f4804a344"><p>The VDS_PACK_NOTIFICATION structure provides information
+about a <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">pack</a>
+notification.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_PACK_NOTIFICATION {
+   unsigned long ulEvent;
+   VDS_OBJECT_ID packId;
+ } VDS_PACK_NOTIFICATION;
+</pre></div>
+</dd></dl><p><b>ulEvent:</b> The type of pack notification; it
+MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>VDS_NF_PACK_ARRIVE 0x00000001</td>
+  <td>The pack was newly created.</td>
+ </tr><tr>
+  <td>VDS_NF_PACK_DEPART 0x00000002</td>
+  <td>The pack was deleted.</td>
+ </tr><tr>
+  <td>VDS_NF_PACK_MODIFY 0x00000003</td>
+  <td>The pack was modified.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>packId:</b> The <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS object</a> ID of the pack
+object to which the notification refers.</p></div>

@@ -1,0 +1,35 @@
+<div class="content" name="GetMyRoles" uuid="7c76dfa2-b152-4426-a3da-c395957bd79d"><p>The GetMyRoles method retrieves the <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_1137042c-9b21-48b5-8b33-315152caf650" data-linktype="relative-path">Online
+Responder Roles</a></span> <span><a href="https://go.microsoft.com/fwlink/?LinkId=89839" data-linktype="external">[CIMC-PP]</a></span>
+assigned to the user that calls the method. </p><dl>
+<dd>
+<div><pre> HRESULT GetMyRoles(
+   [out] LONG* pdwRoles
+ );
+</pre></div>
+</dd></dl><p><b>pdwRoles: </b>Reference to an unsigned integer
+value that represents the retrieved Online Responder Role for the caller. This
+can be a bitwise OR of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CA_ACCESS_READ 0x00000100</td>
+  <td>The caller can read the configuration information at the responder.</td>
+ </tr><tr>
+  <td>CA_ACCESS_ENROLL 0x00000200</td>
+  <td>The caller can request the response status for a particular certificate from the responder.</td>
+ </tr><tr>
+  <td>CA_ACCESS_ADMIN 0x00000001</td>
+  <td>The caller can update the configuration information at the responder.</td>
+ </tr><tr>
+  <td>0x00000000</td>
+  <td>The caller has no roles.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

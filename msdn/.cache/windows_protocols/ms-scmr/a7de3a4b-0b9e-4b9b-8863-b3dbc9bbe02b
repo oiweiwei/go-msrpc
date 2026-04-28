@@ -1,0 +1,10 @@
+<div class="content" name="SC_STATUS_TYPE" uuid="a7de3a4b-0b9e-4b9b-8863-b3dbc9bbe02b"><p>The SC_STATUS_TYPE enumeration specifies the information level
+for the <span><a href="e27fce9d-fd45-47b1-bdeb-c05a2fd53669" data-linktype="relative-path">RQueryServiceStatusEx</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum 
+ {
+   SC_STATUS_PROCESS_INFO = 0
+ } SC_STATUS_TYPE;
+</pre></div>
+</dd></dl><p><b>SC_STATUS_PROCESS_INFO:  </b>The information level</p></div>

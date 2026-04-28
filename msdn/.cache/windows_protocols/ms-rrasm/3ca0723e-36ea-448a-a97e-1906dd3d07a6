@@ -1,0 +1,251 @@
+<div class="content" name="MIB_OPAQUE_QUERY" uuid="3ca0723e-36ea-448a-a97e-1906dd3d07a6"><p>The <b>MIB_OPAQUE_QUERY</b> structure contains the MIB ID
+and the corresponding index of the MIB object. This structure is used in the
+following methods:</p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span> </span></p>
+</li><li><p><span><span> 
+</span></span><a href="a8ed0e17-9395-4aef-9f4e-9b3e93cf3f4c" data-linktype="relative-path"><b>RMIBEntryDelete (section 3.1.4.28)</b></a><span> </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span> </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span> </span></p>
+</li></ul><p>The same structure is also used as a blob for querying MIB
+if <b>dwPid</b> is PID_IPX, or if <b>dwPid</b> is PID_IP and <b>dwRoutingPid</b>
+is not IPRTRMGR_PID (0x00002710) in the parameter of the methods using this
+structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">dwVarId</td>
+ </tr>
+ <tr>
+  <td colspan="32">rgdwVarIndex (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>dwVarId (4 bytes): </b>The identifier of the MIB
+object while querying IPv4 or IPv6 MIB variables. The value MUST be the same as
+<b>dwId</b> for <b>MIB_OPAQUE_INFO</b> (section <a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>) structure. </p><p><b>rgdwVarIndex (variable): </b>Place holder for data
+of the blob as previously mentioned. If <b>dwRoutingPid</b> is IPRTRMGR_PID
+(0x00002710), then this MUST indicate the index of the MIB object to query as
+shown in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>dwVarId</p>
+   </th>
+   <th>
+   <p>rgdwVarIndex</p>
+   </th>
+   <th>
+   <p>Structure that needs to be retrieved </p>
+   </th>
+   <th>
+   <p>Meaning of rgdwVarIndex</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IF_NUMBER 0x00000000</td>
+  <td>Not used.</td>
+  <td>MIB_IFNUMBER (section 2.2.1.2.28)</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>IF_TABLE 0x00000001</td>
+  <td>Not used.</td>
+  <td>MIB_IFTABLE (section 2.2.1.2.31)</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>IF_ROW 0x00000002</td>
+  <td>Index of the interface.</td>
+  <td>MIB_IFROW (section 2.2.1.2.29)</td>
+  <td>The instance of the structure whose interface index matches with the value specified in rgdwVarIndex.</td>
+ </tr><tr>
+  <td>IP_STATS 0x00000003</td>
+  <td>Not used.</td>
+  <td>MIB_IPSTATS (section 2.2.1.2.49)</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>0x00000004 IP_ADDRTABLE</td>
+  <td>Not used.</td>
+  <td>MIB_IPADDRTABLE (section 2.2.1.2.33)</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>IP_ADDRROW 0x00000005</td>
+  <td>IP address.</td>
+  <td>MIB_IPADDRROW (section 2.2.1.2.32)</td>
+  <td>The instance of the structure whose dwAddr matches the value specified in rgdwVarIndex.</td>
+ </tr><tr>
+  <td>IP_FORWARDNUMBER 0x00000006</td>
+  <td>Not used.</td>
+  <td>MIB_IPFORWARDNUMBER (section 2.2.1.2.34)</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>IP_FORWARDTABLE 0x00000007</td>
+  <td>Not used.</td>
+  <td>MIB_IPFORWARDTABLE (section 2.2.1.2.36)</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>IP_FORWARDROW 0x00000008</td>
+  <td>This MUST be of 4 DWORDS size (rgdwVarIndex[4]) for IPV4. For IPV6 this MUST be index.</td>
+  <td>MIB_IPFORWARDROW (section 2.2.1.2.35) for IPv4, INTERFACE_ROUTE_ENTRY (section 2.2.1.2.181) for IPv6</td>
+  <td>For IPv4, the instance of the structure whose dwForwardDest matches rgdwVarIndex[0], dwForwardProto matches rgdwVarIndex[1], dwForwardPolicy matches rgdwVarIndex[2], and dwForwardNextHop matches rgdwVarIndex[3]. For IPv6, the instance of the structure whose dwIndex matches rgdwVarIndex.</td>
+ </tr><tr>
+  <td>IP_NETTABLE 0x00000009</td>
+  <td>MUST be of size one DWORD (rgdwVarIndex[1]) or two DWORDS (rgdwVarIndex[2]).</td>
+  <td>MIB_IPNETTABLE (section 2.2.1.2.48)</td>
+  <td>If one DWORD is passed, an instance of the structure whose dwIndex matches the value specified in rgdwVarIndex[0] is returned. If two DWORDs are passed, an instance of the structure whose dwIndex matches the value specified in rgdwVarIndex[0] and whose dwAddr matches rgdwVarIndex[1] is returned.</td>
+ </tr><tr>
+  <td>IP_NETROW 0x0000000A</td>
+  <td>This MUST be of size one DWORD (rgdwVarIndex[1]) or two DWORDS (rgdwVarIndex[2]).</td>
+  <td>MIB_IPNETROW (section 2.2.1.2.47)</td>
+  <td>If one DWORD is passed, an instance of the structure whose dwIndex matches the value specified in rgdwVarIndex[0] is returned. If two DWORDs are passed, an instance of the structure whose dwIndex matches the value specified in rgdwVarIndex[0] and whose dwAddr matches rgdwVarIndex[1] is returned.</td>
+ </tr><tr>
+  <td>ICMP_STATS 0x0000000B</td>
+  <td>Not used.</td>
+  <td>MIB_ICMP (section 2.2.1.2.25)</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>TCP_STATS 0x0000000C</td>
+  <td>Not used.</td>
+  <td>MIB_TCPSTATS (section 2.2.1.2.56)</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>TCP_ROW 0x0000000E</td>
+  <td>This MUST be of 4 DWORDS size (rgdwVarIndex[4]) for IPV4.</td>
+  <td>MIB_TCPROW (section 2.2.1.2.55)</td>
+  <td>The instance of the structure whose dwLocalAddr matches rgdwVarIndex[0], dwLocalPort matches rgdwVarIndex[1], dwRemoteAddr matches rgdwVarIndex[2], and dwRemotePort matches rgdwVarIndex[3].</td>
+ </tr><tr>
+  <td>UDP_STATS 0x0000000F</td>
+  <td>Not used.</td>
+  <td>MIB_UDPSTATS (section 2.2.1.2.59)</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>UDP_TABLE 0x00000010</td>
+  <td>Not used.</td>
+  <td>MIB_UDPTABLE (section 2.2.1.2.60)</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>UDP_ROW 0x00000011</td>
+  <td>This MUST be of size one DWORD (rgdwVarIndex[1]) or two DWORDS (rgdwVarIndex[2]).</td>
+  <td>MIB_UDPROW (section 2.2.1.2.58)</td>
+  <td>If one DWORD is passed, an instance of the structure whose dwLocalAddr matches the value specified in rgdwVarIndex[0] is returned. If two DWORDs are passed, an instance of the structure whose dwLocalAddr matches the value specified in rgdwVarIndex[0] and whose dwLocalPort matches the value specified in rgdwVarIndex[1]. Both dwLocalAddr and dwLocalPort MUST be specified for RMIBEntryGet.</td>
+ </tr><tr>
+  <td>MCAST_MFE 0x00000012</td>
+  <td>This MUST be of 3 DWORDS size (rgdwVarIndex[3]).</td>
+  <td>MIB_MFE_TABLE (section 2.2.1.2.51)</td>
+  <td>The instance of the structure whose dwGroup matches rgdwVarIndex[0], dwSource matches rgdwVarIndex[1], dwSrcMask matches rgdwVarIndex[2] is returned, and rgdwVarIndex[2] MUST be 0xFFFFFFFF.</td>
+ </tr><tr>
+  <td>MCAST_MFE_STATS 0x00000013</td>
+  <td>This MUST be of 3 DWORDS size (rgdwVarIndex[3]).</td>
+  <td>MIB_IPMCAST_MFE_STATS (section 2.2.1.2.44)</td>
+  <td>The instance of the structure whose dwGroup matches rgdwVarIndex[0], dwSource matches rgdwVarIndex[1], dwSrcMask matches rgdwVarIndex[2] is returned, and rgdwVarIndex[2] MUST be 0xFFFFFFFF.</td>
+ </tr><tr>
+  <td>BEST_IF 0x00000014</td>
+  <td>MUST be of 1 DWORDS size (rgdwVarIndex[1]).</td>
+  <td>MIB_BEST_IF (section 2.2.1.2.23)</td>
+  <td>The interface having the best route for the destination specified in rgdwVarIndex[0] is returned.</td>
+ </tr><tr>
+  <td>BEST_ROUTE 0x00000015</td>
+  <td>MUST be of 2 DWORDS size (rgdwVarIndex[2])</td>
+  <td>INTERFACE_ROUTE_INFO (section 2.2.1.2.11)</td>
+  <td>The best route information for the destination specified in rgdwVarIndex[0] is returned; rgdwVarIndex[1] MUST be set to 0.</td>
+ </tr><tr>
+  <td>MCAST_IF_ENTRY 0x00000017</td>
+  <td>MUST be of 1 DWORDS size (rgdwVarIndex[1]).</td>
+  <td>MIB_IPMCAST_IF_ENTRY (section 2.2.1.2.40)</td>
+  <td>The instance of the structure whose interface index matches with the value specified in rgdwVarIndex.</td>
+ </tr><tr>
+  <td>MCAST_GLOBAL 0x00000018</td>
+  <td>Not used.</td>
+  <td>MIB_IPMCAST_GLOBAL (section 2.2.1.2.39)</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>IF_STATUS 0x00000019</td>
+  <td>MUST be of 1 DWORDS size (rgdwVarIndex[1]).</td>
+  <td>MIB_IFSTATUS (section 2.2.1.2.30)</td>
+  <td>The instance of the structure whose interface index matches with the value specified in rgdwVarIndex.</td>
+ </tr><tr>
+  <td>MCAST_BOUNDARY 0x0000001A</td>
+  <td>MUST be of 3 DWORDS size (rgdwVarIndex[3]).</td>
+  <td>MIB_IPMCAST_BOUNDARY (section 2.2.1.2.37)</td>
+  <td>The instance with dwIfIndex equal to rgdwVarIndex[0], dwGroupAddress equal to  rgdwVarIndex[1], and dwGroupMask equal to  rgdwVarIndex[2] is returned.</td>
+ </tr><tr>
+  <td>MCAST_SCOPE 0x0000001B</td>
+  <td>MUST be of size one DWORD (rgdwVarIndex[1]) or two DWORDS (rgdwVarIndex[2]).</td>
+  <td>MIB_IPMCAST_SCOPE (section 2.2.1.2.46)</td>
+  <td>If one DWORD is passed, an instance of the structure whose dwGroupAddress matches the value specified in rgdwVarIndex[0] is returned. If two DWORDs are passed, an instance of the structure whose dwGroupAddress matches the value specified in rgdwVarIndex[0] and whose dwGroupMask matches rgdwVarIndex[1] is returned. Both dwGroupAddress and dwGroupMask MUST be specified for RMIBEntryGet.</td>
+ </tr><tr>
+  <td>DEST_MATCHING 0x0000001C</td>
+  <td>MUST be of 4 DWORDS size (rgdwVarIndex[4]).</td>
+  <td>MIB_IPDESTTABLE (section 2.2.1.2.21)</td>
+  <td>The instance of the structure whose ForwardRow fields of dwForwardDest matches rgdwVarIndex[0], dwForwardMask matches rgdwVarIndex[1], dwForwardViewSet matches rgdwVarIndex[2], and whose dwForwardProto matches rgdwVarIndex[3].</td>
+ </tr><tr>
+  <td>DEST_LONGER 0x0000001D</td>
+  <td>MUST be of 4 DWORDS size (rgdwVarIndex[4]).</td>
+  <td>MIB_IPDESTTABLE (section 2.2.1.2.21)</td>
+  <td>The instance of the structure whose ForwardRow fields of dwForwardDest matches rgdwVarIndex[0], dwForwardMask matches rgdwVarIndex[1], dwForwardViewSet matches rgdwVarIndex[2], and whose dwForwardProto matches rgdwVarIndex[3].</td>
+ </tr><tr>
+  <td>DEST_SHORTER 0x0000001E</td>
+  <td>MUST be of 4 DWORDS size (rgdwVarIndex[4]).</td>
+  <td>MIB_IPDESTTABLE (section 2.2.1.2.21)</td>
+  <td>The instance of the structure whose ForwardRow fields of dwForwardDest matches rgdwVarIndex[0], dwForwardMask matches rgdwVarIndex[1], dwForwardViewSet matches rgdwVarIndex[2], and whose dwForwardProto matches rgdwVarIndex[3].</td>
+ </tr><tr>
+  <td>ROUTE_MATCHING 0x0000001F</td>
+  <td>This MUST be of 4 DWORDS size (rgdwVarIndex[4]).</td>
+  <td>MIB_IPDESTTABLE (section 2.2.1.2.21)</td>
+  <td>The instance of the structure whose ForwardRow fields of dwForwardDest matches rgdwVarIndex[0], dwForwardMask matches rgdwVarIndex[1], dwForwardViewSet matches rgdwVarIndex[2], and whose dwForwardProto matches rgdwVarIndex[3].</td>
+ </tr><tr>
+  <td>ROUTE_LONGER 0x00000020</td>
+  <td>MUST be of 4 DWORDS size (rgdwVarIndex[4]).</td>
+  <td>MIB_IPDESTTABLE (section 2.2.1.2.21)</td>
+  <td>The instance of the structure whose ForwardRow fields of dwForwardDest matches rgdwVarIndex[0], dwForwardMask matches rgdwVarIndex[1], dwForwardViewSet matches rgdwVarIndex[2], and whose dwForwardProto matches rgdwVarIndex[3].</td>
+ </tr><tr>
+  <td>ROUTE_SHORTER 0x00000021</td>
+  <td>MUST be of 4 DWORDS size (rgdwVarIndex[4]).</td>
+  <td>MIB_IPDESTTABLE (section 2.2.1.2.21)</td>
+  <td>The instance of the structure whose ForwardRow fields of dwForwardDest matches rgdwVarIndex[0], dwForwardMask matches rgdwVarIndex[1], dwForwardViewSet matches rgdwVarIndex[2], and whose dwForwardProto matches rgdwVarIndex[3].</td>
+ </tr><tr>
+  <td>ROUTE_STATE 0x00000022</td>
+  <td>Not used.</td>
+  <td>MIB_ROUTESTATE (section 2.2.1.2.22)</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>MCAST_MFE_STATS_EX 0x00000023</td>
+  <td>MUST be of 3 DWORDS size (rgdwVarIndex[3]).</td>
+  <td>MIB_MFE_STATS_TABLE (section 2.2.1.2.50)</td>
+  <td>The instance of the structure whose dwGroup field matches rgdwVarIndex[0], dwSource matches rgdwVarIndex[1], and rgdwVarIndex[2] is not used.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

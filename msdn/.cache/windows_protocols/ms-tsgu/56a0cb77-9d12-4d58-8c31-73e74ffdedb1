@@ -1,0 +1,32 @@
+<div class="content" name="TSG_CAPABILITY_NAP" uuid="56a0cb77-9d12-4d58-8c31-73e74ffdedb1"><p>The TSG_CAPABILITY_NAP structure contains information about
+the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_f30fdc41-d7c1-422e-b5a8-9dcce071ebeb" data-linktype="relative-path">NAP</a> capabilities of
+the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> and RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>.</p><p>This structure MUST be embedded in the <a href="aa107f61-24a9-4942-8f6e-f8413cba7d88" data-linktype="relative-path">TSG_PACKET_CAPABILITIES</a>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_CAPABILITY_NAP {
+   unsigned long capabilities;
+ } TSG_CAPABILITY_NAP,
+  *PTSG_CAPABILITY_NAP;
+</pre></div>
+</dd></dl><p><b>capabilities:</b>  Indicates the NAP
+capabilities supported by the RDG client and RDG server. This bit field MUST be
+0 or one or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>TSG_NAP_CAPABILITY_QUAR_SOH</td>
+ </tr><tr>
+  <td>TSG_NAP_CAPABILITY_IDLE_TIMEOUT</td>
+ </tr><tr>
+  <td>TSG_MESSAGING_CAP_CONSENT_SIGN</td>
+ </tr><tr>
+  <td>TSG_MESSAGING_CAP_SERVICE_MSG</td>
+ </tr><tr>
+  <td>TSG_MESSAGING_CAP_REAUTH</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

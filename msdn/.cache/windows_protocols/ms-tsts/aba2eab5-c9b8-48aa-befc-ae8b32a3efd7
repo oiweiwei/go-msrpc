@@ -1,0 +1,24 @@
+<div class="content" name="FLOWCONTROLCONFIG" uuid="aba2eab5-c9b8-48aa-befc-ae8b32a3efd7"><p>Flow control configuration of an async driver.</p><dl>
+<dd>
+<div><pre> typedef struct _FLOWCONTROLCONFIG {
+   ULONG fEnableSoftwareTx  :1;
+   ULONG fEnableSoftwareRx  :1;
+   ULONG fEnableDTR  :1;
+   ULONG fEnableRTS  :1;
+   CHAR XonChar;
+   CHAR XoffChar;
+   FLOWCONTROLCLASS Type;
+   RECEIVEFLOWCONTROLCLASS HardwareReceive;
+   TRANSMITFLOWCONTROLCLASS HardwareTransmit;
+ } FLOWCONTROLCONFIG,
+  *PFLOWCONTROLCONFIG;
+</pre></div>
+</dd></dl><p><b>fEnableSoftwareTx:</b>  TRUE indicates
+software transmit flow control, FALSE otherwise.</p><p><b>fEnableSoftwareRx:</b>  TRUE indicates
+software receive flow control, FALSE otherwise.</p><p><b>fEnableDTR:</b>  TRUE indicates Data
+Terminal Ready (DTR) enabled, FALSE otherwise.</p><p><b>fEnableRTS:</b>  TRUE indicates Request
+to Send (RTS) enabled, FALSE otherwise.</p><p><b>XonChar:</b>  Xon flow control character.</p><p><b>XoffChar:</b>  Xoff flow control
+character.</p><p><b>Type:</b>  The type of flow control in
+use.</p><p><b>HardwareReceive:</b>  Hardware receive
+flow control information.</p><p><b>HardwareTransmit:</b>  Hardware transmit
+flow control information.</p></div>

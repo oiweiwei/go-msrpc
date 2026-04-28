@@ -1,0 +1,11 @@
+<div class="content" name="DFS_INFO_4_CONTAINER" uuid="e11b7458-397f-412e-a692-76e9f04bca62"><p>The DFS_INFO_4_CONTAINER structure contains an array of <a href="827866a0-973a-43a3-8df5-c5e1dd437320" data-linktype="relative-path">DFS_INFO_4</a> structures. The
+DFS_INFO_4_CONTAINER structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_4_CONTAINER {
+   DWORD EntriesRead;
+   [size_is(EntriesRead)] DFS_INFO_4* Buffer;
+ } DFS_INFO_4_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of elements
+in the array.</p><p><b>Buffer:</b>  The array of DFS_INFO_4
+structures.</p></div>

@@ -70,6 +70,10 @@ type ClusterStorage3Client interface {
 	//	| 0x80070032 ERROR_NOT_SUPPORTED | The disk does not support device ID data. |
 	//	+--------------------------------+-------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -94,6 +98,10 @@ type ClusterStorage3Client interface {
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -116,6 +124,10 @@ type ClusterStorage3Client interface {
 	//	+-------------------+--------------------------+
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -142,6 +154,10 @@ type ClusterStorage3Client interface {
 	//	+-------------------------+------------------------------------+
 	//	| 0x80070057 E_INVALIDARG | One or more arguments are invalid. |
 	//	+-------------------------+------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -183,6 +199,10 @@ type ClusterStorage3Client interface {
 	//	| 0x80070057 E_INVALIDARG | One or more arguments are invalid. |
 	//	+-------------------------+------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -210,6 +230,10 @@ type ClusterStorage3Client interface {
 	//	| 0x80070057 E_INVALIDARG | One or more arguments are invalid.                                               |
 	//	+-------------------------+----------------------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -235,6 +259,10 @@ type ClusterStorage3Client interface {
 	//	+---------------------------------+--------------------------+
 	//	| 0x80070002 ERROR_FILE_NOT_FOUND | The disk was not found.  |
 	//	+---------------------------------+--------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -263,6 +291,10 @@ type ClusterStorage3Client interface {
 	//	+---------------------------------------+-------------------------------------------+
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online. |
 	//	+---------------------------------------+-------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -295,6 +327,10 @@ type ClusterStorage3Client interface {
 	//	+---------------------------------------+----------------------------------------------------------+
 	//	| 0x8007139F ERROR_INVALID_STATE        | The value of ClusPrepDisk.AttachedState is not Attached. |
 	//	+---------------------------------------+----------------------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol (see [MS-RPCE]).
@@ -331,6 +367,10 @@ type ClusterStorage3Client interface {
 	//	| 0x8007139F ERROR_INVALID_STATE        | The value of ClusPrepDisk.AttachedState is not Attached. |
 	//	+---------------------------------------+----------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol (see [MS-RPCE]).
 	//
@@ -363,6 +403,10 @@ type ClusterStorage3Client interface {
 	//	| 0x8007139F ERROR_INVALID_STATE        | The value of ClusPrepDisk.AttachedState is not Attached. |
 	//	+---------------------------------------+----------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol (see [MS-RPCE]).
 	//
@@ -394,6 +438,10 @@ type ClusterStorage3Client interface {
 	//	+---------------------------------------+----------------------------------------------------------+
 	//	| 0x8007139F ERROR_INVALID_STATE        | The value of ClusPrepDisk.AttachedState is not Attached. |
 	//	+---------------------------------------+----------------------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol (see [MS-RPCE]).
@@ -429,6 +477,10 @@ type ClusterStorage3Client interface {
 	//	| 0x8007139F ERROR_INVALID_STATE        | The value of ClusPrepDisk.AttachedState is not Attached. |
 	//	+---------------------------------------+----------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol (see [MS-RPCE]).
 	//
@@ -461,6 +513,10 @@ type ClusterStorage3Client interface {
 	//	| 0x8007139F ERROR_INVALID_STATE        | The value of ClusPrepDisk.AttachedState is not Attached. |
 	//	+---------------------------------------+----------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol (see [MS-RPCE]).
 	//
@@ -492,6 +548,10 @@ type ClusterStorage3Client interface {
 	//	+---------------------------------------+----------------------------------------------------------+
 	//	| 0x8007139F ERROR_INVALID_STATE        | The value of ClusPrepDisk.AttachedState is not Attached. |
 	//	+---------------------------------------+----------------------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol (see [MS-RPCE]).

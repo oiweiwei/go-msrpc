@@ -1,0 +1,52 @@
+<div class="content" name="NetrServerTrustPasswordsGet" uuid="84b0d22a-9b2c-4432-8ae0-4a72eda28ea4"><p>The <b>NetrServerTrustPasswordsGet</b> method SHOULD<a id="Appendix_A_Target_196"></a><a aria-label="Product behavior note 196" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_196" data-linktype="relative-path">&lt;196&gt;</a> return the encrypted current
+and previous passwords for an account in the domain. This method is called by a
+client to retrieve the current and previous account passwords from a <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain
+controller</a></span>. The account name requested MUST be the name used when
+the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure
+channel</a></span> was created, unless the method is called on a <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a></span>
+by a DC, in which case it can be any valid account name. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrServerTrustPasswordsGet(
+   [in, unique, string] LOGONSRV_HANDLE TrustedDcName,
+   [in, string, range(0,256)] wchar_t* AccountName,
+   [in] NETLOGON_SECURE_CHANNEL_TYPE SecureChannelType,
+   [in, string, range(0,256)] wchar_t* ComputerName,
+   [in] PNETLOGON_AUTHENTICATOR Authenticator,
+   [out] PNETLOGON_AUTHENTICATOR ReturnAuthenticator,
+   [out] PENCRYPTED_NT_OWF_PASSWORD EncryptedNewOwfPassword,
+   [out] PENCRYPTED_NT_OWF_PASSWORD EncryptedOldOwfPassword
+ );
+</pre></div>
+</dd></dl><p><b>TrustedDcName: </b>The custom binding handle, as
+defined in section <span><a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a></span>.</p><p><b>AccountName: </b>The null-terminated Unicode
+string that contains the name of the client account in the domain for which the
+trust password MUST be returned.<a id="Appendix_A_Target_197"></a><a aria-label="Product behavior note 197" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_197" data-linktype="relative-path">&lt;197&gt;</a></p><p><b>SecureChannelType: </b>A <span><a href="4d1235e3-2c96-4e9f-a147-3cb338a0d09f" data-linktype="relative-path">NETLOGON_SECURE_CHANNEL_TYPE</a></span>
+enumerated value, as specified in section 2.2.1.3.13, that indicates the type
+of the secure channel being established by this call.</p><p><b>ComputerName: </b>The null-terminated Unicode
+string that contains the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a></span> of the
+client computer.</p><p><b>Authenticator: </b>A pointer to a <b>NETLOGON_AUTHENTICATOR</b>
+structure, as specified in section <span><a href="76c93227-942a-4687-ab9d-9d972ffabdab" data-linktype="relative-path">2.2.1.1.5</a></span>, that
+contains the client <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e72a2c02-84a2-4ce3-b66f-86f725642dc3" data-linktype="relative-path">authenticator</a></span>.</p><p><b>ReturnAuthenticator: </b>A pointer to a <b>NETLOGON_AUTHENTICATOR</b>
+structure, as specified in section 2.2.1.1.5, that contains the server return
+authenticator.</p><p><b>EncryptedNewOwfPassword: </b>A pointer to an <span><a href="f7458576-d538-47cd-b387-b6f98449a0ee" data-linktype="relative-path">ENCRYPTED_NT_OWF_PASSWORD</a></span>
+structure, as specified in <span><a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a></span>
+section <span><a href="../ms-samr/ce061fef-6d4f-4802-bd5d-26b11f14f4a6" data-linktype="relative-path">2.2.7.3</a></span>,
+that contains the NTOWFv1 (as specified in NTLM v1 Authentication in <span><a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a></span>
+section <span><a href="../ms-nlmp/464551a8-9fc4-428e-b3d3-bc5bfb2e73a5" data-linktype="relative-path">3.3.1</a></span>)
+of the current password, encrypted as specified in [MS-SAMR] section <span><a href="../ms-samr/a5252e8c-25e7-4616-a375-55ced086b19b" data-linktype="relative-path">2.2.11.1.1</a></span>,
+Encrypting an NT Hash or LM Hash Value with a specified key. The <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session
+key</a></span> is the specified 16-byte key that is used to derive the
+password&#39;s keys. The specified 16-byte key uses the 16-byte value process, as
+specified in [MS-SAMR] section <span><a href="../ms-samr/ba437786-7de8-47b4-b269-5a595c255327" data-linktype="relative-path">2.2.11.1.4</a></span>.</p><p><b>EncryptedOldOwfPassword: </b>A pointer to an
+ENCRYPTED_NT_OWF_PASSWORD structure, as specified in [MS-SAMR] section 2.2.7.3,
+that contains the NTOWFv1 (as specified in NTLM v1 Authentication in [MS-NLMP] section
+3.3.1) of the previous password, encrypted as specified in [MS-SAMR] section
+2.2.11.1.1, Encrypting an NT Hash or LM Hash Value with a specified key. The
+session key is the specified 16-byte key that is used to derive the password&#39;s
+keys. The specified 16-byte key uses the 16-byte value process, as specified in
+[MS-SAMR] section 2.2.11.1.4.</p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code.</p><p>Message processing is identical to <span><a href="4c2296c3-c6f0-47fc-9f01-a6fe17bf1d5b" data-linktype="relative-path">NetrServerGetTrustInfo</a></span>,
+as specified in section 3.5.4.7.6, except for the following:</p><ul><li><p><span><span> 
+</span></span>The <i>TrustInfo</i> parameter is not present in
+NetrServerTrustPasswordsGet.</p>
+</li></ul></div>

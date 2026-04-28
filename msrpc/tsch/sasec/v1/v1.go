@@ -367,6 +367,8 @@ type SetAccountInformationRequest struct {
 	//	| RL TASK_FLAG_RUN_ONLY_IF_LOGGED_ON | When set, the task MUST run only if the user specified is logged on              |
 	//	|                                    | interactively.                                                                   |
 	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Undefined bits MUST be set to 0 when sent and ignored upon receipt.
 	JobFlags uint32 `idl:"name:dwJobFlags" json:"job_flags"`
 }
 

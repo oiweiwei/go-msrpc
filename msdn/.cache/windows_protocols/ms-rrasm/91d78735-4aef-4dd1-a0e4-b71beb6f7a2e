@@ -1,0 +1,56 @@
+<div class="content" name="IP_DNS_PROXY_GLOBAL_INFO" uuid="91d78735-4aef-4dd1-a0e4-b71beb6f7a2e"><p>The <b>IP_DNS_PROXY_GLOBAL_INFO</b> structure holds global
+configuration for the DNS proxy and is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo (section 3.1.4.10)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="14ad8d26-d7d7-48dd-914d-da962d5d7049" data-linktype="relative-path"><b>RRouterInterfaceTransportGetGlobalInfo (section 3.1.4.11)</b></a><span>  </span></p>
+<div><pre> typedef struct _IP_DNS_PROXY_GLOBAL_INFO {
+   ULONG LoggingLevel;
+   ULONG Flags;
+   ULONG TimeoutSeconds;
+ } IP_DNS_PROXY_GLOBAL_INFO, *PIP_DNS_PROXY_GLOBAL_INFO;
+</pre></div>
+</li></ul><p><b>LoggingLevel: </b>Specifies the logging level. It
+MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IPNATHLP_LOGGING_NONE 0x00000000</td>
+  <td>No logging is done.</td>
+ </tr><tr>
+  <td>IPNATHLP_LOGGING_ERROR 0x00000001</td>
+  <td>Only errors are logged.</td>
+ </tr><tr>
+  <td>IPNATHLP_LOGGING_WARN 0x00000002</td>
+  <td>Errors and warnings are logged.</td>
+ </tr><tr>
+  <td>IPNATHLP_LOGGING_INFO 0x00000003</td>
+  <td>Errors, warnings, and information is logged.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Flags: </b>It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IP_DNS_PROXY_FLAG_ENABLE_DNS 0x00000001</td>
+  <td>DNS is enabled.</td>
+ </tr><tr>
+  <td>IP_DNS_PROXY_FLAG_ENABLE_WINS 0x00000002</td>
+  <td>WINS is enabled.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>TimeoutSeconds: </b>This MUST be the number of
+seconds that entry is maintained in the cache.</p></div>

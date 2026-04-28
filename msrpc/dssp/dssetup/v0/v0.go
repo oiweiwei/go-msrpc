@@ -110,7 +110,7 @@ var (
 	// DsRole_RoleMemberWorkstation:  The computer is a workstation that is joined to a
 	// domain.
 	MachineRoleMemberWorkstation MachineRole = 1
-	// DsRole_RoleStandaloneServer:  The computer is a stand-alone server.
+	// DsRole_RoleStandaloneServer:  The computer is a stand-alone server.
 	MachineRoleStandaloneServer MachineRole = 2
 	// DsRole_RoleMemberServer:  The computer is a server that is joined to a domain.
 	MachineRoleMemberServer MachineRole = 3

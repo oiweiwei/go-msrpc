@@ -1,0 +1,51 @@
+<div class="content" name="FaxObs_SetPort" uuid="77fdb752-7238-4baf-8698-625337a0d328"><p>The client calls the <b>FaxObs_SetPort (Opnum 15)</b> method
+to change the configuration of a fax port (device). The function sets extension
+configuration properties that are stored at the device level, such as enabling
+or disabling sending and receiving, and the automatic or manual answering of
+calls.</p><p>The client MUST set the <i>FaxPortHandle</i> parameter to a
+valid fax port handle value returned by the <b>FaxObs_OpenPort</b> (section <a href="2c8a37ec-7c13-4a2c-93b7-cf19534846c2" data-linktype="relative-path">3.1.4.2.5</a>) method. The
+server MUST validate that the client&#39;s fax user account has the access to
+change the port configuration. On success, the server MUST modify the
+properties of the port as specified by the client.</p><dl>
+<dd>
+<div><pre> error_status_t FaxObs_SetPort(
+   [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+   [in] const FAX_PORT_INFO* PortInfo
+ );
+</pre></div>
+</dd></dl><p><b>FaxPortHandle:</b> An <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC context handle</a> that
+references a fax port.</p><p><b>PortInfo: </b>A pointer to a <b>FAX_PORT_INFO</b>
+(section <a href="2b46d16c-e74a-4e3b-b50c-0b94f78bebd0" data-linktype="relative-path">2.2.7)</a>
+structure. The structure contains data to modify the configuration of the
+specified fax port. The server MUST ignore the <b>State</b> field of this
+structure.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. The client&#39;s fax user account does not have the FAX_PORT_SET access rights.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_DATA 0x0000000D</td>
+  <td>The handle specified by the FaxPortHandle argument is not a valid fax port handle obtained by a call to FaxObs_OpenPort.&lt;201&gt;</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The size of FAX_PORT_INFO, specified in the SizeOfStruct field, is incorrect.</td>
+ </tr><tr>
+  <td>ERROR_DEVICE_IN_USE 0x00000964</td>
+  <td>The specified fax port is currently sending or receiving a fax transmission.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol, <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

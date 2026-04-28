@@ -756,10 +756,14 @@ type CreateMachineGroupRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrParentMachineGroupId: A string that specifies the identifier of the parent machine
 	// group in which to create a new machine group.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ParentMachineGroupID *oaut.String `idl:"name:bstrParentMachineGroupId" json:"parent_machine_group_id"`
 	// bstrMachineGroupInfo: A string that specifies information about the machine group
 	// to be created, including its identifier, in the format of a MachineGroup element
 	// (section 2.2.5.18).<85>
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	MachineGroupInfo *oaut.String `idl:"name:bstrMachineGroupInfo" json:"machine_group_info"`
 }
 
@@ -1392,9 +1396,13 @@ type ModifyMachineGroupRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrMachineGroupId: A string that specifies the identifier of the machine group to
 	// be modified.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	MachineGroupID *oaut.String `idl:"name:bstrMachineGroupId" json:"machine_group_id"`
 	// bstrMachineGroupInfo: A string that specifies the new information for the machine
 	// group, in the format specified in MachineGroup element (section 2.2.5.18).
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	MachineGroupInfo *oaut.String `idl:"name:bstrMachineGroupInfo" json:"machine_group_info"`
 	// enumMGMergeOptions: Options for machine group modification, from the MACHINE_GROUP_MERGE_OPTIONS
 	// enumeration (section 2.2.3.4).<89>
@@ -1660,6 +1668,8 @@ type DeleteMachineGroupRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrMachineGroupId: A string that specifies the identifier of the machine group to
 	// be deleted.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	MachineGroupID *oaut.String `idl:"name:bstrMachineGroupId" json:"machine_group_id"`
 }
 
@@ -1965,9 +1975,13 @@ type RenameMachineGroupRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrOldMachineGroupName: A string that specifies the identifier of the machine group
 	// to be renamed.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	OldMachineGroupName *oaut.String `idl:"name:bstrOldMachineGroupName" json:"old_machine_group_name"`
 	// bstrNewMachineGroupName: A string that specifies the new identifier of the machine
 	// group.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	NewMachineGroupName *oaut.String `idl:"name:bstrNewMachineGroupName" json:"new_machine_group_name"`
 }
 
@@ -2273,6 +2287,8 @@ type AddMachineRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrParentMachineGroupId: A string that specifies the identifier of the machine group
 	// in which to add a machine.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ParentMachineGroupID *oaut.String `idl:"name:bstrParentMachineGroupId" json:"parent_machine_group_id"`
 	// bstrMachineInfo: A string that specifies the machine, in the format specified in
 	// Machine element (section 2.2.5.17).<95>
@@ -2581,6 +2597,8 @@ type GetMachineInfoRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrMachineId: A string that specifies the identifier of the machine for which to
 	// return information.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	MachineID *oaut.String `idl:"name:bstrMachineId" json:"machine_id"`
 }
 
@@ -2938,11 +2956,17 @@ type ModifyMachineInfoRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrParentMachineGroupId: A string that specifies the identifier of the machine group
 	// that contains the machine to modify.<99>
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ParentMachineGroupID *oaut.String `idl:"name:bstrParentMachineGroupId" json:"parent_machine_group_id"`
 	// bstrMachineId: A string that specifies the identifier of the machine to modify.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	MachineID *oaut.String `idl:"name:bstrMachineId" json:"machine_id"`
 	// bstrMachineInfo: A string that specifies the new information for the machine, in
 	// the format specified in Machine element (section 2.2.5.17).
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	MachineInfo *oaut.String `idl:"name:bstrMachineInfo" json:"machine_info"`
 }
 
@@ -3271,8 +3295,12 @@ type DeleteMachineRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrParentMachineGroupId: A string that specifies the identifier of the machine group
 	// that contains the machine to delete.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	ParentMachineGroupID *oaut.String `idl:"name:bstrParentMachineGroupId" json:"parent_machine_group_id"`
 	// bstrMachineId: A string that specifies the identifier of the machine to delete.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	MachineID *oaut.String `idl:"name:bstrMachineId" json:"machine_id"`
 	// bRecursive: A Boolean value that specifies whether to recursively delete all instances
 	// of the specified machine.<103>

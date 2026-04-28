@@ -1,0 +1,136 @@
+<div class="content" name="FAX_AccessCheckEx2" uuid="0634ea4c-fa69-4348-bf38-14666915f682"><p>The <b>FAX_AccessCheckEx2 (Opnum 101)</b> method is called
+by the client when the client needs to check whether the client&#39;s fax user
+account has certain access permissions on the server.</p><p>In response, the server MUST validate the access rights
+specified by the client against the actual access rights granted to the
+client&#39;s fax user account. On success, the server SHOULD return the access
+rights specified by the client that are granted to the client&#39;s fax user
+account.</p><p>Protocol versions FAX_API_VERSION_0 (0x00000000), FAX_API_VERSION_1
+(0x00010000), and FAX_API_VERSION_2 (0x00020000) fax servers SHOULD NOT
+implement this call. The fax client MUST NOT call this method if the protocol
+version reported by the server is FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), or FAX_API_VERSION_2 (0x00020000). For more
+information, see <b>FAX_ConnectFaxServer</b> section <a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a>).</p><dl>
+<dd>
+<div><pre> error_status_t FAX_AccessCheckEx2(
+   [in] handle_t hBinding,
+   [in] DWORD AccessMask,
+   [out, ref] BOOL* pfAccess,
+   [in, out, unique] LPDWORD lpdwRights
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section 3.1.4.1.10) or <b>FAX_ConnectionRefCount</b>
+(section <a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a>)
+method call used to connect to the fax server.</p><p><b>AccessMask: </b>A <b>DWORD</b> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+variable that contains a set of bit flags specified by the client to be
+validated. Zero is a valid value for this parameter and means that no access rights
+are specified by the client to be validated. This parameter can be any
+combination of fax-specific access rights, standard access rights, and
+fax-generic access rights. If this parameter is set to 0x02000000
+(MAXIMUM_ALLOWED), on return, the <i>lpdwRights</i> parameter SHOULD receive
+the maximum access rights granted to the client&#39;s fax user account.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Fax-generic access rights</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FAX_GENERIC_EXECUTE_2 0x00000001</td>
+  <td>Includes the read-only rights granted by the FAX_ACCESS_SUBMIT access right.</td>
+ </tr><tr>
+  <td>FAX_GENERIC_READ_2 0x00000020</td>
+  <td>Includes the read-only rights granted by the FAX_ACCESS_QUERY_CONFIG access right.</td>
+ </tr><tr>
+  <td>FAX_GENERIC_WRITE_2 0x00000040</td>
+  <td>Includes the read-only rights granted by the FAX_ACCESS_MANAGE_CONFIG access right.</td>
+ </tr><tr>
+  <td>FAX_GENERIC_ALL_2 0x000003FF</td>
+  <td>Includes the read-only rights granted by the following fax-specific access rights: § FAX_ACCESS_SUBMIT § FAX_ACCESS_SUBMIT_NORMAL § FAX_ACCESS_SUBMIT_HIGH § FAX_ACCESS_QUERY_OUT_JOBS § FAX_ACCESS_MANAGE_OUT_JOBS § FAX_ACCESS_QUERY_CONFIG § FAX_ACCESS_MANAGE_CONFIG § FAX_ACCESS_QUERY_ARCHIVES § FAX_ACCESS_MANAGE_ARCHIVES § FAX_ACCESS_MANAGE_RECEIVE_FOLDER</td>
+ </tr></tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Fax-specific access rights</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FAX_ACCESS_SUBMIT 0x00000001</td>
+  <td>Grants permission to send a low-priority fax transmission to one or more recipients.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_SUBMIT_NORMAL 0x00000002</td>
+  <td>Grants permission to send a normal-priority fax transmission to one or more recipients.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_SUBMIT_HIGH 0x00000004</td>
+  <td>Grants permission to send a high-priority fax transmission to one or more recipients.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_QUERY_OUT_JOBS 0x00000008</td>
+  <td>Grants permission to view the outgoing faxes in the fax queue. By default, no users have this permission.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_MANAGE_OUT_JOBS 0x00000010</td>
+  <td>Grants permission to manage the outgoing faxes in the fax queue by using such operations as pause, resume, restart, and delete (section 3.1.4.1.82). By default, no users have this permission.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_QUERY_CONFIG 0x00000020</td>
+  <td>Grants permission to view the properties of the Fax Service and to enumerate accounts, and to read any account configuration information. By default, non-administrator users do not have this permission. Without it, users cannot view any of the tree nodes, except for the cover page node in the Fax Service Manager.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_MANAGE_CONFIG 0x00000040</td>
+  <td>Grants permission to modify the properties of the fax service. By default, non-administrator users do not have this permission.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_QUERY_ARCHIVES 0x00000080</td>
+  <td>Grants permission to view the sent and received fax messages in the archives. By default, no users have this permission.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_MANAGE_ARCHIVES 0x00000100</td>
+  <td>Grants permission to manage the sent and received fax messages in the archives by using such operations as delete (section 3.1.4.1.70) and copy (sections 3.1.4.1.96, 3.1.4.1.97, and 3.1.4.1.15). By default, no users have this permission.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_MANAGE_RECEIVE_FOLDER 0x00000200</td>
+  <td>When global routing is not enabled, this permission allows the user to delete any messages. When global routing is active, it allows the user to see the contents of all receive folder faxes, to delete faxes, and to cancel receive transmissions in progress.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>pfAccess: </b>A pointer to a Boolean value that
+receives the access check return value. This value MUST be TRUE if the client&#39;s
+fax user account has all of the fax access rights specified by the <i>AccessMask</i>
+parameter; otherwise, this value MUST be FALSE. If the value submitted by the
+client for the <i>AccessMask</i> is zero, the value pointed to by the <i>pfAccess</i>
+parameter SHOULD be FALSE on return. </p><p><b>lpdwRights: </b>A pointer to a <b>DWORD</b> value
+that receives the fax access rights that this caller is verified to have of
+those requested in the <i>AccessMask</i> parameter. This value MUST be a <b>DWORD</b>
+bitwise OR combination of fax-specific access rights, standard access rights,
+and/or fax-generic access rights limited to those specified by the client in
+the <i>AccessMask</i>. In order for the client to be verified for the maximum
+allowed rights, the caller MUST set the <i>AccessMask</i> to 0x02000000
+(MAXIMUM_ALLOWED) and the server SHOULD set this output value to the actual
+rights that this caller is verified to have.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. The caller does not have the required permissions for this request (the caller does not have a valid fax user account).</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect. This error code is returned under any of the following conditions: § The pointer specified in the pfAccess parameter is NULL. § The fax access rights specified in the lpdwRights parameter contain invalid access values.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+except those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

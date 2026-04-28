@@ -1,0 +1,52 @@
+<div class="content" name="IPRIP_MIB_GET_INPUT_DATA" uuid="45250002-d774-4bc2-ab2e-6992341b5f45"><p>The <b>IPRIP_MIB_GET_INPUT_DATA</b> structure is passed as
+input data for the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span>  </span></p>
+</li></ul><p>All the IP addresses MUST be in network order.</p><dl>
+<dd>
+<div><pre> typedef struct _IPRIP_MIB_GET_INPUT_DATA {
+   DWORD IMGID_TypeID;
+   union {
+     DWORD IMGID_IfIndex;
+     DWORD IMGID_PeerAddress;
+   };
+ } IPRIP_MIB_GET_INPUT_DATA,
+  *PIPRIP_MIB_GET_INPUT_DATA;
+</pre></div>
+</dd></dl><p><b>IMGID_TypeID: </b>This MUST be one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IPRIP_GLOBAL_STATS_ID 0x00000000</td>
+  <td>The global statistics for the Microsoft Internet Protocol Routing Information Protocol (IPRIP).</td>
+ </tr><tr>
+  <td>IPRIP_GLOBAL_CONFIG_ID 0x00000001</td>
+  <td>The global configuration for the IPRIP.</td>
+ </tr><tr>
+  <td>IPRIP_IF_STATS_ID 0x00000002</td>
+  <td>The per-interface statistics for the IPRIP.</td>
+ </tr><tr>
+  <td>IPRIP_IF_CONFIG_ID 0x00000003</td>
+  <td>The per-interface configuration.</td>
+ </tr><tr>
+  <td>IPRIP_IF_BINDING_ID 0x00000004</td>
+  <td>The table of IP addresses to which each interface is bound.</td>
+ </tr><tr>
+  <td>IPRIP_PEER_STATS_ID 0x00000005</td>
+  <td>The statistics kept about neighboring routers.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>(unnamed union): </b>The interface index or peer
+IP address for which data specified by <b>IMGID_TypeID</b> needs to be
+retrieved.</p></div>

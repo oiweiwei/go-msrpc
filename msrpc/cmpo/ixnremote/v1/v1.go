@@ -1578,14 +1578,25 @@ type BuildContextRequest struct {
 	// the machine in which the caller's instance of the MSDTC Connection Manager: OleTx
 	// Transports Protocol is running. This MUST be a NetBIOS name. For NetBIOS, see [NETBEUI],
 	// [RFC1001], and [RFC1002].
+	//
+	// If this is the primary partner call, this value is used by the called secondary partner
+	// to establish the RPC binding handle for its corresponding call to BuildContext.
 	HostName string `idl:"name:pszHostName;string" json:"host_name"`
 	// pszUuidString: The string form of the caller's contact identifier (CID) in the form
 	// of a GUID. This CID identifies the caller's instance of the MSDTC Connection Manager:
 	// OleTx Transports Protocol. It MUST match the contact identifier (CID) in the caller's
 	// local name object and MUST be formatted into a string.
+	//
+	// If this is the primary participant's call, this value is used by the called secondary
+	// participant to establish the RPC binding handle for its corresponding call to BuildContext.
 	UUIDString string `idl:"name:pszUuidString;string" json:"uuid_string"`
 	// pszGuidIn: A string form of a GUID that represents a unique identifier for this bind
 	// attempt. The GUID MUST be formatted as a string.
+	//
+	// For the primary participant's call to BuildContext, this is a new GUID generated
+	// by the primary partner to uniquely identify the session. For the secondary partner's
+	// call back to the primary partner, this MUST be the parameter value from the primary
+	// partner's call to the secondary partner.
 	GUIDIn string `idl:"name:pszGuidIn;string" json:"guid_in"`
 	// pszGuidOut: A string form of a GUID that represents a global identifier for this
 	// bind attempt. On input, the pszGuidOut parameter MUST be set to 00000000-0000-0000-0000-000000000000.

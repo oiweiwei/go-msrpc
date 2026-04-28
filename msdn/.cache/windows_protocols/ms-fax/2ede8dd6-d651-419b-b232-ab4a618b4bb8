@@ -1,0 +1,56 @@
+<div class="content" name="FAX_GetReceiptsOptions" uuid="2ede8dd6-d651-419b-b232-ab4a618b4bb8"><p>The <b>FAX_GetReceiptsOptions (Opnum 36)</b> method is
+called by the client to retrieve the supported receipt options on the server.</p><p>The server MUST validate that the client&#39;s fax user account
+has the access to retrieve the receipt options. On success, the server MUST
+return the receipt options that are supported by the server.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_GetReceiptsOptions(
+   [in] handle_t hFaxHandle,
+   [out, ref] LPDWORD lpdwReceiptsOptions
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a>) or <b>FAX_ConnectionRefCount</b> (section
+<a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a>) method call
+used to connect to the fax server.</p><p><b>lpdwReceiptsOptions: </b>A pointer to the <b>DWORD</b>
+(<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+that receives the options.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DRT_EMAIL 1</td>
+  <td>Allow sending the receipt by email. The email address is the email address of the sender.</td>
+ </tr><tr>
+  <td>DRT_MSGBOX 4</td>
+  <td>Allow notification on the transmission result by sending a text message containing a character string to the sender&#39;s computer as described in Messenger Service Remote Protocol Specification [MS-MSRP] section 3.2.4.1.&lt;130&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return the following
+error code, one of the fax-specific errors that are defined in section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one of the
+other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. The client&#39;s fax user account does not have any of the permissions covered by ALL_FAX_USER_ACCESS_RIGHTS (section 2.2.83).</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

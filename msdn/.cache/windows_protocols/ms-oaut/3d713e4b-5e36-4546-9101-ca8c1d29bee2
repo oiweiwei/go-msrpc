@@ -1,0 +1,14 @@
+<div class="content" name="DWORD_SIZEDARR" uuid="3d713e4b-5e36-4546-9101-ca8c1d29bee2"><p>The DWORD_SIZEDARR structure defines an array of unsigned
+32-bit integers.</p><dl>
+<dd>
+<div><pre> typedef struct _LONG_SIZEDARR {
+   unsigned long clSize;
+   [size_is(clSize)] unsigned long* pData;
+ } DWORD_SIZEDARR;
+</pre></div>
+</dd></dl><p><b>clSize:</b>  MUST be set to the number
+of elements within the array. This MUST be nonzero.</p><p><b>pData:</b>  MUST be an array of DWORD
+elements.</p><p>Data of this type MUST be marshaled as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> section 14,
+with the exception that it MUST be marshaled by using a little-endian data
+representation, regardless of the data representation format label. For more
+information, see [C706] section 14.2.5.</p></div>

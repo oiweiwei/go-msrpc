@@ -1,0 +1,993 @@
+<div class="content" name="DEVMODE" uuid="ccc2a501-794e-4d2b-b312-f69c75131c2e"><p>The <b>_DEVMODE</b> structure defines initialization data
+for a printer. Although the <b>_DEVMODE</b> structure does not contain any
+pointers, it is still custom-<span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_37e89d91-2800-49d1-9d17-45ebe167ad87" data-linktype="relative-path">marshaled</a></span>, because
+the size of the structure is version-specific and implementation-specific, and
+cannot be expressed using <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> attributes. It
+has the following message format.</p><p>The <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a></span> MUST
+accept <b>_DEVMODE</b> structures with truncated public information. A
+truncated <b>_DEVMODE</b> structure contains a subset of fields, from <b>dmDeviceName</b>
+up to and including <b>dmFields</b>, plus at least those fields that are
+initialized as specified by <b>dmFields</b>. It is followed by private, <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer
+driver</a></span>–specific data, the size of which is specified by the <b>dmDriverExtra</b>
+field.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">dmDeviceName (64 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="16">dmSpecVersion</td>
+  <td colspan="16">dmDriverVersion</td>
+ </tr>
+ <tr>
+  <td colspan="16">dmSize</td>
+  <td colspan="16">dmDriverExtra</td>
+ </tr>
+ <tr>
+  <td colspan="32">dmFields</td>
+ </tr>
+ <tr>
+  <td colspan="16">dmOrientation</td>
+  <td colspan="16">dmPaperSize</td>
+ </tr>
+ <tr>
+  <td colspan="16">dmPaperLength</td>
+  <td colspan="16">dmPaperWidth</td>
+ </tr>
+ <tr>
+  <td colspan="16">dmScale</td>
+  <td colspan="16">dmCopies</td>
+ </tr>
+ <tr>
+  <td colspan="16">dmDefaultSource</td>
+  <td colspan="16">dmPrintQuality</td>
+ </tr>
+ <tr>
+  <td colspan="16">dmColor</td>
+  <td colspan="16">dmDuplex</td>
+ </tr>
+ <tr>
+  <td colspan="16">dmYResolution</td>
+  <td colspan="16">dmTTOption</td>
+ </tr>
+ <tr>
+  <td colspan="16">dmCollate</td>
+  <td colspan="16">dmFormName (64 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="16">...</td>
+  <td colspan="16">reserved0</td>
+ </tr>
+ <tr>
+  <td colspan="32">reserved1</td>
+ </tr>
+ <tr>
+  <td colspan="32">reserved2</td>
+ </tr>
+ <tr>
+  <td colspan="32">reserved3</td>
+ </tr>
+ <tr>
+  <td colspan="32">dmNup</td>
+ </tr>
+ <tr>
+  <td colspan="32">reserved4</td>
+ </tr>
+ <tr>
+  <td colspan="32">dmICMMethod</td>
+ </tr>
+ <tr>
+  <td colspan="32">dmICMIntent</td>
+ </tr>
+ <tr>
+  <td colspan="32">dmMediaType</td>
+ </tr>
+ <tr>
+  <td colspan="32">dmDitherType</td>
+ </tr>
+ <tr>
+  <td colspan="32">reserved5</td>
+ </tr>
+ <tr>
+  <td colspan="32">reserved6</td>
+ </tr>
+ <tr>
+  <td colspan="32">reserved7</td>
+ </tr>
+ <tr>
+  <td colspan="32">reserved8</td>
+ </tr>
+ <tr>
+  <td colspan="32">dmDriverExtraData (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>dmDeviceName (64 bytes): </b>A 32-element array of
+16-bit <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> characters
+that form a null-terminated string that specifies the name of the printer.
+Printer name strings that are longer than 32 characters are truncated to fit
+the array. For more rules governing printer names, see section <span><a href="24fcd124-035c-4988-a858-3a7d8d6f7b43" data-linktype="relative-path">2.2.4.14</a></span>.</p><p><b>dmSpecVersion (2 bytes): </b>The version of
+initialization data specification on which the <b>_DEVMODE</b> structure is
+based. This value SHOULD be 0x0401.<a id="Appendix_A_Target_93"></a><a aria-label="Product behavior note 93" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_93" data-linktype="relative-path">&lt;93&gt;</a></p><p><b>dmDriverVersion (2 bytes): </b>For printers, an
+optional, implementation-defined version of the printer driver.<a id="Appendix_A_Target_94"></a><a aria-label="Product behavior note 94" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_94" data-linktype="relative-path">&lt;94&gt;</a></p><p><b>dmSize (2 bytes): </b>The size, in bytes, of the <b>_DEVMODE</b>
+structure, which MUST be a multiple of 4. This value does not include the
+length of any private, printer driver–specific data that follows the <b>_DEVMODE</b>
+structure&#39;s public fields. The size of private data is specified by the <b>dmDriverExtra</b>
+value.</p><dl>
+<dd>
+<p>If the <b>_DEVMODE</b> structure contains truncated
+public information, the value of <b>dmSize</b> is at least the size, in bytes,
+of a subset of fields, from <b>dmDeviceName</b> up to and including <b>dmFields</b>,
+plus fields that are initialized as specified by <b>dmFields</b>.</p>
+</dd></dl><p><b>dmDriverExtra (2 bytes): </b>The size, in bytes,
+of the private, printer driver–specific data that follows this structure.</p><p><b>dmFields (4 bytes): </b>A bitfield that specifies
+the fields of the <b>_DEVMODE</b> structure that have been initialized. If a
+bit is set, the corresponding field MUST be initialized and MUST be processed
+on receipt. If a bit is not set, the value of the corresponding field SHOULD be
+zero when sent and MUST be ignored on receipt.</p><dl>
+<dd>
+<p>The value of this field is the result of a bitwise
+OR of the following bits.</p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>U P</td>
+  <td>0</td>
+  <td>S C</td>
+  <td>P W</td>
+  <td>P L</td>
+  <td>P S</td>
+  <td>O R</td>
+  <td>C L</td>
+  <td>T T</td>
+  <td>Y</td>
+  <td>D X</td>
+  <td>C R</td>
+  <td>P Q</td>
+  <td>D S</td>
+  <td>C P</td>
+  <td>C M</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>F M</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>D T</td>
+  <td>M T</td>
+  <td>C I</td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DM_ICMINTENT CI</td>
+  <td>If this bit is set, the dmICMIntent field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_MEDIATYPE MT</td>
+  <td>If this bit is set, the dmMediaType field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_DITHERTYPE DT</td>
+  <td>If this bit is set, the dmDitherType field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_FORMNAME FM</td>
+  <td>If this bit is set, the dmFormName field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_ICMMETHOD CM</td>
+  <td>If this bit is set, the dmICMMethod field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_COPIES CP</td>
+  <td>If this bit is set, the dmCopies field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_DEFAULTSOURCE DS</td>
+  <td>If this bit is set, the dmDefaultSource field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_PRINTQUALITY PQ</td>
+  <td>If this bit is set, the dmPrintQuality field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_COLOR CR</td>
+  <td>If this bit is set, the dmColor field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_DUPLEX DX</td>
+  <td>If this bit is set, the dmDuplex field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_YRESOLUTION Y</td>
+  <td>If this bit is set, the dmYResolution field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_TTOPTION TT</td>
+  <td>If this bit is set, the dmTTOption field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_COLLATE CL</td>
+  <td>If this bit is set, the dmCollate field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_ORIENTATION OR</td>
+  <td>If this bit is set, the dmOrientation field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_PAPERSIZE PS</td>
+  <td>If this bit is set, the dmPaperSize field MUST be initialized. This bit MUST NOT be set if either DM_PAPERLENGTH or DM_PAPERWIDTH are set.</td>
+ </tr><tr>
+  <td>DM_PAPERLENGTH PL</td>
+  <td>If this bit is set, the dmPaperLength field MUST be initialized. This bit MUST NOT be set if DM_PAPERSIZE is set.</td>
+ </tr><tr>
+  <td>DM_PAPERWIDTH PW</td>
+  <td>If this bit is set, the dmPaperWidth field MUST be initialized. This bit MUST NOT be set if DM_PAPERSIZE is set.</td>
+ </tr><tr>
+  <td>DM_SCALE SC</td>
+  <td>If this bit is set, the dmScale field MUST be initialized.</td>
+ </tr><tr>
+  <td>DM_NUP UP</td>
+  <td>If this bit is set, the dmNup field MUST be initialized.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dmOrientation (2 bytes): </b>For printers, the
+orientation for output. If the DM_ORIENTATION bit is set in <b>dmFields</b>,
+the value of this field SHOULD be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DMORIENT_POTRAIT 0x0001</td>
+  <td>&#34;Portrait&#34; orientation.</td>
+ </tr><tr>
+  <td>DMORIENT_LANDSCAPE 0x0002</td>
+  <td>&#34;Landscape&#34; orientation.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dmPaperSize (2 bytes): </b>For printers, the size
+of the output media. If the DM_PAPERSIZE bit is set in <b>dmFields</b>, the
+value of this field SHOULD<a id="Appendix_A_Target_95"></a><a aria-label="Product behavior note 95" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_95" data-linktype="relative-path">&lt;95&gt;</a> be one of
+the following, or it MAY be a device-specific value that is greater than or
+equal to 0x0100.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DMPAPER_LETTER 0x0001</td>
+  <td>Letter, 8 1/2 x 11 inches</td>
+ </tr><tr>
+  <td>DMPAPER_LEGAL 0x0005</td>
+  <td>Legal, 8 1/2 x 14 inches</td>
+ </tr><tr>
+  <td>DMPAPER_10X14 0x0010</td>
+  <td>10 x 14-inch sheet</td>
+ </tr><tr>
+  <td>DMPAPER_11X17 0x0011</td>
+  <td>11 x 17-inch sheet</td>
+ </tr><tr>
+  <td>DMPAPER_12X11 0x005A</td>
+  <td>12 x 11-inch sheet</td>
+ </tr><tr>
+  <td>DMPAPER_A3 0x0008</td>
+  <td>A3 sheet, 297 x 420 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_A3_ROTATED 0x004C</td>
+  <td>A3 rotated sheet, 420 x 297 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_A4 0x0009</td>
+  <td>A4 sheet, 210 x 297 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_A4_ROTATED 0x004D</td>
+  <td>A4 rotated sheet, 297 x 210 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_A4SMALL 0x000A</td>
+  <td>A4 small sheet, 210 x 297 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_A5 0x000B</td>
+  <td>A5 sheet, 148 x 210 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_A5_ROTATED 0x004E</td>
+  <td>A5 rotated sheet, 210 x 148 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_A6 0x0046</td>
+  <td>A6 sheet, 105 x 148 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_A6_ROTATED 0x0053</td>
+  <td>A6 rotated sheet, 148 x 105 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_B4 0x000C</td>
+  <td>B4 sheet, 250 x 354 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_B4_JIS_ROTATED 0x004F</td>
+  <td>B4 (JIS) rotated sheet, 364 x 257 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_B5 0x000D</td>
+  <td>B5 sheet, 182 x 257-millimeter paper</td>
+ </tr><tr>
+  <td>DMPAPER_B5_JIS_ROTATED 0x0050</td>
+  <td>B5 (JIS) rotated sheet, 257 x 182 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_B6_JIS 0x0058</td>
+  <td>B6 (JIS) sheet, 128 x 182 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_B6_JIS_ROTATED 0x0059</td>
+  <td>B6 (JIS) rotated sheet, 182 x 128 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_CSHEET 0x0018</td>
+  <td>C Sheet, 17 x 22 inches</td>
+ </tr><tr>
+  <td>DMPAPER_DBL_JAPANESE_POSTCARD 0x0045</td>
+  <td>Double Japanese Postcard, 200 x 148 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_DBL_JAPANESE_POSTCARD_ROTATED 0x0052</td>
+  <td>Double Japanese Postcard Rotated, 148 x 200 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_DSHEET 0x0019</td>
+  <td>D Sheet, 22 x 34 inches</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_9 0x0013</td>
+  <td>#9 Envelope, 3 7/8 x 8 7/8 inches</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_10 0x0014</td>
+  <td>#10 Envelope, 4 1/8 x 9 1/2 inches</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_11 0x0015</td>
+  <td>#11 Envelope, 4 1/2 x 10 3/8 inches</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_12 0x0016</td>
+  <td>#12 Envelope, 4 3/4 x 11 inches</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_14 0x0017</td>
+  <td>#14 Envelope, 5 x 11 1/2 inches</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_C5 0x001C</td>
+  <td>C5 Envelope, 162 x 229 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_C3 0x001D</td>
+  <td>C3 Envelope, 324 x 458 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_C4 0x001E</td>
+  <td>C4 Envelope, 229 x 324 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_C6 0x001F</td>
+  <td>C6 Envelope, 114 x 162 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_C65 0x0020</td>
+  <td>C65 Envelope, 114 x 229 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_B4 0x0021</td>
+  <td>B4 Envelope, 250 x 353 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_B5 0x0022</td>
+  <td>B5 Envelope, 176 x 250 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_B6 0x0023</td>
+  <td>B6 Envelope, 176 x 125 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_DL 0x001B</td>
+  <td>DL Envelope, 110 x 220 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_ITALY 0x0024</td>
+  <td>Italy Envelope, 110 x 230 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_MONARCH 0x0025</td>
+  <td>Monarch Envelope, 3 7/8 x 7 1/2 inches</td>
+ </tr><tr>
+  <td>DMPAPER_ENV_PERSONAL 0x0026</td>
+  <td>6 3/4 Envelope, 3 5/8 x 6 1/2 inches</td>
+ </tr><tr>
+  <td>DMPAPER_ESHEET 0x001A</td>
+  <td>E Sheet, 34 x 44 inches</td>
+ </tr><tr>
+  <td>DMPAPER_EXECUTIVE 0x0007</td>
+  <td>Executive, 7 1/4 x 10 1/2 inches</td>
+ </tr><tr>
+  <td>DMPAPER_FANFOLD_US 0x0027</td>
+  <td>US Std Fanfold, 14 7/8 x 11 inches</td>
+ </tr><tr>
+  <td>DMPAPER_FANFOLD_STD_GERMAN 0x0028</td>
+  <td>German Std Fanfold, 8 1/2 x 12 inches</td>
+ </tr><tr>
+  <td>DMPAPER_FANFOLD_LGL_GERMAN 0x0029</td>
+  <td>German Legal Fanfold, 8 x 13 inches</td>
+ </tr><tr>
+  <td>DMPAPER_FOLIO 0x000E</td>
+  <td>Folio, 8 1/2 x 13-inch paper</td>
+ </tr><tr>
+  <td>DMPAPER_JAPANESE_POSTCARD_ROTATED 0x0051</td>
+  <td>Japanese Postcard Rotated, 148 x 100 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_JENV_CHOU3 0x0049</td>
+  <td>Japanese Envelope Chou #3</td>
+ </tr><tr>
+  <td>DMPAPER_JENV_CHOU3_ROTATED 0x0056</td>
+  <td>Japanese Envelope Chou #3 Rotated</td>
+ </tr><tr>
+  <td>DMPAPER_JENV_CHOU4 0x004A</td>
+  <td>Japanese Envelope Chou #4</td>
+ </tr><tr>
+  <td>DMPAPER_JENV_CHOU4_ROTATED 0x0057</td>
+  <td>Japanese Envelope Chou #4 Rotated</td>
+ </tr><tr>
+  <td>DMPAPER_JENV_KAKU2 0x0047</td>
+  <td>Japanese Envelope Kaku #2</td>
+ </tr><tr>
+  <td>DMPAPER_JENV_KAKU2_ROTATED 0x0054</td>
+  <td>Japanese Envelope Kaku #2 Rotated</td>
+ </tr><tr>
+  <td>DMPAPER_JENV_KAKU3 0x0048</td>
+  <td>Japanese Envelope Kaku #3</td>
+ </tr><tr>
+  <td>DMPAPER_JENV_KAKU3_ROTATED 0x0055</td>
+  <td>Japanese Envelope Kaku #3 Rotated</td>
+ </tr><tr>
+  <td>DMPAPER_JENV_YOU4 0x005B</td>
+  <td>Japanese Envelope You #4</td>
+ </tr><tr>
+  <td>DMPAPER_JENV_YOU4_ROTATED 0x005C</td>
+  <td>Japanese Envelope You #4 Rotated</td>
+ </tr><tr>
+  <td>DMPAPER_LEDGER 0x0004</td>
+  <td>Ledger, 17 x 11 inches</td>
+ </tr><tr>
+  <td>DMPAPER_LETTER_ROTATED 0x004B</td>
+  <td>Letter Rotated, 11 by 8 1/2 inches</td>
+ </tr><tr>
+  <td>DMPAPER_LETTERSMALL 0x0002</td>
+  <td>Letter Small, 8 1/2 x 11 inches</td>
+ </tr><tr>
+  <td>DMPAPER_NOTE 0x0012</td>
+  <td>Note, 8 1/2 x 11-inches</td>
+ </tr><tr>
+  <td>DMPAPER_P16K 0x005D</td>
+  <td>PRC 16K, 146 x 215 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_P16K_ROTATED 0x006A</td>
+  <td>PRC 16K Rotated, 215 x 146 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_P32K 0x005E</td>
+  <td>PRC 32K, 97 x 151 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_P32K_ROTATED 0x006B</td>
+  <td>PRC 32K Rotated, 151 x 97 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_P32KBIG 0x005F</td>
+  <td>PRC 32K(Big) 97 x 151 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_P32KBIG_ROTATED 0x006C</td>
+  <td>PRC 32K(Big) Rotated, 151 x 97 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_1 0x0060</td>
+  <td>PRC Envelope #1, 102 by 165 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_1_ROTATED 0x006D</td>
+  <td>PRC Envelope #1 Rotated, 165 x 102 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_2 0x0061</td>
+  <td>PRC Envelope #2, 102 x 176 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_2_ROTATED 0x006E</td>
+  <td>PRC Envelope #2 Rotated, 176 x 102 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_3 0x0062</td>
+  <td>PRC Envelope #3, 125 x 176 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_3_ROTATED 0x006F</td>
+  <td>PRC Envelope #3 Rotated, 176 x 125 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_4 0x0063</td>
+  <td>PRC Envelope #4, 110 x 208 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_4_ROTATED 0x0070</td>
+  <td>PRC Envelope #4 Rotated, 208 x 110 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_5 0x0064</td>
+  <td>PRC Envelope #5, 110 x 220 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_5_ROTATED 0x0071</td>
+  <td>PRC Envelope #5 Rotated, 220 x 110 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_6 0x0065</td>
+  <td>PRC Envelope #6, 120 x 230 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_6_ROTATED 0x0072</td>
+  <td>PRC Envelope #6 Rotated, 230 x 120 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_7 0x0066</td>
+  <td>PRC Envelope #7, 160 x 230 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_7_ROTATED 0x0073</td>
+  <td>PRC Envelope #7 Rotated, 230 x 160 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_8 0x0067</td>
+  <td>PRC Envelope #8, 120 x 309 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_8_ROTATED 0x0074</td>
+  <td>PRC Envelope #8 Rotated, 309 x 120 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_9 0x0068</td>
+  <td>PRC Envelope #9, 229 x 324 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_9_ROTATED 0x0075</td>
+  <td>PRC Envelope #9 Rotated, 324 x 229 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_10 0x0069</td>
+  <td>PRC Envelope #10, 324 x 458 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_PENV_10_ROTATED 0x0076</td>
+  <td>PRC Envelope #10 Rotated, 458 x 324 millimeters</td>
+ </tr><tr>
+  <td>DMPAPER_QUARTO 0x000F</td>
+  <td>Quarto, 215 x 275 millimeter paper</td>
+ </tr><tr>
+  <td>DMPAPER_STATEMENT 0x0006</td>
+  <td>Statement, 5 1/2 x 8 1/2 inches</td>
+ </tr><tr>
+  <td>DMPAPER_TABLOID 0x0003</td>
+  <td>Tabloid, 11 x 17 inches</td>
+ </tr><tr>
+  <td>0x0100 ≤ value</td>
+  <td>The value is device-specific.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dmPaperLength (2 bytes): </b>If the DM_PAPERLENGTH
+bit is set in the <b>dmFields</b> field, this field specifies the length of the
+paper, in tenths of a millimeter, to use in the printer for which the job is
+destined.</p><p><b>dmPaperWidth (2 bytes): </b>If the DM_PAPERWIDTH
+bit is set in the <b>dmFields</b> field, this field specifies the width of the
+paper, in tenths of a millimeter, to use in the printer for which the job is
+destined.</p><p><b>dmScale (2 bytes): </b>If the DM_SCALE bit is set
+in the <b>dmFields</b> field, this field specifies the percentage factor by
+which the printed output is to be scaled.</p><p><b>dmCopies (2 bytes): </b>If the DM_COPIES bit is
+set in the <b>dmFields</b> field, this field specifies the number of copies to
+be printed, if the device supports multiple-page copies.</p><p><b>dmDefaultSource (2 bytes): </b>If the
+DM_DEFAULTSOURCE bit is set in the <b>dmFields</b> field, this field specifies
+the paper source.</p><dl>
+<dd>
+<p>The value of this field SHOULD be one of the
+following, or it MAY be a device-specific value that is greater than or equal
+to 0x0100.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DMBIN_UPPER 0x0001</td>
+  <td>Select the upper paper bin. This value is also used for the paper source for printers that only have one paper bin.</td>
+ </tr><tr>
+  <td>DMBIN_LOWER 0x0002</td>
+  <td>Select the lower bin.</td>
+ </tr><tr>
+  <td>DMBIN_MIDDLE 0x0003</td>
+  <td>Select the middle paper bin.</td>
+ </tr><tr>
+  <td>DMBIN_MANUAL 0x0004</td>
+  <td>Manually select the paper bin.</td>
+ </tr><tr>
+  <td>DMBIN_ENVELOPE 0x0005</td>
+  <td>Select the auto envelope bin.</td>
+ </tr><tr>
+  <td>DMBIN_ENVMANUAL 0x0006</td>
+  <td>Select the manual envelope bin.</td>
+ </tr><tr>
+  <td>DMBIN_AUTO 0x0007</td>
+  <td>Auto-select the bin.</td>
+ </tr><tr>
+  <td>DMBIN_TRACTOR 0x0008</td>
+  <td>Select the bin with the tractor paper.</td>
+ </tr><tr>
+  <td>DMBIN_SMALLFMT 0x0009</td>
+  <td>Select the bin with the smaller paper format.</td>
+ </tr><tr>
+  <td>DMBIN_LARGEFMT 0x000A</td>
+  <td>Select the bin with the larger paper format.</td>
+ </tr><tr>
+  <td>DMBIN_LARGECAPACITY 0x000B</td>
+  <td>Select the bin with large capacity.</td>
+ </tr><tr>
+  <td>DMBIN_CASSETTE 0x000E</td>
+  <td>Select the cassette bin.</td>
+ </tr><tr>
+  <td>DMBIN_FORMSOURCE 0x000F</td>
+  <td>Select the bin with the required form.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dmPrintQuality (2 bytes): </b>If the
+DM_PRINTQUALITY bit is set in the <b>dmFields</b> field, this field specifies
+the printer resolution. The value of this field MUST be either a positive value
+that specifies a device-dependent resolution in dots per inch (DPI) or one of
+the following four predefined device-independent values that are mapped to a
+device-specific resolution in an implementation-specific manner.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DMRES_HIGH 0xFFFC</td>
+  <td>High-resolution printouts</td>
+ </tr><tr>
+  <td>DMRES_MEDIUM 0xFFFD</td>
+  <td>Medium-resolution printouts</td>
+ </tr><tr>
+  <td>DMRES_LOW 0xFFFE</td>
+  <td>Low-resolution printouts</td>
+ </tr><tr>
+  <td>DMRES_DRAFT 0xFFFF</td>
+  <td>Draft-resolution printouts</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dmColor (2 bytes): </b>If the DM_COLOR bit is set
+in the <b>dmFields</b> field, this field specifies the color mode to use with
+color printers. The value of this field MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DMRES_MONOCHROME 0x0001</td>
+  <td>Use monochrome printing mode.</td>
+ </tr><tr>
+  <td>DMRES_COLOR 0x0002</td>
+  <td>Use color printing mode.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dmDuplex (2 bytes): </b>If the DM_DUPLEX bit is
+set in the <b>dmFields</b> field, this field specifies duplex or double-sided
+printing for printers that are capable of duplex printing. The value of this
+field MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DMDUP_SIMPLEX 0x0001</td>
+  <td>Normal (non-duplex) printing.</td>
+ </tr><tr>
+  <td>DMDUP_VERTICAL 0x0002</td>
+  <td>Long-edge binding; that is, the long edge of the page is vertical.</td>
+ </tr><tr>
+  <td>DMDUP_HORIZONTAL 0x0003</td>
+  <td>Short-edge binding; that is, the long edge of the page is horizontal.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dmYResolution (2 bytes): </b>If the DM_YRESOLUTION
+bit is set in the <b>dmFields</b>, this field specifies the y-resolution, in
+dots per inch, of the printer.</p><p><b>dmTTOption (2 bytes): </b>If the DM_TTOPTION bit
+is set in the <b>dmFields</b> field, this field specifies how TrueType fonts
+MUST be printed. The value of this field MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DMTT_BITMAP 0x0001</td>
+  <td>Prints TrueType fonts as graphics. This is the default action for dot-matrix printers.</td>
+ </tr><tr>
+  <td>DMTT_DOWNLOAD 0x0002</td>
+  <td>Downloads TrueType fonts as soft fonts. This is the default action for Hewlett-Packard printers that use printer control language (PCL).</td>
+ </tr><tr>
+  <td>DMTT_SUBDEV 0x0003</td>
+  <td>Substitutes device fonts for TrueType fonts. This is the default action for PostScript printers.</td>
+ </tr><tr>
+  <td>DMTT_DOWNLOAD_OUTLINE 0x0004</td>
+  <td>Downloads TrueType fonts as outline soft fonts.&lt;96&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dmCollate (2 bytes): </b>If the DM_COLLATE bit is
+set in the <b>dmFields</b> field, this field specifies whether collation is
+used when printing multiple copies. The value of this field is one of the
+following:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DMCOLLATE_FALSE 0x0000</td>
+  <td>Do not collate when printing multiple copies.</td>
+ </tr><tr>
+  <td>DMCOLLATE_TRUE 0x0001</td>
+  <td>Collate when printing multiple copies.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dmFormName (64 bytes): </b>This field is a
+32-element array of 16-bit Unicode characters. If the DM_FORMNAME bit is set in
+the <b>dmFields</b> field, this field specifies the name of the form to use,
+for example, &#34;Letter&#34; or &#34;Legal&#34;. The value of this field
+is restricted to 32 characters, including the trailing null. Form names that
+are longer than 32 characters, including the trailing null, are truncated to
+fit the array. </p><p><b>reserved0 (2 bytes): </b>A value that SHOULD be
+zero when sent and MUST be ignored on receipt.</p><p><b>reserved1 (4 bytes): </b>A value that SHOULD be
+zero when sent and MUST be ignored on receipt.</p><p><b>reserved2 (4 bytes): </b>A value that SHOULD be
+zero when sent and MUST be ignored on receipt.</p><p><b>reserved3 (4 bytes): </b>A value that SHOULD be
+zero when sent and MUST be ignored on receipt.</p><p><b>dmNup (4 bytes): </b>If the DM_NUP bit is set in
+the <b>dmFields</b>, this field specifies the responsibility for performing
+page layout for <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_a1da4916-9932-4274-a4db-dd3994a9ba1b" data-linktype="relative-path">N-Up Printing</a></span>. It is
+one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DMNUP_SYSTEM 0x00000001</td>
+  <td>The print server does the page layout.</td>
+ </tr><tr>
+  <td>DMNUP_ONEUP 0x00000002</td>
+  <td>The application does the page layout.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>reserved4 (4 bytes): </b>A value that SHOULD be
+zero when sent and MUST be ignored on receipt.</p><p><b>dmICMMethod (4 bytes): </b>If the DM_ICMMETHOD bit
+is set in the <b>dmFields</b> field, this field specifies how <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_fcd5ee55-57ff-45d6-b51e-2ccba47329e3" data-linktype="relative-path">Image
+Color Management (ICM)</a></span> is handled. For a non-ICM application, this
+field determines if ICM is enabled or disabled. For ICM applications, the
+system examines this field to determine how to handle ICM support. The value of
+this field is one of the following predefined values or a printer
+driver-defined value greater than or equal to 0x00000100.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DMICMMETHOD_NONE 0x00000001</td>
+  <td>Specifies that ICM is disabled.</td>
+ </tr><tr>
+  <td>DMICMMETHOD_SYSTEM 0x00000002</td>
+  <td>Specifies that ICM is handled by the system on which the page description language (PDL) data is generated.</td>
+ </tr><tr>
+  <td>DMICMMETHOD_DRIVER 0x00000003</td>
+  <td>Specifies that ICM is handled by the printer driver.</td>
+ </tr><tr>
+  <td>DMICMMETHOD_DEVICE 0x00000004</td>
+  <td>Specifies that ICM is handled by the destination device.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dmICMIntent (4 bytes): </b>If the DM_ICMINTENT bit
+is set in the <b>dmFields</b> field, this field specifies which <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_a3322d29-7dc5-4696-b17a-55311db1cb33" data-linktype="relative-path">color
+matching</a></span> method, or intent, is used by default. This field is
+primarily for non-ICM applications. ICM applications can establish intents by
+using the ICM functions. The value of this field is one of the following
+predefined values, or a printer driver defined value greater than or equal to
+0x00000100.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DMICM_SATURATE 0x00000001</td>
+  <td>Color matching SHOULD be optimized for color saturation.</td>
+ </tr><tr>
+  <td>DMICM_CONTRAST 0x00000002</td>
+  <td>Color matching SHOULD optimize for color contrast.</td>
+ </tr><tr>
+  <td>DMICM_COLORIMETRIC 0x00000003</td>
+  <td>Color matching SHOULD optimize to match the exact color requested.</td>
+ </tr><tr>
+  <td>DMICM_ABS_COLORIMETRIC 0x00000004</td>
+  <td>Color matching SHOULD optimize to match the exact color requested without white point mapping.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dmMediaType (4 bytes): </b>If the DM_MEDIATYPE bit
+is set in the <b>dmFields</b> field, this field specifies the type of media to
+print on. The value of this field is one of the following predefined values or
+else a printer driver-defined value greater than or equal to 0x00000100.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DMMEDIA_STANDARD 0x00000001</td>
+  <td>Plain paper</td>
+ </tr><tr>
+  <td>DMMEDIA_TRANSPARENCY 0x00000002</td>
+  <td>Transparent film</td>
+ </tr><tr>
+  <td>DMMEDIA_GLOSSY 0x00000003</td>
+  <td>Glossy paper</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dmDitherType (4 bytes): </b>If the DM_DITHERTYPE
+bit is set in the <b>dmFields</b> field, this field specifies how <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_0540a76e-7353-4f83-a800-377d1fb00903" data-linktype="relative-path">dithering</a></span>
+is to be done. The value of this field is one of the following predefined
+values or else a printer driver-defined value greater than or equal to
+0x00000100.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DMDITHER_NONE 0x00000001</td>
+  <td>No dithering.</td>
+ </tr><tr>
+  <td>DMDITHER_COARSE 0x00000002</td>
+  <td>Dithering with a coarse brush.</td>
+ </tr><tr>
+  <td>DMDITHER_FINE 0x00000003</td>
+  <td>Dithering with a fine brush.</td>
+ </tr><tr>
+  <td>DMDITHER_LINEART 0x00000004</td>
+  <td>Line art dithering, a special dithering method that produces well defined borders between black, white, and gray scaling.</td>
+ </tr><tr>
+  <td>DMDITHER_ERRORDIFFUSION 0x00000005</td>
+  <td>Error diffusion dithering.&lt;97&gt;</td>
+ </tr><tr>
+  <td>DMDITHER_RESERVED6 0x00000006</td>
+  <td>Same as DMDITHER_LINEART.</td>
+ </tr><tr>
+  <td>DMDITHER_RESERVED7 0x00000007</td>
+  <td>Same as DMDITHER_LINEART.</td>
+ </tr><tr>
+  <td>DMDITHER_RESERVED8 0x00000008</td>
+  <td>Same as DMDITHER_LINEART.</td>
+ </tr><tr>
+  <td>DMDITHER_RESERVED9 0x00000009</td>
+  <td>Same as DMDITHER_LINEART.</td>
+ </tr><tr>
+  <td>DMDITHER_GRAYSCALE 0x0000000A</td>
+  <td>Device does gray scaling.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>reserved5 (4 bytes): </b>A value that SHOULD be zero
+when sent and MUST be ignored on receipt.</p><p><b>reserved6 (4 bytes): </b>A value that SHOULD be
+zero when sent and MUST be ignored on receipt.</p><p><b>reserved7 (4 bytes): </b>A value that SHOULD be
+zero when sent and MUST be ignored on receipt.</p><p><b>reserved8 (4 bytes): </b>A value that SHOULD be
+zero when sent and MUST be ignored on receipt.</p><p><b>dmDriverExtraData (variable): </b>This field can
+contain implementation-specific printer driver data. Its size in bytes is
+specified by the <b>dmDriverExtra</b> field.<a id="Appendix_A_Target_98"></a><a aria-label="Product behavior note 98" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_98" data-linktype="relative-path">&lt;98&gt;</a></p></div>

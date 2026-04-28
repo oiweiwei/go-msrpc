@@ -1,0 +1,17 @@
+<div class="content" name="ADD_ROUTES_REPLY" uuid="22f89184-4fc6-4b46-aff4-d3a1ae79f0fb"><p>The <b>ADD_ROUTES_REPLY</b> structure<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="6ea29e14-9c33-4927-90a8-258fd1d6d042#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a> contains information about packet
+loss and route status for routes previously added by the client.</p><dl>
+<dd>
+<div><pre> typedef struct ADD_ROUTES_REPLY {
+   SAFEARRAY(ULONG) indices;
+   SAFEARRAY(ROUTE_LOSS_AND_STATE) replies;
+   BOOLEAN routeUnavailable;
+ } ADD_ROUTES_REPLY;
+</pre></div>
+</dd></dl><p><b>indices:</b>  An array of unsigned
+integers matching the indices previously designated by the client in an <span><a href="5484c776-98a4-445b-b201-8202e370316d" data-linktype="relative-path">ADD_ROUTES_REQUEST</a></span>
+data structure.</p><p><b>replies:</b>  An array of <span><a href="67a48eb1-d70b-42ba-ae33-ae9538fa1641" data-linktype="relative-path">ROUTE_LOSS_AND_STATE (section 2.2.21)</a></span>
+objects representing the communication data collected by the server using
+implementation-specific mechanisms.</p><p><b>routeUnavailable:</b>  A value of TRUE
+indicates that the server was not in the correct state to set the remaining
+fields of the ROUTE_LOSS_AND_STATE data structure. In this case, the <b>indices</b>
+and <b>replies</b> fields MUST be ignored.</p></div>

@@ -103,7 +103,7 @@ type CertAdminDServer interface {
 	// This method has no parameters.
 	//
 	// If Config_CA_Interface_Flags contains the value IF_NOREMOTEICERTADMINBACKUP, the
-	// server SHOULD return an error.<48>
+	// server SHOULD return an error.<58>
 	BackupEnd(context.Context, *BackupEndRequest) (*BackupEndResponse, error)
 
 	// The BackupGetAttachmentInformation method is used to query the CA for the names of
@@ -127,7 +127,7 @@ type CertAdminDServer interface {
 	// This method has no parameters.
 	//
 	// If Config_CA_Interface_Flags contains the value IF_NOREMOTEICERTADMINBACKUP, the
-	// server SHOULD return an error.<58>
+	// server SHOULD return an error.<68>
 	BackupCloseFile(context.Context, *BackupCloseFileRequest) (*BackupCloseFileResponse, error)
 
 	// The BackupTruncateLogs method function eliminates redundant records from the log
@@ -136,7 +136,7 @@ type CertAdminDServer interface {
 	// This method has no parameters.
 	//
 	// If Config_CA_Interface_Flags contains the value IF_NOREMOTEICERTADMINBACKUP, the
-	// server SHOULD return an error.<59>
+	// server SHOULD return an error.<69>
 	BackupTruncateLogs(context.Context, *BackupTruncateLogsRequest) (*BackupTruncateLogsResponse, error)
 
 	// The ImportCertificate method imports a certificate into the CA database.

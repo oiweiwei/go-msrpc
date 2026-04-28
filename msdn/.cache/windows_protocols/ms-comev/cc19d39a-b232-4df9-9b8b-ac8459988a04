@@ -1,0 +1,43 @@
+<div class="content" name="IEventSubscription3" uuid="cc19d39a-b232-4df9-9b8b-ac8459988a04"><p>The IEventSubscription3 interface provides methods to get or
+set the properties of a <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_f362c255-5746-44db-aa04-e8060543a19c" data-linktype="relative-path">subscription</a></span>.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="aa52a2bf-fd29-47f9-8dea-d887d6b7d5ee#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a> This interface inherits opnums
+0 through 44 from <span><a href="48f7dd98-118d-4dce-8826-de75a3e631cc" data-linktype="relative-path">IEventSubscription2</a></span>,
+as specified in section 3.1.4.8. The version for this interface is 0.0.</p><p>To receive incoming remote calls for this interface, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+MUST implement a DCOM <span><a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a></span>
+<span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object
+class</a></span> with the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">class ID</a></span>
+CLSID_Subscription (see section <span><a href="25e89236-b0b3-4d8b-b1fb-64e0e9f0e156" data-linktype="relative-path">1.9</a></span>) using the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+{FBC1D17D-C498-43a0-81AF-423DDD530AF6} for this interface.</p><p>The interface contains the following methods beyond those of
+IEventSubscription2.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>get_EventClassPartitionID</td>
+  <td>Gets the EventClassPartitionID property of the subscription. Opnum: 45</td>
+ </tr><tr>
+  <td>put_EventClassPartitionID</td>
+  <td>Sets the EventClassPartitionID property of the subscription. Opnum: 46</td>
+ </tr><tr>
+  <td>get_EventClassApplicationID</td>
+  <td>Gets the EventClassApplicationID property of the subscription. Opnum: 47</td>
+ </tr><tr>
+  <td>put_EventClassApplicationID</td>
+  <td>Has no effect. Opnum: 48</td>
+ </tr><tr>
+  <td>get_SubscriberPartitionID</td>
+  <td>Gets the SubscriberPartitionID property of the subscription. Opnum: 49</td>
+ </tr><tr>
+  <td>put_SubscriberPartitionID</td>
+  <td>Sets the SubscriberPartitionID property of the subscription. Opnum: 50</td>
+ </tr><tr>
+  <td>get_SubscriberApplicationID</td>
+  <td>Gets the SubscriberApplicationID property of the subscription. Opnum: 51</td>
+ </tr><tr>
+  <td>put_SubscriberApplicationID</td>
+  <td>Sets the SubscriberApplicationID property of the subscription. Opnum: 52</td>
+ </tr></tbody></table><p> </p></div>

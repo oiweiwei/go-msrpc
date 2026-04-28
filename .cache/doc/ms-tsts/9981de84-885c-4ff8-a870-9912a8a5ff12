@@ -1,8 +1,0 @@
-<div class="content"><p>TSHARE_COUNTERS is not used.</p><dl>
-<dd>
-<div><pre> typedef struct _TSHARE_COUNTERS {
-   ULONG Reserved;
- } TSHARE_COUNTERS,
-  *PTSHARE_COUNTERS;
-</pre></div>
-</dd></dl><p><b>Reserved:</b>  This value is not used.</p></div>

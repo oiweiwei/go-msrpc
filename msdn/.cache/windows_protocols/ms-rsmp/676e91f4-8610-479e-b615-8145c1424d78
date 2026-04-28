@@ -1,0 +1,34 @@
+<div class="content" name="ImportNtmsDatabase" uuid="676e91f4-8610-479e-b615-8145c1424d78"><p>The ImportNtmsDatabase method imports the state of the
+server at the next server restart.</p><dl>
+<dd>
+<div><pre> HRESULT ImportNtmsDatabase();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>0x80070005 ERROR_ACCESS_DENIED</td>
+  <td>Access to object was denied. For more information regarding object, see section 3.2.5.2.</td>
+ </tr><tr>
+  <td>0x800708CA ERROR_NOT_CONNECTED</td>
+  <td>Unable to connect to the server.</td>
+ </tr><tr>
+  <td>0x800710D9 ERROR_DATABASE_FAILURE</td>
+  <td>The database query or update failed.</td>
+ </tr></tbody></table><p>The ImportNtmsDatabase method directs the server to import
+the content of the export directory into the database upon the next restart.
+When the server restarts, it MUST import the already saved database to its
+current database if the import is set.</p><p>Upon receiving this message, the server MUST verify that the
+client has the required access rights to the database. If the client does not
+have the required access rights, the server MUST return ERROR_ACCESS_DENIED
+(0x80070005).</p><p>This database is saved by the <a href="fd45a1a6-c342-498f-ab81-a66f859f7093" data-linktype="relative-path">INtmsSession1::ExportNtmsDatabase</a>
+method.<a id="Appendix_A_Target_77"></a><a aria-label="Product behavior note 77" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_77" data-linktype="relative-path">&lt;77&gt;</a></p></div>

@@ -1,0 +1,38 @@
+<div class="content" name="MPR_SERVER_SET_CONFIG_EX_1" uuid="438f3bb9-06fa-4c06-a772-8c8d7bf6e62a"><p>The <b>MPR_SERVER_SET_CONFIG_EX_1</b> structure<a id="Appendix_A_Target_134"></a><a aria-label="Product behavior note 134" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_134" data-linktype="relative-path">&lt;134&gt;</a> be used to set the
+configuration parameters for the RRAS.</p><dl>
+<dd>
+<div><pre> typedef struct _MPR_SERVER_SET_CONFIG_EX_1 {
+   MPRAPI_OBJECT_HEADER_IDL Header;
+   DWORD setConfigForProtocols;
+   MPRAPI_TUNNEL_CONFIG_PARAMS_1 ConfigParams;
+ } MPR_SERVER_SET_CONFIG_EX_1,
+  *PMPR_SERVER_SET_CONFIG_EX_1;
+</pre></div>
+</dd></dl><p><b>Header: </b>This MUST be <a href="abab767e-8f43-40c6-bb13-ff65307f05ef" data-linktype="relative-path"><b>MPRAPI_OBJECT_HEADER_IDL (section 2.2.1.2.129)</b></a>,
+the revision field MUST be 0x01, and the type field MUST be 0x03.  </p><p><b>setConfigForProtocols: </b>This MUST be one of the
+following values that specify the type of tunnel.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>MPRAPI_SET_CONFIG_PROTOCOL_FOR_PPTP 0x00000001</td>
+  <td>PPTP device configuration parameters are present in the structure.</td>
+ </tr><tr>
+  <td>MPRAPI_SET_CONFIG_PROTOCOL_FOR_L2TP 0x00000002</td>
+  <td>L2TP device configuration parameters are present in the structure.</td>
+ </tr><tr>
+  <td>MPRAPI_SET_CONFIG_PROTOCOL_FOR_SSTP 0x00000004</td>
+  <td>SSTP device configuration parameters are present in the structure.</td>
+ </tr><tr>
+  <td>MPRAPI_SET_CONFIG_PROTOCOL_FOR_IKEV2 0x00000008</td>
+  <td>IKEv2 device configuration parameters are present in the structure.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>ConfigParams: </b>This MUST be a
+MPRAPI_TUNNEL_CONFIG_PARAMS_1.</p></div>

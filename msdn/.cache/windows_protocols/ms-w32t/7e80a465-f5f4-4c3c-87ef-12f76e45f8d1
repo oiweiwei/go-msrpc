@@ -1,0 +1,85 @@
+<div class="content" name="W32TimeQueryStatus" uuid="7e80a465-f5f4-4c3c-87ef-12f76e45f8d1"><p>The W32TimeQueryStatus method returns the service status
+data of the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time service</a>.<a id="Appendix_A_Target_49"></a><a aria-label="Product behavior note 49" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_49" data-linktype="relative-path">&lt;49&gt;</a> The <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a> syntax of this method
+is specified as follows.</p><dl>
+<dd>
+<div><pre> unsigned long W32TimeQueryStatus(
+   [in] handle_t hBinding,
+   [out, ref] PW32TIME_STATUS_INFO* pStatusInfo
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b><a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> primitive binding
+handle as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+part 3, sections Interface Definition Language and Stubs.</p><p><b>pStatusInfo: </b>A pointer that receives a pointer
+to a <a href="f60ebce0-df96-4c96-b40b-fdbd34a2c936" data-linktype="relative-path">W32TIME_STATUS_INFO</a>
+structure containing status data for the time service.</p><p><b>Return Values: </b>This method MUST return 0 on
+success; on failure, it returns a nonzero <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_a0f899ec-e1a5-4e04-8abc-80df987c6fb4" data-linktype="relative-path">error code</a>. The values
+transmitted in this field are implementation specific. All nonzero values MUST
+be treated as equivalent for the purposes of this protocol.<a id="Appendix_A_Target_50"></a><a aria-label="Product behavior note 50" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_50" data-linktype="relative-path">&lt;50&gt;</a></p><p>When W32TimeQueryStatus is invoked, the server MUST return
+the associated time service status data structure, as specified in section
+2.2.17, and populate it as follows:</p><table><thead>
+  <tr>
+   <th>
+   <p>Element field</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ulSize</td>
+  <td>The size, in bytes, of the W32TIME_STATUS_INFO structure.</td>
+ </tr><tr>
+  <td>eLeapIndicator</td>
+  <td>The Leap Indicator (sys.leap), as specified in [RFC1305] section 3.2.1, &#34;Common Variables&#34;.</td>
+ </tr><tr>
+  <td>nStratum</td>
+  <td>The Stratum (sys.stratum), as specified in [RFC1305] section 3.2.1, &#34;Common Variables&#34;.</td>
+ </tr><tr>
+  <td>nPollInterval</td>
+  <td>The Poll Interval (sys.poll), as specified in [RFC1305] section 3.2.1, &#34;Common Variables&#34;.</td>
+ </tr><tr>
+  <td>refidSource</td>
+  <td>The Reference Clock Identifier (sys.refid), as specified in [RFC1305] section 3.2.1, &#34;Common Variables&#34;.</td>
+ </tr><tr>
+  <td>qwLastSyncTicks</td>
+  <td>The LastSyncTicks element value (section 3.2.1.1).</td>
+ </tr><tr>
+  <td>toRootDelay</td>
+  <td>The Root Delay (sys.rootdelay), as specified in [RFC1305] section 3.2.1, &#34;Common Variables&#34;.</td>
+ </tr><tr>
+  <td>tpRootDispersion</td>
+  <td>The Root Dispersion (sys.rootdispersion), as specified in [RFC1305] section 3.2.1, &#34;Common Variables&#34;.</td>
+ </tr><tr>
+  <td>nClockPrecision</td>
+  <td>The Precision (sys.precision), as specified in [RFC1305] section 3.2.1, &#34;Common Variables&#34;.</td>
+ </tr><tr>
+  <td>wszSource</td>
+  <td>The TimeSourceIPAddress element value (section 3.2.1.1).</td>
+ </tr><tr>
+  <td>toSysPhaseOffset</td>
+  <td>The SysPhaseOffset element value (section 3.2.1.1).</td>
+ </tr><tr>
+  <td>ulLcState</td>
+  <td>The CurrentState element value (section 3.2.1.1).</td>
+ </tr><tr>
+  <td>ulTSFlags</td>
+  <td>The TimeSourceFlags element value (section 3.2.1.1).</td>
+ </tr><tr>
+  <td>ulClockRate</td>
+  <td>The ClockRate element value (section 3.2.1.1).</td>
+ </tr><tr>
+  <td>ulNetlogonServiceBits</td>
+  <td>An unsigned, 32-bit integer that contains information about the functionality that the time service provides, as specified in section 3.2.5.2.</td>
+ </tr><tr>
+  <td>eLastSyncResult</td>
+  <td>An integer that indicates the TimeSync_ReturnResult code, as specified in section 3.2.5.1.</td>
+ </tr><tr>
+  <td>tpTimeLastGoodSync</td>
+  <td>The TimeLastGoodSync element value (section 3.2.1.1).</td>
+ </tr><tr>
+  <td>cEntries</td>
+  <td>0</td>
+ </tr><tr>
+  <td>pEntries</td>
+  <td>NULL</td>
+ </tr></tbody></table><p> </p></div>

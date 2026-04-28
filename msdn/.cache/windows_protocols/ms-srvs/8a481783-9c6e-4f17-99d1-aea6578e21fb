@@ -1,0 +1,62 @@
+<div class="content" name="SHARE_INFO_1005" uuid="8a481783-9c6e-4f17-99d1-aea6578e21fb"><p>The SHARE_INFO_1005 structure contains information about the
+shared resource.</p><dl>
+<dd>
+<div><pre> typedef struct _SHARE_INFO_1005 {
+   DWORD shi1005_flags;
+ } SHARE_INFO_1005,
+  *PSHARE_INFO_1005,
+  *LPSHARE_INFO_1005;
+</pre></div>
+</dd></dl><p><b>shi1005_flags:</b>   Specifies a <b>DWORD</b>
+bitmask value that MUST contain zero or more of the following values. The bit
+locations that are named CSC_MASK in the following table MUST contain a
+client-side caching state value as given in section <a href="f83924b5-0876-4f3c-89d6-abff7765013c" data-linktype="relative-path">2.2.2.5</a>. The <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST ignore
+SHI1005_FLAGS_DFS and SHI1005_FLAGS_DFS_ROOT as it processes the <a href="048b35f8-ac41-4b4a-bd4f-408e4d381234" data-linktype="relative-path">NetrShareSetInfo</a> method.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>SHI1005_FLAGS_DFS 0x00000001</td>
+  <td>The specified share is present in a DFS tree structure.</td>
+ </tr><tr>
+  <td>SHI1005_FLAGS_DFS_ROOT 0x00000002</td>
+  <td>The specified share is present in a DFS tree structure.</td>
+ </tr><tr>
+  <td>CSC_MASK 0x00000030</td>
+  <td>Provides a mask for one of the four possible client-side caching (CSC) (section 2.2.2.5) states.</td>
+ </tr><tr>
+  <td>SHI1005_FLAGS_RESTRICT_EXCLUSIVE_OPENS 0x00000100</td>
+  <td>The specified share disallows exclusive file opens that deny reads to an open file.</td>
+ </tr><tr>
+  <td>SHI1005_FLAGS_FORCE_SHARED_DELETE 0x00000200</td>
+  <td>The specified share disallows clients from opening files on the share in an exclusive mode that prevents the file from being deleted until the client closes the file.</td>
+ </tr><tr>
+  <td>SHI1005_FLAGS_ALLOW_NAMESPACE_CACHING 0x00000400</td>
+  <td>Clients are allowed to cache the namespace of the specified share.</td>
+ </tr><tr>
+  <td>SHI1005_FLAGS_ACCESS_BASED_DIRECTORY_ENUM 0x00000800</td>
+  <td>The server filters directory entries based on the access permissions of the client.&lt;11&gt;</td>
+ </tr><tr>
+  <td>SHI1005_FLAGS_FORCE_LEVELII_OPLOCK 0x00001000</td>
+  <td>The server does not issue exclusive caching rights on this share.&lt;12&gt;</td>
+ </tr><tr>
+  <td>SHI1005_FLAGS_ENABLE_HASH 0x00002000</td>
+  <td>The share supports hash generation for branch cache retrieval of data. It is only valid if the server supports the branch cache capability and the branch cache component is installed.&lt;13&gt;</td>
+ </tr><tr>
+  <td>SHI1005_FLAGS_ENABLE_CA 0x00004000</td>
+  <td>A highly available share.&lt;14&gt;</td>
+ </tr><tr>
+  <td>SHI1005_FLAGS_ENCRYPT_DATA 0x00008000</td>
+  <td>A share on which remote file access is encrypted.&lt;15&gt;</td>
+ </tr><tr>
+  <td>SHI1005_FLAGS_COMPRESS_DATA 0x00100000</td>
+  <td>A share on which remote file access is requested to be compressed.&lt;16&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,0 +1,72 @@
+<div class="content" name="DFS_INFO_103" uuid="2da0a76c-4565-4766-9bba-3b6cd1e79374"><p>The DFS_INFO_103 structure contains properties that set
+specific behaviors for a <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS
+root</a> or a <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS link</a>. </p><p>The DFS_INFO_103 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_103 {
+   unsigned long PropertyFlagMask;
+   unsigned long PropertyFlags;
+ } DFS_INFO_103;
+</pre></div>
+</dd></dl><p><b>PropertyFlagMask:</b>  Indicates which
+bits in the <b>PropertyFlags</b> field are considered for modification of DFS
+namespace root or link properties.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DFS_PROPERTY_FLAG_INSITE_REFERRALS 0x00000001</td>
+  <td>Valid for domain and stand-alone DFS roots and links.</td>
+ </tr><tr>
+  <td>DFS_PROPERTY_FLAG_ROOT_SCALABILITY 0x00000002</td>
+  <td>This flag is valid only for the DFS root of a domain-based DFS namespace.</td>
+ </tr><tr>
+  <td>DFS_PROPERTY_FLAG_SITE_COSTING 0x00000004</td>
+  <td>This flag is valid only for a DFS root.</td>
+ </tr><tr>
+  <td>DFS_PROPERTY_FLAG_TARGET_FAILBACK 0x00000008</td>
+  <td>Valid for domain and stand-alone DFS roots and links.</td>
+ </tr><tr>
+  <td>DFS_PROPERTY_FLAG_ABDE 0x00000020</td>
+  <td>Valid only for a domainv2-based DFS namespace or stand-alone DFS namespace root.&lt;10&gt; This flag is not supported on domainv1-based namespaces.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>PropertyFlags:</b>  A bit field in which
+each bit is responsible for a specific property applicable to the whole <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS namespace</a>, the DFS root,
+or an individual DFS link, depending on the actual property. Any combination of
+bits is allowed, unless indicated otherwise. The server considers the bits in
+this field only when the corresponding bit in the <b>PropertyFlagMask</b> field
+is set. The following table lists the valid bits for this field and describes
+the actions taken when each bit is set or not set in the request.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DFS_PROPERTY_FLAG_INSITE_REFERRALS 0x00000001</td>
+  <td>When set, enables DFS in-site referral mode. When not set, disables DFS in-site referral mode.</td>
+ </tr><tr>
+  <td>DFS_PROPERTY_FLAG_ROOT_SCALABILITY 0x00000002</td>
+  <td>When set, enables DFS root scalability mode. When not set, disables DFS root scalability mode.</td>
+ </tr><tr>
+  <td>DFS_PROPERTY_FLAG_SITE_COSTING 0x00000004</td>
+  <td>When set, enables DFS referral site costing. When not set, disables DFS referral site costing.</td>
+ </tr><tr>
+  <td>DFS_PROPERTY_FLAG_TARGET_FAILBACK 0x00000008</td>
+  <td>When set, enables DFS client target failback. When not set, disables DFS client target failback.</td>
+ </tr><tr>
+  <td>DFS_PROPERTY_FLAG_ABDE 0x00000020</td>
+  <td>When set, enables ABDE mode on a domainv2-based DFS namespace or stand-alone DFS namespace. When not set, disables ABDE mode on a domainv2-based DFS namespace or stand-alone DFS namespace.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

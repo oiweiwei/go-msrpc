@@ -1,0 +1,69 @@
+<div class="content" name="DNS_RPC_CURRENT_CLIENT_VER" uuid="a237781b-b048-495d-844b-10ffb38df2a8"><p>The <b>DNS_RPC_CURRENT_CLIENT_VER</b> structure specifies
+version number information of the DNS RPC client. This version number is used
+by RPC clients to identify the requested RPC structures&#39; version to the server
+so that the server can treat the request appropriately. This structure is
+defined as (in host byte order):</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">DNS RPC Client Major Version</td>
+  <td colspan="16">DNS RPC Client Minor Version</td>
+ </tr>
+</tbody></table><p><b>DNS RPC Client Major Version (2 bytes): </b>The
+major version number for the DNS RPC client. This MUST have a value from the
+following set:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x0000</td>
+  <td>Client requests RPC structures that do not require specific version numbers.</td>
+ </tr><tr>
+  <td>0x0006</td>
+  <td>Client requests RPC structures associated with version 6.</td>
+ </tr><tr>
+  <td>0x0007</td>
+  <td>Client requests RPC structures associated with version 7.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>DNS RPC Client Minor Version (2 bytes): </b>The
+minor version number for the DNS RPC client. Senders MUST set this to zero and
+receivers MUST ignore it.</p></div>

@@ -1,0 +1,57 @@
+<div class="content" name="RpcWinStationTerminateProcess" uuid="60d456d7-51d9-4321-99b0-e22852573810"><p>The RpcWinStationTerminateProcess method terminates the
+specified process. An attempt is made to enable the SE_DEBUG_PRIVILEGE
+privilege to kill processes not owned by the current user, including processes
+running in other <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>
+sessions. Caller MUST have terminate permission to terminate the process.</p><dl>
+<dd>
+<div><pre> BOOLEAN RpcWinStationTerminateProcess(
+   [in] SERVER_HANDLE hServer,
+   [out] DWORD* pResult,
+   [in] DWORD ProcessId,
+   [in] DWORD ExitCode
+ );
+</pre></div>
+</dd></dl><p><b>hServer: </b>Handle to the server object. This is
+of type <span><a href="49484cdf-2feb-4de9-a588-5d01cf8995dc" data-linktype="relative-path">SERVER_HANDLE</a></span>.
+hServer MUST be obtained from a previous call to <span><a href="fd6f339d-f5dd-452c-a9a9-ec753c22a36a" data-linktype="relative-path">RpcWinStationOpenServer</a></span>.</p><p><b>pResult: </b> Failure error code if the call to
+RpcWinStationTerminateProcess failed. If the call was successful, this
+parameter MUST be STATUS_SUCCESS (0x00000000), as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>STATUS_SUCCESS 0x00000000</td>
+  <td>The call succeeded.</td>
+ </tr><tr>
+  <td>STATUS_ACCESS_DENIED 0xC0000022</td>
+  <td>The caller does not have permission to terminate the process.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>ProcessId: </b>The ID of the process to terminate.</p><p><b>ExitCode: </b>The exit code to be used by the
+process and threads that are terminated as a result of this call.</p><p><b>Return Values: </b> Returns TRUE if the call
+succeeded, and FALSE if the method failed. On failure, <i>pResult</i> indicates
+the failure status code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x01 TRUE</td>
+  <td>Successful completion.</td>
+ </tr><tr>
+  <td>0x00 FALSE</td>
+  <td>Method call failed.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

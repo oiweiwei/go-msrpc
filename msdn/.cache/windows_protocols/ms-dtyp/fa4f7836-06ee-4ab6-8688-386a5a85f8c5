@@ -1,0 +1,113 @@
+<div class="content" name="EVENT_HEADER" uuid="fa4f7836-06ee-4ab6-8688-386a5a85f8c5"><p>The EVENT_HEADER structure defines the main parameters of an
+event.</p><dl>
+<dd>
+<div><pre> typedef struct _EVENT_HEADER {
+   USHORT Size;
+   USHORT HeaderType;
+   USHORT Flags;
+   USHORT EventProperty;
+   ULONG ThreadId;
+   ULONG ProcessId;
+   LARGE_INTEGER TimeStamp;
+   GUID ProviderId;
+   EVENT_DESCRIPTOR EventDescriptor;
+   union {
+     struct {
+       ULONG KernelTime;
+       ULONG UserTime;
+     };
+     ULONG64 ProcessorTime;
+   };
+   GUID ActivityId;
+ } EVENT_HEADER,
+  *PEVENT_HEADER;
+</pre></div>
+</dd></dl><p><b>Size:</b>  Size of the event record, in
+bytes.</p><p><b>HeaderType:</b>  Reserved.</p><p><b>Flags:</b>  Flags that provide
+information about the event such as the type of session it was logged to and
+whether the event contains extended data. This member can contain one or more
+of the following flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>EVENT_HEADER_FLAG_EXTENDED_INFO</td>
+  <td>The ExtendedData member of the event record contains data.</td>
+ </tr><tr>
+  <td>EVENT_HEADER_FLAG_PRIVATE_SESSION</td>
+  <td>The event was logged to a private session.</td>
+ </tr><tr>
+  <td>EVENT_HEADER_FLAG_STRING_ONLY</td>
+  <td>The event data is a null-terminated Unicode string.</td>
+ </tr><tr>
+  <td>EVENT_HEADER_FLAG_TRACE_MESSAGE</td>
+  <td>The provider used an implementation-specific trace message function to log the event. Typically indicates that the event was written by the Windows software trace preprocessor.</td>
+ </tr><tr>
+  <td>EVENT_HEADER_FLAG_NO_CPUTIME</td>
+  <td>Indicates that elapsed execution time was not recorded; the ProcessorTime member can be used to determine the elapsed execution time.</td>
+ </tr><tr>
+  <td>EVENT_HEADER_FLAG_32_BIT_HEADER</td>
+  <td>Indicates that the provider was running on a 32-bit computer or in a WOW64 session.</td>
+ </tr><tr>
+  <td>EVENT_HEADER_FLAG_64_BIT_HEADER</td>
+  <td>Indicates that the provider was running on a 64-bit computer.</td>
+ </tr><tr>
+  <td>EVENT_HEADER_FLAG_DECODE_GUID</td>
+  <td>Indicates that the ProviderId member of the event record is a decode GUID rather than a control GUID.&lt;2&gt;</td>
+ </tr><tr>
+  <td>EVENT_HEADER_FLAG_CLASSIC_HEADER</td>
+  <td>Indicates that provider used a trace event function to log the event.</td>
+ </tr><tr>
+  <td>EVENT_HEADER_FLAG_PROCESSOR_INDEX</td>
+  <td>If this flag is set, the identifier for the CPU that logged the event MUST be accessed using the ProcessorIndex member of the BufferContext member of the event record. If this flag is not set, the identifier for the CPU that logged the event MUST be read from the ProcessorNumber member of the BufferContext member of the event record.&lt;3&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>EventProperty:</b>  Indicates the source
+to use for parsing the event data.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>EVENT_HEADER_PROPERTY_XML</td>
+  <td>Indicates that you need a manifest to parse the event data.</td>
+ </tr><tr>
+  <td>EVENT_HEADER_PROPERTY_FORWARDED_XML</td>
+  <td>Indicates that the event data contains within itself a fully rendered XML description of the data, so you do not need a manifest to parse the event data.</td>
+ </tr><tr>
+  <td>EVENT_HEADER_PROPERTY_LEGACY_EVENTLOG</td>
+  <td>Indicates that you need a WMI MOF class to parse the event data.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>ThreadId:</b>  Identifies the thread
+that generated the event.</p><p><b>ProcessId:</b>  Identifies the process
+that generated the event.</p><p><b>TimeStamp:</b>  Contains the time that
+the event occurred. The resolution is system time unless the <b>ProcessTraceMode</b>
+member of EVENT_TRACE_LOGFILE contains the PROCESS_TRACE_MODE_RAW_TIMESTAMP
+flag, in which case the resolution depends on the value of the <b>Wnode.ClientContext</b>
+member of EVENT_TRACE_PROPERTIES at the time the controller created the
+session.</p><p><b>ProviderId:</b>  GUID that uniquely
+identifies the provider that logged the event.</p><p><b>EventDescriptor:</b>  Defines
+information about the event such as the event identifier and severity level.</p><p><b>KernelTime:</b>  Elapsed execution time
+for kernel-mode instructions, in CPU time units. For private sessions, the
+value in the <b>ProcessorTime</b> member can be used instead.</p><p><b>UserTime:</b>  Elapsed execution time
+for user-mode instructions, in CPU time units. For private sessions, the value
+in the <b>ProcessorTime</b> member can be used instead.</p><p><b>ProcessorTime:</b>  For private
+sessions, the elapsed execution time for user-mode instructions, in CPU ticks.</p><p><b>ActivityId:</b>  Identifier that relates
+two events.</p><p>The <b>KernelTime</b> and <b>UserTime</b> members can be
+used to determine the CPU cost in units for a set of instructions (the values
+indicate the CPU usage charged to that thread at the time of logging). For
+example, if Event A and Event B are consecutively logged by the same thread and
+they have CPU usage numbers 150 and 175, then the activity that was performed
+by that thread between events A and B cost 25 CPU time units (175 – 150).</p></div>

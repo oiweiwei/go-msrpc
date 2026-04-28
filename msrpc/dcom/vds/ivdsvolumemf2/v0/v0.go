@@ -1078,6 +1078,8 @@ type FormatExRequest struct {
 	// of the file system, if any. The first two (most significant) digits (8-bits) indicate
 	// the major revision, and the last two (least significant) digits (8-bits) indicate
 	// the minor revision.
+	//
+	// Note  0x0250 represents revision 2.50.
 	FileSystemRevision uint16 `idl:"name:usFileSystemRevision" json:"file_system_revision"`
 	// ulDesiredUnitAllocationSize: The size, in bytes, of the allocation unit for the file
 	// system. The value MUST be a power of 2. If the value is 0, a default allocation unit

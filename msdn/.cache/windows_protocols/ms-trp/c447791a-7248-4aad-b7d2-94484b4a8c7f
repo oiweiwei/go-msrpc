@@ -1,0 +1,79 @@
+<div class="content" name="LINEAGENTSESSIONLIST" uuid="c447791a-7248-4aad-b7d2-94484b4a8c7f"><p>The LINEAGENTSESSIONLIST packet describes a list of ACD
+agent sessions. This packet can contain an array of <a href="374035aa-bce5-409e-b5ba-bb05cbbd9d19" data-linktype="relative-path">LINEAGENTSESSIONENTRY</a>
+packets. LINEAGENTSESSIONENTRY is supplied by the server in the field VarData
+of the completion packet of the <a href="30c1e0c0-3dde-404d-86c5-00056a476ba8" data-linktype="relative-path">GetAgentSessionList</a>
+request.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">dwTotalSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwNeededSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwUsedSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwNumEntries</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwListSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwListOffset (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">VarData (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>The total size, in
+bytes, allocated to this packet. </p><p><b>dwNeededSize (4 bytes): </b>The size, in bytes,
+needed to hold all the information requested. </p><p><b>dwUsedSize (4 bytes): </b>The size, in bytes, of
+the portion of this packet that contains useful information. </p><p><b>dwNumEntries (4 bytes): </b>The number of
+LINEAGENTSESSIONENTRY packets that appear in the list array. The value is 0 if
+no agent sessions have been created. </p><p><b>dwListSize (4 bytes): </b>The size, in bytes, of
+the agent session list array. </p><p><b>dwListOffset (variable): </b>The offset from the
+beginning of this packet to an array of LINEAGENTSESSIONENTRY packets that
+specify information about agents. The <b>dwListOffset</b> member is
+dwNumEntries times SIZEOF(LINEAGENTSESSIONENTRY). The size of the field MUST be
+specified by <b>dwListSize</b>.</p><p><b>VarData (variable): </b>An array of
+LINEAGENTSESSIONENTRY packets that specify information about agents as
+specified by <b>dwListOffset</b>.</p></div>

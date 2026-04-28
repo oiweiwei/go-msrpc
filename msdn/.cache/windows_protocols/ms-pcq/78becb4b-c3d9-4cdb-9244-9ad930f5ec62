@@ -1,0 +1,127 @@
+<div class="content" name="PerflibV2EnumerateCounterSetInstances" uuid="78becb4b-c3d9-4cdb-9244-9ad930f5ec62"><p>The PerflibV2EnumerateCounterSetInstances method retrieves
+all active instances of the client-specified <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_5ad9937c-a24e-4274-92c8-50ff5f97bf19" data-linktype="relative-path">counterset</a> on the server.</p><dl>
+<dd>
+<div><pre> error_status_t PerflibV2EnumerateCounterSetInstances(
+   [in, string] wchar_t* szMachine,
+   [in] GUID* CounterSetGuid,
+   [in, range(0, 67108864)] DWORD dwInSize,
+   [out] DWORD* pdwOutSize,
+   [out] DWORD* pdwRtnSize,
+   [out, size_is(dwInSize), length_is(* pdwOutSize)] 
+     unsigned char* lpData
+ );
+</pre></div>
+</dd></dl><p><b>szMachine: </b>A <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> specifying a
+server name, which is passed directly to the counter providers. Counter
+providers can ignore the server name provided by <b>szMachine</b>.</p><p><b>CounterSetGuid: </b>The <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> of the counterset
+whose instances are to be enumerated.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 ERROR_SUCCESS</td>
+  <td>The return value indicates success.</td>
+ </tr><tr>
+  <td>0x00000005 ERROR_ACCESS_DENIED</td>
+  <td>The server returns this value to the client if the authentication level of the client is less than RPC_C_AUTHN_LEVEL_PKT_PRIVACY.</td>
+ </tr><tr>
+  <td>0x00001068 ERROR_WMI_GUID_NOT_FOUND</td>
+  <td>The server returns this value when it cannot find a counterset with the GUID that was specified by the client in the CounterSetGuid parameter.</td>
+ </tr><tr>
+  <td>0x00000008 ERROR_NOT_ENOUGH_MEMORY</td>
+  <td>The server returns this value to the client when the buffer the client has provided is not large enough to accommodate the instance information.</td>
+ </tr><tr>
+  <td>0x00001069 ERROR_WMI_INSTANCE_NOT_FOUND</td>
+  <td>The server returns this value to the client when there are no active instances of the counterset whose information can be returned.</td>
+ </tr><tr>
+  <td>0x00001073 ERROR_WMI_INVALID_REGINFO</td>
+  <td>The server returns this to the client if, for any reason when trying to enumerate counterset instances, the information that the server expected was different than what the applications exposing performance counters returned. For example, the server (through some standard repository), expected information about one instance of a counterset to be returned (because it was specified as a single-instance counterset), but the application actually maintaining the information returned instance information about multiple instances of the counterset.</td>
+ </tr><tr>
+  <td>0x0000000E ERROR_OUTOFMEMORY</td>
+  <td>The server returns this value to the client if, for any reason as it tries to return the instance information of the specified counterset, it fails to allocate memory.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwInSize: </b>The size, in bytes, of the buffer.</p><p><b>pdwOutSize: </b>The total size, in bytes, of the
+data that is returned and written to the buffer.</p><p><b>pdwRtnSize: </b>The necessary size, in bytes, to
+retrieve all the requested data.</p><p><b>lpData: </b>The buffer that contains the instances
+information for the counterset.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) for success; otherwise, it MUST return one of the standard
+Windows errors, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><p>The server MUST return a data array in which each element is
+a <a href="d78bcdce-a620-475b-b0dd-7eb9d2ed09f3" data-linktype="relative-path">_PERF_INSTANCE_HEADER</a>
+structure that is followed by a null-terminated Unicode string instance name.
+The <b>size</b> field of the _PERF_INSTANCE_HEADER structure MUST be the size
+of the _PERF_INSTANCE_HEADER structure plus the space that is occupied by the
+instance name string; and MUST be an 8-byte multiple.</p><p><img id="MS-PCQ_pict5faf61ee-2004-dd27-fafb-800a286141d0.png" src="ms-pcq_files/image003.png" alt="PerflibV2EnumerateCounterSetInstances return" title="PerflibV2EnumerateCounterSetInstances return" data-linktype="relative-path"/></p><p><b>Figure 3: PerflibV2EnumerateCounterSetInstances return</b></p><p>The following diagram illustrates data size, alignment, and
+endianness. In this example, information about two instances of the counterset
+is returned by the server. The first instance name is 6 bytes in length, and
+the second instance name is 8 bytes in length. The two bytes in padding between
+the end of the first instance name string and the beginning of the next
+_PERF_INSTANCE_HEADER structure MUST be uninitialized and MUST be ignored by
+the client.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">_PERF_INSTANCE_HEADER (row 1, Size)</td>
+ </tr>
+ <tr>
+  <td colspan="32">_PERF_INSTANCE_HEADER (row 2, InstanceId)</td>
+ </tr>
+ <tr>
+  <td colspan="32">Unicode string for First Instance Name (row 1)</td>
+ </tr>
+ <tr>
+  <td colspan="16">First Instance Name (row 2)</td>
+  <td colspan="16">Padding (MUST be uninitialized)</td>
+ </tr>
+ <tr>
+  <td colspan="32">_PERF_INSTANCE_HEADER (row 1, Size)</td>
+ </tr>
+ <tr>
+  <td colspan="32">_PERF_INSTANCE_HEADER (row 2, InstanceId)</td>
+ </tr>
+ <tr>
+  <td colspan="32">Unicode string for Second Instance Name (row 1)</td>
+ </tr>
+ <tr>
+  <td colspan="32">Second Instance Name (row 2)</td>
+ </tr>
+</tbody></table><p> </p></div>

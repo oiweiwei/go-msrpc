@@ -1,0 +1,66 @@
+<div class="content" name="EntryHeader" uuid="629d4c21-91df-48dd-92ca-b150832da051"><p>The EntryHeader structure is used to describe an opaque array
+of bytes associated with a <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_dc143034-cb8f-4d90-87ef-0fa96333807f" data-linktype="relative-path">context
+property</a> within the context <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_aae39d05-becf-4cb4-bdfc-b05bc8ccabde" data-linktype="relative-path">ORPC extension</a>.</p><p>All fields MUST be marshaled with the same endianness as the
+encompassing <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> PDU.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Signature</td>
+ </tr>
+ <tr>
+  <td colspan="32">cbEHBuffer</td>
+ </tr>
+ <tr>
+  <td colspan="32">cbSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">reserved</td>
+ </tr>
+ <tr>
+  <td colspan="32">policyID (16 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>Signature (4 bytes): </b>This MUST be set to
+0x494E414E.</p><p><b>cbEHBuffer (4 bytes): </b> The unsigned size (in
+bytes) of the opaque policy data buffer corresponding to this EntryHeader. This
+MUST NOT be zero.</p><p><b>cbSize (4 bytes): </b>The unsigned size (in bytes)
+of the offset from the beginning of the context ORPC extension buffer to the
+beginning of the opaque policy data buffer corresponding to this EntryHeader.</p><p><b>reserved (4 bytes): </b> This MUST be set to
+0x00000000 and MUST be ignored on receipt.</p><p><b>policyID (16 bytes): </b> A <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> that MUST contain a <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_9965a333-52dd-4195-9d0f-8e04c8c6e365" data-linktype="relative-path">context property identifier</a>.</p></div>

@@ -1,0 +1,25 @@
+<div class="content" name="IAppHostConfigLocationCollection" uuid="4b1ee19e-3418-45df-8ff9-2644ab6c106c"><p>The IAppHostConfigLocationCollection <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+that access the collection of subpaths that are available in the specified <a href="3687acff-fb79-4e02-8349-6ca2f49df2a5" data-linktype="relative-path">IAppHostConfigFile</a>.</p><p>The IAppHostConfigLocationCollection interface inherits
+opnums 0–2 from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Count</td>
+  <td>Opnum: 3</td>
+ </tr><tr>
+  <td>Item</td>
+  <td>Opnum: 4</td>
+ </tr><tr>
+  <td>AddLocation</td>
+  <td>Opnum: 5</td>
+ </tr><tr>
+  <td>DeleteLocation</td>
+  <td>Opnum: 6</td>
+ </tr></tbody></table><p> </p></div>

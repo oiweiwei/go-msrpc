@@ -1,0 +1,35 @@
+<div class="content" name="VDS_PARTITION_NOTIFICATION" uuid="72738b43-1afe-4b36-9978-eddcbcbfca55"><p>The VDS_PARTITION_NOTIFICATION structure provides
+information about a <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a>
+notification.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_PARTITION_NOTIFICATION {
+   unsigned long ulEvent;
+   VDS_OBJECT_ID diskId;
+   ULONGLONG ullOffset;
+ } VDS_PARTITION_NOTIFICATION;
+</pre></div>
+</dd></dl><p><b>ulEvent:</b> Determines the partition event for
+which an application will be notified; it MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>VDS_NF_PARTITION_ARRIVE 0x0000000B</td>
+  <td>A new partition is visible to the operating system.</td>
+ </tr><tr>
+  <td>VDS_NF_PARTITION_DEPART 0x0000000C</td>
+  <td>An existing partition is no longer visible to the operating system.</td>
+ </tr><tr>
+  <td>VDS_NF_PARTITION_MODIFY 0x0000000D</td>
+  <td>An existing partition changed.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>diskId:</b> The <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS object</a> ID of the <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a> object containing the
+partition that triggered the event.</p><p><b>ullOffset:</b> The byte offset of the partition
+from the beginning of the disk.</p></div>

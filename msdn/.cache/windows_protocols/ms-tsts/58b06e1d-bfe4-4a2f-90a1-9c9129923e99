@@ -1,0 +1,33 @@
+<div class="content" name="RpcGetState" uuid="58b06e1d-bfe4-4a2f-90a1-9c9129923e99"><p>The RpcGetState method gets the state of the specified
+session on the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>.
+This method MUST be called after <span><a href="56ede88b-913b-4911-9540-389fddf879e5" data-linktype="relative-path">RpcOpenSession</a></span>. The
+caller MUST have WINSTATION_QUERY permission for the session. The method checks
+whether the caller has WINSTATION_QUERY permission (section <span><a href="4507e852-be3d-45b6-bc47-8ca0b552c94d" data-linktype="relative-path">3.1.1</a></span>)
+by setting it as the Access Request mask, and fails if the caller does not have
+the permission.</p><dl>
+<dd>
+<div><pre> HRESULT RpcGetState(
+   [in] SESSION_HANDLE hSession,
+   [out] LONG* plState
+ );
+</pre></div>
+</dd></dl><p><b>hSession: </b>The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span> to the
+session returned by RpcOpenSession. This is of type <span><a href="08a45954-8173-43c6-aa10-7aeda48e8dc2" data-linktype="relative-path">SESSION_HANDLE</a></span>.</p><p><b>plState: </b> The current state of the session as
+defined in <span><a href="b619d8aa-4e8a-4716-954e-a4d596ed37f8" data-linktype="relative-path">WINSTATIONSTATECLASS (section 2.2.1.9)</a></span>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Successful completion.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

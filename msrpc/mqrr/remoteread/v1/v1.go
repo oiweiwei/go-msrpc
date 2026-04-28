@@ -222,26 +222,25 @@ type RemoteReadClient interface {
 	// codes, see [MS-MQMQ] section 2.4. For error codes not described in [MS-MQMQ], refer
 	// to [MSDN-MQEIC].
 	//
-	//	+----------------------------------------------+-------------+
-	//	|                    RETURN                    |             |
-	//	|                  VALUE/CODE                  | DESCRIPTION |
-	//	|                                              |             |
-	//	+----------------------------------------------+-------------+
-	//	+----------------------------------------------+-------------+
-	//	| 0x00000000 MQ_OK                             |             |
-	//	+----------------------------------------------+-------------+
-	//	| 0xC00E0007 MQ_ERROR_INVALID_HANDLE           |             |
-	//	+----------------------------------------------+-------------+
-	//	| 0xC00E001B MQ_ERROR_IO_TIMEOUT               |             |
-	//	+----------------------------------------------+-------------+
-	//	| 0xC00E0088 MQ_ERROR_MESSAGE_NOT_FOUND        |             |
-	//	+----------------------------------------------+-------------+
-	//	| 0xC00E001D MQ_ERROR_MESSAGE_ALREADY_RECEIVED |             |
-	//	+----------------------------------------------+-------------+
-	//	| 0xC00E0008 MQ_ERROR_OPERATION_CANCELLED      |             |
-	//	+----------------------------------------------+-------------+
-	//	| 0xC00E0006 MQ_ERROR_INVALID_PARAMETER        |             |
-	//	+----------------------------------------------+-------------+
+	//	+----------------------------------------------+
+	//	|                    RETURN                    |
+	//	|                  VALUE/CODE                  |
+	//	+----------------------------------------------+
+	//	+----------------------------------------------+
+	//	| 0x00000000 MQ_OK                             |
+	//	+----------------------------------------------+
+	//	| 0xC00E0007 MQ_ERROR_INVALID_HANDLE           |
+	//	+----------------------------------------------+
+	//	| 0xC00E001B MQ_ERROR_IO_TIMEOUT               |
+	//	+----------------------------------------------+
+	//	| 0xC00E0088 MQ_ERROR_MESSAGE_NOT_FOUND        |
+	//	+----------------------------------------------+
+	//	| 0xC00E001D MQ_ERROR_MESSAGE_ALREADY_RECEIVED |
+	//	+----------------------------------------------+
+	//	| 0xC00E0008 MQ_ERROR_OPERATION_CANCELLED      |
+	//	+----------------------------------------------+
+	//	| 0xC00E0006 MQ_ERROR_INVALID_PARAMETER        |
+	//	+----------------------------------------------+
 	//
 	// Exceptions Thrown:
 	//
@@ -419,28 +418,29 @@ type RemoteReadClient interface {
 	//
 	// If an error occurs, the server MUST return a failure HRESULT, and the client MUST
 	// treat all failure HRESULTs identically. The client MUST disregard all output parameter
-	// values when any failure HRESULT is returned.
+	// values when any failure HRESULT is returned. For descriptions of the following error
+	// codes, see [MS-MQMQ] section 2.4. For error codes not described in [MS-MQMQ], refer
+	// to [MSDN-MQEIC].
 	//
-	//	+-----------------------------------------+-------------+
-	//	|                 RETURN                  |             |
-	//	|               VALUE/CODE                | DESCRIPTION |
-	//	|                                         |             |
-	//	+-----------------------------------------+-------------+
-	//	+-----------------------------------------+-------------+
-	//	| 0x00000000 MQ_OK                        |             |
-	//	+-----------------------------------------+-------------+
-	//	| 0xC00E0007 MQ_ERROR_INVALID_HANDLE      |             |
-	//	+-----------------------------------------+-------------+
-	//	| 0xC00E0088 MQ_ERROR_MESSAGE_NOT_FOUND   |             |
-	//	+-----------------------------------------+-------------+
-	//	| 0xC00E001B MQ_ERROR_IO_TIMEOUT          |             |
-	//	+-----------------------------------------+-------------+
-	//	| 0xC00E0050 MQ_ERROR_TRANSACTION_USAGE   |             |
-	//	+-----------------------------------------+-------------+
-	//	| 0xC00E0008 MQ_ERROR_OPERATION_CANCELLED |             |
-	//	+-----------------------------------------+-------------+
-	//	| 0xC00E0006 MQ_ERROR_INVALID_PARAMETER   |             |
-	//	+-----------------------------------------+-------------+
+	//	+-----------------------------------------+
+	//	|                 RETURN                  |
+	//	|               VALUE/CODE                |
+	//	+-----------------------------------------+
+	//	+-----------------------------------------+
+	//	| 0x00000000 MQ_OK                        |
+	//	+-----------------------------------------+
+	//	| 0xC00E0007 MQ_ERROR_INVALID_HANDLE      |
+	//	+-----------------------------------------+
+	//	| 0xC00E0088 MQ_ERROR_MESSAGE_NOT_FOUND   |
+	//	+-----------------------------------------+
+	//	| 0xC00E001B MQ_ERROR_IO_TIMEOUT          |
+	//	+-----------------------------------------+
+	//	| 0xC00E0050 MQ_ERROR_TRANSACTION_USAGE   |
+	//	+-----------------------------------------+
+	//	| 0xC00E0008 MQ_ERROR_OPERATION_CANCELLED |
+	//	+-----------------------------------------+
+	//	| 0xC00E0006 MQ_ERROR_INVALID_PARAMETER   |
+	//	+-----------------------------------------+
 	//
 	// Exceptions Thrown:
 	//
@@ -673,6 +673,10 @@ type SectionBuffer struct {
 	// If the SectionBufferType member value is stFullPacket, stBinarySecondSection, or
 	// stSrmpSecondSection, then the SectionSizeAlloc member value MUST be equal to the
 	// SectionSize member value.
+	//
+	// If the SectionBufferType member value is stBinaryFirstSection or stSrmpFirstSection,
+	// then the SectionSizeAlloc member value MUST be equal to or greater than the SectionSize
+	// member value.
 	SectionSizeAlloc uint32 `idl:"name:SectionSizeAlloc" json:"section_size_alloc"`
 	// SectionSize:  MUST be the size (in bytes) of the buffer pointed to by the pSectionBuffer
 	// member. The SectionSize member specifies the size of the part of the Message Packet
@@ -2590,9 +2594,16 @@ type StartReceiveRequest struct {
 	// returned by the server in the pphQueue output parameter of a prior call to the R_OpenQueue
 	// (Opnum 2) (section 3.1.4.2) method and MUST NOT have been closed through a call prior
 	// to the R_CloseQueue (Opnum 3) (section 3.1.4.3) method. This value MUST NOT be NULL.
+	//
+	// The handle MUST have been opened with a dwAccess parameter value that permits the
+	// operation specified by the ulAction parameter. For more details, see the dwAccess
+	// parameter in the R_OpenQueue method.
 	Context *QueueNoSerialize `idl:"name:phContext" json:"context"`
 	// LookupId: If nonzero, specifies the lookup identifier of the message to be acted
 	// on.
+	//
+	// If the client sets the LookupId parameter to a nonzero value, the valid values for
+	// other parameters are as follows:
 	//
 	// * ulTimeout set to 0x00000000.
 	//
@@ -2619,6 +2630,9 @@ type StartReceiveRequest struct {
 	// from a prior call to the R_CreateCursor (Opnum 4) (section 3.1.4.4) method. The handle
 	// MUST NOT have been closed through a prior call to the R_CloseCursor (Opnum 5) (section
 	// 3.1.4.5) method.
+	//
+	// If the client sets the hCursor parameter to a nonzero value, the valid values for
+	// other parameters are as follows:
 	//
 	// * LookupId set to 0x0000000000000000
 	//
@@ -3448,11 +3462,10 @@ type MoveMessageRequest struct {
 	// and MUST NOT have been closed through a prior call to the R_CloseQueue (Opnum 3)
 	// (section 3.1.4.3) method. This value MUST NOT be NULL.
 	ContextFrom *QueueNoSerialize `idl:"name:phContextFrom" json:"context_from"`
-	// ullContextTo: MUST be set by the client to a QUEUE_CONTEXT_HANDLE_NOSERIALIZE handle
-	// representing the destination queue. The handle MUST have been returned by the server
-	// in the pMoveContext output parameter of a prior call to the R_OpenQueueForMove (Opnum
-	// 11) (section 3.1.4.11) method and MUST NOT have been closed through a prior call
-	// to the R_CloseQueue method. This value MUST NOT be NULL.
+	// ullContextTo: MUST be set by the client to the value returned by the server in the
+	// pMoveContext output parameter of a prior call to the R_OpenQueueForMove (Opnum 11)
+	// (section 3.1.4.11) method and MUST NOT have been closed through a prior call to the
+	// R_CloseQueue method. This value MUST NOT be NULL.
 	ContextTo uint64 `idl:"name:ullContextTo" json:"context_to"`
 	// LookupId: MUST be set by the client to the lookup identifier of the message to be
 	// moved.
@@ -3893,12 +3906,10 @@ func (o *OpenQueueForMoveRequest) OpName() string { return "/RemoteRead/v1/R_Ope
 
 // OpenQueueForMoveResponse structure represents the R_OpenQueueForMove operation response
 type OpenQueueForMoveResponse struct {
-	// pMoveContext: The server MUST set this parameter to a pointer to a QUEUE_CONTEXT_HANDLE_SERIALIZE
-	// handle and MUST set the value of this parameter to the same value as the contents
-	// of the pphContext parameter. The server MUST set this value to a context that can
-	// be used as the dwContextTo parameter in a subsequent call to the R_MoveMessage method.
-	// Logically, it represents a reference to the QUEUE_CONTEXT_HANDLE_SERIALIZE handle
-	// returned in the pphContext parameter.
+	// pMoveContext: The server MUST set this to a random value that can be used as the
+	// ullContextTo parameter in a subsequent call to the R_MoveMessage method. Logically,
+	// it represents a reference to the QUEUE_CONTEXT_HANDLE_SERIALIZE handle returned in
+	// the pphContext parameter.
 	MoveContext uint64 `idl:"name:pMoveContext" json:"move_context"`
 	// pphContext: MUST be set by the server to a QUEUE_CONTEXT_HANDLE_SERIALIZE handle.
 	// A QUEUE_CONTEXT_HANDLE_SERIALIZE handle opened through a call to this method can
@@ -4552,6 +4563,9 @@ type StartTransactionalReceiveRequest struct {
 	// LookupId: If nonzero, specifies the lookup identifier of the message to be acted
 	// on.
 	//
+	// If the client sets the LookupId parameter to a nonzero value, the valid values for
+	// other parameters are as follows:
+	//
 	// * ulTimeout set to 0x00000000
 	//
 	// * hCursor set to 0x00000000
@@ -4577,6 +4591,9 @@ type StartTransactionalReceiveRequest struct {
 	// from a prior call to the R_CreateCursor (Opnum 4) (section 3.1.4.4) method. The handle
 	// MUST NOT have been closed through a prior call to the R_CloseCursor (Opnum 5) (section
 	// 3.1.4.5) method.
+	//
+	// If the client sets the hCursor parameter to a nonzero value, the valid values for
+	// other parameters are as follows:
 	//
 	// * LookupId set to 0x0000000000000000.
 	//
@@ -4644,6 +4661,9 @@ type StartTransactionalReceiveRequest struct {
 	//	|                                      | LookupId set to a nonzero value. hCursor set to 0x00000000. ulTimeout set to     |
 	//	|                                      | 0x00000000.                                                                      |
 	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// If the hCursor parameter is 0x00000000 and the LookupId parameter is 0x0000000000000000,
+	// the valid values for the ulAction parameter are as follows:
 	//
 	// * MQ_ACTION_RECEIVE
 	//

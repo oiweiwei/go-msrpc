@@ -298,8 +298,11 @@ type MetadataRecord struct {
 	//
 	// For example, the length of a string list containing two strings would be as follows.
 	//
-	// (wcslen(stringA) + 1) * sizeof(WCHAR) + (wcslen(stringB) + 1) * sizeof(WCHAR) + 1
-	// * sizeof(WCHAR)
+	// (wcslen(stringA) + 1) * sizeof(WCHAR) + (wcslen(stringB) + 1)
+	//   * sizeof(WCHAR) + 1 * sizeof(WCHAR)
+	//
+	// In-process clients need to specify dwMDDataLen only when setting binary data in the
+	// metabase. Remote clients MUST specify dwMDDataLen for all data types.
 	DataLength uint32 `idl:"name:dwMDDataLen" json:"data_length"`
 	// pbMDData:  When setting data in the metabase, this member contains a pointer to a
 	// buffer that holds the data. When getting data from the metabase, this member contains
@@ -540,8 +543,11 @@ type MetadataGetAllRecord struct {
 	//
 	// For example, the length of a string list containing two strings would be as follows.
 	//
-	// (wcslen(stringA) + 1) * sizeof(WCHAR) + (wcslen(stringB) + 1) * sizeof(WCHAR) + 1
-	// * sizeof(WCHAR)
+	// (wcslen(stringA) + 1) * sizeof(WCHAR) + (wcslen(stringB) + 1)
+	//   * sizeof(WCHAR) + 1 * sizeof(WCHAR)
+	//
+	// In-process clients need to specify dwMDDataLen only when setting binary data in the
+	// metabase. Remote clients MUST specify dwMDDataLen for all data types.
 	DataLength uint32 `idl:"name:dwMDDataLen" json:"data_length"`
 	// dwMDDataOffset:  If the data was returned by value, this member contains the byte
 	// offset of the data in the buffer specified by the pbMDBuffer parameter of the R_GetAllData

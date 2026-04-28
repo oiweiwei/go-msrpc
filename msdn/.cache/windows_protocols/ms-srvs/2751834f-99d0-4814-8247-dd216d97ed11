@@ -1,0 +1,11 @@
+<div class="content" name="SERVER_INFO_1536" uuid="2751834f-99d0-4814-8247-dd216d97ed11"><p>The SERVER_INFO_1536 structure contains information about a
+specified <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_INFO_1536 {
+   int sv1536_enableoplocks;
+ } SERVER_INFO_1536,
+  *PSERVER_INFO_1536,
+  *LPSERVER_INFO_1536;
+</pre></div>
+</dd></dl><p><b>sv1536_enableoplocks:</b>  This member
+is defined in the <b>sv599_enableoplocks</b> member in <a href="2b55fe85-2de5-4409-87ea-468cb6b35160" data-linktype="relative-path">SERVER_INFO_599 (section 2.2.4.46)</a>.</p></div>

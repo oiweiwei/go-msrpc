@@ -53,6 +53,8 @@ type FetchSmartEnumClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	GetSmartEnum(context.Context, *GetSmartEnumRequest, ...dcerpc.CallOption) (*GetSmartEnumResponse, error)
 
 	// AlterContext alters the client context.

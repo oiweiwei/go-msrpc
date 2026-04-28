@@ -1,0 +1,123 @@
+<div class="content" name="RMIBEntrySet" uuid="61ae7aea-8604-4bf3-8ae5-88542152cf8e"><p>The <b>RMIBEntrySet</b> method<a id="Appendix_A_Target_290"></a><a aria-label="Product behavior note 290" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_290" data-linktype="relative-path">&lt;290&gt;</a> modifies
+an MIB entry in the IPv4 forwarding table.</p><dl>
+<dd>
+<div><pre> DWORD
+ RMIBEntrySet(
+   [in] DIM_HANDLE hDimServer,
+   [in] DWORD dwPid,
+   [in] DWORD dwRoutingPid,
+   [in] PDIM_MIB_ENTRY_CONTAINER pInfoStuct
+ );
+</pre></div>
+</dd></dl><p><b>hDimServer: </b>A handle to the RRASM server where
+the call is to be executed, see section <a href="1f8cdbcc-9791-4a35-ad78-878b8d110e15" data-linktype="relative-path">3.1.3</a>.</p><p><b>dwPid: </b>Specifies the transport protocol. The
+value of this parameter MUST be PID_IP. The method MUST return an error other
+than those specified in the return value table for any other value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>PID_IP 0x00000021</td>
+  <td>An IPv4 MIB entry is to be deleted.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwRoutingPid: </b>Specifies the routing protocol.
+This MUST be 0x00002710 (10000) and indicate that <i>pInfoStruct</i> MUST point
+to <b>MIB_OPAQUE_QUERY</b> (section <a href="3ca0723e-36ea-448a-a97e-1906dd3d07a6" data-linktype="relative-path">2.2.1.2.53</a>). Otherwise, an
+error other than those specified in the return table value is returned.</p><p><b>pInfoStuct: </b>This MUST be a pointer to the
+structure <a href="4305d67f-9273-49fe-a067-909b6ae8a341" data-linktype="relative-path"><b>DIM_MIB_ENTRY_CONTAINER (section 2.2.1.2.19)</b></a>
+with valid <b>dwMibInEntrySize</b> and <b>pMibInEntry</b> fields. The <b>dwMibOutEntrySize</b>
+and <b>pMibOutEntry</b> of the structure are ignored by the server for this
+method. <b>dwMibInEntrySize</b> MUST be set to the size of data being passed in
+<b>pMibInEntry</b>. If <i>pInfoStuct</i> is NULL, an error other than those
+specified in the return value table is returned. Otherwise, the pointer is
+treated as a pointer to the structure <b>DIM_MIB_ENTRY_CONTAINER</b>.    </p><dl>
+<dd>
+<p>Since the <i>dwRoutingPid</i> parameter of this
+method MUST take a value IPRTRMGR_PID (0x00002710), the <b>pMibInEntry</b>
+field of <i>pInfoStuct</i> MUST be a pointer to <b>MIB_OPAQUE_INFO</b> (section
+<a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>). The <b>dwId</b>
+and <b>rgbyData</b> fields of <b>MIB_OPAQUE_INFO</b> MUST be set to one of the
+values in the following table.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>dwId Value</p>
+   </th>
+   <th>
+   <p>Structure that MUST be pointed to by rgbyData</p>
+   </th>
+   <th>
+   <p>Remarks</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ROUTE_MATCHING 0x0000001F</td>
+  <td>MIB_IPDESTROW (section 2.2.1.2.20)</td>
+  <td>A route corresponding to data in rgbyData is added in the IPv4 route table. The route is created with the following fields: ForwardRow: Contains the MIB_IPFORWARDROW (section 2.2.1.2.35) structure that contains the route information with the following fields set:  dwForwardDest  dwForwardMask  dwForwardPolicy  dwForwardNextHop  ForwardType  ForwardProto  dwForwardAge  dwForwardNextHopAS  dwForwardMetric1  dwForwardMetric2  dwForwardMetric3  dwForwardMetric4  dwForwardMetric5  dwForwardPreference  dwForwardViewSet  dwRtInfoDest  dwRtInfoMask  dwRtInfoNextHop  dwRtInfoIfIndex  dwRtInfoProto  dwRtInfoMetric1  dwRtInfoMetric2  dwRtInfoMetric3  pMibInEntry: The following fields are set to these values irrespective of the values specified (INTERFACE_ROUTE_INFO (section 2.2.1.2.11)):  dwForwardPolicy is set to 0.  dwForwardMetric4 and dwForwardMetric5 are set to MIB_IPROUTE_METRIC_UNUSED (-1).  dwForwardPreference is set to IP_PRIORITY_DEFAULT_METRIC (0x0000007F).</td>
+ </tr><tr>
+  <td>IF_ROW 0x00000002</td>
+  <td>MIB_IFROW (section 2.2.1.2.29)</td>
+  <td>Only dwAdminStatus can be set to IF_ADMIN_STATUS_DOWN or IF_ADMIN_STATUS_UP (see dwAdminStatus of INTERFACE_STATUS_INFO (section 2.2.1.2.18).</td>
+ </tr><tr>
+  <td>MCAST_IF_ENTRY 0x00000017</td>
+  <td>MIB_IPMCAST_IF_ENTRY (section 2.2.1.2.40)</td>
+  <td>dwTtl MUST be set to less than or equal to 255. dwRateLimit MUST NOT be set to 0. dwIfIndex MUST be set to the index of the interface for which the entries are being updated. The following entries can be set only if the operational status of the interface is IF_OPER_STATUS_OPERATIONAL (see dwOperStatus of MIB_IFROW: ulInMcastOctets ulOutMcastOctets</td>
+ </tr><tr>
+  <td>MCAST_BOUNDARY 0x0000001A</td>
+  <td>MIB_IPMCAST_BOUNDARY (section 2.2.1.2.37)</td>
+  <td>If dwStatus is set to ROWSTATUS_CREATEANDGO, the boundary information specified in MIB_IPMCAST_BOUNDARY is created. If dwStatus field is set to ROWSTATUS_DESTROY, the boundary information specified in MIB_IPMCAST_BOUNDARY is deleted.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>A 32-bit, unsigned integer
+value that indicates return status. A return value of ERROR_SUCCESS
+(0x00000000) indicates that the operation was completed successfully;
+otherwise, it contains an error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+or in section <a href="5c0c991a-0d3d-4fe5-9503-5128d0d49fe1" data-linktype="relative-path">2.2.4</a>.
+All values that are not in the table that follows MUST be treated the same by
+the RRASM client.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_SUCCESS 0x00000000</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>The calling application does not have sufficient privileges, as specified in section 2.1.1.1.</td>
+ </tr></tbody></table>
+</dd></dl><p>All error values MUST be treated the same and as long as
+ERROR_SUCCESS is not returned the call is deemed failed.</p><p>The opnum field value for this method is 28.</p><p>When processing this call, the RRASM server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate, as specified in section 2.1.1.1, whether this method
+was called by a client that has access to the method. If the client does not
+have access, then return error ERROR_ACCESS_DENIED (0x00000005).</p>
+</li><li><p><span><span> 
+</span></span>If <i>pInfoStuct</i> is NULL, return an error other than
+specified those in the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>If <i>dwPid</i> is not specified in the <b>SupportedTransportsList</b>,
+return an error other than those specified in the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>Call the abstract interface <b>Invoke DIMSVC</b> method
+specifying the operation and the parameters to enable RRAS server to perform
+the required management task.</p>
+</li><li><p><span><span> 
+</span></span>Return any error status that the RRAS server might return while
+processing the request. Otherwise return ERROR_SUCCESS (0x00000000).</p>
+</li></ul><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

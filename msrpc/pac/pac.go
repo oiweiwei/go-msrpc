@@ -207,6 +207,8 @@ type KerberosSIDAndAttributes struct {
 	//	| E     | This setting means that the group is a domain-local or resource group.           |
 	//	|       | Corresponds to SE_GROUP_RESOURCE. For more information, see [SIDATT].            |
 	//	+-------+----------------------------------------------------------------------------------+
+	//
+	// All other bits MUST be set to zero and MUST be ignored on receipt.
 	Attributes uint32 `idl:"name:Attributes" json:"attributes"`
 }
 
@@ -727,7 +729,7 @@ type PACInfoBuffer struct {
 	//	|                 | (section 2.14). PAC structures SHOULD NOT contain more than one buffer of this   |
 	//	|                 | type. Additional attribute buffers MUST be ignored.<8>                           |
 	//	+-----------------+----------------------------------------------------------------------------------+
-	//	| 0x00000012 (18) | PAC Requestor indicates that the buffer contains the SID of principal that       |
+	//	| 0x00000012 (18) | PAC Requestor SID indicates that the buffer contains the SID of principal that   |
 	//	|                 | requested the PAC (section 2.15). PAC structures MUST contain one buffer of this |
 	//	|                 | type.<9>                                                                         |
 	//	+-----------------+----------------------------------------------------------------------------------+
@@ -735,6 +737,9 @@ type PACInfoBuffer struct {
 	//	|                 | contain one buffer of this type for Kerberos ticket-granting service (TGS)       |
 	//	|                 | requests, and none otherwise. Additional Extended KDC checksum buffers MUST be   |
 	//	|                 | ignored.<10>                                                                     |
+	//	+-----------------+----------------------------------------------------------------------------------+
+	//	| 0x00000014 (20) | PAC Requestor GUID indicates that the buffer contains the GUID of the principal  |
+	//	|                 | that requested the PAC (section 2.16).                                           |
 	//	+-----------------+----------------------------------------------------------------------------------+
 	Type uint32 `idl:"name:ulType" json:"type"`
 	// cbBufferSize (4 bytes): A 32-bit unsigned integer in little-endian format that contains
@@ -1050,6 +1055,8 @@ type KerberosValidationInfo struct {
 	//	+-------+-------------------------------------------------------------------------------+
 	//	| H     | Indicates that the ResourceGroupIds field is populated.                       |
 	//	+-------+-------------------------------------------------------------------------------+
+	//
+	// All other bits MUST be set to zero and MUST be ignored on receipt.
 	UserFlags uint32 `idl:"name:UserFlags" json:"user_flags"`
 	// UserSessionKey: A session key that is used for cryptographic operations on a session.
 	// This field is valid only when authentication is performed using NTLM. For any other
@@ -1074,8 +1081,8 @@ type KerberosValidationInfo struct {
 	// information from the corresponding Security Account Manager field, as specified in
 	// [MS-SAMR].
 	UserAccountControl uint32 `idl:"name:UserAccountControl" json:"user_account_control"`
-	// Reserved3: A 32-bit integer. This member is reserved, and MUST be zero when sent
-	// and MUST be ignored on receipt.
+	// Reserved3: A 32-bit integer. This member is reserved, MUST be zero when sent and
+	// MUST be ignored on receipt.
 	_ []uint32 `idl:"name:Reserved3"`
 	// SidCount: A 32-bit unsigned integer that contains the total number of SIDs present
 	// in the ExtraSids member. If this member is not zero then the D bit MUST be set in
@@ -1091,14 +1098,20 @@ type KerberosValidationInfo struct {
 	// for the server whose resources the client is authenticating to. This member is used
 	// in conjunction with the ResourceGroupIds member to create the group SIDs for the
 	// user. If this member is populated, then the H bit MUST be set in the UserFlags member.
+	//
+	// When this field is not used, it MUST be set to NULL.
 	ResourceGroupDomainSID *dtyp.SID `idl:"name:ResourceGroupDomainSid" json:"resource_group_domain_sid"`
 	// ResourceGroupCount: A 32-bit unsigned integer that contains the number of resource
 	// group identifiers stored in ResourceGroupIds. If this member is not zero, then the
 	// H bit MUST be set in the UserFlags member.
+	//
+	// When this field is not used, it MUST be set to zero.
 	ResourceGroupCount uint32 `idl:"name:ResourceGroupCount" json:"resource_group_count"`
 	// ResourceGroupIds: A pointer to a list of GROUP_MEMBERSHIP structures that contain
 	// the RIDs and attributes of the account's groups in the resource domain. If this member
 	// is not NULL, then the H bit MUST be set in the UserFlags member.
+	//
+	// When this field is not used, it MUST be set to NULL.
 	ResourceGroupIDs []*GroupMembership `idl:"name:ResourceGroupIds;size_is:(ResourceGroupCount)" json:"resource_group_ids"`
 }
 
@@ -2155,6 +2168,8 @@ type NTLMSupplementalCredential struct {
 	//	+-------+--------------------------------------------------------+
 	//	| N     | Indicates that the NT OWF member is present and valid. |
 	//	+-------+--------------------------------------------------------+
+	//
+	// All other bits MUST be set to zero and MUST be ignored on receipt.
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 	// LmPassword: A 16-element array of unsigned 8-bit integers that define the LM OWF.
 	// The LmPassword member MUST be ignored if the L flag is not set in the Flags member.
@@ -2441,9 +2456,9 @@ type PACSignatureData struct {
 	// that defines the cryptographic system used to calculate the checksum. This MUST be
 	// one of the values defined in the following table. The corresponding sizes of the
 	// signatures are also given. The key used with the cryptographic system corresponds
-	// to the value of the ulType field of the outer PAC_INFO_BUFFER (section 2.4) structure.
-	// The value 0x00000006 specifies the server's key, and the value 0x00000007 specifies
-	// the KDC's key.
+	// to the value of the ulType field of the outer PAC_INFO_BUFFER structure. The value
+	// 0x00000006 specifies the server's key, and the value 0x00000007 specifies the KDC's
+	// key.
 	//
 	//	+-----------------------------------+----------------------------------------------------------------------------------+
 	//	|                                   |                                                                                  |
@@ -2796,6 +2811,8 @@ type UPNDNSInfo struct {
 	//	| S     | The UPN_DNS_INFO structure has been extended with the user account’s SAM Name    |
 	//	|       | and SID.                                                                         |
 	//	+-------+----------------------------------------------------------------------------------+
+	//
+	// All other bits are set to zero and MUST be ignored on receipt.
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 	Raw   []byte `idl:"name:Raw" json:"raw"`
 	// SamNameLength (2 bytes): An unsigned 16-bit integer in little-endian format that

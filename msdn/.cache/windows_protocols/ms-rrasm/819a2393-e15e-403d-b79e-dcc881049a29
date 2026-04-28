@@ -1,0 +1,152 @@
+<div class="content" name="IGMP_MIB_IF_STATS" uuid="819a2393-e15e-403d-b79e-dcc881049a29"><p>The <b>IGMP_MIB_IF_STATS</b> structure contains statistics
+about an interface.</p><dl>
+<dd>
+<div><pre> typedef struct _IGMP_MIB_IF_STATS {
+   DWORD IfIndex;
+   DWORD IpAddr;
+   DWORD IfType;
+   BYTE State;
+   BYTE QuerierState;
+   DWORD IgmpProtocolType;
+   DWORD QuerierIpAddr;
+   DWORD ProxyIfIndex;
+   DWORD QuerierPresentTimeLeft;
+   DWORD LastQuerierChangeTime;
+   DWORD V1QuerierPresentTimeLeft;
+   DWORD Uptime;
+   DWORD TotalIgmpPacketsReceived;
+   DWORD TotalIgmpPacketsForRouter;
+   DWORD GeneralQueriesReceived;
+   DWORD WrongVersionQueries;
+   DWORD JoinsReceived;
+   DWORD LeavesReceived;
+   DWORD CurrentGroupMemberships;
+   DWORD GroupMembershipsAdded;
+   DWORD WrongChecksumPackets;
+   DWORD ShortPacketsReceived;
+   DWORD LongPacketsReceived;
+   DWORD PacketsWithoutRtrAlert;
+ } IGMP_MIB_IF_STATS,
+  *PIGMP_MIB_IF_STATS;
+</pre></div>
+</dd></dl><p><b>IfIndex: </b>The index of the interface.</p><p><b>IpAddr: </b>The IP address of the interface. If
+the interface is a RAS interface, then the <b>IpAddr</b> is set to the <b>NextHopAddress</b>
+of the RAS client.</p><p><b>IfType: </b>The type of the interface. It MUST be
+one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IGMP_IF_NOT_RAS 0x00000001</td>
+  <td>The interface is connected to a LAN.</td>
+ </tr><tr>
+  <td>IGMP_IF_RAS_ROUTER 0x00000002</td>
+  <td>The interface is connected to another router over RAS.</td>
+ </tr><tr>
+  <td>IGMP_IF_RAS_SERVER 0x00000003</td>
+  <td>The entry corresponds to a RAS server if it contains statistics and it represents summary statistics.</td>
+ </tr><tr>
+  <td>IGMP_IF_RAS_CLIENT 0x00000004</td>
+  <td>The entry corresponds to a RAS client.</td>
+ </tr><tr>
+  <td>IGMP_IF_PROXY 0x00000008</td>
+  <td>The interface is an IGMP PROXY. One of the first four flags will still be set to enable the switch from the proxy to the IGMP router.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>State: </b>It MUST be a combination of one or more
+of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IGMP_STATE_BOUND 0x01</td>
+  <td>The socket is bound.</td>
+ </tr><tr>
+  <td>IGMP_STATE_ENABLED_BY_RTRMGR 0x02</td>
+  <td>The interface is enabled by router.</td>
+ </tr><tr>
+  <td>IGMP_STATE_ENABLED_IN_CONFIG 0x04</td>
+  <td>The interface is enabled in the configuration.</td>
+ </tr><tr>
+  <td>IGMP_STATE_ENABLED_BY_MGM 0x08</td>
+  <td>The interface is enabled by component that aggregates multiple routing protocols.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>QuerierState: </b>It MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>RTR_QUERIER 0x10</td>
+  <td>The interface is the IGMP querier.</td>
+ </tr><tr>
+  <td>RTR_NOT_QUERIER 0x00</td>
+  <td>The interface is not the IGMP querier.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>IgmpProtocolType: </b>Takes one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IGMP_PROXY 0x00000000</td>
+  <td>The interface is an IGMPv2 proxy. Specifies that the IGMPv2 proxy mode is enabled on this interface. An interface in IGMP proxy mode acts as a host, forwarding the IGMP host membership messages for all the IGMP host membership messages received on all other interfaces on which the IGMP router mode is enabled. Additionally, all nonlocal multicast traffic received on all other interfaces (on which the IGMP router mode is enabled) is forwarded over the IGMP proxy mode interface.</td>
+ </tr><tr>
+  <td>IGMP_ROUTER_V1 0x00000001</td>
+  <td>The interface is an IGMPv1 router. Specifies that IGMPv1 router mode is enabled on this interface. An interface in IGMP router mode listens for IGMP messages from hosts and updates the TCP/IP multicast forwarding table.</td>
+ </tr><tr>
+  <td>IGMP_ROUTER_V2 0x00000002</td>
+  <td>The interface is an IGMPv2 router. Specifies that IGMPv2 router mode is enabled on this interface. An interface in IGMP router mode listens for IGMP messages from hosts and updates the TCP/IP multicast forwarding table.</td>
+ </tr><tr>
+  <td>IGMP_ROUTER_V3 0x00000003</td>
+  <td>The interface is an IGMPv3 router. Specifies that IGMPv3 router mode is enabled on this interface. An interface in IGMP router mode listens for IGMP messages from hosts and updates the TCP/IP multicast forwarding table.</td>
+ </tr><tr>
+  <td>IGMP_PROXY_V3 0x00000010</td>
+  <td>The interface is an IGMPv3 proxy. Specifies that IGMPv3 proxy mode is enabled on this interface. An interface in IGMP proxy mode acts as a host, forwarding IGMP host membership messages for all IGMP host membership messages received on all other interfaces on which IGMP router mode is enabled. Additionally, all nonlocal multicast traffic received on all other interfaces (on which IGMP router mode is enabled) is forwarded over the IGMP proxy mode interface.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>QuerierIpAddr: </b>The IP address of the querier.</p><p><b>ProxyIfIndex: </b>The <b>IfIndex</b> of the IGMP
+proxy.</p><p><b>QuerierPresentTimeLeft: </b>If no IGMPv2 queries
+are heard on this interface within this interval, the local router will take
+over the querier on the IP subnet to which this interface is attached.</p><p><b>LastQuerierChangeTime: </b>The number of seconds
+since <b>QuerierIpAddr</b> was last changed.</p><p><b>V1QuerierPresentTimeLeft: </b>The time remaining
+until the host assumes that there are no IGMPv1 routers present on the
+interface. While this is nonzero, the host will reply to all queries with
+version 1 membership reports.</p><p><b>Uptime: </b>The time, in seconds, the interface
+has been activated.</p><p><b>TotalIgmpPacketsReceived: </b>The total IGMP
+packets received.</p><p><b>TotalIgmpPacketsForRouter: </b>The total IGMP
+packets received for a router.</p><p><b>GeneralQueriesReceived: </b>The total queries
+received.</p><p><b>WrongVersionQueries: </b>The count of wrong
+version queries received.</p><p><b>JoinsReceived: </b>The count of IGMP joins
+received.</p><p><b>LeavesReceived: </b>The count of IGMP leaved
+received.</p><p><b>CurrentGroupMemberships: </b>The count of current
+group memberships.</p><p><b>GroupMembershipsAdded: </b>The count of group
+memberships received.</p><p><b>WrongChecksumPackets: </b>The count of packets
+with wrong checksum received.</p><p><b>ShortPacketsReceived: </b>The count of short
+packets received.</p><p><b>LongPacketsReceived: </b>The count of long packets
+received.</p><p><b>PacketsWithoutRtrAlert: </b>The count of packets
+with router alerts received.</p></div>

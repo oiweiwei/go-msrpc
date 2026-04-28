@@ -1,0 +1,79 @@
+<div class="content" name="FAX_GetPersonalProfileInfo" uuid="ab1dea74-e856-4bbf-abcc-c61104bc6e91"><p>The <b>FAX_GetPersonalProfileInfo (Opnum 31)</b> method is
+called by the client to retrieve information about the <b>personal profile</b>
+(section <a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a>) of the
+sender or the receiver of a fax from the specified fax message that is present
+in the described message folder. The Folder value MUST be one of the
+enumerations defined by <b>FAX_ENUM_MESSAGE_FOLDER</b> (section <a href="1c7a6f3f-1e5b-40a2-bc48-0729f3a6cf0d" data-linktype="relative-path">2.2.2</a>) except
+FAX_MESSAGE_FOLDER_INBOX. The <i>ProfType</i> value MUST be one of the
+enumerations that are defined by <b>FAX_ENUM_PERSONAL_PROF_TYPES</b> (section
+<a href="15d3b60d-9a14-497f-9082-dceefa70eb8b" data-linktype="relative-path">2.2.4</a>). The <i>dwlMessageId</i>
+parameter specifies a particular message and can be obtained using the
+following methods: <b>FAX_EnumJobs</b> (section <a href="6516d564-e0b8-4f19-80b1-70f27eca7f16" data-linktype="relative-path">3.1.4.1.21</a>), <b>FAX_EnumJobsEx</b> (section
+<a href="c65fa0d0-dc19-4aec-b83a-b5b82d70c6d9" data-linktype="relative-path">3.1.4.1.22</a>), <b>FAX_EnumMessages</b> (section
+<a href="365c2295-c0f9-44bd-a72b-6db0b16c0f8f" data-linktype="relative-path">3.1.4.1.24</a>), or <b>FAX_EnumMessagesEx</b> (section
+<a href="43cf8eed-1cf3-4240-80c5-6f8d1d082084" data-linktype="relative-path">3.1.4.1.25</a>).</p><p>In response, the server MUST validate that the message ID is
+for a valid message. The server MUST validate that the client&#39;s fax user
+account has any of the permissions covered by <b>ALL_FAX_USER_ACCESS_RIGHTS</b>
+(section <a href="6b6ab8ee-03ec-42de-a4fa-fd0b5703b2c3" data-linktype="relative-path">2.2.83</a>)
+enumeration. On success, the server MUST return the profile information about
+the sender or <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_53dfe4f3-05d0-41aa-8217-ecd1962b340b" data-linktype="relative-path">recipient</a>
+in <i>Buffer</i> along with the size.</p><p>The client SHOULD free the returned buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_GetPersonalProfileInfo(
+   [in] handle_t hBinding,
+   [in] DWORDLONG dwlMessageId,
+   [in] FAX_ENUM_MESSAGE_FOLDER dwFolder,
+   [in] FAX_ENUM_PERSONAL_PROF_TYPES ProfType,
+   [out, size_is(, *BufferSize)] LPBYTE* Buffer,
+   [out, ref] LPDWORD BufferSize
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a>) or <b>FAX_ConnectionRefCount</b> (section
+<a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a>) method call
+used to connect to the fax server.</p><p><b>dwlMessageId: </b>A <b>DWORDLONG</b> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/c575fb47-166c-48cd-a37c-e44cac05c3d6" data-linktype="relative-path">2.2.13</a>)
+that contains the message identifier for which the sender&#39;s <b>FAX_PERSONAL_PROFILEW</b> (section
+<a href="20f6b5ce-e125-4abe-8ac0-0a357376d9da" data-linktype="relative-path">2.2.44</a>) structure is
+retrieved.</p><p><b>dwFolder: </b>A <b>FAX_ENUM_MESSAGE_FOLDER</b> indicating
+the location of the folder in which to search for the message containing the <b>personal
+profile</b> information.</p><p><b>ProfType: </b>A <b>FAX_ENUM_PERSONAL_PROF_TYPES</b> indicating
+whether to retrieve sender or recipient <b>personal profile</b> information.</p><p><b>Buffer: </b> A pointer to a <b>FAX_PERSONAL_PROFILEW</b> in
+which to place the returned recipient or sender <b>personal profile</b>
+information.</p><p><b>BufferSize: </b>A pointer to a <b>DWORD</b>
+([MS-DTYP] section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+variable to receive the buffer size.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. The client&#39;s fax user account does not have any of the permissions covered by ALL_FAX_USER_ACCESS_RIGHTS.</td>
+ </tr><tr>
+  <td>ERROR_BAD_FORMAT 0x0000000B</td>
+  <td>The message identified by dwlMessageId is an archived sent message and there was an error in reading the message file.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect. This error code is returned when any of the following conditions happen: § The pointer specified by the Buffer parameter is NULL.&lt;122&gt; § The value of the Folder parameter specified is not FAX_MESSAGE_FOLDER_QUEUE or FAX_MESSAGE_FOLDER_SENTITEMS.</td>
+ </tr><tr>
+  <td>FAX_ERR_SRV_OUTOFMEMORY 0x00001B59</td>
+  <td>The fax server failed to allocate memory needed for internal execution of this operation.</td>
+ </tr><tr>
+  <td>FAX_ERR_MESSAGE_NOT_FOUND 0x00001B61</td>
+  <td>This error code is returned when any of the following conditions happen: § The message identified by the dwlMessageId parameter is not found. § The dwFolder parameter is specified as FAX_MESSAGE_FOLDER_QUEUE, but the message identified by dwlMessageId is not an outgoing queued message. § The message identified by dwlMessageId is an outgoing queued message being deleted. § The message identified by dwlMessageId is an outgoing queued message of a different user, and this user does not have FAX_ACCESS_QUERY_OUT_JOBS permission. § The message identified by dwlMessageId is an archived sent message of a different user, and this user does not have FAX_ACCESS_QUERY_ARCHIVES permission.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol, <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

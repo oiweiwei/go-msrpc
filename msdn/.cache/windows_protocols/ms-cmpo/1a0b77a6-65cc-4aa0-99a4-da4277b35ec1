@@ -1,0 +1,42 @@
+<div class="content" name="BOUND_VERSION_SET" uuid="1a0b77a6-65cc-4aa0-99a4-da4277b35ec1"><p>The BOUND_VERSION_SET is a structure containing the MSDTC
+Connection Manager: OleTx Transports Protocol version numbers that were
+successfully negotiated during a <a href="bdb686a6-1190-4900-9dd5-2f9aac6ca621" data-linktype="relative-path">BuildContext</a> call or a <a href="fc4bf100-2799-4acf-a537-625f9c98500b" data-linktype="relative-path">BuildContextW</a> call.</p><dl>
+<dd>
+<div><pre> typedef struct _BoundVersionSet {
+   DWORD dwLevelOneAccepted;
+   DWORD dwLevelTwoAccepted;
+   DWORD dwLevelThreeAccepted;
+ } BOUND_VERSION_SET;
+</pre></div>
+</dd></dl><p><b>dwLevelOneAccepted:</b>  A <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">session</a> level-one bind was
+successfully created.</p><dl>
+<dd>
+<p>A 4-byte unsigned integer value containing the MSDTC
+Connection Manager: OleTx Transports Protocol version that was negotiated with
+the partner and MUST be used in MSDTC Connection Manager: OleTx Transports
+Protocol exchanges with the partner.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000001</td>
+  <td>The unsigned_char_t version of the Session creation API (Poke and BuildContext) is used.</td>
+ </tr><tr>
+  <td>0x00000002</td>
+  <td>The wchar_t version of the Session creation API (PokeW and BuildContextW) is used.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwLevelTwoAccepted:</b>  A 4-byte
+unsigned integer value containing the <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_1fa6a098-338d-4a4e-aeab-aacf60ff44d3" data-linktype="relative-path">level-two protocol</a> version
+that was negotiated with the partner and MUST be used in level-two protocol
+exchanges with the partner.</p><p><b>dwLevelThreeAccepted:</b>  A 4-byte
+unsigned integer value containing the <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_5c6c9c37-4c01-455a-9703-477f0a048cf2" data-linktype="relative-path">level-three protocol</a>
+version that was negotiated with the partner and MUST be used in level-three
+protocol exchanges with the partner.</p></div>

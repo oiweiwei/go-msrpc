@@ -222,6 +222,9 @@ type InterfaceClient interface {
 	//	|                                                     |                                                          | connect to any of the target server names, as specified in the members of        |
 	//	|                                                     |                                                          | tsEndPointInfo.                                                                  |
 	//	+-----------------------------------------------------+----------------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The error ERROR_ACCESS_DENIED is returned when this call is made on a tunnel which
+	// is not authorized.
 	CreateChannel(context.Context, *CreateChannelRequest, ...dcerpc.CallOption) (*CreateChannelResponse, error)
 
 	// Opnum5NotUsedOnWire operation.

@@ -1,0 +1,16 @@
+<div class="content" name="MSG_INFO" uuid="f277139c-37d6-4212-a7f3-01a0b9e79473"><p>MSG_INFO is a data structure that contains either an <a href="d36eac79-394c-4a08-8480-a98964ad5df3" data-linktype="relative-path">MSG_INFO_0</a> or an <a href="8b5122d3-a9c3-46fb-a049-f92570eaf85e" data-linktype="relative-path">MSG_INFO_1</a> structure.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union _MSG_INFO {
+   [case(0)] 
+     LPMSG_INFO_0 MsgInfo0;
+   [case(1)] 
+     LPMSG_INFO_1 MsgInfo1;
+ } MSG_INFO,
+  *PMSG_INFO,
+  *LPMSG_INFO;
+</pre></div>
+</dd></dl><p><b>MsgInfo0:</b>  A pointer to a
+variable-size buffer that MUST contain an MSG_INFO_0 data structure.</p><p><b>MsgInfo1:</b>  A pointer to a
+variable-size buffer that MUST contain an MSG_INFO_1 data structure.</p></div>

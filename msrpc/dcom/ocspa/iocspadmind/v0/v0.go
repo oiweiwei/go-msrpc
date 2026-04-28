@@ -2025,6 +2025,9 @@ type SetSecurityRequest struct {
 	// pctbSD: A pointer to the CERTTRANSBLOB structure that contains the marshaled security
 	// descriptor. Information on security descriptors is documented in [MS-DTYP] section
 	// 2.4.6.
+	//
+	// The responder SHOULD use the permissions set in pctbSD to deny and allow operations
+	// on the responder.
 	SecurityDescriptor *ocspa.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"security_descriptor"`
 }
 

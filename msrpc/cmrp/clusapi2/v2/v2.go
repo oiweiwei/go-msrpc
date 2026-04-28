@@ -1360,6 +1360,10 @@ type EnumEntry struct {
 	//
 	// If the ENUM_LIST is returned by a call to ApiCreateEnumEx, it contains the return
 	// data specified in section 3.1.4.2.124.
+	//
+	// Otherwise, a null-terminated Unicode string that specifies the name of the object
+	// that is represented by the list element. See section 3.1.4 for information about
+	// the maximum length of this string.
 	Name string `idl:"name:Name;string" json:"name"`
 }
 

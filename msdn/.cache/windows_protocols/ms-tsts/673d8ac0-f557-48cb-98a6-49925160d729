@@ -1,0 +1,151 @@
+<div class="content" name="WINSTATIONCLIENT" uuid="673d8ac0-f557-48cb-98a6-49925160d729"><p>The WINSTATIONCLIENT structure defines the client-requested
+configuration when connecting to a session.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSTATIONCLIENT {
+   ULONG fTextOnly  :1;
+   ULONG fDisableCtrlAltDel  :1;
+   ULONG fMouse  :1;
+   ULONG fDoubleClickDetect  :1;
+   ULONG fINetClient  :1;
+   ULONG fPromptForPassword  :1;
+   ULONG fMaximizeShell  :1;
+   ULONG fEnableWindowsKey  :1;
+   ULONG fRemoteConsoleAudio  :1;
+   ULONG fPasswordIsScPin  :1;
+   ULONG fNoAudioPlayback  :1;
+   ULONG fUsingSavedCreds  :1;
+   ULONG fRestrictedLogon  :1;
+   WCHAR ClientName[CLIENTNAME_LENGTH + 1 ];
+   WCHAR Domain[DOMAIN_LENGTH + 1 ];
+   WCHAR UserName[USERNAME_LENGTH + 1 ];
+   WCHAR Password[PASSWORD_LENGTH + 1 ];
+   WCHAR WorkDirectory[DIRECTORY_LENGTH + 1 ];
+   WCHAR InitialProgram[INITIALPROGRAM_LENGTH + 1 ];
+   ULONG SerialNumber;
+   BYTE EncryptionLevel;
+   ULONG ClientAddressFamily;
+   WCHAR ClientAddress[CLIENTADDRESS_LENGTH + 1 ];
+   USHORT HRes;
+   USHORT VRes;
+   USHORT ColorDepth;
+   USHORT ProtocolType;
+   ULONG KeyboardLayout;
+   ULONG KeyboardType;
+   ULONG KeyboardSubType;
+   ULONG KeyboardFunctionKey;
+   WCHAR imeFileName[IMEFILENAME_LENGTH + 1 ];
+   WCHAR ClientDirectory[DIRECTORY_LENGTH + 1 ];
+   WCHAR ClientLicense[CLIENTLICENSE_LENGTH + 1 ];
+   WCHAR ClientModem[CLIENTMODEM_LENGTH + 1 ];
+   ULONG ClientBuildNumber;
+   ULONG ClientHardwareId;
+   USHORT ClientProductId;
+   USHORT OutBufCountHost;
+   USHORT OutBufCountClient;
+   USHORT OutBufLength;
+   WCHAR AudioDriverName[9];
+   TS_TIME_ZONE_INFORMATION ClientTimeZone;
+   ULONG ClientSessionId;
+   WCHAR clientDigProductId[CLIENT_PRODUCT_ID_LENGTH];
+   ULONG PerformanceFlags;
+   ULONG ActiveInputLocale;
+ } WINSTATIONCLIENT,
+  *PWINSTATIONCLIENT;
+</pre></div>
+</dd></dl><p><b>fTextOnly:</b>   Text-only client
+session. This is always FALSE. </p><p><b>fDisableCtrlAltDel:</b>   Set to TRUE to
+specify that CTRL+ALT+DEL is disabled. </p><p><b>fMouse:</b>   TRUE indicates the mouse
+is connected to the client, FALSE otherwise. </p><p><b>fDoubleClickDetect:</b>   Double-click
+the detect flag. TRUE indicates detect double-click, FALSE otherwise. </p><p><b>fINetClient:</b>   Always set to FALSE. </p><p><b>fPromptForPassword:</b>   TRUE indicates
+the user will always be prompted for a password, even if the password is saved
+from previous connection; FALSE otherwise. </p><p><b>fMaximizeShell:</b>   TRUE indicates
+maximize the shell, FALSE otherwise. </p><p><b>fEnableWindowsKey:</b>   TRUE indicates
+that the Windows key (E0_5B) is enabled in the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>
+session. FALSE indicates that it is disabled. </p><p><b>fRemoteConsoleAudio:</b>  Set to TRUE if
+audio for the console session is left remotely at the server, FALSE otherwise.<a id="Appendix_A_Target_79"></a><a aria-label="Product behavior note 79" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_79" data-linktype="relative-path">&lt;79&gt;</a></p><p><b>fPasswordIsScPin:</b>  Set to TRUE if
+the password field contains a smart card PIN, FALSE otherwise.<a id="Appendix_A_Target_80"></a><a aria-label="Product behavior note 80" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_80" data-linktype="relative-path">&lt;80&gt;</a></p><p><b>fNoAudioPlayback:</b>  Set to TRUE to
+disable audio playback, or FALSE to enable audio playback.<a id="Appendix_A_Target_81"></a><a aria-label="Product behavior note 81" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_81" data-linktype="relative-path">&lt;81&gt;</a></p><p><b>fUsingSavedCreds:</b>   Set to TRUE if
+the terminal server connection was made using a credential saved on the client
+computer, FALSE otherwise. </p><p><b>fRestrictedLogon:</b>  Set to TRUE if
+the client is running in Restricted Administration mode, FALSE otherwise. In
+Restricted Administration mode, user credentials are not sent to the server,
+which can protect the user if the server has been compromised.<a id="Appendix_A_Target_82"></a><a aria-label="Product behavior note 82" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_82" data-linktype="relative-path">&lt;82&gt;</a></p><p><b>ClientName:</b>   The name of the client
+computer. </p><p><b>Domain:</b>   The user&#39;s <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>
+name. </p><p><b>UserName:</b>   The user&#39;s user name. </p><p><b>Password:</b>   The user&#39;s password. </p><p><b>WorkDirectory:</b>   The work directory for
+the initial program. </p><p><b>InitialProgram:</b>  The program to run
+instead of the default.<a id="Appendix_A_Target_83"></a><a aria-label="Product behavior note 83" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_83" data-linktype="relative-path">&lt;83&gt;</a></p><p><b>SerialNumber:</b>   The client
+computer&#39;s unique serial number. </p><p><b>EncryptionLevel:</b>   The encryption
+level. </p><p><b>ClientAddressFamily:</b>  The address
+family of the client&#39;s address.<a id="Appendix_A_Target_84"></a><a aria-label="Product behavior note 84" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_84" data-linktype="relative-path">&lt;84&gt;</a></p><p><b>ClientAddress:</b>   The client&#39;s
+address. The format depends on the value of <b>ClientAddressFamily</b>. See <span><a href="https://go.microsoft.com/fwlink/?LinkId=93442" data-linktype="external">[MSDN-SOCKET]</a></span>
+for more information. </p><p><b>HRes:</b>   The horizontal resolution,
+in pixels. </p><p><b>VRes:</b>   The vertical resolution, in
+pixels. </p><p><b>ColorDepth:</b>  The color depth. <a id="Appendix_A_Target_85"></a><a aria-label="Product behavior note 85" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_85" data-linktype="relative-path">&lt;85&gt;</a></p><p><b>ProtocolType:</b>  The type of protocol.<a id="Appendix_A_Target_86"></a><a aria-label="Product behavior note 86" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_86" data-linktype="relative-path">&lt;86&gt;</a></p><p><b>KeyboardLayout:</b>   The keyboard
+layout (HKL). </p><p><b>KeyboardType:</b>   The keyboard type. </p><p><b>KeyboardSubType:</b>   The keyboard
+subtype. </p><p><b>KeyboardFunctionKey:</b>   The number of
+keyboard function keys. </p><p><b>imeFileName:</b>   The file name of the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_19d3dd70-8d6a-4847-9827-ebbde6b1a9b7" data-linktype="relative-path">input
+method editor (IME)</a></span>, if any, used for the session. For more information
+on IMEs, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=100302" data-linktype="external">[MSFT-IME]</a></span>. </p><p><b>ClientDirectory:</b>   The directory in
+which the client was installed. </p><p><b>ClientLicense:</b>  The client&#39;s
+license.<a id="Appendix_A_Target_87"></a><a aria-label="Product behavior note 87" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_87" data-linktype="relative-path">&lt;87&gt;</a></p><p><b>ClientModem:</b>  The client&#39;s modem.<a id="Appendix_A_Target_88"></a><a aria-label="Product behavior note 88" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_88" data-linktype="relative-path">&lt;88&gt;</a></p><p><b>ClientBuildNumber:</b>   The client&#39;s
+build number. </p><p><b>ClientHardwareId:</b>   The
+client-specific hardware identifier. </p><p><b>ClientProductId:</b>   The
+client-specific product identifier. </p><p><b>OutBufCountHost:</b>   The number of
+output buffers on the host computer. </p><p><b>OutBufCountClient:</b>   The number of
+output buffers on the client computer. </p><p><b>OutBufLength:</b>   The length of the
+output buffer, in bytes. </p><p><b>AudioDriverName:</b>   The audio
+driver&#39;s name. </p><p><b>ClientTimeZone:</b>  The client&#39;s time
+zone.<a id="Appendix_A_Target_89"></a><a aria-label="Product behavior note 89" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_89" data-linktype="relative-path">&lt;89&gt;</a></p><p><b>ClientSessionId:</b>  The client&#39;s
+session ID.<a id="Appendix_A_Target_90"></a><a aria-label="Product behavior note 90" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_90" data-linktype="relative-path">&lt;90&gt;</a></p><p><b>clientDigProductId:</b>  The
+client-specific product ID.<a id="Appendix_A_Target_91"></a><a aria-label="Product behavior note 91" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_91" data-linktype="relative-path">&lt;91&gt;</a></p><p><b>PerformanceFlags:</b>  Protocol-specific
+performance flags.<a id="Appendix_A_Target_92"></a><a aria-label="Product behavior note 92" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_92" data-linktype="relative-path">&lt;92&gt;</a> It MUST be any bitwise OR
+combination of the following except <b>TS_PERF_DISABLE_NOTHING</b>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>TS_PERF_DISABLE_NOTHING 0x00000000</td>
+  <td>Disable nothing.</td>
+ </tr><tr>
+  <td>TS_PERF_DISABLE_WALLPAPER 0x00000001</td>
+  <td>Disable wallpaper.</td>
+ </tr><tr>
+  <td>TS_PERF_DISABLE_FULLWINDOWDRAG 0x00000002</td>
+  <td>Disable full window drag animation.</td>
+ </tr><tr>
+  <td>TS_PERF_DISABLE_MENUANIMATIONS 0x00000004</td>
+  <td>Disable menu animations.</td>
+ </tr><tr>
+  <td>TS_PERF_DISABLE_THEMING 0x00000008</td>
+  <td>Disable themes.</td>
+ </tr><tr>
+  <td>TS_PERF_ENABLE_ENHANCED_GRAPHICS 0x00000010</td>
+  <td>Enable enhanced graphics.</td>
+ </tr><tr>
+  <td>TS_PERF_DISABLE_CURSOR_SHADOW 0x00000020</td>
+  <td>Disable cursor shadow.</td>
+ </tr><tr>
+  <td>TS_PERF_DISABLE_CURSORSETTINGS 0x00000040</td>
+  <td>Disable cursor settings.</td>
+ </tr><tr>
+  <td>TS_PERF_ENABLE_FONT_SMOOTHING 0x00000080</td>
+  <td>Enable font smoothing.&lt;93&gt;</td>
+ </tr><tr>
+  <td>TS_PERF_ENABLE_DESKTOP_COMPOSITION 0x00000100</td>
+  <td>Enable desktop composition.&lt;94&gt;</td>
+ </tr><tr>
+  <td>TS_PERF_DEFAULT_NONPERFCLIENT_SETTING 0x40000000</td>
+  <td>Reserved and used internally by the client.</td>
+ </tr><tr>
+  <td>TS_PERF_RESERVED1 0x80000000</td>
+  <td>Reserved and used internally by the client.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>ActiveInputLocale:</b>  Client language
+locale HKL.<a id="Appendix_A_Target_95"></a><a aria-label="Product behavior note 95" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_95" data-linktype="relative-path">&lt;95&gt;</a></p><p>For information about keyboard functions and handling, see [MSFT-W2KDDK].</p></div>

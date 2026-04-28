@@ -1,0 +1,12 @@
+<div class="content" name="NETWORKCONFIG" uuid="a962dcf9-04ae-461a-acf1-4b50e677c265"><p>The network protocol driver&#39;s configuration structure. The
+following block determines NETWORKCONFIG.</p><dl>
+<dd>
+<div><pre> typedef struct _NETWORKCONFIG {
+   LONG LanAdapter;
+   DEVICENAME NetworkName;
+   ULONG Flags;
+ } NETWORKCONFIG,
+  *PNETWORKCONFIG;
+</pre></div>
+</dd></dl><p><b>LanAdapter:</b>  The LANA ID of the
+network adapter.</p><p><b>NetworkName:</b>  Not used.</p><p><b>Flags:</b>  Not used.</p></div>

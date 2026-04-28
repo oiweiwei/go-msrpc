@@ -79,6 +79,8 @@ type Level1LoginClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR, as specified in section
 	// 2.2.11, to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	NTLMLogin(context.Context, *NTLMLoginRequest, ...dcerpc.CallOption) (*NTLMLoginResponse, error)
 
 	// AlterContext alters the client context.
@@ -455,6 +457,9 @@ type EstablishPositionResponse struct {
 	// LocaleVersion: The server MUST set the value of LocaleVersion based on the server
 	// behavior when IWbemLevel1Login::NTLMLogin is passed an unrecognized locale name in
 	// the wszPreferredLocale parameter:
+	//
+	// The return value and LocaleVersion are used for Locale capability negotiation before
+	// calling IWbemLevel1Login::NTLMLogin, as specified in section 3.2.3.
 	//
 	// * If the server ignores an unrecognized locale name in the Locale Name Format, as
 	// specified in section 2.2.29 ( 259edd31-d6eb-4bc9-a2c4-2891b78bb51d ) , passed to

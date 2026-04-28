@@ -1,0 +1,94 @@
+<div class="content" name="NTFRSAPI_INFO" uuid="3925763e-9042-4ea5-809f-00c892826f8e"><dl>
+<dd>
+<div><pre> typedef struct NTFRSAPI_INFO {
+   ULONG Major;
+   ULONG Minor;
+   ULONG NtFrsMajor;
+   ULONG NtFrsMinor;
+   ULONG SizeInChars;
+   ULONG Flags;
+   ULONG TypeOfInfo;
+   ULONG TotalChars;
+   ULONG CharsToSkip;
+   ULONG OffsetToLines;
+   ULONG OffsetToFree;
+   ULONG Lines[1];
+ } NTFRSAPI_INFO,
+  *PNTFRSAPI_INFO;
+</pre></div>
+</dd></dl><p><b>Major:</b>  A 32-bit, unsigned integer
+specifying the major version of the ntfrsapi.dll. This field MUST be zero (0).</p><p><b>Minor:</b>  A 32-bit, unsigned integer
+specifying the minor version of the ntfrsapi.dll. </p><p><b>NtFrsMajor:</b>  A 32-bit, unsigned
+integer specifying the major version of the NtFrs Service. This field MUST be
+zero (0).</p><p><b>NtFrsMinor:</b>  A 32-bit, unsigned
+integer specifying the minor version of the NtFrs Service.</p><p><b>SizeInChars:</b>  A 32-bit, unsigned
+integer specifying the size of this structure.</p><p><b>Flags:</b>  A 32-bit, unsigned integer
+specifying the returned Blob. It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>NTFRSAPI_INFO_FLAGS_VERSION 0x00000001</td>
+  <td>Returned Version info in the Blob is valid.</td>
+ </tr><tr>
+  <td>NTFRSAPI_INFO_FLAGS_FULL 0x00000002</td>
+  <td>Returned Blob is full.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>TypeOfInfo:</b>  A 32-bit unsigned
+integer specifying the Information type. It MUST be one of the following
+values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>NTFRSAPI_INFO_TYPE_VERSION 0x00000000</td>
+  <td>Information on NtFrs Version.</td>
+ </tr><tr>
+  <td>NTFRSAPI_INFO_TYPE_SETS 0x00000001</td>
+  <td>Information on replica sets.</td>
+ </tr><tr>
+  <td>NTFRSAPI_INFO_TYPE_DS 0x00000002</td>
+  <td>Information on Directory Services.</td>
+ </tr><tr>
+  <td>NTFRSAPI_INFO_TYPE_MEMORY 0x00000003</td>
+  <td>Information on memory usage.</td>
+ </tr><tr>
+  <td>NTFRSAPI_INFO_TYPE_IDTABLE 0x00000004</td>
+  <td>Information on ID tables.</td>
+ </tr><tr>
+  <td>NTFRSAPI_INFO_TYPE_OUTLOG 0x00000005</td>
+  <td>Information on Outlog tables.</td>
+ </tr><tr>
+  <td>NTFRSAPI_INFO_TYPE_INLOG 0x00000006</td>
+  <td>Information on Inlog tables.</td>
+ </tr><tr>
+  <td>NTFRSAPI_INFO_TYPE_THREADS 0x00000007</td>
+  <td>Information on thread usage.</td>
+ </tr><tr>
+  <td>NTFRSAPI_INFO_TYPE_STAGE 0x00000008</td>
+  <td>Information on staging area.</td>
+ </tr><tr>
+  <td>NTFRSAPI_INFO_TYPE_CONFIGTABLE 0x00000009</td>
+  <td>Information on Configuration table.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>TotalChars:</b>  A 32-bit unsigned
+integer specifying the server stored context for this call. This context can be
+used in subsequent calls.</p><p><b>CharsToSkip:</b>  A 32-bit unsigned
+integer specifying number of characters to skip over in the next call.</p><p><b>OffsetToLines:</b>  A 32-bit unsigned
+integer specifying the starting offset of returned data.</p><p><b>OffsetToFree:</b>  A 32-bit unsigned
+integer specifying the offset to next free byte in this structure.</p><p><b>Lines:</b>  A 8-bit character specifying
+the starting value of the variable length data buffer returned.</p></div>

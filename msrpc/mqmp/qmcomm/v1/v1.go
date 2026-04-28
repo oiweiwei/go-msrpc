@@ -6181,6 +6181,9 @@ type CreateObjectInternalRequest struct {
 	// property value at the same element index in apVar and MUST contain at least one element.
 	// Each element MUST contain a queue property identifier; identifiers for other properties
 	// are not permitted.
+	//
+	// If the queue identified by lpwcsPathName already exists, the server MUST NOT alter
+	// the existing queue.
 	Property []uint32 `idl:"name:aProp;size_is:(cp)" json:"property"`
 	// apVar:  MUST be an array that specifies the property values to associate with the
 	// new queue. Each element MUST specify the property value for the corresponding property
@@ -7988,6 +7991,9 @@ type ObjectPathToObjectFormatRequest struct {
 	// name or private format name for the queue identified by lpwcsPathName. This specification
 	// does not mandate the process through which a server produces a format name for a
 	// given path name.
+	//
+	// On input, pObjectFormat MUST NOT be NULL, the ObjType member MUST be 0x00000001,
+	// and the m_qft member MUST be QUEUE_FORMAT_TYPE_UNKNOWN (0x00000000).
 	ObjectFormat *ObjectFormat `idl:"name:pObjectFormat" json:"object_format"`
 }
 
@@ -8042,6 +8048,9 @@ type ObjectPathToObjectFormatResponse struct {
 	// name or private format name for the queue identified by lpwcsPathName. This specification
 	// does not mandate the process through which a server produces a format name for a
 	// given path name.
+	//
+	// On input, pObjectFormat MUST NOT be NULL, the ObjType member MUST be 0x00000001,
+	// and the m_qft member MUST be QUEUE_FORMAT_TYPE_UNKNOWN (0x00000000).
 	ObjectFormat *ObjectFormat `idl:"name:pObjectFormat" json:"object_format"`
 	// Return: The R_QMObjectPathToObjectFormat return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -9553,6 +9562,9 @@ type OpenQueueInternalRequest struct {
 	//
 	// If pQueueFormat identifies a system, journal, machine, or connector queue, dwDesiredAccess
 	// MUST be MQ_RECEIVE_ACCESS (0x00000001) or MQ_PEEK_ACCESS (0x00000020).
+	//
+	// If pQueueFormat identifies a remote queue, dwDesiredAccess MUST be MQ_RECEIVE_ACCESS
+	// (0x00000001) or MQ_PEEK_ACCESS (0x00000020).
 	DesiredAccess uint32 `idl:"name:dwDesiredAccess" json:"desired_access"`
 	// dwShareMode:  Specifies the exclusivity level for the opened queue. The value MUST
 	// be one of the following:
@@ -9571,6 +9583,9 @@ type OpenQueueInternalRequest struct {
 	//	|                                  | the same queue for read access MUST return a failure HRESULT until the queue has |
 	//	|                                  | been closed.                                                                     |
 	//	+----------------------------------+----------------------------------------------------------------------------------+
+	//
+	// If dwDesiredAccess is MQ_SEND_ACCESS (0x00000002), dwShareMode MUST be MQ_DENY_NONE
+	// (0x00000000).
 	ShareMode uint32 `idl:"name:dwShareMode" json:"share_mode"`
 	// hRemoteQueue: MUST be 0x00000000, or MUST contain a DWORD value obtained from the
 	// phQueue out-parameter of the R_QMOpenRemoteQueue method invoked at a remote queue
@@ -9581,6 +9596,9 @@ type OpenQueueInternalRequest struct {
 	// manager, the server MUST set this string to a null-terminated path name, from which
 	// the client can determine the computer name of the remote queue manager, as specified
 	// in [MS-MQMQ] section 2.1.1.
+	//
+	// If pQueueFormat identifies a queue local to the supporting server, the server MUST
+	// set lplpRemoteQueueName to NULL.
 	RemoteQueueName string `idl:"name:lplpRemoteQueueName;string;pointer:ptr" json:"remote_queue_name"`
 	// dwpQueue: If hRemoteQueue is 0x00000000, dwpQueue MUST be NULL; otherwise, dwpQueue
 	// MUST contain a DWORD value obtained from the dwpQueue out-parameter of the R_QMOpenRemoteQueue
@@ -9680,6 +9698,9 @@ type OpenQueueInternalResponse struct {
 	// manager, the server MUST set this string to a null-terminated path name, from which
 	// the client can determine the computer name of the remote queue manager, as specified
 	// in [MS-MQMQ] section 2.1.1.
+	//
+	// If pQueueFormat identifies a queue local to the supporting server, the server MUST
+	// set lplpRemoteQueueName to NULL.
 	RemoteQueueName string `idl:"name:lplpRemoteQueueName;string;pointer:ptr" json:"remote_queue_name"`
 	// pdwQMContext: A pointer to a variable to receive a DWORD value that identifies either
 	// an OpenQueueDescriptor ([MS-MQDMPR] section 3.1.1.16) ADM element instance at the
@@ -11101,14 +11122,41 @@ type QueryQMRegistryInternalRequest struct {
 	// The format for the comma-delimited list of MQIS server names (0x00000000) is given
 	// by the following augmented BNF:
 	//
+	// list = [list ","] computer-name
+	//  computer-name = 1*15digit
+	//  digit = num-digit / uppercase-alpha-digit / lowercase-alpha-digit
+	//                    / special-digit
+	//  num-digit = %x30-39
+	//  uppercase-alpha-digit = %x41-5Alowercase-alpha-digit = %x61-7A
+	//  special-digit = "!" / "@" / "#" / "$" / "%" / "^" / "&" / "'"
+	//                  / ")" / "(" / "." / "-" / "_" / "{" / "}" / "~"
+	//
 	// The GUID string for the MSMQ forest (0x00000002) uses the "braceless" format depicted
 	// in the following augmented BNF:
+	//
+	// braceless-guid = dword-part "-" word-part "-" word-part "-"
+	//                   2byte-part "-" 6byte-part
+	//  dword-part = 2word-part
+	//  word-part = 2byte-part
+	//  byte-part = 2hex-digit
+	//  hex-digit = %x30-39 / %x41-46 / %x61-66
 	//
 	// The string format used for the supporting server version (0x00000003), depicted in
 	// augmented BNF, is as follows:
 	//
+	// version = version-part "." version-part "." version-part
+	//  version-part = 1*4num-digit
+	//  num-digit = %x30-39
+	//
 	// The GUID for the server queue manager (0x00000004) uses the following "braceless"
 	// format, depicted in augmented BNF:
+	//
+	// braceless-guid = dword-part "-" word-part "-" word-part "-"
+	//                   2byte-part "-" 6byte-part
+	//  dword-part = 2word-part
+	//  word-part = 2byte-part
+	//  byte-part = 2hex-digit
+	//  hex-digit = %x30-39 / %x41-46 / %x61-66
 	QueryType uint32 `idl:"name:dwQueryType" json:"query_type"`
 }
 

@@ -53,6 +53,8 @@ type DiskServer interface {
 	// [MS-ERREF]) to indicate success, or return an implementation-specific nonzero error
 	// code to indicate failure. For the HRESULT values predefined by the Virtual Disk Service
 	// Remote Protocol, see section 2.2.3.
+	//
+	// Note  This method is not valid for CD/DVD or super floppy devices.
 	ConvertStyle(context.Context, *ConvertStyleRequest) (*ConvertStyleResponse, error)
 
 	// SetFlags operation.

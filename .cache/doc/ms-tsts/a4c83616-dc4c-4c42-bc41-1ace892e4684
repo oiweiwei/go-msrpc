@@ -1,6 +1,0 @@
-<div class="content"><p>This document specifies the Terminal Services Terminal
-Server Runtime Interface Protocol. The Terminal Services Terminal Server
-Runtime Interface Protocol is an RPC-based protocol used for remotely querying
-and configuring various aspects of a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
-normative. All other sections and examples in this specification are
-informative.</p></div>

@@ -1,0 +1,85 @@
+<div class="content" name="DNS_RPC_SKD_STATE_EX" uuid="4578b265-4ff9-4294-92d5-05dbaa845037"><p>The <b>DNS_RPC_SKD_STATE_EX</b> structure <a id="Appendix_A_Target_52"></a><a aria-label="Product behavior note 52" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_52" data-linktype="relative-path">&lt;52&gt;</a> represents the collection of
+extended dynamic configuration information of a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_621e5d7b-d764-4196-b838-b52bf82b9380" data-linktype="relative-path">signing key descriptor</a></span>
+state.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcSigningKeyDescriptorStateEx {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   GUID Guid;
+   DWORD dwCurrentRollState;
+   DWORD fManualTrigger;
+   DWORD dwPreRollEventFired;
+   FILETIME ftNextKeyGenerationTime;
+   DWORD dwRevokedOrSwappedDnskeysLength;
+   PBYTE pRevokedOrSwappedDnskeysBuffer;
+   DWORD dwFinalDnskeysLength;
+   PBYTE pFinalDnskeys;
+   KeySignScope eActiveKeyScope;
+   KeySignScope eStandByKeyScope;
+   KeySignScope eNextKeyScope;
+ } DNS_RPC_SKD_STATE_EX,
+  *PDNS_RPC_SKD_STATE_EX;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure version
+number; this MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> This MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>Guid:</b> A unique identifier for this signing key
+descriptor.</p><p><b>dwCurrentRollState:</b> The current rollover
+status of this signing key descriptor. Note that these are DNS Server
+Management Protocol implementations of the protocol specified rollover states
+of SKDs in DNS_RPC_SKD_STATE.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Mapping in DNS_RPC_SKD_STATE</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DNS_SKD_ROLL_STATE_NOT_STARTED 0x00000000</td>
+  <td>DNS_SKD_STATUS_NOT_ROLLING</td>
+ </tr><tr>
+  <td>DNS_SKD_ROLL_STATE_ZSK_SWAP_ACTIVE_WITH_ROLLOVER 0x00000001</td>
+  <td>DNS_SKD_STATUS_ZSK_WAITING_FOR_DNSKEY_TTL</td>
+ </tr><tr>
+  <td>DNS_SKD_ROLL_STATE_ZSK_FINISH 0x00000002</td>
+  <td>DNS_SKD_STATUS_ZSK_WAITING_FOR_MAXZONE_TTL</td>
+ </tr><tr>
+  <td>DNS_SKD_ROLL_STATE_KSK_WAITING_FOR_DS 0x00000003</td>
+  <td>DNS_SKD_STATUS_KSK_WAITING_FOR_DS_UPDATE</td>
+ </tr><tr>
+  <td>DNS_SKD_ROLL_STATE_KSK_REVOKE 0x00000004</td>
+  <td>DNS_SKD_STATUS_KSK_WAITING_FOR_DS_TTL The key is revoked once the rollover is completed.</td>
+ </tr><tr>
+  <td>DNS_SKD_ROLL_STATE_KSK_FINISH 0x00000005</td>
+  <td>DNS_SKD_STATUS_KSK_WAITING_FOR_DS_TTL The key is not revoked and is used with the rolled over key-set.</td>
+ </tr><tr>
+  <td>DNS_SKD_ROLL_STATE_MAX 0x00000005</td>
+  <td>DNS_SKD_STATUS_KSK_WAITING_FOR_DS_TTL</td>
+ </tr><tr>
+  <td>DNS_SKD_STATUS_ROLL_ERROR 0x00000009</td>
+  <td>This signing key descriptor experienced an unrecoverable error during the key rollover.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>fManualTrigger:</b> TRUE if the rollover was
+triggered manually.</p><p><b>dwPreRollEventFired:</b> Specifies which
+prerollover event has been fired.</p><p><b>ftNextKeyGenerationTime:</b> The time at which the
+next key was added to the zone.</p><p><b>dwRevokedOrSwappedDnskeysLength:</b> The length of
+the revoked or swapped DNSKEY RRSet.</p><p><b>pRevokedOrSwappedDnskeysBuffer:</b> Presigned
+DNSKEY RRSet for ZSK swap. This is a pointer to a pointer that points to a
+buffer containing the enumerated records. The buffer is a series of structures
+beginning with a <span><a href="cb5539fa-67fd-40e0-9ea5-468ecc56bd66" data-linktype="relative-path">DNS_RPC_NODE structure (section 2.2.2.2.3)</a></span>.
+The records for the node will be represented by a series of <span><a href="ac793981-1c60-43b8-be59-cdbb5c4ecb8a" data-linktype="relative-path">DNS_RPC_RECORD
+structures (section 2.2.2.2.5)</a></span>. The number of <b>DNS_RPC_RECORD</b>
+structures following a <b>DNS_RPC_NODE</b> structure is given by the
+wRecordCount member of <b>DNS_RPC_NODE</b>.</p><p><b>dwFinalDnskeysLength:</b> Length of presigned
+DNSKEY RRSet.</p><p><b>pFinalDnskeys:</b> Presigned DNSKEY RRSet Post
+Rollover. This is a pointer to a pointer that points to a buffer containing the
+enumerated records. The buffer is a series of structures beginning with a <b>DNS_RPC_NODE</b>
+structure. The records for the node will be represented by a series of <b>DNS_RPC_RECORD</b>
+structures. The number of <b>DNS_RPC_RECORD</b> structures following a <b>DNS_RPC_NODE</b>
+structure is given by the wRecordCount member of <b>DNS_RPC_NODE</b>.</p><p><b>eActiveKeyScope:</b> Signing key scope for the
+SKD&#39;s active key. The signing key scope is defined in <span><a href="b67bcf73-87b5-449a-91c9-b470ea42b038" data-linktype="relative-path">KeySignScope (section 2.2.6.1.2)</a></span>.</p><p><b>eStandByKeyScope:</b> Signing key scope for the
+SKD&#39;s standby key. The signing key scope is defined in KeySignScope.</p><p><b>eNextKeyScope:</b> Signing key scope for the SKD&#39;s
+next key. The signing key scope is defined in KeySignScope.</p></div>

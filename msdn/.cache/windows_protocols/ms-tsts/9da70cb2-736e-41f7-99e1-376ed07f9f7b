@@ -1,0 +1,143 @@
+<div class="content" name="TS_SYSTEMTIME" uuid="9da70cb2-736e-41f7-99e1-376ed07f9f7b"><p> Information about a time zone. This structure is identical
+to the structure <span><a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">SYSTEMTIME</a></span>.
+For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93364" data-linktype="external">[MSDN-SYSTIME]</a></span>.
+</p><dl>
+<dd>
+<div><pre> typedef struct _TS_SYSTEMTIME {
+   USHORT wYear;
+   USHORT wMonth;
+   USHORT wDayOfWeek;
+   USHORT wDay;
+   USHORT wHour;
+   USHORT wMinute;
+   USHORT wSecond;
+   USHORT wMilliseconds;
+ } TS_SYSTEMTIME;
+</pre></div>
+</dd></dl><p><b>wYear:</b>  The year when transition
+from daylight saving time to standard time occurs (1601 to 30827).</p><p><b>wMonth:</b>  The month when transition
+from daylight saving time to standard time occurs.</p><dl>
+<dd>
+<p>This member can be one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>1</td>
+  <td>January</td>
+ </tr><tr>
+  <td>2</td>
+  <td>February</td>
+ </tr><tr>
+  <td>3</td>
+  <td>March</td>
+ </tr><tr>
+  <td>4</td>
+  <td>April</td>
+ </tr><tr>
+  <td>5</td>
+  <td>May</td>
+ </tr><tr>
+  <td>6</td>
+  <td>June</td>
+ </tr><tr>
+  <td>7</td>
+  <td>July</td>
+ </tr><tr>
+  <td>8</td>
+  <td>August</td>
+ </tr><tr>
+  <td>9</td>
+  <td>September</td>
+ </tr><tr>
+  <td>10</td>
+  <td>October</td>
+ </tr><tr>
+  <td>11</td>
+  <td>November</td>
+ </tr><tr>
+  <td>12</td>
+  <td>December</td>
+ </tr></tbody></table>
+</dd></dl><p><b>wDayOfWeek:</b>   The day of the week
+when the transition from daylight saving time to standard time occurs.</p><dl>
+<dd>
+<p>This member can be one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0</td>
+  <td>Sunday</td>
+ </tr><tr>
+  <td>1</td>
+  <td>Monday</td>
+ </tr><tr>
+  <td>2</td>
+  <td>Tuesday</td>
+ </tr><tr>
+  <td>3</td>
+  <td>Wednesday</td>
+ </tr><tr>
+  <td>4</td>
+  <td>Thursday</td>
+ </tr><tr>
+  <td>5</td>
+  <td>Friday</td>
+ </tr><tr>
+  <td>6</td>
+  <td>Saturday</td>
+ </tr></tbody></table>
+</dd></dl><p><b>wDay:</b>   The occurrence of <b>wDayOfWeek</b>
+within the month when the transition from daylight saving time to standard time
+takes place.</p><dl>
+<dd>
+<p>This member can be one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>1</td>
+  <td>First occurrence of wDayOfWeek</td>
+ </tr><tr>
+  <td>2</td>
+  <td>Second occurrence of wDayOfWeek</td>
+ </tr><tr>
+  <td>3</td>
+  <td>Third occurrence of wDayOfWeek</td>
+ </tr><tr>
+  <td>4</td>
+  <td>Fourth occurrence of wDayOfWeek</td>
+ </tr><tr>
+  <td>5</td>
+  <td>Last occurrence of wDayOfWeek</td>
+ </tr></tbody></table>
+</dd></dl><p><b>wHour:</b>   The hour when transition
+from daylight saving time to standard time occurs (0 to 23).</p><p><b>wMinute:</b>   The minute when
+transition from daylight saving time to standard time occurs (0 to 59).</p><p><b>wSecond:</b>   The second when
+transition from daylight saving time to standard time occurs (0 to 59).</p><p><b>wMilliseconds:</b>   The millisecond
+when transition from daylight saving time to standard time occurs (0 to 999).</p></div>

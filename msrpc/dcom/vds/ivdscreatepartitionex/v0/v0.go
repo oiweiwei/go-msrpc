@@ -57,6 +57,9 @@ type CreatePartitionExClient interface {
 	//
 	// Note  Creating or deleting partitions on dynamic disks is not supported.
 	//
+	// Note  This method is not valid on CD/DVD or super floppy devices. These devices do
+	// not support partition tables.
+	//
 	// ERROR_SUCCESS (0x00000000)
 	CreatePartitionEx(context.Context, *CreatePartitionExRequest, ...dcerpc.CallOption) (*CreatePartitionExResponse, error)
 
@@ -448,7 +451,7 @@ type CreatePartitionExResponse struct {
 	// completed, receives the IVdsAsync interface to monitor and control this operation.
 	// Callers MUST release the interface when they are done with it. If the IVdsAsync::Wait
 	// method is called on the interface, the interfaces returned in the VDS_ASYNC_OUTPUT
-	// structure MUST be released as well. For information on asynchronous tasks, see section
+	// structure MUST be released as well. For details on asynchronous tasks, see section
 	// 3.4.5.1.9.
 	Async *vds.Async `idl:"name:ppAsync" json:"async"`
 	// Return: The CreatePartitionEx return value.

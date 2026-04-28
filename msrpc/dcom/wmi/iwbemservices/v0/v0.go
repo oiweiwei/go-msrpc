@@ -57,6 +57,8 @@ type ServicesClient interface {
 	// of the method call. The server MUST return WBEM_S_NO_ERROR, as specified in section
 	// 2.2.11, to indicate the successful completion of the method.
 	//
+	// WBEM_S_NO_ERROR (0x00)
+	//
 	// Requirements described in the parameter definitions are checked, and if the requirements
 	// are not met, the server returns WBEM_E_INVALID_PARAMETER.
 	OpenNamespace(context.Context, *OpenNamespaceRequest, ...dcerpc.CallOption) (*OpenNamespaceResponse, error)
@@ -85,6 +87,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	QueryObjectSink(context.Context, *QueryObjectSinkRequest, ...dcerpc.CallOption) (*QueryObjectSinkResponse, error)
 
 	// The IWbemServices::GetObject method retrieves a CIM class or a CIM instance. This
@@ -95,6 +99,8 @@ type ServicesClient interface {
 	// the method call. The HRESULT MUST have the type and values as specified in section
 	// 2.2.11. The server MUST return WBEM_S_NO_ERROR (as specified in section 2.2.11) to
 	// indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	GetObject(context.Context, *GetObjectRequest, ...dcerpc.CallOption) (*GetObjectResponse, error)
 
 	// The IWbemServices::GetObjectAsync method is the asynchronous version of the IWbemServices::GetObject
@@ -103,6 +109,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	GetObjectAsync(context.Context, *GetObjectAsyncRequest, ...dcerpc.CallOption) (*GetObjectAsyncResponse, error)
 
 	// The IWbemServices::PutClass method creates a new class or updates an existing class
@@ -115,6 +123,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	PutClass(context.Context, *PutClassRequest, ...dcerpc.CallOption) (*PutClassResponse, error)
 
 	// The IWbemServices::PutClassAsync method is the asynchronous version of the IWbemServices::PutClass
@@ -127,6 +137,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	PutClassAsync(context.Context, *PutClassAsyncRequest, ...dcerpc.CallOption) (*PutClassAsyncResponse, error)
 
 	// The IWbemServices::DeleteClass method MUST delete a specified class from the namespace
@@ -135,6 +147,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	DeleteClass(context.Context, *DeleteClassRequest, ...dcerpc.CallOption) (*DeleteClassResponse, error)
 
 	// The IWbemServices::DeleteClassAsync method is the asynchronous version of the IWbemServices::DeleteClass
@@ -143,6 +157,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	DeleteClassAsync(context.Context, *DeleteClassAsyncRequest, ...dcerpc.CallOption) (*DeleteClassAsyncResponse, error)
 
 	// The IWbemServices::CreateClassEnum method provides a class enumeration. When this
@@ -152,6 +168,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	CreateClassEnum(context.Context, *CreateClassEnumRequest, ...dcerpc.CallOption) (*CreateClassEnumResponse, error)
 
 	// The IWbemServices::CreateClassEnumAsync method provides an asynchronous class enumeration.
@@ -162,6 +180,8 @@ type ServicesClient interface {
 	// of the method call. The HRESULT MUST have the type and values as specified in section
 	// 2.2.11. The server MUST return WBEM_S_NO_ERROR (specified in section 2.2.11) to indicate
 	// the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	CreateClassEnumAsync(context.Context, *CreateClassEnumAsyncRequest, ...dcerpc.CallOption) (*CreateClassEnumAsyncResponse, error)
 
 	// The IWbemServices::PutInstance method creates or updates an instance of an existing
@@ -172,6 +192,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	PutInstance(context.Context, *PutInstanceRequest, ...dcerpc.CallOption) (*PutInstanceResponse, error)
 
 	// The IWbemServices::PutInstanceAsync method is the asynchronous version of the PutInstance
@@ -181,6 +203,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	PutInstanceAsync(context.Context, *PutInstanceAsyncRequest, ...dcerpc.CallOption) (*PutInstanceAsyncResponse, error)
 
 	// The IWbemServices::DeleteInstance method deletes an instance of an existing class
@@ -190,6 +214,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	DeleteInstance(context.Context, *DeleteInstanceRequest, ...dcerpc.CallOption) (*DeleteInstanceResponse, error)
 
 	// The IWbemServices::DeleteInstanceAsync method is the asynchronous version of the
@@ -200,6 +226,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	DeleteInstanceAsync(context.Context, *DeleteInstanceAsyncRequest, ...dcerpc.CallOption) (*DeleteInstanceAsyncResponse, error)
 
 	// The IWbemServices::CreateInstanceEnum method provides an instance enumeration. When
@@ -209,6 +237,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return the following value (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	CreateInstanceEnum(context.Context, *CreateInstanceEnumRequest, ...dcerpc.CallOption) (*CreateInstanceEnumResponse, error)
 
 	// The IWbemServices::CreateInstanceEnumAsync method provides an asynchronous instance
@@ -218,6 +248,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	CreateInstanceEnumAsync(context.Context, *CreateInstanceEnumAsyncRequest, ...dcerpc.CallOption) (*CreateInstanceEnumAsyncResponse, error)
 
 	// The IWbemServices::ExecQuery method returns an enumerable collection of IWbemClassObject
@@ -226,6 +258,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	ExecQuery(context.Context, *ExecQueryRequest, ...dcerpc.CallOption) (*ExecQueryResponse, error)
 
 	// The IWbemServices::ExecQueryAsync method is the asynchronous version of the IWbemServices::ExecQuery
@@ -235,6 +269,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	ExecQueryAsync(context.Context, *ExecQueryAsyncRequest, ...dcerpc.CallOption) (*ExecQueryAsyncResponse, error)
 
 	// The IWbemServices::ExecNotificationQuery method provides a subscription for event
@@ -246,6 +282,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	ExecNotificationQuery(context.Context, *ExecNotificationQueryRequest, ...dcerpc.CallOption) (*ExecNotificationQueryResponse, error)
 
 	// The IWbemServices::ExecNotificationQueryAsync method is the asynchronous version
@@ -258,6 +296,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR, as specified in section
 	// 2.2.11, to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	ExecNotificationQueryAsync(context.Context, *ExecNotificationQueryAsyncRequest, ...dcerpc.CallOption) (*ExecNotificationQueryAsyncResponse, error)
 
 	// The IWbemServices::ExecMethod method executes a CIM method that is implemented by
@@ -267,6 +307,8 @@ type ServicesClient interface {
 	// of the method call. HRESULT MUST have the type and values as specified in section
 	// 2.2.11. The server MUST return WBEM_S_NO_ERROR (specified in section 2.2.11) to indicate
 	// the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	ExecMethod(context.Context, *ExecMethodRequest, ...dcerpc.CallOption) (*ExecMethodResponse, error)
 
 	// The IWbemServices::ExecMethodAsync method asynchronously executes a CIM method that
@@ -276,6 +318,8 @@ type ServicesClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (as specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	ExecMethodAsync(context.Context, *ExecMethodAsyncRequest, ...dcerpc.CallOption) (*ExecMethodAsyncResponse, error)
 
 	// AlterContext alters the client context.
@@ -1309,6 +1353,9 @@ type OpenNamespaceRequest struct {
 	// WBEM_FLAG_RETURN_IMMEDIATELY
 	//
 	// 0x00000010
+	//
+	// Any other DWORD value that does not match the preceding condition MUST be treated
+	// as invalid.
 	Flags int32 `idl:"name:lFlags" json:"flags"`
 	// pCtx: This parameter MUST be NULL.
 	Context *wmi.Context `idl:"name:pCtx" json:"context"`
@@ -1342,6 +1389,9 @@ type OpenNamespaceRequest struct {
 	//	+------------------------------------------+---------------------------------------------------------+---------------------------------------------------------+
 	//	| WBEM_FLAG_RETURN_IMMEDIATELY is set.     | MUST be set to the requested IWbemCallResult interface. | MUST be set to NULL if the input parameter is not-NULL. |
 	//	+------------------------------------------+---------------------------------------------------------+---------------------------------------------------------+
+	//
+	// This parameter MUST NOT be NULL on input when WBEM_FLAG_RETURN_IMMEDIATELY equals
+	// 1. In such a case, it receives a pointer to an IWbemCallResult interface pointer.
 	Result *wmi.CallResult `idl:"name:ppResult;pointer:unique" json:"result"`
 }
 
@@ -1429,6 +1479,9 @@ type OpenNamespaceResponse struct {
 	//	+------------------------------------------+---------------------------------------------------------+---------------------------------------------------------+
 	//	| WBEM_FLAG_RETURN_IMMEDIATELY is set.     | MUST be set to the requested IWbemCallResult interface. | MUST be set to NULL if the input parameter is not-NULL. |
 	//	+------------------------------------------+---------------------------------------------------------+---------------------------------------------------------+
+	//
+	// This parameter MUST NOT be NULL on input when WBEM_FLAG_RETURN_IMMEDIATELY equals
+	// 1. In such a case, it receives a pointer to an IWbemCallResult interface pointer.
 	Result *wmi.CallResult `idl:"name:ppResult;pointer:unique" json:"result"`
 	// Return: The OpenNamespace return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -3509,6 +3562,9 @@ type PutClassRequest struct {
 	//	|                                          | return WBEM_E_INVALID_PARAMETER. On output, the parameter MUST contain the       |                                                         |
 	//	|                                          | IWbemCallResult interface pointer.                                               |                                                         |
 	//	+------------------------------------------+----------------------------------------------------------------------------------+---------------------------------------------------------+
+	//
+	// If the ppCallResult input parameter is NULL and WBEM_FLAG_RETURN_IMMEDIATELY is not
+	// set, the server MUST deliver the result of the requested operation synchronously.
 	CallResult *wmi.CallResult `idl:"name:ppCallResult;pointer:unique" json:"call_result"`
 }
 
@@ -3581,6 +3637,9 @@ type PutClassResponse struct {
 	//	|                                          | return WBEM_E_INVALID_PARAMETER. On output, the parameter MUST contain the       |                                                         |
 	//	|                                          | IWbemCallResult interface pointer.                                               |                                                         |
 	//	+------------------------------------------+----------------------------------------------------------------------------------+---------------------------------------------------------+
+	//
+	// If the ppCallResult input parameter is NULL and WBEM_FLAG_RETURN_IMMEDIATELY is not
+	// set, the server MUST deliver the result of the requested operation synchronously.
 	CallResult *wmi.CallResult `idl:"name:ppCallResult;pointer:unique" json:"call_result"`
 	// Return: The PutClass return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -4413,6 +4472,9 @@ type DeleteClassRequest struct {
 	//	| WBEM_FLAG_RETURN_IMMEDIATELY 0x00000010 | If this bit is set, the server MUST make the method call semisynchronously. If   |
 	//	|                                         | this bit is not set, the server MUST make the method call synchronously.         |
 	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Any other DWORD value that does not match the preceding condition MUST be treated
+	// as invalid.
 	Flags int32 `idl:"name:lFlags" json:"flags"`
 	// pCtx: MUST be a pointer to an IWbemContext interface, which MUST contain additional
 	// information that the client wants to pass to the server. If pCtx is NULL, the parameter
@@ -4835,6 +4897,9 @@ type DeleteClassAsyncRequest struct {
 	//	|                                  | IWbemObjectSink::SetStatus calls on the interface pointer prior to call          |
 	//	|                                  | completion.                                                                      |
 	//	+----------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Any other DWORD value that does not match the preceding condition MUST be treated
+	// as not valid.
 	Flags int32 `idl:"name:lFlags" json:"flags"`
 	// pCtx: MUST be a pointer to an IWbemContext interface, which MUST contain additional
 	// information that the client wants to pass to the server. If pCtx is NULL, the parameter
@@ -6192,6 +6257,9 @@ type PutInstanceRequest struct {
 	//	|                                          | return WBEM_E_INVALID_PARAMETER. On output, the parameter MUST contain the       |                                                         |
 	//	|                                          | IWbemCallResult interface pointer.                                               |                                                         |
 	//	+------------------------------------------+----------------------------------------------------------------------------------+---------------------------------------------------------+
+	//
+	// If the ppCallResult input parameter is NULL and WBEM_FLAG_RETURN_IMMEDIATELY is not
+	// set, the server MUST deliver the result of the requested operation synchronously.
 	CallResult *wmi.CallResult `idl:"name:ppCallResult;pointer:unique" json:"call_result"`
 }
 
@@ -6264,6 +6332,9 @@ type PutInstanceResponse struct {
 	//	|                                          | return WBEM_E_INVALID_PARAMETER. On output, the parameter MUST contain the       |                                                         |
 	//	|                                          | IWbemCallResult interface pointer.                                               |                                                         |
 	//	+------------------------------------------+----------------------------------------------------------------------------------+---------------------------------------------------------+
+	//
+	// If the ppCallResult input parameter is NULL and WBEM_FLAG_RETURN_IMMEDIATELY is not
+	// set, the server MUST deliver the result of the requested operation synchronously.
 	CallResult *wmi.CallResult `idl:"name:ppCallResult;pointer:unique" json:"call_result"`
 	// Return: The PutInstance return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -7142,6 +7213,9 @@ type DeleteInstanceRequest struct {
 	//	|                                          | return WBEM_E_INVALID_PARAMETER. On output, the parameter MUST contain the       |                                                         |
 	//	|                                          | IWbemCallResult interface pointer.                                               |                                                         |
 	//	+------------------------------------------+----------------------------------------------------------------------------------+---------------------------------------------------------+
+	//
+	// If the ppCallResult input parameter is NULL and WBEM_FLAG_RETURN_IMMEDIATELY is not
+	// set, the server MUST deliver the result of the requested operation synchronously.
 	CallResult *wmi.CallResult `idl:"name:ppCallResult;pointer:unique" json:"call_result"`
 }
 
@@ -7214,6 +7288,9 @@ type DeleteInstanceResponse struct {
 	//	|                                          | return WBEM_E_INVALID_PARAMETER. On output, the parameter MUST contain the       |                                                         |
 	//	|                                          | IWbemCallResult interface pointer.                                               |                                                         |
 	//	+------------------------------------------+----------------------------------------------------------------------------------+---------------------------------------------------------+
+	//
+	// If the ppCallResult input parameter is NULL and WBEM_FLAG_RETURN_IMMEDIATELY is not
+	// set, the server MUST deliver the result of the requested operation synchronously.
 	CallResult *wmi.CallResult `idl:"name:ppCallResult;pointer:unique" json:"call_result"`
 	// Return: The DeleteInstance return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -7550,6 +7627,9 @@ type DeleteInstanceAsyncRequest struct {
 	//	|                                  | IWbemObjectSink::SetStatus calls on the interface pointer prior to call          |
 	//	|                                  | completion.                                                                      |
 	//	+----------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Any other DWORD value that does not match the preceding condition MUST be treated
+	// as invalid.
 	Flags int32 `idl:"name:lFlags" json:"flags"`
 	// pCtx: MUST be a pointer to an IWbemContext interface, which contains additional information
 	// that the client wants to pass to the server. If pCtx is NULL, the parameter MUST
@@ -10905,6 +10985,9 @@ type ExecMethodRequest struct {
 	//	| WBEM_FLAG_RETURN_IMMEDIATELY 0x00000010 | If this bit is not set, the server MUST make the method call synchronously. If   |
 	//	|                                         | this bit is set, the server MUST make the method call semisynchronously.         |
 	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Any other DWORD value that does not match the preceding condition MUST be treated
+	// as invalid.
 	Flags int32 `idl:"name:lFlags" json:"flags"`
 	// pCtx: MUST be a pointer to an IWbemContext interface, which MUST contain additional
 	// information that the client wants to pass to the server. If pCtx is NULL, the parameter
@@ -11473,6 +11556,9 @@ type ExecMethodAsyncRequest struct {
 	//	|                                  | IWbemObjectSink::SetStatus calls on the interface pointer prior to call          |
 	//	|                                  | completion.                                                                      |
 	//	+----------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Any other DWORD value that does not match the preceding condition MUST be treated
+	// as invalid.
 	Flags int32 `idl:"name:lFlags" json:"flags"`
 	// pCtx: MUST be a pointer to an IWbemContext interface, which MUST contain additional
 	// information that the client wants to pass to the server. If pCtx is NULL, the parameter

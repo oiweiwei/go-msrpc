@@ -359,6 +359,8 @@ type RemoteGetClassObjectRequest struct {
 	//	+---------------------------+------------+----------------------+
 	//	| SpecialPropertiesData     | 2.2.22.2.2 | Optional             |
 	//	+---------------------------+------------+----------------------+
+	//
+	// Servers SHOULD ignore properties that they do not recognize.<74>
 	ActPropertiesIn *dcom.InterfacePointer `idl:"name:pActProperties;pointer:unique" json:"act_properties_in"`
 }
 
@@ -768,6 +770,8 @@ type RemoteCreateInstanceRequest struct {
 	//	+---------------------------+------------+----------------------+
 	//	| SpecialPropertiesData     | 2.2.22.2.2 | Optional             |
 	//	+---------------------------+------------+----------------------+
+	//
+	// Servers SHOULD ignore properties that they do not recognize.<77>
 	ActPropertiesIn *dcom.InterfacePointer `idl:"name:pActProperties;pointer:unique" json:"act_properties_in"`
 }
 

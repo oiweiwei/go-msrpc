@@ -1,0 +1,60 @@
+<div class="content" name="PACTYPE" uuid="6655b92f-ab06-490b-845d-037e6987275f"><p>The <b>PACTYPE</b> structure is the topmost structure of the
+<b>PAC</b> and specifies the number of elements in the <a href="3341cfa2-6ef5-42e0-b7bc-4544884bf399" data-linktype="relative-path">PAC_INFO_BUFFER (section 2.4)</a>
+array. The <b>PACTYPE</b> structure serves as the header for the complete <b>PAC</b>
+data. </p><p>The <b>PACTYPE</b> structure is defined as follows.</p><p>The format of the <b>PACTYPE</b> structure is defined as
+follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">cBuffers</td>
+ </tr>
+ <tr>
+  <td colspan="32">Version</td>
+ </tr>
+ <tr>
+  <td colspan="32">Buffers (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>cBuffers (4 bytes): </b>A 32-bit unsigned integer
+in little-endian format that defines the number of entries in the <b>Buffers</b>
+array. </p><p><b>Version (4 bytes): </b>A 32-bit unsigned integer
+in little-endian format that defines the <b>PAC </b>version; MUST be
+0x00000000. </p><p><b>Buffers (variable): </b>An array of
+PAC_INFO_BUFFER structures (section 2.4).</p><p>The actual contents of the <b>PAC </b>are placed serially
+after the variable set of PAC_INFO_BUFFER structures. The contents are
+individually serialized <b>PAC </b>elements. All <b>PAC </b>elements MUST be
+placed on an 8-byte boundary. </p></div>

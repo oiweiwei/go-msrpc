@@ -284,6 +284,8 @@ type CommPacket struct {
 	//	+-------------------------------+----------------------------------------------------------------------------------+
 	//
 	// Version 0.7 or earlier is deprecated and SHOULD be used only for backward compatibility.
+	//
+	// Subsequent versions MUST subsume all capabilities of lower versions.
 	Minor uint32 `idl:"name:Minor" json:"minor"`
 	// CsId:   A 32-bit, unsigned integer that MUST be set to 1.
 	CSID uint32 `idl:"name:CsId" json:"cs_id"`

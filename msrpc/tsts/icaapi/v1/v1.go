@@ -4230,6 +4230,8 @@ type WinStationSendMessageRequest struct {
 	// DoNotWait:  If set to TRUE, do not wait for the response to the message. On return,
 	// if no errors occur in queuing the message, the pResponse parameter will be set to
 	// IDASYNC.
+	//
+	// If FALSE, wait for a response.
 	DoNotWait bool `idl:"name:DoNotWait" json:"do_not_wait"`
 }
 
@@ -7359,6 +7361,9 @@ type OldRPCWinStationEnumerateProcessesResponse struct {
 	Result uint32 `idl:"name:pResult" json:"result"`
 	// pProcessBuffer:  Pointer to a buffer receiving the list of processes.
 	//
+	// In pProcessBuffer for each process, the server will return the following in the buffer,
+	// in this order:
+	//
 	// *
 	//
 	// A TS_PROCESS_INFORMATION_NT4 ( 0a8a73d9-3c9e-4d2d-91e4-7fef48b6c29d ) structure.
@@ -7373,6 +7378,11 @@ type OldRPCWinStationEnumerateProcessesResponse struct {
 	//
 	// A TS_SYS_PROCESS_INFORMATION ( 96702c7d-6f5f-4965-8f29-5fdbea73278e ) structure for
 	// the process.
+	//
+	// Only up to SIZEOF TS4_SYSTEM_THREAD_INFORMATION of the SYSTEM_THREAD_INFORMATION
+	// structure (as specified in (see [WININTERNALS] or [MSFT-WINSYSINTERNALS]) is copied
+	// into the buffer and only up to SIZEOF TS4_SYSTEM_PROCESS_INFORMATION of the TS_SYS_PROCESS_INFORMATION_NT4
+	// structure is copied into the buffer.
 	ProcessBuffer []byte `idl:"name:pProcessBuffer;size_is:(ByteCount)" json:"process_buffer"`
 	// Return: The OldRpcWinStationEnumerateProcesses return value.
 	Return bool `idl:"name:Return" json:"return"`
@@ -7665,6 +7675,9 @@ type WinStationEnumerateProcessesResponse struct {
 	Result uint32 `idl:"name:pResult" json:"result"`
 	// pProcessBuffer:  Pointer to a buffer receiving the list of processes.
 	//
+	// In pProcessBuffer for each process, the server will return the following in the buffer,
+	// in this order:
+	//
 	// *
 	//
 	// A TS_PROCESS_INFORMATION_NT4 ( 0a8a73d9-3c9e-4d2d-91e4-7fef48b6c29d ) structure.
@@ -7679,6 +7692,11 @@ type WinStationEnumerateProcessesResponse struct {
 	//
 	// A TS_SYS_PROCESS_INFORMATION ( 96702c7d-6f5f-4965-8f29-5fdbea73278e ) structure for
 	// the process.
+	//
+	// Only up to SIZEOF TS4_SYSTEM_THREAD_INFORMATION of the SYSTEM_THREAD_INFORMATION
+	// structure (as specified in [WININTERNALS] or [MSFT-WINSYSINTERNALS]) is copied into
+	// the buffer and only up to SIZEOF TS4_SYSTEM_PROCESS_INFORMATION of the TS_SYS_PROCESS_INFORMATION_NT4
+	// structure is copied into the buffer.
 	ProcessBuffer []byte `idl:"name:pProcessBuffer;size_is:(ByteCount)" json:"process_buffer"`
 	// Return: The RpcWinStationEnumerateProcesses return value.
 	Return bool `idl:"name:Return" json:"return"`

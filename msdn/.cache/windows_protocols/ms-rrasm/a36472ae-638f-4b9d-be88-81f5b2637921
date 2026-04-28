@@ -1,0 +1,45 @@
+<div class="content" name="STATIC_SERVICES_TABLE_INDEX" uuid="a36472ae-638f-4b9d-be88-81f5b2637921"><p>The <b>STATIC_SERVICES_TABLE_INDEX</b> structure MAY<a id="Appendix_A_Target_94"></a><a aria-label="Product behavior note 94" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_94" data-linktype="relative-path">&lt;94&gt;</a> be used to specify the index
+within the static services table. It is used in <a href="9e132641-0b75-45b5-818c-a996828b4745" data-linktype="relative-path"><b>IPX_MIB_INDEX (section 2.2.1.2.104)</b></a>. 
+</p><dl>
+<dd>
+<div><pre> typedef struct _STATIC_SERVICES_TABLE_INDEX {
+   ULONG InterfaceIndex;
+   USHORT ServiceType;
+   UCHAR ServiceName[48];
+ } STATIC_SERVICES_TABLE_INDEX,
+  *PSTATIC_SERVICES_TABLE_INDEX;
+</pre></div>
+</dd></dl><p><b>InterfaceIndex: </b>The local index value for the
+network interface. This index value MAY change when a network adapter is
+disabled and then enabled, or under other circumstances, and need not be
+persistent.</p><p><b>ServiceType: </b>The type of service (for example:
+file server, print server, or application server). Commonly used types are
+described in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Service Type (Hexadecimal)</p>
+   </th>
+   <th>
+   <p>Server</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x0000</td>
+  <td>Unknown</td>
+ </tr><tr>
+  <td>0x0000 — 0x0004</td>
+  <td>NetWare File Server</td>
+ </tr><tr>
+  <td>0x0000 — 0x0007</td>
+  <td>NetWare Print Server</td>
+ </tr><tr>
+  <td>0x0006 — 0x0040</td>
+  <td>Microsoft RPC Server</td>
+ </tr><tr>
+  <td>0x00FF</td>
+  <td>General SAP Request</td>
+ </tr></tbody></table>
+</dd></dl><p><b>ServiceName: </b>The name of the server hosting the
+service.</p></div>

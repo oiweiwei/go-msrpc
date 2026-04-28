@@ -354,6 +354,8 @@ type InitiateShutdownRequest struct {
 	//	|              | that have registered for restart. An alternate name for this field is            |
 	//	|              | SHUTDOWN_RESTARTAPPS.                                                            |
 	//	+--------------+----------------------------------------------------------------------------------+
+	//
+	// All other bits MUST be zero and ignored upon receipt.
 	ShudownFlags uint32 `idl:"name:dwShudownFlags" json:"shudown_flags"`
 	// dwReason: Reason for initiating the shutdown (section 2.3). The dwReason SHOULD be
 	// used for log entries for the shutdown event.

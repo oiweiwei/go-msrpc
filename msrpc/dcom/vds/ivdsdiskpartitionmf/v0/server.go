@@ -38,6 +38,9 @@ type DiskPartitionMFServer interface {
 	// code to indicate failure. For the HRESULT values predefined by the Virtual Disk Service
 	// Remote Protocol, see section 2.2.3.
 	//
+	// Note  This method is not valid on CD/DVD or super floppy devices. These devices do
+	// not support partition tables.
+	//
 	// ERROR_SUCCESS (0x00000000)
 	GetPartitionFileSystemProperties(context.Context, *GetPartitionFileSystemPropertiesRequest) (*GetPartitionFileSystemPropertiesResponse, error)
 
@@ -49,6 +52,9 @@ type DiskPartitionMFServer interface {
 	// [MS-ERREF]) to indicate success, or return an implementation-specific nonzero error
 	// code to indicate failure. For the HRESULT values predefined by the Virtual Disk Service
 	// Remote Protocol, see section 2.2.3.
+	//
+	// Note  This method is not valid on CD/DVD or super floppy devices. These devices do
+	// not support partition tables.
 	GetPartitionFileSystemTypeName(context.Context, *GetPartitionFileSystemTypeNameRequest) (*GetPartitionFileSystemTypeNameResponse, error)
 
 	// The QueryPartitionFileSystemFormatSupport method retrieves the properties of the
@@ -73,6 +79,9 @@ type DiskPartitionMFServer interface {
 	// [MS-ERREF]) to indicate success, or return an implementation-specific nonzero error
 	// code to indicate failure. For the HRESULT values predefined by the Virtual Disk Service
 	// Remote Protocol, see section 2.2.3.
+	//
+	// Note  This method is not valid on CD/DVD or super floppy devices. These devices do
+	// not support partition table.
 	//
 	// ERROR_SUCCESS (0x00000000)
 	FormatPartitionEx(context.Context, *FormatPartitionExRequest) (*FormatPartitionExResponse, error)

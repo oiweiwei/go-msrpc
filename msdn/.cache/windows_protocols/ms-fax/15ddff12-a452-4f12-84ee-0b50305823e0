@@ -1,0 +1,64 @@
+<div class="content" name="FAX_GetRoutingInfo" uuid="15ddff12-a452-4f12-84ee-0b50305823e0"><p>The <b>FAX_GetRoutingInfo (Opnum 15)</b> method is called by
+the client to retrieve information about a specified <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_efaa1290-6d4b-4f44-9e84-35a867069d45" data-linktype="relative-path">routing</a> method that is
+identified by the passed-in <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>.</p><p>The server MUST validate that the client&#39;s fax user account
+has the access to retrieve information about a routing method. The <i>RoutingGuid</i>
+and <i>RoutingInfoBuffer</i> parameters MUST NOT be <b>NULL</b>. The server
+MUST validate that the <i>RoutingGuid</i> is for a valid routing method. On
+success, the server MUST return the routing information for a <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_d98e028a-1e6d-4e09-a915-7e8b90d9f9de" data-linktype="relative-path">fax routing method</a> that is
+associated with a specific fax device in <i>RoutingInfoBuffer</i>.</p><p>The client SHOULD free the returned buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_GetRoutingInfo(
+   [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+   [in, string, unique] LPCWSTR RoutingGuid,
+   [out, size_is(, *RoutingInfoBufferSize)] 
+     LPBYTE* RoutingInfoBuffer,
+   [out, ref] LPDWORD RoutingInfoBufferSize
+ );
+</pre></div>
+</dd></dl><p><b>FaxPortHandle: </b>An <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle that
+references a specified fax port.</p><p><b>RoutingGuid: </b>A curly braced GUID string that
+specifies the GUID that uniquely identifies the fax routing method for which to
+obtain the routing information. Fax routing methods are defined by a <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_170298f8-e4d3-4ece-92a1-2e28c974734f" data-linktype="relative-path">fax routing extension</a> and
+the method is identified by a GUID. For more information about routing methods,
+see <a href="https://go.microsoft.com/fwlink/?LinkId=90010" data-linktype="external">[MSDN-FRM]</a>. The
+routing methods and the associated curly-braced GUID string values that can be
+used for this parameter are discoverable by calling <b>FAX_EnumRoutingMethods</b>
+(section <a href="d9a47f58-bbf8-4a36-be63-d92453c8ec04" data-linktype="relative-path">3.1.4.1.31</a>).
+Included in this list are the default routing methods described in <b>Default
+Routing Methods</b> (section <a href="89220226-b68e-4d97-96ef-ce622145ecfa" data-linktype="relative-path">2.2.87</a>).</p><p><b>RoutingInfoBuffer: </b>A pointer to the address of
+a buffer that receives the fax routing information. The buffer format and
+contents depend on the routing method that is identified by the <i>RoutingGuid</i>.</p><p><b>RoutingInfoBufferSize: </b>A pointer to a <b>DWORD</b>
+(<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+variable that receives the size, in bytes, of the <i>RoutingInfoBuffer</i>
+buffer.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. The client&#39;s fax user account does not have the FAX_ACCESS_QUERY_CONFIG access rights required for this operation.</td>
+ </tr><tr>
+  <td>ERROR_NOT_ENOUGH_MEMORY 0x00000008</td>
+  <td>The server cannot allocate sufficient memory to hold the fax routing information data to be returned to the client.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_DATA 0x0000000D</td>
+  <td>This error code is returned if any of the following conditions are met: § The port handle specified by the FaxPortHandle parameter is not a valid fax port handle obtained with FAX_OpenPort (section 3.1.4.1.65).&lt;131&gt; § The server cannot find the routing method identified by the GUID specified by the RoutingGuid parameter.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect. This error code is returned if any of the following conditions are met: § The RoutingGuid parameter is set to a NULL pointer value. § The RoutingInfoBuffer parameter is set to a NULL pointer value.&lt;132&gt; § The FaxPortHandle parameter is set to a NULL value.&lt;133&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying RPC protocol, <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

@@ -1105,9 +1105,13 @@ type KerberosStoredCredential struct {
 	// 0 or 2.
 	OldCredentialCount uint16 `idl:"name:OldCredentialCount" json:"old_credential_count"`
 	// DefaultSaltLength (2 bytes): The length, in bytes, of a salt value.
+	//
+	// This value is in little-endian byte order. This value SHOULD be ignored on read.
 	DefaultSaltLength uint16 `idl:"name:DefaultSaltLength" json:"default_salt_length"`
 	// DefaultSaltMaximumLength (2 bytes): The length, in bytes, of the buffer containing
 	// the salt value.
+	//
+	// This value is in little-endian byte order. This value SHOULD be ignored on read.
 	DefaultSaltMaximumLength uint16 `idl:"name:DefaultSaltMaximumLength" json:"default_salt_maximum_length"`
 	// DefaultSaltOffset (4 bytes): An offset, in little-endian byte order, from the beginning
 	// of the attribute value (that is, from the beginning of the Revision field of KERB_STORED_CREDENTIAL)
@@ -1663,8 +1667,8 @@ type KerberosStoredCredentialNew struct {
 	Flags uint16 `idl:"name:Flags" json:"flags"`
 	// CredentialCount (2 bytes): This is the count of elements in the Credentials field.
 	CredentialCount uint16 `idl:"name:CredentialCount" json:"credential_count"`
-	// ServiceCredentialCount (2 bytes):  This is the count of elements in the ServiceCredentials
-	// field. It MUST be zero.
+	// ServiceCredentialCount (2 bytes): This is the count of elements in the ServiceCredentials
+	// field.
 	ServiceCredentialCount uint16 `idl:"name:ServiceCredentialCount" json:"service_credential_count"`
 	// OldCredentialCount (2 bytes): This is the count of elements in the OldCredentials
 	// field that contain the keys for the previous password.
@@ -1673,9 +1677,13 @@ type KerberosStoredCredentialNew struct {
 	// field that contain the keys for the previous password.
 	OlderCredentialCount uint16 `idl:"name:OlderCredentialCount" json:"older_credential_count"`
 	// DefaultSaltLength (2 bytes): The length, in bytes, of a salt value.
+	//
+	// This value is in little-endian byte order. This value SHOULD be ignored on read.
 	DefaultSaltLength uint16 `idl:"name:DefaultSaltLength" json:"default_salt_length"`
 	// DefaultSaltMaximumLength (2 bytes): The length, in bytes, of the buffer containing
 	// the salt value.
+	//
+	// This value is in little-endian byte order. This value SHOULD be ignored on read.
 	DefaultSaltMaximumLength uint16 `idl:"name:DefaultSaltMaximumLength" json:"default_salt_maximum_length"`
 	// DefaultSaltOffset (4 bytes): An offset, in little-endian byte order, from the beginning
 	// of the attribute value (that is, from the beginning of the Revision field of KERB_STORED_CREDENTIAL)
@@ -5204,6 +5212,8 @@ type RevisionInfoV1 struct {
 	//	|            | supports the validation of computer account re-use through client calls to the   |
 	//	|            | SamrValidateComputerAccountReuseAttempt method.<20>                              |
 	//	+------------+----------------------------------------------------------------------------------+
+	//
+	// The following citation in section 7 is relevant to the SupportedFeatures field.<21>
 	SupportedFeatures uint32 `idl:"name:SupportedFeatures" json:"supported_features"`
 }
 
@@ -6369,7 +6379,7 @@ var (
 	// DomainGeneralInformation2:  Indicates the Buffer parameter is to be interpreted
 	// as a SAMPR_DOMAIN_GENERAL_INFORMATION2 structure (see section 2.2.3.11).
 	DomainInformationClassGeneralInformation2 DomainInformationClass = 11
-	// DomainLockoutInformation:  Indicates the Buffer parameter is to be interpreted as
+	// DomainLockoutInformation:  Indicates the Buffer parameter is to be interpreted as
 	// a SAMPR_DOMAIN_LOCKOUT_INFORMATION structure (see section 2.2.3.15).
 	DomainInformationClassLockoutInformation DomainInformationClass = 12
 	// DomainModifiedInformation2:  Indicates the Buffer parameter is to be interpreted
@@ -9068,6 +9078,10 @@ func (o *GroupInfoBuffer_AdminComment) UnmarshalNDR(ctx context.Context, w ndr.R
 type GroupInfoBuffer_DoNotUse struct {
 	// DoNotUse:  This field exists to allow the GroupReplicationInformation enumeration
 	// to be specified by the client.
+	//
+	// As specified in section 3.1.5.5.3.1, the General field (instead of DoNotUse) MUST
+	// be used by the server when GroupReplicationInformation is received. GroupReplicationInformation
+	// is not valid for a set operation.
 	DoNotUse *GroupGeneralInformation `idl:"name:DoNotUse" json:"do_not_use"`
 }
 
@@ -9544,14 +9558,19 @@ type EncryptedUserPassword struct {
 	//
 	// For all protocol uses, the decrypted format of Buffer is the following structure.
 	//
-	// typedef struct _SAMPR_USER_PASSWORD { wchar_t       Buffer[256]; unsigned long
-	// Length; } SAMPR_USER_PASSWORD, *PSAMPR_USER_PASSWORD;
+	// typedef struct _SAMPR_USER_PASSWORD {
+	//      wchar_t       Buffer[256];
+	//      unsigned long Length;
+	//  } SAMPR_USER_PASSWORD, *PSAMPR_USER_PASSWORD;
 	//
 	// Buffer: This array contains the cleartext value at the end of the buffer. The start
 	// of the string is Length number of bytes from the end of the buffer. The cleartext
 	// value can be no more than 512 bytes. The unused portions of SAMPR_USER_PASSWORD.Buffer
 	// SHOULD be filled with random bytes by the client. The value 512 is chosen because
 	// that is the longest password allowed by this protocol (and enforced by the server).
+	//
+	// Length: An unsigned integer, in little-endian byte order, that indicates the number
+	// of bytes of the cleartext value located in SAMPR_USER_PASSWORD.Buffer.
 	//
 	// Implementations of this protocol MUST protect the SAMPR_ENCRYPTED_USER_PASSWORD structure
 	// by encrypting the 516 bytes of data referenced in its Buffer field on request (and
@@ -9608,8 +9627,11 @@ type EncryptedUserPasswordNew struct {
 	//
 	// For all protocol uses, the decrypted format of Buffer is the following structure.
 	//
-	// typedef struct _SAMPR_USER_PASSWORD_NEW { WCHAR Buffer[256]; ULONG Length; UCHAR
-	// ClearSalt[16]; } SAMPR_USER_PASSWORD_NEW, *PSAMPR_USER_PASSWORD_NEW;
+	// typedef struct _SAMPR_USER_PASSWORD_NEW {
+	//      WCHAR Buffer[256];
+	//      ULONG Length;
+	//      UCHAR ClearSalt[16];
+	//  } SAMPR_USER_PASSWORD_NEW, *PSAMPR_USER_PASSWORD_NEW;
 	//
 	// Buffer: This array contains the cleartext value at the end of the buffer. The cleartext
 	// value can be no more than 512 bytes. The start of the string is Length number of
@@ -9618,6 +9640,11 @@ type EncryptedUserPasswordNew struct {
 	//
 	// Length: An unsigned integer, in little-endian byte order, that indicates the number
 	// of bytes of the cleartext value (located in SAMPR_USER_PASSWORD_NEW.Buffer).
+	//
+	// ClearSalt: This value (a salt) MUST be filled with random bytes by the client and
+	// MUST NOT be encrypted. The length of 16 was chosen in particular because 128 bits
+	// of randomness was deemed sufficiently secure when this protocol was introduced (circa
+	// 1998).
 	//
 	// Implementations of this protocol MUST protect the SAMPR_ENCRYPTED_USER_PASSWORD_NEW
 	// structure by encrypting the first 516 bytes of data referenced in its Buffer field
@@ -9814,6 +9841,11 @@ type LogonHours struct {
 	// bits. The leftmost bit represents the first unit, starting at Sunday, 12 A.M. If
 	// a bit is set, authentication is allowed to occur; otherwise, authentication is not
 	// allowed to occur.
+	//
+	// For example, if the UnitsPerWeek value is 168 (that is, the units per week is hours,
+	// resulting in a 21-byte bit field), and if the leftmost bit is set and the rightmost
+	// bit is set, the user is able to log on for two consecutive hours between Saturday,
+	// 11 P.M. and Sunday, 1 A.M.
 	LogonHours []byte `idl:"name:LogonHours;size_is:(1260);length_is:(((UnitsPerWeek+7)/8))" json:"logon_hours"`
 }
 
@@ -9976,6 +10008,9 @@ type UserAllInformation struct {
 	// WhichFields:  A 32-bit bit field indicating which fields within the SAMPR_USER_ALL_INFORMATION
 	// structure will be processed by the server. Section 2.2.1.8 specifies the valid bits
 	// and also specifies the structure field to which each bit corresponds.
+	//
+	// Note  If a given bit is set, the associated field MUST be processed; if a given bit
+	// is not set, then the associated field MUST be ignored.
 	WhichFields      uint32      `idl:"name:WhichFields" json:"which_fields"`
 	LogonHours       *LogonHours `idl:"name:LogonHours" json:"logon_hours"`
 	BadPasswordCount uint16      `idl:"name:BadPasswordCount" json:"bad_password_count"`

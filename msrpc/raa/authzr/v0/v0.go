@@ -2768,6 +2768,8 @@ type InitializeContextFromSIDRequest struct {
 	//	|                                       | this function performs an S4U logon, it retrieves privileges from the token.     |
 	//	|                                       | Otherwise, it retrieves privileges from all SIDs in the context.                 |
 	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// All other bits MUST be set to zero.
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 	// Sid:  A pointer to the SID of the principal for whom a remote client context will
 	// be created. This MUST be a valid user or computer account.
@@ -3363,7 +3365,7 @@ type AccessCheckRequest struct {
 	// pRequest: A pointer to an AUTHZR_ACCESS_REQUEST structure, as defined in section
 	// 2.2.3.2. This structure contains the body of the "what-if" access check request.
 	Request *AccessRequest `idl:"name:pRequest" json:"request"`
-	// SecurityDescriptorCount:  The number of security descriptors in the pSecurityDescriptors
+	// SecurityDescriptorCount:  The number of security descriptors in the pSecurityDescriptors
 	// parameter, not including the primary security descriptor.
 	SecurityDescriptorCount uint32 `idl:"name:SecurityDescriptorCount" json:"security_descriptor_count"`
 	// pSecurityDescriptors: A pointer to an array of SR_SD structures, as defined in section

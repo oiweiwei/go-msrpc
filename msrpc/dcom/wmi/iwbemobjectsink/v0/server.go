@@ -37,6 +37,8 @@ type ObjectSinkServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call.
 	//
+	// WBEM_S_NO_ERROR (0x00)
+	//
 	// When the IWbemObjectSink::Indicate method is called for the first time, the server
 	// that implements the ObjectArray structure MUST return WBEM_S_NEW_STYLE if the execution
 	// of the method succeeds. If a server does not implement the ObjectArray structure,
@@ -54,6 +56,8 @@ type ObjectSinkServer interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	SetStatus(context.Context, *SetStatusRequest) (*SetStatusResponse, error)
 }
 

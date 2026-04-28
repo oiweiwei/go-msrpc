@@ -1174,6 +1174,9 @@ type GetCAPropertyResponse struct {
 	// Note  The numeric values for the constants listed in this topic are defined in the
 	// table for the PropID parameter.
 	//
+	// The data type of the value returned depends on the value specified in the PropType
+	// parameter and the property specified in the PropID parameter:
+	//
 	// * If PROPTYPE_STRING is specified in the PropType parameter, pctbPropertyValue MUST
 	// be a pointer to a CERTTRANSBLOB structure. The *pb* member of the structure points
 	// to the little-endian ( c6451297-197d-4b4b-b786-3f3187b67b8f#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7
@@ -1223,9 +1226,18 @@ type GetCAPropertyResponse struct {
 	//
 	// * CR_PROP_KRACERTSTATE
 	//
-	// * CR_PROP_BASECRLPUBLISHSTATE
+	// * CR_PROP_CRLPARTITIONCOUNT <81> ( 5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_81
+	// )
 	//
-	// * CR_PROP_DELTACRLPUBLISHSTATE
+	// * CR_PROP_BASECRLPUBLISHSTATUS
+	//
+	// * CR_PROP_PARTITIONED_BASECRLPUBLISHSTATUS <82> ( 5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_82
+	// )
+	//
+	// * CR_PROP_DELTACRLPUBLISHSTATUS
+	//
+	// * CR_PROP_PARTITIONED_DELTACRLPUBLISHSTATUS <83> ( 5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_83
+	// )
 	//
 	// * CR_PROP_CACERTSTATUSCODE
 	//
@@ -1246,6 +1258,9 @@ type GetCAPropertyResponse struct {
 	//
 	// * CR_PROP_BASECRL: MUST be a X.509 CRL ( c6451297-197d-4b4b-b786-3f3187b67b8f#gt_4f22841f-249b-42fb-a31a-5049c00be939
 	// ) encoded using DER, as specified in [X660].
+	//
+	// * CR_PROP_PARTITIONED_BASECRL: MUST be a X.509 CRL encoded using DER, as specified
+	// in [X660].
 	//
 	// * CR_PROP_CAFORWARDCROSSCERT: MUST be a X.509 certificate encoded using DER, as specified
 	// in [X660].
@@ -1283,6 +1298,8 @@ type GetCAPropertyResponse struct {
 	// "CA Exchange Certificate Chain and CRL"".
 	//
 	// * CR_PROP_DELTACRL: MUST be a X.509 CRL encoded using DER [X660].
+	//
+	// * CR_PROP_PARTITIONED_DELTACRL: MUST be a X.509 CRL encoded using DER [X660].
 	//
 	// * CR_PROP_KRACERT: MUST be a X.509 CRL encoded using DER, as specified in [X660].
 	//
@@ -2370,7 +2387,7 @@ type EnumViewColumnTableResponse struct {
 	// with the table; otherwise, it MUST fail with the error ERROR_ARITHMETIC_OVERFLOW.
 	//
 	// * The CA server MUST enforce that cColumn is greater than 0; otherwise, it MUST fail
-	// with the error ERROR_INVALID_PARAMETER. <71> ( 5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_71
+	// with the error ERROR_INVALID_PARAMETER. <84> ( 5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_84
 	// )
 	//
 	// * The CA server MUST use the value of *iColumn* to identify the column identifier
@@ -4613,12 +4630,6 @@ type SetOfficerRightsRequest struct {
 	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 	//	| F | F | F | F | F | F | F | F | F | F | F | F | F | F | F | F | R | R | R | R | R | R | R | R | R | R | R | R | R | R | R | R |
 	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-	//
-	// F - fRightsEnable: If bits 0 through 15 are 0, then disable access rights (officer
-	// or enrollment agent) and ignore the value of pctbSD.
-	//
-	// R - RightsType: If bits 16 through 31 are 0, then the security descriptor in the
-	// pctbSD parameter is for officer rights.
 	Enable bool `idl:"name:fEnable" json:"enable"`
 	// pctbSD: A pointer to the CERTTRANSBLOB structure that holds the marshaled security
 	// descriptor, as specified in [MS-DTYP] section 2.4.6.
@@ -4972,10 +4983,10 @@ type GetConfigEntryRequest struct {
 	// pwszAuthority: See the pwszAuthority definition in section 3.1.4.1.1.
 	Authority string `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
 	// pwszNodePath: A string value that represents the node path for the configuration
-	// information. This parameter can be an empty string and MUST NOT be NULL.<72>
+	// information. This parameter can be an empty string and MUST NOT be NULL.<85>
 	NodePath string `idl:"name:pwszNodePath;string;pointer:unique" json:"node_path"`
 	// pwszEntry: A string value that represents the name of the leaf entry whose information
-	// is being retrieved. This value can be an EMPTY string and MUST NOT be NULL.<73>
+	// is being retrieved. This value can be an EMPTY string and MUST NOT be NULL.<86>
 	Entry string `idl:"name:pwszEntry;string;pointer:ref" json:"entry"`
 }
 
@@ -5040,6 +5051,8 @@ type GetConfigEntryResponse struct {
 	//
 	// REG_SZ – The vt member of VARIANT is set to VT_BSTR and the bstrVal member is set
 	// to BSTR for Unicode string in the registry value.
+	//
+	//	REG_MULTI_SZ – The vt member of VARIANT is set to VT_ARRAY|VT_BSTR and the pArray member references a single dimension SAFEARRAY. The number of elements of the SAFEARRAY referenced by pArray is equal to the number of the strings in the registry value. For each string, there is an element in the SAFEARRAY referenced by pArray containing the BSTR for Unicode string value in the registry.
 	//
 	// The GetConfigEntry method retrieves the CA configuration data or configuration data
 	// hierarchy information.

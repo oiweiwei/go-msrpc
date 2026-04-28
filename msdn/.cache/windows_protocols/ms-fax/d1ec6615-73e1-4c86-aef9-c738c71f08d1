@@ -1,0 +1,69 @@
+<div class="content" name="FAX_ClientEventQueueEx" uuid="d1ec6615-73e1-4c86-aef9-c738c71f08d1"><p>The <b>FAX_ClientEventQueueEx (Opnum 3)</b> method is called
+by the fax server (acting as an <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> client for this call)
+when it needs to deliver an extended fax event to the fax client (acting as an
+RPC server for this call). The fax client registers for notifications with the
+fax server by calling either <b>FAX_StartServerNotificationEx</b> (section <a href="b73163aa-5f4b-45b3-9c5b-f95077f103c2" data-linktype="relative-path">3.1.4.1.101</a>) or <b>FAX_StartServerNotificationEx2</b>
+(section <a href="55770fa2-8c93-40c1-a56e-2c17e8ff707b" data-linktype="relative-path">3.1.4.1.102</a>).
+In this call, the fax client MUST pass a fax client notification context, which
+the fax server MUST pass back to the fax client when it sends an event. This is
+done to provide a security layer, by verifying that the notifications are
+coming from an expected source.</p><p>Data in <b>FAX_ClientEventQueueEx</b> is serialized.
+Pointers to variable-size data (such as strings) are replaced with offsets from
+the beginning of the buffer. </p><p>In response, the fax client MUST validate the notification
+context in the hClientContext argument, which is sent by the fax server, to
+ensure that this is a valid notification context created with a successful <b>FAX_OpenConnection</b> (section
+<a href="6a8d8440-25a7-49aa-a4a1-7043b040dde4" data-linktype="relative-path">3.2.4.5</a>) method call
+for which <b>FAX_CloseConnection</b> (section <a href="71fcdc39-0e2a-4025-96f8-f96d81d8694b" data-linktype="relative-path">3.2.4.4</a>) was not already
+successfully called. If the validation fails, the fax client MUST abort the
+operation and MUST return ERROR_SUCCESS. If the notification context is valid,
+the fax client MUST accept notifications for fax client events.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_ClientEventQueueEx(
+   [in, ref] RPC_FAX_HANDLE hClientContext,
+   [in, ref, size_is(dwDataSize)] const LPBYTE lpbData,
+   [in] DWORD dwDataSize
+ );
+</pre></div>
+</dd></dl><p><b>hClientContext: </b>A fax data type indicating a
+context handle for this call.</p><p><b>lpbData: </b>A pointer to a <b>FAX_EVENT_EX</b> (section
+<a href="3a9ae7f7-9825-43cd-aa78-1c077fd99bd2" data-linktype="relative-path">2.2.67</a>) or <b>FAX_EVENT_EX_1</b> (section
+<a href="425c3686-00b8-493d-bba5-d4ce677e47db" data-linktype="relative-path">2.2.68</a>) structure. The
+data is serialized. Pointers to variable size data (such as strings) are
+replaced with offsets from the beginning of the buffer. Since the client is to
+be notified of each event separately, in this case ORing of events is not
+allowed.</p><p>If the client requested extended events by calling <b>FAX_StartServerNotificationEx</b>,
+the client MUST use a <b>FAX_EVENT_EX</b>. If the client called FAX_StartServerNotificationEx2 to
+receive these events, the client MUST use a <b>FAX_EVENT_EX_1</b>.</p><p><b>dwDataSize: </b>A <b>DWORD</b> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+containing the size of the buffer pointed to by the <i>lpbData</i> parameter.</p><dl>
+<dd>
+<p>This method MUST return 0x00000000 (ERROR_SUCCESS)
+for success; otherwise, it MUST return one of the following error codes, one of
+the fax-specific errors that are defined in section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one of the
+other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_INVALID_DATA 0x0000000D</td>
+  <td>The hClientContext handle is not a valid subscription context handle returned by FAX_StartServerNotificationEx or FAX_StartServerNotificationEx2.&lt;218&gt;</td>
+ </tr><tr>
+  <td>ERROR_OUTOFMEMORY 0x0000000E</td>
+  <td>The fax client needs to make a copy of the data provided by the fax server in the lpbData buffer, and the fax client failed to allocate dwDataSize bytes to hold this copy.</td>
+ </tr><tr>
+  <td>ERROR_INTERNAL_ERROR 0x0000054F</td>
+  <td>The fax client failed to recognize the custom marshaled FAX_EVENT_EX or FAX_EVENT_EX_1 provided by the fax server in the lpbData buffer.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying RPC protocol, <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>Data in FAX_ClientEventQueueEx is serialized. Pointers to
+variable size data (such as strings) are replaced with offsets from the
+beginning of the buffer.</p></div>

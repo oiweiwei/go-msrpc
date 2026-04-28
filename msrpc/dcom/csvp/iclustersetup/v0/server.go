@@ -47,6 +47,10 @@ type ClusterSetupServer interface {
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -73,6 +77,10 @@ type ClusterSetupServer interface {
 	//	|                                 | ConfigSvcSecret.                                                                 |
 	//	+---------------------------------+----------------------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -97,13 +105,17 @@ type ClusterSetupServer interface {
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
 	// The opnum field value for this method is 5.
 	RetrieveHostLabel(context.Context, *RetrieveHostLabelRequest) (*RetrieveHostLabelResponse, error)
 
-	// The GetFunctionalLevel method SHOULD<33> return the maximum functional level of the
+	// The GetFunctionalLevel method SHOULD<31> return the maximum functional level of the
 	// cluster supported by this server.
 	//
 	// Return Values: A signed 32-bit value that indicates the return status. If the method
@@ -121,6 +133,10 @@ type ClusterSetupServer interface {
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -133,7 +149,7 @@ type ClusterSetupServer interface {
 	// Opnum8Reserved operation.
 	// Opnum8Reserved
 
-	// The ConfigClusterCert method SHOULD<34> store the certificate and cluster secret
+	// The ConfigClusterCert method SHOULD<32> store the certificate and cluster secret
 	// in an implementation-specific manner on the server.
 	//
 	// Return Values: A signed 32-bit value that indicates return status. If the method
@@ -151,13 +167,17 @@ type ClusterSetupServer interface {
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
 	// The opnum field value for this method is 9.
 	ConfigClusterCert(context.Context, *ConfigClusterCertRequest) (*ConfigClusterCertResponse, error)
 
-	// The RetrieveClusterCert method SHOULD<35> return the certificate and cluster secret
+	// The RetrieveClusterCert method SHOULD<33> return the certificate and cluster secret
 	// stored on the server.
 	//
 	// Return Values: A signed 32-bit value that indicates return status. If the method
@@ -178,13 +198,17 @@ type ClusterSetupServer interface {
 	//	|                                 | to RetrieveClusterCert.                                                          |
 	//	+---------------------------------+----------------------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in a consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
 	// The opnum field value for this method is 10.
 	RetrieveClusterCert(context.Context, *RetrieveClusterCertRequest) (*RetrieveClusterCertResponse, error)
 
-	// The GenerateClusterCert method SHOULD<36> generate and return a new certificate.
+	// The GenerateClusterCert method SHOULD<34> generate and return a new certificate.
 	//
 	// Return Values: A signed 32-bit value that indicates return status. If the method
 	// returns a negative value, it has failed. Zero or positive values indicate success,
@@ -201,13 +225,17 @@ type ClusterSetupServer interface {
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
 	// The opnum field value for this method is 11.
 	GenerateClusterCert(context.Context, *GenerateClusterCertRequest) (*GenerateClusterCertResponse, error)
 
-	// The GetUpgradeVersion method SHOULD<37> return the maximum upgrade version of the
+	// The GetUpgradeVersion method SHOULD<35> return the maximum upgrade version of the
 	// cluster supported by this server.
 	//
 	// Return Values: A signed 32-bit value that indicates the return status. If the method
@@ -225,6 +253,10 @@ type ClusterSetupServer interface {
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -237,7 +269,7 @@ type ClusterSetupServer interface {
 	// ConfigClusterCerV2 operation.
 	ConfigClusterCerV2(context.Context, *ConfigClusterCerV2Request) (*ConfigClusterCerV2Response, error)
 
-	// The RetrieveClusterCertV2 method<39> SHOULD return the certificate and cluster secret
+	// The RetrieveClusterCertV2 method<37> SHOULD return the certificate and cluster secret
 	// stored on the server.
 	//
 	// Return Values: A signed 32-bit value that indicates return status. If the method
@@ -258,13 +290,17 @@ type ClusterSetupServer interface {
 	//	|                                 | to ConfigClusterCertV2.                                                          |
 	//	+---------------------------------+----------------------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
 	// The opnum field value for this method is 15.
 	RetrieveClusterCertV2(context.Context, *RetrieveClusterCertV2Request) (*RetrieveClusterCertV2Response, error)
 
-	// The GenerateClusterCertV2 method<40> SHOULD generate and return a new certificate.
+	// The GenerateClusterCertV2 method<38> SHOULD generate and return a new certificate.
 	//
 	// Return Values: A signed 32-bit value that indicates return status. If the method
 	// returns a negative value, it has failed. Zero or positive values indicate success,
@@ -280,6 +316,10 @@ type ClusterSetupServer interface {
 	//	+-------------------+--------------------------+
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].

@@ -127,6 +127,9 @@ type UpdateServiceManager2Client interface {
 	//
 	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
 	//
+	// If no service registration record is found for the given service ID, the server MUST
+	// return an error.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//

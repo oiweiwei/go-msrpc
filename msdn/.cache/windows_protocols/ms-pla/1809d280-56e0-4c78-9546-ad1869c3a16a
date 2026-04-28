@@ -1,0 +1,390 @@
+<div class="content" name="IDataCollectorSet" uuid="1809d280-56e0-4c78-9546-ad1869c3a16a"><p>The IDataCollectorSet interface is used to query, update,
+and control a <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector
+set</a>.</p><p>Objects that implement this interface represent a data
+collector set. The following are the properties that MUST be implemented by
+objects that implement the IDataCollectorSet interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DataCollectors</td>
+  <td>R</td>
+  <td>List of data collectors in this set.</td>
+ </tr><tr>
+  <td>DataManager</td>
+  <td>R</td>
+  <td>Object that defines the policies for data retention and report generation. An example of data retention policies include when and if to compress data to a cabinet file or delete it. Example report generation policies include the steps to take to generate the report. The IDataManager interface, which the DataManager object implements, is specified in section 3.2.4.2.</td>
+ </tr><tr>
+  <td>Description</td>
+  <td>RW</td>
+  <td>The localizable description of the data collector set.</td>
+ </tr><tr>
+  <td>DescriptionUnresolved</td>
+  <td>R</td>
+  <td>The description of the data collector set in its raw form (prior to localization).</td>
+ </tr><tr>
+  <td>DisplayName</td>
+  <td>RW</td>
+  <td>The localizable display name of the data collector set.</td>
+ </tr><tr>
+  <td>DisplayNameUnresolved</td>
+  <td>R</td>
+  <td>The display name of the data collector set in its raw form (prior to localization).</td>
+ </tr><tr>
+  <td>Duration</td>
+  <td>RW</td>
+  <td>Determines the maximum amount of time that a data collector set MUST run. A value of 0 indicates that the data collector set MUST NOT not be stopped automatically.</td>
+ </tr><tr>
+  <td>Keywords</td>
+  <td>RW</td>
+  <td>List of keywords associated with the data collector sets. Keywords are metadata for describing a data collector set; they are not parsed by the data collector set. They are intended to help the end user understand the contents of the data collector set, and serve no functional purpose as to how the data collector set is executed on the server. There MUST be at most 256 keywords that are associated with a data collector set; each keyword MUST NOT be more than 1024 characters in length. The keyword string cannot be the empty string, nor can the keyword string contain the semicolon (&#34;;&#34;) character.</td>
+ </tr><tr>
+  <td>LatestOutputLocation</td>
+  <td>RW</td>
+  <td>The full path of the directory where data was stored the last time the data collector set ran.</td>
+ </tr><tr>
+  <td>Name</td>
+  <td>R</td>
+  <td>Name of the data collector set.</td>
+ </tr><tr>
+  <td>OutputLocation</td>
+  <td>R</td>
+  <td>The full path of the directory where data would be stored if the data collector set were to start now.</td>
+ </tr><tr>
+  <td>RootPath</td>
+  <td>RW</td>
+  <td>The full path of the directory under which the data collector set stores its files. When subdirectories are used, they are created under this root directory.</td>
+ </tr><tr>
+  <td>Schedules</td>
+  <td>R</td>
+  <td>List of schedules that determines when the data collector set runs automatically. Each schedule specifies a time when the data collector will be started, the first day it will be started at that time, the last day it will be started at that time, and the days of the week it will be started. Each schedule is specified by an object implementing the ISchedule interface, specified in section 3.2.4.12.</td>
+ </tr><tr>
+  <td>SchedulesEnabled</td>
+  <td>RW</td>
+  <td>Determines if the automatic start of the data collector set based on its schedules MUST be enabled or disabled. If enabled, the data collector set is automatically started when the conditions for one of the schedules (stored in the Schedules property) is met. If the data collector set is already running when a schedule condition is met, it is not restarted, and instead continues to run. If disabled, the data collector set can only be started manually. A data collector set is manually started by a call to Start, as specified in section 3.2.4.1.56.</td>
+ </tr><tr>
+  <td>Security</td>
+  <td>RW</td>
+  <td>The security descriptor of the data collector set that determines the access rights of groups or users. The security descriptor is expressed using the Security Descriptor Description Language (SDDL), as specified in [MS-DTYP] section 2.5.1. Changing the security descriptor can impact the ability of both local and remote users to read, modify, run, and delete the data collector set.</td>
+ </tr><tr>
+  <td>Segment</td>
+  <td>RW</td>
+  <td>If this property is set to TRUE, the server MUST stop all data collectors when a segmentation condition occurs, increment the SerialNumber property, update LatestOutputLocation property, and restart all the data collectors, which begins logging to the new LatestOutputLocation. The FileNameFormat and SubdirectoryNameFormat properties are used to determine the new value of LatestOutputLocation. If both FileNameFormatPattern and SubdirectoryFormatPattern are set to plaNone, or both are set to plaPattern but no value is specified for FileNameFormatPattern and SubdirectoryFormatPattern, then the value of the LatestOutputLocation is not changed. In this case, the retention of the data that was obtained during the previous execution of the data collector depends on the respective properties of the data collector. For example, if LogAppend is specified for a data collector, then the events generated in the new segment are appended to the events that were added to the file during the previous segment execution. If this property is set to FALSE, the server MUST stop all the data collectors when a segmentation condition occurs. The segmentation condition is specified either by SegmentMaxDuration or SegmentMaxSize. PLA SHOULD NOT&lt;12&gt; stop the data collector set when the size of the active log file reaches SegmentMaxSize; rather, it creates a new file to enable the data collector set to continue logging information.</td>
+ </tr><tr>
+  <td>SegmentMaxDuration</td>
+  <td>RW</td>
+  <td>Determines for how long a data collector set MUST run, in seconds, before a new segment MUST be created. A value of 0 indicates that there is no segment time limit. The default value is zero. Any unsigned long is a valid value for this property.</td>
+ </tr><tr>
+  <td>SegmentMaxSize</td>
+  <td>RW</td>
+  <td>Determines the maximum size, in megabytes, of a log file. When the size is reached, a new log file MUST be created. A value of 0 indicates that there is no segment size limit. The segment size is unlimited. The default value is zero. Any unsigned long is a valid value for this property.</td>
+ </tr><tr>
+  <td>SerialNumber</td>
+  <td>RW</td>
+  <td>The serial number of the data collector set. Each time the data collector set runs it is assigned a serial number. The serial number for each data collector set starts at 1 and is incremented each time the data collector set runs. Each run of the data collector set has a serial number that is unique across all runs of the data collector set. Accordingly, each run of the data collector set has its own serial number and no two runs of the same data collector set have the same serial number. However, it is possible that two different runs of two different data collector sets will have the same serial number (the serial number is unique among all runs of one data collector set; it is not unique among all runs of all data collector sets). The serial number can optionally be used by an AutoPathFormat, which will cause the serial number to be appended to the name of the directory or files pertaining to each run of the data collector set. Using the serial number as an AutoPathFormat prevents possible collisions in directory or file naming. This property serves as a serial number across all runs of a particular data collector set on a particular machine, not across all data collector sets or all machines. Any unsigned long is a valid value for this property.</td>
+ </tr><tr>
+  <td>Server</td>
+  <td>R</td>
+  <td>Name of the server this data collector set belongs to.</td>
+ </tr><tr>
+  <td>Status</td>
+  <td>R</td>
+  <td>Status of the data collector set.</td>
+ </tr><tr>
+  <td>StopOnCompletion</td>
+  <td>RW</td>
+  <td>Determines whether a data collector set MUST stop when all data collectors complete. A data collector completes when the first segment is collected. The definition of completion depends on the data collector type, and is not generally defined as the point at which the data collector has collected all possible data. For an IConfigurationDataCollector, completion occurs when all data has been collected. For an IAlertDataCollector or IApiTracingDataCollector, completion occurs immediately (that is, no data will be collected if this property is set to true). For an IPerformanceCounterDataCollector or ITraceDataCollector, completion occurs immediately if no limit is set on the output file size or time spent writing to the output file. If there is a maximum file size per output file, or a maximum duration per output file, completion occurs when the data collector has finished writing to the current file.</td>
+ </tr><tr>
+  <td>Subdirectory</td>
+  <td>RW</td>
+  <td>Retrieves or sets a base subdirectory of the root path where the next instance of the data collector set will write its logs.</td>
+ </tr><tr>
+  <td>SubdirectoryFormat</td>
+  <td>RW</td>
+  <td>Determines what to include in the decoration the subdirectory name.</td>
+ </tr><tr>
+  <td>SubdirectoryFormatPattern</td>
+  <td>RW</td>
+  <td>If patterns are to be included in the decoration of subdirectory names, determines the pattern to use.</td>
+ </tr><tr>
+  <td>Task</td>
+  <td>RW</td>
+  <td>Name of the task that is executed when the data collector set stops or prior to switching to a new segment. The name of the task needs to correspond to the name of a job stored in the Task Scheduler. When a task is created, the creator of a task specifies its name as a BSTR. More information on the names of Task Scheduler jobs (referred to as paths in the Task Scheduler documentation) is specified in [MS-TSCH] section 2.3.11. This documentation describes the semantics of the task name and explains the restrictions on task names.</td>
+ </tr><tr>
+  <td>TaskArguments</td>
+  <td>RW</td>
+  <td>If a task is to run, this specifies what arguments MUST be passed to it.</td>
+ </tr><tr>
+  <td>TaskRunAsSelf</td>
+  <td>RW</td>
+  <td>When a Task Scheduler job is executed by the DataCollectorSet, this property determines which user it will run as. If the property is set to true, the Task Scheduler job runs as the same user that the DataCollectorSet is running as. By default, this means the Task Scheduler job will run with System credentials. Consequently, it is not advisable to set this property to true when the task to be run is not fully trusted, unless the UserAccount property for the DataCollectorSet has been carefully configured. When the property is set to false, the Task Scheduler job will run with the credentials it was created with. The mechanism in use here is delegation. When the creator of a data collector set sets this property to true, this task is thereby granted the same rights that the data collector set has. When the RunAsSelf property is set to false, no delegation occurs. The task will run only with the permissions it was created with. The credentials that the task runs with are initially created with SchRpcRegisterTask specified in [MS-TSCH] section 3.2.5.4.2 and can be updated by SASetAccountInformation specified in [MS-TSCH] section 3.2.5.3.4.</td>
+ </tr><tr>
+  <td>TaskUserTextArguments</td>
+  <td>RW</td>
+  <td>If a task is to run and the arguments, as specified in section 3.2.4.1.38, include the {usertext} variable, this property determines the value of this variable.</td>
+ </tr><tr>
+  <td>UserAccount</td>
+  <td>R</td>
+  <td>Determines the user account under which the data collector set will run.</td>
+ </tr><tr>
+  <td>Xml</td>
+  <td>R</td>
+  <td>The XML representation of the data collector set.</td>
+ </tr></tbody></table><p>A data collector set can be represented as an XML file,
+which can be used to serialize (using IDataCollectorSet::Xml (Get)<a href="e29452dd-53fc-4999-b595-cdefd647e983" data-linktype="relative-path">3.2.4.1.46</a>) and
+deserialize (using IDataCollectorSet::SetXml <a href="dc40db82-6894-4e47-96f8-df0ba863594d" data-linktype="relative-path">3.2.4.1.58</a>) it. The format
+of the XML that defines a data collector set is as follows. All the elements of
+the data collector set, as well as all child elements within the data collector
+set element, are specified in section <a href="b5be2d38-3f21-478d-a8b9-a61128eb2751" data-linktype="relative-path">3.2.4.19</a>: </p><dl>
+<dd>
+<div><pre> &lt;DataCollectorSet&gt;
+    &lt;Status&gt;&lt;/Status&gt;
+   &lt;Duration&gt;&lt;/Duration&gt;
+   &lt;Description&gt;&lt;/Description&gt;
+   &lt;DescriptionUnresolved&gt;&lt;/DescriptionUnresolved&gt;
+   &lt;DisplayName&gt;&lt;/DisplayName&gt;
+   &lt;DisplayNameUnresolved&gt;&lt;/DisplayNameUnresolved&gt;
+   &lt;SchedulesEnabled&gt;&lt;/SchedulesEnabled&gt;
+   &lt;Schedule&gt;
+      &lt;StartDate/&gt;
+      &lt;EndDate/&gt;
+      &lt;StartTime/&gt;
+      &lt;Days/&gt;
+   &lt;/Schedule&gt;
+   &lt;LatestOutputLocation&gt;&lt;/LatestOutputLocation&gt;
+   &lt;Name&gt;&lt;/Name&gt;
+   &lt;OutputLocation&gt;&lt;/OutputLocation&gt;
+   &lt;RootPath&gt;&lt;/RootPath&gt;
+   &lt;Segment&gt;&lt;/Segment&gt;
+   &lt;SegmentMaxDuration&gt;&lt;/SegmentMaxDuration&gt;
+   &lt;SegmentMaxSize&gt;&lt;/SegmentMaxSize&gt;
+   &lt;SerialNumber&gt;&lt;/SerialNumber&gt;
+   &lt;Server&gt;&lt;/Server&gt;
+   &lt;Subdirectory&gt;&lt;/Subdirectory&gt;
+   &lt;SubdirectoryFormat&gt;&lt;/SubdirectoryFormat&gt;
+   &lt;SubdirectoryFormatPattern&gt;&lt;/SubdirectoryFormatPattern&gt;
+   &lt;Task&gt;&lt;/Task&gt;
+   &lt;TaskRunAsSelf&gt;&lt;/TaskRunAsSelf&gt;
+   &lt;TaskArguments&gt;&lt;/TaskArguments&gt;
+   &lt;TaskUserTextArguments&gt;&lt;/TaskUserTextArguments&gt;
+   &lt;UserAccount&gt;&lt;/UserAccount&gt;
+   &lt;Security&gt;&lt;/Security&gt;
+   &lt;StopOnCompletion&gt;&lt;/StopOnCompletion&gt;
+   &lt;!-- elements for different data collector types…please see respective sections --&gt;
+ &lt;/DataCollectorSet:&gt;
+  
+  
+</pre></div>
+</dd></dl><p>The nodes &#34;Keyword&#34;, &#34;Schedule&#34;, and
+&#34;FolderAction&#34; can have multiple copies—one for each keyword,
+schedule, or folder action, respectively. For each data collector, one node
+under the &#34;DataCollectorSet&#34; node is also added; the name of the node
+depends on the type of data collector, and is documented in the data collector
+section.</p><p>The Keywords property is a safearray, which is translated
+into XML as a series of Keyword nodes. For example, if Keywords is set to
+{&#34;A&#34;, &#34;B&#34;, &#34;C&#34;}, there are three Keyword nodes,
+one for each keyword.</p><p>Similarly, Schedules is a collection of Schedule objects,
+which means that if the Schedules property contains three schedules, three
+nodes called &#34;Schedule&#34; are created for each schedule.</p><p>DataCollectors is not in XML for the same reason as
+Schedules. However, because data collectors have types instead of having a
+number of &#34;DataCollector&#34; nodes, there are a number of typed data
+collector nodes. For example, &#34;AlertDataCollector&#34; or
+&#34;PerformanceCounterDataCollector&#34;.</p><p>Methods in RPC Opnum order:</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DataCollectors (Get)</td>
+  <td>List of data collectors in this data collector set. Opnum: 7</td>
+ </tr><tr>
+  <td>Duration (Get)</td>
+  <td>Retrieves the Duration property. Opnum: 8</td>
+ </tr><tr>
+  <td>Duration (Put)</td>
+  <td>Sets the Duration property. Opnum: 9</td>
+ </tr><tr>
+  <td>Description (Get)</td>
+  <td>Retrieves the Description property. Opnum: 10</td>
+ </tr><tr>
+  <td>Description (Put)</td>
+  <td>Sets the Description property. Opnum: 11</td>
+ </tr><tr>
+  <td>DescriptionUnresolved (Get)</td>
+  <td>Retrieves the DescriptionUnresolved property. Opnum: 12</td>
+ </tr><tr>
+  <td>DisplayName (Get)</td>
+  <td>Retrieves the display name of the data collector set . Opnum: 13</td>
+ </tr><tr>
+  <td>DisplayName (Put)</td>
+  <td>Sets the DisplayName property. Opnum: 14</td>
+ </tr><tr>
+  <td>DisplayNameUnresolved (Get)</td>
+  <td>Receives the display name of the data collector set in its original form. Opnum: 15</td>
+ </tr><tr>
+  <td>Keywords (Get)</td>
+  <td>Retrieves the Keywords property. Opnum: 16</td>
+ </tr><tr>
+  <td>Keywords (Put)</td>
+  <td>Sets the Keywords property. Opnum: 17</td>
+ </tr><tr>
+  <td>LatestOutputLocation (Get)</td>
+  <td>Retrieves the LatestOutputLocation property. Opnum: 18</td>
+ </tr><tr>
+  <td>LatestOutputLocation (Put)</td>
+  <td>Sets the LatestOutputLocation property. Opnum: 19</td>
+ </tr><tr>
+  <td>Name (Get)</td>
+  <td>Retrieves the Name property. Opnum: 20</td>
+ </tr><tr>
+  <td>OutputLocation (Get)</td>
+  <td>Retrieves the OutputLocation property. Opnum: 21</td>
+ </tr><tr>
+  <td>RootPath (Get)</td>
+  <td>Retrieves the RootPath property. Opnum: 22</td>
+ </tr><tr>
+  <td>RootPath (Put)</td>
+  <td>Sets the RootPath property. Opnum: 23</td>
+ </tr><tr>
+  <td>Segment (Get)</td>
+  <td>Retrieves the Segment property. Opnum: 24</td>
+ </tr><tr>
+  <td>Segment (Put)</td>
+  <td>Sets the Segment property. Opnum: 25</td>
+ </tr><tr>
+  <td>SegmentMaxDuration (Get)</td>
+  <td>Retrieves the SegmentMaxDuration property. Opnum: 26</td>
+ </tr><tr>
+  <td>SegmentMaxDuration (Put)</td>
+  <td>Sets the SegmentMaxDuration property. Opnum: 27</td>
+ </tr><tr>
+  <td>SegmentMaxSize (Get)</td>
+  <td>Retrieves the SegmentMaxSize property. Opnum: 28</td>
+ </tr><tr>
+  <td>SegmentMaxSize (Put)</td>
+  <td>Sets the SegmentMaxSize property. Opnum: 29</td>
+ </tr><tr>
+  <td>SerialNumber (Get)</td>
+  <td>Retrieves the SerialNumber property. Opnum: 30</td>
+ </tr><tr>
+  <td>SerialNumber (Put)</td>
+  <td>Sets the SerialNumber property. Opnum: 31</td>
+ </tr><tr>
+  <td>Server (Get)</td>
+  <td>Retrieves the Server property. Opnum: 32</td>
+ </tr><tr>
+  <td>Status (Get)</td>
+  <td>Retrieves the Status property. Opnum: 33</td>
+ </tr><tr>
+  <td>Subdirectory (Get)</td>
+  <td>Retrieves the Subdirectory property. Opnum: 34</td>
+ </tr><tr>
+  <td>Subdirectory (Put)</td>
+  <td>Sets the Subdirectory property. Opnum: 35</td>
+ </tr><tr>
+  <td>SubdirectoryFormat (Get)</td>
+  <td>Retrieves the SubdirectoryFormat property. Opnum: 36</td>
+ </tr><tr>
+  <td>SubdirectoryFormat (Put)</td>
+  <td>Sets the SubdirectoryFormat property. Opnum: 37</td>
+ </tr><tr>
+  <td>SubdirectoryFormatPattern (Get)</td>
+  <td>Retrieves the SubdirectoryFormatPattern property. Opnum: 38</td>
+ </tr><tr>
+  <td>SubdirectoryFormatPattern (Put)</td>
+  <td>Sets the SubdirectoryFormatPattern property. Opnum: 39</td>
+ </tr><tr>
+  <td>Task (Get)</td>
+  <td>Retrieves the Task property. Opnum: 40</td>
+ </tr><tr>
+  <td>Task (Put)</td>
+  <td>Sets the Task property. Opnum: 41</td>
+ </tr><tr>
+  <td>TaskRunAsSelf (Get)</td>
+  <td>Retrieves the TaskRunAsSelf property. Opnum: 42</td>
+ </tr><tr>
+  <td>TaskRunAsSelf (Put)</td>
+  <td>Sets the TaskRunAsSelf property. Opnum: 43</td>
+ </tr><tr>
+  <td>TaskArguments (Get)</td>
+  <td>Retrieves the TaskArguments property. Opnum: 44</td>
+ </tr><tr>
+  <td>TaskArguments (Put)</td>
+  <td>Sets the TaskArguments property. Opnum: 45</td>
+ </tr><tr>
+  <td>TaskUserTextArguments (Get)</td>
+  <td>Retrieves the TaskUserTextArguments property. Opnum: 46</td>
+ </tr><tr>
+  <td>TaskUserTextArguments (Put)</td>
+  <td>Sets the TaskUserTextArguments property. Opnum: 47</td>
+ </tr><tr>
+  <td>Schedules (Get)</td>
+  <td>Retrieves the Schedules property. Opnum: 48</td>
+ </tr><tr>
+  <td>SchedulesEnabled (Get)</td>
+  <td>Retrieves the SchedulesEnabled property. Opnum: 49</td>
+ </tr><tr>
+  <td>SchedulesEnabled (Put)</td>
+  <td>Sets the SchedulesEnabled property. Opnum: 50</td>
+ </tr><tr>
+  <td>UserAccount (Get)</td>
+  <td>Retrieves the UserAccount property. Opnum: 51</td>
+ </tr><tr>
+  <td>Xml (Get)</td>
+  <td>Retrieves the Xml property. Opnum: 52</td>
+ </tr><tr>
+  <td>Security (Get)</td>
+  <td>Retrieves the Security property. Opnum: 53</td>
+ </tr><tr>
+  <td>Security (Put)</td>
+  <td>Sets the Security property. Opnum: 54</td>
+ </tr><tr>
+  <td>StopOnCompletion (Get)</td>
+  <td>Retrieves the StopOnCompletion property. Opnum: 55</td>
+ </tr><tr>
+  <td>StopOnCompletion (Put)</td>
+  <td>Sets the StopOnCompletion property. Opnum: 56</td>
+ </tr><tr>
+  <td>DataManager (Get)</td>
+  <td>Retrieves the DataManager property. Opnum: 57</td>
+ </tr><tr>
+  <td>SetCredentials</td>
+  <td>Specifies the user account under which the data collector set runs. Opnum: 58</td>
+ </tr><tr>
+  <td>Query</td>
+  <td>Loads the properties of a data collector set from storage to memory. Opnum: 59</td>
+ </tr><tr>
+  <td>Commit</td>
+  <td>Updates, validates, or saves a data collector set or flushes the event trace data collectors of a data collector set. Opnum: 60</td>
+ </tr><tr>
+  <td>Delete</td>
+  <td>Removes the data collector set from storage if it is not running. Opnum: 61</td>
+ </tr><tr>
+  <td>Start</td>
+  <td>Manually starts the data collector set. Opnum: 62</td>
+ </tr><tr>
+  <td>Stop</td>
+  <td>Manually stops the data collector set. Opnum: 63</td>
+ </tr><tr>
+  <td>SetXml</td>
+  <td>Sets the property values of the data collector set based on an XML file. Opnum: 64</td>
+ </tr><tr>
+  <td>SetValue</td>
+  <td>Sets a user-defined value. Opnum: 65</td>
+ </tr><tr>
+  <td>GetValue</td>
+  <td>Retrieves a user-defined value. Opnum: 66</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface.</p></div>

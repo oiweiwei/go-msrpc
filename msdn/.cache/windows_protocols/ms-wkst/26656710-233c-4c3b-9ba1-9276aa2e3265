@@ -1,0 +1,12 @@
+<div class="content" name="WKSTA_INFO_1046" uuid="26656710-233c-4c3b-9ba1-9276aa2e3265"><p>The <b>WKSTA_INFO_1046</b> structure specifies details about
+the state of the <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">SMB</a> <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_15c89cb5-6767-49e7-b461-66acaf6c06c8" data-linktype="relative-path">network redirector</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _WKSTA_INFO_1046 {
+   unsigned long wki1046_dormant_file_limit;
+ } WKSTA_INFO_1046,
+  *PWKSTA_INFO_1046,
+  *LPWKSTA_INFO_1046;
+</pre></div>
+</dd></dl><p><b>wki1046_dormant_file_limit:</b> The maximum number
+of file or printer handles the SMB network redirector can continue to keep
+open, even after the application has closed the corresponding <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a>.</p></div>

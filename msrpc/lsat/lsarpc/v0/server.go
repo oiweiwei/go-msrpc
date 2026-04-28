@@ -290,7 +290,7 @@ type LsarpcServer interface {
 	LookupSids2(context.Context, *LookupSids2Request) (*LookupSids2Response, error)
 
 	// The LsarLookupNames2 method translates a batch of security principal names to their
-	// SID form. It also returns the domains that these names are a part of.<30>
+	// SID form. It also returns the domains that these names are a part of.<31>
 	//
 	// Return Values: The following table contains a summary of the return values that an
 	// implementation MUST return, as specified by the message processing shown after the
@@ -342,7 +342,7 @@ type LsarpcServer interface {
 	// Opnum67NotUsedOnWire
 
 	// The LsarLookupNames3 method translates a batch of security principal names to their
-	// SID form. It also returns the domains that these names are a part of.<28>
+	// SID form. It also returns the domains that these names are a part of.<29>
 	//
 	// Return Values: The following table contains a summary of the return values that an
 	// implementation MUST return, as specified by the message processing shown after the

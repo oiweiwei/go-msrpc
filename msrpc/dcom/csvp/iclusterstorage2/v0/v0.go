@@ -71,6 +71,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online.                       |
 	//	+---------------------------------------+-----------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -101,6 +105,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online.                |
 	//	+---------------------------------------+----------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -128,6 +136,10 @@ type ClusterStorage2Client interface {
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -153,6 +165,10 @@ type ClusterStorage2Client interface {
 	//	+---------------------------------------+-------------------------------------------+
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online. |
 	//	+---------------------------------------+-------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -181,6 +197,10 @@ type ClusterStorage2Client interface {
 	//	+---------------------------------------+-------------------------------------------+
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online. |
 	//	+---------------------------------------+-------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -226,6 +246,10 @@ type ClusterStorage2Client interface {
 	//	| 0x8007139F ERROR_INVALID_STATE        | The value of ClusPrepDisk.AttachedState is not equal to Attached.       |
 	//	+---------------------------------------+-------------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -256,6 +280,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online.                               |
 	//	+---------------------------------------+-------------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -285,6 +313,10 @@ type ClusterStorage2Client interface {
 	//	+---------------------------------------+---------------------------------------------------------------+
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online.                     |
 	//	+---------------------------------------+---------------------------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -324,6 +356,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online.                           |
 	//	+---------------------------------------+---------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -357,6 +393,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online.                                        |
 	//	+---------------------------------------+----------------------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -388,6 +428,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online.                           |
 	//	+---------------------------------------+---------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -417,6 +461,10 @@ type ClusterStorage2Client interface {
 	//	+---------------------------------------+---------------------------------------------------------------+
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online.                     |
 	//	+---------------------------------------+---------------------------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -450,6 +498,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online. |
 	//	+---------------------------------------+-------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -478,6 +530,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online. |
 	//	+---------------------------------------+-------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -504,6 +560,10 @@ type ClusterStorage2Client interface {
 	//	+---------------------------------------+-------------------------------------------+
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online. |
 	//	+---------------------------------------+-------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -534,6 +594,10 @@ type ClusterStorage2Client interface {
 	//	+---------------------------------------+-------------------------------------------------------------------+
 	//	| 0x8007139F ERROR_INVALID_STATE        | The value of ClusPrepDisk.AttachedState is not equal to Attached. |
 	//	+---------------------------------------+-------------------------------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -566,6 +630,10 @@ type ClusterStorage2Client interface {
 	//	| 0x8007139F ERROR_INVALID_STATE        | The value of ClusPrepDisk.AttachedState is not equal to Attached. |
 	//	+---------------------------------------+-------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -596,6 +664,10 @@ type ClusterStorage2Client interface {
 	//	| 0x8007139F ERROR_INVALID_STATE        | The value of ClusPrepDisk.AttachedState is not equal to Attached. |
 	//	+---------------------------------------+-------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -625,6 +697,10 @@ type ClusterStorage2Client interface {
 	//	+---------------------------------------+-------------------------------------------------------------------+
 	//	| 0x8007139F ERROR_INVALID_STATE        | The value of ClusPrepDisk.AttachedState is not equal to Attached. |
 	//	+---------------------------------------+-------------------------------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -658,6 +734,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online.                           |
 	//	+---------------------------------------+---------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -685,6 +765,10 @@ type ClusterStorage2Client interface {
 	//	+---------------------------------------+-------------------------------------------+
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online. |
 	//	+---------------------------------------+-------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -714,6 +798,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online. |
 	//	+---------------------------------------+-------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -741,6 +829,10 @@ type ClusterStorage2Client interface {
 	//	+---------------------------------------+-------------------------------------------+
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online. |
 	//	+---------------------------------------+-------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -770,6 +862,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online. |
 	//	+---------------------------------------+-------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -798,6 +894,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online.                                |
 	//	+---------------------------------------+--------------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -825,6 +925,10 @@ type ClusterStorage2Client interface {
 	//	+---------------------------------------+-------------------------------------------------------------------------+
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online.                               |
 	//	+---------------------------------------+-------------------------------------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -856,6 +960,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online.                           |
 	//	+---------------------------------------+---------------------------------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -884,6 +992,10 @@ type ClusterStorage2Client interface {
 	//	| 0x80070548 ERROR_INVALID_SERVER_STATE | The server's Prepare State is not Online. |
 	//	+---------------------------------------+-------------------------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -908,6 +1020,10 @@ type ClusterStorage2Client interface {
 	//	+----------------------------+-----------------------------------------------------------+
 	//	| 0x800700EA ERROR_MORE_DATA | RegisteredDsms was not large enough to hold all the data. |
 	//	+----------------------------+-----------------------------------------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in one consistent, identical
+	// manner for all values that are not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -2705,7 +2821,7 @@ func (o *xxx_PrepareNodePhase2Operation) UnmarshalNDRResponse(ctx context.Contex
 type PrepareNodePhase2Request struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
-	// Flags:   The client SHOULD<14> pass in one of the following values:
+	// Flags:   The client SHOULD<12> pass in one of the following values:
 	//
 	//	+------------------------------------------+-------------------------------------------------------------------+
 	//	|                                          |                                                                   |
@@ -7450,7 +7566,7 @@ type IsPRPresentResponse struct {
 	//	+------------+--------------------------------------------------------------------------+
 	//	| 0x00000001 | A persistent reservation is present and is not held by the local server. |
 	//	+------------+--------------------------------------------------------------------------+
-	//	| 0x00000002 | A persistent reservation is present and is held by the local server.<15> |
+	//	| 0x00000002 | A persistent reservation is present and is held by the local server.<13> |
 	//	+------------+--------------------------------------------------------------------------+
 	Present uint32 `idl:"name:Present" json:"present"`
 	// Return: The CprepDiskIsPRPresent return value.

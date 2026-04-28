@@ -63,10 +63,18 @@ var (
 	// WBEM_FLAG_DEEP:  If used in IWbemServices::CreateClassEnum or IWbemServices::CreateClassEnumAsync,
 	// the WBEM_FLAG_DEEP constant causes the enumeration to return all the subclasses in
 	// the hierarchy of a specified class but to not return the class itself.
+	//
+	// If used in IWbemServices::CreateInstanceEnum or IWbemServices::CreateInstanceEnumAsync,
+	// this constant causes the enumeration to return the instances of this class and also
+	// the instances of subclasses in the hierarchy of the class.
 	QueryFlagTypeDeep QueryFlagType = 0
 	// WBEM_FLAG_SHALLOW:  If used in IWbemServices::CreateClassEnum or IWbemServices::CreateClassEnumAsync,
 	// the WBEM_FLAG_SHALLOW constant causes the enumeration to return the immediate subclasses
 	// of a specified class.
+	//
+	// If used in IWbemServices::CreateInstanceEnum or IWbemServices::CreateInstanceEnumAsync,
+	// this constant causes the enumeration to return only the instances of this class and
+	// excludes all instances of subclasses.
 	QueryFlagTypeShallow QueryFlagType = 1
 	// WBEM_FLAG_PROTOTYPE:  This flag is used for prototyping. It does not run the query;
 	// instead, it returns the Prototype Result Object as specified in section 2.2.4.1.
@@ -198,6 +206,9 @@ var (
 	//
 	// The localized qualifiers or amended qualifiers are identified by the qualifier flavor
 	// as defined in [MS-WMIO] section 2.2.62.
+	//
+	// If this flag is not set, the server does not retrieve any localized qualifiers for
+	// the CIM object.
 	GenericFlagTypeUseAmendedQualifiers GenericFlagType = 131072
 	// WBEM_FLAG_STRONG_VALIDATION:  This flag MUST NOT be set, and MUST be ignored on
 	// receipt.
@@ -821,10 +832,21 @@ func (o *RefreshedObject) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 }
 
 // RefreshInfoRemote structure represents _WBEM_REFRESH_INFO_REMOTE RPC structure.
+//
+// The _WBEM_REFRESH_INFO_REMOTE structure MUST be used when the client is on a different
+// computer than the computer on which the WMI service providing the refreshed information
+// resides.
 type RefreshInfoRemote struct {
+	// m_pRefresher:  MUST be a pointer to the IWbemRemoteRefresher interface that the client
+	// used to retrieve the refreshed information.
 	Refresher *RemoteRefresher `idl:"name:m_pRefresher" json:"refresher"`
-	Template  *ClassObject     `idl:"name:m_pTemplate" json:"template"`
-	GUID      *dtyp.GUID       `idl:"name:m_Guid" json:"guid"`
+	// m_pTemplate:  MUST be a pointer to an IWbemClassObject interface that MUST represent
+	// a CIM instance with all properties set to the default values as specified in [MS-WMIO]
+	// section 2.2.26.
+	Template *ClassObject `idl:"name:m_pTemplate" json:"template"`
+	// m_Guid:  MUST be a globally unique identifier (GUID) created to identify this _WBEM_REFRESH_INFO
+	// object.
+	GUID *dtyp.GUID `idl:"name:m_Guid" json:"guid"`
 }
 
 func (o *RefreshInfoRemote) xxx_PreparePayload(ctx context.Context) error {
@@ -942,9 +964,16 @@ func (o *RefreshInfoRemote) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 }
 
 // RefreshInfoNonHiPerf structure represents _WBEM_REFRESH_INFO_NON_HIPERF RPC structure.
+//
+// The _WBEM_REFRESH_INFO_NON_HIPERF structure MUST be returned by the server when the
+// requested CIM instance cannot be part of the refreshing results.
 type RefreshInfoNonHiPerf struct {
-	Namespace string       `idl:"name:m_wszNamespace;string" json:"namespace"`
-	Template  *ClassObject `idl:"name:m_pTemplate" json:"template"`
+	// m_wszNamespace:  MUST be a CIM namespace where enumeration of a given class exists.
+	Namespace string `idl:"name:m_wszNamespace;string" json:"namespace"`
+	// m_pTemplate:  MUST be a pointer to an IWbemClassObject interface, which MUST represent
+	// a CIM instance with all properties set to the default values. Default property values
+	// are as specified in [MS-WMIO] section 2.2.26.
+	Template *ClassObject `idl:"name:m_pTemplate" json:"template"`
 }
 
 func (o *RefreshInfoNonHiPerf) xxx_PreparePayload(ctx context.Context) error {
@@ -1286,10 +1315,20 @@ func (o *RefreshInfoUnion_Hres) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 }
 
 // RefreshInfo structure represents _WBEM_REFRESH_INFO RPC structure.
+//
+// The _WBEM_REFRESH_INFO structure MUST be populated by the Windows Management Instrumentation
+// Remote Protocol service that provides the refresher information. The structure MUST
+// be used to return to information from IWbemRefreshingServices (section 3.1.4.12)
+// interface methods.
 type RefreshInfo struct {
-	Type     int32             `idl:"name:m_lType" json:"type"`
-	Info     *RefreshInfoUnion `idl:"name:m_Info;switch_is:m_lType" json:"info"`
-	CancelID int32             `idl:"name:m_lCancelId" json:"cancel_id"`
+	// m_lType:  MUST be one of the constants specified in WBEM_REFRESH_TYPE.
+	Type int32 `idl:"name:m_lType" json:"type"`
+	// m_Info:  MUST be one of the WBEM_REFRESH_INFO_UNION types.
+	Info *RefreshInfoUnion `idl:"name:m_Info;switch_is:m_lType" json:"info"`
+	// m_lCancelId:  MUST be a unique identifier for the refresher object that is being
+	// used to cancel the refreshing object when the refresher object is using IWbemRemoteRefresher::StopRefreshing
+	// (section 3.1.4.13.2).
+	CancelID int32 `idl:"name:m_lCancelId" json:"cancel_id"`
 }
 
 func (o *RefreshInfo) xxx_PreparePayload(ctx context.Context) error {
@@ -1353,9 +1392,17 @@ func (o *RefreshInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // RefresherID structure represents _WBEM_REFRESHER_ID RPC structure.
+//
+// The _WBEM_REFRESHER_ID structure identifies the client that is requesting refreshing
+// services. The structure MUST be used to return information from IWbemRefreshingServices
+// (section 3.1.4.12) interface methods.
 type RefresherID struct {
-	MachineName string     `idl:"name:m_szMachineName;string" json:"machine_name"`
-	ProcessID   uint32     `idl:"name:m_dwProcessId" json:"process_id"`
+	// m_szMachineName:  MUST be the NetBIOS name of the client machine.
+	MachineName string `idl:"name:m_szMachineName;string" json:"machine_name"`
+	// m_dwProcessId :  It MUST be an identifier created by the client and it MUST be unique
+	// within the context of the client.<7>
+	ProcessID uint32 `idl:"name:m_dwProcessId" json:"process_id"`
+	// m_guidRefresherId:  MUST be a client-generated GUID.
 	RefresherID *dtyp.GUID `idl:"name:m_guidRefresherId" json:"refresher_id"`
 }
 
@@ -1466,8 +1513,13 @@ func (o ReconnectType) String() string {
 }
 
 // ReconnectInfo structure represents _WBEM_RECONNECT_INFO RPC structure.
+//
+// The _WBEM_RECONNECT_INFO structure MUST contain the type for the information about
+// the target CIM instance.
 type ReconnectInfo struct {
-	Type int32  `idl:"name:m_lType" json:"type"`
+	// m_lType:  MUST be one of the WBEM_RECONNECT_TYPE enumeration values.
+	Type int32 `idl:"name:m_lType" json:"type"`
+	// m_pwcsPath :  MUST be a CIM path to the remote CIM instance to be added to the refresher.
 	Path string `idl:"name:m_pwcsPath;string" json:"path"`
 }
 
@@ -1528,8 +1580,16 @@ func (o *ReconnectInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // ReconnectResults structure represents _WBEM_RECONNECT_RESULTS RPC structure.
+//
+// The _WBEM_RECONNECT_RESULTS structure defines the status of a reconnect operation.
+// The structure MUST be used to return information from IWbemRefreshingServices (section
+// 3.1.4.12) interface methods.
 type ReconnectResults struct {
-	ID      int32 `idl:"name:m_lId" json:"id"`
+	// m_lId:   MUST be a unique identifier for the refresher object used to cancel the
+	// refreshing object by using the IWbemRemoteRefresher::StopRefreshing (section 3.1.4.13.2)
+	// interface method.
+	ID int32 `idl:"name:m_lId" json:"id"`
+	// m_hr:  MUST be the HRESULT of the reconnect operation.
 	HResult int32 `idl:"name:m_hr" json:"hresult"`
 }
 

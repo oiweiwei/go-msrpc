@@ -1,0 +1,43 @@
+<div class="content" name="USE_ENUM_STRUCT" uuid="7ecd0a94-9d61-4d0b-8151-7729c9d03620"><p>The <b>USE_ENUM_STRUCT</b> structure is used by the <b>NetrUseEnum</b>
+method (section <a href="07122d93-f5ab-4502-bab3-946b65de7952" data-linktype="relative-path">3.2.4.10</a>)
+to encapsulate the _USE_ENUM_UNION union.</p><dl>
+<dd>
+<div><pre> typedef struct _USE_ENUM_STRUCT {
+   DWORD Level;
+   [switch_is(Level)] union _USE_ENUM_UNION {
+     [case(0)] 
+       LPUSE_INFO_0_CONTAINER Level0;
+     [case(1)] 
+       LPUSE_INFO_1_CONTAINER Level1;
+     [case(2)] 
+       LPUSE_INFO_2_CONTAINER Level2;
+     [default];
+   } UseInfo;
+ } USE_ENUM_STRUCT,
+  *PUSE_ENUM_STRUCT,
+  *LPUSE_ENUM_STRUCT;
+</pre></div>
+</dd></dl><p><b>Level:</b> A value that specifies the information
+level of the data. This parameter MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000</td>
+  <td>The UseInfo buffer is a USE_INFO_0 structure (section 2.2.5.22).</td>
+ </tr><tr>
+  <td>0x00000001</td>
+  <td>The UseInfo buffer is a USE_INFO_1 structure (section 2.2.5.23).</td>
+ </tr><tr>
+  <td>0x00000002</td>
+  <td>The UseInfo buffer is a USE_INFO_2 structure (section 2.2.5.24).</td>
+ </tr></tbody></table>
+</dd></dl><p><b>UseInfo:</b> A buffer containing any one of the <b>USE_INFO_0</b>,
+<b>USE_INFO_1</b>, or <b>USE_INFO_2</b> structures.</p></div>

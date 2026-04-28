@@ -1,0 +1,12 @@
+<div class="content" name="BooleanArray" uuid="425d7a39-14cc-464b-8b19-de0e3f84a0da"><p>The BooleanArray structure is defined as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _BooleanArray {
+   [range(0, MAX_RPC_BOOL_ARRAY_COUNT)] 
+     DWORD count;
+   [size_is(count)] boolean* ptr;
+ } BooleanArray;
+</pre></div>
+</dd></dl><p><b>count:</b>  A 32-bit unsigned integer
+that contains the number of <a href="../ms-dtyp/51bbfbb1-08e2-4c13-a95e-1eaa7d310670" data-linktype="relative-path">BOOLEAN</a>
+values pointed to by <b>ptr</b>.</p><p><b>ptr:</b>  A pointer to an array of
+BOOLEAN values.</p></div>

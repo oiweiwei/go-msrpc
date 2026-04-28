@@ -1,0 +1,56 @@
+<div class="content" name="GetImportConflicts" uuid="683badd4-39e6-4d2d-84a0-4c05de9e2b05"><p>The GetImportConflicts method finds conflicts between import
+objects and existing objects.</p><dl>
+<dd>
+<div><pre> [id(2), helpstring(&#34;method GetImportConflicts&#34;)] HRESULT GetImportConflicts(
+   [in] BSTR bstrPMCXml,
+   [in] BSTR bstrPolicyXml,
+   [in] BSTR bstrCalendarXml,
+   [in] BSTR bstrConditionalXml,
+   [in] BSTR bstrMachineGroupXml,
+   [in] BSTR bstrConfigurationXmls,
+   [out] BSTR *pbstrConflictingObjects
+ );
+</pre></div>
+</dd></dl><p><b>bstrPMCXml: </b>An optional string that specifies <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_65daee12-445f-41c0-8456-f728063bef24" data-linktype="relative-path">process matching criteria (PMC)</a>,
+in the form of a <a href="361984a5-60a9-4e17-99ce-95c4a1e898c3" data-linktype="relative-path">ProcessMatchingCriteriaCollection</a>
+element (section 2.2.5.25).</p><p><b>bstrPolicyXml: </b>An optional string that
+specifies <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_2ced4dc1-842a-4bf8-bdac-0e8d505d5ce6" data-linktype="relative-path">resource policies</a>,
+in the form of a <a href="1c010046-ccb3-41cb-8490-b181b715b16b" data-linktype="relative-path">PolicyCollection
+element (section 2.2.5.22)</a>.</p><p><b>bstrCalendarXml: </b>An optional string that
+specifies <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_7204b2ed-dcef-4434-be15-6451f92d03fb" data-linktype="relative-path">calendar</a>
+elements, in the form of a <a href="04f7e237-6892-4d93-8867-de7b62aef6e0" data-linktype="relative-path">CalendarsCollection</a>
+element (section 2.2.5.11).</p><p><b>bstrConditionalXml: </b>An optional string that
+specifies a conditional policy, in the form of a <a href="f00d308a-d050-4368-a663-b740f11087e5" data-linktype="relative-path">ConditionalPolicy</a> element
+(section 2.2.5.12).</p><p><b>bstrMachineGroupXml: </b>An optional string that
+specifies a <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_f4153c8c-848d-4db5-b9cc-4113e5f1e406" data-linktype="relative-path">machine group</a>,
+in the form of a <a href="9c604cb0-5522-4dc6-a479-e1ea2578c3ba" data-linktype="relative-path">MachineGroup</a>
+element (section 2.2.5.18).</p><p><b>bstrConfigurationXmls: </b>Not used.</p><p><b>pbstrConflictingObjects: </b>A pointer to a string
+that SHOULD identify the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_a4814539-33e8-4599-a479-3f211a7b032f" data-linktype="relative-path">conflicting
+objects</a>, in the form of an <a href="30dac73a-4cfa-4c16-bb7e-6194a09cd5a2" data-linktype="relative-path">ObjectIds</a> element (section
+2.2.5.20).</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Operation successful.</td>
+ </tr><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>One or more arguments are invalid.</td>
+ </tr><tr>
+  <td>0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER</td>
+  <td>The XML data that is maintained by the management service is invalid or cannot be processed.&lt;36&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="255d6a15-9358-41e6-9e70-e8bb09847dc8" data-linktype="relative-path">IResourceManager2</a>
+interface methods are specified in section 3.2.4.2.</p></div>

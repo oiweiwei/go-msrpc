@@ -3272,6 +3272,9 @@ type DiskInfoEx struct {
 	MaySwitchStyle bool `idl:"name:maySwitchStyle" json:"may_switch_style"`
 	// partitionStyle:   Value from the PARTITIONSTYLE enumeration that indicates the disk's
 	// partitioning style.
+	//
+	// (unnamed union):  A union that contains either a signature or a diskId, depending
+	// on the value of partitionStyle:
 	PartitionStyle PartitionStyle         `idl:"name:partitionStyle" json:"partition_style"`
 	DiskInfoEx     *DiskInfoEx_DiskInfoEx `idl:"name:DiskInfoEx;switch_is:partitionStyle" json:"disk_info_ex"`
 	// portNumber:  SCSI port number of the disk.
@@ -4230,6 +4233,10 @@ type RegionInfoEx struct {
 	RegionType RegionType `idl:"name:regionType" json:"region_type"`
 	// partitionStyle:   Value from the PARTITIONSTYLE enumeration that indicates the region's
 	// partitioning style.
+	//
+	// (unnamed union):  A union that contains either a partitionType of type ULONG and
+	// an isActive, or a partitionType of type GUID, a partitionId, and an attributes, depending
+	// on the value of partitionStyle:
 	PartitionStyle PartitionStyle             `idl:"name:partitionStyle" json:"partition_style"`
 	RegionInfoEx   *RegionInfoEx_RegionInfoEx `idl:"name:RegionInfoEx;switch_is:partitionStyle" json:"region_info_ex"`
 	// status:  Value from the REGIONSTATUS enumeration that indicates the region's status.
@@ -4649,6 +4656,30 @@ type RegionInfoEx_RegionInfoEx_MBR struct {
 	//	| VALID_NTFT 0xC0             | A valid Windows NT FT partition. The high bit of a partition type code indicates |
 	//	|                             | that a partition is part of an NTFT mirror or striped array.                     |
 	//	+-----------------------------+----------------------------------------------------------------------------------+
+	//
+	// partitionType:  Windows NT partition style for the disk. This field contains one
+	// of the following values.
+	//
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	|                                                                   |                                                                           |
+	//	|                               VALUE                               |                                  MEANING                                  |
+	//	|                                                                   |                                                                           |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_BASIC_DATA_GUID ebd0a0a2-b9e5-4433-87c0-68b6b72699c7    | The data partition type that is created and recognized by Windows.        |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_ENTRY_UNUSED_GUID 00000000-0000-0000-0000-000000000000  | There is no partition.                                                    |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_SYSTEM_GUID c12a7328-f81f-11d2-ba4b-00a0c93ec93b        | The partition is an Extensible Firmware Interface (EFI) system partition. |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_MSFT_RESERVED_GUID e3c9e316-0b5c-4db8-817d-f92df00215ae | The partition is a Microsoft reserved partition.                          |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_LDM_METADATA_GUID 5808c8aa-7e8f-42e0-85d2-e1e90434cfb3  | The partition is an LDM metadata partition on a dynamic disk.             |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_LDM_DATA_GUID af9b60a0-1431-4f62-bc68-3311714a69ad      | The partition is an LDM data partition on a dynamic disk.                 |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_MSFT_RECOVERY_GUID de94bba4-06d1-4d40-a16a-bfd50179d6ac | The partition is a Microsoft recovery partition.                          |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
 	PartitionType uint32 `idl:"name:partitionType" json:"partition_type"`
 	// isActive:  Boolean value that indicates whether the partition is active. The partition
 	// MUST be marked as active in order for the BIOS to start from the partition on x86
@@ -4774,6 +4805,30 @@ type RegionInfoEx_RegionInfoEx_GPT struct {
 	//	| VALID_NTFT 0xC0             | A valid Windows NT FT partition. The high bit of a partition type code indicates |
 	//	|                             | that a partition is part of an NTFT mirror or striped array.                     |
 	//	+-----------------------------+----------------------------------------------------------------------------------+
+	//
+	// partitionType:  Windows NT partition style for the disk. This field contains one
+	// of the following values.
+	//
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	|                                                                   |                                                                           |
+	//	|                               VALUE                               |                                  MEANING                                  |
+	//	|                                                                   |                                                                           |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_BASIC_DATA_GUID ebd0a0a2-b9e5-4433-87c0-68b6b72699c7    | The data partition type that is created and recognized by Windows.        |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_ENTRY_UNUSED_GUID 00000000-0000-0000-0000-000000000000  | There is no partition.                                                    |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_SYSTEM_GUID c12a7328-f81f-11d2-ba4b-00a0c93ec93b        | The partition is an Extensible Firmware Interface (EFI) system partition. |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_MSFT_RESERVED_GUID e3c9e316-0b5c-4db8-817d-f92df00215ae | The partition is a Microsoft reserved partition.                          |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_LDM_METADATA_GUID 5808c8aa-7e8f-42e0-85d2-e1e90434cfb3  | The partition is an LDM metadata partition on a dynamic disk.             |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_LDM_DATA_GUID af9b60a0-1431-4f62-bc68-3311714a69ad      | The partition is an LDM data partition on a dynamic disk.                 |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
+	//	| PARTITION_MSFT_RECOVERY_GUID de94bba4-06d1-4d40-a16a-bfd50179d6ac | The partition is a Microsoft recovery partition.                          |
+	//	+-------------------------------------------------------------------+---------------------------------------------------------------------------+
 	PartitionType *dtyp.GUID `idl:"name:partitionType" json:"partition_type"`
 	// partitionId:  A GUID that uniquely identifies a partition on a disk.
 	PartitionID *dtyp.GUID `idl:"name:partitionId" json:"partition_id"`

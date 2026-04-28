@@ -1,0 +1,42 @@
+<div class="content" name="GetDefaultFilter" uuid="acccc108-9714-4b34-b8e9-726cf203c854"><p>The GetDefaultFilter method returns the current value of the
+specified report filter for the specified report type.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_REPORT_MANAGER | 0x07)] HRESULT GetDefaultFilter(
+   [in] FsrmReportType reportType,
+   [in] FsrmReportFilter filter,
+   [out, retval] VARIANT* filterValue
+ );
+</pre></div>
+</dd></dl><p><b>reportType: </b>Contains the value from the <a href="84ba80a4-a6c5-41a1-9a8e-7c379e780772" data-linktype="relative-path">FsrmReportType (section 2.2.1.2.10)</a>
+enumeration.</p><p><b>filter: </b>Contains the value from the <a href="af1c6aeb-ba51-4d9f-965c-b8886c56b8ee" data-linktype="relative-path">FsrmReportFilter (section 2.2.1.2.16)</a>
+enumeration.</p><p><b>filterValue: </b>Pointer to a variable that upon
+completion contains the value of the specified filter for the specified report
+type.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>This code is returned for the following reasons:  The reportType parameter is not a valid FsrmReportType (section 2.2.1.2.10) value.  The filter parameter is not a valid FsrmReportFilter (section 2.2.1.2.16) value.  The filterValue parameter is NULL.</td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>filterValue</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>reportType</i> contains a valid FsrmReportType
+value. If <i>reportType</i> is <b>FsrmReportType_Unknown</b>, the parameter
+MUST be considered an invalid value.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>filter</i> contains a valid FsrmReportFilter
+value.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>filterValue</i> to the current filter
+value for the specified report filter and report type.</p></div>

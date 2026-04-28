@@ -1,0 +1,163 @@
+<div class="content" name="TableEntryFixed" uuid="60d1432d-84ca-4b03-a5a3-55e93f2ac624"><p>The TableEntryFixed structure is used in the <a href="a2feb769-c1fc-44fb-b40d-b3bc03b486b0" data-linktype="relative-path">TableDataFixed (section 2.2.1.10)</a>
+and <a href="fbf92afa-d059-47e1-a877-ef6979b549a4" data-linktype="relative-path">TableDataFixedWrite (section 2.2.1.13)</a>
+structures. These structures are always used along with a <a href="bc492521-2a4b-4776-84a0-ce20e81d692a" data-linktype="relative-path">TableDataVariable (section 2.2.1.15)</a>
+structure. This type represents fixed-size parts of the data in a table entry:</p><ul><li><p><span><span> 
+</span></span>The status of each property value. </p>
+</li><li><p><span><span> 
+</span></span>The size of each nonfixed size <b>eDT_BYTES</b> property. </p>
+</li><li><p><span><span> 
+</span></span>The property value for each fixed size property. </p>
+</li><li><p><span><span> 
+</span></span>An offset, in bytes, to the property value within a
+TableDataVariable for each nonfixed size property.</p>
+</li></ul><p>This structure is marshaled as specified in the following
+diagram.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">Status 0</td>
+  <td colspan="8">Status 1</td>
+  <td colspan="8">...</td>
+  <td colspan="8">...</td>
+ </tr>
+ <tr>
+  <td colspan="8">Status n</td>
+  <td colspan="24">Padding</td>
+ </tr>
+ <tr>
+  <td colspan="32">Size 0</td>
+ </tr>
+ <tr>
+  <td colspan="32">Size 1</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">Size m</td>
+ </tr>
+ <tr>
+  <td colspan="32">ValueOrOffset 0 (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">ValueOrOffset 1 (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">ValueOrOffset n (variable)</td>
+ </tr>
+</tbody></table><p><b>Status 0-n:</b> The property status for each
+property, in order by index. MUST be an <a href="b937e959-9866-45b1-a4c0-bf1165792a3c" data-linktype="relative-path">fPropertyStatus (section 2.2.1.8)</a>
+value.</p><p><b>Padding:</b> Padding with zeros to a 4-byte
+boundary from the start of the structure. </p><p><b>Size 0-m:</b> The size, in bytes, represented by
+an unsigned integer, of the property value for each nonfixed size eDT_BYTES
+property, in order by index. If the representation of the property value in the
+associated TableDataVariable structure requires padding to a multiple of 4
+bytes, this size does not include the padding bytes.</p><p><b>ValueOrOffset 0-n:</b> The property value or
+offset for each property, in order by index. The format of this field depends
+on the type of the property, whether the fPROPERTY_FIXEDLENGTH flag is set in
+the property&#39;s section <a href="23b9cc69-47cb-4a2f-ae15-3f1a92065455" data-linktype="relative-path">PropertyMeta (section 2.2.1.7</a>),
+and whether the NonNull (see section 2.2.1.8) bit is set in the property&#39;s <b>Status</b>
+field.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Type of property</p>
+   </th>
+   <th>
+   <p>fPROPERTY_FIXEDLENGTH set?</p>
+   </th>
+   <th>
+   <p>NonNull set?</p>
+   </th>
+   <th>
+   <p>Format</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>eDT_ULONG</td>
+  <td>-</td>
+  <td></td>
+  <td>The property value, marshaled as a 32-bit unsigned integer.</td>
+ </tr><tr>
+  <td>eDT_GUID</td>
+  <td>-</td>
+  <td>-</td>
+  <td>The property value, marshaled as specified in [MS-DTYP], section 2.3.4.2.</td>
+ </tr><tr>
+  <td>eDT_BYTES</td>
+  <td>No</td>
+  <td>No</td>
+  <td>A 4-byte field, which SHOULD&lt;9&gt; be zero and MUST be ignored on receipt.</td>
+ </tr><tr>
+  <td>eDT_BYTES</td>
+  <td>No</td>
+  <td>Yes</td>
+  <td>A 32-bit unsigned integer, which MUST be the offset in bytes to the property value from the start of the associated TableDataVariable structure. MUST be a multiple of 4.</td>
+ </tr><tr>
+  <td>eDT_BYTES</td>
+  <td>Yes</td>
+  <td>No</td>
+  <td>A field with length equal to the fixed size of the property, rounded up to a multiple of 4. SHOULD be filled with zeros and MUST be ignored on receipt.</td>
+ </tr><tr>
+  <td>eDT_BYTES</td>
+  <td>Yes</td>
+  <td>Yes</td>
+  <td>The property value, marshaled as an array of bytes, padded with zeros to a multiple of 4 bytes.</td>
+ </tr><tr>
+  <td>eDT_LPWSTR</td>
+  <td>No</td>
+  <td>No</td>
+  <td>A 4-byte field, which SHOULD&lt;10&gt; be zero and MUST be ignored on receipt.</td>
+ </tr><tr>
+  <td>eDT_LPWSTR</td>
+  <td>No</td>
+  <td>Yes</td>
+  <td>A 32-bit unsigned integer, which MUST be the offset in bytes to the property value from the start of the associated TableDataVariable structure. MUST be a multiple of 4.</td>
+ </tr><tr>
+  <td>eDT_LPWSTR</td>
+  <td>Yes</td>
+  <td>No</td>
+  <td>A field with the length equal to the fixed size of the property, rounded up to a multiple of 4. SHOULD be filled with zeros and MUST be ignored on receipt.</td>
+ </tr><tr>
+  <td>eDT_LPWSTR</td>
+  <td>Yes</td>
+  <td>Yes</td>
+  <td>The property value, marshaled as a null-terminated array of wchar_t in little-endian byte order, padded with zeros to a multiple of 4 bytes.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -49,7 +49,19 @@ type CollectionClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
-	// _NewEnum operation.
+	// The _NewEnum method creates a new collection of Objects Being Enumerated.
+	//
+	// Return Values: The method MUST return zero on success, or a nonzero error code on
+	// failure.
+	//
+	//	+----------------------+--------------------------------+
+	//	|        RETURN        |                                |
+	//	|      VALUE/CODE      |          DESCRIPTION           |
+	//	|                      |                                |
+	//	+----------------------+--------------------------------+
+	//	+----------------------+--------------------------------+
+	//	| 0x80004003 E_POINTER | The unknown parameter is NULL. |
+	//	+----------------------+--------------------------------+
 	Get_NewEnum(context.Context, *Get_NewEnumRequest, ...dcerpc.CallOption) (*Get_NewEnumResponse, error)
 
 	// The Item method returns a pointer to the object at the requested position in the
@@ -549,8 +561,13 @@ func (o *Get_NewEnumRequest) OpName() string { return "/IFsrmCollection/v0/_NewE
 // Get_NewEnumResponse structure represents the _NewEnum operation response
 type Get_NewEnumResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Unknown *dcom.Unknown  `idl:"name:unknown" json:"unknown"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// unknown: Pointer to an IUnknown interface pointer. Upon successful completion, receives
+	// the IUnknown pointer of a new IEnumVARIANT enumeration for the items in the collection
+	// of Objects Being Enumerated. The returned object MUST implement the IEnumVARIANT
+	// interface and support enumeration methods on the same data as the IFsrmCollection
+	// object. See [MS-OAUT] for IEnumVARIANT protocol documentation.
+	Unknown *dcom.Unknown `idl:"name:unknown" json:"unknown"`
 	// Return: The _NewEnum return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

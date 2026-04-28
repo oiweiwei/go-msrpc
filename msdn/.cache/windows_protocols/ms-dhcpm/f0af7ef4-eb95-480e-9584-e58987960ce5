@@ -1,0 +1,18 @@
+<div class="content" name="DHCP_SUBNET_ELEMENT_INFO_ARRAY" uuid="f0af7ef4-eb95-480e-9584-e58987960ce5"><p>The <b>DHCP_SUBNET_ELEMENT_INFO_ARRAY</b> structure defines
+an array of <a href="5ce2002b-fd0c-4776-805a-e87546616581" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_DATA (section 2.2.1.2.33)</a>
+structures. The first parameter contains the number of subnet elements (IPv4 <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a>, IPv4 <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_64d30865-9640-4009-a80a-861966749767" data-linktype="relative-path">exclusion range</a>, and IPv4
+range), and the second parameter points to the array of length <i>NumElements</i>
+containing DHCP subnet elements. This structure is used in the <a href="d522c5f8-125b-4c0e-81a0-b59f977dffa2" data-linktype="relative-path">R_DhcpEnumSubnetElements (section 3.1.4.6)</a>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_SUBNET_ELEMENT_INFO_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_SUBNET_ELEMENT_DATA Elements;
+ } DHCP_SUBNET_ELEMENT_INFO_ARRAY,
+  *LPDHCP_SUBNET_ELEMENT_INFO_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a>,
+containing the number of subnet elements in the subsequent field the <i>Elements</i>
+member.</p><p><b>Elements:</b>  This is a pointer to an
+array of DHCP_SUBNET_ELEMENT_DATA structures of length <i>NumElements</i>
+containing IPv4 subnet elements.</p></div>

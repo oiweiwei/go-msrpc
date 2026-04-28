@@ -423,6 +423,8 @@ type GetTelnetSessionsResponse struct {
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pszSessionData: A string pointer to PSZSESSIONDATA string that contains information
 	// about telnet sessions in the server.<1>
+	//
+	// The server must fill various fields of PSZSESSIONDATA as below.
 	SessionData *oaut.String `idl:"name:pszSessionData" json:"session_data"`
 	// Return: The GetTelnetSessions return value.
 	Return int32 `idl:"name:Return" json:"return"`

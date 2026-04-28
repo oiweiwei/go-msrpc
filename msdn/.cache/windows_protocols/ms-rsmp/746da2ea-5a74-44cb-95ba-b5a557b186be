@@ -1,0 +1,41 @@
+<div class="content" name="NTMS_STORAGESLOTINFORMATION" uuid="746da2ea-5a74-44cb-95ba-b5a557b186be"><p>The NTMS_STORAGESLOTINFORMATION structure defines properties
+specific to a storage <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a>
+object.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_STORAGESLOTINFORMATION {
+   DWORD Number;
+   DWORD State;
+   NTMS_GUID Library;
+ } NTMS_STORAGESLOTINFORMATION;
+</pre></div>
+</dd></dl><p><b>Number:</b>  The number of the slot in
+the library.</p><p><b>State:</b>  The current state of the
+slot. This MUST be one of the following values. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>NTMS_SLOTSTATE_UNKNOWN 0x00000000</td>
+  <td>The slot state cannot be determined.</td>
+ </tr><tr>
+  <td>NTMS_SLOTSTATE_FULL 0x00000001</td>
+  <td>The slot is present and contains physical media.</td>
+ </tr><tr>
+  <td>NTMS_SLOTSTATE_EMPTY 0x00000002</td>
+  <td>The slot is present but does not contain physical media.</td>
+ </tr><tr>
+  <td>NTMS_SLOTSTATE_NOTPRESENT 0x00000003</td>
+  <td>The slot is not present. If the library contains magazines, this value is reported for each slot when the associated magazine is missing.</td>
+ </tr><tr>
+  <td>NTMS_SLOTSTATE_NEEDSINVENTORY 0x00000004</td>
+  <td>The slot needs inventory.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Library:</b>  The library that contains
+the slot.</p></div>

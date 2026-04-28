@@ -2840,6 +2840,9 @@ type EnumThresholdActionsResponse struct {
 	// upon completion contains IFsrmAction interface pointers (section 3.2.4.2.4) of all
 	// the actions for the specified action. The caller MUST release the collection when
 	// it is done with it.
+	//
+	// To get the specific action interface for the action, the caller MUST call QueryInterface
+	// for the interface corresponding to the action type of the actions.
 	Actions *fsrm.Collection `idl:"name:actions" json:"actions"`
 	// Return: The EnumThresholdActions return value.
 	Return int32 `idl:"name:Return" json:"return"`

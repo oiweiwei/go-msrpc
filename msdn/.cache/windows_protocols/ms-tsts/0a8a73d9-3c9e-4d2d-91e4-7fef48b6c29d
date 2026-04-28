@@ -1,0 +1,16 @@
+<div class="content" name="TS_PROCESS_INFORMATION_NT4" uuid="0a8a73d9-3c9e-4d2d-91e4-7fef48b6c29d"><p>The TS_PROCESS_INFORMATION_NT4 structure is returned by <span><a href="3559bc19-8ca3-4bcf-842e-cf25f592dc1a" data-linktype="relative-path">RpcWinStationEnumerateProcesses</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _TS_PROCESS_INFORMATION_NT4 {
+   ULONG MagicNumber;
+   ULONG LogonId;
+   PVOID ProcessSid;
+   ULONG Pad;
+ } TS_PROCESS_INFORMATION_NT4,
+  *PTS_PROCESS_INFORMATION_NT4;
+</pre></div>
+</dd></dl><p><b>MagicNumber:</b>  MUST be set to
+TS_PROCESS_INFO_MAGIC_NT4 (0x23495452).</p><p><b>LogonId:</b>  The session ID of the
+process.</p><p><b>ProcessSid:</b>  The security identifier
+(SID), as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">2.4.2</a></span>,
+of the owner of the process.</p><p><b>Pad:</b>  MUST be set to 0.</p></div>

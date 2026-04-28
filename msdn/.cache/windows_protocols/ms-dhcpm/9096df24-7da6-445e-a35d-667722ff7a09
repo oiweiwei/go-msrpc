@@ -1,0 +1,45 @@
+<div class="content" name="DHCP_ATTRIB" uuid="9096df24-7da6-445e-a35d-667722ff7a09"><p>The <b>DHCP_ATTRIB</b> structure contains the attribute and
+its values for the DHCPv4 server. This structure is used in the <a href="3b8b3910-8d92-4d96-8ca7-5d73716d74dd" data-linktype="relative-path">R_DhcpServerQueryAttribute (section 3.2.4.35)</a>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_ATTRIB {
+   DHCP_ATTRIB_ID DhcpAttribId;
+   ULONG DhcpAttribType;
+   [switch_is(DhcpAttribType), switch_type(ULONG)] 
+     union {
+     [case(DHCP_ATTRIB_TYPE_BOOL)] 
+       BOOL DhcpAttribBool;
+     [case(DHCP_ATTRIB_TYPE_ULONG)] 
+       ULONG DhcpAttribUlong;
+   };
+ } DHCP_ATTRIB,
+  *PDHCP_ATTRIB,
+  *LPDHCP_ATTRIB;
+</pre></div>
+</dd></dl><p><b>DhcpAttribId:</b>  This is of type <a href="36183913-873b-4aa4-8ea8-1d16359f9ffc" data-linktype="relative-path">DHCP_ATTRIB_ID (section 2.2.1.1.1)</a>,
+a <a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a>
+value specifying the attribute.</p><p><b>DhcpAttribType:</b>  This is of type
+ULONG. The value specifies the type of the attribute&#39;s data and which one of
+the values is chosen from the subsequent union.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DHCP_ATTRIB_TYPE_BOOL 0x00000001</td>
+  <td>The attribute value is of type BOOL, and DhcpAttribBool is chosen from the following union.</td>
+ </tr><tr>
+  <td>DHCP_ATTRIB_TYPE_ULONG 0x00000002</td>
+  <td>The attribute value is of type ULONG, and DhcpAttribUlong is chosen from the following union.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>DhcpAttribBool:</b>  This is of type
+BOOL and contains the value of the attribute. This is chosen from the union if <b>DhcpAttribType</b>
+contains <b>DHCP_ATTRIB_TYPE_BOOL</b>.</p><p><b>DhcpAttribUlong:</b>  This is of type
+ULONG and contains the value of the attribute. This is chosen from the union if
+<b>DhcpAttribType</b>  contains <b>DHCP_ATTRIB_TYPE_ULONG</b>.</p></div>

@@ -39,6 +39,8 @@ type LoginClientIDServer interface {
 	// In case of failure, the server MUST return an HRESULT whose S (severity) bit is set
 	// as specified in [MS-ERREF] section 2.1. The actual HRESULT value is implementation
 	// dependent.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	SetClientInfo(context.Context, *SetClientInfoRequest) (*SetClientInfoResponse, error)
 }
 

@@ -702,49 +702,71 @@ var (
 	// an RPC_X_BAD_STUB_DATA RPC exception.
 	//
 	// Hex value is 0x0000000A.
+	//
+	// Element marshaling size: N/A
 	SafeArrayTypeError SafeArrayType = 10
 	// SF_I1:  The type of the elements contained in the SAFEARRAY MUST be a 1-byte integer.
 	//
 	// Hex value is 0x00000010.
+	//
+	// Element marshaling size in bytes: 1
 	SafeArrayTypeI1 SafeArrayType = 16
 	// SF_I2:  The type of the elements contained in the SAFEARRAY MUST be a 2-byte integer.
 	//
 	// Hex value is 0x00000002.
+	//
+	// Element marshaling size in bytes: 2
 	SafeArrayTypeI2 SafeArrayType = 2
 	// SF_I4:  The type of the elements contained in the SAFEARRAY MUST be a 4-byte integer.
 	//
 	// Hex value is 0x00000003.
+	//
+	// Element marshaling size in bytes: 4
 	SafeArrayTypeI4 SafeArrayType = 3
 	// SF_I8:  The type of the elements contained in the SAFEARRAY MUST be an 8-byte integer.
 	//
 	// Hex value is 0x00000014.
+	//
+	// Element marshaling size in bytes: 8
 	SafeArrayTypeI8 SafeArrayType = 20
 	// SF_BSTR:  The type of the elements contained in the SAFEARRAY MUST be a BSTR.
 	//
 	// Hex value is 0x00000008.
+	//
+	// Element marshaling size in bytes: 4
 	SafeArrayTypeString SafeArrayType = 8
 	// SF_UNKNOWN:  The type of the elements contained in the SAFEARRAY MUST be a pointer
 	// to IUnknown.
 	//
 	// Hex value is 0x0000000D.
+	//
+	// Element marshaling size in bytes: 4
 	SafeArrayTypeUnknown SafeArrayType = 13
 	// SF_DISPATCH:  The type of the elements contained in the SAFEARRAY MUST be a pointer
 	// to IDispatch (see section 3.1.4).
 	//
 	// Hex value is 0x00000009.
+	//
+	// Element marshaling size in bytes: 4
 	SafeArrayTypeDispatch SafeArrayType = 9
 	// SF_VARIANT:  The type of the elements contained in the SAFEARRAY MUST be VARIANT.
 	//
 	// Hex value is 0x0000000C.
+	//
+	// Element marshaling size in bytes: 16
 	SafeArrayTypeVariant SafeArrayType = 12
 	// SF_RECORD:  The type of the elements contained in the SAFEARRAY is a user-defined
 	// type (UDT) (as defined in section 2.2.28.1.
 	//
 	// Hex value is 0x00000024.
+	//
+	// Element marshaling size in bytes: 4
 	SafeArrayTypeRecord SafeArrayType = 36
 	// SF_HAVEIID:  The type of the elements contained in the SAFEARRAY MUST be an MInterfacePointer.
 	//
 	// Hex value is 0x0000800D.
+	//
+	// Element marshaling size in bytes: 4
 	SafeArrayTypeHaveIID SafeArrayType = 32781
 )
 
@@ -1835,11 +1857,34 @@ func (o *Decimal) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // Record structure represents _BRECORD RPC structure.
+//
+// The _wireBRECORD structure is the wire representation of a collection of UDTs of
+// the same type. This representation MUST be used when the UDTs appear inside a SAFEARRAY
+// (section 2.2.30.10) or inside a VARIANT (section 2.2.29.2). Otherwise, the UDTs MUST
+// be NDR-marshaled as specified by their IDL. For more information, see [C706] section
+// 14.
 type Record struct {
-	Flags      uint32                 `idl:"name:fFlags" json:"flags"`
-	Size       uint32                 `idl:"name:clSize" json:"size"`
+	// fFlags:   MUST be 0 if pRecord is NULL. Otherwise, the value MUST be 1.
+	Flags uint32 `idl:"name:fFlags" json:"flags"`
+	// clSize:  MUST be 0 if pRecord is NULL. Otherwise, the value MUST equal the size (in
+	// bytes) of the UDTs contained in pRecord, plus 4 bytes to account for the prefix contained
+	// in pRecord.
+	Size uint32 `idl:"name:clSize" json:"size"`
+	// pRecInfo:   MUST specify an MInterfacePointer that MUST contain an OBJREF_CUSTOM
+	// with a CLSID field set to CLSID_RecordInfo (1.9) and a pObjectData field that MUST
+	// contain a RecordInfoData binary large object (BLOB) (2.2.31). The iid field of the
+	// OBJREF portion of the structure MUST be set to IID_IRecordInfo (1.9). An implementation
+	// MAY use this value as the IID of a local-only interface.<5>
 	RecordInfo *dcom.InterfacePointer `idl:"name:pRecInfo" json:"record_info"`
-	Record     []byte                 `idl:"name:pRecord;size_is:(clSize)" json:"record"`
+	// pRecord:  MUST be NULL if there are no UDTs. Otherwise, the value MUST contain the
+	// NDR-marshaled representation of the UDTs, prefixed by a 4-byte unsigned integer that
+	// specifies the size, in bytes. This integer MUST equal the value of clSize.
+	//
+	// Data of this type MUST be marshaled as specified in [C706] section 14, with the exception
+	// that the fields fFlags, clSize, and the 4-byte prefix in pRecord MUST be marshaled
+	// by using a little-endian data representation, regardless of the data representation
+	// format label. For more information, see [C706] section 14.2.5.
+	Record []byte `idl:"name:pRecord;size_is:(clSize)" json:"record"`
 }
 
 func (o *Record) xxx_PreparePayload(ctx context.Context) error {
@@ -1979,13 +2024,49 @@ func (o *Record) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // Variant structure represents _VARIANT RPC structure.
+//
+// The _wireVARIANT is a container for a union that in turn contains scalar and OLE
+// Automation data types.
 type Variant struct {
-	Size     uint32            `idl:"name:clSize" json:"size"`
-	_        uint32            `idl:"name:rpcReserved"`
-	VT       uint16            `idl:"name:vt" json:"vt"`
-	_        uint16            `idl:"name:wReserved1"`
-	_        uint16            `idl:"name:wReserved2"`
-	_        uint16            `idl:"name:wReserved3"`
+	// clSize:  MUST be set to the size, in quad words (64 bits), of the structure.
+	Size uint32 `idl:"name:clSize" json:"size"`
+	// rpcReserved:  MUST be set to 0 and MUST be ignored by the recipient.
+	_ uint32 `idl:"name:rpcReserved"`
+	// vt:   MUST be set to one of the values specified with a "V" in the Context column
+	// of the table in section 2.2.7.
+	VT uint16 `idl:"name:vt" json:"vt"`
+	// wReserved1:  MAY be set to 0 and MUST be ignored by the recipient.<6>
+	_ uint16 `idl:"name:wReserved1"`
+	// wReserved2:  MAY be set to 0 and MUST be ignored by the recipient.<7>
+	_ uint16 `idl:"name:wReserved2"`
+	// wReserved3:  MAY be set to 0 and MUST be ignored by the recipient.<8>
+	_ uint16 `idl:"name:wReserved3"`
+	// _varUnion:  MUST contain an instance of the type, according to the value in the vt
+	// field.
+	//
+	// Data of this type MUST be marshaled as specified in [C706] section 14, with the following
+	// additional restrictions.
+	//
+	// * All fields except *_varUnion* MUST be marshaled using a little-endian data representation,
+	// regardless of the data representation format label. For more information, see [C706]
+	// section 14.2.5.
+	//
+	// * If the *vt* field has the flag VT_ARRAY set, then *_varUnion* MUST be marshaled
+	// according to 2.2.30 ( 04e72b3f-5731-4508-9bb4-de29fbd0f781 ).
+	//
+	// * If the *vt* field has the flags VT_UNKNOWN or VT_DISPATCH set, then *_varUnion*
+	// MUST be marshaled according to [MS-DCOM] ( ../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0
+	// ) section 1.3.2.
+	//
+	// * If the *vt* field has the flag VT_RECORD set, then *_varUnion* field MUST be marshaled
+	// according to 2.2.28 ( 29ce0a4f-4786-49c9-a312-5522c1e9b44d ).
+	//
+	// * If the *vt* field has the flag VT_BSTR set, then *_varUnion* MUST be marshaled
+	// according to 2.2.23 ( 9c5a5ce4-ff5b-45ce-b915-ada381b34ac1 ).
+	//
+	// * If none of the preceding flags is specified in the *vt* field, the *_varUnion*
+	// field MUST be marshaled by using a little-endian data representation, regardless
+	// of the data representation format label.
 	VarUnion *Variant_VarUnion `idl:"name:_varUnion;switch_is:vt" json:"var_union"`
 }
 
@@ -2080,6 +2161,9 @@ func (o *Variant) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // Variant_VarUnion structure represents _VARIANT union anonymous member.
+//
+// The _wireVARIANT is a container for a union that in turn contains scalar and OLE
+// Automation data types.
 type Variant_VarUnion struct {
 	// Types that are assignable to Value
 	//
@@ -6809,13 +6893,91 @@ func (o *SafeArrayUnion_Hyper) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 }
 
 // SafeArray structure represents _SAFEARRAY RPC structure.
+//
+// The SAFEARRAY structure defines a multidimensional array of OLE automation types.
+// The definitions of SAFEARRAY data types provided in this section correspond to the
+// wire formats of these data types.<10>
 type SafeArray struct {
-	DimsCount      uint16            `idl:"name:cDims" json:"dims_count"`
-	Features       uint16            `idl:"name:fFeatures" json:"features"`
-	ElementsLength uint32            `idl:"name:cbElements" json:"elements_length"`
-	LocksCount     uint32            `idl:"name:cLocks" json:"locks_count"`
-	ArrayStructs   *SafeArrayUnion   `idl:"name:uArrayStructs" json:"array_structs"`
-	Bound          []*SafeArrayBound `idl:"name:rgsabound;size_is:(cDims)" json:"bound"`
+	// cDims:  MUST be set to the number of dimensions of the array. cDims MUST NOT be set
+	// to 0.
+	DimsCount uint16 `idl:"name:cDims" json:"dims_count"`
+	// fFeatures:  MUST be set to a combination of the bit flags specified in section 2.2.9.
+	Features uint16 `idl:"name:fFeatures" json:"features"`
+	// cbElements:  MUST be set to the size, in bytes, of an element in the SAFEARRAY, as
+	// specified in the table in section 2.2.8.
+	ElementsLength uint32 `idl:"name:cbElements" json:"elements_length"`
+	// cLocks:  If the fFeatures field contains FADF_HAVEVARTYPE (see section 2.2.9), the
+	// cLocks field MUST contain a VARIANT (section 2.2.7) type constant in its high word
+	// that specifies the type of the elements in the array. Otherwise, the high word of
+	// the cLocks field MUST be set to 0.
+	//
+	// The low word of the cLocks field MAY<11> be set to an implementation-specific value,
+	// and MUST be ignored on receipt.
+	LocksCount uint32 `idl:"name:cLocks" json:"locks_count"`
+	// uArrayStructs:  MUST be a SAFEARRAYUNION (section 2.2.30.9).
+	ArrayStructs *SafeArrayUnion `idl:"name:uArrayStructs" json:"array_structs"`
+	// rgsabound:  MUST contain an array of bounds, specifying the shape of the array. This
+	// array MUST be represented in reverse order. That is, for an array [0:5][0:2][0:10],
+	// the bounds would be represented as (10, 0), (2, 0), (5, 0).
+	//
+	// The following consistency statements MUST hold, where sfType is the discriminant
+	// field in the SAFEARRAYUNION data member.
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|    IF SFTYPE     |                              FFEATURES MUST BE SET                               |
+	//	|      EQUALS      |                                        TO                                        |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| SF_HAVEIID       | FADF_UNKNOWN | FADF_HAVEIID or FADF_DISPATCH | FADF_HAVEIID                      |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| SF_BSTR          | FADF_BSTR or FADF_BSTR | FADF_HAVEVARTYPE                                        |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| SF_UNKNOWN       | FADF_UNKNOWN or FADF_UNKNOWN | FADF_HAVEVARTYPE or FADF_UNKNOWN | FADF_HAVEIID   |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| SF_DISPATCH      | FADF_DISPATCH or FADF_DISPATCH | FADF_HAVEVARTYPE or FADF_DISPATCH |             |
+	//	|                  | FADF_HAVEIID                                                                     |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| SF_VARIANT       | FADF_VARIANT or FADF_VARIANT | FADF_HAVEVARTYPE                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| SF_RECORD        | FADF_RECORD                                                                      |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//
+	// If fFeatures field specifies FADF_HAVEVARTYPE, the following additional statements
+	// MUST hold, where vt is the high word of the cLocks field.
+	//
+	//	+--------------------------------------------+---------------------------+
+	//	|      IF VT (THE HIGH WORD OF CLOCKS)       |    SFTYPE MUST BE SET     |
+	//	|                   EQUALS                   |            TO             |
+	//	+--------------------------------------------+---------------------------+
+	//	+--------------------------------------------+---------------------------+
+	//	| VT_I1 VT_UI1                               | SF_I1                     |
+	//	+--------------------------------------------+---------------------------+
+	//	| VT_I2 VT_UI2 VT_BOOL                       | SF_I2                     |
+	//	+--------------------------------------------+---------------------------+
+	//	| VT_ERROR VT_I4 VT_UI4 VT_R4 VT_INT VT_UINT | SF_I4                     |
+	//	+--------------------------------------------+---------------------------+
+	//	| VT_I8 VT_UI8 VT_R8 VT_CY VT_DATE           | SF_I8                     |
+	//	+--------------------------------------------+---------------------------+
+	//	| VT_BSTR                                    | SF_BSTR                   |
+	//	+--------------------------------------------+---------------------------+
+	//	| VT_VARIANT                                 | SF_VARIANT                |
+	//	+--------------------------------------------+---------------------------+
+	//	| VT_UNKNOWN                                 | SF_UNKNOWN or SF_HAVEIID  |
+	//	+--------------------------------------------+---------------------------+
+	//	| VT_DISPATCH                                | SF_DISPATCH or SF_HAVEIID |
+	//	+--------------------------------------------+---------------------------+
+	//	| VT_RECORD                                  | SF_RECORD                 |
+	//	+--------------------------------------------+---------------------------+
+	//
+	// In addition, the type of vt MUST NOT equal VT_DECIMAL.
+	//
+	// If any of the consistency checks fail, the protocol implementation SHOULD<12>
+	//
+	// Data of this type MUST be marshaled as specified in [C706] section 14, with the exception
+	// that it MUST be marshaled by using a little-endian data representation, regardless
+	// of the data representation format label. For more information, see [C706] section
+	// 14.2.5.
+	Bound []*SafeArrayBound `idl:"name:rgsabound;size_is:(cDims)" json:"bound"`
 }
 
 func (o *SafeArray) xxx_PreparePayload(ctx context.Context) error {
@@ -8213,6 +8375,10 @@ type FuncDesc struct {
 	_ []int32 `idl:"name:lReserved1;size_is:(cReserved2)"`
 	// lprgelemdescParam:  MUST refer to an array of ELEMDESC that contains one entry for
 	// each element in the method's parameter table.
+	//
+	// The lprgelemdescParam array MUST NOT include parameters that are declared with the
+	// [lcid] or [retval] attributes if the value of funckind is FUNC_DISPATCH (as specified
+	// in section 3.1.4.4.2).
 	LprgelemdescParam []*ElemDesc `idl:"name:lprgelemdescParam;size_is:(cParams)" json:"lprgelemdesc_param"`
 	// funckind:  MUST be set to one of the values of the FUNCKIND (section 2.2.12) enumeration.
 	FuncKind FuncKind `idl:"name:funckind" json:"func_kind"`
@@ -9130,6 +9296,11 @@ type TypeLibAttribute struct {
 	// The value of syskind specifies the system pointer-size value. If syskind is SYS_WIN32,
 	// the system pointer-size value is 4. If syskind is SYS_WIN64, the system pointer-size
 	// value is 8.
+	//
+	// The system pointer-size value MUST be the size, in bytes, of the VT_INT_PTR and VT_UINT_PTR
+	// type variables created by the server (see section 2.2.7). It is used as a multiplier
+	// in the oVft field of a FUNCDESC (see section 2.2.42) and in the cbSizeVft field of
+	// a TYPEATTR (see section 2.2.44).
 	SystemKind SystemKind `idl:"name:syskind" json:"system_kind"`
 	// wMajorVerNum:  MUST be set to the major version number of the automation scope that
 	// is associated with the ITypeLib server, as specified in section 2.2.49.2.

@@ -57,6 +57,8 @@ type ObjectSinkClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call.
 	//
+	// WBEM_S_NO_ERROR (0x00)
+	//
 	// When the IWbemObjectSink::Indicate method is called for the first time, the server
 	// that implements the ObjectArray structure MUST return WBEM_S_NEW_STYLE if the execution
 	// of the method succeeds. If a server does not implement the ObjectArray structure,
@@ -74,6 +76,8 @@ type ObjectSinkClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// WBEM_S_NO_ERROR (0x00)
 	SetStatus(context.Context, *SetStatusRequest, ...dcerpc.CallOption) (*SetStatusResponse, error)
 
 	// AlterContext alters the client context.
@@ -745,6 +749,9 @@ type SetStatusRequest struct {
 	//	+---------------------------------+-------------------------------------------------------------+
 	//	| WBEM_STATUS_PROGRESS 0x00000002 | Indicates the progress state of the asynchronous operation. |
 	//	+---------------------------------+-------------------------------------------------------------+
+	//
+	// Any other DWORD value that does not match the condition shown MUST be treated as
+	// not valid and an error MUST be returned.
 	Flags int32 `idl:"name:lFlags" json:"flags"`
 	// hResult: The HRESULT value of the asynchronous operation or notification. This hResult
 	// MUST be the same HRESULT that the WMI client gets from the matching synchronous operation

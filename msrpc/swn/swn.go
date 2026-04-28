@@ -9,8 +9,9 @@
 // # Overview
 //
 // In highly available systems, there can be many instances of a service (for instance
-// an SMB3 file service [MS-SMB2]) running on a server or group of servers. These service
-// instances are accessed by clients through network DNS names and associated IP addresses.
+// an SMB3 file service [MS-SMB2]) that runs on a server or group of servers. These
+// service instances are accessed by clients through network DNS names and associated
+// IP addresses.
 //
 // The Service Witness Protocol enables a client application (for instance, an SMB3
 // client) to receive prompt and explicit notifications about the failure or recovery
@@ -119,11 +120,11 @@ type ResponseAsyncNotify struct {
 	//	+-------+----------------------------------------------------------------------------------+
 	//	|     2 | CLIENT_MOVE_NOTIFICATION                                                         |
 	//	+-------+----------------------------------------------------------------------------------+
-	//	|     3 | SHARE_MOVE_NOTIFICATION This value is applicable only for the server             |
-	//	|       | implementing version 2.                                                          |
+	//	|     3 | SHARE_MOVE_NOTIFICATION This value is applicable only for the server that        |
+	//	|       | implements version 2.                                                            |
 	//	+-------+----------------------------------------------------------------------------------+
-	//	|     4 | IP_CHANGE_NOTIFICATION This value is applicable only for the server implementing |
-	//	|       | version 2.                                                                       |
+	//	|     4 | IP_CHANGE_NOTIFICATION This value is applicable only for the server that         |
+	//	|       | implements version 2.                                                            |
 	//	+-------+----------------------------------------------------------------------------------+
 	MessageType uint32 `idl:"name:MessageType" json:"message_type"`
 	// Length:  Specifies the size of the MessageBuffer field, in bytes.
@@ -250,7 +251,7 @@ type InterfaceInfo struct {
 	// InterfaceGroupName:  The null-terminated string that specifies a name of the interface
 	// group.
 	InterfaceGroupName []uint16 `idl:"name:InterfaceGroupName" json:"interface_group_name"`
-	// Version:  The current version of the Witness Service running on the server.
+	// Version:  The current version of the Witness Service that runs on the server.
 	Version uint32 `idl:"name:Version" json:"version"`
 	// State:  The current state of the interface. This field MUST contain one of the following
 	// values:

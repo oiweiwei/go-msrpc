@@ -1,0 +1,46 @@
+<div class="content" name="FAX_SetOutboxConfiguration" uuid="91edc4a7-06c5-4aa6-86ee-4eb13d7c9559"><p>The fax client application calls the <b>FAX_SetOutboxConfiguration
+(Opnum 39)</b> method to set the current Outbox configuration such as the
+Discount Time.</p><p>In response, the server MUST validate whether the client&#39;s
+fax user account has access to set an outbound <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_efaa1290-6d4b-4f44-9e84-35a867069d45" data-linktype="relative-path">routing</a> configuration. On
+success, the server MUST modify its outbound routing configuration as specified
+by the client.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_SetOutboxConfiguration(
+   [in] handle_t hFaxHandle,
+   [in, ref] const PFAX_OUTBOX_CONFIG pOutboxCfg
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a>) or <b>FAX_ConnectionRefCount</b> (section
+<a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a>) method call
+used to connect to the fax server.</p><p><b>pOutboxCfg: </b>A pointer to an <b>FAX_OUTBOX_CONFIG</b> (section
+<a href="3c2cbec7-1881-4dd3-a914-17f4ddefebff" data-linktype="relative-path">2.2.16</a>) object
+containing configuration information.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. The client&#39;s fax user account does not have the required FAX_ACCESS_MANAGE_CONFIG authorization for this operation.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect. This error code is returned if any of the following conditions occur: § The dwSizeOfStruct member of the structure pointed at by the pOutboxCfg parameter is not the correct size for the FAX_OUTBOX_CONFIG. § The dtDiscountStart or dtDiscountEnd members of the structure pointed to by pOutboxCfg contain one or more invalid Hour (value greater than 24) or Minute (value greater than 60) fields.</td>
+ </tr><tr>
+  <td>ERROR_REGISTRY_CORRUPT 0x000003F7</td>
+  <td>The registry is corrupted. The structure of one of the files containing registry data is corrupted, or the system&#39;s memory image of the file is corrupted, or the file could not be recovered because the alternate copy or log was absent or corrupted.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

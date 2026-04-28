@@ -1,0 +1,86 @@
+<div class="content" name="RpcShowMessageBox" uuid="63915a11-630d-4ab6-86d1-1034fde1e386"><p>The RpcShowMessageBox method displays a message box, with
+specified message and title, in the target user session running on the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal
+server</a></span>. This method MUST be called after <span><a href="56ede88b-913b-4911-9540-389fddf879e5" data-linktype="relative-path">RpcOpenSession</a></span>. The
+caller MUST have WINSTATION_MSG permission for the session. The method checks
+whether the caller has WINSTATION_MSG permission (section <span><a href="4507e852-be3d-45b6-bc47-8ca0b552c94d" data-linktype="relative-path">3.1.1</a></span>)
+by setting it as the Access Request mask, and fails if the caller does not have
+the permission. </p><dl>
+<dd>
+<div><pre> HRESULT RpcShowMessageBox(
+   [in] SESSION_HANDLE hSession,
+   [in, string] WCHAR* szTitle,
+   [in, string] WCHAR* szMessage,
+   [in] ULONG ulStyle,
+   [in] ULONG ulTimeout,
+   [out] ULONG* pulResponse,
+   [in] BOOL bDoNotWait
+ );
+</pre></div>
+</dd></dl><p><b>hSession: </b>The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span> to the
+session returned by RpcOpenSession. This is of type <span><a href="08a45954-8173-43c6-aa10-7aeda48e8dc2" data-linktype="relative-path">SESSION_HANDLE</a></span>.</p><p><b>szTitle: </b>The title to assign to the message
+box.</p><p><b>szMessage: </b>The message to display inside the
+message box.</p><p><b>ulStyle: </b>Specifies the contents and behavior
+of the message box. This parameter can be a combination of flags specified for
+the <b>uType</b> parameter of the MessageBox function as defined in <span><a href="https://go.microsoft.com/fwlink/?LinkId=93359" data-linktype="external">[MSDN-MSGBOX]</a></span>.</p><p><b>ulTimeout: </b>The time in seconds for which to
+display the message box. This time-out value is managed by another system component
+which dismisses the message box if no user input is entered during this
+interval.</p><p><b>pulResponse: </b>Pointer to a variable that
+receives the user&#39;s response, which can be one of the following values. The
+values defined in [MSDN-MSGBOX].</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IDABORT 3</td>
+  <td>The Abort button was selected.</td>
+ </tr><tr>
+  <td>IDCANCEL 2</td>
+  <td>The Cancel button was selected.</td>
+ </tr><tr>
+  <td>IDIGNORE 5</td>
+  <td>The Ignore button was selected.</td>
+ </tr><tr>
+  <td>IDNO 7</td>
+  <td>The No button was selected.</td>
+ </tr><tr>
+  <td>IDOK 1</td>
+  <td>The OK button was selected.</td>
+ </tr><tr>
+  <td>IDRETRY 4</td>
+  <td>The Retry button was selected.</td>
+ </tr><tr>
+  <td>IDYES 6</td>
+  <td>The Yes button was selected.</td>
+ </tr><tr>
+  <td>IDASYNC 32001</td>
+  <td>The bDoNotWait parameter was TRUE, so the function returned without waiting for a response.</td>
+ </tr><tr>
+  <td>IDTIMEOUT 32000</td>
+  <td>The bDoNotWait parameter was FALSE and the time-out interval elapsed.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>bDoNotWait: </b>Set to FALSE to wait for the
+message box to time-out or close, TRUE otherwise.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Successful completion.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

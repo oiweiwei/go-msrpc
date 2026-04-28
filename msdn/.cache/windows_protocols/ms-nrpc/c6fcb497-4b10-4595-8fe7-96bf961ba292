@@ -1,0 +1,22 @@
+<div class="content" name="NLPR_CR_CIPHER_VALUE" uuid="c6fcb497-4b10-4595-8fe7-96bf961ba292"><p>The <b>NLPR_CR_CIPHER_VALUE</b> structure defines an
+encrypted string buffer that contains the value of an <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9e5f2104-d6df-4ae7-8a5c-6bd14a0da8fa" data-linktype="relative-path">LSA</a></span> Secret Object as
+specified in <span><a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _NLPR_CR_CIPHER_VALUE {
+   ULONG Length;
+   ULONG MaximumLength;
+   [size_is(MaximumLength), length_is(Length)] 
+     UCHAR * Buffer;
+ } NLPR_CR_CIPHER_VALUE,
+  *PNLPR_CR_CIPHER_VALUE;
+</pre></div>
+</dd></dl><p><b>Length:</b> The length, in bytes, of the used
+portion of the buffer.</p><p><b>MaximumLength:</b> The maximum length, in bytes,
+of the buffer.</p><p><b>Buffer:</b> A pointer to a buffer that contains
+the secret data encrypted with the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session key</a></span> used on
+the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure
+channel</a></span> between the client and the server exchanging this data
+structure. The encryption algorithm is <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_d57eac33-f561-4a08-b148-dfcf29cfb4d8" data-linktype="relative-path">RC4</a></span> if the flag C is
+set in the negotiated flags between the client and the server as detailed in
+section <span><a href="5805bc9f-e4c9-4c8a-b191-3c3a7de7eeed" data-linktype="relative-path">3.1.4.2</a></span>; otherwise
+the encryption algorithm is DES. </p></div>

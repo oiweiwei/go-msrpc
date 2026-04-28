@@ -1,0 +1,56 @@
+<div class="content" name="SEQUENCE_INFO" uuid="916eb937-10ba-48f0-b4d5-768e695cf2a2"><p>The SEQUENCE_INFO (Packet) stores the sequence information
+about the applicable <a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>
+in a message stream sent from a given sending computer to a given destination <a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">SeqID</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">SeqNo</td>
+ </tr>
+ <tr>
+  <td colspan="32">PrevNo</td>
+ </tr>
+</tbody></table><p><b>SeqID (8 bytes): </b> A 64-bit signed integer that
+specifies a sequence identifier.</p><p><b>SeqNo (4 bytes): </b>A 32-bit unsigned integer
+that specifies the sequence number of a message within the sequence identified
+by the <b>SeqID</b> field.</p><p><b>PrevNo (4 bytes): </b>A 32-bit unsigned integer
+that specifies the sequence number of the message previous to the message
+indicated by the <b>SeqNo</b> field within the sequence identified by the <b>SeqID</b>
+field.</p></div>

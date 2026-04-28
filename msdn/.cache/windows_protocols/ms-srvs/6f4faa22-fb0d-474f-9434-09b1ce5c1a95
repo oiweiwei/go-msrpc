@@ -1,0 +1,75 @@
+<div class="content" name="NetrServerTransportDelEx" uuid="6f4faa22-fb0d-474f-9434-09b1ce5c1a95"><p>The <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+receives the NetrServerTransportDelEx method in an RPC_REQUEST packet. In
+response, the server unbinds (or disconnects) the transport protocol from the
+server. If this method succeeds, the server can no longer communicate with <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">clients</a> by using the
+specified transport protocol (such as TCP or XNS). This extended method allows
+level 1 beyond what the <a href="4f8f58af-efa3-420a-953f-cbcfc8d2e3f3" data-linktype="relative-path">NetrServerTransportDel</a>
+method allows.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrServerTransportDelEx(
+   [in, string, unique] SRVSVC_HANDLE ServerName,
+   [in] DWORD Level,
+   [in, switch_is(Level)] LPTRANSPORT_INFO Buffer
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>An <a href="5f8329ee-1965-4ea1-ad35-3b29fbb63232" data-linktype="relative-path">SRVSVC_HANDLE (section 2.2.1.1)</a>
+pointer that identifies the server. The client MUST map this structure to an
+RPC binding handle (see <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+sections 4.3.5 and 5.1.5.2). The server MUST ignore this parameter.</p><p><b>Level: </b>Specifies the information level of the
+data. It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0</td>
+  <td>The buffer is of type SERVER_XPORT_INFO_0_CONTAINER.</td>
+ </tr><tr>
+  <td>1</td>
+  <td>The buffer is of type SERVER_XPORT_INFO_1_CONTAINER.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Buffer: </b>A pointer to the <a href="7e653b12-6402-4320-b096-8916430426ac" data-linktype="relative-path">TRANSPORT_INFO</a> union that
+contains information about the transport. The value of the <i>Level</i>
+parameter determines the type of the contents of the <i>Buffer</i> parameter,
+as the preceding table shows.</p><p><b>Return Values: </b>The method returns 0x00000000
+(NERR_Success) to indicate success; otherwise, it returns a nonzero error code.
+The method can take any specific error code value, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.<a id="Appendix_A_Target_100"></a><a aria-label="Product behavior note 100" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_100" data-linktype="relative-path">&lt;100&gt;</a></p><p>The <i>Level</i> parameter determines the type of structure
+the client has used to specify information about the new transport. Valid
+values are 0 and 1. If the <i>Level</i> parameter is not equal to one of the
+valid values, the server MUST fail the call with an ERROR_INVALID_LEVEL error
+code. </p><p>If the <i>Level</i> parameter is 0, the Buffer parameter
+points to a <a href="7f7ab460-848a-4053-b311-fe56b53d628a" data-linktype="relative-path">SERVER_TRANSPORT_INFO_0</a>
+structure. If the Level parameter is 1, the Buffer parameter points to a <a href="0950454f-d40b-4836-a8b2-a41f7cdbbad8" data-linktype="relative-path">SERVER_TRANSPORT_INFO_1</a>
+structure.</p><p>The server MUST validate all information that is provided in
+the SERVER_TRANSPORT_INFO structure in an implementation-specific manner, and,
+if any member of the structure is found to be invalid, the server MUST fail the
+call with an ERROR_INVALID_PARAMETER error code.</p><p>The server MUST look up the Transport in the <b>TransportList</b>,
+where <b>Transport.Name</b> matches the caller-supplied <i>svti*_transportname</i>
+and <b>Transport.ServerName</b> matches the caller-supplied <i>svti*_
+transportaddress</i>. If a match is not found, the server MUST return
+NERR_NetNameNotFound  to the caller. </p><p>If a match is found, the server MUST invoke the events
+described in <a href="../ms-cifs/d416ff7c-c536-406e-a951-4f04b2fd1d2b" data-linktype="relative-path">[MS-CIFS]</a>
+section <a href="../ms-cifs/a0a15b40-1d97-4912-aa03-48f78e46a85e" data-linktype="relative-path">3.3.4.17</a>
+and <a href="../ms-smb2/5606ad47-5ee0-437a-817e-70c366052962" data-linktype="relative-path">[MS-SMB2]</a>
+section <a href="../ms-smb2/5fc9f24b-4278-4c58-98be-312c6c089630" data-linktype="relative-path">3.3.4.21</a>,
+passing <i>Transport.ServerName</i>, <i>Transport.Name</i>, and a transport
+enable flag set to FALSE as the parameters. This means that the SMB file server
+can no longer initiate communications with clients by using the specified
+transport protocol (such as SMB2 over Direct TCP).<a id="Appendix_A_Target_101"></a><a aria-label="Product behavior note 101" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_101" data-linktype="relative-path">&lt;101&gt;</a></p><p>If both the CIFS and SMB2 servers return
+ERROR_NOT_SUPPORTED, the server MUST return ERROR_NOT_SUPPORTED (0x00000032) to
+the caller. If both the CIFS and SMB2 servers return an error other than
+ERROR_NOT_SUPPORTED, the server must fail the call with an
+implementation-dependent error. </p><p>If either the CIFS or SMB2 server returns STATUS_SUCCESS,
+the server MUST remove <b>Transport</b> from <b>TransportList</b> and from the
+persistent store, free the transport object and return NERR_Success. </p><p>The server SHOULD<a id="Appendix_A_Target_102"></a><a aria-label="Product behavior note 102" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_102" data-linktype="relative-path">&lt;102&gt;</a>
+enforce security measures to verify that the caller has the required
+permissions to execute this call. If the caller does not have the required
+credentials, the server SHOULD<a id="Appendix_A_Target_103"></a><a aria-label="Product behavior note 103" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_103" data-linktype="relative-path">&lt;103&gt;</a> fail
+the call.</p></div>

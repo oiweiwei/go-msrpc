@@ -667,6 +667,8 @@ type SetRemoteUserCategoriesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 	// bstrRemoteUserCategoriesInfo: A string that specifies categories of remote session
 	// users, in the format of a Users element (section 2.2.5.30).
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
 	RemoteUserCategoriesInfo *oaut.String `idl:"name:bstrRemoteUserCategoriesInfo" json:"remote_user_categories_info"`
 }
 

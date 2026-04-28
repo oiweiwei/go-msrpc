@@ -1,0 +1,180 @@
+<div class="content" name="Initialize_Phone" uuid="a600d262-0bb1-447b-8a0d-6f57d3a8ec18"><p>The Initialize packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet initializes the application&#39;s use of TAPI for the
+subsequent use of the phone functions in the TAPI. It registers the
+application&#39;s specified notification mechanism and returns the number of phone
+devices that are available to the application.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Req_Func</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved1</td>
+ </tr>
+ <tr>
+  <td colspan="32">hPhoneApp</td>
+ </tr>
+ <tr>
+  <td colspan="32">hInstance</td>
+ </tr>
+ <tr>
+  <td colspan="32">InitContext</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwFriendlyNameOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwNumDevs</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwModuleNameOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwAPIVersion</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved2</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved3</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved4</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved5</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved6</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved7</td>
+ </tr>
+ <tr>
+  <td colspan="32">VarData (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>The identifier of the
+function that will be invoked on the remote server. This value MUST be set to
+106.</p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+MUST contain the result of the encapsulated telephony request. A value of 0
+indicates success and a <a href="b1c6fae0-09ca-4f7b-85f6-1324376d231c" data-linktype="relative-path">PHONEERR_Constants</a>
+value indicates failure. The remote server MUST complete this call
+synchronously.</p>
+</dd>
+<dd>
+<p>Returns zero if the request succeeds or a negative
+error number if an error occurs. Common return values are:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>PHONEERR_INVALAPPNAME</td>
+  <td>0x00000008</td>
+ </tr><tr>
+  <td>PHONEERR_INIFILECORRUPT</td>
+  <td>0x00000005</td>
+ </tr><tr>
+  <td>PHONEERR_INVALPOINTER</td>
+  <td>0x00000015</td>
+ </tr><tr>
+  <td>PHONEERR_NOMEM</td>
+  <td>0x0000001A</td>
+ </tr><tr>
+  <td>PHONEERR_OPERATIONFAILED</td>
+  <td>0x0000001C</td>
+ </tr><tr>
+  <td>PHONEERR_REINIT</td>
+  <td>0x00000023</td>
+ </tr><tr>
+  <td>PHONEERR_RESOURCEUNAVAIL</td>
+  <td>0x0000001F</td>
+ </tr><tr>
+  <td>PHONEERR_NODEVICE</td>
+  <td>0x00000018</td>
+ </tr><tr>
+  <td>PHONEERR_NODRIVER</td>
+  <td>0x00000019</td>
+ </tr><tr>
+  <td>PHONEERR_INVALPARAM</td>
+  <td>0x00000012</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hPhoneApp (4 bytes): </b>An <a href="55b72ff6-9236-401b-846a-e8a78dfada1b" data-linktype="relative-path">HPHONEAPP</a>. Upon successful
+completion of the request, this field contains the client usage handle for TAPI
+phone requests. </p><p><b>hInstance (4 bytes): </b>An unsigned 32-bit
+integer. Unused and MUST be ignored by the server.</p><p><b>InitContext (4 bytes): </b>An unsigned 32-bit
+integer. The instance handle of the client application.</p><p><b>dwFriendlyNameOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of the variable data
+area to a null-terminated Unicode string that contains the display name of the
+client. For remote clients, this name is the remote computer name.</p><p><b>dwNumDevs (4 bytes): </b>An unsigned 32-bit
+integer. Upon successful completion of the request, this field MUST contain the
+number of phone devices that are available to the client. </p><p><b>dwModuleNameOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of the variable data
+area to a null-terminated Unicode string that contains the display name of the
+client. For remote clients, this name MUST be the remote computer name.</p><p><b>dwAPIVersion (4 bytes): </b>An unsigned 32-bit
+integer. The highest TAPI version that is supported by the client. </p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>VarData (variable): </b>Contains the
+null-terminated Unicode strings that are indicated by the dwFriendlyNameOffset
+and dwModuleNameOffset fields. </p><dl>
+<dd>
+<p>The contents of this field are DWORD-aligned.</p>
+</dd></dl></div>

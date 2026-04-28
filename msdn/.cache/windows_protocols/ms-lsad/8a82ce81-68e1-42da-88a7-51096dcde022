@@ -1,0 +1,43 @@
+<div class="content" name="LsarSetInformationPolicy" uuid="8a82ce81-68e1-42da-88a7-51096dcde022"><p>The LsarSetInformationPolicy method is invoked to set a
+policy on the server.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarSetInformationPolicy(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] POLICY_INFORMATION_CLASS InformationClass,
+   [in, switch_is(InformationClass)] 
+     PLSAPR_POLICY_INFORMATION PolicyInformation
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+obtained from either <span><a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a></span> or <span><a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a></span>.</p><p><b>InformationClass: </b>A parameter that specifies
+what type of information the caller is setting.</p><p><b>PolicyInformation: </b>Data that represents the
+policy being set.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 STATUS_SUCCESS</td>
+  <td>The request was successfully completed.</td>
+ </tr><tr>
+  <td>0xC0000022 STATUS_ACCESS_DENIED</td>
+  <td>The caller does not have the permissions to perform this operation.</td>
+ </tr><tr>
+  <td>0xC000000D STATUS_INVALID_PARAMETER</td>
+  <td>One of the parameters is incorrect. For instance, this can happen if InformationClass is not supported or some of the supplied policy data is invalid.</td>
+ </tr><tr>
+  <td>0xC0000002 STATUS_NOT_IMPLEMENTED</td>
+  <td>This information class cannot be set.</td>
+ </tr><tr>
+  <td>0xC0000008 STATUS_INVALID_HANDLE</td>
+  <td>PolicyHandle is not a valid handle.</td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message MUST be processed in an identical manner to <span><a href="fc14e9ae-a26e-4031-809e-a908dd3e13a3" data-linktype="relative-path">LsarSetInformationPolicy2</a></span>.</p></div>

@@ -1,0 +1,78 @@
+<div class="content" name="IGMP_MIB_GET_INPUT_DATA" uuid="7a931cdc-e37b-4bf5-ac39-34cdded2dd49"><p>The <b>IGMP_MIB_GET_INPUT_DATA</b> structure is passed as
+input data for the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span>  </span></p>
+</li></ul><p>All IP addresses MUST be in network order.</p><dl>
+<dd>
+<div><pre> typedef struct _IGMP_MIB_GET_INPUT_DATA {
+   DWORD TypeId;
+   USHORT Flags;
+   USHORT Signature;
+   DWORD IfIndex;
+   DWORD RasClientAddr;
+   DWORD GroupAddr;
+   DWORD Count;
+ } IGMP_MIB_GET_INPUT_DATA,
+  *PIGMP_MIB_GET_INPUT_DATA;
+</pre></div>
+</dd></dl><p><b>TypeID: </b>Specifies the type of entry being
+requested. It MUST be one of the following, otherwise an error is returned.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IGMP_IF_STATS_ID 0x00000004</td>
+  <td>The Internet Group Management Protocol (IGMP) statistics for an interface. If TypeID is set to this value, Count MUST be nonzero.</td>
+ </tr><tr>
+  <td>IGMP_IF_GROUPS_LIST_ID 0x00000005</td>
+  <td>The list of multicast group members on an interface. If TypeID is set to this value, Count MUST be nonzero.</td>
+ </tr><tr>
+  <td>IGMP_GROUP_IFS_LIST_ID 0x00000006</td>
+  <td>The list of interfaces joined for a group. If TypeID is set to this value, Count MUST be nonzero and GroupAddr MUST match a valid existing IGMP group address.</td>
+ </tr><tr>
+  <td>IGMP_PROXY_IF_INDEX_ID 0x00000007</td>
+  <td>Returns the index of the interface owned by the IGMP proxy. RMIBEntryGetNext is invalid as there is only one proxy interface and ERROR_NO_MORE_ITEMS is returned.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Flags: </b>This MUST be one of the following
+combinations, otherwise an error is returned.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IGMP_ENUM_FOR_RAS_CLIENTS 0x00000001</td>
+  <td>Enumerate for RAS clients only.</td>
+ </tr><tr>
+  <td>IGMP_ENUM_ONE_ENTRY 0x00000002</td>
+  <td>Return only one interface group entry.</td>
+ </tr><tr>
+  <td>IGMP_ENUM_ALL_INTERFACES_GROUPS 0x00000004</td>
+  <td>Enumerate all interfaces. If enumeration reaches end of an interface, it will go to the next interface.</td>
+ </tr><tr>
+  <td>IGMP_ENUM_ALL_TABLES 0x00000010</td>
+  <td>Enumerate all tables.</td>
+ </tr><tr>
+  <td>IGMP_ENUM_SUPPORT_FORMAT_IGMPV3 0x00000010</td>
+  <td>Set if IGMPv3 is supported.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Signature: </b>This MUST be set to zero (0).</p><p><b>IfIndex: </b>The index of the interface for which information
+needs to be retrieved.</p><p><b>RasClientAddr: </b>The address of the RAS client
+for which information needs to be retrieved.</p><p><b>GroupAddr: </b>The IGMP group address for which
+information needs to be retrieved.</p><p><b>Count: </b>The count of entries that need to be
+retrieved.</p></div>

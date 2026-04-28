@@ -1,0 +1,12 @@
+<div class="content" name="NLPR_SID_INFORMATION" uuid="e936e7db-27cb-40dd-acf7-eec6ac0e9ed5"><p>The <b>NLPR_SID_INFORMATION</b> structure is used to form a
+wrapper for a <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span>; it is used to
+transmit a SID during certain replication operations. See section <span><a href="f28f9dc8-eeb2-4112-9eec-a466f639c761" data-linktype="relative-path">3.6</a></span>
+for details.</p><dl>
+<dd>
+<div><pre> typedef struct _NLPR_SID_INFORMATION {
+   PRPC_SID SidPointer;
+ } NLPR_SID_INFORMATION,
+  *PNLPR_SID_INFORMATION;
+</pre></div>
+</dd></dl><p><b>SidPointer:</b> A pointer to a SID structure (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">2.4.2.3</a></span>).</p></div>

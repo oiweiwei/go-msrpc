@@ -102,6 +102,18 @@ type AccountingServer interface {
 	// column while there are some columns in the group column collection. The following
 	// sample AccountingQueryCondition XML (section 2.2.5.5) SHOULD return this error:
 	//
+	// <AccountingQueryCondition>
+	//      <SelectFieldCollection>
+	//          <Column>ProcessName</Column>
+	//          <Column>ProcessId</Column>
+	//      </SelectFieldCollection>
+	//      <GroupColumnCollection>
+	//          <Column>ProcessName</Column>
+	//      </GroupColumnCollection>
+	//      <OrderColumnCollection />
+	//      <HavingClause />
+	//  </AccountingQueryCondition>
+	//
 	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	ExecuteAccountingQuery(context.Context, *ExecuteAccountingQueryRequest) (*ExecuteAccountingQueryResponse, error)
 

@@ -1,0 +1,48 @@
+<div class="content" name="DHCP_FILTER_GLOBAL_INFO" uuid="94f51622-4b9c-48f2-8c2e-11f9a71d5046"><p>The <b>DHCP_FILTER_GLOBAL_INFO</b> structure contains
+information regarding enabling/disabling the allow and deny filter lists.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_FILTER_GLOBAL_INFO {
+   BOOL EnforceAllowList;
+   BOOL EnforceDenyList;
+ } DHCP_FILTER_GLOBAL_INFO,
+  *LPDHCP_FILTER_GLOBAL_INFO;
+</pre></div>
+</dd></dl><p><b>EnforceAllowList:</b>  This is of type <a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a> and
+specifies whether the allow list is enabled or disabled.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>BOOL</p>
+   </th>
+   <th>
+   <p>MEANING</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>TRUE 1</td>
+  <td>The allow list is enabled.</td>
+ </tr><tr>
+  <td>FALSE 0</td>
+  <td>The allow list is disabled.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>EnforceDenyList:</b>  This is of type
+BOOL and specifies whether the deny list is enabled or disabled.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>BOOL</p>
+   </th>
+   <th>
+   <p>MEANING</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>TRUE 1</td>
+  <td>The deny list is enabled.</td>
+ </tr><tr>
+  <td>FALSE 0</td>
+  <td>The deny list is disabled.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

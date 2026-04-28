@@ -1,0 +1,38 @@
+<div class="content" name="IAppHostAdminManager" uuid="0d8b3e85-b028-42a1-a373-3fbb8be6e57e"><p>The IAppHostAdminManager interface represents a read-only <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> to an
+administration system that is implemented on the server. </p><p>The administration system consists primarily of a set of
+administration objects of varying complexity, which are accessed through the <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a> interface
+(section 3.1.4.12) and exist at one or more paths that are exposed by the
+server. The administration system allows access to individual IAppHostElement
+objects that are available at specific paths and also provides access to merged
+IAppHostElement objects that consist of the merged contents of individual
+IAppHostElement objects. </p><p>Secondarily, the administration system provides access to,
+and the setting of, specific system behaviors that are available for
+administration objects, which are represented by the term &#34;metadata&#34;.
+Metadata allows a caller to modify and inspect the behavior of the
+administration system. </p><p>The IAppHostAdminManager interface is used by clients to
+access (for read-only purposes) the contents of the administration system
+without altering the contents of the system. A tool that seeks to display the
+administration objects that are contained in the system is an example of a
+consumer of the IAppHostAdminManager interface.</p><p>The IAppHostAdminManager interface inherits <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnums</a> 0–2 from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>GetAdminSection</td>
+  <td>Opnum: 3</td>
+ </tr><tr>
+  <td>GetMetadata</td>
+  <td>Opnum: 4</td>
+ </tr><tr>
+  <td>SetMetadata</td>
+  <td>Opnum: 5</td>
+ </tr><tr>
+  <td>ConfigManager</td>
+  <td>Opnum: 6</td>
+ </tr></tbody></table><p> </p></div>

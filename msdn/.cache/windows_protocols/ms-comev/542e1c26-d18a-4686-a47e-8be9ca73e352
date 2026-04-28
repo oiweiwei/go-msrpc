@@ -1,0 +1,122 @@
+<div class="content" name="IEventSubscription" uuid="542e1c26-d18a-4686-a47e-8be9ca73e352"><p>The IEventSubscription interface provides methods to get and
+set the properties of a <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_f362c255-5746-44db-aa04-e8060543a19c" data-linktype="relative-path">subscription</a></span>. This
+interface inherits opnums 0 through 6 from <span><a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a></span>
+IDispatch as specified in [MS-OAUT] section <span><a href="../ms-oaut/ac9c502b-ac1c-4202-8ad4-048ac98afcc9" data-linktype="relative-path">3.1.4</a></span>.
+The version for this interface is 0.0.</p><p>To receive incoming remote calls for this interface, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+MUST implement a DCOM <span><a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a></span>
+<span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object
+class</a></span> with the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">class ID</a></span>
+CLSID_Subscription (see section <span><a href="25e89236-b0b3-4d8b-b1fb-64e0e9f0e156" data-linktype="relative-path">1.9</a></span>) using the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+{4A6B0E15-2E38-11D1-9965-00C04FBBB345} for this interface.</p><p>The interface includes the following methods beyond those in
+IDispatch.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>get_SubscriptionID</td>
+  <td>Gets the SubscriptionID property of the subscription. Opnum: 7</td>
+ </tr><tr>
+  <td>put_SubscriptionID</td>
+  <td>Sets the SubscriptionID property of the subscription. Opnum: 8</td>
+ </tr><tr>
+  <td>get_SubscriptionName</td>
+  <td>Gets the SubscriptionName property of the subscription. Opnum: 9</td>
+ </tr><tr>
+  <td>put_SubscriptionName</td>
+  <td>Sets the SubscriptionName property of the subscription. Opnum: 10</td>
+ </tr><tr>
+  <td>get_PublisherID</td>
+  <td>Gets the PublisherID property of the subscription. Opnum: 11</td>
+ </tr><tr>
+  <td>put_PublisherID</td>
+  <td>Sets the PublisherID property of the subscription. Opnum: 12</td>
+ </tr><tr>
+  <td>get_EventClassID</td>
+  <td>Gets the EventClassID property of the subscription. Opnum: 13</td>
+ </tr><tr>
+  <td>put_EventClassID</td>
+  <td>Sets the EventClassID property of the subscription. Opnum: 14</td>
+ </tr><tr>
+  <td>get_MethodName</td>
+  <td>Gets the MethodName property of the subscription. Opnum: 15</td>
+ </tr><tr>
+  <td>put_MethodName</td>
+  <td>Sets the MethodName property of the subscription. Opnum: 16</td>
+ </tr><tr>
+  <td>get_SubscriberCLSID</td>
+  <td>Gets the SubscriberCLSID property of the subscription.  Opnum: 17</td>
+ </tr><tr>
+  <td>put_SubscriberCLSID</td>
+  <td>Sets the SubscriberCLSID property of the subscription. Opnum: 18</td>
+ </tr><tr>
+  <td>get_SubscriberInterface</td>
+  <td>Gets the SubscriberInterface property of the subscription. Opnum: 19</td>
+ </tr><tr>
+  <td>put_SubscriberInterface</td>
+  <td>Sets the SubscriberInterface property of the subscription. Opnum: 20</td>
+ </tr><tr>
+  <td>get_PerUser</td>
+  <td>Gets the PerUser property of the subscription. Opnum: 21</td>
+ </tr><tr>
+  <td>put_PerUser</td>
+  <td>Sets the PerUser property of the subscription. Opnum: 22</td>
+ </tr><tr>
+  <td>get_OwnerSID</td>
+  <td>Gets the OwnerSID property of the subscription. Opnum: 23</td>
+ </tr><tr>
+  <td>put_OwnerSID</td>
+  <td>Sets the OwnerSID property of the subscription. Opnum: 24</td>
+ </tr><tr>
+  <td>get_Enabled</td>
+  <td>Gets the Enabled property of the subscription. Opnum: 25</td>
+ </tr><tr>
+  <td>put_Enabled</td>
+  <td>Sets the Enabled property of the subscription. Opnum: 26</td>
+ </tr><tr>
+  <td>get_Description</td>
+  <td>Gets the Description property of the subscription. Opnum: 27</td>
+ </tr><tr>
+  <td>put_Description</td>
+  <td>Sets the Description property of the subscription. Opnum: 28</td>
+ </tr><tr>
+  <td>get_MachineName</td>
+  <td>Gets the MachineName property of the subscription. Opnum: 29</td>
+ </tr><tr>
+  <td>put_MachineName</td>
+  <td>Sets the MachineName property of the subscription. Opnum: 30</td>
+ </tr><tr>
+  <td>GetPublisherProperty</td>
+  <td>Gets the application-specific publisher property for the subscription. Opnum: 31</td>
+ </tr><tr>
+  <td>PutPublisherProperty</td>
+  <td>Sets the application-specific publisher property for the subscription. Opnum: 32</td>
+ </tr><tr>
+  <td>RemovePublisherProperty</td>
+  <td>Removes an application-specific publisher property for the subscription. Opnum: 33</td>
+ </tr><tr>
+  <td>GetPublisherPropertyCollection</td>
+  <td>Gets an application-specific publisher properties collection for the subscription. Opnum: 34</td>
+ </tr><tr>
+  <td>GetSubscriberProperty</td>
+  <td>Gets an application-specific subscription property for the subscription. Opnum: 35</td>
+ </tr><tr>
+  <td>PutSubscriberProperty</td>
+  <td>Sets an application-specific subscription property for the subscription. Opnum: 36</td>
+ </tr><tr>
+  <td>RemoveSubscriberProperty</td>
+  <td>Removes an application-specific subscription property for the subscription. Opnum: 37</td>
+ </tr><tr>
+  <td>GetSubscriberPropertyCollection</td>
+  <td>Gets the application-specific subscription properties for the subscription as a collection. Opnum: 38</td>
+ </tr><tr>
+  <td>get_InterfaceID</td>
+  <td>Gets the InterfaceID property for the subscription. Opnum: 39</td>
+ </tr><tr>
+  <td>put_InterfaceID</td>
+  <td>Sets the InterfaceID property for the subscription. Opnum: 40</td>
+ </tr></tbody></table><p> </p></div>

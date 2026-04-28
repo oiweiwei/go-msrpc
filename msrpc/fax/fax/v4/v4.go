@@ -5900,6 +5900,9 @@ type ConnectionReferenceCountRequest struct {
 	//	|                       | FAX_ConnectionRefCount with a Connect value of 0 (Disconnect).                   |
 	//	+-----------------------+----------------------------------------------------------------------------------+
 	//
+	// If FAX_ConnectionRefCount is called in a sequence, and varying values are given for
+	// this parameter on the same Handle, the following holds true:
+	//
 	// *
 	//
 	// The call sequence SHOULD have values for the Connect argument in the following order:
@@ -7072,6 +7075,11 @@ type SetJobRequest struct {
 	//	+-----------------------+----------------------------------------------------------------------------------+
 	//	| JC_RESTART 0x00000003 | The fax server MUST restart the specified fax job.                               |
 	//	+-----------------------+----------------------------------------------------------------------------------+
+	//
+	// Note  that JC_RESUME and JC_RESTART are both defined to the same value. When receiving
+	// either a JC_RESUME or JC_RESTART FAX_SetJob request, the server MUST restart the
+	// job if the Job Status (section 3.1.1) is JS_RETRIES_EXCEEDED (_FAX_JOB_ENTRY (section
+	// 2.2.6)); otherwise, the server MUST resume the job.
 	Command uint32 `idl:"name:Command" json:"command"`
 }
 
@@ -24346,6 +24354,12 @@ type ConnectFaxServerResponse struct {
 	// lpdwServerAPIVersion: A pointer to a DWORD that contains the protocol and fax API
 	// version of the fax server that is reported back by the fax server to the fax client.
 	// This value MUST be one of the constants defined in section 2.2.85.
+	//
+	// The fax client SHOULD use this value to determine which fax specific error codes
+	// are to be expected from the fax server, and also to determine which fax server methods
+	// are implemented by the fax server. The methods which are to be implemented differently
+	// depending on the protocol and fax API version have version differences documented
+	// in their respective subsections.
 	ServerAPIVersion uint32 `idl:"name:lpdwServerAPIVersion;pointer:ref" json:"server_api_version"`
 	// pHandle: The connection handle returned by the fax server. The client MUST use this
 	// connection handle as the Handle argument for the FAX_ConnectionRefCount call made
@@ -24555,6 +24569,9 @@ func (o *xxx_GetSecurityExOperation) UnmarshalNDRResponse(ctx context.Context, w
 type GetSecurityExRequest struct {
 	// SecurityInformation: Defines the desired entries, which are indicated as a bitwise
 	// OR operation, in the security descriptor to return.
+	//
+	// SecurityInformation MUST be a bitwise combination of the following four values only
+	// found in the SECURITY_INFORMATION ([MS-DTYP] section 2.4.7) datatype:
 	//
 	// §  OWNER_SECURITY_INFORMATION 0x00000001
 	//
@@ -28511,6 +28528,9 @@ type GetGeneralConfigurationResponse struct {
 	//
 	// § A null-terminated, wide character string that indicates the archive folder location
 	// on the fax server file system.
+	//
+	// The lpcwstrArchiveLocation member of the FAX_GENERAL_CONFIG contains the offset to
+	// this string in the buffer.
 	Buffer []byte `idl:"name:Buffer;size_is:(, BufferSize)" json:"buffer"`
 	// BufferSize: A pointer to a DWORD ([MS-DTYP] section 2.2.9) value that specifies the
 	// size, in bytes, of the buffer that is pointed to by the Buffer parameter.
@@ -28958,6 +28978,9 @@ type GetSecurityEx2Request struct {
 	// SecurityInformation: Defines the desired entries, which are indicated as a bitwise
 	// OR operation, in the security descriptor to return.
 	//
+	// SecurityInformation MUST be a bitwise combination of the following four values found
+	// in the SECURITY_INFORMATION ([MS-DTYP] section 2.4.7) datatype:
+	//
 	// §  OWNER_SECURITY_INFORMATION: 0x00000001
 	//
 	// §  GROUP_SECURITY_INFORMATION: 0x00000002
@@ -28974,6 +28997,8 @@ type GetSecurityEx2Request struct {
 	//
 	// § Request for access to set or get SACL (requested if one of the bits in SecurityInformation
 	// is set by an OR operation with SACL_SECURITY_INFORMATION)
+	//
+	// For more information, see the description of the SECURITY_INFORMATION bit flags.
 	SecurityInformation uint32 `idl:"name:SecurityInformation" json:"security_information"`
 }
 

@@ -1201,6 +1201,10 @@ type DevMode struct {
 	// multiple of 4. This value does not include the length of any private, printer driver–specific
 	// data that follows the _DEVMODE structure's public fields. The size of private data
 	// is specified by the dmDriverExtra value.
+	//
+	// If the _DEVMODE structure contains truncated public information, the value of dmSize
+	// is at least the size, in bytes, of a subset of fields, from dmDeviceName up to and
+	// including dmFields, plus fields that are initialized as specified by dmFields.
 	Size uint16 `idl:"name:dmSize" json:"size"`
 	// dmDriverExtra (2 bytes): The size, in bytes, of the private, printer driver–specific
 	// data that follows this structure.
@@ -2273,6 +2277,9 @@ func (o *DriverInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 //
 // All members not defined in this section are specified in sections 2.2.1.3.1 and 2.2.1.3.
 type DriverInfo2 struct {
+	// cVersion (4 bytes): A DWORD that has an implementation-specific value that identifies
+	// the driver version and the operating system version for which the printer driver
+	// was written, as specified in section 2.2.1.3.1.
 	VersionCount uint32 `idl:"name:cVersion" json:"version_count"`
 	Name         string `idl:"name:pName;string" json:"name"`
 	Environment  string `idl:"name:pEnvironment;string" json:"environment"`
@@ -3746,6 +3753,11 @@ type DriverInfo8 struct {
 	ColorProfiles string `idl:"name:pszzColorProfiles;size_is:(cchColorProfiles);pointer:unique" json:"color_profiles"`
 	// pInfPath: An optional pointer to a string that specifies the path to the installation
 	// configuration file in the driver store that identifies the printer driver for installation.<27>
+	//
+	// When used as an input parameter in a call to RpcAddPrinterDriverEx (section 3.1.4.4.8),
+	// this pointer MUST be NULL. When used as output in the custom-marshaled form of this
+	// structure (_DRIVER_INFO_8 section 2.2.2.4.8), the server SHOULD set this value for
+	// package-aware drivers.
 	InfPath string `idl:"name:pInfPath;string" json:"inf_path"`
 	// dwPrinterDriverAttributes: A bit field that specifies attributes of the printer driver.
 	//
@@ -4595,9 +4607,25 @@ func (o *DriverInfo8) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 //	| ...                                                                                                                           |
 //	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 type FormInfo1 struct {
-	Flags         uint32     `idl:"name:Flags" json:"flags"`
-	Name          string     `idl:"name:pName;string" json:"name"`
-	Size          *Size      `idl:"name:Size" json:"size"`
+	// Flags (4 bytes): The form property from the following table.
+	//
+	//	+-------------------------+-------------------------------------------------------------------------------+
+	//	|                         |                                                                               |
+	//	|       NAME/VALUE        |                                  DESCRIPTION                                  |
+	//	|                         |                                                                               |
+	//	+-------------------------+-------------------------------------------------------------------------------+
+	//	+-------------------------+-------------------------------------------------------------------------------+
+	//	| FORM_USER 0x00000000    | The form has been defined by the user and appears in the registry.            |
+	//	+-------------------------+-------------------------------------------------------------------------------+
+	//	| FORM_BUILTIN 0x00000001 | The form is part of the spooler and does not appear in the registry.          |
+	//	+-------------------------+-------------------------------------------------------------------------------+
+	//	| FORM_PRINTER 0x00000002 | The form is associated with a particular printer and appears in the registry. |
+	//	+-------------------------+-------------------------------------------------------------------------------+
+	Flags uint32 `idl:"name:Flags" json:"flags"`
+	Name  string `idl:"name:pName;string" json:"name"`
+	Size  *Size  `idl:"name:Size" json:"size"`
+	// ImageableArea: The part of the form that the printer can print on as a rectangle
+	// in thousandths of millimeters using a RECTL structure, as specified in section 2.2.1.1.5.
 	ImageableArea *Rectangle `idl:"name:ImageableArea" json:"imageable_area"`
 }
 
@@ -4955,19 +4983,29 @@ func (o *FormInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 //
 // All members not defined in this section are specified in sections 2.2.1.3.3 and 2.2.1.3.
 type JobInfo1 struct {
-	JobID        uint32           `idl:"name:JobId" json:"job_id"`
-	PrinterName  string           `idl:"name:pPrinterName;string" json:"printer_name"`
-	MachineName  string           `idl:"name:pMachineName;string" json:"machine_name"`
-	UserName     string           `idl:"name:pUserName;string" json:"user_name"`
-	Document     string           `idl:"name:pDocument;string" json:"document"`
-	DataType     string           `idl:"name:pDatatype;string" json:"data_type"`
-	StatusString string           `idl:"name:__pStatus;string" json:"status_string"`
-	Status       uint32           `idl:"name:Status" json:"status"`
-	Priority     uint32           `idl:"name:Priority" json:"priority"`
-	Position     uint32           `idl:"name:Position" json:"position"`
-	TotalPages   uint32           `idl:"name:TotalPages" json:"total_pages"`
-	PagesPrinted uint32           `idl:"name:PagesPrinted" json:"pages_printed"`
-	Submitted    *dtyp.SystemTime `idl:"name:Submitted" json:"submitted"`
+	// JobId (4 bytes): The identifier of a print job.
+	JobID        uint32 `idl:"name:JobId" json:"job_id"`
+	PrinterName  string `idl:"name:pPrinterName;string" json:"printer_name"`
+	MachineName  string `idl:"name:pMachineName;string" json:"machine_name"`
+	UserName     string `idl:"name:pUserName;string" json:"user_name"`
+	Document     string `idl:"name:pDocument;string" json:"document"`
+	DataType     string `idl:"name:pDatatype;string" json:"data_type"`
+	StatusString string `idl:"name:__pStatus;string" json:"status_string"`
+	// Status (4 bytes): The current printer status (section 2.2.3.12).
+	Status uint32 `idl:"name:Status" json:"status"`
+	// Priority (4 bytes): The job priority as a decimal number from 0 through 99, inclusive.
+	Priority uint32 `idl:"name:Priority" json:"priority"`
+	// Position (4 bytes): The job's position in a queue, where one represents the next
+	// job that is printed.
+	Position uint32 `idl:"name:Position" json:"position"`
+	// TotalPages (4 bytes): The number of pages a document contains. It can be zero.
+	TotalPages uint32 `idl:"name:TotalPages" json:"total_pages"`
+	// PagesPrinted (4 bytes): The number of pages that have been printed. It can be zero.
+	PagesPrinted uint32 `idl:"name:PagesPrinted" json:"pages_printed"`
+	// Submitted (16 bytes): This member is a SYSTEMTIME structure ([MS-DTYP] section 2.3.13)
+	// that specifies when a document was spooled. Each field is 2 bytes that contains a
+	// WORD sized member in UTC.
+	Submitted *dtyp.SystemTime `idl:"name:Submitted" json:"submitted"`
 }
 
 func (o *JobInfo1) xxx_PreparePayload(ctx context.Context) error {
@@ -5225,29 +5263,45 @@ func (o *JobInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 //
 // All members not defined in this section are specified in sections 2.2.1.3.3 and 2.2.1.3.
 type JobInfo2 struct {
-	JobID              uint32           `idl:"name:JobId" json:"job_id"`
-	PrinterName        string           `idl:"name:pPrinterName;string" json:"printer_name"`
-	MachineName        string           `idl:"name:pMachineName;string" json:"machine_name"`
-	UserName           string           `idl:"name:pUserName;string" json:"user_name"`
-	Document           string           `idl:"name:pDocument;string" json:"document"`
-	NotifyName         string           `idl:"name:pNotifyName;string" json:"notify_name"`
-	DataType           string           `idl:"name:pDatatype;string" json:"data_type"`
-	PrintProcessor     string           `idl:"name:pPrintProcessor;string" json:"print_processor"`
-	Parameters         string           `idl:"name:pParameters;string" json:"parameters"`
-	DriverName         string           `idl:"name:pDriverName;string" json:"driver_name"`
-	DevMode            uint64           `idl:"name:pDevMode" json:"dev_mode"`
-	StatusString       string           `idl:"name:__pStatus;string" json:"status_string"`
-	SecurityDescriptor uint64           `idl:"name:pSecurityDescriptor" json:"security_descriptor"`
-	Status             uint32           `idl:"name:Status" json:"status"`
-	Priority           uint32           `idl:"name:Priority" json:"priority"`
-	Position           uint32           `idl:"name:Position" json:"position"`
-	StartTime          uint32           `idl:"name:StartTime" json:"start_time"`
-	UntilTime          uint32           `idl:"name:UntilTime" json:"until_time"`
-	TotalPages         uint32           `idl:"name:TotalPages" json:"total_pages"`
-	Size               uint32           `idl:"name:Size" json:"size"`
-	Submitted          *dtyp.SystemTime `idl:"name:Submitted" json:"submitted"`
-	Time               uint32           `idl:"name:Time" json:"time"`
-	PagesPrinted       uint32           `idl:"name:PagesPrinted" json:"pages_printed"`
+	// JobId (4 bytes): The identifier of a print job.
+	JobID              uint32 `idl:"name:JobId" json:"job_id"`
+	PrinterName        string `idl:"name:pPrinterName;string" json:"printer_name"`
+	MachineName        string `idl:"name:pMachineName;string" json:"machine_name"`
+	UserName           string `idl:"name:pUserName;string" json:"user_name"`
+	Document           string `idl:"name:pDocument;string" json:"document"`
+	NotifyName         string `idl:"name:pNotifyName;string" json:"notify_name"`
+	DataType           string `idl:"name:pDatatype;string" json:"data_type"`
+	PrintProcessor     string `idl:"name:pPrintProcessor;string" json:"print_processor"`
+	Parameters         string `idl:"name:pParameters;string" json:"parameters"`
+	DriverName         string `idl:"name:pDriverName;string" json:"driver_name"`
+	DevMode            uint64 `idl:"name:pDevMode" json:"dev_mode"`
+	StatusString       string `idl:"name:__pStatus;string" json:"status_string"`
+	SecurityDescriptor uint64 `idl:"name:pSecurityDescriptor" json:"security_descriptor"`
+	// Status (4 bytes): The current printer status (section 2.2.3.12).
+	Status uint32 `idl:"name:Status" json:"status"`
+	// Priority (4 bytes): The job priority as a decimal number from 0 through 99, inclusive.
+	Priority uint32 `idl:"name:Priority" json:"priority"`
+	// Position (4 bytes): The job’s position in a queue, where one represents the next
+	// job that is printed.
+	Position uint32 `idl:"name:Position" json:"position"`
+	// StartTime (4 bytes): The earliest time that a printer can print a job. The time is
+	// expressed as the number of minutes after 12:00 AM GMT within a 24-hour boundary.
+	StartTime uint32 `idl:"name:StartTime" json:"start_time"`
+	// UntilTime (4 bytes): The latest time that the printer can print a job. The time is
+	// expressed as the number of minutes after 12:00 AM GMT within a 24-hour boundary.
+	UntilTime uint32 `idl:"name:UntilTime" json:"until_time"`
+	// TotalPages (4 bytes): The number of pages a document contains. It can be zero.
+	TotalPages uint32 `idl:"name:TotalPages" json:"total_pages"`
+	// Size (4 bytes): The size of a job, in bytes.
+	Size uint32 `idl:"name:Size" json:"size"`
+	// Submitted (16 bytes): This member is a SYSTEMTIME structure ([MS-DTYP] section 2.3.13)
+	// that specifies when a document was spooled. Each field is 2 bytes that contains a
+	// WORD sized member in UTC.
+	Submitted *dtyp.SystemTime `idl:"name:Submitted" json:"submitted"`
+	// Time (4 bytes): The number of milliseconds that have elapsed since printing began.
+	Time uint32 `idl:"name:Time" json:"time"`
+	// PagesPrinted (4 bytes): The number of pages that have been printed. It can be zero.
+	PagesPrinted uint32 `idl:"name:PagesPrinted" json:"pages_printed"`
 }
 
 func (o *JobInfo2) xxx_PreparePayload(ctx context.Context) error {
@@ -5636,6 +5690,7 @@ func (o *JobInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 //	| ...                                                                                                                           |
 //	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 type JobInfo3 struct {
+	// JobId (4 bytes): The identifier of a print job.
 	JobID uint32 `idl:"name:JobId" json:"job_id"`
 	// NextJobId: An identifier that specifies the print job in the queue following the
 	// job identified by the JobId member. A value of zero indicates that there are no jobs
@@ -5646,8 +5701,17 @@ type JobInfo3 struct {
 	// through RpcEnumJobs (section 3.1.4.3.3) or RpcGetJob (section 3.1.4.3.2).
 	//
 	// All members not defined in this section are specified in sections 2.2.1.3.3 and 2.2.1.3.
+	//
+	// NextJobId (4 bytes): An identifier that specifies the print job in the queue following
+	// the job identified by the JobId member. A value of zero indicates that there are
+	// no jobs following the job identified by the JobId member.
 	NextJobID uint32 `idl:"name:NextJobId" json:"next_job_id"`
-	_         uint32 `idl:"name:Reserved"`
+	// Reserved (4 bytes): This member is reserved for future use. The value of this member
+	// SHOULD be set to zero when sent and MUST be ignored on receipt.
+	//
+	// Fields that are not defined in this section are specified in sections 2.2.1.7.3,
+	// and 2.2.1.3.
+	_ uint32 `idl:"name:Reserved"`
 }
 
 func (o *JobInfo3) xxx_PreparePayload(ctx context.Context) error {
@@ -5717,33 +5781,52 @@ func (o *JobInfo3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 //	| ...                                                                                                                           |
 //	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 type JobInfo4 struct {
-	JobID              uint32           `idl:"name:JobId" json:"job_id"`
-	PrinterName        string           `idl:"name:pPrinterName;string" json:"printer_name"`
-	MachineName        string           `idl:"name:pMachineName;string" json:"machine_name"`
-	UserName           string           `idl:"name:pUserName;string" json:"user_name"`
-	Document           string           `idl:"name:pDocument;string" json:"document"`
-	NotifyName         string           `idl:"name:pNotifyName;string" json:"notify_name"`
-	DataType           string           `idl:"name:pDatatype;string" json:"data_type"`
-	PrintProcessor     string           `idl:"name:pPrintProcessor;string" json:"print_processor"`
-	Parameters         string           `idl:"name:pParameters;string" json:"parameters"`
-	DriverName         string           `idl:"name:pDriverName;string" json:"driver_name"`
-	DevMode            uint64           `idl:"name:pDevMode" json:"dev_mode"`
-	StatusString       string           `idl:"name:__pStatus;string" json:"status_string"`
-	SecurityDescriptor uint64           `idl:"name:pSecurityDescriptor" json:"security_descriptor"`
-	Status             uint32           `idl:"name:Status" json:"status"`
-	Priority           uint32           `idl:"name:Priority" json:"priority"`
-	Position           uint32           `idl:"name:Position" json:"position"`
-	StartTime          uint32           `idl:"name:StartTime" json:"start_time"`
-	UntilTime          uint32           `idl:"name:UntilTime" json:"until_time"`
-	TotalPages         uint32           `idl:"name:TotalPages" json:"total_pages"`
-	Size               uint32           `idl:"name:Size" json:"size"`
-	Submitted          *dtyp.SystemTime `idl:"name:Submitted" json:"submitted"`
-	Time               uint32           `idl:"name:Time" json:"time"`
-	PagesPrinted       uint32           `idl:"name:PagesPrinted" json:"pages_printed"`
+	// JobId (4 bytes): The identifier of a print job.
+	JobID              uint32 `idl:"name:JobId" json:"job_id"`
+	PrinterName        string `idl:"name:pPrinterName;string" json:"printer_name"`
+	MachineName        string `idl:"name:pMachineName;string" json:"machine_name"`
+	UserName           string `idl:"name:pUserName;string" json:"user_name"`
+	Document           string `idl:"name:pDocument;string" json:"document"`
+	NotifyName         string `idl:"name:pNotifyName;string" json:"notify_name"`
+	DataType           string `idl:"name:pDatatype;string" json:"data_type"`
+	PrintProcessor     string `idl:"name:pPrintProcessor;string" json:"print_processor"`
+	Parameters         string `idl:"name:pParameters;string" json:"parameters"`
+	DriverName         string `idl:"name:pDriverName;string" json:"driver_name"`
+	DevMode            uint64 `idl:"name:pDevMode" json:"dev_mode"`
+	StatusString       string `idl:"name:__pStatus;string" json:"status_string"`
+	SecurityDescriptor uint64 `idl:"name:pSecurityDescriptor" json:"security_descriptor"`
+	// Status (4 bytes): The current printer status (section 2.2.3.12).
+	Status uint32 `idl:"name:Status" json:"status"`
+	// Priority (4 bytes): The job priority as a decimal number from 0 through 99, inclusive.
+	Priority uint32 `idl:"name:Priority" json:"priority"`
+	// Position (4 bytes): The job's position in a queue, where one represents the next
+	// job that is printed.
+	Position uint32 `idl:"name:Position" json:"position"`
+	// StartTime (4 bytes): The earliest time that a printer can print a job. The time is
+	// expressed as the number of minutes after 12:00 AM GMT within a 24-hour boundary.
+	StartTime uint32 `idl:"name:StartTime" json:"start_time"`
+	// UntilTime (4 bytes): The latest time that the printer can print a job. The time is
+	// expressed as the number of minutes after 12:00 AM GMT within a 24-hour boundary.
+	UntilTime uint32 `idl:"name:UntilTime" json:"until_time"`
+	// TotalPages (4 bytes): The number of pages a document contains. It can be zero.
+	TotalPages uint32 `idl:"name:TotalPages" json:"total_pages"`
+	// Size (4 bytes): The size of a job, in bytes.
+	Size uint32 `idl:"name:Size" json:"size"`
+	// Submitted (16 bytes): This member is a SYSTEMTIME structure ([MS-DTYP] section 2.3.13)
+	// that specifies when a document was spooled. Each field is 2 bytes that contains a
+	// WORD sized member in UTC.
+	Submitted *dtyp.SystemTime `idl:"name:Submitted" json:"submitted"`
+	// Time (4 bytes): The number of milliseconds that have elapsed since printing began.
+	Time uint32 `idl:"name:Time" json:"time"`
+	// PagesPrinted (4 bytes): The number of pages that have been printed. It can be zero.
+	PagesPrinted uint32 `idl:"name:PagesPrinted" json:"pages_printed"`
 	// SizeHigh: This member specifies the high-order 32 bits of a 64-bit unsigned integer
 	// that specifies the size of the job, in bytes.
 	//
 	// All members not defined in this section are specified in sections 2.2.1.3.3 and 2.2.1.3.
+	//
+	// SizeHigh (4 bytes): This member specifies the high-order 32 bits of a 64-bit unsigned
+	// integer that specifies the size of the job, in bytes.
 	SizeHigh int32 `idl:"name:SizeHigh" json:"size_high"`
 }
 
@@ -6453,8 +6536,14 @@ type PortInfo2 struct {
 	//	+-----------------------------------+--------------------------------------------------+
 	//
 	// All members not defined in this section are specified in sections 2.2.1.3.5 and 2.2.1.3.
+	//
+	// fPortType (4 bytes): A bit field that specifies attributes of the printer port. These
+	// flags can be combined to specify multiple attributes. See section 2.2.1.9.2 for the
+	// flag values.
 	PortType uint32 `idl:"name:fPortType" json:"port_type"`
-	_        uint32 `idl:"name:Reserved"`
+	// Reserved (4 bytes): This member is reserved for future use. The value of this member
+	// SHOULD be set to zero when sent and MUST be ignored on receipt.
+	_ uint32 `idl:"name:Reserved"`
 }
 
 func (o *PortInfo2) xxx_PreparePayload(ctx context.Context) error {
@@ -6827,72 +6916,139 @@ type PrinterInfoStress struct {
 	PrinterName string `idl:"name:pPrinterName;string" json:"printer_name"`
 	ServerName  string `idl:"name:pServerName;string" json:"server_name"`
 	// cJobs: The number of jobs that are currently in the print queue.
+	//
+	// cJobs (4 bytes): The number of jobs that are currently in the print queue .
 	JobsCount uint32 `idl:"name:cJobs" json:"jobs_count"`
 	// cTotalJobs: The total number of jobs that have been spooled since the print server
 	// was started.
+	//
+	// cTotalJobs (4 bytes): The total number of jobs that have been spooled since the print
+	// server was started.
 	TotalJobsCount uint32 `idl:"name:cTotalJobs" json:"total_jobs_count"`
 	// cTotalBytes: The low-order 32 bits of an unsigned 64-bit value that specifies the
 	// total number of bytes that have been printed since system startup. The high-order
 	// 32 bits are specified by the dwHighPartTotalBytes member.
+	//
+	// cTotalBytes (4 bytes): The low-order 32 bits of an unsigned 64-bit value that specifies
+	// the total number of bytes that have been printed since system startup.
 	TotalBytesCount uint32 `idl:"name:cTotalBytes" json:"total_bytes_count"`
 	// stUpTime: The time the printer data structure was created, in SYSTEMTIME format ([MS-DTYP]
 	// section 2.3.13).
+	//
+	// stUpTime (16 bytes): The time the printer data structure was created. It is a SYSTEMTIME
+	// structure ([MS-DTYP] section 2.3.13). Each field is 2 bytes that contains a WORD
+	// sized member in UTC.
 	UpTime *dtyp.SystemTime `idl:"name:stUpTime" json:"up_time"`
 	// MaxcRef: The historic maximum value of the cRef member.
+	//
+	// MaxcRef (4 bytes): The historic maximum value of the cRef member.
 	MaxcReference uint32 `idl:"name:MaxcRef" json:"maxc_reference"`
 	// cTotalPagesPrinted: The total number of pages printed.
+	//
+	// cTotalPagesPrinted (4 bytes): The total number of pages printed.
 	TotalPagesPrintedCount uint32 `idl:"name:cTotalPagesPrinted" json:"total_pages_printed_count"`
 	// dwGetVersion: An implementation-specific value that specifies the version of the
 	// operating system.<52>
+	//
+	// dwGetVersion (4 bytes): An implementation-specific value that specifies the version
+	// of the operating system.<121>
 	GetVersion uint32 `idl:"name:dwGetVersion" json:"get_version"`
 	// fFreeBuild: An implementation-specific value that MUST be ignored on receipt.<53>
+	//
+	// fFreeBuild (4 bytes): An implementation-specific value that MUST be ignored on receipt.<122>
 	FreeBuild uint32 `idl:"name:fFreeBuild" json:"free_build"`
 	// cSpooling: The number of actively spooling jobs.
+	//
+	// cSpooling (4 bytes): The number of actively spooling jobs.
 	SpoolingCount uint32 `idl:"name:cSpooling" json:"spooling_count"`
 	// cMaxSpooling: The historic maximum number of actively spooling jobs.
+	//
+	// cMaxSpooling (4 bytes): The historic maximum number of actively spooling jobs.
 	MaxSpoolingCount uint32 `idl:"name:cMaxSpooling" json:"max_spooling_count"`
 	// cRef: The reference count for opened printer objects.
+	//
+	// cRef (4 bytes): The reference count for opened printer objects.
 	ReferenceCount uint32 `idl:"name:cRef" json:"reference_count"`
 	// cErrorOutOfPaper: The total number of out-of-paper errors.
+	//
+	// cErrorOutOfPaper (4 bytes): The total number of out-of-paper errors.
 	ErrorOutOfPaperCount uint32 `idl:"name:cErrorOutOfPaper" json:"error_out_of_paper_count"`
 	// cErrorNotReady: The total number of not-ready errors.
+	//
+	// cErrorNotReady (4 bytes): The total number of not-ready errors.
 	ErrorNotReadyCount uint32 `idl:"name:cErrorNotReady" json:"error_not_ready_count"`
 	// cJobError: The total number of job errors.
+	//
+	// cJobError (4 bytes): The total number of job errors.
 	JobErrorCount uint32 `idl:"name:cJobError" json:"job_error_count"`
 	// dwNumberOfProcessors: The number of processors in the computer on which the print
 	// server is running.
+	//
+	// dwNumberOfProcessors (4 bytes): The number of processors in the computer on which
+	// the print server is running.
 	NumberOfProcessors uint32 `idl:"name:dwNumberOfProcessors" json:"number_of_processors"`
 	// dwProcessorType: An implementation-specific value that identifies the type of processor
 	// in the computer.<54>
+	//
+	// dwProcessorType (4 bytes): An implementation-specific value that identifies the type
+	// of processor in the computer.<123>
 	ProcessorType uint32 `idl:"name:dwProcessorType" json:"processor_type"`
 	// dwHighPartTotalBytes: The high-order 32 bits of an unsigned 64-bit value that specifies
 	// the total number of bytes that have been printed since system startup. The low-order
 	// 32 bits are specified by the cTotalBytes member.
+	//
+	// dwHighPartTotalBytes (4 bytes): The high-order 32 bits of an unsigned 64-bit value
+	// that specifies the total number of bytes that have been printed since system startup.
+	// The low-order 32 bits are specified by the cTotalBytes member.
 	HighPartTotalBytes uint32 `idl:"name:dwHighPartTotalBytes" json:"high_part_total_bytes"`
 	// cChangeID: A unique number that identifies the last change.
+	//
+	// cChangeID (4 bytes): A unique number that identifies the last change.
 	ChangeIDCount uint32 `idl:"name:cChangeID" json:"change_id_count"`
 	// dwLastError: An implementation-specific error code for the last error that occurred
 	// with this printer.<55>
+	//
+	// dwLastError (4 bytes): An implementation-specific error code for the last error that
+	// occurred with this printer.<124>
 	LastError uint32 `idl:"name:dwLastError" json:"last_error"`
 	// Status: The current printer status (section 2.2.3.12).
+	//
+	// Status (4 bytes): The current printer status (section 2.2.3.12).
 	Status uint32 `idl:"name:Status" json:"status"`
 	// cEnumerateNetworkPrinters: The number of times the network printers in the "List
 	// of Known Printers" have been requested.
+	//
+	// cEnumerateNetworkPrinters (4 bytes): The number of times the network printers in
+	// the "List of Known Printers" have been requested.
 	EnumerateNetworkPrintersCount uint32 `idl:"name:cEnumerateNetworkPrinters" json:"enumerate_network_printers_count"`
 	// cAddNetPrinters: The number of network printers added, per server.
+	//
+	// cAddNetPrinters (4 bytes): The number of network printers added, per server.
 	AddNetPrintersCount uint32 `idl:"name:cAddNetPrinters" json:"add_net_printers_count"`
 	// wProcessorArchitecture: An implementation-specific value that identifies the system's
 	// processor architecture. This value SHOULD be ignored on receipt.<56>
+	//
+	// wProcessorArchitecture (2 bytes): An implementation-specific value that identifies
+	// the system's processor architecture. This value SHOULD be ignored on receipt.<125>
 	ProcessorArchitecture uint16 `idl:"name:wProcessorArchitecture" json:"processor_architecture"`
 	// wProcessorLevel: An implementation-specific value that identifies the system's architecture-dependent
 	// processor level. This value SHOULD be ignored on receipt.<57>
+	//
+	// wProcessorLevel (2 bytes): An implementation-specific value that identifies the system's
+	// architecture-dependent processor level. This value SHOULD be ignored on receipt.<126>
 	ProcessorLevel uint16 `idl:"name:wProcessorLevel" json:"processor_level"`
 	// cRefIC: The number of open information context handles.
 	//
 	// All members not defined in this section are specified in sections 2.2.1.3.6 and 2.2.1.3.
+	//
+	// cRefIC (4 bytes): The number of open information context (IC) handles.
 	ReferenceICCount uint32 `idl:"name:cRefIC" json:"reference_ic_count"`
-	_                uint32 `idl:"name:dwReserved2"`
-	_                uint32 `idl:"name:dwReserved3"`
+	// dwReserved2 (4 bytes): Reserved for future use. The value of this member SHOULD be
+	// set to zero when sent and MUST be ignored on receipt.
+	_ uint32 `idl:"name:dwReserved2"`
+	// dwReserved3 (4 bytes): Reserved for future use. The value of this member SHOULD be
+	// set to zero when sent and MUST be ignored on receipt.
+	_ uint32 `idl:"name:dwReserved3"`
 }
 
 func (o *PrinterInfoStress) xxx_PreparePayload(ctx context.Context) error {
@@ -7177,6 +7333,18 @@ func (o *PrinterInfoStress) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 type PrinterInfo1 struct {
 	// Flags: The value of this member MUST be the result of a bitwise OR of zero or more
 	// of the Printer Enumeration Flags (section 2.2.3.7).
+	//
+	// If the PRINTER_INFO_1 structure is used in a PRINTER_CONTAINER (section 2.2.1.2.9)
+	// as input to RpcAddPrinter (section 3.1.4.2.3) or RpcAddPrinterEx (section 3.1.4.2.15),
+	// Flags MUST be a bitwise OR of zero or more of the PRINTER_ATTRIBUTE values defined
+	// in Status and Attribute Values (section 2.2.3.12).
+	//
+	// Flags (4 bytes): The value of this member MUST be the result of a bitwise OR of zero
+	// or more of the Printer Enumeration Flags (section 2.2.3.7).  If the _PRINTER_INFO_1
+	// structure is used in a PRINTER_CONTAINER (section 2.2.1.2.9) as input to RpcAddPrinter
+	// (section 3.1.4.2.3) or RpcAddPrinterEx (section 3.1.4.2.15), Flags MUST be a bitwise
+	// OR of zero or more of the PRINTER_ATTRIBUTE values defined in Status and Attribute
+	// Values (section 2.2.3.12).
 	Flags       uint32 `idl:"name:Flags" json:"flags"`
 	Description string `idl:"name:pDescription;string" json:"description"`
 	// pName: This member is synonymous with pPrinterName (section 3.1.4.1.5).
@@ -7334,34 +7502,60 @@ type PrinterInfo2 struct {
 	// pPrintProcessor: An optional pointer to a string that specifies the name of the print
 	// processor used by the printer. For rules governing print processor names, see section
 	// 2.2.4.11.
+	//
+	// If this member is NULL on input, the server SHOULD use the print processor that is
+	// associated with the printer driver identified by the string pointed to by the pDriverName
+	// member.
 	PrintProcessor string `idl:"name:pPrintProcessor;string" json:"print_processor"`
 	// pDatatype: An optional pointer to a string that specifies the default data format
 	// used to record print jobs on the printer. For rules governing data type names, see
 	// section 2.2.4.2.
+	//
+	// If this member is NULL on input, the server MUST choose a default data type from
+	// one of the data types supported by the print processor associated with the printer.<58>
 	DataType string `idl:"name:pDatatype;string" json:"data_type"`
 	// pParameters: An optional pointer to a string that specifies the default print processor
 	// parameters.
 	Parameters         string `idl:"name:pParameters;string" json:"parameters"`
 	SecurityDescriptor uint64 `idl:"name:pSecurityDescriptor" json:"security_descriptor"`
-	Attributes         uint32 `idl:"name:Attributes" json:"attributes"`
+	// Attributes (4 bytes): Specifies printer attributes. It is the result of a bitwise
+	// OR of zero or more printer attribute values (section 2.2.3.12).
+	Attributes uint32 `idl:"name:Attributes" json:"attributes"`
+	// Priority (4 bytes): Specifies information about job priority as a decimal number
+	// from 0 through 99, inclusive.
+	//
 	// Priority: The value of this member specifies a priority value that the spooler uses
 	// to route each print job. The value of this member MUST be from 0 through 99, inclusive.
 	Priority uint32 `idl:"name:Priority" json:"priority"`
+	// DefaultPriority (4 bytes): Specifies the default priority value assigned to each
+	// print job. The value of this member MUST be from 0 through 99, inclusive.
+	//
 	// DefaultPriority: The value of this member specifies the default priority value assigned
 	// to each print job. The value of this member MUST be from 0 through 99, inclusive.
 	DefaultPriority uint32 `idl:"name:DefaultPriority" json:"default_priority"`
+	// StartTime (4 bytes): Specifies the earliest time that a job can be printed. The time
+	// is expressed as the number of minutes after 12:00 AM GMT within a 24-hour boundary.
+	//
 	// StartTime: The value of this member specifies the earliest time that a job can be
 	// printed. The time is expressed as the number of minutes after 12:00 AM GMT within
 	// a 24-hour boundary.
 	StartTime uint32 `idl:"name:StartTime" json:"start_time"`
+	// UntilTime (4 bytes): Specifies the latest time that a job can be printed. The time
+	// is expressed as the number of minutes after 12:00 AM GMT within a 24-hour boundary.
+	//
 	// UntilTime: The value of this member specifies the latest time that a job can be printed.
 	// The time is expressed as the number of minutes after 12:00 AM GMT within a 24-hour
 	// boundary.
 	UntilTime uint32 `idl:"name:UntilTime" json:"until_time"`
 	Status    uint32 `idl:"name:Status" json:"status"`
+	// cJobs (4 bytes): The number of jobs that are currently in the print queue.
+	//
 	// cJobs: The value of this member specifies the number of print jobs that have been
 	// queued for the printer.
 	JobsCount uint32 `idl:"name:cJobs" json:"jobs_count"`
+	// AveragePPM (4 bytes): Specifies the average pages per minute that have been printed
+	// on the printer.
+	//
 	// AveragePPM: The value of this member specifies the average pages per minute that
 	// have been printed on the printer.
 	//
@@ -7817,7 +8011,9 @@ func (o *PrinterInfo3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 type PrinterInfo4 struct {
 	PrinterName string `idl:"name:pPrinterName;string" json:"printer_name"`
 	ServerName  string `idl:"name:pServerName;string" json:"server_name"`
-	Attributes  uint32 `idl:"name:Attributes" json:"attributes"`
+	// Attributes (4 bytes): Specifies printer attributes. It is the result of a bitwise
+	// OR of zero or more printer attribute values (section 2.2.3.12).
+	Attributes uint32 `idl:"name:Attributes" json:"attributes"`
 }
 
 func (o *PrinterInfo4) xxx_PreparePayload(ctx context.Context) error {
@@ -7930,12 +8126,24 @@ func (o *PrinterInfo4) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 type PrinterInfo5 struct {
 	PrinterName string `idl:"name:pPrinterName;string" json:"printer_name"`
 	PortName    string `idl:"name:pPortName;string" json:"port_name"`
-	Attributes  uint32 `idl:"name:Attributes" json:"attributes"`
+	// Attributes (4 bytes): Specifies printer attributes. It is the result of a bitwise
+	// OR of zero or more printer attribute values (section 2.2.3.12).
+	Attributes uint32 `idl:"name:Attributes" json:"attributes"`
+	// DeviceNotSelectedTimeout (4 bytes): The maximum number of milliseconds between select
+	// attempts. The value controls communication between the print server and a print device.
+	// It does not have any effect on communication between the print client and the print
+	// server.
+	//
 	// DeviceNotSelectedTimeout: The maximum number of milliseconds between select attempts.
 	// The DeviceNotSelectedTimeout value controls communication between the print server
 	// and a print device. It does not have any effect on communication between the print
 	// client and the print server.
 	DeviceNotSelectedTimeout uint32 `idl:"name:DeviceNotSelectedTimeout" json:"device_not_selected_timeout"`
+	// TransmissionRetryTimeout (4 bytes): The maximum number of milliseconds between retransmission
+	// attempts. The value controls communication between the print server and a print device.
+	// It does not have any effect on communication between the print client and the print
+	// server.
+	//
 	// TransmissionRetryTimeout: The maximum number of milliseconds between retransmission
 	// attempts. The TransmissionRetryTimeout value controls communication between the print
 	// server and a print device. It does not have any effect on communication between the
@@ -8065,6 +8273,9 @@ type PrinterInfo6 struct {
 	// of the printer status values defined in section 2.2.3.12.
 	//
 	// All members not defined in this section are specified in sections 2.2.1.3.6 and 2.2.1.3.
+	//
+	// dwStatus (4 bytes): The new printer status, which is a value specified in Status
+	// and Attribute Values (section 2.2.3.12).
 	Status uint32 `idl:"name:dwStatus" json:"status"`
 }
 
@@ -8125,7 +8336,15 @@ type PrinterInfo7 struct {
 	// by the DS to identify this printer, if it is used in a response to RpcGetPrinter
 	// (section 3.1.4.2.6). The string MUST conform to the curly braced GUID string format
 	// ([MS-DTYP] section 2.3.4.3).
+	//
+	// This pointer SHOULD be NULL when sent and MUST be ignored on receipt if it is used
+	// by the print client in a call to RpcSetPrinter (section 3.1.4.2.5).
 	ObjectGUID string `idl:"name:pszObjectGUID;string" json:"object_guid"`
+	// dwAction (4 bytes): An action for the printer to perform if it used by the client
+	// in a call to RpcSetPrinter. The value of this member represents a DS-specific publishing
+	// state by the server if it is used in a response to RpcGetPrinter. The value of this
+	// member MUST be a constant from the table in section 2.2.1.10.8.
+	//
 	// dwAction: An action for the printer to perform if it used by the client in a call
 	// to RpcSetPrinter.
 	//
@@ -8499,11 +8718,11 @@ func (o *ClientInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 type ClientInfo3 struct {
 	// cbSize: The size, in bytes, of the structure.
 	Length uint32 `idl:"name:cbSize" json:"length"`
-	// dwFlags: This member is reserved for future use. The value of this member SHOULD
-	// be set to zero when sent and MUST be ignored on receipt.
+	// dwFlags: Reserved for future use. The value of this member SHOULD be set to zero
+	// when sent and MUST be ignored on receipt.
 	Flags uint32 `idl:"name:dwFlags" json:"flags"`
-	// dwSize: This member is reserved for future use. The value of this member SHOULD be
-	// set to zero when sent and MUST be ignored on receipt.
+	// dwSize: Reserved for future use. The value of this member SHOULD be set to zero when
+	// sent and MUST be ignored on receipt.
 	Size                  uint32 `idl:"name:dwSize" json:"size"`
 	MachineName           string `idl:"name:pMachineName;string" json:"machine_name"`
 	UserName              string `idl:"name:pUserName;string" json:"user_name"`
@@ -8511,8 +8730,8 @@ type ClientInfo3 struct {
 	MajorVersion          uint32 `idl:"name:dwMajorVersion" json:"major_version"`
 	MinorVersion          uint32 `idl:"name:dwMinorVersion" json:"minor_version"`
 	ProcessorArchitecture uint16 `idl:"name:wProcessorArchitecture" json:"processor_architecture"`
-	// hSplPrinter: This member MUST NOT be used remotely and the value of this member SHOULD
-	// be set to zero for calls that are made remotely.
+	// hSplPrinter: This member MUST NOT be used remotely, and the value of this member
+	// SHOULD be set to zero for calls that are made remotely.
 	//
 	// All members not defined in this section are specified in sections 2.2.1.3.7 and 2.2.1.3.
 	Printer uint64 `idl:"name:hSplPrinter" json:"printer"`
@@ -10553,6 +10772,9 @@ type PortContainer struct {
 	Level uint32 `idl:"name:Level" json:"level"`
 	// PortInfo: Defines port properties, using an information structure that corresponds
 	// to the value of the Level member.
+	//
+	// Note:  Despite the bitwise AND of Level with 0x00FFFFFF, no values for Level are
+	// valid besides those specified.
 	PortInfo *PortContainer_PortInfo `idl:"name:PortInfo;switch_is:(16777215 Level &)" json:"port_info"`
 }
 
@@ -12808,16 +13030,15 @@ func (o *BIDIRequestContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 // responses.<7>
 type BIDIResponseContainer struct {
 	// Version: This member MUST contain the value that specifies the version of the bidirectional
-	// API schema. The value of this member MUST be 0x00000001.
+	// API schema. The value MUST be 0x00000001.
 	Version uint32 `idl:"name:Version" json:"version"`
-	// Flags: This member is a set of flags that are reserved for system use. The value
-	// of this member MUST be set to zero when sent and MUST be ignored on receipt.
+	// Flags: A set of flags that are reserved for system use. The value of this member
+	// MUST be set to zero when sent and MUST be ignored on receipt.
 	Flags uint32 `idl:"name:Flags" json:"flags"`
-	// Count: This member specifies the number of bidirectional responses in the aData member.
+	// Count: Specifies the number of bidirectional responses in the aData member.
 	Count uint32 `idl:"name:Count" json:"count"`
-	// aData: This member is an array of RPC_BIDI_RESPONSE_DATA structures. Each structure
-	// in this member MUST contain a single bidirectional response. For more information,
-	// see section 2.2.1.12.2.
+	// aData: An array of RPC_BIDI_RESPONSE_DATA structures. Each structure in this member
+	// MUST contain a single bidirectional response. For more information, see section 2.2.1.12.2.
 	Data []*BIDIResponseData `idl:"name:aData;size_is:(Count);pointer:unique" json:"data"`
 }
 
@@ -18573,6 +18794,9 @@ type OpenPrinterRequest struct {
 	// object to which a handle is being opened. The value of this parameter is one of those
 	// specified in Access Values (section 2.2.3.1) or 0. For rules governing access values,
 	// see section 2.2.4.1.
+	//
+	// If AccessRequired is set to 0 (if no specific access level is requested), the server
+	// MUST assume a GENERIC_READ (section 2.2.3.1) access level.
 	AccessRequired uint32 `idl:"name:AccessRequired" json:"access_required"`
 }
 
@@ -18831,6 +19055,8 @@ type SetJobRequest struct {
 	JobID uint32 `idl:"name:JobId" json:"job_id"`
 	// pJobContainer: An optional pointer to a JOB_CONTAINER (section 2.2.1.2.5) that specifies
 	// the parameters to set on the job object.
+	//
+	// If the value of the Command parameter is zero, this pointer MUST be specified.
 	JobContainer *JobContainer `idl:"name:pJobContainer;pointer:unique" json:"job_container"`
 	// Command: A Job Control Value (section 2.2.4.6) that specifies an action. This value
 	// MUST be one of the following job control actions:
@@ -19673,6 +19899,8 @@ type EnumJobsRequest struct {
 	// NoJobs: The total number of print jobs to enumerate.
 	NoJobs uint32 `idl:"name:NoJobs" json:"no_jobs"`
 	// Level: The job information level.
+	//
+	// This value MUST be 0x00000001, 0x00000002, 0x00000003, or 0x00000004.
 	Level uint32 `idl:"name:Level" json:"level"`
 	// pJob: A pointer to the BUFFER structure specified in INFO Structures Query Parameters
 	// (section 3.1.4.1.9).
@@ -20486,6 +20714,11 @@ type SetPrinterRequest struct {
 	//	+-----------------------------------+-------------------------------------------------------+
 	//	| PRINTER_CONTROL_PURGE 0x00000003  | Deletes all print jobs queued for the printer object. |
 	//	+-----------------------------------+-------------------------------------------------------+
+	//
+	// If this value is zero, the PrinterInfo member of the PRINTER_CONTAINER structure
+	// that is pointed to by the pPrinterContainer parameter MUST contain a pointer to a
+	// PRINTER_INFO (section 2.2.2.9) structure that this method can use. See section 2.2.1.10.1
+	// for details.
 	Command uint32 `idl:"name:Command" json:"command"`
 }
 
@@ -20867,9 +21100,9 @@ type GetPrinterRequest struct {
 	//	+------------+-------------------------------------------------------------------------------+
 	//	| 0x00000005 | Corresponds to _PRINTER_INFO_5 (section 2.2.2.9.6).                           |
 	//	+------------+-------------------------------------------------------------------------------+
-	//	| 0x00000006 | Corresponds to _PRINTER_INFO_6 (section 2.2.2.9.7).                           |
+	//	| 0x00000006 | Corresponds to PRINTER_INFO_6 (section 2.2.2.9.7).                            |
 	//	+------------+-------------------------------------------------------------------------------+
-	//	| 0x00000007 | Corresponds to _PRINTER_INFO_7 (section 2.2.2.9.8).                           |
+	//	| 0x00000007 | Corresponds to PRINTER_INFO_7 (section 2.2.2.9.8).                            |
 	//	+------------+-------------------------------------------------------------------------------+
 	//	| 0x00000008 | Corresponds to _PRINTER_INFO_8 (section 2.2.2.9.9).                           |
 	//	+------------+-------------------------------------------------------------------------------+
@@ -25162,6 +25395,8 @@ type ReadPrinterResponse struct {
 	// pBuf: A pointer to a buffer that receives the printer data. If the hPrinter parameter
 	// is the handle to a port object, this method returns the data that is returned by
 	// the port monitor.
+	//
+	// This parameter can be NULL if the value of the cbBuf parameter is zero.
 	Buffer []byte `idl:"name:pBuf;size_is:(cbBuf)" json:"buffer"`
 	// pcNoBytesRead: A pointer to a variable that receives the number of bytes of data
 	// copied into the array to which pBuf points.
@@ -26147,6 +26382,19 @@ type GetPrinterDataRequest struct {
 	//
 	// For print servers, the value name is one of the predefined strings listed in Server
 	// Handle Key Values (section 2.2.3.10).
+	//
+	// For printer objects, the value name MAY be one of the predefined strings listed in
+	// Printer Data Values (section 2.2.3.11). Also, the value name "ChangeID"<279> is reserved
+	// by the protocol and has a special meaning. It identifies a read-only value that specifies
+	// that a change identifier is returned in the buffer pointed to by pData. This identifier
+	// is a DWORD that is set by the print server to a new, unique value each time printer
+	// information changes. The client SHOULD use the change identifier to decide if it
+	// has stale information about a printer object, in which case it SHOULD call this method
+	// or RpcGetPrinter (section 3.1.4.2.6) to update its view of the printer object. Only
+	// the fact that the pData buffer value changes is significant; the change identifier
+	// value itself is arbitrary. If the value name is not one of these predefined strings,
+	// it is an arbitrary string defined by the printer driver associated with the printer
+	// object or by client applications.
 	ValueName string `idl:"name:pValueName;string" json:"value_name"`
 	// nSize: A parameter specified in Dynamically Typed Query Parameters.
 	Size uint32 `idl:"name:nSize" json:"size"`
@@ -26209,6 +26457,8 @@ type GetPrinterDataResponse struct {
 	// pType: A parameter specified in Dynamically Typed Query Parameters (section 3.1.4.1.2).
 	Type uint32 `idl:"name:pType" json:"type"`
 	// pData: A pointer to BUFFER as specified in Dynamically Typed Query Parameters.
+	//
+	// This parameter can be NULL if nSize equals zero
 	Data []byte `idl:"name:pData;size_is:(nSize)" json:"data"`
 	// pcbNeeded: A parameter specified in Dynamically Typed Query Parameters.
 	NeededLength uint32 `idl:"name:pcbNeeded" json:"needed_length"`
@@ -26443,6 +26693,10 @@ type SetPrinterDataRequest struct {
 	//
 	// For print servers, the value name is one of the predefined strings listed in Server
 	// Handle Key Values (section 2.2.3.10).
+	//
+	// For printer objects, the value name is an arbitrary string defined by the printer
+	// driver associated with the printer object. The value name "ChangeID"<281> is reserved
+	// by the protocol and MUST NOT be used in a call to RpcSetPrinterData.
 	ValueName string `idl:"name:pValueName;string" json:"value_name"`
 	// Type: The type value for data pointed to by the pData parameter. This value SHOULD
 	// be one of the type codes defined in section 2.2.3.9. For rules governing registry
@@ -33747,6 +34001,9 @@ type RemoteFindFirstPrinterChangeNotificationRequest struct {
 	// fdwFlags: Flags that specify the conditions that are required for a change notification
 	// object to enter a signaled state. A change notification MUST occur when one or more
 	// of the specified conditions are met.
+	//
+	// This parameter specifies a bitwise OR of zero or more Printer Change Values (section
+	// 2.2.4.13). The rules governing printer change values are specified in section 2.2.4.13.
 	Flags uint32 `idl:"name:fdwFlags" json:"flags"`
 	// fdwOptions: The category of printers for which change notifications are returned.
 	// This parameter MUST be one of the supported values specified in Printer Notification
@@ -34094,6 +34351,9 @@ type RemoteFindFirstPrinterChangeNotificationExRequest struct {
 	// fdwFlags: Flags that specify the conditions that are required for a change notification
 	// object to enter a signaled state. A change notification MUST occur when one or more
 	// of the specified conditions are met.
+	//
+	// This parameter specifies a bitwise OR of zero or more Printer Change Values (section
+	// 2.2.4.13). The rules governing printer change values are specified in section 2.2.4.13.
 	Flags uint32 `idl:"name:fdwFlags" json:"flags"`
 	// fdwOptions: The category of printers for which change notifications are returned.
 	// This parameter MUST be one of the supported values specified in Printer Notification
@@ -34624,6 +34884,11 @@ type RouterRefreshPrinterChangeNotificationRequest struct {
 	// hPrinter: A handle to a printer object or server object that was opened by RpcAddPrinter
 	// (section 3.1.4.2.3), RpcAddPrinterEx (section 3.1.4.2.15), RpcOpenPrinter (section
 	// 3.1.4.2.2), or RpcOpenPrinterEx (section 3.1.4.2.14).
+	//
+	// This handle MUST have been previously used successfully by the client in a call to
+	// RpcRemoteFindFirstPrinterChangeNotification (section 3.1.4.10.3) or RpcRemoteFindFirstPrinterChangeNotificationEx
+	// (section 3.1.4.10.4), and it MUST NOT have been closed by calling RpcFindClosePrinterChangeNotification
+	// (section 3.1.4.10.2).
 	Printer *Printer `idl:"name:hPrinter" json:"printer"`
 	// dwColor: An implementation-specific value that MAY be used by print clients to get
 	// an indication of the order of notifications.<384>
@@ -34961,10 +35226,16 @@ type OpenPrinterExRequest struct {
 	// object to which a handle is being opened. The value of this parameter is one of those
 	// specified in Access Values (section 2.2.3.1). For rules governing access values,
 	// see section 2.2.4.1.
+	//
+	// If no specific access level is requested, the server MUST assume a generic read access
+	// level.
 	AccessRequired uint32 `idl:"name:AccessRequired" json:"access_required"`
 	// pClientInfo: A pointer to a SPLCLIENT_CONTAINER (section 2.2.1.2.14) structure. This
 	// parameter MUST adhere to the specification in SPLCLIENT_CONTAINER Parameters (section
 	// 3.1.4.1.8.8).
+	//
+	// The value of the Level member of the container that is pointed to by pClientInfo
+	// MUST be 0x00000001.
 	ClientInfo *ClientContainer `idl:"name:pClientInfo" json:"client_info"`
 }
 
@@ -35994,6 +36265,8 @@ type EnumPrinterDataResponse struct {
 
 	// pValueName: A pointer to a buffer that receives a string specifying the name of the
 	// configuration data value. For rules governing value names, see section 2.2.4.18.
+	//
+	// This parameter can be NULL if cbValueName equals zero.
 	ValueName          string `idl:"name:pValueName;size_is:((cbValueNameIn/2))" json:"value_name"`
 	ValueNameOutLength uint32 `idl:"name:pcbValueNameOut" json:"value_name_out_length"`
 	// pType: A parameter specified in Dynamically Typed Query Parameters (section 3.1.4.1.2).
@@ -36163,6 +36436,10 @@ type DeletePrinterDataRequest struct {
 	Printer *Printer `idl:"name:hPrinter" json:"printer"`
 	// pValueName: A pointer to a string that identifies the configuration data to delete.
 	// For rules governing value names, see section 2.2.4.18.
+	//
+	// The value name is an arbitrary string defined by the printer driver associated with
+	// the printer object. The value name "ChangeID" is reserved by the protocol and MUST
+	// NOT be used in a call to RpcDeletePrinterData.<295>
 	ValueName string `idl:"name:pValueName;string" json:"value_name"`
 }
 
@@ -36438,12 +36715,19 @@ type SetPrinterDataExRequest struct {
 	// pKeyName: A pointer to a string that specifies the key under which the value is to
 	// be set. A key name is an arbitrary string defined by the printer driver associated
 	// with the printer object. For rules governing key names, see section 2.2.4.7.
+	//
+	// If hPrinter is a handle to a server object, the key name can be NULL, and the server
+	// MUST ignore this parameter.
 	KeyName string `idl:"name:pKeyName;string" json:"key_name"`
 	// pValueName: A pointer to a string that identifies the data to set. For rules governing
 	// value names, see section 2.2.4.18.
 	//
 	// For print servers, a value name is one of the predefined strings listed in Server
 	// Handle Key Values (section 2.2.3.10).
+	//
+	// For printer objects, a value name is an arbitrary string defined by the printer driver
+	// associated with the printer object. The value name "ChangeID" is reserved by the
+	// protocol and MUST NOT be used in a call to RpcSetPrinterDataEx.<299>
 	ValueName string `idl:"name:pValueName;string" json:"value_name"`
 	// Type: A code that indicates the type of data that is pointed to by the pData parameter.
 	// The value SHOULD be one of the possible type codes defined by type values in section
@@ -36746,12 +37030,20 @@ type GetPrinterDataExRequest struct {
 	// pKeyName: A pointer to a string that specifies the key under which the value is to
 	// be queried. A key name is an arbitrary string defined by the printer driver associated
 	// with the printer object. For rules governing key names, see section 2.2.4.7.
+	//
+	// If hPrinter is a handle to a server object, the key name can be NULL.
 	KeyName string `idl:"name:pKeyName;string" json:"key_name"`
 	// pValueName: A pointer to a string that identifies the data to get. For rules governing
 	// value names, see section 2.2.4.18.
 	//
 	// For print servers, the value name is one of the predefined strings listed in Server
 	// Handle Key Values (section 2.2.3.10).
+	//
+	// For printer objects, the value name MAY be one of the predefined strings listed in
+	// Printer Data Values (section 2.2.3.11). If the value name is not one of the predefined
+	// strings, it is an arbitrary string defined by the printer driver associated with
+	// the printer object. See RpcGetPrinterData for further details on the interpretation
+	// of this value.
 	ValueName string `idl:"name:pValueName;string" json:"value_name"`
 	// nSize: A parameter specified in Dynamically Typed Query Parameters.
 	Size uint32 `idl:"name:nSize" json:"size"`
@@ -37119,6 +37411,8 @@ type EnumPrinterDataExResponse struct {
 
 	// pEnumValues: A pointer to BUFFER as specified in PRINTER_ENUM_VALUES Structures Query
 	// Parameters (section 3.1.4.1.10).
+	//
+	// This parameter can be NULL if cbEnumValues equals zero.
 	EnumValues          []byte `idl:"name:pEnumValues;size_is:(cbEnumValuesIn)" json:"enum_values"`
 	EnumValuesOutLength uint32 `idl:"name:pcbEnumValuesOut" json:"enum_values_out_length"`
 	EnumValuesLength    uint32 `idl:"name:numEnumValues" json:"enum_values_length"`
@@ -37413,6 +37707,8 @@ type EnumPrinterKeyResponse struct {
 	SubkeyInLength uint32 `idl:"name:cbSubkeyIn" json:"subkey_in_length"`
 
 	// pSubkey: A pointer to BUFFER as specified in String Query Parameters (section 3.1.4.1.7).
+	//
+	// This parameter can be NULL if cbSubkey equals zero.
 	Subkey          string `idl:"name:pSubkey;size_is:((cbSubkeyIn/2))" json:"subkey"`
 	SubkeyOutLength uint32 `idl:"name:pcbSubkeyOut" json:"subkey_out_length"`
 	// Return: The RpcEnumPrinterKey return value.
@@ -37585,6 +37881,10 @@ type DeletePrinterDataExRequest struct {
 	KeyName string `idl:"name:pKeyName;string" json:"key_name"`
 	// pValueName: A pointer to a string that identifies the configuration data to delete.
 	// For rules governing value names, see section 2.2.4.18.
+	//
+	// The value name is an arbitrary string defined by the printer driver associated with
+	// the printer object. The value name "ChangeID"<307> is reserved by the protocol and
+	// SHOULD NOT be used in a call to RpcDeletePrinterDataEx.
 	ValueName string `idl:"name:pValueName;string" json:"value_name"`
 }
 
@@ -38053,6 +38353,9 @@ type DeletePrinterDriverExRequest struct {
 	// for each printer driver object in a List of Printers (section 3.1.1). It has the
 	// same format and meaning as the cVersion members in RPC_DRIVER_INFO structures (section
 	// 2.2.1.5).<340>
+	//
+	// This parameter MUST be ignored if the DPD_DELETE_SPECIFIC_VERSION flag in the dwDeleteFlag
+	// parameter is not set.
 	VersionNum uint32 `idl:"name:dwVersionNum" json:"version_num"`
 }
 
@@ -38290,6 +38593,8 @@ type AddPerMachineConnectionRequest struct {
 	Server string `idl:"name:pServer;string;pointer:unique" json:"server"`
 	// pPrinterName: A value that adheres to the specification in Printer Name Parameters
 	// (section 3.1.4.1.5). A printer connection of the form:
+	//
+	// SERVER_NAME LOCAL_PRINTER_NAME  [with a non-empty SERVER_NAME.]
 	PrinterName string `idl:"name:pPrinterName;string" json:"printer_name"`
 	// pPrintServer: A pointer to a string that specifies the name of the print server that
 	// is hosting the printer to which the connection is established. For rules governing
@@ -40579,6 +40884,8 @@ type GetCorePrinterDriversRequest struct {
 	CoreDriversLength uint32 `idl:"name:cchCoreDrivers" json:"core_drivers_length"`
 	// pszzCoreDriverDependencies: A pointer to a multisz that contains a list of IDs of
 	// the core printer drivers to be retrieved.<348>
+	//
+	// A print client SHOULD obtain this list of IDs as follows:
 	//
 	// *
 	//

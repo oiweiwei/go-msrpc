@@ -288,6 +288,9 @@ type UpdateSearcherServer interface {
 	//
 	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
 	//
+	// If the startIndex value is less than 0x00000000 or greater than or equal to the number
+	// of items in the collection, the server MUST return an error.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	QueryHistory(context.Context, *QueryHistoryRequest) (*QueryHistoryResponse, error)
@@ -300,6 +303,9 @@ type UpdateSearcherServer interface {
 	// * If the severity bit is set to 0, the method completed successfully.
 	//
 	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// If the criteria string cannot be parsed by the search criteria grammar specified
+	// preceding, the method MUST return an error.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
@@ -377,6 +383,8 @@ type UpdateSearcherServer interface {
 	//
 	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
 	//
+	// If value is neither VARIANT_TRUE nor VARIANT_FALSE, the server MUST return an error.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -395,6 +403,8 @@ type UpdateSearcherServer interface {
 	// * If the severity bit is set to 0, the method completed successfully.
 	//
 	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// If value is neither VARIANT_TRUE nor VARIANT_FALSE, the server MUST return an error.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].

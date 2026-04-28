@@ -47,6 +47,10 @@ type ClusterUpdateServer interface {
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
 	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in an identical manner for
+	// all return values not listed in the preceding table.
+	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].
 	//
@@ -69,6 +73,10 @@ type ClusterUpdateServer interface {
 	//	+-------------------+--------------------------+
 	//	| 0x00000000 S_OK   | The call was successful. |
 	//	+-------------------+--------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in an identical manner for
+	// all return values not listed in the preceding table.
 	//
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC protocol [MS-RPCE].

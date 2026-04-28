@@ -1,0 +1,267 @@
+<div class="content" name="AUX_HEADER" uuid="b04d024c-5fe0-4c59-a45a-cb16b5a55e89"><p>The <b>AUX_HEADER</b> structure provides information about
+the auxiliary block structures that follow it.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">Size</td>
+  <td colspan="8">Version</td>
+  <td colspan="8">Type</td>
+ </tr>
+</tbody></table><p><b>Size (2 bytes):  </b>The size of the <b>AUX_HEADER</b>
+structure plus any additional payload data that follows.</p><p><b>Version (1 byte):  </b>The version information of
+the payload data that follows the <b>AUX_HEADER </b>structure. This value in
+conjunction with the <b>Type</b> field determines which structure to use to
+interpret the data that follows the header.</p><table><thead>
+  <tr>
+   <th>
+   <p>Version</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>AUX_VERSION_1</td>
+  <td>0x01</td>
+ </tr><tr>
+  <td>AUX_VERSION_2</td>
+  <td>0x02</td>
+ </tr></tbody></table><p><b>Type (1 byte):  </b>The type of auxiliary block
+data structure that follows the <b>AUX_HEADER</b> structure. The value of the <b>Type</b>
+field in conjunction with the <b>Version</b> field determines which auxiliary
+block structure to use to interpret the data that follows the <b>AUX_HEADER</b>
+structure. Several of the types distinguish among the client&#39;s foreground
+request (FG), the client&#39;s background request (BG), and the client&#39;s global
+catalog request (GC). A foreground request is a request where the client is waiting
+for a response from the server before continuing. A background request is a
+request where the client is operating in cached mode versus online. A global
+catalog request is a client request sent to the <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_d3ad0e15-adc9-4174-bacf-d929b57278b3" data-linktype="relative-path">mailbox</a></span> directory. </p><dl>
+<dd>
+<p>The block type names, associated <b>Type</b> field
+values, and the corresponding auxiliary block structure that follows the <b>AUX_HEADER</b>
+structure when the <b>Version</b> field is <b>AUX_VERSION_1</b> are listed in
+the following table.</p>
+</dd></dl><table><thead>
+  <tr>
+   <th>
+   <p>Type name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Auxiliary block structure</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>AUX_TYPE_PERF_REQUESTID</td>
+  <td>0x01</td>
+  <td>AUX_PERF_REQUESTID (section 2.2.2.2.1)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_CLIENTINFO</td>
+  <td>0x02</td>
+  <td>AUX_PERF_CLIENTINFO (section 2.2.2.2.4)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_SERVERINFO</td>
+  <td>0x03</td>
+  <td>AUX_PERF_SERVERINFO (section 2.2.2.2.5)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_SESSIONINFO</td>
+  <td>0x04</td>
+  <td>AUX_PERF_SESSIONINFO (section 2.2.2.2.2)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_DEFMDB_SUCCESS</td>
+  <td>0x05</td>
+  <td>AUX_PERF_DEFMDB_SUCCESS (section 2.2.2.2.7)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_DEFGC_SUCCESS</td>
+  <td>0x06</td>
+  <td>AUX_PERF_DEFGC_SUCCESS (section 2.2.2.2.8)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_MDB_SUCCESS</td>
+  <td>0x07</td>
+  <td>AUX_PERF_MDB_SUCCESS (section 2.2.2.2.9)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_GC_SUCCESS</td>
+  <td>0x08</td>
+  <td>AUX_PERF_GC_SUCCESS (section 2.2.2.2.11)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_FAILURE</td>
+  <td>0x09</td>
+  <td>AUX_PERF_FAILURE (section 2.2.2.2.13)</td>
+ </tr><tr>
+  <td>AUX_TYPE_CLIENT_CONTROL</td>
+  <td>0x0A</td>
+  <td>AUX_CLIENT_CONTROL (section 2.2.2.2.15)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_PROCESSINFO</td>
+  <td>0x0B</td>
+  <td>AUX_PERF_PROCESSINFO (section 2.2.2.2.6)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_BG_DEFMDB_SUCCESS</td>
+  <td>0x0C</td>
+  <td>AUX_PERF_DEFMDB_SUCCESS</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_BG_DEFGC_SUCCESS</td>
+  <td>0x0D</td>
+  <td>AUX_PERF_DEFGC_SUCCESS</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_BG_MDB_SUCCESS</td>
+  <td>0x0E</td>
+  <td>AUX_PERF_MDB_SUCCESS</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_BG_GC_SUCCESS</td>
+  <td>0x0F</td>
+  <td>AUX_PERF_GC_SUCCESS</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_BG_FAILURE</td>
+  <td>0x10</td>
+  <td>AUX_PERF_FAILURE</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_FG_DEFMDB_SUCCESS</td>
+  <td>0x11</td>
+  <td>AUX_PERF_DEFMDB_SUCCESS</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_FG_DEFGC_SUCCESS</td>
+  <td>0x12</td>
+  <td>AUX_PERF_DEFGC_SUCCESS</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_FG_MDB_SUCCESS</td>
+  <td>0x13</td>
+  <td>AUX_PERF_MDB_SUCCESS</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_FG_GC_SUCCESS</td>
+  <td>0x14</td>
+  <td>AUX_PERF_GC_SUCCESS</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_FG_FAILURE</td>
+  <td>0x15</td>
+  <td>AUX_PERF_FAILURE</td>
+ </tr><tr>
+  <td>AUX_TYPE_OSVERSIONINFO</td>
+  <td>0x16</td>
+  <td>AUX_OSVERSIONINFO (section 2.2.2.2.16)</td>
+ </tr><tr>
+  <td>AUX_TYPE_EXORGINFO</td>
+  <td>0x17</td>
+  <td>AUX_EXORGINFO (section 2.2.2.2.17)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_ACCOUNTINFO</td>
+  <td>0x18</td>
+  <td>AUX_PERF_ACCOUNTINFO (section 2.2.2.2.18)</td>
+ </tr><tr>
+  <td>AUX_TYPE_SERVER_CAPABILITIES</td>
+  <td>0x46</td>
+  <td>AUX_SERVER_CAPABILITIES (section 2.2.2.2.19)</td>
+ </tr><tr>
+  <td>AUX_TYPE_ENDPOINT_CAPABILITIES</td>
+  <td>0x48</td>
+  <td>AUX_ENDPOINT_CAPABILITIES&lt;2&gt; (section 2.2.2.2.20)</td>
+ </tr><tr>
+  <td>AUX_CLIENT_CONNECTION_INFO</td>
+  <td>0x4A</td>
+  <td>AUX_CLIENT_CONNECTION_INFO (section 2.2.2.2.21)</td>
+ </tr><tr>
+  <td>AUX_SERVER_SESSION_INFO</td>
+  <td>0x4B</td>
+  <td>AUX_SERVER_SESSION_INFO (section 2.2.2.2.22)</td>
+ </tr><tr>
+  <td>AUX_PROTOCOL_DEVICE_IDENTIFICATION</td>
+  <td>0x4E</td>
+  <td>AUX_PROTOCOL_DEVICE_IDENTIFICATION (section 2.2.2.2.23)</td>
+ </tr></tbody></table><dl>
+<dd>
+<p>The block type names, associated <b>Type</b> field
+values, and the corresponding auxiliary block structure that follows the <b>AUX_HEADER</b>
+when the <b>Version</b> field is <b>AUX_VERSION_2</b> are listed in the
+following table.</p>
+</dd></dl><table><thead>
+  <tr>
+   <th>
+   <p>Type name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Auxiliary block structure</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>AUX_TYPE_PERF_SESSIONINFO</td>
+  <td>0x04</td>
+  <td>AUX_PERF_SESSIONINFO_V2 (section 2.2.2.2.3)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_MDB_SUCCESS</td>
+  <td>0x07</td>
+  <td>AUX_PERF_MDB_SUCCESS_V2 (section 2.2.2.2.10)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_GC_SUCCESS</td>
+  <td>0x08</td>
+  <td>AUX_PERF_GC_SUCCESS_V2 (section 2.2.2.2.12)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_FAILURE</td>
+  <td>0x09</td>
+  <td>AUX_PERF_FAILURE_V2 (section 2.2.2.2.14)</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_PROCESSINFO</td>
+  <td>0x0B</td>
+  <td>AUX_PERF_PROCESSINFO</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_BG_MDB_SUCCESS</td>
+  <td>0x0E</td>
+  <td>AUX_PERF_MDB_SUCCESS_V2</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_BG_GC_SUCCESS</td>
+  <td>0x0F</td>
+  <td>AUX_PERF_GC_SUCCESS_V2</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_BG_FAILURE</td>
+  <td>0x10</td>
+  <td>AUX_PERF_FAILURE_V2</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_FG_MDB_SUCCESS</td>
+  <td>0x13</td>
+  <td>AUX_PERF_MDB_SUCCESS_V2</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_FG_GC_SUCCESS</td>
+  <td>0x14</td>
+  <td>AUX_PERF_GC_SUCCESS_V2</td>
+ </tr><tr>
+  <td>AUX_TYPE_PERF_FG_FAILURE</td>
+  <td>0x15</td>
+  <td>AUX_PERF_FAILURE_V2</td>
+ </tr></tbody></table><p>The auxiliary block structures are specified in section
+2.2.2.2.1 through section 2.2.2.2.23.</p></div>

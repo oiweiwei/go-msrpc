@@ -46,6 +46,10 @@ type AsyncServer interface {
 	// [MS-ERREF]) to indicate success or return an implementation-specific nonzero error
 	// code to indicate failure. For the HRESULT values predefined by the Virtual Disk Service
 	// Remote Protocol, see section 2.2.3.
+	//
+	// The HRESULT that pHrResult references MUST return zero to indicate success, or an
+	// implementation-specific nonzero error code to indicate failure of the asynchronous
+	// operation that is associated with the IVdsAsync object.
 	Wait(context.Context, *WaitRequest) (*WaitResponse, error)
 
 	// The QueryStatus method retrieves the status of the asynchronous operation.

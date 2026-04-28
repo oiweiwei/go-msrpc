@@ -1,0 +1,46 @@
+<div class="content" name="DHCPV6R_GLOBAL_CONFIG" uuid="ce9b2f8e-aaa6-4d39-b935-28815acca0ff"><p>The <b>DHCPV6R_GLOBAL_CONFIG</b> structure contains the
+global configuration of the DHCPV6 Relay Agent. This structure is used in the
+following methods:</p><ul><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo (section 3.1.4.10)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="14ad8d26-d7d7-48dd-914d-da962d5d7049" data-linktype="relative-path"><b>RRouterInterfaceTransportGetGlobalInfo (section 3.1.4.11)</b></a><span>  </span></p>
+</li></ul><p>This structure is variable length, after the base structure
+there will be an array of GC_ServerCount in6_addr structures, each of which
+contains an IPv6 address of a DHCP server to which packets will be sent. All
+IPv6 address fields MUST be in network order.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCPV6R_GLOBAL_CONFIG {
+   DWORD GC_LoggingLevel;
+   DWORD GC_MaxRecvQueueSize;
+   DWORD GC_ServerCount;
+ } DHCPV6R_GLOBAL_CONFIG,
+  *PDHCPV6R_GLOBAL_CONFIG;
+</pre></div>
+</dd></dl><p><b>GC_LoggingLevel: </b>Specifies the logging level.
+It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DHCPV6R_LOGGING_NONE 0x00000000</td>
+  <td>No logging is done.</td>
+ </tr><tr>
+  <td>DHCPV6R_LOGGING_ERROR 0x00000001</td>
+  <td>Only errors are logged.</td>
+ </tr><tr>
+  <td>DHCPV6R_LOGGING_WARN 0x00000002</td>
+  <td>Errors and warnings are logged.</td>
+ </tr><tr>
+  <td>DHCPV6R_LOGGING_INFO 0x00000003</td>
+  <td>Errors, warnings, and information are logged.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>GC_MaxRecvQueueSize: </b>Specifies the maximum
+size in bytes of messages in the receive queue while processing</p><p><b>GC_ServerCount: </b>The number of the IPv6
+addresses of DHCP servers.</p></div>

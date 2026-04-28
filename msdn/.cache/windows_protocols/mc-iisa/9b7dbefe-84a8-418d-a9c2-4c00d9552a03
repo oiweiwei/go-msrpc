@@ -1,0 +1,35 @@
+<div class="content" name="IAppHostCollectionSchema" uuid="9b7dbefe-84a8-418d-a9c2-4c00d9552a03"><p>The IAppHostCollectionSchema provides methods that describe
+the schema and constraints that apply to a specific <a href="5b32b6df-8364-4ba9-8d04-bfe0a4891a57" data-linktype="relative-path">IAppHostElementCollection</a>
+from which this object was retrieved.</p><p>The IAppHostCollectionSchema <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> inherits opnums
+0–2 from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>AddElementNames</td>
+  <td>Opnum: 3</td>
+ </tr><tr>
+  <td>GetAddElementSchema</td>
+  <td>Opnum: 4</td>
+ </tr><tr>
+  <td>RemoveElementSchema</td>
+  <td>Opnum: 5</td>
+ </tr><tr>
+  <td>ClearElementSchema</td>
+  <td>Opnum: 6</td>
+ </tr><tr>
+  <td>IsMergeAppend</td>
+  <td>Opnum: 7</td>
+ </tr><tr>
+  <td>GetMetadata</td>
+  <td>Opnum: 8</td>
+ </tr><tr>
+  <td>DoesAllowDuplicates</td>
+  <td>Opnum: 9</td>
+ </tr></tbody></table><p> </p></div>

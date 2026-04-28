@@ -1,0 +1,17 @@
+<div class="content" name="FAX_ENUM_SMTP_AUTH_OPTIONS" uuid="b694b9e9-7111-49cc-91f8-fad468bb1577"><p>The <b>FAX_ENUM_SMTP_AUTH_OPTIONS</b> enumeration defines
+the type of authentication used for <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0678be67-e739-4e33-97fe-2b03b903a379" data-linktype="relative-path">SMTP</a> connections.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_SMTP_AUTH_ANONYMOUS = 0,
+   FAX_SMTP_AUTH_BASIC = 1,
+   FAX_SMTP_AUTH_NTLM = 2
+ } FAX_ENUM_SMTP_AUTH_OPTIONS;
+</pre></div>
+</dd></dl><p><b>FAX_SMTP_AUTH_ANONYMOUS: </b>The server will send
+fax transmission receipts using a non-authenticated SMTP server. The server&#39;s
+name and port are defined in the <b>FAX_RECEIPTS_CONFIGW</b> (section <a href="ce34af0c-256c-44e2-9a5f-02b625c88f29" data-linktype="relative-path">2.2.47</a>) structure.</p><p><b>FAX_SMTP_AUTH_BASIC: </b>The server will send fax
+transmission receipts using a basic (plain text) authenticated SMTP server. The
+server&#39;s name, port, user name, and password are defined in the <b>FAX_RECEIPTS_CONFIGW</b>.</p><p><b>FAX_SMTP_AUTH_NTLM: </b>The server will send fax
+transmission receipts using an NTLM-authenticated SMTP server. The server&#39;s
+name, port, user name, and password are defined in the <b>FAX_RECEIPTS_CONFIGW</b>.</p></div>

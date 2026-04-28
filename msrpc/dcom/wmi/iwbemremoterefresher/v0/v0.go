@@ -57,6 +57,8 @@ type RemoteRefresherClient interface {
 	// The server MUST return WBEM_S_NO_ERROR (specified in section 2.2.11) to indicate
 	// the successful completion of the method.
 	//
+	// WBEM_S_NO_ERROR (0x00)
+	//
 	// The IWbemRemoteRefresher::RemoteRefresh method MUST be called on the IWbemRemoteRefresher
 	// interface pointer returned as a member of the _WBEM_REFRESH_INFO structure from IWbemRefreshingServices
 	// methods or on the interface returned by IWbemRefreshingServices::GetRemoteRefresher
@@ -71,6 +73,8 @@ type RemoteRefresherClient interface {
 	// of the method call. In case of success, the server MUST return WBEM_S_NO_ERROR (as
 	// specified in section 2.2.11) to indicate the successful completion of the method.
 	//
+	// WBEM_S_NO_ERROR (0x00)
+	//
 	// The IWbemRemoteRefresher::StopRefreshing method MUST be called on the IWbemRemoteRefresher
 	// interface pointer that is returned as a member of the _WBEM_REFRESH_INFO structure
 	// from the methods of the IWbemRefreshingServices interface or on the interface that
@@ -84,6 +88,10 @@ type RemoteRefresherClient interface {
 	// Return Values: This method MUST return an HRESULT value that MUST indicate the status
 	// of the method call. The server MUST return WBEM_S_NO_ERROR (specified in section
 	// 2.2.11) to indicate the successful completion of the method.
+	//
+	// In case of failure, the server MUST return an HRESULT whose S (severity) bit is set
+	// as specified in [MS-ERREF] section 2.1. The actual HRESULT value is implementation
+	// dependent.
 	//
 	// Opnum5NotUsedOnWire
 
@@ -473,10 +481,14 @@ type RemoteRefreshResponse struct {
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// plNumObjects: If successful, plNumObjects MUST be a pointer to the number of CIM
 	// instances and enumerations that the method returns. It MUST NOT be NULL.
+	//
+	// If the method fails, the server MUST set plNumObjects to NULL.
 	ObjectsLength int32 `idl:"name:plNumObjects" json:"objects_length"`
 	// paObjects: If successful, paObjects MUST be a pointer to an array of WBEM_REFRESHED_OBJECT
 	// objects specified in section 2.2.15. The array MUST contain CIM instances and enumerations.
 	// It MUST NOT be NULL.
+	//
+	// If the method fails, the server MUST set paObjects to NULL.
 	Objects []*wmi.RefreshedObject `idl:"name:paObjects;size_is:(, plNumObjects)" json:"objects"`
 	// Return: The RemoteRefresh return value.
 	Return int32 `idl:"name:Return" json:"return"`

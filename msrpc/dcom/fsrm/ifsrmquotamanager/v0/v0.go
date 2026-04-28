@@ -1346,6 +1346,9 @@ type CreateQuotaResponse struct {
 	// have the Non-Persisted Directory Quota Instance added to the server's List of Persisted
 	// Directory Quota Instances (section 3.2.4.2.16.1), the caller MUST call Commit (section
 	// 3.2.4.2.10.5).
+	//
+	// The caller MUST release the Non-Persisted Directory Quota Instance when the caller
+	// is done with it.
 	Quota *fsrm.Quota `idl:"name:quota" json:"quota"`
 	// Return: The CreateQuota return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1714,6 +1717,9 @@ type CreateAutoApplyQuotaResponse struct {
 	// To have the Non-Persisted Auto Apply Quota Instance added to the server's List of
 	// Persisted Auto Apply Quota Instances (section 3.2.1.2), the caller MUST call Commit
 	// (section 3.2.4.2.17.1).
+	//
+	// The caller MUST release the Non-Persisted Auto Apply Quota Instance when the caller
+	// is done with it.
 	Quota *fsrm.AutoApplyQuota `idl:"name:quota" json:"quota"`
 	// Return: The CreateAutoApplyQuota return value.
 	Return int32 `idl:"name:Return" json:"return"`

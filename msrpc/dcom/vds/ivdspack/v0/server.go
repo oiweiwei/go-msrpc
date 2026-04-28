@@ -81,6 +81,10 @@ type PackServer interface {
 	// code to indicate failure. For the HRESULT values predefined by the Virtual Disk Service
 	// Remote Protocol, see section 2.2.3.
 	//
+	// The HRESULTs in the array that pResults references return zero to indicate success
+	// or an implementation-specific nonzero error code if the migration operation on the
+	// associated disk fails.
+	//
 	// ERROR_SUCCESS (0x00000000)
 	MigrateDisks(context.Context, *MigrateDisksRequest) (*MigrateDisksResponse, error)
 

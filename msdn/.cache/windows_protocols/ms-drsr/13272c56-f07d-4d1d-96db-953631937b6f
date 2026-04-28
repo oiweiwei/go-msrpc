@@ -1,0 +1,12 @@
+<div class="content" name="DRS_MSG_ADDCLONEDCREQ" uuid="13272c56-f07d-4d1d-96db-953631937b6f"><p>The DRS_MSG_ADDCLONEDCREQ union defines the request messages
+sent to the <span><a href="ef0bfb1d-037b-4626-a6d9-cc7589bc5786" data-linktype="relative-path">IDL_DRSAddCloneDC</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_ADDCLONEDCREQ_V1 V1;
+ } DRS_MSG_ADDCLONEDCREQ;
+</pre></div>
+</dd></dl><p><b>V1:</b>  The version 1 request.</p></div>

@@ -39,6 +39,11 @@
 // partitions will only be visible to directory servers enlisted in those partitions,
 // thus allowing for granular control over replication.
 //
+// The DNS Server Management Protocol supports remote configuration of DNS over HTTPS
+// (DoH) settings on a DNS server. This enables administrators to enable, disable, and
+// manage encrypted DNS communication in compliance with [RFC8484], providing enhanced
+// privacy and security for DNS queries and responses.
+//
 // A typical remote management involves the client querying or setting the configuration
 // parameters of the DNS server. The client can also enumerate DNS zones and the DNS
 // records stored in one or more zones. The client can modify the configuration of the
@@ -8134,8 +8139,8 @@ type DPInfo struct {
 	ReplicaCount uint32 `idl:"name:dwReplicaCount" json:"replica_count"`
 	// ReplicaArray: Array of DNS_RPC_DP_REPLICA (section 2.2.7.2.2), that contains information
 	// about replication locations for this application directory partition. This structure
-	// is populated from the values of the msDS-NC-Replica-Locations (section 2.382) and
-	// msDS-NC-RO-Replica-Locations (section 2.383) attributes of the application directory
+	// is populated from the values of the msDS-NC-Replica-Locations (section 2.395) and
+	// msDS-NC-RO-Replica-Locations (section 2.396) attributes of the application directory
 	// partition crossRef object (see pszCrDn). Failure to read any of those attributes
 	// will be treated as if no replica exists for that attribute.
 	ArrayReplica []*DPReplica `idl:"name:ReplicaArray;size_is:(dwReplicaCount)" json:"array_replica"`
@@ -13974,6 +13979,12 @@ type Record struct {
 	//	+----------------------------+--------------------------------+
 	//	| DNS_TYPE_WINSR 0xFF02      | DNS_RPC_RECORD_WINSR           |
 	//	+----------------------------+--------------------------------+
+	//
+	// Other type values that are not explicitly defined in the preceding table MUST be
+	// enumerable, including values defined by [IANA-DNS], and they MUST use the DNS_RPC_RECORD_NULL
+	// (section 2.2.2.2.4.4) structure. If the dwFlags field is set to DNS_RPC_FLAG_RECORD_WIRE_FORMAT,
+	// the DNS_RPC_RECORD_UNKNOWN (section 2.2.2.2.4.27) structure MUST be used for all
+	// resource record types.
 	Buffer []byte `idl:"name:Buffer;size_is:(wDataLength)" json:"buffer"`
 }
 
@@ -14106,15 +14117,169 @@ func (o *Record) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // FlatRecord structure represents DNS_FLAT_RECORD RPC structure.
+//
+// The DNS_RPC_RECORD structure is used to specify a single DNS record's parameters
+// and data. This structure is returned by the DNS server in response to an R_DnssrvEnumRecords2
+// (section 3.1.4.9) method call.
 type FlatRecord struct {
+	// wDataLength: The total size of the variable buffer, in bytes. Note that the DNS_RPC_RECORD
+	// structure is always 4-byte aligned, which means there can be 0-3 bytes of padding
+	// at the end of the structure. The pad bytes are not included in the wDataLength count.
 	DataLength uint16 `idl:"name:wDataLength" json:"data_length"`
-	Type       uint16 `idl:"name:wType" json:"type"`
-	Flags      uint32 `idl:"name:dwFlags" json:"flags"`
-	Serial     uint32 `idl:"name:dwSerial" json:"serial"`
+	// wType: The type of the resource record, as specified in section 2.2.2.1.1 DNS_RECORD_TYPE.
+	Type uint16 `idl:"name:wType" json:"type"`
+	// dwFlags: Resource record properties. This field can contain one of the RANK* flags
+	// in the low-order bits and one of the DNS_RPC_FLAGS* in the high-order bits.
+	//
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                            |                                                                                  |
+	//	|                   VALUE                    |                                     MEANING                                      |
+	//	|                                            |                                                                                  |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| RANK_CACHE_BIT 0x00000001                  | The record came from the cache.                                                  |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| RANK_ROOT_HINT 0x00000008                  | The record is a preconfigured root hint.                                         |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| RANK_OUTSIDE_GLUE 0x00000020               | This value is not used.                                                          |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| RANK_CACHE_NA_ADDITIONAL 0x00000031        | The record was cached from the additional section of a non-authoritative         |
+	//	|                                            | response.                                                                        |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| RANK_CACHE_NA_AUTHORITY 0x00000041         | The record was cached from the authority section of a non-authoritative          |
+	//	|                                            | response.                                                                        |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| RANK_CACHE_A_ADDITIONAL 0x00000051         | The record was cached from the additional section of an authoritative response.  |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| RANK_CACHE_NA_ANSWER 0x00000061            | The record was cached from the answer section of a non-authoritative response.   |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| RANK_CACHE_A_AUTHORITY 0x00000071          | The record was cached from the authority section of an authoritative response.   |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| RANK_GLUE 0x00000080                       | The record is a glue record in an authoritative zone.                            |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| RANK_NS_GLUE 0x00000082                    | The record is a delegation  (type NS) record in an authoritative zone.           |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| RANK_CACHE_A_ANSWER 0x000000C1             | The record was cached from the answer section of an authoritative response.      |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| RANK_ZONE 0x000000F0                       | The record comes from an authoritative zone.                                     |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| DNS_RPC_FLAG_ZONE_ROOT 0x40000000          | The record is at the root of a zone (not necessarily a zone hosted by this       |
+	//	|                                            | server; the record could have come from the cache).                              |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| DNS_RPC_FLAG_AUTH_ZONE_ROOT 0x20000000     | The record is at the root of a zone that is locally hosted on this server.       |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| DNS_RPC_FLAG_CACHE_DATA 0x80000000         | The record came from the cache.                                                  |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| DNS_RPC_FLAG_RECORD_WIRE_FORMAT 0x00100000 | The record SHOULD<25> be treated as a resource record of unknown type ([RFC3597] |
+	//	|                                            | section 2) by the DNS server.                                                    |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	Flags uint32 `idl:"name:dwFlags" json:"flags"`
+	// dwSerial: This MUST be set to 0x00000000 when sent by the client or server, and ignored
+	// on receipt by the server or client.
+	Serial uint32 `idl:"name:dwSerial" json:"serial"`
+	// dwTtlSeconds: The duration, in seconds, after which this record will expire.
 	TTLSeconds uint32 `idl:"name:dwTtlSeconds" json:"ttl_seconds"`
-	Timestamp  uint32 `idl:"name:dwTimeStamp" json:"timestamp"`
-	_          uint32 `idl:"name:dwReserved"`
-	Buffer     []byte `idl:"name:Buffer;size_is:(wDataLength)" json:"buffer"`
+	// dwTimeStamp: The time stamp, in hours, for the record when it received the last update.
+	Timestamp uint32 `idl:"name:dwTimeStamp" json:"timestamp"`
+	// dwReserved: This value MUST be set to 0x00000000 when sent by the client and ignored
+	// on receipt by the server.
+	_ uint32 `idl:"name:dwReserved"`
+	// Buffer: Record data in DNS_RPC_RECORD_DATA (section 2.2.2.2.4) format where type
+	// is specified by the value wType.<26>
+	//
+	//	+----------------------------+--------------------------------+
+	//	|                            |                                |
+	//	|           VALUE            |            MEANING             |
+	//	|                            |                                |
+	//	+----------------------------+--------------------------------+
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_ZERO 0x0000       | DNS_RPC_RECORD_TS              |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_A 0x0001          | DNS_RPC_RECORD_A               |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_NS 0x0002         | DNS_RPC_RECORD_NODE_NAME       |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_MD 0x0003         | DNS_RPC_RECORD_NODE_NAME       |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_MF 0x0004         | DNS_RPC_RECORD_NODE_NAME       |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_CNAME 0x0005      | DNS_RPC_RECORD_NODE_NAME       |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_SOA 0x0006        | DNS_RPC_RECORD_SOA             |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_MB 0x0007         | DNS_RPC_RECORD_NODE_NAME       |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_MG 0x0008         | DNS_RPC_RECORD_NODE_NAME       |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_MR 0x0009         | DNS_RPC_RECORD_NODE_NAME       |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_NULL 0x000A       | DNS_RPC_RECORD_NULL            |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_WKS 0x000B        | DNS_RPC_RECORD_WKS             |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_PTR 0x000C        | DNS_RPC_RECORD_NODE_NAME       |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_HINFO 0x000D      | DNS_RPC_RECORD_STRING          |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_MINFO 0x000E      | DNS_RPC_RECORD_MAIL_ERROR      |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_MX 0x000F         | DNS_RPC_RECORD_NAME_PREFERENCE |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_TXT 0x0010        | DNS_RPC_RECORD_STRING          |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_RP 0x0011         | DNS_RPC_RECORD_MAIL_ERROR      |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_AFSDB 0x0012      | DNS_RPC_RECORD_NAME_PREFERENCE |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_X25 0x0013        | DNS_RPC_RECORD_STRING          |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_ISDN 0x0014       | DNS_RPC_RECORD_STRING          |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_RT 0x0015         | DNS_RPC_RECORD_NAME_PREFERENCE |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_SIG 0x0018        | DNS_RPC_RECORD_SIG             |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_KEY 0x0019        | DNS_RPC_RECORD_KEY             |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_AAAA 0x001C       | DNS_RPC_RECORD_AAAA            |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_NXT 0x001E        | DNS_RPC_RECORD_NXT             |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_SRV 0x0021        | DNS_RPC_RECORD_SRV             |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_ATMA 0x0022       | DNS_RPC_RECORD_ATMA            |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_NAPTR 0x0023      | DNS_RPC_RECORD_NAPTR           |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_DNAME 0x0027      | DNS_RPC_RECORD_NODE_NAME       |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_DS 0x002B         | DNS_RPC_RECORD_DS              |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_RRSIG 0x002E      | DNS_RPC_RECORD_RRSIG           |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_NSEC 0x002F       | DNS_RPC_RECORD_NSEC            |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_DNSKEY 0x0030     | DNS_RPC_RECORD_DNSKEY          |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_DHCID 0x0031      | DNS_RPC_RECORD_DHCID           |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_NSEC3 0x0032      | DNS_RPC_RECORD_NSEC3           |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_NSEC3PARAM 0x0033 | DNS_RPC_RECORD_NSEC3PARAM      |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_TLSA 0x0034       | DNS_RPC_RECORD_TLSA            |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_WINS 0xFF01       | DNS_RPC_RECORD_WINS            |
+	//	+----------------------------+--------------------------------+
+	//	| DNS_TYPE_WINSR 0xFF02      | DNS_RPC_RECORD_WINSR           |
+	//	+----------------------------+--------------------------------+
+	//
+	// Other type values that are not explicitly defined in the preceding table MUST be
+	// enumerable, including values defined by [IANA-DNS], and they MUST use the DNS_RPC_RECORD_NULL
+	// (section 2.2.2.2.4.4) structure. If the dwFlags field is set to DNS_RPC_FLAG_RECORD_WIRE_FORMAT,
+	// the DNS_RPC_RECORD_UNKNOWN (section 2.2.2.2.4.27) structure MUST be used for all
+	// resource record types.
+	Buffer []byte `idl:"name:Buffer;size_is:(wDataLength)" json:"buffer"`
 }
 
 func (o *FlatRecord) xxx_PreparePayload(ctx context.Context) error {
@@ -14815,6 +14980,9 @@ var (
 	PolicyLevelServerLevel PolicyLevel = 0
 	// DnsPolicyZoneLevel: The DNS Policy is applicable only for a specified zone. It is
 	// applicable for all DNS operations allowed for any zone.
+	//
+	// Note  For all DNS operations, Recursive Query is not possible for a zone because
+	// the zone never recurses for records it owns.
 	PolicyLevelZoneLevel PolicyLevel = 1
 	// DnsPolicyLevelMax: Shows the maximum level types supported.
 	PolicyLevelMax PolicyLevel = 2
@@ -16819,9 +16987,6 @@ var (
 	// DNSSRV_TYPEID_VIRTUALIZATION_INSTANCE_ENUM: A pointer to a structure of type DNS_RPC_ENUM_VIRTUALIZATION_INSTANCE_LIST
 	// (section 2.2.17.1.3). This structure is used to enumerate the virtualization instances
 	// in the DNS Server.
-	//
-	// Clients and servers of the DNS Server Management Protocol SHOULD<5> support all values
-	// above.
 	TypeIDVirtualizationInstanceEnum TypeID = 63
 )
 

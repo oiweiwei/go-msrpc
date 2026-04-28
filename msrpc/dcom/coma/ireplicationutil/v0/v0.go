@@ -435,8 +435,8 @@ type CreateShareRequest struct {
 	// share to create. This MUST be a SourceShareName or TargetNewShareName, according
 	// to the following ABNF syntax, as specified in [RFC4234].
 	//
-	// SourceShareName = "ReplicaSource" CurlyBracedGuidString TargetNewShareName = "ReplicaTargetNew"
-	// CurlyBracedGuidString
+	// SourceShareName = "ReplicaSource" CurlyBracedGuidString
+	//  TargetNewShareName = "ReplicaTargetNew" CurlyBracedGuidString
 	//
 	// Where CurlyBracedGuidString is in Curly Braced GUID String Syntax ([MS-DTYP] section
 	// 2.3.4.3).
@@ -930,8 +930,9 @@ type RemoveShareRequest struct {
 	// according to the following Augmented Backus-Naur Form (ABNF) syntax, as specified
 	// in [RFC4234].
 	//
-	// SourceShareName = "ReplicaSource" CurlyBracedGuidString TargetNewShareName = "ReplicaTargetNew"
-	// CurlyBracedGuidString TargetCurrentShareName = "ReplicaTargetCurrent"
+	// SourceShareName = "ReplicaSource" CurlyBracedGuidString
+	//  TargetNewShareName = "ReplicaTargetNew" CurlyBracedGuidString
+	//  TargetCurrentShareName = "ReplicaTargetCurrent"
 	//
 	// Where CurlyBracedGuidString is in Curly Braced GUID String Syntax ([MS-DTYP] section
 	// 2.3.4.3).

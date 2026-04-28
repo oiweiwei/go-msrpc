@@ -1,0 +1,91 @@
+<div class="content" name="WSD_BACKUP_PORT_DATA" uuid="45f18ad3-e1a4-4c44-a780-0dc2f0422914"><p>The <b>WSD_BACKUP_PORT_DATA</b> structure specifies
+information about the <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_f3d1ea15-54a3-4912-ae10-3a28ebf8c723" data-linktype="relative-path">Web Services for Devices (WSD)</a></span>
+backup <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">DiscoveryMethod</td>
+ </tr>
+ <tr>
+  <td colspan="32">GlobalID (2048 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">RemoteURL (2048 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>DiscoveryMethod (4 bytes): </b>A 32-bit unsigned
+integer that specifies how the WSD port was initially discovered. Possible
+values are in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>kMulticast 0x00000000</td>
+  <td>The WSD port was initially discovered by using multicast discovery.</td>
+ </tr><tr>
+  <td>kDirected 0x00000001</td>
+  <td>The WSD port was initially discovered by using directed discovery.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>GlobalID (2048 bytes): </b>A null-terminated <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> which, if <b>DiscoveryMethod</b> is kMulticast, specifies the
+<b>PKEY_PNPX_GlobalIdentify</b> of the <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_4712ded2-d927-4930-9450-29499f98cef4" data-linktype="relative-path">device</a></span> attached to
+the WSD port; otherwise, this field MUST be a NULL pointer.</p><p><b>RemoteURL (2048 bytes): </b>A null-terminated
+Unicode string which, if <b>DiscoveryMethod</b> is kDirected, specifies the <span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_433a4fb7-ef84-46b0-ab65-905f5e3a80b1" data-linktype="relative-path">URL</a></span>
+of the device attached to the WSD port; otherwise, this field MUST be a NULL
+pointer.</p></div>

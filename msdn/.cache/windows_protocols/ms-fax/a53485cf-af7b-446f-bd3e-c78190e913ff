@@ -1,0 +1,50 @@
+<div class="content" name="FaxObs_GetSecurityDescriptor" uuid="a53485cf-af7b-446f-bd3e-c78190e913ff"><p>The client calls <b>FaxObs_GetSecurityDescriptor (Opnum 31)</b>
+method to retrieve the fax security descriptor of the server. The client can
+set the fax security descriptor of the server with the <b>FaxObs_SetSecurityDescriptor</b> (section
+<a href="16508ae5-a249-4159-a83a-33d12aa87e3e" data-linktype="relative-path">3.1.4.2.33</a>) method.</p><p>On success, the server MUST allocate memory for the return
+data buffer and return a <b>FAX_SECURITY_DESCRIPTOR</b> (section <a href="800a545a-519b-4ea9-8741-2f1be6d20165" data-linktype="relative-path">2.2.90</a>) structure.</p><p>The client SHOULD free the buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FaxObs_GetSecurityDescriptor(
+   [in] handle_t hBinding,
+   [in] DWORD Id,
+   [in, out, unique, size_is(,*BufferSize)] 
+     LPBYTE* FaxSecurityDescriptor,
+   [in, out] LPDWORD BufferSize
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>A handle that is provided by the
+client <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> layer when
+the RPC call is made.</p><p><b>Id: </b>A <b>DWORD</b> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+containing the identifier of the security descriptor to request. The client
+MUST set this parameter to 0.</p><p><b>FaxSecurityDescriptor: </b>A pointer to the
+address of the returned buffer containing a <b>FAX_SECURITY_DESCRIPTOR</b>.</p><p><b>BufferSize: </b>Pointer to a <b>DWORD</b> variable
+containing the number of bytes returned in the <i>FaxSecurityDescriptor</i>
+buffer.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. The client&#39;s fax user account does not have the FAX_CONFIG_QUERY access rights.</td>
+ </tr><tr>
+  <td>ERROR_NOT_ENOUGH_MEMORY 0x00000008</td>
+  <td>The server cannot allocate sufficient memory to hold the FAX_SECURITY_DESCRIPTOR to be returned to the client.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_CATEGORY 0x00000075</td>
+  <td>The server SHOULD return this error code if the value of the Id parameter is greater than 0.&lt;214&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying RPC protocol, <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

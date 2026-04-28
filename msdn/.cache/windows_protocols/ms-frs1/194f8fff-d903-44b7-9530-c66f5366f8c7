@@ -1,0 +1,300 @@
+<div class="content" name="COMM_PACKET" uuid="194f8fff-d903-44b7-9530-c66f5366f8c7"><p>The COMM_PACKET is the primary message used to accomplish
+file replication through <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_20f21413-875c-4ebf-9913-a3282fbb779f" data-linktype="relative-path">FRS</a>.
+It MUST be transmitted as the payload of the <a href="73526609-23d0-4aae-a128-40a1f0d2e7a1" data-linktype="relative-path">FrsRpcSendCommPkt</a> method.
+By successively invoking FrsRpcSendCommPkt, a computer participates in a
+synchronous request/response-based conversation with another computer that
+results in replication of data files. On receiving an FrsRpcSendCommPkt call
+from another computer, FRS responds based on the nature of the request inside
+the COMM_PACKET data received (see section 3.3.4.4).</p><p>A PCOMM_PACKET is a pointer to a COMM_PACKET.</p><p>The COMM_PACKET contains information about the partner, the
+replication command, and data specific to that replication command, plus hash
+fields to verify the data&#39;s integrity. This information is contained in a
+series of elements within each COMM_PACKET. There MUST be no padding between
+each element unless it is called out in the specification.</p><p>Twelve types of COMM_PACKETS, each representing a different
+replication command, are sent over the wire. The replication command for the
+packet is indicated by the data field in the <a href="f300ec84-7c63-4f13-8590-54b630e15413" data-linktype="relative-path">COMM_COMMAND</a> element.</p><p>Every packet, regardless of replication command type, MUST
+begin with the following eight elements. There MUST be no padding between each
+element unless it is called out in the specification.</p><p><a href="b53b6f24-982c-40d3-b6d5-6caf0b82afda" data-linktype="relative-path">COMM_BOP</a>:
+Beginning-of-packet marker, as specified in section 2.2.3.6.1.</p><p>COMM_COMMAND: The replication command, as specified in
+section 2.2.3.6.2.</p><p><a href="29983510-1e9a-4275-97e7-0080e48bf467" data-linktype="relative-path">COMM_TO</a>:
+<a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> and name of the
+member to receive this packet, as specified in section 2.2.3.6.3.</p><p><a href="ae460450-7dc8-4136-971c-3b303ce979fb" data-linktype="relative-path">COMM_FROM</a>:
+GUID and name of the member that sent this packet, as specified in section
+2.2.3.6.4.</p><p><a href="8742337b-1ab2-4ab8-9283-d8bf641df72d" data-linktype="relative-path">COMM_REPLICA</a>:
+GUID and name that identifies the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_6cef9d9c-c366-490a-8e4e-a350688731ca" data-linktype="relative-path">replica set</a> to which this
+packet applies, as specified in section 2.2.3.6.5.</p><p><a href="54fdc837-c6e3-48dd-b851-c4d472df9b36" data-linktype="relative-path">COMM_CXTION</a>:
+GUID and name of the connection over which this packet is transmitted, as
+specified in section 2.2.3.6.6.</p><p><a href="d3838376-9a09-4c3d-b221-1a12c603b838" data-linktype="relative-path">COMM_JOIN_GUID</a>:
+GUID that identifies the last successful <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_961ac809-b9b0-4bd7-b35d-ddd53d76e4fe" data-linktype="relative-path">Join</a> over the connection
+identified in the COMM_CXTION element, as specified in section 2.2.3.6.7.</p><p><a href="88eb13a2-42ce-4371-b994-8f792f17b665" data-linktype="relative-path">COMM_LAST_JOIN_TIME</a>:
+Time that the Join identified by the COMM_JOIN_GUID element completed, as
+specified in section 2.2.3.6.8.</p><p>In addition, every packet MUST end with the following
+element, which MUST appear in the packet immediately after the preceding
+element, with no padding between it and the preceding element.</p><p><a href="6c5a9a49-1213-4a61-93c3-bbc5bbf71874" data-linktype="relative-path">COMM_EOP</a>:
+End-of-Packet (EOP) marker, as specified in section 2.2.3.6.23.</p><p> FRS MUST respond to zero or more replication
+command-specific elements that appear between the last element in the beginning
+sequence and the ending element. There MUST be no padding bytes before or after
+any elements in the packet, so the following text gives the bit-level layout of
+the fields. All of the COMM_PACKET elements are defined in the following
+section.</p><p>The types of replication command packets are listed in the
+following table along with a brief description and the list of elements that
+are contained in the packet. Only the mandatory elements and the elements
+listed for that COMM_COMMAND value in the following table MUST be present for a
+packet with a particular COMM_COMMAND value. The mandatory elements are omitted
+from this table, but MUST be present in every replication command packet. FRS
+MUST respond to these requests, as specified in section 3.3.4.4.</p><table><thead>
+  <tr>
+   <th>
+   <p> COMM_COMMAND value </p>
+   </th>
+   <th>
+   <p> Extra sequence of elements in packet (no padding
+   between elements) </p>
+   </th>
+   <th>
+   <p> Meaning </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CMD_REMOTE_CO (0x218)</td>
+  <td>COMM_REMOTE_CO COMM_CO_EXTENSION_2</td>
+  <td>To send a remote change order to a downstream partner.</td>
+ </tr><tr>
+  <td>CMD_RECEIVING_STAGE (0x238)</td>
+  <td>COMM_BLOCK COMM_BLOCK_SIZE COMM_FILE_SIZE COMM_FILE_OFFSET COMM_CO_GUID COMM_CO_SEQUENCE_NUMBER</td>
+  <td>To transmit staging file to a downstream partner.</td>
+ </tr><tr>
+  <td>CMD_REMOTE_CO_DONE (0x250)</td>
+  <td>COMM_BLOCK_SIZE COMM_FILE_SIZE COMM_FILE_OFFSET COMM_GVSN COMM_CO_GUID COMM_CO_SEQUENCE_NUMBER COMM_REMOTE_CO COMM_CO_EXTENSION_2</td>
+  <td>To inform the upstream partner that processing the remote change order is complete. This packet also MUST include the change order command that has completed.</td>
+ </tr><tr>
+  <td>CMD_ABORT_FETCH (0x246)</td>
+  <td>COMM_BLOCK_SIZE COMM_FILE_SIZE COMM_FILE_OFFSET COMM_CO_GUID COMM_CO_SEQUENCE_NUMBER</td>
+  <td>To inform the downstream partner that the staged file data cannot be sent. This command tells the partner to abort the fetch operation on the staging file.</td>
+ </tr><tr>
+  <td>CMD_RETRY_FETCH (0x244)</td>
+  <td>COMM_BLOCK_SIZE COMM_FILE_OFFSET COMM_CO_GUID COMM_CO_SEQUENCE_NUMBER</td>
+  <td>To inform the downstream partner that the request for the staging file data cannot be fulfilled at this time and that the request SHOULD be retried at a later time.</td>
+ </tr><tr>
+  <td>CMD_NEED_JOIN (0x121)</td>
+  <td></td>
+  <td>To inform the upstream partner that a Join operation is needed.</td>
+ </tr><tr>
+  <td>CMD_START_JOIN (0x122)</td>
+  <td></td>
+  <td>To inform the downstream partner that a Join operation is starting.</td>
+ </tr><tr>
+  <td>CMD_JOINING (0x130)</td>
+  <td>COMM_VVECTOR COMM_JOIN_TIME COMM_REPLICA_VERSION_GUID COMM_COMPRESSION_GUID</td>
+  <td>To send a version vector to an upstream partner.</td>
+ </tr><tr>
+  <td>CMD_JOINED (0x128)</td>
+  <td></td>
+  <td>To inform the downstream partner that Join is successful.</td>
+ </tr><tr>
+  <td>CMD_UNJOIN_REMOTE (0x148)</td>
+  <td></td>
+  <td>On completion of a VVJ on a connection, this command causes the upstream partner to disconnect the connection so that it can be torn down.</td>
+ </tr><tr>
+  <td>CMD_VVJOIN_DONE (0x136)</td>
+  <td></td>
+  <td>To inform the downstream partner that all change orders are sent out during Initial Sync.</td>
+ </tr><tr>
+  <td>CMD_SEND_STAGE (0x228)</td>
+  <td>COMM_BLOCK_SIZE COMM_FILE_SIZE COMM_FILE_OFFSET COMM_CO_GUID COMM_CO_SEQUENCE_NUMBER COMM_REMOTE_CO COMM_CO_EXTENSION_2</td>
+  <td>To request staging data from an upstream partner.</td>
+ </tr></tbody></table><p>The structure of the COMM_PACKET MUST be as follows:</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned long Major;
+   unsigned long Minor;
+   unsigned long CsId;
+   unsigned long MemLen;
+   [range(0,262144)] unsigned long PktLen;
+   unsigned long UpkLen;
+   [size_is(PktLen)] unsigned char* Pkt;
+   [ignore] void* DataName;
+   [ignore] void* DataHandle;
+ } COMM_PACKET,
+  *PCOMM_PACKET;
+</pre></div>
+</dd></dl><p><b>Major:</b>  A 32-bit, unsigned integer
+indicating the major version number of the FRS. This field MUST be zero (0).</p><p><b>Minor:</b>  A 32-bit unsigned integer
+that specifies the minor version number of FRS. The minor version number of FRS
+MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>NTFRS_COMM_MINOR_0 0x00000000</td>
+  <td>This is the first version.</td>
+ </tr><tr>
+  <td>NTFRS_COMM_MINOR_1 0x00000001</td>
+  <td>Supports MD5.</td>
+ </tr><tr>
+  <td>NTFRS_COMM_MINOR_2 0x00000002</td>
+  <td>Supports trigger schedule (see section 3.3.2.1.1).</td>
+ </tr><tr>
+  <td>NTFRS_COMM_MINOR_3 0x00000003</td>
+  <td>Supports change order record extension (see section 2.2.3.6.21).</td>
+ </tr><tr>
+  <td>NTFRS_COMM_MINOR_4 0x00000004</td>
+  <td>Forces the replica number fields in a change order to be an unsigned long instead of an unsigned long PTR for 32–64 bit interoperation. Supports the use of the COMM_COMPRESSION_GUID. Supports COMM_CO_EXTENSION_2.</td>
+ </tr><tr>
+  <td>NTFRS_COMM_MINOR_5 0x00000005</td>
+  <td>Supports change order extension COMM_CO_EXTENSION_2 when replication partner is running FRS minor version 4 or later.</td>
+ </tr><tr>
+  <td>NTFRS_COMM_MINOR_6 0x00000006</td>
+  <td>No new capabilities.</td>
+ </tr><tr>
+  <td>NTFRS_COMM_MINOR_7 0x00000007</td>
+  <td>No new capabilities.</td>
+ </tr><tr>
+  <td>NTFRS_COMM_MINOR_8 0x00000008</td>
+  <td>No new capabilities.</td>
+ </tr><tr>
+  <td>NTFRS_COMM_MINOR_9 0x00000009</td>
+  <td>No new capabilities.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Version 0.7 or earlier is deprecated and SHOULD be
+used only for backward compatibility.</p>
+</dd>
+<dd>
+<p>Subsequent versions MUST subsume all capabilities of
+lower versions.</p>
+</dd></dl><p><b>CsId:</b>   A 32-bit, unsigned integer
+that MUST be set to 1.</p><p><b>MemLen:</b>   A 32-bit, unsigned integer
+containing the size, in bytes, of <b>Pkt</b>. Used to determine the packet
+length.</p><p><b>PktLen:</b>   A 32-bit, unsigned integer
+containing the length, in bytes, of the packet&#39;s valid data portion. Not all
+bytes inside <b>Pkt</b> hold valid data. The valid data inside <b>Pkt</b> is
+from offset 0 to PktLen.</p><p><b>UpkLen:</b>  MUST be 0.</p><p><b>Pkt:</b>   A pointer to a buffer that
+MUST consist of a sequence of COMM_PACKET element structures placed back to
+back in contiguous memory. These elements MUST be in a particular order;
+however, some elements can be omitted depending on the command that is being
+transmitted. The table earlier in this section specifies the elements that MUST
+exist in the <b>Pkt</b> buffer, for each supported COMM_COMMAND value.</p><dl>
+<dd>
+<p>The following table shows the order of the elements
+in the <b>Pkt</b> buffer. The first column shows when the element is included
+in the table: A – Always; V – included when a version vector is transmitted; S
+– included when staging data is transmitted; C – included when a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_576a8417-dd00-4f9e-b52f-c9a2e3766a8a" data-linktype="relative-path">change order</a> Command is
+transmitted. See the first table in section 2.2.3.5 to see what element types
+MUST appear for each communication packet. For more information on version
+vectors see section <a href="63e5f8af-dcb1-4d84-8732-b3a5d4598675" data-linktype="relative-path">3.1.1.11</a>.</p>
+</dd>
+<dd>
+<p>See sections <a href="c78fb80d-3484-486a-b718-6d300ef5a847" data-linktype="relative-path">2.2.3.6</a> through 2.2.3.6.23
+for the definitions of the packet structures associated with each element type.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p> Usage </p>
+   </th>
+   <th>
+   <p> Element type and value </p>
+   </th>
+   <th>
+   <p> Element contents </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>A</td>
+  <td>COMM_BOP 0x0001</td>
+  <td>Beginning of the packet. This element MUST be the first element in the packet.</td>
+ </tr><tr>
+  <td>A</td>
+  <td>COMM_COMMAND 0x0002</td>
+  <td>Type of command sent in this packet. See the &#34;Type of communication packets&#34; table in section 2.2.3.5.</td>
+ </tr><tr>
+  <td>A</td>
+  <td>COMM_TO 0x0003</td>
+  <td>GUID and name of the member to receive this packet. This MUST refer to either local machine or partner.</td>
+ </tr><tr>
+  <td>A</td>
+  <td>COMM_FROM 0x0004</td>
+  <td>GUID and name of member that sent this packet. This MUST refer to either local machine or partner.</td>
+ </tr><tr>
+  <td>A</td>
+  <td>COMM_REPLICA 0x0005</td>
+  <td>GUID and name that identifies the replica set to which this packet applies.</td>
+ </tr><tr>
+  <td>A</td>
+  <td>COMM_CXTION 0x0008</td>
+  <td>GUID and name of the connection over which this packet is transmitted.</td>
+ </tr><tr>
+  <td>A</td>
+  <td>COMM_JOIN_GUID 0x0006</td>
+  <td>GUID that identifies the last successful Join over the connection identified in the COMM_CXTION element.</td>
+ </tr><tr>
+  <td>A</td>
+  <td>COMM_LAST_JOIN_TIME 0x0012</td>
+  <td>Time (see section 2.2.3.6.8) that the Join identified by the COMM_JOIN_GUID element completed. Packet element contains the time of the last Join by this connection.</td>
+ </tr><tr>
+  <td>V</td>
+  <td>COMM_VVECTOR 0x0007</td>
+  <td>A COMM_VVECTOR element MUST be inserted into Pkt for each GVSN structure in the version vector. There MUST be one COMM_VVECTOR element for each partner.</td>
+ </tr><tr>
+  <td>V</td>
+  <td>COMM_JOIN_TIME 0x0011</td>
+  <td>This element MUST be initialized to the FILETIME (as specified in [MS-DTYP]) when the connection is joined.</td>
+ </tr><tr>
+  <td>V</td>
+  <td>COMM_REPLICA_VERSION_GUID 0x0014</td>
+  <td>GUID of the machine that generated the version vector.</td>
+ </tr><tr>
+  <td>V</td>
+  <td>COMM_COMPRESSION_ GUID 0x0018</td>
+  <td>A COMM_COMPRESSION_GUID element MUST be inserted for each compression algorithm that the sending member supports (see section 2.2.3.6.12. There can be more than one COMM_COMPRESSION_GUID element. There are no other GUID values used by FRS.</td>
+ </tr><tr>
+  <td>S</td>
+  <td>COMM_BLOCK 0x0009</td>
+  <td>Block of data from the staging file that is being transmitted.</td>
+ </tr><tr>
+  <td>S</td>
+  <td>COMM_BLOCK_SIZE 0x000A</td>
+  <td>Size in bytes of the block of data in the COMM_BLOCK element.</td>
+ </tr><tr>
+  <td>S</td>
+  <td>COMM_FILE_SIZE 0x000B</td>
+  <td>Size in bytes of the staging file being transmitted.</td>
+ </tr><tr>
+  <td>S</td>
+  <td>COMM_FILE_OFFSET 0x000C</td>
+  <td>Offset from the beginning of the staging file to the beginning of the block in the COMM_BLOCK element.</td>
+ </tr><tr>
+  <td>S</td>
+  <td>COMM_GVSN 0x000E</td>
+  <td>GVSN structure for the file being transmitted.</td>
+ </tr><tr>
+  <td>S</td>
+  <td>COMM_CO_GUID 0x000F</td>
+  <td>GUID that identifies the change order that caused the file to be transmitted.</td>
+ </tr><tr>
+  <td>S</td>
+  <td>COMM_CO_SEQUENCE_ NUMBER 0x0010</td>
+  <td>Sequence number starting at 1 to record the order of change order commands. It MUST be used for acknowledgment.</td>
+ </tr><tr>
+  <td>C</td>
+  <td>COMM_REMOTE_CO 0x000D</td>
+  <td>Includes a remote change order command.</td>
+ </tr><tr>
+  <td>C</td>
+  <td>COMM_CO_EXT_WIN2K 0x0016 COMM_CO_EXTENSION_2 0x0017</td>
+  <td>COMM_CO_EXT_WIN2K or a COMM_CO_EXTENSION_2 element will be in Pkt. If either partner is NTFRS_COMM_MINOR_3 or lower, the COMM_CO_EXT_WIN2K element will be used. Otherwise, the COMM_CO_EXTENSION_2 element will be used. It contains change order extensions.</td>
+ </tr><tr>
+  <td>A</td>
+  <td>COMM_EOP 0x13</td>
+  <td>End-of-packet (EOP) element.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>DataName:</b>   MUST be 0.</p><p><b>DataHandle:</b>   MUST be 0.</p></div>
