@@ -1,0 +1,131 @@
+<div class="content" name="TAPISERVERCONFIG" uuid="8cce3599-35af-485e-8292-5028b8043ebd"><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">dwTotalSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwNeededSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwUsedSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwFlags</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwDomainNameSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwDomainNameOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwUserNameSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwUserNameOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwPasswordSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwPasswordOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwAdministratorsSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwAdministratorsOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">VarData (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to the packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, needed for the packet to hold all of the returned
+information.</p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of the packet that MUST contain
+useful information.</p><p><b>dwFlags (4 bytes): </b>An unsigned 32-bit integer.
+</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>TAPISERVERCONFIGFLAGS_ISSERVER 0x00000001</td>
+  <td>The server has remote telephony server capability.</td>
+ </tr><tr>
+  <td>TAPISERVERCONFIGFLAGS_ENABLESERVER 0x00000002</td>
+  <td>The server is configured by enabling the telephony remote protocol server role.</td>
+ </tr><tr>
+  <td>TAPISERVERCONFIGFLAGS_SETACCOUNT 0x00000004</td>
+  <td>The client changes the credentials (user account and password) for the process corresponding to the remote telephony server role</td>
+ </tr><tr>
+  <td>TAPISERVERCONFIGFLAGS_SETTAPIADMINISTRATORS 0x00000008</td>
+  <td>The client changes the TAPI administrator&#39;s list.</td>
+ </tr><tr>
+  <td>TAPISERVERCONFIGFLAGS_LOCKMMCWRITE 0x00000020</td>
+  <td>The client locks the server configuration database and prevents other clients from locking or writing.</td>
+ </tr><tr>
+  <td>TAPISERVERCONFIGFLAGS_UNLOCKMMCWRITE 0x00000040</td>
+  <td>Client unlocks the server configuration database and allows other clients to lock or write.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwDomainNameSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the string containing the domain name and
+including the terminating null character. </p><p><b>dwDomainNameOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of this packet.</p><p><b>dwUserNameSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the string containing the user name and
+including the terminating null character.</p><p><b>dwUserNameOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset from the beginning of this packet.</p><p><b>dwPasswordSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the string containing the password and
+including the terminating null character.</p><p><b>dwPasswordOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset from the beginning of this packet.</p><p><b>dwAdministratorsSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of a list of TAPI administrator accounts in
+domain or user formats. </p><p><b>dwAdministratorsOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of this packet. Each account
+string is null-terminated and the last account string is terminated with two
+null characters. The size, in bytes, including the terminating null characters.</p><p><b>VarData (variable): </b>This field contains the
+Domain name as specified by <b>dwDomainNameOffset</b>, User Name as specified
+by <b>dwUserNameOffset</b>, Password as specified by <b>dwPaswordOffset</b> and
+Administrator accounts in domain as specified by <b>dwAdministratorSize</b>.</p></div>

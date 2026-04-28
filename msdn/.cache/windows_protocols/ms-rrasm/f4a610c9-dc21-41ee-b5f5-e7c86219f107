@@ -1,0 +1,57 @@
+<div class="content" name="IGMP_MIB_GROUP_INFO" uuid="f4a610c9-dc21-41ee-b5f5-e7c86219f107"><p>The <b>IGMP_MIB_GROUP_INFO</b> structure is used in the <a href="8fc7a277-b135-47e2-af2a-65d16cb8f8ad" data-linktype="relative-path"><b>IGMP_MIB_IF_GROUPS_LIST (section 2.2.1.2.175)</b></a>
+structure. If the interface is of type IGMP_IF_RAS_SERVER then the group
+membership of all the RAS clients is summarized, and the <b>GroupUpTime</b> and
+<b>GroupExpiryTime</b> is the maximum over all member RAS clients, while the <b>V1HostPresentTimeLeft</b>
+is set to 0. If the interface is of type IGMP_IF_RAS_CLIENT, the <b>IpAddr</b>
+is the next hop IP address of the RAS client.  </p><dl>
+<dd>
+<div><pre> typedef struct _IGMP_MIB_GROUP_INFO {
+   union {
+     DWORD IfIndex;
+     DWORD GroupAddr;
+   };
+   DWORD IpAddr;
+   DWORD GroupUpTime;
+   DWORD GroupExpiryTime;
+   DWORD LastReporter;
+   DWORD V1HostPresentTimeLeft;
+   DWORD Flags;
+ } IGMP_MIB_GROUP_INFO,
+  *PIGMP_MIB_GROUP_INFO;
+</pre></div>
+</dd></dl><p><b>IfIndex/ GroupAddr: </b>The index of the interface
+or group address.</p><p><b>IpAddr: </b>The IP address of the interface.</p><p><b>GroupUpTime: </b>The time, in seconds, since the
+group is up.</p><p><b>GroupExpiryTime: </b>The time, in seconds, before
+the group expires.</p><p><b>LastReporter: </b>The IP address of the last
+reporter.</p><p><b>V1HostPresentTimeLeft: </b>The time left for the
+present IGMPv1 hosts.</p><p><b>Flags: </b>It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IGMP_GROUP_TYPE_NON_STATIC 0x00000001</td>
+  <td>The IGMP group is not static.</td>
+ </tr><tr>
+  <td>IGMP_GROUP_TYPE_STATIC 0x00000002</td>
+  <td>The IGMP group is static.</td>
+ </tr><tr>
+  <td>IGMP_GROUP_FWD_TO_MGM 0x00000004</td>
+  <td>The IGMP group needs to be forwarded to the multiple multicast routing protocols.</td>
+ </tr><tr>
+  <td>IGMP_GROUP_ALLOW 0x00000010</td>
+  <td>Allows IGMP groups.</td>
+ </tr><tr>
+  <td>IGMP_GROUP_BLOCK 0x00000020</td>
+  <td>Blocks IGMP groups.</td>
+ </tr><tr>
+  <td>IGMP_GROUP_NO_STATE 0x00000040</td>
+  <td>There is no IGMP group state.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,0 +1,90 @@
+<div class="content" name="DS_REPL_SERVER_OUTGOING_CALL" uuid="8e769e6a-a8b2-4291-aeff-1ec521c96852"><p>The DS_REPL_SERVER_OUTGOING_CALL structure defines an
+outstanding request from this <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> to another DC.
+This structure is a concrete representation of a tuple from an <span><a href="b9f46593-8a40-4186-9ece-bc2612b4c3f4" data-linktype="relative-path">RPCOutgoingContexts</a></span>
+sequence.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] LPWSTR pszServerName;
+   BOOL fIsHandleBound;
+   BOOL fIsHandleFromCache;
+   BOOL fIsHandleInCache;
+   DWORD dwThreadId;
+   DWORD dwBindingTimeoutMins;
+   DSTIME dstimeCreated;
+   DWORD dwCallType;
+ } DS_REPL_SERVER_OUTGOING_CALL;
+</pre></div>
+</dd></dl><p><b>pszServerName:</b>  The <span><a href="3d0d3777-9358-47dd-b555-34405f57f912" data-linktype="relative-path">NetworkAddress</a></span>
+of the server.</p><p><b>fIsHandleBound:</b>  True if and only if
+the <span><a href="605b1ea1-9cdc-428f-ab7a-70120e020a3d" data-linktype="relative-path">IDL_DRSBind</a></span>
+method has completed and the <span><a href="49eb17c9-b6a9-4cea-bef8-66abda8a7850" data-linktype="relative-path">IDL_DRSUnbind</a></span>
+method has not yet been called.</p><p><b>fIsHandleFromCache:</b>  True if and
+only if the context handle used was retrieved from the cache.</p><p><b>fIsHandleInCache:</b>  True if and only
+if the context handle is still in the cache.</p><p><b>dwThreadId:</b>  The thread ID of the
+thread that is using the context.</p><p><b>dwBindingTimeoutMins:</b>  If the
+context is set to be canceled, the time-out in minutes.</p><p><b>dstimeCreated:</b>  The date and time
+when the context was created.</p><p><b>dwCallType:</b>  The call that the
+client is waiting on. MUST be one of the values in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>2</td>
+  <td>IDL_DRSBind</td>
+ </tr><tr>
+  <td>3</td>
+  <td>IDL_DRSUnbind</td>
+ </tr><tr>
+  <td>4</td>
+  <td>IDL_DRSReplicaSync</td>
+ </tr><tr>
+  <td>5</td>
+  <td>IDL_DRSGetNCChanges</td>
+ </tr><tr>
+  <td>6</td>
+  <td>IDL_DRSUpdateRefs</td>
+ </tr><tr>
+  <td>7</td>
+  <td>IDL_DRSReplicaAdd</td>
+ </tr><tr>
+  <td>8</td>
+  <td>IDL_DRSReplicaDel</td>
+ </tr><tr>
+  <td>9</td>
+  <td>IDL_DRSVerifyNames</td>
+ </tr><tr>
+  <td>10</td>
+  <td>IDL_DRSGetMemberships</td>
+ </tr><tr>
+  <td>11</td>
+  <td>IDL_DRSInterDomainMove</td>
+ </tr><tr>
+  <td>12</td>
+  <td>IDL_DRSGetNT4ChangeLog</td>
+ </tr><tr>
+  <td>13</td>
+  <td>IDL_DRSCrackNames</td>
+ </tr><tr>
+  <td>14</td>
+  <td>IDL_DRSAddEntry</td>
+ </tr><tr>
+  <td>15</td>
+  <td>IDL_DRSGetMemberships2</td>
+ </tr><tr>
+  <td>16</td>
+  <td>IDL_DRSGetObjectExistence</td>
+ </tr><tr>
+  <td>17</td>
+  <td>IDL_DRSGetReplInfo</td>
+ </tr><tr>
+  <td>18</td>
+  <td>IDL_DRSWriteSPN</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,0 +1,172 @@
+<div class="content" name="RpcWinStationQueryInformation" uuid="1bba9ff2-71d3-49a3-bb26-2e5f6fcab3ee"><p>The RpcWinStationQueryInformation method retrieves various
+types of configuration information on a session. The caller MUST have the
+WINSTATION_QUERY permission right as well as specific permission rights for
+some operations as indicated in the following sections. The method checks
+whether the caller has WINSTATION_QUERY permission and the specific permission
+required for some operations (section <span><a href="4507e852-be3d-45b6-bc47-8ca0b552c94d" data-linktype="relative-path">3.1.1</a></span>) by setting
+it as the Access Request mask, and fails if the caller does not have the
+permission.<a id="Appendix_A_Target_163"></a><a aria-label="Product behavior note 163" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_163" data-linktype="relative-path">&lt;163&gt;</a></p><dl>
+<dd>
+<div><pre> BOOLEAN RpcWinStationQueryInformation(
+   [in] SERVER_HANDLE hServer,
+   [out] DWORD* pResult,
+   [in] DWORD LogonId,
+   [in] DWORD WinStationInformationClass,
+   [in, out, unique, size_is(WinStationInformationLength)] 
+     PCHAR pWinStationInformation,
+   [in, range(0, 0x8000)] DWORD WinStationInformationLength,
+   [out] DWORD* pReturnLength
+ );
+</pre></div>
+</dd></dl><p><b>hServer: </b>Handle to the server object. This is
+of type <span><a href="49484cdf-2feb-4de9-a588-5d01cf8995dc" data-linktype="relative-path">SERVER_HANDLE</a></span>. <i>hServer</i>
+MUST be obtained from a previous call to <span><a href="fd6f339d-f5dd-452c-a9a9-ec753c22a36a" data-linktype="relative-path">RpcWinStationOpenServer</a></span>.</p><p><b>pResult: </b>Failure error code if the call to
+RpcWinStationQueryInformation failed. If the call was successful, this
+parameter MUST be STATUS_SUCCESS (0x00000000).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>STATUS_SUCCESS 0x00000000</td>
+  <td>Successful completion.</td>
+ </tr><tr>
+  <td>STATUS_INVALID_INFO_CLASS 0xC0000003</td>
+  <td>The class is not recognized.</td>
+ </tr><tr>
+  <td>STATUS_BUFFER_TOO_SMALL 0xC0000023</td>
+  <td>WinStationInformationLength is too small.</td>
+ </tr><tr>
+  <td>STATUS_ACCESS_DENIED 0xC0000022</td>
+  <td>The caller does not have permission for the operation.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>LogonId: </b>The session ID of the session for
+which to retrieve information.</p><p><b>WinStationInformationClass: </b>The class of data
+to retrieve. These values come from the enum type <span><a href="f333c223-de8a-46e1-a83e-79cbdab92371" data-linktype="relative-path">WINSTATIONINFOCLASS</a></span>.</p><dl>
+<dd>
+<p>The following classes are supported.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>WinStationCreateData 0</td>
+  <td>Retrieves general information on the type of terminal server session (protocol) to which the session belongs. The pWinStationInformation argument points to a WINSTATIONCREATE structure, and WinStationInformationLength MUST be sizeof(WINSTATIONCREATE).&lt;164&gt;</td>
+ </tr><tr>
+  <td>WinStationConfiguration 1</td>
+  <td>Retrieves general configuration data on the terminal server session. The pWinStationInformation argument points to a WINSTACONFIGWIRE structure followed by a USERCONFIG structure. The WinStationInformationLength MUST be sizeof(WINSTACONFIGWIRE) + sizeof(USERCONFIG). The Size field in the USERCONFIG structure inside WINSTACONFIGWIRE MUST be set to sizeof(USERCONFIG) and the Offset set to sizeof(WINSTACONFIGWIRE). The Size field in the NewFields structure inside WINSTACONFIGWIRE MUST be set to 0, and the offset MUST be set to sizeof(WINSTACONFIGWIRE) + sizeof(USERCONFIG).</td>
+ </tr><tr>
+  <td>WinStationPdParams 2</td>
+  <td>Retrieves transport protocol driver parameters.&lt;165&gt; The structure coming into the function indicates via SDClass the specific protocol driver on which to receive parameter information. The result will be returned in the union in the structure. The pWinStationInformation argument points to a PDPARAMSWIRE structure followed by a PDPARAMS structure. The WinStationInformationLength MUST be sizeof(PDPARAMSWIRE) + sizeof(PDPARAMS). The Size field in SdClassSpecific field inside PDPARAMSWIRE MUST be set to sizeof(PDPARAMS) and the offset MUST be set to sizeof(PDPARAMSWIRE).</td>
+ </tr><tr>
+  <td>WinStationWd 3</td>
+  <td>Retrieves WinStation protocol driver configuration data for the session.&lt;166&gt; The pWinStationInformation argument points to a VARDATA_WIRE structure followed by a WDCONFIG structure. The WinStationInformationLength MUST be sizeof(VARDATA_WIRE) + sizeof(WDCONFIG). The Size field in the VARDATA_WIRE structure MUST be set to sizeof(WDCONFIG) and the Offset set to sizeof(VARDATA_WIRE).</td>
+ </tr><tr>
+  <td>WinStationPd 4</td>
+  <td>Retrieves transport protocol driver configuration data for the session.&lt;167&gt; The pWinStationInformation argument points to a VARDATA_WIRE, followed by a PDPARAMSWIRE structure, followed by a PDCONFIG2 structure and finally ending with a PDPARAMS structure. The WinStationInformationLength MUST be sizeof(VARDATA_WIRE) + sizeof(PDPARAMSWIRE) + size of(PDCONFIG2) + sizeof(PDPARAMS). The Size field in the VARDATA_WIRE structure MUST be set to sizeof(PDCONFIG2) and the Offset set to sizeof(VARDATA_WIRE) + sizeof(PDPARAMSWIRE). The Size field in SdClassSpecific field inside PDPARAMSWIRE MUST be set to sizeof(PDPARAMS) - sizeof(SDCLASS), and the offset MUST be set to Offset + Size of the VARDATA_WIRE structure.</td>
+ </tr><tr>
+  <td>WinStationPrinter 5</td>
+  <td>Not supported.</td>
+ </tr><tr>
+  <td>WinStationClient 6</td>
+  <td>Retrieves data on the terminal server client of the session. The pWinStationInformation argument points to a VARDATA_WIRE structure followed by a WINSTATIONCLIENT structure. The WinStationInformationLength MUST be sizeof(VARDATA_WIRE) + sizeof(WINSTATIONCLIENT). The Size field in the VARDATA_WIRE structure MUST be set to sizeof(WINSTATIONCLIENT) and the Offset set to sizeof(VARDATA_WIRE).</td>
+ </tr><tr>
+  <td>WinStationModules 7</td>
+  <td>Internal get function to retrieve data on protocol-specific binaries loaded for the given terminal server session. The structure pointed to by pWinStationInformation and the size of the buffer is Terminal Service protocol-specific.</td>
+ </tr><tr>
+  <td>WinStationInformation 8</td>
+  <td>Retrieves information on the session, including connect state, session&#39;s name, connect time, disconnect time, time last input was received from the client, logon time, user&#39;s username and domain, and the current time. pWinStationInformation points to a VARDATA_WIRE structure followed by a WINSTATIONINFORMATION structure. The WinStationInformationLength MUST be sizeof(VARDATA_WIRE) + sizeof(WINSTATIONINFORMATION). The Size field in the VARDATA_WIRE structure MUST be set to sizeof(WINSTATIONINFORMATION) and the Offset set to sizeof(VARDATA_WIRE).</td>
+ </tr><tr>
+  <td>WinStationUserToken 14</td>
+  <td>Retrieves the user&#39;s token in the session. Caller requires WINSTATION_ALL_ACCESS permission. The pWinStationInformation argument points to a WINSTATIONUSERTOKEN structure, and WinStationInformationLength MUST be sizeof(WINSTATIONUSERTOKEN).</td>
+ </tr><tr>
+  <td>WinStationVideoData 16</td>
+  <td>Retrieves resolution and color depth of the session. The pWinStationInformation argument points to a WINSTATIONVIDEODATA structure, and WinStationInformationLength MUST be sizeof(WINSTATIONVIDEODATA).</td>
+ </tr><tr>
+  <td>WinStationCd 18</td>
+  <td>Retrieves connection driver configuration data. The pWinStationInformation points to a CDCONFIG structure, and WinStationInformationLength MUST be sizeof(CDCONFIG).</td>
+ </tr><tr>
+  <td>WinStationVirtualData 20</td>
+  <td>Query client virtual data. The pWinStationInformation argument MUST point to 8 bytes and WinStationInformationLength MUST be 8.</td>
+ </tr><tr>
+  <td>WinStationLoadBalanceSessionTarget 24</td>
+  <td>Retrieves the target session ID for a client redirected from another server in a load balancing cluster. The pWinStationInformation points to a ULONG, and WinStationInformationLength MUST be sizeof(ULONG). If there is no redirection, -1 is returned in pWinStationInformation.&lt;168&gt;</td>
+ </tr><tr>
+  <td>WinStationLoadIndicator 25</td>
+  <td>Retrieves an indicator of the load on the server. The pWinStationInformation argument points to a WINSTATIONLOADINDICATORDATA structure. WinStationInformationLength MUST be sizeof(WINSTATIONLOADINDICATORDATA).</td>
+ </tr><tr>
+  <td>WinStationShadowInfo 26</td>
+  <td>Retrieves the current shadow state of a session. The pWinStationInformation argument points to a WINSTATIONSHADOW structure. WinStationInformationLength MUST be sizeof(WINSTATIONSHADOW).&lt;169&gt;</td>
+ </tr><tr>
+  <td>WinStationDigProductId 27</td>
+  <td>Retrieves the client product ID and current product ID of the session. The pWinStationInformation argument points to a WINSTATIONPRODID structure. WinStationInformationLength MUST be sizeof(WINSTATIONPRODID).&lt;170&gt;</td>
+ </tr><tr>
+  <td>WinStationLockedState 28</td>
+  <td>Retrieves the current locked state of the session, TRUE or FALSE. The pWinStationInformation argument points to a BOOL variable. WinStationInformationLength MUST be sizeof(BOOL).</td>
+ </tr><tr>
+  <td>WinStationRemoteAddress 29</td>
+  <td>Retrieves the remote IP address of the terminal server client in the session. The pWinStationInformation argument points to a WINSTATIONREMOTEADDRESS structure. WinStationInformationLength MUST be sizeof(WINSTATIONREMOTEADDRESS).</td>
+ </tr><tr>
+  <td>WinStationIdleTime 30</td>
+  <td>Retrieves the idle time for the session, in seconds. The pWinStationInformation argument points to a ULONG variable. WinStationInformationLength MUST be sizeof(ULONG).&lt;171&gt;</td>
+ </tr><tr>
+  <td>WinStationLastReconnectType 31</td>
+  <td>Retrieves the last reconnect type for the session. The value placed in pWinStationInformation will come from the enum RECONNECT_TYPE. The pWinStationInformation argument points to a ULONG variable. WinStationInformationLength MUST be sizeof(ULONG).&lt;172&gt;</td>
+ </tr><tr>
+  <td>WinStationDisallowAutoReconnect 32</td>
+  <td>Retrieves the allow (1) or disallow (0) state for auto-reconnect, 1 or 0. The pWinStationInformation argument points to a BOOLEAN variable. WinStationInformationLength MUST be sizeof(BOOLEAN).</td>
+ </tr><tr>
+  <td>WinStationReconnectedFromId 37</td>
+  <td>In case of reconnected sessions, this will return the session ID of the temporary session from which it was reconnected, or -1 if no temporary session was created. The WinStationInformationLength argument points to a ULONG variable. WinStationInformationLength MUST be sizeof(ULONG).</td>
+ </tr><tr>
+  <td>WinStationEffectsPolicy 38</td>
+  <td>Return policies that differentiate among implementations. The pWinStationInformation argument points to a ULONG variable. WinStationInformationLength MUST be sizeof(ULONG).</td>
+ </tr><tr>
+  <td>WinStationType 39</td>
+  <td>Returns the type associated with this WinStation. The pWinStationInformation argument points to a ULONG variable. WinStationInformationLength MUST be sizeof(ULONG).</td>
+ </tr><tr>
+  <td>WinStationInformationEx 40</td>
+  <td>Retrieves extended information on the session, including connect state, flags, session&#39;s name, connect time, disconnect time, time last input was received from the client, logon time, user&#39;s username and domain, and the current time. pWinStationInformation points to a VARDATA_WIRE structure followed by a WINSTATIONINFORMATIONEX structure. The WinStationInformationLength MUST be sizeof(VARDATA_WIRE) + sizeof(WINSTATIONINFORMATIONEX). The Size field in the VARDATA_WIRE structure MUST be set to sizeof(WINSTATIONINFORMATIONEX) and the Offset set to sizeof(VARDATA_WIRE).</td>
+ </tr></tbody></table>
+</dd></dl><p><b>pWinStationInformation: </b>Pointer to buffer
+allocated by the caller in which to retrieve the data. The data type or
+structure that <i>pWinStationInformation</i> points to is determined by the
+value of <i>WinStationInformationClass</i>. See previous sections for what <i>pWinStationInformation</i>
+SHOULD point to for each class.</p><p><b>WinStationInformationLength: </b>Size of the data
+pointed to by <i>pWinStationInformation</i>, in bytes.</p><p><b>pReturnLength: </b>Pointer to a variable to
+receive the size, in bytes, of the data retrieved. If <i>WinStationInformationLength</i>
+is too small, <i>pReturnLength</i> indicates the correct number of bytes for
+the caller to allocate.</p><p><b>Return Values: </b> Returns TRUE if the call
+succeeded, or FALSE if the method failed. On failure, <i>pResult</i> indicates
+the failure status code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x01 TRUE</td>
+  <td>Successful completion.</td>
+ </tr><tr>
+  <td>0x00 FALSE</td>
+  <td>Method call failed.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

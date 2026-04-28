@@ -1,0 +1,191 @@
+<div class="content" name="NL_AUTH_MESSAGE" uuid="525f0bf3-ebd9-4360-9343-685767eb3c67"><p>The <b>NL_AUTH_MESSAGE</b> structure is a token containing
+information that is part of the first message in establishing a <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_88d49f20-6c95-4b64-a52c-c3eca2fe5709" data-linktype="relative-path">security
+context</a></span> between a client and a server. It is used for establishing
+the secure session when Netlogon functions as a <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e0edad22-1b0e-42f3-8e51-50f8aa30b29a" data-linktype="relative-path">security support provider (SSP)</a></span>.
+For details about <b>NL_AUTH_MESSAGE</b> construction, see section <span><a href="b28a01cb-295d-4833-bdb6-b113baf109b4" data-linktype="relative-path">3.3.4.1</a></span>.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">MessageType</td>
+ </tr>
+ <tr>
+  <td colspan="32">Flags</td>
+ </tr>
+ <tr>
+  <td colspan="32">Buffer (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table>
+</dd></dl><p><b>MessageType (4 bytes): </b>A 32-bit unsigned
+integer. This value is used to indicate whether the message is a negotiate
+request message sent from a client to a server, or a negotiate response message
+sent from the server to the client. <b>MessageType</b> MUST be one, and only
+one, of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000</td>
+  <td>This is a negotiate request message.</td>
+ </tr><tr>
+  <td>0x00000001</td>
+  <td>This is a negotiate response message.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Flags (4 bytes): </b>A set of bit flags indicating
+the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8492780e-99e2-47ba-8553-aedb8de9f9c0" data-linktype="relative-path">principal</a></span>
+names carried in the request. A flag is TRUE (or set) if its value is equal to
+1. These flags are set only in negotiate request messages. The value is
+constructed from one or more bit flags from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>E</td>
+  <td>D</td>
+  <td>C</td>
+  <td>B</td>
+  <td>A</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>A</td>
+  <td>Buffer contains a NetBIOS domain name as an OEM_STRING ([MS-CIFS] section 2.2.1.1).</td>
+ </tr><tr>
+  <td>B</td>
+  <td>Buffer contains a NetBIOS computer name as an OEM_STRING.</td>
+ </tr><tr>
+  <td>C</td>
+  <td>Buffer contains a DNS domain name as a compressed UTF-8 string, as specified in [RFC1035] section 4.1.4.</td>
+ </tr><tr>
+  <td>D</td>
+  <td>Buffer contains a DNS host name as a compressed UTF-8 string.</td>
+ </tr><tr>
+  <td>E</td>
+  <td>Buffer contains a NetBIOS computer name as a compressed UTF-8 string.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero and MUST be
+ignored on receipt.</p>
+</dd></dl><p><b>Buffer (variable): </b>A text buffer that contains
+a concatenation of null-terminated strings for each of the name flags set in
+the <b>Flags</b> field. The order is the same as the order of the <b>Flags</b>
+values (A–E). This buffer is only used in negotiate request messages. For
+negotiate response messages, the buffer contains a NULL character.</p></div>

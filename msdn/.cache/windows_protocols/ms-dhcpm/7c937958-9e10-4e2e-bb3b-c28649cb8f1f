@@ -1,0 +1,104 @@
+<div class="content" name="R_DhcpV4FailoverSetRelationship" uuid="7c937958-9e10-4e2e-bb3b-c28649cb8f1f"><p>The <b>R_DhcpV4FailoverSetRelationship</b> method is used to
+modify an existing failover relationship on the DHCPv4 server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4FailoverSetRelationship(
+     [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+     [in] DWORD  Flags,
+     [in] LPDHCP_FAILOVER_RELATIONSHIP pRelationship
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>Flags: </b>A <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a>
+type that contains the bitmask of the members in the <i>pRelationship</i> parameter
+structure to be updated. The bit mapping for the various values for the <i>flags</i>
+parameter is listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>MCLT 0x00000001</td>
+  <td>Update the mclt member of DHCP_FAILOVER_RELATIONSHIP structure (section 2.2.1.2.98) to the value specified in the mclt member in pRelationship parameter.</td>
+ </tr><tr>
+  <td>SAFEPERIOD 0x00000002</td>
+  <td>Update the safePeriod member of DHCP_FAILOVER_RELATIONSHIP structure (section 2.2.1.2.98) to the value specified in the safePeriod member in pRelationship parameter.</td>
+ </tr><tr>
+  <td>CHANGESTATE 0x00000004</td>
+  <td>Update the state member of DHCP_FAILOVER_RELATIONSHIP structure (section 2.2.1.2.98) to the value specified in the state member in pRelationship parameter.</td>
+ </tr><tr>
+  <td>PERCENTAGE 0x00000008</td>
+  <td>Update the percentage member of DHCP_FAILOVER_RELATIONSHIP structure (section 2.2.1.2.98) to the value specified in the percentage member in pRelationship parameter.</td>
+ </tr><tr>
+  <td>MODE 0x00000010</td>
+  <td>Update the mode member of DHCP_FAILOVER_RELATIONSHIP structure (section 2.2.1.2.98) to the value specified in the mode member in pRelationship parameter.</td>
+ </tr><tr>
+  <td>PREVSTATE 0x00000020</td>
+  <td>Update the prevState member of DHCP_FAILOVER_RELATIONSHIP structure (section 2.2.1.2.98) to the value specified in the prevState member in pRelationship parameter.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>pRelationship: </b>This is a pointer to a type <b>DHCP_FAILOVER_RELATIONSHIP</b>
+structure (section 2.2.1.2.98) that contains information about the failover
+relationship to be modified on the DHCPv4 server.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. The return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20123, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 ERROR_SUCCESS</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>0x00004E92 ERROR_DHCP_FO_RELATIONSHIP_DOES_NOT_EXIST</td>
+  <td>The failover relationship doesn’t exist.</td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 90.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if any of the following are true:</p>
+<ul><li><p><span><span>  </span></span><i>pRelationship</i>
+parameter is NULL.</p>
+</li><li><p><span><span>  </span></span><i>relationshipName</i>
+member of <i>pRelationship</i> parameter is NULL.</p>
+</li><li><p><span><span>  </span></span><i>flags</i>
+parameter is 0.</p>
+</li><li><p><span><span>  </span></span><i>flags</i>
+parameter is set to any value other than the valid bitmasks as specified in the
+preceding table .</p>
+</li><li><p><span><span>  </span></span>PERCENTAGE
+constant is set in the <i>flags</i> parameter and <b>percentage</b> member of <i>pRelationship</i>
+parameter is greater than 100.</p>
+</li><li><p><span><span>  </span></span>MODE
+constant is set in the <i>flags</i> parameter and the <b>mode</b> member of <i>pRelationship</i>
+parameter is not set to LoadBalance enumeration value and is not set to
+HotStandby enumeration value.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+as specified in section <a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a>.
+If not, return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through all the elements in <b>DHCPv4FailoverRelationshipList</b>
+ADM element and retrieve the <b>DHCPv4FailoverRelationship</b> ADM element
+corresponding to the <b>relationshipName</b> member in <i>pRelationship</i>
+parameter. If the corresponding <b>DHCPv4FailoverRelationship</b> ADM element
+is not found return ERROR_DHCP_FO_RELATIONSHIP_DOES_NOT_EXIST, else update the
+retrieved <b>DHCPv4FailoverRelationship</b> ADM element based on the passed in <i>flags</i>
+parameter and corresponding values in <i>pRelationship</i> parameter object as
+described in the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

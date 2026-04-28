@@ -1,0 +1,93 @@
+<div class="content" name="EnableDisable" uuid="39a1787d-59f2-4a02-a522-f1b6fd75c397"><p>The EnableDisable method enables or disables the management
+of a specified type of <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_c18a91a3-689f-4e5e-9a91-c7b8f5402c5e" data-linktype="relative-path">WSRM
+configuration</a>.</p><dl>
+<dd>
+<div><pre> [id(4), helpstring(&#34;method EnableDisable&#34;)] HRESULT EnableDisable(
+   [in] BOOL bEnableDisable,
+   [in] CONFIGTYPE enumConfigType
+ );
+</pre></div>
+</dd></dl><p><b>bEnableDisable: </b>A Boolean value that specifies
+whether to enable or disable the management of the WSRM configuration. The type
+of configuration is determined by the value of the <i>enumConfigType</i>
+parameter.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FALSE 0x00000000</td>
+  <td>Management of the WSRM configuration MUST be disabled.</td>
+ </tr><tr>
+  <td>TRUE 0x00000001</td>
+  <td>Management of the WSRM configuration MUST be enabled.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>enumConfigType: </b>A <a href="c7d0ac7a-d7f4-492c-93cf-df63e3970229" data-linktype="relative-path">CONFIGTYPE</a> enumeration
+(section 2.2.3.1) value that specifies the type of WSRM configuration to enable
+or disable.</p><dl>
+<dd>
+<p>If this parameter value is outside the range of the
+CONFIGTYPE enumeration, <b>E_INVALIDARG</b> MUST be returned.</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Operation successful.</td>
+ </tr><tr>
+  <td>0x80070032 ERROR_NOT_SUPPORTED</td>
+  <td>The requested action is not supported.&lt;75&gt;</td>
+ </tr><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>One or more arguments are invalid.</td>
+ </tr><tr>
+  <td>0x81FF006D WRM_WARNING_CALENDARING_ALREADY_ENABLED</td>
+  <td>The management service is already in calendar mode.</td>
+ </tr><tr>
+  <td>0x81FF0196 WRM_WARNING_NOTIFICATION_ALREADY_DISABLED</td>
+  <td>Notification is already disabled.</td>
+ </tr><tr>
+  <td>0x81FF0197 WRM_WARNING_NOTIFICATION_ALREADY_ENABLED</td>
+  <td>Notification is already enabled.</td>
+ </tr><tr>
+  <td>0x81FF01F4 WRM_WARNING_ACCOUNTING_ALREADY_DISABLED</td>
+  <td>Accounting is already disabled.</td>
+ </tr><tr>
+  <td>0x81FF01F5 WRM_WARNING_ACCOUNTING_ALREADY_ENABLED</td>
+  <td>Accounting is already enabled.</td>
+ </tr><tr>
+  <td>0xC1FF007E WRM_ERR_ACCENABLED_UNDER_GROUPPOLICY</td>
+  <td>The accounting setting is currently configured under Group Policy and cannot be modified.&lt;76&gt;</td>
+ </tr><tr>
+  <td>0xC1FF0191 WRM_ERR_SMTPSERVERNAME_CANNOT_BE_NULL</td>
+  <td>Both the Simple Mail Transfer Protocol (SMTP) server and email name are required in order to enable notification.</td>
+ </tr><tr>
+  <td>0xC1FF0193 WRM_ERR_EVENTLIST_CANNOT_BE_NULL</td>
+  <td>Notification requires at least one event.</td>
+ </tr><tr>
+  <td>0xC1FF01F8 WRM_ERR_ACCOUNTING_NOT_CONFIGURED_PROPERLY</td>
+  <td>Accounting has not been configured properly. The accounting server might not be present or access might be denied.&lt;77&gt;</td>
+ </tr><tr>
+  <td>0xC1FF020B WRM_ERR_REMOTE_SERVICE_NOT_STARTED</td>
+  <td>Connection to the remote server could not be established because the WSRM management service has not been started on the remote server.&lt;78&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="38d3fffd-48ad-4e02-a7ce-b13da6304c80" data-linktype="relative-path">IWRMConfig</a> interface
+methods are specified in section 3.2.4.5.</p></div>

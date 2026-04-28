@@ -1,0 +1,59 @@
+<div class="content" name="CreateMachineGroup" uuid="8525fb17-0330-4a14-8bdf-4afbb1d6fd87"><p>The CreateMachineGroup method creates and initializes a <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_f4153c8c-848d-4db5-b9cc-4113e5f1e406" data-linktype="relative-path">machine group</a>.</p><dl>
+<dd>
+<div><pre> [id(1), helpstring(&#34;method CreateMachineGroup&#34;)] HRESULT CreateMachineGroup(
+   [in] BSTR bstrParentMachineGroupId,
+   [in] BSTR bstrMachineGroupInfo
+ );
+</pre></div>
+</dd></dl><p><b>bstrParentMachineGroupId: </b>A string that
+specifies the identifier of the parent machine group in which to create a new
+machine group.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bstrMachineGroupInfo: </b>A string that specifies
+information about the machine group to be created, including its identifier, in
+the format of a <a href="9c604cb0-5522-4dc6-a479-e1ea2578c3ba" data-linktype="relative-path">MachineGroup</a>
+element (section 2.2.5.18).<a id="Appendix_A_Target_85"></a><a aria-label="Product behavior note 85" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_85" data-linktype="relative-path">&lt;85&gt;</a></p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Operation successful.</td>
+ </tr><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>One or more arguments are invalid.</td>
+ </tr><tr>
+  <td>0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER</td>
+  <td>The XML data that is maintained by the management service is invalid or cannot be processed.&lt;86&gt;</td>
+ </tr><tr>
+  <td>0xC1FF0385 WRM_ERR_MACHINE_GROUP_LIMIT_EXCEEDED</td>
+  <td>The total number of machine groups has exceeded an implementation-defined limit.&lt;87&gt;</td>
+ </tr><tr>
+  <td>0xC1FF0387 WRM_ERR_MACHINES_LIMIT_IN_MACHINEGROUP_EXCEEDED</td>
+  <td>The total number of machines directly under a machine group has exceeded an implementation-defined limit.&lt;88&gt;</td>
+ </tr><tr>
+  <td>0xC1FF0388 WRM_ERR_MACHINEGROUP_ALREADY_EXISTS</td>
+  <td>A machine group with the specified name in bstrMachineGroupInfo XML already exists in the entire WSRM configuration.</td>
+ </tr><tr>
+  <td>0xC1FF0389 WRM_ERR_MACHINEGROUPID_INVALID</td>
+  <td>The specified parent machine group id does not exist.</td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="959a6150-11e3-44ec-b6cd-78da5b2c9e00" data-linktype="relative-path">IWRMMachineGroup</a> interface
+methods are specified in section 3.2.4.6.</p></div>

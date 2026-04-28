@@ -1,0 +1,42 @@
+<div class="content" name="ConfigSvcSecret" uuid="02a84fb8-82b1-4bb6-98bd-8078e6df8522"><p>The <b>ConfigSvcSecret</b> method stores the <span><a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_12ee6a09-989b-4841-a48b-9d89e06a63cd" data-linktype="relative-path">cluster
+secret</a></span> in an implementation-specific manner on the server.</p><dl>
+<dd>
+<div><pre> HRESULT ConfigSvcSecret(
+   [in] BSTR SecretBLOB
+ );
+</pre></div>
+</dd></dl><p><b>SecretBLOB: </b>The cluster secret for the cluster
+in which this server is or will be a node.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method
+implementation. For more information about Win32 error codes and <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+values, see <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+sections <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>
+and <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>The call was successful.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The opnum field value for this method is 3.</p><p>When processing this call the server MUST store the cluster
+secret such that it persists across reboots and does not change except as part
+of processing a subsequent ConfigSvcSecret method call. The server MUST
+overwrite any previous value of the cluster secret. The server SHOULD store the
+cluster secret in a secure way.</p></div>

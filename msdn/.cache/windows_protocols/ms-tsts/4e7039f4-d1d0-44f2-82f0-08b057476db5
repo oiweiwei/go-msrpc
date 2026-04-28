@@ -1,0 +1,14 @@
+<div class="content" name="LSMSESSIONINFORMATION_EX" uuid="4e7039f4-d1d0-44f2-82f0-08b057476db5"><p>The PLSMSESSIONINFORMATION_EX is a pointer to a
+LSMSESSIONINFORMATION_EX structure containing information about a session
+running on a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span> and
+the level of detail of the information provided.</p><dl>
+<dd>
+<div><pre> typedef struct _LSMSESSIONINFORMATION_EX {
+   DWORD Level;
+   [switch_is(Level)] LSM_SESSIONINFO_EX Data;
+ } LSMSESSIONINFORMATION_EX,
+  *PLSMSESSIONINFORMATION_EX;
+</pre></div>
+</dd></dl><p><b>Level:</b>  The level of detail provided
+about the session. This field MUST be set to 1.</p><p><b>Data:</b>  Information about the
+session. This is of type <span><a href="8998a977-b6a3-4bf8-863a-6cb9f54d9d14" data-linktype="relative-path">LSM_SESSIONINFO_EX</a></span>.</p></div>

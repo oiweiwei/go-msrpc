@@ -1,0 +1,198 @@
+<div class="content" name="NetrJoinDomain3" uuid="f50295d6-330f-4f2f-ae70-0d2c9d876615"><p>The <b>NetrJoinDomain3</b> method uses encrypted credentials
+to join a computer to a domain or to a workgroup.<a id="Appendix_A_Target_124"></a><a aria-label="Product behavior note 124" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_124" data-linktype="relative-path">&lt;124&gt;</a></p><p>For high-level, informative discussions about domain
+controller location and domain join and unjoin, see <a href="../ms-adod/5ff67bf4-c145-48cb-89cd-4f5482d94664" data-linktype="relative-path">[MS-ADOD]</a>
+section <a href="../ms-adod/04963e6e-fdf2-4ce9-a90f-0731e0f6c470" data-linktype="relative-path">2.7.7</a>
+and <a href="../ms-adod/cd165597-5272-44e7-9af9-afb9ab493cf9" data-linktype="relative-path">3.1</a>.
+For more information, see the example in section <a href="8f4fc9b3-5533-4a8d-a602-f24a45f3356e" data-linktype="relative-path">4.3</a>.</p><dl>
+<dd>
+<div><pre> unsigned long NetrJoinDomain3(
+   [in] handle_t RpcBindingHandle,
+   [in, string, unique] wchar_t* ServerName,
+   [in, string] wchar_t* DomainNameParam,
+   [in, string, unique] wchar_t* MachineAccountOU,
+   [in, string, unique] wchar_t* AccountName,
+   [in,unique] PJOINPR_ENCRYPTED_USER_PASSWORD_AES Password,
+   [in] unsigned long Options
+ );
+</pre></div>
+</dd></dl><p><b>RpcBindingHandle:</b> An <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a> <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>ServerName: </b>This parameter has no effect on
+message processing in any environment. The client MUST set this parameter to a
+value that resolves to the IP protocol layer destination address of the RPC
+packets it transmits (<a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/7063c7bd-b48b-42e7-9154-3c2ec4113c0d" data-linktype="relative-path">2.1.1.2</a>).
+The <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server (1)</a> MUST
+ignore this parameter.</p><p><b>DomainNameParam: </b>A pointer to a string that
+specifies the <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_45a1c9f1-0263-49a8-97c7-7aca1a99308c" data-linktype="relative-path">domain name
+(1)</a> or workgroup name to join, and optionally the domain controller machine
+name within the domain. This parameter MUST NOT be NULL. </p><dl>
+<dd>
+<p>If the string specifies the name of the preferred
+domain controller to perform the join operation, the string MUST be of the form
+<i>DomainNameToJoin</i>\<i>MachineName</i>, where <i>DomainNameToJoin</i> is
+the domain to join, &#34;\&#34; is a delimiter, and <i>MachineName</i> is the
+name of the domain controller to perform the join operation. In all cases, the <i>DomainNameToJoin</i>
+portion of this parameter MUST be either the <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> of the domain
+or the <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully qualified
+domain name (FQDN) (1)</a> of the domain. If the <i>MachineName</i> is passed,
+it MUST be either the NetBIOS name of the domain controller or the <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_4d5d5403-372f-4f9f-8d7a-65c310c807d9" data-linktype="relative-path">Internet host name</a> of the
+domain controller. The format of <i>DomainNameToJoin</i> places no constraint
+on the format of <i>MachineName</i> and vice versa; thus, each of the following
+permutations are accepted:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>NetBIOS
+name\NetBIOS name</p>
+</li><li><p><span><span>  </span></span>NetBIOS
+name\Internet host name</p>
+</li><li><p><span><span>  </span></span>FQDN\NetBIOS
+name</p>
+</li></ul><p><b>MachineAccountOU: </b>A pointer to a string that
+contains the format name of the <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_abac8bd9-dcd9-4154-96f8-5607a42c5304" data-linktype="relative-path">organizational unit (OU)</a>
+directory object under which the <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_ccf481e1-fb56-43d1-b6c6-0733fb52e001" data-linktype="relative-path">machine account</a> directory
+object is created (see <a href="https://go.microsoft.com/fwlink/?LinkId=90290" data-linktype="external">[RFC1777]</a>).
+This parameter is optional. If specified, this string MUST contain the full
+path; for example, OU=testOU,DC=domain,DC=Domain,DC=com.</p><p><b>AccountName: </b>A pointer to a string that
+specifies an account name in the domain <i>DomainNameParam</i> to use when
+connecting to a domain controller. This parameter is optional. If this
+parameter is NULL, the caller&#39;s account name MUST be used. If this parameter is
+specified, the format MUST be one of the following: </p><ul><li><p><span><span> 
+</span></span>&lt;NetBIOSDomainName&gt;\&lt;UserName&gt;</p>
+</li><li><p><span><span> 
+</span></span>&lt;FullyQualifiedDNSDomainName&gt;\&lt;UserName&gt;</p>
+</li><li><p><span><span> 
+</span></span>&lt;UserName&gt;@&lt;FullyQualifiedDNSDomainName&gt;</p>
+</li></ul><p><b>Password: </b>A pointer to a <b>JOINPR_ENCRYPTED_USER_PASSWORD_AES</b>
+structure (section <a href="b3b6d235-29e8-44ec-a723-8fb06a0799d8" data-linktype="relative-path">2.2.5.19</a>)
+that specifies the encrypted password to use with the <i>AccountName</i>
+parameter. Sections <a href="3e78836d-8bbc-47dc-9738-cfaf72c774a1" data-linktype="relative-path">3.2.4.13.1</a><span> </span>and <a href="d977c57c-42f1-4bd1-a771-6b5e61c3d583" data-linktype="relative-path">3.2.4.13.3</a> specify the
+processing of this parameter.</p><p><b>Options: </b>A 32-bit bitfield that specifies
+modifications to default server behavior in message processing.<a id="Appendix_A_Target_125"></a><a aria-label="Product behavior note 125" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_125" data-linktype="relative-path">&lt;125&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>NETSETUP_JOIN_DOMAIN 0x00000001</td>
+  <td>Joins the computer to a domain. The default action is to join the computer to a workgroup.</td>
+ </tr><tr>
+  <td>NETSETUP_ACCT_CREATE 0x00000002</td>
+  <td>Creates the account on the domain. The name is the persisted abstract state ComputerNameNetBIOS (section 3.2.1.5) unless this behavior is altered by another option such as NETSETUP_JOIN_WITH_NEW_NAME.</td>
+ </tr><tr>
+  <td>NETSETUP_ACCT_DELETE 0x00000004</td>
+  <td>Disables the old account when the join operation occurs on a computer that is already joined to a domain. Important: This flag is neither supported nor tested for use with NetrJoinDomain2; therefore, its use is not specified in any message processing.</td>
+ </tr><tr>
+  <td>NETSETUP_DOMAIN_JOIN_IF_JOINED 0x00000020</td>
+  <td>Allows a join to a new domain even if the computer is already joined to a domain.</td>
+ </tr><tr>
+  <td>NETSETUP_JOIN_UNSECURE 0x00000040</td>
+  <td>Performs an unsecured join. It MUST be used only in conjunction with the NETSETUP_MACHINE_PWD_PASSED flag.</td>
+ </tr><tr>
+  <td>NETSETUP_MACHINE_PWD_PASSED 0x00000080</td>
+  <td>Indicates that the Password parameter SHOULD&lt;126&gt; specify the password for the machine joining the domain. This flag is valid for unsecured joins, which are indicated by setting the NETSETUP_JOIN_UNSECURE flag, or for read-only joins, which are indicated by setting the NETSETUP_JOIN_READONLY flag. If this flag is set, the value of Password determines the value stored for the computer password during the join process.</td>
+ </tr><tr>
+  <td>NETSETUP_DEFER_SPN_SET 0x00000100</td>
+  <td>Indicates that the service principal name (SPN) and the DnsHostName properties on the computer SHOULD NOT&lt;127&gt; be updated at this time, but instead SHOULD&lt;128&gt; be updated during a subsequent call to NetrRenameMachineInDomain2 (section 3.2.4.15).</td>
+ </tr><tr>
+  <td>NETSETUP_JOIN_DC_ACCOUNT 0x00000200</td>
+  <td>Indicates that the join SHOULD&lt;129&gt; be allowed if an existing account exists and it is a domain controller account.&lt;130&gt;</td>
+ </tr><tr>
+  <td>NETSETUP_JOIN_WITH_NEW_NAME 0x00000400</td>
+  <td>Indicates that the join SHOULD&lt;131&gt; occur using the new computer name.</td>
+ </tr><tr>
+  <td>NETSETUP_JOIN_READONLY 0x00000800</td>
+  <td>Specifies that the join SHOULD&lt;132&gt;  be performed in a read-only manner against an existing account object. This option is intended to enable the server to join a domain using a read-only domain controller.</td>
+ </tr><tr>
+  <td>NETSETUP_INSTALL_INVOCATION 0x00040000</td>
+  <td>Indicates that the protocol method was invoked during installation.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>When the message processing
+result meets the description in column two of the following table, this method
+MUST return one of the following values (<a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>NERR_Success 0x00000000</td>
+  <td>The operation completed successfully.</td>
+ </tr><tr>
+  <td>ERROR_FILE_NOT_FOUND 0x00000002</td>
+  <td>The object was not found.</td>
+ </tr><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied.</td>
+ </tr><tr>
+  <td>ERROR_NOT_SUPPORTED 0x00000032</td>
+  <td>The request is not supported.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PASSWORD 0x00000056</td>
+  <td>The specified network password is not correct.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect.</td>
+ </tr><tr>
+  <td>ERROR_PASSWORD_RESTRICTION 0x0000052D</td>
+  <td>Unable to update the password. The value provided for the new password does not meet the length, complexity, or history requirements of the domain.</td>
+ </tr><tr>
+  <td>ERROR_LOGON_FAILURE 0x0000052E</td>
+  <td>Logon failure: unknown username or bad password.</td>
+ </tr><tr>
+  <td>ERROR_NONE_MAPPED 0x00000534</td>
+  <td>The account was not found.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_DOMAIN_ROLE 0x0000054A</td>
+  <td>The name of a domain controller was provided in the DomainNameParam parameter, and validation of that domain controller failed. Validation is specified in the message-processing steps for the section &#34;Domain Join&#34; later.</td>
+ </tr><tr>
+  <td>ERROR_NO_SUCH_DOMAIN 0x0000054B</td>
+  <td>The specified domain either does not exist or could not be contacted.</td>
+ </tr><tr>
+  <td>RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7</td>
+  <td>The RPC protocol sequence is not supported.</td>
+ </tr><tr>
+  <td>RPC_S_CALL_IN_PROGRESS 0x000006FF</td>
+  <td>A remote procedure call is already in progress.&lt;133&gt;</td>
+ </tr><tr>
+  <td>NERR_UserExists 0x000008B0</td>
+  <td>The user account already exists.</td>
+ </tr><tr>
+  <td>NERR_SetupAlreadyJoined 0x00000A83</td>
+  <td>This computer is already joined to a domain.</td>
+ </tr><tr>
+  <td>NERR_SetupDomainController 0x00000A85</td>
+  <td>This computer is a domain controller and cannot be unjoined from a domain.</td>
+ </tr><tr>
+  <td>NERR_InvalidWorkgroupName 0x00000A87</td>
+  <td>The specified workgroup name is invalid.</td>
+ </tr></tbody></table>
+</dd></dl><p>Any other return value MUST conform to the error code
+requirements in <b>Protocol Details</b> (section <a href="aeea622a-ea3e-40cc-a9b1-b4a2a3b2bf6b" data-linktype="relative-path">3</a>).</p><p>Message processing for the <b>NetrJoinDomain3</b> method
+specifies the behavior of joining either a domain or a workgroup. The behavior
+of this method is covered in the following subsections:</p><ul><li><p><span><span> 
+</span></span>Section <a href="5b37f3f7-9d45-4e60-8f06-be7b7a16c518" data-linktype="relative-path">3.2.4.22.1</a>
+specifies the message processing that is common to both domain and workgroup
+joins.</p>
+</li><li><p><span><span> 
+</span></span>Section <a href="29b5bf6a-68a3-4a7c-a8ef-480dcb94a0be" data-linktype="relative-path">3.2.4.22.2</a> 
+specifies the state transition associated with a domain join.</p>
+</li></ul><p>Several password data elements are involved in message
+processing for the <b>NetrJoinDomain3</b> method, and they are distinguished as
+follows:</p><p><i>Password</i>: A parameter to this method, either the
+password corresponding to the <i>AccountName</i> that is used to <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_8e961bf0-95ba-4f58-9034-b67ccb27f317" data-linktype="relative-path">authenticate (1)</a> at the
+domain controller or the password used for the computer account. The bits in
+the <i>Options</i> parameter determine how <i>Password</i> is used. This
+element is distinct from the client data model element <b>Password</b> that is
+defined in section <a href="9a3b66f6-367f-4b88-b17d-1f9b6115ed21" data-linktype="relative-path">3.2.1.6</a>.</p><p><i>PasswordString</i>: The <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35" data-linktype="relative-path">UTF-8</a> string that
+corresponds to the <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_787ee6a8-5f01-4526-828a-d1b3de39c21a" data-linktype="relative-path">plaintext</a>
+form of the password in <i>Password</i>.</p><p><i>ComputerPasswordString</i>: The <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_79fa85ca-ac61-467c-b819-e97dc1a7a599" data-linktype="relative-path">ASCII</a> string that contains
+the plaintext form of the password for the computer account.</p></div>

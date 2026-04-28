@@ -1,0 +1,214 @@
+<div class="content" name="DHCP_SERVER_CONFIG_INFO" uuid="62b738d8-c898-4d6c-9136-5269d60e05d6"><p>The <b>DHCP_SERVER_CONFIG_INFO</b> structure contains
+settings for the DHCP server. This structure is used in the <a href="82b105f2-14f6-4adf-87f9-8595abde8f2f" data-linktype="relative-path">R_DhcpServerSetConfig (section 3.1.4.26)</a>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_SERVER_CONFIG_INFO {
+   DWORD APIProtocolSupport;
+   LPWSTR DatabaseName;
+   LPWSTR DatabasePath;
+   LPWSTR BackupPath;
+   DWORD BackupInterval;
+   DWORD DatabaseLoggingFlag;
+   DWORD RestoreFlag;
+   DWORD DatabaseCleanupInterval;
+   DWORD DebugFlag;
+ } DHCP_SERVER_CONFIG_INFO,
+  *LPDHCP_SERVER_CONFIG_INFO;
+</pre></div>
+</dd></dl><p><b>APIProtocolSupport:</b>  This is of type
+<a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a>,
+defining the type of <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC
+protocol</a> supported by the DHCP server. The following type MUST be
+supported.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DHCP_SERVER_USE_RPC_OVER_TCPIP 0x00000001</td>
+  <td>RPC protocol over TCP is used by the DHCP server to register.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The following types MAY<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a> be
+supported.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DHCP_SERVER_USE_RPC_OVER_NP 0x00000002</td>
+  <td>RPC protocol over named pipes is used by the DHCP server to register.</td>
+ </tr><tr>
+  <td>DHCP_SERVER_USE_RPC_OVER_LPC 0x00000004</td>
+  <td>RPC protocol over local procedure call (LPC) is used by the DHCP server to register.</td>
+ </tr><tr>
+  <td>DHCP_SERVER_USE_RPC_OVER_ALL 0x00000007</td>
+  <td>The DHCP server supports all of the preceding protocols.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>DatabaseName:</b>  A pointer of type <a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a>
+to a null-terminated <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a> that represents the <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_005ffc96-bb67-44ca-938f-dd7ec3c95cab" data-linktype="relative-path">DHCP server database</a> name
+which is used by the DHCP server for persistent storage. There is no
+restriction on the length of this Unicode string. This field MUST be
+convertible to an OEM or ANSI character string.</p><p><b>DatabasePath:</b>  A pointer of type
+LPWSTR to a null-terminated Unicode string that contains the absolute path,
+where the DHCP server database is stored. The maximum number of characters
+allowed in this field is 248, including the terminating null character. This
+field MUST be convertible to an OEM or ANSI character string.</p><p><b>BackupPath:</b>  A pointer of type
+LPWSTR to a null-terminated Unicode string that contains the absolute path for <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_f0ec1e1a-3f20-40f1-8b67-b892ff3e4b72" data-linktype="relative-path">backup</a> storage that is used
+by the DHCP server for backup. The maximum number of characters allowed in this
+field is 248, including the terminating null character. This field MUST be
+convertible to an OEM or ANSI character string.</p><p><b>BackupInterval:</b>  This is of type
+DWORD, containing the interval (specified in minutes) between backups of the
+current DHCP server database.</p><p><b>DatabaseLoggingFlag:</b>   This is of
+type DWORD (used as a <a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a>
+flag), indicating the transaction logging mode of the DHCP server. The value 1
+indicates that transaction logging mode is enabled for the DHCP server, and
+zero indicates that transaction logging mode is disabled for the DHCP server.</p><p><b>RestoreFlag:</b>  This is of type DWORD
+(used as a BOOL flag), and if this setting is TRUE, the DHCP server loads the
+DHCP server database from the backup database on DHCP server startup. The
+default value of this flag is FALSE.</p><p><b>DatabaseCleanupInterval:</b>  This is of
+type DWORD and specifies the maximum time interval in minutes that DOOMED IPv4 <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c35fc04f-54fe-4570-afd3-c96ca84c8d83" data-linktype="relative-path">DHCP client</a> <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">lease records</a> can persist
+before being deleted from the DHCP server database.</p><p><b>DebugFlag:</b>  A flag that specifies
+the level of logging done by the DHCP server. The following table defines the
+set values that can be used. Specifying 0xFFFFFFFF enables all types of
+logging.</p><dl>
+<dd>
+<p>LOW WORD bitmask (0x0000FFFF) for low-frequency
+debug output.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DEBUG_ADDRESS 0x00000001</td>
+  <td>Enable IP address-related logging.</td>
+ </tr><tr>
+  <td>DEBUG_CLIENT 0x00000002</td>
+  <td>Enable DHCP-client-API-related logging.</td>
+ </tr><tr>
+  <td>DEBUG_PARAMETERS 0x00000004</td>
+  <td>Enable DHCP-server-parameters-related logging.</td>
+ </tr><tr>
+  <td>DEBUG_OPTIONS 0x00000008</td>
+  <td>Enable DHCP-options-related logging.</td>
+ </tr><tr>
+  <td>DEBUG_ERRORS 0x00000010</td>
+  <td>Enable DHCP-errors-related logging.</td>
+ </tr><tr>
+  <td>DEBUG_STOC 0x00000020</td>
+  <td>Enable DHCPv4 and DCHPv6-protocol-errors-related logging.</td>
+ </tr><tr>
+  <td>DEBUG_INIT 0x00000040</td>
+  <td>Enable DHCP-server-initialization-related logging.</td>
+ </tr><tr>
+  <td>DEBUG_SCAVENGER 0x00000080</td>
+  <td>Enable scavenger&#39;s-error-related logging.</td>
+ </tr><tr>
+  <td>DEBUG_TIMESTAMP 0x00000100</td>
+  <td>Enable timing-errors-related logging.</td>
+ </tr><tr>
+  <td>DEBUG_APIS 0x00000200</td>
+  <td>Enable DHCP-APIs-related logging.</td>
+ </tr><tr>
+  <td>DEBUG_REGISTRY 0x00000400</td>
+  <td>Enable the logging of errors caused by registry setting operations.</td>
+ </tr><tr>
+  <td>DEBUG_JET 0x00000800</td>
+  <td>Enable the logging of the DHCP server database errors.</td>
+ </tr><tr>
+  <td>DEBUG_THREADPOOL 0x00001000</td>
+  <td>Enable the logging related to executing thread pool operations.</td>
+ </tr><tr>
+  <td>DEBUG_AUDITLOG 0x00002000</td>
+  <td>Enable the logging related to errors caused by audit log operations.</td>
+ </tr><tr>
+  <td>DEBUG_QUARANTINE 0x00004000</td>
+  <td>Enable the logging of errors caused by quarantine errors.</td>
+ </tr><tr>
+  <td>DEBUG_MISC 0x00008000</td>
+  <td>Enable the logging caused by miscellaneous errors.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>HIGH WORD bitmask (0xFFFF0000) for high-frequency
+debug output, that is, more verbose.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DEBUG_MESSAGE 0x00010000</td>
+  <td>Enable the logging related to debug messages.</td>
+ </tr><tr>
+  <td>DEBUG_API_VERBOSE 0x00020000</td>
+  <td>Enable the logging related to DHCP API verbose errors.</td>
+ </tr><tr>
+  <td>DEBUG_DNS 0x00040000</td>
+  <td>Enable the logging related to Domain Name System (DNS) messages.</td>
+ </tr><tr>
+  <td>DEBUG_MSTOC 0x00080000</td>
+  <td>Enable the logging related to multicast protocol layer errors.</td>
+ </tr><tr>
+  <td>DEBUG_TRACK 0x00100000</td>
+  <td>Enable the logging tracking specific problems.</td>
+ </tr><tr>
+  <td>DEBUG_ROGUE 0x00200000</td>
+  <td>Enable the logging related to a rogue DHCP server.</td>
+ </tr><tr>
+  <td>DEBUG_PNP 0x00400000</td>
+  <td>Enable the logging related to PNP interface errors.</td>
+ </tr><tr>
+  <td>DEBUG_PERF 0x01000000</td>
+  <td>Enable the logging of performance-related messages.</td>
+ </tr><tr>
+  <td>DEBUG_ALLOC 0x02000000</td>
+  <td>Enable the logging of messages related to allocation and de-allocation.</td>
+ </tr><tr>
+  <td>DEBUG_PING 0x04000000</td>
+  <td>Enable the logging of synchronous-ping-related messages.</td>
+ </tr><tr>
+  <td>DEBUG_THREAD 0x08000000</td>
+  <td>Enable the logging of thread-related messages.</td>
+ </tr><tr>
+  <td>DEBUG_TRACE 0x10000000</td>
+  <td>Enable the logging for tracing through code messages.</td>
+ </tr><tr>
+  <td>DEBUG_TRACE_CALLS 0x20000000</td>
+  <td>Enable the logging for tracing through piles of code.</td>
+ </tr><tr>
+  <td>DEBUG_STARTUP_BRK 0x40000000</td>
+  <td>Enable the logging related to debugger break during setup messages.</td>
+ </tr><tr>
+  <td>DEBUG_LOG_IN_FILE 0x80000000</td>
+  <td>Enable the logging of debug output in a file.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

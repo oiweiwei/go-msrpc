@@ -1,0 +1,51 @@
+<div class="content" name="LsarSetTrustedDomainInfoByName" uuid="7a243aac-9d59-42ea-ba27-54775c4f1573"><p>The LsarSetTrustedDomainInfoByName method is invoked to set
+information about a <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain object</a></span>
+by its string name.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarSetTrustedDomainInfoByName(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PRPC_UNICODE_STRING TrustedDomainName,
+   [in] TRUSTED_INFORMATION_CLASS InformationClass,
+   [in, switch_is(InformationClass)] 
+     PLSAPR_TRUSTED_DOMAIN_INFO TrustedDomainInformation
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+obtained from either <span><a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a></span> or <span><a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a></span>.</p><p><b>TrustedDomainName: </b>The name of the trusted
+domain object to set information on.</p><p><b>InformationClass: </b>One of the <span><a href="36069113-6c38-45e8-920e-17f8ef36f578" data-linktype="relative-path">TRUSTED_INFORMATION_CLASS</a></span>
+values indicating the type of information the caller is trying to set.</p><p><b>TrustedDomainInformation: </b>The data being set.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 STATUS_SUCCESS</td>
+  <td>The request was successfully completed.</td>
+ </tr><tr>
+  <td>0xC0000022 STATUS_ACCESS_DENIED</td>
+  <td>The caller does not have the permissions to perform this operation.</td>
+ </tr><tr>
+  <td>0xC000000D STATUS_INVALID_PARAMETER</td>
+  <td>One of the supplied arguments is invalid.</td>
+ </tr><tr>
+  <td>0xC0000034 STATUS_OBJECT_NAME_NOT_FOUND</td>
+  <td>The trusted domain object with the specified name could not be found.</td>
+ </tr><tr>
+  <td>0xC0000008 STATUS_INVALID_HANDLE</td>
+  <td>PolicyHandle is not a valid handle.</td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message is identical in its operation to <span><a href="9ea46cef-cc72-4109-ba13-91eda6b713bc" data-linktype="relative-path">LsarSetInformationTrustedDomain</a></span>;
+the only exception is that the <i>TrustedDomainName</i> parameter is used to
+locate the trusted domain object, rather than having the caller supply the
+trusted domain object handle.</p><p>The trusted domain object is located by matching the <i>TrustedDomainName</i>
+parameter against the trusted domain object in the server&#39;s policy database.
+The trailing period on <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_102a36e2-f66f-49e2-bee3-558736b2ecd5" data-linktype="relative-path">DNS names</a></span> is ignored
+for the purposes of comparison.</p></div>

@@ -1,0 +1,22 @@
+<div class="content" name="WINSTATIONVALIDATIONINFORMATION" uuid="5c439d8d-b58b-4b0d-a2e5-467aa05f993b"><p>The WINSTATIONVALIDATIONINFORMATION structure contains
+information that is required to identify and validate a per-device terminal
+server (TS) <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_0e48e7fc-c851-4692-9b39-8bfa227f4aba" data-linktype="relative-path">client access license (CAL)</a></span>
+associated with the session.</p><p>A TS CAL is a license that is issued to a user or device to
+allow remote access to sessions on a terminal server. A per-device TS CAL is a
+license that is issued to a specific client device. For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93371" data-linktype="external">[MSFT-WSTSL]</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSTATIONVALIDATIONINFORMATION {
+   WINSTATIONPRODUCTINFO ProductInfo;
+   BYTE License[VALIDATIONINFORMATION_LICENSE_LENGTH];
+   ULONG LicenseLength;
+   BYTE HardwareID[VALIDATIONINFORMATION_HARDWAREID_LENGTH];
+   ULONG HardwareIDLength;
+ } WINSTATIONVALIDATIONINFORMATION,
+  *PWINSTATIONVALIDATIONINFORMATION;
+</pre></div>
+</dd></dl><p><b>ProductInfo:</b>  Specifies information
+that identifies the type of license.</p><p><b>License:</b>  The per-device license
+BLOB associated with the session.</p><p><b>LicenseLength:</b>  The length, in
+bytes, of <b>License</b>.</p><p><b>HardwareID:</b>  An identifier that
+uniquely identifies the client device.</p><p><b>HardwareIDLength:</b>  The length, in
+bytes, of <b>HardwareID</b>.</p></div>

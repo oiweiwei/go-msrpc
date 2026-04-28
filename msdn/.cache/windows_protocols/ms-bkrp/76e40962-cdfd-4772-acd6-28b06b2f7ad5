@@ -1,0 +1,102 @@
+<div class="content" name="Client_Side_Wrapped_Secret" uuid="76e40962-cdfd-4772-acd6-28b06b2f7ad5"><p>The Client-Side-Wrapped_Secret structure MUST be used by the
+client to represent a secret wrapped using the server&#39;s <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public key</a>, as specified in
+section <a href="cfe5dba9-8cc9-4765-9b67-c5e1deae0af8" data-linktype="relative-path">3.2.4.1</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">dwVersion</td>
+ </tr>
+ <tr>
+  <td colspan="32">cbEncryptedSecret</td>
+ </tr>
+ <tr>
+  <td colspan="32">cbAccessCheck</td>
+ </tr>
+ <tr>
+  <td colspan="32">guidKey (16 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">EncryptedSecret (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">AccessCheck (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>dwVersion (4 bytes): </b>A 32-bit unsigned
+integer. This field MUST be encoded using <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> format. The
+value of this field MUST be set to one of the values in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000002</td>
+  <td>The EncryptedSecret and AccessCheck fields MUST be formatted using the version 2 formats specified in section 2.2.2.1 and section 2.2.2.3 respectively.</td>
+ </tr><tr>
+  <td>0x00000003</td>
+  <td>The EncryptedSecret and AccessCheck fields MUST be formatted using the version 3 formats specified in section 2.2.2.2 and section 2.2.2.4 respectively.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>cbEncryptedSecret (4 bytes): </b>A 32-bit unsigned
+integer. It MUST be the length of the <b>EncryptedSecret</b> field, in bytes.
+This field is encoded using little-endian format.</p><p><b>cbAccessCheck (4 bytes): </b>A 32-bit unsigned
+integer. It MUST be the length of the <b>AccessCheck</b> field, in bytes. This
+field is encoded using little-endian format.</p><p><b>guidKey (16 bytes): </b>A 16-byte <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path"><b>GUID</b></a>
+(<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">2.3.4.2</a>)
+that is used by the server to uniquely identify this public key.</p><p><b>EncryptedSecret (variable): </b>This field
+contains an encrypted version of the secret. Its length MUST be equal to <b>cbEncryptedSecret</b>
+bytes. It MUST be populated in accordance with the processing rules specified
+in section 3.2.4.1.</p><p><b>AccessCheck (variable): </b>This field contains
+information used by the server to determine which clients are permitted to
+unwrap the secret. Its length MUST be equal to <b>cbAccessCheck</b> bytes. It
+MUST be populated in accordance with the processing rules specified in section
+3.2.4.1.</p></div>

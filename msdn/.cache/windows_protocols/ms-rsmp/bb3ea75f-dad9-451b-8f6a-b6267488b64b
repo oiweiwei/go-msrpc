@@ -1,0 +1,26 @@
+<div class="content" name="CloseNtmsSession" uuid="bb3ea75f-dad9-451b-8f6a-b6267488b64b"><p>The CloseNtmsSession method closes a session.</p><dl>
+<dd>
+<div><pre> HRESULT CloseNtmsSession();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>0x800704B1 ERROR_CONNECTION_UNAVAIL</td>
+  <td>The connection to the server is not available.</td>
+ </tr></tbody></table><p>This method will close the session. This method MUST be
+called when the client has dereferenced the session. Note, however, that the
+server might not yet have dereferenced the session, because one or more
+interfaces might still be in process. The server, therefore, does not tear down
+the session, but rather cleans up the session and releases the open session
+reference, allowing the session to be ended when the last reference is removed.</p><p>If the client has an outstanding synchronous request, the
+requests MUST be unwound and canceled.</p></div>

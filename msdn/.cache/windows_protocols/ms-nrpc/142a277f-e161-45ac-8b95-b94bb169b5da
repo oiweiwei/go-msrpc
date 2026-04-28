@@ -1,0 +1,47 @@
+<div class="content" name="NETLOGON_VALIDATION_SAM_INFO" uuid="142a277f-e161-45ac-8b95-b94bb169b5da"><p>The <b>NETLOGON_VALIDATION_SAM_INFO </b>structure defines
+account information retrieved from a <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a></span> upon a
+successful user logon validation.</p><p>All fields of this structure, except the fields detailed
+following the structure definition, have the same meaning as the identically
+named fields in the <b>KERB_VALIDATION_INFO</b> structure, as specified in <span><a href="../ms-pac/166d8064-c863-41e1-9c23-edaaa5f36962" data-linktype="relative-path">[MS-PAC]</a></span>
+section <span><a href="../ms-pac/69e86ccc-85e3-41b9-b514-7d969cd0ed73" data-linktype="relative-path">2.5</a></span>.
+<a id="_Hlk150864134">Additionally, fields of this structure that are defined
+as OLD_LARGE_INTEGER </a><a href="https://go.microsoft.com/fwlink/?LinkId=124152" data-linktype="external">[MSDN-OLI]</a> are 64-bit
+timestamps equivalent to the identically named fields in the <b>KERB_VALIDATION_INFO</b>
+structure of <b>FILETIME</b> type (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a>).
+<a id="_Hlk150864229">For more information see </a><a href="https://go.microsoft.com/fwlink/?LinkId=90006" data-linktype="external">[MSDN-FILETIME]</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_VALIDATION_SAM_INFO {
+   OLD_LARGE_INTEGER LogonTime;
+   OLD_LARGE_INTEGER LogoffTime;
+   OLD_LARGE_INTEGER KickOffTime;
+   OLD_LARGE_INTEGER PasswordLastSet;
+   OLD_LARGE_INTEGER PasswordCanChange;
+   OLD_LARGE_INTEGER PasswordMustChange;
+   UNICODE_STRING EffectiveName;
+   UNICODE_STRING FullName;
+   UNICODE_STRING LogonScript;
+   UNICODE_STRING ProfilePath;
+   UNICODE_STRING HomeDirectory;
+   UNICODE_STRING HomeDirectoryDrive;
+   USHORT LogonCount;
+   USHORT BadPasswordCount;
+   ULONG UserId;
+   ULONG PrimaryGroupId;
+   [range(0,2048)] ULONG GroupCount;
+   [size_is(GroupCount)] PGROUP_MEMBERSHIP GroupIds;
+   ULONG UserFlags;
+   USER_SESSION_KEY UserSessionKey;
+   UNICODE_STRING LogonServer;
+   UNICODE_STRING LogonDomainName;
+   PRPC_SID LogonDomainId;
+   ULONG ExpansionRoom[10];
+ } NETLOGON_VALIDATION_SAM_INFO,
+  *PNETLOGON_VALIDATION_SAM_INFO;
+</pre></div>
+</dd></dl><p><b>LogonServer:</b> A <b>UNICODE_STRING</b> structure
+that contains the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a></span> of the
+server that populates this structure.</p><p><b>ExpansionRoom:</b> A ten-element array of unsigned
+32-bit integers. This member has a function similar to that of dummy fields, as
+detailed in section <span><a href="bbc95890-215e-49a9-8bb8-92e723548046" data-linktype="relative-path">1.3.8.1.2</a></span>. Each
+element of the array MUST be zero when sent and MUST be ignored on receipt.</p></div>

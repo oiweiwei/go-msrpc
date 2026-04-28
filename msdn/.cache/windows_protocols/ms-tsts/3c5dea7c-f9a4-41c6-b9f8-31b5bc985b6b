@@ -1,0 +1,30 @@
+<div class="content" name="RCM_REMOTEADDRESS" uuid="3c5dea7c-f9a4-41c6-b9f8-31b5bc985b6b"><p>The <b>RCM_REMOTEADDRESS</b> structure defines a remote
+address.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   USHORT sin_family;
+   union switch (USHORT sin_family) {
+     case 2: struct {
+       USHORT sin_port;
+       ULONG in_addr;
+       UCHAR sin_zero[8];
+     } ipv4;
+     case 23: struct {
+       USHORT sin6_port;
+       ULONG sin6_flowinfo;
+       USHORT sin6_addr[8];
+       ULONG sin6_scope_id;
+     } ipv6;
+    };
+   } RCM_REMOTEADDRESS, *PRCM_REMOTEADDRESS;
+  
+</pre></div>
+</dd></dl><p><b>sin_family:</b>  Specifies the type of
+IP address. Valid values are 2 for IPv4 addresses, and 23 for IPv6 addresses.</p><p><b>ipv4:</b>  IPv4 address. For more
+information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93316" data-linktype="external">[MSDN-TDIADDRESS]</a></span>.</p><p><b>sin_port:</b>  Specifies a TCP or UDP
+port number.</p><p><b>in_addr:</b>  Indicates the IP address.</p><p><b>sin_zero:</b>  An array filled with
+zeros.</p><p><b>ipv6:</b>  IPv6 address.</p><p><b>sin6_port:</b>  Specifies a TCP or UDP
+port number.</p><p><b>sin6_flowinfo:</b>  IPv6 flow
+information.</p><p><b>sin6_addr:</b>  Indicates the IP
+address.</p><p><b>sin6_scope_id:</b>  Set of interfaces
+for a scope. For more information about these interfaces, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=206745" data-linktype="external">[MSDN-SOCKADDR_IN6]</a></span>.</p></div>

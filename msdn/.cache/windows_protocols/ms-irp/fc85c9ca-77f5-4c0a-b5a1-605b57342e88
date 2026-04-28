@@ -1,0 +1,53 @@
+<div class="content" name="R_InetInfoSetAdminInformation" uuid="fc85c9ca-77f5-4c0a-b5a1-605b57342e88"><p>The <b>R_InetInfoSetAdminInformation</b> method is called by
+the client. In response, the server sets configurable properties for the
+specified <a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet protocol
+server</a>.</p><dl>
+<dd>
+<div><pre> DWORD R_InetInfoSetAdminInformation(
+   [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+   [in] DWORD dwServerMask,
+   [in, ref] INET_INFO_CONFIG_INFO* pConfig
+ );
+</pre></div>
+</dd></dl><p><b>pszServer: </b>The custom binding handle for the
+target system, as specified in section <a href="a6931aa0-3ab6-4018-a398-e142cb8e409e" data-linktype="relative-path">2.1.1</a>. The value MUST NOT
+be used by the server implementation.</p><p><b>dwServerMask: </b>The identifier for the target
+Internet protocol server, as specified in section <a href="3e99d087-d9fd-46f8-a626-8656a4c58770" data-linktype="relative-path"><b>2.2.2</b></a>.</p><p><b>pConfig: </b>The pointer to an <a href="9da17da8-74fe-4b0d-a19b-77fe5892bd3b" data-linktype="relative-path"><b>INET_INFO_CONFIG_INFO</b></a>
+structure containing the property configuration to set. The client MUST set the
+appropriate flag in the <b>FieldControl</b> member for any data field in
+pConfig that is to be set by the server.</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>,
+or [MS-ERREF] section <a href="../ms-erref/596a1078-e883-4972-9bbc-49e60bebca55" data-linktype="relative-path">2.3.1</a>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000002 ERROR_FILE_NOT_FOUND</td>
+  <td>The system cannot find the specified file.</td>
+ </tr><tr>
+  <td>0x00000005 ERROR_ACCESS_DENIED</td>
+  <td>Access is denied.</td>
+ </tr><tr>
+  <td>0x00000426 ERROR_SERVICE_NOT_ACTIVE</td>
+  <td>The service is not running.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying <a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol, as specified
+in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.
+</p><p>In response to this request from the client, the server
+SHOULD set the configurable properties in <i>pConfig</i> into the configuration
+store for the Internet protocol server specified by <i>dwServerMask</i>.</p><p>The server MUST NOT access a field value in <i>pConfig</i>
+unless the corresponding flag in the <b>FieldControl</b> field is set.</p><p>The implementation MAY choose not to save some fields of the
+<b>INET_INFO_CONFIG_INFO</b> structure. If so, the server MUST ignore the field
+values sent by the client. </p><p>The implementation MAY return an error if it is unable to
+persist a field value due to some internal error.</p></div>

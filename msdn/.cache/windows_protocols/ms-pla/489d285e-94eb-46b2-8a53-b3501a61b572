@@ -1,0 +1,96 @@
+<div class="content" name="IPerformanceCounterDataCollector" uuid="489d285e-94eb-46b2-8a53-b3501a61b572"><p>The IPerformanceCounterDataCollector interface is used to
+specify the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance
+counters</a> to query and the log file to which the counter data is written.</p><p>The following properties MUST be implemented by the objects
+that implement the IPerformanceCounterDataCollector interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DataSourceName</td>
+  <td>RW</td>
+  <td>The data source name if the log file is an SQL log file.</td>
+ </tr><tr>
+  <td>LogFileFormat</td>
+  <td>RW</td>
+  <td>The format in which data MUST be stored. The format is specified by the FileFormat enumeration.</td>
+ </tr><tr>
+  <td>PerformanceCounters</td>
+  <td>RW</td>
+  <td>List of performance counters to be collected.</td>
+ </tr><tr>
+  <td>SampleInterval</td>
+  <td>RW</td>
+  <td>The time, in seconds, between two consecutive samples. The default is 15 seconds. The minimum interval is 1 second. There is no maximum interval.</td>
+ </tr><tr>
+  <td>SegmentMaxRecords</td>
+  <td>RW</td>
+  <td>Maximum number of samples to log in a segment. If set to 0, there is no segment record limit. Any unsigned long is a valid value for this property.</td>
+ </tr></tbody></table><p>A <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_3184c8c5-f13b-4d77-b04a-b92feff97f61" data-linktype="relative-path">data
+collector</a> can be represented as an XML file, which can be used to serialize
+(using Xml (Get) <a href="38b478b4-408e-4702-aecf-946177a9f06b" data-linktype="relative-path">3.2.4.5.21</a>)
+and deserialize (using SetXml <a href="6f99ca8b-2197-43eb-b17a-7761c529787c" data-linktype="relative-path">3.2.4.5.22</a>) it. The format
+of the XML that defines a performance counter data collector is as follows(the
+full XML specification of the data collector set XML is in section <a href="b5be2d38-3f21-478d-a8b9-a61128eb2751" data-linktype="relative-path">3.2.4.19</a>): </p><dl>
+<dd>
+<div><pre> &lt;PerformanceCounterDataCollector&gt;
+    &lt;!-- elements for DataCollectorType --&gt;
+    &lt;DataSourceName/&gt;
+    &lt;SampleInterval/&gt;
+    &lt;SegmentMaxRecords/&gt;
+    &lt;LogFileFormat/&gt;
+    &lt;Counter/&gt;
+    &lt;CounterDisplayName/&gt;
+ &lt;/PerformanceCounterDataCollector&gt;
+  
+</pre></div>
+</dd></dl><p>The XML given above does not show the property elements
+inherited from IDataCollector that also need to be specified.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DataSourceName (Get)</td>
+  <td>Retrieves the DataSourceName property. Opnum: 32</td>
+ </tr><tr>
+  <td>DataSourceName (Put)</td>
+  <td>Sets the DataSourceName property. Opnum: 33</td>
+ </tr><tr>
+  <td>PerformanceCounters (Get)</td>
+  <td>Retrieves the PerformanceCounters property. Opnum: 34</td>
+ </tr><tr>
+  <td>PerformanceCounters (Put)</td>
+  <td>Sets the PerformanceCounters property. Opnum: 35</td>
+ </tr><tr>
+  <td>LogFileFormat (Get)</td>
+  <td>Retrieves the LogFileFormat property. Opnum: 36</td>
+ </tr><tr>
+  <td>LogFileFormat (Put)</td>
+  <td>Sets the LogFileFormat property. Opnum: 37</td>
+ </tr><tr>
+  <td>SampleInterval (Get)</td>
+  <td>Retrieves the SampleInterval property. Opnum: 38</td>
+ </tr><tr>
+  <td>SampleInterval (Put)</td>
+  <td>Sets the SampleInterval property. Opnum: 39</td>
+ </tr><tr>
+  <td>SegmentMaxRecords (Get)</td>
+  <td>Retrieves the SegmentMaxRecords property. Opnum: 40</td>
+ </tr><tr>
+  <td>SegmentMaxRecords (Put)</td>
+  <td>Sets the SegmentMaxRecords property. Opnum: 41</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. Opnums 7–31 are
+used by IDataCollector.</p></div>

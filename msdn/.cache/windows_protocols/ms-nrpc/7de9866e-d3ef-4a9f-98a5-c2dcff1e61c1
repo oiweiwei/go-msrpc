@@ -1,0 +1,305 @@
+<div class="content" name="DS_DOMAIN_TRUSTSW" uuid="7de9866e-d3ef-4a9f-98a5-c2dcff1e61c1"><p>The <b>DS_DOMAIN_TRUSTSW</b> structure defines information
+about a <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span> <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a></span>.
+It is part of the <b>NETLOGON_TRUSTED_DOMAIN_ARRAY</b> structure, as specified
+in section <span><a href="251cf1be-2932-4d33-8532-595cf42e8091" data-linktype="relative-path">2.2.1.6.3</a></span>, returned
+by the <b>DsrEnumerateDomainTrusts</b> method, as specified in section <span><a href="f9823624-2b34-415c-bdca-9f9a6d97016b" data-linktype="relative-path">3.5.4.7.1</a></span>.
+This structure SHOULD<a id="Appendix_A_Target_54"></a><a aria-label="Product behavior note 54" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_54" data-linktype="relative-path">&lt;54&gt;</a> contain naming information and
+trust-related information for a specific <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domain</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DS_DOMAIN_TRUSTSW {
+   [string] wchar_t* NetbiosDomainName;
+   [string] wchar_t* DnsDomainName;
+   ULONG Flags;
+   ULONG ParentIndex;
+   ULONG TrustType;
+   ULONG TrustAttributes;
+   PRPC_SID DomainSid;
+   GUID DomainGuid;
+ } DS_DOMAIN_TRUSTSW,
+  *PDS_DOMAIN_TRUSTSW;
+</pre></div>
+</dd></dl><p><b>NetbiosDomainName:</b> A pointer to a
+null-terminated <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string that
+contains the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a></span> of the
+trusted domain.</p><p><b>DnsDomainName:</b> A pointer to a null-terminated
+Unicode string that contains the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a></span> of the trusted
+domain.</p><p><b>Flags:</b> A set of bit flags that defines the
+domain trust attributes. A flag is TRUE (or set) if its value is equal to 1.
+The value is constructed from zero or more bit flags from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>F</td>
+  <td>E</td>
+  <td>D</td>
+  <td>C</td>
+  <td>B</td>
+  <td>A</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>A</td>
+  <td>Domain is a member of a forest.</td>
+ </tr><tr>
+  <td>B</td>
+  <td>Domain is directly trusted by the current domain.</td>
+ </tr><tr>
+  <td>C</td>
+  <td>Domain is the root of a forests.</td>
+ </tr><tr>
+  <td>D</td>
+  <td>Domain is the primary domain of the queried server.</td>
+ </tr><tr>
+  <td>E</td>
+  <td>Primary domain is running in native mode.</td>
+ </tr><tr>
+  <td>F</td>
+  <td>Domain directly trusts the current domain.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero and MUST be
+ignored on receipt.</p>
+</dd></dl><p><b>ParentIndex:</b> An integer value that contains
+the index in the <b>NETLOGON_TRUSTED_DOMAIN_ARRAY</b> array (returned by <b>DsrEnumerateDomainTrusts
+</b>method) that corresponds to the parent domain of the domain represented by
+this structure. This field is set if all of the following conditions are met:</p><ul><li><p><span><span> 
+</span></span>The A flag is specified in the <i>Flags</i> parameter of the <b>DsrEnumerateDomainTrusts</b>
+method.</p>
+</li><li><p><span><span> 
+</span></span>The <b>Flags</b> field of <b>DS_DOMAIN_TRUSTSW</b> structure does
+not contain the C flag.</p>
+</li></ul><dl>
+<dd>
+<p>Otherwise, it MUST be set to zero and MUST be
+ignored.</p>
+</dd></dl><p><b>TrustType:</b> An integer value that describes the
+type of domain with which the trust is associated. <b>TrustType</b> is one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000001</td>
+  <td>Trust is with a domain.&lt;55&gt;</td>
+ </tr><tr>
+  <td>0x00000002</td>
+  <td>Trust is with an Active Directory domain.&lt;56&gt;</td>
+ </tr><tr>
+  <td>0x00000003</td>
+  <td>Trust is with an MIT Kerberos realm.</td>
+ </tr><tr>
+  <td>0x00000004</td>
+  <td>Trust is with a Distributed Computing Environment (DCE) realm.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other values MUST be ignored on receipt.</p>
+</dd></dl><p><b>TrustAttributes:</b> A set of bit flags describing
+trust link attributes. A flag is true (or set) if its value is equal to 1. The
+value is constructed from zero or more bit flags from the following table, with
+the exception that bit F cannot be combined with E or D.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>I</td>
+  <td>H</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>G</td>
+  <td>F</td>
+  <td>E</td>
+  <td>D</td>
+  <td>C</td>
+  <td>B</td>
+  <td>A</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>A</td>
+  <td>Trust link MUST NOT allow transitivity.</td>
+ </tr><tr>
+  <td>B</td>
+  <td>Trust link MAY&lt;57&gt;  be valid.</td>
+ </tr><tr>
+  <td>C</td>
+  <td>Trust link MUST be set for SID filtering of the client domain. For details about SID filtering, see [MS-PAC].</td>
+ </tr><tr>
+  <td>D</td>
+  <td>Trust link can contain forest trust information.</td>
+ </tr><tr>
+  <td>E</td>
+  <td>Trust link is to either a domain or a forest that is not part of the enterprise network.</td>
+ </tr><tr>
+  <td>F</td>
+  <td>Trust link is internal to the forest.</td>
+ </tr><tr>
+  <td>G</td>
+  <td>Trust is to be treated as external for trust boundary purposes.</td>
+ </tr><tr>
+  <td>H</td>
+  <td>Domain is parent domain.</td>
+ </tr><tr>
+  <td>I</td>
+  <td>Domain is root of another forest.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero and MUST be
+ignored on receipt.</p>
+</dd></dl><p><b>DomainSid:</b> A pointer to a SID structure (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">2.4.2.3</a></span>)
+that identifies the current domain. If the <b>TrustAttributes</b> field is set
+to C or D, the value is 0.</p><p><b>DomainGuid:</b> A <b>GUID</b> structure ([MS-DTYP]
+section <span><a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">2.3.4.1</a></span>)
+that identifies the current domain.</p></div>

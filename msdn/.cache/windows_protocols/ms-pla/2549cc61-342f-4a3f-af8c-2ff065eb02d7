@@ -1,0 +1,61 @@
+<div class="content" name="IScheduleCollection" uuid="2549cc61-342f-4a3f-af8c-2ff065eb02d7"><p>The IScheduleCollection interface is used to manage a
+collection of Schedule objects</p><p>The following properties MUST be implemented by the objects
+that implement the IScheduleCollection interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>_NewEnum</td>
+  <td>R</td>
+  <td>An enumeration object of type IEnumVariant containing a snapshot of the ISchedule objects in this collection. The enumeration object is specified in [MS-OAUT] section 3.3.</td>
+ </tr><tr>
+  <td>Count</td>
+  <td>R</td>
+  <td>Number of schedules in this collection.</td>
+ </tr><tr>
+  <td>Item</td>
+  <td>R</td>
+  <td>Retrieves the requested schedule from the collection.</td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Count (Get)</td>
+  <td>Retrieves the Count property. Opnum: 7</td>
+ </tr><tr>
+  <td>Item (Get)</td>
+  <td>Retrieves the Item property. Opnum: 8</td>
+ </tr><tr>
+  <td>_NewEnum (Get)</td>
+  <td>Retrieves the NewEnum property. Opnum: 9</td>
+ </tr><tr>
+  <td>Add</td>
+  <td>Adds a schedule to the collection. Opnum: 10</td>
+ </tr><tr>
+  <td>Remove</td>
+  <td>Removes a schedule from the collection. Opnum: 11</td>
+ </tr><tr>
+  <td>Clear</td>
+  <td>Removes all schedules from the collection. Opnum: 12</td>
+ </tr><tr>
+  <td>AddRange</td>
+  <td>Adds one or more schedules to the collection. Opnum: 13</td>
+ </tr><tr>
+  <td>CreateSchedule</td>
+  <td>Creates a schedule object. Opnum: 14</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. </p></div>

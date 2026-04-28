@@ -1,0 +1,68 @@
+<div class="content" name="FAX_EnumMessages" uuid="365c2295-c0f9-44bd-a72b-6db0b16c0f8f"><p>The <b>FAX_EnumMessages (Opnum 65)</b> method is called by
+the client. </p><p>In response, the server MUST validate that the hEnum
+argument passed by the client was created as part of a prior <b>FAX_StartMessagesEnum</b>
+(section <a href="702db5ea-5293-46f3-b11e-ad8f477bbe26" data-linktype="relative-path">3.1.4.1.98</a>)
+call. The server MUST validate that the dwNumMessages argument is not zero. </p><p>On success, the server MUST return information about the
+messages. The server MUST also return the size of the information returned and
+the number of messages for which it could successfully retrieve the
+information. The latter value MUST NOT exceed dwNumMessages.</p><p>The client SHOULD free the returned buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_EnumMessages(
+   [in, ref] RPC_FAX_MSG_ENUM_HANDLE hEnum,
+   [in] DWORD dwNumMessages,
+   [out, size_is(, *lpdwBufferSize)] 
+     LPBYTE* lppBuffer,
+   [out, ref] LPDWORD lpdwBufferSize,
+   [out, ref] LPDWORD lpdwNumMessagesRetrieved
+ );
+</pre></div>
+</dd></dl><p><b>hEnum: </b> The enumeration handle returned
+through the <i>lpHandle</i> output argument by <b>FAX_StartMessagesEnum</b>.</p><p><b>dwNumMessages: </b>A <b>DWORD</b> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+value indicating the maximum number of messages the caller requires to
+enumerate. This value MUST NOT be zero.</p><p><b>lppBuffer: </b>A pointer to a buffer of <b>FAX_MESSAGEW</b> (section
+<a href="998ba0cc-549e-41f4-b415-20fd55a10013" data-linktype="relative-path">2.2.38</a>) structures. This
+buffer contains <i>lpdwNumMessagesRetrieved</i> entries.</p><p><b>lpdwBufferSize: </b>A pointer to a <b>DWORD</b> in
+which to return the size, in bytes, of the buffer.</p><p><b>lpdwNumMessagesRetrieved: </b>A pointer to a <b>DWORD</b>
+value indicating the actual number of messages retrieved. This value SHOULD NOT
+exceed <i>dwNumMessages</i>.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_NOT_ENOUGH_MEMORY 0x00000008</td>
+  <td>The fax server failed to allocate memory for the return buffer.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>This error code is returned if any of the following conditions are met: § One or more of the pointer values specified by the following arguments are NULL: lppBuffer, lpdwBufferSize, and lpdwNumMessagesRetrieved. § The hEnum parameter is NULL.&lt;89&gt; § The maximum number of messages, specified by the dwNumMessages argument, is set to zero.</td>
+ </tr><tr>
+  <td>ERROR_BUFFER_OVERFLOW 0x0000006F</td>
+  <td>The fax server encountered an integer overflow condition while processing the request for the maximum number of messages specified by the dwNumMessages argument.</td>
+ </tr><tr>
+  <td>ERROR_NO_MORE_ITEMS 0x00000103</td>
+  <td>No more data is available. The method reached the end of the lppBuffer message buffer and there are no more messages to be enumerated.</td>
+ </tr><tr>
+  <td>FAX_ERR_SRV_OUTOFMEMORY 0x00001B59</td>
+  <td>The fax server failed to allocate memory needed for internal execution of the command.</td>
+ </tr></tbody></table>
+</dd></dl><p>The client expects that this method is incremental and uses
+an internal context cursor to point to the next set of messages to retrieve for
+each call. The cursor is set to point to the beginning of the messages in the <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archive</a> after a successful
+call to <b>FAX_StartMessagesEnum</b>. Each successful call to <b>FAX_EnumMessages</b>
+advances the cursor by the number of messages retrieved. After the cursor
+reaches the end of the enumeration, the method fails with the 0x00000103
+(ERROR_NO_MORE_ITEMS) error code. The <b>FAX_EndMessagesEnum</b> (section <a href="df9d34cf-780d-4e26-af24-eadb73ef443f" data-linktype="relative-path">3.1.4.1.16</a>) method SHOULD
+then be called. </p><p><b>Exceptions Thrown: </b>No exceptions are thrown
+except those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol, <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

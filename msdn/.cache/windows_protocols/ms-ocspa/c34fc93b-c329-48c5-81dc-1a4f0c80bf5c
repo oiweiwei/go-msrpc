@@ -1,0 +1,45 @@
+<div class="content" name="IOCSPAdminD" uuid="c34fc93b-c329-48c5-81dc-1a4f0c80bf5c"><p>The IOCSPAdminD interface provides an RPC interface for a
+client to manage an <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_688a239d-e58b-42df-b622-da727dca4227" data-linktype="relative-path">Online Responder</a></span>.</p><p>IOCSPAdminD interface inherits the IUnknown interface.</p><p>The version number for IUnknown is 1.0. The UUID for the
+IOCSPAdminD interface is: &#34;784b693d-95f3-420b-8126-365c098659f2&#34;.
+Method opnum field values start with 3; opnum values 0 through 2 represent the <span><a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a></span>
+methods: QueryInterface, AddRef, and Release methods inherited from <span><a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a></span>.
+</p><p>Each method MUST NOT throw exceptions.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>GetOCSPProperty</td>
+  <td>Opnum: 3</td>
+ </tr><tr>
+  <td>SetOCSPProperty</td>
+  <td>Opnum: 4</td>
+ </tr><tr>
+  <td>GetCAConfigInformation</td>
+  <td>Opnum: 5</td>
+ </tr><tr>
+  <td>SetCAConfigInformation</td>
+  <td>Opnum: 6</td>
+ </tr><tr>
+  <td>GetSecurity</td>
+  <td>Opnum: 7</td>
+ </tr><tr>
+  <td>SetSecurity</td>
+  <td>Opnum: 8</td>
+ </tr><tr>
+  <td>GetSigningCertificates</td>
+  <td>Opnum: 9</td>
+ </tr><tr>
+  <td>GetHashAlgorithms</td>
+  <td>Opnum: 10</td>
+ </tr><tr>
+  <td>GetMyRoles</td>
+  <td>Opnum: 11</td>
+ </tr><tr>
+  <td>Ping</td>
+  <td>Opnum: 12</td>
+ </tr></tbody></table><p> </p></div>

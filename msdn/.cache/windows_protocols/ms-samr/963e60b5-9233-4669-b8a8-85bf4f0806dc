@@ -1,0 +1,50 @@
+<div class="content" name="SAMPR_REVISION_INFO_V1" uuid="963e60b5-9233-4669-b8a8-85bf4f0806dc"><p>The SAMPR_REVISION_INFO_V1 structure is used to communicate
+the revision and capabilities of client and server. For more information, see <span><a href="c842a897-0a42-4ca5-a607-2afd05271dae" data-linktype="relative-path">SamrConnect5</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_REVISION_INFO_V1 {
+   unsigned long Revision;
+   unsigned long SupportedFeatures;
+ } SAMPR_REVISION_INFO_V1,
+  *PSAMPR_REVISION_INFO_V1;
+</pre></div>
+</dd></dl><p><b>Revision:</b>  The revision of the
+client or server side of this protocol (depending on which side sends the
+structure). The value MUST be set to 3 and MUST be ignored.</p><p><b>SupportedFeatures:</b>  A bit field.
+When sent from the client, this field MUST be zero and ignored on receipt by
+the server. When returned from the server, the following fields are handled by
+the client; all other bits are ignored by the client and MUST be zero when
+returned from the server.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000001</td>
+  <td>On receipt by the client, this value, when set, indicates that RID values returned from the server MUST NOT be concatenated with the domain SID to create the SID for the account referenced by the RID. Instead, the client MUST call SamrRidToSid to obtain the SID. This field can be combined with other bits using a logical OR. See the product behavior citation at the end of this section for more information (about Windows implementations).</td>
+ </tr><tr>
+  <td>0x00000002</td>
+  <td>Reserved. See the product behavior citation at the end of this section for additional details.</td>
+ </tr><tr>
+  <td>0x00000004</td>
+  <td>Reserved. See the product behavior citation at the end of this section for additional details.</td>
+ </tr><tr>
+  <td>0x00000010</td>
+  <td>On receipt by the client, this value, when set, indicates that the client should use AES Encryption with the SAMPR_ENCRYPTED_PASSWORD_AES structure to encrypt password buffers when sent over the wire. See AES Cipher Usage (section 3.2.2.4) and SAMPR_ENCRYPTED_PASSWORD_AES (section 2.2.6.32).</td>
+ </tr><tr>
+  <td>0x00000020</td>
+  <td>On receipt of this value by the client, when set, indicates that the server supports the validation of computer account re-use through client calls to the SamrValidateComputerAccountReuseAttempt method.&lt;19&gt;</td>
+ </tr><tr>
+  <td>0x00000040</td>
+  <td>On receipt of this value by the client, when set, indicates that the server supports the validation of computer account re-use through client calls to the SamrValidateComputerAccountReuseAttempt method.&lt;20&gt;</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The following citation in section <span><a href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829" data-linktype="relative-path">7</a></span>
+is relevant to the <b>SupportedFeatures</b> field.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a></p>
+</dd></dl></div>

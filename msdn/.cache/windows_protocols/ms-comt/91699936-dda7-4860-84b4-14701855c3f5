@@ -1,0 +1,149 @@
+<div class="content" name="OnNewTrackingInfo" uuid="91699936-dda7-4860-84b4-14701855c3f5"><p>The OnNewTrackingInfo method handles a <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_4a50c205-f8ad-45e0-b794-2f0a562dac76" data-linktype="relative-path">tracker event</a> from the
+server.</p><dl>
+<dd>
+<div><pre> HRESULT OnNewTrackingInfo(
+   [in] IUnknown* pToplevelCollection
+ );
+</pre></div>
+</dd></dl><p><b>pToplevelCollection: </b>An interface pointer of a
+DCOM object. This MUST be a <a href="384d4e03-0f8a-42c2-8125-a35fdce9110d" data-linktype="relative-path">TrackingInfoCollection
+OBJREF_CUSTOM (section 2.2.5.5)</a>. This collection SHOULD be of
+type TRKCOLL_PROCESSES (as specified in section 2.2.5.5), and each
+TrackingInfoObject in the collection SHOULD represent a <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_19e873cd-88cc-48df-ad42-912265a8b3bf" data-linktype="relative-path">process</a> on the server. Each
+process TrackingInfoObject structure SHOULD have the following properties.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p> Property name </p>
+   </th>
+   <th>
+   <p> vt value </p>
+   </th>
+   <th>
+   <p> Meaning </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ProcessID</td>
+  <td>0x00000013</td>
+  <td>The process identifier.</td>
+ </tr><tr>
+  <td>ExeName</td>
+  <td>0x00000008</td>
+  <td>Implementation-specific identifier of the type of process.&lt;25&gt;</td>
+ </tr><tr>
+  <td>Paused</td>
+  <td>0x00000013</td>
+  <td>TRUE (0x00000001) if the distinguished container for the process is paused; otherwise, FALSE (0x00000000).</td>
+ </tr><tr>
+  <td>Recycling</td>
+  <td>0x00000013</td>
+  <td>TRUE (0x00000001) if the distinguished instance container for the process is recycled; otherwise, FALSE (0x00000000).</td>
+ </tr><tr>
+  <td>IsService</td>
+  <td>0x00000013</td>
+  <td>TRUE (0x00000001) if the process is a system service; otherwise, FALSE (0x00000000). The definition of system service is implementation-specific.&lt;26&gt;</td>
+ </tr><tr>
+  <td>Applications</td>
+  <td>0x0000000D</td>
+  <td>A TrackingInfoCollection (section 2.2.5.5) of type TRKCOLL_CONTAINERS that represents the instance containers in the process.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Each instance container TrackingInfoObject SHOULD
+have the following properties.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p> Property name </p>
+   </th>
+   <th>
+   <p> vt value </p>
+   </th>
+   <th>
+   <p> Meaning </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ApplicationID</td>
+  <td>0x00000008</td>
+  <td>The CurlyBraceGuidString (section 2.2.1) representation of the conglomeration identifier of the conglomeration that is associated with the instance container.</td>
+ </tr><tr>
+  <td>ApplInstanceID</td>
+  <td>0x00000008</td>
+  <td>The CurlyBraceGuidString (section 2.2.1) representation of the container identifier of the instance container.</td>
+ </tr><tr>
+  <td>ApplicationType</td>
+  <td>0x00000013</td>
+  <td>An implementation-specific&lt;27&gt; integer that identifies the type of instance container.</td>
+ </tr><tr>
+  <td>PartitionID</td>
+  <td>0x00000008</td>
+  <td>The CurlyBraceGuidString (section 2.2.1) representation of the Partition ID of the conglomeration.</td>
+ </tr><tr>
+  <td>Name</td>
+  <td>0x00000008</td>
+  <td>An implementation-specific&lt;28&gt; Unicode string that provides a human-readable name for the conglomeration that is associated with the instance container.</td>
+ </tr><tr>
+  <td>Components</td>
+  <td>0x0000000D</td>
+  <td>A TrackingInfoCollection (section 2.2.5.5) of type TRKCOLL_COMPONENTS that represents the components instantiated in the instance container.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Each component TrackingInfoObject SHOULD have the
+following properties:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p> Property name </p>
+   </th>
+   <th>
+   <p> vt value </p>
+   </th>
+   <th>
+   <p> Meaning </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CLSID</td>
+  <td>0x00000008</td>
+  <td>The CurlyBraceGuidString (section 2.2.1) representation of the CLSID of the component.</td>
+ </tr><tr>
+  <td>Objects</td>
+  <td>0x00000013</td>
+  <td>The number of component instances for the component in an instance container.</td>
+ </tr><tr>
+  <td>Activated</td>
+  <td>0x00000013</td>
+  <td>The number of active component instances for the component in an instance container.</td>
+ </tr><tr>
+  <td>Pooled</td>
+  <td>0x00000013</td>
+  <td>The number of pooled component instances for the component in an instance container.</td>
+ </tr><tr>
+  <td>InCall</td>
+  <td>0x00000013</td>
+  <td>The number of component instances for the component in an instance container that are currently performing a method call.</td>
+ </tr><tr>
+  <td>CallTime</td>
+  <td>0x00000013</td>
+  <td>A value that indicates the average amount of time, in milliseconds, that it takes to complete method calls to component instances for the component. The calculation of this value is implementation-specific.&lt;29&gt;</td>
+ </tr><tr>
+  <td>Name</td>
+  <td>0x00000008</td>
+  <td>An implementation-specific Unicode string that provides a human-readable name for the component.&lt;30&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The OnNewTrackingInfo method
+MUST return S_OK (0x00000000) on success and a failure result (as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>)
+on failure.</p><p>Upon receiving a call to the OnNewTrackingInfo method, the
+client MUST attempt to unmarshal the TrackingInfoCollection OBJREF_CUSTOM
+received in <i>pToplevelCollection</i> and fail the call if it cannot. The
+client SHOULD then return before performing any further actions. Any further
+implementation-specific processing SHOULD be done asynchronously.</p></div>

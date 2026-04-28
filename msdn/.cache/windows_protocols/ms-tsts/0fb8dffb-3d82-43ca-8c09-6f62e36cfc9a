@@ -1,0 +1,56 @@
+<div class="content" name="Overview (synopsis)" uuid="0fb8dffb-3d82-43ca-8c09-6f62e36cfc9a"><p>The Terminal Services Terminal Server Runtime Interface
+Protocol is a simple request-response RPC-based protocol used for remotely
+querying and configuring various aspects of a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>. For
+example, this protocol can be used to query the number of active <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">sessions</a></span>
+running on a terminal server. For every method that the server receives, it
+executes the method and returns a completion. The client simply returns the
+completion status to the caller.</p><p>The protocol consists of four major subcomponents:</p><ul><li><p><span><span> 
+</span></span><b>Local Session Manager (LSM):</b> A system component that
+creates, destroys, and manages sessions.</p>
+</li><li><p><span><span> 
+</span></span><b>TermService:</b> A service running on the system that manages
+remote connection requests.</p>
+</li><li><p><span><span> 
+</span></span><b>VM Host Agent:</b> A service running on the system that
+monitors the states of the sessions within virtual machines hosted on the
+server <span><a href="https://go.microsoft.com/fwlink/?LinkId=123460" data-linktype="external">[MSFT-VS]</a></span>.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p>
+</li><li><p><span><span> 
+</span></span><b>Virtual IP:</b> A service running on the system that assigns
+IP addresses to sessions that are created by using remote connection requests.</p>
+</li></ul><p>The protocol can be further divided into the following
+functional categories:<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p><p>Functional categories associated with the <b>Local Session
+Manager (LSM)</b> subcomponent:</p><ul><li><p><span><span> 
+</span></span><b>Local Session Manager (LSM) Session:</b> These calls collect
+information, and control and configure sessions running on the terminal server.</p>
+</li><li><p><span><span> 
+</span></span><b>Local Session Manager (LSM) Notification:</b> These <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+calls are asynchronous and can be used to receive event notifications from the
+LSM.</p>
+</li><li><p><span><span> 
+</span></span><b>Local Session Manager (LSM) Enumeration:</b> These calls are
+used to enumerate information related to sessions running on a terminal server.</p>
+</li></ul><p>Functional categories associated with the <b>VM Host Agent</b>
+subcomponent:</p><ul><li><p><span><span> 
+</span></span><b>VM Host Agent Session:</b> These calls collect information as
+well as control and configure sessions running on the virtual machines hosted
+on the server.</p>
+</li><li><p><span><span> 
+</span></span><b>VM Host Agent Notification:</b> These RPC calls are
+asynchronous and can be used to receive event notifications from <b>VM Host
+Agent</b>.</p>
+</li><li><p><span><span> 
+</span></span><b>VM Host Agent Enumeration:</b> These calls are used to
+enumerate information related to sessions running on the virtual machines
+hosted on the server.</p>
+</li></ul><p>Functional categories associated with the <b>TermService</b>
+subcomponent:</p><ul><li><p><span><span> 
+</span></span><b>TermService:</b> These calls can be used to query and
+configure various aspects of the TermServices running on the terminal server.</p>
+</li><li><p><span><span> 
+</span></span><b>TermService Listener:</b> These calls are specific to the
+listener session running on the terminal server and listening for incoming
+connection requests.</p>
+</li><li><p><span><span> 
+</span></span><b>Legacy:</b> The legacy calls used by <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">Terminal Services</a></span>
+clients.</p>
+</li></ul></div>

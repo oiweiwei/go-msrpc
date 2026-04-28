@@ -1,0 +1,51 @@
+<div class="content" name="RpcQuerySessionData" uuid="8661c3aa-bc47-41b9-9662-5762ee052c2f"><p> The RpcQuerySessionData method returns information about a
+particular session running on a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>. The
+caller MUST have WINSTATION_QUERY permission to the session being queried. The
+method checks whether the caller has WINSTATION_QUERY permission (section <span><a href="4507e852-be3d-45b6-bc47-8ca0b552c94d" data-linktype="relative-path">3.1.1</a></span>)
+by setting it as the Access Request mask, and fails if the caller does not have
+the permission.</p><dl>
+<dd>
+<div><pre> HRESULT RpcQuerySessionData(
+   [in] handle_t hBinding,
+   [in] ULONG SessionId,
+   [in] QUERY_SESSION_DATA_TYPE type,
+   [in, unique, size_is(cbInputData )] 
+     byte* pbInputData,
+   [in, range(0, 8192)] DWORD cbInputData,
+   [out, ref, size_is(cbSessionData), length_is(*pcbReturnLength)] 
+     byte* pbSessionData,
+   [in, range(0, 8192)] ULONG cbSessionData,
+   [out, ref] ULONG* pcbReturnLength,
+   [out, ref] ULONG* pcbRequireBufferSize
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b> The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>.
+For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93771" data-linktype="external">[MSDN-RPCBIND]</a></span>.</p><p><b>SessionId: </b> The ID of the session for which
+data is to be retrieved.</p><p><b>type: </b> The type of data to retrieve about the
+session. This is of type <span><a href="8244f1b1-ce62-46f6-8b62-949abd789b0f" data-linktype="relative-path">QUERY_SESSION_DATA_TYPE</a></span>.</p><p><b>pbInputData: </b> Input data. This is a string
+specifying the name of the virtual channel and is required only when querying
+virtual channel information.</p><p><b>cbInputData: </b> The size, in bytes, of input
+data.</p><p><b>pbSessionData: </b> The output data containing the
+requested information. The data returned is of type <span><a href="d1bf099b-eb54-4ed9-a723-0b1062dbc128" data-linktype="relative-path">WDCONFIG</a></span> if the
+type specified is QUERY_SESSION_DATA_WDCONFIG. It is of type <span><a href="5c439d8d-b58b-4b0d-a2e5-467aa05f993b" data-linktype="relative-path">WINSTATIONVALIDATIONINFORMATION</a></span>
+if the type specified is QUERY_SESSION_DATA_LICENSE_VALIDATION. For other
+types, it is protocol-specific.</p><p><b>cbSessionData: </b> The size, in bytes, of <b>pbSessionData</b>.</p><p><b>pcbReturnLength: </b> The length of the returned
+data, in bytes.</p><p><b>pcbRequireBufferSize: </b> The buffer size, in
+bytes, required by the returned data.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Successful completion</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

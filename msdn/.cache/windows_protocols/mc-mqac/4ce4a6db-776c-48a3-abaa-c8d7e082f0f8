@@ -1,0 +1,88 @@
+<div class="content" name="MQCALG" uuid="4ce4a6db-776c-48a3-abaa-c8d7e082f0f8"><p>The MQCALG enumeration defines numeric values that represent
+specific cryptographic encryption and hash algorithms.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQMSG_CALG_MD2 = 0x8001,
+   MQMSG_CALG_MD4 = 0x8002,
+   MQMSG_CALG_MD5 = 0x8003,
+   MQMSG_CALG_SHA = 0x8004,
+   MQMSG_CALG_SHA1 = 0x8004,
+   MQMSG_CALG_MAC = 0x8005,
+   MQMSG_CALG_RSA_SIGN = 0x2400,
+   MQMSG_CALG_DSS_SIGN = 0x2200,
+   MQMSG_CALG_RSA_KEYX = 0xa400,
+   MQMSG_CALG_DES = 0x6601,
+   MQMSG_CALG_RC2 = 0x6602,
+   MQMSG_CALG_RC4 = 0x6801,
+   MQMSG_CALG_SEAL = 0x6802
+ } MQCALG;
+</pre></div>
+</dd></dl><p>Used by</p><ul><li><p><span><span> 
+</span></span>get <a href="99a3c923-2bf5-4790-9e0e-5eb42ca25e3d" data-linktype="relative-path">IMSMQMessage::HashAlgorithm</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="d18a7e45-c277-40d7-9962-8f6525ac476a" data-linktype="relative-path">IMSMQMessage::HashAlgorithm</a></p>
+</li><li><p><span><span> 
+</span></span>get <a href="48ad9a90-0a32-4917-bb3e-4e6e3cb3c04b" data-linktype="relative-path">IMSMQMessage::EncryptAlgorithm</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="b29b28ef-67c9-4c20-a45d-efc9cdc95ca7" data-linktype="relative-path">IMSMQMessage::EncryptAlgorithm</a></p>
+</li></ul><p>The MQCALG enumeration values correspond to the enumeration
+values for <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>.<b>HashAlgorithm</b>
+and Message.<b>EncryptionAlgorithm</b>, as shown in the following tables:</p><table><thead>
+  <tr>
+   <th>
+   <p>MQCALG</p>
+   </th>
+   <th>
+   <p>Message.HashAlgorithm</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>MQMSG_CALG_MD2</td>
+  <td>MD2&lt;5&gt;</td>
+ </tr><tr>
+  <td>MQMSG_CALG_MD4</td>
+  <td>MD4&lt;6&gt;</td>
+ </tr><tr>
+  <td>MQMSG_CALG_MD5</td>
+  <td>MD5&lt;7&gt;</td>
+ </tr><tr>
+  <td>MQMSG_CALG_SHA1</td>
+  <td>SHA1</td>
+ </tr><tr>
+  <td>MQMSG_CALG_SHA</td>
+  <td>SHA</td>
+ </tr></tbody></table><p> </p><table><thead>
+  <tr>
+   <th>
+   <p>MQCALG</p>
+   </th>
+   <th>
+   <p>Message.EncryptionAlgorithm</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>MQMSG_CALG_MAC</td>
+  <td>Unsupported&lt;8&gt;</td>
+ </tr><tr>
+  <td>MQMSG_CALG_RSA_SIGN</td>
+  <td>RSA</td>
+ </tr><tr>
+  <td>MQMSG_CALG_DSS_SIGN</td>
+  <td>DSS</td>
+ </tr><tr>
+  <td>MQMSG_CALG_RSA_KEYX</td>
+  <td>RSA_KEYS</td>
+ </tr><tr>
+  <td>MQMSG_CALG_DES</td>
+  <td>DES</td>
+ </tr><tr>
+  <td>MQMSG_CALG_RC2</td>
+  <td>RC2</td>
+ </tr><tr>
+  <td>MQMSG_CALG_RC4</td>
+  <td>RC4</td>
+ </tr><tr>
+  <td>MQMSG_CALG_SEAL</td>
+  <td>SEAL</td>
+ </tr></tbody></table><p> </p></div>

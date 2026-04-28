@@ -1,0 +1,44 @@
+<div class="content" name="NTMS_DRIVETYPEINFORMATIONA" uuid="60d06c41-91d6-4287-bb22-764d44757679"><p>The NTMS_DRIVETYPEINFORMATIONA structure describes the
+properties specific to a type of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>, in ASCII.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_DRIVETYPEINFORMATIONA {
+   char szVendor[128];
+   char szProduct[128];
+   DWORD NumberOfHeads;
+   DWORD DeviceType;
+ } NTMS_DRIVETYPEINFORMATIONA;
+</pre></div>
+</dd></dl><p><b>szVendor:</b>   A null-terminated
+sequence of ASCII characters specifying the name of the vendor of the drive,
+acquired from device inquiry data. If this information is not available, the
+member MUST specify an empty string.</p><p><b>szProduct:</b>   A null-terminated
+sequence of ASCII characters specifying the name of the product of the drive,
+acquired from device inquiry data. If this information is not available, the
+member MUST specify an empty string.</p><p><b>NumberOfHeads:</b>  This parameter is
+currently unused. It MUST be NULL and MUST be ignored on  receipt. </p><p><b>DeviceType:</b>  One of the following
+SCSI device types <a href="https://go.microsoft.com/fwlink/?LinkId=90512" data-linktype="external">[ANSI-131-1994]</a>
+acquired from device inquiry data. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FILE_DEVICE_CD_ROM 0x00000002</td>
+  <td>Device is a CD-ROM.</td>
+ </tr><tr>
+  <td>FILE_DEVICE_DISK 0x00000007</td>
+  <td>Device is a direct-access drive.</td>
+ </tr><tr>
+  <td>FILE_DEVICE_DVD 0x00000033</td>
+  <td>Device is a DVD.</td>
+ </tr><tr>
+  <td>FILE_DEVICE_TAPE 0x0000001F</td>
+  <td>Device is a sequential-access drive.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

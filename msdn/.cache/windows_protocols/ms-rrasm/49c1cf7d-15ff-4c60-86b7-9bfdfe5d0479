@@ -1,0 +1,62 @@
+<div class="content" name="IP_NAT_SESSION_MAPPING" uuid="49c1cf7d-15ff-4c60-86b7-9bfdfe5d0479"><p>The <b>IP_NAT_SESSION_MAPPING</b> structure holds
+information for a single NAT mapping and is part of <b>IP_NAT_ENUMERATE_SESSION_MAPPINGS</b> (section
+<a href="36d57fdc-36e2-4da7-b6ab-5ba99481b2b6" data-linktype="relative-path">2.2.1.2.183)</a>. </p><dl>
+<dd>
+<div><pre> typedef struct _IP_NAT_SESSION_MAPPING {
+   UCHAR Protocol;
+   ULONG PrivateAddress;
+   USHORT PrivatePort;
+   ULONG PublicAddress;
+   USHORT PublicPort;
+   ULONG RemoteAddress;
+   USHORT RemotePort;
+   IP_NAT_DIRECTION Direction;
+   ULONG IdleTime;
+ } IP_NAT_SESSION_MAPPING,
+  *PIP_NAT_SESSION_MAPPING;
+</pre></div>
+</dd></dl><p><b>Protocol: </b>This MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>NAT_PROTOCOL_ICMP 0x01</td>
+  <td>ICMP Protocol</td>
+ </tr><tr>
+  <td>NAT_PROTOCOL_IGMP 0x02</td>
+  <td>IGMP Protocol</td>
+ </tr><tr>
+  <td>NAT_PROTOCOL_TCP 0x06</td>
+  <td>TCP Protocol</td>
+ </tr><tr>
+  <td>NAT_PROTOCOL_UDP 0x11</td>
+  <td>UDP Protocol</td>
+ </tr><tr>
+  <td>NAT_PROTOCOL_IP6IN4 0x29</td>
+  <td>IPv6 in IPv4</td>
+ </tr><tr>
+  <td>NAT_PROTOCOL_PPTP 0x2F</td>
+  <td>PPTP Protocol</td>
+ </tr><tr>
+  <td>NAT_PROTOCOL_IPSEC_ESP 0x32</td>
+  <td>IPSec ESP</td>
+ </tr><tr>
+  <td>NAT_PROTOCOL_IPSEC_AH 0x33</td>
+  <td>IPSec AH</td>
+ </tr><tr>
+  <td>NAT_PROTOCOL_PGM 0x71</td>
+  <td>PGM</td>
+ </tr></tbody></table>
+</dd></dl><p><b>PrivateAddress: </b>The private address of the NAT
+entry.</p><p><b>PrivatePort: </b>The private port of the NAT
+entry.</p><p><b>PublicAddress: </b>The public address of the NAT
+entry.</p><p><b>PublicPort: </b>The public port of the NAT entry</p><p><b>RemoteAddress: </b>The remote address of the NAT
+entry.</p><p><b>RemotePort: </b>The remote port of the NAT entry.</p><p><b>Direction: </b>This MUST be IP_NAT_DIRECTION.</p><p><b>IdleTime: </b>The time, in seconds, since the last
+packet matching this entry was sent or received.</p></div>

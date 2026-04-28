@@ -1,0 +1,35 @@
+<div class="content" name="ContextAndStringW_Call" uuid="a42d07cc-b37b-4fe4-9df9-2ba6320d72fa"><p>The ContextAndStringW_Call structure contains information
+used in calls that only require a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_c6f0d1a4-ae75-40b9-beef-baa419cb33b9" data-linktype="relative-path">Smart Cards for Windows</a>
+context and a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a>.
+</p><dl>
+<dd>
+<div><pre> typedef struct _ContextAndStringW_Call {
+   REDIR_SCARDCONTEXT Context;
+   [string] const wchar_t* sz;
+ } ContextAndStringW_Call;
+</pre></div>
+</dd></dl><p><b>Context:</b>  A valid context, as
+specified in section <a href="060abee1-e520-4149-9ef7-ce79eb500a59" data-linktype="relative-path">2.2.1.1</a>.</p><p><b>sz:</b>  The value of this Unicode
+string depends on the context (based on <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_09d6bc87-34ed-48e8-b4d4-962e90543462" data-linktype="relative-path">IOCTL</a>) in which this
+structure is used.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>SCARD_IOCTL_INTRODUCEREADERGROUPW 0x00090054</td>
+  <td>Reader group name</td>
+ </tr><tr>
+  <td>SCARD_IOCTL_FORGETREADERGROUPW 0x0009005C</td>
+  <td>Reader group name</td>
+ </tr><tr>
+  <td>SCARD_IOCTL_FORGETREADERW 0x0009006C</td>
+  <td>Reader name</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

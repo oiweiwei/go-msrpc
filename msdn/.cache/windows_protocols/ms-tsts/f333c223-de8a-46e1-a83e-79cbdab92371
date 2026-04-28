@@ -1,0 +1,89 @@
+<div class="content" name="WINSTATIONINFOCLASS" uuid="f333c223-de8a-46e1-a83e-79cbdab92371"><p>The <b>WINSTATIONINFOCLASS</b> enumeration is used by <span><a href="1bba9ff2-71d3-49a3-bb26-2e5f6fcab3ee" data-linktype="relative-path">RpcWinStationQueryInformation</a></span>
+and <span><a href="2a5ee131-a1dd-44c7-9880-98df708061ea" data-linktype="relative-path">RpcWinStationSetInformation</a></span>
+to indicate the class of data for which to either query or set on the server. A
+brief description of each info class is appended to each enum value. See
+RpcWinStationQueryInformation for information about classes of data that can be
+queried and RpcWinStationSetInformation for classes of data that can be set.</p><p>The enum value <b>WinStationUnused1</b> MAY be used.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><dl>
+<dd>
+<div><pre> typedef  enum _WINSTATIONINFOCLASS
+ {
+   WinStationCreateData,
+   WinStationConfiguration,
+   WinStationPdParams,
+   WinStationWd,
+   WinStationPd,
+   WinStationPrinter,
+   WinStationClient,
+   WinStationModules,
+   WinStationInformation,
+   WinStationTrace,
+   WinStationBeep,
+   WinStationEncryptionOff,
+   WinStationEncryptionPerm,
+   WinStationNtSecurity,
+   WinStationUserToken,
+   WinStationUnused1,
+   WinStationVideoData,
+   WinStationInitialProgram,
+   WinStationCd,
+   WinStationSystemTrace,
+   WinStationVirtualData,
+   WinStationClientData,
+   WinStationSecureDesktopEnter,
+   WinStationSecureDesktopExit,
+   WinStationLoadBalanceSessionTarget,
+   WinStationLoadIndicator,
+   WinStationShadowInfo,
+   WinStationDigProductId,
+   WinStationLockedState,
+   WinStationRemoteAddress,
+   WinStationIdleTime,
+   WinStationLastReconnectType,
+   WinStationDisallowAutoReconnect,
+   WinStationUnused2,
+   WinStationUnused3,
+   WinStationUnused4,
+   WinStationUnused5,
+   WinStationReconnectedFromId,
+   WinStationEffectsPolicy,
+   WinStationType,
+   WinStationInformationEx
+ } WINSTATIONINFOCLASS;
+</pre></div>
+</dd></dl><p><b>WinStationCreateData:  </b>Query the data used to
+create an instance of <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8cc89bb9-be94-4672-8a5d-9947b91bc952" data-linktype="relative-path">WinStation</a></span>.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p><p><b>WinStationConfiguration:  </b>Query or set the
+WinStation parameters.</p><p><b>WinStationPdParams:  </b>Query or set the Protocol
+Drivers (PD) parameters.</p><p><b>WinStationWd:  </b>Query the Window Driver (WD)
+configuration. (Only one WD configuration can be loaded.)</p><p><b>WinStationPd:  </b>Query the PD configuration.
+(Many PD configurations can be loaded).</p><p><b>WinStationPrinter:  </b>Query or set the Line
+Printer Terminal (LPT) mapping to printer queues.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p><p><b>WinStationClient:  </b>Query information about the
+client.</p><p><b>WinStationModules:  </b>Query information about
+all client modules.</p><p><b>WinStationInformation:  </b>Query information
+about the WinStation.</p><p><b>WinStationTrace:  </b>Enable or disable WinStation
+tracing.<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p><p><b>WinStationBeep:  </b>Sound a beep in the
+WinStation.<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p><p><b>WinStationEncryptionOff:  </b>Turn off encryption.<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p><p><b>WinStationEncryptionPerm:  </b>Encryption is permanently
+on.<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a></p><p><b>WinStationNtSecurity:  </b>Select logon service<a id="Appendix_A_Target_19"></a><a aria-label="Product behavior note 19" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a> security desktop.<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p><p><b>WinStationUserToken:  </b>Query the primary access
+token of the logged-on user.</p><p><b>WinStationUnused1:  </b>Not used.</p><p><b>WinStationVideoData:  </b>Query the horizontal
+resolution, vertical resolution, and color depth.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a></p><p><b>WinStationInitialProgram:  </b>Identify the
+initial program run by <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">Terminal Services</a></span>
+when the user logs on.<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p><p><b>WinStationCd:  </b>Query the Client Device (CD)
+configuration. (Only one CD configuration can be loaded.)<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a></p><p><b>WinStationSystemTrace:  </b>Enable or disable
+system tracing.<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a></p><p><b>WinStationVirtualData:  </b>Query the client
+virtual data.</p><p><b>WinStationClientData:  </b>Send data to a client.<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a></p><p><b>WinStationSecureDesktopEnter:  </b>Turn encryption
+on, if enabled.<a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a></p><p><b>WinStationSecureDesktopExit:  </b>Turn encryption
+off, if enabled.<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a></p><p><b>WinStationLoadBalanceSessionTarget:  </b>Load
+balance information from a redirected client.<a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a></p><p><b>WinStationLoadIndicator:  </b>Query load capacity
+information.</p><p><b>WinStationShadowInfo:  </b>Query or set shadow
+state and parameters.<a id="Appendix_A_Target_29"></a><a aria-label="Product behavior note 29" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_29" data-linktype="relative-path">&lt;29&gt;</a></p><p><b>WinStationDigProductId:  </b>Get the <b>WINSTATIONPRODID</b>,
+as specified in section <span><a href="42e13db8-6eb3-49d3-a667-62500e568db5" data-linktype="relative-path">2.2.2.36</a></span>.<a id="Appendix_A_Target_30"></a><a aria-label="Product behavior note 30" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_30" data-linktype="relative-path">&lt;30&gt;</a></p><p><b>WinStationLockedState:  </b>Used by the logon
+service<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a> to notify applications and
+services.</p><p><b>WinStationRemoteAddress:  </b>Query the client IP
+address.</p><p><b>WinStationIdleTime:  </b>Query for the amount of
+time the WinStation is idle.<a id="Appendix_A_Target_32"></a><a aria-label="Product behavior note 32" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_32" data-linktype="relative-path">&lt;32&gt;</a></p><p><b>WinStationLastReconnectType:  </b>Query if the
+last reconnect for this WinStation was manual or auto-reconnect.<a id="Appendix_A_Target_33"></a><a aria-label="Product behavior note 33" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_33" data-linktype="relative-path">&lt;33&gt;</a></p><p><b>WinStationDisallowAutoReconnect:  </b>Allow or
+disallow auto-reconnect for this WinStation.<a id="Appendix_A_Target_34"></a><a aria-label="Product behavior note 34" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_34" data-linktype="relative-path">&lt;34&gt;</a></p><p><b>WinStationUnused2:  </b>Not used.</p><p><b>WinStationUnused3:  </b>Not used.</p><p><b>WinStationUnused4:  </b>Not used.</p><p><b>WinStationUnused5:  </b>Not used.</p><p><b>WinStationReconnectedFromId:  </b>In the case of
+reconnected sessions, return the session ID of the temporary session from which
+it was reconnected, or -1 if no temporary session was created.</p><p><b>WinStationEffectsPolicy:  </b>Return policies that
+differentiate among implementations.</p><p><b>WinStationType:  </b>Return the type of the
+session associated with this WinStation.<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a></p><p><b>WinStationInformationEx:  </b>Return the extended
+information about the WinStation.<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a></p></div>

@@ -1,0 +1,29 @@
+<div class="content" name="IAppHostMethodInstance" uuid="64d5e1bd-c9ab-4b23-90e7-7ad7b930df15"><p>The IAppHostMethodInstance interface provides methods that
+access a specific invocation instance of the corresponding <a href="9154a520-ce4f-43e1-95c2-63590cfea206" data-linktype="relative-path">IAppHostMethod</a>. The caller
+sets parameters and then executes the instance of the method.</p><p>The IAppHostMethodInstance <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> inherits opnums
+0–2 from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Input</td>
+  <td>Opnum: 3</td>
+ </tr><tr>
+  <td>Output</td>
+  <td>Opnum: 4</td>
+ </tr><tr>
+  <td>Execute</td>
+  <td>Opnum: 5</td>
+ </tr><tr>
+  <td>GetMetadata</td>
+  <td>Opnum: 6</td>
+ </tr><tr>
+  <td>SetMetadata</td>
+  <td>Opnum: 7</td>
+ </tr></tbody></table><p> </p></div>

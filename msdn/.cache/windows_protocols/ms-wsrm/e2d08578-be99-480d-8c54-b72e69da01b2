@@ -1,0 +1,44 @@
+<div class="content" name="GetExclusionList" uuid="e2d08578-be99-480d-8c54-b72e69da01b2"><p>The GetExclusionList method gets the current <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_cca0ab9e-fde0-4f0f-b135-db8451c0594e" data-linktype="relative-path">exclusion list</a> of processes
+not managed by the WSRM <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1517eb9b-d2b2-48f0-bf23-bde76923ed30" data-linktype="relative-path">management
+service</a>.</p><dl>
+<dd>
+<div><pre> [id(5), helpstring(&#34;method GetExclusionList&#34;)] HRESULT GetExclusionList(
+   [out] BSTR* pbstrExclusionList,
+   [in] EXCLUSIONLIST_TYPE enumListType
+ );
+</pre></div>
+</dd></dl><p><b>pbstrExclusionList: </b>A pointer to a string that
+returns the exclusion list, in the form of an <a href="e4a798f1-7eef-4342-a3ee-fe6be6c0e8ab" data-linktype="relative-path">ExclusionList</a> element
+(section 2.2.5.16). For an example, see <a href="7f4ee0ea-be67-4cca-a44c-ad6bfc7da803" data-linktype="relative-path">ExclusionList Example</a>
+(section 4.2.13).</p><p><b>enumListType: </b>An <a href="751c61f3-3cef-4380-b1d0-fea03a0e08da" data-linktype="relative-path">EXCLUSIONLIST_TYPE</a>
+enumeration (section 2.2.3.2) value that specifies whether the list is
+system-defined or user-defined. </p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Operation successful.</td>
+ </tr><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>One or more arguments are invalid.</td>
+ </tr><tr>
+  <td>0xC1FF006B WRM_ERR_TOO_LONG_PROCESS_NAME</td>
+  <td>The exclusion list could not be returned because the number of characters in a process name has exceeded an implementation-defined limit.&lt;79&gt;</td>
+ </tr><tr>
+  <td>0xC1FF006C WRM_ERR_EXCLUSION_LIST_LIMIT_EXCEEDED</td>
+  <td>The exclusion list could not be returned because the number of processes that can be excluded has exceeded an implementation-defined limit.&lt;80&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="38d3fffd-48ad-4e02-a7ce-b13da6304c80" data-linktype="relative-path">IWRMConfig</a> interface
+methods are specified in section 3.2.4.5.</p></div>

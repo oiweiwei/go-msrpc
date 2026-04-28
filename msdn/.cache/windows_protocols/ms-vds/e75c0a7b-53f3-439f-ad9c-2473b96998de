@@ -1,0 +1,33 @@
+<div class="content" name="VDS_FILE_SYSTEM_NOTIFICATION" uuid="e75c0a7b-53f3-439f-ad9c-2473b96998de"><p>The VDS_FILE_SYSTEM_NOTIFICATION structure provides
+information about a <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file
+system</a> notification.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_FILE_SYSTEM_NOTIFICATION {
+   unsigned long ulEvent;
+   VDS_OBJECT_ID volumeId;
+   DWORD dwPercentCompleted;
+ } VDS_FILE_SYSTEM_NOTIFICATION;
+</pre></div>
+</dd></dl><p><b>ulEvent:</b>  Determines the file system
+event for which an application will be notified; it MUST be one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>VDS_NF_FILE_SYSTEM_MODIFY 0x000000CB</td>
+  <td>A volume received a new label, or a file system was extended or shrunk; does not include a change to the file system compression flags.</td>
+ </tr><tr>
+  <td>VDS_NF_FILE_SYSTEM_FORMAT_PROGRESS 0x000000CC</td>
+  <td>A file system is being formatted.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>volumeId:</b>  The <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS object</a> ID of the volume
+object containing the file system that triggered the event.</p><p><b>dwPercentCompleted:</b>  The completed
+format progress as a percentage of the whole.</p></div>

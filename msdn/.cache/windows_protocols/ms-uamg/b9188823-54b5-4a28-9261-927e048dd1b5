@@ -1,0 +1,66 @@
+<div class="content" name="GetInfo" uuid="b9188823-54b5-4a28-9261-927e048dd1b5"><p>The IWindowsUpdateAgentInfo::GetInfo (opnum 8) method
+retrieves version information for the server side of the protocol and the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_362092cf-7fb5-43eb-92e1-c3e4affdd92b" data-linktype="relative-path">update
+agent</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetInfo(
+   [in] VARIANT varInfoIdentifier,
+   [out, retval] VARIANT* retval
+ );
+</pre></div>
+</dd></dl><p><b>varInfoIdentifier: </b>A <b>VARIANT</b> (<span><a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a></span>
+section <span><a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">2.2.29.2</a></span>)
+containing a string specifying the type of version information to retrieve. The
+<b>vt</b> member of <i>varInfoIdentifier</i> MUST be set to VT_BSTR, and the <b>BSTR</b>
+([MS-OAUT] section <span><a href="../ms-oaut/9c5a5ce4-ff5b-45ce-b915-ada381b34ac1" data-linktype="relative-path">2.2.23</a></span>)
+stored in the <b>bstrVal</b> member MUST case-insensitively compare equal to
+one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>bstrVal value</p>
+   </th>
+   <th>
+   <p>Information to be retrieved</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ApiMajorVersion</td>
+  <td>The major version number of the server side of the protocol.</td>
+ </tr><tr>
+  <td>ApiMinorVersion</td>
+  <td>The minor version number of the server side of the protocol.</td>
+ </tr><tr>
+  <td>ProductVersionString</td>
+  <td>The version of the update agent.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>retval: </b>A <b>VARIANT</b> containing the
+requested version information, as specified by the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>varInfoIdentifier.bstrVal value</p>
+   </th>
+   <th>
+   <p>retval</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ApiMajorVersion</td>
+  <td>The vt member MUST be set to VT_I4. The lVal member SHOULD&lt;52&gt; be set to the server&#39;s major version.</td>
+ </tr><tr>
+  <td>ApiMinorVersion</td>
+  <td>The vt member MUST be set to VT_I4. The lVal member SHOULD&lt;53&gt; be set to the server&#39;s minor version.</td>
+ </tr><tr>
+  <td>ProductVersionString</td>
+  <td>The vt member MUST be set to VT_BSTR. The bstrVal member SHOULD&lt;54&gt; be set to the version of the update agent.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

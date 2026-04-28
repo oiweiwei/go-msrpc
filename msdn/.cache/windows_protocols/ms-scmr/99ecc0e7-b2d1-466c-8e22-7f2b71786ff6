@@ -1,0 +1,10 @@
+<div class="content" name="SERVICE_REQUIRED_PRIVILEGES_INFO_WOW64" uuid="99ecc0e7-b2d1-466c-8e22-7f2b71786ff6"><p>The SERVICE_REQUIRED_PRIVILEGES_INFO_WOW64 structure defines
+the offset at which the <span><a href="2917121d-bbe1-47d2-ad55-7bce44a127e6" data-linktype="relative-path">SERVICE_RPC_REQUIRED_PRIVILEGES_INFO (section 2.2.48)</a></span>
+structure is present.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwRequiredPrivilegesOffset;
+ } SERVICE_REQUIRED_PRIVILEGES_INFO_WOW64;
+</pre></div>
+</dd></dl><p><b>dwRequiredPrivilegesOffset:</b>  Offset
+of the SERVICE_RPC_REQUIRED_PRIVILEGES_INFO structure.</p></div>

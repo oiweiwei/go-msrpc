@@ -1,0 +1,175 @@
+<div class="content" name="FAX_AccessCheck" uuid="daf259f0-545c-4463-94ce-a78dbafc532c"><p>The <b>FAX_AccessCheck (Opnum 25)</b> method is called when
+the client needs to check whether the client&#39;s fax user account has certain
+access permissions on the server.</p><p>In response, the server MUST validate the access rights
+specified by the client against the actual specific access rights of the
+client&#39;s fax user account. On success, the server SHOULD return the access
+rights specified by the client that are granted to the client&#39;s fax user
+account.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_AccessCheck(
+   [in] handle_t hBinding,
+   [in] DWORD AccessMask,
+   [out, ref] BOOL* pfAccess,
+   [in, out, unique] LPDWORD lpdwRights
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a>) or <b>FAX_ConnectionRefCount</b> (section
+<a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a>) method call
+used to connect to the fax server.</p><p><b>AccessMask: </b>A <b>DWORD</b> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+variable that MUST contain a set of bit flags that define the fax access
+permissions specified by the client to be validated against the access
+permissions of the client&#39;s fax user account. This parameter can be any bitwise
+OR combination of fax-specific access rights, standard access rights, and
+fax-generic access rights. For a list of standard access rights, see <a href="https://go.microsoft.com/fwlink/?LinkId=90120" data-linktype="external">[MSDN-SAR]</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Fax-generic access rights</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FAX_GENERIC_EXECUTE 0x00000001</td>
+  <td>Identical to the FAX_ACCESS_SUBMIT access right.</td>
+ </tr><tr>
+  <td>FAX_GENERIC_READ 0x000002A8</td>
+  <td>Includes the read-only rights that are granted by the following specific access rights: § FAX_ACCESS_QUERY_JOBS § FAX_ACCESS_QUERY_CONFIG § FAX_ACCESS_QUERY_IN_ARCHIVE § FAX_ACCESS_QUERY_OUT_ARCHIVE</td>
+ </tr><tr>
+  <td>FAX_GENERIC_WRITE 0x00000550</td>
+  <td>Includes the management rights that are granted by the following specific access rights: § FAX_ACCESS_MANAGE_JOBS § FAX_ACCESS_MANAGE_CONFIG § FAX_ACCESS_MANAGE_IN_ARCHIVE § FAX_ACCESS_MANAGE_OUT_ARCHIVE</td>
+ </tr><tr>
+  <td>FAX_GENERIC_ALL 0x000007FF</td>
+  <td>Includes all the following specific fax permissions: § FAX_ACCESS_SUBMIT § FAX_ACCESS_SUBMIT_NORMAL § FAX_ACCESS_SUBMIT_HIGH § FAX_ACCESS_QUERY_JOBS § FAX_ACCESS_MANAGE_JOBS § FAX_ACCESS_QUERY_CONFIG § FAX_ACCESS_MANAGE_CONFIG § FAX_ACCESS_QUERY_IN_ARCHIVE § FAX_ACCESS_MANAGE_IN_ARCHIVE § FAX_ACCESS_QUERY_OUT_ARCHIVE § FAX_ACCESS_MANAGE_OUT_ARCHIVE</td>
+ </tr></tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Fax-specific access rights</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FAX_ACCESS_SUBMIT 0x00000001</td>
+  <td>Grants permission to send a low-priority fax transmission to one or more recipients.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_SUBMIT_NORMAL 0x00000002</td>
+  <td>Grants permission to send a normal-priority fax transmission to one or more recipients.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_SUBMIT_HIGH 0x00000004</td>
+  <td>Grants permission to send a high-priority fax transmission to one or more recipients.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_QUERY_JOBS 0x00000008</td>
+  <td>Grants permission to view all the incoming and outgoing faxes in the Incoming and Outbox queues, including those that belong to other users. By default, without this permission, non-administrator users can view their own outgoing messages in the Outbox queue but cannot view the Incoming queue. Also, non-administrator users cannot view incoming or outgoing faxes that belong to other users.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_MANAGE_JOBS 0x00000010</td>
+  <td>Grants permission to manage all the incoming and outgoing faxes in the Incoming and Outbox queues, including those that belong to other users. By default, without this permission, non-administrator users can manage their own outgoing messages in the Outgoing queue (defined in section 3.1.1) but cannot manage the Incoming queue. Also, non-administrator users cannot manage incoming or outgoing faxes that belong to other users.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_QUERY_CONFIG 0x00000020</td>
+  <td>Grants permission to view the properties of the Fax Service. By default, non-administrator users do not have this permission. Without this permission, users cannot view any of the tree nodes, except for the cover page node in the Fax Service Manager.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_MANAGE_CONFIG 0x00000040</td>
+  <td>Grants permission to modify the properties of the fax service. By default, non-administrator users do not have this permission.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_QUERY_IN_ARCHIVE 0x00000080</td>
+  <td>Grants permission to view all successfully received messages in the Inbox archive. By default, without this permission, non-administrator users cannot view archived incoming faxes.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_MANAGE_IN_ARCHIVE 0x00000100</td>
+  <td>Grants permission to manage all successfully received messages in the Inbox archive. By default, without this permission, non-administrator users cannot manage archived incoming faxes.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_QUERY_OUT_ARCHIVE 0x00000200</td>
+  <td>Grants permission to view all successfully sent messages in the Sent Items archive, including those belonging to other users. By default, without this permission, non-administrator users can view archives of their own sent messages but cannot view archives that belong to other users.</td>
+ </tr><tr>
+  <td>FAX_ACCESS_MANAGE_OUT_ARCHIVE 0x00000400</td>
+  <td>Grants permission to manage all successfully sent messages in the Sent Items archive, including those that belong to other users. By default, without this permission, non-administrator users can manage archives of their own sent messages but cannot manage archives that belong to other users.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Standard access rights</p>
+   </th>
+   <th>
+   <p>Descriptiion</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DELETE 0x00010000</td>
+  <td>Delete access.</td>
+ </tr><tr>
+  <td>READ_CONTROL 0x00020000</td>
+  <td>Read access to the owner, group, and discretionary access control list (ACL) of the security descriptor.</td>
+ </tr><tr>
+  <td>WRITE_DAC 0x00040000</td>
+  <td>Write access to the ACL.</td>
+ </tr><tr>
+  <td>WRITE_OWNER 0x00080000</td>
+  <td>Write access to the owner.</td>
+ </tr><tr>
+  <td>SYNCHRONIZE 0x00100000</td>
+  <td>Allow use of the object for synchronization.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Miscellaneous access rights</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>MAXIMUM_ALLOWED 0x02000000</td>
+  <td>Maximum allowed access rights for this server.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>pfAccess: </b>A pointer to a <b>BOOL</b>
+([MS-DTYP] section <a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">2.2.3</a>)
+to receive the access check return value. This value MUST be TRUE if the
+client&#39;s fax user account has all of the fax access rights specified by the <i>AccessMask</i>
+parameter; otherwise, this value MUST be FALSE. If the value submitted by the
+client for the <i>AccessMask</i> is zero, the value pointed to by the <i>pfAccess</i>
+parameter SHOULD be FALSE on return.</p><p><b>lpdwRights: </b>A pointer to a <b>DWORD</b> value
+to receive the fax access rights that this caller is verified to have of those
+requested in the <i>AccessMask</i> parameter. This value MUST be a <b>DWORD</b>
+bitwise OR combination of fax-specific access rights, standard access rights,
+and/or fax-generic access rights limited to those specified by the client in
+the <i>AccessMask</i>. In order for the client to be verified for the maxiumum
+allowed rights, the caller MUST set the <i>AccessMask</i> to 0x02000000
+(MAXIMUM_ALLOWED) and the server SHOULD set this output value to the actual
+rights that this caller is verified to have.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. The user does not have a valid fax user account on the server.&lt;65&gt;</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect. The pfAccess argument is NULL,&lt;66&gt; or the access mask specified by the AccessMask argument contains invalid fax-specific access rights.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+except those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

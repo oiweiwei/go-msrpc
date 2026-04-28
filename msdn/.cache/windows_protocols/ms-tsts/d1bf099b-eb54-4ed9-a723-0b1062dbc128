@@ -1,0 +1,58 @@
+<div class="content" name="WDCONFIG" uuid="d1bf099b-eb54-4ed9-a723-0b1062dbc128"><p>The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8cc89bb9-be94-4672-8a5d-9947b91bc952" data-linktype="relative-path">WinStation</a></span> (session)
+driver configuration.<a id="Appendix_A_Target_99"></a><a aria-label="Product behavior note 99" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_99" data-linktype="relative-path">&lt;99&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _WDCONFIG {
+   WDNAME WdName;
+   DLLNAME WdDLL;
+   DLLNAME WsxDLL;
+   ULONG WdFlag;
+   ULONG WdInputBufferLength;
+   DLLNAME CfgDLL;
+   WDPREFIX WdPrefix;
+ } WDCONFIG,
+  *PWDCONFIG;
+</pre></div>
+</dd></dl><p><b>WdName:</b>  The descriptive name of the
+WinStation driver.</p><p><b>WdDLL:</b>  The driver&#39;s image name.</p><p><b>WsxDLL:</b>  Used by the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">Terminal
+Services</a></span> service to communicate with the WinStation driver.<a id="Appendix_A_Target_100"></a><a aria-label="Product behavior note 100" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_100" data-linktype="relative-path">&lt;100&gt;</a></p><p><b>WdFlag:</b>  Driver flags. It MUST be
+any bitwise OR combination of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>WDF_UNUSED 0x00000001</td>
+  <td>Not used.</td>
+ </tr><tr>
+  <td>WDF_SHADOW_SOURCE 0x00000002</td>
+  <td>Valid shadow source.</td>
+ </tr><tr>
+  <td>WDF_SHADOW_TARGET 0x00000004</td>
+  <td>Valid shadow target.</td>
+ </tr><tr>
+  <td>WDF_OTHER 0x00000008</td>
+  <td>Other protocol.</td>
+ </tr><tr>
+  <td>WDF_TSHARE 0x00000010</td>
+  <td>Remote Protocol used by Terminal Services.</td>
+ </tr><tr>
+  <td>WDF_DYNAMIC_RECONNECT 0x00000020</td>
+  <td>Session can resize display at reconnect.&lt;101&gt;</td>
+ </tr><tr>
+  <td>WDF_USER_VCIOCTL 0x00000040</td>
+  <td>User mode applications can send virtual channel IOCTL.</td>
+ </tr><tr>
+  <td>WDF_SUBDESKTOP 0x00008000</td>
+  <td>Sub-desktop session.&lt;102&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>WdInputBufferLength:</b>  Length, in
+bytes, of the input buffer used by the driver. Defaults to 2048.</p><p><b>CfgDLL:</b>  Configuration DLL used by
+Terminal Services administrative tools for configuring the driver.<a id="Appendix_A_Target_103"></a><a aria-label="Product behavior note 103" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_103" data-linktype="relative-path">&lt;103&gt;</a></p><p><b>WdPrefix:</b>  Used as the prefix of the
+WinStation name generated for the connected sessions with this WinStation
+driver.<a id="Appendix_A_Target_104"></a><a aria-label="Product behavior note 104" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_104" data-linktype="relative-path">&lt;104&gt;</a></p></div>

@@ -1,0 +1,12 @@
+<div class="content" name="BEEPINPUT" uuid="2faf4c5b-3a79-491a-9d1a-145f46a797d1"><p>The BEEPINPUT structure performs a beep in the session.</p><dl>
+<dd>
+<div><pre> typedef struct _BEEPINPUT {
+   ULONG uType;
+ } BEEPINPUT,
+  *PBEEPINPUT;
+</pre></div>
+</dd></dl><p><b>uType:</b>  If the session ID is 0, this
+can be any of the values that can be passed to the standard MessageBeep
+function (<span><a href="https://go.microsoft.com/fwlink/?LinkId=128440" data-linktype="external">[MSDN-MSGBeep]</a></span>).
+If the session ID is not 0, a frequency and duration is chosen by the server to
+send as a beep to the session.</p></div>

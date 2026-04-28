@@ -1,0 +1,23 @@
+<div class="content" name="PDPARAMS" uuid="ff0e2998-fb8b-4dff-ab64-8427fad556eb"><p>The protocol driver parameters structure. The core <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">Terminal
+Services</a></span> binaries only read this data from the system data store and
+pass it to callers of <span><a href="1bba9ff2-71d3-49a3-bb26-2e5f6fcab3ee" data-linktype="relative-path">RpcWinStationQueryInformation</a></span>
+and other places. The core Terminal Services binaries do not process this data
+in any way before returning it to callers. The actual use of this configuration
+data is in lower-level protocol drivers.</p><dl>
+<dd>
+<div><pre> typedef struct _PDPARAMS {
+   SDCLASS SdClass;
+   union {
+     NETWORKCONFIG Network;
+     ASYNCCONFIG Async;
+     NASICONFIG Nasi;
+     OEMTDCONFIG OemTd;
+   };
+ } PDPARAMS,
+  *PPDPARAMS;
+</pre></div>
+</dd></dl><p><b>SdClass:</b>  Stack driver class.
+Indicates which one of the union&#39;s structures is valid.</p><p><b>Network:</b>  Configuration of network
+drivers. Used if <b>SdClass</b> is SdNetwork.</p><p><b>Async:</b>  Configuration of async
+(modem) driver. Used if <b>SdClass</b> is SdAsync.<a id="Appendix_A_Target_97"></a><a aria-label="Product behavior note 97" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_97" data-linktype="relative-path">&lt;97&gt;</a></p><p><b>Nasi:</b>  Reserved.</p><p><b>OemTd:</b>  Configuration of OEM
+transport driver. Used if <b>SdClass</b> is SdOemTransport.<a id="Appendix_A_Target_98"></a><a aria-label="Product behavior note 98" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_98" data-linktype="relative-path">&lt;98&gt;</a></p></div>

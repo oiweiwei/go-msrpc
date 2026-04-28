@@ -1,0 +1,65 @@
+<div class="content" name="COMM_COMMAND" uuid="f300ec84-7c63-4f13-8590-54b630e15413"><p>The COMM_COMMAND element contains the communication packet
+type. The structure of the COMM_COMMAND packet element is as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_COMMAND {
+   USHORT CommType;
+   ULONG Length;
+   ULONG Data;
+ } COMM_COMMAND,
+  *PCOMM_COMMAND;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be set to 0x0002.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length in bytes of the data following the Length field. MUST
+be 0x00000004.</p><p><b>Data:</b>   A 32-bit, unsigned integer
+that indicates the communication packet type. The value of this field MUST be
+one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CMD_REMOTE_CO 0x00000218</td>
+  <td>To send a remote change order to a downstream partner.</td>
+ </tr><tr>
+  <td>CMD_RECEIVING_STAGE 0x00000238</td>
+  <td>To transmit a staging file to a downstream partner.</td>
+ </tr><tr>
+  <td>CMD_REMOTE_CO_DONE 0x00000250</td>
+  <td>To inform the upstream partner that processing the remote change order is complete. This packet also includes the change order command that has completed.</td>
+ </tr><tr>
+  <td>CMD_ABORT_FETCH 0x00000246</td>
+  <td>To inform the downstream partner that the staging file data cannot be sent. This command tells the partner to abort the fetch operation on the staging file.</td>
+ </tr><tr>
+  <td>CMD_RETRY_FETCH 0x00000244</td>
+  <td>To inform the downstream partner that the request for the staging file data cannot be fulfilled at this time and that the request has to be retried at a later time.</td>
+ </tr><tr>
+  <td>CMD_NEED_JOIN 0x00000121</td>
+  <td>To inform the upstream partner that a Join operation is needed.</td>
+ </tr><tr>
+  <td>CMD_START_JOIN 0x00000122</td>
+  <td>To inform the downstream partner that a Join operation is starting.</td>
+ </tr><tr>
+  <td>CMD_JOINING 0x00000130</td>
+  <td>To send a version vector to an upstream partner.</td>
+ </tr><tr>
+  <td>CMD_JOINED 0x00000128</td>
+  <td>To inform the downstream partner that the Join is successful.</td>
+ </tr><tr>
+  <td>CMD_UNJOIN_REMOTE 0x00000148</td>
+  <td>To inform an upstream partner on completion of a version vector join (vvjoin) over a volatile connection. This command requests that the upstream partner disconnect the connection so that it can be torn down.</td>
+ </tr><tr>
+  <td>CMD_VVJOIN_DONE 0x00000136</td>
+  <td>To inform the downstream partner that all change orders were sent out during initial sync.</td>
+ </tr><tr>
+  <td>CMD_SEND_STAGE 0x00000228</td>
+  <td>To request staging data from an upstream partner.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

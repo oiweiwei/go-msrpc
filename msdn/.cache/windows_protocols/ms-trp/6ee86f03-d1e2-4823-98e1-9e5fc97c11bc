@@ -1,0 +1,186 @@
+<div class="content" name="NegotiateExtVersion_Phone" uuid="6ee86f03-d1e2-4823-98e1-9e5fc97c11bc"><p>The NegotiateExtVersion packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet MUST allow an application to negotiate an extension version
+to use with the specified phone device. This operation need not be called if
+the application does not support extensions.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Req_Func</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved1</td>
+ </tr>
+ <tr>
+  <td colspan="32">hPhoneApp</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwDeviceID</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwTSPIVersion</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwLowVersion</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwHighVersion</td>
+ </tr>
+ <tr>
+  <td colspan="32">lpdwExtVersion</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved2</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved3</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved4</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved5</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved6</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved7</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved8</td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>The identifier of the
+function that will be invoked on the remote server. This value MUST be set to
+109.</p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+MUST contain the result of the encapsulated telephony request. A value of 0
+indicates success, and a <a href="b1c6fae0-09ca-4f7b-85f6-1324376d231c" data-linktype="relative-path">PHONEERR_Constants</a>
+value indicates failure. The remote server MUST complete this call
+synchronously.</p>
+</dd>
+<dd>
+<p>Returns 0 if the request succeeds or a negative
+error number if an error occurs. The following table lists common return
+values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>PHONEERR_INVALAPPHANDLE</td>
+  <td>0x00000007</td>
+ </tr><tr>
+  <td>PHONEERR_OPERATIONFAILED</td>
+  <td>0x0000001C</td>
+ </tr><tr>
+  <td>PHONEERR_BADDEVICEID</td>
+  <td>0x00000002</td>
+ </tr><tr>
+  <td>PHONEERR_OPERATIONUNAVAIL</td>
+  <td>0x0000001D</td>
+ </tr><tr>
+  <td>PHONEERR_NODRIVER</td>
+  <td>0x00000019</td>
+ </tr><tr>
+  <td>PHONEERR_NOMEM</td>
+  <td>0x0000001A</td>
+ </tr><tr>
+  <td>PHONEERR_INCOMPATIBLEAPIVERSION</td>
+  <td>0x00000003</td>
+ </tr><tr>
+  <td>PHONEERR_RESOURCEUNAVAIL</td>
+  <td>0x0000001F</td>
+ </tr><tr>
+  <td>PHONEERR_INCOMPATIBLEEXTVERSION</td>
+  <td>0x00000004</td>
+ </tr><tr>
+  <td>PHONEERR_UNINITIALIZED</td>
+  <td>0x00000022</td>
+ </tr><tr>
+  <td>PHONEERR_INVALPOINTER</td>
+  <td>0x00000015</td>
+ </tr><tr>
+  <td>PHONEERR_NODEVICE</td>
+  <td>0x00000018</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hPhoneApp (4 bytes): </b>An <a href="55b72ff6-9236-401b-846a-e8a78dfada1b" data-linktype="relative-path">HPHONEAPP</a>. The handle to
+the application registration with TAPI. This field MUST have been obtained by
+sending the <a href="a600d262-0bb1-447b-8a0d-6f57d3a8ec18" data-linktype="relative-path">Initialize</a>
+packet.</p><p><b>dwDeviceID (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the phone device to be queried. A valid value of
+dwDeviceID is in the range 0 to dwNumDevs –1. The client obtains dwNumDevs by
+sending a Initialize packet to the remote server.</p><p><b>dwTSPIVersion (4 bytes): </b>An unsigned 32-bit
+integer. The TAPI version number that was negotiated for the specified phone
+device by using <a href="59e34869-7701-4eb5-95d4-f8ce908ce17a" data-linktype="relative-path">NegotiateAPIVersion</a>.
+</p><p><b>dwLowVersion (4 bytes): </b>An unsigned 32-bit
+integer. The least recent extension version of the extension identifier that is
+returned by NegotiateAPIVersion and with which the application is compliant.
+The high-order word is the major version number; the low-order word is the
+minor version number. </p><p><b>dwHighVersion (4 bytes): </b>An unsigned 32-bit
+integer. The most recent extension version of the extension identifier that is
+returned by NegotiateAPIVersion and with which the application is compliant.
+The high-order word is the major version number; the low-order word is the
+minor version number.</p><p><b>lpdwExtVersion (4 bytes): </b>An unsigned 32-bit
+integer. Set to TAPI_NO_DATA (0xFFFFFFFF). Upon successful completion of the
+request, this field contains the highest extension version number, within the
+range that is requested by the caller, under which the service provider can
+operate. The most-significant WORD is the major version number and the
+least-significant WORD is the minor version number.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved8 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can be
+any value.</p></div>

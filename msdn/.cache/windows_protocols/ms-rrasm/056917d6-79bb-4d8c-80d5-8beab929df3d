@@ -1,0 +1,10 @@
+<div class="content" name="MIB_IFNUMBER" uuid="056917d6-79bb-4d8c-80d5-8beab929df3d"><p>The <b>MIB_IFNUMBER</b> structure stores the number of
+interfaces on a specific computer.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_IFNUMBER {
+   DWORD dwValue;
+ } MIB_IFNUMBER,
+  *PMIB_IFNUMBER;
+</pre></div>
+</dd></dl><p><b>dwValue: </b>The number of interfaces on the
+computer.</p></div>

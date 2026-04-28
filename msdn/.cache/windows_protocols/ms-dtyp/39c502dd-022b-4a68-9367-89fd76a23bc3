@@ -1,0 +1,213 @@
+<div class="content" name="SERVER_INFO_101" uuid="39c502dd-022b-4a68-9367-89fd76a23bc3"><p>The SERVER_INFO_101 structure contains information about the
+specified server, including the name, platform, type of server, and associated
+software.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_INFO_101 {
+   DWORD sv101_platform_id;
+   [string] wchar_t* sv101_name;
+   DWORD sv101_version_major;
+   DWORD sv101_version_minor;
+   DWORD sv101_version_type;
+   [string] wchar_t* sv101_comment;
+ } SERVER_INFO_101,
+  *PSERVER_INFO_101,
+  *LPSERVER_INFO_101;
+</pre></div>
+</dd></dl><p><b>sv101_platform_id:</b>  Specifies the
+information level to use for platform-specific information.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>PLATFORM_ID_DOS</td>
+  <td>300</td>
+ </tr><tr>
+  <td>PLATFORM_ID_OS2</td>
+  <td>400</td>
+ </tr><tr>
+  <td>PLATFORM_ID_NT</td>
+  <td>500</td>
+ </tr><tr>
+  <td>PLATFORM_ID_OSF</td>
+  <td>600</td>
+ </tr><tr>
+  <td>PLATFORM_ID_VMS</td>
+  <td>700</td>
+ </tr></tbody></table>
+</dd></dl><p><b>sv101_name:</b>  A pointer to a
+null-terminated <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_4c9eef52-69d4-43e7-ac04-ff1fe43a94fb" data-linktype="relative-path">UTF-16</a> <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_4d5d5403-372f-4f9f-8d7a-65c310c807d9" data-linktype="relative-path">Internet host name</a> or <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_150cc108-7e58-4fdb-957d-2a3734ba15f5" data-linktype="relative-path">NetBIOS host name</a> of a
+server.</p><p><b>sv101_version_major:</b>  Specifies the
+major release version number of the operating system. The server MUST set this
+field to an implementation-specific major release version number that
+corresponds to the host operating system as specified in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Operating System</p>
+   </th>
+   <th>
+   <p>Major version</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Windows NT 4.0 operating system</td>
+  <td>4</td>
+ </tr><tr>
+  <td>Windows 2000 operating system</td>
+  <td>5</td>
+ </tr><tr>
+  <td>Windows XP operating system</td>
+  <td>5</td>
+ </tr><tr>
+  <td>Windows Server 2003 operating system</td>
+  <td>5</td>
+ </tr><tr>
+  <td>Windows Vista operating system</td>
+  <td>6</td>
+ </tr><tr>
+  <td>Windows Server 2008 operating system</td>
+  <td>6</td>
+ </tr><tr>
+  <td>Windows Server 2008 R2 operating system</td>
+  <td>6</td>
+ </tr></tbody></table>
+</dd></dl><p><b>sv101_version_minor:</b>  Specifies the
+minor release version number of the operating system. The server MUST set this
+field to an implementation-specific minor release version number that
+corresponds to the host operating system as specified in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Operating System</p>
+   </th>
+   <th>
+   <p>Minor version</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Windows NT 4.0</td>
+  <td>0</td>
+ </tr><tr>
+  <td>Windows 2000</td>
+  <td>0</td>
+ </tr><tr>
+  <td>Windows XP</td>
+  <td>1</td>
+ </tr><tr>
+  <td>Windows Server 2003</td>
+  <td>2</td>
+ </tr><tr>
+  <td>Windows Vista</td>
+  <td>0</td>
+ </tr><tr>
+  <td>Windows Server 2008</td>
+  <td>0</td>
+ </tr><tr>
+  <td>Windows Server 2008 R2</td>
+  <td>1</td>
+ </tr></tbody></table>
+</dd></dl><p><b>sv101_version_type:</b>  The sv101_version_type
+field specifies the SV_TYPE flags, which indicate the software services that
+are available (but not necessarily running) on the server. This member MUST be
+a combination of one or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Constant/Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>SV_TYPE_WORKSTATION 0x00000001</td>
+  <td>A server running the WorkStation Service.</td>
+ </tr><tr>
+  <td>SV_TYPE_SERVER 0x00000002</td>
+  <td>A server running the Server Service.</td>
+ </tr><tr>
+  <td>SV_TYPE_SQLSERVER 0x00000004</td>
+  <td>A server running SQL Server.</td>
+ </tr><tr>
+  <td>SV_TYPE_DOMAIN_CTRL 0x00000008</td>
+  <td>A primary domain controller.</td>
+ </tr><tr>
+  <td>SV_TYPE_DOMAIN_BAKCTRL 0x00000010</td>
+  <td>A backup domain controller.</td>
+ </tr><tr>
+  <td>SV_TYPE_TIME_SOURCE 0x00000020</td>
+  <td>A server is available as a time source for network time synchronization.</td>
+ </tr><tr>
+  <td>SV_TYPE_AFP 0x00000040</td>
+  <td>An Apple File Protocol server.</td>
+ </tr><tr>
+  <td>SV_TYPE_NOVELL 0x00000080</td>
+  <td>A Novell server.</td>
+ </tr><tr>
+  <td>SV_TYPE_DOMAIN_MEMBER 0x00000100</td>
+  <td>A LAN Manager 2.x domain member.</td>
+ </tr><tr>
+  <td>SV_TYPE_PRINTQ_SERVER 0x00000200</td>
+  <td>A server sharing print queue.</td>
+ </tr><tr>
+  <td>SV_TYPE_DIALIN_SERVER 0x00000400</td>
+  <td>A server running a dial-in service.</td>
+ </tr><tr>
+  <td>SV_TYPE_XENIX_SERVER 0x00000800</td>
+  <td>A Xenix server.</td>
+ </tr><tr>
+  <td>SV_TYPE_NT 0x00001000</td>
+  <td>Windows Server 2003, Windows XP, Windows 2000, or Windows NT operating system.</td>
+ </tr><tr>
+  <td>SV_TYPE_WFW 0x00002000</td>
+  <td>A server running Windows for Workgroups.</td>
+ </tr><tr>
+  <td>SV_TYPE_SERVER_MFPN 0x00004000</td>
+  <td>Microsoft File and Print for NetWare.</td>
+ </tr><tr>
+  <td>SV_TYPE_SERVER_NT 0x00008000</td>
+  <td>Windows Server 2003, Windows 2000 Server operating system, or a server that is not a domain controller.</td>
+ </tr><tr>
+  <td>SV_TYPE_POTENTIAL_BROWSER 0x00010000</td>
+  <td>A server that can run the browser service.</td>
+ </tr><tr>
+  <td>SV_TYPE_BACKUP_BROWSER 0x00020000</td>
+  <td>A server running a browser service as backup.</td>
+ </tr><tr>
+  <td>SV_TYPE_MASTER_BROWSER 0x00040000</td>
+  <td>A server running the master browser service.</td>
+ </tr><tr>
+  <td>SV_TYPE_DOMAIN_MASTER 0x00080000</td>
+  <td>A server running the domain master browser.</td>
+ </tr><tr>
+  <td>SV_TYPE_WINDOWS 0x00400000</td>
+  <td>Windows Millennium Edition operating system, Windows 98 operating system, or Windows 95.</td>
+ </tr><tr>
+  <td>SV_TYPE_TERMINALSERVER 0x02000000</td>
+  <td>Terminal Server.</td>
+ </tr><tr>
+  <td>SV_TYPE_CLUSTER_VS_NT 0x04000000</td>
+  <td>Cluster virtual servers available in the domain.</td>
+ </tr><tr>
+  <td>SV_TYPE_LOCAL_LIST_ONLY 0x40000000</td>
+  <td>Servers maintained by the browser.</td>
+ </tr><tr>
+  <td>SV_TYPE_DOMAIN_ENUM 0x80000000</td>
+  <td>Primary domain.</td>
+ </tr><tr>
+  <td>SV_TYPE_ALL 0xFFFFFFFF</td>
+  <td>All servers.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>sv101_comment:</b>  A pointer to a
+null-terminated Unicode UTF-16 string that specifies a comment that describes
+the server.</p></div>

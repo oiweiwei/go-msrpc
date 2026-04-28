@@ -1,0 +1,13 @@
+<div class="content" name="LISTENERENUM" uuid="3c46804f-fff4-4779-9f96-1ceb9a6c9559"><p>PLISTENERENUM contains information about one <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal
+server</a></span> <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_1e5aa0c2-4617-4d7a-969e-a7091c415c8d" data-linktype="relative-path">listener</a></span> and the
+level of detail of the information provided.</p><dl>
+<dd>
+<div><pre> typedef struct _LISTENERENUM {
+   DWORD Level;
+   [switch_is(Level)] ListenerInfo Data;
+ } LISTENERENUM,
+  *PLISTENERENUM;
+</pre></div>
+</dd></dl><p><b>Level:</b>  The level of detail provided
+about the listener. The only supported value is 1.</p><p><b>Data:</b>  Information about the
+listener. This is of the type <span><a href="9efbd650-53fe-4cf6-8b4f-48bc3f0adc58" data-linktype="relative-path">ListenerInfo</a></span>.</p></div>

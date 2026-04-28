@@ -1,0 +1,80 @@
+<div class="content" name="TrackingInfoPropertyValue" uuid="d61df048-23f3-49f7-82c1-c8d9123a7e0e"><p>The TrackingInfoPropertyValue structure defines a single
+name/value pair.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">MaxVersion</td>
+  <td colspan="16">MinVersion</td>
+ </tr>
+ <tr>
+  <td colspan="32">Name (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="16">vt</td>
+  <td colspan="16">Value (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>MaxVersion (2 bytes): </b>The major version number
+for this format; this field MUST be set to 0x0001.</p><p><b>MinVersion (2 bytes): </b>The minor version number
+for this format; this field MUST be set to 0x0001.</p><p><b>Name (variable): </b>A <a href="53b25ea4-811c-4948-a9f7-e3ae1a0e170f" data-linktype="relative-path">LengthPrefixedName (section
+2.2.5.1)</a> that contains the name of the UserProperty.</p><p><b>vt (2 bytes): </b>The type of data contained in <b>Value</b>.
+It MUST be set to one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x0008</td>
+  <td>LengthPrefixedName (section 2.2.5.1)</td>
+ </tr><tr>
+  <td>0x000D</td>
+  <td>TrackingInfoCollection OBJREF_CUSTOM (section 2.2.5.5)</td>
+ </tr><tr>
+  <td>0x0013</td>
+  <td>An unsigned long integer.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Value (variable): </b>The data for this name/value
+pair. The type of this field is specified by the <b>vt</b> field.</p></div>

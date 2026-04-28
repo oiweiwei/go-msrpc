@@ -1,0 +1,129 @@
+<div class="content" name="QueryComparisonData" uuid="ee38b86f-4f17-4c3d-b71f-5b7ae876eb54"><p>The QueryComparisonData structure is part of the
+representation of a query, as used in the <a href="8b39adcb-10ac-4869-a56d-e708484880b5" data-linktype="relative-path">ICatalogTableInfo::GetClientTableInfo (section 3.1.4.7.1)</a>,
+<a href="ba9d3f6d-94d8-4e1f-b31e-122ec038eca7" data-linktype="relative-path">ICatalogTableRead::ReadTable (section 3.1.4.8.1)</a>,
+and <a href="3fe6b10a-65d3-4bcd-8897-f84512d52f3b" data-linktype="relative-path">ICatalogTableWrite::WriteTable (section 3.1.4.9.1)</a>
+methods. It is always used along with a <a href="042e9c68-552b-48a9-adb6-f0d903653fa0" data-linktype="relative-path">QueryCellArray (section 2.2.1.5)</a>
+structure.</p><p>QueryComparisonData is a custom-marshaled type that is
+passed in a char* parameter. A QueryComparisonData is marshaled as an array of
+zero or more custom-marshaled comparison data values, each of which is
+associated with a <a href="0f823212-7c71-4f6a-91b7-fb709d827b97" data-linktype="relative-path">QueryCell</a>.
+Each non-null comparison data value MUST be marshaled in the same order as the
+QueryCell to which it is associated and according to the custom marshaling
+defined as follows for each of the supported types (a query with zero non-null
+comparison data values MUST be represented by a NULL pointer).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">ComparisonData (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>ComparisonData (variable): </b>A sequence of zero
+or more comparison data values, marshaled according to type. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Type</p>
+   </th>
+   <th>
+   <p>Custom marshaling</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>eDT_ULONG</td>
+  <td>Marshaled as a 32-bit, unsigned integer in little-endian byte order.</td>
+ </tr><tr>
+  <td>eDT_GUID</td>
+  <td>Marshaled as specified in [MS-DTYP], section 2.3.4.2.</td>
+ </tr><tr>
+  <td>eDT_BYTES</td>
+  <td>Marshaled as an array of bytes, padded with zeros to a multiple of 4 bytes.</td>
+ </tr><tr>
+  <td>eDT_LPWSTR</td>
+  <td>Marshaled as a null-terminated array of wchar_t in little-endian byte order, padded with zeros to a multiple of 4 bytes.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">ComparisonData 0 (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">ComparisonData 1 (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">ComparisonData m (variable)</td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p></div>

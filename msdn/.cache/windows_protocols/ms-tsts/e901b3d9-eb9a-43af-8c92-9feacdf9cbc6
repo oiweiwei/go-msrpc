@@ -1,0 +1,97 @@
+<div class="content" name="RpcWinStationWaitSystemEvent" uuid="e901b3d9-eb9a-43af-8c92-9feacdf9cbc6"><p>The RpcWinStationWaitSystemEvent method waits synchronously
+for a system event from an <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> API request on
+behalf of the caller. There is no time-out on the wait. Only one event wait at
+a time can be posted per server handle. If an event wait is already outstanding
+and the new request is not a cancel, the new request will fail. The caller is
+not required to have any specific permission to call
+RpcWinStationWaitSystemEvent. The first time this is called, the server will
+create an event block for the handle specified by hServer. This event block
+will be cleared if RpcWinStationWaitSystemEvent is called with <i>EventMask</i>
+equal to WEVENT_NONE or if <span><a href="89048acf-28c6-4d46-9742-eef51f507f05" data-linktype="relative-path">RpcWinStationCloseServer</a></span>
+or <span><a href="9d198d98-b7f1-475d-8c29-cc188f5bc0fc" data-linktype="relative-path">RpcWinStationCloseServerEx</a></span>
+are closed for the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span> <i>hServer</i>.</p><dl>
+<dd>
+<div><pre> BOOLEAN RpcWinStationWaitSystemEvent(
+   [in] SERVER_HANDLE hServer,
+   [out] DWORD* pResult,
+   [in] DWORD EventMask,
+   [out] DWORD* pEventFlags
+ );
+</pre></div>
+</dd></dl><p><b>hServer: </b>Handle to the server object. This is
+of type <span><a href="49484cdf-2feb-4de9-a588-5d01cf8995dc" data-linktype="relative-path">SERVER_HANDLE</a></span>.
+hServer MUST be obtained from a previous call to <span><a href="fd6f339d-f5dd-452c-a9a9-ec753c22a36a" data-linktype="relative-path">RpcWinStationOpenServer</a></span>.</p><p><b>pResult: </b>If the call was successful, this
+parameter MUST be STATUS_SUCCESS (0x00000000); otherwise, it MUST be an
+implementation-specific negative value.</p><p><b>EventMask: </b> The mask of events for which to
+wait. It MUST be any bitwise OR combination of the following except for
+WEVENT_NONE.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>WEVENT_NONE 0x00000000</td>
+  <td>The client requests to clear its event wait block. This MUST be called when completing waiting for the event. When RpcWinStationCloseServer is called for hServer, this method and mask value is called on the client&#39;s behalf.</td>
+ </tr><tr>
+  <td>WEVENT_CREATE 0x00000001</td>
+  <td>Wait for a new session to be created.</td>
+ </tr><tr>
+  <td>WEVENT_DELETE 0x00000002</td>
+  <td>Wait for an existing session to be deleted.</td>
+ </tr><tr>
+  <td>WEVENT_RENAME 0x00000004</td>
+  <td>Wait for a session to be renamed.</td>
+ </tr><tr>
+  <td>WEVENT_CONNECT 0x00000008</td>
+  <td>The session connected to a client.</td>
+ </tr><tr>
+  <td>WEVENT_DISCONNECT 0x00000010</td>
+  <td>A client disconnected from the session.</td>
+ </tr><tr>
+  <td>WEVENT_LOGON 0x00000020</td>
+  <td>A user logged on to the session.</td>
+ </tr><tr>
+  <td>WEVENT_LOGOFF 0x00000040</td>
+  <td>A user logged off from the session.</td>
+ </tr><tr>
+  <td>WEVENT_STATECHANGE 0x00000080</td>
+  <td>The session state changed.</td>
+ </tr><tr>
+  <td>WEVENT_LICENSE 0x00000100</td>
+  <td>The license state changed.&lt;185&gt;</td>
+ </tr><tr>
+  <td>WEVENT_ALL 0x7fffffff</td>
+  <td>Wait for all event types.</td>
+ </tr><tr>
+  <td>WEVENT_FLUSH 0x80000000</td>
+  <td>Release all waiting clients.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>pEventFlags: </b> Pointer to a variable to receive
+a bitmask that is a subset of <i>EventMask</i> indicating which events actually
+occurred during this wait operation.</p><p><b>Return Values: </b> Returns TRUE if the call
+succeeded, or FALSE if the method failed. On failure, <i>pResult</i> indicates
+the failure status code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x01 TRUE</td>
+  <td>Successful completion.</td>
+ </tr><tr>
+  <td>0x00 FALSE</td>
+  <td>Method call failed.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

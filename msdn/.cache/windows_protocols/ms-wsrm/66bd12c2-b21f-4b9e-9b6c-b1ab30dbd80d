@@ -1,0 +1,63 @@
+<div class="content" name="ModifyMachineInfo" uuid="66bd12c2-b21f-4b9e-9b6c-b1ab30dbd80d"><p>The ModifyMachineInfo method modifies a machine in a <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_f4153c8c-848d-4db5-b9cc-4113e5f1e406" data-linktype="relative-path">machine group</a>. This method
+modifies the direct child machine with the specified machine ID under the
+specified parent machine group.</p><dl>
+<dd>
+<div><pre> [id(8), helpstring(&#34;method ModifyMachineInfo&#34;)] HRESULT ModifyMachineInfo(
+   [in] BSTR bstrParentMachineGroupId,
+   [in] BSTR bstrMachineId,
+   [in] BSTR bstrMachineInfo
+ );
+</pre></div>
+</dd></dl><p><b>bstrParentMachineGroupId: </b>A string that
+specifies the identifier of the machine group that contains the machine to
+modify.<a id="Appendix_A_Target_99"></a><a aria-label="Product behavior note 99" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_99" data-linktype="relative-path">&lt;99&gt;</a></p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bstrMachineId: </b>A string that specifies the
+identifier of the machine to modify.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bstrMachineInfo: </b>A string that specifies the
+new information for the machine, in the format specified in <a href="d137388f-8b86-4a30-8848-7ffb6029f276" data-linktype="relative-path">Machine</a> element (section
+2.2.5.17).</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Operation successful.</td>
+ </tr><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>One or more arguments are invalid.</td>
+ </tr><tr>
+  <td>0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER</td>
+  <td>The XML data that is maintained by the management service is invalid or cannot be processed.&lt;100&gt;</td>
+ </tr><tr>
+  <td>0xC1FF0389 WRM_ERR_MACHINEGROUPID_INVALID</td>
+  <td>The specified machine group ID is invalid.</td>
+ </tr><tr>
+  <td>0xC1FF038A WRM_ERR_MACHINEID_INVALID</td>
+  <td>The specified machine ID is not found.&lt;101&gt;</td>
+ </tr><tr>
+  <td>0xC1FF038C WRM_ERR_MACHINE_ALREADY_EXISTS</td>
+  <td>A machine with the specified machine name in the bstrMachineInfo XML already exists as the direct child in the machine group.&lt;102&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="959a6150-11e3-44ec-b6cd-78da5b2c9e00" data-linktype="relative-path">IWRMMachineGroup</a> interface
+methods are specified in section 3.2.4.6.</p></div>

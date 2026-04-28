@@ -1,0 +1,100 @@
+<div class="content" name="CLUS_NETNAME_PWD_INFO" uuid="8bc6e99c-5877-4927-8f4a-433437a645f9"><p>The <b>CLUS_NETNAME_PWD_INFO</b> structure provides
+information for resetting an alternate <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer name&#39;s</a></span>
+associated <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>.</p><p><b>CLUS_NETNAME_PWD_INFO</b> is a custom-marshaled structure
+that has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Flags</td>
+ </tr>
+ <tr>
+  <td colspan="32">Password (32 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">CreatingDC (516 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">ObjectGuid (128 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>Flags (4 bytes): </b>A 32-bit field indicating
+whether other fields in the structure have valid data. Can be a combination of
+the following <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">values</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000</td>
+  <td>No flags are set, indicating that only the Password field is valid.</td>
+ </tr><tr>
+  <td>GUID_PRESENT 0x00000001</td>
+  <td>The ObjectGuid field has valid data.</td>
+ </tr><tr>
+  <td>CREATEDC_PRESENT 0x00000002</td>
+  <td>The CreatingDC field has valid data.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Password (32 bytes): </b>A 32-byte long
+fixed-length field that contains the new password, as a null-terminated <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span>, for the alternate computer name&#39;s associated security
+principal. Remaining bytes after null-termination MAY contain any value.</p><p><b>CreatingDC (516 bytes): </b>A 516-byte long
+fixed-length field that contains the name of a directory <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>,
+as a null-terminated Unicode string, where the associated security principal
+object is stored. Remaining bytes after null-termination MAY contain any value.</p><p><b>ObjectGuid (128 bytes): </b>A <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b330cb96-68e2-41be-a53f-cae98c2b5d32" data-linktype="relative-path">GUIDString</a></span>,
+as a null-terminated Unicode string, of the security principal object on a
+directory server. Remaining bytes after null-termination MAY contain any value.</p></div>

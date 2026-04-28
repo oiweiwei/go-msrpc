@@ -1,0 +1,52 @@
+<div class="content" name="RpcShadow2" uuid="70cb89cf-10d0-429e-8f8b-c2c4eea5eb8c"><p>The <b>RpcShadow2</b> method will create a shadow session
+using the Windows Desktop Sharing API in the target session and return an
+invitation to that session.</p><p>The caller MUST have WINSTATION_SHADOW permission. The other
+session can be local or on a terminal server. The session to be shadowed MUST
+be in the active state with a user logged on. The method checks whether the
+caller has WINSTATION_SHADOW permission (section <span><a href="4507e852-be3d-45b6-bc47-8ca0b552c94d" data-linktype="relative-path">3.1.1</a></span>) and fails if
+the caller does not have the permission.</p><dl>
+<dd>
+<div><pre> HRESULT RpcShadow2(
+   [in] handle_t hBinding,
+   [in] ULONG TargetSessionId,
+   [in] SHADOW_CONTROL_REQUEST eRequestControl,
+   [in] SHADOW_PERMISSION_REQUEST eRequestPermission,
+   [out] SHADOW_REQUEST_RESPONSE* pePermission,
+   [out, string, size_is(cchInvitation)] 
+     LPWSTR pszInvitation,
+   [in, range(1,8192)] ULONG cchInvitation
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle. For more
+information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93771" data-linktype="external">[MSDN-RPCBIND]</a></span>.</p><p><b>TargetSessionId: </b>The ID of the session to be
+shadowed.</p><p><b>eRequestControl: </b>Specifies a request for
+either a UI interaction or a view-only session.</p><p><b>eRequestPermission: </b>Specifies whether to
+request permission before the shadow session is started. The call is
+synchronous, so if permission is requested, the call will wait until the user
+responds to the request.</p><p><b>pePermission: </b>User response to permission
+request. If the response is anything other than SHADOW_REQUEST_RESPONSE_ALLOW,
+the shadow session has been denied.</p><p><b>pszInvitation: </b>The output data containing the
+invitation string for the shadow session. The data returned is a Unicode string
+in the XML format specified in <span><a href="../ms-rai/8711afb1-c382-4ba7-8b38-f344fb2c4030" data-linktype="relative-path">[MS-RAI]</a></span>
+section <span><a href="../ms-rai/1f30867a-99ce-48b5-a72c-660e00d92722" data-linktype="relative-path">2.2.2</a></span>
+that can be used to connect to a session running in the target session
+(specified by <b>TargetSessionId</b>). The caller must allocate a buffer to
+hold this data and specify the size of the buffer in <b>cchInvitation</b>.</p><p><b>cchInvitation: </b>The size, in WCHARs (16-bit
+Unicode), of <b>pszInvitation</b>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Successful completion.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

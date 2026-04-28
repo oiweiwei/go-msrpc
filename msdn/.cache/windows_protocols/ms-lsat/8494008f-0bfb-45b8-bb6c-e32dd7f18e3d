@@ -1,0 +1,17 @@
+<div class="content" name="LSAPR_SECURITY_DESCRIPTOR" uuid="8494008f-0bfb-45b8-bb6c-e32dd7f18e3d"><p>The LSAPR_SECURITY_DESCRIPTOR structure defines an object&#39;s
+security descriptor as specified in <a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a>
+section <a href="../ms-lsad/d5cf869d-6744-49cc-a677-30ccb9217def" data-linktype="relative-path">2.2.3.4</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_SECURITY_DESCRIPTOR {
+   unsigned char Revision;
+   unsigned char Sbz1;
+   SECURITY_DESCRIPTOR_CONTROL Control;
+   PRPC_SID Owner;
+   PRPC_SID Group;
+   PLSAPR_ACL Sacl;
+   PLSAPR_ACL Dacl;
+ } LSAPR_SECURITY_DESCRIPTOR,
+  *PLSAPR_SECURITY_DESCRIPTOR;
+</pre></div>
+</dd></dl><p>Individual member semantics are specified in [MS-LSAD]
+section 2.2.3.4.</p></div>

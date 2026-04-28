@@ -1,0 +1,139 @@
+<div class="content" name="FAX_EVENT_EX_1_QUEUE_STATES" uuid="9bbc7b0f-ea77-4f31-ba8b-d2c8a93a587c"><p>The <b>FAX_EVENT_EX_1_QUEUE_STATES</b> data structure is
+custom marshaled as follows and uses the custom-marshaling rules defined in
+section <a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Fixed_Portion (40 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (40 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">dwQueueStates</td>
+ </tr>
+ <tr>
+  <td colspan="32">Padding (36 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwQueueStates (4 bytes): </b>The
+<b>dwQueueStates</b> field contains the queue status. If this value is zero,
+both the incoming and outgoing queues are unblocked; otherwise, this value is a
+combination of one or more of the following values.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000</td>
+  <td>Both the incoming and outgoing queues are unblocked.</td>
+ </tr><tr>
+  <td>FAX_INCOMING_BLOCKED 0x00000001</td>
+  <td>The incoming faxes queue is blocked. The fax server will not answer any new incoming faxes.</td>
+ </tr><tr>
+  <td>FAX_OUTBOX_BLOCKED 0x00000002</td>
+  <td>The outbox queue is blocked. The fax server will not accept submission of new faxes. If the outbox is not paused, faxes in the queue are still being processed.</td>
+ </tr><tr>
+  <td>FAX_OUTBOX_PAUSED 0x00000004</td>
+  <td>The outbox queue is paused. The fax server will not start sending outgoing faxes from the queue. Fax transmissions in progress are not affected. If the outbox is not blocked, the fax server still accepts submission of new faxes to the queue.</td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>Padding (36 bytes): </b>Padding
+to align the size of the <b>Fixed_Portion</b> of this data structure to the
+required size of 40 bytes. For more information, see <b>FAX_EVENT_EX_1</b>
+(section <a href="425c3686-00b8-493d-bba5-d4ce677e47db" data-linktype="relative-path">2.2.68</a>)</p>
+</dd></dl></div>

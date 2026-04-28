@@ -1,0 +1,17 @@
+<div class="content" name="RECONNECT_TYPE" uuid="f368f3a6-2482-4943-b034-bd2753de12e7"><p>The RECONNECT_TYPE enumeration specifies the reconnect type
+of the last session reconnect.</p><dl>
+<dd>
+<div><pre> typedef  enum _RECONNECT_TYPE
+ {
+   NeverReconnected = 0,
+   ManualReconnect = 1,
+   AutoReconnect = 2
+ } RECONNECT_TYPE,
+  *PRECONNECT_TYPE;
+</pre></div>
+</dd></dl><p><b>NeverReconnected:  </b>Session has never been
+reconnected to. This is the default type until the first time the session has
+been reconnected to.</p><p><b>ManualReconnect:  </b>Session was disconnected
+from and was manually reconnected to by the user.</p><p><b>AutoReconnect:  </b>Session was disconnected from
+and was automatically reconnected to by the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">Terminal Services</a></span>
+client and the server negotiating the reconnect without input from the user.</p></div>

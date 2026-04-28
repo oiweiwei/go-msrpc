@@ -1,0 +1,150 @@
+<div class="content" name="SERVICE_STATUS" uuid="4e91ff36-ab5f-49ed-a43d-a308e72b0b3c"><p>The SERVICE_STATUS structure defines information about a
+service.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwServiceType;
+   DWORD dwCurrentState;
+   DWORD dwControlsAccepted;
+   DWORD dwWin32ExitCode;
+   DWORD dwServiceSpecificExitCode;
+   DWORD dwCheckPoint;
+   DWORD dwWaitHint;
+ } SERVICE_STATUS,
+  *LPSERVICE_STATUS;
+</pre></div>
+</dd></dl><p><b>dwServiceType:</b>  The type of service.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>SERVICE_KERNEL_DRIVER 0x00000001</td>
+  <td>A driver service. These are services that manage devices on the system.</td>
+ </tr><tr>
+  <td>SERVICE_FILE_SYSTEM_DRIVER 0x00000002</td>
+  <td>A file system driver service. These are services that manage file systems on the system.</td>
+ </tr><tr>
+  <td>SERVICE_WIN32_OWN_PROCESS 0x00000010</td>
+  <td>A service that runs in its own process.</td>
+ </tr><tr>
+  <td>SERVICE_WIN32_SHARE_PROCESS 0x00000020</td>
+  <td>A service that shares a process with other services.</td>
+ </tr><tr>
+  <td>SERVICE_INTERACTIVE_PROCESS 0x00000100</td>
+  <td>The service can interact with the desktop.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Only SERVICE_WIN32_OWN_PROCESS and
+SERVICE_INTERACTIVE_PROCESS OR SERVICE_WIN32_SHARE_PROCESS and
+SERVICE_INTERACTIVE_PROCESS can be combined.</p>
+</dd></dl><p><b>dwCurrentState:</b>  The current state
+of the service.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000005</td>
+  <td>SERVICE_CONTINUE_PENDING</td>
+ </tr><tr>
+  <td>0x00000006</td>
+  <td>SERVICE_PAUSE_PENDING</td>
+ </tr><tr>
+  <td>0x00000007</td>
+  <td>SERVICE_PAUSED</td>
+ </tr><tr>
+  <td>0x00000004</td>
+  <td>SERVICE_RUNNING</td>
+ </tr><tr>
+  <td>0x00000002</td>
+  <td>SERVICE_START_PENDING</td>
+ </tr><tr>
+  <td>0x00000003</td>
+  <td>SERVICE_STOP_PENDING</td>
+ </tr><tr>
+  <td>0x00000001</td>
+  <td>SERVICE_STOPPED</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwControlsAccepted:</b>  The control
+codes that the service accepts and processes in its handler function. One or
+more of the following values can be set. By default, all services accept the
+SERVICE_CONTROL_INTERROGATE value. A value of zero indicates that no controls
+are accepted.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000008</td>
+  <td>SERVICE_ACCEPT_PARAMCHANGE Service can reread its startup parameters without being stopped and restarted. This control code allows the service to receive SERVICE_CONTROL_PARAMCHANGE notifications.</td>
+ </tr><tr>
+  <td>0x00000002</td>
+  <td>SERVICE_ACCEPT_PAUSE_CONTINUE Service can be paused and continued. This control code allows the service to receive SERVICE_CONTROL_PAUSE and SERVICE_CONTROL_CONTINUE notifications.</td>
+ </tr><tr>
+  <td>0x00000004</td>
+  <td>SERVICE_ACCEPT_SHUTDOWN Service is notified when system shutdown occurs. This control code enables the service to receive SERVICE_CONTROL_SHUTDOWN notifications from the server.</td>
+ </tr><tr>
+  <td>0x00000001</td>
+  <td>SERVICE_ACCEPT_STOP Service can be stopped. This control code allows the service to receive SERVICE_CONTROL_STOP notifications.</td>
+ </tr><tr>
+  <td>0x00000020</td>
+  <td>SERVICE_ACCEPT_HARDWAREPROFILECHANGE Service is notified when the computer&#39;s hardware profile changes.</td>
+ </tr><tr>
+  <td>0x00000040</td>
+  <td>SERVICE_ACCEPT_POWEREVENT Service is notified when the computer&#39;s power status changes.</td>
+ </tr><tr>
+  <td>0x00000080</td>
+  <td>SERVICE_ACCEPT_SESSIONCHANGE Service is notified when the computer&#39;s session status changes.</td>
+ </tr><tr>
+  <td>0x00000100</td>
+  <td>SERVICE_ACCEPT_PRESHUTDOWN&lt;17&gt; The service can perform preshutdown tasks. SERVICE_ACCEPT_PRESHUTDOWN is sent before sending SERVICE_CONTROL_SHUTDOWN to give more time to services that need extra time before shutdown occurs.</td>
+ </tr><tr>
+  <td>0x00000200</td>
+  <td>SERVICE_ACCEPT_TIMECHANGE&lt;18&gt; Service is notified when the system time changes.</td>
+ </tr><tr>
+  <td>0x00000400</td>
+  <td>SERVICE_ACCEPT_TRIGGEREVENT&lt;19&gt; Service is notified when an event for which the service has registered occurs.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwWin32ExitCode:</b>  An error code that
+the service uses to report an error that occurs when it is starting or
+stopping. To return an error code specific to the service, the service MUST set
+this value to ERROR_SERVICE_SPECIFIC_ERROR to indicate that the <b>dwServiceSpecificExitCode</b>
+member contains the error code. The service sets this value to NO_ERROR when it
+is running and on normal termination.</p><p><b>dwServiceSpecificExitCode:</b>  A
+service-specific error code that the service returns when an error occurs while
+it is starting or stopping. The client SHOULD<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a> ignore
+this value unless the <b>dwWin32ExitCode</b> member is set to
+ERROR_SERVICE_SPECIFIC_ERROR. </p><p><b>dwCheckPoint:</b>  A value that the
+service increments periodically to report its progress during a lengthy start,
+stop, pause, or continue operation. This value is zero when the service state
+is SERVICE_PAUSED, SERVICE_RUNNING, or SERVICE_STOPPED.</p><p><b>dwWaitHint:</b>  An estimate of the
+amount of time, in milliseconds, that the service expects a pending start,
+stop, pause, or continue operation to take before the service makes its next
+status update. Before the specified amount of time has elapsed, the service
+makes its next call to the SetServiceStatus function with either an incremented
+<b>dwCheckPoint</b> value or a change in <b>dwCurrentState</b>. If the time
+specified by <b>dwWaitHint</b> passes, and <b>dwCheckPoint</b> has not been
+incremented or <b>dwCurrentState</b> has not changed, the server can assume
+that an error has occurred and the service can be stopped. However, if the
+service shares a process with other services, the server cannot terminate the
+service application because it would have to terminate the other services
+sharing the process as well.</p></div>

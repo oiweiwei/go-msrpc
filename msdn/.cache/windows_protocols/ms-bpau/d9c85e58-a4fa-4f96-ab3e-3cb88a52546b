@@ -1,0 +1,120 @@
+<div class="content" name="Certificate_Properties" uuid="d9c85e58-a4fa-4f96-ab3e-3cb88a52546b"><p>Each property in the <a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> blob MUST be
+formatted as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">PropertyID</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved</td>
+ </tr>
+ <tr>
+  <td colspan="32">Length</td>
+ </tr>
+ <tr>
+  <td colspan="32">Value (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>PropertyID (4 bytes): </b>This field MUST identify
+the property whose value is contained in the <b>Value</b> field. It MUST be an
+unsigned 32-bit integer in little-endian format. This field MUST be set to one
+of the following values. All the values MUST be in little-endian format.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>KEY_PROV_INFO 2</td>
+  <td>This property is used to provide additional information regarding the certificate. Its format is specified in section 2.2.2.1.1.</td>
+ </tr><tr>
+  <td>SHA1_HASH 3</td>
+  <td>A 20-byte array representing the SHA-1 hash of the certificate.</td>
+ </tr><tr>
+  <td>MD5_HASH 4</td>
+  <td>A 16-byte array representing the MD5 hash of the certificate.</td>
+ </tr><tr>
+  <td>KEY_SPEC 6</td>
+  <td>An unsigned 32-bit integer. This is a flag which specifies the allowed use of the private key. The value MUST be 1, which specifies the key can be used for encryption.</td>
+ </tr><tr>
+  <td>ENHKEY_USAGE 9</td>
+  <td>The value of the Extended Key Usage extension on the certificate, in ASN.1 DER encoding. For details on the Extended Key Usage Extension, see [RFC3280] section 4.2.1.13.</td>
+ </tr><tr>
+  <td>FRIENDLY_NAME 11</td>
+  <td>A null-terminated Unicode string in UTF-16 encoding, representing the display name for the certificate.</td>
+ </tr><tr>
+  <td>DESCRIPTION 13</td>
+  <td>A null-terminated Unicode string in UTF-16 encoding, representing a brief description of the certificate.</td>
+ </tr><tr>
+  <td>SIGNATURE_HASH 15</td>
+  <td>A 20-byte array containing the SHA-1 hash of the certificate signature.</td>
+ </tr><tr>
+  <td>KEY_IDENTIFIER 20</td>
+  <td>A 20-byte array containing the SHA-1 hash of the certificate subject public key.</td>
+ </tr><tr>
+  <td>AUTO_ENROLL 21</td>
+  <td>A null-terminated Unicode string in UTF-16 encoding, containing the name or object identifier used for auto-enrollment. This is present when the certificate was obtained through auto-enrollment.</td>
+ </tr><tr>
+  <td>PUBKEY_ALG_PARA 22</td>
+  <td>The algorithm identifier for the public key contained in the certificate, in DER encoding. For details, see [RFC3280] section 4.1.</td>
+ </tr><tr>
+  <td>ISSUER_PUBLIC_KEY_MD5_HASH 24</td>
+  <td>A 16-byte array containing the MD5 hash of the public key associated with the private key used to sign the certificate.</td>
+ </tr><tr>
+  <td>SUBJECT_PUBLIC_KEY_MD5_HASH 25</td>
+  <td>A 16-byte array containing the MD5 hash of the public key contained in the certificate.</td>
+ </tr><tr>
+  <td>DATE_STAMP 27</td>
+  <td>A date stamp, in the form of an unsigned 64-bit integer, representing the number of 100-nanosecond intervals since January 1, 1601.</td>
+ </tr><tr>
+  <td>ISSUER_SERIAL_NUMBER_MD5_HASH 28</td>
+  <td>A 16-byte array containing the MD5 hash of the CA signing certificate serial number.</td>
+ </tr><tr>
+  <td>SUBJECT_NAME_MD5_HASH 29</td>
+  <td>A 16-byte array containing the MD5 hash of the subject name in the certificate.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved (4 bytes): </b>This is a 32-bit unsigned
+integer in little-endian format that must be set to 0x00000001.</p><p><b>Length (4 bytes): </b>This field MUST contain the
+length of the <b>Value</b> field in bytes. It MUST be an unsigned 32-bit number
+in little-endian format.</p><p><b>Value (variable): </b>This field MUST contain the
+value of the specified property, in the format specified for the property
+associated with the table of possible values for <b>PropertyID</b>.</p></div>

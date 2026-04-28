@@ -1,0 +1,180 @@
+<div class="content" name="CERTTRANSDBRESULTCOLUMN_MF" uuid="43af0730-e4e7-4f9c-aea1-00c49604476d"><p>The <span><a href="ac07551a-37af-4c8a-84f2-3c278a5770ed" data-linktype="relative-path">CERTTRANSDBRESULTCOLUMN</a></span>
+structure (section 2.2.1.10) is encoded within a <span><a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a></span>
+structure (section 2.2.1.4) such that the <b>pb</b> member of the CERTTRANSBLOB
+points to the beginning of an array of one or more <span><a href="00bd8e2e-a9fb-4555-a9f1-7dff91d6e5b3" data-linktype="relative-path">CERTTRANSDBRESULTROW</a></span>
+structures (section 2.2.3), each of which contains one or more
+CERTTRANSDBRESULTCOLUMN structures.</p><p>The packet containing an array of some number,
+&#34;N&#34;, of CERTTRANSDBRESULTCOLUMN structures is specified in the
+following packet diagrams. The actual value of &#34;N&#34; is the value of
+the corresponding <b>ccol</b> member of CERTTRANSDBRESULTROW.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">CERTTRANSDBRESULTCOLUMN Structures (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">Result_Column_Data (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table>
+</dd></dl><p><b>CERTTRANSDBRESULTCOLUMN Structures (variable): </b>An
+array of <b>CERTTRANSDBRESULTCOLUMN</b> structures.</p><dl>
+<dd>
+<p>Each of the structures is marshaled in the following
+manner. The fields in the following diagram correspond to the similarly-named
+members of the <b>CERTTRANSDBRESULTCOLUMN</b> structure.</p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Result_Column_Type</td>
+ </tr>
+ <tr>
+  <td colspan="32">Result_Column_Index</td>
+ </tr>
+ <tr>
+  <td colspan="32">Result_Column_obValue</td>
+ </tr>
+ <tr>
+  <td colspan="32">Result_Column_cbValue</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Result_Column_Type (4
+bytes): </b>The value indicating the type for the column. The value MUST be <span><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a></span>
+encoded.</p>
+</dd>
+<dd>
+<p><b>Result_Column_Index (4
+bytes): </b>The value indicating the ID for the column. The value MUST be
+little-endian encoded.</p>
+</dd>
+<dd>
+<p><b>Result_Column_obValue (4
+bytes): </b>The offset from the start of the corresponding CERTTRANSDBRESULTROW
+structure to the column data. The offset MUST be little-endian encoded. The
+offset MUST be divisible by 4.</p>
+</dd>
+<dd>
+<p><b>Result_Column_cbValue (4
+bytes): </b>The length of the data in the column referenced by <b>obValue</b>
+(offset). The length value MUST be little-endian encoded.</p>
+</dd></dl><p><b>Result_Column_Data (variable): </b>Contains the
+data for all columns. Data for individual columns MUST NOT overlap with any
+other column data. Arbitrary padding can be inserted between data values. Based
+on the value of the <b>Type</b> field, the data value for the column MUST be
+encoded as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Type field
+   value</p>
+   </th>
+   <th>
+   <p>Column
+   type</p>
+   </th>
+   <th>
+   <p>Data
+   encoding</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x01</td>
+  <td>Integer</td>
+  <td>MUST use little-endian encoding format.</td>
+ </tr><tr>
+  <td>0x02</td>
+  <td>Date</td>
+  <td>MUST use little-endian encoding format.</td>
+ </tr><tr>
+  <td>0x03</td>
+  <td>Binary</td>
+  <td></td>
+ </tr><tr>
+  <td>0x04</td>
+  <td>String</td>
+  <td>MUST use little-endian encoding format for each character of the null-terminated UNICODE string.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

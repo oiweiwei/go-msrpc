@@ -1,0 +1,33 @@
+<div class="content" name="EXECENVDATA_LEVEL2" uuid="e85daed7-ed77-4c8a-afc0-5596c8d41c9c"><p>The EXECENVDATA_LEVEL2 structure contains information about
+sessions running on a computer that is more detailed than the information
+contained in <span><a href="004305a6-4265-4ff5-bb8a-58fd0f7cf2d5" data-linktype="relative-path">EXECENVDATA_LEVEL1</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _EXECENVDATA_LEVEL2 {
+   LONG ExecEnvId;
+   LONG State;
+   WCHAR SessionName[33];
+   LONG AbsSessionId;
+   WCHAR HostName[33];
+   WCHAR UserName[33];
+   WCHAR DomainName[33];
+   WCHAR FarmName[33];
+ } EXECENVDATA_LEVEL2,
+  *PEXECENVDATA_LEVEL2;
+</pre></div>
+</dd></dl><p><b>ExecEnvId:</b>  An identifier assigned
+to the session contained in this structure by the component that aggregates the
+sessions on the server and sessions within virtual machines hosted on the
+server.<a id="Appendix_A_Target_53"></a><a aria-label="Product behavior note 53" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_53" data-linktype="relative-path">&lt;53&gt;</a></p><p><b>State:</b>  The state of the session, as
+specified in section <span><a href="58b06e1d-bfe4-4a2f-90a1-9c9129923e99" data-linktype="relative-path">3.3.4.1.8</a></span>.</p><p><b>SessionName:</b>  A string that contains
+the name of the session followed by the terminating NULL character.</p><p><b>AbsSessionId:</b>  An identifier assigned
+by the operating system running in the virtual machine to the session contained
+in this structure. If the session contained in this structure is not running
+under the virtual machine, the value of <b>AbsSessionId</b> is same as <b>ExecEnvId</b>.</p><p><b>HostName:</b>  A string that contains
+the name of the machine that hosts the session contained in this structure
+followed by the terminating NULL character.</p><p><b>UserName:</b>  A string that contains
+the name of the user logged onto the session followed by the terminating NULL
+character.</p><p><b>DomainName:</b>  A string that contains
+the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>
+of the user logged onto the session followed by the terminating NULL character.</p><p><b>FarmName:</b>  A string that contains
+the farm name associated with the session followed by the terminating NULL
+character.</p></div>

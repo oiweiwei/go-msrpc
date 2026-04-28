@@ -1,0 +1,26 @@
+<div class="content" name="IAppHostSectionDefinitionCollection" uuid="844bdf1b-a664-4832-bde9-94e9ac8b8e85"><p>The IAppHostSectionDefinitionCollection <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+that access a collection of <a href="ee57746a-a5ab-4b78-8fbf-34ae7ca75d23" data-linktype="relative-path">IAppHostSectionDefinition</a>
+objects.</p><p>The IAppHostSectionDefinitionCollection interface inherits
+opnums 0–2 from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Count</td>
+  <td>Opnum: 3</td>
+ </tr><tr>
+  <td>Item</td>
+  <td>Opnum: 4</td>
+ </tr><tr>
+  <td>AddSection</td>
+  <td>Opnum: 5</td>
+ </tr><tr>
+  <td>DeleteSection</td>
+  <td>Opnum: 6</td>
+ </tr></tbody></table><p> </p></div>

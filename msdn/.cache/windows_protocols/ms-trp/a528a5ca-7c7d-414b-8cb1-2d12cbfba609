@@ -1,0 +1,164 @@
+<div class="content" name="SetStatusMessages_Line" uuid="a528a5ca-7c7d-414b-8cb1-2d12cbfba609"><p>The SetStatusMessages packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet MUST enable an application to specify which notification
+packets to receive for events that are related to status changes for the
+specified line or any of its addresses.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Req_Func</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved1</td>
+ </tr>
+ <tr>
+  <td colspan="32">hLine</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwLineStates</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwAddressStates</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved2</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved3</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved4</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved5</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved6</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved7</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved8</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved9</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved10</td>
+ </tr>
+ <tr>
+  <td colspan="32">Reserved11</td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the function that will be invoked on the remote
+server. This value MUST be set to 82.</p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+MUST contain the result of the encapsulated telephony request. A value of 0
+indicates success, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates failure. The remote server MUST complete this call
+synchronously.</p>
+</dd>
+<dd>
+<p>Returns zero if the request succeeds or a negative
+error number if an error occurs. Common return values are:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>LINEERR_INVALADDRESSSTATE</td>
+  <td>0x80000013</td>
+ </tr><tr>
+  <td>LINEERR_OPERATIONFAILED</td>
+  <td>0x80000048</td>
+ </tr><tr>
+  <td>LINEERR_INVALLINEHANDLE</td>
+  <td>0x8000002B</td>
+ </tr><tr>
+  <td>LINEERR_RESOURCEUNAVAIL</td>
+  <td>0x8000004B</td>
+ </tr><tr>
+  <td>LINEERR_INVALLINESTATE</td>
+  <td>0x8000002C</td>
+ </tr><tr>
+  <td>LINEERR_UNINITIALIZED</td>
+  <td>0x80000050</td>
+ </tr><tr>
+  <td>LINEERR_NOMEM</td>
+  <td>0x80000044</td>
+ </tr><tr>
+  <td>LINEERR_OPERATIONUNAVAIL</td>
+  <td>0x80000049</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hLine (4 bytes): </b>An <a href="9a80ee5c-cf55-4a86-bd67-173059d6ff3c" data-linktype="relative-path">HLINE</a>. The handle to the
+line device. This field MUST have been obtained by sending the <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a> packet.</p><p><b>dwLineStates (4 bytes): </b>An unsigned 32-bit
+integer. The bit array that identifies the line-device status changes for which
+a packet is sent to the application. This parameter MUST use one or more of the
+<a href="0b91e805-228f-48f8-b9c2-c58d039399ca" data-linktype="relative-path">LINEDEVSTATE_Constants</a>.
+</p><p><b>dwAddressStates (4 bytes): </b>An unsigned 32-bit
+integer. The bit array that identifies the address status changes for which a
+packet is sent to the application. This parameter MUST use one or more of the <a href="b0c31486-218f-4786-b89f-edf05b09ad46" data-linktype="relative-path">LINEADDRESSSTATE_Constants</a>.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved8 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved9 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved10 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved11 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p></div>

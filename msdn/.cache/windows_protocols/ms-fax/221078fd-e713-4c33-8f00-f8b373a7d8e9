@@ -1,0 +1,61 @@
+<div class="content" name="FAX_SetPortEx" uuid="221078fd-e713-4c33-8f00-f8b373a7d8e9"><p>A fax client application uses the <b>FAX_SetPortEx (Opnum
+47)</b> method to set fax device information. The function sets extension
+configuration properties that are stored at the device level, such as enable or
+disable sending and receiving, and the auto or manual answering of calls. The
+value for the <i>dwDeviceId</i> parameter can be obtained using the <b>FAX_EnumPorts</b> (section
+<a href="7143a58b-d7c5-4353-8857-39c7f708e778" data-linktype="relative-path">3.1.4.1.28</a>) method or
+the <b>FAX_EnumPortsEx</b> (section <a href="f26e50ab-ed8e-448d-928c-1820f4a42918" data-linktype="relative-path">3.1.4.1.29</a>) method.</p><p>In response, the server MUST validate whether the client&#39;s
+fax user account has access to the server. The server MUST validate that the <i>dwDeviceId</i>
+that is specified by the client is for a valid device. On success, the server
+MUST modify the properties of the device as specified by the client.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_SetPortEx(
+   [in] handle_t hFaxHandle,
+   [in] DWORD dwDeviceId,
+   [in, ref] const PFAX_PORT_INFO_EXW pPortInfo
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a>) or <b>FAX_ConnectionRefCount</b> (section
+<a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a>) method call
+used to connect to the fax server.</p><p><b>dwDeviceId: </b>A unique identifier that
+distinguishes the device. The value of <i>dwDeviceId</i> MUST be greater than
+zero.</p><p><b>pPortInfo: </b>A pointer to a buffer of type <b>FAX_PORT_INFO_EXW</b> (section
+<a href="530c0daf-f12f-47d6-bd67-37096ff71a52" data-linktype="relative-path">2.2.45</a>).</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. The caller does not have the required FAX_ACCESS_MANAGE_CONFIG authorization for this operation.</td>
+ </tr><tr>
+  <td>ERROR_BAD_UNIT 0x00000014</td>
+  <td>The fax server cannot find the device specified by the dwDeviceId parameter.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>This error code is returned under any of the following conditions: § The value of dwDeviceId is zero. § The size of the structure pointed at by the pPortInfo parameter, or the value of the dwSizeOfStruct field of this structure, do not match the correct size for the FAX_PORT_INFO_EXW. § The ReceiveMode field of the structure pointed at by pPortInfo does not contain a valid value of the FAX_ENUM_DEVICE_RECEIVE_MODE (section 2.2.55) enumeration. § The device specified by dwDeviceId is a virtual device (the Flags field of the FAX_PORT_INFO (section 2.2.7) structure is set to FPF_VIRTUAL) and the ReceiveMode field of the structure pointed at by pPortInfo is FAX_DEVICE_RECEIVE_MODE_MANUAL.</td>
+ </tr><tr>
+  <td>ERROR_BUFFER_OVERFLOW 0x0000006F</td>
+  <td>The length of the lpwstrDescription character string field of the data structure pointed at by pPortInfo exceeds 253 characters, excluding the length of the NULL string terminator.</td>
+ </tr><tr>
+  <td>ERROR_REGISTRY_CORRUPT 0x000003F7</td>
+  <td>The fax server cannot store the updated device information to Registry. The Registry might be corrupt.</td>
+ </tr><tr>
+  <td>FAX_ERR_DEVICE_NUM_LIMIT_EXCEEDED 0x00001B62</td>
+  <td>The fax server cannot complete the operation because the number of active fax devices that are allowed for this version of the operating system was exceeded.&lt;168&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

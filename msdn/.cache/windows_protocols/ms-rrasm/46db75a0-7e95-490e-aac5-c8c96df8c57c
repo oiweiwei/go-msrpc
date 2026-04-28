@@ -1,0 +1,44 @@
+<div class="content" name="IPBOOTP_MIB_GET_OUTPUT_DATA" uuid="46db75a0-7e95-490e-aac5-c8c96df8c57c"><p>The <b>IPBOOTP_MIB_GET_OUTPUT_DATA</b> structure is passed
+as output data for the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="340672df-1018-44a6-b1b8-509348062857" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.2.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="12830348-d502-4b45-adc3-e5853d42d0c9" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.2.4.32)</b></a><span>  </span></p>
+</li></ul><p><b>Note</b>  At the end of a table <b>RMIBEntryGetNext</b>
+wraps to the next table.</p><dl>
+<dd>
+<div><pre> typedef struct _IPBOOTP_MIB_GET_OUTPUT_DATA {
+   DWORD IMGOD_TypeID;
+   DWORD IMGOD_IfIndex;
+   BYTE IMGOD_Buffer[1];
+ } IPBOOTP_MIB_GET_OUTPUT_DATA,
+  *PIPBOOTP_MIB_GET_OUTPUT_DATA;
+</pre></div>
+</dd></dl><p><b>IMGOD_TypeID: </b>It MUST be one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IPBOOTP_GLOBAL_CONFIG_ID 0x00000000</td>
+  <td>The global configuration for the IPBOOTP, IPBOOTP_GLOBAL_CONFIG.</td>
+ </tr><tr>
+  <td>IPBOOTP_IF_STATS_ID 0x00000001</td>
+  <td>The per interface statistics, IPBOOTP_IF_STATS.</td>
+ </tr><tr>
+  <td>IPBOOTP_IF_CONFIG_ID 0x00000002</td>
+  <td>The IPBOOTP_IF_CONFIG Identifier.</td>
+ </tr><tr>
+  <td>IPBOOTP_IF_BINDING_ID 0x00000003</td>
+  <td>The IP addresses to which each interface is bound, IPBOOTP_IF_BINDING.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>IMGOD_IfIndex: </b>The index of the interface.</p><p><b>IMGOD_Buffer: </b>One of the structures in the
+previous table based on <b>IMGOD_TypeID</b>.</p></div>

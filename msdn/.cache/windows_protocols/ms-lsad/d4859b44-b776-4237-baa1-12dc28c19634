@@ -1,0 +1,13 @@
+<div class="content" name="LSA_FOREST_TRUST_BINARY_DATA" uuid="d4859b44-b776-4237-baa1-12dc28c19634"><p>The LSA_FOREST_TRUST_BINARY_DATA structure is used to
+communicate a <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_035d9ce5-f117-4251-8d4d-127c462ec4a0" data-linktype="relative-path">forest trust</a></span> record.
+This structure is not used in the current version of the protocol.</p><dl>
+<dd>
+<div><pre> typedef struct _LSA_FOREST_TRUST_BINARY_DATA {
+   [range(0,131072)] unsigned long Length;
+   [size_is(Length)] unsigned char* Buffer;
+ } LSA_FOREST_TRUST_BINARY_DATA,
+  *PLSA_FOREST_TRUST_BINARY_DATA;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The count of bytes in <b>Buffer</b>.<a id="Appendix_A_Target_39"></a><a aria-label="Product behavior note 39" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_39" data-linktype="relative-path">&lt;39&gt;</a></p><p><b>Buffer:</b>  The <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a></span>
+record. If the <b>Length</b> field has a value other than 0, this field MUST
+NOT be NULL.</p></div>

@@ -1,0 +1,84 @@
+<div class="content" name="BLOBHEADER" uuid="588d8ab6-a559-4698-af82-8f4d489cfc0e"><p>The BLOBHEADER structure indicates a key&#39;s binary large
+object (BLOB) type and the algorithm that the key uses.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">bType</td>
+  <td colspan="8">bVersion</td>
+  <td colspan="16">wReserved</td>
+ </tr>
+ <tr>
+  <td colspan="32">aiKeyAlg</td>
+ </tr>
+</tbody></table><p><b>bType (1 byte): </b>An unsigned 8-bit integer that
+MUST contain the key BLOB type. The following key BLOB type is defined.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>PUBLICKEYBLOB 0x06</td>
+  <td>The key is a public key.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>bVersion (1 byte): </b>An unsigned 8-bit integer
+that contains the version number of the BLOBHEADER. The only value supported by
+this protocol is 0x02.</p><p><b>wReserved (2 bytes): </b>An unsigned 16-bit
+integer that MUST be set to zero.</p><p><b>aiKeyAlg (4 bytes): </b>An unsigned 32-bit integer
+that specifies the key algorithm. The following algorithm identifiers are
+defined.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CALG_RSA_KEYX 0x0000a400</td>
+  <td>RSA public key exchange algorithm.</td>
+ </tr><tr>
+  <td>CALG_RSA_SIGN 0x00002400</td>
+  <td>RSA public key signature algorithm.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

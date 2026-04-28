@@ -1,0 +1,42 @@
+<div class="content" name="TS_TIME_ZONE_INFORMATION" uuid="5e4e1129-e80b-4631-954b-be5cfbea811f"><p> The TS_TIME_ZONE_INFORMATION structure contains client time
+zone information. </p><dl>
+<dd>
+<div><pre> typedef struct _TS_TIME_ZONE_INFORMATION {
+   LONG Bias;
+   WCHAR StandardName[32 ];
+   TS_SYSTEMTIME StandardDate;
+   LONG StandardBias;
+   WCHAR DaylightName[32 ];
+   TS_SYSTEMTIME DaylightDate;
+   LONG DaylightBias;
+ } TS_TIME_ZONE_INFORMATION;
+</pre></div>
+</dd></dl><p><b>Bias:</b>  A 32-bit integer. Current
+bias for local time translation on the client, in minutes. The bias is the difference,
+in minutes, between Coordinated Universal Time (UTC) and local time. All
+translations between UTC and local time are based on the following formula:</p><dl>
+<dd>
+<p>UTC = local time + bias</p>
+</dd></dl><p><b>StandardName:</b>  A description for
+standard time on the client. For example, this field could contain the string
+&#34;Pacific Standard Time&#34; to indicate Pacific Standard Time. An array
+of 32 <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> characters.</p><p><b>StandardDate:</b>  A TS_SYSTEMTIME
+structure that contains the date and local time when the transition from
+daylight saving time to standard time occurs on the client. If this field is
+specified, the <b>DaylightDate</b> field is also specified.</p><p><b>StandardBias:</b>  A 32-bit integer that
+defines the bias value in number of minutes to be used during local time
+translations that occur during standard time. This field SHOULD be ignored if a
+value is not supplied in the <b>StandardDate</b> field. This value is added to
+the value of the <b>Bias</b> field to form the bias used during standard time.
+In most time zones, the value of this field is 0.</p><p><b>DaylightName:</b>  An array of 32
+Unicode characters that describes daylight time on the client. For example,
+this field could contain &#34;Pacific Daylight Time&#34; to indicate Pacific
+Daylight Time.</p><p><b>DaylightDate:</b>  A TS_SYSTEMTIME that
+contains a date and local time when the transition from standard time to
+daylight saving time occurs on the client. If this field is specified, the <b>StandardDate</b>
+field is also specified.</p><p><b>DaylightBias:</b>  A 32-bit integer that
+defines the bias value to be used during local time translations that occur
+during daylight saving time. This field SHOULD be ignored if a value for the <b>DaylightDate</b>
+field is not supplied. This value is added to the value of the <b>Bias</b>
+field to form the bias used during daylight saving time. In most time zones,
+the value of this field is 60.</p></div>

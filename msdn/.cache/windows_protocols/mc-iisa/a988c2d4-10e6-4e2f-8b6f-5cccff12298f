@@ -1,0 +1,34 @@
+<div class="content" name="IAppHostElementSchema" uuid="a988c2d4-10e6-4e2f-8b6f-5cccff12298f"><p>The IAppHostElementSchema <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+that access the schema and constraints of a specific <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a> object.</p><p>The IAppHostElementSchema interface inherits opnums 0–2 from
+the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Name</td>
+  <td>Returns the name of the element entry. Opnum: 3</td>
+ </tr><tr>
+  <td>DoesAllowUnschematizedProperties</td>
+  <td>Determines if the section allows unrecognized attributes. Opnum: 4</td>
+ </tr><tr>
+  <td>GetMetadata</td>
+  <td>Used to get a metadata property. Opnum: 5</td>
+ </tr><tr>
+  <td>CollectionSchema</td>
+  <td>Opnum: 6</td>
+ </tr><tr>
+  <td>ChildElementSchemas</td>
+  <td>Opnum: 7</td>
+ </tr><tr>
+  <td>PropertySchemas</td>
+  <td>Opnum: 8</td>
+ </tr><tr>
+  <td>IsCollectionDefault</td>
+  <td>Opnum: 9</td>
+ </tr></tbody></table><p> </p></div>

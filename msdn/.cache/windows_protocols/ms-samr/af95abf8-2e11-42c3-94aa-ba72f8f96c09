@@ -1,0 +1,38 @@
+<div class="content" name="SamrGetDisplayEnumerationIndex" uuid="af95abf8-2e11-42c3-94aa-ba72f8f96c09"><p>The SamrGetDisplayEnumerationIndex method obtains an index
+into an ascending account-name–sorted list of accounts.</p><dl>
+<dd>
+<div><pre> long SamrGetDisplayEnumerationIndex(
+   [in] SAMPR_HANDLE DomainHandle,
+   [in] DOMAIN_DISPLAY_INFORMATION DisplayInformationClass,
+   [in] PRPC_UNICODE_STRING Prefix,
+   [out] unsigned long* Index
+ );
+</pre></div>
+</dd></dl><p>See the description of <span><a href="bd429624-f2d5-4717-8aa2-659952c3e209" data-linktype="relative-path">SamrGetDisplayEnumerationIndex2 (section 3.1.5.3.4)</a></span>
+for details, because the method-interface arguments and processing are
+identical.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a></span>.</p><p>The server MUST behave as with a call to
+SamrGetDisplayEnumerationIndex2, with the following parameter values.</p><table><thead>
+  <tr>
+   <th>
+   <p>Parameter name</p>
+   </th>
+   <th>
+   <p>Parameter value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DomainHandle</td>
+  <td>SamrGetDisplayEnumerationIndex.DomainHandle</td>
+ </tr><tr>
+  <td>DisplayInformationClass</td>
+  <td>SamrGetDisplayEnumerationIndex.DisplayInformationClass</td>
+ </tr><tr>
+  <td>Prefix</td>
+  <td>SamrGetDisplayEnumerationIndex.Prefix</td>
+ </tr><tr>
+  <td>Index</td>
+  <td>SamrGetDisplayEnumerationIndex.Index</td>
+ </tr></tbody></table><p> </p></div>

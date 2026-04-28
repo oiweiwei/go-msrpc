@@ -1,0 +1,334 @@
+- dfsnm:
+  - name: DFS_INFO_STRUCT
+    uuid: 725240d3-2da7-41ef-8161-b7df1c2af497
+- dnsp:
+  - name: DNSSRV_RPC_UNION
+    uuid: b61a8727-46b1-4981-a6b3-a1d4b92b67c4
+  - name: DNSSRV_RRL_STATS
+    uuid: 73c1641c-ec7c-4759-970b-3c570d58ec71
+  - name: DNSSRV_ZONE_RRL_STATS
+    uuid: 1e0f7a71-a16a-4228-bb01-14bc20770977
+  - name: DNS_FLAT_RECORD
+    uuid: ac793981-1c60-43b8-be59-cdbb5c4ecb8a
+  - name: DNS_RPC_CRITERIA_COMPARATOR
+    uuid: 4a5790e6-5cbe-4cbe-a56c-c7e4fabdf847
+  - name: DNS_RPC_CRITERIA_ENUM
+    uuid: 4b707d19-860c-461e-b7c5-7e6322db26e9
+  - name: DNS_RPC_ENUM_VIRTUALIZATION_INSTANCE_LIST
+    uuid: 0e837b6a-fee9-487d-b76f-fff7ce8637f5
+  - name: DNS_RPC_FORWARDERS_DOTNET
+    uuid: 4356fa24-6266-4bb2-ac5e-519b6afe9237
+  - name: DNS_RPC_FORWARDERS_W2K
+    uuid: 7c71bbd3-a46d-4f8e-bca7-9bc9e153454f
+  - name: DNS_RPC_POLICY_ACTION_TYPE
+    uuid: 11503add-9e7b-455b-8d49-1c9653e04e80
+  - name: DNS_RPC_POLICY_CONDITION
+    uuid: 6b98c962-d208-4475-ae18-1a068b4b925c
+  - name: DNS_RPC_POLICY_LEVEL
+    uuid: 1519cc9d-b588-48fb-b3af-e16b319b805e
+  - name: DNS_RPC_POLICY_TYPE
+    uuid: e2e0048d-03a8-45dc-bc27-b7a4ad14d737
+  - name: DNS_RPC_RRL_PARAMS
+    uuid: c0166ded-6a52-47b2-b914-6dd2ae4d61f0
+  - name: DNS_RPC_TYPEID
+    uuid: c49b8142-a364-41c8-914a-7675a573b5e4
+  - name: DNS_RPC_VIRTUALIZATION_INSTANCE
+    uuid: 79c2b5b9-acc2-4634-af3d-ca093d8b86c4
+  - name: DNS_RPC_VIRTUALIZATION_INSTANCE_INFO
+    uuid: b786dbf5-dc85-4559-90a9-e962e316a9e5
+  - name: DNS_RRL_MODE_ENUM
+    uuid: f91e6cd4-6f15-4a16-ae79-b54df85a775f
+  - name: DNS_SYSTEMTIME
+    uuid: fc487ec4-6e26-482c-a994-4f019afe0e4c
+  - name: DNS_ZONE_STATS_TYPE
+    uuid: 8659f901-293c-4e8f-862a-6b7861b01118
+  - name: ImportOpResult
+    uuid: c5e7283c-0012-42c9-8d69-3aa1529fa772
+  - name: KeySignScope
+    uuid: b67bcf73-87b5-449a-91c9-b470ea42b038
+  - name: TRUSTANCHOR_STATE
+    uuid: d84d1ece-610a-4911-8cfc-8f93bc9a870e
+  - name: TRUSTPOINT_STATE
+    uuid: 0b73d83c-a99d-48a7-a65d-be40f3e749e3
+- drsr:
+  - name: DIRERR_DRS_WIRE_V1
+    uuid: 74534b5f-f066-4a7f-ba39-caa941088bed
+  - name: DRS_ERROR_DATA
+    uuid: 5d98d99b-872e-4cff-9758-36b1792fd55e
+  - name: DRS_MSG_ADDCLONEDCREPLY
+    uuid: 8a1a90f5-bdf1-4377-b462-45176a4b5e81
+  - name: DRS_MSG_ADDCLONEDCREQ
+    uuid: 13272c56-f07d-4d1d-96db-953631937b6f
+  - name: DRS_MSG_ADDENTRYREPLY
+    uuid: 33b6a012-3f08-4d09-8c06-65581b1ff1ed
+  - name: DRS_MSG_ADDENTRYREQ
+    uuid: 6104d1c7-a2a6-47a8-b7a7-2ea655574df0
+  - name: DRS_MSG_ADDSIDREPLY
+    uuid: 8c600ba9-ada0-4771-932f-e4f68516d9bb
+  - name: DRS_MSG_ADDSIDREQ
+    uuid: dc0b3735-881d-4ead-91e7-4e315821f0c4
+  - name: DRS_MSG_CRACKREPLY
+    uuid: 1dc605fe-dd85-481d-84a4-f4c5da812d57
+  - name: DRS_MSG_CRACKREQ
+    uuid: f2d5166e-09f6-4788-a391-66471b2f7d6d
+  - name: DRS_MSG_DCINFOREPLY
+    uuid: 034282e5-7828-4353-ad6e-2688c65ab9fb
+  - name: DRS_MSG_DCINFOREQ
+    uuid: 6ac9ec30-5bfb-4970-860c-3971eb815930
+  - name: DRS_MSG_EXISTREPLY
+    uuid: f762aebb-97f9-4583-8d50-aa7dee70dc98
+  - name: DRS_MSG_EXISTREQ
+    uuid: 633f7365-229b-490c-9dd3-3bcd4df67b2b
+  - name: DRS_MSG_FINISH_DEMOTIONREPLY
+    uuid: ae098000-268c-4894-87e8-4c6cacb4e610
+  - name: DRS_MSG_FINISH_DEMOTIONREQ
+    uuid: a3f623a7-1a4b-432b-9ece-5b5eca0c5beb
+  - name: DRS_MSG_GETCHGREPLY
+    uuid: 65a5cb42-c25f-4378-b06e-f87341b21f93
+  - name: DRS_MSG_GETCHGREQ
+    uuid: 96affbe1-7d93-453e-ac75-9f41c0c94b3b
+  - name: DRS_MSG_GETMEMBERSHIPS2_REPLY
+    uuid: e5219fc0-1cfb-4ea4-9a53-9c50ddd4c4ef
+  - name: DRS_MSG_GETMEMBERSHIPS2_REQ
+    uuid: 37f3ba0f-c5c5-48c8-888a-a28a082a61bf
+  - name: DRS_MSG_GETREPLINFO_REPLY
+    uuid: 374665d4-0c2f-4f0c-9866-d6b0855ede60
+  - name: DRS_MSG_GETREPLINFO_REQ
+    uuid: 6b238f73-8e76-4431-b8fc-4f9445c511a5
+  - name: DRS_MSG_INIT_DEMOTIONREPLY
+    uuid: 216ff6cb-3785-40f5-bbb0-7c3076724105
+  - name: DRS_MSG_INIT_DEMOTIONREQ
+    uuid: d7c5c65c-cfd5-4647-8314-77f32058e03f
+  - name: DRS_MSG_KCC_EXECUTE
+    uuid: 5e5f7a58-a501-43de-a8e1-db8de9960c54
+  - name: DRS_MSG_MOVEREPLY
+    uuid: 63149a88-730f-4cb8-aa92-919d1ff5f658
+  - name: DRS_MSG_MOVEREQ
+    uuid: 221c9cf9-0d0e-4ed5-8d51-80c8b3254a36
+  - name: DRS_MSG_NT4_CHGLOG_REPLY
+    uuid: 14ba8fee-3bba-4793-b781-18f328bbd767
+  - name: DRS_MSG_NT4_CHGLOG_REQ
+    uuid: 27207d2f-7de4-4658-82dd-228bfea28c49
+  - name: DRS_MSG_QUERYSITESREPLY
+    uuid: 558cedbb-70fc-4249-934d-159a170cc519
+  - name: DRS_MSG_QUERYSITESREQ
+    uuid: 196d891f-2c52-418c-9cf7-8b679d66e457
+  - name: DRS_MSG_REPADD
+    uuid: d73cb42a-312c-49ae-82d1-db93c044011e
+  - name: DRS_MSG_REPDEL
+    uuid: 36c23abb-f2d1-4266-a1f4-6f167e72d3af
+  - name: DRS_MSG_REPLICA_DEMOTIONREPLY
+    uuid: 7ecf3724-4dff-431b-bfcb-327a62a11b26
+  - name: DRS_MSG_REPLICA_DEMOTIONREQ
+    uuid: 31bd794b-3e88-410b-b6e6-56e07cb34eed
+  - name: DRS_MSG_REPMOD
+    uuid: 7f70db41-ce74-467d-adf1-b5df6ced12f9
+  - name: DRS_MSG_REPSYNC
+    uuid: d1ed3b4e-6964-468e-9ef1-f9a6f25cde0e
+  - name: DRS_MSG_REPVERIFYOBJ
+    uuid: b8cc0c8a-7119-4406-8f3a-4172dc512735
+  - name: DRS_MSG_REVMEMB_REPLY
+    uuid: 71c72f3c-0da6-440f-b679-c2a24b21a34b
+  - name: DRS_MSG_REVMEMB_REQ
+    uuid: 8172ef3e-9ffc-406e-a028-448328de5f76
+  - name: DRS_MSG_RMDMNREPLY
+    uuid: 88a1c1ea-a79a-46c8-9e0c-ea94a45605cb
+  - name: DRS_MSG_RMDMNREQ
+    uuid: d17fb26a-c320-42e1-8576-55be8a68b915
+  - name: DRS_MSG_RMSVRREPLY
+    uuid: 6a28e865-3002-468e-860d-0f3cd251ceb5
+  - name: DRS_MSG_RMSVRREQ
+    uuid: bd5413ad-a2f5-4976-b4aa-e4082183824c
+  - name: DRS_MSG_SPNREPLY
+    uuid: 25b79282-8bcf-4366-b4ac-576d93132f31
+  - name: DRS_MSG_SPNREQ
+    uuid: 429b5b4d-95b4-4d52-87e7-5315d978c426
+  - name: DRS_MSG_UPDREFS
+    uuid: 2ad0252a-d028-412b-89c9-2fcb7123817e
+  - name: DRS_MSG_VERIFYREPLY
+    uuid: 3eb00260-fe1d-40ad-99a2-3a19adb23b0a
+  - name: DRS_MSG_VERIFYREQ
+    uuid: a2681aea-058b-47c2-961d-58cc973fa2f9
+  - name: DSA_MSG_EXECUTE_SCRIPT_REPLY
+    uuid: 7f37deb3-fd0d-4d4f-a195-f2dbb74220c5
+  - name: DSA_MSG_EXECUTE_SCRIPT_REQ
+    uuid: 5c4028fa-d46f-4e36-bc38-1f4f2378de53
+  - name: DSA_MSG_PREPARE_SCRIPT_REPLY
+    uuid: 95850175-8d67-4d37-afc9-43346dc64a7b
+  - name: DSA_MSG_PREPARE_SCRIPT_REQ
+    uuid: ad644c4d-16dc-403e-9726-865677b5c221
+- fsrvp:
+  - name: FSSAGENT_SHARE_MAPPING
+    uuid: 8bf625df-4d5d-4301-a568-03a902415a5d
+- msrp:
+  - name: MSG_INFO
+    uuid: f277139c-37d6-4212-a7f3-01a0b9e79473
+- nrpc:
+  - name: NETLOGON_CONTROL_DATA_INFORMATION
+    uuid: ab0e203d-5f69-469c-8c57-7b6a0b1308b9
+  - name: NETLOGON_CONTROL_QUERY_INFORMATION
+    uuid: c5d2469c-f0c3-47de-8795-0e22f1070337
+  - name: NETLOGON_DELTA_ID_UNION
+    uuid: 797e1033-d40b-400b-a71a-522f820bac33
+  - name: NETLOGON_DELTA_UNION
+    uuid: 3d07c30c-9f0e-4aa3-a9d0-8fc348fd1fe1
+  - name: NETLOGON_DOMAIN_INFORMATION
+    uuid: 440c3430-ed5f-481d-b602-74db422df3c8
+  - name: NETLOGON_DUMMY1
+    uuid: ab6e857a-df5e-4e3d-af1e-a878abd37b7d
+  - name: NETLOGON_LEVEL
+    uuid: d0128545-f74b-4d89-afd9-42621dff24c4
+  - name: NETLOGON_VALIDATION
+    uuid: 5eb0b7cb-3a55-477b-92fc-c236bd5873fa
+  - name: NETLOGON_WORKSTATION_INFORMATION
+    uuid: 3ae9e9a9-a303-4fa5-8e11-823d9e7e1e61
+  - name: NL_IN_CHAIN_SET_CLIENT_ATTRIBUTES
+    uuid: 548d7519-53d1-4891-92d5-f7d240c73496
+  - name: NL_OUT_CHAIN_SET_CLIENT_ATTRIBUTES
+    uuid: b8491488-cbb6-452b-bab1-b0f4390bca59
+- nspi:
+  - name: PROP_VAL_UNION
+    uuid: b4f0f4b4-77e3-46f7-914a-d988a0d47b03
+  - name: RestrictionUnion_r
+    uuid: 9378e9b2-b1df-4086-9023-f609e727e904
+- oaut:
+  - name: SAFEARRAYUNION
+    uuid: 5eaa490f-f6c5-4d58-b368-cf2d0ea74572
+  - name: _VARIANT
+    uuid: 4e2e9bff-2ac5-4bab-8308-1806b256833e
+  - name: _BRECORD
+    uuid: d9237563-093e-4bc9-b824-4c306bfc19e3
+  - name: _SAFEARRAY
+    uuid: 2e87a537-9305-41c6-a88b-b79809b3703a
+- oxnspi:
+  - name: PROP_VAL_UNION
+    uuid: b4f0f4b4-77e3-46f7-914a-d988a0d47b03
+  - name: RestrictionUnion_r
+    uuid: 9378e9b2-b1df-4086-9023-f609e727e904
+- par:
+  - name: RPC_V2_UREPLY_PRINTER
+    uuid: ms-rprn/1ccdac5b-0b2a-4bd3-8afd-d2c2589130fc
+  - name: DRIVER_INFO
+    uuid: ms-rprn/4464eaf0-f34f-40d5-b970-736437a21913
+    aliases:
+    - RPC_DRIVER_INFO
+    - DRIVER_INFO_1
+    - DRIVER_INFO_2
+    - RPC_DRIVER_INFO_3
+    - RPC_DRIVER_INFO_4
+    - RPC_DRIVER_INFO_6
+    - RPC_DRIVER_INFO_8
+- rprn:
+  - name: RPC_V2_UREPLY_PRINTER
+    uuid: 1ccdac5b-0b2a-4bd3-8afd-d2c2589130fc
+- rrasm:
+  - name: IPX_MIB_INDEX
+    uuid: 9e132641-0b75-45b5-818c-a996828b4745
+  - name: IPX_MIB_ROW
+    uuid: f2c379b8-ece9-46d0-8aa8-f7ccba54d3eb
+  - name: MPR_IF_CUSTOMINFOEX_IDL
+    uuid: 89cbdcda-d307-4445-861f-d411107a8bbe
+  - name: MPR_SERVER_EX_IDL
+    uuid: dfe09221-3efa-4ca3-b8e1-a1e361c4b1de
+  - name: MPR_SERVER_SET_CONFIG_EX_IDL
+    uuid: 772586c8-92ab-455c-a2ac-eea442644e1f
+  - name: PROJECTION_INFO_IDL_1
+    uuid: ba8b9bed-bd23-49d6-9840-20fcbf415cfe
+  - name: PROJECTION_INFO_IDL_2
+    uuid: ccf15fb7-9def-4396-9880-f46b72cfe6a6
+  - name: RAS_CONNECTION_EX_IDL
+    uuid: 244bfb40-58d4-416f-a883-382e763fe609
+  - name: RAS_UPDATE_CONNECTION_IDL
+    uuid: dbbe76f3-aa46-4974-87ac-fc6213d31939
+- samr:
+  - name: SAMPR_ALIAS_INFO_BUFFER
+    uuid: aaf25a55-22c3-4639-96c3-ef5ae3362cf4
+  - name: SAMPR_DISPLAY_INFO_BUFFER
+    uuid: bd189d28-f3e1-4669-84d2-1ecc04340e8b
+  - name: SAMPR_DOMAIN_INFO_BUFFER
+    uuid: 1adc2142-dbb8-4554-aa24-010c713698bf
+  - name: SAMPR_GROUP_INFO_BUFFER
+    uuid: a37ef739-9b21-47a7-89b4-d237dd6491f3
+  - name: SAMPR_REVISION_INFO
+    uuid: 9ee412b6-d5e9-4c6c-921f-6f684d4c3079
+  - name: SAMPR_USER_INFO_BUFFER
+    uuid: 9496c26e-490b-4e76-827f-2695fc216f35
+- scmp:
+  - name: VSS_MGMT_OBJECT_UNION
+    uuid: 63b53947-2649-4eac-a883-498f77361396
+  - name: VSS_OBJECT_UNION
+    uuid: f63af19f-bc5c-4a20-afaf-4f6e0f7c1045
+- srvs:
+  - name: CONNECT_ENUM_UNION
+    uuid: 2a3b690a-e39c-4c94-914e-312dfb246ca7
+  - name: FILE_ENUM_UNION
+    uuid: 8ad1c2e9-46cd-43c9-9983-804034143678
+  - name: FILE_INFO
+    uuid: f11e7081-53df-4756-8a7a-8aaef97db9db
+  - name: SERVER_ALIAS_INFO
+    uuid: 3d17bf62-345b-4257-9b12-633828db2fa0
+  - name: SERVER_INFO
+    uuid: 76d445e9-928d-437d-860d-de5961316a4c
+  - name: SERVER_XPORT_ENUM_UNION
+    uuid: 116ac02b-c1b6-483a-b030-73ace63bc5ef
+  - name: SESSION_ENUM_UNION
+    uuid: 719533a1-0f65-4f86-8027-8e0c9cabab29
+  - name: SHARE_ENUM_UNION
+    uuid: 7894d7e4-bb82-419c-b431-0247c8ae4dfe
+  - name: SHARE_INFO
+    uuid: 419f538b-9342-455e-9b8c-fa430e77bc54
+  - name: TRANSPORT_INFO
+    uuid: 7e653b12-6402-4320-b096-8916430426ac
+- tsgu:
+  - name: TSG_CAPABILITIES_UNION
+    uuid: 605826c2-2c60-44f6-9596-0de9cc60f1ee
+  - name: TSG_PACKET_TYPE_UNION
+    uuid: a1307952-a54f-4224-85ec-4cbfdeaf891f
+- wkst:
+  - name: USE_INFO
+    uuid: 1f0758f6-3ac8-4a53-94e5-a279ed90b07d
+  - name: WKSTA_INFO
+    uuid: 2ab0c167-091a-46f3-be7d-826b27561bc7
+- wmi:
+  - name: WBEM_REFRESH_INFO_UNION
+    uuid: 8332c0f9-94e7-48ae-afe3-5ba37b57780e
+- negoex:
+  - name: BYTE_VECTOR
+    uuid: 2e9b7476-1e8b-4543-83ac-77b6f41c1e0c
+  - name: AUTH_SCHEME_VECTOR
+    uuid: 640dca14-6065-40fc-a710-3d9665d6bc1f
+  - name: EXTENSION_VECTOR
+    uuid: d622ba20-b8c9-46e9-903a-8e26e4df73a7
+  - name: EXTENSION
+    uuid: f0d91d22-fbc6-4ced-870a-be635f72e23b
+  - name: CHECKSUM
+    uuid: 0655f940-7dc3-4fd1-b249-2d0cb246e5d3
+  - name: MESSAGE_TYPE
+    uuid: 3a77a20d-9746-4e79-8f06-b241263e3da3
+  - name: MESSAGE_HEADER
+    uuid: 1f4a4b47-6e44-4427-9028-e384a4ca1fda
+  - name: NEGO_MESSAGE
+    uuid: 585eae5b-1f4d-457f-bc1c-0c93251061e1
+  - name: EXCHANGE_MESSAGE
+    uuid: aeeaeae6-1782-4d72-af14-a320ad51f0fa
+  - name: VERIFY_MESSAGE
+    uuid: 9de2cde2-bd98-40a4-9efa-0f5a1d6cc88e
+  - name: ALERT
+    uuid: 8a38aece-3356-450b-8de5-f846572dc34c
+  - name: ALERT_PULSE
+    uuid: b8fbffd0-e3b2-4061-8601-874b958de43e
+  - name: ALERT_VECTOR
+    uuid: 8067eb02-8ecb-438b-9664-eb13cfdf79b3
+  - name: ALERT_MESSAGE
+    uuid: bb13c832-61fe-4d4f-a1d8-0ac0a54408cd
+- dhcpm:
+  - name: DHCP_POLICY_EX
+    uuid: a63aaffd-1c6b-4ad8-9d95-c1064b2112ea
+- mqmp:
+  - name: CACTransferBufferV1
+    uuid: 08791447-2c3c-48d4-98ab-ce9dd28a9509
+- dcom:
+  - name: ErrorObjectData
+    uuid: 08452c9c-c892-433f-8c2a-8c5283e7bd56
+  - name: ContextORPCExtension
+    uuid: df24170b-8b79-48aa-85d9-962fb967e3f9

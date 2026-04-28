@@ -1,0 +1,89 @@
+<div class="content" name="RASRPC_CALLBACKLIST" uuid="eb252f76-d313-47a2-b148-bd7a23b319f9"><p>The <b>RASRPC_CALLBACKLIST</b> structure specifies the
+callback information such as the callback device name and the callback
+phonenumber.</p><dl>
+<dd>
+<div><pre> typedef struct _RASRPC_CALLBACKLIST {
+   WCHAR pszPortName[RASRPC_MaxPortName + 1];
+   WCHAR pszDeviceName[RASRPC_MaxDeviceName + 1];
+   WCHAR pszNumber[RASRPC_MaxPhoneNumber + 1];
+   DWORD dwDeviceType;
+   [unique] struct _RASRPC_CALLBACKLIST* pNext;
+ } RASRPC_CALLBACKLIST,
+  *LPRASRPC_CALLBACKLIST;
+</pre></div>
+</dd></dl><p><b>pszPortName: </b>A null-terminated Unicode string
+specifying the port name on which callback is made.</p><p><b>pszDeviceName: </b>A null-terminated Unicode
+string specifying the device name on which callback is be made.</p><p><b>pszNumber: </b>A null-terminated Unicode string
+specifying the phone number to which callback is be made.</p><p><b>dwDeviceType: </b>Specifies the device type to
+which callback is to be made.</p><dl>
+<dd>
+<p>This MUST take one of the following values:<a id="Appendix_A_Target_161"></a><a aria-label="Product behavior note 161" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_161" data-linktype="relative-path">&lt;161&gt;</a></p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>PBDT_None 0</td>
+  <td>No device.</td>
+ </tr><tr>
+  <td>PBDT_Null 1</td>
+  <td>Serial or parallel port device.</td>
+ </tr><tr>
+  <td>PBDT_Other 2</td>
+  <td>Device other than mentioned in the table.</td>
+ </tr><tr>
+  <td>PBDT_Modem 3</td>
+  <td>A modem device.</td>
+ </tr><tr>
+  <td>PBDT_Pad 4</td>
+  <td>An X.25 [X.25] packet assembler/disassembler.</td>
+ </tr><tr>
+  <td>PBDT_Switch 5</td>
+  <td>Switch device.</td>
+ </tr><tr>
+  <td>PBDT_Isdn 6</td>
+  <td>An ISDN device.</td>
+ </tr><tr>
+  <td>PBDT_X25 7</td>
+  <td>An X.25 [X.25] device.</td>
+ </tr><tr>
+  <td>PBDT_ComPort 8</td>
+  <td>Generic COM port device.</td>
+ </tr><tr>
+  <td>PBDT_Irda 10</td>
+  <td>An Infrared Data Association (IrDA)-compliant device.</td>
+ </tr><tr>
+  <td>PBDT_Vpn 11</td>
+  <td>A virtual private networking (VPN) device</td>
+ </tr><tr>
+  <td>PBDT_Serial 12</td>
+  <td>Serial port device.</td>
+ </tr><tr>
+  <td>PBDT_Atm 13</td>
+  <td>Asynchronous Transfer Mode (ATM) device.</td>
+ </tr><tr>
+  <td>PBDT_Parallel 14</td>
+  <td>Parallel port device.</td>
+ </tr><tr>
+  <td>PBDT_Sonet 15</td>
+  <td>Sonet device.</td>
+ </tr><tr>
+  <td>PBDT_Sw56 16</td>
+  <td>Switched 56K Access.</td>
+ </tr><tr>
+  <td>PBDT_FrameRelay 17</td>
+  <td>Frame Relay device.</td>
+ </tr><tr>
+  <td>PBDT_PPPoE 18</td>
+  <td>PPPoE device.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>pNext: </b>Specifies the pointer to the next <b>RASRPC_CALLBACKLIST</b>
+structure. The last member of the linked list of RASRPC_CALLBACKLIST structures
+MUST have the <b>pNext</b> field set to NULL.</p></div>

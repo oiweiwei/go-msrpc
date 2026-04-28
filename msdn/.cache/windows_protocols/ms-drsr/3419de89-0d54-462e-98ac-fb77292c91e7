@@ -1,0 +1,10 @@
+<div class="content" name="DRS_MSG_CRACKREPLY_V1" uuid="3419de89-0d54-462e-98ac-fb77292c91e7"><p>The DRS_MSG_CRACKREPLY_V1 structure defines the response
+message received from the <span><a href="9b4bfb44-6656-4404-bcc8-dc88111658b3" data-linktype="relative-path">IDL_DRSCrackNames</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DS_NAME_RESULTW* pResult;
+ } DRS_MSG_CRACKREPLY_V1;
+</pre></div>
+</dd></dl><p><b>pResult:</b>  Translated form of the
+names.</p></div>

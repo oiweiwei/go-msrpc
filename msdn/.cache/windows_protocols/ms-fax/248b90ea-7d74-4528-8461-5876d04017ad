@@ -1,0 +1,69 @@
+<div class="content" name="FAX_GetJobEx2" uuid="248b90ea-7d74-4528-8461-5876d04017ad"><p>The <b>FAX_GetJobEx2 (Opnum 87)</b> method is called by the
+client to retrieve information about a specified job. The job is identified by
+the job message ID. The job message ID can be obtained using one of the
+following methods: <b>FAX_EnumJobs</b> (section <a href="6516d564-e0b8-4f19-80b1-70f27eca7f16" data-linktype="relative-path">3.1.4.1.21</a>), <b>FAX_EnumJobsEx</b> (section
+<a href="c65fa0d0-dc19-4aec-b83a-b5b82d70c6d9" data-linktype="relative-path">3.1.4.1.22</a>), or <b>FAX_EnumJobsEx2</b> (section
+<a href="cec559b7-44b6-47a9-b402-7dc5af788f44" data-linktype="relative-path">3.1.4.1.23</a>).</p><p>Protocol version FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), and FAX_API_VERSION_2 (0x00020000) fax servers
+SHOULD NOT implement this call. The fax client MUST NOT call this method if the
+protocol version reported by the server is FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), or FAX_API_VERSION_2 (0x00020000). For more
+information, see <b>FAX_ConnectFaxServer</b> (section <a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a>).</p><p>In response, the server MUST validate that the message ID is
+for a valid job. The server MUST validate that the client&#39;s fax user account
+has read access to the job.</p><p>On success, the server MUST return the information about the
+specified job in a <b>FAX_JOB_ENTRY_EX_1</b> (section <a href="b02b56af-005a-4326-bfee-63613abf911d" data-linktype="relative-path">2.2.34</a>) structure. This
+method is an extended version of <b>FAX_GetJob</b> (section <a href="33572748-3f68-49eb-bbe5-965ec450ae11" data-linktype="relative-path">3.1.4.1.41</a>). </p><p>The client SHOULD free the returned buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_GetJobEx2(
+   [in] handle_t hBinding,
+   [in] DWORDLONG dwlMessageID,
+   [in] DWORD level,
+   [out, size_is(,*BufferSize)] LPBYTE* Buffer,
+   [out, ref] LPDWORD BufferSize
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b> (section
+<a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a>) method call
+used to connect to the fax server.</p><p><b>dwlMessageID: </b>A <b>DWORDLONG</b> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/c575fb47-166c-48cd-a37c-e44cac05c3d6" data-linktype="relative-path">2.2.13</a>)
+value that specifies a unique number that identifies a <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queued</a> or active fax job.
+The job MUST be an inbound or outbound transmission.</p><p><b>level: </b>A <b>DWORD</b> ([MS-DTYP] section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+value that indicates the structure to return in <i>Buffer</i>. This value MUST
+be set to 1.</p><p><b>Buffer: </b>A pointer to the address of a buffer
+that receives a <b>FAX_JOB_ENTRY_EX_1</b>.</p><p><b>BufferSize: </b>A pointer to a <b>DWORD</b> value
+that specifies the size, in bytes, of the buffer that is pointed to by the <i>Buffer</i>
+parameter.</p><p><b>Return Values: </b>This method MUST return 0x00000000
+(ERROR_SUCCESS) for success; otherwise, it MUST return one of the following
+error codes, one of the fax-specific errors that are defined in section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one of the
+other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. This error code is returned under any of the following conditions: § The client&#39;s fax user account does not have any of the permissions covered by ALL_FAX_USER_ACCESS_RIGHTS (section 2.2.83). § For an outgoing fax job, the caller is not the owner of the fax job, and the caller does not have the FAX_ACCESS_MANAGE_OUT_JOBS rights. § For an incoming fax job, the caller is not the receiver of the call, incoming faxes are not public, and the client&#39;s fax user account does not have the FAX_ACCESS_MANAGE_RECEIVE_FOLDER rights.</td>
+ </tr><tr>
+  <td>ERROR_NOT_ENOUGH_MEMORY 0x00000008</td>
+  <td>Not enough storage is available to process this command. The fax server failed to allocate sufficient memory to hold the FAX_JOB_ENTRY_EX_1 to be returned to the client.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect. This error code is returned under any of the following conditions: § The Buffer and/or BufferSize parameters are set to NULL pointer values.&lt;112&gt; § The level parameter is set to a value other than 1.</td>
+ </tr><tr>
+  <td>ERROR_INTERNAL_ERROR 0x0000054F</td>
+  <td>The fax server failed to custom marshal the FAX_JOB_ENTRY_EX_1 to be returned to the client.</td>
+ </tr><tr>
+  <td>FAX_ERR_MESSAGE_NOT_FOUND 0x00001B61</td>
+  <td>This error code is returned under any of the following conditions: § The fax server cannot find the fax job identified by the value of the dwlMessageID parameter. § The user is not the owner of the fax job identified by the value of dwlMessageID.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol, <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

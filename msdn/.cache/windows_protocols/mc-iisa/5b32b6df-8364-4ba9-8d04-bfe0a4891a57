@@ -1,0 +1,37 @@
+<div class="content" name="IAppHostElementCollection" uuid="5b32b6df-8364-4ba9-8d04-bfe0a4891a57"><p>The IAppHostElementCollection interface provides methods
+that access a collection of &#34;collection IAppHostElements&#34;.</p><p>&#34;Collection IAppHostElements&#34; are a special class
+of child <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a>
+objects where all objects typically share the same name but contain different <a href="564b4c1f-13a0-40c4-974b-1cbbd41764b3" data-linktype="relative-path">IAppHostProperty</a> objects.
+This IAppHostElementCollection is a collection of these special objects.</p><p>The IAppHostElementCollection <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> inherits opnums
+0–2 from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Count</td>
+  <td>Returns the count of elements. Opnum: 3</td>
+ </tr><tr>
+  <td>Item</td>
+  <td>Returns the value that is associated with the element at the specified index. Opnum: 4</td>
+ </tr><tr>
+  <td>AddElement</td>
+  <td>Adds an element to the collection. Opnum: 5</td>
+ </tr><tr>
+  <td>DeleteElement</td>
+  <td>Deletes an element from the collection. Opnum: 6</td>
+ </tr><tr>
+  <td>Clear</td>
+  <td>Clears an element from the collection. Opnum: 7</td>
+ </tr><tr>
+  <td>CreateNewElement</td>
+  <td>Creates a new element in the collection. Opnum: 8</td>
+ </tr><tr>
+  <td>Schema</td>
+  <td>Returns the Document Object Model (DOM) description for the collection. Opnum: 9</td>
+ </tr></tbody></table><p> </p></div>

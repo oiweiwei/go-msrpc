@@ -1,0 +1,72 @@
+<div class="content" name="RenameAllocationPolicy" uuid="e88a1031-507b-4698-ab2d-c0c4f2aac528"><p>The RenameAllocationPolicy method renames an existing <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_ce127d6a-8b12-40d6-b9c9-cf544c3ffd08" data-linktype="relative-path">resource allocation policy
+(RAP)</a>.</p><dl>
+<dd>
+<div><pre> [id(5), helpstring(&#34;method RenameAllocationPolicy&#34;)] HRESULT RenameAllocationPolicy(
+   [in] BSTR bstrNewPolicyName,
+   [in] BSTR bstrOldPolicyName
+ );
+</pre></div>
+</dd></dl><p><b>bstrNewPolicyName: </b>The new policy name that
+replaces the old one.</p><dl>
+<dd>
+<p>If this parameter is NULL, E_INVALIDARG MUST be
+returned.</p>
+</dd>
+<dd>
+<p>The following <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_6442eac9-3264-4d95-a435-fdc08e71603f" data-linktype="relative-path">RAP</a> names are reserved. If
+this parameter specifies a reserved name, <b>WRM_ERR_POLICYID_RESERVED_WORD</b>
+SHOULD be returned: &#34;\&#34;, &#34;current&#34;, &#34;none&#34;, and
+&#34;Residual&#34;. Reserved words are case-insensitive.</p>
+</dd></dl><p><b>bstrOldPolicyName: </b>The old policy name to be
+replaced.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Operation successful.</td>
+ </tr><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>One or more arguments are invalid.</td>
+ </tr><tr>
+  <td>0xC1FF006F WRM_ERR_ID_VALUE</td>
+  <td>The specified name contains characters that are invalid. The name cannot start with a hyphen (&#34;-&#34;), cannot contain spaces, and cannot contain any of the following characters:   \   / ? * | : &lt; &gt; &#34; , ;</td>
+ </tr><tr>
+  <td>0xC1FF00C8 WRM_ERR_TOO_LONG_POLICY_ID</td>
+  <td>The request has been aborted, because the RAP name has exceeded an implementation-defined limit.&lt;108&gt;</td>
+ </tr><tr>
+  <td>0xC1FF00C9 WRM_ERR_POLICYID_INVALID</td>
+  <td>The specified RAP does not exist.</td>
+ </tr><tr>
+  <td>0xC1FF00CA WRM_ERR_POLICYID_ALREADY_EXISTS</td>
+  <td>A RAP with the specified name already exists.</td>
+ </tr><tr>
+  <td>0xC1FF00CB WRM_ERR_POLICYID_RESERVED_WORD</td>
+  <td>The specified RAP name is a reserved word used by WSRM and cannot be used as a name. Reserved words for RAPs are &#34;current&#34;, &#34;none&#34;, &#34;\&#34; and &#34;Residual&#34;. Reserved words are case-insensitive.</td>
+ </tr><tr>
+  <td>0xC1FF00E0 WRM_ERR_WSRM_RESERVED_POLICY</td>
+  <td>The specified policy is a built-in policy. It cannot be altered.</td>
+ </tr><tr>
+  <td>0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER</td>
+  <td>The XML data that is maintained by the management service is invalid or cannot be processed.&lt;109&gt;</td>
+ </tr><tr>
+  <td>0xC1FF00E5 WRM_ERR_RENAME_ACTIVE_POLICY</td>
+  <td>The specified RAP is being used by WSRM and cannot be renamed.</td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a03f4cd5-ad33-46aa-94e7-2c9a92f02b6f" data-linktype="relative-path">IWRMPolicy</a> interface
+methods are specified in section 3.2.4.7.</p></div>

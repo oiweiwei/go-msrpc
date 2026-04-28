@@ -1,0 +1,54 @@
+<div class="content" name="GetNtmsMediaPoolNameA" uuid="536318e3-724f-416e-8888-709290a3b3b5"><p>The GetNtmsMediaPoolNameA method retrieves the full name
+hierarchy of a media pool, with null-terminated strings encoded using ASCII.</p><dl>
+<dd>
+<div><pre> HRESULT GetNtmsMediaPoolNameA(
+   [in] LPNTMS_GUID lpPoolId,
+   [out, size_is(*lpdwNameSizeBuf), length_is(*lpdwNameSizeBuf)] 
+     unsigned  char* lpBufName,
+   [in] DWORD* lpdwNameSizeBuf,
+   [out] DWORD* lpdwNameSize
+ );
+</pre></div>
+</dd></dl><p><b>lpPoolId: </b>A pointer to the identifier of the
+media pool from which to retrieve the name.</p><p><b>lpBufName: </b>A null-terminated buffer that
+contains the name of the media pool.</p><p><b>lpdwNameSizeBuf: </b> A pointer to the size, in
+bytes, of <i>lpBufName</i>.</p><p><b>lpdwNameSize: </b> A pointer to the length of the
+string in <i>lpBufName</i>, including the terminating null character.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>0x80070005 ERROR_ACCESS_DENIED</td>
+  <td>Access to an object was denied.</td>
+ </tr><tr>
+  <td>0x80070008 ERROR_NOT_ENOUGH_MEMORY</td>
+  <td>An allocation error occurred during processing.</td>
+ </tr><tr>
+  <td>0x80070057 ERROR_INVALID_PARAMETER</td>
+  <td>A parameter is missing or invalid.</td>
+ </tr><tr>
+  <td>0x8007007A ERROR_INSUFFICIENT_BUFFER</td>
+  <td>The buffer is not large enough. The required size is returned in lpdwNameSize.</td>
+ </tr><tr>
+  <td>0x800710CE ERROR_INVALID_MEDIA_POOL</td>
+  <td>The media pool identifier is missing or invalid.</td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpPoolName</i>,
+<i>lpdwNameSize</i>, and <i>lpBufName</i> are not NULL. If parameter validation
+fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights, retrieve the name hierarchy for
+the given media pool, and return it to the caller in the <i>lpBufName</i>
+buffer. If the client does not have the required access rights, the server MUST
+return ERROR_ACCESS_DENIED (0x80070005).</p><p>Strings sent to this method as parameters MUST be
+ASCII-encoded.</p></div>

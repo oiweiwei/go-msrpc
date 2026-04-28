@@ -1,0 +1,96 @@
+<div class="content" name="FAX_EnumJobsEx2" uuid="cec559b7-44b6-47a9-b402-7dc5af788f44"><p>The <b>FAX_EnumJobsEx2 (Opnum 88)</b> method is called by
+the client to enumerate a specified set of jobs on the server&#39;s <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a> for a specific fax
+account. The type of jobs to enumerate is described by the <i>dwJobTypes</i>
+argument.</p><p>Protocol version FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), and FAX_API_VERSION_2 (0x00020000) fax servers
+SHOULD NOT implement this call. The fax client MUST NOT call this method if the
+protocol version reported by the server is FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), or FAX_API_VERSION_2 (0x00020000). For more
+information, see <b>FAX_ConnectFaxServer</b> (section <a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a>).</p><p>In response, the server MUST validate whether the client&#39;s
+fax user account has access to enumerate the jobs for the specified account. If
+the lpcwstrAccountName is not NULL, the server MUST validate the format of the
+account name. It MUST check for existence of account name. It MUST also verify
+that the level argument is set to 1. </p><p>On success, the server MUST return information about all the
+jobs of the specified type for the specified account. It MUST also return the
+total size of the buffer in which the information is returned and the total
+number of jobs enumerated.</p><p>The client SHOULD free the returned buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_EnumJobsEx2(
+   [in] handle_t hBinding,
+   [in] BOOL fAllAccounts,
+   [in, string, unique] LPCWSTR lpcwstrAccountName,
+   [in] DWORD dwJobTypes,
+   [in] DWORD level,
+   [out, size_is(,*BufferSize)] LPBYTE* Buffer,
+   [out, ref] LPDWORD BufferSize,
+   [out, ref] LPDWORD lpdwJobs
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b>
+(section <a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a>)
+method call used to connect to the fax server.</p><p><b>fAllAccounts: </b>Flag indicating whether the jobs
+for all accounts are enumerated. If this parameter is nonzero, the jobs for all
+accounts are enumerated and <i>lpcwstrAccountName</i> is reset to NULL and not
+taken into account. Otherwise, the <i>lpcwstrAccountName</i> parameter SHOULD
+indicate which accounts are to be enumerated.</p><p><b>lpcwstrAccountName: </b>Pointer to a constant,
+null-terminated character string that indicates which account to enumerate. If
+this value is set to <b>NULL</b>, the current account&#39;s jobs are enumerated.
+Cross-account enumeration is currently not supported. If the <i>fAllAccounts</i>
+parameter is nonzero, this value is reset to NULL. The value for this parameter
+can be obtained using the <b>FAX_EnumAccounts</b> (section <a href="fcd3c4ed-d64b-465e-b875-dd26d1bf3567" data-linktype="relative-path">3.1.4.1.18</a>) method.</p><p><b>dwJobTypes: </b>A <b>DWORD</b> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+value that MUST consist of a bitwise combination of the job types defined in
+section <a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a>. Only
+jobs that are of the requested types SHOULD be returned in the buffer.</p><p><b>level: </b>A <b>DWORD</b> value that indicates the
+type of structure to return in the <i>Buffer</i> parameter. The value MUST be
+set to 1.</p><p><b>Buffer: </b>Pointer to the address of a buffer
+that will receive an array of <b>FAX_JOB_ENTRY_EX_1</b> (section <a href="b02b56af-005a-4326-bfee-63613abf911d" data-linktype="relative-path">2.2.34</a>) structures. Each
+structure describes one <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9369467f-ee6b-427f-9d5c-f9cacc40ae66" data-linktype="relative-path">fax
+job</a>.</p><p><b>BufferSize: </b>Pointer to a <b>DWORD</b> value
+that returns the size, in bytes, of <i>Buffer</i>.</p><p><b>lpdwJobs: </b>Pointer to a <b>DWORD</b> value that
+receives the number of <b>FAX_JOB_ENTRY_EX_1</b> that the method returns in <i>Buffer</i>.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. This error can be returned when any of the following conditions are true: § The client&#39;s fax user account does not have any of the access rights defined in ALL_FAX_USER_ACCESS_RIGHTS (section 2.2.83) that are required in order to enumerate jobs of type JT_SEND on its own account. That is, the fAllAccounts parameter is FALSE. § The client&#39;s fax user account does not have the FAX_ACCESS_QUERY_OUT_JOBS access right that is required in order to enumerate jobs of type JT_SEND on all accounts. That is, fAllAccounts is TRUE. § The client&#39;s fax user account does not have the FAX_ACCESS_MANAGE_RECEIVE_FOLDER access right that is required in order to enumerate jobs of type JT_RECEIVE or JT_ROUTING.</td>
+ </tr><tr>
+  <td>ERROR_NOT_ENOUGH_MEMORY 0x00000008</td>
+  <td>Not enough storage is available to process this command.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect. This value is returned when any of the following conditions are true: § Either the lpwdJobs or the Buffer parameter is NULL. § The BufferSize parameter is 0. § The level parameter is not set to 1. § The lpcwstrAccountName parameter contains an improperly formatted account name or points to a nonexistent or other user account.</td>
+ </tr></tbody></table>
+</dd></dl><p>The account name that <i>lpcwstrAccountName</i> indicates
+MUST be in one of the following formats. Any other format is invalid.</p><table><thead>
+  <tr>
+   <th>
+   <p>Format</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>&lt;machine_name&gt;\&lt;user_name&gt;</td>
+  <td>For a local user with machine_name as the local machine&#39;s name.</td>
+ </tr><tr>
+  <td>&lt;domain_name&gt;\&lt;user_name&gt;</td>
+  <td>For a nonlocal user.</td>
+ </tr></tbody></table><p><b>Exceptions Thrown: </b>No exceptions are thrown
+beyond those thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

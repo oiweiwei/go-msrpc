@@ -1,0 +1,14 @@
+<div class="content" name="PDPARAMSWIRE" uuid="2e867f3d-fc4d-4ff6-a01f-ec5d3c1173fa"><p>The PDPARAMSWIRE structure precedes a <span><a href="ff0e2998-fb8b-4dff-ab64-8427fad556eb" data-linktype="relative-path">PDPARAMS</a></span>
+structure and defines the size and offset of the PDPARAMS structures in the
+complete data BLOB.</p><dl>
+<dd>
+<div><pre> typedef struct _PDPARAMSWIRE {
+   SDCLASS SdClass;
+   VARDATA_WIRE SdClassSpecific;
+ } PDPARAMSWIRE,
+  *PPDPARAMSWIRE;
+</pre></div>
+</dd></dl><p><b>SdClass:</b>  Value of <span><a href="7de560c9-ca6b-4741-a448-c67de0e52e0e" data-linktype="relative-path">SDCLASS</a></span>
+that the succeeding PDPARAMS structure corresponds to.</p><p><b>SdClassSpecific:</b>  <span><a href="cc15eeb5-f981-48d1-93f6-d4f9bfdb07ca" data-linktype="relative-path">VARDATA_WIRE</a></span>
+structure defining the size and offset of the variable-length PDPARAMS data
+succeeding it.</p></div>

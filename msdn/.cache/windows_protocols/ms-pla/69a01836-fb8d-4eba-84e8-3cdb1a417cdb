@@ -1,0 +1,66 @@
+<div class="content" name="IFolderAction" uuid="69a01836-fb8d-4eba-84e8-3cdb1a417cdb"><p>The IFolderAction interface is used to specify the actions
+that the data manager is to take on each folder under the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector set</a> root
+path if both age and size conditions are met. </p><p>The following properties MUST be implemented by the objects
+that implement the IFolderAction interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Actions</td>
+  <td>RW</td>
+  <td>Specifies the actions that the data manager is to take if both conditions (age and size) are met.</td>
+ </tr><tr>
+  <td>Age</td>
+  <td>RW</td>
+  <td>The minimum age of a folder, in days, before it can be considered for these actions. The age of the folder is the number of days since the folder was created. If set to zero, no folders will be excluded because of age. The default value is zero. Any unsigned long is a valid value for this property.</td>
+ </tr><tr>
+  <td>SendCabTo</td>
+  <td>RW</td>
+  <td>Specifies the path for sending the CAB file, if the action includes sending the CAB file. The path needs to be formatted as a UncPath. If the cab cannot be sent (because the destination does not exist or the DataCollectorSet does not have write privileges to the destination), the DataManager does not fail and data management continues.</td>
+ </tr><tr>
+  <td>Size</td>
+  <td>RW</td>
+  <td>Specifies the minimum size, in megabytes (MB), of any folder against which the actions specified in the Actions property will be executed. If set to zero, no folders will be excluded because of size. The default value is zero. Any unsigned long is a valid value for this property.</td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Age (Get)</td>
+  <td>Retrieves the Age property. Opnum: 7</td>
+ </tr><tr>
+  <td>Age (Put)</td>
+  <td>Sets the Age property. Opnum: 8</td>
+ </tr><tr>
+  <td>Size (Get)</td>
+  <td>Retrieves the Size property. Opnum: 9</td>
+ </tr><tr>
+  <td>Size (Put)</td>
+  <td>Sets the Size property. Opnum: 10</td>
+ </tr><tr>
+  <td>Actions (Get)</td>
+  <td>Retrieves the Actions property. Opnum: 11</td>
+ </tr><tr>
+  <td>Actions (Put)</td>
+  <td>Sets the Actions property. Opnum: 12</td>
+ </tr><tr>
+  <td>SendCabTo (Get)</td>
+  <td>Retrieves the SendCabTo property. Opnum: 13</td>
+ </tr><tr>
+  <td>SendCabTo (Put)</td>
+  <td>Sets the SendCabTo property. Opnum: 14</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface.</p></div>

@@ -1,0 +1,105 @@
+<div class="content" name="ReserveNtmsCleanerSlot" uuid="64b6e233-e980-446e-a5dd-386f260d0441"><p>The ReserveNtmsCleanerSlot method reserves a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a> in an online library
+for a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a> <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_95e53eb6-39e3-43ed-905e-ff1f427446d2" data-linktype="relative-path">cleaner</a> <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a71cfd0c-a569-4544-8127-7ae496bca92b" data-linktype="relative-path">cartridge</a>.</p><dl>
+<dd>
+<div><pre> HRESULT ReserveNtmsCleanerSlot(
+   [in] LPNTMS_GUID lpLibrary,
+   [in] LPNTMS_GUID lpSlot
+ );
+</pre></div>
+</dd></dl><p><b>lpLibrary: </b>A pointer to the identifier of the
+media library in which to reserve the slot.</p><p><b>lpSlot: </b> A pointer to the identifier of the
+slot to reserve.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>0x80070005 ERROR_ACCESS_DENIED</td>
+  <td>Access to at least one object is denied.</td>
+ </tr><tr>
+  <td>0x80070006 ERROR_INVALID_HANDLE</td>
+  <td>The session handle is invalid.</td>
+ </tr><tr>
+  <td>0x80070057 ERROR_INVALID_PARAMETER</td>
+  <td>A parameter is missing.</td>
+ </tr><tr>
+  <td>0x800708CA ERROR_NOT_CONNECTED</td>
+  <td>Unable to connect to the server.</td>
+ </tr><tr>
+  <td>0x800710CD ERROR_INVALID_LIBRARY</td>
+  <td>The library identifier is invalid.</td>
+ </tr><tr>
+  <td>0x800710DF ERROR_DEVICE_NOT_AVAILABLE</td>
+  <td>The library is not connected.</td>
+ </tr><tr>
+  <td>0x800710EB ERROR_CLEANER_SLOT_SET</td>
+  <td>A cleaner slot is already reserved.</td>
+ </tr><tr>
+  <td>0x8007138E ERROR_RESOURCE_NOT_AVAILABLE</td>
+  <td>The specified slot already contains a medium.</td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that
+both <i>lpLibrary</i> and <i>lpSlot</i> are not NULL. If parameter validation
+fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST check
+access rights to the library and verify that the library is enabled and online
+before further processing. If the client does not have the required access
+rights, the server MUST return ERROR_ACCESS_DENIED (0x80070005). If the specified
+slot is not present, the server MUST return ERROR_RESOURCE_NOT_AVAILABLE
+(0x8007138E). If the library is offline, the server MUST return
+ERROR_LIBRARY_OFFLINE (0x800710D1).</p><p>Only a single slot in a library can be reserved for a drive
+cleaner cartridge. If the library already has a cleaner slot reserved, the
+server MUST return ERROR_CLEANER_SLOT_SET (0x800710EB).</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>0x80070005 ERROR_ACCESS_DENIED</td>
+  <td>Access to at least one object is denied.</td>
+ </tr><tr>
+  <td>0x80070006 ERROR_INVALID_HANDLE</td>
+  <td>The session handle is invalid.</td>
+ </tr><tr>
+  <td>0x80070008 ERROR_NOT_ENOUGH_MEMORY</td>
+  <td>Not enough storage is available to process this command.</td>
+ </tr><tr>
+  <td>0x80070057 ERROR_INVALID_PARAMETER</td>
+  <td>The parameter is incorrect.</td>
+ </tr><tr>
+  <td>0x800701E7 ERROR_INVALID_ADDRESS</td>
+  <td>An attempt was made to access an invalid address.</td>
+ </tr><tr>
+  <td>0x800708CA ERROR_NOT_CONNECTED</td>
+  <td>Unable to connect to the server.</td>
+ </tr><tr>
+  <td>0x800710CD ERROR_INVALID_LIBRARY</td>
+  <td>The library identifier is invalid.</td>
+ </tr><tr>
+  <td>0x800710D1 ERROR_LIBRARY_OFFLINE</td>
+  <td>The operation cannot be performed on an offline library.</td>
+ </tr><tr>
+  <td>0x800710D5 ERROR_RESOURCE_DISABLED</td>
+  <td>A resource required for this operation is disabled.</td>
+ </tr><tr>
+  <td>0x800710DC ERROR_RESOURCE_NOT_PRESENT</td>
+  <td>The resource that is required for this operation does not exist.</td>
+ </tr></tbody></table><p>If the specified slot already contains a medium, the server
+MUST return ERROR_RESOURCE_NOT_AVAILABLE (0x8007138E).</p><p>On completion of an asynchronous operation, notification
+will be sent with the identifier lpLibrary.</p></div>

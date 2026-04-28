@@ -1,0 +1,159 @@
+<div class="content" name="NetrLogonSamLogonWithFlags" uuid="d17f1077-de4b-4fcd-8867-39068cb789f5"><p>The <b>NetrLogonSamLogonWithFlags</b> method SHOULD<a id="Appendix_A_Target_220"></a><a aria-label="Product behavior note 220" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_220" data-linktype="relative-path">&lt;220&gt;</a> handle logon requests for the
+<span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0b53d5bb-74ab-4705-8657-c22d32781103" data-linktype="relative-path">SAM</a></span>
+accounts. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrLogonSamLogonWithFlags(
+   [in, unique, string] LOGONSRV_HANDLE LogonServer,
+   [in,string,unique,range(0, 256)] wchar_t* ComputerName,
+   [in, unique] PNETLOGON_AUTHENTICATOR Authenticator,
+   [in, out, unique] PNETLOGON_AUTHENTICATOR ReturnAuthenticator,
+   [in] NETLOGON_LOGON_INFO_CLASS LogonLevel,
+   [in, switch_is(LogonLevel)] PNETLOGON_LEVEL LogonInformation,
+   [in] NETLOGON_VALIDATION_INFO_CLASS ValidationLevel,
+   [out, switch_is(ValidationLevel)] 
+     PNETLOGON_VALIDATION ValidationInformation,
+   [out] UCHAR * Authoritative,
+   [in, out] ULONG * ExtraFlags
+ );
+</pre></div>
+</dd></dl><p><b>LogonServer: </b>The custom binding handle, as
+defined in section <span><a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a></span>.</p><p><b>ComputerName: </b>The Unicode string that contains
+the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS
+name</a></span> of the client computer calling this method.</p><p><b>Authenticator: </b>A pointer to a <b>NETLOGON_AUTHENTICATOR</b>
+structure, as specified in section <span><a href="76c93227-942a-4687-ab9d-9d972ffabdab" data-linktype="relative-path">2.2.1.1.5</a></span>, that
+contains the client <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e72a2c02-84a2-4ce3-b66f-86f725642dc3" data-linktype="relative-path">authenticator</a></span>.</p><p><b>ReturnAuthenticator: </b>A pointer to a <b>NETLOGON_AUTHENTICATOR</b>
+structure, as specified in section 2.2.1.1.5, that contains the server return
+authenticator.</p><p><b>LogonLevel: </b>A <span><a href="8c7808e5-4e5c-420e-9c90-47286da2218f" data-linktype="relative-path">NETLOGON_LOGON_INFO_CLASS</a></span>
+structure, as specified in section 2.2.1.4.16, that specifies the type of logon
+information passed in the <i>LogonInformation</i> parameter.</p><p><b>LogonInformation: </b>A pointer to a <span><a href="d0128545-f74b-4d89-afd9-42621dff24c4" data-linktype="relative-path">NETLOGON_LEVEL</a></span>
+structure, as specified in section 2.2.1.4.6, that describes the logon request
+information.</p><p><b>ValidationLevel: </b>A <b>NETLOGON_VALIDATION_INFO_CLASS</b>
+enumerated type, as specified in section <span><a href="95154ae4-d305-43e5-82e4-d5353e0f117c" data-linktype="relative-path">2.2.1.4.17</a></span>, that
+contains the validation level requested by the client.</p><p><b>ValidationInformation: </b>A pointer to a <span><a href="5eb0b7cb-3a55-477b-92fc-c236bd5873fa" data-linktype="relative-path">NETLOGON_VALIDATION</a></span>
+structure, as specified in section 2.2.1.4.14, that describes the user
+validation information returned to the client. The type of the <b>NETLOGON_VALIDATION</b>
+used is determined by the value of the <i>ValidationLevel</i> parameter.</p><p><b>Authoritative: </b>A pointer to a char value
+representing a Boolean condition. FALSE is indicated by the value 0x00; TRUE
+SHOULD<a id="Appendix_A_Target_221"></a><a aria-label="Product behavior note 221" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_221" data-linktype="relative-path">&lt;221&gt;</a> be indicated by the value
+0x01 and MAY also be indicated by any nonzero value.</p><dl>
+<dd>
+<p>This Boolean value indicates whether the validation
+information is an <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_1ed0d067-3bfd-4fd5-a68a-5e947d379858" data-linktype="relative-path">authoritative response</a></span>.
+This field is necessary because the request might be forwarded through multiple
+servers. A value of TRUE indicates that the validation information is final and
+MUST remain unchanged. The value FALSE indicates that the validation
+information is not an authoritative response and that the client SHOULD resend
+the request to another server.  </p>
+</dd></dl><p><b>ExtraFlags: </b>A pointer to a set of bit flags
+that specify delivery settings. A flag is TRUE (or set) if its value is equal
+to 1. The value is constructed from zero or more bit flags from the following
+table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>D</td>
+  <td>C</td>
+  <td>B</td>
+  <td>A</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits SHOULD<a id="Appendix_A_Target_222"></a><a aria-label="Product behavior note 222" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_222" data-linktype="relative-path">&lt;222&gt;</a>
+defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>A</td>
+  <td>Request is passed to the domain controller at the root of the forest.</td>
+ </tr><tr>
+  <td>B</td>
+  <td>Request is passed to the DC at the end of the first hop over a cross-forest trust.</td>
+ </tr><tr>
+  <td>C</td>
+  <td>Request is passed by an RODC to a DC in a different domain.</td>
+ </tr><tr>
+  <td>D</td>
+  <td>Request is an NTLM authentication package request passed by an RODC.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero and MUST be
+ignored on receipt.</p>
+</dd></dl><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code.</p><p>Message processing is identical to <span><a href="a3a192c8-0070-4ae3-a537-dfe0a144426a" data-linktype="relative-path">NetrLogonSamLogon</a></span>,
+as specified in section 3.5.4.5.3, except for the following:</p><ul><li><p><span><span> 
+</span></span>NetrLogonSamLogonWithFlags contains an additional parameter named
+<i>ExtraFlags</i>.</p>
+</li></ul></div>

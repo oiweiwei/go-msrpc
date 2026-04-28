@@ -1,0 +1,11 @@
+<div class="content" name="Introduction" uuid="0922eca2-bacd-4b1e-bd56-18b8681028a8"><p>The Print System Asynchronous Remote Protocol supports
+printing and spooling operations between a client and server, including <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print job</a></span>
+control and <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_b49fcfa1-e15c-4dce-be33-d74d5bfda785" data-linktype="relative-path">print system</a></span>
+management. It is designed to be used asynchronously by clients whose
+implementations permit them to continue execution without waiting for a method
+call to return. </p><p>This protocol is based on the <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">Remote Procedure Call (RPC)</a></span>
+protocol <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+Its functionality is parallel to the Print System Remote Protocol <span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>,
+which is used synchronously. </p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

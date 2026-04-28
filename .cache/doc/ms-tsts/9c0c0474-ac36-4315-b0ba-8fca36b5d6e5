@@ -1,9 +1,0 @@
-<div class="content"><p>Cache statistics.<a id="Appendix_A_Target_96"></a><a aria-label="Product behavior note 96" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_96" data-linktype="relative-path">&lt;96&gt;</a> </p><dl>
-<dd>
-<div><pre> typedef struct _RESERVED_CACHE {
-   THINWIRECACHE ThinWireCache[MAX_THINWIRECACHE ];
- } RESERVED_CACHE,
-  *PRESERVED_CACHE;
-</pre></div>
-</dd></dl><p><b>ThinWireCache:</b>  The ThinWireCache
-structure used for the terminal server&#39;s display for RESERVED_CACHE.</p></div>

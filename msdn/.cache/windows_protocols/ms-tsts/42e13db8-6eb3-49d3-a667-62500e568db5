@@ -1,0 +1,18 @@
+<div class="content" name="WINSTATIONPRODID" uuid="42e13db8-6eb3-49d3-a667-62500e568db5"><p>The <b>WINSTATIONPRODID</b> structure represents a product
+ID for the session.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSTATIONPRODID {
+   WCHAR DigProductId[CLIENT_PRODUCT_ID_LENGTH];
+   WCHAR ClientDigProductId[CLIENT_PRODUCT_ID_LENGTH];
+   WCHAR OuterMostDigProductId[CLIENT_PRODUCT_ID_LENGTH];
+   ULONG curentSessionId;
+   ULONG ClientSessionId;
+   ULONG OuterMostSessionId;
+ } WINSTATIONPRODID,
+  *PWINSTATIONPRODID;
+</pre></div>
+</dd></dl><p><b>DigProductId:</b>  The product ID of the
+server. For information about the ProductID property, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=207862" data-linktype="external">[MSDN-ProductID]</a></span>.<a id="Appendix_A_Target_130"></a><a aria-label="Product behavior note 130" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_130" data-linktype="relative-path">&lt;130&gt;</a></p><p><b>ClientDigProductId:</b>  The product ID
+of the client.<a id="Appendix_A_Target_131"></a><a aria-label="Product behavior note 131" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_131" data-linktype="relative-path">&lt;131&gt;</a></p><p><b>OuterMostDigProductId:</b>  Not used.</p><p><b>curentSessionId:</b>  The current
+session identifier.</p><p><b>ClientSessionId:</b>  The client&#39;s
+session identifier.</p><p><b>OuterMostSessionId:</b>  Not used.</p></div>

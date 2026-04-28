@@ -1,0 +1,94 @@
+<div class="content" name="IValueMapItem" uuid="9786577c-9ac8-44d5-a29f-3f14514af0d8"><p>The IValueMapItem interface is used to define a named-value
+pair.</p><p>The following properties MUST be implemented by the objects
+that implement the IValueMapItem interface.</p><p>The following is an XML representation of a ValueMapItem.</p><dl>
+<dd>
+<div><pre> &lt;Key&gt; &lt;/Key&gt;
+ &lt;Description&gt;&lt;/Description&gt;
+ &lt;Enabled&gt;&lt;/Enabled&gt;
+ &lt;Value&gt;&lt;/Value&gt; 
+  
+</pre></div>
+</dd></dl><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Description</td>
+  <td>RW</td>
+  <td>Specifies the description of the item.</td>
+ </tr><tr>
+  <td>Enabled</td>
+  <td>RW</td>
+  <td>Specifies whether or not the item is enabled. If an item is not enabled, its Value property will be ignored. In typical usage, a ValueMap will contain a ValueMapItem for each of the multiple possible settings of the property that the ValueMap is passed to (such as an entry for every Keyword or every Level that can be used by an ITraceDataProvider). This Enabled property indicates whether or not the ValueMapItem will be used. Essentially, the ValueMap contains a ValueMapItem for each of the multiple possible options, and the Enabled property indicates which options are actually selected.</td>
+ </tr><tr>
+  <td>Key</td>
+  <td>RW</td>
+  <td>Specifies the name of the item. The name of the item can be any non-empty BSTR. The semantics of the key depend on the ValueMapType property, specified in section 3.2.4.18, of the IValueMap to which this IValueMapItem belongs. The over-the-wire transmission of a BSTR is specified in [MS-OAUT] section 2.2.23. The Performance Logs and Alerts Protocol does not have any predefined Key values or semantic definitions. The only condition Performance Logs and Alerts Protocol places on the Key is that it cannot be an empty BSTR.&lt;36&gt;</td>
+ </tr><tr>
+  <td>Value</td>
+  <td>RW</td>
+  <td>Specifies the value of the item. The value is stored in a VARIANT. The format and over the wire transmission of a VARIANT is specified in [MS-OAUT] section 2.2.29. Any VARIANT is a legal value for this property. The ValueMapItem is a generic container and the semantics of the Value property depend on what it is being used to contain. The ValueMapType property contains information regarding how the Value property will be interpreted. &lt;37&gt;</td>
+ </tr><tr>
+  <td>ValueMapType</td>
+  <td>RW</td>
+  <td>Specifies the type of ValueMap in which the ValueMapItem will be inserted. Information on the different types of ValueMaps are specified in section 2.2.2.11.</td>
+ </tr></tbody></table><p>The following is an XML representation of a ValueMapItem;
+please see section <a href="b5be2d38-3f21-478d-a8b9-a61128eb2751" data-linktype="relative-path">3.2.4.19</a>
+the XML layout of entire data collector set element.</p><dl>
+<dd>
+<div><pre>  
+ &lt;Key&gt; &lt;/Key&gt;
+ &lt;Description&gt;&lt;/Description&gt;
+ &lt;Enabled&gt;&lt;/Enabled&gt;
+ &lt;Value&gt;&lt;/Value&gt; 
+  
+</pre></div>
+</dd></dl><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Description (Get)</td>
+  <td>Retrieves the Description property. Opnum: 7</td>
+ </tr><tr>
+  <td>Description (Put)</td>
+  <td>Sets the Description property. Opnum: 8</td>
+ </tr><tr>
+  <td>Enabled (Get)</td>
+  <td>Retrieves the Enabled property. Opnum: 9</td>
+ </tr><tr>
+  <td>Enabled (Put)</td>
+  <td>Sets the Enabled property. Opnum: 10</td>
+ </tr><tr>
+  <td>Key (Get)</td>
+  <td>Retrieves the Key property. Opnum: 11</td>
+ </tr><tr>
+  <td>Key (Put)</td>
+  <td>Sets the Key property. Opnum: 12</td>
+ </tr><tr>
+  <td>Value (Get)</td>
+  <td>Retrieves the Value property. Opnum: 13</td>
+ </tr><tr>
+  <td>Value (Put)</td>
+  <td>Sets the Value property. Opnum: 14</td>
+ </tr><tr>
+  <td>ValueMapType (Get)</td>
+  <td>Retrieves the ValueMapType property. Opnum: 15</td>
+ </tr><tr>
+  <td>ValueMapType (Put)</td>
+  <td>Sets the ValueMapType property. Opnum: 16</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface.</p></div>

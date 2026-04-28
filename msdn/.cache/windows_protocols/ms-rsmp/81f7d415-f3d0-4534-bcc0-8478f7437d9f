@@ -1,0 +1,44 @@
+<div class="content" name="GetNtmsRequestOrder" uuid="81f7d415-f3d0-4534-bcc0-8478f7437d9f"><p>The GetNtmsRequestOrder method retrieves the order in which
+a request will be processed in the library queue.</p><dl>
+<dd>
+<div><pre> HRESULT GetNtmsRequestOrder(
+   [in] LPNTMS_GUID lpRequestId,
+   [out] DWORD* lpdwOrderNumber
+ );
+</pre></div>
+</dd></dl><p><b>lpRequestId: </b>A pointer to the identifier of a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f8da5142-cddf-49b1-b24c-a352db74cbbb" data-linktype="relative-path">library request</a>.</p><p><b>lpdwOrderNumber: </b> A pointer to the order in
+the queue in which the request will be processed. This queue MUST start with
+order 1.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>0x80070005 ERROR_ACCESS_DENIED</td>
+  <td>NTMS_MODIFY_ACCESS to the library is denied; other security errors are possible but indicate a security subsystem error.</td>
+ </tr><tr>
+  <td>0x80070008 ERROR_NOT_ENOUGH_MEMORY</td>
+  <td>An allocation failure occurred during processing.</td>
+ </tr><tr>
+  <td>0x80070057 ERROR_INVALID_PARAMETER</td>
+  <td>The library identifier is missing.</td>
+ </tr><tr>
+  <td>0x800710D9 ERROR_DATABASE_FAILURE</td>
+  <td>The database is inaccessible or damaged.</td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that
+both <i>lpRequestId</i> and <i>lpdwOrderNumber</i> are not NULL. If parameter
+validation fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>The server MUST search the request queue for the request ID
+that is pointed to by <i>lpRequestId</i>. If the server finds the entry for <i>lpRequestId</i>,
+it MUST return the order of that entry in <i>lpdwOrderNumber</i>; otherwise, it
+MUST return 0 in <i>lpdwOrderNumber</i>.</p></div>

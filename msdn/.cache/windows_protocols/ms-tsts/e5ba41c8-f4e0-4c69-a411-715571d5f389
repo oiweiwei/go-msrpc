@@ -1,0 +1,14 @@
+<div class="content" name="FLOWCONTROLCLASS" uuid="e5ba41c8-f4e0-4c69-a411-715571d5f389"><p>The FLOWCONTROLCLASS enumeration specifies the type of flow
+control, if any, supported. </p><dl>
+<dd>
+<div><pre> typedef  enum _FLOWCONTROLCLASS
+ {
+   FlowControl_None,
+   FlowControl_Hardware,
+   FlowControl_Software
+ } FLOWCONTROLCLASS;
+</pre></div>
+</dd></dl><p><b>FlowControl_None:  </b>Flow control is not
+enabled.</p><p><b>FlowControl_Hardware:  </b>Hardware flow control
+is enabled.</p><p><b>FlowControl_Software:  </b>Software flow control
+is enabled.</p></div>

@@ -1,0 +1,35 @@
+<div class="content" name="RpcGetSessionInformationEx" uuid="7a6b39aa-61a3-4a89-b486-520e81f4f9e1"><p>The RpcGetSessionInformationEx method retrieves extended
+information about a specified session running on a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>.<a id="Appendix_A_Target_151"></a><a aria-label="Product behavior note 151" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_151" data-linktype="relative-path">&lt;151&gt;</a> The caller MUST have WINSTATION_QUERY
+permission for the session. The method checks whether the caller has
+WINSTATION_QUERY permission (section <span><a href="4507e852-be3d-45b6-bc47-8ca0b552c94d" data-linktype="relative-path">3.1.1</a></span>) by setting
+it as the Access Request mask, and fails if the caller does not have the
+permission. </p><dl>
+<dd>
+<div><pre> HRESULT RpcGetSessionInformationEx(
+   [in] handle_t hBinding,
+   [in] LONG SessionId,
+   [in] DWORD Level,
+   [ref, out] PLSMSESSIONINFORMATION_EX LSMSessionInfoExPtr
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>.
+For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93771" data-linktype="external">[MSDN-RPCBIND]</a></span>.</p><p><b>Level: </b>The level of the information to be
+retrieved. This MUST be 1.</p><p><b>LSMSessionInfoExPtr: </b>A <span><a href="4e7039f4-d1d0-44f2-82f0-08b057476db5" data-linktype="relative-path">PLSMSESSIONINFORMATION_EX</a></span>
+element containing information about the session.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Successful completion.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

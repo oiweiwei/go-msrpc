@@ -1,0 +1,118 @@
+<div class="content" name="ITraceDataProvider" uuid="ebd49d76-5e50-4dd3-869c-8bba6eba42f7"><p>The ITraceDataProvider interface is used to specify the
+details on each provider that is to be enabled to an event trace session.</p><p>The following properties MUST be implemented by objects that
+implement the ITraceDataProvider interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property name </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DisplayName</td>
+  <td>RW</td>
+  <td>The name of the provider. The name is provided by the user and can be read by the user but is otherwise ignored by the PLA protocol. The field exists so that the user can attach a semantically meaningful name to the ITraceDataProvider if he or she so chooses rather than having to differentiate providers based on the Guid property, defined below. The Guid in this context refers to the COM interface property, which is used as a PLA-UID and does not comply with the semantics of GUID specified in [C706].</td>
+ </tr><tr>
+  <td>Guid</td>
+  <td>RW</td>
+  <td>The PLA-UID of the provider. On collection, this PLA-UID uniquely identifies the provider to be enabled. The value 0000-0000-0000-0000-0000-0000-0000-0000 is never a valid provider PLA-UID, and therefore the Guid property is set to 0000-0000-0000-0000-0000-0000-0000-0000 when no provider is specified. The Guid in this context refers to the COM interface property, which is used as a PLA-UID and does not comply with the semantics of GUID specified in [C706]. The valid range for this property is from 0000-0000-0000-0000-0000-0000-0000-0001 to FFFF-FFFF-FFFF-FFFF-FFFF-FFFF-FFFF-FFFF.</td>
+ </tr><tr>
+  <td>Level</td>
+  <td>R</td>
+  <td>The list of levels for the provider. On collection, events from this provider are collected only if their levels are less than or equal to the value of the enabled level; this property is used in conjunction with the KeywordsAny and KeywordsAll properties to control which events are collected from a provider. The enabled level is stored in the Value property of the Level property. The level denotes the severity of event (as defined by the event provider). There are predefined trace levels that can be used to control tracing; there can be more trace levels that are defined in addition to these predefined levels. The maximum value of a level is 0x000000FF. The possible pre-defined levels are:  Log Always  Critical  Error  Warning  Informational  If the enabled level has the value of 3, all events with level 3, 2, or 1 will be collected. These levels semantically represent Warning, Error, and Critical events. If the enabled level has the value of 0, then events with any level will be collected. Setting the enabled level to 0 is equivalent to setting the enabled level to 0x000000FF.</td>
+ </tr><tr>
+  <td>KeywordsAny</td>
+  <td>R</td>
+  <td>The list of keywords of the provider. The keywords determine the category of events for the provider to write; this property is used in conjunction with the Level and KeywordsAll properties. On collection, events from this provider are collected only if their keywords include at least one of the keywords in KeywordsAny and all of the keywords in KeywordsAll. If KeywordsAny is zero, then the provider will successfully write all events assuming that the event&#39;s keywords pass the KeywordsAll check. The Value property of the KeywordsAny property stores the bitwise-or of the keywords in the KeywordsAny property.</td>
+ </tr><tr>
+  <td>KeywordsAll</td>
+  <td>R</td>
+  <td>The list of keywords of the provider. The keywords determine the category of events for the provider to write; this is used in conjunction with the KeywordsAny and Level properties. On collection, events from this provider are collected only if their keywords include all of the keywords in KeywordsAll. The Value property of the KeywordsAll property stores the bitwise-or of the keywords in the KeywordsAll property. If KeywordsAll is zero, then the provider will successfully write all events assuming that the event&#39;s keywords pass the KeywordsAny check.</td>
+ </tr><tr>
+  <td>Properties</td>
+  <td>R</td>
+  <td>The list of extra information that can be collected when events from this provider are collected. The possible properties are the user&#39;s security identifier, as specified in [MS-DTYP] section 2.4.2.3, (value 1), or the session identifier that is assigned by either the Remote Desktop Session Host server, Remote Desktop Virtualization Host server, or virtual machine (value 2).</td>
+ </tr><tr>
+  <td>FilterEnabled</td>
+  <td>RW</td>
+  <td>Determines whether provider-side filtering MUST be enabled. If the FilterEnabled property is set to VARIANT_TRUE, the filter stored in the FilterData property (as specified in section 3.2.4.11.10) will be used to filter the provider. Otherwise, the FilterData property will be ignored.</td>
+ </tr><tr>
+  <td>FilterType</td>
+  <td>RW</td>
+  <td>Not used. Because the value is currently not used, any ULONG is a valid value, so validation will always succeed for the property.</td>
+ </tr><tr>
+  <td>FilterData</td>
+  <td>RW</td>
+  <td>When the client enables tracing for a provider on the server, it has the option of passing back data to that provider. This data is provider-specific, and the client MUST know how the provider expects the FilterData to be formatted. The FilterData property can contain any arbitrary type that is understood by the trace provider but MUST NOT exceed 1 KB in total size. The PLA protocol has no knowledge of how this FilterData is constructed and what are its possible values. This data is opaque to the protocol. It serves as the transport for this data between the client and the server, and the PLA protocol only restriction on this property is that this data MUST NOT exceed 1 KB in size. The FilterData that is specified by the client will be sent back to the server trace provider being enabled if the FilterEnabled property is set to VARIANT_TRUE. Upon receiving this FilterData, the provider MUST use it to control which events are logged; this property serves as a filter on the events that are logged by the provider. The PLA protocol has no knowledge of whether or not the provider did use the FilterData to control which events it logs. For example, the client can specify an IP address as the value of the FilterData. When the trace provider receives this FilterData, it can only log events that have a matching IP address.</td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DisplayName (Get)</td>
+  <td>Retrieves the DisplayName property. Opnum: 7</td>
+ </tr><tr>
+  <td>DisplayName (Put)</td>
+  <td>Sets the DisplayName property. Opnum: 8</td>
+ </tr><tr>
+  <td>Guid (Get)</td>
+  <td>Retrieves the Guid property. Opnum: 9</td>
+ </tr><tr>
+  <td>Guid (Put)</td>
+  <td>Sets the Guid property. Opnum: 10</td>
+ </tr><tr>
+  <td>Level (Get)</td>
+  <td>Retrieves the Level property. Opnum: 11</td>
+ </tr><tr>
+  <td>KeywordsAny (Get)</td>
+  <td>Retrieves the KeywordsAny property. Opnum: 12</td>
+ </tr><tr>
+  <td>KeywordsAll (Get)</td>
+  <td>Retrieves the KeywordsAll property. Opnum: 13</td>
+ </tr><tr>
+  <td>Properties (Get)</td>
+  <td>Retrieves the Properties property. Opnum: 14</td>
+ </tr><tr>
+  <td>FilterEnabled (Get)</td>
+  <td>Retrieves the FilterEnabled property. Opnum: 15</td>
+ </tr><tr>
+  <td>FilterEnabled (Put)</td>
+  <td>Sets the FilterEnabled property. Opnum: 16</td>
+ </tr><tr>
+  <td>FilterType (Get)</td>
+  <td>Retrieves the FilterType property. Opnum: 17</td>
+ </tr><tr>
+  <td>FilterType (Put)</td>
+  <td>Sets the FilterType property. Opnum: 18</td>
+ </tr><tr>
+  <td>FilterData (Get)</td>
+  <td>Retrieves the FilterData property. Opnum: 19</td>
+ </tr><tr>
+  <td>FilterData (Put)</td>
+  <td>Sets the FilterData property. Opnum: 20</td>
+ </tr><tr>
+  <td>Query</td>
+  <td>Populates the other properties based on the local repository of providers. Opnum: 21</td>
+ </tr><tr>
+  <td>Resolve</td>
+  <td>Used to resolve the properties. Opnum: 22</td>
+ </tr><tr>
+  <td>SetSecurity</td>
+  <td>Updates the system-wide security descriptor of the provider. Opnum: 23</td>
+ </tr><tr>
+  <td>GetSecurity</td>
+  <td>Retrieves the system-wide security descriptor of the provider. Opnum: 24</td>
+ </tr><tr>
+  <td>GetRegisteredProcesses</td>
+  <td>Retrieves a list of processes that have registered as an event trace data provider. Opnum: 25</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. </p></div>

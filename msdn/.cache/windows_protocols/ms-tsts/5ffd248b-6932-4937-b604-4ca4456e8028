@@ -1,0 +1,38 @@
+<div class="content" name="WINSTATIONSHADOW" uuid="5ffd248b-6932-4937-b604-4ca4456e8028"><p>The WINSTATIONSHADOW structure is used for <span><a href="1bba9ff2-71d3-49a3-bb26-2e5f6fcab3ee" data-linktype="relative-path">RpcWinStationQueryInformation</a></span>
+and <span><a href="2a5ee131-a1dd-44c7-9880-98df708061ea" data-linktype="relative-path">RpcWinStationSetInformation</a></span>
+operations.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSTATIONSHADOW {
+   SHADOWSTATECLASS ShadowState;
+   SHADOWCLASS ShadowClass;
+   ULONG SessionId;
+   ULONG ProtocolType;
+ } WINSTATIONSHADOW,
+  *PWINSTATIONSHADOW;
+</pre></div>
+</dd></dl><p><b>ShadowState:</b>  Specifies the current
+state of shadowing.</p><p><b>ShadowClass:</b>  Specifies the type of
+shadowing.</p><p><b>SessionId:</b>  Specifies the session ID
+of the session.</p><p><b>ProtocolType:</b>  Specifies the type of
+protocol on the session. Can be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>PROTOCOL_OTHERS</td>
+  <td>1</td>
+ </tr><tr>
+  <td>PROTOCOL_RDP</td>
+  <td>2</td>
+ </tr><tr>
+  <td>PROTOCOL_CONSOLE</td>
+  <td>0&lt;129&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

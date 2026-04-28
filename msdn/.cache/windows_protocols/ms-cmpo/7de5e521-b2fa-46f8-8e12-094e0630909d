@@ -1,0 +1,46 @@
+<div class="content" name="BIND_INFO_BLOB" uuid="7de5e521-b2fa-46f8-8e12-094e0630909d"><p>The BIND_INFO_BLOB packet is a structure containing details
+on how to bind to a <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">dwcbThisStruct</td>
+ </tr>
+ <tr>
+  <td colspan="32">grbitComProtocols</td>
+ </tr>
+</tbody></table><p><b>dwcbThisStruct (4 bytes): </b>An unsigned 4-byte
+integer. The size of this structure in bytes. This value MUST be set to 8.</p><p><b>grbitComProtocols (4 bytes): </b>A <a href="1b8931ee-08b1-49df-849b-1c68e66a87c4" data-linktype="relative-path">COM_PROTOCOL</a> bit field
+specifying the <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0c171cc7-e9c4-41b6-95a9-536db0042c7a" data-linktype="relative-path">RPC protocol
+sequences</a> that the partner supports. </p></div>

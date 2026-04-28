@@ -1,0 +1,117 @@
+<div class="content" name="GROUP_MEMBERSHIP" uuid="efb926f6-48c3-4c29-8a45-86a67bfaaf27"><p>The <b>GROUP_MEMBERSHIP</b> structure identifies the <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_51c51c14-7f9d-4c0b-a69c-d3e059bfffac" data-linktype="relative-path">group</a></span>
+to which an account belongs.</p><dl>
+<dd>
+<div><pre> typedef struct _GROUP_MEMBERSHIP {
+   ULONG RelativeId;
+   ULONG Attributes;
+ } GROUP_MEMBERSHIP,
+  *PGROUP_MEMBERSHIP;
+</pre></div>
+</dd></dl><p><b>RelativeId:</b> The <span><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">relative identifier (RID)</a></span>
+for a particular group.</p><p><b>Attributes:</b> A set of values that describe the
+group membership attributes set for the RID specified in <b>RelativeId</b>. The
+value is constructed from one or more bit flags from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>C</td>
+  <td>B</td>
+  <td>A</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>A</td>
+  <td>The SID cannot have the SE_GROUP_ENABLED attribute removed. Corresponds to the SID attribute SE_GROUP_MANDATORY. This attribute prevents the user from disabling the group. Disabling a group causes the group to be ignored by access validation routines.</td>
+ </tr><tr>
+  <td>B</td>
+  <td>The SID is enabled by default (as opposed to being enabled by an application). Corresponds to the SID attribute SE_GROUP_ENABLED_BY_DEFAULT.</td>
+ </tr><tr>
+  <td>C</td>
+  <td>The SID is enabled for access checks. Corresponds to the SID attribute SE_GROUP_ENABLED. The SE_GROUP_ENABLED attribute enables the group.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be zero and MUST be ignored on
+receipt. For more information, see <span><a href="https://go.microsoft.com/fwlink/?linkid=2101788" data-linktype="external">[MSDOCS-TokenGrp]</a></span>.</p>
+</dd></dl><p>These values are opaque to the Netlogon protocol. They are
+not used or processed directly. All fields of this structure have the same
+meaning as the identically named fields in the <b>GROUP_MEMBERSHIP</b>
+structure as specified in <span><a href="../ms-pac/166d8064-c863-41e1-9c23-edaaa5f36962" data-linktype="relative-path">[MS-PAC]</a></span>
+section <span><a href="../ms-pac/40526584-1565-4fb1-97b7-eb38fd880595" data-linktype="relative-path">2.2.2</a></span>.</p></div>

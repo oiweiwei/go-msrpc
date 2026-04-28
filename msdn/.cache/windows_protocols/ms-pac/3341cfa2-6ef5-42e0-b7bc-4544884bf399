@@ -1,0 +1,129 @@
+<div class="content" name="PAC_INFO_BUFFER" uuid="3341cfa2-6ef5-42e0-b7bc-4544884bf399"><p>Following the <a href="6655b92f-ab06-490b-845d-037e6987275f" data-linktype="relative-path">PACTYPE (section 2.3)</a>
+structure is an array of <b>PAC_INFO_BUFFER</b> structures each of which
+defines the type and byte offset to a buffer of the PAC. The <b>PAC_INFO_BUFFER</b>
+array has no defined ordering. Therefore, the order of the <b>PAC_INFO_BUFFER</b>
+buffers has no significance. However, once the <a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_6e5aafba-6b66-4fdd-872e-844f142af287" data-linktype="relative-path">Key Distribution Center (KDC)</a>
+and server signatures are generated, the ordering of the buffers MUST NOT
+change, or signature verification of the <b>PAC</b> contents will fail.</p><p>The <b>PAC_INFO_BUFFER</b> structure is defined as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _PAC_INFO_BUFFER {
+     ULONG ulType;
+     ULONG cbBufferSize;
+     ULONG64 Offset;
+ } PAC_INFO_BUFFER, *PPAC_INFO_BUFFER;
+</pre></div>
+</dd></dl><p>The format of the <b>PAC_INFO_BUFFER</b> structure is
+defined as follows. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">ulType</td>
+ </tr>
+ <tr>
+  <td colspan="32">cbBufferSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">Offset</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><a id="_Hlk126597689"></a><a id="_Hlk126597673"><b>ulType
+(4 bytes): </b>A 32-bit unsigned integer in little-endian format that describes
+the type of data present in the buffer contained at <b>Offset</b>. </a>Types
+that are not understood MUST be ignored.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000001 (1)</td>
+  <td>Logon information (section 2.5). PAC structures MUST contain one buffer of this type. Additional logon information buffers MUST be ignored.</td>
+ </tr><tr>
+  <td>0x00000002 (2)</td>
+  <td>Credentials information (section 2.6). PAC structures SHOULD NOT contain more than one buffer of this type, based on constraints specified in section 2.6. Second or subsequent credentials information buffers MUST be ignored on receipt.</td>
+ </tr><tr>
+  <td>0x00000006 (6)</td>
+  <td>Server checksum (section 2.8). PAC structures MUST contain one buffer of this type for Kerberos ticket-granting service (TGS) requests or Kerberos application protocol (AP) requests, and none otherwise. Additional logon server checksum buffers MUST be ignored.</td>
+ </tr><tr>
+  <td>0x00000007 (7)</td>
+  <td>KDC (privilege server) checksum (section 2.8). PAC structures MUST contain one buffer of this type for Kerberos ticket-granting service (TGS) requests or Kerberos application protocol (AP) requests, and none otherwise. Additional KDC checksum buffers MUST be ignored.</td>
+ </tr><tr>
+  <td>0x0000000A (10)</td>
+  <td>Client name and ticket information (section 2.7). PAC structures MUST contain one buffer of this type. Additional client and ticket information buffers MUST be ignored.</td>
+ </tr><tr>
+  <td>0x0000000B (11)</td>
+  <td>Constrained delegation information (section 2.9). PAC structures MUST contain one buffer of this type for Service for User to Proxy (S4U2proxy) [MS-SFU] requests and none otherwise. Additional constrained delegation information buffers MUST be ignored.</td>
+ </tr><tr>
+  <td>0x0000000C (12)</td>
+  <td>User principal name (UPN) and Domain Name System (DNS) information (section 2.10). PAC structures SHOULD NOT&lt;3&gt; contain more than one buffer of this type. Second or subsequent UPN and DNS information buffers MUST be ignored on receipt.</td>
+ </tr><tr>
+  <td>0x0000000D (13)</td>
+  <td>Client claims information (section 2.11). PAC structures SHOULD NOT&lt;4&gt; contain more than one buffer of this type. Additional client claims information buffers MUST be ignored.</td>
+ </tr><tr>
+  <td>0x0000000E (14)</td>
+  <td>Device information (section 2.12). PAC structures SHOULD NOT&lt;5&gt; contain more than one buffer of this type. Additional device information buffers MUST be ignored.</td>
+ </tr><tr>
+  <td>0x0000000F (15)</td>
+  <td>Device claims information (section 2.13). PAC structures SHOULD NOT&lt;6&gt; contain more than one buffer of this type. Additional device claims information buffers MUST be ignored.</td>
+ </tr><tr>
+  <td>0x00000010 (16)</td>
+  <td>Ticket checksum (section 2.8). PAC structures MUST contain one buffer of this type for Kerberos ticket-granting service (TGS) requests, and none otherwise. Additional ticket checksum buffers MUST be ignored.&lt;7&gt;</td>
+ </tr><tr>
+  <td>0x00000011 (17)</td>
+  <td>PAC Attributes indicates that the buffer contains attribute bits for the PAC (section 2.14). PAC structures SHOULD NOT contain more than one buffer of this type. Additional attribute buffers MUST be ignored.&lt;8&gt;</td>
+ </tr><tr>
+  <td>0x00000012 (18)</td>
+  <td>PAC Requestor SID indicates that the buffer contains the SID of principal that requested the PAC (section 2.15). PAC structures MUST contain one buffer of this type.&lt;9&gt;</td>
+ </tr><tr>
+  <td>0x00000013 (19)</td>
+  <td>Extended KDC (privilege server) checksum (section 2.8). PAC structures MUST contain one buffer of this type for Kerberos ticket-granting service (TGS) requests, and none otherwise. Additional Extended KDC checksum buffers MUST be ignored.&lt;10&gt;</td>
+ </tr><tr>
+  <td>0x00000014 (20)</td>
+  <td>PAC Requestor GUID indicates that the buffer contains the GUID of the principal that requested the PAC (section 2.16).</td>
+ </tr></tbody></table>
+</dd></dl><p><b>cbBufferSize (4 bytes): </b>A 32-bit unsigned
+integer in little-endian format that contains the size, in bytes, of the buffer
+in the <b>PAC </b>located at <b>Offset</b>.</p><p><b>Offset (8 bytes): </b>A 64-bit unsigned integer in
+little-endian format that contains the offset to the beginning of the buffer,
+in bytes, from the beginning of the PACTYPE structure (section 2.3). The data
+offset MUST be a multiple of eight. The following sections specify the format
+of each type of element.</p></div>

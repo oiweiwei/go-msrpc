@@ -1,0 +1,234 @@
+<div class="content" name="FAX_LOG_CATEGORY" uuid="6c692dec-d375-41f6-a6b8-670416245b9f"><p>The <b>FAX_LOG_CATEGORY</b> structure describes one logging
+category. Each logging category is identified by a numeric identifier and is
+described by a user-friendly name. The fax server associates with each logging
+category a configurable severity-level threshold that controls which logged
+events will cause entries to be written to the event log. If the current
+severity-level threshold for the event&#39;s category is lower than the event&#39;s
+severity level, the fax server SHOULD NOT write a corresponding entry into the
+log. The fax client application passes an array of <b>FAX_LOG_CATEGORY</b>
+structures in a call to the <b>FAX_SetLoggingCategories</b> (section <a href="9522b51e-2a27-4d44-993e-89b1ff2f65be" data-linktype="relative-path">3.1.4.1.83</a>) function to
+modify the current logging categories for the fax server of interest. The <b>FAX_GetLoggingCategories</b>
+(section <a href="179c641c-0734-45d8-9bf3-66e82005c518" data-linktype="relative-path">3.1.4.1.44</a>)
+function returns the current settings in an array of <b>FAX_LOG_CATEGORY</b>
+structures.</p><p>An array of this structure is sent as an input argument for
+the <b>FaxObs_SetLoggingCategories</b> (section <a href="8e2a2a07-b70e-45cb-8081-a07d17f7cbd2" data-linktype="relative-path">3.1.4.2.27</a>) method, and
+this structure is sent as an output parameter for the <b>FaxObs_GetLoggingCategories</b>
+(section <a href="992dadfe-0b70-49ef-bb1b-9bd612355b1c" data-linktype="relative-path">3.1.4.2.26</a>)
+method.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Fixed_Portion</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">Variable_Data (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (12 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">NameOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">Category</td>
+ </tr>
+ <tr>
+  <td colspan="32">Level</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>NameOffset (4 bytes): </b>Offset
+to the <b>Name</b> field in the <b>Variable_Data</b> portion of the structure</p>
+</dd>
+<dd>
+<p><b>Category (4 bytes): </b>A
+<b>DWORD</b> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+that holds a unique value that identifies a logging category for the events the
+fax server writes. Each event to be written by the fax server SHOULD have a
+logging category preassigned to it. The fax server SHOULD write the respective
+logging category when writing an event, so that the accumulated events could be
+organized by the administrator by using the logging categories. This field MUST
+be one of the following predefined values.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a></p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FAXLOG_CATEGORY_INIT 1</td>
+  <td>A fax service initialization or termination event.</td>
+ </tr><tr>
+  <td>FAXLOG_CATEGORY_OUTBOUND 2</td>
+  <td>An outgoing fax transmission event such as sending a fax.</td>
+ </tr><tr>
+  <td>FAXLOG_CATEGORY_INBOUND 3</td>
+  <td>An incoming fax transmission event such as receiving a fax or routing a fax.</td>
+ </tr><tr>
+  <td>FAXLOG_CATEGORY_UNKNOWN 4</td>
+  <td>An unknown event.</td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>Level (4 bytes): </b>A <b>DWORD</b>
+that holds the current severity-level threshold for the logging category identified
+by <i>Category</i>. If the current severity-level threshold for the event&#39;s
+category is lower than the event&#39;s severity level, the fax server SHOULD NOT
+write a corresponding entry into the log. This field MUST contain one of the
+following predefined severity-level values.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FAXLOG_LEVEL_NONE 0</td>
+  <td>The fax server MUST NOT log events.</td>
+ </tr><tr>
+  <td>FAXLOG_LEVEL_MIN 1</td>
+  <td>The fax server SHOULD log only the most severe failure events.</td>
+ </tr><tr>
+  <td>FAXLOG_LEVEL_MED 2</td>
+  <td>The fax server SHOULD log most events (this level does not include some informational and warning events).</td>
+ </tr><tr>
+  <td>FAXLOG_LEVEL_MAX 3</td>
+  <td>The fax server MUST log all events.</td>
+ </tr></tbody></table>
+</dd></dl></dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Name (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Name (variable): </b>A null-terminated
+character string that contains the name for the logging category.</p>
+</dd></dl></div>

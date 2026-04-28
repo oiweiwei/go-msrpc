@@ -1,0 +1,75 @@
+<div class="content" name="UserParameters" uuid="15f8b01d-900d-4f89-a3fa-1681e55f383d"><p>The <b>userParameters</b> attribute is used by Terminal
+Services to store the configuration data associated with the user connected to
+a session running on a terminal server. This configuration data is returned in
+a <span><a href="dba750b8-cb35-4e88-9811-e2a1f8a10701" data-linktype="relative-path">USERCONFIG</a></span>
+structure by the <span><a href="6c4dc21e-ea53-4785-b505-93d23604f2c8" data-linktype="relative-path">RpcGetConfigData</a></span> method.
+Terminal Services does not use UTF-8 or UTF-16 encoding to store the
+configuration data in the <b>userParameters</b> attribute. Terminal Services
+stores the user configuration data in the <b>userParameters</b> attribute in
+the following format:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">ReservedData (96 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="16">Signature</td>
+  <td colspan="16">TSPropertyCount</td>
+ </tr>
+ <tr>
+  <td colspan="32">TSPropertyArray (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>ReservedData (96 bytes): </b>A 96-byte array of
+reserved data.<a id="Appendix_A_Target_148"></a><a aria-label="Product behavior note 148" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_148" data-linktype="relative-path">&lt;148&gt;</a> </p><p><b>Signature (2 bytes): </b>A 2-byte Unicode
+character. This field is used by <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">Terminal Services</a></span> to
+assert the validity of the <b>TSPropertyCount</b> and <b>TSPropertyArray</b>
+fields. Terminal Services compares the data contained in this field with
+Unicode character &#34;P&#34;. If this field contains the aforementioned
+character, then the information inside the <b>TSPropertyArray</b> and <b>TSPropertyCount</b>
+fields is considered valid. If it contains a different value, then all
+information inside the <b>TSPropertyCount</b> and <b>TSPropertyArray</b> fields
+is considered invalid.</p><p><b>TSPropertyCount (2 bytes): </b>A 2-byte unsigned
+integer indicating the number of elements in <b>TSPropertyArray</b>.</p><p><b>TSPropertyArray (variable): </b>A variable-length
+array of <span><a href="0bd1a91d-3cd6-4e97-b5fa-5cf35d90f005" data-linktype="relative-path">TSProperty</a></span>
+structures. The number of elements in this array is specified by the field <b>TSPropertyCount</b>.</p></div>

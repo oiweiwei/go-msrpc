@@ -1,0 +1,43 @@
+<div class="content" name="RemoteQMGetQMQMServerPort" uuid="f0fe422e-bb06-4e97-a8db-59715d60e1e7"><p>The RemoteQMGetQMQMServerPort method returns an <a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> port number (see <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>)
+for the requested combination of interface and protocol.</p><dl>
+<dd>
+<div><pre> DWORD RemoteQMGetQMQMServerPort(
+   [in] handle_t hBind,
+   [in, range(0, 3)] DWORD dwPortType
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST be set to an RPC binding handle,
+as specified in [MS-RPCE] section <a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a>.</p><p><b>dwPortType: </b> Specifies the interface for which
+a port value is to be returned. One of the following values MUST be specified;
+otherwise, this method MUST return 0x00000000 to indicate failure.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IP_HANDSHAKE 0x00000000</td>
+  <td>Requests that the server return the RPC port number for the qmcomm and qmcomm2 interfaces bound to TCP/IP. For more information on the qmcomm and qmcomm2 interfaces, see [MS-MQMP]. The default port number is 2103.</td>
+ </tr><tr>
+  <td>IP_READ 0x00000001</td>
+  <td>Requests that the server return the RPC port number for the qm2qm interface bound to TCP/IP. For more information on the qm2qm interface, see section 3.1.4. The default port number is 2105.</td>
+ </tr><tr>
+  <td>IPX_HANDSHAKE 0x00000002</td>
+  <td>Requests that the server return the RPC port number for the qmcomm and qmcomm2 interfaces bound to SPX.&lt;19&gt; For more information on the qmcomm and qmcomm2 interfaces, see [MS-MQMP]. The default port number is 2103.</td>
+ </tr><tr>
+  <td>IPX_READ 0x00000003</td>
+  <td>Requests that the server return the RPC port number for the qm2qm interface bound to SPX.&lt;20&gt; For more information on the qm2qm interface, see section 3.1.4. The default port number is 2105.</td>
+ </tr></tbody></table><p><b>Return Values: </b> On success, this method returns a
+nonzero IP port value for the RPC interface specified by the <i>dwPortType</i>
+parameter. If an invalid value is specified for <i>dwPortType</i>, or if the
+requested interface is otherwise unavailable, or if any other error is
+encountered, this method MUST return 0x00000000.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol (see [MS-RPCE]).</p><p>As specified in section <a href="ab8ec562-21f9-427a-9853-e5fd919094ce" data-linktype="relative-path">3.1.3</a>, this protocol
+configures a fixed listening endpoint at an RPC port number, which can vary.
+For the interface and protocol specified by the <i>dwPortType</i> parameter,
+this method returns the RPC port number determined at server initialization
+time. If the default port is already in use, the server SHOULD increment the
+port number by 11 until an unused port is found.</p></div>

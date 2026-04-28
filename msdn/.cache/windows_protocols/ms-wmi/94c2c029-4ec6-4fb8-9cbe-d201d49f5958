@@ -1,0 +1,56 @@
+<div class="content" name="WBEM_INSTANCE_BLOB" uuid="94c2c029-4ec6-4fb8-9cbe-d201d49f5958"><p>The WBEM_INSTANCE_BLOB is used to represent the refreshed
+object or enumeration in the m_pBlob attribute of the <a href="0b50e73d-1b94-48bd-bc5c-8dfd893c6d6d" data-linktype="relative-path">WBEM_REFRESHED_OBJECT</a>
+structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Version</td>
+ </tr>
+ <tr>
+  <td colspan="32">numObjects</td>
+ </tr>
+ <tr>
+  <td colspan="32">Objects (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>Version (4 bytes): </b>MUST represent the encoding
+version. Version MUST be set to 0x00000001.</p><p><b>numObjects (4 bytes): </b>MUST represent the
+number of <a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_8d8f4b2c-bf33-4964-b55c-96ac2cc999bb" data-linktype="relative-path">CIM objects</a>
+encoded that are contained in the package.</p><p><b>Objects (variable): </b>MUST contain a sequence of
+<a href="46710c5c-d7ab-4e4c-b4a5-ebff311fdcd1" data-linktype="relative-path">IWbemClassObjects</a> of
+count <i>numObjects</i>, with each IWbemClassObject encoded in <a href="1bdb2df5-8fd7-4bb0-8f5f-df86cfea3b5a" data-linktype="relative-path">RefreshedInstances</a> format.
+</p></div>

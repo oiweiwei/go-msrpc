@@ -1,0 +1,52 @@
+<div class="content" name="EstablishPosition" uuid="31514eac-0206-4dad-a8df-a247cc1dadd2"><p>The IWbemLevel1Login::EstablishPosition method does not
+perform any action. The return value and output parameter are used in locale
+negotiation as specified in section <a href="38d52a83-1613-4c56-8418-12ad1145eeaa" data-linktype="relative-path">3.2.3</a>.</p><dl>
+<dd>
+<div><pre> HRESULT EstablishPosition(
+   [in, unique, string] wchar_t* reserved1,
+   [in] DWORD reserved2,
+   [out] DWORD* LocaleVersion
+ );
+</pre></div>
+</dd></dl><p><b>reserved1: </b>MUST be set to NULL when sent and MUST be
+ignored on receipt.</p><p><b>reserved2: </b>MUST be set to 0 when sent and MUST be
+ignored on receipt.</p><p><b>LocaleVersion: </b>The server MUST set the value
+of <i>LocaleVersion</i> based on the server behavior when <a href="40d194a2-c28a-485b-97f6-11a7c08f147e" data-linktype="relative-path">IWbemLevel1Login::NTLMLogin</a>
+is passed an unrecognized locale name in the <i>wszPreferredLocale</i>
+parameter:</p><dl>
+<dd>
+<p>The return value and <i>LocaleVersion</i> are used
+for Locale capability negotiation before calling IWbemLevel1Login::NTLMLogin,
+as specified in section 3.2.3.</p>
+</dd></dl><ul><li><p><span><span>  </span></span>If
+the server ignores an unrecognized locale name in the Locale Name Format, as
+specified in section <a href="259edd31-d6eb-4bc9-a2c4-2891b78bb51d" data-linktype="relative-path">2.2.29</a>,
+passed to IWbemLevel1Login::NTLMLogin while all other parameters are valid, and
+completes the execution of the IWbemLevel1Login::NTLMLogin method, the server
+MUST set the <i>LocaleVersion</i> parameter to 1.</p>
+</li><li><p><span><span>  </span></span>If
+the server returns an error for an unrecognized locale name in Locale Name
+Format, as specified in section 2.2.29, passed to IWbemLevel1Login::NTLMLogin,
+while all other parameters are valid, the server MUST set the <i>LocaleVersion</i>
+parameter to 0.</p>
+</li></ul><p><b>Return Values: </b>The server MUST return one of
+the following values, based on server behavior for the <i>wszPreferredLocale</i>
+parameter in IWbemLevel1Login::NTLMLogin.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00 WBEM_S_NO_ERROR</td>
+  <td>The connection was established and no error occurred.&lt;27&gt;</td>
+ </tr><tr>
+  <td>0x80004001 E_NOTIMPL</td>
+  <td>The attempted operation is not implemented. The value of this element is as specified in [MS-ERREF] section 2.1.&lt;28&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

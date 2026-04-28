@@ -1,0 +1,20 @@
+<div class="content" name="NetrDatabaseSync" uuid="86683ada-19a2-414e-afaf-124f77dc4685"><p>The <b>NetrDatabaseSync</b> method<a id="Appendix_A_Target_233"></a><a aria-label="Product behavior note 233" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_233" data-linktype="relative-path">&lt;233&gt;</a> is a predecessor to the <span><a href="31fc80bd-4f4d-4512-a792-e488bb78f6a0" data-linktype="relative-path">NetrDatabaseSync2</a></span>
+method (section 3.5.4.6.2<span>)</span>. All parameters of
+this method have the same meanings as the identically named parameters of the
+NetrDatabaseSync2 method. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrDatabaseSync(
+   [in, string] LOGONSRV_HANDLE PrimaryName,
+   [in, string, range(0,256)] wchar_t* ComputerName,
+   [in] PNETLOGON_AUTHENTICATOR Authenticator,
+   [in, out] PNETLOGON_AUTHENTICATOR ReturnAuthenticator,
+   [in] DWORD DatabaseID,
+   [in, out] ULONG * SyncContext,
+   [out] PNETLOGON_DELTA_ENUM_ARRAY* DeltaArray,
+   [in] DWORD PreferredMaximumLength
+ );
+</pre></div>
+</dd></dl><p>Receiving this method is identical to receiving
+NetrDatabaseSync2, as specified in section 3.5.4.6.2, except that this call
+does not use the <i>RestartState</i> parameter. <b>NetrDatabaseSync</b> does
+not support restarting the synchronization loop.</p></div>

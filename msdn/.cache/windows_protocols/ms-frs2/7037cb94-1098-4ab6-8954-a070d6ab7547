@@ -1,0 +1,57 @@
+<div class="content" name="RdcFileDataTransferKeepAlive" uuid="7037cb94-1098-4ab6-8954-a070d6ab7547"><p>The RdcFileDataTransferKeepAlive method is used to keep the
+server context alive.</p><dl>
+<dd>
+<div><pre> DWORD RdcFileDataTransferKeepAlive(
+   [in] PFRS_SERVER_CONTEXT serverContext
+ );
+</pre></div>
+</dd></dl><p><b>serverContext: </b>The context handle that
+represents the requested file replication operation that was retrieved by a
+previously successful call to the <a href="908b4cc2-9915-4e31-84b8-f6b3e09b7c03" data-linktype="relative-path">InitializeFileTransferAsync</a>
+method.</p><p><b>Return Values: </b>This method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 ERROR_SUCCESS</td>
+  <td>The method completed successfully.</td>
+ </tr><tr>
+  <td>0x00000057 ERROR_INVALID_PARAMETER</td>
+  <td>The context is invalid.</td>
+ </tr><tr>
+  <td>0x00002344 FRS_ERROR_CONTENTSET_NOT_FOUND</td>
+  <td>The content set was not found.</td>
+ </tr><tr>
+  <td>0x0000234B FRS_ERROR_RDC_GENERIC</td>
+  <td>Unknown error in RDC.</td>
+ </tr><tr>
+  <td>0x0000234B FRS_ERROR_IN_BACKUP_RESTORE</td>
+  <td>Paused for backup or restore.</td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST validate the request by performing the
+following checks:</p><ul><li><p><span><span> 
+</span></span> If the <i>serverContext</i> is being used in another request and
+the server is still processing that request, the server MUST fail the call with
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <i>serverContext</i> is not available, the server MUST fail
+the call with FRS_ERROR_CONTENTSET_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If the server is not currently participating in replication of
+the replicated folder that is associated with the specified <i>serverContext</i>,
+the server MUST fail the call with FRS_ERROR_CONTENTSET_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If the server is processing a VSS backup or restore operation,
+the server MUST fail the call with FRS_ERROR_IN_BACKUP_RESTORE.</p>
+</li></ul><p><b>Actions Triggered:</b> The server MUST reset and start
+the time-outs on the open file handles timer. The server MUST return
+ERROR_SUCCESS to the client.</p></div>

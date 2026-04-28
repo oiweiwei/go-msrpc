@@ -1,0 +1,44 @@
+<div class="content" name="PROTOCOLCOUNTERS" uuid="c5d7f335-bfd9-444d-87a5-b0d028a52b5e"><p>Protocol performance counters.</p><dl>
+<dd>
+<div><pre> typedef struct _PROTOCOLCOUNTERS {
+   ULONG WdBytes;
+   ULONG WdFrames;
+   ULONG WaitForOutBuf;
+   ULONG Frames;
+   ULONG Bytes;
+   ULONG CompressedBytes;
+   ULONG CompressFlushes;
+   ULONG Errors;
+   ULONG Timeouts;
+   ULONG AsyncFramingError;
+   ULONG AsyncOverrunError;
+   ULONG AsyncOverflowError;
+   ULONG AsyncParityError;
+   ULONG TdErrors;
+   USHORT ProtocolType;
+   USHORT Length;
+   union {
+     TSHARE_COUNTERS TShareCounters;
+     ULONG Reserved[100];
+   } Specific;
+ } PROTOCOLCOUNTERS,
+  *PPROTOCOLCOUNTERS;
+</pre></div>
+</dd></dl><p><b>WdBytes:</b>  <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8cc89bb9-be94-4672-8a5d-9947b91bc952" data-linktype="relative-path">WinStation</a></span> driver
+number of bytes sent and received.</p><p><b>WdFrames:</b>  WinStation driver number
+of frames sent and received.</p><p><b>WaitForOutBuf:</b>  The number of times
+waited for an output buffer to become available.</p><p><b>Frames:</b>  Transport driver number of
+frames.</p><p><b>Bytes:</b>  Transport driver number of
+bytes.</p><p><b>CompressedBytes:</b>  Number of
+compressed bytes.</p><p><b>CompressFlushes:</b>  Number of compress
+flushes. A compress flush occurs when compression for a packet fails and the
+original uncompressed packet replaces it.</p><p><b>Errors:</b>  Number of packets that were
+in error during the session.</p><p><b>Timeouts:</b>  Number of time-outs.</p><p><b>AsyncFramingError:</b>  Number of async
+framing errors.</p><p><b>AsyncOverrunError:</b>  Number of async
+overrun errors.</p><p><b>AsyncOverflowError:</b>  Number of async
+overflow errors.</p><p><b>AsyncParityError:</b>  Number of async
+parity errors.</p><p><b>TdErrors:</b>  Number of transport
+protocol errors.</p><p><b>ProtocolType:</b>  Protocol type.</p><p><b>Length:</b>  Length of data in the
+protocol-specific area. Can be up to 100 * sizeof(ULONG) in size.</p><p><b>Specific:</b>  Specifies which types of
+counters are to be queried. It can be one of the following:</p><p><b>TShareCounters:</b>  Protocol
+performance counters.</p><p><b>Reserved:</b>  Reserved for future use.</p></div>

@@ -1,0 +1,48 @@
+<div class="content" name="WaitForNtmsOperatorRequest" uuid="ca044408-a3ab-4fe1-a9cd-7d510efe3c31"><p>The WaitForNtmsOperatorRequest method waits for an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator request</a>.</p><dl>
+<dd>
+<div><pre> HRESULT WaitForNtmsOperatorRequest(
+   [in] LPNTMS_GUID lpRequestId,
+   [in] DWORD dwTimeout
+ );
+</pre></div>
+</dd></dl><p><b>lpRequestId: </b>A pointer to the identifier of
+the request for which to wait.</p><p><b>dwTimeout: </b>The number of milliseconds to wait.
+To check for an operator request, specify a time-out value of 0. If a value of
+0xFFFFFFFF is specified, this method does not time out.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>0x80070005 ERROR_ACCESS_DENIED</td>
+  <td>Access to one or more objects is denied.</td>
+ </tr><tr>
+  <td>0x80070057 ERROR_INVALID_PARAMETER</td>
+  <td>An invalid parameter was found.</td>
+ </tr><tr>
+  <td>0x800704C7 ERROR_CANCELLED</td>
+  <td>The operator request was canceled by an administrator.</td>
+ </tr><tr>
+  <td>0x800705B4 ERROR_TIMEOUT</td>
+  <td>The time specified in the dwTimeout parameter elapsed before completion of the operator request.</td>
+ </tr><tr>
+  <td>0x800708CA ERROR_NOT_CONNECTED</td>
+  <td>Unable to connect to the service.</td>
+ </tr><tr>
+  <td>0x800710D8 ERROR_OBJECT_NOT_FOUND</td>
+  <td>Unable to find the operator request object. Object requests are flushed from the database.</td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpRequestId</i>
+is not NULL. If parameter validation fails, the server MUST immediately fail
+the operation and return ERROR_INVALID_PARAMETER (0x80070057).</p><p>This method MUST wait for an operator request to complete or
+be refused, and return when the request is completed or refused appropriately.</p><p>The method MUST return a time-out error if the request is
+not completed or not refused in <i>dwTimeout</i>.</p></div>

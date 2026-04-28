@@ -1,0 +1,203 @@
+<div class="content" name="ENUM_ENTRY" uuid="fbc1bc18-45d4-4668-980d-ed639ea2f03e"><p>The <b>ENUM_ENTRY</b> structure contains information about a
+single element in an <b>ENUM_LIST</b> (section <span><a href="3b8f47c7-f694-4841-9aea-afa77184bbfa" data-linktype="relative-path">2.2.3.5</a></span>). An <b>ENUM_ENTRY</b>
+contains the name of a <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_0db09eb6-111b-473a-b821-12cd6d6342b1" data-linktype="relative-path">cluster object</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _ENUM_ENTRY {
+   DWORD Type;
+   [string] LPWSTR Name;
+ } ENUM_ENTRY,
+  *PENUM_ENTRY;
+</pre></div>
+</dd></dl><p><b>Type:</b> Specifies the type of the object that is
+represented by the list element. This member MUST be set to one of the
+following values.</p><dl>
+<dd>
+<p>If the <b>ENUM_LIST</b> is returned by a call to <b>ApiCreateEnum</b>
+(section <span><a href="3901b3f0-1737-481f-9815-282471183abd" data-linktype="relative-path">3.1.4.2.8</a></span>) or <b>ApiCreateEnumEx</b>
+(section <span><a href="f40a3677-3138-4142-9e55-d61c7dfe4284" data-linktype="relative-path">3.1.4.2.124</a></span>), <b>Type</b>
+is set to one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CLUSTER_ENUM_NODE 0x00000001</td>
+  <td>If returned by ApiCreateEnum, this ENUM_ENTRY list element contains the name of a cluster node. If returned by ApiCreateEnumEx, this ENUM_ENTRY list element contains the name or ID, as specified in ApiCreateEnumEx, of a cluster node.</td>
+ </tr><tr>
+  <td>CLUSTER_ENUM_RESTYPE 0x00000002</td>
+  <td>If returned by ApiCreateEnum, this ENUM_ENTRY list element contains the name of a cluster resource type. If returned by ApiCreateEnumEx, this ENUM_ENTRY list element contains the name or ID, as specified in ApiCreateEnumEx, of a cluster resource type.</td>
+ </tr><tr>
+  <td>CLUSTER_ENUM_RESOURCE 0x00000004</td>
+  <td>If returned by ApiCreateEnum, this ENUM_ENTRY list element contains the name of a cluster resource. If returned by ApiCreateEnumEx, this ENUM_ENTRY list element contains the name or ID, as specified in ApiCreateEnumEx, of a cluster resource.</td>
+ </tr><tr>
+  <td>CLUSTER_ENUM_GROUP 0x00000008</td>
+  <td>If returned by ApiCreateEnum, this ENUM_ENTRY list element contains the name of a cluster group. If returned by ApiCreateEnumEx, this ENUM_ENTRY list element contains the name or ID, as specified in ApiCreateEnumEx, of a cluster group.</td>
+ </tr><tr>
+  <td>CLUSTER_ENUM_NETWORK 0x00000010</td>
+  <td>If returned by ApiCreateEnum, this ENUM_ENTRY list element contains the name of a cluster network. If returned by ApiCreateEnumEx, this ENUM_ENTRY list element contains the name or ID, as specified in ApiCreateEnumEx, of a cluster network.</td>
+ </tr><tr>
+  <td>CLUSTER_ENUM_NETINTERFACE 0x00000020</td>
+  <td>If returned by ApiCreateEnum, this ENUM_ENTRY list element contains the name of a cluster network interface. If returned by ApiCreateEnumEx, this ENUM_ENTRY list element contains the name or ID, as specified in ApiCreateEnumEx, of a cluster network interface.</td>
+ </tr><tr>
+  <td>CLUSTER_ENUM_SHARED_VOLUME_RESOURCE 0x40000000</td>
+  <td>If returned by ApiCreateEnum, this ENUM_ENTRY list element contains the name of a cluster shared volume. If returned by ApiCreateEnumEx, this ENUM_ENTRY list element contains the name or ID, as specified in ApiCreateEnumEx, of a cluster shared volume.</td>
+ </tr><tr>
+  <td>CLUSTER_ENUM_INTERNAL_NETWORK 0x80000000</td>
+  <td>If returned by ApiCreateEnum, this ENUM_ENTRY list element contains the name of a cluster network used only for internal cluster communications. If returned by ApiCreateEnumEx, this ENUM_ENTRY list element contains the name or ID, as specified in ApiCreateEnumEx, of a cluster network used only for internal cluster communications.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If the <b>ENUM_LIST</b> is returned by a call to <b>ApiCreateResEnum</b>
+(section <span><a href="d1112696-737f-4843-8688-97e22263deb6" data-linktype="relative-path">3.1.4.2.23</a></span>), Type
+is set to one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CLUSTER_RESOURCE_ENUM_DEPENDS 0x00000001</td>
+  <td>This ENUM_ENTRY list element contains the name of a cluster resource that is depended upon, as described in Resources (section 3.1.1.1.1) by the resource designated in the call to ApiCreateResEnum.</td>
+ </tr><tr>
+  <td>CLUSTER_RESOURCE_ENUM_PROVIDES 0x00000002</td>
+  <td>This ENUM_ENTRY list element contains the name of a cluster resource that depends upon, as described in Resources by the resource designated in the call to ApiCreateResEnum.</td>
+ </tr><tr>
+  <td>CLUSTER_RESOURCE_ENUM_NODES 0x00000004</td>
+  <td>This ENUM_ENTRY list element contains the name of a cluster node that can host the resource designated in the call to ApiCreateResEnum.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If the <b>ENUM_LIST</b> is returned by a call to <b>ApiCreateGroupResourceEnum</b>
+(section <span><a href="4bb735f3-6d3f-4036-be60-2965d171e8aa" data-linktype="relative-path">3.1.4.2.54</a></span>), Type
+is set to one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CLUSTER_GROUP_ENUM_CONTAINS 0x00000001</td>
+  <td>This ENUM_ENTRY list element contains the name of a cluster resource that is contained in the group designated in the call to ApiCreateGroupResourceEnum.</td>
+ </tr><tr>
+  <td>CLUSTER_GROUP_ENUM_NODES 0x00000002</td>
+  <td>This ENUM_ENTRY list element contains the name of a cluster node that can host the group designated in the call to ApiCreateGroupResourceEnum.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If the <b>ENUM_LIST</b> is returned by a call to <b>ApiCreateNetworkEnum</b>
+(section <span><a href="be148d7e-2b1c-41a8-91b7-8b17ddab31c3" data-linktype="relative-path">3.1.4.2.85</a></span>), Type
+is set to one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CLUSTER_NETWORK_ENUM_NETINTERFACES 0x00000001</td>
+  <td>This ENUM_ENTRY list element contains the name of a cluster network interface.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If the <b>ENUM_LIST</b> is returned by a call to <b>ApiCreateNodeEnum</b>
+(section <span><a href="9f713ff4-2fe7-4579-bb18-81585fab9d4c" data-linktype="relative-path">3.1.4.2.101</a></span>) or <b>ApiCreateNodeEnumEx</b>
+(section <span><a href="ce7b4260-d851-4a42-866a-cf7e96d488a3" data-linktype="relative-path">3.1.4.2.123</a></span>), <b>Type</b>
+is set to one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CLUSTER_NODE_ENUM_NETINTERFACES 0x00000001</td>
+  <td>This ENUM_ENTRY list element contains the name of a cluster network interface.</td>
+ </tr><tr>
+  <td>CLUSTER_NODE_ENUM_GROUPS 0x00000002</td>
+  <td>If returned by ApiCreateNodeEnum, this ENUM_ENTRY list element contains the name of a cluster group. If returned by ApiCreateNodeEnumEx, this ENUM_ENTRY list element contains the name or ID, as specified in ApiCreateNodeEnumEx, of a cluster group.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If the <b>ENUM_LIST</b> is returned by a call to <b>ApiCreateResTypeEnum</b>
+(section <span><a href="7409dc96-44f0-4a57-9ba7-8d0961e55a3d" data-linktype="relative-path">3.1.4.2.103</a></span>), Type
+is set to one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CLUSTER_RESOURCE_TYPE_ENUM_NODES 0x00000001</td>
+  <td>This ENUM_ENTRY list element contains the name of a cluster node.</td>
+ </tr><tr>
+  <td>CLUSTER_RESOURCE_TYPE_ENUM_RESOURCES 0x00000002</td>
+  <td>This ENUM_ENTRY list element contains the name of a cluster resource.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If the <b>ENUM_LIST</b> is returned by a call to <b>ApiCreateNetInterfaceEnum</b>,
+as specified in section <span><a href="e2edadd7-0644-4924-9873-aa341a4a80d8" data-linktype="relative-path">3.1.4.2.163</a></span>, Type
+is set to one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CLUSTER_ENUM_NETINTERFACE 0x00000020</td>
+  <td>If returned by ApiCreateNetInterfaceEnum, this ENUM_ENTRY list element contains the list of cluster network interfaces.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Name:</b> If the <b>ENUM_LIST</b> is returned by a
+call to <b>ApiCreateNodeEnumEx</b>, it contains the return data specified in
+section 3.1.4.2.123.</p><dl>
+<dd>
+<p>If the <b>ENUM_LIST</b> is returned by a call to <b>ApiCreateEnumEx</b>,
+it contains the return data specified in section 3.1.4.2.124.</p>
+</dd>
+<dd>
+<p>Otherwise, a null-terminated <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> that specifies the name of the object that is represented by
+the list element. See section <span><a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a></span> for
+information about the maximum length of this string.</p>
+</dd></dl></div>

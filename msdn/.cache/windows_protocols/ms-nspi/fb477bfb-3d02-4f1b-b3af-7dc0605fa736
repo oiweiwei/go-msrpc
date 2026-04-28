@@ -1,0 +1,12 @@
+<div class="content" name="PropertyNameSet_r" uuid="fb477bfb-3d02-4f1b-b3af-7dc0605fa736"><p>The PropertyNameSet_r structure is used to aggregate a
+number of <a href="0060b749-9873-450e-9b4b-b288afc42dc5" data-linktype="relative-path">PropertyName_r</a>
+structures into a single data structure.</p><dl>
+<dd>
+<div><pre> typedef struct PropertyNameSet_r {
+   [range(0,100000)] DWORD cNames;
+   [size_is(cNames)] PropertyName_r aNames[];
+ } PropertyNameSet_r;
+</pre></div>
+</dd></dl><p><b>cNames:</b>  The number of
+PropertyName_r structures in this aggregation. The value MUST NOT exceed 100,000.</p><p><b>aNames:</b>  The list of PropertyName_r
+structures in this aggregation.</p></div>

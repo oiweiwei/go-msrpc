@@ -1,0 +1,64 @@
+<div class="content" name="TA_ADDRESS" uuid="46fdaeba-3017-4ed9-9dd5-f51ef19c47fc"><p>The TA_ADDRESS structure defines a single transport address
+of a specific type.</p><dl>
+<dd>
+<div><pre> typedef struct _TA_ADDRESS {
+   USHORT AddressLength;
+   USHORT AddressType;
+   UCHAR Address[1];
+ } TA_ADDRESS,
+  *PTA_ADDRESS;
+</pre></div>
+</dd></dl><p><b>AddressLength:</b>  An unsigned 16-bit
+integer that MUST contain the size, in bytes, of the <b>Address</b> field. The
+value MUST be one of the following (by address type).</p><table><thead>
+  <tr>
+   <th>
+   <p>Address type prefix</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IP_</td>
+  <td>4</td>
+ </tr><tr>
+  <td>IPX_</td>
+  <td>10</td>
+ </tr><tr>
+  <td>FOREIGN_</td>
+  <td>16</td>
+ </tr></tbody></table><p><b>AddressType:</b>  An unsigned 16-bit
+integer that MUST contain one of the values in the following table.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>IP_ADDRESS_TYPE 0x0001</td>
+  <td>The Address field contains a 32-bit IP address.</td>
+ </tr><tr>
+  <td>IP_RAS_ADDRESS_TYPE 0x0002</td>
+  <td>The Address field contains a 32-bit IP address associated with a connection that is established through a Remote Access Service (RAS) server.</td>
+ </tr><tr>
+  <td>IPX_ADDRESS_TYPE 0x0003</td>
+  <td>The Address field contains a 4-byte netnum followed by a 6-byte nodenum. The netnum identifies the IPX network. The nodenum represents the IPX node address.</td>
+ </tr><tr>
+  <td>FOREIGN_ADDRESS_TYPE 0x0005</td>
+  <td>The Address field contains the GUID of a connected network object.</td>
+ </tr></tbody></table><p><b>Address:</b>  The array of bytes that
+contains the address value.</p><dl>
+<dd>
+<p>This MUST be one of the following:</p>
+</dd></dl><ul><li><p><span><span> 
+</span></span>An IP address (as specified in section <a href="60f735d6-dc12-41a1-ac4d-234d8c56e524" data-linktype="relative-path">2.2.4.1</a>). </p>
+</li><li><p><span><span> 
+</span></span>An IPX address (as specified in section <a href="23389465-f580-44cf-8598-0a6aebb16e9c" data-linktype="relative-path">2.2.4.2</a>).</p>
+</li><li><p><span><span> 
+</span></span>A FOREIGN address is a <b>GUID</b> object (as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a>).</p>
+</li></ul></div>

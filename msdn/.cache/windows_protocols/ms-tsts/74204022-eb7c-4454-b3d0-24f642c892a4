@@ -1,0 +1,64 @@
+<div class="content" name="PDCONFIG2" uuid="74204022-eb7c-4454-b3d0-24f642c892a4"><p>The protocol driver&#39;s software configuration.</p><dl>
+<dd>
+<div><pre> typedef struct _PDCONFIG2 {
+   PDNAME PdName;
+   SDCLASS SdClass;
+   DLLNAME PdDLL;
+   ULONG PdFlag;
+   ULONG OutBufLength;
+   ULONG OutBufCount;
+   ULONG OutBufDelay;
+   ULONG InteractiveDelay;
+   ULONG PortNumber;
+   ULONG KeepAliveTimeout;
+ } PDCONFIG2,
+  *PPDCONFIG2;
+</pre></div>
+</dd></dl><p><b>PdName:</b>  The descriptive name of the
+protocol driver.</p><p><b>SdClass:</b>  The type of driver.</p><p><b>PdDLL:</b>  The driver&#39;s image name.</p><p><b>PdFlag:</b>  Driver flags MUST be any
+bitwise OR combination of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>PD_UNUSED 0x00000001</td>
+  <td>Unused.</td>
+ </tr><tr>
+  <td>PD_RELIABLE 0x00000002</td>
+  <td>Error-free protocol.</td>
+ </tr><tr>
+  <td>PD_FRAME 0x00000004</td>
+  <td>Frame-oriented protocol.</td>
+ </tr><tr>
+  <td>PD_CONNECTION 0x00000008</td>
+  <td>Connection-oriented protocol.</td>
+ </tr><tr>
+  <td>PD_CONSOLE 0x00000010</td>
+  <td>Directly connected console.</td>
+ </tr><tr>
+  <td>PD_LANA 0x00000020</td>
+  <td>Network class uses LANAs (NetBIOS).</td>
+ </tr><tr>
+  <td>PD_TRANSPORT 0x00000040</td>
+  <td>Transport driver (lowest level).</td>
+ </tr><tr>
+  <td>PD_SINGLE_INST 0x00000080</td>
+  <td>Single instance only (async).</td>
+ </tr><tr>
+  <td>PD_NOLOW_WATERMARK 0x00000100</td>
+  <td>Low water mark to resume transmission.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>OutBufLength:</b>  Optimal output
+buffers length, in bytes.</p><p><b>OutBufCount:</b>  Optimal number of
+output buffers.</p><p><b>OutBufDelay:</b>  Write delay, in
+milliseconds.</p><p><b>InteractiveDelay:</b>  Write delay
+during active input.</p><p><b>PortNumber:</b>  Network listen port
+number.</p><p><b>KeepAliveTimeout:</b>  Frequency to send
+keep-alives, in milliseconds.</p></div>

@@ -1,0 +1,56 @@
+<div class="content" name="WSRMActivate" uuid="1b987c50-bf78-463d-b22f-95b3a90e4166"><p>The WSRMActivate method activates or deactivates WSRM
+management state.</p><dl>
+<dd>
+<div><pre> [id(7), helpstring(&#34;method WSRMActivate&#34;)] HRESULT WSRMActivate(
+   [in] BOOL bActivate
+ );
+</pre></div>
+</dd></dl><p><b>bActivate: </b>A Boolean value that specifies
+whether to activate or deactivate WSRM.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FALSE 0x00000000</td>
+  <td>Management state of WSRM management service MUST be set to inactive or stopped.</td>
+ </tr><tr>
+  <td>TRUE 0x00000001</td>
+  <td>Management state of WSRM management service MUST be set to active or running.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Operation successful.</td>
+ </tr><tr>
+  <td>0x81FF0075 WRM_WRN_WSRM_ALREADY_ACTIVATED</td>
+  <td>WSRM has already been activated.</td>
+ </tr><tr>
+  <td>0x81FF0074 WRM_WRN_WSRM_ALREADY_DEACTIVATED</td>
+  <td>WSRM has already been deactivated.</td>
+ </tr></tbody></table>
+</dd></dl><p>This method MUST update the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_2d67ea57-10e6-422f-985e-694834945a02" data-linktype="relative-path">registry</a> according to the
+management state of WSRM. If the WSRM management service later restarts, for
+example, after a reboot of the operating system, the WSRM management service
+MUST attempt to restore its prior management state.<a id="Appendix_A_Target_83"></a><a aria-label="Product behavior note 83" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_83" data-linktype="relative-path">&lt;83&gt;</a></p><p>Additional <a href="38d3fffd-48ad-4e02-a7ce-b13da6304c80" data-linktype="relative-path">IWRMConfig</a> interface
+methods are specified in section 3.2.4.5.</p></div>

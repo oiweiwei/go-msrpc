@@ -1,0 +1,11 @@
+<div class="content" name="VDS_PARTITION_STYLE" uuid="310c0f6a-a0ef-4b63-933e-c4b1a7ecaf37"><p>The VDS_PARTITION_STYLE enumeration defines the styles of <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partitions</a>.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_PARTITION_STYLE
+ {
+   VDS_PST_UNKNOWN = 0x00000000,
+   VDS_PST_MBR = 0x00000001,
+   VDS_PST_GPT = 0x00000002
+ } VDS_PARTITION_STYLE;
+</pre></div>
+</dd></dl><p><b>VDS_PST_UNKNOWN: </b>The partition format is
+unknown.</p><p><b>VDS_PST_MBR: </b>The partition format is <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">master boot record (MBR)</a>.</p><p><b>VDS_PST_GPT: </b>The partition format is <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GUID partitioning table (GPT)</a>.</p></div>

@@ -1,0 +1,37 @@
+<div class="content" name="ErrorLine" uuid="0cbdf42f-820c-4bbd-8894-dd4e01061200"><p>The ErrorLine method is received by the server in an
+RPC_REQUEST packet. In response, the server returns a textual representation of
+the specific data in the administration system that is causing the error.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT ErrorLine(
+   [out, retval] BSTR* pbstrErrorLine
+ );
+</pre></div>
+</dd></dl><p><b>pbstrErrorLine: </b>Contains the error data.</p><p><b>Return Values: </b>The server MUST return zero if
+it successfully processes the message that is received from the client. In this
+case, *pbstrErrorLine MUST NOT be NULL. If processing fails, the server MUST
+return a nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+code as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following table describes the error conditions that MUST be handled and the
+corresponding error codes. A server MAY return additional
+implementation-specific error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0X00000000 NO_ERROR</td>
+  <td>The operation completed successfully.</td>
+ </tr><tr>
+  <td>0X80070057 ERROR_INVALID_PARAMETER</td>
+  <td>One or more parameters are incorrect or null.</td>
+ </tr><tr>
+  <td>0X00000008 ERROR_NOT_ENOUGH_MEMORY</td>
+  <td>Not enough memory is available to process this command.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

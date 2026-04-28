@@ -1,0 +1,27 @@
+<div class="content" name="DFS_SITENAME_INFO" uuid="6882b4d9-6527-4eef-8ac0-fe3de7b4494f"><p>The DFS_SITENAME_INFO structure specifies a site name.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_SITENAME_INFO {
+   unsigned long SiteFlags;
+   [string, unique] WCHAR* SiteName;
+ } DFS_SITENAME_INFO,
+  *PDFS_SITENAME_INFO,
+  *LPDFS_SITENAME_INFO;
+</pre></div>
+</dd></dl><p><b>SiteFlags:</b>  This member MUST be a
+combination of zero or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DFS_SITE_PRIMARY 0x00000001</td>
+  <td>The site name was returned by the DsrGetSiteName method, as specified in [MS-NRPC] section 3.5.4.3.6.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>SiteName:</b>  A pointer to a
+null-terminated Unicode UTF-16 string that specifies a unique site name.</p></div>

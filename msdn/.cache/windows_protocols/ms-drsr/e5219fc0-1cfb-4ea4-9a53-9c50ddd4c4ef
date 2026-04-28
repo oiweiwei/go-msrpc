@@ -1,0 +1,13 @@
+<div class="content" name="DRS_MSG_GETMEMBERSHIPS2_REPLY" uuid="e5219fc0-1cfb-4ea4-9a53-9c50ddd4c4ef"><p>The DRS_MSG_GETMEMBERSHIPS2_REPLY union defines response
+messages received from the <span><a href="d4e67cc3-2ee1-4b2b-8055-cebefc556252" data-linktype="relative-path">IDL_DRSGetMemberships2</a></span>
+method. Only one version, identified by <i>pdwOutVersion^</i> = 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_GETMEMBERSHIPS2_REPLY_V1 V1;
+ } DRS_MSG_GETMEMBERSHIPS2_REPLY;
+</pre></div>
+</dd></dl><p><b>V1:</b>  Version 1 response.</p></div>

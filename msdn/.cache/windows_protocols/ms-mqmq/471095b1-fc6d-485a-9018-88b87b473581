@@ -1,0 +1,12 @@
+<div class="content" name="DL_ID" uuid="471095b1-fc6d-485a-9018-88b87b473581"><p>The DL_ID structure defines a <a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_ccbb0292-fefe-493f-80c3-11533e473591" data-linktype="relative-path">distribution list</a> <a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a> identifier.</p><dl>
+<dd>
+<div><pre> typedef struct _DL_ID {
+   GUID m_DlGuid;
+   [string] wchar_t* m_pwzDomain;
+ } DL_ID;
+</pre></div>
+</dd></dl><p><b>m_DlGuid:</b>  The <a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">GUID</a> (as
+specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a>)
+of the distribution list queue.</p><p><b>m_pwzDomain:</b>  The Active Directory
+domain of the distribution list queue. This field MUST be a null-terminated <a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string.</p></div>

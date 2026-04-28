@@ -1,0 +1,91 @@
+<div class="content" name="TearDownContext" uuid="1de3b878-2c0f-47c4-b44d-741cdec289e5"><p>The TearDownContext method is invoked by either a <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7e81ed8f-e4a4-49ff-b7d8-cce6005ad036" data-linktype="relative-path">primary partner</a> or a <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_b4738f56-9936-4714-beb6-1c861116dd5c" data-linktype="relative-path">secondary partner</a>. When
+invoked by a primary partner, the TearDownContext method requests that the
+secondary partner begin the next step of tearing down a <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">session</a>. When invoked by a
+secondary partner, the TearDownContext method requests that the primary partner
+complete the teardown of the session. The <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">Microsoft Interface Definition
+Language (MIDL)</a> syntax of the method is as follows.</p><dl>
+<dd>
+<div><pre> HRESULT TearDownContext(
+   [in, out] PPCONTEXT_HANDLE contextHandle,
+   [in] SESSION_RANK sRank,
+   [in] TEARDOWN_TYPE tearDownType
+ );
+</pre></div>
+</dd></dl><p><b>contextHandle: </b>An <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle,
+returned by a call to <a href="bdb686a6-1190-4900-9dd5-2f9aac6ca621" data-linktype="relative-path">BuildContext</a>
+or <a href="fc4bf100-2799-4acf-a537-625f9c98500b" data-linktype="relative-path">BuildContextW</a>, is
+correlated with a session object that is in the Active state. After
+TearDownContext is executed, on either success or failure requests, <i>contextHandle</i>
+will be set to null. For context handles, see <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>sRank: </b>A <a href="8b849631-fa6b-4cad-861a-3cde962c408e" data-linktype="relative-path">SESSION_RANK</a> enumerated
+value indicating whether the teardown request is being made by a primary
+partner or secondary partner. The teardown request MUST be sent from a primary
+partner only.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>SRANK_PRIMARY 0x01</td>
+  <td>The caller is the primary partner in this session. The callee MUST be a secondary partner in this session, and the caller MUST be a primary partner in this session.</td>
+ </tr><tr>
+  <td>SRANK_SECONDARY 0x02</td>
+  <td>The caller is the secondary partner in this session. The callee MUST be a primary partner in this session, and the caller MUST be a secondary partner in this session.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>tearDownType: </b>The reason for tearing down the
+session. It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>TT_FORCE 0x00</td>
+  <td>The session is being forcefully torn down.</td>
+ </tr><tr>
+  <td>TT_PROBLEM 0x02</td>
+  <td>The session is being torn down because an error has occurred.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return zero
+(0x00000000) on success. On failure, it MUST return an implementation-specific <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>.
+A client MUST NOT depend on implementation-specific failure HRESULT values.
+From an over-the-wire communication point of view, the client MUST implement
+only a behavior for the case when the call succeeds and another behavior for
+the case when the call does not succeed, (see section <a href="db2618ed-2063-4957-9e84-ad0420b2dcf4" data-linktype="relative-path">3.4.6.2</a>). Standard errors
+are defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.
+A client MUST NOT exhibit behavior observable on the wire that is dependent on
+implementation-specific failure HRESULT values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 ERROR_STATUS</td>
+  <td>The return value indicates success.</td>
+ </tr><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>This value MAY be returned when an invalid sRank value is passed as a parameter.&lt;27&gt;</td>
+ </tr><tr>
+  <td>0x80004005 E_FAIL</td>
+  <td>This return value indicates that the session failed to tear down within the interval specified by the Session Teardown Timer (section 3.2.2.2).</td>
+ </tr></tbody></table>
+</dd></dl><p>Thereafter, the method has a different effect depending on
+the value of the <i>sRank</i> parameter and the value of the teardownType
+parameter.</p></div>

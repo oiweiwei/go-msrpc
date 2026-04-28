@@ -1,0 +1,29 @@
+<div class="content" name="AddNotification" uuid="32febcf4-842a-4d8b-b56d-5de2fa658407"><p>The AddNotification method registers a client to receive
+change notifications for a type of object.</p><dl>
+<dd>
+<div><pre> HRESULT AddNotification(
+   [in] DWORD dwType
+ );
+</pre></div>
+</dd></dl><p><b>dwType: </b>A value from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration specifying the type of object for which the client wants to receive
+change notifications.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>The call was successful.</td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>dwType</i>
+is a valid notification type, verify that the user has the required access
+rights, and set the server to send back notifications of <i>dwType</i> type.</p><p>If parameter validation fails, the server MUST NOT be set to
+send back notifications, MUST return S_OK (0x00000000), and take no further
+action.</p></div>

@@ -1,0 +1,160 @@
+<div class="content" name="ACE_HEADER" uuid="628ebb1d-c509-4ea0-a10f-77ef97ca4586"><p>The ACE_HEADER structure defines the type and size of an
+access control entry (ACE).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">AceType</td>
+  <td colspan="8">AceFlags</td>
+  <td colspan="16">AceSize</td>
+ </tr>
+</tbody></table><p><b>AceType (1 byte): </b>An unsigned 8-bit integer
+that specifies the ACE types. This field MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ACCESS_ALLOWED_ACE_TYPE 0x00</td>
+  <td>Access-allowed ACE that uses the ACCESS_ALLOWED_ACE (section 2.4.4.2) structure.</td>
+ </tr><tr>
+  <td>ACCESS_DENIED_ACE_TYPE 0x01</td>
+  <td>Access-denied ACE that uses the ACCESS_DENIED_ACE (section 2.4.4.4) structure.</td>
+ </tr><tr>
+  <td>SYSTEM_AUDIT_ACE_TYPE 0x02</td>
+  <td>System-audit ACE that uses the SYSTEM_AUDIT_ACE (section 2.4.4.10) structure.</td>
+ </tr><tr>
+  <td>SYSTEM_ALARM_ACE_TYPE 0x03</td>
+  <td>Reserved for future use.</td>
+ </tr><tr>
+  <td>ACCESS_ALLOWED_COMPOUND_ACE_TYPE 0x04</td>
+  <td>Reserved for future use.</td>
+ </tr><tr>
+  <td>ACCESS_ALLOWED_OBJECT_ACE_TYPE 0x05</td>
+  <td>Object-specific access-allowed ACE that uses the ACCESS_ALLOWED_OBJECT_ACE (section 2.4.4.3) structure.&lt;45&gt;</td>
+ </tr><tr>
+  <td>ACCESS_DENIED_OBJECT_ACE_TYPE 0x06</td>
+  <td>Object-specific access-denied ACE that uses the ACCESS_DENIED_OBJECT_ACE (section 2.4.4.5) structure.&lt;46&gt;</td>
+ </tr><tr>
+  <td>SYSTEM_AUDIT_OBJECT_ACE_TYPE 0x07</td>
+  <td>Object-specific system-audit ACE that uses the SYSTEM_AUDIT_OBJECT_ACE (section 2.4.4.11) structure.&lt;47&gt;</td>
+ </tr><tr>
+  <td>SYSTEM_ALARM_OBJECT_ACE_TYPE 0x08</td>
+  <td>Reserved for future use.</td>
+ </tr><tr>
+  <td>ACCESS_ALLOWED_CALLBACK_ACE_TYPE 0x09</td>
+  <td>Access-allowed callback ACE that uses the ACCESS_ALLOWED_CALLBACK_ACE (section 2.4.4.6) structure.&lt;48&gt;</td>
+ </tr><tr>
+  <td>ACCESS_DENIED_CALLBACK_ACE_TYPE 0x0A</td>
+  <td>Access-denied callback ACE that uses the ACCESS_DENIED_CALLBACK_ACE (section 2.4.4.7) structure.&lt;49&gt;</td>
+ </tr><tr>
+  <td>ACCESS_ALLOWED_CALLBACK_OBJECT_ACE_TYPE 0x0B</td>
+  <td>Object-specific access-allowed callback ACE that uses the ACCESS_ALLOWED_CALLBACK_OBJECT_ACE (section 2.4.4.8) structure.&lt;50&gt;</td>
+ </tr><tr>
+  <td>ACCESS_DENIED_CALLBACK_OBJECT_ACE_TYPE 0x0C</td>
+  <td>Object-specific access-denied callback ACE that uses the ACCESS_DENIED_CALLBACK_OBJECT_ACE (section 2.4.4.9) structure.&lt;51&gt;</td>
+ </tr><tr>
+  <td>SYSTEM_AUDIT_CALLBACK_ACE_TYPE 0x0D</td>
+  <td>System-audit callback ACE that uses the SYSTEM_AUDIT_CALLBACK_ACE (section 2.4.4.12) structure.&lt;52&gt;</td>
+ </tr><tr>
+  <td>SYSTEM_ALARM_CALLBACK_ACE_TYPE 0x0E</td>
+  <td>Reserved for future use.</td>
+ </tr><tr>
+  <td>SYSTEM_AUDIT_CALLBACK_OBJECT_ACE_TYPE 0x0F</td>
+  <td>Object-specific system-audit callback ACE that uses the SYSTEM_AUDIT_CALLBACK_OBJECT_ACE (section 2.4.4.14) structure.</td>
+ </tr><tr>
+  <td>SYSTEM_ALARM_CALLBACK_OBJECT_ACE_TYPE 0x10</td>
+  <td>Reserved for future use.</td>
+ </tr><tr>
+  <td>SYSTEM_MANDATORY_LABEL_ACE_TYPE 0x11</td>
+  <td>Mandatory label ACE that uses the SYSTEM_MANDATORY_LABEL_ACE (section 2.4.4.13) structure.</td>
+ </tr><tr>
+  <td>SYSTEM_RESOURCE_ATTRIBUTE_ACE_TYPE 0x12</td>
+  <td>Resource attribute ACE that uses the SYSTEM_RESOURCE_ATTRIBUTE_ACE (section 2.4.4.15)</td>
+ </tr><tr>
+  <td>SYSTEM_SCOPED_POLICY_ID_ACE_TYPE 0x13</td>
+  <td>A central policy ID ACE that uses the SYSTEM_SCOPED_POLICY_ID_ACE (section 2.4.4.16)</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The term &#34;callback&#34; in this context does
+not relate to RPC call backs. <a id="Appendix_A_Target_53"></a><a aria-label="Product behavior note 53" href="11e1608c-6169-4fbc-9c33-373fc9b224f4#Appendix_A_53" data-linktype="relative-path">&lt;53&gt;</a></p>
+</dd></dl><p><b>AceFlags (1 byte): </b>An unsigned 8-bit integer
+that specifies a set of ACE type-specific control flags. This field can be a
+combination of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CONTAINER_INHERIT_ACE 0x02</td>
+  <td>Child objects that are containers, such as directories, inherit the ACE as an effective ACE. The inherited ACE is inheritable unless the NO_PROPAGATE_INHERIT_ACE bit flag is also set.</td>
+ </tr><tr>
+  <td>FAILED_ACCESS_ACE_FLAG 0x80</td>
+  <td>Used with system-audit ACEs in a system access control list (SACL) to generate audit messages for failed access attempts.</td>
+ </tr><tr>
+  <td>INHERIT_ONLY_ACE 0x08</td>
+  <td>Indicates an inherit-only ACE, which does not control access to the object to which it is attached. If this flag is not set, the ACE is an effective ACE that controls access to the object to which it is attached. Both effective and inherit-only ACEs can be inherited depending on the state of the other inheritance flags.</td>
+ </tr><tr>
+  <td>INHERITED_ACE 0x10</td>
+  <td>Used to indicate that the ACE was inherited.&lt;54&gt; See section 2.5.3.5 for processing rules for setting this flag.</td>
+ </tr><tr>
+  <td>NO_PROPAGATE_INHERIT_ACE 0x04</td>
+  <td>If the ACE is inherited by a child object, the system clears the OBJECT_INHERIT_ACE and CONTAINER_INHERIT_ACE flags in the inherited ACE. This prevents the ACE from being inherited by subsequent generations of objects.</td>
+ </tr><tr>
+  <td>OBJECT_INHERIT_ACE 0x01</td>
+  <td>Noncontainer child objects inherit the ACE as an effective ACE. For child objects that are containers, the ACE is inherited as an inherit-only ACE unless the NO_PROPAGATE_INHERIT_ACE bit flag is also set.</td>
+ </tr><tr>
+  <td>SUCCESSFUL_ACCESS_ACE_FLAG 0x40</td>
+  <td>Used with system-audit ACEs in a SACL to generate audit messages for successful access attempts.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>AceSize (2 bytes): </b>An unsigned 16-bit integer
+that specifies the size, in bytes, of the ACE. The <b>AceSize</b> field can be
+greater than the sum of the individual fields, but MUST be a multiple of 4 to
+ensure alignment on a <a href="262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a>
+boundary. In cases where the <b>AceSize</b> field encompasses additional data
+for the callback ACEs types, that data is implementation-specific. Otherwise,
+this additional data is not interpreted and MUST be ignored.</p></div>

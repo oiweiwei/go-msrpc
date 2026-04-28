@@ -1,0 +1,90 @@
+<div class="content" name="GetViewDefaultColumnSet" uuid="105e87c4-161a-483b-99ca-237a77105bf9"><p>The GetViewDefaultColumnSet method returns an array of
+column identifiers that are associated with a specific view.</p><dl>
+<dd>
+<div><pre> HRESULT GetViewDefaultColumnSet(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD iColumnSetDefault,
+   [out] DWORD* pcColumn,
+   [out, ref] CERTTRANSBLOB* pctbColumnInfo
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the definition of the <i>pwszAuthority</i>
+parameter in <span><a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">ICertAdminD::SetExtension (section 3.1.4.1.1)</a></span>.
+</p><p><b>iColumnSetDefault: </b>An unsigned integer value
+that specifies the requested default column set to get. The value MUST be one
+of the values in the following table. If a value other than one of the listed
+values is used, the error E_INVALIDARG is returned.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0xFFFFFFFF</td>
+  <td>The caller attempts to retrieve the list of column identifiers that are useful for viewing pending requests.</td>
+ </tr><tr>
+  <td>0xFFFFFFFE</td>
+  <td>The caller attempts to retrieve the list of column identifiers that are useful for viewing issued certificates.</td>
+ </tr><tr>
+  <td>0xFFFFFFFD</td>
+  <td>The caller attempts to retrieve the list of column identifiers that are useful for viewing failed requests.</td>
+ </tr><tr>
+  <td>0xFFFFFFFC</td>
+  <td>The caller attempts to retrieve the list of column identifiers that are useful for viewing extensions.</td>
+ </tr><tr>
+  <td>0xFFFFFFFB</td>
+  <td>The caller attempts to retrieve the list of column identifiers that are useful for viewing attributes.</td>
+ </tr><tr>
+  <td>0xFFFFFFFA</td>
+  <td>The caller attempts to retrieve the list of column identifiers that are useful for viewing CRLs.</td>
+ </tr><tr>
+  <td>0xFFFFFFF9</td>
+  <td>The caller attempts to retrieve the list of column identifiers that are useful for viewing revoked certificates.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>pcColumn: </b>A pointer to the unsigned integer
+that receives the count of Column identifiers that are returned by the server
+in the <i>pctbColumnInfo</i> parameter.</p><p><b>pctbColumnInfo: </b>A pointer to a <span><a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a></span>
+structure. Its <b>cb </b>member MUST contain the length, in bytes, of the array
+that is referenced by the <b>pb </b>member. The <b>pb </b>member MUST point to
+an array of DWORDs, where each DWORD value represents the identifier for a
+column. Each <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+in the array is marshaled by using <span><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a></span>
+format.</p><p>The <span><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span> server MUST
+return the array of associated column identifiers in the following manner.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of the
+   iColumnSetDefault parameter</p>
+   </th>
+   <th>
+   <p>Processing
+   rule</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0xFFFFFFFF</td>
+  <td>The CA MUST return a subset of column identifiers for a pending request view from the Request table.&lt;49&gt;</td>
+ </tr><tr>
+  <td>0xFFFFFFFE</td>
+  <td>The CA MUST return a subset of column identifiers for issued and revoked certificate views and failed request view from the Request table.&lt;50&gt;</td>
+ </tr><tr>
+  <td>0xFFFFFFFD</td>
+  <td>The CA MUST return a subset of column identifiers for a failed request view from the Request table.&lt;51&gt;</td>
+ </tr><tr>
+  <td>0xFFFFFFFC</td>
+  <td>The CA MUST return a subset of column identifiers for an extension view from the Extension table.&lt;52&gt;</td>
+ </tr><tr>
+  <td>0xFFFFFFFB</td>
+  <td>The CA MUST return a subset of column identifiers for an attribute view from the Attribute table.&lt;53&gt;</td>
+ </tr><tr>
+  <td>0xFFFFFFFA</td>
+  <td>The CA MUST return a subset of column identifiers for a CRL view from the CRL table.&lt;54&gt;</td>
+ </tr><tr>
+  <td>0xFFFFFFF9</td>
+  <td>The CA MUST return a subset of column identifiers for a revoked certificate view from the Request table.&lt;55&gt;</td>
+ </tr></tbody></table><p> </p></div>

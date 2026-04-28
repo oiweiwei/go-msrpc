@@ -1,0 +1,8 @@
+<div class="content" name="TSHARE_COUNTERS" uuid="9981de84-885c-4ff8-a870-9912a8a5ff12"><p>TSHARE_COUNTERS is not used.</p><dl>
+<dd>
+<div><pre> typedef struct _TSHARE_COUNTERS {
+   ULONG Reserved;
+ } TSHARE_COUNTERS,
+  *PTSHARE_COUNTERS;
+</pre></div>
+</dd></dl><p><b>Reserved:</b>  This value is not used.</p></div>

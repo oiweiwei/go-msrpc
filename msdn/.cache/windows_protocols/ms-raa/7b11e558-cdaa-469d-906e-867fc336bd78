@@ -1,0 +1,43 @@
+<div class="content" name="AUTHZR_CONTEXT_INFORMATION" uuid="7b11e558-cdaa-469d-906e-867fc336bd78"><p>The AUTHZR_CONTEXT_INFORMATION structure contains security
+information about a principal.</p><dl>
+<dd>
+<div><pre> typedef struct _AUTHZR_CONTEXT_INFORMATION {
+     USHORT ValueType;
+     [switch_is(ValueType)] union AUTHZR_CONTEXT_INFORMATION_UNION {
+         [case(0x1)]
+             AUTHZR_TOKEN_USER* pTokenUser;
+         [case(0x2, 0x3, 0xC)]
+             AUTHZR_TOKEN_GROUPS* pTokenGroups;
+         [case(0xD, 0xE)]
+             AUTHZR_SECURITY_ATTRIBUTES_INFORMATION* pTokenClaims;
+     } ContextInfoUnion;
+ } AUTHZR_CONTEXT_INFORMATION;
+  
+  
+</pre></div>
+</dd></dl><p><b>ValueType:</b> Identifies the type of the
+ContextInfoUnion member.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x0001 (user)</td>
+  <td>ContextInfoUnion contains an AUTHZR_TOKEN_USER structure, as specified in section 2.2.3.10.</td>
+ </tr><tr>
+  <td>0x0002 (groups) 0x0003 (restricted groups) 0x000C (device groups)</td>
+  <td>ContextInfoUnion contains an AUTHZR_TOKEN_GROUPS structure, as specified in section 2.2.3.9.</td>
+ </tr><tr>
+  <td>0x000D (user claim) 0x000E (device claim)</td>
+  <td>ContextInfoUnion contains an AUTHZR_SECURITY_ATTRIBUTES_INFORMATION structure, as specified in section 2.2.3.7.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>ContextInfoUnion:</b> A pointer to an
+AUTHZR_TOKEN_USER, AUTHZR_TOKEN_GROUPS, or
+AUTHZR_SECURITY_ATTRIBUTES_INFORMATION structure, depending on the value of
+ValueType.</p></div>

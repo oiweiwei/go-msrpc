@@ -1,0 +1,49 @@
+<div class="content" name="GetAuditFilter" uuid="58fed3ab-91fe-43a8-bebb-447eb2f8f694"><p>The GetAuditFilter method retrieves the list of events for
+which the <span><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span> server is
+currently set to create security audit events, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89839" data-linktype="external">[CIMC-PP]</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetAuditFilter(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [out] DWORD* pdwFilter
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See <i>pwszAuthority</i>
+definition in section <span><a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a></span>. </p><p><b>pdwFilter: </b>An unsigned integer that specifies
+the current audit settings. This is a bitwise-OR combination of zero or more of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000001</td>
+  <td>Audit CA server for the following events:  ServerControl  Registration of the ICertAdminD interface.  Unregistration of the ICertAdminD interface.</td>
+ </tr><tr>
+  <td>0x00000002</td>
+  <td>Audit CA server for the following method calls:  BackupPrepare  BackupEnd</td>
+ </tr><tr>
+  <td>0x00000004</td>
+  <td>Audit CA server for the following method calls:  ICertRequestD::Request  ResubmitRequest  DenyRequest  SetAttributes  SetExtensions  ImportCertificate  DeleteRow</td>
+ </tr><tr>
+  <td>0x00000008</td>
+  <td>Audit CA server for the following method calls:  RevokeCertificate  PublishCRL  PublishCRLs</td>
+ </tr><tr>
+  <td>0x00000010</td>
+  <td>Audit CA server for the following method calls:  SetCASecurity  SetOfficerRights</td>
+ </tr><tr>
+  <td>0x00000020</td>
+  <td>Audit CA server for the following method calls:  GetArchivedKey  ImportKey</td>
+ </tr><tr>
+  <td>0x00000040</td>
+  <td>Audit CA server for the following method calls:  SetCAProperty  SetConfigEntry</td>
+ </tr></tbody></table>
+</dd></dl><p>The GetAuditFilter method is used to retrieve the audit
+filter currently in use (initialize to 0 during the registration of the
+interfaces and can be modified by a call to the <span><a href="76194711-fa4e-437c-b41e-34b0c4db2d3b" data-linktype="relative-path">SetAuditFilter</a></span>
+method).</p></div>

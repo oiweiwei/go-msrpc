@@ -103,11 +103,38 @@ Older examples in [examples/](./examples) use environment variables instead:
 
 ## Code Generation
 
-> **Note:** The IDL parser and code generator have moved to [github.com/oiweiwei/midl-gen-go](https://github.com/oiweiwei/midl-gen-go).
+The IDL parser and Go code generator live at [github.com/oiweiwei/midl-gen-go](https://github.com/oiweiwei/midl-gen-go) and are consumed here via the published Docker image `ghcr.io/oiweiwei/midl-gen-go`.
 
-Run `make all` to regenerate all stubs, or `make nrpc.go` to regenerate a specific IDL.
+Regenerate all stubs:
 
-To add a new IDL file, place it in `idl/` (or `idl/dcom/` for DCOM), then update the `all` target in the Makefile.
+```sh
+make all
+```
+
+Regenerate a single protocol (e.g. `nrpc.go`):
+
+```sh
+make nrpc.go
+```
+
+Under the hood each target runs:
+
+```sh
+docker run --rm \
+  -v $(pwd):/work \
+  -u $(id -u):$(id -g) \
+  ghcr.io/oiweiwei/midl-gen-go generate \
+  --pkg "github.com/oiweiwei/go-msrpc/msrpc/" \
+  -I /work/idl \
+  -I /work/idl/h \
+  --output /work/msrpc/ \
+  --msdn-openspecs-indexer-file /work/msdn/index.yaml \
+  --msdn-openspecs-extra-file /work/msdn/extra.yaml \
+  --msdn-openspecs-cache-dir /work/msdn/.cache/ \
+  /work/idl/<protocol>.idl
+```
+
+To add a new IDL file, place it in `idl/` (or `idl/dcom/` for DCOM), then add a corresponding target to the `all` rule in the Makefile.
 
 ## Features
 

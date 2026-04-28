@@ -1,0 +1,52 @@
+<div class="content" name="DeletePolicy" uuid="765739e6-bc35-4fb1-9733-fc4c2ffe01f9"><p>The DeletePolicy method deletes an existing <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_559b0a4d-161b-4664-9c10-4fab98b97f1f" data-linktype="relative-path">resource policy</a>.</p><dl>
+<dd>
+<div><pre> [id(4), helpstring(&#34;method DeletePolicy&#34;)] HRESULT DeletePolicy(
+   [in] BSTR bstrPolicyName
+</pre></div>
+</dd></dl><p>);</p><p><b>bstrPolicyName: </b>The name of the resource
+policy to be deleted. </p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Operation successful.</td>
+ </tr><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>One or more arguments are invalid.</td>
+ </tr><tr>
+  <td>0xC1FF006F WRM_ERR_ID_VALUE</td>
+  <td>The specified name contains characters that are invalid. The name cannot start with a hyphen (&#34;-&#34;), cannot contain spaces, and cannot contain any of the following characters:   \   / ? * | : &lt; &gt; &#34; , ;</td>
+ </tr><tr>
+  <td>0xC1FF00CF WRM_ERR_IS_CURRENT_POLICY</td>
+  <td>This resource allocation policy (RAP) is being used by WSRM and cannot be deleted.</td>
+ </tr><tr>
+  <td>0xC1FF00E0 WRM_ERR_WSRM_RESERVED_POLICY</td>
+  <td>The specified policy is a built-in policy. It cannot be altered.</td>
+ </tr><tr>
+  <td>0xC1FF00E7 WRM_ERR_DELETING_POLICY</td>
+  <td>The specified policy could not be deleted. A policy cannot be deleted if it is a member of one or more conditional policies.</td>
+ </tr><tr>
+  <td>0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER</td>
+  <td>The XML data that is maintained by the management service is invalid or cannot be processed. Windows returns this value if the XML data is corrupt.</td>
+ </tr><tr>
+  <td>0xC1FF00C9 WRM_ERR_POLICYID_INVALID</td>
+  <td>The specified RAP does not exist.</td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a03f4cd5-ad33-46aa-94e7-2c9a92f02b6f" data-linktype="relative-path">IWRMPolicy</a> interface
+methods are specified in section 3.2.4.7.</p></div>

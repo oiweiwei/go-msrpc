@@ -1,0 +1,49 @@
+<div class="content" name="DisableNtmsObject" uuid="12220163-8714-4672-9f23-4eab1297ddf6"><p>The DisableNtmsObject method disables an object.</p><dl>
+<dd>
+<div><pre> HRESULT DisableNtmsObject(
+   [in] DWORD dwType,
+   [in] LPNTMS_GUID lpObjectId
+ );
+</pre></div>
+</dd></dl><p><b>dwType: </b>One of the NTMS_DRIVE, NTMS_LIBRARY,
+or NTMS_PHYSICAL_MEDIA values from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration, specifying the type of the object. </p><p><b>lpObjectId: </b>A pointer to the identifier of the
+object to disable.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>0x80070005 ERROR_ACCESS_DENIED</td>
+  <td>NTMS_CONTROL_ACCESS to the library containing the object is denied.</td>
+ </tr><tr>
+  <td>0x80070057 ERROR_INVALID_PARAMETER</td>
+  <td>The parameter is NULL or invalid.</td>
+ </tr><tr>
+  <td>0x800710D1 ERROR_LIBRARY_OFFLINE</td>
+  <td>The lpObjectId parameter refers to an offline library that cannot be enabled or disabled.</td>
+ </tr><tr>
+  <td>0x800710D8 ERROR_OBJECT_NOT_FOUND</td>
+  <td>The lpObjectId parameter is invalid.</td>
+ </tr><tr>
+  <td>0x800710D9 ERROR_DATABASE_FAILURE</td>
+  <td>The database is inaccessible or damaged.</td>
+ </tr><tr>
+  <td>0x8007139F ERROR_INVALID_STATE</td>
+  <td>The object is already disabled.</td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpObjectId</i>
+is not NULL. If parameter validation fails, the server MUST immediately fail
+the operation and return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights, and set the object state to
+DISABLED. If the client does not have the required access rights, the server
+MUST return ERROR_ACCESS_DENIED (0x80070005).</p></div>

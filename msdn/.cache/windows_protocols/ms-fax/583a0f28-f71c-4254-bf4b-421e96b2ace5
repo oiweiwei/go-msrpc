@@ -1,0 +1,57 @@
+<div class="content" name="FAX_GetDeviceStatus" uuid="583a0f28-f71c-4254-bf4b-421e96b2ace5"><p>The <b>FAX_GetDeviceStatus (Opnum 8)</b> method is called by
+the client to retrieve information about a specified fax device (port).</p><p>In response, the server MUST validate that the client&#39;s fax
+user account has access to query configuration. The server SHOULD validate that
+the <i>FaxPortHandle</i> parameter is not set to NULL. It MUST then allocate
+memory for the status buffer to be passed out and fill it with data.</p><p>The fax server MUST ignore the access mode of the fax port
+specified by the <i>FaxPortHandle</i>.</p><p>To indicate success, the server MUST return the buffer that
+contains the status information, along with the buffer size.</p><p>The client SHOULD free the buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_GetDeviceStatus(
+   [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+   [out, size_is(,*BufferSize)] LPBYTE* StatusBuffer,
+   [out, ref] LPDWORD BufferSize
+ );
+</pre></div>
+</dd></dl><p><b>FaxPortHandle: </b>An <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle that
+references a specified fax port. This context handle MUST be obtained using the
+<b>FAX_OpenPort</b> (section <a href="aca2b58a-e310-42dc-9903-18c5b6c35797" data-linktype="relative-path">3.1.4.1.65</a>)
+method.</p><p><b>StatusBuffer: </b>A pointer to the address of a
+buffer to receive a <b>FAX_DEVICE_STATUS</b> structure. The structure describes
+the status of one fax device. The fax server MUST set the <b>SizeOfStruct</b>
+member of this structure to the correct size for the <b>Fixed_Portion</b> block
+of the <b>FAX_DEVICE_STATUS</b>, as described in section <a href="d046fe44-a845-454b-94d0-2d6933f9c6d0" data-linktype="relative-path">2.2.10</a>.</p><p><b>BufferSize: </b>A variable to return the size, in
+bytes, of the data returned in the buffer referenced by the <i>StatusBuffer</i>
+parameter.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. The client&#39;s fax user account does not have the FAX_ACCESS_QUERY_CONFIG access rights required for this operation.</td>
+ </tr><tr>
+  <td>ERROR_NOT_ENOUGH_MEMORY 0x00000008</td>
+  <td>The server cannot allocate sufficient memory to hold the FAX_DEVICE_STATUS to be returned to the client.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_DATA 0x0000000D</td>
+  <td>The FaxPortHandle parameter is not set to a valid port handle obtained using FAX_OpenPort.&lt;106&gt;</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect. This error code is returned under any of the following conditions: § The StatusBuffer parameter is set to a NULL pointer value.&lt;107&gt; § The FaxPortHandle parameter is set to a NULL value.&lt;108&gt;</td>
+ </tr><tr>
+  <td>ERROR_INTERNAL_ERROR 0x0000054F</td>
+  <td>The server failed to custom marshal the FAX_DEVICE_STATUS to be returned to the client.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying RPC protocol, <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

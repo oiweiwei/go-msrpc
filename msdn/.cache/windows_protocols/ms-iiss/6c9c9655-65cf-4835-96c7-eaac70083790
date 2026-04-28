@@ -1,0 +1,66 @@
+<div class="content" name="Reboot" uuid="6c9c9655-65cf-4835-96c7-eaac70083790"><p>This method is used to reboot the computer where the <a href="546d32cd-905e-4f34-b023-2be4b5e16413#gt_f31d61e4-7dc6-4710-ba18-944e0dbc2a11" data-linktype="relative-path">IIS</a> service is running.</p><p>The server implementation MAY<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="5c517f8f-7847-402a-b79e-4dbbf517997e#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a> not
+implement this function. If it does not, then it MUST return E_NOTIMPL.</p><dl>
+<dd>
+<div><pre> HRESULT Reboot(
+   DWORD dwTimeouMsecs,
+   DWORD dwForceAppsClosed
+ );
+</pre></div>
+</dd></dl><p><b>dwTimeoutMsecs: </b>Time, in milliseconds, that
+the user is to be provided to close applications before the computer restarts.
+After this time has elapsed, the applications MUST be forced to close if the <i>dwForceAppsClosed</i>
+parameter is set to 0x00000001.</p><p><b>dwForceAppsClosed: </b>Boolean value that
+specifies whether applications will be forced to close.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>TRUE 0x00000001</td>
+  <td>Applications MUST be forced to close.</td>
+ </tr><tr>
+  <td>FALSE 0x00000000</td>
+  <td>Applications MUST NOT be forced to close.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>A signed, 32-bit value
+indicating return status. If the method returns a negative value, it has
+failed. If the 12-bit facility code (bits 16–27) is set to 0x007, the value
+contains a Win32 error code in the lower 16 bits. 0 or positive values indicate
+success, with the lower 16 bits in positive nonzero values containing warnings
+or flags defined in the method implementation. For more information about <b>HRESULT</b>,
+see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<p>The method MUST return S_OK (0x00000000) upon
+success.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>The call was successful.</td>
+ </tr><tr>
+  <td>0x80070008 E_ERROR_NOT_ENOUGH_MEMORY</td>
+  <td>Not enough memory is available to process this command.</td>
+ </tr><tr>
+  <td>0x800710D5 E_ERROR_RESOURCE_DISABLED</td>
+  <td>The IIisServiceControl interface is disabled.</td>
+ </tr><tr>
+  <td>0x80004001 E_NOTIMPL</td>
+  <td>This function is not supported for this version of the server.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

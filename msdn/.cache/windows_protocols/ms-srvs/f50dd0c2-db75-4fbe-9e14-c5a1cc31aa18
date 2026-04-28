@@ -1,0 +1,14 @@
+<div class="content" name="SESSION_INFO_1_CONTAINER" uuid="f50dd0c2-db75-4fbe-9e14-c5a1cc31aa18"><p>The SESSION_INFO_1_CONTAINER structure contains a value that
+indicates the number of entries that the <a href="02b1f559-fda2-4ba3-94c2-806eb2777183" data-linktype="relative-path">NetrSessionEnum</a> method
+returns and a pointer to the buffer that contains the entries. </p><dl>
+<dd>
+<div><pre> typedef struct _SESSION_INFO_1_CONTAINER {
+   DWORD EntriesRead;
+   [size_is(EntriesRead)] LPSESSION_INFO_1 Buffer;
+ } SESSION_INFO_1_CONTAINER,
+  *PSESSION_INFO_1_CONTAINER,
+  *LPSESSION_INFO_1_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of entries
+returned by the method.</p><p><b>Buffer:</b>  A pointer to the <a href="73f86f62-aaf5-4cb2-8bcb-3bf2a4449966" data-linktype="relative-path">SESSION_INFO_1</a> entries
+returned by the method.</p></div>

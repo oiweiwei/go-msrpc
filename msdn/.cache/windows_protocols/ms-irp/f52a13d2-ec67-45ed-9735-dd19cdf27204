@@ -1,0 +1,36 @@
+<div class="content" name="INET_INFO_GLOBAL_CONFIG_INFO" uuid="f52a13d2-ec67-45ed-9735-dd19cdf27204"><p>The <b>INET_INFO_GLOBAL_CONFIG_INFO</b> structure contains
+configuration data global to all the Internet protocol services managed by this
+protocol.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _INET_INFO_GLOBAL_CONFIG_INFO {
+   DWORD FieldControl;
+   DWORD BandwidthLevel;
+   DWORD cbMemoryCacheSize;
+ } INET_INFO_GLOBAL_CONFIG_INFO,
+  *LPINET_INFO_GLOBAL_CONFIG_INFO;
+</pre></div>
+</dd></dl><p><b>FieldControl:</b>  A bit-field that
+specifies the values of the <b>INET_INFO_GLOBAL_CONFIG_INFO</b> structure that
+have been initialized. An implementation MUST set the flag corresponding to the
+structure field when returning or updating configuration data. This field MUST
+be set to a valid combination of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000001</td>
+  <td>FC_GINET_INFO_BANDWIDTH_LEVEL</td>
+ </tr><tr>
+  <td>0x00000002</td>
+  <td>FC_GINET_INFO_MEMORY_CACHE_SIZE</td>
+ </tr></tbody></table>
+</dd></dl><p><b>BandwidthLevel:</b>  The bytes per
+second to send over the network for the <a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet protocol servers</a>.</p><p><b>cbMemoryCacheSize:</b>  The size of the
+in-memory file cache for the Internet protocol servers. </p></div>

@@ -1,0 +1,87 @@
+<div class="content" name="STDOBJREF" uuid="5ee74828-43a8-400b-9629-2bb4e707d7ec"><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">flags</td>
+ </tr>
+ <tr>
+  <td colspan="32">cPublicRefs</td>
+ </tr>
+ <tr>
+  <td colspan="32">oxid</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">oid</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">ipid (16 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>flags (4 bytes): </b> This can be one of the
+following values. Any other value MUST be ignored by the client.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000</td>
+  <td>The client is requested to perform garbage collection pinging (see section 3.2.6.1) for this object identifier (OID).</td>
+ </tr><tr>
+  <td>SORF_NOPING 0x00001000</td>
+  <td>The client is requested to not perform garbage collection pinging (see section 3.2.6.1) for this object identifier (OID).&lt;7&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>cPublicRefs (4 bytes): </b>The number of public
+references on the server object, which MUST be released later. For more
+information, see section <a href="32539d39-9070-4e3a-845f-6047d245f8e4" data-linktype="relative-path">3.2.4.4.2</a>.</p><p><b>oxid (8 bytes): </b> This MUST be an <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_602b473b-557d-40cc-8217-2cbdaa04c78d" data-linktype="relative-path">OXID</a> identifying the <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_5b284f60-ee33-4d15-9a7b-0fb82d7c6b68" data-linktype="relative-path">object exporter</a> that
+contains the object.</p><p><b>oid (8 bytes): </b> This MUST be an OID
+identifying the object.</p><p><b>ipid (16 bytes): </b> This MUST be an <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_74540339-daab-46ea-a8f9-fe8fca3b150c" data-linktype="relative-path">IPID</a> identifying a specific
+interface on the object.</p></div>

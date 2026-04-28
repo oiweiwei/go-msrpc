@@ -1,0 +1,84 @@
+<div class="content" name="RpcWinStationShutdownSystem" uuid="81c472be-2a71-424e-8bde-71e826a34c26"><p>The RpcWinStationShutdownSystem method shuts down the system
+and optionally logs off all sessions and/or reboots the system. The caller
+requires SeShutdownPrivilege (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=212627" data-linktype="external">[MSDN-PRVLGECNSTS]</a></span>)
+when performing the shutdown locally and SeRemoteShutdownPrivilege (see
+[MSDN-PRVLGECNSTS]) when performing the shutdown remotely. The caller calls
+ExitWindowsEx (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=212628" data-linktype="external">[MSDN-ExitWindowsEx]</a></span>)
+to perform the actual shutdown once all checks have been completed.</p><dl>
+<dd>
+<div><pre> BOOLEAN RpcWinStationShutdownSystem(
+   [in] SERVER_HANDLE hServer,
+   [out] DWORD* pResult,
+   [in] DWORD ClientLogonId,
+   [in] DWORD ShutdownFlags
+ );
+</pre></div>
+</dd></dl><p><b>hServer: </b>Handle to the server object. This is
+of type <span><a href="49484cdf-2feb-4de9-a588-5d01cf8995dc" data-linktype="relative-path">SERVER_HANDLE</a></span>. The <i>hServer</i>
+MUST be obtained from a previous call to <span><a href="fd6f339d-f5dd-452c-a9a9-ec753c22a36a" data-linktype="relative-path">RpcWinStationOpenServer</a></span>.</p><p><b>pResult: </b> Failure error code if the call to RpcWinStationShutdownSystem
+failed. If the call was successful, this parameter MUST be STATUS_SUCCESS
+(0x00000000).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>STATUS_SUCCESS 0x00000000</td>
+  <td>The call succeeded.</td>
+ </tr><tr>
+  <td>STATUS_ACCESS_DENIED 0xC0000022</td>
+  <td>The caller does not have permission to shut down the system.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>ClientLogonId: </b>The session requesting to shut
+down the system. Ignored when the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> call is remote.</p><p><b>ShutdownFlags: </b> Shutdown flags. It MUST be any
+bitwise OR combination of the following flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>WSD_LOGOFF 0x00000001</td>
+  <td>Forces sessions to logoff.</td>
+ </tr><tr>
+  <td>WSD_SHUTDOWN 0x00000002</td>
+  <td>Shuts down the system.</td>
+ </tr><tr>
+  <td>WSD_REBOOT 0x00000004</td>
+  <td>Reboots after shutdown.</td>
+ </tr><tr>
+  <td>WSD_POWEROFF 0x00000008</td>
+  <td>Powers off after shutdown.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b> Returns TRUE if the call
+succeeded, or FALSE if the method failed. On failure, <i>pResult</i> indicates
+the failure status code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x01 TRUE</td>
+  <td>Successful completion.</td>
+ </tr><tr>
+  <td>0x00 FALSE</td>
+  <td>Method call failed.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

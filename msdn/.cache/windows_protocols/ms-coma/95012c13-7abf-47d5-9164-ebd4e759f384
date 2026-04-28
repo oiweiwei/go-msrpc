@@ -1,0 +1,36 @@
+<div class="content" name="IReplicationUtil" uuid="95012c13-7abf-47d5-9164-ebd4e759f384"><p>The IReplicationUtil <a href="3f01a312-3391-4109-a96e-95358babf191#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+for miscellaneous tasks specific to replication scenarios. This interface
+inherits from <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>,
+as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section 3.1.1.5.8.</p><p>To receive incoming remote calls for this interface, the
+server MUST implement a DCOM object class with the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a> CLSID_COMAServer, as
+specified in section <a href="3afd05f6-01a3-4920-951f-f9c703a3b0f1" data-linktype="relative-path">1.9</a>,
+using the UUID {98315903-7BE5-11D2-ADC1-00A02463D6E7} for this interface. </p><p>This interface includes the following methods beyond those
+of IUnknown:</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CreateShare</td>
+  <td>Creates a file share for copying installer package files. Opnum: 3</td>
+ </tr><tr>
+  <td>CreateEmptyDir</td>
+  <td>Creates an empty directory. Opnum: 4</td>
+ </tr><tr>
+  <td>RemoveShare</td>
+  <td>Removes a previously created file share. Opnum: 5</td>
+ </tr><tr>
+  <td>BeginReplicationAsTarget</td>
+  <td>Creates the file share for a new replication operation, optionally managing replication history information and/or backup state. Opnum: 6</td>
+ </tr><tr>
+  <td>QueryConglomerationPassword</td>
+  <td>Returns the Password property of a conglomeration. Opnum: 7</td>
+ </tr><tr>
+  <td>CreateReplicationDir</td>
+  <td>Ensures that the base replication directory exists, and returns its path. Opnum: 8</td>
+ </tr></tbody></table><p>All methods MUST NOT throw exceptions.</p></div>

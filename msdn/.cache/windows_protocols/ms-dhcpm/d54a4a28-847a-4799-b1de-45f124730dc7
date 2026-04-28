@@ -1,0 +1,13 @@
+<div class="content" name="DHCP_POLICY_ARRAY" uuid="d54a4a28-847a-4799-b1de-45f124730dc7"><p>The <b>DHCP_POLICY_ARRAY</b> structure contains a list of <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_52323544-69e0-4172-8921-2711cbda988e" data-linktype="relative-path">policy</a> elements.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_POLICY_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_POLICY Elements;
+ } DHCP_POLICY_ARRAY,
+  *PDHCP_POLICY_ARRAY,
+  *LPDHCP_POLICY_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This member contains
+the number of policies in the array.</p><p><b>Elements:</b>  This member is a pointer
+of type <b>DHCP_POLICY</b> (section <a href="77e79969-cedf-4aa9-9059-6223ba815f30" data-linktype="relative-path">2.2.1.2.110</a>) that points
+to an array of length <b>NumElements</b>.</p></div>

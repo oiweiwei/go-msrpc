@@ -1,0 +1,274 @@
+<div class="content" name="ITraceDataCollector" uuid="94e049b9-532a-4c3a-ada2-43c75802e825"><p>The ITraceDataCollector interface is used to collect trace
+events from trace data providers.</p><p>The following properties MUST be implemented by the objects
+that implement the ITraceDataCollector interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>BufferSize</td>
+  <td>RW</td>
+  <td>Specifies the suggested buffer size, in kilobytes (KB), for each event tracing session buffer. The minimum value of the BufferSize property is 1 kilobyte. The maximum value is 1,024 KB. The default value is 8 KB.</td>
+ </tr><tr>
+  <td>BuffersLost</td>
+  <td>R</td>
+  <td>Specifies the number of buffers that could not be written to the log file. Any unsigned long is a valid value for this property. This property is only updated when the IDataCollectorSet::Start or IDataCollectorSet::Query methods are called.&lt;22&gt;</td>
+ </tr><tr>
+  <td>BuffersWritten</td>
+  <td>R</td>
+  <td>If running, specifies the number of buffers written to the log file. Any unsigned long is a valid value for this property.</td>
+ </tr><tr>
+  <td>ClockType</td>
+  <td>RW</td>
+  <td>Retrieves or sets the clock resolution to use when logging the time stamp for each event.</td>
+ </tr><tr>
+  <td>EventsLost</td>
+  <td>R</td>
+  <td>If running, specifies the number of events that were lost due to the lack of buffers to write to. Any unsigned long is a valid value for this property. This property is only updated when the IDataCollectorSet::Start or IDataCollectorSet::Query methods are called.&lt;23&gt;</td>
+ </tr><tr>
+  <td>ExtendedModes</td>
+  <td>RW</td>
+  <td>Retrieves or sets the log file modes that are not already set by this or other objects. The valid values for ExtendedModes are specified in section 2.2.9.</td>
+ </tr><tr>
+  <td>FlushTimer</td>
+  <td>RW</td>
+  <td>Specifies the time, in seconds, to wait before flushing buffers either to a log file or by delivering the buffers to an event consuming the application in real-time. If zero, the buffers are flushed as soon as they are filled. If nonzero, all buffers containing at least one event are flushed every time the number of seconds specified in this property elapse. Any unsigned long is a valid value for this property.</td>
+ </tr><tr>
+  <td>FreeBuffers</td>
+  <td>R</td>
+  <td>If running, specifies the number of buffers that are allocated but unused in the event tracing session&#39;s buffer pool. Any unsigned long is a valid value for the FreeBuffers property. This property is only updated when the IDataCollectorSet::Start or IDataCollectorSet::Query methods are called.&lt;24&gt;</td>
+ </tr><tr>
+  <td>Guid</td>
+  <td>RW</td>
+  <td>Specifies the PLA-UID of the session. If the supplied PLA-UID maps to a Security Descriptor, the session will run using that Security Descriptor. If no PLA-UID is supplied, a PLA-UID is generated. The PLA-UID is used for internal state tracking and does not correspond to any of the DCOM GUID subtypes. The valid range for this property is from 0000-0000-0000-0000-0000-0000-0000-0001 to FFFF-FFFF-FFFF-FFFF-FFFF-FFFF-FFFF-FFFF. Any PLA-UID other than 0000-0000-0000-0000-0000-0000-0000-0000 is a valid value for this property. The Guid in this context refers to the COM interface property which is used as a PLA-UID and does not comply with the semantics of GUID specified in [C706].</td>
+ </tr><tr>
+  <td>IsKernelTrace</td>
+  <td>R</td>
+  <td>Specifies whether this trace data collector includes kernel event trace data providers.</td>
+ </tr><tr>
+  <td>MaximumBuffers</td>
+  <td>RW</td>
+  <td>Specifies the suggested maximum number of buffers to allocate for the event tracing session&#39;s buffer pool. The value of the MaximumBuffers property has to be greater than or equal to the value of the MinimumBuffers property. Any unsigned long is a valid number of maximum buffers to suggest, but there is no guarantee that the suggestion will be followed. If the MaximumBuffers property is set to zero, it implies that the user is requesting that no more than zero buffers be used. As with any other possible value for the MaximumBuffers property, the suggestion might or might not be followed depending on whether the protocol implementation supports the requested value. No error will occur if the suggestion is not followed, unless MaximumBuffers was set to a lower value than MinimumBuffers, and it is not possible to detect if the suggestion is followed. The protocol does not provide any mechanism to discover the actual number of buffers being used.</td>
+ </tr><tr>
+  <td>MinimumBuffers</td>
+  <td>RW</td>
+  <td>Specifies the suggested minimum number of buffers to allocate for the event tracing session&#39;s buffer pool. The value of the MinimumBuffers property has to be less than or equal to the value of the MaximumBuffers property. Any unsigned long is a valid number of minimum buffers to suggest, but there is no guarantee that the suggestion will be followed. If the MinimumBuffers property is set to zero, it implies that the user is requesting that as few as zero buffers be used. As with any other possible value for the MinimumBuffers property, the suggestion might or might not be followed depending on whether the protocol implementation supports the requested value. No error will occur if the suggestion is not followed and it is not possible to detect if the suggestion is followed. The protocol does not provide any mechanism to discover the actual number of buffers being used.</td>
+ </tr><tr>
+  <td>NumberOfBuffers</td>
+  <td>RW</td>
+  <td>Specifies the suggested number of buffers to use for logging. Any unsigned long is a valid number of buffers to suggest, though there is no guarantee that the suggestion will be followed. If the NumberOfBuffers property is set to zero, it implies that the user is requesting that zero buffers be used. As with any other possible value for the NumberOfBuffers property, the suggestion might or might not be followed depending on whether the protocol implementation supports the requested value. No error will occur if the suggestion is not followed and it is not possible to detect if the suggestion is followed. The protocol does not provide any mechanism to discover the actual number of buffers being used.</td>
+ </tr><tr>
+  <td>PreallocateFile</td>
+  <td>RW</td>
+  <td>Specifies whether or not PLA MUST allocate the IDataCollectorSet::SegmentMaxSize on disk prior to the start of the trace data collector. However, if IDataCollectorSet::SegmentMaxSize is set to zero, then this property is ignored.</td>
+ </tr><tr>
+  <td>ProcessMode</td>
+  <td>RW</td>
+  <td>Specifies whether or not a process-private logger MUST be used when the ITraceDataCollector is executing on the server. When events are logged using ETW, they are temporarily directed to buffers before they are written to a file or delivered to a real-time monitoring application. If this property is set to TRUE, then when the ITraceDataCollector begins executing on the server, the buffers will not be allocated from kernel memory, but from process memory. If this property is set to FALSE, then the buffers will be allocated from kernel memory. If this property is set to TRUE, and the ITraceDataProviderCollection is empty or if any one of the specified trace providers is a kernel-mode provider, then the IDataCollectorSet::Start method will fail and an error code will be returned. The ITraceDataCollector specifies which providers to enable to this process-private logger. The buffers will be allocated in the process-space when the ITraceDataCollector begins executing. However, nothing will be written to these buffers unless the provider, which is also specified in the ITraceDataCollector, registers with ETW on the server and begins using the ETW API to log events. If this property is set to TRUE, and the provider registers multiple times with ETW from different processes, then there will be different trace files that are generated, one for each process. The file name is specified in the ITraceDataCollector, and to this file name is appended the extension, etl, and the process ID. If the process-private logger were running in a process with a process ID of 4, and the file name specified in the ITraceDataCollector is MyFile, then the file name that the events would be written to would be MyFile.etl_4. This is not the case if this property is set to FALSE, since the different provider instances from the different processes will all log to the buffers that are allocated in kernel memory, and these buffers are associated with a single trace file. As a result, no process ID is appended after the file extension etl. If a process-private logger is used, the process in which the buffers are allocated has the ability to modify the contents of the buffers. However, because the buffers are in the process, they are only visible to that process. While a process hosting a private session can edit the contents of a buffer after an event is written to it, only that process can view those buffers and consequently see those edits. If a process-private logger is not used, the buffers are allocated in the kernel. In this case, all processes can potentially view the contents of buffers, but no process has the ability to edit them.</td>
+ </tr><tr>
+  <td>RealTimeBuffersLost</td>
+  <td>R</td>
+  <td>If running, specifies the number of buffers that could not be delivered in real time to the consumer. RealTimeBuffers are lost when the backup file for storing events cannot be read or written to by the Event Tracing for infrastructure. In these situations, the buffers are not recoverable. It is not the case that the buffers are arriving late; instead, they are not arriving at all. Any unsigned long is a valid value for RealTimeBuffersLost. This property is only updated when the IDataCollectorSet::Start or IDataCollectorSet::Query methods are called.&lt;25&gt;</td>
+ </tr><tr>
+  <td>SessionId</td>
+  <td>R</td>
+  <td>This property refers to the session identifier of the ETW trace session. When an ITraceDataCollector executes, it starts an ETW trace session; this session is marked with a numeric identifier. There can be up to 64 different sessions. Each of these sessions is marked by a different numeric SessionId, which is specified in this property. Therefore, this property can have the value of 0x0000000000000000 to 0x000000000000003F. The lower 2 bytes have the session IDs that are possible (0x0000 to 0x003F) while the upper 6 bytes MUST be ignored. This property is only updated when the IDataCollectorSet::Start or IDataCollectorSet::Query methods are called.&lt;26&gt;</td>
+ </tr><tr>
+  <td>SessionName</td>
+  <td>RW</td>
+  <td>Specifies the name of the session to be created to collect event trace data.</td>
+ </tr><tr>
+  <td>SessionThreadId</td>
+  <td>R</td>
+  <td>If running, specifies the ID of the thread performing the logging of the session. This property is only updated when the IDataCollectorSet::Start or IDataCollectorSet::Query methods are called.&lt;27&gt;</td>
+ </tr><tr>
+  <td>StreamMode</td>
+  <td>RW</td>
+  <td>Specifies the logging mode of the trace session.</td>
+ </tr><tr>
+  <td>TraceDataProviders</td>
+  <td>R (returned object is writable)</td>
+  <td>List of providers to be enabled for this trace session.</td>
+ </tr></tbody></table><p>A data collector can be represented as an XML file, which
+can be used to serialize (using Xml (Get) <a href="38b478b4-408e-4702-aecf-946177a9f06b" data-linktype="relative-path">3.2.4.5.21</a>) and
+deserialize (using SetXml <a href="6f99ca8b-2197-43eb-b17a-7761c529787c" data-linktype="relative-path">3.2.4.5.22</a>)
+it. The format of the XML that defines a trace data collector is as follows
+(note that the full specification of the data collector set XML is in section <a href="b5be2d38-3f21-478d-a8b9-a61128eb2751" data-linktype="relative-path">3.2.4.19</a>): </p><dl>
+<dd>
+<div><pre> &lt;TraceDataCollector&gt;
+ &lt;!-- elements for DataCollectorType --&gt;    
+ &lt;BufferSize/&gt;
+     &lt;BuffersLost/&gt;  
+     &lt;BuffersWritten/&gt;  
+     &lt;ClockType/&gt;
+     &lt;EventsLost/&gt;  
+     &lt;ExtendedMode/&gt;
+     &lt;FlushTimer/&gt;
+     &lt;FreeBuffers/&gt;  
+     &lt;Guid/&gt;
+     &lt;IsKernelTrace/&gt;
+     &lt;MaximumBuffers/&gt;
+     &lt;MinimumBuffers/&gt;
+     &lt;PreallocateFile/&gt;
+     &lt;ProcessMode/&gt;
+     &lt;RealTimeBuffersLost/&gt;  
+     &lt;SessionId/&gt;  
+     &lt;SessionName/&gt;
+     &lt;SessionThreadId/&gt;  
+     &lt;StreamMode/&gt;
+     &lt;TraceDataProvider&gt;  &lt;!-- Specify for each provider --&gt;
+         &lt;AllKeywords/&gt;
+         &lt;AnyKeywords/&gt;
+         &lt;DisplayName/&gt;
+         &lt;FilterData/&gt;
+         &lt;FilterType/&gt;
+         &lt;Guid/&gt;
+         &lt;Level/&gt;
+         &lt;Properties/&gt;
+     &lt;/TraceDataProvider&gt;
+ &lt;/TraceDataCollector&gt;
+  
+  
+</pre></div>
+</dd></dl><p>The XML given above does not show the property elements
+inherited from IDataCollector that also need to be specified.</p><p><a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">Opnums</a>
+35, 37, 41, 47, 62, 64, and 68 are not used across the network. These opnums
+are reserved and MUST NOT be reused by non-Microsoft implementations.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>BufferSize (Get)</td>
+  <td>Retrieves the BufferSize property. Opnum: 32</td>
+ </tr><tr>
+  <td>BufferSize (Put)</td>
+  <td>Sets the BufferSize property. Opnum: 33</td>
+ </tr><tr>
+  <td>BuffersLost (Get)</td>
+  <td>Retrieves the BufferLost property. Opnum: 34</td>
+ </tr><tr>
+  <td>Opnum35NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 35</td>
+ </tr><tr>
+  <td>BuffersWritten (Get)</td>
+  <td>Retrieves the BuffersWritten property. Opnum: 36</td>
+ </tr><tr>
+  <td>Opnum37NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 37</td>
+ </tr><tr>
+  <td>ClockType (Get)</td>
+  <td>Retrieves the ClockType property. Opnum: 38</td>
+ </tr><tr>
+  <td>ClockType (Put)</td>
+  <td>Sets the ClockType property. Opnum: 39</td>
+ </tr><tr>
+  <td>EventsLost (Get)</td>
+  <td>Retrieves the EventsLost property. Opnum: 40</td>
+ </tr><tr>
+  <td>Opnum41NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 41</td>
+ </tr><tr>
+  <td>ExtendedModes (Get)</td>
+  <td>Retrieves the ExtendedModes property. Opnum: 42</td>
+ </tr><tr>
+  <td>ExtendedModes (Put)</td>
+  <td>Sets the ExtendedModes property. Opnum: 43</td>
+ </tr><tr>
+  <td>FlushTimer (Get)</td>
+  <td>Retrieves the FlushTimer property. Opnum: 44</td>
+ </tr><tr>
+  <td>FlushTimer (Put)</td>
+  <td>Sets the FlushTimer property. Opnum: 45</td>
+ </tr><tr>
+  <td>FreeBuffers (Get)</td>
+  <td>Retrieves the FreeBuffers property. Opnum: 46</td>
+ </tr><tr>
+  <td>Opnum47NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 47</td>
+ </tr><tr>
+  <td>Guid (Get)</td>
+  <td>Retrieves the Guid property. Opnum: 48</td>
+ </tr><tr>
+  <td>Guid (Put)</td>
+  <td>Sets the Guid property. Opnum: 49</td>
+ </tr><tr>
+  <td>IsKernelTrace (Get)</td>
+  <td>Retrieves the IsKernelTrace property. Opnum: 50</td>
+ </tr><tr>
+  <td>MaximumBuffers (Get)</td>
+  <td>Retrieves the MaximumBuffers property. Opnum: 51</td>
+ </tr><tr>
+  <td>MaximumBuffers (Put)</td>
+  <td>Sets the MaximumBuffers property. Opnum: 52</td>
+ </tr><tr>
+  <td>MinimumBuffers (Get)</td>
+  <td>Retrieves the MinimumBuffers property. Opnum: 53</td>
+ </tr><tr>
+  <td>MinimumBuffers (Put)</td>
+  <td>Sets the MinimumBuffers property. Opnum: 54</td>
+ </tr><tr>
+  <td>NumberOfBuffers (Get)</td>
+  <td>Retrieves the NumberOfBuffers property. Opnum: 55</td>
+ </tr><tr>
+  <td>NumberOfBuffers (Put)</td>
+  <td>Sets the NumberOfBuffers property. Opnum: 56</td>
+ </tr><tr>
+  <td>PreallocateFile (Get)</td>
+  <td>Retrieves the PreallocateFile property. Opnum: 57</td>
+ </tr><tr>
+  <td>PreallocateFile (Put)</td>
+  <td>Sets the PreallocateFile property. Opnum: 58</td>
+ </tr><tr>
+  <td>ProcessMode (Get)</td>
+  <td>Retrieves the ProcessMode property. Opnum: 59</td>
+ </tr><tr>
+  <td>ProcessMode (Put)</td>
+  <td>Sets the ProcessMode property. Opnum: 60</td>
+ </tr><tr>
+  <td>RealTimeBuffersLost (Get)</td>
+  <td>Retrieves the RealTimeBuffersLost property. Opnum: 61</td>
+ </tr><tr>
+  <td>Opnum62NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 62</td>
+ </tr><tr>
+  <td>SessionId (Get)</td>
+  <td>Retrieves the SessionId property. Opnum: 63</td>
+ </tr><tr>
+  <td>Opnum64NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 64</td>
+ </tr><tr>
+  <td>SessionName (Get)</td>
+  <td>Retrieves the SessionName. Opnum: 65</td>
+ </tr><tr>
+  <td>SessionName (Put)</td>
+  <td>Sets the SessionName Opnum: 66</td>
+ </tr><tr>
+  <td>SessionThreadId (Get)</td>
+  <td>Retrieves the SessionThreadId property. Opnum: 67</td>
+ </tr><tr>
+  <td>Opnum68NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 68</td>
+ </tr><tr>
+  <td>StreamMode (Get)</td>
+  <td>Retrieves the StreamMode property. Opnum: 69</td>
+ </tr><tr>
+  <td>StreamMode (Put)</td>
+  <td>Retrieves the StreamMode property. Opnum: 70</td>
+ </tr><tr>
+  <td>TraceDataProviders (Get)</td>
+  <td>Retrieves the TraceDataProviders property. Opnum: 71</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. Opnums 7–31 are
+used by IDataCollector.</p></div>

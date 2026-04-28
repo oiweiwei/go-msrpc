@@ -1,0 +1,160 @@
+<div class="content" name="LsarSetInformationPolicy2" uuid="fc14e9ae-a26e-4031-809e-a908dd3e13a3"><p>The LsarSetInformationPolicy2 method is invoked to set a
+policy on the server.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarSetInformationPolicy2(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] POLICY_INFORMATION_CLASS InformationClass,
+   [in, switch_is(InformationClass)] 
+     PLSAPR_POLICY_INFORMATION PolicyInformation
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+obtained from either <span><a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a></span> or <span><a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a></span>.</p><p><b>InformationClass: </b>A parameter that specifies
+what type of information the caller is setting.</p><p><b>PolicyInformation: </b>Data that represents policy
+being set.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 STATUS_SUCCESS</td>
+  <td>The request was successfully completed.</td>
+ </tr><tr>
+  <td>0xC0000022 STATUS_ACCESS_DENIED</td>
+  <td>The caller does not have the permissions to perform this operation.</td>
+ </tr><tr>
+  <td>0xC000000D STATUS_INVALID_PARAMETER</td>
+  <td>One of the parameters is incorrect. For instance, this can happen if InformationClass is not supported or some of the supplied policy data is invalid.</td>
+ </tr><tr>
+  <td>0xC0000002 STATUS_NOT_IMPLEMENTED</td>
+  <td>This information class cannot be set.</td>
+ </tr><tr>
+  <td>0xC0000008 STATUS_INVALID_HANDLE</td>
+  <td>PolicyHandle is not a valid handle.</td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p><i>PolicyHandle</i> MUST reference a context that was
+granted an access commensurate with the <i>InformationClass</i> value
+requested. If <i>PolicyHandle</i> is not a valid context handle or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. If the context does not have sufficient access, the
+server MUST return STATUS_ACCESS_DENIED.</p><p>The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <span><a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a></span>. The
+following table specifies the RequiredAccess value to use in this access check
+for each <i>InformationClass</i> value or indicates if no processing is
+supported, regardless of access granted.</p><table><thead>
+  <tr>
+   <th>
+   <p>InformationClass value</p>
+   </th>
+   <th>
+   <p>RequiredAccess value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>PolicyAuditLogInformation</td>
+  <td>POLICY_AUDIT_LOG_ADMIN</td>
+ </tr><tr>
+  <td>PolicyAuditEventsInformation</td>
+  <td>POLICY_SET_AUDIT_REQUIREMENTS</td>
+ </tr><tr>
+  <td>PolicyPrimaryDomainInformation</td>
+  <td>POLICY_TRUST_ADMIN</td>
+ </tr><tr>
+  <td>PolicyPdAccountInformation</td>
+  <td>Not applicable: This information class cannot be set; the request MUST fail with STATUS_INVALID_PARAMETER.</td>
+ </tr><tr>
+  <td>PolicyAccountDomainInformation</td>
+  <td>Not applicable: This information class cannot be set; the request MUST fail with STATUS_INVALID_PARAMETER.</td>
+ </tr><tr>
+  <td>PolicyLsaServerRoleInformation</td>
+  <td>POLICY_SERVER_ADMIN</td>
+ </tr><tr>
+  <td>PolicyReplicaSourceInformation</td>
+  <td>POLICY_SERVER_ADMIN</td>
+ </tr><tr>
+  <td>PolicyModificationInformation</td>
+  <td>Not applicable: This information class cannot be set; the request MUST fail with STATUS_INVALID_PARAMETER.</td>
+ </tr><tr>
+  <td>PolicyAuditFullSetInformation</td>
+  <td>Not applicable: This information class cannot be set; the request MUST fail with STATUS_INVALID_PARAMETER.</td>
+ </tr><tr>
+  <td>PolicyAuditFullQueryInformation</td>
+  <td>Not applicable: This information class cannot be set; the request MUST fail with STATUS_INVALID_PARAMETER.</td>
+ </tr><tr>
+  <td>PolicyDnsDomainInformation</td>
+  <td>POLICY_TRUST_ADMIN</td>
+ </tr><tr>
+  <td>PolicyDnsDomainInformationInt</td>
+  <td>POLICY_TRUST_ADMIN</td>
+ </tr><tr>
+  <td>PolicyLocalAccountDomainInformation</td>
+  <td>POLICY_TRUST_ADMIN</td>
+ </tr><tr>
+  <td>PolicyMachineAccountInformation</td>
+  <td>POLICY_TRUST_ADMIN</td>
+ </tr></tbody></table><p>The <i>InformationClass</i> parameter can take on any value
+in the POLICY_INFORMATION_CLASS enumeration range. For all values outside this
+range, the server MUST return the STATUS_INVALID_PARAMETER error code.</p><p>The <i>PolicyInformation</i> parameter contains the data
+that the caller wishes to set, based on the value of the <i>InformationClass</i>
+parameter. The server MUST update its abstract data model, specified in section
+<span><a href="c939c70e-8cf0-4d90-a9cc-1c5002951723" data-linktype="relative-path">3.1.1.1</a></span>,
+as follows.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of InformationClass parameter </p>
+   </th>
+   <th>
+   <p>Information updated in abstract data model</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>PolicyAuditLogInformation</td>
+  <td>Server MUST return the STATUS_NOT_IMPLEMENTED error code because this is not a policy element that can be set.</td>
+ </tr><tr>
+  <td>PolicyAuditEventsInformation</td>
+  <td>Event Auditing Options.</td>
+ </tr><tr>
+  <td>PolicyPrimaryDomainInformation</td>
+  <td>Primary Domain Information.</td>
+ </tr><tr>
+  <td>PolicyPdAccountInformation</td>
+  <td>Server MUST return STATUS_INVALID_PARAMETER because this is not a policy element that can be set.</td>
+ </tr><tr>
+  <td>PolicyAccountDomainInformation</td>
+  <td>On a domain controller, the server MUST fail this request with the STATUS_INVALID_PARAMETER. On non-domain controllers: Account Domain Information.</td>
+ </tr><tr>
+  <td>PolicyLsaServerRoleInformation</td>
+  <td>Server Role Information.</td>
+ </tr><tr>
+  <td>PolicyReplicaSourceInformation</td>
+  <td>Replica Source Information.</td>
+ </tr><tr>
+  <td>PolicyModificationInformation</td>
+  <td>Server MUST return STATUS_INVALID_PARAMETER because this is not a policy element that can be set.</td>
+ </tr><tr>
+  <td>PolicyAuditFullSetInformation</td>
+  <td>ShutDownOnFull field of Audit Full Information.&lt;65&gt;</td>
+ </tr><tr>
+  <td>PolicyAuditFullQueryInformation</td>
+  <td>Server MUST record STATUS_INVALID_PARAMETER because this is not a policy element that can be set.</td>
+ </tr><tr>
+  <td>PolicyDnsDomainInformation</td>
+  <td>DNS Domain Information.&lt;66&gt;</td>
+ </tr><tr>
+  <td>PolicyDnsDomainInformationInt</td>
+  <td>DNS Domain Information.</td>
+ </tr><tr>
+  <td>PolicyLocalAccountDomainInformation</td>
+  <td>Account Domain Information.</td>
+ </tr><tr>
+  <td>PolicyMachineAccountInformation</td>
+  <td>Machine Account Information.</td>
+ </tr></tbody></table><p> </p></div>

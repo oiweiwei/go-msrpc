@@ -1,0 +1,131 @@
+<div class="content" name="CLUS_CSV_VOLUME_INFO" uuid="1c96736f-4ec1-403b-a5f8-dbb0edc1e672"><p> The <b>CLUS_CSV_VOLUME_INFO</b> structure represents
+information about a <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a></span> shared <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><p>CLUS_CSV_VOLUME_INFO is a custom-marshaled structure that
+has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">VolumeOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">PartitionNumber</td>
+ </tr>
+ <tr>
+  <td colspan="32">FaultState</td>
+ </tr>
+ <tr>
+  <td colspan="32">BackupState</td>
+ </tr>
+ <tr>
+  <td colspan="32">szVolumeFriendlyName (520 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">szVolumeName (100 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>VolumeOffset (8 bytes): </b> A 64-bit unsigned
+integer that indicates the offset of the volume.</p><p><b>PartitionNumber (4 bytes): </b> A 32-bit unsigned
+integer that indicates the <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span> number of
+the volume.</p><p><b>FaultState (4 bytes): </b>A 32-bit integer that
+indicates the existence of faults for this volume, or that the volume is in
+volume maintenance mode, backup mode, or redirected mode. The block redirected
+mode of the volume is not reflected in this field. Possible values are as
+follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>VolumeStateNoFaults 0x00000000</td>
+  <td>Indicates that the volume is accessible on all nodes. None of these modes are enabled: volume maintenance mode, backup mode, or redirected mode.</td>
+ </tr><tr>
+  <td>VolumeStateRedirected 0x00000001</td>
+  <td>Indicates that volume maintenance mode is not enabled and that the volume is either in redirected mode, in backup mode, or in both redirected and backup modes.</td>
+ </tr><tr>
+  <td>VolumeStateNoAccess 0x00000002</td>
+  <td>Indicates that the volume is not accessible to applications irrespective of whether the volume maintenance, redirected, or backup modes are enabled.</td>
+ </tr><tr>
+  <td>VolumeStateInMaintenance 0x00000004</td>
+  <td>Indicates that the volume is in volume maintenance mode irrespective of whether redirected or backup modes are enabled.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>BackupState (4 bytes): </b>A 32-bit integer that
+indicates the current backup mode of the volume, as specified in <b>Cluster
+Node Volume Accessibility</b> (section <span><a href="d6de4d86-f7c9-47e6-9fef-6f2fd861aee5" data-linktype="relative-path">3.1.1.4</a></span>). Possible
+values are as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>VolumeBackupNone 0x00000000</td>
+  <td>Indicates that the volume is not in backup mode.</td>
+ </tr><tr>
+  <td>VolumeBackupInProgress 0x00000001</td>
+  <td>Indicates that the volume is in backup mode.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>szVolumeFriendlyName (520 bytes): </b> A
+fixed-length buffer 520 bytes long that contains a null-terminated <span><a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> that indicates the friendly name of the volume.</p><p><b>szVolumeName (100 bytes): </b>A fixed-length
+buffer 100 bytes long that contains a null-terminated Unicode string that
+indicates the name of the volume in the volume GUID format. For example:</p><dl>
+<dd>
+<div><pre> \\?\Volume{00000000-0000-0000-0000-000000000000}\
+</pre></div>
+</dd></dl></div>

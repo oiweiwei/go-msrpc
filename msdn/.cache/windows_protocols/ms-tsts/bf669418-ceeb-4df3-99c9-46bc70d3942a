@@ -1,0 +1,35 @@
+<div class="content" name="RpcGetSessionIP" uuid="bf669418-ceeb-4df3-99c9-46bc70d3942a"><p>The<b> RpcGetSessionIP</b> method retrieves the IP address
+assigned to the session. This MUST be called by an <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_eb335f5b-619b-46ed-9138-06e9910108c3" data-linktype="relative-path">administrator</a></span> or the
+same user who logged onto the session.<a id="Appendix_A_Target_214"></a><a aria-label="Product behavior note 214" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_214" data-linktype="relative-path">&lt;214&gt;</a> The
+method performs access checks as defined in section <span><a href="d8999c6c-1ce3-4e9c-b24d-464651a2904b" data-linktype="relative-path">3.1.3</a></span> and <span><a href="2b247f47-fc8a-41bc-8735-571112317e2c" data-linktype="relative-path">3.1.4</a></span>.
+The method fails if both checks fail.</p><dl>
+<dd>
+<div><pre> HRESULT RpcGetSessionIP(
+   [in] handle_t hBinding,
+   [in] USHORT Family,
+   [in] DWORD SessionId,
+   [ref, out] TSVIPSession* ppVIPSession
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>.
+For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93771" data-linktype="external">[MSDN-RPCBIND]</a></span>.</p><p><b>Family: </b>MUST be AF_INET.</p><p><b>SessionId: </b>The identifier of the session to
+open. This session MUST be present on the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>.
+This MUST NOT be the session ID of any of the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_1e5aa0c2-4617-4d7a-969e-a7091c415c8d" data-linktype="relative-path">listener</a></span> sessions.</p><p><b>ppVIPSession: </b>The session structure containing
+the IP address assigned to the session. This is of type <span><a href="92043576-fad1-495c-9a5d-f90185959e5f" data-linktype="relative-path">TSVIPSession</a></span>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Successful completion.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

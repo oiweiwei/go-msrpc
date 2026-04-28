@@ -1,0 +1,49 @@
+<div class="content" name="RCMPublic" uuid="3cfda13d-57b6-4161-a75a-a654c9bc7428"><p>The RCMPublic interface methods provide data about clients
+and sessions, and enable shadowing sessions. The version for this interface is
+1.0.</p><p>For information about <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoints</a></span>, <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+values, and versions, see sections <span><a href="ac0535d0-a847-4386-ae3e-e93a50ff2484" data-linktype="relative-path">2.1</a></span> and <span><a href="4f5ff568-2887-4c50-8b36-38bb85170b58" data-linktype="relative-path">1.9</a></span>.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>RpcGetClientData</td>
+  <td>Returns information about the client that is connected to a particular session running on a terminal server. Opnum: 0</td>
+ </tr><tr>
+  <td>RpcGetConfigData</td>
+  <td>Returns the configuration data that is associated with the user connected to a particular session running on a terminal server. Opnum: 1</td>
+ </tr><tr>
+  <td>RpcGetProtocolStatus</td>
+  <td>Retrieves information about the status of the protocol that is used to connect to a particular session running on a terminal server. Opnum: 2</td>
+ </tr><tr>
+  <td>RpcGetLastInputTime</td>
+  <td>Returns the time the last user input was received for the specified session running on a terminal server by the associated protocol. Opnum: 3</td>
+ </tr><tr>
+  <td>RpcGetRemoteAddress</td>
+  <td>Retrieves the IP address of the client machine that is connected to the session on the terminal server. Opnum: 4</td>
+ </tr><tr>
+  <td>Opnum5NotUsedOnWire</td>
+  <td>Not implemented. Opnum: 5</td>
+ </tr><tr>
+  <td>Opnum6NotUsedOnWire</td>
+  <td>Not implemented. Opnum: 6</td>
+ </tr><tr>
+  <td>Opnum7NotUsedOnWire</td>
+  <td>Not implemented. Opnum: 7</td>
+ </tr><tr>
+  <td>RpcGetAllListeners</td>
+  <td>Returns a list of all Terminal Services listeners running on a terminal server. Opnum: 8</td>
+ </tr><tr>
+  <td>RpcGetSessionProtocolLastInputTime</td>
+  <td>Returns the protocol status and time the last input was received by the protocol associated with a specific session running on a terminal server. Opnum: 9</td>
+ </tr><tr>
+  <td>RpcGetUserCertificates</td>
+  <td>Returns the client X509 certificate used to connect to a session running on a terminal server. Opnum: 10</td>
+ </tr><tr>
+  <td>RpcQuerySessionData</td>
+  <td>Returns information about a particular session running on a terminal server. Opnum: 11</td>
+ </tr></tbody></table><p> </p></div>

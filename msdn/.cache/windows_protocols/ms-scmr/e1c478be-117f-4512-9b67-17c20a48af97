@@ -1,0 +1,123 @@
+<div class="content" name="RControlService" uuid="e1c478be-117f-4512-9b67-17c20a48af97"><p>The RControlService method receives a control code for a
+specific service handle, as specified by the client.</p><dl>
+<dd>
+<div><pre> DWORD RControlService(
+   [in] SC_RPC_HANDLE hService,
+   [in] DWORD dwControl,
+   [out] LPSERVICE_STATUS lpServiceStatus
+ );
+</pre></div>
+</dd></dl><p><b>hService: </b>An <span><a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE (section 2.2.4)</a></span>
+data type that defines the handle to the <span><a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a></span> that
+MUST have been created previously using one of the open methods specified in section
+<span><a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a></span>.</p><p><b>dwControl: </b>Requested control code. MUST be one
+of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>SERVICE_CONTROL_CONTINUE 0x00000003</td>
+  <td>Notifies a paused service that it SHOULD resume. The SERVICE_PAUSE_CONTINUE access right MUST have been granted to the caller when the RPC control handle to the service record was created. The service record MUST have the SERVICE_ACCEPT_PAUSE_CONTINUE bit set in the ServiceStatus.dwControlsAccepted field of the service record.</td>
+ </tr><tr>
+  <td>SERVICE_CONTROL_INTERROGATE 0x00000004</td>
+  <td>Notifies a service that it SHOULD report its current status information to the SCM. The SERVICE_INTERROGATE access right MUST have been granted to the caller when the RPC control handle to the service record was created.</td>
+ </tr><tr>
+  <td>SERVICE_CONTROL_NETBINDADD 0x00000007</td>
+  <td>Notifies a service that there is a new component for binding. The SERVICE_PAUSE_CONTINUE access right MUST have been granted to the caller when the RPC control handle to the service record was created. The service record MUST have the SERVICE_ACCEPT_NETBINDCHANGE bit set in the ServiceStatus.dwControlsAccepted field of the service record.</td>
+ </tr><tr>
+  <td>SERVICE_CONTROL_NETBINDDISABLE 0x0000000A</td>
+  <td>Notifies a network service that one of its bindings has been disabled. The SERVICE_PAUSE_CONTINUE access right MUST have been granted to the caller when the RPC control handle to the service record was created. The service record MUST have the SERVICE_ACCEPT_NETBINDCHANGE bit set in the ServiceStatus.dwControlsAccepted field of the service record.</td>
+ </tr><tr>
+  <td>SERVICE_CONTROL_NETBINDENABLE 0x00000009</td>
+  <td>Notifies a network service that a disabled binding has been enabled. The SERVICE_PAUSE_CONTINUE access right MUST have been granted to the caller when the RPC control handle to the service record was created. The service record MUST have the SERVICE_ACCEPT_NETBINDCHANGE bit set in the ServiceStatus.dwControlsAccepted field of the service record.</td>
+ </tr><tr>
+  <td>SERVICE_CONTROL_NETBINDREMOVE 0x00000008</td>
+  <td>Notifies a network service that a component for binding has been removed. The SERVICE_PAUSE_CONTINUE access right MUST have been granted to the caller when the RPC control handle to the service record was created. The service record MUST have the SERVICE_ACCEPT_NETBINDCHANGE bit set in the ServiceStatus.dwControlsAccepted field of the service record.</td>
+ </tr><tr>
+  <td>SERVICE_CONTROL_PARAMCHANGE 0x00000006</td>
+  <td>Notifies a service that its startup parameters have changed. The SERVICE_PAUSE_CONTINUE access right MUST have been granted to the caller when the RPC control handle to the service record was created. The service record MUST have the SERVICE_ACCEPT_PARAMCHANGE bit set in the ServiceStatus.dwControlsAccepted field of the service record.</td>
+ </tr><tr>
+  <td>SERVICE_CONTROL_PAUSE 0x00000002</td>
+  <td>Notifies a service that it SHOULD pause. The SERVICE_PAUSE_CONTINUE access right MUST have been granted to the caller when the RPC control handle to the service record was created. The service record MUST have the SERVICE_ACCEPT_PAUSE_CONTINUE bit set in the ServiceStatus.dwControlsAccepted field of the service record.</td>
+ </tr><tr>
+  <td>SERVICE_CONTROL_STOP 0x00000001</td>
+  <td>Notifies a service that it SHOULD stop. The SERVICE_STOP access right MUST have been granted to the caller when the RPC control handle to the service record was created. The service record MUST have the SERVICE_ACCEPT_STOP bit set in the ServiceStatus.dwControlsAccepted field of the service record.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Services can define their own
+codes in the range 128-255.</p>
+</dd></dl><p><b>lpServiceStatus: </b>Pointer to a <span><a href="4e91ff36-ab5f-49ed-a43d-a308e72b0b3c" data-linktype="relative-path">SERVICE_STATUS (section 2.2.47)</a></span>
+structure that receives the latest service status information. The returned
+information reflects the most recent status that the service reported to the
+SCM.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>5 ERROR_ACCESS_DENIED</td>
+  <td>The required access right had not been granted to the caller when the RPC context handle to the service record was created.</td>
+ </tr><tr>
+  <td>1051 ERROR_DEPENDENT_SERVICES_RUNNING</td>
+  <td>The service cannot be stopped because other running services are dependent on it.</td>
+ </tr><tr>
+  <td>6 ERROR_INVALID_HANDLE</td>
+  <td>The handle is no longer valid.</td>
+ </tr><tr>
+  <td>87 ERROR_INVALID_PARAMETER</td>
+  <td>The requested control code is undefined</td>
+ </tr><tr>
+  <td>1052 ERROR_INVALID_SERVICE_CONTROL</td>
+  <td>The requested control code is not valid, or it is unacceptable to the service.</td>
+ </tr><tr>
+  <td>1053 ERROR_SERVICE_REQUEST_TIMEOUT</td>
+  <td>The process for the service was started, but it did not respond within an implementation-specific time-out.&lt;35&gt;</td>
+ </tr><tr>
+  <td>1061 ERROR_SERVICE_CANNOT_ACCEPT_CTRL</td>
+  <td>The requested control code cannot be sent to the service because the ServiceStatus.dwCurrentState in the service record is SERVICE_START_PENDING or SERVICE_STOP_PENDING.</td>
+ </tr><tr>
+  <td>1062 ERROR_SERVICE_NOT_ACTIVE</td>
+  <td>The service has not been started, or the ServiceStatus.dwCurrentState in the service record is SERVICE_STOPPED.</td>
+ </tr><tr>
+  <td>1115 ERROR_SHUTDOWN_IN_PROGRESS</td>
+  <td>The system is shutting down.</td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation, the SCM MUST send the control specified in the <i>dwControl</i>
+parameter to the service created for the service record identified by the <i>hService</i>
+parameter of the client request if the type of the service record is
+SERVICE_WIN32_OWN_PROCESS or SERVICE_WIN32_SHARE_PROCESS.</p><p>If the type of the service record is SERVICE_KERNEL_DRIVER
+or SERVICE_FILESYSTEM_DRIVER, and <i>dwControl</i> parameter is not
+SERVICE_CONTROL_INTERROGATE or SERVICE_CONTROL_STOP, the SCM MUST fail the
+request with ERROR_INVALID_SERVICE_CONTROL.</p><p>If the type of the service record is SERVICE_KERNEL_DRIVER
+or SERVICE_FILESYSTEM_DRIVER, the SCM MUST query the current status of the
+driver from the IO manager and set the ServiceStatus.dwCurrentState of the
+service record to SERVICE_RUNNING if driver is loaded and SERVICE_STOPPED if it
+is not.</p><p>If the <i>dwControl</i> is not SERVICE_CONTROL_INTERROGATE
+and type of the service record is SERVICE_KERNEL_DRIVER or
+SERVICE_FILESYSTEM_DRIVER and the driver is managed by the PnP subsystem, the
+SCM MUST fail the request with ERROR_INVALID_SERVICE_CONTROL.</p><p>If the <b>ServiceStatus.dwControlsAccepted</b> field of the
+service record does not have a required SERVICE_ACCEPT_xxx bit set, the SCM
+MUST fail the request with ERROR_INVALID_SERVICE_CONTROL.</p><p>In response to this request from the client, for a
+successful operation the server MUST set the ServiceStatus from the service
+record identified by the <i>hService</i> parameter of the request in the <i>lpServiceStatus</i>
+parameter.</p><p>The server SHOULD fill in the <i>lpServiceStatus</i>
+structure only when RControlService returns one of the following error codes:
+NO_ERROR, ERROR_INVALID_SERVICE_CONTROL, ERROR_SERVICE_CANNOT_ACCEPT_CTRL,
+ERROR_DEPENDENT_SERVICES_RUNNING, or ERROR_SERVICE_NOT_ACTIVE.</p></div>

@@ -1,0 +1,33 @@
+<div class="content" name="IEnumEventObject" uuid="70b37fd7-5c0a-4354-9242-47dce8c00bf0"><p>The IEnumEventObject interface provides methods that are
+used to enumerate a collection of <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e8df25db-9bff-46df-b607-d072dd29c02b" data-linktype="relative-path">event classes</a></span> or <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_f362c255-5746-44db-aa04-e8060543a19c" data-linktype="relative-path">subscriptions</a></span>.
+The version for this interface is 0.0.</p><p>A <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> gets this
+interface by means of the get_NewEnum (Opnum 9) (section <span><a href="3daff6c2-d474-4173-962d-f53bf89eebb5" data-linktype="relative-path">3.1.4.6.3)</a></span>
+method of the <span><a href="ac9b9d0e-1fe0-4ea8-a917-55b38055a1b2" data-linktype="relative-path">IEventObjectCollection</a></span>.
+As this is a DCOM interface, opnums 0 through 2 are <span><a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a></span>
+methods, which MUST be implemented by means of <span><a href="../ms-dcom/7f621d16-8448-4f9a-9567-793845db2bc7" data-linktype="relative-path">IRemUnknown</a></span>,
+as specified in <span><a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a></span>
+section 3.1.1.5.6. The DCOM <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> implementing
+this interface MUST use the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+{F4A07D63-2E25-11D1-9964-00C04FBBB345}.</p><p>This interface includes the following methods beyond those
+of IUnknown.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Clone</td>
+  <td>Clones the collection into another IEnumEventObject-based DCOM object. Opnum: 3</td>
+ </tr><tr>
+  <td>Next</td>
+  <td>Returns the next elements and iterates over them. Opnum: 4</td>
+ </tr><tr>
+  <td>Reset</td>
+  <td>Resets the enumerating object back to the first element. Opnum: 5</td>
+ </tr><tr>
+  <td>Skip</td>
+  <td>Skips ahead in the collection. Opnum: 6</td>
+ </tr></tbody></table><p> </p></div>

@@ -1,0 +1,185 @@
+<div class="content" name="SetCAProperty" uuid="fcafda53-673a-4332-b943-3f5ba7fb8eeb"><p>The SetCAProperty method is used to set <span><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span>
+properties.</p><dl>
+<dd>
+<div><pre> HRESULT SetCAProperty(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] LONG PropId,
+   [in] LONG PropIndex,
+   [in] LONG PropType,
+   [in] CERTTRANSBLOB* pctbPropertyValue
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See <i>pwszAuthority</i>
+definition in section <span><a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a></span>. </p><p><b>PropId: </b>A <span><a href="../ms-dtyp/29d44d70-382f-4998-9d76-8a1fe93e445c" data-linktype="relative-path">LONG</a></span>
+value that specifies one and exactly one of the following property identifiers.
+The use of PropIds, is as specified in <span><a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a></span>
+section <span><a href="../ms-wcce/7c715f9f-db50-41c3-abfc-0021c6390d4e" data-linktype="relative-path">3.2.1.4.3.2</a></span>.
+If a value other than one of the listed values is used, the error E_INVALIDARG
+is returned.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x0000001a</td>
+  <td>A binary object that contains the CA&#39;s key recovery agent (KRA) certificate to be added at the index specified by PropIndex parameter.</td>
+ </tr><tr>
+  <td>0x00000019</td>
+  <td>The maximum number of KRA certificates available on the CA.</td>
+ </tr><tr>
+  <td>0x00000018</td>
+  <td>The minimum number of KRAs to use when archiving a private key. For more information on KRA usage, see [MSFT-ARCHIVE].</td>
+ </tr><tr>
+  <td>0x0000001d</td>
+  <td>A collection of name and OID (1) pairs that identify the templates supported by a CA.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>PropIndex: </b>A LONG value for the index of the
+KRA certificate to set when the provided <i>PropId</i> is 0x1a. For other <i>PropId</i>
+values, it MUST be 0.</p><p><b>PropType: </b>A LONG value that specifies the type
+of the property. This parameter MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>PROPTYPE_LONG 0x00000001</td>
+  <td>Signed LONG data</td>
+ </tr><tr>
+  <td>PROPTYPE_BINARY 0x00000003</td>
+  <td>Binary data</td>
+ </tr><tr>
+  <td>PROPTYPE_STRING 0x00000004</td>
+  <td>Unicode String data</td>
+ </tr></tbody></table>
+</dd></dl><p><b>pctbPropertyValue: </b>A pointer to <span><a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a></span>
+that specifies the new property value. The format for the value contained in
+CERTTRANSBLOB is specific to the <i>PropId</i> defined as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value of
+   PropID</p>
+   </th>
+   <th>
+   <p>Format for
+   values in CERTTRANSBLOB</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>CR_PROP_KRACERTUSEDCOUNT 0x00000018</td>
+  <td>The pb member of CERTTRANSBLOB MUST point to an unsigned integer value (little-endian format) and the cb member of CERTTRANSBLOB MUST contain the length of the bytes containing the value.</td>
+ </tr><tr>
+  <td>CR_PROP_KRACERTCOUNT 0x00000019</td>
+  <td>The pb member of CERTTRANSBLOB MUST point to an unsigned integer value (little-endian format) and the cb member of CERTTRANSBLOB MUST contain the length of the bytes containing the value.</td>
+ </tr><tr>
+  <td>CR_PROP_KRACERT 0x0000001a</td>
+  <td>The pb member of CERTTRANSBLOB MUST point to an ASN.1 DER (as specified in [ITUX690]) encoded byte array of Certificate. The cb member of CERTTRANSBLOB MUST contain the length of the array.</td>
+ </tr><tr>
+  <td>CR_PROP_TEMPLATES 0x0000001d</td>
+  <td>As specified in [MS-WCCE] section 3.2.1.4.3.2.29.</td>
+ </tr></tbody></table>
+</dd></dl><p>The following  table defines the values that MUST be set for
+<b>PropIndex</b> and <b>PropType</b> for each one of the property values passed
+via <i>PropID</i>.</p><table><thead>
+  <tr>
+   <th>
+   <p>PropID
+   value </p>
+   </th>
+   <th>
+   <p>PropIndex
+   MUST be </p>
+   </th>
+   <th>
+   <p>PropType
+   MUST be </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x0000001a</td>
+  <td>The minimum index is 0.</td>
+  <td>0x00000003</td>
+ </tr><tr>
+  <td>0x00000019</td>
+  <td>0x00000000</td>
+  <td>0x00000001</td>
+ </tr><tr>
+  <td>0x00000018</td>
+  <td>0x00000000</td>
+  <td>0x00000001</td>
+ </tr><tr>
+  <td>0x0000001d</td>
+  <td>0x00000000</td>
+  <td>0x00000004</td>
+ </tr></tbody></table><p>When processing the SetCAProperty method, the server
+determines its behavior based on the requested property ID (<i>PropID</i>
+parameter). All valid property IDs are listed in the preceding table. The CA
+MUST return the error value ERROR_INVALID_PARAMETER if any of the following
+conditions are met:</p><ul><li><p><span><span> 
+</span></span>The value of <i>PropID</i> is not listed in the preceding table,
+or</p>
+</li><li><p><span><span> 
+</span></span>For a given <i>PropID</i> value the <i>PropIndex</i> value does
+not match the required values defined in the preceding table, or</p>
+</li><li><p><span><span> 
+</span></span>For a given <i>PropID</i> value the <i>PropType</i> value does
+not match the required values defined in the preceding table.</p>
+</li></ul><p>The CA server MUST use the property values to modify the
+data (as specified in Abstract Data Model in [MS-WCCE] section <span><a href="../ms-wcce/a9f2c928-fe9b-4d18-a3ac-b6c910337ab6" data-linktype="relative-path">3.2.1.1</a></span>)
+maintained by CA as part of the configuration.</p><p>The CA server MUST apply the following processing rules:</p><ol><li><p><span>    </span>The value of
+CR_PROP_KRACERTUSEDCOUNT MUST be between 1 and the current configured value of
+CR_PROP_KRACERTCOUNT property. The initial value for CR_PROP_KRACERTCOUNT
+property MUST be 0.</p>
+</li><li><p><span>    </span>The value to
+which the CR_PROP_KRACERTCOUNT property is being set MUST be less than the
+currently configured value of CR_PROP_KRACERTCOUNT.</p>
+</li><li><p><span>    </span>If the <i>PropIndex</i>
+is greater than or equal to the property CR_PROP_KRACERTCOUNT, then the CA must
+increase the value of CR_PROP_KRACERTCOUNT to the value of <i>PropIndex</i>
+plus 1 each time SetCAProperty (CR_PROP_KRACERT) is called. Else, if the <i>PropIndex</i>
+is less than CR_PROP_KRACERTCOUNT, then the value of CR_PROP_KRACERTCOUNT is
+not changed.</p>
+</li><li><p><span>    </span>When
+SetCAProperty(CR_PROP_TEMPLATES) is called, the CA MUST apply the following
+processing rules:</p>
+<ol><li><p><span>   
+</span>If the pctbPropertyValue, <b>pb </b>member doesn&#39;t have at least two
+separators identified by &#39;\n&#39;, the CA MUST fail the request. The error code
+SHOULD be E_INVALIDARG (0x80070057), as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+Otherwise, the CA MUST continue with the following processing rules.</p>
+</li><li><p><span>   
+</span>The pctbPropertyValue, <b>pb </b>member contains the following
+string:&#34;TemplateName1\nTemplateOID1\nTemplateName2\nTemplateOID2\...
+&#34;, where</p>
+<ul><li><p><span><span> 
+</span></span>TemplateName1 is one of the values of the <b>cn</b> <span><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>
+of the <span><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_9c47ca85-9343-4e01-96d4-53d96d3df60e" data-linktype="relative-path">certificate template</a></span>
+object that is stored in the Certificate_Template column.</p>
+</li><li><p><span><span> 
+</span></span>TemplateOID1 is the value of the msPKI-Template-Cert-Template-OID
+attribute of the certificate template stored in the Certificate_Template
+column.</p>
+</li></ul><p><b>Note</b>  The
+CA MUST ignore the TemplateOID values specified above.</p>
+</li><li><p><span>   
+</span>The <span><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_3edb3c30-bb82-4782-9777-19c5006965ef" data-linktype="relative-path">enrollment</a></span> services <span><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c3143e71-2ada-417e-83f4-3ef10eff2c56" data-linktype="relative-path">container</a></span>
+identified in [MS-WCCE] section <span><a href="../ms-wcce/3ec073ec-9b91-4bee-964e-56f22a93a28c" data-linktype="relative-path">2.2.2.11.2</a></span>
+is modified with the following attribute:</p>
+<ul><li><p><span><span> 
+</span></span><b>certificateTemplates</b> attribute: The CA MUST set this
+attribute with the list of template names specified in step 4.2 above.</p>
+</li></ul></li></ol></li></ol></div>

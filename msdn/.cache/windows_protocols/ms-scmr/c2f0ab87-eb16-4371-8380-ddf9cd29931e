@@ -1,0 +1,161 @@
+<div class="content" name="SERVICE_STATUS_PROCESS" uuid="c2f0ab87-eb16-4371-8380-ddf9cd29931e"><p>The SERVICE_STATUS_PROCESS structure contains information
+about a service that is used by the <span><a href="e27fce9d-fd45-47b1-bdeb-c05a2fd53669" data-linktype="relative-path">RQueryServiceStatusEx</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwServiceType;
+   DWORD dwCurrentState;
+   DWORD dwControlsAccepted;
+   DWORD dwWin32ExitCode;
+   DWORD dwServiceSpecificExitCode;
+   DWORD dwCheckPoint;
+   DWORD dwWaitHint;
+   DWORD dwProcessId;
+   DWORD dwServiceFlags;
+ } SERVICE_STATUS_PROCESS,
+  *LPSERVICE_STATUS_PROCESS;
+</pre></div>
+</dd></dl><p><b>dwServiceType:</b>  The type of service.
+This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>SERVICE_KERNEL_DRIVER 0x00000001</td>
+  <td>A driver service. These are services that manage devices on the system.</td>
+ </tr><tr>
+  <td>SERVICE_FILE_SYSTEM_DRIVER 0x00000002</td>
+  <td>A file system driver service. These are services that manage file systems on the system.</td>
+ </tr><tr>
+  <td>SERVICE_WIN32_OWN_PROCESS 0x00000010</td>
+  <td>A service that runs in its own process.</td>
+ </tr><tr>
+  <td>SERVICE_WIN32_SHARE_PROCESS 0x00000020</td>
+  <td>A service that shares a process with other services.</td>
+ </tr><tr>
+  <td>SERVICE_INTERACTIVE_PROCESS 0x00000100</td>
+  <td>The service can interact with the desktop.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Only SERVICE_WIN32_OWN_PROCESS and
+SERVICE_INTERACTIVE_PROCESS or SERVICE_WIN32_SHARE_PROCESS and
+SERVICE_INTERACTIVE_PROCESS can be combined.</p>
+</dd></dl><p><b>dwCurrentState:</b>  The current state
+of the service. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000005</td>
+  <td>SERVICE_CONTINUE_PENDING</td>
+ </tr><tr>
+  <td>0x00000006</td>
+  <td>SERVICE_PAUSE_PENDING</td>
+ </tr><tr>
+  <td>0x00000007</td>
+  <td>SERVICE_PAUSED</td>
+ </tr><tr>
+  <td>0x00000004</td>
+  <td>SERVICE_RUNNING</td>
+ </tr><tr>
+  <td>0x00000002</td>
+  <td>SERVICE_START_PENDING</td>
+ </tr><tr>
+  <td>0x00000003</td>
+  <td>SERVICE_STOP_PENDING</td>
+ </tr><tr>
+  <td>0x00000001</td>
+  <td>SERVICE_STOPPED</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwControlsAccepted:</b>  The control
+codes that the service accepts and processes in its handler function. This bit
+mask MUST be set to zero or more of the following values. The value of
+dwControlsAccepted is 0x00000000 if the service type is SERVICE_KERNEL_DRIVER
+or SERVICE_FILE_SYSTEM_DRIVER.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000008</td>
+  <td>SERVICE_ACCEPT_PARAMCHANGE Service can reread its startup parameters without being stopped and restarted.</td>
+ </tr><tr>
+  <td>0x00000002</td>
+  <td>SERVICE_ACCEPT_PAUSE_CONTINUE Service can be paused and continued.</td>
+ </tr><tr>
+  <td>0x00000004</td>
+  <td>SERVICE_ACCEPT_SHUTDOWN Service is notified when system shutdown occurs.</td>
+ </tr><tr>
+  <td>0x00000001</td>
+  <td>SERVICE_ACCEPT_STOP Service can be stopped.</td>
+ </tr><tr>
+  <td>0x00000020</td>
+  <td>SERVICE_ACCEPT_HARDWAREPROFILECHANGE Service is notified when the computer hardware profile changes.</td>
+ </tr><tr>
+  <td>0x00000040</td>
+  <td>SERVICE_ACCEPT_POWEREVENT Service is notified when the computer power status changes.</td>
+ </tr><tr>
+  <td>0x00000080</td>
+  <td>SERVICE_ACCEPT_SESSIONCHANGE Service is notified when the computer session status changes.</td>
+ </tr><tr>
+  <td>0x00000100</td>
+  <td>SERVICE_ACCEPT_PRESHUTDOWN&lt;22&gt; The service can perform preshutdown tasks. SERVICE_ACCEPT_PRESHUTDOWN is sent before sending SERVICE_CONTROL_SHUTDOWN to give more time to services that need extra time before shutdown occurs.</td>
+ </tr><tr>
+  <td>0x00000200</td>
+  <td>SERVICE_ACCEPT_TIMECHANGE&lt;23&gt; Service is notified when the system time changes.</td>
+ </tr><tr>
+  <td>0x00000400</td>
+  <td>SERVICE_ACCEPT_TRIGGEREVENT&lt;24&gt; Service is notified when an event for which the service has registered occurs.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwWin32ExitCode:</b>  An error code that
+the service uses to report an error that occurs when it is starting or
+stopping.</p><p><b>dwServiceSpecificExitCode:</b>  A
+service-specific error code that the service returns when an error occurs while
+it is starting or stopping.</p><p><b>dwCheckPoint:</b>  A value that the
+service increments periodically to report its progress during a lengthy start,
+stop, pause, or continue operation.</p><p><b>dwWaitHint:</b>  An estimate of the
+amount of time, in milliseconds, that the service expects a pending start,
+stop, pause, or continue operation to take before the service makes its next
+status update.</p><p><b>dwProcessId:</b>  A process identifier
+of the service. A value of 0 indicates that the service is not started.</p><p><b>dwServiceFlags:</b>  The bit flags that
+describe the process in which the service is running. This MUST be one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000</td>
+  <td>Service is either running in a process that is not a system process, or the service is not running at all. In a nonsystem process, dwProcessId is nonzero. If the service is not running, dwProcessId is 0.</td>
+ </tr><tr>
+  <td>0x00000001</td>
+  <td>Service runs in a system process that MUST always be running.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

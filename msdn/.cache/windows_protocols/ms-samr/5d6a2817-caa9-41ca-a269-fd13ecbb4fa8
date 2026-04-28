@@ -1,0 +1,35 @@
+<div class="content" name="SamrQueryInformationDomain" uuid="5d6a2817-caa9-41ca-a269-fd13ecbb4fa8"><p>The SamrQueryInformationDomain method obtains attributes
+from a <span><a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_2346e8d0-b0a0-481f-b644-85c45c60d4d1" data-linktype="relative-path">domain object</a></span>.</p><dl>
+<dd>
+<div><pre> long SamrQueryInformationDomain(
+   [in] SAMPR_HANDLE DomainHandle,
+   [in] DOMAIN_INFORMATION_CLASS DomainInformationClass,
+   [out, switch_is(DomainInformationClass)] 
+     PSAMPR_DOMAIN_INFO_BUFFER* Buffer
+ );
+</pre></div>
+</dd></dl><p>See the description of <span><a href="fbdbbd74-0106-4ca2-941e-36ded0be0c62" data-linktype="relative-path">SamrQueryInformationDomain2 (section 3.1.5.5.1)</a></span>
+for details, because the method interface arguments and message processing are
+identical.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a></span>.</p><p>The server MUST behave as with a call to
+SamrQueryInformationDomain2, with the following parameter values.</p><table><thead>
+  <tr>
+   <th>
+   <p>Parameter name</p>
+   </th>
+   <th>
+   <p>Parameter value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DomainHandle</td>
+  <td>SamrQueryInformationDomain.DomainHandle</td>
+ </tr><tr>
+  <td>DomainInformationClass</td>
+  <td>SamrQueryInformationDomain.DomainInformationClass</td>
+ </tr><tr>
+  <td>Buffer</td>
+  <td>SamrQueryInformationDomain.Buffer</td>
+ </tr></tbody></table><p> </p></div>

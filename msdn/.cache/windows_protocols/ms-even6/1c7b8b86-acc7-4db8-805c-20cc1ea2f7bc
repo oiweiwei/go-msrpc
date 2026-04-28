@@ -1,0 +1,78 @@
+<div class="content" name="BinXmlVariant_Structure" uuid="1c7b8b86-acc7-4db8-805c-20cc1ea2f7bc"><p>Some of the methods use the following structures for
+returning data. In particular, the BinXmlVariant structure is used for
+returning information about a channel or <a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_ddd2e7db-ea8f-4488-ac5f-e77d59abe9e4" data-linktype="relative-path">backup event log</a>. This
+structure is custom-marshaled. The integer fields in this structure MUST be in
+little-endian byte order (that is, least significant byte first). </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">union</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">count</td>
+ </tr>
+ <tr>
+  <td colspan="32">type</td>
+ </tr>
+</tbody></table><p><b>union (8 bytes): </b>8 bytes of data.
+Interpretation is based on type.</p><p><b>count (4 bytes): </b>Not used. Can be set to any
+arbitrary value when sent and MUST be ignored on receipt.</p><p><b>type (4 bytes): </b>Specifies the union type.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>BinXmlVarUInt32 0x00000008</td>
+  <td>The union field contains an unsigned long int, followed by 4 bytes of arbitrary data that MUST be ignored.</td>
+ </tr><tr>
+  <td>BinXmlVarUInt64 0x0000000A</td>
+  <td>The union field contains an unsigned __int64.</td>
+ </tr><tr>
+  <td>BinXmlVarBool 0x0000000D</td>
+  <td>The union field contains an unsigned long int, followed by 4 bytes of arbitrary data that MUST be ignored.</td>
+ </tr><tr>
+  <td>BinXmlVarFileTime 0x00000011</td>
+  <td>The union field contains a FILETIME, as specified in [MS-DTYP] Appendix A.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,0 +1,83 @@
+<div class="content" name="AVAILABLEPROVIDERENTRY" uuid="5509497f-43b5-4929-8ef1-53bb75cad654"><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">dwFileNameSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwFileNameOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwFriendlyNameSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwFriendlyNameOffset</td>
+ </tr>
+ <tr>
+  <td colspan="32">dwOptions</td>
+ </tr>
+</tbody></table><p><b>dwFileNameSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the string containing the file name and the
+null terminator. </p><p><b>dwFileNameOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset from the beginning of <a href="6fa05155-53f9-47ea-b06e-9ae6e973b850" data-linktype="relative-path">AVAILABLEPROVIDERLIST</a> to a
+null-terminated string containing the file name of the service-provider DLL
+.tsp file.</p><p><b>dwFriendlyNameSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the string containing the display name
+and the null terminator. </p><p><b>dwFriendlyNameOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of AVAILABLEPROVIDERLIST to a
+null-terminated string containing the display name of the service-provider DLL
+.tsp file.</p><p><b>dwOptions (4 bytes): </b>An unsigned 32-bit
+integer. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>AVAILABLEPROVIDER_INSTALLABLE 0x00000001</td>
+  <td>The TAPI Service Provider can be installed.</td>
+ </tr><tr>
+  <td>AVAILABLEPROVIDER_CONFIGURABLE 0x00000002</td>
+  <td>The TSP can be configured.</td>
+ </tr><tr>
+  <td>AVAILABLEPROVIDER_REMOVABLE 0x00000004</td>
+  <td>The TSP can be removed.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

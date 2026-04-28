@@ -1,0 +1,13 @@
+<div class="content" name="SESSION_CHANGE" uuid="e22785c9-5a37-4a47-864a-ed2865d053bc"><p>The <b>SESSION_CHANGE</b> structure contains the ID of a
+session running on a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span> and
+a mask of the notifications that were received for that session.</p><dl>
+<dd>
+<div><pre> typedef struct _SESSION_CHANGE {
+   LONG SessionId;
+   TNotificationId NotificationId;
+ } SESSION_CHANGE,
+  *PSESSION_CHANGE;
+</pre></div>
+</dd></dl><p><b>SessionId:</b>  Identifies the session
+for which notification was received.</p><p><b>NotificationId:</b>  Mask of the
+notifications that were received for this session.</p></div>

@@ -1,0 +1,64 @@
+<div class="content" name="ISchedule" uuid="6822e6fc-c23e-4ca3-9164-2d9b19eaa727"><p>The ISchedule interface is used to specify when the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector set</a> runs.</p><p>The following properties MUST be implemented by the objects
+that implement the ISchedule interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Days</td>
+  <td>RW</td>
+  <td>Specifies the days of the week on which the data collector set runs.</td>
+ </tr><tr>
+  <td>EndDate</td>
+  <td>RW</td>
+  <td>Specifies the ending date for when the schedule is valid. The value is stored in a VARIANT. Any VARIANT of type Date is a legal value for this type. The format and over-the-wire transmission of a VARIANT is specified in [MS-OAUT] section 2.2.29. The time portion of the VARIANT is ignored; only the date portion is used.</td>
+ </tr><tr>
+  <td>StartDate</td>
+  <td>RW</td>
+  <td>Specifies the date that the schedule becomes valid. The value is stored in a VARIANT. Any VARIANT of type Date is a legal value for this type. The format and over-the-wire transmission of a VARIANT is specified in [MS-OAUT] section 2.2.29. The time portion of the VARIANT is ignored; only the date portion is used.</td>
+ </tr><tr>
+  <td>StartTime</td>
+  <td>RW</td>
+  <td>Specifies the time of day when the data collector set starts. The value is stored in a VARIANT. Any VARIANT of type Date is a legal value for this type. The format and over-the-wire transmission of a VARIANT is specified in [MS-OAUT] section 2.2.29. The date portion of the VARIANT is ignored; only the time portion is used.</td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>StartDate (Get)</td>
+  <td>Retrieves the StartDate property. Opnum: 7</td>
+ </tr><tr>
+  <td>StartDate (Put)</td>
+  <td>Sets the StartDate property. Opnum: 8</td>
+ </tr><tr>
+  <td>EndDate (Get)</td>
+  <td>Retrieves the EndDate property. Opnum: 9</td>
+ </tr><tr>
+  <td>EndDate (Put)</td>
+  <td>Sets the EndDate property. Opnum: 10</td>
+ </tr><tr>
+  <td>StartTime (Get)</td>
+  <td>Retrieves the StartTime property Opnum: 11</td>
+ </tr><tr>
+  <td>StartTime (Put)</td>
+  <td>Sets the StartTime property Opnum: 12</td>
+ </tr><tr>
+  <td>Days (Get)</td>
+  <td>Retrieves the Days property. Opnum: 13</td>
+ </tr><tr>
+  <td>Days (Put)</td>
+  <td>Sets the Days property. Opnum: 14</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. </p></div>

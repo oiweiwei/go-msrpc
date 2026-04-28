@@ -1,0 +1,31 @@
+<div class="content" name="LastGeneratedFileNamePrefix" uuid="00ef43aa-20d0-4e9c-a3e6-173df07ba916"><p>The LastGeneratedFileNamePrefix (get) method retrieves the <b>last
+generated file name prefix</b> of the report for the most recently generated
+report and returns S_OK upon successful completion.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_REPORT | 0x04))] HRESULT LastGeneratedFileNamePrefix(
+   [out, retval] BSTR* prefix
+ );
+</pre></div>
+</dd></dl><p><b>prefix: </b>Pointer to a variable that upon
+completion contains the <b>last generated file name prefix</b> of the report.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>The prefix parameter is NULL.</td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>prefix</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate processing
+and return a nonzero error code.</p><p>The server MUST set <i>prefix</i> to the <b>last generated
+file name prefix</b>.</p></div>

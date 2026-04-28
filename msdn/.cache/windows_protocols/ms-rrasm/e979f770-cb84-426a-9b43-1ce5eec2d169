@@ -1,0 +1,56 @@
+<div class="content" name="RASI_CONNECTION_0" uuid="e979f770-cb84-426a-9b43-1ce5eec2d169"><p>The <b>RASI_CONNECTION_0</b> structure contains general
+information regarding a specific connection, such as username or domain.  </p><dl>
+<dd>
+<div><pre> typedef struct _RASI_CONNECTION_0 {
+   DWORD dwConnection;
+   DWORD dwInterface;
+   DWORD dwConnectDuration;
+   ROUTER_INTERFACE_TYPE dwInterfaceType;
+   DWORD dwConnectionFlags;
+   WCHAR wszInterfaceName[257];
+   WCHAR wszUserName[257];
+   WCHAR wszLogonDomain[16];
+   WCHAR wszRemoteComputer[17];
+ } RASI_CONNECTION_0,
+  *PRASI_CONNECTION_0;
+</pre></div>
+</dd></dl><p><b>dwConnection: </b>Contains the connection handle
+that specifies a unique identifier of the connection.</p><p><b>dwInterface: </b>Contains the interface handle and
+specifies a unique identifier of the interface through which the connection
+exists.</p><p><b>dwConnectDuration: </b>Specifies the duration of
+the current connection, in seconds.</p><p><b>dwInterfaceType: </b>A <b>ROUTER_INTERFACE_TYPE</b>
+(section <a href="849c1f9e-9d6f-4408-840e-ee9ae253ae01" data-linktype="relative-path">2.2.1.1.1</a>)
+value specifying the interface type of the current connection.</p><p><b>dwConnectionFlags: </b>Specifies certain
+attributes of the connection. This member can contain the following flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>RAS_FLAGS_PPP_CONNECTION 0x00000001</td>
+  <td>The connection is using PPP.</td>
+ </tr><tr>
+  <td>RAS_FLAGS_MESSENGER_PRESENT 0x00000002</td>
+  <td>The messenger service is active on the client, and messages can be sent to the client using RRasAdminSendUserMessage (section 3.1.4.36).</td>
+ </tr><tr>
+  <td>RAS_FLAGS_RAS_CONNECTION 0x00000004</td>
+  <td>The connection is a NetBIOS connection.</td>
+ </tr><tr>
+  <td>RAS_FLAGS_QUARANTINE_PRESENT 0x00000008</td>
+  <td>The connection is currently in quarantine. See RRasAdminConnectionRemoveQuarantine (section 3.1.4.43) for more information.</td>
+ </tr><tr>
+  <td>RAS_FLAGS_ARAP_CONNECTION 0x00000010</td>
+  <td>The connection is using AppleTalk Remote Access Protocol (ARAP).&lt;59&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>wszInterfaceName: </b>Specifies a null-terminated
+Unicode string that contains the name of the interface for this connection. </p><p><b>wszUserName: </b>Specifies a null-terminated
+Unicode string that contains the name of the user logged on to the connection.</p><p><b>wszLogonDomain: </b>Specifies a null-terminated
+Unicode string that contains the domain on which the connected user is
+authenticated.</p><p><b>wszRemoteComputer: </b>Specifies a null-terminated
+Unicode string that contains the name of the remote computer.</p></div>

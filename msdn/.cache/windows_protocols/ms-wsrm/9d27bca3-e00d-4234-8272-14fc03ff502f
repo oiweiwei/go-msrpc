@@ -1,0 +1,115 @@
+<div class="content" name="ModifyCalendar" uuid="9d27bca3-e00d-4234-8272-14fc03ff502f"><p>The ModifyCalendar method modifies an existing calendar
+event.</p><dl>
+<dd>
+<div><pre> [id(3), helpstring(&#34;method ModifyCalendar&#34;)] HRESULT ModifyCalendar(
+   [in] BSTR bstrCalendarXML,
+   [in] BOOL bOverwrite,
+   [in] BOOL bChangeActivePolicy
+ );
+</pre></div>
+</dd></dl><p><b>bstrCalendarXML: </b>A string that specifies the
+calendar event, in the form of a <a href="c7483312-afa9-4c74-a428-65dd1b96bfa5" data-linktype="relative-path">Calendar</a> element (section
+2.2.5.7).</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bOverwrite: </b>A Boolean value that specifies
+whether to ignore the timestamp of the specified calendar event when
+validating. </p><dl>
+<dd>
+<p>A timestamp MUST be defined inside a common node at
+the root level of an <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a>
+element, as shown in the <a href="1fd26c60-e8c3-432c-805a-48fa5407ea34" data-linktype="relative-path">Calendar</a>
+example (section 4.2.6). The format of a timestamp is specified in section <a href="cee8ad39-3c17-48ef-8196-0ec67d7cc4a0" data-linktype="relative-path">2.2.1.4</a>.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FALSE 0x00000000</td>
+  <td>The timestamp of the new calendar event MUST specify a time that is later than or equal to the timestamp of any modifications made to a calendar or schedule object on the server. Otherwise, the modification SHOULD fail, and WRM_ERR_OLD_INFORMATION SHOULD be returned.</td>
+ </tr><tr>
+  <td>TRUE 0x00000001</td>
+  <td>The calendar event is validated and modified without checking the timestamp.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>bChangeActivePolicy: </b>A Boolean value that
+specifies whether the configuration changes made by this method call SHOULD
+change the current active policy, if applicable, of the system.<a id="Appendix_A_Target_59"></a><a aria-label="Product behavior note 59" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_59" data-linktype="relative-path">&lt;59&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>FALSE 0x00000000</td>
+  <td>The current active policy of the system SHOULD NOT be changed by the method call.</td>
+ </tr><tr>
+  <td>TRUE 0x00000001</td>
+  <td>If applicable, the current active policy of the system SHOULD be changed by the method call.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Operation successful.</td>
+ </tr><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>One or more arguments are invalid.</td>
+ </tr><tr>
+  <td>0xC1FF0069 WRM_ERR_OLD_INFORMATION</td>
+  <td>The XML timestamp is out of date.</td>
+ </tr><tr>
+  <td>0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER</td>
+  <td>The XML data that is maintained by the management service is invalid or cannot be processed.&lt;60&gt;</td>
+ </tr><tr>
+  <td>0xC1FF0260 WRM_ERR_CAL_INTERVAL_TOO_LONG</td>
+  <td>The calendar recurrence interval value MUST be from 1 to 999.</td>
+ </tr><tr>
+  <td>0xC1FF0263 WRM_ERR_CAL_INVALID_MONTH</td>
+  <td>The month value MUST be from 1 to 12.</td>
+ </tr><tr>
+  <td>0xC1FF0264 WRM_ERR_CAL_INVALID_MONTHDAY</td>
+  <td>The days of the month MUST have a value from 1 to 31.</td>
+ </tr><tr>
+  <td>0xC1FF0265 WRM_ERR_CAL_INVALID_YEARDAY</td>
+  <td>The day of the year cannot be zero and SHOULD NOT exceed the number of days in the selected year.&lt;61&gt;</td>
+ </tr><tr>
+  <td>0xC1FF0266 WRM_ERR_CAL_INVALID_WEEKNO</td>
+  <td>The weeks of the year MUST have a value from 1 to 53.</td>
+ </tr><tr>
+  <td>0xC1FF0267 WRM_ERR_CAL_INVALID_SETPOS</td>
+  <td>The value of the monthly instance of a day of the week is invalid.</td>
+ </tr><tr>
+  <td>0xC1FF0269 WRM_ERR_CAL_SCHEDULE_NAME_INVALID</td>
+  <td>The specified schedule name does not exist.</td>
+ </tr><tr>
+  <td>0xC1FF0275 WRM_ERR_CAL_INVALID_DURATION</td>
+  <td>The specified calendar event duration is invalid. Specify a duration using the format dd:hh:mm.</td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="b573c233-e3b6-4179-896f-90a4eb0ca8ff" data-linktype="relative-path">IWRMCalendar</a> interface
+methods are specified in section 3.2.4.4.</p></div>

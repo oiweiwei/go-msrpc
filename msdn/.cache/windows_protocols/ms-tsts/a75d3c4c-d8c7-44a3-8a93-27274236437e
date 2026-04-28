@@ -1,0 +1,13 @@
+<div class="content" name="WINSTATIONPRODUCTINFO" uuid="a75d3c4c-d8c7-44a3-8a93-27274236437e"><p>The <b>WINSTATIONPRODUCTINFO</b> structure defines the type
+of license.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSTATIONPRODUCTINFO {
+   WCHAR CompanyName[PRODUCTINFO_COMPANYNAME_LENGTH];
+   WCHAR ProductID[PRODUCTINFO_PRODUCTID_LENGTH];
+ } WINSTATIONPRODUCTINFO,
+  *PWINSTATIONPRODUCTINFO;
+</pre></div>
+</dd></dl><p><b>CompanyName:</b>  The name associated
+with the license. All licenses are associated with &#34;Microsoft
+Corporation&#34;.</p><p><b>ProductID:</b>  An ID identifying the
+type of license. The product ID for per-device licenses is &#34;A02&#34;.</p></div>

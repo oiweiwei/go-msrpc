@@ -1,0 +1,41 @@
+<div class="content" name="VDS_VOLUME_NOTIFICATION" uuid="410540de-982d-4db1-991e-a73efed4e6f0"><p>The VDS_VOLUME_NOTIFICATION structure provides information
+about a <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a> change
+notification.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_VOLUME_NOTIFICATION {
+   unsigned long ulEvent;
+   VDS_OBJECT_ID volumeId;
+   VDS_OBJECT_ID plexId;
+   unsigned long ulPercentCompleted;
+ } VDS_VOLUME_NOTIFICATION;
+</pre></div>
+</dd></dl><p><b>ulEvent:</b> Determines the volume event for which
+an application will be notified; it MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>VDS_NF_VOLUME_ARRIVE 0x00000004</td>
+  <td>A new volume is visible to the operating system.</td>
+ </tr><tr>
+  <td>VDS_NF_VOLUME_DEPART 0x00000005</td>
+  <td>An existing volume is no longer visible to the operating system.</td>
+ </tr><tr>
+  <td>VDS_NF_VOLUME_MODIFY 0x00000006</td>
+  <td>The volume was modified.</td>
+ </tr><tr>
+  <td>VDS_NF_VOLUME_REBUILDING_PROGRESS 0x00000007</td>
+  <td>A fault tolerant volume is being regenerated or resynchronized.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>volumeId:</b> The <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS object</a> ID of the volume
+object to which the notification refers.</p><p><b>plexId:</b> The VDS object ID of a <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7d1df68a-9ec5-4f84-a64f-67888f39405d" data-linktype="relative-path">volume plex</a> object to which
+the notification refers, if any. <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_97581c48-09dd-4bc4-a379-a846cbf4cc39" data-linktype="relative-path">VDS</a> applies this identifier
+during the rebuild operation, which can execute on multiple <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d864e01b-9fb1-4beb-9864-8221d293445a" data-linktype="relative-path">plexes</a> at different rates.</p><p><b>ulPercentCompleted:</b> The percentage of
+completion for the operation. Valid values range from 0-100.</p></div>

@@ -1,0 +1,31 @@
+<div class="content" name="SERVICE_SID_INFO" uuid="ea1a9acd-4bb2-473f-ae5b-55969c5960fc"><p>The SERVICE_SID_INFO structure<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a> defines
+the type of service security identifier (SID) associated with a service.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVICE_SID_INFO {
+   DWORD dwServiceSidType;
+ } SERVICE_SID_INFO,
+  *LPSERVICE_SID_INFO;
+</pre></div>
+</dd></dl><p><b>dwServiceSidType:</b>  The type of
+service SID. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>SERVICE_SID_TYPE_NONE 0x00000000</td>
+  <td>No service SID.</td>
+ </tr><tr>
+  <td>SERVICE_SID_TYPE_RESTRICTED 0x00000003</td>
+  <td>This type includes SERVICE_SID_TYPE_UNRESTRICTED. The service SID is also added to the restricted SID list of the process token. Three additional SIDs are added to the restricted SID list: 1. World SID S-1-1-0. 2. Service logon SID. 3. One access control entry (ACE) that allows GENERIC_ALL access for the service logon SID is also added to the service process token object. If multiple services are hosted in the same process and one service has SERVICE_SID_TYPE_RESTRICTED, all services MUST have SERVICE_SID_TYPE_RESTRICTED.</td>
+ </tr><tr>
+  <td>SERVICE_SID_TYPE_UNRESTRICTED 0x00000001</td>
+  <td>When the service process is created, the service SID is added to the service process token with the following attributes: SE_GROUP_ENABLED_BY_DEFAULT | SE_GROUP_OWNER.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

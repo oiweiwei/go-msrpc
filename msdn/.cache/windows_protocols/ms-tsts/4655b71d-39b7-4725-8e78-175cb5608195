@@ -1,0 +1,37 @@
+<div class="content" name="RpcGetAllListeners" uuid="4655b71d-39b7-4725-8e78-175cb5608195"><p> The RpcGetAllListeners method returns a list of all <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">Terminal
+Services</a></span> <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_1e5aa0c2-4617-4d7a-969e-a7091c415c8d" data-linktype="relative-path">listeners</a></span> running on
+a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal
+server</a></span>. No special permissions are required to call this method.
+However, only listeners for which the caller has WINSTATION_QUERY permission
+are enumerated.</p><dl>
+<dd>
+<div><pre> HRESULT RpcGetAllListeners(
+   [in] handle_t hBinding,
+   [out, size_is(,*pNumListeners)] 
+     PLISTENERENUM* ppListeners,
+   [in] DWORD Level,
+   [out] ULONG* pNumListeners
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b> The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>.
+For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93771" data-linktype="external">[MSDN-RPCBIND]</a></span>.</p><p><b>ppListeners: </b> The list of Terminal Services
+listeners running on the terminal server. This is an array of type <span><a href="3c46804f-fff4-4779-9f96-1ceb9a6c9559" data-linktype="relative-path">PLISTENERENUM</a></span>.</p><p><b>Level: </b> The level of information that is
+requested for the listeners. The only supported value is 1.</p><p><b>pNumListeners: </b>The number of listeners
+returned.</p><p><b>Return Values: </b> The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Successful completion.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

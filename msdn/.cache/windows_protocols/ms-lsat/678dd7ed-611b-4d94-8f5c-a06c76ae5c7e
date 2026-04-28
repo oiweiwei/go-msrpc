@@ -1,0 +1,163 @@
+<div class="content" name="LsarLookupSids3" uuid="678dd7ed-611b-4d94-8f5c-a06c76ae5c7e"><p>The LsarLookupSids3 method translates a batch of <a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a> <a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SIDs</a> to their name forms.
+It also returns the <a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domains</a>
+that these names are a part of.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarLookupSids3(
+   [in] handle_t RpcHandle,
+   [in] PLSAPR_SID_ENUM_BUFFER SidEnumBuffer,
+   [out] PLSAPR_REFERENCED_DOMAIN_LIST* ReferencedDomains,
+   [in, out] PLSAPR_TRANSLATED_NAMES_EX TranslatedNames,
+   [in] LSAP_LOOKUP_LEVEL LookupLevel,
+   [in, out] unsigned long* MappedCount,
+   [in] unsigned long LookupOptions,
+   [in] unsigned long ClientRevision
+ );
+</pre></div>
+</dd></dl><p><b>RpcHandle: </b>An <a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding handle, as
+described in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.
+RPC binding handles are used by RPC internally and are not transmitted over the
+network.</p><dl>
+<dd>
+<p>This handle can be obtained by calling RPC runtime
+binding routines. For more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=90076" data-linktype="external">[MSDN-RPCDB]</a>.</p>
+</dd></dl><p><b>SidEnumBuffer: </b>Contains the SIDs to be
+translated. The SIDs in this structure can be that of users, groups, computers,
+Windows-defined well-known security principals, or domains.</p><p><b>ReferencedDomains: </b>On successful return,
+contains the domain information for the domain to which each security principal
+belongs. The domain information includes a NetBIOS domain name and a domain SID
+for each entry in the list.</p><p><b>TranslatedNames: </b>On successful return,
+contains the corresponding name forms for security principal SIDs in the <i>SidEnumBuffer</i>
+parameter. It MUST be ignored on input.</p><p><b>LookupLevel: </b>Specifies what scopes are to be
+used during translation, as specified in section <a href="9d1166cc-bcfd-4e22-a8ac-f55eae57c99f" data-linktype="relative-path">2.2.16</a>.</p><p><b>MappedCount: </b>On successful return, contains
+the number of names that are translated completely to their name forms. It MUST
+be ignored on input.</p><p><b>LookupOptions: </b>Flags that control the lookup
+operation. This parameter is reserved for future use; it MUST be set to 0 and
+ignored on receipt.</p><p><b>ClientRevision: </b>Version of the client, which
+implies the client&#39;s capabilities. For possible values and their meanings, see
+section <a href="2c0e8a6d-df0f-4c77-bbeb-f7cd0f6b2361" data-linktype="relative-path">3.1.4.5</a>.</p><p><b>Return Values: </b>The following table contains a
+summary of the return values that an implementation MUST return, as specified
+by the message processing shown after the table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 STATUS_SUCCESS</td>
+  <td>The request was successfully completed.</td>
+ </tr><tr>
+  <td>0x00000107 STATUS_SOME_NOT_MAPPED</td>
+  <td>Some of the information to be translated has not been translated.</td>
+ </tr><tr>
+  <td>0xC00000DC STATUS_INVALID_SERVER_STATE</td>
+  <td>The RPC server is not a domain controller.</td>
+ </tr><tr>
+  <td>0xC0000022 STATUS_ACCESS_DENIED</td>
+  <td>The caller does not have the permissions to perform this operation.</td>
+ </tr><tr>
+  <td>0xC000000D STATUS_INVALID_PARAMETER</td>
+  <td>One of the supplied parameters was invalid.</td>
+ </tr><tr>
+  <td>0xC0000073 STATUS_NONE_MAPPED</td>
+  <td>None of the information to be translated has been translated.</td>
+ </tr></tbody></table>
+</dd></dl><p>This message is valid only if the RPC server is a domain
+controller. The RPC server MUST return STATUS_INVALID_SERVER_STATE in the
+return value if it is not a domain controller.</p><p>The RPC server MUST ensure that one of the following
+conditions is true:</p><ol><li><p><span>    </span>The
+RPC_C_AUTHN_NETLOGON security provider (as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/d4097450-c62f-484b-872f-ddf59a7a0d36" data-linktype="relative-path">2.2.1.1.7</a>)
+and at least RPC_C_AUTHN_LEVEL_PKT_INTEGRITY authentication level (as specified
+in [MS-RPCE] section <a href="../ms-rpce/425a7c53-c33a-4868-8e5b-2a850d40dc73" data-linktype="relative-path">2.2.1.1.8</a>)
+are used in this RPC message.</p>
+</li><li><p><span>    </span>The RPC client
+token contains one of the following well-known SID types - DOMAIN_GROUP_RID_COMPUTERS,
+DOMAIN_GROUP_RID_CONTROLLERS, DOMAIN_GROUP_RID_READONLY_CONTROLLERS (as
+specified in <a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a>
+section <a href="../ms-samr/565a6584-3061-4ede-a531-f5c53826504b" data-linktype="relative-path">2.2.1.14</a>).<a id="Appendix_A_Target_34"></a><a aria-label="Product behavior note 34" href="d2715572-2c9b-4198-ace9-316a2fb5d7f5#Appendix_A_34" data-linktype="relative-path">&lt;34&gt;</a></p>
+</li></ol><p>Otherwise, the RPC server MUST return STATUS_ACCESS_DENIED.</p><p>The RPC server MUST check each element in the <i>SidEnumBuffer</i>
+parameter for validity, as specified in section <a href="1ffb61f0-a4fe-4487-858d-fb709d605855" data-linktype="relative-path">2.2.18</a>, and individual
+elements in this structure MUST be checked for validity, as described for the <a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a>
+structure in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section 2.4.2. If validation fails, the RPC server SHOULD return
+STATUS_INVALID_PARAMETER.</p><p>The <i>TranslatedNames</i> and <i>MappedCount</i> parameters
+have no effect on message processing in any environment. They MUST be ignored
+on input.</p><p>The RPC server search scope can change depending on the <i>LookupLevel</i>
+parameter, as specified in section 2.2.16. In the views corresponding to each <i>LookupLevel</i>,
+SIDs MUST be searched under the Security Principal SID and Security Principal
+SID History columns. </p><p>Output parameters MUST be updated using the following
+information:</p><ol><li><p><span>    </span>When a SID is
+found in the database, the <i>ReferencedDomains</i> parameter MUST be searched
+for an identical entry with the <b>Name</b> field containing the value from the
+Domain NetBIOS Name column and the <b>Sid</b> field containing the value from
+the Domain SID column. If there is no such entry, a new entry with the <b>Name</b>
+field containing the value of the Domain NetBIOS Name and the <b>Sid</b> field
+containing the value of the Domain SID MUST be created and added to the <i>ReferencedDomains</i>
+list.</p>
+<p>For the successful search,
+the corresponding <i>TranslatedNames</i> entry MUST be updated as follows:</p>
+<ul><li><p><span><span>  </span></span>Use:
+Security Principal Type column</p>
+</li><li><p><span><span>  </span></span> Name:
+Security Principal Name column</p>
+</li><li><p><span><span>  </span></span> Flags:</p>
+<ul><li><p><span><span> 
+</span></span>0x00000001: If the search is not satisfied by matching against
+the Security Principal SID column. Also see the paragraph after step 3.</p>
+</li><li><p><span><span> 
+</span></span>0x00000004: If the search is satisfied by matching in <a href="252cb6b0-2edc-4403-9d75-5b2786ba859e" data-linktype="relative-path">Configurable Translation
+View (section 3.1.1.1.2)</a>. Also see the paragraph after step 3.</p>
+</li></ul></li><li><p><span><span>  </span></span>DomainIndex:
+Index of the domain in the <i>ReferencedDomains</i> parameter.</p>
+</li></ul></li><li><p><span>    </span>If a match
+cannot be found for a SID, but the domain portion of the SID can be matched
+with a domain SID, the <i>ReferencedDomains</i> parameter MUST be searched for
+an identical entry with the <b>Name</b> field containing the value from the
+Domain NetBIOS Name column and the <b>Sid</b> field containing the value from
+the Domain SID column. If there is no such entry, a new entry with the <b>Name</b>
+field containing the value of the Domain NetBIOS Name and the <b>Sid</b> field
+containing the value of the Domain SID MUST be created and added to the <i>ReferencedDomains</i>
+list.</p>
+<p>The corresponding <i>TranslatedNames</i>
+entry MUST be updated by using the following view:</p>
+<ul><li><p><span><span>  </span></span>Use:
+SidTypeUnknown.</p>
+</li><li><p><span><span>  </span></span>Name:
+Empty unless <i>LookupLevel</i> is LsapLookupWksta, in which case this field
+must contain a textual representation of the last 32 bits of the corresponding
+SID in hexadecimal format.</p>
+</li><li><p><span><span>  </span></span>Flags:
+0x00000000 (also see the paragraph after step 3).</p>
+</li><li><p><span><span>  </span></span>DomainIndex:
+Index of the domain in the <i>ReferencedDomains</i> parameter.</p>
+</li></ul></li><li><p><span>    </span>Otherwise, the
+corresponding <i>TranslatedNames</i> entry MUST be updated with:</p>
+<ul><li><p><span><span>  </span></span>Use:
+SidTypeUnknown.</p>
+</li><li><p><span><span>  </span></span>Name:
+Empty, unless <i>LookupLevel</i> is LsapLookupWksta. In that case, Name MUST
+contain the textual representation of the corresponding SID, as in step 2.</p>
+</li><li><p><span><span>  </span></span>Flags:
+0x00000000 (also see the following paragraph).</p>
+</li><li><p><span><span>  </span></span>DomainIndex:
+-1.</p>
+</li></ul></li></ol><p>In all preceding cases, the <b>Flags</b> field MUST contain
+0x00000002 when:</p><ul><li><p><span><span> 
+</span></span><i>LookupLevel</i> is LsapLookupWksta, LsapLookupPDC,
+LsapLookupGC, LsapLookupXForestReferral, or LsapLookupXForestResolve, and</p>
+</li><li><p><span><span> 
+</span></span>The IsDomainSidInTrustedForest algorithm defined in <a href="../ms-drsr/f977faaa-673e-4f66-b9bf-48c640241d47" data-linktype="relative-path">[MS-DRSR]</a>
+section <a href="../ms-drsr/84c7d18f-17f1-4eb2-8ec8-caf19bb7eb13" data-linktype="relative-path">5.97</a>
+returns true.</p>
+</li></ul><p>The return value MUST be set to STATUS_SUCCESS if all SIDs
+are translated correctly.</p><p>If some SIDs are translated correctly but some are not, the
+return value MUST be set to STATUS_SOME_NOT_MAPPED.</p><p>If none of the SIDs are translated correctly, the return
+value MUST be set to STATUS_NONE_MAPPED.</p><p>If <i>LookupLevel</i> is LsapLookupWksta, and the return
+code can be identified as an error value other than STATUS_NONE_MAPPED, <i>ReferencedDomains</i>
+and the <b>Names</b> fields in the <i>TranslatedNames</i> structure MUST NOT be
+returned.</p></div>

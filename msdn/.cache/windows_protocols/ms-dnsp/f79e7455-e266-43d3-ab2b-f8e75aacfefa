@@ -1,0 +1,26 @@
+<div class="content" name="DNS_RPC_ZONE_CREATE_INFO" uuid="f79e7455-e266-43d3-ab2b-f8e75aacfefa"><p>The <b>DNS_RPC_ZONE_CREATE_INFO</b> structure contains
+information required to create a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span> or reset a
+zone&#39;s information on the DNS server. There are different versions of the <b>DNS_RPC_ZONE_CREATE_INFO</b>
+structure. The DNS server MUST use the structure corresponding to the value of <i>dwClientVersion</i>
+in DNS Server Management Protocol method calls (section <span><a href="bdffbbf3-e31b-49ba-8b8d-8abde125a9d8" data-linktype="relative-path">3.1.4</a></span>)
+as shown in the following table, or if the method call does not specify the
+value of <i>dwClientVersion</i>, the <b>DNS_RPC_ZONE_CREATE_INFO_W2K</b>
+version of the structure MUST be used.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value </p>
+   </th>
+   <th>
+   <p>Structure </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000</td>
+  <td>DNS_RPC_ZONE_CREATE_INFO_W2K (section 2.2.5.2.7.1)</td>
+ </tr><tr>
+  <td>0x00060000</td>
+  <td>DNS_RPC_ZONE_CREATE_INFO_DOTNET (section 2.2.5.2.7.2)</td>
+ </tr><tr>
+  <td>0x00070000</td>
+  <td>DNS_RPC_ZONE_CREATE_INFO_LONGHORN (section 2.2.5.2.7.3)</td>
+ </tr></tbody></table><p> </p></div>

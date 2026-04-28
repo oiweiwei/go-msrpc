@@ -1,0 +1,37 @@
+<div class="content" name="RpcWinStationCloseServerEx" uuid="9d198d98-b7f1-475d-8c29-cc188f5bc0fc"><p>The RpcWinStationCloseServerEx method closes the server <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>
+for <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8cc89bb9-be94-4672-8a5d-9947b91bc952" data-linktype="relative-path">WinStation</a></span>
+APIs. The call to this method MUST be serialized if there are multiple threads
+running; otherwise, the behavior of this function is unknown. No special
+permissions are required to call this method.</p><dl>
+<dd>
+<div><pre> BOOLEAN RpcWinStationCloseServerEx(
+   [in, out] SERVER_HANDLE* phServer,
+   [out] DWORD* pResult
+ );
+</pre></div>
+</dd></dl><p><b>phServer: </b>Pointer to a variable that is a
+handle to the server. The variable is of type <span><a href="49484cdf-2feb-4de9-a588-5d01cf8995dc" data-linktype="relative-path">SERVER_HANDLE</a></span>. The
+handle MUST be returned from a previous call to <span><a href="fd6f339d-f5dd-452c-a9a9-ec753c22a36a" data-linktype="relative-path">RpcWinStationOpenServer</a></span>.
+On return from this method, *phServer is set to NULL.</p><p><b>pResult: </b>If the call was successful, this
+parameter MUST be STATUS_SUCCESS (0x00000000); otherwise, it MUST be an
+implementation-specific negative value.</p><p><b>Return Values: </b>Returns TRUE if the call
+succeeded, and FALSE if the call failed. On failure, pResult indicates the
+failure status code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x01 TRUE</td>
+  <td>Successful completion.</td>
+ </tr><tr>
+  <td>0x00 FALSE</td>
+  <td>Method call failed.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

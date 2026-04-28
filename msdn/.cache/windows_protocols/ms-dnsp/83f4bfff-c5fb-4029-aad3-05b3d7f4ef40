@@ -1,0 +1,25 @@
+<div class="content" name="DNS_RPC_FORWARDERS" uuid="83f4bfff-c5fb-4029-aad3-05b3d7f4ef40"><p>The <b>DNS_RPC_FORWARDERS</b> structure contains information
+about <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_025cfacf-ebc5-4659-971a-ee2ab5903575" data-linktype="relative-path">forwarders</a></span>
+configured on the DNS server. There are different versions of the <b>DNS_RPC_FORWARDERS</b>
+structure. The DNS server MUST use the structures corresponding to the value of
+<i>dwClientVersion</i> in DNS Server Management Protocol method calls (section <span><a href="bdffbbf3-e31b-49ba-8b8d-8abde125a9d8" data-linktype="relative-path">3.1.4</a></span>)
+in the following table, or if the method call does not specify the value of <i>dwClientVersion</i>,
+the <b>DNS_RPC_FORWARDERS_W2K</b> version of the structure MUST be used.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value </p>
+   </th>
+   <th>
+   <p>Structure </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000</td>
+  <td>DNS_RPC_FORWARDERS_W2K (section 2.2.5.2.10.1)</td>
+ </tr><tr>
+  <td>0x00060000</td>
+  <td>DNS_RPC_FORWARDERS_DOTNET (section 2.2.5.2.10.2)</td>
+ </tr><tr>
+  <td>0x00070000</td>
+  <td>DNS_RPC_FORWARDERS_LONGHORN (section 2.2.5.2.10.3)</td>
+ </tr></tbody></table><p> </p></div>

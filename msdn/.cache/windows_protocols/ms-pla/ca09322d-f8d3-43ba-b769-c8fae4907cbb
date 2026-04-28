@@ -1,0 +1,174 @@
+<div class="content" name="IDataCollector" uuid="ca09322d-f8d3-43ba-b769-c8fae4907cbb"><p>The following are the properties that MUST be implemented by
+the objects that implement the IDataCollector interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DataCollectorSet</td>
+  <td>R</td>
+  <td>The data collector set to which this data collector belongs.</td>
+ </tr><tr>
+  <td>DataCollectorType</td>
+  <td>R</td>
+  <td>The type of data collector.</td>
+ </tr><tr>
+  <td>FileName</td>
+  <td>RW</td>
+  <td>The base name of the file containing the output of the data collector.</td>
+ </tr><tr>
+  <td>FileNameFormat</td>
+  <td>RW</td>
+  <td>Determines how the name of the file storing the output of the data collector will be formatted. The FileName property itself (described above) is always included. The filename can optionally be decorated with other information. These possible decorations are specified by the AutoPathFormat enumeration. This property stores an AutoPathFormat value. If the AutoPathFormat value specified by this property includes the &#39;plaPattern&#39; bit, the FileNameFormatPattern (specified below) contains the pattern that will be appended to the filename. The format of the pattern is specified in section 2.2.3.1.</td>
+ </tr><tr>
+  <td>FileNameFormatPattern</td>
+  <td>RW</td>
+  <td>If patterns are to be included in the decoration of file names, determines the pattern to use. Patterns are included in the decoration if the value of the FileNameFormat property (specified above) includes the &#39;plaPattern&#39; bit. The format of the pattern is specified in section 2.2.3.1.</td>
+ </tr><tr>
+  <td>Index</td>
+  <td>R</td>
+  <td>The index value of the data collector.</td>
+ </tr><tr>
+  <td>LatestOutputLocation</td>
+  <td>RW</td>
+  <td>Full path of the file where data was stored the last time the data collector ran.</td>
+ </tr><tr>
+  <td>LogAppend</td>
+  <td>RW</td>
+  <td>Specifies whether existing files MUST be appended.</td>
+ </tr><tr>
+  <td>LogCircular</td>
+  <td>RW</td>
+  <td>Specifies whether files MUST be circular.</td>
+ </tr><tr>
+  <td>LogOverwrite</td>
+  <td>RW</td>
+  <td>Specifies whether existing files MUST be overwritten.</td>
+ </tr><tr>
+  <td>Name</td>
+  <td>RW</td>
+  <td>Name of the data collector.</td>
+ </tr><tr>
+  <td>OutputLocation</td>
+  <td>R</td>
+  <td>Full path of the file where data would be stored if the data collector were to start now.</td>
+ </tr><tr>
+  <td>Xml</td>
+  <td>R</td>
+  <td>The XML representation of the data collector set.</td>
+ </tr></tbody></table><p>A data collector can be represented as an XML file, which
+can be used to serialize (using Xml (Get) <a href="38b478b4-408e-4702-aecf-946177a9f06b" data-linktype="relative-path">3.2.4.5.21</a>) and deserialize
+(using SetXml <a href="6f99ca8b-2197-43eb-b17a-7761c529787c" data-linktype="relative-path">3.2.4.5.22</a>)
+it. The full XML is specified in section <a href="b5be2d38-3f21-478d-a8b9-a61128eb2751" data-linktype="relative-path">3.2.4.19</a>. The format of
+the XML that defines a data collector, and is common to all types of data
+collectors, is as follows: </p><dl>
+<dd>
+<div><pre>     
+ &lt;DataCollectorType/&gt;
+     &lt;FileName/&gt; 
+     &lt;FileNameFormat/&gt; 
+     &lt;FileNameFormatPattern/&gt; 
+     &lt;Index/&gt; 
+     &lt;LatestOutputLocation/&gt; 
+     &lt;LogAppend/&gt; 
+     &lt;LogCircular/&gt; 
+     &lt;LogOverwrite/&gt; 
+     &lt;Name/&gt; 
+     &lt;OutputLocation/&gt; 
+  
+</pre></div>
+</dd></dl><p><a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">Opnums</a>
+8, 28 and 31 are not used across the network. These opnums are reserved and
+MUST NOT be reused by non-Microsoft implementations.<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="905cad7f-1a12-49b4-a263-461a2977ab71#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DataCollectorSet (Get)</td>
+  <td>Retrieves the DataCollectorSet property. Opnum: 7</td>
+ </tr><tr>
+  <td>Opnum8NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 8</td>
+ </tr><tr>
+  <td>DataCollectorType (Get)</td>
+  <td>Retrieves the DataCollectorType property. Opnum: 9</td>
+ </tr><tr>
+  <td>FileName (Get)</td>
+  <td>Retrieves the FileName property. Opnum: 10</td>
+ </tr><tr>
+  <td>FileName (Put)</td>
+  <td>Sets the FileName property. Opnum: 11</td>
+ </tr><tr>
+  <td>FileNameFormat (Get)</td>
+  <td>Retrieves the FileNameFormat property. Opnum: 12</td>
+ </tr><tr>
+  <td>FileNameFormat (Put)</td>
+  <td>Sets the FileNameFormat property. Opnum: 13</td>
+ </tr><tr>
+  <td>FileNameFormatPattern (Get)</td>
+  <td>Retrieves the FileNameFormatPattern property. Opnum: 14</td>
+ </tr><tr>
+  <td>FileNameFormatPattern (Put)</td>
+  <td>Sets the FileNameFormatPattern property. Opnum: 15</td>
+ </tr><tr>
+  <td>LatestOutputLocation (Get)</td>
+  <td>Retrieves the LatestOutputLocation property. Opnum: 16</td>
+ </tr><tr>
+  <td>LatestOutputLocation (Put)</td>
+  <td>Sets the LatestOutputLocation property. Opnum: 17</td>
+ </tr><tr>
+  <td>LogAppend (Get)</td>
+  <td>Retrieves the LogAppend property. Opnum: 18</td>
+ </tr><tr>
+  <td>LogAppend (Put)</td>
+  <td>Sets the LogAppend property. Opnum: 19</td>
+ </tr><tr>
+  <td>LogCircular (Get)</td>
+  <td>Retrieves the LogCircular property Opnum: 20</td>
+ </tr><tr>
+  <td>LogCircular (Put)</td>
+  <td>Sets the LogCircular property. Opnum: 21</td>
+ </tr><tr>
+  <td>LogOverwrite (Get)</td>
+  <td>Retrieves the LogOverwrite property. Opnum: 22</td>
+ </tr><tr>
+  <td>LogOverwrite (Put)</td>
+  <td>Sets the LogOverwrite property. Opnum: 23</td>
+ </tr><tr>
+  <td>Name (Get)</td>
+  <td>Retrieves the Name property. Opnum: 24</td>
+ </tr><tr>
+  <td>Name (Put)</td>
+  <td>Sets the Name property. Opnum: 25</td>
+ </tr><tr>
+  <td>OutputLocation (Get)</td>
+  <td>Retrieves the OutputLocation property. Opnum: 26</td>
+ </tr><tr>
+  <td>Index (Get)</td>
+  <td>Retrieves the Index property. Opnum: 27</td>
+ </tr><tr>
+  <td>Opnum28NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 28</td>
+ </tr><tr>
+  <td>Xml (Get)</td>
+  <td>Retrieves the XML property. Opnum: 29</td>
+ </tr><tr>
+  <td>SetXml</td>
+  <td>Sets the properties of the data collector using the values in the XML file. Opnum: 30</td>
+ </tr><tr>
+  <td>Opnum31NotUsedOnWire</td>
+  <td>Reserved for local use. Opnum: 31</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface.</p></div>

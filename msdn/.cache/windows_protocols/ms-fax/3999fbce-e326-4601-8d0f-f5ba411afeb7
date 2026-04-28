@@ -1,0 +1,52 @@
+<div class="content" name="FAX_SetOutboundRule" uuid="3999fbce-e326-4601-8d0f-f5ba411afeb7"><p>A fax client application uses the <b>FAX_SetOutboundRule
+(Opnum 58)</b> method to set the information about an individual fax outbound <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_e3969a6a-4722-476e-9a36-bb63311ae950" data-linktype="relative-path">routing rule</a>.</p><p>In response, the server MUST validate that the client&#39;s fax
+user account has access to set an outbound routing rule. On success, the server
+MUST modify its outbound routing rule as specified by the client.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_SetOutboundRule(
+   [in] handle_t hFaxHandle,
+   [in, ref] RPC_FAX_OUTBOUND_ROUTING_RULEW* pRule
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a>) or <b>FAX_ConnectionRefCount</b> (section
+<a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a>) method call
+used to connect to the fax server.</p><p><b>pRule: </b>A pointer to an <b>RPC_FAX_OUTBOUND_ROUTING_RULEW</b> (section
+<a href="14db3aa9-a633-4be2-9780-7ad10c61c864" data-linktype="relative-path">2.2.41</a>) buffer to set.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one
+of the other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_ACCESS_DENIED 0x00000005</td>
+  <td>Access is denied. The client&#39;s fax user account does not have the required FAX_ACCESS_MANAGE_CONFIG authorization for this operation.</td>
+ </tr><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect. This error code is returned if any of the following conditions occur: § The lpwstrGroupName member of the Destination member of the pRule parameter is set to a NULL pointer value. § The dwDeviceId member of the Destination member of pRule is set to zero. § The fax server tried to return FAX_ERR_NOT_SUPPORTED_ON_THIS_SKU but the client fax API version (FAX_API_VERSION_0 (described in section 3.1.4.1.10) does not support this error code.</td>
+ </tr><tr>
+  <td>ERROR_BUFFER_OVERFLOW 0x0000006F</td>
+  <td>The length (excluding the terminating null character) of the character string pointed at by the lpwstrGroupName member of the Destination member of pRule is greater than 128 characters.</td>
+ </tr><tr>
+  <td>ERROR_REGISTRY_CORRUPT 0x000003F7</td>
+  <td>The registry is corrupted. The structure of one of the files containing registry data is corrupted, or the system&#39;s memory image of the file is corrupted, or the file could not be recovered because the alternate copy or log was absent or corrupted.</td>
+ </tr><tr>
+  <td>FAX_ERR_BAD_GROUP_CONFIGURATION 0x00001B5B</td>
+  <td>This error code is returned if any of the following conditions occur: § The fax server encountered an outbound routing group with a bad configuration, or the group device list is empty. § The status for the outbound routing rule object indicated by the specified dialing location (the dwCountryCode and dwAreaCode members of pRule) and group name (the lpwstrGroupName member of the Destination member of pRule) is FAX_GROUP_STATUS_ALL_ DEV_NOT_VALID or FAX_RULE_STATUS_EMPTY_GROUP.</td>
+ </tr><tr>
+  <td>FAX_ERR_NOT_SUPPORTED_ON_THIS_SKU 0x00001B63</td>
+  <td>The fax client module API version (described in section 3.1.4.1.10) is FAX_API_VERSION_1 or above, and the fax server is running on a version of the operating system that does not support the requested operation.&lt;164&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown except
+those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

@@ -1,0 +1,9 @@
+<div class="content" name="Introduction" uuid="9d7eb523-cd06-46a2-8280-db0c449aa8a2"><p>The Virtual Disk Service (VDS) Remote Protocol is a set of
+Distributed Component Object Model (DCOM) interfaces for managing the
+configuration of disk storage on a computer. The Virtual Disk Service Remote
+Protocol deals with detailed low-level operating system and storage concepts.</p><p>The Virtual Disk Service Remote Protocol is used to
+programmatically enumerate and configure disks, volumes, host bus adapter (HBA)
+ports, and iSCSI initiators on remote computers. This protocol supersedes the
+Disk Management Remote Protocol, specified in <a href="../ms-dmrp/19a16e20-072f-4d74-a245-ce4df2f1ecdd" data-linktype="relative-path">[MS-DMRP]</a>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

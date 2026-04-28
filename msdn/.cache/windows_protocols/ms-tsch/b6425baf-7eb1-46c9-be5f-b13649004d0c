@@ -1,0 +1,277 @@
+<div class="content" name="FIXDLEN_DATA" uuid="b6425baf-7eb1-46c9-be5f-b13649004d0c"><p>The FIXDLEN_DATA structure is the fixed-length header in the
+.JOB description file. The FIXDLEN_DATA structure is located at the beginning
+of the file. The format of the FIXDLEN_DATA structure is as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">Product Version</td>
+  <td colspan="16">File Version</td>
+ </tr>
+ <tr>
+  <td colspan="32">Job uuid (16 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="16">App Name Len Offset</td>
+  <td colspan="16">Trigger Offset</td>
+ </tr>
+ <tr>
+  <td colspan="16">Error Retry Count</td>
+  <td colspan="16">Error Retry Interval</td>
+ </tr>
+ <tr>
+  <td colspan="16">Idle Deadline</td>
+  <td colspan="16">Idle Wait</td>
+ </tr>
+ <tr>
+  <td colspan="32">Priority</td>
+ </tr>
+ <tr>
+  <td colspan="32">Maximum Run Time</td>
+ </tr>
+ <tr>
+  <td colspan="32">Exit Code</td>
+ </tr>
+ <tr>
+  <td colspan="32">Status</td>
+ </tr>
+ <tr>
+  <td colspan="32">Flags</td>
+ </tr>
+ <tr>
+  <td colspan="16">Year</td>
+  <td colspan="16">Month</td>
+ </tr>
+ <tr>
+  <td colspan="16">Weekday</td>
+  <td colspan="16">Day</td>
+ </tr>
+ <tr>
+  <td colspan="16">Hour</td>
+  <td colspan="16">Minute</td>
+ </tr>
+ <tr>
+  <td colspan="16">Second</td>
+  <td colspan="16">MilliSeconds</td>
+ </tr>
+</tbody></table><p><b>Product Version (2 bytes): </b>Contains the
+version of the product that generated this .JOB file.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p><p><b>File Version (2 bytes): </b>Version of the .JOB
+file format. The client sets this to 0x0001.</p><p><b>Job uuid (16 bytes): </b>Contains a randomly
+generated <a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a> to
+identify this task unique to the server.</p><p><b>App Name Len Offset (2 bytes): </b>Contains the
+offset in bytes within the .JOB file where the length of the application name
+is located.</p><p><b>Trigger Offset (2 bytes): </b>Contains the offset
+in bytes within the .JOB file where the task <a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_5245e0f1-e443-4a8b-968c-61c736f61fe0" data-linktype="relative-path">triggers</a> are located.</p><p><b>Error Retry Count (2 bytes): </b>Contains the
+number of execute attempts that are attempted for the task if the task fails to
+start.</p><p><b>Error Retry Interval (2 bytes): </b>Contains the
+interval, in minutes, between successive retries.</p><p><b>Idle Deadline (2 bytes): </b>Contains a maximum
+time in minutes to wait for the machine to become idle for Idle Wait minutes.</p><p><b>Idle Wait (2 bytes): </b>Contains a value in
+minutes. The machine remains idle for this many minutes before it runs the
+task.</p><p><b>Priority (4 bytes): </b>Contains ONE of the bit
+flags that control the priority at which the task will run. All bits not
+defined in the following table are set to 0 and ignored upon receipt. The bit
+field is structured as follows:</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>R</td>
+  <td>H</td>
+  <td>I</td>
+  <td>N</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>PRIORITY_CLASS</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>N NORMAL_PRIORITY_CLASS</td>
+  <td>If set to 1, the task has no special scheduling requirements.</td>
+ </tr><tr>
+  <td>I IDLE_PRIORITY_CLASS</td>
+  <td>If set to 1, the task can run in a process whose threads run only when the machine is idle, and are preempted by the threads of any process running in a higher priority class.</td>
+ </tr><tr>
+  <td>H HIGH_PRIORITY_CLASS</td>
+  <td>If set to 1, the task performs time-critical tasks that can be executed immediately for it to run correctly. The threads of a high-priority class process preempt the threads of normal or idle priority class processes.</td>
+ </tr><tr>
+  <td>R REALTIME_PRIORITY_CLASS</td>
+  <td>If set to 1, the task can run at the highest possible priority. The threads of a real-time priority class process preempt the threads of all other processes, including operating system processes performing important tasks.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Maximum Run Time (4 bytes): </b>Contains the
+number of milliseconds the server will wait for the task to complete.</p><p><b>Exit Code (4 bytes): </b>This contains the exit
+code of the executed task upon the completion of that task. MUST be set to
+0x00000000 when sent and MUST be ignored on receipt.</p><p><b>Status (4 bytes): </b>This contains the current
+status of the task. Is to be set to 0 and ignored upon receipt. Possible values
+are specified in the following table: </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>SCHED_S_TASK_READY 0x00041300</td>
+  <td>Task is not running but is scheduled to run at some time in the future.</td>
+ </tr><tr>
+  <td>SCHED_S_TASK_RUNNING 0x00041301</td>
+  <td>Task is currently running.</td>
+ </tr><tr>
+  <td>SCHED_S_TASK_NOT_SCHEDULED 0x00041305</td>
+  <td>The task is not running and has no valid triggers.&lt;12&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Flags (4 bytes): </b>Task-specific flag bits that
+are as specified in section <a href="3b4cd410-105a-48be-8379-81c84bfcafbe" data-linktype="relative-path">2.3.7</a>.</p><dl>
+<dd>
+<p>The following eight fields all
+refer to the time this task most recently ran. When creating a <a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_2b43b2b7-03a8-4053-8e02-0516f90a2da3" data-linktype="relative-path">job</a>, the field values are
+to be ignored upon receipt.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Year 1601 — 30827</td>
+  <td>The year (1601–30827), inclusive.</td>
+ </tr><tr>
+  <td>Month 1 — 12</td>
+  <td>The month, January=1, February=2, …, December=12.</td>
+ </tr><tr>
+  <td>Weekday 0 — 6</td>
+  <td>The day of the week, Sunday=0, Monday=1, …, Saturday=6.</td>
+ </tr><tr>
+  <td>Day 1 — 31</td>
+  <td>The day of the month (1–31), inclusive.</td>
+ </tr><tr>
+  <td>Hour 0 — 23</td>
+  <td>The hour of the day (0–23), inclusive.</td>
+ </tr><tr>
+  <td>Minute 0 — 59</td>
+  <td>The minute of the hour (0–59), inclusive.</td>
+ </tr><tr>
+  <td>Second 0 — 59</td>
+  <td>The seconds of the minute (0–59), inclusive.</td>
+ </tr><tr>
+  <td>Milliseconds 0 — 999</td>
+  <td>Between 0 and 999, for values less than one second, inclusive.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

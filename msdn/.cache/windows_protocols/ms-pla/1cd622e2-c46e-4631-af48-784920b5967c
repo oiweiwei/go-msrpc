@@ -1,0 +1,61 @@
+<div class="content" name="IFolderActionCollection" uuid="1cd622e2-c46e-4631-af48-784920b5967c"><p>The IFolderActionCollection interface is used to manage a
+collection of FolderAction objects.</p><p>The following properties MUST be implemented by the objects
+that implement the IFolderActionCollection interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>_NewEnum</td>
+  <td>R</td>
+  <td>An enumeration object of type IEnumVariant containing a snapshot of the IFolderAction in this collection. The enumeration object is specified in [MS-OAUT] section 3.3</td>
+ </tr><tr>
+  <td>Count</td>
+  <td>R</td>
+  <td>Number of folder actions in this collection.</td>
+ </tr><tr>
+  <td>Item</td>
+  <td>R</td>
+  <td>Retrieves the requested folder action from the collection.</td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Count (Get)</td>
+  <td>Retrieves the Count property. Opnum: 7</td>
+ </tr><tr>
+  <td>Item (Get)</td>
+  <td>Retrieves the Item property. Opnum: 8</td>
+ </tr><tr>
+  <td>_NewEnum (Get)</td>
+  <td>Retrieves the NewEnum property. Opnum: 9</td>
+ </tr><tr>
+  <td>Add</td>
+  <td>Adds a folder action to the collection. Opnum: 10</td>
+ </tr><tr>
+  <td>Remove</td>
+  <td>Removes a folder action from the collection. Opnum: 11</td>
+ </tr><tr>
+  <td>Clear</td>
+  <td>Removes all folder actions from the collection. Opnum: 12</td>
+ </tr><tr>
+  <td>AddRange</td>
+  <td>Adds one or more folder actions to the collection. Opnum: 13</td>
+ </tr><tr>
+  <td>CreateFolderAction</td>
+  <td>Creates a folder action object. Opnum: 14</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface.</p></div>

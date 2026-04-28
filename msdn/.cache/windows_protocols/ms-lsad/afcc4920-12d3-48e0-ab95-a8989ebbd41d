@@ -1,0 +1,117 @@
+<div class="content" name="POLICY_DOMAIN_KERBEROS_TICKET_INFO" uuid="afcc4920-12d3-48e0-ab95-a8989ebbd41d"><p>The POLICY_DOMAIN_KERBEROS_TICKET_INFO structure
+communicates policy information about the Kerberos security provider.</p><dl>
+<dd>
+<div><pre> typedef struct _POLICY_DOMAIN_KERBEROS_TICKET_INFO {
+   unsigned long AuthenticationOptions;
+   LARGE_INTEGER MaxServiceTicketAge;
+   LARGE_INTEGER MaxTicketAge;
+   LARGE_INTEGER MaxRenewAge;
+   LARGE_INTEGER MaxClockSkew;
+   LARGE_INTEGER Reserved;
+ } POLICY_DOMAIN_KERBEROS_TICKET_INFO,
+  *PPOLICY_DOMAIN_KERBEROS_TICKET_INFO;
+</pre></div>
+</dd></dl><p><b>AuthenticationOptions:</b>  Optional
+flags that affect validations performed during authentication.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>V C</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>VC POLICY_KERBEROS_VALIDATE_CLIENT (0x00000080)</td>
+  <td>This is the only flag that is currently defined. When this bit is set, the AuthenticationOptions flag of the Key Distribution Center (KDC) configuration setting will be set to POLICY_KERBEROS_VALIDATE_CLIENT (as described in [MS-KILE] section 3.3.1). All other bits SHOULD be set to 0 and ignored upon receipt.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>MaxServiceTicketAge:</b>  This is in
+units of 10^(-7) seconds. It corresponds to Maximum ticket lifetime (as
+specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90458" data-linktype="external">[RFC4120]</a></span>
+section 8.2) for <span><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">service</a></span> tickets
+only. The default value of this setting is 10 hours.</p><p><b>MaxTicketAge:</b>  This is in units of
+10^(-7) seconds. It corresponds to the Maximum ticket lifetime (as specified in
+[RFC4120] section 8.2) for ticket-granting ticket (TGT) only. The default value
+of this setting is 10 hours.</p><p><b>MaxRenewAge:</b>  This is in units of
+10^(-7) seconds. It corresponds to the Maximum renewable lifetime, as specified
+in [RFC4120] section 8.2. The default value of this setting is one week.</p><p><b>MaxClockSkew:</b>  This is in units of
+10^(-7) seconds. It corresponds to the Acceptable clock skew, as specified in
+[RFC4120] section 8.2. The default value of this setting is five minutes.</p><p><b>Reserved:</b>  The value of this field
+SHOULD be set to zero when sent or on receipt.</p></div>

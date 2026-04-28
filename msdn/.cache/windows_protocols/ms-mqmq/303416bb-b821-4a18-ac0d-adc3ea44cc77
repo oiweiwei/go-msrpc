@@ -1,0 +1,495 @@
+<div class="content" name="SecurityHeader" uuid="303416bb-b821-4a18-ac0d-adc3ea44cc77"><p>The optional SecurityHeader contains security information.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">Flags</td>
+  <td colspan="16">SenderIdSize</td>
+ </tr>
+ <tr>
+  <td colspan="16">EncryptionKeySize</td>
+  <td colspan="16">SignatureSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">SenderCertSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">ProviderInfoSize</td>
+ </tr>
+ <tr>
+  <td colspan="32">SecurityData (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table><p><b>Flags (2 bytes): </b>A 16-bit unsigned short
+integer that contains a set of options that provides additional information
+about the packet. Any combination of these values is acceptable unless
+otherwise noted in the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="4">ST</td>
+  <td>A</td>
+  <td>B</td>
+  <td>C</td>
+  <td>D</td>
+  <td colspan="4">AS</td>
+  <td>E</td>
+  <td>F</td>
+  <td>G</td>
+  <td>H</td>
+  
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>ST (4 bits): </b>Specifies
+the type of sender ID in the <b>SecurityData</b> field. This field MUST be set
+to one of the following values.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x0</td>
+  <td>The SecurityData.SecurityID field is not present and the SenderIdSize field MUST be set to 0x0000.</td>
+ </tr><tr>
+  <td>0x1</td>
+  <td>The SecurityData.SecurityID field MUST contain the sender application security identifier (SID). The SID layout is specified in [MS-DTYP] section 2.4.2.2. The SubAuthority field of the SID packet is a variable-length array of unsigned 32-bit little-endian integers.</td>
+ </tr><tr>
+  <td>0x2</td>
+  <td>The SecurityData.SecurityID field MUST contain the queue manager GUID.</td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>A - AU (1 bit): </b>Indicates
+whether the <a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a> is
+authenticated. This field MUST be set to 0.</p>
+</dd>
+<dd>
+<p><b>B - EB (1 bit): </b>Indicates
+whether the body of the message is encrypted. If set, the <b>MessagePropertiesHeader.MessageBody</b>
+field MUST be encrypted by the sender and decrypted by the receiver.</p>
+<dl>
+<dd>
+<p>For details about encryption on the
+sender side, see <a href="../ms-mqqb/85498b96-f2c8-43b3-a108-c9d6269dc4af" data-linktype="relative-path">[MS-MQQB]</a>
+section <a href="../ms-mqqb/3a2181af-09b3-44f4-8944-4850d8c91c9d" data-linktype="relative-path">3.1.7.1.5</a>.</p>
+</dd>
+<dd>
+<p>For details about decryption on the
+receiver side, see [MS-MQQB] section <a href="../ms-mqqb/520596ed-83c4-4193-af07-d178b10dcfe0" data-linktype="relative-path">3.1.5.8.3</a>.</p>
+</dd></dl></dd>
+<dd>
+<p><b>C - DE (1 bit): </b>Indicates
+whether the default cryptographic provider is used.<a id="Appendix_A_Target_19"></a><a aria-label="Product behavior note 19" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a> When clear and <b>SignatureSize</b>
+is nonzero, the <b>SecurityData.ProviderName</b> MUST specify the name of the
+alternate provider.</p>
+</dd>
+<dd>
+<p><b>D - AI (1 bit): </b>Indicates
+whether the <b>SecurityData</b> field is present. If set, the header MUST
+include a <b>SecurityData</b> field.</p>
+</dd>
+<dd>
+<p><b>AS (4 bits): </b>Indicates
+the authentication signature type. This field MUST be set to 0.</p>
+</dd>
+<dd>
+<p><b>E - X12 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>F - X13 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>G - X14 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>H - X15 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd></dl><p><b>SenderIdSize (2 bytes): </b>A 16-bit unsigned
+integer that specifies the size of the <b>SecurityData.SecurityID</b> field.
+This value MUST be set to the size, in bytes, of the security identifier in the
+<b>SecurityData.SecurityID</b> field. This field has a valid range from 0x0000
+to 0xFFFF, inclusive.</p><p><b>EncryptionKeySize (2 bytes): </b>A 16-bit unsigned
+integer that specifies the size of the <b>SecurityData.EncryptionKey</b> field.
+This value MUST be set to the size, in bytes, of the encryption key in the <b>SecurityData.EncryptionKey</b>
+field. This field has a valid range from 0x0000 to 0xFFFF, inclusive.</p><p><b>SignatureSize (2 bytes): </b>A 16-bit unsigned
+integer that specifies the size of the <b>SecurityData.Signature</b> field.
+This value MUST be set to the size, in bytes, of the sender signature in the <b>SecurityData.Signature</b>
+field. This field has a valid range from 0x0000 to 0xFFFF, inclusive.</p><p><b>SenderCertSize (4 bytes): </b>A 32-bit unsigned
+integer that specifies the size of the <b>SecurityData.SenderCert</b> field.
+This value MUST be set to the size, in bytes, of the sender signature in the <b>SecurityData.SenderCert</b>
+field. This field has a valid range from 0x00000000 to a value 0x0000FFFF,
+inclusive.</p><p><b>ProviderInfoSize (4 bytes): </b>A 32-bit unsigned
+integer that specifies the size of the <b>SecurityData.ProviderInfo</b> field.
+This value MUST be set to the size, in bytes, of the security provider
+information in the <b>SecurityData.ProviderInfo</b> field. This field has a
+valid range between 0x00000000 and the size limit imposed by the value of <b>BaseHeader.PacketSize</b>.</p><dl>
+<dd>
+<p>At least one of the fields SenderIdSize, EncryptionKeySize,
+SignatureSize, SenderCertSize, and ProviderInfoSize MUST be nonzero.</p>
+</dd></dl><p><b>SecurityData (variable): </b>An optional
+variable-length array of bytes containing additional security information. This
+field MUST contain the security information specified in the <b>Flags</b>
+field.</p><dl>
+<dd>
+<p>The data appears in the order specified below. Each
+field MUST be aligned up to the next 4-byte boundary. The size of each field is
+specified by the corresponding <b>SenderIdSize</b>, <b>EncryptionKeySize</b>, <b>SignatureSize</b>,
+<b>SenderCertSize</b>, and <b>ProviderInfoSize</b> fields. An item with a size
+of zero occupies no space in the <b>SecurityData</b> array. </p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">SecurityID (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">EncryptionKey (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">Signature (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">SenderCert (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">ProviderInfo (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>SecurityID (variable): </b>Contains
+the sender <a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a>
+or the sending queue manager <a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">GUID</a>.
+This field MUST be set to the queue manager <b>GUID</b> when the packet is sent
+and signed by the queue manager.</p>
+</dd>
+<dd>
+<p><b>EncryptionKey (variable):
+</b>Sender symmetrical encryption key.</p>
+</dd>
+<dd>
+<p><b>Signature (variable): </b>The
+packet digital signature. The type of signature is specified by the MSMQ
+version as described in the following table and the hash algorithm is specified
+by the <b>MessagePropertiesHeader.HashAlgorithm</b> field.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>MSMQ Version</p>
+   </th>
+   <th>
+   <p>Signature Type</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>MSMQ 1.0</td>
+  <td>The SecurityData.Signature field is an MSMQ 1.0 digital signature. If the SecurityData.Flags.ST field is set to 1, the SecurityData.SecurityID field MUST contain the sender application security identifier. If the SecurityData.Flags.ST field is set to 2, it specifies that the message is signed with Sender ID as the Signature. If set, the SecurityData.SecurityID field MUST contain the queue manager GUID. The signature MUST be a hash of the MSMQ 1.0 Digital Signature Properties (section 2.5.1).</td>
+ </tr><tr>
+  <td>MSMQ 2.0</td>
+  <td>The SecurityData.Signature field is an MSMQ 2.0 digital signature. The signature MUST be a hash of the MSMQ 2.0 Digital Signature Properties (section 2.5.2).</td>
+ </tr><tr>
+  <td>MSMQ 3.0, MSMQ 4.0, MSMQ 5.0, or MSMQ 6.0</td>
+  <td>The SecurityData.Signature field is an MSMQ 3.0 digital signature. The signature MUST be a hash of the MSMQ 3.0 Digital Signature Properties (section 2.5.3).</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The hash algorithm that is used to
+compute the <b>SecurityData.Signature</b> field is specified by the <b>MessagePropertiesHeader.HashAlgorithm</b>
+field.</p>
+</dd>
+<dd>
+<p>For details about signature and
+hash computations on the sender side, see [MS-MQQB] section <a href="../ms-mqqb/e2355e65-7f56-49f1-9d2b-97a348f9e355" data-linktype="relative-path">3.1.7.1.4</a>.</p>
+</dd>
+<dd>
+<p>For details about authentication on
+the receiver side, see [MS-MQQB] section 3.1.5.8.3.</p>
+</dd></dl></dd>
+<dd>
+<p><b>SenderCert (variable): </b>Sender
+X.509 digital certificate. Details are as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a>. The public
+key that is contained in the certificate has the following structure.</p>
+<dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">0x06</td>
+  <td colspan="8">0x02</td>
+  <td colspan="8">0x00</td>
+  <td colspan="8">Key Type</td>
+ </tr>
+ <tr>
+  <td colspan="24">...</td>
+  <td colspan="8">0x52</td>
+ </tr>
+ <tr>
+  <td colspan="8">0x53</td>
+  <td colspan="8">0x41</td>
+  <td colspan="8">0x31</td>
+  <td colspan="8">Length in bits</td>
+ </tr>
+ <tr>
+  <td colspan="24">...</td>
+  <td colspan="8">Public Exponent</td>
+ </tr>
+ <tr>
+  <td colspan="24">...</td>
+  <td colspan="8">Modulus (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Key Type (4 bytes): </b>This
+MUST be set to 0x00002400 for RSA signing keys and 0x0000A400 for RSA
+encryption keys.</p>
+</dd>
+<dd>
+<p><b>Length in bits (4
+bytes): </b>This 32-bit unsigned number MUST be the length of the RSA modulus.
+It MUST contain the length, in bits, of the Modulus field.</p>
+</dd>
+<dd>
+<p><b>Public Exponent (4
+bytes): </b>This MUST be a 32-bit unsigned integer. It MUST be the public
+exponent of the RSA key pair, referred to as e in <a href="https://go.microsoft.com/fwlink/?linkid=2164409" data-linktype="external">[RFC8017]</a> section 2.</p>
+</dd>
+<dd>
+<p><b>Modulus (variable): </b>This
+MUST be the RSA modulus, referred to as defined in [RFC8017] section 2. This
+field MUST be a multiple of 8 bits in length and MUST append padding bits
+needed to ensure this requirement. Padding bits MUST be set to zero. The public
+key SHOULD<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a> be stored in the directory.</p>
+</dd></dl></dd></dl><p><b>ProviderInfo (variable): </b>Contains the
+information of the alternative provider used to produce the signature.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a> If the Flags.DE bit is clear
+and the <b>ProviderInfoSize</b> is nonzero, this field MUST be set; otherwise
+it MUST NOT be included in the <b>SecurityData</b> field. The layout of this
+field is as follows.<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">ProviderType</td>
+ </tr>
+ <tr>
+  <td colspan="32">ProviderName (variable)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>ProviderType (4 bytes): </b>A
+32-bit unsigned integer that indicates the type of the alternative provider
+used to produce the signature.</p>
+</dd>
+<dd>
+<p><b>ProviderName (variable): </b>A
+null-terminated <a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>
+string that contains the name of the alternative provider used to produce the
+signature.</p>
+</dd></dl></div>

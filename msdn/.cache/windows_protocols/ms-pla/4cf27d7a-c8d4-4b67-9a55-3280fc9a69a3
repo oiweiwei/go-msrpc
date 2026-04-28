@@ -1,0 +1,61 @@
+<div class="content" name="IDataCollectorSetCollection" uuid="4cf27d7a-c8d4-4b67-9a55-3280fc9a69a3"><p>The IDataCollectorSetCollection interface is used to manage
+a collection of DataCollectorSet objects.</p><p>The following properties MUST be implemented by the objects
+that implement the IDataCollectorSetCollection interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>_NewEnum</td>
+  <td>R</td>
+  <td>An enumeration object of type IEnumVariant containing a snapshot of the IDataCollectorSet objects in this collection. The enumeration object is specified in [MS-OAUT] section 3.3.</td>
+ </tr><tr>
+  <td>Count</td>
+  <td>R</td>
+  <td>Number of data collector sets in this collection.</td>
+ </tr><tr>
+  <td>Item</td>
+  <td>R</td>
+  <td>Retrieves the requested data collector set from the collection.</td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Count (Get)</td>
+  <td>Retrieves the Count property. Opnum: 7</td>
+ </tr><tr>
+  <td>Item (Get)</td>
+  <td>Retrieves the Item property. Opnum: 8</td>
+ </tr><tr>
+  <td>_NewEnum (Get)</td>
+  <td>Retrieves the NewEnum property. Opnum: 9</td>
+ </tr><tr>
+  <td>Add</td>
+  <td>Adds a data collector set to the collection. Opnum: 10</td>
+ </tr><tr>
+  <td>Remove</td>
+  <td>Removes a data collector set from the collection. Opnum: 11</td>
+ </tr><tr>
+  <td>Clear</td>
+  <td>Removes all data collector sets from the collection. Opnum: 12</td>
+ </tr><tr>
+  <td>AddRange</td>
+  <td>Adds one or more data collector set to the collection. Opnum: 13</td>
+ </tr><tr>
+  <td>GetDataCollectorSets</td>
+  <td>Populates data collector set collection with the persisted data collector sets. Opnum: 14</td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. </p></div>

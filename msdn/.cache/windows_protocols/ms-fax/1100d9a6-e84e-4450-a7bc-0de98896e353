@@ -1,0 +1,65 @@
+<div class="content" name="FAX_CheckServerProtSeq" uuid="1100d9a6-e84e-4450-a7bc-0de98896e353"><p>The <b>FAX_CheckServerProtSeq (Opnum 26)</b> method is
+called by the client to validate whether a specified protocol sequence is
+supported by the server.<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a> In
+response, the server MUST validate the specified protocol sequence.</p><p>Protocol version FAX_API_VERSION_2 (0x00020000) and
+FAX_API_VERSION_3 (0x00030000) fax servers SHOULD fail this call by returning
+ERROR_NOT_SUPPORTED (0x00000032). The fax client SHOULD NOT call this method if
+the protocol version reported by the server is FAX_API_VERSION_2 (0x00020000)
+or FAX_API_VERSION_3 (0x00030000). For more information, see <b>FAX_ConnectFaxServer</b>
+(section <a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a>).</p><dl>
+<dd>
+<div><pre> error_status_t FAX_CheckServerProtSeq(
+   [in] handle_t hbinding,
+   [in, out, unique] LPDWORD lpdwProtSeq
+ );
+</pre></div>
+</dd></dl><p><b>hbinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b>
+(section <a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a>)
+method call used to connect to the fax server. </p><p><b>lpdwProtSeq: </b>A variable into which the
+requested sequence is specified. If the specified protocol sequence is
+supported, upon return, <i>lpdwProtSeq</i> contains the value for this
+validated sequence.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>RPC_PROT_TCP_IP 1</td>
+  <td>Check the protocol sequence for TCP/IP.</td>
+ </tr><tr>
+  <td>RPC_PROT_SPX 2</td>
+  <td>Check the protocol sequence for IPX/SPX.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in section
+<a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>, or one of the
+other standard errors defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>ERROR_INVALID_PARAMETER 0x00000057</td>
+  <td>The parameter is incorrect. The lpdwProtSeq argument specified is NULL.</td>
+ </tr><tr>
+  <td>RPC_S_PROTSEQ_NOT_SUPPORTED 0x0000006A7</td>
+  <td>The protocol sequence specified by the lpdwProtSeq argument is not supported.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+except those that are thrown by the underlying <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

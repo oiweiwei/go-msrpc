@@ -1,0 +1,53 @@
+<div class="content" name="MoveBefore" uuid="28466839-ec38-4877-94b2-9acbb4428dcb"><p>The MoveBefore method moves a specified <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_04c2dc43-6f4a-432d-bca6-ceeef2d5f2ae" data-linktype="relative-path">resource group</a> to a
+location just before a reference resource group.</p><dl>
+<dd>
+<div><pre> [id(6), helpstring(&#34;method MoveBefore&#34;)] HRESULT MoveBefore(
+   [in] BSTR bstrPolicyName,
+   [in] BSTR bstrResourceGroupName,
+   [in] BSTR bstrRefResourceGroupName
+ );
+</pre></div>
+</dd></dl><p><b>bstrPolicyName: </b>The name of the policy in
+which the resource group is to be moved.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bstrResourceGroupName: </b>The name of the
+resource group to be moved.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bstrRefResourceGroupName: </b>The name of the
+reference resource group.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Operation successful.</td>
+ </tr><tr>
+  <td>0xC1FF012E WRM_ERR_RESOURCEGROUPID_INVALID</td>
+  <td>The specified process matching criteria (PMC) does not exist.</td>
+ </tr><tr>
+  <td>0xC1FF00C9 WRM_ERR_POLICYID_INVALID</td>
+  <td>The specified resource allocation policy does not exist.</td>
+ </tr><tr>
+  <td>0xC1FF00E0 WRM_ERR_WSRM_RESERVED_POLICY</td>
+  <td>The specified policy is a built-in policy. It cannot be altered.</td>
+ </tr><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>One or more arguments are invalid.</td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a03f4cd5-ad33-46aa-94e7-2c9a92f02b6f" data-linktype="relative-path">IWRMPolicy</a> interface
+methods are specified in section 3.2.4.7.</p></div>

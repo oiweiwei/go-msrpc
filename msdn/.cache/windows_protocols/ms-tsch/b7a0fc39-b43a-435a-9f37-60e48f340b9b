@@ -1,0 +1,155 @@
+<div class="content" name="Day_of_the_Week" uuid="b7a0fc39-b43a-435a-9f37-60e48f340b9b"><p>The Day of the Week field is specified as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">Day of the Week</td>
+  
+ </tr>
+</tbody></table><p> </p><table><thead>
+  <tr>
+   <th>
+   <p><span><br/>
+   0</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   1</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   2</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   3</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   4</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   5</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   6</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   7</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   8</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   9</span></p>
+   </th>
+   <th>
+   <p><span>1<br/>
+   0</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   1</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   2</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   3</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   4</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   5</span></p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>S A</td>
+  <td>F R</td>
+  <td>T H</td>
+  <td>W E</td>
+  <td>T U</td>
+  <td>M O</td>
+  <td>S U</td>
+ </tr></tbody></table><p>Day of the Week Flags</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>SU Sunday</td>
+  <td>If set to 1, specifies that the task can run on Sunday.</td>
+ </tr><tr>
+  <td>MO Monday</td>
+  <td>If set to 1, specifies that the task can run on Monday.</td>
+ </tr><tr>
+  <td>TU Tuesday</td>
+  <td>If set to 1, specifies that the task can run on Tuesday.</td>
+ </tr><tr>
+  <td>WE Wednesday</td>
+  <td>If set to 1, specifies that the task can run on Wednesday.</td>
+ </tr><tr>
+  <td>TH Thursday</td>
+  <td>If set to 1, specifies that the task can run on Thursday.</td>
+ </tr><tr>
+  <td>FR Friday</td>
+  <td>If set to 1, specifies that the task can run on Friday.</td>
+ </tr><tr>
+  <td>SA Saturday</td>
+  <td>If set to 1, specifies that the task can run on Saturday.</td>
+ </tr></tbody></table><p><b>Day of the Week (2 bytes): </b>Undefined bits are
+set to 0 when sent and ignored upon receipt.</p></div>

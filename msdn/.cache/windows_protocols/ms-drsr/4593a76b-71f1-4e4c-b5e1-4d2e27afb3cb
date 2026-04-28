@@ -1,0 +1,44 @@
+<div class="content" name="DRS_MSG_VERIFYREQ_V1" uuid="4593a76b-71f1-4e4c-b5e1-4d2e27afb3cb"><p>The DRS_MSG_VERIFYREQ_V1 structure defines a request message
+sent to the <span><a href="80739a29-e8ed-4478-8490-475a18e9779d" data-linktype="relative-path">IDL_DRSVerifyNames</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwFlags;
+   [range(1,10000)] DWORD cNames;
+   [size_is(cNames)] DSNAME** rpNames;
+   ATTRBLOCK RequiredAttrs;
+   SCHEMA_PREFIX_TABLE PrefixTable;
+ } DRS_MSG_VERIFYREQ_V1;
+</pre></div>
+</dd></dl><p><b>dwFlags:</b>  The type of name to be
+verified; MUST have one of the following values: </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>DRS_VERIFY_DSNAMES 0x00000000</td>
+  <td>Verify DSName values.</td>
+ </tr><tr>
+  <td>DRS_VERIFY_SIDS 0x00000001</td>
+  <td>Verify objectSid values.</td>
+ </tr><tr>
+  <td>DRS_VERIFY_SAM_ACCOUNT_NAMES 0x00000002</td>
+  <td>Verify sAMAccountName values.</td>
+ </tr><tr>
+  <td>DRS_VERIFY_FPOS 0x00000003</td>
+  <td>Verify foreign principal object names.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>cNames:</b>  The number of items in the <b>rpNames</b>
+array.</p><p><b>rpNames:</b>  An array of pointers to <span><a href="a0d5477a-5229-46b9-890a-54b924d487d1" data-linktype="relative-path">DSNames</a></span>
+that need to be verified.</p><p><b>RequiredAttrs:</b>  The list of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attributes</a></span>
+to be retrieved for each name that is verified.</p><p><b>PrefixTable:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_028437b6-7749-4428-b874-22e9559c1abe" data-linktype="relative-path">prefix
+table</a></span> used to translate <span><a href="91173129-08e6-497c-8266-b5ac0aa5f983" data-linktype="relative-path">ATTRTYP</a></span> values in <b>RequiredAttrs</b>
+to <span><a href="33950485-3a96-4b66-8a28-a3a33e80302b" data-linktype="relative-path">OID</a></span>
+values.</p></div>

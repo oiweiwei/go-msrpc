@@ -1,0 +1,57 @@
+<div class="content" name="RpcWinStationOpenServer" uuid="fd6f339d-f5dd-452c-a9a9-ec753c22a36a"><p>The RpcWinStationOpenServer method returns a server <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>
+that can be used in other <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8cc89bb9-be94-4672-8a5d-9947b91bc952" data-linktype="relative-path">WinStation</a></span> API
+methods for querying information about the WinStation (sessions) on the server.
+No special permissions are required to call this method.</p><dl>
+<dd>
+<div><pre> BOOLEAN RpcWinStationOpenServer(
+   [in] handle_t hBinding,
+   [out] DWORD* pResult,
+   [out] SERVER_HANDLE* phServer
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle.</p><p><b>pResult: </b> Failure error code if the call to
+RpcWinStationOpenServer failed. If the call was successful, this parameter is
+STATUS_SUCCESS (0x00000000) (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>STATUS_SUCCESS 0x00000000</td>
+  <td>Successful call.</td>
+ </tr><tr>
+  <td>STATUS_CANCELLED 0xC0000120</td>
+  <td>The server is shutting down.</td>
+ </tr><tr>
+  <td>STATUS_NO_MEMORY 0xC0000017</td>
+  <td>Not enough memory to complete the operation.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>phServer: </b>Handle to the server object. This is
+of type <span><a href="49484cdf-2feb-4de9-a588-5d01cf8995dc" data-linktype="relative-path">SERVER_HANDLE</a></span>. This
+handle is used by other RpcWinStation methods.</p><p><b>Return Values: </b>Returns TRUE if the call
+succeeded, or FALSE if the call failed. On failure, pResult indicates the
+failure status code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x01 TRUE</td>
+  <td>Successful completion.</td>
+ </tr><tr>
+  <td>0x00 FALSE</td>
+  <td>Method call failed.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

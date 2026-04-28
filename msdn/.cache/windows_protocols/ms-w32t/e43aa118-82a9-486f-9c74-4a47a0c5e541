@@ -1,0 +1,126 @@
+<div class="content" name="W32TimeSync" uuid="e43aa118-82a9-486f-9c74-4a47a0c5e541"><p>The W32TimeSync method is invoked to request that the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time service</a> immediately
+initiate an attempt to synchronize its time. The <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a> syntax of this method
+is specified as follows.</p><dl>
+<dd>
+<div><pre> unsigned long W32TimeSync(
+   [in] handle_t hBinding,
+   [in] unsigned long uWait,
+   [in] unsigned long ulFlags
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b><a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> primitive binding
+handle, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+part 3, sections Interface Definition Language and Stubs.</p><p><b>uWait: </b>Blocking status of the call. The value
+MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0</td>
+  <td>Method MUST return RPC_S_OK without waiting for the outcome of time synchronization. In this case, the final outcome of the attempt is not available to the caller.</td>
+ </tr><tr>
+  <td>Non-zero 0 &lt; value</td>
+  <td>Method MUST NOT return until time synchronization is complete. The server must block the response to the caller until the attempt at time synchronization is complete, regardless of the status. An implementation can choose to respond to the caller after an implementation-specific timeout occurs.&lt;34&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>ulFlags: </b>Time synchronization behaviors.</p><dl>
+<dd>
+<p>The following values SHOULD be mutually exclusive.
+When multiple values are set, the value whose bit is least significant SHOULD
+take precedence.<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a></p>
+</dd>
+<dd>
+<p><b>Note</b>  The TimeSyncFlag_SoftResync
+value MUST NOT be used in conjunction with any other value in the following
+table.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>TimeSyncFlag_SoftResync 0x00000000</td>
+  <td>The time service MUST synchronize itself with the currently available time samples. It MUST NOT poll the network or hardware time providers for new time data.</td>
+ </tr><tr>
+  <td>TimeSyncFlag_HardResync 0x00000001</td>
+  <td>The time service MUST discard its old time samples and MUST acquire new samples from the network or hardware time providers.</td>
+ </tr><tr>
+  <td>TimeSyncFlag_Rediscover 0x00000004</td>
+  <td>Identical to the TimeSyncFlag_HardResync flag, except that the time service MUST attempt to discover new network time sources prior to discarding and reacquiring new time samples.</td>
+ </tr><tr>
+  <td>TimeSyncFlag_UpdateAndResync 0x00000008</td>
+  <td>Identical to the TimeSyncFlag_Rediscover flag, except that prior to attempting to discover new time sources, the time service MUST update its configuration.</td>
+ </tr><tr>
+  <td>TimeSyncFlag_ForceResync 0x00000010</td>
+  <td>Identical to the TimeSyncFlag_HardResync flag, except that it causes the processing of the next time sample to ignore any phase correction boundaries imposed by W32Time.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The following value can be joined
+in a bitwise OR with the preceding values. If <i>uWait</i> is set to zero, the
+following value MUST be ignored.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>TimeSyncFlag_ReturnResult 0x00000002</td>
+  <td>Used only for synchronous calls. If set, the method MUST return one of the following return values.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>If the
+TimeSyncFlag_ReturnResult flag is specified, the return value MUST be one of
+the following specific TimeSync_ReturnResult codes. Otherwise, this method MUST
+return zero on success or an implementation-specific nonzero <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_a0f899ec-e1a5-4e04-8abc-80df987c6fb4" data-linktype="relative-path">error code</a> on failure.<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return
+   value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 ResyncResult_Success</td>
+  <td>Synchronization between the time provider and the caller was successful. For asynchronous calls, this result does not guarantee that the server has acquired a new time sample. It merely states that the synchronization attempt has been successfully initiated.</td>
+ </tr><tr>
+  <td>0x00000001 ResyncResult_NoData</td>
+  <td>The time service could not obtain a new time sample from the time provider.</td>
+ </tr><tr>
+  <td>0x00000002 ResyncResult_StaleData</td>
+  <td>The time service received data that was time stamped earlier than the last good sample.</td>
+ </tr><tr>
+  <td>0x00000003 ResyncResult_ChangeTooBig</td>
+  <td>The time service received data in which the time difference from the local clock was too large to trust.</td>
+ </tr><tr>
+  <td>0x00000004 ResyncResult_Shutdown</td>
+  <td>The time service was shutting down.</td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The time service MUST immediately
+attempt to synchronize time with its time sources, as specified by the flags
+provided in the method invocation. For more information on the flags, see the <i>ulFlags</i>
+table in this section.<a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a></p>
+</dd></dl></div>

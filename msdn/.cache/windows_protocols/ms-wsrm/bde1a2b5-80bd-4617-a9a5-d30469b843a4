@@ -1,0 +1,51 @@
+<div class="content" name="RenameSchedule" uuid="bde1a2b5-80bd-4617-a9a5-d30469b843a4"><p>The RenameSchedule method renames a specified schedule
+object. If the schedule object is being referenced by some calendar object,
+then the calendar object is also updated with the new name.</p><dl>
+<dd>
+<div><pre> [id(11), helpstring(&#34;method RenameSchedule&#34;)] HRESULT RenameSchedule(
+   [in] BSTR bstrOldScheduleName,
+   [in] BSTR bstrNewScheduleName
+ );
+</pre></div>
+</dd></dl><p><b>bstrOldScheduleName: </b>A string that specifies
+the current name of the schedule object to be renamed.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bstrNewScheduleName: </b>A string that specifies
+the new name of the schedule object.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x00000000 S_OK</td>
+  <td>Operation successful.</td>
+ </tr><tr>
+  <td>0x80070057 E_INVALIDARG</td>
+  <td>One or more arguments are invalid.</td>
+ </tr><tr>
+  <td>0xC1FF006F WRM_ERR_ID_VALUE</td>
+  <td>The specified name contains characters that are invalid. The name cannot start with a hyphen (&#34;-&#34;) and cannot contain spaces or any of the following characters:   \   / ? * | : &lt; &gt; &#34; , ;.</td>
+ </tr><tr>
+  <td>0xC1FF0270 WRM_ERR_CAL_DUPLICATE_SCHEDULE</td>
+  <td>The new schedule name is already taken by an existing schedule object.</td>
+ </tr><tr>
+  <td>0xC1FF0271 WRM_ERR_CAL_UNKNOWN_SCHEDULE</td>
+  <td>The specified schedule object does not exist.</td>
+ </tr><tr>
+  <td>0xC1FF0273 WRM_ERR_CAL_SCHEDULE_NAME_TOOLONG</td>
+  <td>The schedule object name has exceeded an implementation-defined limit.&lt;68&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="b573c233-e3b6-4179-896f-90a4eb0ca8ff" data-linktype="relative-path">IWRMCalendar</a> interface
+methods are specified in section 3.2.4.4.</p></div>

@@ -1,0 +1,52 @@
+<div class="content" name="IPPREFIX" uuid="80878f99-a962-452e-971e-16ab7b7826ee"><p>The <b>IPPREFIX</b> structure contains an IP address and the
+prefix length of its associated network.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">Endpoint (128 bytes)</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">...</td>
+ </tr>
+ <tr>
+  <td colspan="32">PrefixLength</td>
+ </tr>
+</tbody></table><p><b>Endpoint (128 bytes): </b>MUST be laid out as a
+sockaddr_in or sockaddr_in6 structure as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90367" data-linktype="external">[RFC2553]</a></span>. The
+remaining bytes SHOULD be set to 0x00.</p><p><b>PrefixLength (4 bytes): </b>The prefix length of
+the associated network of the IP address in <b>Endpoint</b>.</p></div>
