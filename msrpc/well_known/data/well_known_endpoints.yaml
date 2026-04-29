@@ -1,0 +1,7622 @@
+- uuid: 00000000-0000-0000-0000-000000000000
+  domain: ''
+  annotation: 'Null'
+  if_name: 'Null'
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - 'null'
+- uuid: 52c80b95-c1ad-4240-8d89-72e9fa84025e
+  domain: MC-CCFG
+  annotation: 'Server Cluster: Configuration (ClusCfg) Protocol'
+  if_name: IClusCfgAsyncEvictCleanup
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - ccfg
+  - icluscfgasyncevictcleanup
+- uuid: 9be77978-73ed-4a9a-87fd-13f09fec1b13
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostAdminManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostadminmanager
+- uuid: 09829352-87c2-418d-8d79-4133969a489d
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostChangeHandler
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostchangehandler
+- uuid: 08a90f5f-0702-48d6-b45f-02a9885a9768
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostChildElementCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostchildelementcollection
+- uuid: de095db1-5368-4d11-81f6-efef619b7bcf
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostCollectionSchema
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostcollectionschema
+- uuid: 4dfa1df3-8900-4bc7-bbb5-d1a458c52410
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostConfigException
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostconfigexception
+- uuid: ada4e6fb-e025-401e-a5d0-c3134a281f07
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostConfigFile
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostconfigfile
+- uuid: 832a32f7-b3ea-4b8c-b260-9a2923001184
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostConfigLocationCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostconfiglocationcollection
+- uuid: 370af178-7758-4dad-8146-7391f6e18585
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostConfigLocation
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostconfiglocation
+- uuid: 8f6d760f-f0cb-4d69-b5f6-848b33e9bdc6
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostConfigManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostconfigmanager
+- uuid: 5b5a68e6-8b9f-45e1-8199-a95ffccdffff
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostConstantValueCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostconstantvaluecollection
+- uuid: 0716caf8-7d05-4a46-8099-77594be91394
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostConstantValue
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostconstantvalue
+- uuid: c8550bff-5281-4b1e-ac34-99b6fa38464d
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostElementCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostelementcollection
+- uuid: 0344cdda-151e-4cbf-82da-66ae61e97754
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostElementSchemaCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostelementschemacollection
+- uuid: ef13d885-642c-4709-99ec-b89561c6bc69
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostElementSchema
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostelementschema
+- uuid: 64ff8ccc-b287-4dae-b08a-a72cbf45f453
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostElement
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostelement
+- uuid: 31a83ea0-c0e4-4a2c-8a01-353cc2a4c60a
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostMappingExtension
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostmappingextension
+- uuid: d6c7cd8f-bb8d-4f96-b591-d3a5f1320269
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostMethodCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostmethodcollection
+- uuid: b80f3c42-60e0-4ae0-9007-f52852d3dbed
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostMethodInstance
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostmethodinstance
+- uuid: 2d9915fb-9d42-4328-b782-1b46819fab9e
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostMethodSchema
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostmethodschema
+- uuid: 7883ca1c-1112-4447-84c3-52fbeb38069d
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostMethod
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostmethod
+- uuid: e7927575-5cc3-403b-822e-328a6b904bee
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostPathMapper
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostpathmapper
+- uuid: 0191775e-bcff-445a-b4f4-3bdda54e2816
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostPropertyCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostpropertycollection
+- uuid: eafe4895-a929-41ea-b14d-613e23f62b71
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostPropertyException
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostpropertyexception
+- uuid: 8bed2c68-a5fb-4b28-8581-a0dc5267419f
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostPropertySchemaCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostpropertyschemacollection
+- uuid: 450386db-7409-4667-935e-384dbbee2a9e
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostPropertySchema
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostpropertyschema
+- uuid: ed35f7a1-5024-4e7b-a44d-07ddaf4b524d
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostProperty
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostproperty
+- uuid: b7d381ee-8860-47a1-8af4-1f33b2b1f325
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostSectionDefinitionCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostsectiondefinitioncollection
+- uuid: c5c04795-321c-4014-8fd6-d44658799393
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostSectionDefinition
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostsectiondefinition
+- uuid: 0dd8a158-ebe6-4008-a1d9-b7ecc8f1104b
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostSectionGroup
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostsectiongroup
+- uuid: fa7660f6-7b3f-4237-a8bf-ed0ad0dcbbd9
+  domain: MC-IISA
+  annotation: Internet Information Services (IIS) Application Host COM Protocol
+  if_name: IAppHostWritableAdminManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iisa
+  - iapphostwritableadminmanager
+- uuid: 12a30900-7300-11d2-b0e6-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQApplication2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqapplication2
+- uuid: eba96b1f-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQApplication3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqapplication3
+- uuid: d7d6e085-dccd-11d0-aa4b-0060970debae
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQApplication
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqapplication
+- uuid: 0188ac2f-ecb3-4173-9779-635ca2039c72
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqcollection
+- uuid: eba96b10-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQCoordinatedTransactionDispenser2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqcoordinatedtransactiondispenser2
+- uuid: eba96b14-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQCoordinatedTransactionDispenser3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqcoordinatedtransactiondispenser3
+- uuid: d7d6e081-dccd-11d0-aa4b-0060970debae
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQCoordinatedTransactionDispenser
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqcoordinatedtransactiondispenser
+- uuid: eba96b16-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQDestination
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqdestination
+- uuid: eba96b12-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQEvent2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqevent2
+- uuid: eba96b1c-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQEvent3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqevent3
+- uuid: d7d6e077-dccd-11d0-aa4b-0060970debae
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQEvent
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqevent
+- uuid: be5f0241-e489-4957-8cc4-a452fcf3e23e
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQManagement
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqmanagement
+- uuid: d9933be0-a567-11d2-b0f3-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQMessage2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqmessage2
+- uuid: eba96b1a-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQMessage3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqmessage3
+- uuid: eba96b23-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQMessage4
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqmessage4
+- uuid: d7d6e074-dccd-11d0-aa4b-0060970debae
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQMessage
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqmessage
+- uuid: 64c478fb-f9b0-4695-8a7f-439ac94326d3
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQOutgoingQueueManagement
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqoutgoingqueuemanagement
+- uuid: eba96b17-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQPrivateDestination
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqprivatedestination
+- uuid: d7ab3341-c9d3-11d1-bb47-0080c7c5a2c0
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQPrivateEvent
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqprivateevent
+- uuid: eba96b0e-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQuery2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqquery2
+- uuid: eba96b19-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQuery3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqquery3
+- uuid: eba96b24-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQuery4
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqquery4
+- uuid: d7d6e072-dccd-11d0-aa4b-0060970debae
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQuery
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqquery
+- uuid: ef0574e0-06d8-11d3-b100-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQueue2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqqueue2
+- uuid: eba96b1b-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQueue3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqqueue3
+- uuid: eba96b20-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQueue4
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqqueue4
+- uuid: fd174a80-89cf-11d2-b0f2-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQueueInfo2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqqueueinfo2
+- uuid: eba96b1d-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQueueInfo3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqqueueinfo3
+- uuid: eba96b21-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQueueInfo4
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqqueueinfo4
+- uuid: eba96b0f-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQueueInfos2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqqueueinfos2
+- uuid: eba96b1e-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQueueInfos3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqqueueinfos3
+- uuid: eba96b22-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQueueInfos4
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqqueueinfos4
+- uuid: d7d6e07d-dccd-11d0-aa4b-0060970debae
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQueueInfos
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqqueueinfos
+- uuid: d7d6e07b-dccd-11d0-aa4b-0060970debae
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQueueInfo
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqqueueinfo
+- uuid: 7fbe7759-5760-444d-b8a5-5e7ab9a84cce
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQueueManagement
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqqueuemanagement
+- uuid: d7d6e076-dccd-11d0-aa4b-0060970debae
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQQueue
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqqueue
+- uuid: 2ce0c5b0-6e67-11d2-b0e6-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQTransaction2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqtransaction2
+- uuid: eba96b13-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQTransaction3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqtransaction3
+- uuid: eba96b11-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQTransactionDispenser2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqtransactiondispenser2
+- uuid: eba96b15-2168-11d3-898c-00e02c074f6b
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQTransactionDispenser3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqtransactiondispenser3
+- uuid: d7d6e083-dccd-11d0-aa4b-0060970debae
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQTransactionDispenser
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqtransactiondispenser
+- uuid: d7d6e07f-dccd-11d0-aa4b-0060970debae
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: IMSMQTransaction
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - imsmqtransaction
+- uuid: 0fb15084-af41-11ce-bd2b-204c4f4f5020
+  domain: MC-MQAC
+  annotation: 'Message Queuing (MSMQ): ActiveX Client Protocol'
+  if_name: ITransaction
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - mqac
+  - itransaction
+- uuid: 070669eb-b52f-11d1-9270-00c04fbbbfb3
+  domain: MS-ADTG
+  annotation: Remote Data Services (RDS) Transport Protocol
+  if_name: IDataFactory2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - adtg
+  - idatafactory2
+- uuid: 4639db2a-bfc5-11d2-9318-00c04fbbbfb3
+  domain: MS-ADTG
+  annotation: Remote Data Services (RDS) Transport Protocol
+  if_name: IDataFactory3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - adtg
+  - idatafactory3
+- uuid: 0eac4842-8763-11cf-a743-00aa00a3f00d
+  domain: MS-ADTG
+  annotation: Remote Data Services (RDS) Transport Protocol
+  if_name: IDataFactory
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - adtg
+  - idatafactory
+- uuid: bba9cb76-eb0c-462c-aa1b-5d8c34415701
+  domain: MS-ADTS
+  annotation: Active Directory Technical Specification
+  if_name: Claims
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - adts
+  - claims
+- uuid: 3dde7c30-165d-11d1-ab8f-00805f14db40
+  domain: MS-BKRP
+  annotation: BackupKey Remote Protocol
+  if_name: BackupKey
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:protected_storage
+  - ncacn_np:ntsvcs
+  keywords:
+  - bkrp
+  - backupkey
+- uuid: e3d0d746-d2af-40fd-8a7a-0d7078bb7092
+  domain: MS-BPAU
+  annotation: 'Background Intelligent Transfer Service (BITS) Peer-Caching: Peer Authentication Protocol'
+  if_name: BitsPeerAuth
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - bpau
+  - bitspeerauth
+- uuid: 6bffd098-a112-3610-9833-012892020162
+  domain: MS-BRWSA
+  annotation: Common Internet File System (CIFS) Browser Auxiliary Protocol
+  if_name: Browser
+  if_versions: [v0.0]
+  endpoints:
+  - ncacn_np:browser
+  keywords:
+  - brwsa
+  - browser
+- uuid: afc07e2e-311c-4435-808c-c483ffeec7c9
+  domain: MS-CAPR
+  annotation: Central Access Policy Identifier (ID) Retrieval Protocol
+  if_name: lsacap
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:lsarpc
+  keywords:
+  - capr
+  - lsacap
+- uuid: 906b0ce0-c70b-1067-b317-00dd010662da
+  domain: MS-CMPO
+  annotation: 'MSDTC Connection Manager: OleTx Transports Protocol'
+  if_name: IXnRemote
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - cmpo
+  - ixnremote
+- uuid: b97db8b2-4c63-11cf-bff6-08002be23f2f
+  domain: MS-CMRP
+  annotation: 'Failover Cluster: Management API (ClusAPI) Protocol'
+  if_name: ClusAPI
+  if_version:
+  - v2.0
+  - v3.0
+  endpoints: []
+  keywords:
+  - cmrp
+  - clusapi
+- uuid: 7f43b400-1a0e-4d57-bbc9-6b0c65f7a889
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: IAlternateLaunch
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - ialternatelaunch
+- uuid: 47cde9a1-0bf6-11d2-8016-00c04fb9988e
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: ICapabilitySupport
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - icapabilitysupport
+- uuid: 1d118904-94b3-4a64-9fa6-ed432666a7b9
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: ICatalog64BitSupport
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - icatalog64bitsupport
+- uuid: 182c40fa-32e4-11d0-818b-00a0c9231c29
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: ICatalogSession
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - icatalogsession
+- uuid: a8927a41-d3ce-11d1-8472-006008b0e5ca
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: ICatalogTableInfo
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - icatalogtableinfo
+- uuid: 0e3d6630-b46b-11d1-9d2d-006008b0e5ca
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: ICatalogTableRead
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - icatalogtableread
+- uuid: 0e3d6631-b46b-11d1-9d2d-006008b0e5ca
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: ICatalogTableWrite
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - icatalogtablewrite
+- uuid: c726744e-5735-4f08-8286-c510ee638fb6
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: ICatalogUtils2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - icatalogutils2
+- uuid: 456129e2-1078-11d2-b0f9-00805fc73204
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: ICatalogUtils
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - icatalogutils
+- uuid: 6c935649-30a6-4211-8687-c4c83e5fe1c7
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: IContainerControl2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - icontainercontrol2
+- uuid: 3f3b1b86-dbbe-11d1-9da6-00805f85cfe3
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: IContainerControl
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - icontainercontrol
+- uuid: f131ea3e-b7be-480e-a60d-51cb2785779e
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: IExport2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - iexport2
+- uuid: cfadac84-e12c-11d1-b34c-00c04f990d54
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: IExport
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - iexport
+- uuid: 1f7b1697-ecb2-4cbb-8a0e-75c427f4a6f0
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: IImport2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - iimport2
+- uuid: c2be6970-df9e-11d1-8b87-00c04fd7a924
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: IImport
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - iimport
+- uuid: 971668dc-c3fe-4ea1-9643-0c7230f494a1
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: IRegister2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - iregister2
+- uuid: 8db2180e-bd29-11d1-8b7e-00c04fd7a924
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: IRegister
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - iregister
+- uuid: 98315903-7be5-11d2-adc1-00a02463d6e7
+  domain: MS-COMA
+  annotation: Component Object Model Plus (COM+) Remote Administration Protocol
+  if_name: IReplicationUtil
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - coma
+  - ireplicationutil
+- uuid: 97199110-db2e-11d1-a251-0000f805ca53
+  domain: MS-COM
+  annotation: Component Object Model Plus (COM+) Protocol
+  if_name: ITransactionStream
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - com
+  - itransactionstream
+- uuid: f4a07d63-2e25-11d1-9964-00c04fbbb345
+  domain: MS-COMEV
+  annotation: Component Object Model Plus (COM+) Event System Protocol
+  if_name: IEnumEventObject
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comev
+  - ienumeventobject
+- uuid: fb2b72a1-7a68-11d1-88f9-0080c7d771bf
+  domain: MS-COMEV
+  annotation: Component Object Model Plus (COM+) Event System Protocol
+  if_name: IEventClass2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comev
+  - ieventclass2
+- uuid: 7fb7ea43-2d76-4ea8-8cd9-3decc270295e
+  domain: MS-COMEV
+  annotation: Component Object Model Plus (COM+) Event System Protocol
+  if_name: IEventClass3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comev
+  - ieventclass3
+- uuid: fb2b72a0-7a68-11d1-88f9-0080c7d771bf
+  domain: MS-COMEV
+  annotation: Component Object Model Plus (COM+) Event System Protocol
+  if_name: IEventClass
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comev
+  - ieventclass
+- uuid: f89ac270-d4eb-11d1-b682-00805fc79216
+  domain: MS-COMEV
+  annotation: Component Object Model Plus (COM+) Event System Protocol
+  if_name: IEventObjectCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comev
+  - ieventobjectcollection
+- uuid: 4a6b0e16-2e38-11d1-9965-00c04fbbb345
+  domain: MS-COMEV
+  annotation: Component Object Model Plus (COM+) Event System Protocol
+  if_name: IEventSubscription2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comev
+  - ieventsubscription2
+- uuid: fbc1d17d-c498-43a0-81af-423ddd530af6
+  domain: MS-COMEV
+  annotation: Component Object Model Plus (COM+) Event System Protocol
+  if_name: IEventSubscription3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comev
+  - ieventsubscription3
+- uuid: 4a6b0e15-2e38-11d1-9965-00c04fbbb345
+  domain: MS-COMEV
+  annotation: Component Object Model Plus (COM+) Event System Protocol
+  if_name: IEventSubscription
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comev
+  - ieventsubscription
+- uuid: 99cc098f-a48a-4e9c-8e58-965c0afc19d5
+  domain: MS-COMEV
+  annotation: Component Object Model Plus (COM+) Event System Protocol
+  if_name: IEventSystem2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comev
+  - ieventsystem2
+- uuid: a0e8f27a-888c-11d1-b763-00c04fb926af
+  domain: MS-COMEV
+  annotation: Component Object Model Plus (COM+) Event System Protocol
+  if_name: IEventSystemInitialize
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comev
+  - ieventsysteminitialize
+- uuid: 4e14fb9f-2e22-11d1-9964-00c04fbbb345
+  domain: MS-COMEV
+  annotation: Component Object Model Plus (COM+) Event System Protocol
+  if_name: IEventSystem
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comev
+  - ieventsystem
+- uuid: 4e6cdcc9-fb25-4fd5-9cc5-c9f4b6559cec
+  domain: MS-COMT
+  annotation: Component Object Model Plus (COM+) Tracker Service Protocol
+  if_name: IComTrackingInfoEvents
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comt
+  - icomtrackinginfoevents
+- uuid: b60040e0-bcf3-11d1-861d-0080c729264d
+  domain: MS-COMT
+  annotation: Component Object Model Plus (COM+) Tracker Service Protocol
+  if_name: IGetTrackingData
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comt
+  - igettrackingdata
+- uuid: 23c9dd26-2355-4fe2-84de-f779a238adbd
+  domain: MS-COMT
+  annotation: Component Object Model Plus (COM+) Tracker Service Protocol
+  if_name: IProcessDump
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - comt
+  - iprocessdump
+- uuid: 7fe0d935-dda6-443f-85d0-1cfb58fe41dd
+  domain: MS-CSRA
+  annotation: Certificate Services Remote Administration Protocol
+  if_name: ICertAdminD2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - csra
+  - icertadmind2
+- uuid: d99e6e71-fc88-11d0-b498-00a0c90312f3
+  domain: MS-CSRA
+  annotation: Certificate Services Remote Administration Protocol
+  if_name: ICertAdminD
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - csra
+  - icertadmind
+- uuid: d6105110-8917-41a5-aa32-8e0aa2933dc9
+  domain: MS-CSVP
+  annotation: 'Failover Cluster: Setup and Validation Protocol (ClusPrep)'
+  if_name: IClusterCleanup
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - csvp
+  - iclustercleanup
+- uuid: f1d6c29c-8fbe-4691-8724-f6d8deaeafc8
+  domain: MS-CSVP
+  annotation: 'Failover Cluster: Setup and Validation Protocol (ClusPrep)'
+  if_name: IClusterFirewall
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - csvp
+  - iclusterfirewall
+- uuid: 85923ca7-1b6b-4e83-a2e4-f5ba3bfbb8a3
+  domain: MS-CSVP
+  annotation: 'Failover Cluster: Setup and Validation Protocol (ClusPrep)'
+  if_name: IClusterLog
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - csvp
+  - iclusterlog
+- uuid: 2931c32c-f731-4c56-9feb-3d5f1c5e72bf
+  domain: MS-CSVP
+  annotation: 'Failover Cluster: Setup and Validation Protocol (ClusPrep)'
+  if_name: IClusterNetwork2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - csvp
+  - iclusternetwork2
+- uuid: 491260b5-05c9-40d9-b7f2-1f7bdae0927f
+  domain: MS-CSVP
+  annotation: 'Failover Cluster: Setup and Validation Protocol (ClusPrep)'
+  if_name: IClusterSetup
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - csvp
+  - iclustersetup
+- uuid: 12108a88-6858-4467-b92f-e6cf4568dfb6
+  domain: MS-CSVP
+  annotation: 'Failover Cluster: Setup and Validation Protocol (ClusPrep)'
+  if_name: IClusterStorage2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - csvp
+  - iclusterstorage2
+- uuid: 11942d87-a1de-4e7f-83fb-a840d9c5928d
+  domain: MS-CSVP
+  annotation: 'Failover Cluster: Setup and Validation Protocol (ClusPrep)'
+  if_name: IClusterStorage3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - csvp
+  - iclusterstorage3
+- uuid: e3c9b851-c442-432b-8fc6-a7faafc09d3b
+  domain: MS-CSVP
+  annotation: 'Failover Cluster: Setup and Validation Protocol (ClusPrep)'
+  if_name: IClusterUpdate
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - csvp
+  - iclusterupdate
+- uuid: 4d9f4ab8-7d1c-11cf-861e-0020af6e7c57
+  domain: MS-DCOM
+  annotation: Distributed Component Object Model (DCOM) Remote Protocol
+  if_name: IActivation
+  if_versions: [v0.0]
+  endpoints:
+  - ncacn_ip_tcp:135
+  keywords:
+  - dcom
+  - iactivation
+- uuid: 99fcfec4-5260-101b-bbcb-00aa0021347a
+  domain: MS-DCOM
+  annotation: Distributed Component Object Model (DCOM) Remote Protocol
+  if_name: IObjectExporter
+  if_versions: [v0.0]
+  endpoints:
+  - ncacn_ip_tcp:135
+  keywords:
+  - dcom
+  - iobjectexporter
+- uuid: 000001a0-0000-0000-c000-000000000046
+  domain: MS-DCOM
+  annotation: Distributed Component Object Model (DCOM) Remote Protocol
+  if_name: IRemoteSCMActivator
+  if_versions: [v0.0]
+  endpoints:
+  - ncacn_ip_tcp:135
+  keywords:
+  - dcom
+  - iremotescmactivator
+- uuid: 00000143-0000-0000-c000-000000000046
+  domain: MS-DCOM
+  annotation: Distributed Component Object Model (DCOM) Remote Protocol
+  if_name: IRemUnknown2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dcom
+  - iremunknown2
+- uuid: 00000131-0000-0000-c000-000000000046
+  domain: MS-DCOM
+  annotation: Distributed Component Object Model (DCOM) Remote Protocol
+  if_name: IRemUnknown
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dcom
+  - iremunknown
+- uuid: 00000000-0000-0000-c000-000000000046
+  domain: MS-DCOM
+  annotation: Distributed Component Object Model (DCOM) Remote Protocol
+  if_name: IUnknown
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dcom
+  - iunknown
+- uuid: 4fc742e0-4a10-11cf-8273-00aa004ae673
+  domain: MS-DFSNM
+  annotation: 'Distributed File System (DFS): Namespace Management Protocol'
+  if_name: NetDFS
+  if_versions: [v3.0]
+  endpoints:
+  - ncacn_np:NETDFS
+  keywords:
+  - dfsnm
+  - netdfs
+- uuid: c4b0c7d9-abe0-4733-a1e1-9fdedf260c7a
+  domain: MS-DFSRH
+  annotation: DFS Replication Helper Protocol
+  if_name: IADProxy2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dfsrh
+  - iadproxy2
+- uuid: 4bb8ab1d-9ef9-4100-8eb6-dd4b4e418b72
+  domain: MS-DFSRH
+  annotation: DFS Replication Helper Protocol
+  if_name: IADProxy
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dfsrh
+  - iadproxy
+- uuid: 20d15747-6c48-4254-a358-65039fd8c63c
+  domain: MS-DFSRH
+  annotation: DFS Replication Helper Protocol
+  if_name: IServerHealthReport2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dfsrh
+  - iserverhealthreport2
+- uuid: e65e8028-83e8-491b-9af7-aaf6bd51a0ce
+  domain: MS-DFSRH
+  annotation: DFS Replication Helper Protocol
+  if_name: IServerHealthReport
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dfsrh
+  - iserverhealthreport
+- uuid: 5b821720-f63b-11d0-aad2-00c04fc324db
+  domain: MS-DHCPM
+  annotation: Microsoft Dynamic Host Configuration Protocol (DHCP) Server Management Protocol
+  if_name: dhcpsrv2
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:DHCPSERVER
+  keywords:
+  - dhcpm
+  - dhcpsrv2
+- uuid: 6bffd098-a112-3610-9833-46c3f874532d
+  domain: MS-DHCPM
+  annotation: Microsoft Dynamic Host Configuration Protocol (DHCP) Server Management Protocol
+  if_name: dhcpsrv
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:DHCPSERVER
+  keywords:
+  - dhcpm
+  - dhcpsrv
+- uuid: 4da1c422-943d-11d1-acae-00c04fc2aa3f
+  domain: MS-DLTM
+  annotation: 'Distributed Link Tracking: Central Manager Protocol'
+  if_name: trksvr
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dltm
+  - trksvr
+- uuid: 300f3532-38cc-11d0-a3f0-0020af6b0add
+  domain: MS-DLTW
+  annotation: 'Distributed Link Tracking: Workstation Protocol'
+  if_name: trkwks
+  if_versions: [v1.2]
+  endpoints:
+  - ncacn_np:ntsvcs
+  - ncacn_np:trkwks
+  keywords:
+  - dltw
+  - trkwks
+- uuid: d2d79df7-3400-11d0-b40b-00aa005ff586
+  domain: MS-DMRP
+  annotation: Disk Management Remote Protocol
+  if_name: IDMNotify
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dmrp
+  - idmnotify
+- uuid: 3a410f21-553f-11d1-8e5e-00a0c92c9d5d
+  domain: MS-DMRP
+  annotation: Disk Management Remote Protocol
+  if_name: IDMRemoteServer
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dmrp
+  - idmremoteserver
+- uuid: 4bdafc52-fe6a-11d2-93f8-00105a11164a
+  domain: MS-DMRP
+  annotation: Disk Management Remote Protocol
+  if_name: IVolumeClient2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dmrp
+  - ivolumeclient2
+- uuid: 135698d2-3a37-4d26-99df-e2bb6ae3ac61
+  domain: MS-DMRP
+  annotation: Disk Management Remote Protocol
+  if_name: IVolumeClient3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dmrp
+  - ivolumeclient3
+- uuid: deb01010-3a37-4d26-99df-e2bb6ae3ac61
+  domain: MS-DMRP
+  annotation: Disk Management Remote Protocol
+  if_name: IVolumeClient4
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dmrp
+  - ivolumeclient4
+- uuid: d2d79df5-3400-11d0-b40b-00aa005ff586
+  domain: MS-DMRP
+  annotation: Disk Management Remote Protocol
+  if_name: IVolumeClient
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dmrp
+  - ivolumeclient
+- uuid: 50abc2a4-574d-40b3-9d66-ee4fd5fba076
+  domain: MS-DNSP
+  annotation: Domain Name Service (DNS) Server Management Protocol
+  if_name: DnsServer
+  if_versions: [v5.0]
+  endpoints:
+  - ncacn_np:DNSSERVER
+  keywords:
+  - dnsp
+  - dnsserver
+- uuid: e3514235-4b06-11d1-ab04-00c04fc2dcd2
+  domain: MS-DRSR
+  annotation: Directory Replication Service (DRS) Remote Protocol
+  if_name: drsuapi
+  if_versions: [v4.0]
+  endpoints: []
+  keywords:
+  - drsr
+  - drsuapi
+- uuid: 7c44d7d4-31d5-424c-bd5e-2b3e1f323d22
+  domain: MS-DRSR
+  annotation: Directory Replication Service (DRS) Remote Protocol
+  if_name: dsaop
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - drsr
+  - dsaop
+- uuid: 3919286a-b10c-11d0-9ba8-00c04fd92ef5
+  domain: MS-DSSP
+  annotation: Directory Services Setup Remote Protocol
+  if_name: dssetup
+  if_versions: [v0.0]
+  endpoints:
+  - ncacn_np:lsarpc
+  keywords:
+  - dssp
+  - dssetup
+- uuid: df1941c5-fe89-4e79-bf10-463657acf44d
+  domain: MS-EFSR
+  annotation: Encrypting File System Remote (EFSRPC) Protocol
+  if_name: efsrpc
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:efsrpc
+  keywords:
+  - efsr
+  - efsrpc
+- uuid: c681d488-d850-11d0-8c52-00c04fd90f7e
+  domain: MS-EFSR
+  annotation: Encrypting File System Remote (EFSRPC) Protocol
+  if_name: lsarpc
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:lsarpc
+  keywords:
+  - efsr
+  - lsarpc
+- uuid: f6beaff7-1e19-4fbb-9f8f-b89e2018337c
+  domain: MS-EVEN6
+  annotation: EventLog Remoting Protocol Version 6.0
+  if_name: Eventlog
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - even6
+  - eventlog
+- uuid: 82273fdc-e32a-18c3-3f78-827929dc23ea
+  domain: MS-EVEN
+  annotation: EventLog Remoting Protocol
+  if_name: eventlog
+  if_versions: [v0.0]
+  endpoints:
+  - ncacn_np:eventlog
+  keywords:
+  - even
+  - eventlog
+- uuid: 6b5bdd1e-528c-422c-af8c-a4079be4fe48
+  domain: MS-FASP
+  annotation: Firewall and Advanced Security Protocol
+  if_name: RemoteFW
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - fasp
+  - remotefw
+- uuid: 6099fc12-3eff-11d0-abd0-00c04fd91a4e
+  domain: MS-FAX
+  annotation: Fax Server and Client Remote Protocol
+  if_name: faxclient
+  if_versions: [v3.0]
+  endpoints: []
+  keywords:
+  - fax
+  - faxclient
+- uuid: ea0a3165-4834-11d2-a6f8-00c04fa346cc
+  domain: MS-FAX
+  annotation: Fax Server and Client Remote Protocol
+  if_name: fax
+  if_versions: [v4.0]
+  endpoints:
+  - ncacn_np:SHAREDFAX
+  keywords:
+  - fax
+- uuid: f5cc59b4-4264-101a-8c59-08002b2f8426
+  domain: MS-FRS1
+  annotation: File Replication Service Protocol
+  if_name: frsrpc
+  if_versions: [v1.1]
+  endpoints: []
+  keywords:
+  - frs1
+  - frsrpc
+- uuid: d049b186-814f-11d1-9a3c-00c04fc9b232
+  domain: MS-FRS1
+  annotation: File Replication Service Protocol
+  if_name: NtFrsApi
+  if_versions: [v1.1]
+  endpoints: []
+  keywords:
+  - frs1
+  - ntfrsapi
+- uuid: 897e2e5f-93f3-4376-9c9c-fd2277495c27
+  domain: MS-FRS2
+  annotation: Distributed File System Replication Protocol
+  if_name: FrsTransport
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - frs2
+  - frstransport
+- uuid: 5bc1ed07-f5f5-485f-9dfd-6fd0acf9a23c
+  domain: MS-FRS2
+  annotation: Distributed File System Replication Protocol
+  if_name: DfsrEndpoint
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - frs2
+  - dfsrendpoint
+- uuid: 12937789-e247-4917-9c20-f3ee9c7ee783
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmActionCommand
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmactioncommand
+- uuid: 8276702f-2532-4839-89bf-4872609a2ea4
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmActionEmail2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmactionemail2
+- uuid: d646567d-26ae-4caa-9f84-4e0aad207fca
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmActionEmail
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmactionemail
+- uuid: 4c8f96c3-5d94-4f37-a4f4-f56ab463546f
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmActionEventLog
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmactioneventlog
+- uuid: 2dbe63c4-b340-48a0-a5b0-158e07fc567e
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmActionReport
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmactionreport
+- uuid: 6cd6408a-ae60-463b-9ef1-e117534d69dc
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmAction
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmaction
+- uuid: f82e5729-6aba-4740-bfc7-c7f58f75fb7b
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmAutoApplyQuota
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmautoapplyquota
+- uuid: d2dc89da-ee91-48a0-85d8-cc72a56f7d04
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmClassificationManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmclassificationmanager
+- uuid: afc052c2-5315-45ab-841b-c6db0e120148
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmClassificationRule
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmclassificationrule
+- uuid: bb36ea26-6318-4b8c-8592-f72dd602e7a5
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmClassifierModuleDefinition
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmclassifiermoduledefinition
+- uuid: f76fbf3b-8ddd-4b42-b05a-cb1c3ff1fee8
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmcollection
+- uuid: 96deb3b5-8b91-4a2a-9d93-80a35d8aa847
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmCommittableCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmcommittablecollection
+- uuid: 39322a2d-38ee-4d0d-8095-421a80849a82
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmDerivedObjectsResult
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmderivedobjectsresult
+- uuid: ad55f10b-5f11-4be7-94ef-d9ee2e470ded
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmFileGroupImported
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmfilegroupimported
+- uuid: 426677d5-018c-485c-8a51-20b86d00bdc4
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmFileGroupManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmfilegroupmanager
+- uuid: 8dd04909-0e34-4d55-afaa-89e1f1a1bbb9
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmFileGroup
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmfilegroup
+- uuid: ee321ecb-d95e-48e9-907c-c7685a013235
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmFileManagementJobManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmfilemanagementjobmanager
+- uuid: 0770687e-9f36-4d6f-8778-599d188461c9
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmFileManagementJob
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmfilemanagementjob
+- uuid: f3637e80-5b22-4a2b-a637-bbb642b41cfc
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmFileScreenBase
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmfilescreenbase
+- uuid: bee7ce02-df77-4515-9389-78f01c5afc1a
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmFileScreenException
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmfilescreenexception
+- uuid: ff4fa04e-5a94-4bda-a3a0-d5b4d3c52eba
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmFileScreenManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmfilescreenmanager
+- uuid: e1010359-3e5d-4ecd-9fe4-ef48622fdf30
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmFileScreenTemplateImported
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmfilescreentemplateimported
+- uuid: cfe36cba-1949-4e74-a14f-f1d580ceaf13
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmFileScreenTemplateManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmfilescreentemplatemanager
+- uuid: 205bebf8-dd93-452a-95a6-32b566b35828
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmFileScreenTemplate
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmfilescreentemplate
+- uuid: 5f6325d3-ce88-4733-84c1-2d6aefc5ea07
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmFileScreen
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmfilescreen
+- uuid: 1bb617b8-3886-49dc-af82-a6c90fa35dda
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmMutableCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmmutablecollection
+- uuid: 22bcef93-4a3f-4183-89f9-2f8b8a628aee
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmObject
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmobject
+- uuid: 6f4dbfff-6920-4821-a6c3-b7e94c1fd60c
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmPathMapper
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmpathmapper
+- uuid: 515c1277-2c81-440e-8fcf-367921ed4f59
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmPipelineModuleDefinition
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmpipelinemoduledefinition
+- uuid: 326af66f-2ac0-4f68-bf8c-4759f054fa29
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmPropertyCondition
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmpropertycondition
+- uuid: 47782152-d16c-4229-b4e1-0ddfe308b9f6
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmPropertyDefinition2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmpropertydefinition2
+- uuid: ede0150f-e9a3-419c-877c-01fe5d24c5d3
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmPropertyDefinition
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmpropertydefinition
+- uuid: e946d148-bd67-4178-8e22-1c44925ed710
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmPropertyDefinitionValue
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmpropertydefinitionvalue
+- uuid: 4a73fee4-4102-4fcc-9ffb-38614f9ee768
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmProperty
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmproperty
+- uuid: 1568a795-3924-4118-b74b-68d8f0fa5daf
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmQuotaBase
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmquotabase
+- uuid: 4846cb01-d430-494f-abb4-b1054999fb09
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmQuotaManagerEx
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmquotamanagerex
+- uuid: 8bb68c7d-19d8-4ffb-809e-be4fc1734014
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmQuotaManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmquotamanager
+- uuid: 42dc3511-61d5-48ae-b6dc-59fc00c0a8d6
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmQuotaObject
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmquotaobject
+- uuid: 9a2bf113-a329-44cc-809a-5c00fce8da40
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmQuotaTemplateImported
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmquotatemplateimported
+- uuid: 4173ac41-172d-4d52-963c-fdc7e415f717
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmQuotaTemplateManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmquotatemplatemanager
+- uuid: a2efab31-295e-46bb-b976-e86d58b52e8b
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmQuotaTemplate
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmquotatemplate
+- uuid: 377f739d-9647-4b8e-97d2-5ffce6d759cd
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmQuota
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmquota
+- uuid: 38e87280-715c-4c7d-a280-ea1651a19fef
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmReportJob
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmreportjob
+- uuid: 27b899fe-6ffa-4481-a184-d3daade8a02b
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmReportManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmreportmanager
+- uuid: 6879caf9-6617-4484-8719-71c3d8645f94
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmReportScheduler
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmreportscheduler
+- uuid: d8cc81d9-46b8-4fa4-bfa5-4aa9dec9b638
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmReport
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmreport
+- uuid: cb0df960-16f5-4495-9079-3f9360d831df
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmRule
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmrule
+- uuid: f411d4fd-14be-4260-8c40-03b7c95e608a
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmSetting
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmsetting
+- uuid: 15a81350-497d-4aba-80e9-d4dbcc5521fe
+  domain: MS-FSRM
+  annotation: File Server Resource Manager Protocol
+  if_name: IFsrmStorageModuleDefinition
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - fsrm
+  - ifsrmstoragemoduledefinition
+- uuid: a8e0653c-2744-4389-a61d-7373df8b2292
+  domain: MS-FSRVP
+  annotation: File Server Remote VSS Protocol
+  if_name: FileServerVssAgent
+  if_versions: [v3.0]
+  endpoints:
+  - ncacn_np:FssagentRpc
+  keywords:
+  - fsrvp
+  - fileservervssagent
+- uuid: b9785960-524f-11df-8b6d-83dcded72085
+  domain: MS-GKDI
+  annotation: Group Key Distribution Protocol
+  if_name: ISDKey
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - gkdi
+  - isdkey
+- uuid: 91ae6020-9e3c-11cf-8d7c-00aa00c091be
+  domain: MS-ICPR
+  annotation: ICertPassage Remote Protocol
+  if_name: ICertPassage
+  if_versions: [v0.0]
+  endpoints:
+  - ncacn_np:cert
+  keywords:
+  - icpr
+  - icertpassage
+- uuid: e8fb8620-588f-11d2-9d61-00c04f79c5fe
+  domain: MS-IISS
+  annotation: Internet Information Services (IIS) ServiceControl
+  if_name: IIisServiceControl
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - iiss
+  - iiisservicecontrol
+- uuid: 7c4e1804-e342-483d-a43e-a850cfcc8d18
+  domain: MS-IMSA
+  annotation: Internet Information Services (IIS) IMSAdminBaseW Remote Protocol
+  if_name: IIISApplicationAdmin
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - imsa
+  - iiisapplicationadmin
+- uuid: bd0c73bc-805b-4043-9c30-9a28d64dd7d2
+  domain: MS-IMSA
+  annotation: Internet Information Services (IIS) IMSAdminBaseW Remote Protocol
+  if_name: IIISCertObj
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - imsa
+  - iiiscertobj
+- uuid: 8298d101-f992-43b7-8eca-5052d885b995
+  domain: MS-IMSA
+  annotation: Internet Information Services (IIS) IMSAdminBaseW Remote Protocol
+  if_name: IMSAdminBase2W
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - imsa
+  - imsadminbase2w
+- uuid: f612954d-3b0b-4c56-9563-227b7be624b4
+  domain: MS-IMSA
+  annotation: Internet Information Services (IIS) IMSAdminBaseW Remote Protocol
+  if_name: IMSAdminBase3W
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - imsa
+  - imsadminbase3w
+- uuid: 70b51430-b6ca-11d0-b9b9-00a0c922e750
+  domain: MS-IMSA
+  annotation: Internet Information Services (IIS) IMSAdminBaseW Remote Protocol
+  if_name: IMSAdminBaseW
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - imsa
+  - imsadminbasew
+- uuid: 29822ab8-f302-11d0-9953-00c04fd919c1
+  domain: MS-IMSA
+  annotation: Internet Information Services (IIS) IMSAdminBaseW Remote Protocol
+  if_name: IWamAdmin2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - imsa
+  - iwamadmin2
+- uuid: 29822ab7-f302-11d0-9953-00c04fd919c1
+  domain: MS-IMSA
+  annotation: Internet Information Services (IIS) IMSAdminBaseW Remote Protocol
+  if_name: IWamAdmin
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - imsa
+  - iwamadmin
+- uuid: c3fcc19e-a970-11d2-8b5a-00a0c9b7c9c4
+  domain: MS-IOI
+  annotation: IManagedObject Interface Protocol
+  if_name: IManagedObject
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - ioi
+  - imanagedobject
+- uuid: 6619a740-8154-43be-a186-0319578e02db
+  domain: MS-IOI
+  annotation: IManagedObject Interface Protocol
+  if_name: IRemoteDispatch
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - ioi
+  - iremotedispatch
+- uuid: 8165b19e-8d3a-4d0b-80c8-97de310db583
+  domain: MS-IOI
+  annotation: IManagedObject Interface Protocol
+  if_name: IServicedComponentInfo
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - ioi
+  - iservicedcomponentinfo
+- uuid: 82ad4280-036b-11cf-972c-00aa006887b0
+  domain: MS-IRP
+  annotation: Internet Information Services (IIS) Inetinfo Remote
+  if_name: inetinfo
+  if_versions: [v2.0]
+  endpoints:
+  - ncacn_np:inetinfo
+  keywords:
+  - irp
+  - inetinfo
+- uuid: 28bc8d5e-ca4b-4f54-973c-ed9622d2b3ac
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IDirectoryEnum
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - idirectoryenum
+- uuid: f093fe3d-8131-4b73-a742-ef54c20b337b
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumCachedInitiator
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumcachedinitiator
+- uuid: 6aea6b26-0680-411d-8877-a148df3087d5
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumConnection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumconnection
+- uuid: a5ecfc73-0013-4a9e-951c-59bf9735fdda
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumDisk2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumdisk2
+- uuid: bb39e296-ad26-42c5-9890-5325333bb11e
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumDisk
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumdisk
+- uuid: e141fd54-b79e-4938-a6bb-d523c3d49ff1
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumHost
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumhost
+- uuid: 345b026b-5802-4e38-ac75-795e08b0b83f
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumIDMethod
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumidmethod
+- uuid: 100da538-3f4a-45ab-b852-709148152789
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumLMMountPoint
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumlmmountpoint
+- uuid: 1995785d-2a1e-492f-8923-e621eaca39d9
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumPortal
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumportal
+- uuid: 640038f1-d626-40d8-b52b-09660601d045
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumResourceGroup
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumresourcegroup
+- uuid: 442931d5-e522-4e64-a181-74e98a4e1748
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumSession2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumsession2
+- uuid: 40cc8569-6d23-4005-9958-e37f08ae192b
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumSession
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumsession
+- uuid: 66c9b082-7794-4948-839a-d8a5a616378f
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumSnapshot
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumsnapshot
+- uuid: e2842c88-07c3-4eb0-b1a9-d3d95e76fef2
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumSnsServer
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumsnsserver
+- uuid: 8c58f6b3-4736-432a-891d-389de3505c7c
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumVolume2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumvolume2
+- uuid: 81fe3594-2495-4c91-95bb-eb5785614ec7
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumVolume
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumvolume
+- uuid: 1396de6f-a794-4b11-b93f-6b69a5b47bae
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumWTDiskLunMapping
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumwtdisklunmapping
+- uuid: 56e65ea5-cdff-4391-ba76-006e42c2d746
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IEnumWTDisk
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ienumwtdisk
+- uuid: b4fa8e86-2517-4a88-bd67-75447219eee4
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IHost2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ihost2
+- uuid: fe7f99f9-1dfb-4afb-9d00-6a8dd0aabf2c
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IHost3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ihost3
+- uuid: dd6f0a28-248f-4dd3-afe9-71aed8f685c4
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IHostMgr2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ihostmgr2
+- uuid: 01454b97-c6a5-4685-bea8-9779c88ab990
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IHostMgr3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ihostmgr3
+- uuid: b06a64e3-814e-4ff9-afac-597ad32517c7
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IHostMgr
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ihostmgr
+- uuid: b0076fec-a921-4034-a8ba-090bc6d03bde
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IHost
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ihost
+- uuid: b0d1ac4b-f87a-49b2-938f-d439248575b2
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: ILocalDeviceMgr2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ilocaldevicemgr2
+- uuid: e645744b-cae5-4712-acaf-13057f7195af
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: ILocalDeviceMgr3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ilocaldevicemgr3
+- uuid: 8ad608a4-6c16-4405-8879-b27910a68995
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: ILocalDeviceMgr
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - ilocaldevicemgr
+- uuid: c10a76d8-1fe4-4c2f-b70d-665265215259
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: ISessionManager2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - isessionmanager2
+- uuid: 8d7ae740-b9c5-49fc-a11e-89171907cb86
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: ISessionManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - isessionmanager
+- uuid: 4e65a71e-4ede-4886-be67-3c90a08d1f29
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: ISnapshotMgr
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - isnapshotmgr
+- uuid: 883343f1-ceed-4e3a-8c1b-f0dadfce281e
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: ISnapshot
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - isnapshot
+- uuid: 1b1c4d1c-abc4-4d3a-8c22-547fba3aa8a0
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: ISnsMgr
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - isnsmgr
+- uuid: 312cc019-d5cd-4ca7-8c10-9e0a661f147e
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IStatusNotify
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - istatusnotify
+- uuid: 348a0821-69bb-4889-a101-6a9bde6fa720
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IWTDisk2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - iwtdisk2
+- uuid: 1822a95e-1c2b-4d02-ab25-cc116dd9dbde
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IWTDisk3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - iwtdisk3
+- uuid: 592381e5-8d3c-42e9-b7de-4e77a1f75ae4
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IWTDiskMgr2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - iwtdiskmgr2
+- uuid: d6bd6d63-e8cb-4905-ab34-8a278c93197a
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IWTDiskMgr3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - iwtdiskmgr3
+- uuid: 703e6b03-7ad1-4ded-ba0d-e90496ebc5de
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IWTDiskMgr4
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - iwtdiskmgr4
+- uuid: 52ba97e7-9364-4134-b9cb-f8415213bdd8
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IWTDiskMgr
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - iwtdiskmgr
+- uuid: 866a78bc-a2fb-4ac4-94d5-db3041b4ed75
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IWTDisk
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - iwtdisk
+- uuid: 3c73848a-a679-40c5-b101-c963e67f9949
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IWTGeneral2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - iwtgeneral2
+- uuid: d71b2cae-33e8-4567-ae96-3ccf31620be2
+  domain: MS-ISTM
+  annotation: iSCSI Software Target Management Protocol
+  if_name: IWTGeneral
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - istm
+  - iwtgeneral
+- uuid: 22e5386d-8b12-4bf0-b0ec-6a1ea419e366
+  domain: MS-LREC
+  annotation: Live Remote Event Capture (LREC) Protocol
+  if_name: NetEventForwarder
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - lrec
+  - neteventforwarder
+- uuid: 12345778-1234-abcd-ef00-0123456789ab
+  domain: MS-LSAD
+  annotation: Local Security Authority (Domain Policy) Remote Protocol
+  if_name: lsarpc
+  if_versions: [v0.0]
+  endpoints:
+  - ncacn_np:lsarpc
+  keywords:
+  - lsad
+  - lsarpc
+- uuid: 12345778-1234-abcd-ef00-0123456789ab
+  domain: MS-LSAT
+  annotation: Local Security Authority (Translation Methods) Remote Protocol
+  if_name: lsarpc
+  if_versions: [v0.0]
+  endpoints:
+  - ncacn_np:lsarpc
+  keywords:
+  - lsat
+  - lsarpc
+- uuid: 708cca10-9569-11d1-b2a5-0060977d8118
+  domain: MS-MQDS
+  annotation: 'Message Queuing (MSMQ): Directory Service Protocol'
+  if_name: dscomm2
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - mqds
+  - dscomm2
+- uuid: 77df7a80-f298-11d0-8358-00a024c480a8
+  domain: MS-MQDS
+  annotation: 'Message Queuing (MSMQ): Directory Service Protocol'
+  if_name: dscomm
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - mqds
+  - dscomm
+- uuid: 76d12b80-3467-11d3-91ff-0090272f9ea3
+  domain: MS-MQMP
+  annotation: 'Message Queuing (MSMQ): Queue Manager Client Protocol'
+  if_name: qmcomm2
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - mqmp
+  - qmcomm2
+- uuid: fdb3a030-065f-11d1-bb9b-00a024ea5525
+  domain: MS-MQMP
+  annotation: 'Message Queuing (MSMQ): Queue Manager Client Protocol'
+  if_name: qmcomm
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - mqmp
+  - qmcomm
+- uuid: 41208ee0-e970-11d1-9b9e-00e02c064c39
+  domain: MS-MQMR
+  annotation: 'Message Queuing (MSMQ): Queue Manager Management Protocol'
+  if_name: qmmgmt
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - mqmr
+  - qmmgmt
+- uuid: 1088a980-eae5-11d0-8d9b-00a02453c337
+  domain: MS-MQQP
+  annotation: 'Message Queuing (MSMQ): Queue Manager to Queue Manager Protocol'
+  if_name: qm2qm
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - mqqp
+  - qm2qm
+- uuid: 1a9134dd-7b39-45ba-ad88-44d01ca47f28
+  domain: MS-MQRR
+  annotation: 'Message Queuing (MSMQ): Queue Manager Remote Read Protocol'
+  if_name: RemoteRead
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - mqrr
+  - remoteread
+- uuid: 5a7b91f8-ff00-11d0-a9b2-00c04fb6e6fc
+  domain: MS-MSRP
+  annotation: Messenger Service Remote Protocol
+  if_name: msgsvcsend
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - msrp
+  - msgsvcsend
+- uuid: 17fdd703-1827-4e34-79d4-24a55c53bb37
+  domain: MS-MSRP
+  annotation: Messenger Service Remote Protocol
+  if_name: msgsvc
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:MSGSVC
+  keywords:
+  - msrp
+  - msgsvc
+- uuid: 12345678-1234-abcd-ef00-01234567cffb
+  domain: MS-NRPC
+  annotation: Netlogon Remote Protocol
+  if_name: logon
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:NETLOGON
+  keywords:
+  - nrpc
+  - logon
+- uuid: f5cc5a18-4264-101a-8c59-08002b2f8426
+  domain: MS-NSPI
+  annotation: Name Service Provider Interface (NSPI) Protocol
+  if_name: nspi
+  if_versions: [v56.0]
+  endpoints: []
+  keywords:
+  - nspi
+- uuid: 00020400-0000-0000-c000-000000000046
+  domain: MS-OAUT
+  annotation: OLE Automation Protocol
+  if_name: IDispatch
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - oaut
+  - idispatch
+- uuid: 00020404-0000-0000-c000-000000000046
+  domain: MS-OAUT
+  annotation: OLE Automation Protocol
+  if_name: IEnumVARIANT
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - oaut
+  - ienumvariant
+- uuid: 00020403-0000-0000-c000-000000000046
+  domain: MS-OAUT
+  annotation: OLE Automation Protocol
+  if_name: ITypeComp
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - oaut
+  - itypecomp
+- uuid: 00020412-0000-0000-c000-000000000046
+  domain: MS-OAUT
+  annotation: OLE Automation Protocol
+  if_name: ITypeInfo2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - oaut
+  - itypeinfo2
+- uuid: 00020401-0000-0000-c000-000000000046
+  domain: MS-OAUT
+  annotation: OLE Automation Protocol
+  if_name: ITypeInfo
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - oaut
+  - itypeinfo
+- uuid: 00020411-0000-0000-c000-000000000046
+  domain: MS-OAUT
+  annotation: OLE Automation Protocol
+  if_name: ITypeLib2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - oaut
+  - itypelib2
+- uuid: 00020402-0000-0000-c000-000000000046
+  domain: MS-OAUT
+  annotation: OLE Automation Protocol
+  if_name: ITypeLib
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - oaut
+  - itypelib
+- uuid: 00000000-0000-0000-0000-000000000046
+  domain: MS-OAUT
+  annotation: OLE Automation Protocol
+  if_name: IUnknown
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - oaut
+  - iunknown
+- uuid: 784b693d-95f3-420b-8126-365c098659f2
+  domain: MS-OCSPA
+  annotation: Microsoft OCSP Administration Protocol
+  if_name: IOCSPAdminD
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - ocspa
+  - iocspadmind
+- uuid: 0b6edbfa-4a24-4fc6-8a23-942b1eca65d1
+  domain: MS-PAN
+  annotation: Print System Asynchronous Notification Protocol
+  if_name: IRPCAsyncNotify
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pan
+  - irpcasyncnotify
+- uuid: ae33069b-a2a8-46ee-a235-ddfd339be281
+  domain: MS-PAN
+  annotation: Print System Asynchronous Notification Protocol
+  if_name: IRPCRemoteObject
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pan
+  - irpcremoteobject
+- uuid: 76f03f96-cdfd-44fc-a22c-64950a001209
+  domain: MS-PAR
+  annotation: Print System Asynchronous Remote Protocol
+  if_name: IRemoteWinspool
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - par
+  - iremotewinspool
+- uuid: da5a86c5-12c2-4943-ab30-7f74a813d853
+  domain: MS-PCQ
+  annotation: Performance Counter Query Protocol
+  if_name: PerflibV2
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:winreg
+  keywords:
+  - pcq
+  - perflibv2
+- uuid: 03837516-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IAlertDataCollector
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - ialertdatacollector
+- uuid: 0383751a-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IApiTracingDataCollector
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - iapitracingdatacollector
+- uuid: 03837514-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IConfigurationDataCollector
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - iconfigurationdatacollector
+- uuid: 03837502-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IDataCollectorCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - idatacollectorcollection
+- uuid: 03837524-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IDataCollectorSetCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - idatacollectorsetcollection
+- uuid: 03837520-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IDataCollectorSet
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - idatacollectorset
+- uuid: 038374ff-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IDataCollector
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - idatacollector
+- uuid: 03837541-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IDataManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - idatamanager
+- uuid: 03837544-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IFolderActionCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - ifolderactioncollection
+- uuid: 03837543-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IFolderAction
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - ifolderaction
+- uuid: 03837506-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IPerformanceCounterDataCollector
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - iperformancecounterdatacollector
+- uuid: 0383753d-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IScheduleCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - ischedulecollection
+- uuid: 0383753a-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: ISchedule
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - ischedule
+- uuid: 0383750b-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: ITraceDataCollector
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - itracedatacollector
+- uuid: 03837510-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: ITraceDataProviderCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - itracedataprovidercollection
+- uuid: 03837512-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: ITraceDataProvider
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - itracedataprovider
+- uuid: 03837533-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IValueMapItem
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - ivaluemapitem
+- uuid: 03837534-098b-11d8-9414-505054503030
+  domain: MS-PLA
+  annotation: Performance Logs and Alerts Protocol
+  if_name: IValueMap
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - pla
+  - ivaluemap
+- uuid: 0b1c2170-5732-4e0e-8cd3-d9b16f3b84d7
+  domain: MS-RAA
+  annotation: Remote Authorization API Protocol
+  if_name: authzr
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - raa
+  - authzr
+- uuid: 5fc860e0-6f6e-4fc2-83cd-46324f25e90b
+  domain: MS-RAA
+  annotation: Ignore Central Policy Object
+  if_name: IgnoreCentralPolicy
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - raa
+  - ignorecentralpolicy
+- uuid: 9a81c2bd-a525-471d-a4ed-49907c0b23da
+  domain: MS-RAA
+  annotation: Take Central Policy Into Account Object
+  if_name: UseCentralPolicy
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - raa
+  - usecentralpolicy
+- uuid: c323be28-e546-4c23-a81b-d6ad8d8fac7b
+  domain: MS-RAINPS
+  annotation: 'Remote Administrative Interface: Network Policy Server (NPS) Protocol'
+  if_name: IIASDataStoreComServer2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rainps
+  - iiasdatastorecomserver2
+- uuid: 83e05bd5-aec1-4e58-ae50-e819c7296f67
+  domain: MS-RAINPS
+  annotation: 'Remote Administrative Interface: Network Policy Server (NPS) Protocol'
+  if_name: IIASDataStoreComServer
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rainps
+  - iiasdatastorecomserver
+- uuid: 833e4100-aff7-4ac3-aac2-9f24c1457bce
+  domain: MS-RAI
+  annotation: Remote Assistance Initiation Protocol
+  if_name: IPCHCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rai
+  - ipchcollection
+- uuid: 833e4200-aff7-4ac3-aac2-9f24c1457bce
+  domain: MS-RAI
+  annotation: Remote Assistance Initiation Protocol
+  if_name: IPCHService
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rai
+  - ipchservice
+- uuid: f120a684-b926-447f-9df4-c966cb785648
+  domain: MS-RAI
+  annotation: Remote Assistance Initiation Protocol
+  if_name: IRASrv
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rai
+  - irasrv
+- uuid: 833e41aa-aff7-4ac3-aac2-9f24c1457bce
+  domain: MS-RAI
+  annotation: Remote Assistance Initiation Protocol
+  if_name: ISAFSession
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rai
+  - isafsession
+- uuid: 811109bf-a4e1-11d1-ab54-00a0c91e9b45
+  domain: MS-RAIW
+  annotation: 'Remote Administrative Interface: WINS'
+  if_name: winsif2
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:WinsPipe
+  keywords:
+  - raiw
+  - winsif2
+- uuid: 45f52c28-7f9f-101a-b52b-08002b2efabe
+  domain: MS-RAIW
+  annotation: 'Remote Administrative Interface: WINS'
+  if_name: winsif
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:WinsPipe
+  keywords:
+  - raiw
+  - winsif
+- uuid: a35af600-9cf4-11cd-a076-08002b2bd711
+  domain: MS-RDPESC
+  annotation: 'Remote Desktop Protocol: Smart Card Virtual Channel Extension'
+  if_name: TypeScardPack
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - rdpesc
+  - typescardpack
+- uuid: e1af8308-5d1f-11c9-91a4-08002b14a0fa
+  domain: MS-RPCE
+  annotation: Endpoint Mapper Protocol
+  if_name: EndpointMapper
+  if_versions: [v3.0]
+  endpoints:
+  - ncacn_ip_tcp:135
+  - ncacn_np:epmapper
+  - ncacn_http:593
+  keywords:
+  - rpce
+  - endpointmapper
+- uuid: afa8bd80-7d8a-11c9-bef4-08002b102989
+  domain: MS-RPCE
+  annotation: Remote Management Protocol
+  if_name: RemoteManagement
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_ip_tcp:135
+  keywords:
+  - rpce
+  - remotemanagement
+- uuid: 71710533-beba-4937-8319-b5dbef9ccc36
+  domain: MS-RPCE
+  annotation: Transfer Syntax NDR64
+  if_name: TransferNDR64
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - rpce
+  - transferndr64
+- uuid: 8a885d04-1ceb-11c9-9fe8-08002b104860
+  domain: MS-RPCE
+  annotation: Transfer Syntax NDR
+  if_name: TransferNDR
+  if_versions: [v2.0]
+  endpoints: []
+  keywords:
+  - rpce
+  - transferndr
+- uuid: e33c0cc4-0482-101a-bc0c-02608c6ba218
+  domain: MS-RPCL
+  annotation: Remote Procedure Call Location Services Extensions
+  if_name: LocToLoc
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:Locator
+  keywords:
+  - rpcl
+  - loctoloc
+- uuid: 12345678-1234-abcd-ef00-0123456789ab
+  domain: MS-RPRN
+  annotation: Print System Remote Protocol
+  if_name: winspool
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:spoolss
+  keywords:
+  - rprn
+  - winspool
+- uuid: 8f09f000-b7ed-11ce-bbd2-00001a181cad
+  domain: MS-RRASM
+  annotation: Routing and Remote Access Server (RRAS) Management Protocol
+  if_name: DIMSVC
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rrasm
+  - dimsvc
+- uuid: 66a2db22-d706-11d0-a37b-00c04fc9da04
+  domain: MS-RRASM
+  annotation: Routing and Remote Access Server (RRAS) Management Protocol
+  if_name: IRemoteICFICSConfig
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rrasm
+  - iremoteicficsconfig
+- uuid: 6139d8a4-e508-4ebb-bac7-d7f275145897
+  domain: MS-RRASM
+  annotation: Routing and Remote Access Server (RRAS) Management Protocol
+  if_name: IRemoteIPV6Config
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rrasm
+  - iremoteipv6config
+- uuid: 66a2db1b-d706-11d0-a37b-00c04fc9da04
+  domain: MS-RRASM
+  annotation: Routing and Remote Access Server (RRAS) Management Protocol
+  if_name: IRemoteNetworkConfig
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rrasm
+  - iremotenetworkconfig
+- uuid: 66a2db20-d706-11d0-a37b-00c04fc9da04
+  domain: MS-RRASM
+  annotation: Routing and Remote Access Server (RRAS) Management Protocol
+  if_name: IRemoteRouterRestart
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rrasm
+  - iremoterouterrestart
+- uuid: 66a2db21-d706-11d0-a37b-00c04fc9da04
+  domain: MS-RRASM
+  annotation: Routing and Remote Access Server (RRAS) Management Protocol
+  if_name: IRemoteSetDnsConfig
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rrasm
+  - iremotesetdnsconfig
+- uuid: 5ff9bdf6-bd91-4d8b-a614-d6317acc8dd8
+  domain: MS-RRASM
+  annotation: Routing and Remote Access Server (RRAS) Management Protocol
+  if_name: IRemoteSstpCertCheck
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rrasm
+  - iremotesstpcertcheck
+- uuid: 67e08fc2-2984-4b62-b92e-fc1aae64bbbb
+  domain: MS-RRASM
+  annotation: Routing and Remote Access Server (RRAS) Management Protocol
+  if_name: IRemoteStringIdConfig
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rrasm
+  - iremotestringidconfig
+- uuid: 20610036-fa22-11cf-9823-00a0c911e5df
+  domain: MS-RRASM
+  annotation: Routing and Remote Access Server (RRAS) Management Protocol
+  if_name: RASRPC
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:ROUTER
+  keywords:
+  - rrasm
+  - rasrpc
+- uuid: 338cd001-2244-31f1-aaaa-900038001003
+  domain: MS-RRP
+  annotation: Windows Remote Registry Protocol
+  if_name: winreg
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:winreg
+  keywords:
+  - rrp
+  - winreg
+- uuid: 879c8bbe-41b0-11d1-be11-00c04fb6bf70
+  domain: MS-RSMP
+  annotation: Removable Storage Manager (RSM) Remote Protocol
+  if_name: IClientSink
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rsmp
+  - iclientsink
+- uuid: 081e7188-c080-4ff3-9238-29f66d6cabfd
+  domain: MS-RSMP
+  annotation: Removable Storage Manager (RSM) Remote Protocol
+  if_name: IMessenger
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rsmp
+  - imessenger
+- uuid: 4e934f30-341a-11d1-8fb1-00a024cb6019
+  domain: MS-RSMP
+  annotation: Removable Storage Manager (RSM) Remote Protocol
+  if_name: INtmsLibraryControl1
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rsmp
+  - intmslibrarycontrol1
+- uuid: db90832f-6910-4d46-9f5e-9fd6bfa73903
+  domain: MS-RSMP
+  annotation: Removable Storage Manager (RSM) Remote Protocol
+  if_name: INtmsLibraryControl2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rsmp
+  - intmslibrarycontrol2
+- uuid: d02e4be0-3419-11d1-8fb1-00a024cb6019
+  domain: MS-RSMP
+  annotation: Removable Storage Manager (RSM) Remote Protocol
+  if_name: INtmsMediaServices1
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rsmp
+  - intmsmediaservices1
+- uuid: bb39332c-bfee-4380-ad8a-badc8aff5bb6
+  domain: MS-RSMP
+  annotation: Removable Storage Manager (RSM) Remote Protocol
+  if_name: INtmsNotifySink
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rsmp
+  - intmsnotifysink
+- uuid: 69ab7050-3059-11d1-8faf-00a024cb6019
+  domain: MS-RSMP
+  annotation: Removable Storage Manager (RSM) Remote Protocol
+  if_name: INtmsObjectInfo1
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rsmp
+  - intmsobjectinfo1
+- uuid: b057dc50-3059-11d1-8faf-00a024cb6019
+  domain: MS-RSMP
+  annotation: Removable Storage Manager (RSM) Remote Protocol
+  if_name: INtmsObjectManagement1
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rsmp
+  - intmsobjectmanagement1
+- uuid: 895a2c86-270d-489d-a6c0-dc2a9b35280e
+  domain: MS-RSMP
+  annotation: Removable Storage Manager (RSM) Remote Protocol
+  if_name: INtmsObjectManagement2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rsmp
+  - intmsobjectmanagement2
+- uuid: 3bbed8d9-2c9a-4b21-8936-acb2f995be6c
+  domain: MS-RSMP
+  annotation: Removable Storage Manager (RSM) Remote Protocol
+  if_name: INtmsObjectManagement3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rsmp
+  - intmsobjectmanagement3
+- uuid: 8da03f40-3419-11d1-8fb1-00a024cb6019
+  domain: MS-RSMP
+  annotation: Removable Storage Manager (RSM) Remote Protocol
+  if_name: INtmsSession1
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rsmp
+  - intmssession1
+- uuid: 7d07f313-a53f-459a-bb12-012c15b1846e
+  domain: MS-RSMP
+  annotation: Removable Storage Manager (RSM) Remote Protocol
+  if_name: IRobustNtmsMediaServices1
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rsmp
+  - irobustntmsmediaservices1
+- uuid: 00000000-0000-0000-c000-000000000046
+  domain: MS-RSMP
+  annotation: Removable Storage Manager (RSM) Remote Protocol
+  if_name: IUnknown
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rsmp
+  - iunknown
+- uuid: 894de0c0-0d55-11d3-a322-00c04fa321a1
+  domain: MS-RSP
+  annotation: Remote Shutdown Protocol
+  if_name: InitShutdown
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:InitShutdown
+  keywords:
+  - rsp
+  - initshutdown
+- uuid: d95afe70-a6d5-4259-822e-2c84da1ddb0d
+  domain: MS-RSP
+  annotation: Remote Shutdown Protocol
+  if_name: WindowsShutdown
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:Shutdown
+  keywords:
+  - rsp
+  - windowsshutdown
+- uuid: 338cd001-2244-31f1-aaaa-900038001003
+  domain: MS-RSP
+  annotation: Remote Shutdown Protocol
+  if_name: winreg
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:winreg
+  keywords:
+  - rsp
+  - winreg
+- uuid: 12345778-1234-abcd-ef00-0123456789ac
+  domain: MS-SAMR
+  annotation: Security Account Manager (SAM) Remote Protocol (Client-to-Server)
+  if_name: samr
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:samr
+  keywords:
+  - samr
+- uuid: 214a0f28-b737-4026-b847-4f9e37d79529
+  domain: MS-SCMP
+  annotation: Shadow Copy Management Protocol
+  if_name: IVssDifferentialSoftwareSnapshotMgmt
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - scmp
+  - ivssdifferentialsoftwaresnapshotmgmt
+- uuid: 01954e6b-9254-4e6e-808c-c9e05d007696
+  domain: MS-SCMP
+  annotation: Shadow Copy Management Protocol
+  if_name: IVssEnumMgmtObject
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - scmp
+  - ivssenummgmtobject
+- uuid: ae1c7110-2f60-11d3-8a39-00c04f72d8e3
+  domain: MS-SCMP
+  annotation: Shadow Copy Management Protocol
+  if_name: IVssEnumObject
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - scmp
+  - ivssenumobject
+- uuid: fa7df749-66e7-4986-a27f-e2f04ae53772
+  domain: MS-SCMP
+  annotation: Shadow Copy Management Protocol
+  if_name: IVssSnapshotMgmt
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - scmp
+  - ivsssnapshotmgmt
+- uuid: 367abb81-9844-35f1-ad32-98f038001003
+  domain: MS-SCMR
+  annotation: Service Control Manager Remote Protocol
+  if_name: svcctl
+  if_versions: [v2.0]
+  endpoints:
+  - ncacn_np:svcctl
+  keywords:
+  - scmr
+  - svcctl
+- uuid: 4b324fc8-1670-01d3-1278-5a47bf6ee188
+  domain: MS-SRVS
+  annotation: Server Service Remote Protocol
+  if_name: srvsvc
+  if_versions: [v3.0]
+  endpoints:
+  - ncacn_np:srvsvc
+  keywords:
+  - srvs
+  - srvsvc
+- uuid: ccd8c074-d0e5-4a40-92b4-d074faa6ba28
+  domain: MS-SWN
+  annotation: Service Witness Protocol
+  if_name: Witness
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - swn
+  - witness
+- uuid: fdf8a2b9-02de-47f4-bc26-aa85ab5e5267
+  domain: MS-TPMVSC
+  annotation: Trusted Platform Module (TPM) Virtual Smart Card Management Protocol
+  if_name: ITpmVirtualSmartCardManager2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - tpmvsc
+  - itpmvirtualsmartcardmanager2
+- uuid: 3c745a97-f375-4150-be17-5950f694c699
+  domain: MS-TPMVSC
+  annotation: Trusted Platform Module (TPM) Virtual Smart Card Management Protocol
+  if_name: ITpmVirtualSmartCardManager3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - tpmvsc
+  - itpmvirtualsmartcardmanager3
+- uuid: 1a1bb35f-abb8-451c-a1ae-33d98f1bef4a
+  domain: MS-TPMVSC
+  annotation: Trusted Platform Module (TPM) Virtual Smart Card Management Protocol
+  if_name: ITpmVirtualSmartCardManagerStatusCallback
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - tpmvsc
+  - itpmvirtualsmartcardmanagerstatuscallback
+- uuid: 112b1dff-d9dc-41f7-869f-d67fee7cb591
+  domain: MS-TPMVSC
+  annotation: Trusted Platform Module (TPM) Virtual Smart Card Management Protocol
+  if_name: ITpmVirtualSmartCardManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - tpmvsc
+  - itpmvirtualsmartcardmanager
+- uuid: 2f5f6521-ca47-1068-b319-00dd010662db
+  domain: MS-TRP
+  annotation: Telephony Remote Protocol
+  if_name: remotesp
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - trp
+  - remotesp
+- uuid: 2f5f6520-ca46-1067-b319-00dd010662da
+  domain: MS-TRP
+  annotation: Telephony Remote Protocol
+  if_name: tapsrv
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:tapsrv
+  keywords:
+  - trp
+  - tapsrv
+- uuid: 1ff70682-0a51-30e8-076d-740be8cee98b
+  domain: MS-TSCH
+  annotation: Task Scheduler Service Remoting Protocol
+  if_name: ATSvc
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:atsvc
+  keywords:
+  - tsch
+  - atsvc
+- uuid: 86d35949-83c9-4044-b424-db363231fd0c
+  domain: MS-TSCH
+  annotation: Task Scheduler Service Remoting Protocol
+  if_name: ITaskSchedulerService
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - tsch
+  - itaskschedulerservice
+- uuid: 378e52b0-c0a9-11cf-822d-00aa0051e40f
+  domain: MS-TSCH
+  annotation: Task Scheduler Service Remoting Protocol
+  if_name: SASec
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - tsch
+  - sasec
+- uuid: 44e265dd-7daf-42cd-8560-3cdb6e7a2729
+  domain: MS-TSGU
+  annotation: Terminal Services Gateway Server Protocol
+  if_name: TsProxyRpcInterface
+  if_versions: [v1.3]
+  endpoints: []
+  keywords:
+  - tsgu
+  - tsproxyrpcinterface
+- uuid: 034634fd-ba3f-11d1-856a-00a0c944138c
+  domain: MS-TSRAP
+  annotation: Telnet Server Remote Administration Protocol
+  if_name: IManageTelnetSessions
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - tsrap
+  - imanagetelnetsessions
+- uuid: 5ca4a760-ebb1-11cf-8611-00a0245420ed
+  domain: MS-TSTS
+  annotation: Terminal Services Terminal Server Runtime Interface Protocol
+  if_name: IcaApi
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:Ctx_WinStation_API_service
+  keywords:
+  - tsts
+  - icaapi
+- uuid: 497d95a6-2d27-4bf5-9bbd-a6046957133c
+  domain: MS-TSTS
+  annotation: Terminal Services Terminal Server Runtime Interface Protocol
+  if_name: RCMListener
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:TermSrv_API_service
+  keywords:
+  - tsts
+  - rcmlistener
+- uuid: bde95fdf-eee0-45de-9e12-e5a61cd0d4fe
+  domain: MS-TSTS
+  annotation: Terminal Services Terminal Server Runtime Interface Protocol
+  if_name: RCMPublic
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:TermSrv_API_service
+  keywords:
+  - tsts
+  - rcmpublic
+- uuid: 1257b580-ce2f-4109-82d6-a9459d0bf6bc
+  domain: MS-TSTS
+  annotation: Terminal Services Terminal Server Runtime Interface Protocol
+  if_name: SessEnvPublicRpc
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:SessEnvPublicRpc
+  keywords:
+  - tsts
+  - sessenvpublicrpc
+- uuid: 88143fd0-c28d-4b2b-8fef-8d882f6a9390
+  domain: MS-TSTS
+  annotation: Terminal Services Terminal Server Runtime Interface Protocol
+  if_name: TermSrvEnumeration
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:LSM_API_service
+  - ncacn_np:UNIFIED_API_service
+  keywords:
+  - tsts
+  - termsrvenumeration
+- uuid: 11899a43-2b68-4a76-92e3-a3d6ad8c26ce
+  domain: MS-TSTS
+  annotation: Terminal Services Terminal Server Runtime Interface Protocol
+  if_name: TermSrvNotification
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:LSM_API_service
+  - ncacn_np:UNIFIED_API_service
+  keywords:
+  - tsts
+  - termsrvnotification
+- uuid: 484809d6-4239-471b-b5bc-61df8c23ac48
+  domain: MS-TSTS
+  annotation: Terminal Services Terminal Server Runtime Interface Protocol
+  if_name: TermSrvSession
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:LSM_API_service
+  - ncacn_np:UNIFIED_API_service
+  keywords:
+  - tsts
+  - termsrvsession
+- uuid: 53b46b02-c73b-4a3e-8dee-b16b80672fc0
+  domain: MS-TSTS
+  annotation: Terminal Services Terminal Server Runtime Interface Protocol
+  if_name: TSVIPPublic
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:TSVIP_Service
+  keywords:
+  - tsts
+  - tsvippublic
+- uuid: 4a2f5c31-cfd9-410e-b7fb-29a653973a0f
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IAutomaticUpdates2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iautomaticupdates2
+- uuid: e7a4d634-7942-4dd9-a111-82228ba33901
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IAutomaticUpdatesResults
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iautomaticupdatesresults
+- uuid: 673425bf-c082-4c7c-bdfd-569464b8e0ce
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IAutomaticUpdates
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iautomaticupdates
+- uuid: 3a56bfb8-576c-43f7-9335-fe4838fd7e37
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: ICategoryCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - icategorycollection
+- uuid: 81ddc1b8-9d35-47a6-b471-5b80f519223b
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: ICategory
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - icategory
+- uuid: 7c907864-346c-4aeb-8f3f-57da289f969f
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IImageInformation
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iimageinformation
+- uuid: d9a59339-e245-4dbd-9686-4d5763e39624
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IInstallationBehavior
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iinstallationbehavior
+- uuid: 7366ea16-7a1a-4ea2-b042-973d3e9cd99b
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: ISearchJob_
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - isearchjob_
+- uuid: d40cff62-e08c-4498-941a-01e25f0fd33c
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: ISearchResult
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - isearchresult
+- uuid: eff90582-2ddc-480f-a06d-60f3fbc362c3
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IStringCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - istringcollection
+- uuid: 144fe9b0-d23d-4a8b-8634-fb4457533b7a
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdate2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdate2
+- uuid: 112eda6b-95b3-476f-9d90-aee82c6b8181
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdate3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdate3
+- uuid: 27e94b0d-5139-49a2-9a61-93522dc54652
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdate4
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdate4
+- uuid: c1c2f21a-d2f4-4902-b5c6-8a081c19a890
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdate5
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdate5
+- uuid: 07f7438c-7709-4ca5-b518-91279288134e
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdatecollection
+- uuid: c97ad11b-f257-420b-9d9f-377f733f6f68
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateDownloadContent2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdatedownloadcontent2
+- uuid: bc5513c8-b3b8-4bf7-a4d4-361c0d8c88ba
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateDownloadContentCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdatedownloadcontentcollection
+- uuid: 54a2cb2d-9a0c-48b6-8a50-9abb69ee2d02
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateDownloadContent
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdatedownloadcontent
+- uuid: 503626a3-8e14-4729-9355-0fe664bd2321
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateExceptionCollectionOLE
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdateexceptioncollectionole
+- uuid: a37d00f5-7bb0-4953-b414-f9e98326f2e8
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateExceptionCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdateexceptioncollection
+- uuid: a376dd5e-09d4-427f-af7c-fed5b6e1c1d6
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateException
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdateexception
+- uuid: c2bfb780-4539-4132-ab8c-0a8772013ab6
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateHistoryEntry2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdatehistoryentry2
+- uuid: a7f04f3c-a290-435b-aadf-a116c3357a5c
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateHistoryEntryCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdatehistoryentrycollection
+- uuid: be56a644-af0e-4e0e-a311-c1d8e695cbff
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateHistoryEntry
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdatehistoryentry
+- uuid: 46297823-9940-4c09-aed9-cd3ea6d05968
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateIdentity
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdateidentity
+- uuid: 4cbdcb2d-1589-4beb-bd1c-3e582ff0add0
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateSearcher2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdatesearcher2
+- uuid: 04c6895d-eaf2-4034-97f3-311de9be413a
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateSearcher3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdatesearcher3
+- uuid: 8f45abf1-f9ae-4b95-a933-f0f66e5056ea
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateSearcher
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdatesearcher
+- uuid: 1518b460-6518-4172-940f-c75883b24ceb
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateService2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdateservice2
+- uuid: 9b0353aa-0e52-44ff-b8b0-1f7fa0437f88
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateServiceCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdateservicecollection
+- uuid: 0bb8531d-7e8d-424f-986c-a0b8f60a3e7b
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateServiceManager2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdateservicemanager2
+- uuid: 23857e3c-02ba-44a3-9423-b1c900805f37
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateServiceManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdateservicemanager
+- uuid: dde02280-12b3-4e0b-937b-6747f6acb286
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateServiceRegistration
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdateserviceregistration
+- uuid: 76b3b17e-aed6-4da5-85f0-83587f81abe3
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateService
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdateservice
+- uuid: 91caf7b0-eb23-49ed-9937-c52d817f46f7
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateSession2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdatesession2
+- uuid: 918efd1e-b5d8-4c90-8540-aeb9bdc56f9d
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateSession3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdatesession3
+- uuid: 816858a4-260d-4260-933a-2585f1abc76b
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdateSession
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdatesession
+- uuid: 6a92b07a-d821-4682-b423-5c805022cc4d
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IUpdate
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iupdate
+- uuid: 615c4269-7a48-43bd-96b7-bf6ca27d6c3e
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IWindowsDriverUpdate2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iwindowsdriverupdate2
+- uuid: 49ebd502-4a96-41bd-9e3e-4c5057f4250c
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IWindowsDriverUpdate3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iwindowsdriverupdate3
+- uuid: 004c6a2b-0c19-4c69-9f5c-a269b2560db9
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IWindowsDriverUpdate4
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iwindowsdriverupdate4
+- uuid: 70cf5c82-8642-42bb-9dbc-0cfd263c6c4f
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IWindowsDriverUpdate5
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iwindowsdriverupdate5
+- uuid: 0d521700-a372-4bef-828b-3d00c10adebd
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IWindowsDriverUpdateEntryCollection
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iwindowsdriverupdateentrycollection
+- uuid: ed8bfe40-a60b-42ea-9652-817dfcfa23ec
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IWindowsDriverUpdateEntry
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iwindowsdriverupdateentry
+- uuid: b383cd1a-5ce9-4504-9f63-764b1236f191
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IWindowsDriverUpdate
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iwindowsdriverupdate
+- uuid: 85713fa1-7796-4fa2-be3b-e2d6124dd373
+  domain: MS-UAMG
+  annotation: Update Agent Management Protocol
+  if_name: IWindowsUpdateAgentInfo
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - uamg
+  - iwindowsupdateagentinfo
+- uuid: 118610b7-8d94-4030-b5b8-500889788e4e
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IEnumVdsObject
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ienumvdsobject
+- uuid: 9723f420-9355-42de-ab66-e31bb15beeac
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsAdvancedDisk2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsadvanceddisk2
+- uuid: 3858c0d5-0f35-4bf5-9714-69874963bc36
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsAdvancedDisk3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsadvanceddisk3
+- uuid: 6e6f6b40-977c-4069-bddd-ac710059f8c0
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsAdvancedDisk
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsadvanceddisk
+- uuid: 8326cd1d-cf59-4936-b786-5efc08798e25
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsAdviseSink
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsadvisesink
+- uuid: d5d23b6d-5a55-4492-9889-397a3c2d2dbc
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsAsync
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsasync
+- uuid: 9882f547-cfc3-420b-9750-00dfbec50662
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsCreatePartitionEx
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdscreatepartitionex
+- uuid: 40f73c8b-687d-4a13-8d96-3d7f2e683936
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsDisk2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsdisk2
+- uuid: 8f4b2f5d-ec15-4357-992f-473ef10975b9
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsDisk3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsdisk3
+- uuid: 90681b1d-6a7f-48e8-9061-31b7aa125322
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsDiskOnline
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsdiskonline
+- uuid: 9cbe50ca-f2d2-4bf4-ace1-96896b729625
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsDiskPartitionMF2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsdiskpartitionmf2
+- uuid: 538684e0-ba3d-4bc0-aca9-164aff85c2a9
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsDiskPartitionMF
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsdiskpartitionmf
+- uuid: 07e5c822-f00c-47a1-8fce-b244da56fd06
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsDisk
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsdisk
+- uuid: 2abd757f-2851-4997-9a13-47d2a885d6ca
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsHbaPort
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdshbaport
+- uuid: d99bdaae-b13a-4178-9fdb-e27f16b4603e
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsHwProvider
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdshwprovider
+- uuid: b07fedd4-1682-4440-9189-a39b55194dc5
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsIscsiInitiatorAdapter
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsiscsiinitiatoradapter
+- uuid: 38a0a9ab-7cc8-4693-ac07-1f28bd03c3da
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsIscsiInitiatorPortal
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsiscsiinitiatorportal
+- uuid: 75c8f324-f715-4fe3-a28e-f9011b61a4a1
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsOpenDisk
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsopendisk
+- uuid: 13b50bff-290a-47dd-8558-b7c58db1a71a
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsPack2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdspack2
+- uuid: 3b69d7f5-9d94-4648-91ca-79939ba263bf
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsPack
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdspack
+- uuid: 10c5e575-7984-4e81-a56b-431f5f92ae42
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsProvider
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsprovider
+- uuid: 0316560b-5db4-4ed9-bbb5-213436ddc0d9
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsRemovable
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsremovable
+- uuid: 0ac13689-3134-47c6-a17c-4669216801be
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsServiceHba
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsservicehba
+- uuid: 4afc3636-db01-4052-80c3-03bbcb8d3c69
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsServiceInitialization
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsserviceinitialization
+- uuid: 14fbe036-3ed7-4e10-90e9-a5ff991aff01
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsServiceIscsi
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsserviceiscsi
+- uuid: e0393303-90d4-4a97-ab71-e9b671ee2729
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsServiceLoader
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsserviceloader
+- uuid: fc5d23e8-a88b-41a5-8de0-2d2f73c5a630
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsServiceSAN
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsservicesan
+- uuid: 15fc031c-0652-4306-b2c3-f558b8f837e2
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsServiceSw
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsservicesw
+- uuid: b6b22da8-f903-4be7-b492-c09d875ac9da
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsServiceUninstallDisk
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsserviceuninstalldisk
+- uuid: 0818a8ef-9ba9-40d8-a6f9-e22833cc771e
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsService
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsservice
+- uuid: 83bfb87f-43fb-4903-baa6-127f01029eec
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsSubSystemImportTarget
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdssubsystemimporttarget
+- uuid: 9aa58360-ce33-4f92-b658-ed24b14425b8
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsSwProvider
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsswprovider
+- uuid: 1e062b84-e5e6-4b4b-8a25-67b81e8f13e8
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsVDisk
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsvdisk
+- uuid: b481498c-8354-45f9-84a0-0bdd2832a91f
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsVdProvider
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsvdprovider
+- uuid: 72ae6713-dcbb-4a03-b36b-371f6ac6b53d
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsVolume2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsvolume2
+- uuid: 4dbcee9a-6343-4651-b85f-5e75d74d983c
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsVolumeMF2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsvolumemf2
+- uuid: 6788faf9-214e-4b85-ba59-266953616e09
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsVolumeMF3
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsvolumemf3
+- uuid: ee2d5ded-6236-4169-931d-b9778ce03dc6
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsVolumeMF
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsvolumemf
+- uuid: 1be2275a-b315-4f70-9e44-879b3a2a53f2
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsVolumeOnline
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsvolumeonline
+- uuid: 4daa0135-e1d1-40f1-aaa5-3cc1e53221c3
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsVolumePlex
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsvolumeplex
+- uuid: d68168c9-82a2-4f85-b6e9-74707c49a58f
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsVolumeShrink
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsvolumeshrink
+- uuid: 88306bb2-e71f-478c-86a2-79da200a0f11
+  domain: MS-VDS
+  annotation: Virtual Disk Service (VDS) Protocol
+  if_name: IVdsVolume
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - vds
+  - ivdsvolume
+- uuid: 8fb6d884-2388-11d0-8c35-00c04fda2795
+  domain: MS-W32T
+  annotation: W32Time Remote Protocol
+  if_name: W32Time
+  if_versions: [v4.1]
+  endpoints:
+  - ncacn_np:W32TIME
+  - ncacn_np:W32TIME_ALT
+  keywords:
+  - w32t
+  - w32time
+- uuid: 5422fd3a-d4b8-4cef-a12e-e87d4ca22e90
+  domain: MS-WCCE
+  annotation: Windows Client Certificate Enrollment Protocol
+  if_name: ICertRequestD2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wcce
+  - icertrequestd2
+- uuid: d99e6e70-fc88-11d0-b498-00a0c90312f3
+  domain: MS-WCCE
+  annotation: Windows Client Certificate Enrollment Protocol
+  if_name: ICertRequestD
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wcce
+  - icertrequestd
+- uuid: 1a927394-352e-4553-ae3f-7cf4aafca620
+  domain: MS-WDSC
+  annotation: Windows Deployment Services Control Protocol
+  if_name: WdsRpcInterface
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - wdsc
+  - wdsrpcinterface
+- uuid: 6bffd098-a112-3610-9833-46c3f87e345a
+  domain: MS-WKST
+  annotation: Workstation Service Remote Protocol
+  if_name: wkssvc
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:wkssvc
+  - ncacn_np:samr
+  keywords:
+  - wkst
+  - wkssvc
+- uuid: 027947e1-d731-11ce-a357-000000000001
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IEnumWbemClassObject
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - ienumwbemclassobject
+- uuid: a359dec5-e813-4834-8a2a-ba7f1d777d76
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IWbemBackupRestoreEx
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbembackuprestoreex
+- uuid: c49e32c7-bc8b-11d2-85d4-00105a1f8304
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IWbemBackupRestore
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbembackuprestore
+- uuid: dc12a681-737f-11cf-884d-00aa004b2e24
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IWbemClassObject
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemclassobject
+- uuid: 44aca674-e8fc-11d0-a07c-00c04fb68820
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IWbemContext
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemcontext
+- uuid: 1c1c45ee-4395-11d2-b60b-00104b703efd
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IWbemFetchSmartEnum
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemfetchsmartenum
+- uuid: f309ad18-d86a-11d0-a075-00c04fb68820
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IWbemLevel1Login
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemlevel1login
+- uuid: d4781cd6-e5d3-44df-ad94-930efe48a887
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IWbemLoginClientID
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemloginclientid
+- uuid: 541679ab-2e5f-11d3-b34e-00104bcc4b4a
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IWbemLoginHelper
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemloginhelper
+- uuid: 7c857801-7381-11cf-884d-00aa004b2e24
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IWbemObjectSink
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemobjectsink
+- uuid: 2c9273e0-1dc3-11d3-b364-00105a1f8177
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IWbemRefreshingServices
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemrefreshingservices
+- uuid: f1e9c5b2-f59b-11d2-b362-00105a1f8177
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IWbemRemoteRefresher
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemremoterefresher
+- uuid: 9556dc99-828c-11cf-a37e-00aa003240c7
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IWbemServices
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemservices
+- uuid: 423ec01e-2e35-11d2-b604-00104b703efd
+  domain: MS-WMI
+  annotation: Windows Management Instrumentation Remote Protocol
+  if_name: IWbemWCOSmartEnum
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemwcosmartenum
+- uuid: 2a3eb639-d134-422d-90d8-aaa1b5216202
+  domain: MS-WSRM
+  annotation: Windows System Resource Manager (WSRM) Protocol
+  if_name: IResourceManager2
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wsrm
+  - iresourcemanager2
+- uuid: c5cebee2-9df5-4cdd-a08c-c2471bc144b4
+  domain: MS-WSRM
+  annotation: Windows System Resource Manager (WSRM) Protocol
+  if_name: IResourceManager
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wsrm
+  - iresourcemanager
+- uuid: 4f7ca01c-a9e5-45b6-b142-2332a1339c1d
+  domain: MS-WSRM
+  annotation: Windows System Resource Manager (WSRM) Protocol
+  if_name: IWRMAccounting
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wsrm
+  - iwrmaccounting
+- uuid: 481e06cf-ab04-4498-8ffe-124a0a34296d
+  domain: MS-WSRM
+  annotation: Windows System Resource Manager (WSRM) Protocol
+  if_name: IWRMCalendar
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wsrm
+  - iwrmcalendar
+- uuid: 21546ae8-4da5-445e-987f-627fea39c5e8
+  domain: MS-WSRM
+  annotation: Windows System Resource Manager (WSRM) Protocol
+  if_name: IWRMConfig
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wsrm
+  - iwrmconfig
+- uuid: 943991a5-b3fe-41fa-9696-7f7b656ee34b
+  domain: MS-WSRM
+  annotation: Windows System Resource Manager (WSRM) Protocol
+  if_name: IWRMMachineGroup
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wsrm
+  - iwrmmachinegroup
+- uuid: 59602eb6-57b0-4fd8-aa4b-ebf06971fe15
+  domain: MS-WSRM
+  annotation: Windows System Resource Manager (WSRM) Protocol
+  if_name: IWRMPolicy
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wsrm
+  - iwrmpolicy
+- uuid: f31931a9-832d-481c-9503-887a0e6a79f0
+  domain: MS-WSRM
+  annotation: Windows System Resource Manager (WSRM) Protocol
+  if_name: IWRMProtocol
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wsrm
+  - iwrmprotocol
+- uuid: fc910418-55ca-45ef-b264-83d4ce7d30e0
+  domain: MS-WSRM
+  annotation: Windows System Resource Manager (WSRM) Protocol
+  if_name: IWRMRemoteSessionMgmt
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wsrm
+  - iwrmremotesessionmgmt
+- uuid: bc681469-9dd9-4bf4-9b3d-709f69efe431
+  domain: MS-WSRM
+  annotation: Windows System Resource Manager (WSRM) Protocol
+  if_name: IWRMResourceGroup
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wsrm
+  - iwrmresourcegroup
+- uuid: 98fe2c90-a542-11d0-a4ef-00a0c9062910
+  domain: MS-DLL
+  annotation: advapi32.dll
+  if_name: advapi32
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - advapi32
+  - advapi32.dll
+- uuid: 8a7b5006-cc13-11db-9705-005056c00008
+  domain: MS-DLL
+  annotation: appidsvc.dll
+  if_name: appidsvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - appidsvc
+  - appidsvc.dll
+- uuid: 201ef99a-7fa0-444c-9399-19ba84f12a1a
+  domain: MS-DLL
+  annotation: 'appinfo.dll: Application Information Service'
+  if_name: appinfo
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - appinfo
+  - appinfo.dll
+- uuid: 58e604e8-9adb-4d2e-a464-3b0683fb1480
+  domain: MS-DLL
+  annotation: 'appinfo.dll: Application AxIS Information Service'
+  if_name: IAisAxISInfo
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - iaisaxisinfo
+  - appinfo.dll
+  - appinfo
+- uuid: 5f54ce7d-5b79-4175-8584-cb65313a0e98
+  domain: MS-DLL
+  annotation: 'appinfo.dll: Application COM Information Service'
+  if_name: IAisCOMInfo
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - iaiscominfo
+  - appinfo.dll
+  - appinfo
+- uuid: fd7a0523-dc70-43dd-9b2e-9c5ed48225b1
+  domain: MS-DLL
+  annotation: 'appinfo.dll: Application MSI Information Service'
+  if_name: IAisMSIInfo
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - iaismsiinfo
+  - appinfo.dll
+  - appinfo
+- uuid: 8c7daf44-b6dc-11d1-9a4c-0020af6e7c57
+  domain: MS-DLL
+  annotation: 'appmgmts.dll: Application Management service'
+  if_name: appmgmts
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - appmgmts
+  - appmgmts.dll
+- uuid: bfa951d1-2f0e-11d3-bfd1-00c04fa3490a
+  domain: MS-DLL
+  annotation: aqueue.dll
+  if_name: aqueue
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - aqueue
+  - aqueue.dll
+- uuid: de3b9bc8-bef7-4578-a0de-f089048442db
+  domain: MS-DLL
+  annotation: 'audiodg.exe: Windows Audio Device Graph'
+  if_name: audiodgrpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - audiodgrpc
+  - audiodg.exe
+  - audiodg
+  - exe
+- uuid: 3faf4738-3a21-4307-b46c-fdda9bb8c0d5
+  domain: MS-DLL
+  annotation: 'audiosrv.dll: Windows Audio Service audiosrv'
+  if_name: audiosrv
+  if_version:
+  - v1.1
+  - v1.2
+  endpoints: []
+  keywords:
+  - dll
+  - audiosrv
+  - audiosrv.dll
+- uuid: c386ca3e-9061-4a72-821e-498d83be188f
+  domain: MS-DLL
+  annotation: 'audiosrv.dll: Windows Audio Service Audiorpc'
+  if_name: audiorpc
+  if_version:
+  - v1.1
+  - v1.2
+  - v2.0
+  - v2.2
+  endpoints: []
+  keywords:
+  - dll
+  - audiorpc
+  - audiosrv.dll
+  - audiosrv
+- uuid: 24019106-a203-4642-b88d-82dae9158929
+  domain: MS-DLL
+  annotation: 'authui.dll: Windows Authentication UI'
+  if_name: WluirRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wluirrpc
+  - authui.dll
+  - authui
+- uuid: b2507c30-b126-494a-92ac-ee32b6eeb039
+  domain: MS-DLL
+  annotation: 'authui.dll: Windows Authentication UI'
+  if_name: Wluir1Rpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wluir1rpc
+  - authui.dll
+  - authui
+- uuid: fa4febc0-4591-11ce-95e5-00aa0051e510
+  domain: MS-DLL
+  annotation: 'autmgr32.exe: Windows Automation Manager'
+  if_name: Authmgr32Rpc
+  if_versions: [v4.0]
+  endpoints: []
+  keywords:
+  - dll
+  - authmgr32rpc
+  - autmgr32.exe
+  - autmgr32
+  - exe
+- uuid: ae55c4c0-64ce-11dd-ad8b-0800200c9a66
+  domain: MS-DLL
+  annotation: 'bdesvc.dll: BitLocker Drive Encryption Service'
+  if_name: bdesvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - bdesvc
+  - bdesvc.dll
+- uuid: dd490425-5325-4565-b774-7e27d6c09c24
+  domain: MS-DLL
+  annotation: 'bfe.dll: Base Filtering Engine'
+  if_name: bferpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - bferpc
+  - bfe.dll
+  - bfe
+- uuid: 2acb9d68-b434-4b3e-b966-e06b4b3a84cb
+  domain: MS-DLL
+  annotation: 'bthserv.dll: Bluetooth Support Service'
+  if_name: BthServRPCService
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - bthservrpcservice
+  - bthserv.dll
+  - bthserv
+- uuid: 30b044a5-a225-43f0-b3a4-e060df91f9c1
+  domain: MS-DLL
+  annotation: 'certprop.dll: Certificate Propagation Service'
+  if_name: CertPropSvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - certpropsvc
+  - certprop.dll
+  - certprop
+- uuid: 6e17aaa0-1a47-11d1-98bd-0000f875292e
+  domain: MS-DLL
+  annotation: 'clussvc.exe: Microsoft JoinVersion Interface'
+  if_name: ClusSvcJoinVersion
+  if_versions: [v2.0]
+  endpoints: []
+  keywords:
+  - dll
+  - clussvcjoinversion
+  - clussvc.exe
+  - clussvc
+  - exe
+- uuid: e248d0b8-bf15-11cf-8c5e-08002bb49649
+  domain: MS-DLL
+  annotation: 'clussvc.exe: Microsoft Cluster Server Service'
+  if_name: ClusSvc
+  if_versions: [v2.0]
+  endpoints: []
+  keywords:
+  - dll
+  - clussvc
+  - clussvc.exe
+  - exe
+- uuid: ffe561b8-bf15-11cf-8c5e-08002bb49649
+  domain: MS-DLL
+  annotation: 'clussvc.exe: Microsoft Extrocluster Interface'
+  if_name: ClusSvcExtrocluster
+  if_versions: [v2.0]
+  endpoints: []
+  keywords:
+  - dll
+  - clussvcextrocluster
+  - clussvc.exe
+  - clussvc
+  - exe
+- uuid: 0d72a7d4-6148-11d1-b4aa-00c04fb66ea0
+  domain: MS-DLL
+  annotation: 'cryptsvc.dll: Cryptographic Services'
+  if_name: CryptCertProtectSvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - cryptcertprotectsvc
+  - cryptsvc.dll
+  - cryptsvc
+- uuid: 68b58241-c259-4f03-a2e5-a2651dcbc930
+  domain: MS-DLL
+  annotation: 'cryptsvc.dll: Cryptographic Services'
+  if_name: CryptKSrSvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - cryptksrsvc
+  - cryptsvc.dll
+  - cryptsvc
+- uuid: 8d0ffe72-d252-11d0-bf8f-00c04fd9126b
+  domain: MS-DLL
+  annotation: 'cryptsvc.dll: Cryptographic Services'
+  if_name: CryptKeyrSvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - cryptkeyrsvc
+  - cryptsvc.dll
+  - cryptsvc
+- uuid: f50aac00-c7f3-428e-a022-a6b71bfb9d43
+  domain: MS-DLL
+  annotation: 'cryptsvc.dll: Cryptographic Services'
+  if_name: CryptCatSvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - cryptcatsvc
+  - cryptsvc.dll
+  - cryptsvc
+- uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+  domain: MS-DLL
+  annotation: 'dhcpcsvc6.dll: DHCPv6 Client Service'
+  if_name: dhcpcsvc6
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dhcpcsvc6
+  - dhcpcsvc6.dll
+- uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+  domain: MS-DLL
+  annotation: 'dhcpcsvc.dll: DHCP Client Service'
+  if_name: dhcpcsvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dhcpcsvc
+  - dhcpcsvc.dll
+- uuid: d2d79dfa-3400-11d0-b40b-00aa005ff586
+  domain: MS-DLL
+  annotation: 'dmadmin.exe: Logical Disk Manager service process'
+  if_name: dmadminrpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dmadminrpc
+  - dmadmin.exe
+  - dmadmin
+  - exe
+- uuid: 45776b01-5956-4485-9f80-f428f7d60129
+  domain: MS-DLL
+  annotation: 'dnsrslvr.dll: DNS Client Service (Windows XP)'
+  if_name: DnsResolver
+  if_versions: [v2.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dnsresolver
+  - dnsrslvr.dll
+  - dnsrslvr
+- uuid: 65a93890-fab9-43a3-b2a5-1e330ac28f11
+  domain: MS-DLL
+  annotation: 'dnsrslvr.dll: DNS Client Service (Windows 2000)'
+  if_name: DnsResolver2000
+  if_versions: [v2.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dnsresolver2000
+  - dnsrslvr.dll
+  - dnsrslvr
+- uuid: 1bddb2a6-c0c3-41be-8703-ddbdf4f0e80a
+  domain: MS-DLL
+  annotation: 'dot3svc.dll: Wired AutoConfig Service'
+  if_name: winlan
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - winlan
+  - dot3svc.dll
+  - dot3svc
+- uuid: 04eeb297-cbf4-466b-8a2a-bfd6a2f10bba
+  domain: MS-DLL
+  annotation: 'efssvc.dll: Encrypting File System (EFS) Service: EFSK'
+  if_name: efskrpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - efskrpc
+  - efssvc.dll
+  - efssvc
+- uuid: df1941c5-fe89-4e79-bf10-463657acf44d
+  domain: MS-DLL
+  annotation: 'efssvc.dll: Encrypting File System (EFS) Service'
+  if_name: efsrpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - efsrpc
+  - efssvc.dll
+  - efssvc
+- uuid: 654976df-1498-4056-a15e-cb4e87584bd8
+  domain: MS-DLL
+  annotation: 'emdmgmt.dll: ReadyBoost Service'
+  if_name: EmdService
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - emdservice
+  - emdmgmt.dll
+  - emdmgmt
+- uuid: 2eb08e3e-639f-4fba-97b1-14f878961076
+  domain: MS-DLL
+  annotation: 'gpsvc.dll: Group Policy Service'
+  if_name: gpsvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - gpsvc
+  - gpsvc.dll
+- uuid: 7d814569-35b3-4850-bb32-83035fcebf6e
+  domain: MS-DLL
+  annotation: 'ias.dll: Internet Authentication Service'
+  if_name: iasrpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - iasrpc
+  - ias.dll
+  - ias
+- uuid: 00645e6c-fc9f-4a0c-9896-f00b66297798
+  domain: MS-DLL
+  annotation: 'icardagt.exe: Windows CardSpace User Interface Agent'
+  if_name: icardagtrpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - icardagtrpc
+  - icardagt.exe
+  - icardagt
+  - exe
+- uuid: f1ec59ab-4ca9-4c30-b2d0-54ef1db441b7
+  domain: MS-DLL
+  annotation: 'iertutil.dll: Microsoft Internet Explorer Runtime Utilities'
+  if_name: iertutil
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - iertutil
+  - iertutil.dll
+- uuid: 0a74ef1c-41a4-4e06-83ae-dc74fb1cdd53
+  domain: MS-DLL
+  annotation: 'schedsvc.dll: Task Scheduler Engine/Task Scheduler Service: Taskplaner idletask'
+  if_name: idletask
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - idletask
+  - schedsvc.dll
+  - schedsvc
+- uuid: 12e65dd8-887f-41ef-91bf-8d816c42c2e7
+  domain: MS-DLL
+  annotation: 'winlogon.exe: Windows Logon Application'
+  if_name: ISecureDesktop
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - isecuredesktop
+  - winlogon.exe
+  - winlogon
+  - exe
+- uuid: 76f226c3-ec14-4325-8a99-6a46348418ae
+  domain: MS-DLL
+  annotation: 'winlogon.exe: Windows Logon Application'
+  if_name: WMsgKAPIs
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wmsgkapis
+  - winlogon.exe
+  - winlogon
+  - exe
+- uuid: 76f226c3-ec14-4325-8a99-6a46348418af
+  domain: MS-DLL
+  annotation: 'winlogon.exe: Windows Logon Application'
+  if_name: WMsgAPIs
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wmsgapis
+  - winlogon.exe
+  - winlogon
+  - exe
+- uuid: 95958c94-a424-4055-b62b-b7f4d5c47770
+  domain: MS-DLL
+  annotation: 'winlogon.exe: Windows Logon Application'
+  if_name: IRPCSCLogon
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - irpcsclogon
+  - winlogon.exe
+  - winlogon
+  - exe
+- uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+  domain: MS-DLL
+  annotation: 'nrpsrv.dll: Name Resolution Proxy (NRP) RPC interface'
+  if_name: nrpsrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - nrpsrv
+  - nrpsrv.dll
+- uuid: 3473dd4d-2e88-4006-9cba-22570909dd10
+  domain: MS-DLL
+  annotation: 'winhttp.dll: Windows HTTP Services'
+  if_name: winhttprpc
+  if_versions: [v5.1]
+  endpoints: []
+  keywords:
+  - dll
+  - winhttprpc
+  - winhttp.dll
+  - winhttp
+- uuid: 4a452661-8290-4b36-8fbe-7f4093a94978
+  domain: MS-DLL
+  annotation: 'spoolsv.exe: Spooler SubSystem App'
+  if_name: IRPCAsyncNotifyChannel
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - irpcasyncnotifychannel
+  - spoolsv.exe
+  - spoolsv
+  - exe
+- uuid: 552d076a-cb29-4e44-8b6a-d15e59e2c0af
+  domain: MS-DLL
+  annotation: 'iphlpsvc.dll: Service that offers IPv6 connectivity over an IPv4 network'
+  if_name: IpTransition
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - iptransition
+  - iphlpsvc.dll
+  - iphlpsvc
+- uuid: 7ea70bcf-48af-4f6a-8968-6a440754d5fa
+  domain: MS-DLL
+  annotation: 'nsisvc.dll: Network Store Interface RPC server'
+  if_name: WinNsi
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - winnsi
+  - nsisvc.dll
+  - nsisvc
+- uuid: 98716d03-89ac-44c7-bb8c-285824e51c4a
+  domain: MS-DLL
+  annotation: 'srvsvc.dll: Server Service'
+  if_name: XactSrvRPC
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - xactsrvrpc
+  - srvsvc.dll
+  - srvsvc
+- uuid: a398e520-d59a-4bdd-aa7a-3c1e0303a511
+  domain: MS-DLL
+  annotation: 'ikeext.dll: IKE extension'
+  if_name: IkeRpcIKE
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ikerpcike
+  - ikeext.dll
+  - ikeext
+- uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+  domain: MS-DLL
+  annotation: 'webcint.dll: Web DAV Service'
+  if_name: IRPCWinlogonNotifications
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - irpcwinlogonnotifications
+  - webcint.dll
+  - webcint
+- uuid: 46ea9280-5bbf-445e-831d-41d0f60f503a
+  domain: MS-DLL
+  annotation: 'ifssvc.exe: FS Web Agent Authentication Service'
+  if_name: ifssvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ifssvc
+  - ifssvc.exe
+  - exe
+- uuid: 52d9f704-d3c6-4748-ad11-2550209e80af
+  domain: MS-DLL
+  annotation: 'IMEPADSM.DLL: Microsoft IME 2012'
+  if_name: imepadsm
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - imepadsm
+  - imepadsm.dll
+- uuid: 8f1acdc1-754d-43eb-9629-aa1620928e65
+  domain: MS-DLL
+  annotation: 'IMEPADSM.DLL: Microsoft IME 2012'
+  if_name: imepadsm1
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - imepadsm1
+  - imepadsm.dll
+  - imepadsm
+- uuid: cb407bbf-c14f-4cd9-8f55-cbb08146598c
+  domain: MS-DLL
+  annotation: 'IMJPDCT.EXE: Microsoft IME'
+  if_name: imjpdctrpc
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - imjpdctrpc
+  - imjpdct.exe
+  - imjpdct
+  - exe
+- uuid: 6f201a55-a24d-495f-aac9-2f4fce34df99
+  domain: MS-DLL
+  annotation: 'IPHLPAPI.DLL: Connectivity Helper API'
+  if_name: cpprovider
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - cpprovider
+  - iphlpapi.dll
+  - iphlpapi
+- uuid: 6f201a55-a24d-495f-aac9-2f4fce34df98
+  domain: MS-DLL
+  annotation: 'iphlpsvc.dll: IP Helper'
+  if_name: iphlpsvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - iphlpsvc
+  - iphlpsvc.dll
+- uuid: d674a233-5829-49dd-90f0-60cf9ceb7129
+  domain: MS-DLL
+  annotation: 'ipnathlp.dll: Microsoft NAT Helper Components'
+  if_name: ipnathlp
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ipnathlp
+  - ipnathlp.dll
+- uuid: e64b9aee-f372-4312-9a14-8f1502b5c8e3
+  domain: MS-DLL
+  annotation: 'ipnathlp.dll: Microsoft NAT Helper Components'
+  if_name: IpNatHlpRpcServer
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ipnathlprpcserver
+  - ipnathlp.dll
+  - ipnathlp
+- uuid: 0c821d64-a3fc-11d1-bb7a-0080c75e4ec1
+  domain: MS-DLL
+  annotation: 'irftp.exe: Wireless Link File Transfer Application'
+  if_name: irftprpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - irftprpc
+  - irftp.exe
+  - irftp
+  - exe
+- uuid: 7af5bbd0-6063-11d1-ae2a-0080c75e4ec1
+  domain: MS-DLL
+  annotation: 'irmon.dll: Infrared Monitor'
+  if_name: irmon
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - irmon
+  - irmon.dll
+- uuid: 209bb240-b919-11d1-bbb6-0080c75e4ec1
+  domain: MS-DLL
+  annotation: 'irmon.dll: Infrared Monitor'
+  if_name: irmon1
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - irmon1
+  - irmon.dll
+  - irmon
+- uuid: fd6bb951-c830-4734-bf2c-18ba6ec7ab49
+  domain: MS-DLL
+  annotation: 'iscsiexe.dll: iSCSI Discovery service'
+  if_name: iscsiexe
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - iscsiexe
+  - iscsiexe.dll
+- uuid: 130ceefb-e466-11d1-b78b-00c04fa32883
+  domain: MS-DLL
+  annotation: 'ismip.dll: Active Directory ISM IP Transport'
+  if_name: ismserv_ip
+  if_versions: [v2.1]
+  endpoints: []
+  keywords:
+  - dll
+  - ismserv_ip
+  - ismip.dll
+  - ismip
+- uuid: 68dcd486-669e-11d1-ab0c-00c04fc2dcd2
+  domain: MS-DLL
+  annotation: 'ismserv.exe: Inter-site Messaging service'
+  if_name: ismapi
+  if_version:
+  - v1.0
+  - v2.0
+  endpoints: []
+  keywords:
+  - dll
+  - ismapi
+  - ismserv.exe
+  - ismserv
+  - exe
+- uuid: 00000002-0001-0000-c000-000000000069
+  domain: MS-DLL
+  annotation: 'kdcsvc.dll: KDC RPC'
+  if_name: kdcrpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - kdcrpc
+  - kdcsvc.dll
+  - kdcsvc
+- uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+  domain: MS-DLL
+  annotation: 'keyiso.dll: CNG Key Isolation Service'
+  if_name: INCryptKeyIso
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - incryptkeyiso
+  - keyiso.dll
+  - keyiso
+- uuid: 3357951c-a1d1-47db-a278-ab945d063d03
+  domain: MS-DLL
+  annotation: 'LBService.dll: RPC/HTTP Load Balancing Coordinator'
+  if_name: lbservice
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - lbservice
+  - lbservice.dll
+- uuid: 342cfd40-3c6c-11ce-a893-08002b2e9c6d
+  domain: MS-DLL
+  annotation: 'llssrv.exe: Licensing Logging Service'
+  if_name: llsrpc
+  if_versions: [v0.0]
+  endpoints:
+  - ncacn_np:llsrpc
+  keywords:
+  - dll
+  - llsrpc
+  - llssrv.exe
+  - llssrv
+  - exe
+- uuid: 57674cd0-5200-11ce-a897-08002b2e9c6d
+  domain: MS-DLL
+  annotation: 'llssrv.exe: License Logging Service'
+  if_name: lls_license
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:llsrpc
+  keywords:
+  - dll
+  - lls_license
+  - llssrv.exe
+  - llssrv
+  - exe
+- uuid: d3fbb514-0e3b-11cb-8fad-08002b1d29c3
+  domain: MS-DLL
+  annotation: 'locator.exe: RPC locator service: Network Store Interface Client'
+  if_name: NsiC
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:locator
+  keywords:
+  - dll
+  - nsic
+  - locator.exe
+  - locator
+  - exe
+- uuid: d6d70ef0-0e3b-11cb-acc3-08002b1d29c3
+  domain: MS-DLL
+  annotation: 'locator.exe: RPC locator service: Network Store Interface Service'
+  if_name: NsiS
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:locator
+  keywords:
+  - dll
+  - nsis
+  - locator.exe
+  - locator
+  - exe
+- uuid: d6d70ef0-0e3b-11cb-acc3-08002b1d29c4
+  domain: MS-DLL
+  annotation: 'locator.exe: RPC locator service: Network Store Interface Manager'
+  if_name: NsiM
+  if_versions: [v1.0]
+  endpoints:
+  - ncacn_np:locator
+  keywords:
+  - dll
+  - nsim
+  - locator.exe
+  - locator
+  - exe
+- uuid: 1cbcad78-df0b-4934-b558-87839ea501c9
+  domain: MS-DLL
+  annotation: 'lsasrv.dll: Microsoft Active Directory DSROLE Service'
+  if_name: dsrolesvc
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dsrolesvc
+  - lsasrv.dll
+  - lsasrv
+- uuid: 11220835-5b26-4d94-ae86-c3e475a809de
+  domain: MS-DLL
+  annotation: 'lsasrv.dll: Protected Storage Service'
+  if_name: ICryptProtect
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - icryptprotect
+  - lsasrv.dll
+  - lsasrv
+- uuid: 5cbe92cb-f4be-45c9-9fc9-33e73e557b20
+  domain: MS-DLL
+  annotation: 'lsasrv.dll: Protected Storage Service'
+  if_name: PasswordRecovery
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - passwordrecovery
+  - lsasrv.dll
+  - lsasrv
+- uuid: ace1c026-8b3f-4711-8918-f345d17f5bff
+  domain: MS-DLL
+  annotation: 'lsasrv.dll: Protected Storage Service'
+  if_name: SLspPrivateData
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - slspprivatedata
+  - lsasrv.dll
+  - lsasrv
+- uuid: fb8a0729-2d04-4658-be93-27b4ad553fac
+  domain: MS-DLL
+  annotation: 'lsass.exe: Local Security Authority Subsystem Service'
+  if_name: lsass
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - lsass
+  - lsass.exe
+  - exe
+- uuid: 12d4b7c8-77d5-11d1-8c24-00c04fa3080d
+  domain: MS-DLL
+  annotation: 'lserver.dll: Terminal Server License Server'
+  if_name: TermServLicensing
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - termservlicensing
+  - lserver.dll
+  - lserver
+- uuid: 3d267954-eeb7-11d1-b94e-00c04fa3080d
+  domain: MS-DLL
+  annotation: 'lserver.dll: Terminal Server License Server'
+  if_name: HydraLsPipe
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - hydralspipe
+  - lserver.dll
+  - lserver
+- uuid: 11f25515-c879-400a-989e-b074d5f092fe
+  domain: MS-DLL
+  annotation: 'lsm.dll: Terminal Services Terminal Server Runtime Interface'
+  if_name: TermSrvPrivate
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - termsrvprivate
+  - lsm.dll
+  - lsm
+- uuid: 1e665584-40fe-4450-8f6e-802362399694
+  domain: MS-DLL
+  annotation: 'lsm.dll: Terminal Services Terminal Server Runtime Interface'
+  if_name: TermSrvAdmin
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - termsrvadmin
+  - lsm.dll
+  - lsm
+- uuid: 506c3b0e-4bd1-4c56-88c0-49a20ed4b539
+  domain: MS-DLL
+  annotation: 'milcore.dll: MIL Core Library'
+  if_name: milcore
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - milcore
+  - milcore.dll
+- uuid: 3ca78105-a3a3-4a68-b458-1a606bab8fd6
+  domain: MS-DLL
+  annotation: 'mpnotify.exe: Windows NT Multiple Provider Notification Application'
+  if_name: mpnotifyrpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - mpnotifyrpc
+  - mpnotify.exe
+  - mpnotify
+  - exe
+- uuid: fc48cd89-98d6-4628-9839-86f7a3e4161a
+  domain: MS-DLL
+  annotation: 'ACPBackgroundManagerPolicy.dll: ACP Background Manager Policy'
+  if_name: ACPBackgroundManagerPolicy
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - acpbackgroundmanagerpolicy
+  - acpbackgroundmanagerpolicy.dll
+- uuid: c49a5a70-8a7f-4e70-ba16-1e8f1f193ef1
+  domain: MS-DLL
+  annotation: 'adhsvc.dll: Annotation Proxy Manager client server'
+  if_name: adhsvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - adhsvc
+  - adhsvc.dll
+- uuid: d2716e94-25cb-4820-bc15-537866578562
+  domain: MS-DLL
+  annotation: 'aphostservice.dll: Accounts Host Service'
+  if_name: aphostservice
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - aphostservice
+  - aphostservice.dll
+- uuid: 0497b57d-2e66-424f-a0c6-157cd5d41700
+  domain: MS-DLL
+  annotation: 'appinfo.dll: Application Information Service'
+  if_name: appinfopkg
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - appinfopkg
+  - appinfo.dll
+  - appinfo
+- uuid: 5fc2481b-f8d7-466b-a741-cc7806c784a3
+  domain: MS-DLL
+  annotation: 'audiosrv.dll: Windows Audio Service: PBM'
+  if_name: audiosrvpbm
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - audiosrvpbm
+  - audiosrv.dll
+  - audiosrv
+- uuid: 910562c3-ebd9-46b9-baba-1d45842a0ceb
+  domain: MS-DLL
+  annotation: 'audiosrv.dll: Windows Audio Service: PBM'
+  if_name: audiosrvpbm1
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - audiosrvpbm1
+  - audiosrv.dll
+  - audiosrv
+- uuid: c7ce3826-891f-4376-b161-c63d2403142c
+  domain: MS-DLL
+  annotation: 'audiosrv.dll: Windows Audio Service: HRTF Info'
+  if_name: audiosrvhrtf
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - audiosrvhrtf
+  - audiosrv.dll
+  - audiosrv
+- uuid: cba4c918-e55a-46ee-aa62-cade158e9165
+  domain: MS-DLL
+  annotation: 'audiosrv.dll: Windows Audio Service: Device Graph WNF State'
+  if_name: audiosrvwnf
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - audiosrvwnf
+  - audiosrv.dll
+  - audiosrv
+- uuid: 7c69ac10-fa12-4dbf-90d9-c7f1e40f5dc5
+  domain: MS-DLL
+  annotation: 'audiosrv.dll: Windows Audio Service'
+  if_name: audiosrv1
+  if_versions: [v1.6]
+  endpoints: []
+  keywords:
+  - dll
+  - audiosrv1
+  - audiosrv.dll
+  - audiosrv
+- uuid: 47ac638a-718f-49a0-97c5-574ac77acf4d
+  domain: MS-DLL
+  annotation: 'audiosrv.dll: Windows Audio Service'
+  if_name: audiosrv2
+  if_versions: [v2.7]
+  endpoints: []
+  keywords:
+  - dll
+  - audiosrv2
+  - audiosrv.dll
+  - audiosrv
+- uuid: 09704557-82c0-416b-b6e4-c85b8f789803
+  domain: MS-DLL
+  annotation: 'audiosrv.dll: Windows Audio Service'
+  if_name: audiosrv3
+  if_versions: [v2.8]
+  endpoints: []
+  keywords:
+  - dll
+  - audiosrv3
+  - audiosrv.dll
+  - audiosrv
+- uuid: 0d3e2735-cea0-4ecc-a9e2-41a2d81aed4e
+  domain: MS-DLL
+  annotation: 'bisrv.dll: Background Tasks Infrastructure Service'
+  if_name: RBiPtSrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rbiptsrv
+  - bisrv.dll
+  - bisrv
+- uuid: 1b37ca91-76b1-4f5e-a3c7-2abfc61f2bb0
+  domain: MS-DLL
+  annotation: 'bisrv.dll: Background Tasks Infrastructure Service'
+  if_name: RBiRtSrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rbirtsrv
+  - bisrv.dll
+  - bisrv
+- uuid: 20c40295-8dba-48e6-aebf-3e78ef3bb144
+  domain: MS-DLL
+  annotation: 'bisrv.dll: Background Tasks Infrastructure Service'
+  if_name: SrvOdbPt
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - srvodbpt
+  - bisrv.dll
+  - bisrv
+- uuid: 2513bcbe-6cd4-4348-855e-7efb3c336dd3
+  domain: MS-DLL
+  annotation: 'bisrv.dll: Background Tasks Infrastructure Service'
+  if_name: SrvOdb
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - srvodb
+  - bisrv.dll
+  - bisrv
+- uuid: 2d98a740-581d-41b9-aa0d-a88b9d5ce938
+  domain: MS-DLL
+  annotation: 'bisrv.dll: Background Tasks Infrastructure Service'
+  if_name: RBiSrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rbisrv
+  - bisrv.dll
+  - bisrv
+- uuid: 857fb1be-084f-4fb5-b59c-4b2c4be5f0cf
+  domain: MS-DLL
+  annotation: 'bisrv.dll: Background Tasks Infrastructure Service'
+  if_name: SrvOdbPriv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - srvodbpriv
+  - bisrv.dll
+  - bisrv
+- uuid: 8bfc3be1-6def-4e2d-af74-7c47cd0ade4a
+  domain: MS-DLL
+  annotation: 'bisrv.dll: Background Tasks Infrastructure Service'
+  if_name: RBiSrv1
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rbisrv1
+  - bisrv.dll
+  - bisrv
+- uuid: b8cadbaf-e84b-46b9-84f2-6f71c03f9e55
+  domain: MS-DLL
+  annotation: 'bisrv.dll: Background Tasks Infrastructure Service'
+  if_name: SrvOdbLb
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - srvodblb
+  - bisrv.dll
+  - bisrv
+- uuid: c605f9fb-f0a3-4e2a-a073-73560f8d9e3e
+  domain: MS-DLL
+  annotation: 'bisrv.dll: Background Tasks Infrastructure Service'
+  if_name: RBiSrvSignal
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rbisrvsignal
+  - bisrv.dll
+  - bisrv
+- uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+  domain: MS-DLL
+  annotation: 'BrokerLib.dll: Broker Base Library'
+  if_name: Bri
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - bri
+  - brokerlib.dll
+  - brokerlib
+- uuid: ead694ed-2243-44cb-a9dc-85d3ba934dab
+  domain: MS-DLL
+  annotation: 'chakra.dll: ChakraCore Just-in-time (JIT) Compilation'
+  if_name: IChakraJIT
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ichakrajit
+  - chakra.dll
+  - chakra
+- uuid: df4df73a-c52d-4e3a-8003-8437fdf8302a
+  domain: MS-DLL
+  annotation: 'coremessaging.dll: Microsoft CoreMessaging'
+  if_name: coremessaging
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - coremessaging
+  - coremessaging.dll
+- uuid: 2579ff35-0ab0-4e5a-88fa-1d88c4e0cb92
+  domain: MS-DLL
+  annotation: 'crypttpmeksvc.dll: Cryptographic TPM Endorsement Key Services'
+  if_name: crypttpmeksvc
+  if_versions: [v2.0]
+  endpoints: []
+  keywords:
+  - dll
+  - crypttpmeksvc
+  - crypttpmeksvc.dll
+- uuid: 5a0ce74d-f9cf-4dea-a4c1-2d5fe4c89d51
+  domain: MS-DLL
+  annotation: 'd3d10warp.dll: Direct3D 10 Rasterizer'
+  if_name: WarpJITSvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - warpjitsvc
+  - d3d10warp.dll
+  - d3d10warp
+- uuid: 7419cf08-91a7-4afd-8f5e-1dd76de094fd
+  domain: MS-DLL
+  annotation: 'DAB.dll: Desktop Activity Broker'
+  if_name: dab
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dab
+  - dab.dll
+- uuid: 2e7d4935-59d2-4312-a2c8-41900aa5495f
+  domain: MS-DLL
+  annotation: 'das.dll: Device Association Service: Challenge'
+  if_name: daschallenge
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - daschallenge
+  - das.dll
+  - das
+- uuid: 5b665b9a-a086-4e26-ae24-96ab050b0ec3
+  domain: MS-DLL
+  annotation: 'das.dll: Device Association Service: AEP Store'
+  if_name: dasaepstore
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dasaepstore
+  - das.dll
+  - das
+- uuid: 850cee52-3038-4277-b9b4-e05db8b2c35c
+  domain: MS-DLL
+  annotation: 'das.dll: Device Association Service'
+  if_name: das
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - das
+  - das.dll
+- uuid: a1d4eae7-39f8-4bca-8e72-832767f5082a
+  domain: MS-DLL
+  annotation: 'das.dll: Device Association Service: Inbound Association'
+  if_name: dasinbassoc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dasinbassoc
+  - das.dll
+  - das
+- uuid: bd84cd86-9825-4376-813d-334c543f89b1
+  domain: MS-DLL
+  annotation: 'das.dll: Device Association Service: RPC Dev'
+  if_name: dasrpcdev
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dasrpcdev
+  - das.dll
+  - das
+- uuid: eeee008d-5c99-4e4b-861b-547a26e8abd0
+  domain: MS-DLL
+  annotation: 'dashost.exe: Device Association Framework Provider Host'
+  if_name: dashost
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dashost
+  - dashost.exe
+  - exe
+- uuid: 4c9dbf19-d39e-4bb9-90ee-8f7179b20283
+  domain: MS-DLL
+  annotation: 'diagtrack.dll: Microsoft Windows Diagnostics Tracking'
+  if_name: UtcApi
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - utcapi
+  - diagtrack.dll
+  - diagtrack
+- uuid: 95095ec8-32ea-4eb0-a3e2-041f97b36168
+  domain: MS-DLL
+  annotation: 'diagtrack.dll: Microsoft Windows Diagnostics Tracking'
+  if_name: UtcTelemetryOptInApi
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - utctelemetryoptinapi
+  - diagtrack.dll
+  - diagtrack
+- uuid: 98cd761e-e77d-41c8-a3c0-0fb756d90ec2
+  domain: MS-DLL
+  annotation: 'diagtrack.dll: Microsoft Windows Diagnostics Tracking'
+  if_name: UtcWerHelperApi
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - utcwerhelperapi
+  - diagtrack.dll
+  - diagtrack
+- uuid: d22895ef-aff4-42c5-a5b2-b14466d34ab4
+  domain: MS-DLL
+  annotation: 'diagtrack.dll: Microsoft Windows Diagnostics Tracking'
+  if_name: UtcEventTranscriptApi
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - utceventtranscriptapi
+  - diagtrack.dll
+  - diagtrack
+- uuid: e38f5360-8572-473e-b696-1b46873beeab
+  domain: MS-DLL
+  annotation: 'diagtrack.dll: Microsoft Windows Diagnostics Tracking'
+  if_name: UtcTenantApi
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - utctenantapi
+  - diagtrack.dll
+  - diagtrack
+- uuid: fd8be72b-a9cd-4b2c-a9ca-4ded242fbe4d
+  domain: MS-DLL
+  annotation: 'diagtrack.dll: Microsoft Windows Diagnostics Tracking'
+  if_name: UtcApi1
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - utcapi1
+  - diagtrack.dll
+  - diagtrack
+- uuid: 7f1317a8-4dea-4fa2-a551-df5516ff8879
+  domain: MS-DLL
+  annotation: 'dpapisrv.dll: DPAPI Server'
+  if_name: dpapisrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dpapisrv
+  - dpapisrv.dll
+- uuid: bf4dc912-e52f-4904-8ebe-9317c1bdd497
+  domain: MS-DLL
+  annotation: 'dssvc.dll: Data Sharing Service NT Service'
+  if_name: dssvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dssvc
+  - dssvc.dll
+- uuid: c27f3c08-92ba-478c-b446-b419c4cef0e2
+  domain: MS-DLL
+  annotation: 'dusmsvc.dll: Data Usage (DusmSvc) Service'
+  if_name: dusmsvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dusmsvc
+  - dusmsvc.dll
+- uuid: 714dc5c4-c5f6-466a-b037-a573c958031e
+  domain: MS-DLL
+  annotation: 'eeprov.dll: Energy Estimator SRUM provider'
+  if_name: eeprov
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - eeprov
+  - eeprov.dll
+- uuid: 0361ae94-0316-4c6c-8ad8-c594375800e2
+  domain: MS-DLL
+  annotation: 'psmsrv.dll: Process State Manager (PSM) Service'
+  if_name: PsmSrvAppHost
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - psmsrvapphost
+  - psmsrv.dll
+  - psmsrv
+- uuid: 085b0334-e454-4d91-9b8c-4134f9e793f3
+  domain: MS-DLL
+  annotation: 'psmsrv.dll: Process State Manager (PSM) Service'
+  if_name: PsmSrvApp
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - psmsrvapp
+  - psmsrv.dll
+  - psmsrv
+- uuid: 3b338d89-6cfa-44b8-847e-531531bc9992
+  domain: MS-DLL
+  annotation: 'psmsrv.dll: Process State Manager (PSM) Service'
+  if_name: PsmSrvInfo
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - psmsrvinfo
+  - psmsrv.dll
+  - psmsrv
+- uuid: 4bec6bb8-b5c2-4b6f-b2c1-5da5cf92d0d9
+  domain: MS-DLL
+  annotation: 'psmsrv.dll: Process State Manager (PSM) Service'
+  if_name: PsmSrvActivation
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - psmsrvactivation
+  - psmsrv.dll
+  - psmsrv
+- uuid: 5824833b-3c1a-4ad2-bdfd-c31d19e23ed2
+  domain: MS-DLL
+  annotation: 'psmsrv.dll: Process State Manager (PSM) Service'
+  if_name: PsmSrvTimer
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - psmsrvtimer
+  - psmsrv.dll
+  - psmsrv
+- uuid: 8782d3b9-ebbd-4644-a3d8-e8725381919b
+  domain: MS-DLL
+  annotation: 'psmsrv.dll: Process State Manager (PSM) Service'
+  if_name: PsmSrvQuiesce
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - psmsrvquiesce
+  - psmsrv.dll
+  - psmsrv
+- uuid: bdaa0970-413b-4a3e-9e5d-f6dc9d7e0760
+  domain: MS-DLL
+  annotation: 'psmsrv.dll: Process State Manager (PSM) Service'
+  if_name: PsmSrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - psmsrv
+  - psmsrv.dll
+- uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+  domain: MS-DLL
+  annotation: 'wscsvc.dll: Windows Security Center Service'
+  if_name: wscsvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wscsvc
+  - wscsvc.dll
+- uuid: 0767a036-0d22-48aa-ba69-b619480f38cb
+  domain: MS-DLL
+  annotation: 'pcasvc.dll: Program Compatibility Assistant Service'
+  if_name: PcaSvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - pcasvc
+  - pcasvc.dll
+- uuid: 2c7fd9ce-e706-4b40-b412-953107ef9bb0
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: RmgrSrv
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rmgrsrv
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: c521facf-09a9-42c5-b155-72388595cbf0
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: RmtSrv
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rmtsrv
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: 082a3471-31b6-422a-b931-a54401960c62
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: HamRpcSrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - hamrpcsrv
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: 0d47017b-b33b-46ad-9e18-fe96456c5078
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: HamRpcSrvSess
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - hamrpcsrvsess
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: 0ff1f646-13bb-400a-ab50-9a78f2b7a85a
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: HamRpcSrvHostId
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - hamrpcsrvhostid
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: 178d84be-9291-4994-82c6-3f909aca5a03
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: RmGameModeRSrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rmgamemodersrv
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: 1832bcf6-cab8-41d4-85d2-c9410764f75a
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: RmCoreRpcSrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rmcorerpcsrv
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: 4ed8abcc-f1e2-438b-981f-bb0e8abc010c
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: HamRpcSrvState
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - hamrpcsrvstate
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: 6982a06e-5fe2-46b1-b39c-a2c545bfa069
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: HamRpcSrvFullTrust
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - hamrpcsrvfulltrust
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: 95406f0b-b239-4318-91bb-cea3a46ff0dc
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: HamRpcSrvServicing
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - hamrpcsrvservicing
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: dd59071b-3215-4c59-8481-972edadc0f6a
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: CrmRpcSrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - crmrpcsrv
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: e53d94ca-7464-4839-b044-09a2fb8b3ae5
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: HamRpcSrvActivity
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - hamrpcsrvactivity
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: fae436b0-b864-4a87-9eda-298547cd82f2
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: HamRpcSrvDebug
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - hamrpcsrvdebug
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: 4dace966-a243-4450-ae3f-9b7bcb5315b8
+  domain: MS-DLL
+  annotation: 'psmserviceexthost.dll: Resource Manager PSM Service Extension'
+  if_name: RmGameModeSrv
+  if_versions: [v2.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rmgamemodesrv
+  - psmserviceexthost.dll
+  - psmserviceexthost
+- uuid: 0c53aa2e-fb1c-49c5-bfb6-c54f8e5857cd
+  domain: MS-DLL
+  annotation: 'SyncController.dll: SyncController for managing sync of mail, contacts, calendar'
+  if_name: ActiveSyncServer
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - activesyncserver
+  - synccontroller.dll
+  - synccontroller
+- uuid: 923c9623-db7f-4b34-9e6d-e86580f8ca2a
+  domain: MS-DLL
+  annotation: 'SyncController.dll: SyncController for managing sync of mail, contacts, calendar'
+  if_name: AccountsMgmtRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - accountsmgmtrpc
+  - synccontroller.dll
+  - synccontroller
+- uuid: 0d3c7f20-1c8d-4654-a1b3-51563b298bda
+  domain: MS-DLL
+  annotation: 'usermgr.dll: Runtime components required for multi-user interaction'
+  if_name: IUserMarshalData
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - iusermarshaldata
+  - usermgr.dll
+  - usermgr
+- uuid: b18fbab6-56f8-4702-84e0-41053293a869
+  domain: MS-DLL
+  annotation: 'usermgr.dll: Runtime components required for multi-user interaction'
+  if_name: usermgr
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - usermgr
+  - usermgr.dll
+- uuid: 0fc77b1a-95d8-4a2e-a0c0-cff54237462b
+  domain: MS-DLL
+  annotation: 'modernexecserver.dll: Modern Execution Server'
+  if_name: FmMuxSrvNotificationCoreUI
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - fmmuxsrvnotificationcoreui
+  - modernexecserver.dll
+  - modernexecserver
+- uuid: 8ec21e98-b5ce-4916-a3d6-449fa428a007
+  domain: MS-DLL
+  annotation: 'modernexecserver.dll: Modern Execution Server'
+  if_name: FmMuxSrvCoreUI
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - fmmuxsrvcoreui
+  - modernexecserver.dll
+  - modernexecserver
+- uuid: b1ef227e-dfa5-421e-82bb-67a6a129c496
+  domain: MS-DLL
+  annotation: 'modernexecserver.dll: Modern Execution Server'
+  if_name: FmMuxSrv
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - fmmuxsrv
+  - modernexecserver.dll
+  - modernexecserver
+- uuid: 1a0d010f-1c33-432c-b0f5-8cf4e8053099
+  domain: MS-DLL
+  annotation: 'srvsvc.dll: Server Service'
+  if_name: IdSegSrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - idsegsrv
+  - srvsvc.dll
+  - srvsvc
+- uuid: 29770a8f-829b-4158-90a2-78cd488501f7
+  domain: MS-DLL
+  annotation: 'sessenv.dll: Remote Desktop Configuration service'
+  if_name: TSSDFarmRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - tssdfarmrpc
+  - sessenv.dll
+  - sessenv
+- uuid: b12fd546-c875-4b41-97d8-950487662202
+  domain: MS-DLL
+  annotation: 'sessenv.dll: Remote Desktop Configuration service'
+  if_name: TSSDRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - tssdrpc
+  - sessenv.dll
+  - sessenv
+- uuid: 2d24ff0b-1bab-404c-a0fd-42c85577bf68
+  domain: MS-DLL
+  annotation: 'NgcCtnrSvc.dll: Microsoft Passport Container Service'
+  if_name: NgcHandlerRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ngchandlerrpc
+  - ngcctnrsvc.dll
+  - ngcctnrsvc
+- uuid: 2e6035b2-e8f1-41a7-a044-656b439c4c34
+  domain: MS-DLL
+  annotation: 'httpprxm.dll: Proxy Manager'
+  if_name: ProxyMgr
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - proxymgr
+  - httpprxm.dll
+  - httpprxm
+- uuid: c36be077-e14b-4fe9-8abc-e856ef4f048b
+  domain: MS-DLL
+  annotation: 'httpprxm.dll: Proxy Manager'
+  if_name: RpcSrvProxyMgr
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rpcsrvproxymgr
+  - httpprxm.dll
+  - httpprxm
+- uuid: 33d84484-3626-47ee-8c6f-e7e98b113be1
+  domain: MS-DLL
+  annotation: 'WPTaskScheduler.dll: WP Task Scheduler'
+  if_name: TaskScheduler
+  if_versions: [v2.0]
+  endpoints: []
+  keywords:
+  - dll
+  - taskscheduler
+  - wptaskscheduler.dll
+  - wptaskscheduler
+- uuid: 3573e5f2-cfe7-4a79-845f-fe7c68823738
+  domain: MS-DLL
+  annotation: 'phoneservice.dll: phone calls and other telephony related functionality'
+  if_name: PhoneRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - phonerpc
+  - phoneservice.dll
+  - phoneservice
+- uuid: 68227ae7-9a32-45b0-8472-bf9619965838
+  domain: MS-DLL
+  annotation: 'phoneservice.dll: phone calls and other telephony related functionality'
+  if_name: PhoneRpc1
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - phonerpc1
+  - phoneservice.dll
+  - phoneservice
+- uuid: 8be456ec-9244-4d10-88e8-1ddf1baa9ade
+  domain: MS-DLL
+  annotation: 'phoneservice.dll: phone calls and other telephony related functionality'
+  if_name: PhoneRpc2
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - phonerpc2
+  - phoneservice.dll
+  - phoneservice
+- uuid: ae58b386-c914-4a73-ba5c-2c3e2749e478
+  domain: MS-DLL
+  annotation: 'phoneservice.dll: phone calls and other telephony related functionality'
+  if_name: PhoneRpc3
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - phonerpc3
+  - phoneservice.dll
+  - phoneservice
+- uuid: f26e2372-d601-44f0-84b8-2591d2af2f82
+  domain: MS-DLL
+  annotation: 'phoneservice.dll: phone calls and other telephony related functionality'
+  if_name: PhoneRpc4
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - phonerpc4
+  - phoneservice.dll
+  - phoneservice
+- uuid: 3a9ef155-691d-4449-8d05-09ad57031823
+  domain: MS-DLL
+  annotation: 'schedsvc.dll: Task Scheduler Service'
+  if_name: I_pSchRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - i_pschrpc
+  - schedsvc.dll
+  - schedsvc
+- uuid: 43890c94-bfd7-4655-ad6a-b4a68397cdcb
+  domain: MS-DLL
+  annotation: 'pimindexmaintenance.dll: contacts indexing and other user data related tasks'
+  if_name: PimIMService
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - pimimservice
+  - pimindexmaintenance.dll
+  - pimindexmaintenance
+- uuid: 4b112204-0e19-11d3-b42b-0000f81feb9f
+  domain: MS-DLL
+  annotation: 'ssdpsrv.dll: SSDP service'
+  if_name: ssdpsrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ssdpsrv
+  - ssdpsrv.dll
+- uuid: 4be96a0f-9f52-4729-a51d-c70610f118b0
+  domain: MS-DLL
+  annotation: 'wbiosrvc.dll: Windows Biometric Service'
+  if_name: WinBioCredentialManager
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - winbiocredentialmanager
+  - wbiosrvc.dll
+  - wbiosrvc
+- uuid: c0e9671e-33c6-4438-9464-56b2e1b1c7b4
+  domain: MS-DLL
+  annotation: 'wbiosrvc.dll: Windows Biometric Service'
+  if_name: WinBioServer
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - winbioserver
+  - wbiosrvc.dll
+  - wbiosrvc
+- uuid: 509bc7ae-77be-4ee8-b07c-0d096bb44345
+  domain: MS-DLL
+  annotation: 'DispBroker.Desktop.dll: Display Policy Service'
+  if_name: ColorManagementRpcServer
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - colormanagementrpcserver
+  - desktop.dll
+  - desktop
+- uuid: 4c8d0bef-d7f1-49f0-9102-caa05f58d114
+  domain: MS-DLL
+  annotation: 'nlasvc.dll: Network Location Awareness 2'
+  if_name: nlasvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - nlasvc
+  - nlasvc.dll
+- uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+  domain: MS-DLL
+  annotation: 'keyiso.dll: CNG Key Isolation Service'
+  if_name: TokenBindingApi
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - tokenbindingapi
+  - keyiso.dll
+  - keyiso
+- uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+  domain: MS-DLL
+  annotation: 'keyiso.dll: CNG Key Isolation Service'
+  if_name: SymmetricPopKeyApi
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - symmetricpopkeyapi
+  - keyiso.dll
+  - keyiso
+- uuid: 5222821f-d5e2-4885-84f1-5f6185a0ec41
+  domain: MS-DLL
+  annotation: 'ncbservice.dll: Network Connection Broker'
+  if_name: NcbRpcSrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ncbrpcsrv
+  - ncbservice.dll
+  - ncbservice
+- uuid: 880fd55e-43b9-11e0-b1a8-cf4edfd72085
+  domain: MS-DLL
+  annotation: 'ncbservice.dll: Network Connection Broker'
+  if_name: NcbKapi
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ncbkapi
+  - ncbservice.dll
+  - ncbservice
+- uuid: e40f7b57-7a25-4cd3-a135-7f7d3df9d16b
+  domain: MS-DLL
+  annotation: 'ncbservice.dll: Network Connection Broker'
+  if_name: NcbRpcSrv1
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ncbrpcsrv1
+  - ncbservice.dll
+  - ncbservice
+- uuid: 54b4c689-969a-476f-8dc2-990885e9f562
+  domain: MS-DLL
+  annotation: 'storsvc.dll: Storage Service'
+  if_name: StorSvc
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - storsvc
+  - storsvc.dll
+- uuid: be7f785e-0e3a-4ab7-91de-7e46e443be29
+  domain: MS-DLL
+  annotation: 'storsvc.dll: Storage Service'
+  if_name: StorSvc1
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - storsvc1
+  - storsvc.dll
+  - storsvc
+- uuid: 88abcbc3-34ea-76ae-8215-767520655a23
+  domain: MS-DLL
+  annotation: 'resourcepolicyserver.dll: Resource Policy RM Service Extension'
+  if_name: GcsSrv
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - gcssrv
+  - resourcepolicyserver.dll
+  - resourcepolicyserver
+- uuid: 64d1d045-f675-460b-8a94-570246b36dab
+  domain: MS-DLL
+  annotation: 'ClipSVC.dll: Client License Service'
+  if_name: ClipSvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - clipsvc
+  - clipsvc.dll
+- uuid: 55e6b932-1979-45d6-90c5-7f6270724112
+  domain: MS-DLL
+  annotation: 'resourcepolicyserver.dll: Resource Policy RM Service Extension'
+  if_name: RpSrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rpsrv
+  - resourcepolicyserver.dll
+  - resourcepolicyserver
+- uuid: 76c217bc-c8b4-4201-a745-373ad9032b1a
+  domain: MS-DLL
+  annotation: 'resourcepolicyserver.dll: Resource Policy RM Service Extension'
+  if_name: RpSrv1
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rpsrv1
+  - resourcepolicyserver.dll
+  - resourcepolicyserver
+- uuid: 650a7e26-eab8-5533-ce43-9c1dfce11511
+  domain: MS-DLL
+  annotation: 'rascustom.dll: Custom Protocol Engine'
+  if_name: RasCustomRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rascustomrpc
+  - rascustom.dll
+  - rascustom
+- uuid: 1377d115-98fd-4034-b574-111156ca239c
+  domain: MS-DLL
+  annotation: 'systemeventsbrokerserver.dll: System Events Broker'
+  if_name: CSebiPublisher
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - csebipublisher
+  - systemeventsbrokerserver.dll
+  - systemeventsbrokerserver
+- uuid: 7642249b-84c2-4404-b6eb-1e0a2458839a
+  domain: MS-DLL
+  annotation: 'NgcCtnrSvc.dll: Microsoft Passport Container Service'
+  if_name: NgcSecureBioHandlerRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ngcsecurebiohandlerrpc
+  - ngcctnrsvc.dll
+  - ngcctnrsvc
+- uuid: 697dcda9-3ba9-4eb2-9247-e11f1901b0d2
+  domain: MS-DLL
+  annotation: 'systemeventsbrokerserver.dll: System Events Broker'
+  if_name: CSebiEvent
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - csebievent
+  - systemeventsbrokerserver.dll
+  - systemeventsbrokerserver
+- uuid: 9b008953-f195-4bf9-bde0-4471971e58ed
+  domain: MS-DLL
+  annotation: 'systemeventsbrokerserver.dll: System Events Broker'
+  if_name: SebiEvent
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - sebievent
+  - systemeventsbrokerserver.dll
+  - systemeventsbrokerserver
+- uuid: 7a20fcec-dec4-4c59-be57-212e8f65d3de
+  domain: MS-DLL
+  annotation: 'SgrmBroker.exe: System Guard Runtime Monitor Broker Service'
+  if_name: SgrmBroker
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - sgrmbroker
+  - sgrmbroker.exe
+  - exe
+- uuid: 7aeb6705-3ae6-471a-882d-f39c109edc12
+  domain: MS-DLL
+  annotation: 'wcmsvc.dll: Windows Connection Manager Service'
+  if_name: SetOperatorRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - setoperatorrpc
+  - wcmsvc.dll
+  - wcmsvc
+- uuid: abfb6ca3-0c5e-4734-9285-0aee72fe8d1c
+  domain: MS-DLL
+  annotation: 'wcmsvc.dll: Windows Connection Manager Service'
+  if_name: WcmSvcRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wcmsvcrpc
+  - wcmsvc.dll
+  - wcmsvc
+- uuid: b37f900a-eae4-4304-a2ab-12bb668c0188
+  domain: MS-DLL
+  annotation: 'wcmsvc.dll: Windows Connection Manager Service'
+  if_name: WcmSvcRpc1
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wcmsvcrpc1
+  - wcmsvc.dll
+  - wcmsvc
+- uuid: c2d1b5dd-fa81-4460-9dd6-e7658b85454b
+  domain: MS-DLL
+  annotation: 'wcmsvc.dll: Windows Connection Manager Service'
+  if_name: WcmSvcProxyInfoRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wcmsvcproxyinforpc
+  - wcmsvc.dll
+  - wcmsvc
+- uuid: e7f76134-9ef5-4949-a2d6-3368cc0988f3
+  domain: MS-DLL
+  annotation: 'wcmsvc.dll: Windows Connection Manager Service'
+  if_name: WcmSvcMgrRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wcmsvcmgrrpc
+  - wcmsvc.dll
+  - wcmsvc
+- uuid: f44e62af-dab1-44c2-8013-049a9de417d6
+  domain: MS-DLL
+  annotation: 'wcmsvc.dll: Windows Connection Manager Service'
+  if_name: WcmSvcCapRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wcmsvccaprpc
+  - wcmsvc.dll
+  - wcmsvc
+- uuid: 7f1343fe-50a9-4927-a778-0c5859517bac
+  domain: MS-DLL
+  annotation: 'wkssvc.dll: Workstation Service'
+  if_name: DfsDsSvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - dfsdssvc
+  - wkssvc.dll
+  - wkssvc
+- uuid: f47433c3-3e9d-4157-aad4-83aa1f5c2d4c
+  domain: MS-DLL
+  annotation: 'mpssvc.dll: Microsoft Protection Service'
+  if_name: FwNetIsolationRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - fwnetisolationrpc
+  - mpssvc.dll
+  - mpssvc
+- uuid: 2fb92682-6599-42dc-ae13-bd2ca89bd11c
+  domain: MS-DLL
+  annotation: 'MPSSVC.dll: Microsoft Protection Service'
+  if_name: FwRpc1
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - fwrpc1
+  - mpssvc.dll
+  - mpssvc
+- uuid: 7f9d11bf-7fb9-436b-a812-b2d50c5d4c03
+  domain: MS-DLL
+  annotation: 'MPSSVC.dll: Microsoft Protection Service'
+  if_name: FwRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - fwrpc
+  - mpssvc.dll
+  - mpssvc
+- uuid: a111f1c6-5923-47c0-9a68-d0bafb577901
+  domain: MS-DLL
+  annotation: 'NetSetupShim.dll: Network Configuration API'
+  if_name: NetSetupShim
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - netsetupshim
+  - netsetupshim.dll
+- uuid: a111f1c5-5923-47c0-9a68-d0bafb577901
+  domain: MS-DLL
+  annotation: 'NetSetupSvc.dll: Network Setup Service'
+  if_name: NetSetupSvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - netsetupsvc
+  - netsetupsvc.dll
+- uuid: 8337aebc-5564-46fd-bc41-7798f18d2e4b
+  domain: MS-DLL
+  annotation: 'ngcsvc.dll: Microsoft Passport Service'
+  if_name: DeviceCredentialMgrRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - devicecredentialmgrrpc
+  - ngcsvc.dll
+  - ngcsvc
+- uuid: 8bef2320-f308-4720-b913-0129cecfa6b9
+  domain: MS-DLL
+  annotation: 'NgcCtnrSvc.dll: Microsoft Passport Container Service'
+  if_name: VscRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - vscrpc
+  - ngcctnrsvc.dll
+  - ngcctnrsvc
+- uuid: 9cbc9d3a-7586-4814-8d70-18737dcbe523
+  domain: MS-DLL
+  annotation: 'ngcsvc.dll: Microsoft Passport Service'
+  if_name: NgcLocalAccountVaultRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ngclocalaccountvaultrpc
+  - ngcsvc.dll
+  - ngcsvc
+- uuid: a3bae3f7-bf97-49fb-b48d-2a5e8657b436
+  domain: MS-DLL
+  annotation: 'PhoneProviders.dll: Phonespecific Component Provider for Windows Telephony Stack'
+  if_name: PhoneProviders
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - phoneproviders
+  - phoneproviders.dll
+- uuid: a4b8d482-80ce-40d6-934d-b22a01a44fe7
+  domain: MS-DLL
+  annotation: 'licensemanagersvc.dll: Windows License Manager'
+  if_name: LicenseManagerSvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - licensemanagersvc
+  - licensemanagersvc.dll
+- uuid: a500d4c6-0dd1-4543-bc0c-d5f93486eaf8
+  domain: MS-DLL
+  annotation: 'timebrokerserver.dll: Time Event Broker'
+  if_name: TbiRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - tbirpc
+  - timebrokerserver.dll
+  - timebrokerserver
+- uuid: a69816f5-83b6-4d48-8633-067f99f5f2d3
+  domain: MS-DLL
+  annotation: 'Microsoft.Graphics.Display.DisplayEnhancementService.dll: Microsoft Graphics Display Enhancement Service'
+  if_name: DeManagementRpcServer
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - demanagementrpcserver
+  - displayenhancementservice.dll
+  - displayenhancementservice
+- uuid: b54e9aa3-cf29-4f21-a8ea-98c5850ce296
+  domain: MS-DLL
+  annotation: 'Microsoft.Graphics.Display.DisplayEnhancementService.dll: Microsoft Graphics Display Enhancement Service'
+  if_name: DeoRpcServer
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - deorpcserver
+  - displayenhancementservice.dll
+  - displayenhancementservice
+- uuid: b58aa02e-2884-4e97-8176-4ee06d794184
+  domain: MS-DLL
+  annotation: 'sysmain.dll: Superfetch Service Host'
+  if_name: PfRpcServerSuperfetch
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - pfrpcserversuperfetch
+  - sysmain.dll
+  - sysmain
+- uuid: c100beab-d33a-4a4b-bf23-bbef4663d017
+  domain: MS-DLL
+  annotation: 'wcncsvc.dll: Windows Connect Now - Config Registrar Service'
+  if_name: WcnpRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wcnprpc
+  - wcncsvc.dll
+  - wcncsvc
+- uuid: c100beac-d33a-4a4b-bf23-bbef4663d017
+  domain: MS-DLL
+  annotation: 'wcncsvc.dll: Windows Connect Now - Config Registrar Service'
+  if_name: WcnTransportRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wcntransportrpc
+  - wcncsvc.dll
+  - wcncsvc
+- uuid: c225e799-29de-42af-bc05-1e2127cc056e
+  domain: MS-DLL
+  annotation: 'ngcsvc.dll: Microsoft Passport Service'
+  if_name: NgcMgmt
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ngcmgmt
+  - ngcsvc.dll
+  - ngcsvc
+- uuid: c8ba73d2-3d55-429c-8e9a-c44f006f69fc
+  domain: MS-DLL
+  annotation: 'userdataservice.dll: The endpoint for 3rd party APIs to read/write user data'
+  if_name: UdmSvc
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - udmsvc
+  - userdataservice.dll
+  - userdataservice
+- uuid: d4051bde-9cdd-4910-b393-4aa85ec3c482
+  domain: MS-DLL
+  annotation: 'tellib.dll: Microsoft Telemetry Library'
+  if_name: UtcAdminApi
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - utcadminapi
+  - tellib.dll
+  - tellib
+- uuid: d9844ed9-f72a-4745-a4a1-ee71f950781d
+  domain: MS-DLL
+  annotation: 'ngcsvc.dll: Microsoft Passport Service'
+  if_name: NgcMgmt1
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ngcmgmt1
+  - ngcsvc.dll
+  - ngcsvc
+- uuid: e6f89680-fc98-11e3-80d4-10604b681cfa
+  domain: MS-DLL
+  annotation: 'NgcCtnrGidsHandler.dll: Microsoft Passport Container GIDS Handler'
+  if_name: GidsHandlerRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - gidshandlerrpc
+  - ngcctnrgidshandler.dll
+  - ngcctnrgidshandler
+- uuid: e7a216af-1ec1-447f-8d3f-a87278db564d
+  domain: MS-DLL
+  annotation: 'vmcompute.exe: VM Compute'
+  if_name: HcsRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - hcsrpc
+  - vmcompute.exe
+  - vmcompute
+  - exe
+- uuid: e8748f69-a2a4-40df-9366-62dbeb696e26
+  domain: MS-DLL
+  annotation: 'unistore.dll: Unified Store'
+  if_name: USSvc
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ussvc
+  - unistore.dll
+  - unistore
+- uuid: f2c9b409-c1c9-4100-8639-d8ab1486694a
+  domain: MS-DLL
+  annotation: 'wkssvc.dll: Workstation Service'
+  if_name: ClusterConnRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - clusterconnrpc
+  - wkssvc.dll
+  - wkssvc
+- uuid: eb081a0d-10ee-478a-a1dd-50995283e7a8
+  domain: MS-DLL
+  annotation: 'wkssvc.dll: Workstation Service'
+  if_name: WitnessNodesRpc
+  if_versions: [v3.0]
+  endpoints: []
+  keywords:
+  - dll
+  - witnessnodesrpc
+  - wkssvc.dll
+  - wkssvc
+- uuid: f3f09ffd-fbcf-4291-944d-70ad6e0e73bb
+  domain: MS-DLL
+  annotation: 'logoncontroller.dll: Logon UX Controller'
+  if_name: LogonWluirRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - logonwluirrpc
+  - logoncontroller.dll
+  - logoncontroller
+- uuid: fd6b7e61-2bed-4d48-a267-d746fe449fed
+  domain: MS-DLL
+  annotation: 'ngcsvc.dll: Microsoft Passport Service'
+  if_name: DeviceCredentialRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - devicecredentialrpc
+  - ngcsvc.dll
+  - ngcsvc
+- uuid: 30034843-029d-46ec-8fff-5d12987f85c4
+  domain: MS-DLL
+  annotation: 'NgcCtnrSvc.dll: Microsoft Passport Container Service'
+  if_name: NgcRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ngcrpc
+  - ngcctnrsvc.dll
+  - ngcctnrsvc
+- uuid: a00e7603-27b5-4a1a-8452-d001f41188a9
+  domain: MS-DLL
+  annotation: 'SECOMN.DLL: Sound Research Corp'
+  if_name: SECOMNRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - secomnrpc
+  - secomn.dll
+  - secomn
+- uuid: c3f42c6e-d4cc-4e5a-938b-9c5e8a5d8c2e
+  domain: MS-DLL
+  annotation: 'wlanmsm.dll: Windows Wireless LAN 802.11 MSM'
+  if_name: ihvmsmapi
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ihvmsmapi
+  - wlanmsm.dll
+  - wlanmsm
+- uuid: af7fead8-c34a-461f-8894-6d6f0e5eddcd
+  domain: MS-DLL
+  annotation: 'wifinetworkmanager.dll: Wireless Network Manager'
+  if_name: WiFiUserRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wifiuserrpc
+  - wifinetworkmanager.dll
+  - wifinetworkmanager
+- uuid: 266f33b4-c7c1-4bd1-8f52-ddb8f2214eb0
+  domain: MS-DLL
+  annotation: 'wlansvc.dll: Windows WLAN AutoConfig Service'
+  if_name: WlanSvcLowPriv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wlansvclowpriv
+  - wlansvc.dll
+  - wlansvc
+- uuid: 266f33b4-c7c1-4bd1-8f52-ddb8f2214ea9
+  domain: MS-DLL
+  annotation: 'wlansvc.dll: Windows WLAN AutoConfig Service'
+  if_name: WlanSvc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wlansvc
+  - wlansvc.dll
+- uuid: 25952c5d-7976-4aa1-a3cb-c35f7ae79d1b
+  domain: MS-DLL
+  annotation: 'wlansvc.dll: Windows WLAN AutoConfig Service'
+  if_name: WDiagRpc
+  if_versions: [v1.1]
+  endpoints: []
+  keywords:
+  - dll
+  - wdiagrpc
+  - wlansvc.dll
+  - wlansvc
+- uuid: 98e96949-bc59-47f1-92d1-8c25b46f85c7
+  domain: MS-DLL
+  annotation: 'wlanext.exe: Windows Wireless LAN 802.11 Extensibility Framework'
+  if_name: RpcDot11ExtIhv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rpcdot11extihv
+  - wlanext.exe
+  - wlanext
+  - exe
+- uuid: 07b91411-14fe-4856-8982-c3fa7581d784
+  domain: MS-DLL
+  annotation: 'PackageStateRoaming.dll: Package State Roaming'
+  if_name: SignalRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - signalrpc
+  - packagestateroaming.dll
+  - packagestateroaming
+- uuid: 572e35b4-1344-4565-96a1-f5df3bfa89bb
+  domain: MS-DLL
+  annotation: 'wlidsvc.dll: Microsoft Account Service '
+  if_name: LiveIdSvcNotifyRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - liveidsvcnotifyrpc
+  - wlidsvc.dll
+  - wlidsvc
+- uuid: cc105610-da03-467e-bc73-5b9e2937458d
+  domain: MS-DLL
+  annotation: 'wlidsvc.dll: Microsoft Account Service '
+  if_name: LiveIdSvcRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - liveidsvcrpc
+  - wlidsvc.dll
+  - wlidsvc
+- uuid: faf2447b-b348-4feb-8dbe-beee5b7f7778
+  domain: MS-DLL
+  annotation: 'wlidsvc.dll: Microsoft Account Service '
+  if_name: OnlineProviderCertRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - onlineprovidercertrpc
+  - wlidsvc.dll
+  - wlidsvc
+- uuid: 2f5f6521-cb55-1059-b446-00df0bce31db
+  domain: MS-DLL
+  annotation: 'unimdm.tsp: Universal Modem Driver TSP'
+  if_name: UnimdmRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - unimdmrpc
+- uuid: 3cc5a774-9689-4395-83d9-2d51d69adc0f
+  domain: MS-DLL
+  annotation: 'Microsoft.Graphics.Display.DisplayEnhancementService.dll: Microsoft Graphics Display Enhancement Service'
+  if_name: ColorAdapterRpcServer
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - coloradapterrpcserver
+  - displayenhancementservice.dll
+  - displayenhancementservice
+- uuid: 8833d1d0-965f-4216-b3e9-fbe58cad3100
+  domain: MS-DLL
+  annotation: 'SCardSvr.dll: Smart Card Resource Management Server'
+  if_name: SCardCacheRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - scardcacherpc
+  - scardsvr.dll
+  - scardsvr
+- uuid: c6b5235a-e413-481d-9ac8-31681b1faaf5
+  domain: MS-DLL
+  annotation: 'SCardSvr.dll: Smart Card Resource Management Server'
+  if_name: SCardRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - scardrpc
+  - scardsvr.dll
+  - scardsvr
+- uuid: 5dea026d-f999-40b1-a234-2164fd086783
+  domain: MS-DLL
+  annotation: 'Windows.Internal.Bluetooth.dll: Windows Internal Bluetooth'
+  if_name: BthEvtBrRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - bthevtbrrpc
+  - bluetooth.dll
+  - bluetooth
+- uuid: 0a533b58-0ed9-4085-b6e8-95795e147972
+  domain: MS-DLL
+  annotation: 'Microsoft.Bluetooth.Service.dll: Microsoft Bluetooth Service'
+  if_name: RpcBluetoothGatt
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - rpcbluetoothgatt
+  - service.dll
+  - service
+- uuid: ae2dc901-312d-41df-8b79-e835e63db874
+  domain: MS-DLL
+  annotation: 'AppXDeploymentServer.dll: AppX Deployment Server'
+  if_name: AppXSetTrustLabelRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - appxsettrustlabelrpc
+  - appxdeploymentserver.dll
+  - appxdeploymentserver
+- uuid: ff9fd3c4-742e-45e0-91dd-2f5bc632a1df
+  domain: MS-DLL
+  annotation: 'AppXDeploymentServer.dll: AppX Deployment Server'
+  if_name: AppXSetTrustLabel1Rpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - appxsettrustlabel1rpc
+  - appxdeploymentserver.dll
+  - appxdeploymentserver
+- uuid: 847c6e33-7372-4a11-9b86-f5a4af446dd8
+  domain: MS-DLL
+  annotation: 'VoipRT.dll: VoIP Runtime'
+  if_name: VoIpRpc
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - voiprpc
+  - voiprt.dll
+  - voiprt
+- uuid: 9fa6aff6-e0ad-48df-a6b4-e64be66a17a1
+  domain: MS-DLL
+  annotation: 'WFDSConMgrSvc.dll: WiFi Direct Services Connection Manager Service'
+  if_name: WFDSConMgrRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wfdsconmgrrpc
+  - wfdsconmgrsvc.dll
+  - wfdsconmgrsvc
+- uuid: 6ddfc7d1-7fca-44eb-a279-e9988f4db32b
+  domain: MS-DLL
+  annotation: 'FrameServer.dll: Windows Camera Frame Server'
+  if_name: FrameServerRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - frameserverrpc
+  - frameserver.dll
+  - frameserver
+- uuid: b4cb7611-ad0b-4c2d-b35f-ffe45785c709
+  domain: MS-DLL
+  annotation: 'wwansvc.dll: WWAN Auto Config Service'
+  if_name: WwanRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wwanrpc
+  - wwansvc.dll
+  - wwansvc
+- uuid: 9c56d792-0591-4431-8d1f-681bfd80e4c0
+  domain: MS-DLL
+  annotation: 'wwansvc.dll: WWAN Auto Config Service'
+  if_name: Wwan2Rpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wwan2rpc
+  - wwansvc.dll
+  - wwansvc
+- uuid: de2daf3b-5c16-4613-b204-d810ee629d9e
+  domain: MS-DLL
+  annotation: 'wwansvc.dll: WWAN Auto Config Service'
+  if_name: WwanMgmtRpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - wwanmgmtrpc
+  - wwansvc.dll
+  - wwansvc
+- uuid: c503f532-443a-4c69-8300-ccd1fbdb3839
+  domain: MS-DLL
+  annotation: 'mpsvc.dll: Windows Defender Service'
+  if_name: IMpService
+  if_versions: [v2.0]
+  endpoints: []
+  keywords:
+  - dll
+  - impservice
+  - mpsvc.dll
+  - mpsvc
+- uuid: c6f3ee72-ce7e-11d1-b71e-00c04fc3111a
+  domain: RPCSS
+  annotation: Machine Activator Control
+  if_name: IMachineActivatorControl
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - rpcss
+  - imachineactivatorcontrol
+- uuid: 00000136-0000-0000-c000-000000000046
+  domain: RPCSS
+  annotation: The ISCM Local Activactor
+  if_name: ISCMLocalActivator
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - rpcss
+  - iscmlocalactivator
+- uuid: 412f241e-c12a-11ce-abff-0020af6e7a17
+  domain: RPCSS
+  annotation: The ISCM RPC interface
+  if_name: ISCM
+  if_versions: [v0.2]
+  endpoints:
+  - ncacn_ip_tcp:135
+  keywords:
+  - rpcss
+  - iscm
+- uuid: b9e79e60-3d52-11ce-aaa1-00006901293f
+  domain: RPCSS
+  annotation: Running Object Table Interface
+  if_name: IROT
+  if_versions: [v0.2]
+  endpoints:
+  - ncacn_ip_tcp:135
+  keywords:
+  - rpcss
+  - irot
+- uuid: e60c73e6-88f9-11cf-9af1-0020af6e72f4
+  domain: RPCSS
+  annotation: Local Object Exporter Service
+  if_name: ILocalObjectExporter
+  if_versions: [v2.0]
+  endpoints:
+  - ncacn_ip_tcp:135
+  keywords:
+  - rpcss
+  - ilocalobjectexporter
+- uuid: 0b0a6584-9e0f-11cf-a3cf-00805f68cb1b
+  domain: RPCSS
+  annotation: Local Endpoint Mapper
+  if_name: localepmp
+  if_versions: [v1.1]
+  endpoints: []
+  keywords:
+  - rpcss
+  - localepmp
+- uuid: 1d55b526-c137-46c5-ab79-638f2a68e869
+  domain: RPCSS
+  annotation: Dbgidl
+  if_name: Dbgidl
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - rpcss
+  - dbgidl
+- uuid: 64fe0b7f-9ef5-4553-a7db-9a1975777554
+  domain: RPCSS
+  annotation: Fwidl
+  if_name: Fwidl
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - rpcss
+  - fwidl
+- uuid: 4f32adc8-6052-4a04-8701-293ccf2096f0
+  domain: MS-DLL
+  annotation: 'sspisrv.dll: LSA SSPI RPC interface'
+  if_name: sspirpc
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - sspirpc
+  - sspisrv.dll
+  - sspisrv
+- uuid: d25576e4-00d2-43f7-98f9-b4c0724158f9
+  domain: MS-DLL
+  annotation: 'lsasrv.dll: LSA Server '
+  if_name: lsasrv
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - lsasrv
+  - lsasrv.dll
+- uuid: 00000134-0000-0000-c000-000000000046
+  domain: MS-DCOM
+  annotation: The OID Rundown Interface
+  if_name: IRundown
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dcom
+  - irundown
+- uuid: 18f70770-8e64-11cf-9af1-0020af6e72f4
+  domain: MS-DCOM
+  annotation: 'combase.dll: Microsoft COM for Windows'
+  if_name: combase
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dcom
+  - combase
+  - combase.dll
+  - dll
+- uuid: a2c45f7c-7d32-46ad-96f5-adafb486be74
+  domain: MS-DLL
+  annotation: 'Sens.dll: System Event Notification Service (SENS)'
+  if_name: servicechannel
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - servicechannel
+  - sens.dll
+  - sens
+- uuid: 93149ca2-973b-11d1-8c39-00c04fb984f9
+  domain: MS-DLL
+  annotation: SceSvc
+  if_name: SceSvc
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dll
+  - scesvc
+- uuid: f50a28cf-5c9c-4f7e-9d80-e25e16e18c59
+  domain: MS-WMI
+  annotation: Internal_IWbemServices
+  if_name: Internal_IWbemServices
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - internal_iwbemservices
+- uuid: 1be41572-91dd-11d1-aeb2-00c04fb68820
+  domain: MS-WMI
+  annotation: IWbemProviderInit
+  if_name: IWbemProviderInit
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemproviderinit
+- uuid: 6919dd07-1637-4611-a8a7-c16fac5b2d53
+  domain: MS-WMI
+  annotation: Internal_IWbemProviderInit
+  if_name: Internal_IWbemProviderInit
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - internal_iwbemproviderinit
+- uuid: fec1b0ac-5808-4033-a915-c0185934581e
+  domain: MS-WMI
+  annotation: _IWmiProviderSite
+  if_name: _IWmiProviderSite
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - _iwmiprovidersite
+- uuid: e245105b-b06e-11d0-ad61-00c04fd8fdff
+  domain: MS-WMI
+  annotation: IWbemEventProvider
+  if_name: IWbemEventProvider
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemeventprovider
+- uuid: fd450835-cf1b-4c87-9fd2-5e0d42fde081
+  domain: MS-WMI
+  annotation: Internal_IWbemEventProvider
+  if_name: Internal_IWbemEventProvider
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - internal_iwbemeventprovider
+- uuid: 580acaf8-fa1c-11d0-ad72-00c04fd8fdff
+  domain: MS-WMI
+  annotation: IWbemEventProviderQuerySink
+  if_name: IWbemEventProviderQuerySink
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemeventproviderquerysink
+- uuid: 8a0dc377-a9d3-41cb-bd69-ae1fdaf2dc68
+  domain: MS-WMI
+  annotation: Internal_IWbemEventProviderQuerySink
+  if_name: Internal_IWbemEventProviderQuerySink
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - internal_iwbemeventproviderquerysink
+- uuid: 631f7d96-d993-11d2-b339-00105a1f4aaf
+  domain: MS-WMI
+  annotation: IWbemEventProviderSecurity
+  if_name: IWbemEventProviderSecurity
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - iwbemeventprovidersecurity
+- uuid: df2373f5-efb2-475c-ad58-3102d61967d4
+  domain: MS-WMI
+  annotation: Internal_IWbemEventProviderSecurity
+  if_name: Internal_IWbemEventProviderSecurity
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - wmi
+  - internal_iwbemeventprovidersecurity
+- uuid: 00000132-0000-0000-c000-000000000046
+  domain: MS-DCOM
+  annotation: ILocalSystemActivator
+  if_name: ILocalSystemActivator
+  if_versions: [v0.0]
+  endpoints: []
+  keywords:
+  - dcom
+  - ilocalsystemactivator
+- uuid: 2a82bb21-e44f-4791-9aa1-dfae788e2f43
+  domain: MS-DLL
+  annotation: 'UBPM.dll: Unified Background Process Manager'
+  if_name: UBPM
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - dll
+  - ubpm
+  - ubpm.dll
+- uuid: 17fc11e9-c258-4b8d-8d07-2f4125156244
+  domain: MIMICOM
+  annotation: 'Mimikatz: Open source credential-dumping utility'
+  if_name: Mimicom
+  if_versions: [v1.0]
+  endpoints: []
+  keywords:
+  - mimicom
+- uuid: 0a46e05f-ded7-4890-9dca-8256bb7ad510
+  domain: MS-DLL
+  annotation: 'CSFalconService.exe: CrowdStrike Falcon sensor'
+  if_name: CsIntegRpcServerEndPoint
+  if_versions: [v2.0]
+  endpoints: []
+  keywords:
+  - dll
+  - csintegrpcserverendpoint
+  - csfalconservice.exe
+  - csfalconservice
+  - exe
