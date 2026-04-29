@@ -788,6 +788,7 @@ var (
 	MSDCOMILocalSystemActivator                       = uuid.UUID{TimeLow: 0x132, TimeMid: 0x0, TimeHiAndVersion: 0x0, ClockSeqHiAndReserved: 0xc0, ClockSeqLow: 0x0, Node: [6]uint8{0x0, 0x0, 0x0, 0x0, 0x0, 0x46}}
 	MSDLLUBPM                                         = uuid.UUID{TimeLow: 0x2a82bb21, TimeMid: 0xe44f, TimeHiAndVersion: 0x4791, ClockSeqHiAndReserved: 0x9a, ClockSeqLow: 0xa1, Node: [6]uint8{0xdf, 0xae, 0x78, 0x8e, 0x2f, 0x43}}
 	MIMICOMMimicom                                    = uuid.UUID{TimeLow: 0x17fc11e9, TimeMid: 0xc258, TimeHiAndVersion: 0x4b8d, ClockSeqHiAndReserved: 0x8d, ClockSeqLow: 0x7, Node: [6]uint8{0x2f, 0x41, 0x25, 0x15, 0x62, 0x44}}
+	MSDLLCsIntegRpcServerEndPoint                     = uuid.UUID{TimeLow: 0xa46e05f, TimeMid: 0xded7, TimeHiAndVersion: 0x4890, ClockSeqHiAndReserved: 0x9d, ClockSeqLow: 0xca, Node: [6]uint8{0x82, 0x56, 0xbb, 0x7a, 0xd5, 0x10}}
 )
 
 type UUID uuid.UUID
@@ -2360,6 +2361,8 @@ func (u UUID) Describe() string {
 		return "MS-DLL: UBPM.dll: Unified Background Process Manager: UBPM"
 	case MIMICOMMimicom:
 		return "MIMICOM: Mimikatz: Open source credential-dumping utility: Mimicom"
+	case MSDLLCsIntegRpcServerEndPoint:
+		return "MS-DLL: CSFalconService.exe: CrowdStrike Falcon sensor: CsIntegRpcServerEndPoint"
 	}
 	return ""
 }
@@ -2476,6 +2479,8 @@ func (u UUID) WellKnownEndpoint() []string {
 		return []string{"ncacn_np:locator"}
 	case MSDLLNsiM:
 		return []string{"ncacn_np:locator"}
+	case RPCSSISCM:
+		return []string{"ncacn_ip_tcp:135"}
 	case RPCSSIROT:
 		return []string{"ncacn_ip_tcp:135"}
 	case RPCSSILocalObjectExporter:
@@ -4051,6 +4056,8 @@ func (u UUID) Name() string {
 		return "UBPM"
 	case MIMICOMMimicom:
 		return "Mimicom"
+	case MSDLLCsIntegRpcServerEndPoint:
+		return "CsIntegRpcServerEndPoint"
 	}
 	return ""
 }
