@@ -1,0 +1,156 @@
+<div class="content" name="EFSX_Datum" uuid="1d2fa232-d557-43fe-95e3-2d4ced7f7934"><p>The EFSX Datum represents the base type for every datum
+within the Version 4 and Version 5 EFSRPC Metadata and MUST be formatted as
+follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">StructureSize</td>
+  <td colspan="16">Role</td>
+ </tr>
+ <tr>
+  <td colspan="16">Type</td>
+  <td colspan="16">Flags</td>
+ </tr>
+</tbody></table><p><b>StructureSize (2 bytes): </b>The size in bytes of
+the EFSX Datum. It MUST be a 16-bit unsigned integer in little-endian format.</p><p><b>Role (2 bytes): </b>Specifies the EFSX Datum role.
+It MUST be a 16-bit unsigned integer in little-endian format.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x0000</td>
+  <td>The EFSX Datum has no defined role.</td>
+ </tr><tr>
+  <td>0x0001</td>
+  <td>The EFSX Datum contains a reference to a user&#39;s certificate store. This reference could be, for example, a certificate hash or the public key from a certificate.</td>
+ </tr><tr>
+  <td>0x0002</td>
+  <td>The EFSX Datum contains data specific to a protector type. See section 2.2.2.2.5 for valid protector types and their associated protector data format.</td>
+ </tr><tr>
+  <td>0x0003</td>
+  <td>The EFSX Datum contains information that is suitable for user display. For example, this could be the user name associated with a protector.</td>
+ </tr><tr>
+  <td>0x0004</td>
+  <td>The EFSX Datum contains information that identifies a private key container.</td>
+ </tr><tr>
+  <td>0x0005</td>
+  <td>The EFSX Datum contains information that identifies the provider name of a CSP or KSP.</td>
+ </tr><tr>
+  <td>0x0006</td>
+  <td>The EFSX Datum contains a user SID.</td>
+ </tr><tr>
+  <td>0x0007</td>
+  <td>The EFSX Datum contains the encrypted File Master Key (FMK).</td>
+ </tr><tr>
+  <td>0x0008</td>
+  <td>The EFSX Datum contains a user&#39;s public key.</td>
+ </tr><tr>
+  <td>0x0009</td>
+  <td>The EFSX Datum contains an ephemeral public key.</td>
+ </tr><tr>
+  <td>0x000a</td>
+  <td>The EFSX Datum contains the encrypted File Encryption Key (FEK).</td>
+ </tr><tr>
+  <td>0x000b</td>
+  <td>The EFSX Datum contains the file Initialization Vector (IV).</td>
+ </tr><tr>
+  <td>0x000c</td>
+  <td>The EFSX Datum contains a protector descriptor string.&lt;15&gt; This datum role MUST only be used when EFS_VERSION is 5.</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Type (2 bytes): </b>Specifies the EFSX Datum type.
+It MUST be a 16-bit unsigned integer in little-endian format.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>Reserved 0x0000</td>
+  <td>Reserved. Local use only.</td>
+ </tr><tr>
+  <td>EFSX_TYPE_BLOB 0x0001</td>
+  <td>The EFSX Datum MUST be formatted as specified in section 2.2.2.2.3.</td>
+ </tr><tr>
+  <td>EFSX_TYPE_DESCRIPTOR 0x0002</td>
+  <td>The EFSX Datum MUST be formatted as specified in section 2.2.2.2.4.</td>
+ </tr><tr>
+  <td>EFSX_TYPE_KEY_PROTECTOR 0x0003</td>
+  <td>The EFSX Datum MUST be formatted as specified in section 2.2.2.2.5.</td>
+ </tr><tr>
+  <td>EFSX_TYPE_PROTECTOR_INFO 0x0004</td>
+  <td>The EFSX Datum MUST be formatted as specified in section 2.2.2.2.6.</td>
+ </tr><tr>
+  <td>EFSX_TYPE_KEY_AGMT_DATA 0x0005</td>
+  <td>The EFSX Datum MUST be formatted as specified in section 2.2.2.2.7.</td>
+ </tr><tr>
+  <td>EFSX_TYPE_FEK_INFO 0x0006</td>
+  <td>The EFSX Datum MUST be formatted as specified in section 2.2.2.2.8.</td>
+ </tr><tr>
+  <td>EFSX_TYPE_DPAPI_NG_DATA 0x0007</td>
+  <td>The EFSX Datum MUST be formatted as specified in section 2.2.2.2.9. This type MUST only be used when EFS_VERSION is 5.&lt;16&gt;</td>
+ </tr></tbody></table>
+</dd></dl><p><b>Flags (2 bytes): </b>Specifies datum flags. It
+MUST be a 16-bit unsigned integer in little-endian format. The value of this
+field MUST be zero (0x0000) or a union of one or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>0x0001</td>
+  <td>The EFSX Datum is nested inside a parent structure.</td>
+ </tr><tr>
+  <td>0x0002</td>
+  <td>The EFSX Datum is a complex datum containing nested datum structures.</td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -103,6 +103,7 @@ all:
 		dssp.go \
 		dtyp.go \
 		eerr.go \
+		efsr.go \
 		epm.go \
 		even.go \
 		even6.go \
@@ -117,8 +118,8 @@ all:
 		lrec.go \
 		lsad.go \
 		lsat.go \
-		mimicom.go \
 		mgmt.go \
+		mimicom.go \
 		mqds.go \
 		mqmp.go \
 		mqmq.go \
