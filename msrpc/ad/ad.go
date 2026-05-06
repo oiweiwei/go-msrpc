@@ -1,3 +1,4 @@
+//go:generate go run gen/gen.go -o attributes.go
 package ad
 
 import (
