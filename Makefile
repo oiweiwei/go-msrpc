@@ -159,3 +159,7 @@ all:
 .PHONY: test
 test:
 	go test ./msrpc/...
+
+.PHONY: gen
+gen:
+	go generate ./msrpc/...

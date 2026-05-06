@@ -1,4 +1,4 @@
-//go:generate go run ../gen.go -o ntstatus_errors.go -pkg ntstatus -url https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55
+//go:generate go run ../gen/gen.go -o ntstatus_errors.go -pkg ntstatus -url https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55
 package ntstatus
 
 import (
