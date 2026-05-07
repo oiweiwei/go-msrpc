@@ -9,7 +9,7 @@ require (
 	github.com/go-xmlfmt/xmlfmt v1.1.2
 	github.com/jcmturner/gofork v1.7.6
 	github.com/jcmturner/gokrb5/v8 v8.4.4
-	github.com/miekg/dns v1.1.58
+	github.com/miekg/dns v1.1.72
 	github.com/oiweiwei/go-math v1.0.0
 	github.com/oiweiwei/go-oem v1.0.0
 	github.com/oiweiwei/go-smb2.fork v1.0.1
