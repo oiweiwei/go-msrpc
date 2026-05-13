@@ -475,7 +475,15 @@ func (t *conn) dialConn(ctx context.Context, binding StringBinding) (RawConn, er
 		dialer := t.settings.SMBDialer
 
 		if dialer == nil {
-			o, opts := ParseSecurityOptions(ctx, t.opts...), []gssapi.ContextOption{}
+			// t.opts contains all default options provided at the dcerpc.Dial level.
+			// extract all SecurityOptions and append to the default options to be used for
+			// smb dialer.
+			defaultOpts := make([]Option, len(t.opts))
+			if copy(defaultOpts, t.opts) > 0 {
+				defaultOpts = append(defaultOpts, ExtractSecurityOptions(ctx, defaultOpts...))
+			}
+
+			o, opts := ParseSecurityOptions(ctx, defaultOpts...), []gssapi.ContextOption{}
 			if o.Security != nil && o.Security.TargetName != "" {
 				opts = append(opts, gssapi.WithTargetName(o.Security.TargetName))
 			}
