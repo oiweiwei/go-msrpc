@@ -456,6 +456,33 @@ func WithErrorMapper(mapper ...errors.Mapper) BindOption {
 	})
 }
 
+// ExtractSecurityOptions function extracts the security context options from
+// the provided options set and returns a SecurityContextOption that applies
+// them to an option struct.
+func ExtractSecurityOptions(ctx context.Context, opts ...Option) SecurityContextOption {
+
+	var secOpts []SecurityOption
+
+	for i := range opts {
+		if o, ok := (opts[i]).(SecurityOption); ok {
+			secOpts = append(secOpts, o)
+		}
+	}
+
+	return SecurityContextOption(func(o *option) {
+		if len(secOpts) > 0 {
+			if o.Security == nil {
+				o.Security = &Security{}
+			}
+			for i := range secOpts {
+				secOpts[i](o.Security)
+			}
+		}
+	})
+}
+
+// ParseSecurityOptions function parses the security context options from the provided
+// options set and returns an option struct with the SecurityOptions field populated.
 func ParseSecurityOptions(ctx context.Context, opts ...Option) *option {
 
 	option := &option{}
