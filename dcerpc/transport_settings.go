@@ -65,6 +65,8 @@ type Transport struct {
 	// If set to `true`, new connection will be established
 	// for every new client with matching binding.
 	NoReuseTransport bool
+	// DNS resolver.
+	DNSResolver DNSResolver
 }
 
 // The transport connection option.
@@ -116,6 +118,17 @@ func WithSMBDialer(dialer *smb2.Dialer) ConnectOption {
 	return func(o *Transport) { o.SMBDialer = dialer }
 }
 
+// DNSResolver interface is used to resolve the hostname to IP addresses.
+type DNSResolver interface {
+	// LookupIPAddr looks up the given host and returns a list of IP addresses.
+	LookupIPAddr(ctx context.Context, host string) ([]net.IPAddr, error)
+}
+
+// WithDNSResolver function sets the DNS resolver for hostname resolution.
+func WithDNSResolver(resolver DNSResolver) ConnectOption {
+	return func(o *Transport) { o.DNSResolver = resolver }
+}
+
 // WithEndpointMapper option sets the endpoint mapper to find the endpoint
 // (port or named pipe) for the selected abstract syntax.
 //
@@ -144,6 +157,7 @@ func NewTransport() Transport {
 		Timeout:                      10 * time.Second,
 		Deadline:                     3 * time.Second,
 		SMBPort:                      445,
+		DNSResolver:                  net.DefaultResolver,
 	}
 }
 

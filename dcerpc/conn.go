@@ -122,7 +122,7 @@ func Dial(ctx context.Context, addr string, opts ...Option) (Conn, error) {
 		opts:       append(opts, WithGroup(group)),
 	}
 
-	ip, hostName, binding, err := ParseServerAddrWithDNSLookup(addr, true)
+	ip, hostName, binding, err := parseServerAddrWithDNSLookup(ctx, addr, settings.DNSResolver)
 	if err != nil {
 		return nil, fmt.Errorf("dial: %w", err)
 	}
@@ -156,6 +156,14 @@ func ParseServerAddr(addr string) (net.IP, string, *StringBinding, error) {
 // ParseServerAddrWithDNSLookup function parses the server address
 // and performs the DNS lookup if required.
 func ParseServerAddrWithDNSLookup(addr string, doLookup bool) (net.IP, string, *StringBinding, error) {
+	var resolver DNSResolver
+	if doLookup {
+		resolver = net.DefaultResolver
+	}
+	return parseServerAddrWithDNSLookup(context.Background(), addr, resolver)
+}
+
+func parseServerAddrWithDNSLookup(ctx context.Context, addr string, resolver DNSResolver) (net.IP, string, *StringBinding, error) {
 
 	if ip := net.ParseIP(addr); ip != nil {
 		// this is an ip address.
@@ -166,18 +174,18 @@ func ParseServerAddrWithDNSLookup(addr string, doLookup bool) (net.IP, string, *
 
 		// this is fqdn.
 
-		if !doLookup {
+		if resolver == nil {
 			return nil, addr, nil, nil
 		}
 
-		ips, err := net.LookupIP(addr)
+		ias, err := resolver.LookupIPAddr(ctx, addr)
 		if err != nil {
 			return nil, "", nil, fmt.Errorf("lookup server address: %w", err)
 		}
 
-		for _, ip := range ips {
-			if ip.To4() != nil {
-				return ip, addr, nil, nil
+		for _, ia := range ias {
+			if ia.IP.To4() != nil {
+				return ia.IP, addr, nil, nil
 			}
 		}
 
