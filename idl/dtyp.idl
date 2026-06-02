@@ -230,7 +230,12 @@ const SMALL ACE_FLAG_SUCCESSFUL_ACCESS_ACE_FLAG = 0x40;
 
 typedef struct _OBJECT_TYPE_LIST {
   WORD Level;
+  /* FIXME:
+     Declared as WORD in winnt.h: https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-object_type_list
+
   ACCESS_MASK Remaining;
+  */
+  WORD Sbz;
   GUID* ObjectType;
 } OBJECT_TYPE_LIST,
  *POBJECT_TYPE_LIST;

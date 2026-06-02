@@ -2002,9 +2002,7 @@ type ObjectTypeList struct {
 	//	| ACCESS_MAX_LEVEL 0x4         | Maximum level.                             |
 	//	+------------------------------+--------------------------------------------+
 	Level uint16 `idl:"name:Level" json:"level"`
-	// Remaining:  Remaining access bits for this element, used by the access check algorithm,
-	// as specified in section 2.5.3.2.
-	Remaining uint32 `idl:"name:Remaining" json:"remaining"`
+	Sbz   uint16 `idl:"name:Sbz" json:"sbz"`
 	// ObjectType:  A pointer to the GUID for the object or sub-object.
 	ObjectType *GUID `idl:"name:ObjectType" json:"object_type"`
 }
@@ -2022,13 +2020,13 @@ func (o *ObjectTypeList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
-	if err := w.WriteAlign(9); err != nil {
+	if err := w.WriteAlign(7); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Level); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.Remaining); err != nil {
+	if err := w.WriteData(o.Sbz); err != nil {
 		return err
 	}
 	if o.ObjectType != nil {
@@ -2055,13 +2053,13 @@ func (o *ObjectTypeList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return nil
 }
 func (o *ObjectTypeList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if err := w.ReadAlign(9); err != nil {
+	if err := w.ReadAlign(7); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Level); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.Remaining); err != nil {
+	if err := w.ReadData(&o.Sbz); err != nil {
 		return err
 	}
 	_ptr_ObjectType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
