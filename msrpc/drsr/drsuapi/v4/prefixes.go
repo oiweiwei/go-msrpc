@@ -91,8 +91,13 @@ func (o *SchemaPrefixTable) Build() PrefixTable {
 	if o == nil {
 		return table
 	}
+	seen := make(map[uint32]bool)
 	for i1 := range o.PrefixEntry {
+		if seen[o.PrefixEntry[i1].Index] {
+			continue
+		}
 		table[o.PrefixEntry[i1].Index] = o.PrefixEntry[i1].Prefix.Elements
+		seen[o.PrefixEntry[i1].Index] = true
 	}
 	return table
 }
