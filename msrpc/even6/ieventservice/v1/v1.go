@@ -10277,7 +10277,7 @@ func (o *GetPublisherListResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // xxx_GetPublisherListForChannelOperation structure represents the EvtRpcGetPublisherListForChannel operation
 type xxx_GetPublisherListForChannelOperation struct {
-	ChannelName        string   `idl:"name:channelName" json:"channel_name"`
+	ChannelName        string   `idl:"name:channelName;string" json:"channel_name"`
 	Flags              uint32   `idl:"name:flags" json:"flags"`
 	PublisherIDsLength uint32   `idl:"name:numPublisherIds" json:"publisher_ids_length"`
 	PublisherIDs       []string `idl:"name:publisherIds;size_is:(, numPublisherIds);string" json:"publisher_ids"`
@@ -10305,9 +10305,9 @@ func (o *xxx_GetPublisherListForChannelOperation) MarshalNDRRequest(ctx context.
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
-	// channelName {in} (1:{alias=LPCWSTR}*(1)[dim:0,string](wchar))
+	// channelName {in} (1:{string, alias=LPCWSTR}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.WriteUTF16String(ctx, w, o.ChannelName); err != nil {
+		if err := ndr.WriteUTF16NString(ctx, w, o.ChannelName); err != nil {
 			return err
 		}
 	}
@@ -10321,9 +10321,9 @@ func (o *xxx_GetPublisherListForChannelOperation) MarshalNDRRequest(ctx context.
 }
 
 func (o *xxx_GetPublisherListForChannelOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
-	// channelName {in} (1:{alias=LPCWSTR,pointer=ref}*(1)[dim:0,string](wchar))
+	// channelName {in} (1:{string, alias=LPCWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.ReadUTF16String(ctx, w, &o.ChannelName); err != nil {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.ChannelName); err != nil {
 			return err
 		}
 	}
@@ -10479,7 +10479,7 @@ func (o *xxx_GetPublisherListForChannelOperation) UnmarshalNDRResponse(ctx conte
 type GetPublisherListForChannelRequest struct {
 	// channelName:  A pointer to a string that contains the name of the channel for which
 	// the publisher list is needed.
-	ChannelName string `idl:"name:channelName" json:"channel_name"`
+	ChannelName string `idl:"name:channelName;string" json:"channel_name"`
 	// flags: A 32-bit unsigned integer that MUST be set to zero when sent and MAY be ignored
 	// on receipt.<47>
 	Flags uint32 `idl:"name:flags" json:"flags"`
