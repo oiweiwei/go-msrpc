@@ -725,3 +725,5 @@ split:
   lsmsessioninformation: [lsm, session, information]
   sessioninfo: [session, info]
   publickey: [public, key]
+  netsetup: [net, setup]
+  passwordblob: [password, blob]

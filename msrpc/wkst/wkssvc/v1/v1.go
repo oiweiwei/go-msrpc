@@ -1032,6 +1032,327 @@ type WkssvcClient interface {
 	// (section 3).
 	EnumerateComputerNames(context.Context, *EnumerateComputerNamesRequest, ...dcerpc.CallOption) (*EnumerateComputerNamesResponse, error)
 
+	// The NetrJoinDomain3 method uses encrypted credentials to join a computer to a domain
+	// or to a workgroup.<124>
+	//
+	// For high-level, informative discussions about domain controller location and domain
+	// join and unjoin, see [MS-ADOD] section 2.7.7 and 3.1. For more information, see the
+	// example in section 4.3.
+	//
+	// Return Values: When the message processing result meets the description in column
+	// two of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                        |                                                                                  |
+	//	|               VALUE/CODE               |                                     MEANING                                      |
+	//	|                                        |                                                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                                            |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_FILE_NOT_FOUND 0x00000002        | The object was not found.                                                        |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                                |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_NOT_SUPPORTED 0x00000032         | The request is not supported.                                                    |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is not correct.                                   |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | The parameter is incorrect.                                                      |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_PASSWORD_RESTRICTION 0x0000052D  | Unable to update the password. The value provided for the new password does not  |
+	//	|                                        | meet the length, complexity, or history requirements of the domain.              |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_LOGON_FAILURE 0x0000052E         | Logon failure: unknown username or bad password.                                 |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_NONE_MAPPED 0x00000534           | The account was not found.                                                       |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_DOMAIN_ROLE 0x0000054A   | The name of a domain controller was provided in the DomainNameParam parameter,   |
+	//	|                                        | and validation of that domain controller failed. Validation is specified in the  |
+	//	|                                        | message-processing steps for the section "Domain Join" later.                    |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_NO_SUCH_DOMAIN 0x0000054B        | The specified domain either does not exist or could not be contacted.            |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                                      |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| RPC_S_CALL_IN_PROGRESS 0x000006FF      | A remote procedure call is already in progress.<133>                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_UserExists 0x000008B0             | The user account already exists.                                                 |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_SetupAlreadyJoined 0x00000A83     | This computer is already joined to a domain.                                     |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_SetupDomainController 0x00000A85  | This computer is a domain controller and cannot be unjoined from a domain.       |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_InvalidWorkgroupName 0x00000A87   | The specified workgroup name is invalid.                                         |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	JoinDomain3(context.Context, *JoinDomain3Request, ...dcerpc.CallOption) (*JoinDomain3Response, error)
+
+	// The NetrUnjoinDomain3 method uses encrypted credentials to unjoin a computer from
+	// a workgroup or domain.<140>
+	//
+	// Return Values: When the message processing result meets the description in column
+	// two of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	|                                        |                                                                            |
+	//	|               VALUE/CODE               |                                  MEANING                                   |
+	//	|                                        |                                                                            |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                                      |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                          |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is not correct.                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | One of the function parameters is not valid.                               |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| ERROR_INVALID_FLAGS 0x000003EC         | Invalid option flags are specified.                                        |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                                |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| NERR_SetupNotJoined 0x00000A84         | This computer is not currently joined to a domain.                         |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| NERR_SetupDomainController 0x00000A85  | This computer is a domain controller and cannot be unjoined from a domain. |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	//
+	// Unless otherwise noted, if the server encounters an error during message processing,
+	// the server SHOULD revert any state changes made, MUST stop message processing, and
+	// MUST return the error to the caller.<142>
+	UnjoinDomain3(context.Context, *UnjoinDomain3Request, ...dcerpc.CallOption) (*UnjoinDomain3Response, error)
+
+	// The NetrRenameMachineInDomain3 method uses encrypted credentials to change the locally
+	// persisted variable ComputerNameNetBIOS (section 3.2.1.5) and to optionally rename
+	// the computer account for a server currently in a domain, without first removing the
+	// computer from the domain and then adding it back.<145>
+	//
+	// Return Values: When the message processing result meets the description in column
+	// two of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	|                                        |                                                                  |
+	//	|               VALUE/CODE               |                             MEANING                              |
+	//	|                                        |                                                                  |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                            |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| ERROR_NOT_SUPPORTED 0x00000032         | The request is not supported.                                    |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is not correct.                   |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | The parameter is incorrect.                                      |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                      |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| NERR_SetupNotJoined 0x00000A84         | This computer is not currently joined to a domain.               |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| NERR_SetupDomainController 0x00000A85  | This computer is a domain controller and cannot be renamed.<146> |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	//
+	// Unless otherwise noted, if the server encounters an error during message processing,
+	// the server SHOULD revert any state changes made, MUST stop message processing, and
+	// MUST return the error to the caller.<147>
+	RenameMachineInDomain3(context.Context, *RenameMachineInDomain3Request, ...dcerpc.CallOption) (*RenameMachineInDomain3Response, error)
+
+	// The NetrValidateName3 method verifies the validity of a computer, workgroup, or domain
+	// name.<151>
+	//
+	// Return Values: When the message processing result matches the description in column
+	// 2 of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	|                                        |                                                                           |
+	//	|               VALUE/CODE               |                                  MEANING                                  |
+	//	|                                        |                                                                           |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                                     |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                         |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_DUP_NAME 0x00000034              | The connection was denied because a duplicate name exists on the network. |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is incorrect.                              |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | The parameter is incorrect.                                               |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_INVALID_NAME 0x0000007B          | The file name, directory name, or volume label syntax is incorrect.       |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_INVALID_DOMAINNAME 0x000004BC    | The format of the specified domain name is invalid.                       |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_NO_SUCH_DOMAIN 0x0000054B        | The specified domain either does not exist or could not be contacted.     |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                               |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| NERR_InvalidComputer 0x0000092F        | This computer name is invalid.                                            |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| NERR_InvalidWorkgroupName 0x00000A87   | The specified workgroup name is invalid.                                  |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| DNS_ERROR_NON_RFC_NAME 0x00002554      | The Internet host name does not comply with RFC specifications.           |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| DNS_ERROR_INVALID_NAME_CHAR 0x00002558 | The Internet host name contains an invalid character.                     |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| RPC_E_REMOTE_DISABLED 0x8001011C       | Remote calls are not allowed for this process.                            |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	//
+	// The following definition is used in the specification of message processing that
+	// follows.
+	//
+	// * PasswordString : A Unicode ( 3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8
+	// ) UTF-8 ( 3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35
+	// ) string containing a password in cleartext ( 3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_f6e0fdd0-cbc1-4c9d-93b8-f25125f9c5ef
+	// ).
+	ValidateName3(context.Context, *ValidateName3Request, ...dcerpc.CallOption) (*ValidateName3Response, error)
+
+	// The NetrAddAlternateComputerName method adds an alternate name for a specified server.<158>
+	//
+	// Return Values: When the message processing result matches the description in column
+	// two of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	|                                        |                                                                     |
+	//	|               VALUE/CODE               |                               MEANING                               |
+	//	|                                        |                                                                     |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                               |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                   |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_NOT_SUPPORTED 0x00000032         | This method is not supported by this server.                        |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is incorrect.                        |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | One of the function parameters is not valid.                        |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_NAME 0x0000007B          | The file name, directory name, or volume label syntax is incorrect. |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_FLAGS 0x000003EC         | Reserved contains an invalid value.                                 |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                         |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| RPC_S_CALL_IN_PROGRESS 0x000006FF      | A remote procedure call is already in progress.<160>                |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| DNS_ERROR_INVALID_NAME_CHAR 0x00002558 | The Internet host name contains an invalid character.               |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	//
+	// Unless otherwise noted, if the server encounters an error during message processing,
+	// it SHOULD revert any state changes made, MUST stop message processing, and MUST return
+	// the error to the caller.<161>
+	AddAlternateComputerName2(context.Context, *AddAlternateComputerName2Request, ...dcerpc.CallOption) (*AddAlternateComputerName2Response, error)
+
+	// The NetrRemoveAlternateComputerName method removes an alternate name for a specified
+	// server.<165>
+	//
+	// Return Values: When the message processing result matches the description in column
+	// two of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	|                                        |                                                                     |
+	//	|               VALUE/CODE               |                               MEANING                               |
+	//	|                                        |                                                                     |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                               |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                   |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_NOT_SUPPORTED 0x00000032         | This method is not supported by this server.                        |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is not correct.                      |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | One of the function parameters is not valid.                        |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_NAME 0x0000007B          | An invalid name parameter is specified.                             |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_FLAGS 0x000003EC         | The Reserved parameter contains an invalid value.                   |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_NOT_FOUND 0x00000490             | AlternateName was not found in the current list of alternate names. |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                         |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| RPC_S_CALL_IN_PROGRESS 0x000006FF      | A remote procedure call is already in progress.<167>                |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| DNS_ERROR_INVALID_NAME_CHAR 0x00002558 | The Internet host name contains an invalid character.               |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	//
+	// Unless otherwise noted, if the server encounters an error during message processing,
+	// the server SHOULD revert any state changes made, MUST stop message processing, and
+	// MUST return the error to the caller.<168>
+	RemoveAlternateComputerName2(context.Context, *RemoveAlternateComputerName2Request, ...dcerpc.CallOption) (*RemoveAlternateComputerName2Response, error)
+
+	// The NetrSetPrimaryComputerName method sets the primary computer name for a specified
+	// server.<172>
+	//
+	// Return Values: When the message processing result matches the description in column
+	// two of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                        |                                                                                  |
+	//	|               VALUE/CODE               |                                     MEANING                                      |
+	//	|                                        |                                                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                                            |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                                |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_NOT_SUPPORTED 0x00000032         | This method is not supported by this server.                                     |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is incorrect.                                     |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | The parameter is incorrect.                                                      |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_NAME 0x0000007B          | An invalid name parameter is specified.                                          |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_FLAGS 0x000003EC         | Reserved contains an invalid value.                                              |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                                      |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| RPC_S_CALL_IN_PROGRESS 0x000006FF      | A remote procedure call is already in progress.<174>                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_DefaultJoinRequired 0x00000A86    | The destination domain controller does not support creating machine accounts in  |
+	//	|                                        | OUs.                                                                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| DNS_ERROR_INVALID_NAME_CHAR 0x00002558 | The Internet host name contains an invalid character.                            |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	//
+	// Unless otherwise noted, if the server encounters an error during message processing,
+	// the server SHOULD revert any state changes made, MUST stop message processing, and
+	// MUST return the error to the caller.<175>
+	SetPrimaryComputerName2(context.Context, *SetPrimaryComputerName2Request, ...dcerpc.CallOption) (*SetPrimaryComputerName2Response, error)
+
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
@@ -1045,75 +1366,78 @@ var JoinObfuscatorLength = 8
 // JoinMaxPasswordLength represents the JOIN_MAX_PASSWORD_LENGTH RPC constant
 var JoinMaxPasswordLength = 256
 
-// NetsetupJoinStatus type represents NETSETUP_JOIN_STATUS RPC enumeration.
+// MaxPasswordBlobSize represents the MAX_PASSWORDBLOB_SIZE RPC constant
+var MaxPasswordBlobSize = 524
+
+// NetSetupJoinStatus type represents NETSETUP_JOIN_STATUS RPC enumeration.
 //
 // The NETSETUP_JOIN_STATUS enumeration specifies details about the domain join status
 // of a machine.
-type NetsetupJoinStatus uint16
+type NetSetupJoinStatus uint16
 
 var (
 	// NetSetupUnknownStatus: Domain join status of the machine is unknown.
-	NetsetupJoinStatusSetupUnknownStatus NetsetupJoinStatus = 0
+	NetSetupJoinStatusUnknownStatus NetSetupJoinStatus = 0
 	// NetSetupUnjoined: Machine is not joined to a domain or to a workgroup.
-	NetsetupJoinStatusSetupUnjoined NetsetupJoinStatus = 1
+	NetSetupJoinStatusUnjoined NetSetupJoinStatus = 1
 	// NetSetupWorkgroupName: Machine is joined to a workgroup.
-	NetsetupJoinStatusSetupWorkgroupName NetsetupJoinStatus = 2
+	NetSetupJoinStatusWorkgroupName NetSetupJoinStatus = 2
 	// NetSetupDomainName: Machine is joined to a domain.
-	NetsetupJoinStatusSetupDomainName NetsetupJoinStatus = 3
+	NetSetupJoinStatusDomainName NetSetupJoinStatus = 3
 )
 
-func (o NetsetupJoinStatus) String() string {
+func (o NetSetupJoinStatus) String() string {
 	switch o {
-	case NetsetupJoinStatusSetupUnknownStatus:
-		return "NetsetupJoinStatusSetupUnknownStatus"
-	case NetsetupJoinStatusSetupUnjoined:
-		return "NetsetupJoinStatusSetupUnjoined"
-	case NetsetupJoinStatusSetupWorkgroupName:
-		return "NetsetupJoinStatusSetupWorkgroupName"
-	case NetsetupJoinStatusSetupDomainName:
-		return "NetsetupJoinStatusSetupDomainName"
+	case NetSetupJoinStatusUnknownStatus:
+		return "NetSetupJoinStatusUnknownStatus"
+	case NetSetupJoinStatusUnjoined:
+		return "NetSetupJoinStatusUnjoined"
+	case NetSetupJoinStatusWorkgroupName:
+		return "NetSetupJoinStatusWorkgroupName"
+	case NetSetupJoinStatusDomainName:
+		return "NetSetupJoinStatusDomainName"
 	}
 	return "Invalid"
 }
 
-// NetsetupNameType type represents NETSETUP_NAME_TYPE RPC enumeration.
+// NetSetupNameType type represents NETSETUP_NAME_TYPE RPC enumeration.
 //
 // The NETSETUP_NAME_TYPE enumeration specifies the types of validation that can be
 // performed for a computer name, workgroup name, or domain name (2).
-type NetsetupNameType uint16
+type NetSetupNameType uint16
 
 var (
 	// NetSetupUnknown: Reserved.
-	NetsetupNameTypeSetupUnknown NetsetupNameType = 0
+	NetSetupNameTypeUnknown NetSetupNameType = 0
 	// NetSetupMachine: Verify that the name is valid as a NetBIOS computer name and that
 	// it is not in use.
-	NetsetupNameTypeSetupMachine NetsetupNameType = 1
+	NetSetupNameTypeMachine NetSetupNameType = 1
 	// NetSetupWorkgroup: Verify that the name is valid as a workgroup name.
-	NetsetupNameTypeSetupWorkgroup NetsetupNameType = 2
+	NetSetupNameTypeWorkgroup NetSetupNameType = 2
 	// NetSetupDomain: Verify that the name is valid as a NetBIOS domain name and that a
 	// domain with that name exists.
-	NetsetupNameTypeSetupDomain NetsetupNameType = 3
+	NetSetupNameTypeDomain NetSetupNameType = 3
 	// NetSetupNonExistentDomain:  Verify that the name is valid as a NetBIOS domain name
 	// and that a domain with that name does not exist.
-	NetsetupNameTypeSetupNonExistentDomain NetsetupNameType = 4
+	NetSetupNameTypeNonExistentDomain NetSetupNameType = 4
 	// NetSetupDnsMachine:  Verify that the name is valid as a DNS computer name.
-	NetsetupNameTypeSetupDNSMachine NetsetupNameType = 5
+	NetSetupNameTypeDNSMachine NetSetupNameType = 5
 )
 
-func (o NetsetupNameType) String() string {
+func (o NetSetupNameType) String() string {
 	switch o {
-	case NetsetupNameTypeSetupUnknown:
-		return "NetsetupNameTypeSetupUnknown"
-	case NetsetupNameTypeSetupMachine:
-		return "NetsetupNameTypeSetupMachine"
-	case NetsetupNameTypeSetupWorkgroup:
-		return "NetsetupNameTypeSetupWorkgroup"
-	case NetsetupNameTypeSetupDomain:
-		return "NetsetupNameTypeSetupDomain"
-	case NetsetupNameTypeSetupNonExistentDomain:
-		return "NetsetupNameTypeSetupNonExistentDomain"
-	case NetsetupNameTypeSetupDNSMachine:
-		return "NetsetupNameTypeSetupDNSMachine"
+	case NetSetupNameTypeUnknown:
+		return "NetSetupNameTypeUnknown"
+	case NetSetupNameTypeMachine:
+		return "NetSetupNameTypeMachine"
+	case NetSetupNameTypeWorkgroup:
+		return "NetSetupNameTypeWorkgroup"
+	case NetSetupNameTypeDomain:
+		return "NetSetupNameTypeDomain"
+	case NetSetupNameTypeNonExistentDomain:
+		return "NetSetupNameTypeNonExistentDomain"
+	case NetSetupNameTypeDNSMachine:
+		return "NetSetupNameTypeDNSMachine"
 	}
 	return "Invalid"
 }
@@ -4868,6 +5192,155 @@ func (o *UseInfo_Level2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
+// EncryptedUserPasswordAES structure represents JOINPR_ENCRYPTED_USER_PASSWORD_AES RPC structure.
+type EncryptedUserPasswordAES struct {
+	AuthData     []byte `idl:"name:AuthData" json:"auth_data"`
+	Salt         []byte `idl:"name:Salt" json:"salt"`
+	CipherLength uint32 `idl:"name:cbCipher" json:"cipher_length"`
+	Cipher       []byte `idl:"name:Cipher;size_is:(cbCipher)" json:"cipher"`
+}
+
+func (o *EncryptedUserPasswordAES) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.Cipher != nil && o.CipherLength == 0 {
+		o.CipherLength = uint32(len(o.Cipher))
+	}
+	if o.CipherLength > uint32(524) {
+		return fmt.Errorf("CipherLength is out of range")
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *EncryptedUserPasswordAES) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	for i1 := range o.AuthData {
+		i1 := i1
+		if uint64(i1) >= 64 {
+			break
+		}
+		if err := w.WriteData(o.AuthData[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.AuthData); uint64(i1) < 64; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	for i1 := range o.Salt {
+		i1 := i1
+		if uint64(i1) >= 16 {
+			break
+		}
+		if err := w.WriteData(o.Salt[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Salt); uint64(i1) < 16; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.CipherLength); err != nil {
+		return err
+	}
+	if o.Cipher != nil || o.CipherLength > 0 {
+		_ptr_Cipher := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.CipherLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.Cipher {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.Cipher[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.Cipher); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Cipher, _ptr_Cipher); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *EncryptedUserPasswordAES) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	o.AuthData = make([]byte, 64)
+	for i1 := range o.AuthData {
+		i1 := i1
+		if err := w.ReadData(&o.AuthData[i1]); err != nil {
+			return err
+		}
+	}
+	o.Salt = make([]byte, 16)
+	for i1 := range o.Salt {
+		i1 := i1
+		if err := w.ReadData(&o.Salt[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadData(&o.CipherLength); err != nil {
+		return err
+	}
+	_ptr_Cipher := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.CipherLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.CipherLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Cipher", sizeInfo[0])
+		}
+		o.Cipher = make([]byte, sizeInfo[0])
+		for i1 := range o.Cipher {
+			i1 := i1
+			if err := w.ReadData(&o.Cipher[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_Cipher := func(ptr interface{}) { o.Cipher = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.Cipher, _s_Cipher, _ptr_Cipher); err != nil {
+		return err
+	}
+	return nil
+}
+
 // WorkstationUserInfo0Container structure represents WKSTA_USER_INFO_0_CONTAINER RPC structure.
 //
 // The WKSTA_USER_INFO_0_CONTAINER structure contains a value that indicates the number
@@ -6403,6 +6876,97 @@ func (o *xxx_DefaultWkssvcClient) EnumerateComputerNames(ctx context.Context, in
 		return nil, err
 	}
 	out := &EnumerateComputerNamesResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultWkssvcClient) JoinDomain3(ctx context.Context, in *JoinDomain3Request, opts ...dcerpc.CallOption) (*JoinDomain3Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &JoinDomain3Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultWkssvcClient) UnjoinDomain3(ctx context.Context, in *UnjoinDomain3Request, opts ...dcerpc.CallOption) (*UnjoinDomain3Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &UnjoinDomain3Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultWkssvcClient) RenameMachineInDomain3(ctx context.Context, in *RenameMachineInDomain3Request, opts ...dcerpc.CallOption) (*RenameMachineInDomain3Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &RenameMachineInDomain3Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultWkssvcClient) ValidateName3(ctx context.Context, in *ValidateName3Request, opts ...dcerpc.CallOption) (*ValidateName3Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &ValidateName3Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultWkssvcClient) AddAlternateComputerName2(ctx context.Context, in *AddAlternateComputerName2Request, opts ...dcerpc.CallOption) (*AddAlternateComputerName2Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &AddAlternateComputerName2Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultWkssvcClient) RemoveAlternateComputerName2(ctx context.Context, in *RemoveAlternateComputerName2Request, opts ...dcerpc.CallOption) (*RemoveAlternateComputerName2Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &RemoveAlternateComputerName2Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultWkssvcClient) SetPrimaryComputerName2(ctx context.Context, in *SetPrimaryComputerName2Request, opts ...dcerpc.CallOption) (*SetPrimaryComputerName2Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &SetPrimaryComputerName2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
@@ -9926,7 +10490,7 @@ func (o *WorkstationStatisticsGetResponse) UnmarshalNDR(ctx context.Context, r n
 type xxx_GetJoinInformationOperation struct {
 	ServerName string             `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
 	NameBuffer string             `idl:"name:NameBuffer;string" json:"name_buffer"`
-	BufferType NetsetupJoinStatus `idl:"name:BufferType" json:"buffer_type"`
+	BufferType NetSetupJoinStatus `idl:"name:BufferType" json:"buffer_type"`
 	Return     uint32             `idl:"name:Return" json:"return"`
 }
 
@@ -10173,7 +10737,7 @@ type GetJoinInformationResponse struct {
 	NameBuffer string `idl:"name:NameBuffer;string" json:"name_buffer"`
 	// BufferType: A pointer to a value from the NETSETUP_JOIN_STATUS enumeration (section
 	// 2.2.3.1) that specifies the status of a workstation.
-	BufferType NetsetupJoinStatus `idl:"name:BufferType" json:"buffer_type"`
+	BufferType NetSetupJoinStatus `idl:"name:BufferType" json:"buffer_type"`
 	// Return: The NetrGetJoinInformation return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -11325,7 +11889,7 @@ type xxx_ValidateName2Operation struct {
 	NameToValidate string                 `idl:"name:NameToValidate;string" json:"name_to_validate"`
 	AccountName    string                 `idl:"name:AccountName;string;pointer:unique" json:"account_name"`
 	Password       *EncryptedUserPassword `idl:"name:Password;pointer:unique" json:"password"`
-	NameType       NetsetupNameType       `idl:"name:NameType" json:"name_type"`
+	NameType       NetSetupNameType       `idl:"name:NameType" json:"name_type"`
 	Return         uint32                 `idl:"name:Return" json:"return"`
 }
 
@@ -11546,7 +12110,7 @@ type ValidateName2Request struct {
 	// Password: The server SHOULD ignore this parameter.
 	Password *EncryptedUserPassword `idl:"name:Password;pointer:unique" json:"password"`
 	// NameType: Specifies the type of validation to perform (section 2.2.3.2).
-	NameType NetsetupNameType `idl:"name:NameType" json:"name_type"`
+	NameType NetSetupNameType `idl:"name:NameType" json:"name_type"`
 }
 
 func (o *ValidateName2Request) xxx_ToOp(ctx context.Context, op *xxx_ValidateName2Operation) *xxx_ValidateName2Operation {
@@ -13392,6 +13956,2490 @@ func (o *EnumerateComputerNamesResponse) MarshalNDR(ctx context.Context, w ndr.W
 }
 func (o *EnumerateComputerNamesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateComputerNamesOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_JoinDomain3Operation structure represents the NetrJoinDomain3 operation
+type xxx_JoinDomain3Operation struct {
+	ServerName       string                    `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	DomainNameParam  string                    `idl:"name:DomainNameParam;string" json:"domain_name_param"`
+	MachineAccountOU string                    `idl:"name:MachineAccountOU;string;pointer:unique" json:"machine_account_ou"`
+	AccountName      string                    `idl:"name:AccountName;string;pointer:unique" json:"account_name"`
+	Password         *EncryptedUserPasswordAES `idl:"name:Password;pointer:unique" json:"password"`
+	Options          uint32                    `idl:"name:Options" json:"options"`
+	Return           uint32                    `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of NetrJoinDomain3 operation.
+func (o *xxx_JoinDomain3Operation) OpNum() int { return 31 }
+
+// OpName returns the operation name of NetrJoinDomain3 operation.
+func (o *xxx_JoinDomain3Operation) OpName() string { return "/wkssvc/v1/NetrJoinDomain3" }
+
+func (o *xxx_JoinDomain3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_JoinDomain3Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.ServerName != "" {
+			_ptr_ServerName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.ServerName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ServerName, _ptr_ServerName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// DomainNameParam {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	{
+		if err := ndr.WriteUTF16NString(ctx, w, o.DomainNameParam); err != nil {
+			return err
+		}
+	}
+	// MachineAccountOU {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.MachineAccountOU != "" {
+			_ptr_MachineAccountOU := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.MachineAccountOU); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.MachineAccountOU, _ptr_MachineAccountOU); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// AccountName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.AccountName != "" {
+			_ptr_AccountName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.AccountName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.AccountName, _ptr_AccountName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Password {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
+	{
+		if o.Password != nil {
+			_ptr_Password := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.Password != nil {
+					if err := o.Password.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&EncryptedUserPasswordAES{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Password, _ptr_Password); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Options {in} (1:(uint32))
+	{
+		if err := w.WriteData(o.Options); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_JoinDomain3Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_ServerName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.ServerName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// DomainNameParam {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	{
+		if err := ndr.ReadUTF16NString(ctx, w, &o.DomainNameParam); err != nil {
+			return err
+		}
+	}
+	// MachineAccountOU {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_MachineAccountOU := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.MachineAccountOU); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_MachineAccountOU := func(ptr interface{}) { o.MachineAccountOU = *ptr.(*string) }
+		if err := w.ReadPointer(&o.MachineAccountOU, _s_MachineAccountOU, _ptr_MachineAccountOU); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// AccountName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_AccountName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.AccountName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_AccountName := func(ptr interface{}) { o.AccountName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.AccountName, _s_AccountName, _ptr_AccountName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Password {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
+	{
+		_ptr_Password := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.Password == nil {
+				o.Password = &EncryptedUserPasswordAES{}
+			}
+			if err := o.Password.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_Password := func(ptr interface{}) { o.Password = *ptr.(**EncryptedUserPasswordAES) }
+		if err := w.ReadPointer(&o.Password, _s_Password, _ptr_Password); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Options {in} (1:(uint32))
+	{
+		if err := w.ReadData(&o.Options); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_JoinDomain3Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_JoinDomain3Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:(uint32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_JoinDomain3Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:(uint32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// JoinDomain3Request structure represents the NetrJoinDomain3 operation request
+type JoinDomain3Request struct {
+	// ServerName: This parameter has no effect on message processing in any environment.
+	// The client MUST set this parameter to a value that resolves to the IP protocol layer
+	// destination address of the RPC packets it transmits ([MS-RPCE] section 2.1.1.2).
+	// The server (1) MUST ignore this parameter.
+	ServerName string `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	// DomainNameParam: A pointer to a string that specifies the domain name (1) or workgroup
+	// name to join, and optionally the domain controller machine name within the domain.
+	// This parameter MUST NOT be NULL.
+	//
+	// If the string specifies the name of the preferred domain controller to perform the
+	// join operation, the string MUST be of the form DomainNameToJoin\MachineName, where
+	// DomainNameToJoin is the domain to join, "\" is a delimiter, and MachineName is the
+	// name of the domain controller to perform the join operation. In all cases, the DomainNameToJoin
+	// portion of this parameter MUST be either the NetBIOS name of the domain or the fully
+	// qualified domain name (FQDN) (1) of the domain. If the MachineName is passed, it
+	// MUST be either the NetBIOS name of the domain controller or the Internet host name
+	// of the domain controller. The format of DomainNameToJoin places no constraint on
+	// the format of MachineName and vice versa; thus, each of the following permutations
+	// are accepted:
+	//
+	// * NetBIOS name\NetBIOS name
+	//
+	// * NetBIOS name\Internet host name
+	//
+	// * FQDN\NetBIOS name
+	DomainNameParam string `idl:"name:DomainNameParam;string" json:"domain_name_param"`
+	// MachineAccountOU: A pointer to a string that contains the format name of the organizational
+	// unit (OU) directory object under which the machine account directory object is created
+	// (see [RFC1777]). This parameter is optional. If specified, this string MUST contain
+	// the full path; for example, OU=testOU,DC=domain,DC=Domain,DC=com.
+	MachineAccountOU string `idl:"name:MachineAccountOU;string;pointer:unique" json:"machine_account_ou"`
+	// AccountName: A pointer to a string that specifies an account name in the domain DomainNameParam
+	// to use when connecting to a domain controller. This parameter is optional. If this
+	// parameter is NULL, the caller's account name MUST be used. If this parameter is specified,
+	// the format MUST be one of the following:
+	//
+	// * <NetBIOSDomainName>\<UserName>
+	//
+	// * <FullyQualifiedDNSDomainName>\<UserName>
+	//
+	// * <UserName>@<FullyQualifiedDNSDomainName>
+	AccountName string `idl:"name:AccountName;string;pointer:unique" json:"account_name"`
+	// Password: A pointer to a JOINPR_ENCRYPTED_USER_PASSWORD_AES structure (section 2.2.5.19)
+	// that specifies the encrypted password to use with the AccountName parameter. Sections
+	// 3.2.4.13.1 and 3.2.4.13.3 specify the processing of this parameter.
+	Password *EncryptedUserPasswordAES `idl:"name:Password;pointer:unique" json:"password"`
+	// Options: A 32-bit bitfield that specifies modifications to default server behavior
+	// in message processing.<125>
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                           |                                                                                  |
+	//	|                VALUE/CODE                 |                                     MEANING                                      |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_JOIN_DOMAIN 0x00000001           | Joins the computer to a domain. The default action is to join the computer to a  |
+	//	|                                           | workgroup.                                                                       |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_ACCT_CREATE 0x00000002           | Creates the account on the domain. The name is the persisted abstract state      |
+	//	|                                           | ComputerNameNetBIOS (section 3.2.1.5) unless this behavior is altered by another |
+	//	|                                           | option such as NETSETUP_JOIN_WITH_NEW_NAME.                                      |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_ACCT_DELETE 0x00000004           | Disables the old account when the join operation occurs on a computer that is    |
+	//	|                                           | already joined to a domain. Important: This flag is neither supported nor tested |
+	//	|                                           | for use with NetrJoinDomain2; therefore, its use is not specified in any message |
+	//	|                                           | processing.                                                                      |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_DOMAIN_JOIN_IF_JOINED 0x00000020 | Allows a join to a new domain even if the computer is already joined to a        |
+	//	|                                           | domain.                                                                          |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_JOIN_UNSECURE 0x00000040         | Performs an unsecured join. It MUST be used only in conjunction with the         |
+	//	|                                           | NETSETUP_MACHINE_PWD_PASSED flag.                                                |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_MACHINE_PWD_PASSED 0x00000080    | Indicates that the Password parameter SHOULD<126> specify the password for the   |
+	//	|                                           | machine joining the domain. This flag is valid for unsecured joins, which are    |
+	//	|                                           | indicated by setting the NETSETUP_JOIN_UNSECURE flag, or for read-only joins,    |
+	//	|                                           | which are indicated by setting the NETSETUP_JOIN_READONLY flag. If this flag is  |
+	//	|                                           | set, the value of Password determines the value stored for the computer password |
+	//	|                                           | during the join process.                                                         |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_DEFER_SPN_SET 0x00000100         | Indicates that the service principal name (SPN) and the DnsHostName properties   |
+	//	|                                           | on the computer SHOULD NOT<127> be updated at this time, but instead SHOULD<128> |
+	//	|                                           | be updated during a subsequent call to NetrRenameMachineInDomain2 (section       |
+	//	|                                           | 3.2.4.15).                                                                       |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_JOIN_DC_ACCOUNT 0x00000200       | Indicates that the join SHOULD<129> be allowed if an existing account exists and |
+	//	|                                           | it is a domain controller account.<130>                                          |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_JOIN_WITH_NEW_NAME 0x00000400    | Indicates that the join SHOULD<131> occur using the new computer name.           |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_JOIN_READONLY 0x00000800         | Specifies that the join SHOULD<132>  be performed in a read-only manner against  |
+	//	|                                           | an existing account object. This option is intended to enable the server to join |
+	//	|                                           | a domain using a read-only domain controller.                                    |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_INSTALL_INVOCATION 0x00040000    | Indicates that the protocol method was invoked during installation.              |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	Options uint32 `idl:"name:Options" json:"options"`
+}
+
+func (o *JoinDomain3Request) xxx_ToOp(ctx context.Context, op *xxx_JoinDomain3Operation) *xxx_JoinDomain3Operation {
+	if op == nil {
+		op = &xxx_JoinDomain3Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ServerName = o.ServerName
+	op.DomainNameParam = o.DomainNameParam
+	op.MachineAccountOU = o.MachineAccountOU
+	op.AccountName = o.AccountName
+	op.Password = o.Password
+	op.Options = o.Options
+	return op
+}
+
+func (o *JoinDomain3Request) xxx_FromOp(ctx context.Context, op *xxx_JoinDomain3Operation) {
+	if o == nil {
+		return
+	}
+	o.ServerName = op.ServerName
+	o.DomainNameParam = op.DomainNameParam
+	o.MachineAccountOU = op.MachineAccountOU
+	o.AccountName = op.AccountName
+	o.Password = op.Password
+	o.Options = op.Options
+}
+func (o *JoinDomain3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *JoinDomain3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_JoinDomain3Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeJoinDomain3Request build a response structure from the given request structure.
+func (o *JoinDomain3Request) MakeResponse() *JoinDomain3Response {
+	return &JoinDomain3Response{}
+}
+
+// OpNum returns the operation number of NetrJoinDomain3 operation.
+func (o *JoinDomain3Request) OpNum() int { return 31 }
+
+// OpName returns the operation name of NetrJoinDomain3 operation.
+func (o *JoinDomain3Request) OpName() string { return "/wkssvc/v1/NetrJoinDomain3" }
+
+// JoinDomain3Response structure represents the NetrJoinDomain3 operation response
+type JoinDomain3Response struct {
+	// Return: The NetrJoinDomain3 return value.
+	Return uint32 `idl:"name:Return" json:"return"`
+}
+
+func (o *JoinDomain3Response) xxx_ToOp(ctx context.Context, op *xxx_JoinDomain3Operation) *xxx_JoinDomain3Operation {
+	if op == nil {
+		op = &xxx_JoinDomain3Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *JoinDomain3Response) xxx_FromOp(ctx context.Context, op *xxx_JoinDomain3Operation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *JoinDomain3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *JoinDomain3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_JoinDomain3Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_UnjoinDomain3Operation structure represents the NetrUnjoinDomain3 operation
+type xxx_UnjoinDomain3Operation struct {
+	ServerName  string                    `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	AccountName string                    `idl:"name:AccountName;string;pointer:unique" json:"account_name"`
+	Password    *EncryptedUserPasswordAES `idl:"name:Password;pointer:unique" json:"password"`
+	Options     uint32                    `idl:"name:Options" json:"options"`
+	Return      uint32                    `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of NetrUnjoinDomain3 operation.
+func (o *xxx_UnjoinDomain3Operation) OpNum() int { return 32 }
+
+// OpName returns the operation name of NetrUnjoinDomain3 operation.
+func (o *xxx_UnjoinDomain3Operation) OpName() string { return "/wkssvc/v1/NetrUnjoinDomain3" }
+
+func (o *xxx_UnjoinDomain3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnjoinDomain3Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.ServerName != "" {
+			_ptr_ServerName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.ServerName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ServerName, _ptr_ServerName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// AccountName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.AccountName != "" {
+			_ptr_AccountName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.AccountName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.AccountName, _ptr_AccountName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Password {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
+	{
+		if o.Password != nil {
+			_ptr_Password := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.Password != nil {
+					if err := o.Password.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&EncryptedUserPasswordAES{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Password, _ptr_Password); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Options {in} (1:(uint32))
+	{
+		if err := w.WriteData(o.Options); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnjoinDomain3Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_ServerName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.ServerName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// AccountName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_AccountName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.AccountName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_AccountName := func(ptr interface{}) { o.AccountName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.AccountName, _s_AccountName, _ptr_AccountName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Password {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
+	{
+		_ptr_Password := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.Password == nil {
+				o.Password = &EncryptedUserPasswordAES{}
+			}
+			if err := o.Password.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_Password := func(ptr interface{}) { o.Password = *ptr.(**EncryptedUserPasswordAES) }
+		if err := w.ReadPointer(&o.Password, _s_Password, _ptr_Password); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Options {in} (1:(uint32))
+	{
+		if err := w.ReadData(&o.Options); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnjoinDomain3Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnjoinDomain3Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:(uint32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnjoinDomain3Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:(uint32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// UnjoinDomain3Request structure represents the NetrUnjoinDomain3 operation request
+type UnjoinDomain3Request struct {
+	// ServerName: This parameter has no effect on message processing in any environment.
+	// The client MUST set this parameter to a value that resolves to the IP destination
+	// address of the RPC packets it transmits ([MS-RPCE] section 2.1.1.2). The server (1)
+	// MUST ignore this parameter.
+	ServerName string `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	// AccountName: A pointer to a string that specifies the account name in the joined
+	// domain to use when connecting to a domain controller. This parameter is optional.
+	// If this parameter is NULL, the caller's account name MUST be used.
+	AccountName string `idl:"name:AccountName;string;pointer:unique" json:"account_name"`
+	// Password: An optional pointer to a JOINPR_ENCRYPTED_USER_PASSWORD_AES structure (section
+	// 2.2.5.19) that specifies the encrypted password to use with the AccountName parameter.
+	// If this parameter is NULL, the caller's security context MUST be used.
+	Password *EncryptedUserPasswordAES `idl:"name:Password;pointer:unique" json:"password"`
+	// Options: A 32-bit bitfield specifying modifications to default message processing
+	// behavior.
+	//
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                              |                                                                                  |
+	//	|                  VALUE/CODE                  |                                     MEANING                                      |
+	//	|                                              |                                                                                  |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_ACCT_DELETE 0x00000004              | Disables the account when the unjoin operation occurs.                           |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_IGNORE_UNSUPPORTED_FLAGS 0x10000000 | The server ignores undefined flags when this bit is set.<141> This option is     |
+	//	|                                              | present to allow for the addition of future optional values.                     |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	Options uint32 `idl:"name:Options" json:"options"`
+}
+
+func (o *UnjoinDomain3Request) xxx_ToOp(ctx context.Context, op *xxx_UnjoinDomain3Operation) *xxx_UnjoinDomain3Operation {
+	if op == nil {
+		op = &xxx_UnjoinDomain3Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ServerName = o.ServerName
+	op.AccountName = o.AccountName
+	op.Password = o.Password
+	op.Options = o.Options
+	return op
+}
+
+func (o *UnjoinDomain3Request) xxx_FromOp(ctx context.Context, op *xxx_UnjoinDomain3Operation) {
+	if o == nil {
+		return
+	}
+	o.ServerName = op.ServerName
+	o.AccountName = op.AccountName
+	o.Password = op.Password
+	o.Options = op.Options
+}
+func (o *UnjoinDomain3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *UnjoinDomain3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_UnjoinDomain3Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeUnjoinDomain3Request build a response structure from the given request structure.
+func (o *UnjoinDomain3Request) MakeResponse() *UnjoinDomain3Response {
+	return &UnjoinDomain3Response{}
+}
+
+// OpNum returns the operation number of NetrUnjoinDomain3 operation.
+func (o *UnjoinDomain3Request) OpNum() int { return 32 }
+
+// OpName returns the operation name of NetrUnjoinDomain3 operation.
+func (o *UnjoinDomain3Request) OpName() string { return "/wkssvc/v1/NetrUnjoinDomain3" }
+
+// UnjoinDomain3Response structure represents the NetrUnjoinDomain3 operation response
+type UnjoinDomain3Response struct {
+	// Return: The NetrUnjoinDomain3 return value.
+	Return uint32 `idl:"name:Return" json:"return"`
+}
+
+func (o *UnjoinDomain3Response) xxx_ToOp(ctx context.Context, op *xxx_UnjoinDomain3Operation) *xxx_UnjoinDomain3Operation {
+	if op == nil {
+		op = &xxx_UnjoinDomain3Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *UnjoinDomain3Response) xxx_FromOp(ctx context.Context, op *xxx_UnjoinDomain3Operation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *UnjoinDomain3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *UnjoinDomain3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_UnjoinDomain3Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_RenameMachineInDomain3Operation structure represents the NetrRenameMachineInDomain3 operation
+type xxx_RenameMachineInDomain3Operation struct {
+	ServerName  string                 `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	MachineName string                 `idl:"name:MachineName;string;pointer:unique" json:"machine_name"`
+	AccountName string                 `idl:"name:AccountName;string;pointer:unique" json:"account_name"`
+	Password    *EncryptedUserPassword `idl:"name:Password;pointer:unique" json:"password"`
+	Options     uint32                 `idl:"name:Options" json:"options"`
+	Return      uint32                 `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of NetrRenameMachineInDomain3 operation.
+func (o *xxx_RenameMachineInDomain3Operation) OpNum() int { return 33 }
+
+// OpName returns the operation name of NetrRenameMachineInDomain3 operation.
+func (o *xxx_RenameMachineInDomain3Operation) OpName() string {
+	return "/wkssvc/v1/NetrRenameMachineInDomain3"
+}
+
+func (o *xxx_RenameMachineInDomain3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RenameMachineInDomain3Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.ServerName != "" {
+			_ptr_ServerName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.ServerName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ServerName, _ptr_ServerName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// MachineName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.MachineName != "" {
+			_ptr_MachineName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.MachineName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.MachineName, _ptr_MachineName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// AccountName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.AccountName != "" {
+			_ptr_AccountName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.AccountName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.AccountName, _ptr_AccountName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Password {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD}(struct))
+	{
+		if o.Password != nil {
+			_ptr_Password := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.Password != nil {
+					if err := o.Password.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&EncryptedUserPassword{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Password, _ptr_Password); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Options {in} (1:(uint32))
+	{
+		if err := w.WriteData(o.Options); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RenameMachineInDomain3Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_ServerName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.ServerName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// MachineName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_MachineName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.MachineName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_MachineName := func(ptr interface{}) { o.MachineName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.MachineName, _s_MachineName, _ptr_MachineName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// AccountName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_AccountName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.AccountName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_AccountName := func(ptr interface{}) { o.AccountName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.AccountName, _s_AccountName, _ptr_AccountName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Password {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD}(struct))
+	{
+		_ptr_Password := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.Password == nil {
+				o.Password = &EncryptedUserPassword{}
+			}
+			if err := o.Password.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_Password := func(ptr interface{}) { o.Password = *ptr.(**EncryptedUserPassword) }
+		if err := w.ReadPointer(&o.Password, _s_Password, _ptr_Password); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Options {in} (1:(uint32))
+	{
+		if err := w.ReadData(&o.Options); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RenameMachineInDomain3Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RenameMachineInDomain3Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:(uint32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RenameMachineInDomain3Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:(uint32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// RenameMachineInDomain3Request structure represents the NetrRenameMachineInDomain3 operation request
+type RenameMachineInDomain3Request struct {
+	// ServerName: This parameter has no effect on message processing in any environment.
+	// The client MUST set this parameter to a value that resolves to the IP protocol layer
+	// destination address of the RPC packets it transmits ([MS-RPCE] section 2.1.1.2).
+	// The server MUST ignore this parameter.
+	ServerName string `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	// MachineName: A pointer to a string that specifies the new computer name. This parameter
+	// is optional. If this parameter is NULL, the current machine name is used.
+	MachineName string `idl:"name:MachineName;string;pointer:unique" json:"machine_name"`
+	// AccountName: A pointer to a string that specifies an account name in the joined domain
+	// to use when connecting to a domain controller (DC). This parameter is optional. If
+	// this parameter is NULL, the caller's account name is used.
+	AccountName string `idl:"name:AccountName;string;pointer:unique" json:"account_name"`
+	// Password: An optional pointer to a JOINPR_ENCRYPTED_USER_PASSWORD_AES structure (section
+	// 2.2.5.19) that specifies the encrypted password to use with the AccountName parameter.
+	// If this parameter is NULL, the caller's security context MUST be used.
+	Password *EncryptedUserPassword `idl:"name:Password;pointer:unique" json:"password"`
+	// Options: A 32-bit bitfield that specifies modifications to default server behavior
+	// in message processing.
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                           |                                                                                  |
+	//	|                VALUE/CODE                 |                                     MEANING                                      |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_ACCT_CREATE 0x00000002           | Renames the computer account in the domain. If this flag is not set, the         |
+	//	|                                           | computer name is changed locally but no changes are made to the computer account |
+	//	|                                           | in the domain.                                                                   |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NETSETUP_DNS_NAME_CHANGES_ONLY 0x00001000 | Limits any updates to DNS-based names only.                                      |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	Options uint32 `idl:"name:Options" json:"options"`
+}
+
+func (o *RenameMachineInDomain3Request) xxx_ToOp(ctx context.Context, op *xxx_RenameMachineInDomain3Operation) *xxx_RenameMachineInDomain3Operation {
+	if op == nil {
+		op = &xxx_RenameMachineInDomain3Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ServerName = o.ServerName
+	op.MachineName = o.MachineName
+	op.AccountName = o.AccountName
+	op.Password = o.Password
+	op.Options = o.Options
+	return op
+}
+
+func (o *RenameMachineInDomain3Request) xxx_FromOp(ctx context.Context, op *xxx_RenameMachineInDomain3Operation) {
+	if o == nil {
+		return
+	}
+	o.ServerName = op.ServerName
+	o.MachineName = op.MachineName
+	o.AccountName = op.AccountName
+	o.Password = op.Password
+	o.Options = op.Options
+}
+func (o *RenameMachineInDomain3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *RenameMachineInDomain3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_RenameMachineInDomain3Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeRenameMachineInDomain3Request build a response structure from the given request structure.
+func (o *RenameMachineInDomain3Request) MakeResponse() *RenameMachineInDomain3Response {
+	return &RenameMachineInDomain3Response{}
+}
+
+// OpNum returns the operation number of NetrRenameMachineInDomain3 operation.
+func (o *RenameMachineInDomain3Request) OpNum() int { return 33 }
+
+// OpName returns the operation name of NetrRenameMachineInDomain3 operation.
+func (o *RenameMachineInDomain3Request) OpName() string {
+	return "/wkssvc/v1/NetrRenameMachineInDomain3"
+}
+
+// RenameMachineInDomain3Response structure represents the NetrRenameMachineInDomain3 operation response
+type RenameMachineInDomain3Response struct {
+	// Return: The NetrRenameMachineInDomain3 return value.
+	Return uint32 `idl:"name:Return" json:"return"`
+}
+
+func (o *RenameMachineInDomain3Response) xxx_ToOp(ctx context.Context, op *xxx_RenameMachineInDomain3Operation) *xxx_RenameMachineInDomain3Operation {
+	if op == nil {
+		op = &xxx_RenameMachineInDomain3Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *RenameMachineInDomain3Response) xxx_FromOp(ctx context.Context, op *xxx_RenameMachineInDomain3Operation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *RenameMachineInDomain3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *RenameMachineInDomain3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_RenameMachineInDomain3Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_ValidateName3Operation structure represents the NetrValidateName3 operation
+type xxx_ValidateName3Operation struct {
+	ServerName     string                    `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	NameToValidate string                    `idl:"name:NameToValidate;string" json:"name_to_validate"`
+	AccountName    string                    `idl:"name:AccountName;string;pointer:unique" json:"account_name"`
+	Password       *EncryptedUserPasswordAES `idl:"name:Password;pointer:unique" json:"password"`
+	NameType       NetSetupNameType          `idl:"name:NameType" json:"name_type"`
+	Return         uint32                    `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of NetrValidateName3 operation.
+func (o *xxx_ValidateName3Operation) OpNum() int { return 34 }
+
+// OpName returns the operation name of NetrValidateName3 operation.
+func (o *xxx_ValidateName3Operation) OpName() string { return "/wkssvc/v1/NetrValidateName3" }
+
+func (o *xxx_ValidateName3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ValidateName3Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.ServerName != "" {
+			_ptr_ServerName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.ServerName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ServerName, _ptr_ServerName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// NameToValidate {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	{
+		if err := ndr.WriteUTF16NString(ctx, w, o.NameToValidate); err != nil {
+			return err
+		}
+	}
+	// AccountName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.AccountName != "" {
+			_ptr_AccountName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.AccountName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.AccountName, _ptr_AccountName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Password {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
+	{
+		if o.Password != nil {
+			_ptr_Password := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.Password != nil {
+					if err := o.Password.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&EncryptedUserPasswordAES{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Password, _ptr_Password); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// NameType {in} (1:{alias=NETSETUP_NAME_TYPE}(enum))
+	{
+		if err := w.WriteEnum(uint16(o.NameType)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ValidateName3Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_ServerName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.ServerName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// NameToValidate {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	{
+		if err := ndr.ReadUTF16NString(ctx, w, &o.NameToValidate); err != nil {
+			return err
+		}
+	}
+	// AccountName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_AccountName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.AccountName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_AccountName := func(ptr interface{}) { o.AccountName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.AccountName, _s_AccountName, _ptr_AccountName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Password {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
+	{
+		_ptr_Password := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.Password == nil {
+				o.Password = &EncryptedUserPasswordAES{}
+			}
+			if err := o.Password.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_Password := func(ptr interface{}) { o.Password = *ptr.(**EncryptedUserPasswordAES) }
+		if err := w.ReadPointer(&o.Password, _s_Password, _ptr_Password); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// NameType {in} (1:{alias=NETSETUP_NAME_TYPE}(enum))
+	{
+		if err := w.ReadEnum((*uint16)(&o.NameType)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ValidateName3Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ValidateName3Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:(uint32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ValidateName3Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:(uint32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// ValidateName3Request structure represents the NetrValidateName3 operation request
+type ValidateName3Request struct {
+	// ServerName: This parameter has no effect on message processing in any environment.
+	// The client MUST set this parameter to a value that resolves to the IP protocol layer
+	// destination address of the RPC packets it transmits ([MS-RPCE] section 2.1.1.2).
+	// The server (1) MUST ignore this parameter.
+	ServerName string `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	// NameToValidate: A pointer to a string that specifies the name to validate, according
+	// to its type.
+	NameToValidate string `idl:"name:NameToValidate;string" json:"name_to_validate"`
+	// AccountName: A pointer to a string that specifies an account name in the joined domain
+	// to use when connecting to a domain controller. This parameter is optional. If this
+	// parameter is NULL, the caller's account name is used.
+	AccountName string `idl:"name:AccountName;string;pointer:unique" json:"account_name"`
+	// Password: An optional pointer to a JOINPR_ENCRYPTED_USER_PASSWORD_AES structure (section
+	// 2.2.5.19) that specifies the encrypted password to use with the AccountName parameter.
+	// If this parameter is NULL, the caller's security context MUST be used.
+	Password *EncryptedUserPasswordAES `idl:"name:Password;pointer:unique" json:"password"`
+	// NameType: Specifies the type of validation to perform (section 2.2.3.2).
+	NameType NetSetupNameType `idl:"name:NameType" json:"name_type"`
+}
+
+func (o *ValidateName3Request) xxx_ToOp(ctx context.Context, op *xxx_ValidateName3Operation) *xxx_ValidateName3Operation {
+	if op == nil {
+		op = &xxx_ValidateName3Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ServerName = o.ServerName
+	op.NameToValidate = o.NameToValidate
+	op.AccountName = o.AccountName
+	op.Password = o.Password
+	op.NameType = o.NameType
+	return op
+}
+
+func (o *ValidateName3Request) xxx_FromOp(ctx context.Context, op *xxx_ValidateName3Operation) {
+	if o == nil {
+		return
+	}
+	o.ServerName = op.ServerName
+	o.NameToValidate = op.NameToValidate
+	o.AccountName = op.AccountName
+	o.Password = op.Password
+	o.NameType = op.NameType
+}
+func (o *ValidateName3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *ValidateName3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ValidateName3Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeValidateName3Request build a response structure from the given request structure.
+func (o *ValidateName3Request) MakeResponse() *ValidateName3Response {
+	return &ValidateName3Response{}
+}
+
+// OpNum returns the operation number of NetrValidateName3 operation.
+func (o *ValidateName3Request) OpNum() int { return 34 }
+
+// OpName returns the operation name of NetrValidateName3 operation.
+func (o *ValidateName3Request) OpName() string { return "/wkssvc/v1/NetrValidateName3" }
+
+// ValidateName3Response structure represents the NetrValidateName3 operation response
+type ValidateName3Response struct {
+	// Return: The NetrValidateName3 return value.
+	Return uint32 `idl:"name:Return" json:"return"`
+}
+
+func (o *ValidateName3Response) xxx_ToOp(ctx context.Context, op *xxx_ValidateName3Operation) *xxx_ValidateName3Operation {
+	if op == nil {
+		op = &xxx_ValidateName3Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *ValidateName3Response) xxx_FromOp(ctx context.Context, op *xxx_ValidateName3Operation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *ValidateName3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *ValidateName3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ValidateName3Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_AddAlternateComputerName2Operation structure represents the NetrAddAlternateComputerName2 operation
+type xxx_AddAlternateComputerName2Operation struct {
+	ServerName        string                    `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	AlternateName     string                    `idl:"name:AlternateName;string;pointer:unique" json:"alternate_name"`
+	DomainAccount     string                    `idl:"name:DomainAccount;string;pointer:unique" json:"domain_account"`
+	EncryptedPassword *EncryptedUserPasswordAES `idl:"name:EncryptedPassword;pointer:unique" json:"encrypted_password"`
+	_                 uint32                    `idl:"name:Reserved"`
+	Return            uint32                    `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of NetrAddAlternateComputerName2 operation.
+func (o *xxx_AddAlternateComputerName2Operation) OpNum() int { return 35 }
+
+// OpName returns the operation name of NetrAddAlternateComputerName2 operation.
+func (o *xxx_AddAlternateComputerName2Operation) OpName() string {
+	return "/wkssvc/v1/NetrAddAlternateComputerName2"
+}
+
+func (o *xxx_AddAlternateComputerName2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AddAlternateComputerName2Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.ServerName != "" {
+			_ptr_ServerName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.ServerName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ServerName, _ptr_ServerName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// AlternateName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.AlternateName != "" {
+			_ptr_AlternateName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.AlternateName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.AlternateName, _ptr_AlternateName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// DomainAccount {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.DomainAccount != "" {
+			_ptr_DomainAccount := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.DomainAccount); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.DomainAccount, _ptr_DomainAccount); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedPassword {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
+	{
+		if o.EncryptedPassword != nil {
+			_ptr_EncryptedPassword := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.EncryptedPassword != nil {
+					if err := o.EncryptedPassword.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&EncryptedUserPasswordAES{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncryptedPassword, _ptr_EncryptedPassword); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Reserved {in} (1:(uint32))
+	{
+		// reserved Reserved
+		if err := w.WriteData(uint32(0)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AddAlternateComputerName2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_ServerName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.ServerName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// AlternateName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_AlternateName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.AlternateName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_AlternateName := func(ptr interface{}) { o.AlternateName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.AlternateName, _s_AlternateName, _ptr_AlternateName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// DomainAccount {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_DomainAccount := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.DomainAccount); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_DomainAccount := func(ptr interface{}) { o.DomainAccount = *ptr.(*string) }
+		if err := w.ReadPointer(&o.DomainAccount, _s_DomainAccount, _ptr_DomainAccount); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedPassword {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
+	{
+		_ptr_EncryptedPassword := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.EncryptedPassword == nil {
+				o.EncryptedPassword = &EncryptedUserPasswordAES{}
+			}
+			if err := o.EncryptedPassword.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_EncryptedPassword := func(ptr interface{}) { o.EncryptedPassword = *ptr.(**EncryptedUserPasswordAES) }
+		if err := w.ReadPointer(&o.EncryptedPassword, _s_EncryptedPassword, _ptr_EncryptedPassword); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Reserved {in} (1:(uint32))
+	{
+		// reserved Reserved
+		var _Reserved uint32
+		if err := w.ReadData(&_Reserved); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AddAlternateComputerName2Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AddAlternateComputerName2Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:(uint32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AddAlternateComputerName2Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:(uint32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// AddAlternateComputerName2Request structure represents the NetrAddAlternateComputerName2 operation request
+type AddAlternateComputerName2Request struct {
+	// ServerName: This parameter has no effect on message processing in any environment.
+	// The client MUST set this parameter to a value that resolves to the IP protocol layer
+	// destination address of the RPC packets it transmits ([MS-RPCE] section 2.1.1.2).
+	// The server MUST ignore this parameter.
+	ServerName string `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	// AlternateName: A pointer to a string that specifies the new alternate name to add.
+	// The name MUST be a valid DNS host name ([RFC1035]).
+	AlternateName string `idl:"name:AlternateName;string;pointer:unique" json:"alternate_name"`
+	// DomainAccount: A pointer to a string that specifies the account name in the domain
+	// to use when connecting to a domain controller. This parameter is optional. If this
+	// parameter is NULL, the caller's account name MUST be used. If this parameter is specified,
+	// the format MUST be one of the following:
+	//
+	// * <NetBIOSDomainName>\<UserName>
+	//
+	// * <FullyQualifiedDNSDomainName>\<UserName>
+	//
+	// * <UserName>@<FullyQualifiedDNSDomainName>
+	DomainAccount string `idl:"name:DomainAccount;string;pointer:unique" json:"domain_account"`
+	// EncryptedPassword: An optional pointer to a JOINPR_ENCRYPTED_USER_PASSWORD_AES structure
+	// (section 2.2.5.19) that specifies the encrypted password to use with the DomainAccount
+	// parameter. If the DomainAccount parameter is NULL, the caller's security context
+	// MUST be used, and this parameter MUST be ignored.
+	EncryptedPassword *EncryptedUserPasswordAES `idl:"name:EncryptedPassword;pointer:unique" json:"encrypted_password"`
+}
+
+func (o *AddAlternateComputerName2Request) xxx_ToOp(ctx context.Context, op *xxx_AddAlternateComputerName2Operation) *xxx_AddAlternateComputerName2Operation {
+	if op == nil {
+		op = &xxx_AddAlternateComputerName2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ServerName = o.ServerName
+	op.AlternateName = o.AlternateName
+	op.DomainAccount = o.DomainAccount
+	op.EncryptedPassword = o.EncryptedPassword
+	return op
+}
+
+func (o *AddAlternateComputerName2Request) xxx_FromOp(ctx context.Context, op *xxx_AddAlternateComputerName2Operation) {
+	if o == nil {
+		return
+	}
+	o.ServerName = op.ServerName
+	o.AlternateName = op.AlternateName
+	o.DomainAccount = op.DomainAccount
+	o.EncryptedPassword = op.EncryptedPassword
+}
+func (o *AddAlternateComputerName2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *AddAlternateComputerName2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_AddAlternateComputerName2Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeAddAlternateComputerName2Request build a response structure from the given request structure.
+func (o *AddAlternateComputerName2Request) MakeResponse() *AddAlternateComputerName2Response {
+	return &AddAlternateComputerName2Response{}
+}
+
+// OpNum returns the operation number of NetrAddAlternateComputerName2 operation.
+func (o *AddAlternateComputerName2Request) OpNum() int { return 35 }
+
+// OpName returns the operation name of NetrAddAlternateComputerName2 operation.
+func (o *AddAlternateComputerName2Request) OpName() string {
+	return "/wkssvc/v1/NetrAddAlternateComputerName2"
+}
+
+// AddAlternateComputerName2Response structure represents the NetrAddAlternateComputerName2 operation response
+type AddAlternateComputerName2Response struct {
+	// Return: The NetrAddAlternateComputerName2 return value.
+	Return uint32 `idl:"name:Return" json:"return"`
+}
+
+func (o *AddAlternateComputerName2Response) xxx_ToOp(ctx context.Context, op *xxx_AddAlternateComputerName2Operation) *xxx_AddAlternateComputerName2Operation {
+	if op == nil {
+		op = &xxx_AddAlternateComputerName2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *AddAlternateComputerName2Response) xxx_FromOp(ctx context.Context, op *xxx_AddAlternateComputerName2Operation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *AddAlternateComputerName2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *AddAlternateComputerName2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_AddAlternateComputerName2Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_RemoveAlternateComputerName2Operation structure represents the NetrRemoveAlternateComputerName2 operation
+type xxx_RemoveAlternateComputerName2Operation struct {
+	ServerName        string                    `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	AlternateName     string                    `idl:"name:AlternateName;string;pointer:unique" json:"alternate_name"`
+	DomainAccount     string                    `idl:"name:DomainAccount;string;pointer:unique" json:"domain_account"`
+	EncryptedPassword *EncryptedUserPasswordAES `idl:"name:EncryptedPassword;pointer:unique" json:"encrypted_password"`
+	_                 uint32                    `idl:"name:Reserved"`
+	Return            uint32                    `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of NetrRemoveAlternateComputerName2 operation.
+func (o *xxx_RemoveAlternateComputerName2Operation) OpNum() int { return 36 }
+
+// OpName returns the operation name of NetrRemoveAlternateComputerName2 operation.
+func (o *xxx_RemoveAlternateComputerName2Operation) OpName() string {
+	return "/wkssvc/v1/NetrRemoveAlternateComputerName2"
+}
+
+func (o *xxx_RemoveAlternateComputerName2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RemoveAlternateComputerName2Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.ServerName != "" {
+			_ptr_ServerName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.ServerName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ServerName, _ptr_ServerName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// AlternateName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.AlternateName != "" {
+			_ptr_AlternateName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.AlternateName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.AlternateName, _ptr_AlternateName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// DomainAccount {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.DomainAccount != "" {
+			_ptr_DomainAccount := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.DomainAccount); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.DomainAccount, _ptr_DomainAccount); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedPassword {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
+	{
+		if o.EncryptedPassword != nil {
+			_ptr_EncryptedPassword := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.EncryptedPassword != nil {
+					if err := o.EncryptedPassword.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&EncryptedUserPasswordAES{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncryptedPassword, _ptr_EncryptedPassword); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Reserved {in} (1:(uint32))
+	{
+		// reserved Reserved
+		if err := w.WriteData(uint32(0)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RemoveAlternateComputerName2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_ServerName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.ServerName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// AlternateName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_AlternateName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.AlternateName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_AlternateName := func(ptr interface{}) { o.AlternateName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.AlternateName, _s_AlternateName, _ptr_AlternateName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// DomainAccount {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_DomainAccount := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.DomainAccount); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_DomainAccount := func(ptr interface{}) { o.DomainAccount = *ptr.(*string) }
+		if err := w.ReadPointer(&o.DomainAccount, _s_DomainAccount, _ptr_DomainAccount); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedPassword {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
+	{
+		_ptr_EncryptedPassword := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.EncryptedPassword == nil {
+				o.EncryptedPassword = &EncryptedUserPasswordAES{}
+			}
+			if err := o.EncryptedPassword.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_EncryptedPassword := func(ptr interface{}) { o.EncryptedPassword = *ptr.(**EncryptedUserPasswordAES) }
+		if err := w.ReadPointer(&o.EncryptedPassword, _s_EncryptedPassword, _ptr_EncryptedPassword); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Reserved {in} (1:(uint32))
+	{
+		// reserved Reserved
+		var _Reserved uint32
+		if err := w.ReadData(&_Reserved); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RemoveAlternateComputerName2Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RemoveAlternateComputerName2Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:(uint32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RemoveAlternateComputerName2Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:(uint32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// RemoveAlternateComputerName2Request structure represents the NetrRemoveAlternateComputerName2 operation request
+type RemoveAlternateComputerName2Request struct {
+	// ServerName: This parameter has no effect on message processing in any environment.
+	// The client MUST set this parameter to a value that resolves to the IP protocol layer
+	// destination address of the RPC packets it transmits ([MS-RPCE] section 2.1.1.2).
+	// The server MUST ignore this parameter.
+	ServerName string `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	// AlternateName: A pointer to a string that specifies the alternate name to remove.
+	// The name MUST be a valid DNS host name [RFC1035].
+	AlternateName string `idl:"name:AlternateName;string;pointer:unique" json:"alternate_name"`
+	// DomainAccount: A pointer to a string that specifies the account name in the domain
+	// to use when connecting to a domain controller. This parameter is optional. If this
+	// parameter is NULL, the caller's account name MUST be used. If this parameter is specified,
+	// the format MUST be one of the following:
+	//
+	// * <NetBIOSDomainName>\<UserName>
+	//
+	// * <FullyQualifiedDNSDomainName>\<UserName>
+	//
+	// * <UserName>@<FullyQualifiedDNSDomainName>
+	DomainAccount string `idl:"name:DomainAccount;string;pointer:unique" json:"domain_account"`
+	// EncryptedPassword: An optional pointer to a JOINPR_ENCRYPTED_USER_PASSWORD_AES structure
+	// (section 2.2.5.19) that specifies the encrypted password to use with the DomainAccount
+	// parameter. If the DomainAccount parameter is NULL, the caller's security context
+	// MUST be used, and this parameter MUST be ignored.
+	EncryptedPassword *EncryptedUserPasswordAES `idl:"name:EncryptedPassword;pointer:unique" json:"encrypted_password"`
+}
+
+func (o *RemoveAlternateComputerName2Request) xxx_ToOp(ctx context.Context, op *xxx_RemoveAlternateComputerName2Operation) *xxx_RemoveAlternateComputerName2Operation {
+	if op == nil {
+		op = &xxx_RemoveAlternateComputerName2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ServerName = o.ServerName
+	op.AlternateName = o.AlternateName
+	op.DomainAccount = o.DomainAccount
+	op.EncryptedPassword = o.EncryptedPassword
+	return op
+}
+
+func (o *RemoveAlternateComputerName2Request) xxx_FromOp(ctx context.Context, op *xxx_RemoveAlternateComputerName2Operation) {
+	if o == nil {
+		return
+	}
+	o.ServerName = op.ServerName
+	o.AlternateName = op.AlternateName
+	o.DomainAccount = op.DomainAccount
+	o.EncryptedPassword = op.EncryptedPassword
+}
+func (o *RemoveAlternateComputerName2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *RemoveAlternateComputerName2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_RemoveAlternateComputerName2Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeRemoveAlternateComputerName2Request build a response structure from the given request structure.
+func (o *RemoveAlternateComputerName2Request) MakeResponse() *RemoveAlternateComputerName2Response {
+	return &RemoveAlternateComputerName2Response{}
+}
+
+// OpNum returns the operation number of NetrRemoveAlternateComputerName2 operation.
+func (o *RemoveAlternateComputerName2Request) OpNum() int { return 36 }
+
+// OpName returns the operation name of NetrRemoveAlternateComputerName2 operation.
+func (o *RemoveAlternateComputerName2Request) OpName() string {
+	return "/wkssvc/v1/NetrRemoveAlternateComputerName2"
+}
+
+// RemoveAlternateComputerName2Response structure represents the NetrRemoveAlternateComputerName2 operation response
+type RemoveAlternateComputerName2Response struct {
+	// Return: The NetrRemoveAlternateComputerName2 return value.
+	Return uint32 `idl:"name:Return" json:"return"`
+}
+
+func (o *RemoveAlternateComputerName2Response) xxx_ToOp(ctx context.Context, op *xxx_RemoveAlternateComputerName2Operation) *xxx_RemoveAlternateComputerName2Operation {
+	if op == nil {
+		op = &xxx_RemoveAlternateComputerName2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *RemoveAlternateComputerName2Response) xxx_FromOp(ctx context.Context, op *xxx_RemoveAlternateComputerName2Operation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *RemoveAlternateComputerName2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *RemoveAlternateComputerName2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_RemoveAlternateComputerName2Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_SetPrimaryComputerName2Operation structure represents the NetrSetPrimaryComputerName2 operation
+type xxx_SetPrimaryComputerName2Operation struct {
+	ServerName        string                 `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	PrimaryName       string                 `idl:"name:PrimaryName;string;pointer:unique" json:"primary_name"`
+	DomainAccount     string                 `idl:"name:DomainAccount;string;pointer:unique" json:"domain_account"`
+	EncryptedPassword *EncryptedUserPassword `idl:"name:EncryptedPassword;pointer:unique" json:"encrypted_password"`
+	_                 uint32                 `idl:"name:Reserved"`
+	Return            uint32                 `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of NetrSetPrimaryComputerName2 operation.
+func (o *xxx_SetPrimaryComputerName2Operation) OpNum() int { return 37 }
+
+// OpName returns the operation name of NetrSetPrimaryComputerName2 operation.
+func (o *xxx_SetPrimaryComputerName2Operation) OpName() string {
+	return "/wkssvc/v1/NetrSetPrimaryComputerName2"
+}
+
+func (o *xxx_SetPrimaryComputerName2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetPrimaryComputerName2Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.ServerName != "" {
+			_ptr_ServerName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.ServerName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ServerName, _ptr_ServerName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// PrimaryName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.PrimaryName != "" {
+			_ptr_PrimaryName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.PrimaryName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.PrimaryName, _ptr_PrimaryName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// DomainAccount {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		if o.DomainAccount != "" {
+			_ptr_DomainAccount := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.DomainAccount); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.DomainAccount, _ptr_DomainAccount); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedPassword {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD}(struct))
+	{
+		if o.EncryptedPassword != nil {
+			_ptr_EncryptedPassword := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.EncryptedPassword != nil {
+					if err := o.EncryptedPassword.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&EncryptedUserPassword{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncryptedPassword, _ptr_EncryptedPassword); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Reserved {in} (1:(uint32))
+	{
+		// reserved Reserved
+		if err := w.WriteData(uint32(0)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetPrimaryComputerName2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// ServerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_ServerName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.ServerName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// PrimaryName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_PrimaryName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.PrimaryName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_PrimaryName := func(ptr interface{}) { o.PrimaryName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.PrimaryName, _s_PrimaryName, _ptr_PrimaryName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// DomainAccount {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_DomainAccount := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.DomainAccount); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_DomainAccount := func(ptr interface{}) { o.DomainAccount = *ptr.(*string) }
+		if err := w.ReadPointer(&o.DomainAccount, _s_DomainAccount, _ptr_DomainAccount); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedPassword {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD}(struct))
+	{
+		_ptr_EncryptedPassword := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.EncryptedPassword == nil {
+				o.EncryptedPassword = &EncryptedUserPassword{}
+			}
+			if err := o.EncryptedPassword.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_EncryptedPassword := func(ptr interface{}) { o.EncryptedPassword = *ptr.(**EncryptedUserPassword) }
+		if err := w.ReadPointer(&o.EncryptedPassword, _s_EncryptedPassword, _ptr_EncryptedPassword); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Reserved {in} (1:(uint32))
+	{
+		// reserved Reserved
+		var _Reserved uint32
+		if err := w.ReadData(&_Reserved); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetPrimaryComputerName2Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetPrimaryComputerName2Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:(uint32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetPrimaryComputerName2Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:(uint32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// SetPrimaryComputerName2Request structure represents the NetrSetPrimaryComputerName2 operation request
+type SetPrimaryComputerName2Request struct {
+	// ServerName: This parameter has no effect on message processing in any environment.
+	// The client MUST set this parameter to a value that resolves to the IP protocol layer
+	// destination address of the RPC packets it transmits ([MS-RPCE] section 2.1.1.2).
+	// The server MUST ignore this parameter.
+	ServerName string `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	// PrimaryName: A pointer to a string that specifies the primary computer name to set.
+	// The name MUST be a valid DNS host name ([RFC1035].
+	PrimaryName string `idl:"name:PrimaryName;string;pointer:unique" json:"primary_name"`
+	// DomainAccount: A pointer to a string that specifies the account name in the joined
+	// domain to use when connecting to a domain controller. This parameter is optional.
+	// If this parameter is NULL, the caller's account name MUST be used. This parameter
+	// is not used if the server is not joined to a domain.
+	//
+	// * <NetBIOSDomainName>\<UserName>
+	//
+	// * <FullyQualifiedDNSDomainName>\<UserName>
+	//
+	// * <UserName>@<FullyQualifiedDNSDomainName>
+	DomainAccount string `idl:"name:DomainAccount;string;pointer:unique" json:"domain_account"`
+	// EncryptedPassword: An optional pointer to a JOINPR_ENCRYPTED_USER_PASSWORD_AES structure
+	// (section 2.2.5.19) that specifies the encrypted password to use with the DomainAccount
+	// parameter. If the DomainAccount parameter is NULL, the caller's security context
+	// MUST be used, and this parameter MUST be ignored.
+	EncryptedPassword *EncryptedUserPassword `idl:"name:EncryptedPassword;pointer:unique" json:"encrypted_password"`
+}
+
+func (o *SetPrimaryComputerName2Request) xxx_ToOp(ctx context.Context, op *xxx_SetPrimaryComputerName2Operation) *xxx_SetPrimaryComputerName2Operation {
+	if op == nil {
+		op = &xxx_SetPrimaryComputerName2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ServerName = o.ServerName
+	op.PrimaryName = o.PrimaryName
+	op.DomainAccount = o.DomainAccount
+	op.EncryptedPassword = o.EncryptedPassword
+	return op
+}
+
+func (o *SetPrimaryComputerName2Request) xxx_FromOp(ctx context.Context, op *xxx_SetPrimaryComputerName2Operation) {
+	if o == nil {
+		return
+	}
+	o.ServerName = op.ServerName
+	o.PrimaryName = op.PrimaryName
+	o.DomainAccount = op.DomainAccount
+	o.EncryptedPassword = op.EncryptedPassword
+}
+func (o *SetPrimaryComputerName2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *SetPrimaryComputerName2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetPrimaryComputerName2Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeSetPrimaryComputerName2Request build a response structure from the given request structure.
+func (o *SetPrimaryComputerName2Request) MakeResponse() *SetPrimaryComputerName2Response {
+	return &SetPrimaryComputerName2Response{}
+}
+
+// OpNum returns the operation number of NetrSetPrimaryComputerName2 operation.
+func (o *SetPrimaryComputerName2Request) OpNum() int { return 37 }
+
+// OpName returns the operation name of NetrSetPrimaryComputerName2 operation.
+func (o *SetPrimaryComputerName2Request) OpName() string {
+	return "/wkssvc/v1/NetrSetPrimaryComputerName2"
+}
+
+// SetPrimaryComputerName2Response structure represents the NetrSetPrimaryComputerName2 operation response
+type SetPrimaryComputerName2Response struct {
+	// Return: The NetrSetPrimaryComputerName2 return value.
+	Return uint32 `idl:"name:Return" json:"return"`
+}
+
+func (o *SetPrimaryComputerName2Response) xxx_ToOp(ctx context.Context, op *xxx_SetPrimaryComputerName2Operation) *xxx_SetPrimaryComputerName2Operation {
+	if op == nil {
+		op = &xxx_SetPrimaryComputerName2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *SetPrimaryComputerName2Response) xxx_FromOp(ctx context.Context, op *xxx_SetPrimaryComputerName2Operation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *SetPrimaryComputerName2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *SetPrimaryComputerName2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetPrimaryComputerName2Operation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

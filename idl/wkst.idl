@@ -1,5 +1,5 @@
 import "ms-dtyp.idl";
- 
+
 [
     uuid(6BFFD098-A112-3610-9833-46C3F87E345A),version(1.0),
     pointer_default(unique)
@@ -12,7 +12,7 @@ interface wkssvc
         NetSetupWorkgroupName,
         NetSetupDomainName
     } NETSETUP_JOIN_STATUS, *PNETSETUP_JOIN_STATUS;
- 
+
     typedef enum  _NETSETUP_NAME_TYPE {
         NetSetupUnknown = 0,
         NetSetupMachine,
@@ -21,14 +21,14 @@ interface wkssvc
         NetSetupNonExistentDomain,
         NetSetupDnsMachine
     } NETSETUP_NAME_TYPE, *PNETSETUP_NAME_TYPE;
- 
+
     typedef enum _NET_COMPUTER_NAME_TYPE {
         NetPrimaryComputerName = 0,
         NetAlternateComputerNames,
         NetAllComputerNames,
         NetComputerNameTypeMax
     } NET_COMPUTER_NAME_TYPE, *PNET_COMPUTER_NAME_TYPE;
- 
+
     typedef struct _STAT_WORKSTATION_0 {
         LARGE_INTEGER   StatisticsStartTime;
         LARGE_INTEGER   BytesReceived;
@@ -71,7 +71,7 @@ interface wkssvc
         unsigned long   FailedUseCount;
         unsigned long   CurrentCommands;
     } STAT_WORKSTATION_0, *PSTAT_WORKSTATION_0, *LPSTAT_WORKSTATION_0;
- 
+
     typedef struct _WKSTA_INFO_100 {
         unsigned long  wki100_platform_id;
         [string] wchar_t* wki100_computername;
@@ -79,7 +79,7 @@ interface wkssvc
         unsigned long wki100_ver_major;
         unsigned long wki100_ver_minor;
     } WKSTA_INFO_100, *PWKSTA_INFO_100, *LPWKSTA_INFO_100;
- 
+
     typedef struct _WKSTA_INFO_101 {
         unsigned long wki101_platform_id;
         [string] wchar_t* wki101_computername;
@@ -88,7 +88,7 @@ interface wkssvc
         unsigned long wki101_ver_minor;
         [string] wchar_t* wki101_lanroot;
     } WKSTA_INFO_101, *PWKSTA_INFO_101, *LPWKSTA_INFO_101;
- 
+
     typedef struct _WKSTA_INFO_102 {
         unsigned long  wki102_platform_id;
         [string] wchar_t* wki102_computername;
@@ -98,7 +98,7 @@ interface wkssvc
         [string] wchar_t* wki102_lanroot;
         unsigned long  wki102_logged_on_users;
     } WKSTA_INFO_102, *PWKSTA_INFO_102, *LPWKSTA_INFO_102;
- 
+
     typedef struct _WKSTA_INFO_502{
         unsigned long   wki502_char_wait;
         unsigned long   wki502_collection_time;
@@ -136,30 +136,30 @@ interface wkssvc
         int  wki502_force_core_create_mode;
         int  wki502_use_512_byte_max_transfer;
     } WKSTA_INFO_502, *PWKSTA_INFO_502, *LPWKSTA_INFO_502;
- 
+
     typedef struct _WKSTA_INFO_1013 {
          unsigned long  wki1013_keep_conn;
     } WKSTA_INFO_1013, *PWKSTA_INFO_1013, *LPWKSTA_INFO_1013;
- 
+
     typedef struct _WKSTA_INFO_1018 {
          unsigned long  wki1018_sess_timeout;
     } WKSTA_INFO_1018, *PWKSTA_INFO_1018, *LPWKSTA_INFO_1018;
- 
+
     typedef struct _WKSTA_INFO_1046 {
         unsigned long  wki1046_dormant_file_limit;
     } WKSTA_INFO_1046, *PWKSTA_INFO_1046, *LPWKSTA_INFO_1046;
- 
+
     typedef struct _WKSTA_USER_INFO_0 {
         [string] wchar_t* wkui0_username;
     } WKSTA_USER_INFO_0, *PWKSTA_USER_INFO_0, *LPWKSTA_USER_INFO_0;
- 
+
     typedef struct _WKSTA_USER_INFO_1 {
         [string]  wchar_t* wkui1_username;
         [string] wchar_t* wkui1_logon_domain;
         [string] wchar_t* wkui1_oth_domains;
         [string] wchar_t* wkui1_logon_server;
     } WKSTA_USER_INFO_1, *PWKSTA_USER_INFO_1, *LPWKSTA_USER_INFO_1;
- 
+
     typedef struct _WKSTA_TRANSPORT_INFO_0 {
         unsigned long wkti0_quality_of_service;
         unsigned long wkti0_number_of_vcs;
@@ -168,11 +168,11 @@ interface wkssvc
         unsigned long wkti0_wan_ish;
     } WKSTA_TRANSPORT_INFO_0, *PWKSTA_TRANSPORT_INFO_0,
      *LPWKSTA_TRANSPORT_INFO_0;
- 
+
     typedef [handle] wchar_t* WKSSVC_IDENTIFY_HANDLE;
- 
+
     typedef [handle] wchar_t* WKSSVC_IMPERSONATE_HANDLE;
- 
+
     typedef [switch_type(unsigned long)] union _WKSTA_INFO {
         [case(100)]
             LPWKSTA_INFO_100 WkstaInfo100;
@@ -191,12 +191,12 @@ interface wkssvc
         [default]
             ;
     } WKSTA_INFO, *PWKSTA_INFO, *LPWKSTA_INFO;
- 
+
     typedef struct _USE_INFO_0 {
         [string] wchar_t* ui0_local;
         [string] wchar_t* ui0_remote;
     } USE_INFO_0, *PUSE_INFO_0, *LPUSE_INFO_0;
- 
+
     typedef struct _USE_INFO_1 {
         [string] wchar_t* ui1_local;
         [string] wchar_t* ui1_remote;
@@ -206,18 +206,18 @@ interface wkssvc
         unsigned long ui1_refcount;
         unsigned long ui1_usecount;
     } USE_INFO_1, *PUSE_INFO_1, *LPUSE_INFO_1;
- 
+
     typedef struct _USE_INFO_2 {
         USE_INFO_1 ui2_useinfo;
         [string] wchar_t* ui2_username;
         [string] wchar_t* ui2_domainname;
     } USE_INFO_2, *PUSE_INFO_2, *LPUSE_INFO_2;
- 
+
     typedef struct _USE_INFO_3 {
         USE_INFO_2 ui3_ui2;
         ULONG ui3_flags;
     } USE_INFO_3, *PUSE_INFO_3, *LPUSE_INFO_3;
- 
+
     typedef [switch_type(unsigned long)] union _USE_INFO {
         [case(0)]
             LPUSE_INFO_0 UseInfo0;
@@ -230,22 +230,22 @@ interface wkssvc
         [default]
             ;
     } USE_INFO, *PUSE_INFO, *LPUSE_INFO;
- 
+
     typedef struct _USE_INFO_0_CONTAINER {
         unsigned long EntriesRead;
         LPUSE_INFO_0 Buffer;
     } USE_INFO_0_CONTAINER, *PUSE_INFO_0_CONTAINER, *LPUSE_INFO_0_CONTAINER;
- 
+
     typedef struct _USE_INFO_1_CONTAINER {
         unsigned long EntriesRead;
         LPUSE_INFO_1 Buffer;
     } USE_INFO_1_CONTAINER, *PUSE_INFO_1_CONTAINER, *LPUSE_INFO_1_CONTAINER;
- 
+
     typedef struct _USE_INFO_2_CONTAINER {
         unsigned long EntriesRead;
         LPUSE_INFO_2 Buffer;
     } USE_INFO_2_CONTAINER, *PUSE_INFO_2_CONTAINER, *LPUSE_INFO_2_CONTAINER;
- 
+
     typedef struct _USE_ENUM_STRUCT {
         DWORD   Level;
         [switch_is(Level)] union _USE_ENUM_UNION {
@@ -259,14 +259,26 @@ interface wkssvc
                 ;
         } UseInfo;
     } USE_ENUM_STRUCT, *PUSE_ENUM_STRUCT, *LPUSE_ENUM_STRUCT;
- 
+
+#define JOIN_OBFUSCATOR_LENGTH 8
+#define JOIN_MAX_PASSWORD_LENGTH 256
+#define  MAX_PASSWORDBLOB_SIZE  (JOIN_OBFUSCATOR_LENGTH + (JOIN_MAX_PASSWORD_LENGTH * sizeof(WCHAR)) + sizeof(ULONG))
+
+    typedef struct _JOINPR_ENCRYPTED_USER_PASSWORD_AES {
+      UCHAR AuthData[64];
+      UCHAR Salt[16];
+      [range(0, MAX_PASSWORDBLOB_SIZE)] ULONG cbCipher;
+      [size_is(cbCipher)] PUCHAR Cipher;
+    } JOINPR_ENCRYPTED_USER_PASSWORD_AES,
+      *PJOINPR_ENCRYPTED_USER_PASSWORD_AES;
+
     unsigned long
     NetrWkstaGetInfo (
         [in,string,unique] WKSSVC_IDENTIFY_HANDLE ServerName,
         [in] unsigned long Level,
         [out, switch_is(Level)] LPWKSTA_INFO WkstaInfo
     );
- 
+
     unsigned long
     NetrWkstaSetInfo (
         [in,string,unique] WKSSVC_IDENTIFY_HANDLE ServerName,
@@ -274,20 +286,20 @@ interface wkssvc
         [in, switch_is(Level)] LPWKSTA_INFO   WkstaInfo,
         [in,out,unique] unsigned long* ErrorParameter
     );
- 
+
     typedef struct _WKSTA_USER_INFO_0_CONTAINER {
         unsigned long   EntriesRead;
         [size_is(EntriesRead)] LPWKSTA_USER_INFO_0 Buffer;
     } WKSTA_USER_INFO_0_CONTAINER, *PWKSTA_USER_INFO_0_CONTAINER,
       *LPWKSTA_USER_INFO_0_CONTAINER;
- 
+
     typedef struct _WKSTA_USER_INFO_1_CONTAINER {
         unsigned long   EntriesRead;
         [size_is(EntriesRead)] LPWKSTA_USER_INFO_1 Buffer;
     } WKSTA_USER_INFO_1_CONTAINER, *PWKSTA_USER_INFO_1_CONTAINER,
       *LPWKSTA_USER_INFO_1_CONTAINER;
- 
- 
+
+
     typedef struct _WKSTA_USER_ENUM_STRUCT {
         unsigned long   Level;
         [switch_is(Level)] union _WKSTA_USER_ENUM_UNION {
@@ -298,10 +310,10 @@ interface wkssvc
             [default]
                 ;
         } WkstaUserInfo;
-    } WKSTA_USER_ENUM_STRUCT, 
-      *PWKSTA_USER_ENUM_STRUCT, 
+    } WKSTA_USER_ENUM_STRUCT,
+      *PWKSTA_USER_ENUM_STRUCT,
       *LPWKSTA_USER_ENUM_STRUCT;
- 
+
     unsigned long
     NetrWkstaUserEnum (
         [in,string,unique] WKSSVC_IDENTIFY_HANDLE ServerName,
@@ -310,18 +322,18 @@ interface wkssvc
         [out] unsigned long* TotalEntries,
         [in,out,unique] unsigned long* ResumeHandle
     );
- 
+
     void Opnum3NotUsedOnWire(void);
-        
-    void Opnum4NotUsedOnWire(void); 
- 
+
+    void Opnum4NotUsedOnWire(void);
+
     typedef struct _WKSTA_TRANSPORT_INFO_0_CONTAINER {
         unsigned long   EntriesRead;
         [size_is(EntriesRead)] LPWKSTA_TRANSPORT_INFO_0 Buffer;
-    } WKSTA_TRANSPORT_INFO_0_CONTAINER, 
+    } WKSTA_TRANSPORT_INFO_0_CONTAINER,
       *PWKSTA_TRANSPORT_INFO_0_CONTAINER,
       *LPWKSTA_TRANSPORT_INFO_0_CONTAINER;
- 
+
     typedef struct _WKSTA_TRANSPORT_ENUM_STRUCT {
         unsigned long   Level;
         [switch_is(Level)] union _WKSTA_TRANSPORT_ENUM_UNION {
@@ -332,7 +344,7 @@ interface wkssvc
         } WkstaTransportInfo;
     } WKSTA_TRANSPORT_ENUM_STRUCT, *PWKSTA_TRANSPORT_ENUM_STRUCT,
       *LPWKSTA_TRANSPORT_ENUM_STRUCT;
- 
+
     unsigned long
     NetrWkstaTransportEnum (
         [in,string,unique] WKSSVC_IDENTIFY_HANDLE ServerName,
@@ -341,7 +353,7 @@ interface wkssvc
         [out] unsigned long* TotalEntries,
         [in,out,unique] unsigned long* ResumeHandle
     );
- 
+
     unsigned long
     NetrWkstaTransportAdd (
         [in,string,unique] WKSSVC_IDENTIFY_HANDLE ServerName,
@@ -349,14 +361,14 @@ interface wkssvc
         [in] LPWKSTA_TRANSPORT_INFO_0 TransportInfo,
         [in,out,unique] unsigned long* ErrorParameter
     );
- 
+
     unsigned long
     NetrWkstaTransportDel (
         [in,string,unique] WKSSVC_IDENTIFY_HANDLE ServerName,
         [in,string,unique] wchar_t* TransportName,
         [in] unsigned long ForceLevel
     );
- 
+
     unsigned long
     NetrUseAdd (
         [in, string, unique] WKSSVC_IMPERSONATE_HANDLE ServerName,
@@ -364,19 +376,21 @@ interface wkssvc
         [in, switch_is(Level)] LPUSE_INFO InfoStruct,
         [in, out, unique] unsigned long* ErrorParameter
     );
-         unsigned long NetrUseGetInfo(
-           [in, string, unique] WKSSVC_IMPERSONATE_HANDLE ServerName,
-           [in, string] wchar_t* UseName,
-           [in] unsigned long Level,
-           [out, switch_is(Level)] LPUSE_INFO InfoStruct
-         );
+
+    unsigned long NetrUseGetInfo(
+      [in, string, unique] WKSSVC_IMPERSONATE_HANDLE ServerName,
+      [in, string] wchar_t* UseName,
+      [in] unsigned long Level,
+      [out, switch_is(Level)] LPUSE_INFO InfoStruct
+    );
+
     unsigned long
     NetrUseDel (
         [in, string, unique] WKSSVC_IMPERSONATE_HANDLE ServerName,
         [in, string] wchar_t* UseName,
         [in] unsigned long ForceLevel
     );
- 
+
     unsigned long
     NetrUseEnum (
         [in, string, unique] WKSSVC_IDENTIFY_HANDLE ServerName,
@@ -385,10 +399,10 @@ interface wkssvc
         [out] unsigned long* TotalEntries,
         [in, out, unique] unsigned long* ResumeHandle
     );
- 
-        
+
+
     void Opnum12NotUsedOnWire(void);
- 
+
     unsigned long
     NetrWorkstationStatisticsGet(
         [in,string,unique] WKSSVC_IDENTIFY_HANDLE ServerName,
@@ -397,53 +411,51 @@ interface wkssvc
         [in] unsigned long Options,
         [out] LPSTAT_WORKSTATION_0* Buffer
     );
- 
+
     void Opnum14NotUsedOnWire(void);
-        
+
     void Opnum15NotUsedOnWire(void);
- 
+
     void Opnum16NotUsedOnWire(void);
- 
+
     void Opnum17NotUsedOnWire(void);
- 
+
     void Opnum18NotUsedOnWire(void);
- 
+
     void Opnum19NotUsedOnWire(void);
- 
+
     unsigned long
     NetrGetJoinInformation(
         [in,string,unique] WKSSVC_IMPERSONATE_HANDLE ServerName,
         [in,out,string] wchar_t**    NameBuffer,
         [out] PNETSETUP_JOIN_STATUS BufferType
     );
- 
+
     void Opnum21NotUsedOnWire(void);
- 
-#define JOIN_OBFUSCATOR_LENGTH 8
-#define JOIN_MAX_PASSWORD_LENGTH 256
- 
+
+
     typedef struct _JOINPR_USER_PASSWORD {
         unsigned char Obfuscator[JOIN_OBFUSCATOR_LENGTH];
         wchar_t Buffer[JOIN_MAX_PASSWORD_LENGTH];
         unsigned long Length;
     } JOINPR_USER_PASSWORD,
      *PJOINPR_USER_PASSWORD;
- 
+
     typedef struct _JOINPR_ENCRYPTED_USER_PASSWORD {
-        unsigned char Buffer[JOIN_OBFUSCATOR_LENGTH + 
-            (JOIN_MAX_PASSWORD_LENGTH * sizeof(wchar_t)) + 
+        unsigned char Buffer[JOIN_OBFUSCATOR_LENGTH +
+            (JOIN_MAX_PASSWORD_LENGTH * sizeof(wchar_t)) +
             sizeof(unsigned long)];
     } JOINPR_ENCRYPTED_USER_PASSWORD,
      *PJOINPR_ENCRYPTED_USER_PASSWORD;
- 
+
     typedef struct _UNICODE_STRING {
         unsigned short Length;
         unsigned short MaximumLength;
-        [size_is(MaximumLength / 2), length_is((Length) / 2)] 
+        [size_is(MaximumLength / 2), length_is((Length) / 2)]
             unsigned short* Buffer;
-    } UNICODE_STRING, 
+    } UNICODE_STRING,
      *PUNICODE_STRING;
- 
+
     unsigned long
     NetrJoinDomain2(
         [in] handle_t RpcBindingHandle,
@@ -454,7 +466,7 @@ interface wkssvc
         [in,unique] PJOINPR_ENCRYPTED_USER_PASSWORD Password,
         [in] unsigned long Options
     );
- 
+
     unsigned long
     NetrUnjoinDomain2(
         [in] handle_t RpcBindingHandle,
@@ -463,7 +475,7 @@ interface wkssvc
         [in,unique] PJOINPR_ENCRYPTED_USER_PASSWORD Password,
         [in] unsigned long Options
     );
- 
+
     unsigned long
     NetrRenameMachineInDomain2(
         [in] handle_t RpcBindingHandle,
@@ -473,7 +485,7 @@ interface wkssvc
         [in,unique] PJOINPR_ENCRYPTED_USER_PASSWORD Password,
         [in] unsigned long Options
     );
- 
+
     unsigned long
     NetrValidateName2(
         [in] handle_t RpcBindingHandle,
@@ -483,7 +495,7 @@ interface wkssvc
         [in,unique] PJOINPR_ENCRYPTED_USER_PASSWORD Password,
         [in] NETSETUP_NAME_TYPE NameType
     );
- 
+
     unsigned long
     NetrGetJoinableOUs2(
         [in] handle_t  RpcBindingHandle,
@@ -494,7 +506,7 @@ interface wkssvc
         [in,out] unsigned long*  OUCount,
         [out,string,size_is(,*OUCount)] wchar_t*** OUs
     );
- 
+
     unsigned long
     NetrAddAlternateComputerName(
         [in] handle_t  RpcBindingHandle,
@@ -504,7 +516,7 @@ interface wkssvc
         [in,unique] PJOINPR_ENCRYPTED_USER_PASSWORD EncryptedPassword,
         [in] unsigned long  Reserved
     );
- 
+
     unsigned long
     NetrRemoveAlternateComputerName(
         [in] handle_t  RpcBindingHandle,
@@ -514,7 +526,7 @@ interface wkssvc
         [in,unique] PJOINPR_ENCRYPTED_USER_PASSWORD EncryptedPassword,
         [in] unsigned long  Reserved
     );
- 
+
     unsigned long
     NetrSetPrimaryComputerName(
         [in] handle_t  RpcBindingHandle,
@@ -524,12 +536,12 @@ interface wkssvc
         [in,unique] PJOINPR_ENCRYPTED_USER_PASSWORD  EncryptedPassword,
         [in] unsigned long  Reserved
     );
- 
+
     typedef struct _NET_COMPUTER_NAME_ARRAY {
         unsigned long EntryCount;
         [size_is(EntryCount)] PUNICODE_STRING ComputerNames;
     } NET_COMPUTER_NAME_ARRAY, *PNET_COMPUTER_NAME_ARRAY;
- 
+
     unsigned long
     NetrEnumerateComputerNames(
         [in,string,unique] WKSSVC_IMPERSONATE_HANDLE ServerName,
@@ -537,4 +549,75 @@ interface wkssvc
         [in] unsigned long  Reserved,
         [out] PNET_COMPUTER_NAME_ARRAY  *ComputerNames
     );
+
+    unsigned long
+    NetrJoinDomain3(
+      [in] handle_t RpcBindingHandle,
+      [in, string, unique] wchar_t* ServerName,
+      [in, string] wchar_t* DomainNameParam,
+      [in, string, unique] wchar_t* MachineAccountOU,
+      [in, string, unique] wchar_t* AccountName,
+      [in,unique] PJOINPR_ENCRYPTED_USER_PASSWORD_AES Password,
+      [in] unsigned long Options
+    );
+
+    unsigned long
+    NetrUnjoinDomain3(
+      [in] handle_t RpcBindingHandle,
+      [in, string, unique] wchar_t* ServerName,
+      [in, string, unique] wchar_t* AccountName,
+      [in, unique] PJOINPR_ENCRYPTED_USER_PASSWORD_AES Password,
+      [in] unsigned long Options
+    );
+
+    unsigned long
+    NetrRenameMachineInDomain3(
+      [in] handle_t RpcBindingHandle,
+      [in, string, unique] wchar_t* ServerName,
+      [in, string, unique] wchar_t* MachineName,
+      [in, string, unique] wchar_t* AccountName,
+      [in, unique] PJOINPR_ENCRYPTED_USER_PASSWORD Password,
+      [in] unsigned long Options
+    );
+
+    unsigned long
+    NetrValidateName3(
+      [in] handle_t RpcBindingHandle,
+      [in, string, unique] wchar_t* ServerName,
+      [in, string] wchar_t* NameToValidate,
+      [in, string, unique] wchar_t* AccountName,
+      [in, unique] PJOINPR_ENCRYPTED_USER_PASSWORD_AES Password,
+      [in] NETSETUP_NAME_TYPE NameType
+    );
+
+    unsigned long
+    NetrAddAlternateComputerName2(
+      [in] handle_t RpcBindingHandle,
+      [in, string, unique] wchar_t* ServerName,
+      [in, string, unique] wchar_t* AlternateName,
+      [in, string, unique] wchar_t* DomainAccount,
+      [in, unique] PJOINPR_ENCRYPTED_USER_PASSWORD_AES EncryptedPassword,
+      [in] unsigned long Reserved
+    );
+
+    unsigned long
+    NetrRemoveAlternateComputerName2(
+      [in] handle_t RpcBindingHandle,
+      [in, string, unique] wchar_t* ServerName,
+      [in, string, unique] wchar_t* AlternateName,
+      [in, string, unique] wchar_t* DomainAccount,
+      [in, unique] PJOINPR_ENCRYPTED_USER_PASSWORD_AES EncryptedPassword,
+      [in] unsigned long Reserved
+    );
+
+    unsigned long
+    NetrSetPrimaryComputerName2(
+      [in] handle_t RpcBindingHandle,
+      [in, string, unique] wchar_t* ServerName,
+      [in, string, unique] wchar_t* PrimaryName,
+      [in, string, unique] wchar_t* DomainAccount,
+      [in, unique] PJOINPR_ENCRYPTED_USER_PASSWORD EncryptedPassword,
+      [in] unsigned long Reserved
+    );
+
 }

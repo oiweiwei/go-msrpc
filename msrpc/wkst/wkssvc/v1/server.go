@@ -1017,6 +1017,327 @@ type WkssvcServer interface {
 	// Any other return value MUST conform to the error code requirements in Protocol Details
 	// (section 3).
 	EnumerateComputerNames(context.Context, *EnumerateComputerNamesRequest) (*EnumerateComputerNamesResponse, error)
+
+	// The NetrJoinDomain3 method uses encrypted credentials to join a computer to a domain
+	// or to a workgroup.<124>
+	//
+	// For high-level, informative discussions about domain controller location and domain
+	// join and unjoin, see [MS-ADOD] section 2.7.7 and 3.1. For more information, see the
+	// example in section 4.3.
+	//
+	// Return Values: When the message processing result meets the description in column
+	// two of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                        |                                                                                  |
+	//	|               VALUE/CODE               |                                     MEANING                                      |
+	//	|                                        |                                                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                                            |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_FILE_NOT_FOUND 0x00000002        | The object was not found.                                                        |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                                |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_NOT_SUPPORTED 0x00000032         | The request is not supported.                                                    |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is not correct.                                   |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | The parameter is incorrect.                                                      |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_PASSWORD_RESTRICTION 0x0000052D  | Unable to update the password. The value provided for the new password does not  |
+	//	|                                        | meet the length, complexity, or history requirements of the domain.              |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_LOGON_FAILURE 0x0000052E         | Logon failure: unknown username or bad password.                                 |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_NONE_MAPPED 0x00000534           | The account was not found.                                                       |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_DOMAIN_ROLE 0x0000054A   | The name of a domain controller was provided in the DomainNameParam parameter,   |
+	//	|                                        | and validation of that domain controller failed. Validation is specified in the  |
+	//	|                                        | message-processing steps for the section "Domain Join" later.                    |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_NO_SUCH_DOMAIN 0x0000054B        | The specified domain either does not exist or could not be contacted.            |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                                      |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| RPC_S_CALL_IN_PROGRESS 0x000006FF      | A remote procedure call is already in progress.<133>                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_UserExists 0x000008B0             | The user account already exists.                                                 |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_SetupAlreadyJoined 0x00000A83     | This computer is already joined to a domain.                                     |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_SetupDomainController 0x00000A85  | This computer is a domain controller and cannot be unjoined from a domain.       |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_InvalidWorkgroupName 0x00000A87   | The specified workgroup name is invalid.                                         |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	JoinDomain3(context.Context, *JoinDomain3Request) (*JoinDomain3Response, error)
+
+	// The NetrUnjoinDomain3 method uses encrypted credentials to unjoin a computer from
+	// a workgroup or domain.<140>
+	//
+	// Return Values: When the message processing result meets the description in column
+	// two of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	|                                        |                                                                            |
+	//	|               VALUE/CODE               |                                  MEANING                                   |
+	//	|                                        |                                                                            |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                                      |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                          |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is not correct.                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | One of the function parameters is not valid.                               |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| ERROR_INVALID_FLAGS 0x000003EC         | Invalid option flags are specified.                                        |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                                |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| NERR_SetupNotJoined 0x00000A84         | This computer is not currently joined to a domain.                         |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//	| NERR_SetupDomainController 0x00000A85  | This computer is a domain controller and cannot be unjoined from a domain. |
+	//	+----------------------------------------+----------------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	//
+	// Unless otherwise noted, if the server encounters an error during message processing,
+	// the server SHOULD revert any state changes made, MUST stop message processing, and
+	// MUST return the error to the caller.<142>
+	UnjoinDomain3(context.Context, *UnjoinDomain3Request) (*UnjoinDomain3Response, error)
+
+	// The NetrRenameMachineInDomain3 method uses encrypted credentials to change the locally
+	// persisted variable ComputerNameNetBIOS (section 3.2.1.5) and to optionally rename
+	// the computer account for a server currently in a domain, without first removing the
+	// computer from the domain and then adding it back.<145>
+	//
+	// Return Values: When the message processing result meets the description in column
+	// two of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	|                                        |                                                                  |
+	//	|               VALUE/CODE               |                             MEANING                              |
+	//	|                                        |                                                                  |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                            |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| ERROR_NOT_SUPPORTED 0x00000032         | The request is not supported.                                    |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is not correct.                   |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | The parameter is incorrect.                                      |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                      |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| NERR_SetupNotJoined 0x00000A84         | This computer is not currently joined to a domain.               |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//	| NERR_SetupDomainController 0x00000A85  | This computer is a domain controller and cannot be renamed.<146> |
+	//	+----------------------------------------+------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	//
+	// Unless otherwise noted, if the server encounters an error during message processing,
+	// the server SHOULD revert any state changes made, MUST stop message processing, and
+	// MUST return the error to the caller.<147>
+	RenameMachineInDomain3(context.Context, *RenameMachineInDomain3Request) (*RenameMachineInDomain3Response, error)
+
+	// The NetrValidateName3 method verifies the validity of a computer, workgroup, or domain
+	// name.<151>
+	//
+	// Return Values: When the message processing result matches the description in column
+	// 2 of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	|                                        |                                                                           |
+	//	|               VALUE/CODE               |                                  MEANING                                  |
+	//	|                                        |                                                                           |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                                     |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                         |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_DUP_NAME 0x00000034              | The connection was denied because a duplicate name exists on the network. |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is incorrect.                              |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | The parameter is incorrect.                                               |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_INVALID_NAME 0x0000007B          | The file name, directory name, or volume label syntax is incorrect.       |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_INVALID_DOMAINNAME 0x000004BC    | The format of the specified domain name is invalid.                       |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| ERROR_NO_SUCH_DOMAIN 0x0000054B        | The specified domain either does not exist or could not be contacted.     |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                               |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| NERR_InvalidComputer 0x0000092F        | This computer name is invalid.                                            |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| NERR_InvalidWorkgroupName 0x00000A87   | The specified workgroup name is invalid.                                  |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| DNS_ERROR_NON_RFC_NAME 0x00002554      | The Internet host name does not comply with RFC specifications.           |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| DNS_ERROR_INVALID_NAME_CHAR 0x00002558 | The Internet host name contains an invalid character.                     |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//	| RPC_E_REMOTE_DISABLED 0x8001011C       | Remote calls are not allowed for this process.                            |
+	//	+----------------------------------------+---------------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	//
+	// The following definition is used in the specification of message processing that
+	// follows.
+	//
+	// * PasswordString : A Unicode ( 3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8
+	// ) UTF-8 ( 3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35
+	// ) string containing a password in cleartext ( 3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_f6e0fdd0-cbc1-4c9d-93b8-f25125f9c5ef
+	// ).
+	ValidateName3(context.Context, *ValidateName3Request) (*ValidateName3Response, error)
+
+	// The NetrAddAlternateComputerName method adds an alternate name for a specified server.<158>
+	//
+	// Return Values: When the message processing result matches the description in column
+	// two of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	|                                        |                                                                     |
+	//	|               VALUE/CODE               |                               MEANING                               |
+	//	|                                        |                                                                     |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                               |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                   |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_NOT_SUPPORTED 0x00000032         | This method is not supported by this server.                        |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is incorrect.                        |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | One of the function parameters is not valid.                        |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_NAME 0x0000007B          | The file name, directory name, or volume label syntax is incorrect. |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_FLAGS 0x000003EC         | Reserved contains an invalid value.                                 |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                         |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| RPC_S_CALL_IN_PROGRESS 0x000006FF      | A remote procedure call is already in progress.<160>                |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| DNS_ERROR_INVALID_NAME_CHAR 0x00002558 | The Internet host name contains an invalid character.               |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	//
+	// Unless otherwise noted, if the server encounters an error during message processing,
+	// it SHOULD revert any state changes made, MUST stop message processing, and MUST return
+	// the error to the caller.<161>
+	AddAlternateComputerName2(context.Context, *AddAlternateComputerName2Request) (*AddAlternateComputerName2Response, error)
+
+	// The NetrRemoveAlternateComputerName method removes an alternate name for a specified
+	// server.<165>
+	//
+	// Return Values: When the message processing result matches the description in column
+	// two of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	|                                        |                                                                     |
+	//	|               VALUE/CODE               |                               MEANING                               |
+	//	|                                        |                                                                     |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                               |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                   |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_NOT_SUPPORTED 0x00000032         | This method is not supported by this server.                        |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is not correct.                      |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | One of the function parameters is not valid.                        |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_NAME 0x0000007B          | An invalid name parameter is specified.                             |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_INVALID_FLAGS 0x000003EC         | The Reserved parameter contains an invalid value.                   |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| ERROR_NOT_FOUND 0x00000490             | AlternateName was not found in the current list of alternate names. |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                         |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| RPC_S_CALL_IN_PROGRESS 0x000006FF      | A remote procedure call is already in progress.<167>                |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//	| DNS_ERROR_INVALID_NAME_CHAR 0x00002558 | The Internet host name contains an invalid character.               |
+	//	+----------------------------------------+---------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	//
+	// Unless otherwise noted, if the server encounters an error during message processing,
+	// the server SHOULD revert any state changes made, MUST stop message processing, and
+	// MUST return the error to the caller.<168>
+	RemoveAlternateComputerName2(context.Context, *RemoveAlternateComputerName2Request) (*RemoveAlternateComputerName2Response, error)
+
+	// The NetrSetPrimaryComputerName method sets the primary computer name for a specified
+	// server.<172>
+	//
+	// Return Values: When the message processing result matches the description in column
+	// two of the following table, this method MUST return one of the following values ([MS-ERREF]
+	// section 2.2).
+	//
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                        |                                                                                  |
+	//	|               VALUE/CODE               |                                     MEANING                                      |
+	//	|                                        |                                                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_Success 0x00000000                | The operation completed successfully.                                            |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_ACCESS_DENIED 0x00000005         | Access is denied.                                                                |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_NOT_SUPPORTED 0x00000032         | This method is not supported by this server.                                     |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PASSWORD 0x00000056      | The specified network password is incorrect.                                     |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_PARAMETER 0x00000057     | The parameter is incorrect.                                                      |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_NAME 0x0000007B          | An invalid name parameter is specified.                                          |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ERROR_INVALID_FLAGS 0x000003EC         | Reserved contains an invalid value.                                              |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| RPC_S_PROTSEQ_NOT_SUPPORTED 0x000006A7 | The RPC protocol sequence is not supported.                                      |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| RPC_S_CALL_IN_PROGRESS 0x000006FF      | A remote procedure call is already in progress.<174>                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NERR_DefaultJoinRequired 0x00000A86    | The destination domain controller does not support creating machine accounts in  |
+	//	|                                        | OUs.                                                                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| DNS_ERROR_INVALID_NAME_CHAR 0x00002558 | The Internet host name contains an invalid character.                            |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Any other return value MUST conform to the error code requirements in Protocol Details
+	// (section 3).
+	//
+	// Unless otherwise noted, if the server encounters an error during message processing,
+	// the server SHOULD revert any state changes made, MUST stop message processing, and
+	// MUST return the error to the caller.<175>
+	SetPrimaryComputerName2(context.Context, *SetPrimaryComputerName2Request) (*SetPrimaryComputerName2Response, error)
 }
 
 func RegisterWkssvcServer(conn dcerpc.Conn, o WkssvcServer, opts ...dcerpc.Option) {
@@ -1250,6 +1571,69 @@ func WkssvcServerHandle(ctx context.Context, o WkssvcServer, opNum int, r ndr.Re
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.EnumerateComputerNames(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
+	case 31: // NetrJoinDomain3
+		op := &xxx_JoinDomain3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &JoinDomain3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.JoinDomain3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 32: // NetrUnjoinDomain3
+		op := &xxx_UnjoinDomain3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &UnjoinDomain3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UnjoinDomain3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 33: // NetrRenameMachineInDomain3
+		op := &xxx_RenameMachineInDomain3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &RenameMachineInDomain3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RenameMachineInDomain3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 34: // NetrValidateName3
+		op := &xxx_ValidateName3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &ValidateName3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ValidateName3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 35: // NetrAddAlternateComputerName2
+		op := &xxx_AddAlternateComputerName2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &AddAlternateComputerName2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddAlternateComputerName2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 36: // NetrRemoveAlternateComputerName2
+		op := &xxx_RemoveAlternateComputerName2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &RemoveAlternateComputerName2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveAlternateComputerName2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 37: // NetrSetPrimaryComputerName2
+		op := &xxx_SetPrimaryComputerName2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &SetPrimaryComputerName2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPrimaryComputerName2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
@@ -1319,6 +1703,27 @@ func (UnimplementedWkssvcServer) SetPrimaryComputerName(context.Context, *SetPri
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedWkssvcServer) EnumerateComputerNames(context.Context, *EnumerateComputerNamesRequest) (*EnumerateComputerNamesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) JoinDomain3(context.Context, *JoinDomain3Request) (*JoinDomain3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) UnjoinDomain3(context.Context, *UnjoinDomain3Request) (*UnjoinDomain3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) RenameMachineInDomain3(context.Context, *RenameMachineInDomain3Request) (*RenameMachineInDomain3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) ValidateName3(context.Context, *ValidateName3Request) (*ValidateName3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) AddAlternateComputerName2(context.Context, *AddAlternateComputerName2Request) (*AddAlternateComputerName2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) RemoveAlternateComputerName2(context.Context, *RemoveAlternateComputerName2Request) (*RemoveAlternateComputerName2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) SetPrimaryComputerName2(context.Context, *SetPrimaryComputerName2Request) (*SetPrimaryComputerName2Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
