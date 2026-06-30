@@ -2057,7 +2057,7 @@ type xxx_EnumViewColumnTableOperation struct {
 	Table          uint32                  `idl:"name:iTable" json:"table"`
 	Column         uint32                  `idl:"name:iColumn" json:"column"`
 	ColumnCount    uint32                  `idl:"name:cColumn" json:"column_count"`
-	ColumnOutCount uint32                  `idl:"name:pcColumnOut" json:"column_out_count"`
+	ColumnOutCount uint32                  `idl:"name:pcColumn" json:"column_out_count"`
 	ColumnInfo     *csra.CertTransportBlob `idl:"name:pctbColumnInfo;pointer:ref" json:"column_info"`
 	Return         int32                   `idl:"name:Return" json:"return"`
 }
@@ -2218,7 +2218,7 @@ func (o *xxx_EnumViewColumnTableOperation) MarshalNDRResponse(ctx context.Contex
 			return err
 		}
 	}
-	// pcColumnOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcColumn {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.WriteData(o.ColumnOutCount); err != nil {
 			return err
@@ -2261,7 +2261,7 @@ func (o *xxx_EnumViewColumnTableOperation) UnmarshalNDRResponse(ctx context.Cont
 			return err
 		}
 	}
-	// pcColumnOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcColumn {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.ColumnOutCount); err != nil {
 			return err
@@ -2371,8 +2371,10 @@ func (o *EnumViewColumnTableRequest) OpName() string { return "/ICertAdminD2/v0/
 // EnumViewColumnTableResponse structure represents the EnumViewColumnTable operation response
 type EnumViewColumnTableResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ColumnOutCount uint32         `idl:"name:pcColumnOut" json:"column_out_count"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pcColumn: A pointer to an unsigned integer that receives the actual number of CERTTRANSDBCOLUMN
+	// structures returned.
+	ColumnOutCount uint32 `idl:"name:pcColumn" json:"column_out_count"`
 	// pctbColumnInfo: A pointer to a CERTTRANSBLOB structure. Upon return, the pb member
 	// of this structure points to an array of the marshaled CERTTRANSDBCOLUMN structures.
 	// The format and marshaling for the value of pctbColumnInfo MUST be as specified in

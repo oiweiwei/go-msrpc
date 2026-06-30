@@ -7,6 +7,14 @@ gonames:
   # The relative path to gonames configuration files.
   path: "./gonames"
   idl:
+  - csvp:
+      rename:
+        pReserved: [Registered, DSMs, Count]
+      lookBehind:
+        networkh: {log: [network, log]} # ??? typo
+  - csra:
+      rename:
+        pcColumn: [Column, Out, Count]
   - eerr:
       rename:
         EEComputerNamePresent: [Computer, Name, Present, Type]

@@ -108,8 +108,8 @@ func (o ClusterDiskIDEnum) String() string {
 // disk number) or the disk signature .
 type ClusterDiskID struct {
 	// DiskIdType:  This MUST be one of the valid CPREP_DISKID_ENUM values.
-	DiskIDType    ClusterDiskIDEnum            `idl:"name:DiskIdType" json:"disk_id_type"`
-	ClusterDiskID *ClusterDiskID_ClusterDiskID `idl:"name:ClusterDiskID;switch_is:DiskIdType" json:"cluster_disk_id"`
+	DiskIDType ClusterDiskIDEnum     `idl:"name:DiskIdType" json:"disk_id_type"`
+	DiskID     *ClusterDiskID_DiskID `idl:"name:DiskId;switch_is:DiskIdType" json:"disk_id"`
 }
 
 func (o *ClusterDiskID) xxx_PreparePayload(ctx context.Context) error {
@@ -131,13 +131,13 @@ func (o *ClusterDiskID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteEnum(uint16(o.DiskIDType)); err != nil {
 		return err
 	}
-	_swClusterDiskID := uint16(o.DiskIDType)
-	if o.ClusterDiskID != nil {
-		if err := o.ClusterDiskID.MarshalUnionNDR(ctx, w, _swClusterDiskID); err != nil {
+	_swDiskID := uint16(o.DiskIDType)
+	if o.DiskID != nil {
+		if err := o.DiskID.MarshalUnionNDR(ctx, w, _swDiskID); err != nil {
 			return err
 		}
 	} else {
-		if err := (&ClusterDiskID_ClusterDiskID{}).MarshalUnionNDR(ctx, w, _swClusterDiskID); err != nil {
+		if err := (&ClusterDiskID_DiskID{}).MarshalUnionNDR(ctx, w, _swDiskID); err != nil {
 			return err
 		}
 	}
@@ -150,32 +150,32 @@ func (o *ClusterDiskID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadEnum((*uint16)(&o.DiskIDType)); err != nil {
 		return err
 	}
-	if o.ClusterDiskID == nil {
-		o.ClusterDiskID = &ClusterDiskID_ClusterDiskID{}
+	if o.DiskID == nil {
+		o.DiskID = &ClusterDiskID_DiskID{}
 	}
-	_swClusterDiskID := uint16(o.DiskIDType)
-	if err := o.ClusterDiskID.UnmarshalUnionNDR(ctx, w, _swClusterDiskID); err != nil {
+	_swDiskID := uint16(o.DiskIDType)
+	if err := o.DiskID.UnmarshalUnionNDR(ctx, w, _swDiskID); err != nil {
 		return err
 	}
 	return nil
 }
 
-// ClusterDiskID_ClusterDiskID structure represents CPREP_DISKID union anonymous member.
+// ClusterDiskID_DiskID structure represents CPREP_DISKID union anonymous member.
 //
 // The CPREP_DISKID structure identifies an operating system disk and typically corresponds
 // to a LUN. This structure holds either the operating system disk number (not the BIOS
 // disk number) or the disk signature .
-type ClusterDiskID_ClusterDiskID struct {
+type ClusterDiskID_DiskID struct {
 	// Types that are assignable to Value
 	//
 	// *ClusterDiskID_DiskSignature
 	// *ClusterDiskID_DiskGUID
 	// *ClusterDiskID_DeviceNumber
 	// *ClusterDiskID_Junk
-	Value is_ClusterDiskID_ClusterDiskID `json:"value"`
+	Value is_ClusterDiskID_DiskID `json:"value"`
 }
 
-func (o *ClusterDiskID_ClusterDiskID) GetValue() any {
+func (o *ClusterDiskID_DiskID) GetValue() any {
 	if o == nil {
 		return nil
 	}
@@ -200,13 +200,13 @@ func (o *ClusterDiskID_ClusterDiskID) GetValue() any {
 	return nil
 }
 
-type is_ClusterDiskID_ClusterDiskID interface {
+type is_ClusterDiskID_DiskID interface {
 	ndr.Marshaler
 	ndr.Unmarshaler
-	is_ClusterDiskID_ClusterDiskID()
+	is_ClusterDiskID_DiskID()
 }
 
-func (o *ClusterDiskID_ClusterDiskID) NDRSwitchValue(sw uint16) uint16 {
+func (o *ClusterDiskID_DiskID) NDRSwitchValue(sw uint16) uint16 {
 	if o == nil {
 		return uint16(0)
 	}
@@ -223,7 +223,7 @@ func (o *ClusterDiskID_ClusterDiskID) NDRSwitchValue(sw uint16) uint16 {
 	return uint16(0)
 }
 
-func (o *ClusterDiskID_ClusterDiskID) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+func (o *ClusterDiskID_DiskID) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
 	if err := w.WriteUnionAlign(4); err != nil {
 		return err
 	}
@@ -284,7 +284,7 @@ func (o *ClusterDiskID_ClusterDiskID) MarshalUnionNDR(ctx context.Context, w ndr
 	return nil
 }
 
-func (o *ClusterDiskID_ClusterDiskID) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+func (o *ClusterDiskID_DiskID) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
 	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
@@ -321,7 +321,7 @@ func (o *ClusterDiskID_ClusterDiskID) UnmarshalUnionNDR(ctx context.Context, w n
 	return nil
 }
 
-// ClusterDiskID_DiskSignature structure represents ClusterDiskID_ClusterDiskID RPC union arm.
+// ClusterDiskID_DiskSignature structure represents ClusterDiskID_DiskID RPC union arm.
 //
 // It has following labels: 0
 type ClusterDiskID_DiskSignature struct {
@@ -330,7 +330,7 @@ type ClusterDiskID_DiskSignature struct {
 	DiskSignature uint32 `idl:"name:DiskSignature" json:"disk_signature"`
 }
 
-func (*ClusterDiskID_DiskSignature) is_ClusterDiskID_ClusterDiskID() {}
+func (*ClusterDiskID_DiskSignature) is_ClusterDiskID_DiskID() {}
 
 func (o *ClusterDiskID_DiskSignature) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.DiskSignature); err != nil {
@@ -345,7 +345,7 @@ func (o *ClusterDiskID_DiskSignature) UnmarshalNDR(ctx context.Context, w ndr.Re
 	return nil
 }
 
-// ClusterDiskID_DiskGUID structure represents ClusterDiskID_ClusterDiskID RPC union arm.
+// ClusterDiskID_DiskGUID structure represents ClusterDiskID_DiskID RPC union arm.
 //
 // It has following labels: 1
 type ClusterDiskID_DiskGUID struct {
@@ -354,7 +354,7 @@ type ClusterDiskID_DiskGUID struct {
 	DiskGUID *dtyp.GUID `idl:"name:DiskGuid" json:"disk_guid"`
 }
 
-func (*ClusterDiskID_DiskGUID) is_ClusterDiskID_ClusterDiskID() {}
+func (*ClusterDiskID_DiskGUID) is_ClusterDiskID_DiskID() {}
 
 func (o *ClusterDiskID_DiskGUID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.DiskGUID != nil {
@@ -378,7 +378,7 @@ func (o *ClusterDiskID_DiskGUID) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	return nil
 }
 
-// ClusterDiskID_DeviceNumber structure represents ClusterDiskID_ClusterDiskID RPC union arm.
+// ClusterDiskID_DeviceNumber structure represents ClusterDiskID_DiskID RPC union arm.
 //
 // It has following labels: 4000
 type ClusterDiskID_DeviceNumber struct {
@@ -389,7 +389,7 @@ type ClusterDiskID_DeviceNumber struct {
 	DeviceNumber uint32 `idl:"name:DeviceNumber" json:"device_number"`
 }
 
-func (*ClusterDiskID_DeviceNumber) is_ClusterDiskID_ClusterDiskID() {}
+func (*ClusterDiskID_DeviceNumber) is_ClusterDiskID_DiskID() {}
 
 func (o *ClusterDiskID_DeviceNumber) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.DeviceNumber); err != nil {
@@ -404,7 +404,7 @@ func (o *ClusterDiskID_DeviceNumber) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	return nil
 }
 
-// ClusterDiskID_Junk structure represents ClusterDiskID_ClusterDiskID RPC union arm.
+// ClusterDiskID_Junk structure represents ClusterDiskID_DiskID RPC union arm.
 //
 // It has following labels: 5000
 type ClusterDiskID_Junk struct {
@@ -413,7 +413,7 @@ type ClusterDiskID_Junk struct {
 	Junk uint32 `idl:"name:Junk" json:"junk"`
 }
 
-func (*ClusterDiskID_Junk) is_ClusterDiskID_ClusterDiskID() {}
+func (*ClusterDiskID_Junk) is_ClusterDiskID_DiskID() {}
 
 func (o *ClusterDiskID_Junk) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Junk); err != nil {
@@ -1820,6 +1820,33 @@ func (o ClusterLogExFlag) String() string {
 	return "Invalid"
 }
 
+// ClusterLogType type represents ClusterLogType RPC enumeration.
+type ClusterLogType uint16
+
+var (
+	ClusterLogTypeCluster    ClusterLogType = 0
+	ClusterLogTypeHealth     ClusterLogType = 1
+	ClusterLogTypeClusterSet ClusterLogType = 2
+	ClusterLogTypeNetwork    ClusterLogType = 3
+	ClusterLogTypeNetFT      ClusterLogType = 4
+)
+
+func (o ClusterLogType) String() string {
+	switch o {
+	case ClusterLogTypeCluster:
+		return "ClusterLogTypeCluster"
+	case ClusterLogTypeHealth:
+		return "ClusterLogTypeHealth"
+	case ClusterLogTypeClusterSet:
+		return "ClusterLogTypeClusterSet"
+	case ClusterLogTypeNetwork:
+		return "ClusterLogTypeNetwork"
+	case ClusterLogTypeNetFT:
+		return "ClusterLogTypeNetFT"
+	}
+	return "Invalid"
+}
+
 // ClusterCertType type represents CLUSTER_CERTTYPE RPC enumeration.
 type ClusterCertType uint16
 
@@ -2790,6 +2817,194 @@ func (o *ClusterUpdate) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return nil
 }
 func (o *ClusterUpdate) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
+	if !ok {
+		sizeInfo = o.NDRSizeInfo()
+		for i1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[i1]); err != nil {
+				return err
+			}
+		}
+		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
+	}
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DataCount); err != nil {
+		return err
+	}
+	// XXX: for opaque unmarshaling
+	if o.DataCount > 0 && sizeInfo[0] == 0 {
+		sizeInfo[0] = uint64(o.DataCount)
+	}
+	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+		return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
+	}
+	o.Data = make([]byte, sizeInfo[0])
+	for i1 := range o.Data {
+		i1 := i1
+		if err := w.ReadData(&o.Data[i1]); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// ClusterLogEx3 structure represents IClusterLogEx3 RPC structure.
+type ClusterLogEx3 dcom.InterfacePointer
+
+func (o *ClusterLogEx3) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
+
+func (o *ClusterLogEx3) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.Data != nil && o.DataCount == 0 {
+		o.DataCount = uint32(len(o.Data))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ClusterLogEx3) NDRSizeInfo() []uint64 {
+	dimSize1 := uint64(o.DataCount)
+	return []uint64{
+		dimSize1,
+	}
+}
+func (o *ClusterLogEx3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
+	if !ok {
+		sizeInfo = o.NDRSizeInfo()
+		for sz1 := range sizeInfo {
+			if err := w.WriteSize(sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DataCount); err != nil {
+		return err
+	}
+	for i1 := range o.Data {
+		i1 := i1
+		if uint64(i1) >= sizeInfo[0] {
+			break
+		}
+		if err := w.WriteData(o.Data[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ClusterLogEx3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
+	if !ok {
+		sizeInfo = o.NDRSizeInfo()
+		for i1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[i1]); err != nil {
+				return err
+			}
+		}
+		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
+	}
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DataCount); err != nil {
+		return err
+	}
+	// XXX: for opaque unmarshaling
+	if o.DataCount > 0 && sizeInfo[0] == 0 {
+		sizeInfo[0] = uint64(o.DataCount)
+	}
+	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+		return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
+	}
+	o.Data = make([]byte, sizeInfo[0])
+	for i1 := range o.Data {
+		i1 := i1
+		if err := w.ReadData(&o.Data[i1]); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// ClusterLogEx2 structure represents IClusterLogEx2 RPC structure.
+type ClusterLogEx2 dcom.InterfacePointer
+
+func (o *ClusterLogEx2) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
+
+func (o *ClusterLogEx2) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.Data != nil && o.DataCount == 0 {
+		o.DataCount = uint32(len(o.Data))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ClusterLogEx2) NDRSizeInfo() []uint64 {
+	dimSize1 := uint64(o.DataCount)
+	return []uint64{
+		dimSize1,
+	}
+}
+func (o *ClusterLogEx2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
+	if !ok {
+		sizeInfo = o.NDRSizeInfo()
+		for sz1 := range sizeInfo {
+			if err := w.WriteSize(sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DataCount); err != nil {
+		return err
+	}
+	for i1 := range o.Data {
+		i1 := i1
+		if uint64(i1) >= sizeInfo[0] {
+			break
+		}
+		if err := w.WriteData(o.Data[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ClusterLogEx2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()

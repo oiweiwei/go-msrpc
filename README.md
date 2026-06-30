@@ -251,45 +251,45 @@ Based on the [hirochachacha/go-smb2 fork](https://github.com/oiweiwei/go-smb2.fo
 | [MS-TSGU](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tsgu) | Terminal Services Gateway Server Protocol | [msrpc/tsgu](./msrpc/tsgu) | 42.0 Major 4/23/2024 |
 | [MS-TSTS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tsts) | Terminal Services Runtime Interface Protocol | [msrpc/tsts](./msrpc/tsts) | 33.0 Major 11/21/2025 |
 | [MS-W32T](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-w32t) | W32Time Remote Protocol | [msrpc/w32t](./msrpc/w32t) | 23.0 Major 4/23/2024 |
-| [MS-WDSC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wdsc) | Windows Deployment Services Control Protocol | [msrpc/wdsc](./msrpc/wdsc) ||
+| [MS-WDSC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wdsc) | Windows Deployment Services Control Protocol | [msrpc/wdsc](./msrpc/wdsc) | 9.0 Major 4/23/2024 |
 | [MS-WKST](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wkst) | Workstation Service Remote Protocol | [msrpc/wkst](./msrpc/wkst) | 32.0 Major 4/23/2024 |
 
 ### DCOM Protocols
 
 | Spec | Description | Package | Revision |
 |------|-------------|---------|----------|
-| [MC-CCFG](https://learn.microsoft.com/en-us/openspecs/windows_protocols/mc-ccfg) | Server Cluster: Configuration (ClusCfg) Protocol | [msrpc/dcom/ccfg](./msrpc/dcom/ccfg) ||
-| [MC-IISA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/mc-iisa) | IIS Application Host COM Protocol | [msrpc/dcom/iisa](./msrpc/dcom/iisa) ||
-| [MC-MQAC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/mc-mqac) | MSMQ: ActiveX Client Protocol | [msrpc/dcom/mqac](./msrpc/dcom/mqac) ||
-| [MS-ADTG](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adtg) | Remote Data Services (RDS) Transport Protocol | [msrpc/dcom/adtg](./msrpc/dcom/adtg) ||
-| [MS-COMA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-coma) | COM+ Remote Administration Protocol | [msrpc/dcom/coma](./msrpc/dcom/coma) ||
-| [MS-COMEV](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-comev) | COM+ Event System Protocol | [msrpc/dcom/comev](./msrpc/dcom/comev) ||
-| [MS-COMT](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-comt) | COM+ Tracker Service Protocol | [msrpc/dcom/comt](./msrpc/dcom/comt) ||
-| [MS-COM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-com) | Component Object Model Plus (COM+) Protocol | [msrpc/dcom/com](./msrpc/dcom/com) ||
-| [MS-CSRA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-csra) | Certificate Services Remote Administration Protocol | [msrpc/dcom/csra](./msrpc/dcom/csra) ||
-| [MS-CSVP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-csvp) | Failover Cluster: Setup and Validation Protocol (ClusPrep) | [msrpc/dcom/csvp](./msrpc/dcom/csvp) ||
-| [MS-DCOM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dcom) | Distributed Component Object Model (DCOM) Remote Protocol | [msrpc/dcom](./msrpc/dcom) ||
-| [MS-DFSRH](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dfsrh) | DFS Replication Helper Protocol | [msrpc/dcom/dfsrh](./msrpc/dcom/dfsrh) ||
-| [MS-DMRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dmrp) | Disk Management Remote Protocol | [msrpc/dcom/dmrp](./msrpc/dcom/dmrp) ||
-| [MS-FSRM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fsrm) | File Server Resource Manager Protocol | [msrpc/dcom/fsrm](./msrpc/dcom/fsrm) ||
-| [MS-IISS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-iiss) | IIS ServiceControl Protocol | [msrpc/dcom/iiss](./msrpc/dcom/iiss) ||
-| [MS-IMSA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-imsa) | IIS IMSAdminBaseW Remote Protocol | [msrpc/dcom/imsa](./msrpc/dcom/imsa) ||
-| [MS-IOI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-ioi) | IManagedObject Interface Protocol | [msrpc/dcom/ioi](./msrpc/dcom/ioi) ||
-| [MS-OAUT](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-oaut) | OLE Automation Protocol | [msrpc/dcom/oaut](./msrpc/dcom/oaut) ||
-| [MS-OCSPA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-ocspa) | Microsoft OCSP Administration Protocol | [msrpc/dcom/ocspa](./msrpc/dcom/ocspa) ||
-| [MS-PLA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pla) | Performance Logs and Alerts Protocol | [msrpc/dcom/pla](./msrpc/dcom/pla) ||
-| [MS-RAI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rai) | Remote Assistance Initiation Protocol | [msrpc/dcom/rai](./msrpc/dcom/rai) ||
-| [MS-RDPESC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpesc) | RDP: Smart Card Virtual Channel Extension | [msrpc/dcom/rdpesc](./msrpc/dcom/rdpesc) ||
-| [MS-RRASM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rrasm) | RRAS Management Protocol | [msrpc/dcom/rrasm](./msrpc/dcom/rrasm) ||
-| [MS-RSMP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rsmp) | Removable Storage Manager (RSM) Remote Protocol | [msrpc/dcom/rsmp](./msrpc/dcom/rsmp) ||
-| [MS-SCMP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-scmp) | Shadow Copy Management Protocol | [msrpc/dcom/scmp](./msrpc/dcom/scmp) ||
-| [MS-TPMVSC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tpmvsc) | TPM Virtual Smart Card Remote Protocol | [msrpc/dcom/tpmvsc](./msrpc/dcom/tpmvsc) ||
-| [MS-UAMG](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-uamg) | Update Agent Management Protocol | [msrpc/dcom/uamg](./msrpc/dcom/uamg) ||
-| [MS-VDS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-vds) | Virtual Disk Service (VDS) Protocol | [msrpc/dcom/vds](./msrpc/dcom/vds) ||
-| [MS-WCCE](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wcce) | Windows Client Certificate Enrollment Protocol | [msrpc/dcom/wcce](./msrpc/dcom/wcce) ||
-| [MS-WMIO](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wmio) | WMI Encoding Version 1.0 Protocol | [msrpc/dcom/wmio](./msrpc/dcom/wmio) ||
-| [MS-WMI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wmi) | Windows Management Instrumentation Remote Protocol | [msrpc/dcom/wmi](./msrpc/dcom/wmi) ||
-| [MS-WSRM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wsrm) | Windows System Resource Manager (WSRM) Protocol | [msrpc/dcom/wsrm](./msrpc/dcom/wsrm) ||
+| [MC-CCFG](https://learn.microsoft.com/en-us/openspecs/windows_protocols/mc-ccfg) | Server Cluster: Configuration (ClusCfg) Protocol | [msrpc/dcom/ccfg](./msrpc/dcom/ccfg) | 1.2 None 1/17/2020 |
+| [MC-IISA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/mc-iisa) | IIS Application Host COM Protocol | [msrpc/dcom/iisa](./msrpc/dcom/iisa) | 15.0 Major 4/23/2024 |
+| [MC-MQAC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/mc-mqac) | MSMQ: ActiveX Client Protocol | [msrpc/dcom/mqac](./msrpc/dcom/mqac) | 27.0 Major 4/23/2024 |
+| [MS-ADTG](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adtg) | Remote Data Services (RDS) Transport Protocol | [msrpc/dcom/adtg](./msrpc/dcom/adtg) | 19.1 Minor 5/30/2025 |
+| [MS-COMA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-coma) | COM+ Remote Administration Protocol | [msrpc/dcom/coma](./msrpc/dcom/coma) | 15.0 Major 4/23/2024 |
+| [MS-COMEV](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-comev) | COM+ Event System Protocol | [msrpc/dcom/comev](./msrpc/dcom/comev) | 9.0 Major 9/9/2025 |
+| [MS-COMT](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-comt) | COM+ Tracker Service Protocol | [msrpc/dcom/comt](./msrpc/dcom/comt) | 10.0 Major 4/23/2024 |
+| [MS-COM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-com) | Component Object Model Plus (COM+) Protocol | [msrpc/dcom/com](./msrpc/dcom/com) | 12.0 Major 4/23/2024 |
+| [MS-CSRA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-csra) | Certificate Services Remote Administration Protocol | [msrpc/dcom/csra](./msrpc/dcom/csra) | 46.1 Minor 1/13/2026 |
+| [MS-CSVP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-csvp) | Failover Cluster: Setup and Validation Protocol (ClusPrep) | [msrpc/dcom/csvp](./msrpc/dcom/csvp) | 34.0 None 11/21/2025 |
+| [MS-DCOM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dcom) | Distributed Component Object Model (DCOM) Remote Protocol | [msrpc/dcom](./msrpc/dcom) | 25.0 None 9/16/2024 |
+| [MS-DFSRH](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dfsrh) | DFS Replication Helper Protocol | [msrpc/dcom/dfsrh](./msrpc/dcom/dfsrh) | 17.0 Major 4/23/2024 |
+| [MS-DMRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dmrp) | Disk Management Remote Protocol | [msrpc/dcom/dmrp](./msrpc/dcom/dmrp) | 8.2 None 6/1/2017 |
+| [MS-FSRM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fsrm) | File Server Resource Manager Protocol | [msrpc/dcom/fsrm](./msrpc/dcom/fsrm) | 36.0 Major 4/23/2024 |
+| [MS-IISS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-iiss) | IIS ServiceControl Protocol | [msrpc/dcom/iiss](./msrpc/dcom/iiss) | 12.0 Major 4/23/2024 |
+| [MS-IMSA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-imsa) | IIS IMSAdminBaseW Remote Protocol | [msrpc/dcom/imsa](./msrpc/dcom/imsa) | 16.0 Major 4/23/2024 |
+| [MS-IOI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-ioi) | IManagedObject Interface Protocol | [msrpc/dcom/ioi](./msrpc/dcom/ioi) | 20.0 Major 3/13/2019 |
+| [MS-OAUT](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-oaut) | OLE Automation Protocol | [msrpc/dcom/oaut](./msrpc/dcom/oaut) | 21.0 Major 4/23/2024 |
+| [MS-OCSPA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-ocspa) | Microsoft OCSP Administration Protocol | [msrpc/dcom/ocspa](./msrpc/dcom/ocspa) | 14.0 Major 8/11/2025 |
+| [MS-PLA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pla) | Performance Logs and Alerts Protocol | [msrpc/dcom/pla](./msrpc/dcom/pla) | 26.0 Major 4/23/2024 |
+| [MS-RAI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rai) | Remote Assistance Initiation Protocol | [msrpc/dcom/rai](./msrpc/dcom/rai) | 12.0 Major 4/23/2024 |
+| [MS-RDPESC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpesc) | RDP: Smart Card Virtual Channel Extension | [msrpc/dcom/rdpesc](./msrpc/dcom/rdpesc) | 17.0 Major 4/23/2024 |
+| [MS-RRASM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rrasm) | RRAS Management Protocol | [msrpc/dcom/rrasm](./msrpc/dcom/rrasm) | 26.0 Major 4/23/2024 |
+| [MS-RSMP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rsmp) | Removable Storage Manager (RSM) Remote Protocol | [msrpc/dcom/rsmp](./msrpc/dcom/rsmp) | 11.0 None 6/1/2017 |
+| [MS-SCMP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-scmp) | Shadow Copy Management Protocol | [msrpc/dcom/scmp](./msrpc/dcom/scmp) | 10.0 Major 4/23/2024 |
+| [MS-TPMVSC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tpmvsc) | TPM Virtual Smart Card Remote Protocol | [msrpc/dcom/tpmvsc](./msrpc/dcom/tpmvsc) | 8.0 Major 4/23/2024 |
+| [MS-UAMG](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-uamg) | Update Agent Management Protocol | [msrpc/dcom/uamg](./msrpc/dcom/uamg) | 15.0 Major 9/9/2025 |
+| [MS-VDS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-vds) | Virtual Disk Service (VDS) Protocol | [msrpc/dcom/vds](./msrpc/dcom/vds) | 31.0 None 9/16/2024 |
+| [MS-WCCE](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wcce) | Windows Client Certificate Enrollment Protocol | [msrpc/dcom/wcce](./msrpc/dcom/wcce) | 53.0 Major 11/21/2025 |
+| [MS-WMIO](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wmio) | WMI Encoding Version 1.0 Protocol | [msrpc/dcom/wmio](./msrpc/dcom/wmio) | 18.0 Major 4/23/2024 |
+| [MS-WMI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wmi) | Windows Management Instrumentation Remote Protocol | [msrpc/dcom/wmi](./msrpc/dcom/wmi) | 32.0 Major 4/23/2024 |
+| [MS-WSRM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wsrm) | Windows System Resource Manager (WSRM) Protocol | [msrpc/dcom/wsrm](./msrpc/dcom/wsrm) | 14.2 None 6/1/2017 |
 
 ### Other
 

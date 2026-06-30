@@ -130,14 +130,14 @@ interface ICertAdminD: IUnknown
         [in, string, unique] wchar_t const *pwszAuthority,
         [in]                 DWORD          iColumn,
         [in]                 DWORD          cColumn,
-        [out]                DWORD         *pcColumnOut, // XXX: pcColumn -> pcColumnOut 
+        [out]                DWORD         *pcColumn,
         [out, ref]           CERTTRANSBLOB *pctbColumnInfo
     );
  
     HRESULT GetViewDefaultColumnSet(
         [in, string, unique] wchar_t const *pwszAuthority,
         [in]                 DWORD          iColumnSetDefault,
-        [out]                DWORD         *pcColumnOut, // XXX: pcColumn -> pcColumnOut 
+        [out]                DWORD         *pcColumn,
         [out, ref]           CERTTRANSBLOB *pctbColumnInfo
     );
  
@@ -207,12 +207,14 @@ interface ICertAdminD: IUnknown
     );
  
     HRESULT BackupGetAttachmentInformation(
-        [out, size_is( , *pcwcDBFiles)] [format(multi_size)] WCHAR **ppwszzDBFiles,
+        [format(multi_size)] /* go-msrpc: multi_size */
+        [out, size_is( , *pcwcDBFiles)] WCHAR **ppwszzDBFiles,
         [out]                           LONG   *pcwcDBFiles
     );
  
     HRESULT BackupGetBackupLogs(
-        [out, size_is( , *pcwcLogFiles)] [format(multi_size)] WCHAR **ppwszzLogFiles,
+        [format(multi_size)] /* go-msrpc: multi_size */
+        [out, size_is( , *pcwcLogFiles)] WCHAR **ppwszzLogFiles,
         [out]                            LONG   *pcwcLogFiles
     );
  
@@ -241,12 +243,14 @@ interface ICertAdminD: IUnknown
     );
  
     HRESULT BackupGetDynamicFiles(
-        [out, size_is( , *pcwcFiles)] [format(multi_size)] WCHAR **ppwszzFiles,
+        [format(multi_size)] /* go-msrpc: multi_size */
+        [out, size_is( , *pcwcFiles)] WCHAR **ppwszzFiles,
         [out]                         LONG   *pcwcFiles
     );
  
     HRESULT RestoreGetDatabaseLocations(
-        [out, size_is( , *pcwcPaths)] [format(multi_size)] WCHAR 
+        [format(multi_size)] /* go-msrpc: multi_size */
+        [out, size_is( , *pcwcPaths)] WCHAR 
                       **ppwszzDatabaseLocations,
         [out]                         LONG   *pcwcPaths
     );
@@ -295,7 +299,7 @@ interface ICertAdminD2: ICertAdminD
         [in]                 DWORD          iTable,
         [in]                 DWORD          iColumn,
         [in]                 DWORD          cColumn,
-        [out]                DWORD         *pcColumnOut, // XXX: pcColumn -> pcColumnOut 
+        [out]                DWORD         *pcColumn,
         [out, ref]           CERTTRANSBLOB *pctbColumnInfo
     );
  
@@ -379,4 +383,3 @@ interface ICertAdminD2: ICertAdminD
         [out, retval]        LONG          *pcDeleted
     );
 }
- 

@@ -16,6 +16,8 @@ import (
 	iclusterfirewall "github.com/oiweiwei/go-msrpc/msrpc/dcom/csvp/iclusterfirewall/v0"
 	iclusterlog "github.com/oiweiwei/go-msrpc/msrpc/dcom/csvp/iclusterlog/v0"
 	iclusterlogex "github.com/oiweiwei/go-msrpc/msrpc/dcom/csvp/iclusterlogex/v0"
+	iclusterlogex2 "github.com/oiweiwei/go-msrpc/msrpc/dcom/csvp/iclusterlogex2/v0"
+	iclusterlogex3 "github.com/oiweiwei/go-msrpc/msrpc/dcom/csvp/iclusterlogex3/v0"
 	iclusternetwork2 "github.com/oiweiwei/go-msrpc/msrpc/dcom/csvp/iclusternetwork2/v0"
 	iclustersetup "github.com/oiweiwei/go-msrpc/msrpc/dcom/csvp/iclustersetup/v0"
 	iclusterstorage2 "github.com/oiweiwei/go-msrpc/msrpc/dcom/csvp/iclusterstorage2/v0"
@@ -45,6 +47,8 @@ var (
 	_ = iclustersetup.GoPackage
 	_ = iclusterlog.GoPackage
 	_ = iclusterlogex.GoPackage
+	_ = iclusterlogex2.GoPackage
+	_ = iclusterlogex3.GoPackage
 	_ = iclusterfirewall.GoPackage
 	_ = iclusterupdate.GoPackage
 )
@@ -69,6 +73,8 @@ type Client interface {
 	ClusterSetup() iclustersetup.ClusterSetupClient
 	ClusterLog() iclusterlog.ClusterLogClient
 	ClusterLogEx() iclusterlogex.ClusterLogExClient
+	ClusterLogEx2() iclusterlogex2.ClusterLogEx2Client
+	ClusterLogEx3() iclusterlogex3.ClusterLogEx3Client
 	ClusterFirewall() iclusterfirewall.ClusterFirewallClient
 	ClusterUpdate() iclusterupdate.ClusterUpdateClient
 	// AlterContext alters the client context.
@@ -92,6 +98,8 @@ type xxx_DefaultClient struct {
 	clusterSetup    iclustersetup.ClusterSetupClient
 	clusterLog      iclusterlog.ClusterLogClient
 	clusterLogEx    iclusterlogex.ClusterLogExClient
+	clusterLogEx2   iclusterlogex2.ClusterLogEx2Client
+	clusterLogEx3   iclusterlogex3.ClusterLogEx3Client
 	clusterFirewall iclusterfirewall.ClusterFirewallClient
 	clusterUpdate   iclusterupdate.ClusterUpdateClient
 }
@@ -132,6 +140,14 @@ func (o *xxx_DefaultClient) ClusterLogEx() iclusterlogex.ClusterLogExClient {
 	return o.clusterLogEx
 }
 
+func (o *xxx_DefaultClient) ClusterLogEx2() iclusterlogex2.ClusterLogEx2Client {
+	return o.clusterLogEx2
+}
+
+func (o *xxx_DefaultClient) ClusterLogEx3() iclusterlogex3.ClusterLogEx3Client {
+	return o.clusterLogEx3
+}
+
 func (o *xxx_DefaultClient) ClusterFirewall() iclusterfirewall.ClusterFirewallClient {
 	return o.clusterFirewall
 }
@@ -150,6 +166,8 @@ func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clie
 		dcerpc.WithAbstractSyntax(iclustersetup.ClusterSetupSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iclusterlog.ClusterLogSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iclusterlogex.ClusterLogExSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(iclusterlogex2.ClusterLogEx2SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(iclusterlogex3.ClusterLogEx3SyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iclusterfirewall.ClusterFirewallSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iclusterupdate.ClusterUpdateSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremunknown.RemoteUnknownSyntaxV0_0),
@@ -237,6 +255,24 @@ func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clie
 
 	o.clusterLogEx, err = iclusterlogex.NewClusterLogExClient(ctx, clusterLogExSubConn, append(opts, dcerpc.WithNoBind(clusterLogExSubConn))...)
 
+	clusterLogEx2SubConn, err := sub.SubConn(ctx, iclusterlogex2.ClusterLogEx2SyntaxV0_0)
+	if err != nil {
+		// XXX: use main subconnection as a last resort
+		// it was noticed that we can reuse the main connection for dcom interfaces
+		clusterLogEx2SubConn = sub
+	}
+
+	o.clusterLogEx2, err = iclusterlogex2.NewClusterLogEx2Client(ctx, clusterLogEx2SubConn, append(opts, dcerpc.WithNoBind(clusterLogEx2SubConn))...)
+
+	clusterLogEx3SubConn, err := sub.SubConn(ctx, iclusterlogex3.ClusterLogEx3SyntaxV0_0)
+	if err != nil {
+		// XXX: use main subconnection as a last resort
+		// it was noticed that we can reuse the main connection for dcom interfaces
+		clusterLogEx3SubConn = sub
+	}
+
+	o.clusterLogEx3, err = iclusterlogex3.NewClusterLogEx3Client(ctx, clusterLogEx3SubConn, append(opts, dcerpc.WithNoBind(clusterLogEx3SubConn))...)
+
 	clusterFirewallSubConn, err := sub.SubConn(ctx, iclusterfirewall.ClusterFirewallSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
@@ -278,6 +314,8 @@ func (o *xxx_DefaultClient) IPID(ctx context.Context, ipid *dcom.IPID) Client {
 		clusterSetup:    o.clusterSetup.IPID(ctx, ipid),
 		clusterLog:      o.clusterLog.IPID(ctx, ipid),
 		clusterLogEx:    o.clusterLogEx.IPID(ctx, ipid),
+		clusterLogEx2:   o.clusterLogEx2.IPID(ctx, ipid),
+		clusterLogEx3:   o.clusterLogEx3.IPID(ctx, ipid),
 		clusterFirewall: o.clusterFirewall.IPID(ctx, ipid),
 		clusterUpdate:   o.clusterUpdate.IPID(ctx, ipid),
 		cc:              o.cc,
