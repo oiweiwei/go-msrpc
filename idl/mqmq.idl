@@ -1,8 +1,7 @@
 import "ms-dtyp.idl";
 
 // forward declaration
-// typedef tag_inner_PROPVARIANT PROPVARIANT;
-
+// go-msrpc: not needed: typedef tag_inner_PROPVARIANT PROPVARIANT;
 
 // basic type aliases
 typedef unsigned long    PROPID;
@@ -75,7 +74,7 @@ typedef struct tagCAPROPVARIANT
     PROPVARIANT * pElems;
 } CAPROPVARIANT;
 
-typedef enum 
+typedef enum
 {
     VT_EMPTY           = 0,
     VT_NULL            = 1,
@@ -114,11 +113,11 @@ typedef struct _tag_inner_PROPVARIANT
         [case (VT_I4)]              LONG            lVal;
         [case (VT_UI4)]             ULONG           ulVal;
         [case (VT_I8)]              LARGE_INTEGER   hVal;
-        [case (VT_UI8)]             ULARGE_INTEGER  uhVal;        
-        [case (VT_BOOL)]            VARIANT_BOOL    boolVal;        
+        [case (VT_UI8)]             ULARGE_INTEGER  uhVal;
+        [case (VT_BOOL)]            VARIANT_BOOL    boolVal;
         [case (VT_CLSID)]           GUID *          puuid;
         [case (VT_BLOB)]            BLOB            blob;
-        [case (VT_LPWSTR)]          [string] wchar_t * pwszVal;        
+        [case (VT_LPWSTR)]          [string] wchar_t * pwszVal;
         [case (VT_VECTOR|VT_UI1)]     CAUB          caub;
         [case (VT_VECTOR|VT_UI2)]     CAUI          caui;
         [case (VT_VECTOR|VT_I4)]      CAL           cal;
@@ -128,7 +127,7 @@ typedef struct _tag_inner_PROPVARIANT
         [case (VT_VECTOR|VT_LPWSTR)]  CALPWSTR      calpwstr;
         [case (VT_VECTOR|VT_VARIANT)] CAPROPVARIANT capropvar;
     } _varUnion;
-} PROPVARIANT; // tag_inner_PROPVARIANT;
+} /* go-msrpc: not needed: tag_inner_PROPVARIANT */ PROPVARIANT;
 
 typedef struct _DL_ID {
   GUID m_DlGuid;
@@ -162,24 +161,24 @@ typedef struct __QUEUE_FORMAT {
   unsigned char m_SuffixAndFlags;
   unsigned short m_reserved;
   [switch_is(m_qft)] union {
-    [case(QUEUE_FORMAT_TYPE_UNKNOWN)] 
+    [case(QUEUE_FORMAT_TYPE_UNKNOWN)]
       ; // No member is set. Selected when an m_qft value
         // of 0 is returned.
-    [case(QUEUE_FORMAT_TYPE_PUBLIC)] 
+    [case(QUEUE_FORMAT_TYPE_PUBLIC)]
       GUID m_gPublicID;
-    [case(QUEUE_FORMAT_TYPE_PRIVATE)] 
+    [case(QUEUE_FORMAT_TYPE_PRIVATE)]
       OBJECTID m_oPrivateID;
-    [case(QUEUE_FORMAT_TYPE_DIRECT)] 
+    [case(QUEUE_FORMAT_TYPE_DIRECT)]
       [string] wchar_t* m_pDirectID;
-    [case(QUEUE_FORMAT_TYPE_MACHINE)] 
+    [case(QUEUE_FORMAT_TYPE_MACHINE)]
       GUID m_gMachineID;
-    [case(QUEUE_FORMAT_TYPE_CONNECTOR)] 
+    [case(QUEUE_FORMAT_TYPE_CONNECTOR)]
       GUID m_GConnectorID;
-    [case(QUEUE_FORMAT_TYPE_DL)] 
+    [case(QUEUE_FORMAT_TYPE_DL)]
       DL_ID m_DlID;
-    [case(QUEUE_FORMAT_TYPE_MULTICAST)] 
+    [case(QUEUE_FORMAT_TYPE_MULTICAST)]
       MULTICAST_ID m_MulticastID;
-    [case(QUEUE_FORMAT_TYPE_SUBQUEUE)] 
+    [case(QUEUE_FORMAT_TYPE_SUBQUEUE)]
       [string] wchar_t* m_pDirectSubqueueID;
   };
 } QUEUE_FORMAT;

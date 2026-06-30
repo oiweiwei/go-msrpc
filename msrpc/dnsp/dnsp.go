@@ -16990,6 +16990,13 @@ var (
 	// (section 2.2.17.1.3). This structure is used to enumerate the virtualization instances
 	// in the DNS Server.
 	TypeIDVirtualizationInstanceEnum TypeID = 63
+	// DNSSRV_TYPEID_ENCRYPTION_CONFIG: A pointer to a structure of type DNS_RPC_ENCRYPTION_CONFIG
+	// (section 2.2.4.2.3). This structure is used to specify DNS encryption protocol configuration
+	// on the DNS server.
+	//
+	// Clients and servers of the DNS Server Management Protocol SHOULD<5> support all values
+	// above.
+	TypeIDEncryptionConfig TypeID = 64
 )
 
 func (o TypeID) String() string {
@@ -17124,6 +17131,8 @@ func (o TypeID) String() string {
 		return "TypeIDVirtualizationInstance"
 	case TypeIDVirtualizationInstanceEnum:
 		return "TypeIDVirtualizationInstanceEnum"
+	case TypeIDEncryptionConfig:
+		return "TypeIDEncryptionConfig"
 	}
 	return "Invalid"
 }
@@ -18839,6 +18848,7 @@ type Union struct {
 	// *Union_RRLParams
 	// *Union_VirtualizationInstance
 	// *Union_VirtualizationInstanceList
+	// *Union_EncryptionConfig
 	Value is_Union `json:"value"`
 }
 
@@ -19087,6 +19097,10 @@ func (o *Union) GetValue() any {
 		if value != nil {
 			return value.VirtualizationInstanceList
 		}
+	case *Union_EncryptionConfig:
+		if value != nil {
+			return value.EncryptionConfig
+		}
 	}
 	return nil
 }
@@ -19222,6 +19236,8 @@ func (o *Union) NDRSwitchValue(sw uint32) uint32 {
 		return uint32(62)
 	case *Union_VirtualizationInstanceList:
 		return uint32(63)
+	case *Union_EncryptionConfig:
+		return uint32(64)
 	}
 	return uint32(0)
 }
@@ -19903,6 +19919,17 @@ func (o *Union) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) er
 				return err
 			}
 		}
+	case uint32(64):
+		_o, _ := o.Value.(*Union_EncryptionConfig)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Union_EncryptionConfig{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
 	default:
 		return fmt.Errorf("unsupported switch case value %v", sw)
 	}
@@ -20224,6 +20251,11 @@ func (o *Union) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) 
 		}
 	case uint32(63):
 		o.Value = &Union_VirtualizationInstanceList{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint32(64):
+		o.Value = &Union_EncryptionConfig{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -23295,6 +23327,59 @@ func (o *Union_VirtualizationInstanceList) UnmarshalNDR(ctx context.Context, w n
 	return nil
 }
 
+// Union_EncryptionConfig structure represents DNSSRV_RPC_UNION RPC union arm.
+//
+// It has following labels: 64
+type Union_EncryptionConfig struct {
+	// pEncryptionConfig: A pointer to a structure of type DNS_RPC_ENCRYPTION_CONFIG (section
+	// 2.2.4.2.3). This structure is used to specify DNS encryption protocol configuration
+	// on the DNS server.
+	EncryptionConfig *EncryptionConfig `idl:"name:pEncryptionConfig" json:"encryption_config"`
+}
+
+func (*Union_EncryptionConfig) is_Union() {}
+
+func (o *Union_EncryptionConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.EncryptionConfig != nil {
+		_ptr_pEncryptionConfig := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.EncryptionConfig != nil {
+				if err := o.EncryptionConfig.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&EncryptionConfig{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.EncryptionConfig, _ptr_pEncryptionConfig); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Union_EncryptionConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_pEncryptionConfig := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.EncryptionConfig == nil {
+			o.EncryptionConfig = &EncryptionConfig{}
+		}
+		if err := o.EncryptionConfig.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_pEncryptionConfig := func(ptr interface{}) { o.EncryptionConfig = *ptr.(**EncryptionConfig) }
+	if err := w.ReadPointer(&o.EncryptionConfig, _s_pEncryptionConfig, _ptr_pEncryptionConfig); err != nil {
+		return err
+	}
+	return nil
+}
+
 // ImportOperationResult type represents ImportOpResult RPC enumeration.
 //
 // The ImportOpResult enumeration SHOULD<47> define the operations to be executed when
@@ -23326,4 +23411,84 @@ func (o ImportOperationResult) String() string {
 		return "ImportOperationResultStatusChanged"
 	}
 	return "Invalid"
+}
+
+// EncryptionType type represents DNS_ENCRYPTION_TYPE RPC enumeration.
+type EncryptionType uint16
+
+var (
+	EncryptionTypeNone EncryptionType = 0
+	EncryptionTypeDoH  EncryptionType = 1
+)
+
+func (o EncryptionType) String() string {
+	switch o {
+	case EncryptionTypeNone:
+		return "EncryptionTypeNone"
+	case EncryptionTypeDoH:
+		return "EncryptionTypeDoH"
+	}
+	return "Invalid"
+}
+
+// EncryptionConfig structure represents DNS_RPC_ENCRYPTION_CONFIG RPC structure.
+type EncryptionConfig struct {
+	DNSEncryptionType uint32 `idl:"name:dwDnsEncryptionType" json:"dns_encryption_type"`
+	URITemplate       string `idl:"name:pwszUriTemplate" json:"uri_template"`
+}
+
+func (o *EncryptionConfig) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *EncryptionConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DNSEncryptionType); err != nil {
+		return err
+	}
+	if o.URITemplate != "" {
+		_ptr_pwszUriTemplate := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16String(ctx, w, o.URITemplate); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.URITemplate, _ptr_pwszUriTemplate); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *EncryptionConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DNSEncryptionType); err != nil {
+		return err
+	}
+	_ptr_pwszUriTemplate := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16String(ctx, w, &o.URITemplate); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_pwszUriTemplate := func(ptr interface{}) { o.URITemplate = *ptr.(*string) }
+	if err := w.ReadPointer(&o.URITemplate, _s_pwszUriTemplate, _ptr_pwszUriTemplate); err != nil {
+		return err
+	}
+	return nil
 }

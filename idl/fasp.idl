@@ -1,10 +1,14 @@
+/* go-msrpc: use dtyp.idl */
+// import "wtypes.h";
+// define PWSTR
+// typedef LPWSTR PWSTR;
+// typedef LPCWSTR PCWSTR;
 import "ms-dtyp.idl";
  
-
-// XXX: cpp_quote not supported.
+/* go-msrpc: remove cpp_quote */
 // cpp_quote("#ifndef __FIREWALL_H_")
-// cpp_quote("#define FW_CURRENT_BINARY_VERSION (FW_VERSION(2,31))")
-// cpp_quote("#define FW_CURRENT_SCHEMA_VERSION (FW_VERSION(2,31))")
+// cpp_quote("#define FW_CURRENT_BINARY_VERSION (FW_VERSION(2,33))")
+// cpp_quote("#define FW_CURRENT_SCHEMA_VERSION (FW_VERSION(2,33))")
  
 /***********************************************************************
  *                                                                     *
@@ -26,6 +30,7 @@ typedef enum _tag_FW_STORE_TYPE
     FW_STORE_TYPE_NOT_USED_VALUE_9,
     FW_STORE_TYPE_NOT_USED_VALUE_10,
     FW_STORE_TYPE_NOT_USED_VALUE_11,
+    FW_STORE_TYPE_NOT_USED_VALUE_12,
     FW_STORE_TYPE_MAX,
 } FW_STORE_TYPE;
  
@@ -33,7 +38,7 @@ typedef enum _tag_FW_TRANSACTIONAL_STATE
 {
     FW_TRANSACTIONAL_STATE_NONE      = 0,
     FW_TRANSACTIONAL_STATE_NO_FLUSH,
-    FW_TRANSACTIONAL_STATE_MAX  
+    FW_TRANSACTIONAL_STATE_MAX
 } FW_TRANSACTIONAL_STATE;
  
 typedef
@@ -49,6 +54,8 @@ enum _tag_FW_PROFILE_TYPE
     FW_PROFILE_TYPE_CURRENT  = 0x80000000,
     FW_PROFILE_TYPE_NONE     = FW_PROFILE_TYPE_CURRENT + 1
 } FW_PROFILE_TYPE;
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_PROFILE_TYPE);")
  
 typedef enum _tag_FW_POLICY_ACCESS_RIGHT
 {
@@ -63,12 +70,29 @@ typedef enum _tag_FW_POLICY_STORE_FLAGS
     FW_POLICY_STORE_FLAGS_NONE          = 0x0000,
     FW_POLICY_STORE_FLAGS_DELETE_DYNAMIC_RULES_AFTER_CLOSE  = 0x0001,
     FW_POLICY_STORE_FLAGS_OPEN_GP_CACHE = 0x0002,
-    FW_POLICY_STORE_FLAGS_USE_GP_CACHE  = 0x0004,    
+    FW_POLICY_STORE_FLAGS_USE_GP_CACHE  = 0x0004,
     FW_POLICY_STORE_FLAGS_SAVE_GP_CACHE  = 0x0008,
     FW_POLICY_STORE_FLAGS_NOT_USED_VALUE_16 = 0x0010,
     FW_POLICY_STORE_FLAGS_MAX           = 0x0020
 }FW_POLICY_STORE_FLAGS;
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_POLICY_STORE_FLAGS);")
  
+/********************************************************************
+ * FW_RULE_DUPLICATE_STATUS_FLAGS: Order of this enum matters       *
+ * If a new state needs to be added follow the below convention:    *
+ *                                                                  *
+ * Invalid/Transitional states < states that do not get plumbed     *
+ * < States that are plumbed                                        *
+**********************************************************************/
+typedef enum _FW_RULE_DUPLICATE_STATUS_FLAGS
+{
+    FW_DUPLICATE_STATUS_FLAGS_EVALUATING = 0x0001, // Rule's duplicate status is being evaluated, transitional state, a rule should not stay in this state
+    FW_DUPLICATE_STATUS_FLAGS_HAS_DUPLICATE = 0x0002, // Rule is or has an existing duplicate rule
+    FW_DUPLICATE_STATUS_FLAGS_IS_ENFORCED = 0x0004 // Rule is enforced by getting plumbed
+}FW_RULE_DUPLICATE_STATUS_FLAGS;
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_RULE_DUPLICATE_STATUS_FLAGS);")
 /********************************************************
  *                                                      *
  *  Firewall Rules structures                           *
@@ -147,7 +171,7 @@ typedef struct _tag_FW_PORT_RANGE_LIST
     DWORD              dwNumEntries;
     [size_is(dwNumEntries)]
     PFW_PORT_RANGE     pPorts;
-} FW_PORT_RANGE_LIST, *PFW_PORT_RANGE_LIST;         
+} FW_PORT_RANGE_LIST, *PFW_PORT_RANGE_LIST;
  
 typedef enum _tag_FW_PORT_KEYWORD
 {
@@ -167,8 +191,10 @@ typedef enum _tag_FW_PORT_KEYWORD
     FW_PORT_KEYWORD_MAX_V2_10         = 0x20,
     FW_PORT_KEYWORD_MAX_V2_20         = 0x80,
     FW_PORT_KEYWORD_MAX_V2_24         = 0x100,
-    FW_PORT_KEYWORD_MAX_V2_25         = 0x200
+    FW_PORT_KEYWORD_MAX_V2_25         = 0x200,
 }FW_PORT_KEYWORD;
+// go-msrpc: remove cpp_quote
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_PORT_KEYWORD);")
  
 typedef struct _tag_FW_PORTS
 {
@@ -186,7 +212,7 @@ typedef struct _tag_FW_ICMP_TYPE_CODE
     WORD                wCode;
 } FW_ICMP_TYPE_CODE, *PFW_ICMP_TYPE_CODE;
  
-typedef struct _tag_FW_ICMP_TYPE_CODE_LIST 
+typedef struct _tag_FW_ICMP_TYPE_CODE_LIST
 {
     [range(0, 10000)]
     DWORD               dwNumEntries;
@@ -222,7 +248,8 @@ typedef enum _tag_FW_INTERFACE_TYPE
     FW_INTERFACE_TYPE_MAX            = 0x0010,
     FW_INTERFACE_TYPE_MAX_V2_23      = 0x0008,
 } FW_INTERFACE_TYPE;
- 
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_INTERFACE_TYPE);")
  
 typedef enum _tag_FW_ADDRESS_KEYWORD
 {
@@ -237,11 +264,15 @@ typedef enum _tag_FW_ADDRESS_KEYWORD
     FW_ADDRESS_KEYWORD_PLAYTO_RENDERERS= 0x0080,
     FW_ADDRESS_KEYWORD_REMOTE_INTRANET = 0x0100,
     FW_ADDRESS_KEYWORD_CAPTIVE_PORTAL  = 0x0200,
-    FW_ADDRESS_KEYWORD_MAX             = 0x0400,
+    // This flag is internal use only. It is currently only used in Hyper-V firewall (and therefore not intended to work in other scenarios).
+    FW_ADDRESS_KEYWORD_INTERNAL_LOCAL_ADDRESSES = 0x0400,
     FW_ADDRESS_KEYWORD_MAX_V2_10       = 0x0020,
-    FW_ADDRESS_KEYWORD_MAX_V2_29       = 0x0200,
+    FW_ADDRESS_KEYWORD_MAX_V2_29       = 0x0200, //Same as Captive Portal
+    FW_ADDRESS_KEYWORD_MAX_V2_33       = 0x0400, //Same as local addresses
+    FW_ADDRESS_KEYWORD_MAX             = 0x0800,
 }FW_ADDRESS_KEYWORD;
- 
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_ADDRESS_KEYWORD);")
  
 typedef struct _tag_FW_ADDRESSES
 {
@@ -253,8 +284,81 @@ typedef struct _tag_FW_ADDRESSES
     FW_IPV6_SUBNET_LIST  V6SubNets;
     FW_IPV6_RANGE_LIST   V6Ranges;
  
-}FW_ADDRESSES, *PFW_ADDRESSES;
+} FW_ADDRESSES, *PFW_ADDRESSES;
  
+typedef struct _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ID_LIST
+{
+    DWORD dwNumIds;
+    [size_is(dwNumIds)]
+    GUID* ids;
+} FW_DYNAMIC_KEYWORD_ADDRESS_ID_LIST, *PFW_DYNAMIC_KEYWORD_ADDRESS_ID_LIST;
+ 
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("#ifndef __FW_DYNAMIC_KEYWORDS_TYPES__")
+// cpp_quote("#define __FW_DYNAMIC_KEYWORDS_TYPES__")
+ 
+typedef enum _tag_FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS
+{
+    FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS_NONE         = 0x0000,
+    FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS_AUTO_RESOLVE = 0x0001,
+    FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS_MAX          = 0x0002
+} FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS;
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS);")
+ 
+typedef enum _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE
+{
+    FW_DYNAMIC_KEYWORD_ORIGIN_INVALID,
+    FW_DYNAMIC_KEYWORD_ORIGIN_LOCAL,
+    FW_DYNAMIC_KEYWORD_ORIGIN_MDM,
+    FW_DYNAMIC_KEYWORD_ORIGIN_MAX,
+} FW_DYNAMIC_KEYWORD_ORIGIN_TYPE;
+ 
+typedef struct _tag_FW_DYNAMIC_KEYWORD_ADDRESS0
+{
+    GUID id;
+    [string, range(1,10001)]
+    PCWSTR keyword;
+    DWORD flags;
+    [string]
+    PCWSTR addresses;
+} FW_DYNAMIC_KEYWORD_ADDRESS0, *PFW_DYNAMIC_KEYWORD_ADDRESS0;
+ 
+// Object wrapper used in the result of enumeration
+typedef struct _tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0
+{
+    struct _tag_FW_DYNAMIC_KEYWORD_ADDRESS0 dynamicKeywordAddress;
+    struct _tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0 *next;
+    WORD schemaVersion;
+    FW_DYNAMIC_KEYWORD_ORIGIN_TYPE originType;
+} FW_DYNAMIC_KEYWORD_ADDRESS_DATA0, *PFW_DYNAMIC_KEYWORD_ADDRESS_DATA0;
+ 
+typedef enum _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS
+{
+    FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_NONE             = 0x0000,
+    FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_AUTO_RESOLVE     = 0x0001,
+    FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_NON_AUTO_RESOLVE = 0x0002,
+    FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_ALL              = (FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_AUTO_RESOLVE | FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_NON_AUTO_RESOLVE),
+    FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_MAX              = 0x0004
+} FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS;
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS);")
+// cpp_quote("#endif //__FW_DYNAMIC_KEYWORDS_TYPES__")
+ 
+// Internal version of the dynamic keyword address struct.
+// Notably, it uses the FW_ADDRESSES struct for the
+// addresses rather than a string
+typedef struct _tag_FW_DYNAMIC_KEYWORD_ADDRESS_INTERNAL
+{
+    struct _tag_FW_DYNAMIC_KEYWORD_ADDRESS_INTERNAL *next;
+    WORD schemaVersion;
+    GUID id;
+    [string, range(1,10001)]
+    PCWSTR keyword;
+    DWORD flags;
+    FW_ADDRESSES addresses;
+    FW_DYNAMIC_KEYWORD_ORIGIN_TYPE originType;
+} FW_DYNAMIC_KEYWORD_ADDRESS_INTERNAL, *PFW_DYNAMIC_KEYWORD_ADDRESS_INTERNAL;
  
 typedef enum _tag_FW_TRUST_TUPLE_KEYWORD
 {
@@ -270,9 +374,10 @@ typedef enum _tag_FW_TRUST_TUPLE_KEYWORD
     FW_TRUST_TUPLE_KEYWORD_MAX                 = 0x0100,
     FW_TRUST_TUPLE_KEYWORD_MAX_V2_20           = 0x0004,
     FW_TRUST_TUPLE_KEYWORD_MAX_V2_26           = 0x0020,
-    FW_TRUST_TUPLE_KEYWORD_MAX_V2_27           = 0x0080
+    FW_TRUST_TUPLE_KEYWORD_MAX_V2_27           = 0x0080,
 }FW_TRUST_TUPLE_KEYWORD;
- 
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_TRUST_TUPLE_KEYWORD);")
  
 typedef
 [v1_enum]
@@ -467,7 +572,7 @@ enum _tag_FW_RULE_STATUS
         // Invalid ICMP code specified.
  
     FW_RULE_STATUS_SEMANTIC_ERROR_IF_ID = 0x00100070,
-        // Number of interfaces and interface buffers do not match.
+        // Number of interfaces and interface buffer don't match.
  
     FW_RULE_STATUS_SEMANTIC_ERROR_IF_TYPE = 0x00100071,
         // The interface type is invalid.
@@ -478,7 +583,7 @@ enum _tag_FW_RULE_STATUS
     FW_RULE_STATUS_SEMANTIC_ERROR_ALLOW_BYPASS = 0x00100081,
         // Allow-Bypass action specified, but the rule does not meet
         // allow-bypass criteria (inbound, authenticate/encrypt flags set,
-        // remote machine auth list specified) 
+        // remote machine auth list specified)
  
     FW_RULE_STATUS_SEMANTIC_ERROR_DO_NOT_SECURE = 0x00100082,
         // If the action is Do Not Secure, the auth and crypto sets must be
@@ -490,7 +595,7 @@ enum _tag_FW_RULE_STATUS
  
     FW_RULE_STATUS_SEMANTIC_ERROR_INCOMPATIBLE_FLAG_OR_ACTION_WITH_SECURITY_REALM = 0x00100084,
         // Firewall Rules with security realm Id field would require authentication
-// and encryption, and action should be Allow.
+    // and encryption, and action should be Allow.
  
     FW_RULE_STATUS_SEMANTIC_ERROR_DIR = 0x00100090,
         // The direction is invalid.
@@ -509,7 +614,7 @@ enum _tag_FW_RULE_STATUS
  
     FW_RULE_STATUS_SEMANTIC_ERROR_ALLOW_BYPASS_OUTBOUND = 0x001000A3,
         // Allow-Bypass action specified, but the rule does not meet
-        // allow-bypass criteria (authenticate/encrypt flags set) 
+        // allow-bypass criteria (authenticate/encrypt flags set)
  
     FW_RULE_STATUS_SEMANTIC_ERROR_DEFER_USER_INVALID_RULE = 0x001000A4,
         // Defer to user' setting can only be used in a firewall rule where
@@ -625,11 +730,11 @@ enum _tag_FW_RULE_STATUS
  
     FW_RULE_STATUS_SEMANTIC_ERROR_PLATFORM = 0x001000E0,
         // Number of valid OS Platforms and the list of valid OS Platforms
-        // do not match 
+        // don't match
  
     FW_RULE_STATUS_SEMANTIC_ERROR_PLATFORM_OP_VER = 0x001000E1,
         // The target schema version does not support the platform operator
-        // specified. 
+        // specified.
  
     FW_RULE_STATUS_SEMANTIC_ERROR_PLATFORM_OP = 0x001000E2,
         // One of the platform operators is invalid.
@@ -689,8 +794,7 @@ enum _tag_FW_RULE_STATUS
         // The target schema version does not support specifying Development mode flag
  
     FW_RULE_STATUS_SEMANTIC_ERROR_REMOTE_SERVERNAME_VER = 0x00100405,
-        // The target schema version does not support specifying Remote Server Name
-        // attributes.
+        // The target schema version does not support specifying Remote Server Name attributes
  
     FW_RULE_STATUS_SEMANTIC_ERROR_FQBN_VER = 0x00100406,
         // The target schema version does not support specifying fqbn
@@ -700,7 +804,10 @@ enum _tag_FW_RULE_STATUS
  
     FW_RULE_STATUS_SEMANTIC_ERROR_CALLOUT_AND_AUDIT_VER = 0x00100408,
         // The target schema version does not support specifying callout and audit flag
-    
+ 
+    FW_RULE_STATUS_SEMANTIC_ERROR_APPCONTAINER_LOOPBACK_VER = 0x00100409,
+        // The target schema version does not support specifying app container loopback flag
+ 
     FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_AUTH_SET_ID = 0x00100500,
         // The phase 1 auth set ID must be specified.
  
@@ -841,7 +948,7 @@ enum _tag_FW_RULE_STATUS
  
     FW_RULE_STATUS_SEMANTIC_ERROR_PROXY_SERVER = 0x00101080,
         // The Kerberos proxy name must be a fully qualified domain name
-        // (FQDN). For example: kerbproxy.contoso.com 
+        // (FQDN). For example: kerbproxy.contoso.com
  
     FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_PROXY_SERVER_VER = 0x00101081,
         // The target schema version does not support kerberos proxy
@@ -978,7 +1085,7 @@ enum _tag_FW_RULE_STATUS
  
     FW_RULE_STATUS_SEMANTIC_ERROR_REQUIRE_IN_CLEAR_OUT_ON_TRANSPORT = 0x00107000,
         // Authentication mode,"Require inbound and clear outbound" can
-        // only be set when using IPsec tunneling. 
+        // only be set when using IPsec tunneling.
  
     FW_RULE_STATUS_SEMANTIC_ERROR_BYPASS_TUNNEL_IF_SECURE_ON_TRANSPORT = 0x00107001,
         // Bypass Tunnel If Secure may not be set on Transport-Mode rules.
@@ -990,6 +1097,12 @@ enum _tag_FW_RULE_STATUS
     FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_NOENCAP_ON_PSK = 0x00107003,
         // Authentication (No Encapsulation) may not be used on rules that
         // contain preshared keys.
+ 
+    FW_RULE_STATUS_SEMANTIC_ERROR_REMOTE_DYNAMIC_KEYWORD_ADDRESSES = 0x00107004,
+        // The target schema version does not support remote dynamic keyword addresses.
+ 
+    FW_RULE_STATUS_SEMANTIC_ERROR_PACKAGE_FAMILY_NAME_FIELD_NOT_FOUND = 0x00107005,
+        // The target schema version does not support package family names.
  
     FW_RULE_STATUS_RUNTIME_ERROR = 0x00200000,
         // A runtime error occurred while trying to enforce the rule.
@@ -1013,19 +1126,18 @@ enum _tag_FW_RULE_STATUS
  
     FW_RULE_STATUS_RUNTIME_ERROR_AUTH_NOENCAP_ON_TUNNEL = 0x00200006,
         // Authentication (No Encapsulation) cannot be specified on a
-        // tunnel-mode rule. 
+        // tunnel-mode rule.
  
     FW_RULE_STATUS_RUNTIME_ERROR_AUTH_NOENCAP_ON_PSK = 0x00200007,
         // Authentication (No Encapsulation) cannot be specified on a rule
-        // that uses a preshared key. 
+        // that uses a preshared key.
  
     FW_RULE_STATUS_RUNTIME_ERROR_KEY_MODULE_AUTH_MISMATCH = 0x00200008,
         // The key module in the rule is incompatible with the
         // authentication methods specified in the associated
         // authentication sets.
  
-    FW_RULE_STATUS_ERROR  = FW_RULE_STATUS_PARSING_ERROR |FW_RULE_STATUS_SEMANTIC_ERROR   
-    |FW_RULE_STATUS_RUNTIME_ERROR,
+    FW_RULE_STATUS_ERROR  = FW_RULE_STATUS_PARSING_ERROR |FW_RULE_STATUS_SEMANTIC_ERROR |FW_RULE_STATUS_RUNTIME_ERROR,
         // An error occurred.
  
     FW_RULE_STATUS_ALL = 0xFFFF0000
@@ -1036,24 +1148,25 @@ enum _tag_FW_RULE_STATUS
 //rule status bitflags
 typedef enum _tag_FW_RULE_STATUS_CLASS
 {
-    FW_RULE_STATUS_CLASS_OK                 = FW_RULE_STATUS_OK, // The rule was parsed successfully from the store
-    FW_RULE_STATUS_CLASS_PARTIALLY_IGNORED  = FW_RULE_STATUS_PARTIALLY_IGNORED, // The rule has fields that the service can successfully ignore
-    FW_RULE_STATUS_CLASS_IGNORED            = FW_RULE_STATUS_IGNORED, // The rule has a higher version that the service must ignore
-    FW_RULE_STATUS_CLASS_PARSING_ERROR      = FW_RULE_STATUS_PARSING_ERROR, // The rule failed to be parsed correctly
-    FW_RULE_STATUS_CLASS_SEMANTIC_ERROR     = FW_RULE_STATUS_SEMANTIC_ERROR, //There is a semantic error when considering the fields of the rule in conjunction
-    FW_RULE_STATUS_CLASS_RUNTIME_ERROR      = FW_RULE_STATUS_RUNTIME_ERROR, // There is a runtime error when the object is considered in conjuntion with other Policy Objects.
+    FW_RULE_STATUS_CLASS_OK                         = FW_RULE_STATUS_OK, // The rule was parsed successfully from the store
+    FW_RULE_STATUS_CLASS_PARTIALLY_IGNORED          = FW_RULE_STATUS_PARTIALLY_IGNORED, // The rule has fields that the service can successfully ignore
+    FW_RULE_STATUS_CLASS_IGNORED                    = FW_RULE_STATUS_IGNORED, // The rule has a higher version that the service must ignore
+    FW_RULE_STATUS_CLASS_PARSING_ERROR              = FW_RULE_STATUS_PARSING_ERROR, // The rule failed to be parsed correctly
+    FW_RULE_STATUS_CLASS_SEMANTIC_ERROR             = FW_RULE_STATUS_SEMANTIC_ERROR, //There is a semantic error when considering the fields of the rule in conjunction
+    FW_RULE_STATUS_CLASS_RUNTIME_ERROR              = FW_RULE_STATUS_RUNTIME_ERROR, // There is a runtime error when the object is considered in conjuntion with other Policy Objects.
  
-    FW_RULE_STATUS_CLASS_ERROR              = FW_RULE_STATUS_ERROR, // An Error occurred
+    FW_RULE_STATUS_CLASS_ERROR                      = FW_RULE_STATUS_ERROR, // An Error occurred
  
-    FW_RULE_STATUS_CLASS_ALL                = FW_RULE_STATUS_ALL // All the status. (Used to enum ALL the rules, regardless the status.)
+    FW_RULE_STATUS_CLASS_ALL                        = FW_RULE_STATUS_ALL // All the status. (Used to enum ALL the rules, regardless the status.)
 } FW_RULE_STATUS_CLASS;
  
  
  
 typedef enum _tag_FW_OBJECT_CTRL_FLAG
-{                          
+{
     FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA     = 0x0001, // Allow RPC to marshall the metadata pointer in the objects
 } FW_OBJECT_CTRL_FLAG;
+ 
  
  
 typedef enum _tag_FW_ENFORCEMENT_STATE
@@ -1083,6 +1196,7 @@ typedef enum _tag_FW_ENFORCEMENT_STATE
     FW_ENFORCEMENT_STATE_TRANSPORT_USER_SD_EMPTY,
     FW_ENFORCEMENT_STATE_TUPLE_RESOLUTION_EMPTY,
     FW_ENFORCEMENT_STATE_NETNAME_RESOLUTION_EMPTY,
+    FW_ENFORCEMENT_STATE_DUPLICATE,
     FW_ENFORCEMENT_STATE_MAX
 } FW_ENFORCEMENT_STATE;
  
@@ -1141,7 +1255,14 @@ typedef enum _tag_FW_RULE_ORIGIN_TYPE
     FW_RULE_ORIGIN_DYNAMIC,
     FW_RULE_ORIGIN_AUTOGEN,
     FW_RULE_ORIGIN_HARDCODED,
-    FW_RULE_ORIGIN_MAX
+    FW_RULE_ORIGIN_MDM,
+    FW_RULE_ORIGIN_MAX,
+    // Hyper-V rule origins for host translated rules
+    FW_RULE_ORIGIN_HOST_LOCAL,
+    FW_RULE_ORIGIN_HOST_GP,
+    FW_RULE_ORIGIN_HOST_DYNAMIC,
+    FW_RULE_ORIGIN_HOST_MDM,
+    FW_RULE_ORIGIN_HOST_MAX,
 }FW_RULE_ORIGIN_TYPE;
  
  
@@ -1152,12 +1273,13 @@ typedef enum _tag_FW_ENUM_RULES_FLAGS
     FW_ENUM_RULES_FLAG_RESOLVE_DESCRIPTION  = 0x0002, // Resolves rule descriptions if in the format of '@file.dll,-<resID>'
     FW_ENUM_RULES_FLAG_RESOLVE_APPLICATION  = 0x0004, // Resolves environment variables in the application string
     FW_ENUM_RULES_FLAG_RESOLVE_KEYWORD      = 0x0008, // Resolves Keywords in addresses and ports to the actual addresses and ports (dynamic store only)
-    FW_ENUM_RULES_FLAG_RESOLVE_GPO_NAME     = 0x0010, // Resolves GPO name for the GP_RSOP rules 
+    FW_ENUM_RULES_FLAG_RESOLVE_GPO_NAME     = 0x0010, // Resolves GPO name for the GP_RSOP rules
     FW_ENUM_RULES_FLAG_EFFECTIVE            = 0x0020, // Enum Rules only if we attempted to push them to BFE (dynamic store only)
     FW_ENUM_RULES_FLAG_INCLUDE_METADATA     = 0x0040, // Inlude Object MetaData in the Enumerated Object.
     FW_ENUM_RULES_FLAG_MAX                  = 0x0080
 }FW_ENUM_RULES_FLAGS;
- 
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_ENUM_RULES_FLAGS);")
  
 //ordered by priority - highest on top
 typedef enum _tag_FW_RULE_ACTION
@@ -1178,77 +1300,84 @@ typedef enum _tag_FW_RULE_FLAGS
     FW_RULE_FLAGS_ROUTEABLE_ADDRS_TRAVERSE = 0x0008,
     FW_RULE_FLAGS_LOOSE_SOURCE_MAPPED = 0x00010,
     FW_RULE_FLAGS_MAX_V2_1          = 0x0020,
-    // This is the new "NoEncapsulation" flag in Windows 7 and Windows Server 2008 R2.
+    // This is the new "NoEncapsulation" flag in Win7
     FW_RULE_FLAGS_AUTH_WITH_NO_ENCAPSULATION = 0x0020,
     FW_RULE_FLAGS_MAX_V2_9          = 0x0040,
-    // These are the new flags added for SSP in Windows 7 and Windows Server 2008 R2.
+    // these are the new flags added for SSP in Win 7.
     FW_RULE_FLAGS_AUTH_WITH_ENC_NEGOTIATE = 0x0040,
     FW_RULE_FLAGS_ROUTEABLE_ADDRS_TRAVERSE_DEFER_APP = 0x0080,
-    FW_RULE_FLAGS_ROUTEABLE_ADDRS_TRAVERSE_DEFER_USER = 0x0100,    
+    FW_RULE_FLAGS_ROUTEABLE_ADDRS_TRAVERSE_DEFER_USER = 0x0100,
     FW_RULE_FLAGS_AUTHENTICATE_BYPASS_OUTBOUND = 0x0200,
     FW_RULE_FLAGS_MAX_V2_10         = 0x0400,
-    // This is the new flag in Windows 8 and Windows Server 2012 to allow profile crossings
-    // for clusters.
+    // This is the new flag in Windws 8 to allow profile crossings for clusters
     FW_RULE_FLAGS_ALLOW_PROFILE_CROSSING = 0x0400,
-    // This is the new flag in Windows 8 and Windows Server 2012 to allow LOM on flows.
+    // This is the new flag in Windws 8 to allow LOM on flows.
     FW_RULE_FLAGS_LOCAL_ONLY_MAPPED = 0x0800,
     FW_RULE_FLAGS_MAX_V2_20         = 0x1000,
     FW_RULE_FLAGS_LUA_CONDITIONAL_ACE = 0x1000,
     FW_RULE_FLAGS_BIND_TO_INTERFACE = 0x2000,
     FW_RULE_FLAGS_MAX               = 0x4000,
 }FW_RULE_FLAGS;
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_RULE_FLAGS);")
  
 typedef enum _tag_FW_RULE_FLAGS2
 {
-    FW_RULE_FLAGS2_NONE                = 0x0000,
-    FW_RULE_FLAGS2_SYSTEMOS_ONLY       = 0x0001,
-    FW_RULE_FLAGS2_GAMEOS_ONLY         = 0x0002,
-    FW_RULE_FLAGS2_DEVMODE             = 0x0004,
-    FW_RULE_FLAGS_MAX_V2_26            = 0x0008,
-    FW_RULE_FLAGS2_NOT_USED_VALUE_8    = 0x0008,
-    FW_RULE_FLAGS2_NOT_USED_VALUE_16   = 0x0010,
-    FW_RULE_FLAGS2_NOT_USED_VALUE_32   = 0x0020,
-    FW_RULE_FLAGS2_NOT_USED_VALUE_64   = 0x0040,
-    FW_RULE_FLAGS2_CALLOUT_AND_AUDIT   = 0x0080,
-    FW_RULE_FLAGS2_NOT_USED_VALUE_256  = 0x0100,
-    FW_RULE_FLAGS2_NOT_USED_VALUE_512  = 0x0200, 
-    FW_RULE_FLAGS2_NOT_USED_VALUE_1024 = 0x0400,
-    FW_RULE_FLAGS2_MAX                 = 0x0800
+    FW_RULE_FLAGS2_NONE                          = 0x0000,
+    FW_RULE_FLAGS2_SYSTEMOS_ONLY                 = 0x0001,
+    FW_RULE_FLAGS2_GAMEOS_ONLY                   = 0x0002,
+    FW_RULE_FLAGS2_DEVMODE                       = 0x0004,
+    FW_RULE_FLAGS_MAX_V2_26                      = 0x0008,
+    FW_RULE_FLAGS2_NOT_USED_VALUE_8              = 0x0008,
+    FW_RULE_FLAGS2_EMPTY_REMOTENAME              = 0x0010,
+    FW_RULE_FLAGS2_NOT_REMOTENAME                = 0x0020,
+    FW_RULE_FLAGS2_NOT_USED_VALUE_64             = 0x0040,
+    FW_RULE_FLAGS2_CALLOUT_AND_AUDIT             = 0x0080,
+    FW_RULE_FLAGS2_APP_LOOPBACK                  = 0x0100,
+    FW_RULE_FLAGS2_NOT_USED_VALUE_512            = 0x0200,
+    FW_RULE_FLAGS2_NOT_USED_VALUE_1024           = 0x0400, 
+    FW_RULE_FLAGS2_NOT_USED_VALUE_2048           = 0x0800, 
+    FW_RULE_FLAGS2_INDIRECT_NAME_RESOLVED        = 0x1000,
+    FW_RULE_FLAGS2_INDIRECT_DESCRIPTION_RESOLVED = 0x2000,
+ 
+    FW_RULE_FLAGS2_MAX               = 0x2000
 }FW_RULE_FLAGS2;
-   
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_RULE_FLAGS2);")
+ 
 typedef struct _tag_FW_RULE2_0
 {
-    struct _tag_FW_RULE2_0 *pNext;                
-    WORD         wSchemaVersion;
+    struct _tag_FW_RULE2_0 *pNext;
+    WORD            wSchemaVersion;
     [string, range(1,10001), ref]
-    WCHAR*       wszRuleId;
+    WCHAR*          wszRuleId;
     [string, range(1,10001)]
-    WCHAR*       wszName;
+    WCHAR*          wszName;
     [string, range(1,10001)]
-    WCHAR*       wszDescription;
-    DWORD        dwProfiles;
+    WCHAR*          wszDescription;
+    DWORD           dwProfiles;
     [range(FW_DIR_INVALID, FW_DIR_OUT)]
-    FW_DIRECTION Direction;
+    FW_DIRECTION    Direction;
     [range(0,256)]
-    WORD         wIpProtocol; //0-255 or FW_IP_PROTOCOL_ANY
+    WORD            wIpProtocol; //0-255 or FW_IP_PROTOCOL_ANY
     [switch_type(WORD), switch_is(wIpProtocol)]
-    union 
+    union
     {
         // Ports specified if wIpProtocol = 6(TCP) or 17(UDP)
         [case(6,17)]
         struct
         {
-            FW_PORTS LocalPorts;
-            FW_PORTS RemotePorts;
-        } Ports;
+            FW_PORTS               LocalPorts;
+            FW_PORTS               RemotePorts;
+        } /* go-msrpc: anonymous struct */ Ports;
         // ICMP types/codes specified if wIpProtocol = 1(ICMPv4) or 58(ICMPv6)
         [case(1)]
-        FW_ICMP_TYPE_CODE_LIST  V4TypeCodeList;
+        FW_ICMP_TYPE_CODE_LIST      V4TypeCodeList;
         [case(58)]
-        FW_ICMP_TYPE_CODE_LIST  V6TypeCodeList;
-        [default] 
+        FW_ICMP_TYPE_CODE_LIST      V6TypeCodeList;
+        [default]
         ;
-    } IpProtocolData;
+    } /* go-msrpc: anonymous struct */ IpProtocolData;
  
     FW_ADDRESSES        LocalAddresses;
     FW_ADDRESSES        RemoteAddresses;
@@ -1260,113 +1389,31 @@ typedef struct _tag_FW_RULE2_0
     WCHAR*              wszLocalService;
     [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)]
     FW_RULE_ACTION      Action;
-    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS     
+    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS
  
     [string, range(1,10001)]
     WCHAR*              wszRemoteMachineAuthorizationList;  //Authorized remote machines SDDL
     [string, range(1,10001)]
-    WCHAR*              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL                
+    WCHAR*              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL
  
     [string, range(1,10001)]
-    WCHAR*           wszEmbeddedContext;
+    WCHAR*              wszEmbeddedContext;
     FW_OS_PLATFORM_LIST PlatformValidityList;
-    
-    FW_RULE_STATUS   Status;  //Parsing error if any, filled on return. On input, set this
-                              // to FW_RULE_STATUS_OK
+ 
+    FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
     [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX)]
-    FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules.
-                                    // Ignored on input
+    FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules. Ignored on input
     [string, range(1,10001)]
-    WCHAR*           wszGPOName; //Name of originating GPO, if rule origin is GP.
-    DWORD            MetaDataReserved;
+    WCHAR*              wszGPOName; //Name of originating GPO, if rule origin is GP.
+    DWORD               Reserved;
  
 } FW_RULE2_0, *PFW_RULE2_0;
  
  
+ 
 typedef struct _tag_FW_RULE2_10
 {
-    struct _tag_FW_RULE2_10 *pNext;                
-    WORD          wSchemaVersion;
-    [string, range(1,512), ref]
-    LPWSTR        wszRuleId;
-    [string, range(1,10001)]
-    LPWSTR        wszName;
-    [string, range(1,10001)]
-    LPWSTR        wszDescription;
-    DWORD         dwProfiles;
-    [range(FW_DIR_INVALID, FW_DIR_OUT)]
-    FW_DIRECTION  Direction;
-    [range(0,256)]
-    WORD          wIpProtocol; //0-255 or FW_IP_PROTOCOL_ANY
-    [switch_type(WORD), switch_is(wIpProtocol)]
-    union 
-    {
-        // Ports specified if wIpProtocol = 6(TCP) or 17(UDP)
-        [case(6,17)]
-        struct {
-        
-            FW_PORTS             LocalPorts;
-            FW_PORTS             RemotePorts;
-        } Ports;
-        // ICMP types/codes specified if wIpProtocol = 1(ICMPv4) or 58(ICMPv6)
-        [case(1)]
-        FW_ICMP_TYPE_CODE_LIST    V4TypeCodeList;
-        [case(58)]
-        FW_ICMP_TYPE_CODE_LIST    V6TypeCodeList;
-        [default] 
-        ;
-    } IpProtocolData;
- 
-    FW_ADDRESSES        LocalAddresses;
-    FW_ADDRESSES        RemoteAddresses;
-    FW_INTERFACE_LUIDS  LocalInterfaceIds;
-    DWORD               dwLocalInterfaceTypes;    // Bit flags from FW_INTERFACE_TYPE
-    [string, range(1,10001)]
-    LPWSTR              wszLocalApplication;
-    [string, range(1,10001)]
-    LPWSTR              wszLocalService;
-    [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)]
-    FW_RULE_ACTION      Action;
-    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS     
- 
-    [string, range(1,10001)]
-    LPWSTR              wszRemoteMachineAuthorizationList;  //Authorized remote machines SDDL
-    [string, range(1,10001)]
-    LPWSTR              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL                
- 
-    [string, range(1,10001)]
-    LPWSTR              wszEmbeddedContext;
-    FW_OS_PLATFORM_LIST PlatformValidityList;
-    
-    FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. 
-                                    // On input, set this to FW_RULE_STATUS_OK
-    [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX)]
-    FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules.
-                                    // Ignored on input
-    [string, range(1,10001)]
-    LPWSTR              wszGPOName; //Name of originating GPO, if rule origin is GP.
-    DWORD               MetaDataReserved; 
- 
- 
-//    [switch_type(WORD), switch_is(wBinaryVersion)]
-//    union
-//    {
-//    [case(wBinaryVersion >= 0x0210)]
-//    struct
-//    {
-    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)]
-    PFW_OBJECT_METADATA pMetaData;
- 
-//    };
-//    }; // End union wBinaryVersion
- 
-} FW_RULE2_10, *PFW_RULE2_10;
- 
- 
- 
-typedef struct _tag_FW_RULE2_20
-{
-    struct _tag_FW_RULE2_20 *pNext;                
+    struct _tag_FW_RULE2_10 *pNext;
     WORD            wSchemaVersion;
     [string, range(1,512), ref]
     LPWSTR          wszRuleId;
@@ -1380,23 +1427,23 @@ typedef struct _tag_FW_RULE2_20
     [range(0,256)]
     WORD            wIpProtocol; //0-255 or FW_IP_PROTOCOL_ANY
     [switch_type(WORD), switch_is(wIpProtocol)]
-    union 
+    union
     {
         // Ports specified if wIpProtocol = 6(TCP) or 17(UDP)
         [case(6,17)]
-        struct 
-        {  
-            FW_PORTS             LocalPorts;
-            FW_PORTS             RemotePorts;
-        } Ports;
+        struct
+        {
+            FW_PORTS               LocalPorts;
+            FW_PORTS               RemotePorts;
+        }  /* go-msrpc: anonymous struct */ Ports;
         // ICMP types/codes specified if wIpProtocol = 1(ICMPv4) or 58(ICMPv6)
         [case(1)]
-        FW_ICMP_TYPE_CODE_LIST   V4TypeCodeList;
+        FW_ICMP_TYPE_CODE_LIST      V4TypeCodeList;
         [case(58)]
-        FW_ICMP_TYPE_CODE_LIST   V6TypeCodeList;
-        [default] 
+        FW_ICMP_TYPE_CODE_LIST      V6TypeCodeList;
+        [default]
         ;
-    } IpProtocolData;
+    } /* go-msrpc: anonymous struct */ IpProtocolData;
  
     FW_ADDRESSES        LocalAddresses;
     FW_ADDRESSES        RemoteAddresses;
@@ -1408,25 +1455,24 @@ typedef struct _tag_FW_RULE2_20
     LPWSTR              wszLocalService;
     [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)]
     FW_RULE_ACTION      Action;
-    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS     
+    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS
  
     [string, range(1,10001)]
     LPWSTR              wszRemoteMachineAuthorizationList;  //Authorized remote machines SDDL
     [string, range(1,10001)]
-    LPWSTR              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL                
+    LPWSTR              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL
  
     [string, range(1,10001)]
     LPWSTR              wszEmbeddedContext;
     FW_OS_PLATFORM_LIST PlatformValidityList;
-    
-    FW_RULE_STATUS      Status;     //Parsing error if any, filled on return.
-                                    // On input, set     this to FW_RULE_STATUS_OK
+ 
+    FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
     [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX)]
-    FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules.
-                                    // Ignored on input
+    FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules. Ignored on input
     [string, range(1,10001)]
     LPWSTR              wszGPOName; //Name of originating GPO, if rule origin is GP.
-    DWORD               MetaDataReserved; 
+    DWORD               MetaDataReserved; /* go-msrpc: rename("Reserved") */
+ 
  
 //    [switch_type(WORD), switch_is(wBinaryVersion)]
 //    union
@@ -1434,14 +1480,93 @@ typedef struct _tag_FW_RULE2_20
 //    [case(wBinaryVersion >= 0x0210)]
 //    struct
 //    {
-    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)]
+    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)] /* go-msrpc: rename("Reserved") */
+    PFW_OBJECT_METADATA pMetaData;
+ 
+//    };
+//    }; // End union wBinaryVersion
+ 
+} FW_RULE2_10, *PFW_RULE2_10;
+ 
+ 
+ 
+typedef struct _tag_FW_RULE2_20
+{
+    struct _tag_FW_RULE2_20 *pNext;
+    WORD            wSchemaVersion;
+    [string, range(1,512), ref]
+    LPWSTR          wszRuleId;
+    [string, range(1,10001)]
+    LPWSTR          wszName;
+    [string, range(1,10001)]
+    LPWSTR          wszDescription;
+    DWORD           dwProfiles;
+    [range(FW_DIR_INVALID, FW_DIR_OUT)]
+    FW_DIRECTION    Direction;
+    [range(0,256)]
+    WORD            wIpProtocol; //0-255 or FW_IP_PROTOCOL_ANY
+    [switch_type(WORD), switch_is(wIpProtocol)]
+    union
+    {
+        // Ports specified if wIpProtocol = 6(TCP) or 17(UDP)
+        [case(6,17)]
+        struct
+        {
+            FW_PORTS               LocalPorts;
+            FW_PORTS               RemotePorts;
+        } /* go-msrpc: anonymous struct */ Ports;
+        // ICMP types/codes specified if wIpProtocol = 1(ICMPv4) or 58(ICMPv6)
+        [case(1)]
+        FW_ICMP_TYPE_CODE_LIST      V4TypeCodeList;
+        [case(58)]
+        FW_ICMP_TYPE_CODE_LIST      V6TypeCodeList;
+        [default]
+        ;
+    } /* go-msrpc: anonymous struct */ IpProtocolData;
+ 
+    FW_ADDRESSES        LocalAddresses;
+    FW_ADDRESSES        RemoteAddresses;
+    FW_INTERFACE_LUIDS  LocalInterfaceIds;
+    DWORD               dwLocalInterfaceTypes;    // Bit flags from FW_INTERFACE_TYPE
+    [string, range(1,10001)]
+    LPWSTR              wszLocalApplication;
+    [string, range(1,10001)]
+    LPWSTR              wszLocalService;
+    [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)]
+    FW_RULE_ACTION      Action;
+    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS
+ 
+    [string, range(1,10001)]
+    LPWSTR              wszRemoteMachineAuthorizationList;  //Authorized remote machines SDDL
+    [string, range(1,10001)]
+    LPWSTR              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL
+ 
+    [string, range(1,10001)]
+    LPWSTR              wszEmbeddedContext;
+    FW_OS_PLATFORM_LIST PlatformValidityList;
+ 
+    FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
+    [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX)]
+    FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules. Ignored on input
+    [string, range(1,10001)]
+    LPWSTR              wszGPOName; //Name of originating GPO, if rule origin is GP.
+    DWORD               MetaDataReserved; /* go-msrpc: rename("Reserved") */
+ 
+ 
+//    [switch_type(WORD), switch_is(wBinaryVersion)]
+//    union
+//    {
+//    [case(wBinaryVersion >= 0x0210)]
+//    struct
+//    {
+    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)] /* go-msrpc: rename("Reserved") */
     PFW_OBJECT_METADATA pMetaData;
  
 //    };
 //    }; // End union wBinaryVersion
  
     [string, range(1,10001)]
-    WCHAR*              wszLocalUserAuthorizationList;     //Authorized local users SDDL    
+    WCHAR*              wszLocalUserAuthorizationList;     //Authorized local users SDDL
  
     [string, range(1,10001)]
     WCHAR *             wszPackageId;     // Application Container Package Id Sid
@@ -1457,7 +1582,7 @@ typedef struct _tag_FW_RULE2_20
  
 typedef struct _tag_FW_RULE2_24
 {
-    struct _tag_FW_RULE2_24 *pNext;                
+    struct _tag_FW_RULE2_24 *pNext;
     WORD            wSchemaVersion;
     [string, range(1,512), ref]
     LPWSTR          wszRuleId;
@@ -1471,23 +1596,23 @@ typedef struct _tag_FW_RULE2_24
     [range(0,256)]
     WORD            wIpProtocol; //0-255 or FW_IP_PROTOCOL_ANY
     [switch_type(WORD), switch_is(wIpProtocol)]
-    union 
+    union
     {
         // Ports specified if wIpProtocol = 6(TCP) or 17(UDP)
         [case(6,17)]
         struct
         {
-            FW_PORTS             LocalPorts;
-            FW_PORTS             RemotePorts;
-        } Ports;
-        // ICMP types-codes specified if wIpProtocol = 1(ICMPv4) or 58(ICMPv6)
+            FW_PORTS               LocalPorts;
+            FW_PORTS               RemotePorts;
+        } /* go-msrpc: anonymous struct */ Ports;
+        // ICMP types/codes specified if wIpProtocol = 1(ICMPv4) or 58(ICMPv6)
         [case(1)]
-        FW_ICMP_TYPE_CODE_LIST   V4TypeCodeList;
+        FW_ICMP_TYPE_CODE_LIST      V4TypeCodeList;
         [case(58)]
-        FW_ICMP_TYPE_CODE_LIST   V6TypeCodeList;
-        [default] 
+        FW_ICMP_TYPE_CODE_LIST      V6TypeCodeList;
+        [default]
         ;
-    } IpProtocolData;
+    } /* go-msrpc: anonymous struct */ IpProtocolData;
  
     FW_ADDRESSES        LocalAddresses;
     FW_ADDRESSES        RemoteAddresses;
@@ -1499,24 +1624,23 @@ typedef struct _tag_FW_RULE2_24
     LPWSTR              wszLocalService;
     [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)]
     FW_RULE_ACTION      Action;
-    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS     
+    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS
  
     [string, range(1,10001)]
     LPWSTR              wszRemoteMachineAuthorizationList;  //Authorized remote machines SDDL
     [string, range(1,10001)]
-    LPWSTR              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL                
+    LPWSTR              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL
  
     [string, range(1,10001)]
     LPWSTR              wszEmbeddedContext;
     FW_OS_PLATFORM_LIST PlatformValidityList;
-    
+ 
     FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
     [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX)]
-    FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules.
-                                    //Ignored on input
+    FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules. Ignored on input
     [string, range(1,10001)]
     LPWSTR              wszGPOName; //Name of originating GPO, if rule origin is GP.
-    DWORD               MetaDataReserved; 
+    DWORD               MetaDataReserved; /* go-msrpc: rename("Reserved") */
  
  
 //    [switch_type(WORD), switch_is(wBinaryVersion)]
@@ -1525,34 +1649,34 @@ typedef struct _tag_FW_RULE2_24
 //    [case(wBinaryVersion >= 0x0210)]
 //    struct
 //    {
-    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)]
+    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)] /* go-msrpc: rename("Reserved") */
     PFW_OBJECT_METADATA pMetaData;
  
 //    };
 //    }; // End union wBinaryVersion
  
     [string, range(1,10001)]
-    WCHAR*             wszLocalUserAuthorizationList;     //Authorized local users SDDL    
+    WCHAR*              wszLocalUserAuthorizationList;     //Authorized local users SDDL
  
     [string, range(1,10001)]
-    WCHAR *            wszPackageId;     // Application Container Package Id Sid
+    WCHAR *             wszPackageId;     // Application Container Package Id Sid
  
     [string, range(1,10001)]
-    WCHAR *            wszLocalUserOwner;     // User Owner of the Rule
+    WCHAR *             wszLocalUserOwner;     // User Owner of the Rule
  
     // Trust Tuple Keywords
-    DWORD              dwTrustTupleKeywords;
+    DWORD               dwTrustTupleKeywords;
  
-    FW_NETWORK_NAMES   OnNetworkNames;
+    FW_NETWORK_NAMES    OnNetworkNames;
     [string, range(1,10001)]
     // security realm Id
-    WCHAR*             wszSecurityRealmId;    // Security Realm Id
+    WCHAR*              wszSecurityRealmId;    // Security Realm Id
 } FW_RULE2_24, *PFW_RULE2_24;
  
  
 typedef struct _tag_FW_RULE2_25
 {
-    struct _tag_FW_RULE2_25 *pNext;                
+    struct _tag_FW_RULE2_25 *pNext;
     WORD            wSchemaVersion;
     [string, range(1,512), ref]
     LPWSTR          wszRuleId;
@@ -1566,23 +1690,23 @@ typedef struct _tag_FW_RULE2_25
     [range(0,256)]
     WORD            wIpProtocol; //0-255 or FW_IP_PROTOCOL_ANY
     [switch_type(WORD), switch_is(wIpProtocol)]
-    union 
+    union
     {
         // Ports specified if wIpProtocol = 6(TCP) or 17(UDP)
         [case(6,17)]
         struct
         {
-            FW_PORTS             LocalPorts;
-            FW_PORTS             RemotePorts;
-        } Ports;
+            FW_PORTS               LocalPorts;
+            FW_PORTS               RemotePorts;
+        } /* go-msrpc: anonymous struct */ Ports;
         // ICMP types/codes specified if wIpProtocol = 1(ICMPv4) or 58(ICMPv6)
         [case(1)]
-        FW_ICMP_TYPE_CODE_LIST   V4TypeCodeList;
+        FW_ICMP_TYPE_CODE_LIST      V4TypeCodeList;
         [case(58)]
-        FW_ICMP_TYPE_CODE_LIST   V6TypeCodeList;
-        [default] 
+        FW_ICMP_TYPE_CODE_LIST      V6TypeCodeList;
+        [default]
         ;
-    } IpProtocolData;
+    } /* go-msrpc: anonymous struct */ IpProtocolData;
  
     FW_ADDRESSES        LocalAddresses;
     FW_ADDRESSES        RemoteAddresses;
@@ -1594,25 +1718,23 @@ typedef struct _tag_FW_RULE2_25
     LPWSTR              wszLocalService;
     [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)]
     FW_RULE_ACTION      Action;
-    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS     
+    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS
  
     [string, range(1,10001)]
     LPWSTR              wszRemoteMachineAuthorizationList;  //Authorized remote machines SDDL
     [string, range(1,10001)]
-    LPWSTR              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL                
+    LPWSTR              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL
  
     [string, range(1,10001)]
     LPWSTR              wszEmbeddedContext;
     FW_OS_PLATFORM_LIST PlatformValidityList;
-    
-    FW_RULE_STATUS      Status;     //Parsing error if any, filled on return.
-                                    //On input, set this to FW_RULE_STATUS_OK
+ 
+    FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
     [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX)]
-    FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules.
-                                    //Ignored on input
+    FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules. Ignored on input
     [string, range(1,10001)]
     LPWSTR              wszGPOName; //Name of originating GPO, if rule origin is GP.
-    DWORD               MetaDataReserved; 
+    DWORD               MetaDataReserved; /* go-msrpc: rename("Reserved") */
  
  
 //    [switch_type(WORD), switch_is(wBinaryVersion)]
@@ -1621,14 +1743,14 @@ typedef struct _tag_FW_RULE2_25
 //    [case(wBinaryVersion >= 0x0210)]
 //    struct
 //    {
-    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)]
+    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)] /* go-msrpc: rename("Reserved") */
     PFW_OBJECT_METADATA pMetaData;
  
 //    };
 //    }; // End union wBinaryVersion
  
     [string, range(1,10001)]
-    WCHAR*              wszLocalUserAuthorizationList;     //Authorized local users SDDL    
+    WCHAR*              wszLocalUserAuthorizationList;     //Authorized local users SDDL
  
     [string, range(1,10001)]
     WCHAR *             wszPackageId;     // Application Container Package Id Sid
@@ -1651,7 +1773,7 @@ typedef struct _tag_FW_RULE2_25
  
 typedef struct _tag_FW_RULE2_26
 {
-    struct _tag_FW_RULE2_26 *pNext;                
+    struct _tag_FW_RULE2_26 *pNext;
     WORD            wSchemaVersion;
     [string, range(1,512), ref]
     LPWSTR          wszRuleId;
@@ -1665,23 +1787,23 @@ typedef struct _tag_FW_RULE2_26
     [range(0,256)]
     WORD            wIpProtocol; //0-255 or FW_IP_PROTOCOL_ANY
     [switch_type(WORD), switch_is(wIpProtocol)]
-    union 
+    union
     {
         // Ports specified if wIpProtocol = 6(TCP) or 17(UDP)
         [case(6,17)]
         struct
         {
-    FW_PORTS        LocalPorts;
-        FW_PORTS       RemotePorts;
-        } Ports;
+            FW_PORTS               LocalPorts;
+            FW_PORTS               RemotePorts;
+        } /* go-msrpc: anonymous struct */ Ports;
         // ICMP types/codes specified if wIpProtocol = 1(ICMPv4) or 58(ICMPv6)
         [case(1)]
         FW_ICMP_TYPE_CODE_LIST      V4TypeCodeList;
         [case(58)]
         FW_ICMP_TYPE_CODE_LIST      V6TypeCodeList;
-        [default] 
+        [default]
         ;
-    } IpProtocolData;
+    } /* go-msrpc: anonymous struct */ IpProtocolData;
  
     FW_ADDRESSES        LocalAddresses;
     FW_ADDRESSES        RemoteAddresses;
@@ -1693,22 +1815,23 @@ typedef struct _tag_FW_RULE2_26
     LPWSTR              wszLocalService;
     [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)]
     FW_RULE_ACTION      Action;
-    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS     
+    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS
  
     [string, range(1,10001)]
-    LPWSTR              wszRemoteMachineAuthorizationList; //Authorized remote machines SDDL [string, range(1,10001)]
-    LPWSTR              wszRemoteUserAuthorizationList;    //Authorized remote users SDDL  
+    LPWSTR              wszRemoteMachineAuthorizationList;  //Authorized remote machines SDDL
+    [string, range(1,10001)]
+    LPWSTR              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL
  
     [string, range(1,10001)]
     LPWSTR              wszEmbeddedContext;
     FW_OS_PLATFORM_LIST PlatformValidityList;
-    
+ 
     FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
     [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX)]
     FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules. Ignored on input
     [string, range(1,10001)]
     LPWSTR              wszGPOName; //Name of originating GPO, if rule origin is GP.
-    DWORD               MetaDataReserved; 
+    DWORD               MetaDataReserved; /* go-msrpc: rename("Reserved") */
  
  
 //    [switch_type(WORD), switch_is(wBinaryVersion)]
@@ -1717,14 +1840,14 @@ typedef struct _tag_FW_RULE2_26
 //    [case(wBinaryVersion >= 0x0210)]
 //    struct
 //    {
-    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)]
+    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)] /* go-msrpc: rename("Reserved") */
     PFW_OBJECT_METADATA pMetaData;
  
 //    };
 //    }; // End union wBinaryVersion
  
     [string, range(1,10001)]
-    WCHAR*              wszLocalUserAuthorizationList;     //Authorized local users SDDL    
+    WCHAR*              wszLocalUserAuthorizationList;     //Authorized local users SDDL
  
     [string, range(1,10001)]
     WCHAR *             wszPackageId;     // Application Container Package Id Sid
@@ -1746,73 +1869,9 @@ typedef struct _tag_FW_RULE2_26
  
 } FW_RULE2_26, *PFW_RULE2_26;
  
-typedef struct _tag_FW_RULE2_27 
+typedef struct _tag_FW_RULE2_27
 {
-   struct _tag_FW_RULE2_27 *pNext;  
-   unsigned short                  wSchemaVersion; 
-   [string, range(1, 512), ref]    wchar_t* wszRuleId; 
-   [string, range(1, 10001)]       wchar_t* wszName;    
-   [string, range(1, 10001)]       wchar_t* wszDescription;  unsigned long dwProfiles; 
-   [range(FW_DIR_INVALID, FW_DIR_OUT)]  
-   FW_DIRECTION Direction; 
-   [range(0, 256)] unsigned short  wIpProtocol;  
-   [switch_type(unsigned short), switch_is(wIpProtocol)]
-     union {  [case(6,17)] struct { 
-       FW_PORTS                    LocalPorts; 
-       FW_PORTS                    RemotePorts;    
-       } Ports; 
-       [case(1)]  
-       FW_ICMP_TYPE_CODE_LIST      V4TypeCodeList; 
-       [case(58)]  
-       FW_ICMP_TYPE_CODE_LIST      V6TypeCodeList; 
-       [default]; 
-     } IpProtocolData; 
-   FW_ADDRESSES                    LocalAddresses; 
-   FW_ADDRESSES                    RemoteAddresses;  
-   FW_INTERFACE_LUIDS              LocalInterfaceIds;  
-     unsigned long                 dwLocalInterfaceTypes; 
-[string, range(1, 10001)] wchar_t* wszLocalApplication;  
-[string, range(1, 10001)] wchar_t* wszLocalService; 
-     [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)]  
-   FW_RULE_ACTION                  Action;    
-     unsigned short                wFlags; 
-[string, range(1, 10001)] wchar_t* wszRemoteMachineAuthorizationList; 
-[string, range(1, 10001)] wchar_t* wszRemoteUserAuthorizationList; 
-[string, range(1, 10001)] wchar_t* wszEmbeddedContext; 
-   FW_OS_PLATFORM_LIST             PlatformValidityList;  
-   FW_RULE_STATUS                  Status; 
-   [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX)]  
-   FW_RULE_ORIGIN_TYPE Origin; 
-[string, range(1, 10001)] wchar_t* wszGPOName;  
-unsigned long MetaDataReserved; 
-     [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)]  
-   PFW_OBJECT_METADATA             pMetaData; 
-  [string, range(1, 10001)] WCHAR* wszLocalUserAuthorizationList; 
-  [string, range(1, 10001)] WCHAR* wszPackageId;  
- [string, range(1, 10001)] WCHAR*  wszLocalUserOwner; 
-     unsigned long                 dwTrustTupleKeywords; 
-   FW_NETWORK_NAMES                OnNetworkNames; 
-     [string, range(1, 10001)] WCHAR* wszSecurityRealmId; 
-     unsigned short                wFlags2;   
-   FW_NETWORK_NAMES                RemoteOutServerNames;  
-   [string, range(1,10001)] WCHAR* wszFqbn;  
-   unsigned long                   compartmentId; 
-}FW_RULE2_27, 
-*PFW_RULE2_27;
- 
- 
-typedef struct _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ID_LIST 
-{ 
-DWORD dwNumIds;  
-[size_is(dwNumIds)] UINT32* ids;
-}
-FW_DYNAMIC_KEYWORD_ADDRESS_ID_LIST,
-*PFW_DYNAMIC_KEYWORD_ADDRESS_ID_LIST;
- 
- 
-typedef struct _tag_FW_RULE
-{
-    struct _tag_FW_RULE *pNext;                
+    struct _tag_FW_RULE2_27 *pNext;
     WORD            wSchemaVersion;
     [string, range(1,512), ref]
     LPWSTR          wszRuleId;
@@ -1826,23 +1885,23 @@ typedef struct _tag_FW_RULE
     [range(0,256)]
     WORD            wIpProtocol; //0-255 or FW_IP_PROTOCOL_ANY
     [switch_type(WORD), switch_is(wIpProtocol)]
-    union 
+    union
     {
         // Ports specified if wIpProtocol = 6(TCP) or 17(UDP)
         [case(6,17)]
         struct
         {
-            FW_PORTS            LocalPorts;
-            FW_PORTS            RemotePorts;
-        } Ports;
+            FW_PORTS               LocalPorts;
+            FW_PORTS               RemotePorts;
+        } /* go-msrpc: anonymous struct */ Ports;
         // ICMP types/codes specified if wIpProtocol = 1(ICMPv4) or 58(ICMPv6)
         [case(1)]
-        FW_ICMP_TYPE_CODE_LIST  V4TypeCodeList;
+        FW_ICMP_TYPE_CODE_LIST      V4TypeCodeList;
         [case(58)]
-        FW_ICMP_TYPE_CODE_LIST  V6TypeCodeList;
-        [default] 
+        FW_ICMP_TYPE_CODE_LIST      V6TypeCodeList;
+        [default]
         ;
-    } IpProtocolData;
+    } /* go-msrpc: anonymous struct */ IpProtocolData;
  
     FW_ADDRESSES        LocalAddresses;
     FW_ADDRESSES        RemoteAddresses;
@@ -1854,23 +1913,23 @@ typedef struct _tag_FW_RULE
     LPWSTR              wszLocalService;
     [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)]
     FW_RULE_ACTION      Action;
-    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS     
+    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS
  
     [string, range(1,10001)]
     LPWSTR              wszRemoteMachineAuthorizationList;  //Authorized remote machines SDDL
     [string, range(1,10001)]
-    LPWSTR              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL   
+    LPWSTR              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL
  
     [string, range(1,10001)]
     LPWSTR              wszEmbeddedContext;
     FW_OS_PLATFORM_LIST PlatformValidityList;
-    
+ 
     FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
     [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX)]
     FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules. Ignored on input
     [string, range(1,10001)]
     LPWSTR              wszGPOName; //Name of originating GPO, if rule origin is GP.
-    DWORD               MetaDataReserved; 
+    DWORD               MetaDataReserved; /* go-msrpc: rename("Reserved") */
  
  
 //    [switch_type(WORD), switch_is(wBinaryVersion)]
@@ -1879,14 +1938,14 @@ typedef struct _tag_FW_RULE
 //    [case(wBinaryVersion >= 0x0210)]
 //    struct
 //    {
-    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)]
+    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)] /* go-msrpc: rename("Reserved") */
     PFW_OBJECT_METADATA pMetaData;
  
 //    };
 //    }; // End union wBinaryVersion
  
     [string, range(1,10001)]
-    WCHAR*              wszLocalUserAuthorizationList;     //Authorized local users SDDL    
+    WCHAR*              wszLocalUserAuthorizationList;     //Authorized local users SDDL
  
     [string, range(1,10001)]
     WCHAR *             wszPackageId;     // Application Container Package Id Sid
@@ -1899,18 +1958,243 @@ typedef struct _tag_FW_RULE
  
     FW_NETWORK_NAMES    OnNetworkNames;
     [string, range(1,10001)]
-   // Security realm Id    
-    WCHAR* wszSecurityRealmId;   // Security Realm Id    
-       
-    WORD   wFlags2;      // Bit flags from FW_RULE_FLAGS2    
-   FW_NETWORK_NAMES    RemoteOutServerNames;
-   [string, range(1,10001)]
-   WCHAR* wszFqbn; 
-   DWORD compartmentId;
-    GUID  providerContextKey;
-    FW_DYNAMIC_KEYWORD_ADDRESS_ID_LIST  RemoteDynamicKeywordAddresses;
-
-}  FW_RULE, *PFW_RULE;
+    // security realm Id
+    WCHAR*              wszSecurityRealmId;    // Security Realm Id
+ 
+    WORD                wFlags2;      // Bit flags from FW_RULE_FLAGS2
+ 
+    FW_NETWORK_NAMES    RemoteOutServerNames;
+ 
+    [string, range(1,10001)]
+    WCHAR*              wszFqbn;
+ 
+    DWORD               compartmentId;
+ 
+} FW_RULE2_27, *PFW_RULE2_27;
+ 
+typedef struct _tag_FW_RULE2_31
+{
+    struct _tag_FW_RULE2_31 *pNext;
+    WORD            wSchemaVersion;
+    [string, range(1,512), ref]
+    LPWSTR          wszRuleId;
+    [string, range(1,10001)]
+    LPWSTR          wszName;
+    [string, range(1,10001)]
+    LPWSTR          wszDescription;
+    DWORD           dwProfiles;
+    [range(FW_DIR_INVALID, FW_DIR_OUT)]
+    FW_DIRECTION    Direction;
+    [range(0,256)]
+    WORD            wIpProtocol; //0-255 or FW_IP_PROTOCOL_ANY
+    [switch_type(WORD), switch_is(wIpProtocol)]
+    union
+    {
+        // Ports specified if wIpProtocol = 6(TCP) or 17(UDP)
+        [case(6,17)]
+        struct
+        {
+            FW_PORTS               LocalPorts;
+            FW_PORTS               RemotePorts;
+        } /* go-msrpc: anonymous struct */ Ports;
+        // ICMP types/codes specified if wIpProtocol = 1(ICMPv4) or 58(ICMPv6)
+        [case(1)]
+        FW_ICMP_TYPE_CODE_LIST      V4TypeCodeList;
+        [case(58)]
+        FW_ICMP_TYPE_CODE_LIST      V6TypeCodeList;
+        [default]
+        ;
+    } /* go-msrpc: anonymous struct */ IpProtocolData;
+ 
+    FW_ADDRESSES        LocalAddresses;
+    FW_ADDRESSES        RemoteAddresses;
+    FW_INTERFACE_LUIDS  LocalInterfaceIds;
+    DWORD               dwLocalInterfaceTypes;    // Bit flags from FW_INTERFACE_TYPE
+    [string, range(1,10001)]
+    LPWSTR              wszLocalApplication;
+    [string, range(1,10001)]
+    LPWSTR              wszLocalService;
+    [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)]
+    FW_RULE_ACTION      Action;
+    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS
+ 
+    [string, range(1,10001)]
+    LPWSTR              wszRemoteMachineAuthorizationList;  //Authorized remote machines SDDL
+    [string, range(1,10001)]
+    LPWSTR              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL
+ 
+    [string, range(1,10001)]
+    LPWSTR              wszEmbeddedContext;
+    FW_OS_PLATFORM_LIST PlatformValidityList;
+ 
+    FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
+    [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX)]
+    FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules. Ignored on input
+    [string, range(1,10001)]
+    LPWSTR              wszGPOName; //Name of originating GPO, if rule origin is GP.
+    DWORD               MetaDataReserved; /* go-msrpc: rename("Reserved") */
+ 
+ 
+//    [switch_type(WORD), switch_is(wBinaryVersion)]
+//    union
+//    {
+//    [case(wBinaryVersion >= 0x0210)]
+//    struct
+//    {
+    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)] /* go-msrpc: rename("Reserved") */
+    PFW_OBJECT_METADATA pMetaData;
+ 
+//    };
+//    }; // End union wBinaryVersion
+ 
+    [string, range(1,10001)]
+    WCHAR*              wszLocalUserAuthorizationList;     //Authorized local users SDDL
+ 
+    [string, range(1,10001)]
+    WCHAR *             wszPackageId;     // Application Container Package Id Sid
+ 
+    [string, range(1,10001)]
+    WCHAR *             wszLocalUserOwner;     // User Owner of the Rule
+ 
+    // Trust Tuple Keywords
+    DWORD               dwTrustTupleKeywords;
+ 
+    FW_NETWORK_NAMES    OnNetworkNames;
+    [string, range(1,10001)]
+    // security realm Id
+    WCHAR*              wszSecurityRealmId;    // Security Realm Id
+ 
+    WORD                wFlags2;      // Bit flags from FW_RULE_FLAGS2
+ 
+    FW_NETWORK_NAMES    RemoteOutServerNames;
+ 
+    [string, range(1,10001)]
+    WCHAR*              wszFqbn;
+ 
+    DWORD               compartmentId;
+ 
+    GUID                providerContextKey;
+ 
+    FW_DYNAMIC_KEYWORD_ADDRESS_ID_LIST RemoteDynamicKeywordAddresses;
+ 
+} FW_RULE2_31, *PFW_RULE2_31;
+ 
+typedef struct _tag_FW_RULE
+{
+    struct _tag_FW_RULE *pNext;
+    WORD            wSchemaVersion;
+    [string, range(1,512), ref]
+    LPWSTR          wszRuleId;
+    [string, range(1,10001)]
+    LPWSTR          wszName;
+    [string, range(1,10001)]
+    LPWSTR          wszDescription;
+    DWORD           dwProfiles;
+    [range(FW_DIR_INVALID, FW_DIR_OUT)]
+    FW_DIRECTION    Direction;
+    [range(0,256)]
+    WORD            wIpProtocol; //0-255 or FW_IP_PROTOCOL_ANY
+    [switch_type(WORD), switch_is(wIpProtocol)]
+    union
+    {
+        // Ports specified if wIpProtocol = 6(TCP) or 17(UDP)
+        [case(6,17)]
+        struct
+        {
+            FW_PORTS               LocalPorts;
+            FW_PORTS               RemotePorts;
+        } /* go-msrpc: anonymous struct */ Ports;
+        // ICMP types/codes specified if wIpProtocol = 1(ICMPv4) or 58(ICMPv6)
+        [case(1)]
+        FW_ICMP_TYPE_CODE_LIST      V4TypeCodeList;
+        [case(58)]
+        FW_ICMP_TYPE_CODE_LIST      V6TypeCodeList;
+        [default]
+        ;
+    } /* go-msrpc: anonymous struct */ IpProtocolData;
+ 
+    FW_ADDRESSES        LocalAddresses;
+    FW_ADDRESSES        RemoteAddresses;
+    FW_INTERFACE_LUIDS  LocalInterfaceIds;
+    DWORD               dwLocalInterfaceTypes;    // Bit flags from FW_INTERFACE_TYPE
+    [string, range(1,10001)]
+    LPWSTR              wszLocalApplication;
+    [string, range(1,10001)]
+    LPWSTR              wszLocalService;
+    [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)]
+    FW_RULE_ACTION      Action;
+    WORD                wFlags;      // Bit flags from FW_RULE_FLAGS
+ 
+    [string, range(1,10001)]
+    LPWSTR              wszRemoteMachineAuthorizationList;  //Authorized remote machines SDDL
+    [string, range(1,10001)]
+    LPWSTR              wszRemoteUserAuthorizationList;     //Authorized remote users SDDL
+ 
+    [string, range(1,10001)]
+    LPWSTR              wszEmbeddedContext;
+    FW_OS_PLATFORM_LIST PlatformValidityList;
+ 
+    FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
+    [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX)]
+    FW_RULE_ORIGIN_TYPE Origin;     //Rule origin, filled on enumerated rules. Ignored on input
+    [string, range(1,10001)]
+    LPWSTR              wszGPOName; //Name of originating GPO, if rule origin is GP.
+    DWORD               MetaDataReserved; /* go-msrpc: rename("Reserved") */
+ 
+ 
+//    [switch_type(WORD), switch_is(wBinaryVersion)]
+//    union
+//    {
+//    [case(wBinaryVersion >= 0x0210)]
+//    struct
+//    {
+    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)] /* go-msrpc: rename("Reserved") */
+    PFW_OBJECT_METADATA pMetaData;
+ 
+//    };
+//    }; // End union wBinaryVersion
+ 
+    [string, range(1,10001)]
+    WCHAR*              wszLocalUserAuthorizationList;     //Authorized local users SDDL
+ 
+    [string, range(1,10001)]
+    WCHAR *             wszPackageId;     // Application Container Package Id Sid
+ 
+    [string, range(1,10001)]
+    WCHAR *             wszLocalUserOwner;     // User Owner of the Rule
+ 
+    // Trust Tuple Keywords
+    DWORD               dwTrustTupleKeywords;
+ 
+    FW_NETWORK_NAMES    OnNetworkNames;
+    [string, range(1,10001)]
+    // security realm Id
+    WCHAR*              wszSecurityRealmId;    // Security Realm Id
+ 
+    WORD                wFlags2;      // Bit flags from FW_RULE_FLAGS2
+ 
+    FW_NETWORK_NAMES    RemoteOutServerNames;
+ 
+    [string, range(1,10001)]
+    WCHAR*              wszFqbn;
+ 
+    DWORD               compartmentId;
+ 
+    GUID                providerContextKey;
+ 
+    FW_DYNAMIC_KEYWORD_ADDRESS_ID_LIST RemoteDynamicKeywordAddresses;
+ 
+    [string, range(1,10001)]
+    WCHAR*              wszPackageFamilyName; // Package name to be able to filter background tasks on behalf of containers
+ 
+    // NOTE: You MUST make additional changes if you are updating this structure.
+    // Please review %SDXROOT%\onecore\net\mpssvc\lics\fwapis\intfdefs\README.md
+ 
+    // NOTE: If this structure is updated, you MUST verify that the corresponding struct
+    // in wf.msc is updated (%SDXROOT%\net\mpssvc\AuthFW\mmc\Wrappers\FirewallRules.cs)
+ 
+} FW_RULE, *PFW_RULE;
+ 
 /********************************************************
  *                                                      *
  *  Configuration settings structures                   *
@@ -1922,7 +2206,7 @@ typedef struct _tag_FW_RULE
  
 //All config settings are read-only for dynamic store
 typedef enum _tag_FW_PROFILE_CONFIG
-{   //                                                          Type
+{   //                                                       Type
     FW_PROFILE_CONFIG_INVALID,
     FW_PROFILE_CONFIG_ENABLE_FW,                          //    Boolean (as DWORD)
     FW_PROFILE_CONFIG_DISABLE_STEALTH_MODE,               //    Boolean (as DWORD)
@@ -1946,7 +2230,8 @@ typedef enum _tag_FW_PROFILE_CONFIG
                                                           //    Boolean (as DWORD)
     FW_PROFILE_CONFIG_MAX
 } FW_PROFILE_CONFIG;
- 
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_PROFILE_CONFIG);")
  
 typedef enum _FW_GLOBAL_CONFIG_IPSEC_EXEMPT_VALUES
 {
@@ -1954,17 +2239,19 @@ typedef enum _FW_GLOBAL_CONFIG_IPSEC_EXEMPT_VALUES
     FW_GLOBAL_CONFIG_IPSEC_EXEMPT_NEIGHBOR_DISC      =  0x0001,
     FW_GLOBAL_CONFIG_IPSEC_EXEMPT_ICMP               =  0x0002,
     FW_GLOBAL_CONFIG_IPSEC_EXEMPT_ROUTER_DISC        =  0x0004,
-    FW_GLOBAL_CONFIG_IPSEC_EXEMPT_NEIGHBOR_DISC_RFC  =  
-        FW_GLOBAL_CONFIG_IPSEC_EXEMPT_NEIGHBOR_DISC | FW_GLOBAL_CONFIG_IPSEC_EXEMPT_ROUTER_DISC,   
+    FW_GLOBAL_CONFIG_IPSEC_EXEMPT_NEIGHBOR_DISC_RFC  =
+        FW_GLOBAL_CONFIG_IPSEC_EXEMPT_NEIGHBOR_DISC | FW_GLOBAL_CONFIG_IPSEC_EXEMPT_ROUTER_DISC,
     FW_GLOBAL_CONFIG_IPSEC_EXEMPT_DHCP               =  0x0008,
     FW_GLOBAL_CONFIG_IPSEC_EXEMPT_MAX                =  0x0010
 }FW_GLOBAL_CONFIG_IPSEC_EXEMPT_VALUES;
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_GLOBAL_CONFIG_IPSEC_EXEMPT_VALUES);")
  
 typedef enum _FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_VALUES
 {
     FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_NONE       = 0, // Preshared key is not encoded. Kept in its wide-char format.
-    FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_UTF_8,       
-    FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_MAX    
+    FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_UTF_8,
+    FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_MAX
 } FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_VALUES;
  
 typedef enum _FW_GLOBAL_CONFIG_IPSEC_THROUGH_NAT_VALUES
@@ -1981,19 +2268,19 @@ typedef enum _FW_GLOBAL_CONFIG_IPSEC_THROUGH_NAT_VALUES
  
 typedef enum _FW_GLOBAL_CONFIG_ENABLE_PACKET_QUEUE_FLAGS
 {
-  FW_GLOBAL_CONFIG_PACKET_QUEUE_NONE,   
+  FW_GLOBAL_CONFIG_PACKET_QUEUE_NONE,
   FW_GLOBAL_CONFIG_PACKET_QUEUE_INBOUND,
   FW_GLOBAL_CONFIG_PACKET_QUEUE_FORWARD,
-  FW_GLOBAL_CONFIG_PACKET_QUEUE_MAX  
+  FW_GLOBAL_CONFIG_PACKET_QUEUE_MAX
 } FW_GLOBAL_CONFIG_ENABLE_PACKET_QUEUE_FLAGS;
  
 #define FW_GLOBAL_CONFIG_PACKET_QUEUE_VALIDATION_MASK 0x00000003
  
 //All config settings are read-only for dynamic store
 typedef enum _tag_FW_GLOBAL_CONFIG
-{   //                                                                    Type
+{   //                                                          Type
     FW_GLOBAL_CONFIG_INVALID,
-    FW_GLOBAL_CONFIG_POLICY_VERSION_SUPPORTED,                       //   Policy version supported by the Firewall service
+    FW_GLOBAL_CONFIG_POLICY_VERSION_SUPPORTED,                       //    Policy version supported by the Firewall service
     FW_GLOBAL_CONFIG_CURRENT_PROFILE,                                //    FW_PROFILE_TYPE (dynamic store only)
     FW_GLOBAL_CONFIG_DISABLE_STATEFUL_FTP,                           //    Boolean (as DWORD)
     FW_GLOBAL_CONFIG_DISABLE_STATEFUL_PPTP,                          //    Deprecated, Boolean as (DWORD)
@@ -2001,11 +2288,11 @@ typedef enum _tag_FW_GLOBAL_CONFIG
     FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING,                         //    DWORD (a value from FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_VALUES)
     FW_GLOBAL_CONFIG_IPSEC_EXEMPT,                                   //    DWORD (bit-flags from FW_GLOBAL_CONFIG_IPSEC_EXEMPT_VALUES)
                                                                      //    Max value: FW_GLOBAL_CONFIG_IPSEC_EXEMPT_MAX-1
-    FW_GLOBAL_CONFIG_CRL_CHECK,                                      //    DWORD 0 - disables CRL checking 
-                                                                     //    1 - CRL checking is attempted and certificate validation fails only if the 
-                                                                     //    certificate is revoked. Other failures that are encountered during CRL checking 
+    FW_GLOBAL_CONFIG_CRL_CHECK,                                      //    DWORD 0 - disables CRL checking
+                                                                     //    1 - CRL checking is attempted and certificate validation fails only if the
+                                                                     //    certificate is revoked. Other failures that are encountered during CRL checking
                                                                      //    (such as the revocation URL being unreachable) do not cause certificate validation to fail.
-                                                                     //    2 - checking is required and that certificate validation fails if any error is encountered 
+                                                                     //    2 - checking is required and that certificate validation fails if any error is encountered
                                                                      //    during CRL processing.
     FW_GLOBAL_CONFIG_IPSEC_THROUGH_NAT,                              //    FW_GLOBAL_CONFIG_IPSEC_THROUGH_NAT_VALUES
     FW_GLOBAL_CONFIG_POLICY_VERSION,                                 //    Policy version
@@ -2021,10 +2308,10 @@ typedef enum _tag_FW_GLOBAL_CONFIG
  
 typedef enum _FW_CONFIG_FLAGS
 {
-    FW_CONFIG_FLAG_RETURN_DEFAULT_IF_NOT_FOUND  = 0x0001  // If specified, if FWGetConfig or FWGetGlobalConfig fail to 
-                                                          // find the configuration value in the store, the call will succeed and 
+    FW_CONFIG_FLAG_RETURN_DEFAULT_IF_NOT_FOUND  = 0x0001  // If specified, if FWGetConfig or FWGetGlobalConfig fail to
+                                                          // find the configuration value in the store, the call will succeed and
                                                           // return the default value used by the firewall service.
-                                                          // If not specified, if FWGetConfig or FWGetGlobalConfig fail to 
+                                                          // If not specified, if FWGetConfig or FWGetGlobalConfig fail to
                                                           // find the configuration value in the store, the call will fail
                                                           // with ERROR_FILE_NOT_FOUND.
 } FW_CONFIG_FLAGS;
@@ -2058,6 +2345,8 @@ typedef struct tag_FW_DIAG_APP
    [string, unique]
    wchar_t* pszAppPath;
 } FW_DIAG_APP, *PFW_DIAG_APP;
+ 
+ 
  
  
 /********************************************************
@@ -2133,13 +2422,15 @@ typedef enum _tag_FW_CS_RULE_FLAGS
     FW_CS_RULE_FLAGS_KEY_MANAGER_ALLOW_DICTATE_KEY = 0x40,
     FW_CS_RULE_FLAGS_KEY_MANAGER_ALLOW_NOTIFY_KEY = 0x80,
     FW_CS_RULE_FLAGS_SECURITY_REALM              = 0x100,
-    FW_CS_RULE_FLAGS_MAX                         = 0x200,
+    FW_CS_RULE_FLAGS_TUNNEL_TYPE_POINT_TO_SITE   = 0x200,
+    FW_CS_RULE_FLAGS_MAX                         = 0x400,
     FW_CS_RULE_FLAGS_MAX_V2_1                    = 0x02,
     FW_CS_RULE_FLAGS_MAX_V2_8                    = 0x04,
     FW_CS_RULE_FLAGS_MAX_V2_10                   = 0x40,
     FW_CS_RULE_FLAGS_MAX_V2_20                   = 0x100
 }FW_CS_RULE_FLAGS;
- 
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_CS_RULE_FLAGS);")
  
 typedef enum _tag_FW_CS_RULE_ACTION
 {
@@ -2154,7 +2445,7 @@ typedef enum _tag_FW_CS_RULE_ACTION
  
 typedef struct _tag_FW_CS_RULE2_0
 {
-    struct _tag_FW_CS_RULE2_0 *pNext;                  
+    struct _tag_FW_CS_RULE2_0 *pNext;
     WORD                wSchemaVersion;
     [string, range(1,512), ref]
     WCHAR*              wszRuleId;
@@ -2171,11 +2462,11 @@ typedef struct _tag_FW_CS_RULE2_0
     DWORD               dwLocalInterfaceTypes;    // Bit flags from FW_INTERFACE_TYPE
  
     DWORD               dwLocalTunnelEndpointV4;
-    BYTE                LocalTunnelEndpointV6[16];   
+    BYTE                LocalTunnelEndpointV6[16];
  
     DWORD               dwRemoteTunnelEndpointV4;
-    BYTE                RemoteTunnelEndpointV6[16];   
-    
+    BYTE                RemoteTunnelEndpointV6[16];
+ 
     FW_PORTS            Endpoint1Ports;
     FW_PORTS            Endpoint2Ports;
     [range(0,256)]
@@ -2185,11 +2476,11 @@ typedef struct _tag_FW_CS_RULE2_0
     [string, range(1,255)]
     WCHAR*              wszPhase2CryptoSet; // Set this to FW_DEFAULT_PHASE2_CRYPTO_SET to use the default
     [string, range(1,255)]
-    WCHAR*              wszPhase2AuthSet;   // If NULL, no phase 2 authentication is performed       
+    WCHAR*              wszPhase2AuthSet;   // If NULL, no phase 2 authentication is performed
                                             // Set this to FW_DEFAULT_PHASE2_AUTH_SET to use the default
     // Phase 1 crypto is global; Set Id unnecessary
     [range(FW_CS_RULE_ACTION_SECURE_SERVER, FW_CS_RULE_ACTION_MAX)]
-    FW_CS_RULE_ACTION   Action;                    
+    FW_CS_RULE_ACTION   Action;
     WORD                wFlags;            // Bit flags from FW_CS_RULE_FLAGS
     [string, range(1,10001)]
     WCHAR*              wszEmbeddedContext;
@@ -2208,13 +2499,13 @@ typedef enum _tag_FW_KEY_MODULE_
     FW_KEY_MODULE_IKEv1 = 0x1,
     FW_KEY_MODULE_AUTHIP = 0x2,
     FW_KEY_MODULE_IKEv2 = 0x4,
-    FW_KEY_MODULE_MAX = 0x8   
+    FW_KEY_MODULE_MAX = 0x8
 } FW_KEY_MODULE;
  
  
 typedef struct _tag_FW_CS_RULE2_10
 {
-    struct _tag_FW_CS_RULE2_10 *pNext;                  
+    struct _tag_FW_CS_RULE2_10 *pNext;
     WORD                wSchemaVersion;
     [string, range(1,512), ref]
     WCHAR*              wszRuleId;
@@ -2231,11 +2522,11 @@ typedef struct _tag_FW_CS_RULE2_10
     DWORD               dwLocalInterfaceTypes;    // Bit flags from FW_INTERFACE_TYPE
  
     DWORD               dwLocalTunnelEndpointV4;
-    BYTE                LocalTunnelEndpointV6[16];   
+    BYTE                LocalTunnelEndpointV6[16];
  
     DWORD               dwRemoteTunnelEndpointV4;
-    BYTE                RemoteTunnelEndpointV6[16];   
-    
+    BYTE                RemoteTunnelEndpointV6[16];
+ 
     FW_PORTS            Endpoint1Ports;
     FW_PORTS            Endpoint2Ports;
     [range(0,256)]
@@ -2245,11 +2536,11 @@ typedef struct _tag_FW_CS_RULE2_10
     [string, range(1,255)]
     WCHAR*              wszPhase2CryptoSet; // Set this to FW_DEFAULT_PHASE2_CRYPTO_SET to use the default
     [string, range(1,255)]
-    WCHAR*              wszPhase2AuthSet;   // If NULL, no phase 2 authentication is performed       
+    WCHAR*              wszPhase2AuthSet;   // If NULL, no phase 2 authentication is performed
                                             // Set this to FW_DEFAULT_PHASE2_AUTH_SET to use the default
     // Phase 1 crypto is global; Set Id unnecessary
     [range(FW_CS_RULE_ACTION_SECURE_SERVER, FW_CS_RULE_ACTION_MAX)]
-    FW_CS_RULE_ACTION   Action;                    
+    FW_CS_RULE_ACTION   Action;
     WORD                wFlags;            // Bit flags from FW_CS_RULE_FLAGS
     [string, range(1,10001)]
     WCHAR*              wszEmbeddedContext;
@@ -2261,9 +2552,9 @@ typedef struct _tag_FW_CS_RULE2_10
     FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
     [string, range(1,512)]
     WCHAR*              wszMMParentRuleId;
-    DWORD               MetaDataReserved;
+    DWORD               MetaDataReserved; /* go-msrpc: rename("Reserved") */
  
-    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)]
+    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)] /* go-msrpc: rename("Reserved") */
     PFW_OBJECT_METADATA pMetaData;
  
 }FW_CS_RULE2_10, *PFW_CS_RULE2_10;
@@ -2271,7 +2562,7 @@ typedef struct _tag_FW_CS_RULE2_10
  
 typedef struct _tag_FW_CS_RULE
 {
-    struct _tag_FW_CS_RULE *pNext;                  
+    struct _tag_FW_CS_RULE *pNext;
     WORD                wSchemaVersion;
     [string, range(1,512), ref]
     WCHAR*              wszRuleId;
@@ -2288,11 +2579,11 @@ typedef struct _tag_FW_CS_RULE
     DWORD               dwLocalInterfaceTypes;    // Bit flags from FW_INTERFACE_TYPE
  
     DWORD               dwLocalTunnelEndpointV4;
-    BYTE                LocalTunnelEndpointV6[16];   
+    BYTE                LocalTunnelEndpointV6[16];
  
     DWORD               dwRemoteTunnelEndpointV4;
-    BYTE                RemoteTunnelEndpointV6[16];   
-    
+    BYTE                RemoteTunnelEndpointV6[16];
+ 
     FW_PORTS            Endpoint1Ports;
     FW_PORTS            Endpoint2Ports;
     [range(0,256)]
@@ -2302,11 +2593,11 @@ typedef struct _tag_FW_CS_RULE
     [string, range(1,255)]
     WCHAR*              wszPhase2CryptoSet; // Set this to FW_DEFAULT_PHASE2_CRYPTO_SET to use the default
     [string, range(1,255)]
-    WCHAR*              wszPhase2AuthSet;   // If NULL, no phase 2 authentication is performed       
+    WCHAR*              wszPhase2AuthSet;   // If NULL, no phase 2 authentication is performed
                                             // Set this to FW_DEFAULT_PHASE2_AUTH_SET to use the default
     // Phase 1 crypto is global; Set Id unnecessary
     [range(FW_CS_RULE_ACTION_SECURE_SERVER, FW_CS_RULE_ACTION_MAX)]
-    FW_CS_RULE_ACTION   Action;                    
+    FW_CS_RULE_ACTION   Action;
     WORD                wFlags;            // Bit flags from FW_CS_RULE_FLAGS
     [string, range(1,10001)]
     WCHAR*              wszEmbeddedContext;
@@ -2318,13 +2609,13 @@ typedef struct _tag_FW_CS_RULE
     FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
     [string, range(1,512)]
     WCHAR*              wszMMParentRuleId;
-    DWORD               MetaDataReserved;
+    DWORD               MetaDataReserved; /* go-msrpc: rename("Reserved") */
  
-    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)]
+    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)] /* go-msrpc: rename("Reserved") */
     PFW_OBJECT_METADATA pMetaData;
  
     [string, range(1,512)]
-    WCHAR*              wszRemoteTunnelEndpointFqdn;    
+    WCHAR*              wszRemoteTunnelEndpointFqdn;
     FW_ADDRESSES        RemoteTunnelEndpoints;
     DWORD               dwKeyModules;
     DWORD               FwdPathSALifetime;  //in seconds.  Lifetime of SAs initiated by FWD path traffic
@@ -2335,6 +2626,8 @@ typedef struct _tag_FW_CS_RULE
     LPWSTR               wszTransportUserAuthzSDDL; // SDDL describing user authorization
  
 }FW_CS_RULE, *PFW_CS_RULE;
+ 
+ 
  
  
 /*****************************************************************
@@ -2369,7 +2662,7 @@ typedef enum _tag_FW_AUTH_SUITE_FLAGS
     // For Method = FW_AUTH_METHOD_MACHINE_CERT, Phase 1 only
     FW_AUTH_SUITE_FLAGS_CERT_EXCLUDE_CA_NAME                = 0x0001,
     // For Method = FW_AUTH_METHOD_MACHINE_CERT, Phase 1 and 2
-    // For phase2, if Method = FW_AUTH_METHOD_MACHINE_CERT, this flag MUST be specified 
+    // For phase2, if Method = FW_AUTH_METHOD_MACHINE_CERT, this flag MUST be specified
     FW_AUTH_SUITE_FLAGS_HEALTH_CERT                         = 0x0002,
     // For Method = FW_AUTH_METHOD_MACHINE_CERT (Phase 1 and 2),FW_AUTH_METHOD_USER_CERT
     FW_AUTH_SUITE_FLAGS_PERFORM_CERT_ACCOUNT_MAPPING        = 0x0004,
@@ -2383,6 +2676,8 @@ typedef enum _tag_FW_AUTH_SUITE_FLAGS
     FW_AUTH_SUITE_FLAGS_MAX                                 = 0x0080
  
 }FW_AUTH_SUITE_FLAGS;
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_AUTH_SUITE_FLAGS);")
  
 typedef struct _tag_FW_AUTH_SUITE2_10
 {
@@ -2397,22 +2692,22 @@ typedef struct _tag_FW_AUTH_SUITE2_10
         // For Method = FW_AUTH_METHOD_USER_CERT
  
         [case(FW_AUTH_METHOD_MACHINE_CERT,FW_AUTH_METHOD_USER_CERT)]
-        struct _AuthSuiteCert 
+        struct _AuthSuiteCert /* go-msrpc: anonymous struct */
         {
             [ref, string]
             WCHAR*      wszCAName;
-        } Cert;
+        } Cert; /* go-msrpc: anonymous struct */
  
         // For Method = FW_AUTH_METHOD_MACHINE_SHKEY
         [case(FW_AUTH_METHOD_MACHINE_SHKEY)]
-        struct _SHKey
+        struct _SHKey /* go-msrpc: anonymous struct */
         {
             [ref, string]
-            WCHAR*          wszSHKey; 
-        } SHKey;
-        [default] 
+            WCHAR*          wszSHKey;
+        } SHKey; /* go-msrpc: anonymous struct */
+        [default]
         ;
-    } AuthSuite;
+    } AuthSuite; /* go-msrpc: anonymous union */
 }FW_AUTH_SUITE2_10, *PFW_AUTH_SUITE2_10;
  
 typedef enum _tag_FW_CERT_CRITERIA_NAME_TYPE
@@ -2438,11 +2733,13 @@ typedef enum _tag_FW_CERT_CRITERIA_TYPE
  
 typedef enum _tag_FW_CERT_CRITERIA_FLAGS
 {
-    FW_AUTH_CERT_CRITERIA_FLAGS_NONE            = 0x0000,
-    FW_AUTH_CERT_CRITERIA_FLAGS_FOLLOW_RENEWAL  = 0x0001,
-    FW_AUTH_CERT_CRITERIA_FLAGS_MAX             = 0x0002
+    FW_AUTH_CERT_CRITERIA_FLAGS_NONE                                = 0x0000,
+    FW_AUTH_CERT_CRITERIA_FLAGS_FOLLOW_RENEWAL             = 0x0001,
+    FW_AUTH_CERT_CRITERIA_FLAGS_MAX                                  = 0x0002
  
 }FW_AUTH_CERT_CRITERIA_FLAGS;
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_AUTH_CERT_CRITERIA_FLAGS);")
  
 typedef struct _tag_FW_CERT_CRITERIA
 {
@@ -2463,7 +2760,7 @@ typedef struct _tag_FW_AUTH_SUITE
 {
     [range(FW_AUTH_METHOD_INVALID+1, FW_AUTH_METHOD_MAX)]
     FW_AUTH_METHOD     Method;
-    WORD               wFlags;     // Bit-flags from FW_AUTH_SUITE_FLAGS
+    WORD               wFlags;            // Bit-flags from FW_AUTH_SUITE_FLAGS
  
     [switch_type(FW_AUTH_METHOD), switch_is(Method)]
     union
@@ -2472,21 +2769,21 @@ typedef struct _tag_FW_AUTH_SUITE
         // For Method = FW_AUTH_METHOD_USER_CERT
  
         [case(FW_AUTH_METHOD_MACHINE_CERT,FW_AUTH_METHOD_USER_CERT)]
-        struct _Cert
+        struct _AuthSuiteCert /* go-msrpc: anonymous struct */
         {
             [ref, string]
-            WCHAR*    wszCAName;
+            WCHAR*      wszCAName;
             [unique]
             PFW_CERT_CRITERIA pCertCriteria;
-        } Cert;
+        } Cert; /* go-msrpc: anonymous struct */
  
         // For Method = FW_AUTH_METHOD_MACHINE_SHKEY
         [case(FW_AUTH_METHOD_MACHINE_SHKEY)]
-        struct _SHKey
+        struct _SHKey /* go-msrpc: anonymous struct */
         {
             [ref, string]
-            WCHAR*   wszSHKey; 
-        } SHKey;
+            WCHAR*          wszSHKey;
+        } SHKey; /* go-msrpc: anonymous struct */
  
         // For Method = FW_AUTH_METHOD_MACHINE_KERB
         // For Method = FW_AUTH_METHOD_USER_KERB
@@ -2494,18 +2791,20 @@ typedef struct _tag_FW_AUTH_SUITE
         struct _ProxyServer
         {
             [unique, string]
-            WCHAR*   wszProxyServer; 
-        } ProxyServer;
-        [default] 
+            WCHAR*          wszProxyServer;
+        } ProxyServer ;
+        [default]
         ;
-    } AuthSuite;
+    } AuthSuite; /* go-msrpc: anonymous union */
 }FW_AUTH_SUITE, *PFW_AUTH_SUITE;
  
 typedef enum _tag_FW_AUTH_SET_FLAGS
 {
-    FW_AUTH_SET_FLAGS_NONE  = 0x00,
-    FW_AUTH_SET_FLAGS_MAX   = 0x01,
+    FW_AUTH_SET_FLAGS_NONE     = 0x00,
+    FW_AUTH_SET_FLAGS_MAX      = 0x01,
 } FW_AUTH_SET_FLAGS;
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_AUTH_SET_FLAGS);")
  
 typedef struct _tag_FW_AUTH_SET2_10
 {
@@ -2515,7 +2814,7 @@ typedef struct _tag_FW_AUTH_SET2_10
     [range(FW_IPSEC_PHASE_INVALID+1, FW_IPSEC_PHASE_MAX-1)]
     FW_IPSEC_PHASE      IpSecPhase;
     [string, range(1,255), ref]
-    WCHAR*              wszSetId;       // To make this the default auth set, set the Id to FW_DEFAULT_PHASE1_AUTH_SET 
+    WCHAR*              wszSetId;       // To make this the default auth set, set the Id to FW_DEFAULT_PHASE1_AUTH_SET
                                         // or FW_DEFAULT_PHASE2_AUTH_SET as appropriate.
     [string, range(1,10001)]
     WCHAR*              wszName;
@@ -2533,7 +2832,7 @@ typedef struct _tag_FW_AUTH_SET2_10
     [string, range(1,10001)]
     WCHAR*              wszGPOName;  //Name of originating GPO, if rule origin is GP.
     FW_RULE_STATUS      Status;      //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
-    DWORD               dwAuthSetFlags;    
+    DWORD               dwAuthSetFlags;
 }FW_AUTH_SET2_10, *PFW_AUTH_SET2_10;
  
 typedef struct _tag_FW_AUTH_SET
@@ -2544,7 +2843,7 @@ typedef struct _tag_FW_AUTH_SET
     [range(FW_IPSEC_PHASE_INVALID+1, FW_IPSEC_PHASE_MAX-1)]
     FW_IPSEC_PHASE      IpSecPhase;
     [string, range(1,255), ref]
-    WCHAR*              wszSetId;       // To make this the default auth set, set the Id to FW_DEFAULT_PHASE1_AUTH_SET 
+    WCHAR*              wszSetId;       // To make this the default auth set, set the Id to FW_DEFAULT_PHASE1_AUTH_SET
                                         // or FW_DEFAULT_PHASE2_AUTH_SET as appropriate.
     [string, range(1,10001)]
     WCHAR*              wszName;
@@ -2591,7 +2890,7 @@ typedef enum _tag_FW_CRYPTO_ENCRYPTION_TYPE
 {
     FW_CRYPTO_ENCRYPTION_NONE,
     FW_CRYPTO_ENCRYPTION_DES,
-    FW_CRYPTO_ENCRYPTION_TRIPPLEDES, // 3DES
+    FW_CRYPTO_ENCRYPTION_3DES,
     FW_CRYPTO_ENCRYPTION_AES128,
     FW_CRYPTO_ENCRYPTION_AES192,
     FW_CRYPTO_ENCRYPTION_AES256,
@@ -2635,7 +2934,8 @@ typedef enum _tag_FW_CRYPTO_SET_FLAGS
     FW_CRYPTO_SET_FLAGS_NONE     = 0x00,
     FW_CRYPTO_SET_FLAGS_MAX      = 0x01,
 } FW_CRYPTO_SET_FLAGS;
- 
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_CRYPTO_SET_FLAGS);")
  
 typedef struct _tag_FW_PHASE1_CRYPTO_SUITE
 {
@@ -2657,18 +2957,20 @@ typedef struct _tag_FW_PHASE2_CRYPTO_SUITE
     FW_CRYPTO_HASH_TYPE        AhHash;
     FW_CRYPTO_HASH_TYPE        EspHash;
     FW_CRYPTO_ENCRYPTION_TYPE  Encryption;
-    DWORD                      dwTimeoutMinutes; 
-    DWORD                      dwTimeoutKBytes;   
+    DWORD                      dwTimeoutMinutes;
+    DWORD                      dwTimeoutKBytes;
     DWORD                      dwP2CryptoSuiteFlags;
 }FW_PHASE2_CRYPTO_SUITE, *PFW_PHASE2_CRYPTO_SUITE;
  
  
 typedef enum _tag_FW_PHASE1_CRYPTO_FLAGS
 {
-    FW_PHASE1_CRYPTO_FLAGS_NONE            = 0x00,
-    FW_PHASE1_CRYPTO_FLAGS_DO_NOT_SKIP_DH  = 0x01,
-    FW_PHASE1_CRYPTO_FLAGS_MAX             = 0x02
+    FW_PHASE1_CRYPTO_FLAGS_NONE                     = 0x00,
+    FW_PHASE1_CRYPTO_FLAGS_DO_NOT_SKIP_DH           = 0x01,
+    FW_PHASE1_CRYPTO_FLAGS_MAX                      = 0x02
 }FW_PHASE1_CRYPTO_FLAGS;
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_PHASE1_CRYPTO_FLAGS);")
  
 typedef enum _tag_FW_PHASE2_CRYPTO_PFS
 {
@@ -2679,7 +2981,7 @@ typedef enum _tag_FW_PHASE2_CRYPTO_PFS
     FW_PHASE2_CRYPTO_PFS_DH2,
     FW_PHASE2_CRYPTO_PFS_DH2048,
     FW_PHASE2_CRYPTO_PFS_ECDH256,
-    FW_PHASE2_CRYPTO_PFS_ECDH384,    
+    FW_PHASE2_CRYPTO_PFS_ECDH384,
     FW_PHASE2_CRYPTO_PFS_DH24,
     FW_PHASE2_CRYPTO_PFS_MAX,
     FW_PHASE2_CRYPTO_PFS_MAX_V2_10 = FW_PHASE2_CRYPTO_PFS_DH24
@@ -2706,7 +3008,7 @@ typedef struct _tag_FW_CRYPTO_SET
     union
     {
         [case(FW_IPSEC_PHASE_1)]
-        struct _Phase1
+        struct _Phase1 /* go-msrpc: anonymous struct */
         {
             WORD                      wFlags;       // Bit-flags from FW_PHASE1_CRYPTO_FLAGS
             [range(0, 10000)]
@@ -2715,22 +3017,22 @@ typedef struct _tag_FW_CRYPTO_SET
             PFW_PHASE1_CRYPTO_SUITE   pPhase1Suites;
             DWORD                     dwTimeOutMinutes;
             DWORD                     dwTimeOutSessions;
-        } Phase1;
+        } Phase1; /* go-msrpc: anonymous struct */
         [case(FW_IPSEC_PHASE_2)]
-        struct _Phase2
+        struct _Phase2 /* go-msrpc: anonymous struct */
         {
             FW_PHASE2_CRYPTO_PFS      Pfs;
             [range(0, 10000)]
             DWORD                     dwNumPhase2Suites;
             [size_is(dwNumPhase2Suites)]
             PFW_PHASE2_CRYPTO_SUITE   pPhase2Suites;
-        } Phase2;
-    } CryptoSet;
+        } Phase2; /* go-msrpc: anonymous struct */
+    } CryptoSet; /* go-msrpc: anonymous struct */
     [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX-1)]
     FW_RULE_ORIGIN_TYPE Origin;      //Rule origin, filled on enumerated rules. Ignored on input
     [string, range(1,10001)]
     WCHAR*              wszGPOName; //Name of originating GPO, if rule origin is GP.
-    FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK 
+    FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
     DWORD               dwCryptoSetFlags; //flags from FW_CRYPTO_SET_FLAGS
 }FW_CRYPTO_SET, *PFW_CRYPTO_SET;
  
@@ -2761,7 +3063,8 @@ typedef enum _tag_FW_PHASE1_KEY_MODULE_TYPE
     FW_PHASE1_KEY_MODULE_INVALID,
     FW_PHASE1_KEY_MODULE_IKE,
     FW_PHASE1_KEY_MODULE_AUTH_IP,
-    FW_PHASE1_KEY_MODULE_MAX 
+    FW_PHASE1_KEY_MODULE_IKEV2,
+    FW_PHASE1_KEY_MODULE_MAX
 }FW_PHASE1_KEY_MODULE_TYPE;
  
 typedef struct _tag_FW_CERT_INFO
@@ -2781,7 +3084,7 @@ typedef struct _tag_FW_AUTH_INFO
     {
         [case(FW_AUTH_METHOD_MACHINE_CERT,FW_AUTH_METHOD_USER_CERT)]
         //for auth method = cert
-        struct _Cert
+        struct _Cert /* go-msrpc: anonymous struct */
         {
             FW_CERT_INFO        MyCert;
             FW_CERT_INFO        PeerCert;
@@ -2789,17 +3092,17 @@ typedef struct _tag_FW_AUTH_INFO
         [case(FW_AUTH_METHOD_MACHINE_KERB,FW_AUTH_METHOD_USER_KERB,
               FW_AUTH_METHOD_MACHINE_RESERVED,FW_AUTH_METHOD_USER_RESERVED)]
         //for auth_method = kerb
-        struct _Kerb
+        struct _Kerb /* go-msrpc: anonymous struct */
         {
             [string, range(1,10001)]
             WCHAR*       wszMyId;
             [string, range(1,10001)]
             WCHAR*       wszPeerId;
-        } Kerb;
-        [default] 
+        } Kerb; /* go-msrpc: anonymous struct */
+        [default]
         ;
-    } AuthInfo;
-    DWORD           dwAuthInfoFlags;    
+    } AuthInfo; /* go-msrpc: anonymous union */
+    DWORD           dwAuthInfoFlags;
 }FW_AUTH_INFO, *PFW_AUTH_INFO;
  
 typedef struct _tag_FW_ENDPOINTS
@@ -2816,7 +3119,7 @@ typedef struct _tag_FW_PHASE1_SA_DETAILS
 {
     UINT64                      SaId;
     [range(FW_PHASE1_KEY_MODULE_INVALID+1, FW_PHASE1_KEY_MODULE_MAX-1)]
-    FW_PHASE1_KEY_MODULE_TYPE   KeyModuleType;    
+    FW_PHASE1_KEY_MODULE_TYPE   KeyModuleType;
  
     FW_ENDPOINTS                Endpoints; //0 = Any
  
@@ -2830,7 +3133,7 @@ typedef struct _tag_FW_PHASE1_SA_DETAILS
     PFW_AUTH_INFO               pFirstAuth;     //First authentication - always present
     PFW_AUTH_INFO               pSecondAuth;    //First authentication - may be NULL
  
-    DWORD                       dwP1SaFlags;    // currently set to 0    
+    DWORD                       dwP1SaFlags;    // currently set to 0
 }FW_PHASE1_SA_DETAILS, *PFW_PHASE1_SA_DETAILS;
  
  
@@ -2848,7 +3151,7 @@ typedef struct _tag_FW_PHASE2_SA_DETAILS
     UINT64              SaId;
     [range(FW_DIR_INVALID+1, FW_DIR_MAX-1)]
     FW_DIRECTION        Direction;
-   
+ 
     FW_ENDPOINTS        Endpoints;   //0 = Any
  
     WORD                wLocalPort;  //0 = Any
@@ -2857,7 +3160,7 @@ typedef struct _tag_FW_PHASE2_SA_DETAILS
  
     FW_PHASE2_CRYPTO_SUITE  SelectedProposal;
     FW_PHASE2_CRYPTO_PFS    Pfs;
-    
+ 
     GUID                TransportFilterId;
  
     DWORD               dwP2SaFlags;    // currently set to 0
@@ -2878,22 +3181,22 @@ union   _FW_PROFILE_CONFIG_VALUE
  
     [case(FW_PROFILE_CONFIG_ENABLE_FW,
         FW_PROFILE_CONFIG_DISABLE_STEALTH_MODE,
-        FW_PROFILE_CONFIG_SHIELDED,                           
+        FW_PROFILE_CONFIG_SHIELDED,
         FW_PROFILE_CONFIG_DISABLE_UNICAST_RESPONSES_TO_MULTICAST_BROADCAST,
-        FW_PROFILE_CONFIG_LOG_DROPPED_PACKETS,                
-        FW_PROFILE_CONFIG_LOG_SUCCESS_CONNECTIONS,            
-        FW_PROFILE_CONFIG_LOG_IGNORED_RULES,                  
-        FW_PROFILE_CONFIG_LOG_MAX_FILE_SIZE,                  
-        FW_PROFILE_CONFIG_DISABLE_INBOUND_NOTIFICATIONS,      
-        FW_PROFILE_CONFIG_AUTH_APPS_ALLOW_USER_PREF_MERGE,    
-        FW_PROFILE_CONFIG_GLOBAL_PORTS_ALLOW_USER_PREF_MERGE, 
-        FW_PROFILE_CONFIG_ALLOW_LOCAL_POLICY_MERGE,           
-        FW_PROFILE_CONFIG_ALLOW_LOCAL_IPSEC_POLICY_MERGE,     
-        FW_PROFILE_CONFIG_DEFAULT_OUTBOUND_ACTION,            
+        FW_PROFILE_CONFIG_LOG_DROPPED_PACKETS,
+        FW_PROFILE_CONFIG_LOG_SUCCESS_CONNECTIONS,
+        FW_PROFILE_CONFIG_LOG_IGNORED_RULES,
+        FW_PROFILE_CONFIG_LOG_MAX_FILE_SIZE,
+        FW_PROFILE_CONFIG_DISABLE_INBOUND_NOTIFICATIONS,
+        FW_PROFILE_CONFIG_AUTH_APPS_ALLOW_USER_PREF_MERGE,
+        FW_PROFILE_CONFIG_GLOBAL_PORTS_ALLOW_USER_PREF_MERGE,
+        FW_PROFILE_CONFIG_ALLOW_LOCAL_POLICY_MERGE,
+        FW_PROFILE_CONFIG_ALLOW_LOCAL_IPSEC_POLICY_MERGE,
+        FW_PROFILE_CONFIG_DEFAULT_OUTBOUND_ACTION,
         FW_PROFILE_CONFIG_DEFAULT_INBOUND_ACTION,
         FW_PROFILE_CONFIG_DISABLE_STEALTH_MODE_IPSEC_SECURED_PACKET_EXEMPTION)]
     DWORD*  pdwVal;
-}FW_PROFILE_CONFIG_VALUE, *PFW_PROFILE_CONFIG_VALUE;    
+}FW_PROFILE_CONFIG_VALUE, *PFW_PROFILE_CONFIG_VALUE;
  
  
 /***********************************************************************
@@ -2930,9 +3233,9 @@ typedef struct _tag_FW_MM_RULE
     [string, range(1,10001)]
     WCHAR*              wszGPOName; //Name of originating GPO, if rule origin is GP.
     FW_RULE_STATUS      Status;     //Parsing error if any, filled on return. On input, set this to FW_RULE_STATUS_OK
-    DWORD               MetaDataReserved;
+    DWORD               MetaDataReserved; /* go-msrpc: rename("Reserved") */
  
-    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)]
+    [size_is((MetaDataReserved & FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)] /* go-msrpc: rename("Reserved") */
     PFW_OBJECT_METADATA pMetaData;
  
 }FW_MM_RULE, *PFW_MM_RULE;
@@ -2953,8 +3256,8 @@ typedef enum _tag_FW_MATCH_KEY
     FW_MATCH_KEY_FILTERID,
     FW_MATCH_KEY_APP_PATH, //The APP Path
     FW_MATCH_KEY_PROTOCOL,
-    FW_MATCH_KEY_LOCAL_PORT,  
-    FW_MATCH_KEY_REMOTE_PORT,  
+    FW_MATCH_KEY_LOCAL_PORT,
+    FW_MATCH_KEY_REMOTE_PORT,
     FW_MATCH_KEY_GROUP,
     FW_MATCH_KEY_SVC_NAME,
     FW_MATCH_KEY_DIRECTION,
@@ -2962,7 +3265,9 @@ typedef enum _tag_FW_MATCH_KEY
     FW_MATCH_KEY_PACKAGE_ID,
     FW_MATCH_KEY_FQBN,
     FW_MATCH_KEY_COMPARTMENT_ID,
-FW_MATCH_KEY_MAX
+    FW_MATCH_KEY_REMOTE_USER_AUTH_LIST,
+    FW_MATCH_KEY_PACKAGE_FAMILY_NAME,
+    FW_MATCH_KEY_MAX
 }FW_MATCH_KEY;
  
 typedef enum _tag_FW_DATA_TYPE
@@ -2990,16 +3295,16 @@ typedef struct _tag_FW_MATCH_VALUE
        [case(FW_DATA_TYPE_UINT64)]
        UINT64 uInt64;
        [case(FW_DATA_TYPE_UNICODE_STRING)]
-       struct _UnicodeString
+       struct _UncodeString /* go-msrpc: anonymous struct */
        {
            [string, range(1,10001)]
            LPWSTR wszString;
-       } UnicodeString;
+       } UncodeString; /* go-msrpc: anonymous struct */
  
        [case(FW_DATA_TYPE_EMPTY)]
        ;
  
-    } MatchValue;
+    } MatchValue; /* go-msrpc: anonymous union */
 }FW_MATCH_VALUE;
  
 typedef enum _tag_FW_MATCH_TYPE
@@ -3034,16 +3339,274 @@ typedef struct _tag_FW_QUERY
     FW_RULE_STATUS Status;
 }FW_QUERY, *PFW_QUERY;
  
+/***********************************************************************
+ *                                                                     *
+ *   Hyper-V Firewall structs                                          *
+ *                                                                     *
+ ***********************************************************************/
+///// Hyper-V version independent struct declarations /////
+/* go-msrpc : remove define */
+// #define FW_HYPERV_VM_CREATOR0_SCHEMA_VERSION FW_VERSION(2,32)
+// #define FW_HYPERV_VM_CREATOR FW_HYPERV_VM_CREATOR0
+// #define PFW_HYPERV_VM_CREATOR PFW_HYPERV_VM_CREATOR0
+//  
+// #define FW_HYPERV_PORT0_SCHEMA_VERSION FW_VERSION(2,32)
+// #define FW_HYPERV_PORT1_SCHEMA_VERSION FW_VERSION(2,33)
+// #define FW_HYPERV_PORT_CURRENT_SCHEMA_VERSION FW_HYPERV_PORT1_SCHEMA_VERSION
+// #define FW_HYPERV_PORT FW_HYPERV_PORT1
+// #define PFW_HYPERV_PORT PFW_HYPERV_PORT1
+//  
+// #define FW_HYPERV_VM_CONFIG_VALUE FW_HYPERV_VM_CONFIG_VALUE0
+//  
+// #define FW_HYPERV_RULE0_SCHEMA_VERSION FW_VERSION(2,32)
+// #define FW_HYPERV_RULE1_SCHEMA_VERSION FW_VERSION(2,33)
+// #define FW_HYPERV_RULE_CURRENT_SCHEMA_VERSION FW_HYPERV_RULE1_SCHEMA_VERSION
+// #define FW_HYPERV_RULE FW_HYPERV_RULE1
+// #define PFW_HYPERV_RULE PFW_HYPERV_RULE1
+ 
+///// Hyper-V VM Creator structs /////
+typedef struct _tag_FW_HYPERV_VM_CREATOR0
+{
+    struct _tag_FW_HYPERV_VM_CREATOR0* next; // Read-only. Used for enumeration 
+    WORD schemaVersion;
+    GUID id;
+    [string, range(1,10001), unique]
+    PWSTR friendlyName;
+} FW_HYPERV_VM_CREATOR0, *PFW_HYPERV_VM_CREATOR0;
+ 
+///// Hyper-V port structs /////
+typedef enum _tag_FW_HYPERV_PORT_FLAGS
+{
+    FW_HYPERV_PORT_FLAGS_NONE                  = 0x0,
+    FW_HYPERV_PORT_FLAGS_CONSTRAINED_INTERFACE = 0x1,
+    FW_HYPERV_PORT_FLAGS_MAX                   = 0x2
+} FW_HYPERV_PORT_FLAGS;
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_HYPERV_PORT_FLAGS);")
+ 
+typedef enum _tag_FW_HYPERV_NETWORK_TYPE
+{ 
+    FW_HYPERV_NETWORK_TYPE_INVALID = 0x0,
+    FW_HYPERV_NETWORK_TYPE_FSE = 0x1,
+    FW_HYPERV_NETWORK_TYPE_NAT = 0x2,
+    FW_HYPERV_NETWORK_TYPE_MAX = 0x4,
+} FW_HYPERV_NETWORK_TYPE;
+ 
+typedef struct _tag_FW_HYPERV_PORT0
+{
+    struct _tag_FW_HYPERV_PORT0* next; // Read-only. Used for enumeration
+    [string, range(1,10001), ref]
+    PWSTR switchName;
+    [string, range(1,10001), ref]
+    PWSTR portName;
+    GUID vmCreatorId;
+    GUID interfaceGuid;
+    GUID partitionGuid;
+    DWORD flags; // Bitwise flags of type FW_HYPERV_PORT_FLAGS
+} FW_HYPERV_PORT0, *PFW_HYPERV_PORT0;
+ 
+typedef struct _tag_FW_HYPERV_PORT1
+{
+    struct _tag_FW_HYPERV_PORT1* next; // Read-only. Used for enumeration
+    [string, range(1,10001), ref]
+    PWSTR switchName;
+    [string, range(1,10001), ref]
+    PWSTR portName;
+    GUID vmCreatorId;
+    GUID interfaceGuid;
+    GUID partitionGuid;
+    DWORD flags; // Bitwise flags of type FW_HYPERV_PORT_FLAGS
+    FW_PROFILE_TYPE profileType;
+    FW_HYPERV_NETWORK_TYPE networkType;
+    [string, range(1,10001)]
+    PWSTR constrainedInterfaceAlias;
+} FW_HYPERV_PORT1, *PFW_HYPERV_PORT1;
+ 
+///// Hyper-V settings structs /////
+// Policies that apply based on VM CreatorID (not per-profile)
+typedef enum _tag_FW_HYPERV_VM_CONFIG 
+{ 
+    // Setting                                            // Type
+    FW_HYPERV_VM_CONFIG_INVALID,
+    FW_HYPERV_VM_CONFIG_LOOPBACK_ENABLED,                 // Boolean (as DWORD)
+    FW_HYPERV_VM_CONFIG_ALLOW_HOST_POLICY_MERGE,          // Boolean (as DWORD)
+    FW_HYPERV_VM_CONFIG_MAX
+} FW_HYPERV_VM_CONFIG;
+ 
+// Policies that apply based on VM CreatorID and per profile
+typedef enum _tag_FW_HYPERV_PROFILE_CONFIG 
+{ 
+    // Setting                                            // Type
+    FW_HYPERV_PROFILE_CONFIG_INVALID,
+    FW_HYPERV_PROFILE_CONFIG_ENABLED,                     // Boolean (as DWORD)
+    FW_HYPERV_PROFILE_CONFIG_ALLOW_LOCAL_POLICY_MERGE,    // Boolean (as DWORD)
+    FW_HYPERV_PROFILE_CONFIG_MAX
+} FW_HYPERV_PROFILE_CONFIG;
+ 
+// This struct is used for bother FW_HYPERV_VM_CONFIG and FW_HYPERV_PROFILE_CONFIG
+typedef struct _tag_FW_HYPERV_VM_CONFIG_VALUE0
+{
+    DWORD* pdwVal;
+    // NOTE: for future revisions, see FW_PROFILE_CONFIG_VALUE for union type example
+} FW_HYPERV_VM_CONFIG_VALUE0, *PFW_HYPERV_VM_CONFIG_VALUE0;
+ 
+///// Hyper-V rule structs /////
+// Rule enforcement state on a per-port basis
+typedef enum _tag_FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE
+{
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_INVALID,
+    // This status indicates the rule is successfully applied on this port
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_ENFORCED,
+    // This status indicates the rule failed to be applied on this port
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_ERROR,
+    // This status indicates that the rule is enforced properly, but did not result in plumbing on this port
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_ENFORCED_EMPTY_RESOLUTION,
+    // This status indicates that the rule is not enforced on this port because it was not found
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_PORT_NOT_FOUND,
+    // This status indicates that the rule is not enforced on a port because it is not active
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_RULE_INACTIVE,
+    // This status indicates that the rule is not enforced on a port because it applies to a different VM creator
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_VM_CREATOR_NOT_APPLICABLE,
+    // This status indicates that the rule is not enforced on a port because it applies to a different profile
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_PROFILE_NOT_APPLICABLE,
+    // This status indicates that the rule is not enforced on a port because the profile is disabled
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_PROFILE_DISABLED,
+    // This status indicates that the rule is not enforced on a port because local rules are disallowed
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_PROFILE_LOCAL_RULES_DISALLOWED,
+    // This status indicates that the rule is not enforced on a port because of the constrained interface
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_CONSTRAINED_INTERFACE_NOT_APPLICABLE,
+    // This status indicates that the rule is not enforced on NAT port because it is an inbound rule
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_NAT_INBOUND_NOT_APPLICABLE,
+    // This status indicates that the rule is not enforced on a NAT port because it has a local address 
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_NAT_LOCAL_ADDRESS_NOT_SUPPORTED,
+    // This status indicates that the rule is not enforced on a port because it came from host firewall and host policy merge is disabled
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_HOST_POLICY_MERGE_DISABLED,
+    // This status indicates that the rule is not enforced on a port because it came from host firewall and host firewall is disabled on this profile
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_HOST_FIREWALL_PROFILE_DISABLED,
+    // This status indicates that the rule is not enforced on a port because it came from host firewall and host firewall has a different default action
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_HOST_FIREWALL_DEFAULT_ACTION_CONFLICT,
+    // This status indicates that the rule is not enforced on a port because it came form host firewall and host local policy merge is disabled
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_HOST_FIREWALL_PROFILE_LOCAL_POLICY_MERGE_DISABLED,
+    // This status indicates that the rule is not enforced on a port because it came from host firewall and host firewall rule category is disabled
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_HOST_FIREWALL_RULE_CATEGORY_DISABLED,
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE_MAX
+} FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE;
+ 
+typedef enum _tag_FW_HYPERV_RULE_STATUS
+{
+    FW_HYPERV_RULE_STATUS_INVALID,
+    // This status indicates that the rule is valid
+    FW_HYPERV_RULE_STATUS_OK,
+    // This indicates that the rule has failed to be enforced on at least one applicable port
+    FW_HYPERV_RULE_STATUS_PARTIALLY_ENFORCED,
+    // This indicates that there are currently no ports on the system which matches the rule
+    FW_HYPERV_RULE_STATUS_NO_APPLICABLE_PORTS,
+    // This status indicates that the rule was not parsed correctly and is in an error state
+    FW_HYPERV_RULE_STATUS_PARSING_ERROR,
+    // This status indicates that the rule is in an unknown error state 
+    FW_HYPERV_RULE_STATUS_ERROR,
+    FW_HYPERV_RULE_STATUS_MAX
+} FW_HYPERV_RULE_STATUS;
+ 
+typedef enum _tag_FW_HYPERV_RULE_FLAGS
+{
+    FW_HYPERV_RULE_FLAGS_NONE                  = 0x0000,
+    // This flag indicates that the rule should be enforced.
+    // This value MUST match the same numerical value as FW_RULE_FLAGS_ACTIVE
+    // as some portions of shared code sets the active flag using this value
+    FW_HYPERV_RULE_FLAGS_ACTIVE                = FW_RULE_FLAGS_ACTIVE, // 0x001
+    // This flag indicates that the rule only applies to constrained interface ports (FW_HYPERV_PORT_FLAGS_CONSTRAINED_INTERFACE)
+    FW_HYPERV_RULE_FLAGS_CONSTRAINED_INTERFACE = 0x0002,
+    FW_HYPERV_RULE_FLAGS_MAX_V2_32             = 0x0004,
+    // This internal flag indicates that this rule must have lowest priority (evaluated first)
+    FW_HYPERV_RULE_FLAGS_INTERNAL_MIN_PRIORITY = 0x0004,
+    FW_HYPERV_RULE_FLAGS_MAX_V2_33             = 0x0008,
+    FW_HYPERV_RULE_FLAGS_MAX                   = 0x0008
+} FW_HYPERV_RULE_FLAGS;
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(FW_HYPERV_RULE_FLAGS);")
+ 
+typedef struct _tag_FW_HYPERV_RULE_METADATA
+{
+    [string, range(1,10001), ref]
+    PWSTR switchName;
+    [string, range(1,10001), ref]
+    PWSTR portName;
+    FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE enforcementState;
+} FW_HYPERV_RULE_METADATA, *PFW_HYPERV_RULE_METADATA;
+ 
+typedef struct _tag_FW_HYPERV_RULE_METADATA_LIST
+{
+    DWORD numEntries;
+    [size_is(numEntries)]
+    PFW_HYPERV_RULE_METADATA list;
+} FW_HYPERV_RULE_METADATA_LIST, *PFW_HYPERV_RULE_METADATA_LIST;
+ 
+typedef struct _tag_FW_HYPERV_RULE0
+{
+    struct _tag_FW_HYPERV_RULE0* next; // used for enumeration 
+    WORD schemaVersion;
+    [string, range(1,10001), ref]
+    PWSTR ruleId;
+    [string, range(1,10001), ref]
+    PWSTR ruleName;
+    UINT16 priority; // if weight is 0, will be a known default based on action. Lower priority takes precendence over higher priority
+    [range(FW_DIR_INVALID, FW_DIR_OUT)]
+    FW_DIRECTION direction;
+    GUID vmCreatorId;
+    WORD protocol;
+    FW_ADDRESSES localAddresses;
+    FW_PORTS localPorts;
+    FW_ADDRESSES remoteAddresses;
+    FW_PORTS remotePorts;
+    [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)]
+    FW_RULE_ACTION action;
+    WORD flags; // bitwise flags of type FW_HYPERV_RULE_FLAGS
+    // The following are set when a client enumerates rules to get status information
+    FW_HYPERV_RULE_STATUS status;
+    FW_RULE_ORIGIN_TYPE origin;
+    FW_HYPERV_RULE_METADATA_LIST metadataList;
+} FW_HYPERV_RULE0, *PFW_HYPERV_RULE0;
+ 
+typedef struct _tag_FW_HYPERV_RULE1
+{
+    struct _tag_FW_HYPERV_RULE1* next; // used for enumeration 
+    WORD schemaVersion;
+    [string, range(1,10001), ref]
+    PWSTR ruleId;
+    [string, range(1,10001), ref]
+    PWSTR ruleName;
+    UINT16 priority; // if weight is 0, will be a known default based on action. Lower priority takes precendence over higher priority
+    [range(FW_DIR_INVALID, FW_DIR_OUT)]
+    FW_DIRECTION direction;
+    GUID vmCreatorId;
+    WORD protocol;
+    FW_ADDRESSES localAddresses;
+    FW_PORTS localPorts;
+    FW_ADDRESSES remoteAddresses;
+    FW_PORTS remotePorts;
+    [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)]
+    FW_RULE_ACTION action;
+    WORD flags; // bitwise flags of type FW_HYPERV_RULE_FLAGS
+    // The following are set when a client enumerates rules to get status information
+    FW_HYPERV_RULE_STATUS status;
+    FW_RULE_ORIGIN_TYPE origin;
+    FW_HYPERV_RULE_METADATA_LIST metadataList;
+    DWORD profileTypes; // Bitmask of FW_PROFILE_TYPE
+} FW_HYPERV_RULE1, *PFW_HYPERV_RULE1;
+ 
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("#endif //__FIREWALL_H_")
  
  
-// XXX: cpp_quote not supported.
-//cpp_quote("#endif //__FIREWALL_H_")
- 
-// XXX: cpp_quote not supported.
+/* go-msrpc: remove cpp_quote */
 // cpp_quote("#define MIDL_user_allocate MIDL_fw_allocate")
+/* go-msrpc: remove cpp_quote */
 // cpp_quote("#define MIDL_user_free MIDL_fw_free")
-// cpp_quote("void  * __RPC_USER MIDL_fw_allocate(size_t size);")
-// cpp_quote("void __RPC_USER MIDL_fw_free(void  * );")
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("void  * __RPC_USER MIDL_fw_allocate(size_t numBytes);")
+/* go-msrpc: remove cpp_quote */
+// cpp_quote("void __RPC_USER MIDL_fw_free(void  * p);")
  
  
 [
@@ -3056,7 +3619,8 @@ interface RemoteFW
  
 {
  
-typedef 
+ 
+typedef
 handle_t FW_CONN_HANDLE;
  
  
@@ -3077,14 +3641,14 @@ void* FW_PRODUCT_HANDLE;
     RRPC_FWOpenPolicyStore(
         [in] FW_CONN_HANDLE                      rpcConnHandle,
         [in] WORD                                BinaryVersion,
-        [in, range(FW_STORE_TYPE_INVALID+1, FW_STORE_TYPE_MAX-1)]       FW_STORE_TYPE                       StoreType, 
+        [in, range(FW_STORE_TYPE_INVALID+1, FW_STORE_TYPE_MAX-1)]       FW_STORE_TYPE                       StoreType,
         [in, range(FW_POLICY_ACCESS_RIGHT_INVALID+1, FW_POLICY_ACCESS_RIGHT_MAX-1)]  FW_POLICY_ACCESS_RIGHT AccessRight,
         [in]  DWORD                              dwFlags,
         [out] PFW_POLICY_STORE_HANDLE           phPolicyStore
         );
  
  
-    DWORD 
+    DWORD
     RRPC_FWClosePolicyStore(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in, out] PFW_POLICY_STORE_HANDLE  phPolicyStore
@@ -3094,94 +3658,103 @@ void* FW_PRODUCT_HANDLE;
     DWORD
     RRPC_FWRestoreDefaults([in] FW_CONN_HANDLE rpcConnHandle);
  
-    DWORD 
+ 
+    DWORD
     RRPC_FWGetGlobalConfig(
         [in] FW_CONN_HANDLE           rpcConnHandle,
         [in] WORD                     BinaryVersion,
         [in] FW_STORE_TYPE            StoreType,
         [in, range(FW_GLOBAL_CONFIG_INVALID+1, FW_GLOBAL_CONFIG_MAX-1)]
-          FW_GLOBAL_CONFIG            configID, 
+          FW_GLOBAL_CONFIG            configID,
         [in] DWORD                    dwFlags,            // Bit-wise combination of flags from FW_CONFIG_FLAGS
-        [in, out, unique, size_is(cbData), length_is(*pcbTransmittedLen)] 
-        BYTE*                       pBuffer, 
+        [in, out, unique, size_is(cbData), length_is(*pcbTransmittedLen)]
+        BYTE*                       pBuffer,
         [in] DWORD                  cbData,
         [in,out]  LPDWORD           pcbTransmittedLen,
         [out] LPDWORD               pcbRequired
         );
  
-   DWORD 
+ 
+   DWORD
    RRPC_FWSetGlobalConfig(
         [in] FW_CONN_HANDLE             rpcConnHandle,
         [in] WORD                       BinaryVersion,
         [in] FW_STORE_TYPE              StoreType,
         [in, range(FW_GLOBAL_CONFIG_INVALID+1, FW_GLOBAL_CONFIG_MAX-1)] FW_GLOBAL_CONFIG              configID,
-        [in, unique, size_is(dwBufSize)] 
+        [in, unique, size_is(dwBufSize)]
          BYTE *                         lpBuffer,
         [in, range(0, 10*1024)] DWORD dwBufSize
         );
  
-   DWORD 
+ 
+   DWORD
    RRPC_FWAddFirewallRule(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] PFW_RULE2_0             pRule
         );
  
-    DWORD 
+ 
+    DWORD
     RRPC_FWSetFirewallRule(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] PFW_RULE2_0             pRule
         );
  
-    DWORD 
+ 
+    DWORD
     RRPC_FWDeleteFirewallRule(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in, string, ref] LPCWSTR    wszRuleID
         );
  
-    DWORD 
+ 
+    DWORD
     RRPC_FWDeleteAllFirewallRules(
         [in] FW_CONN_HANDLE         rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE hPolicyStore
         );
  
+ 
     DWORD
     RRPC_FWEnumFirewallRules(
         [in] FW_CONN_HANDLE          rpcConnHandle,
-        [in] FW_POLICY_STORE_HANDLE  hPolicyStore, 
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] DWORD                   dwFilteredByStatus,
         [in] DWORD                   dwProfileFilter,    // Bit-flags from FW_PROFILE_TYPE
         [in] WORD                    wFlags,  // Bit-flags from ENUM_RULES_FLAGS
         [out, ref] DWORD            *pdwNumRules,
-        [out] PFW_RULE2_0           *ppRules 
+        [out] PFW_RULE2_0           *ppRules
         );
  
  
-    DWORD 
+    DWORD
     RRPC_FWGetConfig(
         [in] FW_CONN_HANDLE           rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE   hPolicyStore,
-        [in, range(FW_PROFILE_CONFIG_ENABLE_FW, FW_PROFILE_CONFIG_MAX-1)] FW_PROFILE_CONFIG             configID, 
-        [in] FW_PROFILE_TYPE          Profile, 
+        [in, range(FW_PROFILE_CONFIG_ENABLE_FW, FW_PROFILE_CONFIG_MAX-1)] FW_PROFILE_CONFIG             configID,
+        [in] FW_PROFILE_TYPE          Profile,
         [in] DWORD                    dwFlags,            // Bit-wise combination of flags from FW_CONFIG_FLAGS
-        [in, out, unique, size_is(cbData), length_is(*pcbTransmittedLen)] 
-        BYTE*                       pBuffer, 
+        [in, out, unique, size_is(cbData), length_is(*pcbTransmittedLen)]
+        BYTE*                       pBuffer,
         [in] DWORD                  cbData,
         [in,out]  LPDWORD           pcbTransmittedLen,
         [out] LPDWORD               pcbRequired
         );
  
-    DWORD 
+ 
+    DWORD
     RRPC_FWSetConfig(
         [in] FW_CONN_HANDLE            rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE    hPolicyStore,
         [in, range(FW_PROFILE_CONFIG_ENABLE_FW, FW_PROFILE_CONFIG_MAX-1)] FW_PROFILE_CONFIG              configID,
-        [in] FW_PROFILE_TYPE          Profile, 
+        [in] FW_PROFILE_TYPE          Profile,
         [in, switch_is(configID)] FW_PROFILE_CONFIG_VALUE  pConfig,
         [in, range(0, 10*1024)] DWORD  dwBufSize
         );
+ 
  
     DWORD
     RRPC_FWAddConnectionSecurityRule(
@@ -3190,12 +3763,14 @@ void* FW_PRODUCT_HANDLE;
         [in] PFW_CS_RULE2_0              pRule
         );
  
+ 
     DWORD
     RRPC_FWSetConnectionSecurityRule(
         [in] FW_CONN_HANDLE              rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE      hPolicyStore,
         [in] PFW_CS_RULE2_0              pRule
         );
+ 
  
     DWORD
     RRPC_FWDeleteConnectionSecurityRule(
@@ -3204,11 +3779,13 @@ void* FW_PRODUCT_HANDLE;
         [in, string, ref] LPWSTR        pRuleId
         );
  
+ 
     DWORD
     RRPC_FWDeleteAllConnectionSecurityRules(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE     hPolicyStore
         );
+ 
  
     DWORD
     RRPC_FWEnumConnectionSecurityRules(
@@ -3229,12 +3806,14 @@ void* FW_PRODUCT_HANDLE;
         [in] PFW_AUTH_SET2_10       pAuth
         );
  
+ 
     DWORD
     RRPC_FWSetAuthenticationSet(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] PFW_AUTH_SET2_10       pAuth
         );
+ 
  
     DWORD
     RRPC_FWDeleteAuthenticationSet(
@@ -3244,12 +3823,14 @@ void* FW_PRODUCT_HANDLE;
         [in, string, ref] LPCWSTR      wszSetId
         );
  
+ 
     DWORD
     RRPC_FWDeleteAllAuthenticationSets(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in, range(FW_IPSEC_PHASE_INVALID+1, FW_IPSEC_PHASE_MAX-1)] FW_IPSEC_PHASE          IpSecPhase
         );
+ 
  
     DWORD
     RRPC_FWEnumAuthenticationSets(
@@ -3262,6 +3843,7 @@ void* FW_PRODUCT_HANDLE;
         [out] PFW_AUTH_SET2_10*       ppAuth
         );
  
+ 
     DWORD
     RRPC_FWAddCryptoSet(
         [in] FW_CONN_HANDLE          rpcConnHandle,
@@ -3269,12 +3851,14 @@ void* FW_PRODUCT_HANDLE;
         [in] PFW_CRYPTO_SET     pCrypto
         );
  
+ 
     DWORD
     RRPC_FWSetCryptoSet(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] PFW_CRYPTO_SET          pCrypto
         );
+ 
  
     DWORD
     RRPC_FWDeleteCryptoSet(
@@ -3292,6 +3876,7 @@ void* FW_PRODUCT_HANDLE;
         [in, range(FW_IPSEC_PHASE_INVALID+1, FW_IPSEC_PHASE_MAX-1)] FW_IPSEC_PHASE          IpSecPhase
         );
  
+ 
     DWORD
     RRPC_FWEnumCryptoSets(
         [in] FW_CONN_HANDLE             rpcConnHandle,
@@ -3303,6 +3888,7 @@ void* FW_PRODUCT_HANDLE;
         [out] PFW_CRYPTO_SET*      ppCryptoSets
         );
  
+ 
     DWORD
     RRPC_FWEnumPhase1SAs(
         [in] FW_CONN_HANDLE                   rpcConnHandle,
@@ -3311,6 +3897,7 @@ void* FW_PRODUCT_HANDLE;
         [out,ref]  DWORD*                     pdwNumSAs,
         [out,size_is( , *pdwNumSAs)]  PFW_PHASE1_SA_DETAILS*         ppSAs
         );
+ 
  
     DWORD
     RRPC_FWEnumPhase2SAs(
@@ -3321,12 +3908,14 @@ void* FW_PRODUCT_HANDLE;
         [out,size_is( , *pdwNumSAs)]  PFW_PHASE2_SA_DETAILS*         ppSAs
         );
  
+ 
     DWORD
     RRPC_FWDeletePhase1SAs(
         [in] FW_CONN_HANDLE             rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE     hPolicyStore,
         [in, unique]PFW_ENDPOINTS       pEndpoints  //NULL or empty implies all endpoints
         );
+ 
  
     DWORD
     RRPC_FWDeletePhase2SAs(
@@ -3335,13 +3924,15 @@ void* FW_PRODUCT_HANDLE;
         [in, unique]PFW_ENDPOINTS       pEndpoints  //NULL or empty implies all endpoints
         );
  
-    DWORD 
+ 
+    DWORD
     RRPC_FWEnumProducts(
        [in] FW_CONN_HANDLE rpcConnHandle,
        [in] FW_POLICY_STORE_HANDLE hPolicyStore,
        [out] DWORD* pdwNumProducts,
        [out, size_is(,*pdwNumProducts)] PFW_PRODUCT* ppProducts
        );
+ 
  
     DWORD
     RRPC_FWAddMainModeRule(
@@ -3351,6 +3942,7 @@ void* FW_PRODUCT_HANDLE;
         [out] FW_RULE_STATUS *       pStatus
         );
  
+ 
     DWORD
     RRPC_FWSetMainModeRule(
         [in] FW_CONN_HANDLE          rpcConnHandle,
@@ -3359,6 +3951,7 @@ void* FW_PRODUCT_HANDLE;
         [out] FW_RULE_STATUS *       pStatus
         );
  
+ 
     DWORD
     RRPC_FWDeleteMainModeRule(
         [in] FW_CONN_HANDLE            rpcConnHandle,
@@ -3366,11 +3959,13 @@ void* FW_PRODUCT_HANDLE;
         [in, string, ref] LPWSTR       pRuleId
         );
  
+ 
     DWORD
     RRPC_FWDeleteAllMainModeRules(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore
         );
+ 
  
     DWORD
     RRPC_FWEnumMainModeRules(
@@ -3383,6 +3978,7 @@ void* FW_PRODUCT_HANDLE;
         [out] PFW_MM_RULE  *            ppMMRules
         );
  
+ 
     DWORD
     RRPC_FWQueryFirewallRules(
         [in] FW_CONN_HANDLE             rpcConnHandle,
@@ -3392,6 +3988,7 @@ void* FW_PRODUCT_HANDLE;
         [out, ref] DWORD*               pdwNumRules,
         [out] PFW_RULE2_10  *           ppRules
         );
+ 
  
     DWORD
     RRPC_FWQueryConnectionSecurityRules2_10(
@@ -3403,6 +4000,7 @@ void* FW_PRODUCT_HANDLE;
         [out] PFW_CS_RULE2_10  *        ppRules
         );
  
+ 
     DWORD
     RRPC_FWQueryMainModeRules(
         [in] FW_CONN_HANDLE             rpcConnHandle,
@@ -3412,6 +4010,7 @@ void* FW_PRODUCT_HANDLE;
         [out, ref] DWORD*               pdwNumRules,
         [out] PFW_MM_RULE  *            ppMMRules
         );
+ 
  
     DWORD
     RRPC_FWQueryAuthenticationSets(
@@ -3424,6 +4023,7 @@ void* FW_PRODUCT_HANDLE;
         [out] PFW_AUTH_SET2_10 *            ppAuthSets
         );
  
+ 
     DWORD
     RRPC_FWQueryCryptoSets(
         [in] FW_CONN_HANDLE             rpcConnHandle,
@@ -3435,7 +4035,8 @@ void* FW_PRODUCT_HANDLE;
         [out] PFW_CRYPTO_SET *          ppCryptoSets
         );
  
-    DWORD 
+ 
+    DWORD
     RRPC_FWEnumNetworks(
        [in] FW_CONN_HANDLE rpcConnHandle,
        [in] FW_POLICY_STORE_HANDLE hPolicyStore,
@@ -3443,7 +4044,8 @@ void* FW_PRODUCT_HANDLE;
        [out, size_is(,*pdwNumNetworks)] PFW_NETWORK* ppNetworks
        );
  
-    DWORD 
+ 
+    DWORD
     RRPC_FWEnumAdapters(
        [in] FW_CONN_HANDLE rpcConnHandle,
        [in] FW_POLICY_STORE_HANDLE hPolicyStore,
@@ -3451,16 +4053,17 @@ void* FW_PRODUCT_HANDLE;
        [out, size_is(,*pdwNumAdapters)] PFW_ADAPTER* ppAdapters
        );
  
-    DWORD 
+ 
+    DWORD
     RRPC_FWGetGlobalConfig2_10(
         [in] FW_CONN_HANDLE           rpcConnHandle,
         [in] WORD                     BinaryVersion,
         [in] FW_STORE_TYPE            StoreType,
         [in, range(FW_GLOBAL_CONFIG_INVALID+1, FW_GLOBAL_CONFIG_MAX-1)]
-          FW_GLOBAL_CONFIG            configID, 
+          FW_GLOBAL_CONFIG            configID,
         [in] DWORD                    dwFlags,            // Bit-wise combination of flags from FW_CONFIG_FLAGS
-        [in, out, unique, size_is(cbData), length_is(*pcbTransmittedLen)] 
-        BYTE*                       pBuffer, 
+        [in, out, unique, size_is(cbData), length_is(*pcbTransmittedLen)]
+        BYTE*                       pBuffer,
         [in] DWORD                  cbData,
         [in,out]  LPDWORD           pcbTransmittedLen,
         [out] LPDWORD               pcbRequired,
@@ -3468,22 +4071,23 @@ void* FW_PRODUCT_HANDLE;
         );
  
  
-    DWORD 
+    DWORD
     RRPC_FWGetConfig2_10(
         [in] FW_CONN_HANDLE           rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE   hPolicyStore,
-        [in, range(FW_PROFILE_CONFIG_ENABLE_FW, FW_PROFILE_CONFIG_MAX-1)] FW_PROFILE_CONFIG             configID, 
-        [in] FW_PROFILE_TYPE          Profile, 
+        [in, range(FW_PROFILE_CONFIG_ENABLE_FW, FW_PROFILE_CONFIG_MAX-1)] FW_PROFILE_CONFIG             configID,
+        [in] FW_PROFILE_TYPE          Profile,
         [in] DWORD                    dwFlags,            // Bit-wise combination of flags from FW_CONFIG_FLAGS
-        [in, out, unique, size_is(cbData), length_is(*pcbTransmittedLen)] 
-        BYTE*                       pBuffer, 
+        [in, out, unique, size_is(cbData), length_is(*pcbTransmittedLen)]
+        BYTE*                       pBuffer,
         [in] DWORD                  cbData,
         [in,out]  LPDWORD           pcbTransmittedLen,
         [out] LPDWORD               pcbRequired,
         [out] FW_RULE_ORIGIN_TYPE * pOrigin
         );
  
-   DWORD 
+ 
+   DWORD
    RRPC_FWAddFirewallRule2_10(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
@@ -3491,7 +4095,8 @@ void* FW_PRODUCT_HANDLE;
         [out] FW_RULE_STATUS *       pStatus
         );
  
-    DWORD 
+ 
+    DWORD
     RRPC_FWSetFirewallRule2_10(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
@@ -3499,16 +4104,18 @@ void* FW_PRODUCT_HANDLE;
         [out] FW_RULE_STATUS *       pStatus
         );
  
+ 
     DWORD
     RRPC_FWEnumFirewallRules2_10(
         [in] FW_CONN_HANDLE          rpcConnHandle,
-        [in] FW_POLICY_STORE_HANDLE  hPolicyStore, 
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] DWORD                   dwFilteredByStatus,
         [in] DWORD                   dwProfileFilter,    // Bit-flags from FW_PROFILE_TYPE
         [in] WORD                    wFlags,  // Bit-flags from ENUM_RULES_FLAGS
         [out, ref] DWORD            *pdwNumRules,
-        [out] PFW_RULE2_10          *ppRules 
+        [out] PFW_RULE2_10          *ppRules
         );
+ 
  
     DWORD
     RRPC_FWAddConnectionSecurityRule2_10(
@@ -3518,6 +4125,7 @@ void* FW_PRODUCT_HANDLE;
         [out] FW_RULE_STATUS *           pStatus
         );
  
+ 
     DWORD
     RRPC_FWSetConnectionSecurityRule2_10(
         [in] FW_CONN_HANDLE              rpcConnHandle,
@@ -3525,6 +4133,7 @@ void* FW_PRODUCT_HANDLE;
         [in] PFW_CS_RULE2_10             pRule,
         [out] FW_RULE_STATUS *           pStatus
         );
+ 
  
     DWORD
     RRPC_FWEnumConnectionSecurityRules2_10(
@@ -3537,6 +4146,7 @@ void* FW_PRODUCT_HANDLE;
         [out] PFW_CS_RULE2_10*       ppRules
         );
  
+ 
     DWORD
     RRPC_FWAddAuthenticationSet2_10(
         [in] FW_CONN_HANDLE          rpcConnHandle,
@@ -3546,6 +4156,7 @@ void* FW_PRODUCT_HANDLE;
  
         );
  
+ 
     DWORD
     RRPC_FWSetAuthenticationSet2_10(
         [in] FW_CONN_HANDLE          rpcConnHandle,
@@ -3553,6 +4164,7 @@ void* FW_PRODUCT_HANDLE;
         [in] PFW_AUTH_SET2_10            pAuth,
         [out] FW_RULE_STATUS *       pStatus
         );
+ 
  
     DWORD
     RRPC_FWEnumAuthenticationSets2_10(
@@ -3565,6 +4177,7 @@ void* FW_PRODUCT_HANDLE;
         [out] PFW_AUTH_SET2_10*        ppAuth
         );
  
+ 
     DWORD
     RRPC_FWAddCryptoSet2_10(
         [in] FW_CONN_HANDLE          rpcConnHandle,
@@ -3573,6 +4186,7 @@ void* FW_PRODUCT_HANDLE;
         [out] FW_RULE_STATUS *       pStatus
         );
  
+ 
     DWORD
     RRPC_FWSetCryptoSet2_10(
         [in] FW_CONN_HANDLE          rpcConnHandle,
@@ -3580,6 +4194,7 @@ void* FW_PRODUCT_HANDLE;
         [in] PFW_CRYPTO_SET          pCrypto,
         [out] FW_RULE_STATUS *       pStatus
         );
+ 
  
     DWORD
     RRPC_FWEnumCryptoSets2_10(
@@ -3601,6 +4216,7 @@ void* FW_PRODUCT_HANDLE;
         [out] FW_RULE_STATUS *           pStatus
         );
  
+ 
     DWORD
     RRPC_FWSetConnectionSecurityRule2_20(
         [in] FW_CONN_HANDLE              rpcConnHandle,
@@ -3608,6 +4224,7 @@ void* FW_PRODUCT_HANDLE;
         [in] PFW_CS_RULE                 pRule,
         [out] FW_RULE_STATUS *           pStatus
         );
+ 
  
     DWORD
     RRPC_FWEnumConnectionSecurityRules2_20(
@@ -3620,6 +4237,7 @@ void* FW_PRODUCT_HANDLE;
         [out] PFW_CS_RULE*           ppRules
         );
  
+ 
     DWORD
     RRPC_FWQueryConnectionSecurityRules2_20(
         [in] FW_CONN_HANDLE             rpcConnHandle,
@@ -3630,6 +4248,7 @@ void* FW_PRODUCT_HANDLE;
         [out] PFW_CS_RULE  *            ppRules
         );
  
+ 
     DWORD
     RRPC_FWAddAuthenticationSet2_20(
         [in] FW_CONN_HANDLE          rpcConnHandle,
@@ -3639,6 +4258,7 @@ void* FW_PRODUCT_HANDLE;
  
         );
  
+ 
     DWORD
     RRPC_FWSetAuthenticationSet2_20(
         [in] FW_CONN_HANDLE          rpcConnHandle,
@@ -3646,6 +4266,7 @@ void* FW_PRODUCT_HANDLE;
         [in] PFW_AUTH_SET            pAuth,
         [out] FW_RULE_STATUS *       pStatus
         );
+ 
  
     DWORD
     RRPC_FWEnumAuthenticationSets2_20(
@@ -3658,6 +4279,7 @@ void* FW_PRODUCT_HANDLE;
         [out] PFW_AUTH_SET*       ppAuth
         );
  
+ 
     DWORD
     RRPC_FWQueryAuthenticationSets2_20(
         [in] FW_CONN_HANDLE             rpcConnHandle,
@@ -3669,7 +4291,8 @@ void* FW_PRODUCT_HANDLE;
         [out] PFW_AUTH_SET*            ppAuthSets
         );
  
-   DWORD 
+ 
+   DWORD
    RRPC_FWAddFirewallRule2_20(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
@@ -3677,7 +4300,8 @@ void* FW_PRODUCT_HANDLE;
         [out] FW_RULE_STATUS *       pStatus
         );
  
-    DWORD 
+ 
+    DWORD
     RRPC_FWSetFirewallRule2_20(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
@@ -3685,16 +4309,18 @@ void* FW_PRODUCT_HANDLE;
         [out] FW_RULE_STATUS *       pStatus
         );
  
+ 
     DWORD
     RRPC_FWEnumFirewallRules2_20(
         [in] FW_CONN_HANDLE          rpcConnHandle,
-        [in] FW_POLICY_STORE_HANDLE  hPolicyStore, 
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] DWORD                   dwFilteredByStatus,
         [in] DWORD                   dwProfileFilter,    // Bit-flags from FW_PROFILE_TYPE
         [in] WORD                    wFlags,  // Bit-flags from ENUM_RULES_FLAGS
         [out, ref] DWORD            *pdwNumRules,
-        [out] PFW_RULE2_20          *ppRules 
+        [out] PFW_RULE2_20          *ppRules
         );
+ 
  
     DWORD
     RRPC_FWQueryFirewallRules2_20(
@@ -3706,7 +4332,8 @@ void* FW_PRODUCT_HANDLE;
         [out] PFW_RULE2_20  *           ppRules
         );
  
-   DWORD 
+ 
+   DWORD
    RRPC_FWAddFirewallRule2_24(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
@@ -3714,7 +4341,8 @@ void* FW_PRODUCT_HANDLE;
         [out] FW_RULE_STATUS *       pStatus
         );
  
-    DWORD 
+ 
+    DWORD
     RRPC_FWSetFirewallRule2_24(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
@@ -3722,171 +4350,231 @@ void* FW_PRODUCT_HANDLE;
         [out] FW_RULE_STATUS *       pStatus
         );
  
+ 
     DWORD
     RRPC_FWEnumFirewallRules2_24(
         [in] FW_CONN_HANDLE          rpcConnHandle,
-        [in] FW_POLICY_STORE_HANDLE  hPolicyStore, 
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] DWORD                   dwFilteredByStatus,
         [in] DWORD                   dwProfileFilter,    // Bit-flags from FW_PROFILE_TYPE
         [in] WORD                    wFlags,  // Bit-flags from ENUM_RULES_FLAGS
         [out, ref] DWORD            *pdwNumRules,
-        [out] PFW_RULE2_24          *ppRules 
+        [out] PFW_RULE2_24          *ppRules
         );
+ 
  
     DWORD
     RRPC_FWQueryFirewallRules2_24(
         [in] FW_CONN_HANDLE             rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE     hPolicyStore,
-        [in] PFW_QUERY                  pQuery,      // Query selecting the rules to return
-        [in] WORD                       wFlags,      // Bit-flags from FW_ENUM_RULES_FLAGS
+        [in] PFW_QUERY                  pQuery,            // Query selecting the rules to return
+        [in] WORD                       wFlags,            // Bit-flags from FW_ENUM_RULES_FLAGS
         [out, ref] DWORD*               pdwNumRules,
-        [out] PFW_RULE2_24*             ppRules
+        [out] PFW_RULE2_24              *ppRules
         );
  
-   DWORD 
+ 
+   DWORD
    RRPC_FWAddFirewallRule2_25(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] PFW_RULE2_25            pRule,
-        [out] FW_RULE_STATUS*        pStatus
+        [out] FW_RULE_STATUS *       pStatus
         );
  
-    DWORD 
+ 
+    DWORD
     RRPC_FWSetFirewallRule2_25(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] PFW_RULE2_25            pRule,
-        [out] FW_RULE_STATUS*        pStatus
+        [out] FW_RULE_STATUS *       pStatus
         );
+ 
  
     DWORD
     RRPC_FWEnumFirewallRules2_25(
         [in] FW_CONN_HANDLE          rpcConnHandle,
-        [in] FW_POLICY_STORE_HANDLE  hPolicyStore, 
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] DWORD                   dwFilteredByStatus,
         [in] DWORD                   dwProfileFilter,    // Bit-flags from FW_PROFILE_TYPE
         [in] WORD                    wFlags,  // Bit-flags from ENUM_RULES_FLAGS
-        [out, ref] DWORD*            pdwNumRules,
-        [out] PFW_RULE2_25*          ppRules 
+        [out, ref] DWORD            *pdwNumRules,
+        [out] PFW_RULE2_25          *ppRules
         );
+ 
  
     DWORD
     RRPC_FWQueryFirewallRules2_25(
         [in] FW_CONN_HANDLE             rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE     hPolicyStore,
-        [in] PFW_QUERY                  pQuery,       // Query selecting the rules to return
-        [in] WORD                       wFlags,       // Bit-flags from FW_ENUM_RULES_FLAGS
+        [in] PFW_QUERY                  pQuery,            // Query selecting the rules to return
+        [in] WORD                       wFlags,            // Bit-flags from FW_ENUM_RULES_FLAGS
         [out, ref] DWORD*               pdwNumRules,
-        [out] PFW_RULE2_25*             ppRules
+        [out] PFW_RULE2_25 *            ppRules
         );
  
-   DWORD 
+ 
+   DWORD
    RRPC_FWAddFirewallRule2_26(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] PFW_RULE2_26            pRule,
-        [out] FW_RULE_STATUS*        pStatus
+        [out] FW_RULE_STATUS *       pStatus
         );
  
  
-    DWORD 
+    DWORD
     RRPC_FWSetFirewallRule2_26(
         [in] FW_CONN_HANDLE          rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] PFW_RULE2_26            pRule,
-        [out] FW_RULE_STATUS*        pStatus
+        [out] FW_RULE_STATUS *       pStatus
         );
+ 
  
     DWORD
     RRPC_FWEnumFirewallRules2_26(
         [in] FW_CONN_HANDLE          rpcConnHandle,
-        [in] FW_POLICY_STORE_HANDLE  hPolicyStore, 
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
         [in] DWORD                   dwFilteredByStatus,
         [in] DWORD                   dwProfileFilter,    // Bit-flags from FW_PROFILE_TYPE
         [in] WORD                    wFlags,  // Bit-flags from ENUM_RULES_FLAGS
         [out, ref] DWORD            *pdwNumRules,
-        [out] PFW_RULE2_26          *ppRules 
+        [out] PFW_RULE2_26          *ppRules
         );
+ 
  
     DWORD
     RRPC_FWQueryFirewallRules2_26(
         [in] FW_CONN_HANDLE             rpcConnHandle,
         [in] FW_POLICY_STORE_HANDLE     hPolicyStore,
-        [in] PFW_QUERY                  pQuery,       // Query selecting the rules to return
-        [in] WORD                       wFlags,       // Bit-flags from FW_ENUM_RULES_FLAGS
+        [in] PFW_QUERY                  pQuery,            // Query selecting the rules to return
+        [in] WORD                       wFlags,            // Bit-flags from FW_ENUM_RULES_FLAGS
         [out, ref] DWORD*               pdwNumRules,
-        [out] PFW_RULE2_26*             ppRules
+        [out] PFW_RULE2_26  *           ppRules
         );
  
-    DWORD 
-    RRPC_FWAddFirewallRule2_27(
-        [in] FW_CONN_HANDLE            rpcConnHandle,
-        [in] FW_POLICY_STORE_HANDLE    hPolicyStore,
-        [in] PFW_RULE2_27              pRule,
-        [out] FW_RULE_STATUS*          pStatus
+ 
+   DWORD
+   RRPC_FWAddFirewallRule2_27(
+        [in] FW_CONN_HANDLE          rpcConnHandle,
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
+        [in] PFW_RULE2_27            pRule,
+        [out] FW_RULE_STATUS *       pStatus
         );
  
-     DWORD 
-     RRPC_FWSetFirewallRule2_27(
-        [in] FW_CONN_HANDLE            rpcConnHandle,
-        [in]  FW_POLICY_STORE_HANDLE   hPolicyStore,
-        [in]  PFW_RULE2_27             pRule,
-        [out] FW_RULE_STATUS*          pStatus
+ 
+    DWORD
+    RRPC_FWSetFirewallRule2_27(
+        [in] FW_CONN_HANDLE          rpcConnHandle,
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
+        [in] PFW_RULE2_27            pRule,
+        [out] FW_RULE_STATUS *       pStatus
         );
  
-     DWORD
-     RRPC_FWEnumFirewallRules2_27(
-        [in] FW_CONN_HANDLE           rpcConnHandle,
-        [in] FW_POLICY_STORE_HANDLE   hPolicyStore, 
-        [in] DWORD                    dwFilteredByStatus,
-        [in] DWORD                    dwProfileFilter,    // Bit-flags from FW_PROFILE_TYPE
-        [in] WORD                     wFlags,  // Bit-flags from ENUM_RULES_FLAGS
-        [out, ref] DWORD*             pdwNumRules,
-        [out] PFW_RULE2_27*           ppRules 
+ 
+    DWORD
+    RRPC_FWEnumFirewallRules2_27(
+        [in] FW_CONN_HANDLE          rpcConnHandle,
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
+        [in] DWORD                   dwFilteredByStatus,
+        [in] DWORD                   dwProfileFilter,    // Bit-flags from FW_PROFILE_TYPE
+        [in] WORD                    wFlags,  // Bit-flags from ENUM_RULES_FLAGS
+        [out, ref] DWORD            *pdwNumRules,
+        [out] PFW_RULE2_27          *ppRules
         );
+ 
  
     DWORD
     RRPC_FWQueryFirewallRules2_27(
-        [in] FW_CONN_HANDLE           rpcConnHandle,
-        [in] FW_POLICY_STORE_HANDLE   hPolicyStore,
-        [in] PFW_QUERY                pQuery,       // Query selecting the rules to return
-        [in] WORD                     wFlags,       // Bit-flags from FW_ENUM_RULES_FLAGS
-        [out, ref] DWORD*             pdwNumRules,
-        [out] PFW_RULE2_27*           ppRules
-        );
-    DWORD 
-    RRPC_FWAddFirewallRule2_31(
-        [in]  FW_CONN_HANDLE           rpcConnHandle,
-        [in]  FW_POLICY_STORE_HANDLE   hPolicyStore,
-        [in]  PFW_RULE                 pRule,
-        [out] FW_RULE_STATUS*          pStatus
+        [in] FW_CONN_HANDLE             rpcConnHandle,
+        [in] FW_POLICY_STORE_HANDLE     hPolicyStore,
+        [in] PFW_QUERY                  pQuery,            // Query selecting the rules to return
+        [in] WORD                       wFlags,            // Bit-flags from FW_ENUM_RULES_FLAGS
+        [out, ref] DWORD*               pdwNumRules,
+        [out] PFW_RULE2_27*             ppRules
         );
  
-     DWORD 
-     RRPC_FWSetFirewallRule2_31(
-        [in]  FW_CONN_HANDLE           rpcConnHandle,
-        [in]  FW_POLICY_STORE_HANDLE   hPolicyStore,
-        [in]  PFW_RULE                 pRule,
-        [out] FW_RULE_STATUS*          pStatus
+ 
+   DWORD
+   RRPC_FWAddFirewallRule2_31(
+        [in] FW_CONN_HANDLE          rpcConnHandle,
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
+        [in] PFW_RULE2_31            pRule,
+        [out] FW_RULE_STATUS *       pStatus
         );
  
-     DWORD
-     RRPC_FWEnumFirewallRules2_31(
-        [in] FW_CONN_HANDLE           rpcConnHandle,
-        [in] FW_POLICY_STORE_HANDLE   hPolicyStore, 
-        [in] DWORD                    dwFilteredByStatus,
-        [in] DWORD                    dwProfileFilter,    // Bit-flags from FW_PROFILE_TYPE
-        [in] WORD                     wFlags,  // Bit-flags from ENUM_RULES_FLAGS
-        [out, ref] DWORD*             pdwNumRules,
-        [out] PFW_RULE*               ppRules 
+ 
+    DWORD
+    RRPC_FWSetFirewallRule2_31(
+        [in] FW_CONN_HANDLE          rpcConnHandle,
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
+        [in] PFW_RULE2_31            pRule,
+        [out] FW_RULE_STATUS *       pStatus
         );
+ 
+ 
+    DWORD
+    RRPC_FWEnumFirewallRules2_31(
+        [in] FW_CONN_HANDLE          rpcConnHandle,
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
+        [in] DWORD                   dwFilteredByStatus,
+        [in] DWORD                   dwProfileFilter,    // Bit-flags from FW_PROFILE_TYPE
+        [in] WORD                    wFlags,  // Bit-flags from ENUM_RULES_FLAGS
+        [out, ref] DWORD            *pdwNumRules,
+        [out] PFW_RULE2_31          *ppRules
+        );
+ 
  
     DWORD
     RRPC_FWQueryFirewallRules2_31(
-        [in] FW_CONN_HANDLE           rpcConnHandle,
-        [in] FW_POLICY_STORE_HANDLE   hPolicyStore,
-        [in] PFW_QUERY                pQuery,       // Query selecting the rules to return
-        [in] WORD                     wFlags,       // Bit-flags from FW_ENUM_RULES_FLAGS
-        [out, ref] DWORD*             pdwNumRules,
-        [out] PFW_RULE*               ppRules
-        );}
+        [in] FW_CONN_HANDLE             rpcConnHandle,
+        [in] FW_POLICY_STORE_HANDLE     hPolicyStore,
+        [in] PFW_QUERY                  pQuery,            // Query selecting the rules to return
+        [in] WORD                       wFlags,            // Bit-flags from FW_ENUM_RULES_FLAGS
+        [out, ref] DWORD*               pdwNumRules,
+        [out] PFW_RULE2_31  *           ppRules
+        );
+ 
+ 
+   DWORD
+   RRPC_FWAddFirewallRule2_33(
+        [in] FW_CONN_HANDLE          rpcConnHandle,
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
+        [in] PFW_RULE                pRule,
+        [out] FW_RULE_STATUS *       pStatus
+        );
+ 
+ 
+    DWORD
+    RRPC_FWSetFirewallRule2_33(
+        [in] FW_CONN_HANDLE          rpcConnHandle,
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
+        [in] PFW_RULE                pRule,
+        [out] FW_RULE_STATUS *       pStatus
+        );
+ 
+ 
+    DWORD
+    RRPC_FWEnumFirewallRules2_33(
+        [in] FW_CONN_HANDLE          rpcConnHandle,
+        [in] FW_POLICY_STORE_HANDLE  hPolicyStore,
+        [in] DWORD                   dwFilteredByStatus,
+        [in] DWORD                   dwProfileFilter,    // Bit-flags from FW_PROFILE_TYPE
+        [in] WORD                    wFlags,  // Bit-flags from ENUM_RULES_FLAGS
+        [out, ref] DWORD            *pdwNumRules,
+        [out] PFW_RULE              *ppRules
+        );
+ 
+ 
+    DWORD
+    RRPC_FWQueryFirewallRules2_33(
+        [in] FW_CONN_HANDLE             rpcConnHandle,
+        [in] FW_POLICY_STORE_HANDLE     hPolicyStore,
+        [in] PFW_QUERY                  pQuery,            // Query selecting the rules to return
+        [in] WORD                       wFlags,            // Bit-flags from FW_ENUM_RULES_FLAGS
+        [out, ref] DWORD*               pdwNumRules,
+        [out] PFW_RULE  *               ppRules
+        );
+}

@@ -3623,7 +3623,7 @@ func (o *StringsArray) xxx_PreparePayload(ctx context.Context) error {
 		return err
 	}
 	if o.Strings != "" && o.Count == 0 {
-		o.Count = uint32(ndr.CharNLen(o.Strings))
+		o.Count = uint32(ndr.UTF16NLen(o.Strings))
 	}
 	if o.Count > uint32(100000) {
 		return fmt.Errorf("Count is out of range")
@@ -3652,7 +3652,7 @@ func (o *StringsArray) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			sizeInfo := []uint64{
 				dimSize1,
 			}
-			dimLength1 := ndr.CharNLen(o.Strings)
+			dimLength1 := ndr.UTF16NLen(o.Strings)
 			if dimLength1 > sizeInfo[0] {
 				dimLength1 = sizeInfo[0]
 			} else {
@@ -3664,12 +3664,12 @@ func (o *StringsArray) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteSize(dimLength1); err != nil {
 				return err
 			}
-			_Strings_buf := []byte(o.Strings)
+			_Strings_buf := utf16.Encode([]rune(o.Strings))
 			if uint64(len(_Strings_buf)) > sizeInfo[0]-1 {
 				_Strings_buf = _Strings_buf[:sizeInfo[0]-1]
 			}
 			if o.Strings != ndr.ZeroString {
-				_Strings_buf = append(_Strings_buf, byte(0))
+				_Strings_buf = append(_Strings_buf, uint16(0))
 			}
 			for i1 := range _Strings_buf {
 				i1 := i1
@@ -3681,7 +3681,7 @@ func (o *StringsArray) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				}
 			}
 			for i1 := len(_Strings_buf); uint64(i1) < sizeInfo[0]; i1++ {
-				if err := w.WriteData(uint8(0)); err != nil {
+				if err := w.WriteData(uint16(0)); err != nil {
 					return err
 				}
 			}
@@ -3721,18 +3721,18 @@ func (o *StringsArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 				return err
 			}
 		}
-		var _Strings_buf []byte
+		var _Strings_buf []uint16
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
 			return fmt.Errorf("buffer overflow for size %d of array _Strings_buf", sizeInfo[0])
 		}
-		_Strings_buf = make([]byte, sizeInfo[0])
+		_Strings_buf = make([]uint16, sizeInfo[0])
 		for i1 := range _Strings_buf {
 			i1 := i1
 			if err := w.ReadData(&_Strings_buf[i1]); err != nil {
 				return err
 			}
 		}
-		o.Strings = strings.TrimRight(string(_Strings_buf), ndr.ZeroString)
+		o.Strings = strings.TrimRight(string(utf16.Decode(_Strings_buf)), ndr.ZeroString)
 		return nil
 	})
 	_s_Strings := func(ptr interface{}) { o.Strings = *ptr.(*string) }

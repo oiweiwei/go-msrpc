@@ -1151,7 +1151,7 @@ func (o *xxx_StartPromotionParentOperation) xxx_PrepareRequestPayload(ctx contex
 	if o.ParentGUID != nil && o.GUIDSize == 0 {
 		o.GUIDSize = uint32(len(o.ParentGUID))
 	}
-	if o.GUIDSize < uint32(15) || o.GUIDSize > uint32(15) {
+	if o.GUIDSize < uint32(16) || o.GUIDSize > uint32(16) {
 		return fmt.Errorf("GUIDSize is out of range")
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
@@ -1319,7 +1319,7 @@ func (o *xxx_StartPromotionParentOperation) MarshalNDRRequest(ctx context.Contex
 			return err
 		}
 	}
-	// GuidSize {in} (1:{range=(15,15)}(uint32))
+	// GuidSize {in} (1:{range=(16,16)}(uint32))
 	{
 		if err := w.WriteData(o.GUIDSize); err != nil {
 			return err
@@ -1564,7 +1564,7 @@ func (o *xxx_StartPromotionParentOperation) UnmarshalNDRRequest(ctx context.Cont
 			return err
 		}
 	}
-	// GuidSize {in} (1:{range=(15,15)}(uint32))
+	// GuidSize {in} (1:{range=(16,16)}(uint32))
 	{
 		if err := w.ReadData(&o.GUIDSize); err != nil {
 			return err

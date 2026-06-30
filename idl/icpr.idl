@@ -22,4 +22,3 @@ interface ICertPassage
 [out, ref]                  CERTTRANSBLOB   *pctbEncodedCert,
 [out, ref]                  CERTTRANSBLOB   *pctbDispositionMessage);
 }
- 

@@ -20,8 +20,9 @@ import "ms-dtyp.idl";
 #define CONFIG_TRANSPORT_MAX_BUFFER_SIZE (262144)
 #define CONFIG_RDC_NEED_QUEUE_SIZE      (20)
  
-// XXX: reserved: #define TRUE 1
-// XXX: reserved: #define FALSE 0
+/* go-msrpc: reserved */
+// #define TRUE 1
+// #define FALSE 0
  
 typedef GUID FRS_REPLICA_SET_ID;
 typedef GUID FRS_CONTENT_SET_ID;
@@ -241,7 +242,7 @@ typedef struct _FRS_ASYNC_RESPONSE_CONTEXT {
  
 } FRS_ASYNC_RESPONSE_CONTEXT;
  
-// XXX: remove '=', remove ';'
+/* go-msrpc: remove '=' and ';' */
 #define FRS_UPDATE_FLAG_GHOSTED_HEADER 0x04
 #define FRS_UPDATE_FLAG_DATA           0x08
 #define FRS_UPDATE_FLAG_CLOCK_DECREMENTED 0x10

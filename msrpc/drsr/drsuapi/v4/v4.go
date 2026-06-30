@@ -9668,6 +9668,7 @@ type ExtensionsInt struct {
 	// NC object. If ConfigObjGUID is not included in DRS_EXTENSIONS_INT, the value is considered
 	// to be the NULL GUID value.<45>
 	ConfigObjectGUID *dtyp.GUID `idl:"name:ConfigObjGUID" json:"config_object_guid"`
+	Extensions       []byte     `idl:"name:Extensions" json:"extensions"`
 	// dwExtCaps (4 bytes): A mask for the dwFlagsExt field that contains individual bit
 	// flags. These bit flags describe the potential extended capabilities of the DC that
 	// produced the DRS_EXTENSIONS_INT structure. For non-DC client callers, no bits SHOULD
@@ -9737,7 +9738,13 @@ func (o *ExtensionsInt) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.ExtCaps); err != nil {
+	for i1 := range o.Extensions {
+		i1 := i1
+		if err := w.WriteData(o.Extensions[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteTrailingGap(4); err != nil {
 		return err
 	}
 	return nil
@@ -9770,7 +9777,25 @@ func (o *ExtensionsInt) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.ConfigObjectGUID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ExtCaps); err != nil {
+	for i1 := 0; w.Len() > 0; i1++ {
+		i1 := i1
+		o.Extensions = append(o.Extensions, uint8(0))
+		if err := w.ReadData(&o.Extensions[i1]); err != nil {
+			return err
+		}
+	}
+	_layout_dwExtCaps := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := w.ReadData(&o.ExtCaps); err != nil {
+			return err
+		}
+		return nil
+	})
+	if len(o.Extensions) > 0 {
+		if err := w.WithBytes(o.Extensions).Unmarshal(ctx, _layout_dwExtCaps); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil

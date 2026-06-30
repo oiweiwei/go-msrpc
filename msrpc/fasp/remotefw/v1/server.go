@@ -3025,6 +3025,147 @@ type RemoteFwServer interface {
 	// RPC exception, this exception is converted to an error code and reported to higher-layer
 	// protocols via the return value.
 	QueryFirewallRules231(context.Context, *QueryFirewallRules231Request) (*QueryFirewallRules231Response, error)
+
+	// The RRPC_FWAddFirewallRule2_33 method requests the server to add the specified firewall
+	// rule to the policy contained in the policy store that is referenced by the handle
+	// specified in the hPolicyStore parameter. The method is only supported for policy
+	// version 0x0221 (section 2.2.42).
+	//
+	// Return Values: The method returns 0 if successful; if it fails, it returns a nonzero
+	// error code. The field can take any specific error code value, as specified in [MS-ERREF].
+	// The following return values are common.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x000000B7 ERROR_ALREADY_EXISTS    | The specified rule has a rule ID that already exists in the specified store.     |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000032 ERROR_NOT_SUPPORTED     | The specified store does not support this method; the store might be read-only.  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000005 ERROR_ACCESS_DENIED     | The hPolicyStore handle was not opened with read/write access rights. This error |
+	//	|                                    | is also returned if the client does not have the required credentials to call    |
+	//	|                                    | the method.                                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
+	//	|                                    | specified. This error can be returned in the following cases: - The pRule        |
+	//	|                                    | object did not pass the firewall rule validations specified in the definition    |
+	//	|                                    | of the FW_RULE data type (section 2.2.37). - One of the required values is       |
+	//	|                                    | not specified. - A policy store does not support rules with profile conditions   |
+	//	|                                    | other than ALL profiles. - The wszLocalApplication member of the rule contains a |
+	//	|                                    | string that, at enforcement time, does not represent a valid file path.          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol, as specified in [MS-RPCE]. If any lower-layer errors are reported by
+	// RPC exception, this exception is converted to an error code and reported to higher-layer
+	// protocols via the return value.
+	//
+	// This method adds a firewall rule in the firewall linked list of the memory representation
+	// of the store being modified. It also writes through and saves the rule on disk. If
+	// called on an online store, the firewall rule is also enforced.
+	AddFirewallRule233(context.Context, *AddFirewallRule233Request) (*AddFirewallRule233Response, error)
+
+	// The RRPC_FWSetFirewallRule2_33 method requests the server to modify the specified
+	// connection security rule in the policy contained in the policy store that is referenced
+	// by the handle specified in the hPolicyStore parameter. The method is only supported
+	// for policy version 0x0221 (section 2.2.42).
+	//
+	// Return Values: The method returns 0 if successful; if it fails, it returns a nonzero
+	// error code. The field can take any specific error code value, as specified in [MS-ERREF].
+	// The following return values are common.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000032 ERROR_NOT_SUPPORTED     | The specified store does not support this method; the store might be read-only.  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000005 ERROR_ACCESS_DENIED     | The hPolicyStore handle was not opened with read/write access rights. This error |
+	//	|                                    | is also returned if the client does not have the required credentials to call    |
+	//	|                                    | the method.                                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified rule referenced by the wszRuleID member string of the FW_RULE data |
+	//	|                                    | type (section 2.2.37) is not found in the policy store.                          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
+	//	|                                    | specified. This error can be returned in the following cases: - The pRule        |
+	//	|                                    | object did not pass the firewall rule validations specified in the definition    |
+	//	|                                    | of the FW_RULE data type (section 2.2.37). - One of the required values is not   |
+	//	|                                    | specified. - A policy store does not support rules with profile conditions other |
+	//	|                                    | than ALL profiles.                                                               |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol, as specified in [MS-RPCE]. If any lower-layer errors are reported by
+	// RPC exception, this exception is converted to an error code and reported to higher-layer
+	// protocols via the return value.
+	SetFirewallRule233(context.Context, *SetFirewallRule233Request) (*SetFirewallRule233Response, error)
+
+	// The RRPC_FWEnumFirewallRules2_31 method requests the server to return the firewall
+	// rules matching the input flags contained in the store that is referenced by the hPolicyStore
+	// handle. The method returns a linked list of the corresponding firewall rule objects.
+	// The method is only supported for policy version 0x0221 (section 2.2.42).
+	//
+	// Return Values: The method returns 0 if successful; if it fails, it returns a nonzero
+	// error code. The field can take any specific error code value, as specified in [MS-ERREF].
+	// The following return values are common.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000005 ERROR_ACCESS_DENIED     | The hPolicyStore handle was not opened with read/write access rights. This error |
+	//	|                                    | is also returned if the client does not have the required credentials to call    |
+	//	|                                    | the method.                                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
+	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
+	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
+	//	|                                    | invalid profiles.                                                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol, as specified in [MS-RPCE]. If any lower-layer errors are reported by
+	// RPC exception, this exception is converted to an error code and reported to higher-layer
+	// protocols via the return value.
+	EnumFirewallRules233(context.Context, *EnumFirewallRules233Request) (*EnumFirewallRules233Response, error)
+
+	// The RRPC_FWQueryFirewallRules2_33 method requests the server to return all the firewall
+	// rules that match the specified query object, as are contained in the store that is
+	// referenced by the hPolicyStore handle. The method returns a linked list of all the
+	// firewall rules that match the specified query object. The method is only supported
+	// for policy version 0x0221 (section 2.2.42).
+	//
+	// Return Values: The method returns 0 if successful; if it fails, it returns a nonzero
+	// error code. The field can take any specific error code value, as specified in [MS-ERREF].
+	// The following return values are common.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
+	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
+	//	|                                    | required values is not specified. - The pQuery parameter contains invalid        |
+	//	|                                    | conditions.                                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol, as specified in [MS-RPCE]. If any lower-layer errors are reported by
+	// RPC exception, this exception is converted to an error code and reported to higher-layer
+	// protocols via the return value.
+	QueryFirewallRules233(context.Context, *QueryFirewallRules233Request) (*QueryFirewallRules233Response, error)
 }
 
 func RegisterRemoteFwServer(conn dcerpc.Conn, o RemoteFwServer, opts ...dcerpc.Option) {
@@ -3849,6 +3990,42 @@ func RemoteFwServerHandle(ctx context.Context, o RemoteFwServer, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.QueryFirewallRules231(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
+	case 90: // RRPC_FWAddFirewallRule2_33
+		op := &xxx_AddFirewallRule233Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &AddFirewallRule233Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddFirewallRule233(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 91: // RRPC_FWSetFirewallRule2_33
+		op := &xxx_SetFirewallRule233Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &SetFirewallRule233Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFirewallRule233(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 92: // RRPC_FWEnumFirewallRules2_33
+		op := &xxx_EnumFirewallRules233Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &EnumFirewallRules233Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumFirewallRules233(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 93: // RRPC_FWQueryFirewallRules2_33
+		op := &xxx_QueryFirewallRules233Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &QueryFirewallRules233Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryFirewallRules233(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
@@ -4125,6 +4302,18 @@ func (UnimplementedRemoteFwServer) EnumFirewallRules231(context.Context, *EnumFi
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedRemoteFwServer) QueryFirewallRules231(context.Context, *QueryFirewallRules231Request) (*QueryFirewallRules231Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteFwServer) AddFirewallRule233(context.Context, *AddFirewallRule233Request) (*AddFirewallRule233Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteFwServer) SetFirewallRule233(context.Context, *SetFirewallRule233Request) (*SetFirewallRule233Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteFwServer) EnumFirewallRules233(context.Context, *EnumFirewallRules233Request) (*EnumFirewallRules233Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteFwServer) QueryFirewallRules233(context.Context, *QueryFirewallRules233Request) (*QueryFirewallRules233Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 

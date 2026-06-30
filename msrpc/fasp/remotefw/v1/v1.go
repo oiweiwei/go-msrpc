@@ -3044,6 +3044,147 @@ type RemoteFwClient interface {
 	// protocols via the return value.
 	QueryFirewallRules231(context.Context, *QueryFirewallRules231Request, ...dcerpc.CallOption) (*QueryFirewallRules231Response, error)
 
+	// The RRPC_FWAddFirewallRule2_33 method requests the server to add the specified firewall
+	// rule to the policy contained in the policy store that is referenced by the handle
+	// specified in the hPolicyStore parameter. The method is only supported for policy
+	// version 0x0221 (section 2.2.42).
+	//
+	// Return Values: The method returns 0 if successful; if it fails, it returns a nonzero
+	// error code. The field can take any specific error code value, as specified in [MS-ERREF].
+	// The following return values are common.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x000000B7 ERROR_ALREADY_EXISTS    | The specified rule has a rule ID that already exists in the specified store.     |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000032 ERROR_NOT_SUPPORTED     | The specified store does not support this method; the store might be read-only.  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000005 ERROR_ACCESS_DENIED     | The hPolicyStore handle was not opened with read/write access rights. This error |
+	//	|                                    | is also returned if the client does not have the required credentials to call    |
+	//	|                                    | the method.                                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
+	//	|                                    | specified. This error can be returned in the following cases: - The pRule        |
+	//	|                                    | object did not pass the firewall rule validations specified in the definition    |
+	//	|                                    | of the FW_RULE data type (section 2.2.37). - One of the required values is       |
+	//	|                                    | not specified. - A policy store does not support rules with profile conditions   |
+	//	|                                    | other than ALL profiles. - The wszLocalApplication member of the rule contains a |
+	//	|                                    | string that, at enforcement time, does not represent a valid file path.          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol, as specified in [MS-RPCE]. If any lower-layer errors are reported by
+	// RPC exception, this exception is converted to an error code and reported to higher-layer
+	// protocols via the return value.
+	//
+	// This method adds a firewall rule in the firewall linked list of the memory representation
+	// of the store being modified. It also writes through and saves the rule on disk. If
+	// called on an online store, the firewall rule is also enforced.
+	AddFirewallRule233(context.Context, *AddFirewallRule233Request, ...dcerpc.CallOption) (*AddFirewallRule233Response, error)
+
+	// The RRPC_FWSetFirewallRule2_33 method requests the server to modify the specified
+	// connection security rule in the policy contained in the policy store that is referenced
+	// by the handle specified in the hPolicyStore parameter. The method is only supported
+	// for policy version 0x0221 (section 2.2.42).
+	//
+	// Return Values: The method returns 0 if successful; if it fails, it returns a nonzero
+	// error code. The field can take any specific error code value, as specified in [MS-ERREF].
+	// The following return values are common.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000032 ERROR_NOT_SUPPORTED     | The specified store does not support this method; the store might be read-only.  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000005 ERROR_ACCESS_DENIED     | The hPolicyStore handle was not opened with read/write access rights. This error |
+	//	|                                    | is also returned if the client does not have the required credentials to call    |
+	//	|                                    | the method.                                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000002 ERROR_FILE_NOT_FOUND    | The specified rule referenced by the wszRuleID member string of the FW_RULE data |
+	//	|                                    | type (section 2.2.37) is not found in the policy store.                          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
+	//	|                                    | specified. This error can be returned in the following cases: - The pRule        |
+	//	|                                    | object did not pass the firewall rule validations specified in the definition    |
+	//	|                                    | of the FW_RULE data type (section 2.2.37). - One of the required values is not   |
+	//	|                                    | specified. - A policy store does not support rules with profile conditions other |
+	//	|                                    | than ALL profiles.                                                               |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol, as specified in [MS-RPCE]. If any lower-layer errors are reported by
+	// RPC exception, this exception is converted to an error code and reported to higher-layer
+	// protocols via the return value.
+	SetFirewallRule233(context.Context, *SetFirewallRule233Request, ...dcerpc.CallOption) (*SetFirewallRule233Response, error)
+
+	// The RRPC_FWEnumFirewallRules2_31 method requests the server to return the firewall
+	// rules matching the input flags contained in the store that is referenced by the hPolicyStore
+	// handle. The method returns a linked list of the corresponding firewall rule objects.
+	// The method is only supported for policy version 0x0221 (section 2.2.42).
+	//
+	// Return Values: The method returns 0 if successful; if it fails, it returns a nonzero
+	// error code. The field can take any specific error code value, as specified in [MS-ERREF].
+	// The following return values are common.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000005 ERROR_ACCESS_DENIED     | The hPolicyStore handle was not opened with read/write access rights. This error |
+	//	|                                    | is also returned if the client does not have the required credentials to call    |
+	//	|                                    | the method.                                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
+	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
+	//	|                                    | required values is not specified. - The dwProfileFilter parameter contains       |
+	//	|                                    | invalid profiles.                                                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol, as specified in [MS-RPCE]. If any lower-layer errors are reported by
+	// RPC exception, this exception is converted to an error code and reported to higher-layer
+	// protocols via the return value.
+	EnumFirewallRules233(context.Context, *EnumFirewallRules233Request, ...dcerpc.CallOption) (*EnumFirewallRules233Response, error)
+
+	// The RRPC_FWQueryFirewallRules2_33 method requests the server to return all the firewall
+	// rules that match the specified query object, as are contained in the store that is
+	// referenced by the hPolicyStore handle. The method returns a linked list of all the
+	// firewall rules that match the specified query object. The method is only supported
+	// for policy version 0x0221 (section 2.2.42).
+	//
+	// Return Values: The method returns 0 if successful; if it fails, it returns a nonzero
+	// error code. The field can take any specific error code value, as specified in [MS-ERREF].
+	// The following return values are common.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000005 ERROR_ACCESS_DENIED     | The client does not have the required credentials to call the method.            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | One of the parameters of this method is incorrect, or is required but not        |
+	//	|                                    | specified. This error can be returned in the following cases: - One of the       |
+	//	|                                    | required values is not specified. - The pQuery parameter contains invalid        |
+	//	|                                    | conditions.                                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol, as specified in [MS-RPCE]. If any lower-layer errors are reported by
+	// RPC exception, this exception is converted to an error code and reported to higher-layer
+	// protocols via the return value.
+	QueryFirewallRules233(context.Context, *QueryFirewallRules233Request, ...dcerpc.CallOption) (*QueryFirewallRules233Response, error)
+
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
@@ -4327,6 +4468,58 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules231(ctx context.Context, i
 	return out, nil
 }
 
+func (o *xxx_DefaultRemoteFwClient) AddFirewallRule233(ctx context.Context, in *AddFirewallRule233Request, opts ...dcerpc.CallOption) (*AddFirewallRule233Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &AddFirewallRule233Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultRemoteFwClient) SetFirewallRule233(ctx context.Context, in *SetFirewallRule233Request, opts ...dcerpc.CallOption) (*SetFirewallRule233Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &SetFirewallRule233Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules233(ctx context.Context, in *EnumFirewallRules233Request, opts ...dcerpc.CallOption) (*EnumFirewallRules233Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &EnumFirewallRules233Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules233(ctx context.Context, in *QueryFirewallRules233Request, opts ...dcerpc.CallOption) (*QueryFirewallRules233Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &QueryFirewallRules233Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
 func (o *xxx_DefaultRemoteFwClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
@@ -4360,7 +4553,7 @@ func (o *xxx_OpenPolicyStoreOperation) OpNum() int { return 0 }
 func (o *xxx_OpenPolicyStoreOperation) OpName() string { return "/RemoteFW/v1/RRPC_FWOpenPolicyStore" }
 
 func (o *xxx_OpenPolicyStoreOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
-	if o.StoreType < fasp.StoreType(1) || o.StoreType > fasp.StoreType(11) {
+	if o.StoreType < fasp.StoreType(1) || o.StoreType > fasp.StoreType(12) {
 		return fmt.Errorf("StoreType is out of range")
 	}
 	if o.AccessRight < fasp.PolicyAccessRight(1) || o.AccessRight > fasp.PolicyAccessRight(2) {
@@ -4384,7 +4577,7 @@ func (o *xxx_OpenPolicyStoreOperation) MarshalNDRRequest(ctx context.Context, w 
 			return err
 		}
 	}
-	// StoreType {in} (1:{range=(1,11), alias=FW_STORE_TYPE}(enum))
+	// StoreType {in} (1:{range=(1,12), alias=FW_STORE_TYPE}(enum))
 	{
 		if err := w.WriteEnum(uint16(o.StoreType)); err != nil {
 			return err
@@ -4412,7 +4605,7 @@ func (o *xxx_OpenPolicyStoreOperation) UnmarshalNDRRequest(ctx context.Context, 
 			return err
 		}
 	}
-	// StoreType {in} (1:{range=(1,11), alias=FW_STORE_TYPE}(enum))
+	// StoreType {in} (1:{range=(1,12), alias=FW_STORE_TYPE}(enum))
 	{
 		if err := w.ReadEnum((*uint16)(&o.StoreType)); err != nil {
 			return err
@@ -26661,7 +26854,7 @@ func (o *QueryFirewallRules227Response) UnmarshalNDR(ctx context.Context, r ndr.
 // xxx_AddFirewallRule231Operation structure represents the RRPC_FWAddFirewallRule2_31 operation
 type xxx_AddFirewallRule231Operation struct {
 	PolicyStore *PolicyStore    `idl:"name:hPolicyStore" json:"policy_store"`
-	Rule        *fasp.Rule      `idl:"name:pRule" json:"rule"`
+	Rule        *fasp.Rule231   `idl:"name:pRule" json:"rule"`
 	Status      fasp.RuleStatus `idl:"name:pStatus" json:"status"`
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
@@ -26699,14 +26892,14 @@ func (o *xxx_AddFirewallRule231Operation) MarshalNDRRequest(ctx context.Context,
 			}
 		}
 	}
-	// pRule {in} (1:{alias=PFW_RULE}*(1))(2:{alias=FW_RULE}(struct))
+	// pRule {in} (1:{alias=PFW_RULE2_31}*(1))(2:{alias=FW_RULE2_31}(struct))
 	{
 		if o.Rule != nil {
 			if err := o.Rule.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&fasp.Rule{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&fasp.Rule231{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -26727,10 +26920,10 @@ func (o *xxx_AddFirewallRule231Operation) UnmarshalNDRRequest(ctx context.Contex
 			return err
 		}
 	}
-	// pRule {in} (1:{alias=PFW_RULE,pointer=ref}*(1))(2:{alias=FW_RULE}(struct))
+	// pRule {in} (1:{alias=PFW_RULE2_31,pointer=ref}*(1))(2:{alias=FW_RULE2_31}(struct))
 	{
 		if o.Rule == nil {
-			o.Rule = &fasp.Rule{}
+			o.Rule = &fasp.Rule231{}
 		}
 		if err := o.Rule.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -26796,7 +26989,7 @@ type AddFirewallRule231Request struct {
 	// pRule: Represents the firewall rule that the client requests to add to the store.
 	// The rule MUST be a valid rule, as specified in the definition of the FW_RULE data
 	// type (section 2.2.37).
-	Rule *fasp.Rule `idl:"name:pRule" json:"rule"`
+	Rule *fasp.Rule231 `idl:"name:pRule" json:"rule"`
 }
 
 func (o *AddFirewallRule231Request) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule231Operation) *xxx_AddFirewallRule231Operation {
@@ -26884,7 +27077,7 @@ func (o *AddFirewallRule231Response) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // xxx_SetFirewallRule231Operation structure represents the RRPC_FWSetFirewallRule2_31 operation
 type xxx_SetFirewallRule231Operation struct {
 	PolicyStore *PolicyStore    `idl:"name:hPolicyStore" json:"policy_store"`
-	Rule        *fasp.Rule      `idl:"name:pRule" json:"rule"`
+	Rule        *fasp.Rule231   `idl:"name:pRule" json:"rule"`
 	Status      fasp.RuleStatus `idl:"name:pStatus" json:"status"`
 	Return      uint32          `idl:"name:Return" json:"return"`
 }
@@ -26922,14 +27115,14 @@ func (o *xxx_SetFirewallRule231Operation) MarshalNDRRequest(ctx context.Context,
 			}
 		}
 	}
-	// pRule {in} (1:{alias=PFW_RULE}*(1))(2:{alias=FW_RULE}(struct))
+	// pRule {in} (1:{alias=PFW_RULE2_31}*(1))(2:{alias=FW_RULE2_31}(struct))
 	{
 		if o.Rule != nil {
 			if err := o.Rule.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&fasp.Rule{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&fasp.Rule231{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -26950,10 +27143,10 @@ func (o *xxx_SetFirewallRule231Operation) UnmarshalNDRRequest(ctx context.Contex
 			return err
 		}
 	}
-	// pRule {in} (1:{alias=PFW_RULE,pointer=ref}*(1))(2:{alias=FW_RULE}(struct))
+	// pRule {in} (1:{alias=PFW_RULE2_31,pointer=ref}*(1))(2:{alias=FW_RULE2_31}(struct))
 	{
 		if o.Rule == nil {
-			o.Rule = &fasp.Rule{}
+			o.Rule = &fasp.Rule231{}
 		}
 		if err := o.Rule.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -27019,7 +27212,7 @@ type SetFirewallRule231Request struct {
 	// pRule: Represents the firewall rule that the client requests to have modified in
 	// the store. The rule MUST be a valid rule, as specified in the definition of the FW_RULE
 	// data type (section 2.2.37).
-	Rule *fasp.Rule `idl:"name:pRule" json:"rule"`
+	Rule *fasp.Rule231 `idl:"name:pRule" json:"rule"`
 }
 
 func (o *SetFirewallRule231Request) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule231Operation) *xxx_SetFirewallRule231Operation {
@@ -27106,13 +27299,13 @@ func (o *SetFirewallRule231Response) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // xxx_EnumFirewallRules231Operation structure represents the RRPC_FWEnumFirewallRules2_31 operation
 type xxx_EnumFirewallRules231Operation struct {
-	PolicyStore      *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
-	FilteredByStatus uint32       `idl:"name:dwFilteredByStatus" json:"filtered_by_status"`
-	ProfileFilter    uint32       `idl:"name:dwProfileFilter" json:"profile_filter"`
-	Flags            uint16       `idl:"name:wFlags" json:"flags"`
-	RulesLength      uint32       `idl:"name:pdwNumRules;pointer:ref" json:"rules_length"`
-	Rules            *fasp.Rule   `idl:"name:ppRules" json:"rules"`
-	Return           uint32       `idl:"name:Return" json:"return"`
+	PolicyStore      *PolicyStore  `idl:"name:hPolicyStore" json:"policy_store"`
+	FilteredByStatus uint32        `idl:"name:dwFilteredByStatus" json:"filtered_by_status"`
+	ProfileFilter    uint32        `idl:"name:dwProfileFilter" json:"profile_filter"`
+	Flags            uint16        `idl:"name:wFlags" json:"flags"`
+	RulesLength      uint32        `idl:"name:pdwNumRules;pointer:ref" json:"rules_length"`
+	Rules            *fasp.Rule231 `idl:"name:ppRules" json:"rules"`
+	Return           uint32        `idl:"name:Return" json:"return"`
 }
 
 // OpNum returns the operation number of RRPC_FWEnumFirewallRules2_31 operation.
@@ -27219,7 +27412,7 @@ func (o *xxx_EnumFirewallRules231Operation) MarshalNDRResponse(ctx context.Conte
 			return err
 		}
 	}
-	// ppRules {out} (1:{pointer=ref}*(2))(2:{alias=PFW_RULE}*(1))(3:{alias=FW_RULE}(struct))
+	// ppRules {out} (1:{pointer=ref}*(2))(2:{alias=PFW_RULE2_31}*(1))(3:{alias=FW_RULE2_31}(struct))
 	{
 		if o.Rules != nil {
 			_ptr_ppRules := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -27228,7 +27421,7 @@ func (o *xxx_EnumFirewallRules231Operation) MarshalNDRResponse(ctx context.Conte
 						return err
 					}
 				} else {
-					if err := (&fasp.Rule{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&fasp.Rule231{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -27262,18 +27455,18 @@ func (o *xxx_EnumFirewallRules231Operation) UnmarshalNDRResponse(ctx context.Con
 			return err
 		}
 	}
-	// ppRules {out} (1:{pointer=ref}*(2))(2:{alias=PFW_RULE,pointer=ref}*(1))(3:{alias=FW_RULE}(struct))
+	// ppRules {out} (1:{pointer=ref}*(2))(2:{alias=PFW_RULE2_31,pointer=ref}*(1))(3:{alias=FW_RULE2_31}(struct))
 	{
 		_ptr_ppRules := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.Rules == nil {
-				o.Rules = &fasp.Rule{}
+				o.Rules = &fasp.Rule231{}
 			}
 			if err := o.Rules.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule) }
+		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule231) }
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -27368,7 +27561,7 @@ type EnumFirewallRules231Response struct {
 	RulesLength uint32 `idl:"name:pdwNumRules;pointer:ref" json:"rules_length"`
 	// ppRules: An output parameter that on success contains a linked list of FW_RULE data
 	// types (section 2.2.37).
-	Rules *fasp.Rule `idl:"name:ppRules" json:"rules"`
+	Rules *fasp.Rule231 `idl:"name:ppRules" json:"rules"`
 	// Return: The RRPC_FWEnumFirewallRules2_31 return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -27408,12 +27601,12 @@ func (o *EnumFirewallRules231Response) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // xxx_QueryFirewallRules231Operation structure represents the RRPC_FWQueryFirewallRules2_31 operation
 type xxx_QueryFirewallRules231Operation struct {
-	PolicyStore *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
-	Query       *fasp.Query  `idl:"name:pQuery" json:"query"`
-	Flags       uint16       `idl:"name:wFlags" json:"flags"`
-	RulesLength uint32       `idl:"name:pdwNumRules;pointer:ref" json:"rules_length"`
-	Rules       *fasp.Rule   `idl:"name:ppRules" json:"rules"`
-	Return      uint32       `idl:"name:Return" json:"return"`
+	PolicyStore *PolicyStore  `idl:"name:hPolicyStore" json:"policy_store"`
+	Query       *fasp.Query   `idl:"name:pQuery" json:"query"`
+	Flags       uint16        `idl:"name:wFlags" json:"flags"`
+	RulesLength uint32        `idl:"name:pdwNumRules;pointer:ref" json:"rules_length"`
+	Rules       *fasp.Rule231 `idl:"name:ppRules" json:"rules"`
+	Return      uint32        `idl:"name:Return" json:"return"`
 }
 
 // OpNum returns the operation number of RRPC_FWQueryFirewallRules2_31 operation.
@@ -27523,7 +27716,7 @@ func (o *xxx_QueryFirewallRules231Operation) MarshalNDRResponse(ctx context.Cont
 			return err
 		}
 	}
-	// ppRules {out} (1:{pointer=ref}*(2))(2:{alias=PFW_RULE}*(1))(3:{alias=FW_RULE}(struct))
+	// ppRules {out} (1:{pointer=ref}*(2))(2:{alias=PFW_RULE2_31}*(1))(3:{alias=FW_RULE2_31}(struct))
 	{
 		if o.Rules != nil {
 			_ptr_ppRules := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -27532,7 +27725,7 @@ func (o *xxx_QueryFirewallRules231Operation) MarshalNDRResponse(ctx context.Cont
 						return err
 					}
 				} else {
-					if err := (&fasp.Rule{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&fasp.Rule231{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -27566,18 +27759,18 @@ func (o *xxx_QueryFirewallRules231Operation) UnmarshalNDRResponse(ctx context.Co
 			return err
 		}
 	}
-	// ppRules {out} (1:{pointer=ref}*(2))(2:{alias=PFW_RULE,pointer=ref}*(1))(3:{alias=FW_RULE}(struct))
+	// ppRules {out} (1:{pointer=ref}*(2))(2:{alias=PFW_RULE2_31,pointer=ref}*(1))(3:{alias=FW_RULE2_31}(struct))
 	{
 		_ptr_ppRules := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.Rules == nil {
-				o.Rules = &fasp.Rule{}
+				o.Rules = &fasp.Rule231{}
 			}
 			if err := o.Rules.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule) }
+		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule231) }
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -27664,7 +27857,7 @@ type QueryFirewallRules231Response struct {
 	RulesLength uint32 `idl:"name:pdwNumRules;pointer:ref" json:"rules_length"`
 	// ppRules: An output parameter that, on success, contains a linked list of FW_RULE
 	// data types (section 2.2.37).
-	Rules *fasp.Rule `idl:"name:ppRules" json:"rules"`
+	Rules *fasp.Rule231 `idl:"name:ppRules" json:"rules"`
 	// Return: The RRPC_FWQueryFirewallRules2_31 return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -27695,6 +27888,1050 @@ func (o *QueryFirewallRules231Response) MarshalNDR(ctx context.Context, w ndr.Wr
 }
 func (o *QueryFirewallRules231Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRules231Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_AddFirewallRule233Operation structure represents the RRPC_FWAddFirewallRule2_33 operation
+type xxx_AddFirewallRule233Operation struct {
+	PolicyStore *PolicyStore    `idl:"name:hPolicyStore" json:"policy_store"`
+	Rule        *fasp.Rule      `idl:"name:pRule" json:"rule"`
+	Status      fasp.RuleStatus `idl:"name:pStatus" json:"status"`
+	Return      uint32          `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_33 operation.
+func (o *xxx_AddFirewallRule233Operation) OpNum() int { return 90 }
+
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_33 operation.
+func (o *xxx_AddFirewallRule233Operation) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_33"
+}
+
+func (o *xxx_AddFirewallRule233Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AddFirewallRule233Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hPolicyStore {in} (1:{context_handle, alias=FW_POLICY_STORE_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.PolicyStore != nil {
+			if err := o.PolicyStore.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&PolicyStore{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// pRule {in} (1:{alias=PFW_RULE}*(1))(2:{alias=FW_RULE}(struct))
+	{
+		if o.Rule != nil {
+			if err := o.Rule.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&fasp.Rule{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AddFirewallRule233Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hPolicyStore {in} (1:{context_handle, alias=FW_POLICY_STORE_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.PolicyStore == nil {
+			o.PolicyStore = &PolicyStore{}
+		}
+		if err := o.PolicyStore.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// pRule {in} (1:{alias=PFW_RULE,pointer=ref}*(1))(2:{alias=FW_RULE}(struct))
+	{
+		if o.Rule == nil {
+			o.Rule = &fasp.Rule{}
+		}
+		if err := o.Rule.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AddFirewallRule233Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AddFirewallRule233Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
+	{
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AddFirewallRule233Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
+	{
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// AddFirewallRule233Request structure represents the RRPC_FWAddFirewallRule2_33 operation request
+type AddFirewallRule233Request struct {
+	// hPolicyStore: An input parameter that is an FW_POLICY_STORE_HANDLE data type (section
+	// 2.2.94). This parameter MUST contain an opened policy store handle, successfully
+	// opened with the RRPC_FWOpenPolicyStore (Opnum 0) method (section 3.1.4.1). The handle
+	// MUST have read/write access rights.
+	PolicyStore *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
+	// pRule: Represents the firewall rule that the client requests to add to the store.
+	// The rule MUST be a valid rule, as specified in the definition of the FW_RULE data
+	// type (section 2.2.37).
+	Rule *fasp.Rule `idl:"name:pRule" json:"rule"`
+}
+
+func (o *AddFirewallRule233Request) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule233Operation) *xxx_AddFirewallRule233Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule233Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
+	return op
+}
+
+func (o *AddFirewallRule233Request) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule233Operation) {
+	if o == nil {
+		return
+	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+}
+func (o *AddFirewallRule233Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *AddFirewallRule233Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_AddFirewallRule233Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeAddFirewallRule233Request build a response structure from the given request structure.
+func (o *AddFirewallRule233Request) MakeResponse() *AddFirewallRule233Response {
+	return &AddFirewallRule233Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWAddFirewallRule2_33 operation.
+func (o *AddFirewallRule233Request) OpNum() int { return 90 }
+
+// OpName returns the operation name of RRPC_FWAddFirewallRule2_33 operation.
+func (o *AddFirewallRule233Request) OpName() string { return "/RemoteFW/v1/RRPC_FWAddFirewallRule2_33" }
+
+// AddFirewallRule233Response structure represents the RRPC_FWAddFirewallRule2_33 operation response
+type AddFirewallRule233Response struct {
+	// pStatus: An output parameter that is the status code of the rule, as specified by
+	// the FW_RULE_STATUS enumeration (section 2.2.24)..
+	Status fasp.RuleStatus `idl:"name:pStatus" json:"status"`
+	// Return: The RRPC_FWAddFirewallRule2_33 return value.
+	Return uint32 `idl:"name:Return" json:"return"`
+}
+
+func (o *AddFirewallRule233Response) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule233Operation) *xxx_AddFirewallRule233Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule233Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Status = o.Status
+	op.Return = o.Return
+	return op
+}
+
+func (o *AddFirewallRule233Response) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule233Operation) {
+	if o == nil {
+		return
+	}
+	o.Status = op.Status
+	o.Return = op.Return
+}
+func (o *AddFirewallRule233Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *AddFirewallRule233Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_AddFirewallRule233Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_SetFirewallRule233Operation structure represents the RRPC_FWSetFirewallRule2_33 operation
+type xxx_SetFirewallRule233Operation struct {
+	PolicyStore *PolicyStore    `idl:"name:hPolicyStore" json:"policy_store"`
+	Rule        *fasp.Rule      `idl:"name:pRule" json:"rule"`
+	Status      fasp.RuleStatus `idl:"name:pStatus" json:"status"`
+	Return      uint32          `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_33 operation.
+func (o *xxx_SetFirewallRule233Operation) OpNum() int { return 91 }
+
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_33 operation.
+func (o *xxx_SetFirewallRule233Operation) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_33"
+}
+
+func (o *xxx_SetFirewallRule233Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetFirewallRule233Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hPolicyStore {in} (1:{context_handle, alias=FW_POLICY_STORE_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.PolicyStore != nil {
+			if err := o.PolicyStore.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&PolicyStore{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// pRule {in} (1:{alias=PFW_RULE}*(1))(2:{alias=FW_RULE}(struct))
+	{
+		if o.Rule != nil {
+			if err := o.Rule.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&fasp.Rule{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetFirewallRule233Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hPolicyStore {in} (1:{context_handle, alias=FW_POLICY_STORE_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.PolicyStore == nil {
+			o.PolicyStore = &PolicyStore{}
+		}
+		if err := o.PolicyStore.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// pRule {in} (1:{alias=PFW_RULE,pointer=ref}*(1))(2:{alias=FW_RULE}(struct))
+	{
+		if o.Rule == nil {
+			o.Rule = &fasp.Rule{}
+		}
+		if err := o.Rule.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetFirewallRule233Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetFirewallRule233Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
+	{
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetFirewallRule233Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
+	{
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// SetFirewallRule233Request structure represents the RRPC_FWSetFirewallRule2_33 operation request
+type SetFirewallRule233Request struct {
+	// hPolicyStore: An input parameter that is an FW_POLICY_STORE_HANDLE data type (section
+	// 2.2.94). This parameter MUST contain an opened policy store handle, successfully
+	// opened with the RRPC_FWOpenPolicyStore (Opnum 0) method (section 3.1.4.1). The handle
+	// MUST have read/write access rights.
+	PolicyStore *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
+	// pRule: Represents the firewall rule that the client requests to have modified in
+	// the store. The rule MUST be a valid rule, as specified in the definition of the FW_RULE
+	// data type (section 2.2.37).
+	Rule *fasp.Rule `idl:"name:pRule" json:"rule"`
+}
+
+func (o *SetFirewallRule233Request) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule233Operation) *xxx_SetFirewallRule233Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule233Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
+	return op
+}
+
+func (o *SetFirewallRule233Request) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule233Operation) {
+	if o == nil {
+		return
+	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+}
+func (o *SetFirewallRule233Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *SetFirewallRule233Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetFirewallRule233Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeSetFirewallRule233Request build a response structure from the given request structure.
+func (o *SetFirewallRule233Request) MakeResponse() *SetFirewallRule233Response {
+	return &SetFirewallRule233Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWSetFirewallRule2_33 operation.
+func (o *SetFirewallRule233Request) OpNum() int { return 91 }
+
+// OpName returns the operation name of RRPC_FWSetFirewallRule2_33 operation.
+func (o *SetFirewallRule233Request) OpName() string { return "/RemoteFW/v1/RRPC_FWSetFirewallRule2_33" }
+
+// SetFirewallRule233Response structure represents the RRPC_FWSetFirewallRule2_33 operation response
+type SetFirewallRule233Response struct {
+	// pStatus: An output parameter that is the status code of the rule, as specified by
+	// the FW_RULE_STATUS enumeration (section 2.2.24).
+	Status fasp.RuleStatus `idl:"name:pStatus" json:"status"`
+	// Return: The RRPC_FWSetFirewallRule2_33 return value.
+	Return uint32 `idl:"name:Return" json:"return"`
+}
+
+func (o *SetFirewallRule233Response) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule233Operation) *xxx_SetFirewallRule233Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule233Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Status = o.Status
+	op.Return = o.Return
+	return op
+}
+
+func (o *SetFirewallRule233Response) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule233Operation) {
+	if o == nil {
+		return
+	}
+	o.Status = op.Status
+	o.Return = op.Return
+}
+func (o *SetFirewallRule233Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *SetFirewallRule233Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetFirewallRule233Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_EnumFirewallRules233Operation structure represents the RRPC_FWEnumFirewallRules2_33 operation
+type xxx_EnumFirewallRules233Operation struct {
+	PolicyStore      *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
+	FilteredByStatus uint32       `idl:"name:dwFilteredByStatus" json:"filtered_by_status"`
+	ProfileFilter    uint32       `idl:"name:dwProfileFilter" json:"profile_filter"`
+	Flags            uint16       `idl:"name:wFlags" json:"flags"`
+	RulesLength      uint32       `idl:"name:pdwNumRules;pointer:ref" json:"rules_length"`
+	Rules            *fasp.Rule   `idl:"name:ppRules" json:"rules"`
+	Return           uint32       `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_33 operation.
+func (o *xxx_EnumFirewallRules233Operation) OpNum() int { return 92 }
+
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_33 operation.
+func (o *xxx_EnumFirewallRules233Operation) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_33"
+}
+
+func (o *xxx_EnumFirewallRules233Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_EnumFirewallRules233Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hPolicyStore {in} (1:{context_handle, alias=FW_POLICY_STORE_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.PolicyStore != nil {
+			if err := o.PolicyStore.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&PolicyStore{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// dwFilteredByStatus {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.FilteredByStatus); err != nil {
+			return err
+		}
+	}
+	// dwProfileFilter {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.ProfileFilter); err != nil {
+			return err
+		}
+	}
+	// wFlags {in} (1:{alias=WORD}(uint16))
+	{
+		if err := w.WriteData(o.Flags); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_EnumFirewallRules233Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hPolicyStore {in} (1:{context_handle, alias=FW_POLICY_STORE_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.PolicyStore == nil {
+			o.PolicyStore = &PolicyStore{}
+		}
+		if err := o.PolicyStore.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// dwFilteredByStatus {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.FilteredByStatus); err != nil {
+			return err
+		}
+	}
+	// dwProfileFilter {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.ProfileFilter); err != nil {
+			return err
+		}
+	}
+	// wFlags {in} (1:{alias=WORD}(uint16))
+	{
+		if err := w.ReadData(&o.Flags); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_EnumFirewallRules233Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_EnumFirewallRules233Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pdwNumRules {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.RulesLength); err != nil {
+			return err
+		}
+	}
+	// ppRules {out} (1:{pointer=ref}*(2))(2:{alias=PFW_RULE}*(1))(3:{alias=FW_RULE}(struct))
+	{
+		if o.Rules != nil {
+			_ptr_ppRules := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.Rules != nil {
+					if err := o.Rules.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&fasp.Rule{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Rules, _ptr_ppRules); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_EnumFirewallRules233Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pdwNumRules {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.RulesLength); err != nil {
+			return err
+		}
+	}
+	// ppRules {out} (1:{pointer=ref}*(2))(2:{alias=PFW_RULE,pointer=ref}*(1))(3:{alias=FW_RULE}(struct))
+	{
+		_ptr_ppRules := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.Rules == nil {
+				o.Rules = &fasp.Rule{}
+			}
+			if err := o.Rules.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule) }
+		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// EnumFirewallRules233Request structure represents the RRPC_FWEnumFirewallRules2_33 operation request
+type EnumFirewallRules233Request struct {
+	// hPolicyStore: An input parameter that is an FW_POLICY_STORE_HANDLE data type (section
+	// 2.2.94). This parameter MUST contain an opened policy store handle, successfully
+	// opened with the RRPC_FWOpenPolicyStore (Opnum 0) method (section 3.1.4.1). The handle
+	// MUST have read/write access rights.
+	PolicyStore *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
+	// dwFilteredByStatus: A combination of flags from the FW_RULE_STATUS_CLASS enumeration
+	// (section 2.2.25). This method uses this bitmask to determine whether rules should
+	// be returned. Rules that contain a status code of the specified class that match this
+	// parameter will be returned in the linked list.
+	FilteredByStatus uint32 `idl:"name:dwFilteredByStatus" json:"filtered_by_status"`
+	// dwProfileFilter: A combination of flags from the FW_PROFILE_TYPE enumeration (section
+	// 2.2.2). This method also uses this parameter to determine whether rules should be
+	// returned. Rules that contain a profile specified by this parameter will be returned
+	// in the linked list.
+	ProfileFilter uint32 `idl:"name:dwProfileFilter" json:"profile_filter"`
+	// wFlags: A combination of flags from the FW_ENUM_RULES_FLAGS enumeration (section
+	// 2.2.33), which modifies the behavior of the method and performs operations on the
+	// rules before returning them in the linked list.
+	Flags uint16 `idl:"name:wFlags" json:"flags"`
+}
+
+func (o *EnumFirewallRules233Request) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules233Operation) *xxx_EnumFirewallRules233Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules233Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.PolicyStore = o.PolicyStore
+	op.FilteredByStatus = o.FilteredByStatus
+	op.ProfileFilter = o.ProfileFilter
+	op.Flags = o.Flags
+	return op
+}
+
+func (o *EnumFirewallRules233Request) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules233Operation) {
+	if o == nil {
+		return
+	}
+	o.PolicyStore = op.PolicyStore
+	o.FilteredByStatus = op.FilteredByStatus
+	o.ProfileFilter = op.ProfileFilter
+	o.Flags = op.Flags
+}
+func (o *EnumFirewallRules233Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *EnumFirewallRules233Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_EnumFirewallRules233Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeEnumFirewallRules233Request build a response structure from the given request structure.
+func (o *EnumFirewallRules233Request) MakeResponse() *EnumFirewallRules233Response {
+	return &EnumFirewallRules233Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWEnumFirewallRules2_33 operation.
+func (o *EnumFirewallRules233Request) OpNum() int { return 92 }
+
+// OpName returns the operation name of RRPC_FWEnumFirewallRules2_33 operation.
+func (o *EnumFirewallRules233Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWEnumFirewallRules2_33"
+}
+
+// EnumFirewallRules233Response structure represents the RRPC_FWEnumFirewallRules2_33 operation response
+type EnumFirewallRules233Response struct {
+	// pdwNumRules: An output parameter that on success MUST be equal to the number of rules
+	// returned.
+	RulesLength uint32 `idl:"name:pdwNumRules;pointer:ref" json:"rules_length"`
+	// ppRules: An output parameter that on success contains a linked list of FW_RULE data
+	// types (section 2.2.37).
+	Rules *fasp.Rule `idl:"name:ppRules" json:"rules"`
+	// Return: The RRPC_FWEnumFirewallRules2_33 return value.
+	Return uint32 `idl:"name:Return" json:"return"`
+}
+
+func (o *EnumFirewallRules233Response) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules233Operation) *xxx_EnumFirewallRules233Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules233Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
+	return op
+}
+
+func (o *EnumFirewallRules233Response) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules233Operation) {
+	if o == nil {
+		return
+	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+}
+func (o *EnumFirewallRules233Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *EnumFirewallRules233Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_EnumFirewallRules233Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_QueryFirewallRules233Operation structure represents the RRPC_FWQueryFirewallRules2_33 operation
+type xxx_QueryFirewallRules233Operation struct {
+	PolicyStore *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
+	Query       *fasp.Query  `idl:"name:pQuery" json:"query"`
+	Flags       uint16       `idl:"name:wFlags" json:"flags"`
+	RulesLength uint32       `idl:"name:pdwNumRules;pointer:ref" json:"rules_length"`
+	Rules       *fasp.Rule   `idl:"name:ppRules" json:"rules"`
+	Return      uint32       `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_33 operation.
+func (o *xxx_QueryFirewallRules233Operation) OpNum() int { return 93 }
+
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_33 operation.
+func (o *xxx_QueryFirewallRules233Operation) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_33"
+}
+
+func (o *xxx_QueryFirewallRules233Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QueryFirewallRules233Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hPolicyStore {in} (1:{context_handle, alias=FW_POLICY_STORE_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.PolicyStore != nil {
+			if err := o.PolicyStore.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&PolicyStore{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// pQuery {in} (1:{alias=PFW_QUERY}*(1))(2:{alias=FW_QUERY}(struct))
+	{
+		if o.Query != nil {
+			if err := o.Query.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&fasp.Query{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// wFlags {in} (1:{alias=WORD}(uint16))
+	{
+		if err := w.WriteData(o.Flags); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QueryFirewallRules233Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hPolicyStore {in} (1:{context_handle, alias=FW_POLICY_STORE_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.PolicyStore == nil {
+			o.PolicyStore = &PolicyStore{}
+		}
+		if err := o.PolicyStore.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// pQuery {in} (1:{alias=PFW_QUERY,pointer=ref}*(1))(2:{alias=FW_QUERY}(struct))
+	{
+		if o.Query == nil {
+			o.Query = &fasp.Query{}
+		}
+		if err := o.Query.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// wFlags {in} (1:{alias=WORD}(uint16))
+	{
+		if err := w.ReadData(&o.Flags); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QueryFirewallRules233Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QueryFirewallRules233Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pdwNumRules {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.RulesLength); err != nil {
+			return err
+		}
+	}
+	// ppRules {out} (1:{pointer=ref}*(2))(2:{alias=PFW_RULE}*(1))(3:{alias=FW_RULE}(struct))
+	{
+		if o.Rules != nil {
+			_ptr_ppRules := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.Rules != nil {
+					if err := o.Rules.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&fasp.Rule{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Rules, _ptr_ppRules); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QueryFirewallRules233Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pdwNumRules {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.RulesLength); err != nil {
+			return err
+		}
+	}
+	// ppRules {out} (1:{pointer=ref}*(2))(2:{alias=PFW_RULE,pointer=ref}*(1))(3:{alias=FW_RULE}(struct))
+	{
+		_ptr_ppRules := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.Rules == nil {
+				o.Rules = &fasp.Rule{}
+			}
+			if err := o.Rules.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule) }
+		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// QueryFirewallRules233Request structure represents the RRPC_FWQueryFirewallRules2_33 operation request
+type QueryFirewallRules233Request struct {
+	// hPolicyStore: An input parameter that is an FW_POLICY_STORE_HANDLE data type (section
+	// 2.2.94). This parameter MUST contain an opened policy store handle, successfully
+	// opened with the RRPC_FWOpenPolicyStore (Opnum 0) method (section 3.1.4.1). The handle
+	// MUST be the FW_STORE_TYPE_DYNAMIC policy store type (section 2.2.1).
+	PolicyStore *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
+	// pQuery: Represents the query object that the client uses to specify which main mode
+	// rules MUST be retrieved from the store. The query object MUST be valid, as specified
+	// in the definition of the FW_QUERY data type (section 2.2.93).
+	Query *fasp.Query `idl:"name:pQuery" json:"query"`
+	// wFlags: A combination of flags from the FW_ENUM_RULES_FLAGS enumeration (section
+	// 2.2.33), which modifies the behavior of the method and performs operations on the
+	// rules before returning them in the linked list.
+	Flags uint16 `idl:"name:wFlags" json:"flags"`
+}
+
+func (o *QueryFirewallRules233Request) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules233Operation) *xxx_QueryFirewallRules233Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules233Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.PolicyStore = o.PolicyStore
+	op.Query = o.Query
+	op.Flags = o.Flags
+	return op
+}
+
+func (o *QueryFirewallRules233Request) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules233Operation) {
+	if o == nil {
+		return
+	}
+	o.PolicyStore = op.PolicyStore
+	o.Query = op.Query
+	o.Flags = op.Flags
+}
+func (o *QueryFirewallRules233Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *QueryFirewallRules233Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_QueryFirewallRules233Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeQueryFirewallRules233Request build a response structure from the given request structure.
+func (o *QueryFirewallRules233Request) MakeResponse() *QueryFirewallRules233Response {
+	return &QueryFirewallRules233Response{}
+}
+
+// OpNum returns the operation number of RRPC_FWQueryFirewallRules2_33 operation.
+func (o *QueryFirewallRules233Request) OpNum() int { return 93 }
+
+// OpName returns the operation name of RRPC_FWQueryFirewallRules2_33 operation.
+func (o *QueryFirewallRules233Request) OpName() string {
+	return "/RemoteFW/v1/RRPC_FWQueryFirewallRules2_33"
+}
+
+// QueryFirewallRules233Response structure represents the RRPC_FWQueryFirewallRules2_33 operation response
+type QueryFirewallRules233Response struct {
+	// pdwNumRules: An output parameter that, on success, MUST be equal to the number of
+	// rules returned.
+	RulesLength uint32 `idl:"name:pdwNumRules;pointer:ref" json:"rules_length"`
+	// ppRules: An output parameter that, on success, contains a linked list of FW_RULE
+	// data types (section 2.2.37).
+	Rules *fasp.Rule `idl:"name:ppRules" json:"rules"`
+	// Return: The RRPC_FWQueryFirewallRules2_33 return value.
+	Return uint32 `idl:"name:Return" json:"return"`
+}
+
+func (o *QueryFirewallRules233Response) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules233Operation) *xxx_QueryFirewallRules233Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules233Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
+	return op
+}
+
+func (o *QueryFirewallRules233Response) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules233Operation) {
+	if o == nil {
+		return
+	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+}
+func (o *QueryFirewallRules233Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *QueryFirewallRules233Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_QueryFirewallRules233Operation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

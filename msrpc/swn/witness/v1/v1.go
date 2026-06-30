@@ -237,6 +237,28 @@ type WitnessClient interface {
 	// ) , the server MUST fail the request with ERROR_INVALID_STATE. **
 	RegisterEx(context.Context, *RegisterExRequest, ...dcerpc.CallOption) (*RegisterExResponse, error)
 
+	// The WitnessrUnRegisterEx method allows the client to unregister for notifications
+	// from the server.<6> The Witness Service removes its internal state of the registration
+	// and no longer notifies the client in the event of any resource state changes.
+	//
+	// Return Values: Returns 0x00000000 (ERROR_SUCCESS) on success or a nonzero error code,
+	// as specified in [MS-ERREF] section 2.2. The most common error codes are listed in
+	// the following table.
+	//
+	//	+--------------------------------+--------------------------------------------+
+	//	|             RETURN             |                                            |
+	//	|           VALUE/CODE           |                DESCRIPTION                 |
+	//	|                                |                                            |
+	//	+--------------------------------+--------------------------------------------+
+	//	+--------------------------------+--------------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS       | The operation completed successfully.      |
+	//	+--------------------------------+--------------------------------------------+
+	//	| 0x00000005 ERROR_ACCESS_DENIED | Access is denied.                          |
+	//	+--------------------------------+--------------------------------------------+
+	//	| 0x00000490 ERROR_NOT_FOUND     | The specified CONTEXT_HANDLE is not found. |
+	//	+--------------------------------+--------------------------------------------+
+	UnregisterEx(context.Context, *UnregisterExRequest, ...dcerpc.CallOption) (*UnregisterExResponse, error)
+
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
@@ -306,6 +328,19 @@ func (o *xxx_DefaultWitnessClient) RegisterEx(ctx context.Context, in *RegisterE
 		return nil, err
 	}
 	out := &RegisterExResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultWitnessClient) UnregisterEx(ctx context.Context, in *UnregisterExRequest, opts ...dcerpc.CallOption) (*UnregisterExResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &UnregisterExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
@@ -1617,6 +1652,199 @@ func (o *RegisterExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error
 }
 func (o *RegisterExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterExOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_UnregisterExOperation structure represents the WitnessrUnRegisterEx operation
+type xxx_UnregisterExOperation struct {
+	Context *dcetypes.ContextHandle `idl:"name:ppContext" json:"context"`
+	Return  uint32                  `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of WitnessrUnRegisterEx operation.
+func (o *xxx_UnregisterExOperation) OpNum() int { return 5 }
+
+// OpName returns the operation name of WitnessrUnRegisterEx operation.
+func (o *xxx_UnregisterExOperation) OpName() string { return "/Witness/v1.1/WitnessrUnRegisterEx" }
+
+func (o *xxx_UnregisterExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnregisterExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// ppContext {in, out} (1:{pointer=ref, alias=PPCONTEXT_HANDLE}*(1))(2:{alias=ndr_context_handle}(struct))
+	{
+		if o.Context != nil {
+			if err := o.Context.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcetypes.ContextHandle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnregisterExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// ppContext {in, out} (1:{pointer=ref, alias=PPCONTEXT_HANDLE}*(1))(2:{alias=ndr_context_handle}(struct))
+	{
+		if o.Context == nil {
+			o.Context = &dcetypes.ContextHandle{}
+		}
+		if err := o.Context.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnregisterExOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnregisterExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// ppContext {in, out} (1:{pointer=ref, alias=PPCONTEXT_HANDLE}*(1))(2:{alias=ndr_context_handle}(struct))
+	{
+		if o.Context != nil {
+			if err := o.Context.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcetypes.ContextHandle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnregisterExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// ppContext {in, out} (1:{pointer=ref, alias=PPCONTEXT_HANDLE}*(1))(2:{alias=ndr_context_handle}(struct))
+	{
+		if o.Context == nil {
+			o.Context = &dcetypes.ContextHandle{}
+		}
+		if err := o.Context.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// UnregisterExRequest structure represents the WitnessrUnRegisterEx operation request
+type UnregisterExRequest struct {
+	// ppContext: A context handle of type PPCONTEXT_HANDLE, specified in section 2.2.1.2,
+	// that identifies the client on the server.
+	Context *dcetypes.ContextHandle `idl:"name:ppContext" json:"context"`
+}
+
+func (o *UnregisterExRequest) xxx_ToOp(ctx context.Context, op *xxx_UnregisterExOperation) *xxx_UnregisterExOperation {
+	if op == nil {
+		op = &xxx_UnregisterExOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Context = o.Context
+	return op
+}
+
+func (o *UnregisterExRequest) xxx_FromOp(ctx context.Context, op *xxx_UnregisterExOperation) {
+	if o == nil {
+		return
+	}
+	o.Context = op.Context
+}
+func (o *UnregisterExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *UnregisterExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_UnregisterExOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeUnregisterExRequest build a response structure from the given request structure.
+func (o *UnregisterExRequest) MakeResponse() *UnregisterExResponse {
+	return &UnregisterExResponse{}
+}
+
+// OpNum returns the operation number of WitnessrUnRegisterEx operation.
+func (o *UnregisterExRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of WitnessrUnRegisterEx operation.
+func (o *UnregisterExRequest) OpName() string { return "/Witness/v1.1/WitnessrUnRegisterEx" }
+
+// UnregisterExResponse structure represents the WitnessrUnRegisterEx operation response
+type UnregisterExResponse struct {
+	// ppContext: A context handle of type PPCONTEXT_HANDLE, specified in section 2.2.1.2,
+	// that identifies the client on the server.
+	Context *dcetypes.ContextHandle `idl:"name:ppContext" json:"context"`
+	// Return: The WitnessrUnRegisterEx return value.
+	Return uint32 `idl:"name:Return" json:"return"`
+}
+
+func (o *UnregisterExResponse) xxx_ToOp(ctx context.Context, op *xxx_UnregisterExOperation) *xxx_UnregisterExOperation {
+	if op == nil {
+		op = &xxx_UnregisterExOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Context = o.Context
+	op.Return = o.Return
+	return op
+}
+
+func (o *UnregisterExResponse) xxx_FromOp(ctx context.Context, op *xxx_UnregisterExOperation) {
+	if o == nil {
+		return
+	}
+	o.Context = op.Context
+	o.Return = op.Return
+}
+func (o *UnregisterExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *UnregisterExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_UnregisterExOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

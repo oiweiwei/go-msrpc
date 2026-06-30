@@ -1336,6 +1336,246 @@ type Clusapi3Client interface {
 	// ApiChangeResourceGroupEx operation.
 	ChangeResourceGroupEx(context.Context, *ChangeResourceGroupExRequest, ...dcerpc.CallOption) (*ChangeResourceGroupExResponse, error)
 
+	// ApiClusterNativeUpdateControl operation.
+	ClusterNativeUpdateControl(context.Context, *ClusterNativeUpdateControlRequest, ...dcerpc.CallOption) (*ClusterNativeUpdateControlResponse, error)
+
+	// Opnum186Reserved operation.
+	// Opnum186Reserved
+
+	// Opnum187Reserved operation.
+	// Opnum187Reserved
+
+	// Opnum188Reserved operation.
+	// Opnum188Reserved
+
+	// Opnum189Reserved operation.
+	// Opnum189Reserved
+
+	// Opnum190Reserved operation.
+	// Opnum190Reserved
+
+	// Opnum191Reserved operation.
+	// Opnum191Reserved
+
+	// Opnum192Reserved operation.
+	// Opnum192Reserved
+
+	// Opnum193Reserved operation.
+	// Opnum193Reserved
+
+	// Opnum194Reserved operation.
+	// Opnum194Reserved
+
+	// Opnum195Reserved operation.
+	// Opnum195Reserved
+
+	// Opnum196Reserved operation.
+	// Opnum196Reserved
+
+	// Opnum197Reserved operation.
+	// Opnum197Reserved
+
+	// Opnum198Reserved operation.
+	// Opnum198Reserved
+
+	// Opnum199Reserved operation.
+	// Opnum199Reserved
+
+	// Opnum200Reserved operation.
+	// Opnum200Reserved
+
+	// Opnum201Reserved operation.
+	// Opnum201Reserved
+
+	// Opnum202Reserved operation.
+	// Opnum202Reserved
+
+	// Opnum203Reserved operation.
+	// Opnum203Reserved
+
+	// Opnum204Reserved operation.
+	// Opnum204Reserved
+
+	// Opnum205Reserved operation.
+	// Opnum205Reserved
+
+	// Opnum206Reserved operation.
+	// Opnum206Reserved
+
+	// Opnum207Reserved operation.
+	// Opnum207Reserved
+
+	// Opnum208Reserved operation.
+	// Opnum208Reserved
+
+	// Opnum209Reserved operation.
+	// Opnum209Reserved
+
+	// Opnum210Reserved operation.
+	// Opnum210Reserved
+
+	// Opnum211Reserved operation.
+	// Opnum211Reserved
+
+	// Opnum212Reserved operation.
+	// Opnum212Reserved
+
+	// Opnum213Reserved operation.
+	// Opnum213Reserved
+
+	// Opnum214Reserved operation.
+	// Opnum214Reserved
+
+	// Opnum215Reserved operation.
+	// Opnum215Reserved
+
+	// Opnum216Reserved operation.
+	// Opnum216Reserved
+
+	// Opnum217Reserved operation.
+	// Opnum217Reserved
+
+	// Opnum218Reserved operation.
+	// Opnum218Reserved
+
+	// Opnum219Reserved operation.
+	// Opnum219Reserved
+
+	// Opnum220Reserved operation.
+	// Opnum220Reserved
+
+	// Opnum221Reserved operation.
+	// Opnum221Reserved
+
+	// Opnum222Reserved operation.
+	// Opnum222Reserved
+
+	// Opnum223Reserved operation.
+	// Opnum223Reserved
+
+	// Opnum224Reserved operation.
+	// Opnum224Reserved
+
+	// Opnum225Reserved operation.
+	// Opnum225Reserved
+
+	// Opnum226Reserved operation.
+	// Opnum226Reserved
+
+	// Opnum227Reserved operation.
+	// Opnum227Reserved
+
+	// Opnum228Reserved operation.
+	// Opnum228Reserved
+
+	// Opnum229Reserved operation.
+	// Opnum229Reserved
+
+	// Opnum230Reserved operation.
+	// Opnum230Reserved
+
+	// Opnum231Reserved operation.
+	// Opnum231Reserved
+
+	// Opnum232Reserved operation.
+	// Opnum232Reserved
+
+	// Opnum233Reserved operation.
+	// Opnum233Reserved
+
+	// Opnum234Reserved operation.
+	// Opnum234Reserved
+
+	// Opnum235Reserved operation.
+	// Opnum235Reserved
+
+	// Opnum236Reserved operation.
+	// Opnum236Reserved
+
+	// Opnum237Reserved operation.
+	// Opnum237Reserved
+
+	// Opnum238Reserved operation.
+	// Opnum238Reserved
+
+	// Opnum239Reserved operation.
+	// Opnum239Reserved
+
+	// Opnum240Reserved operation.
+	// Opnum240Reserved
+
+	// Opnum241Reserved operation.
+	// Opnum241Reserved
+
+	// Opnum242Reserved operation.
+	// Opnum242Reserved
+
+	// Opnum243Reserved operation.
+	// Opnum243Reserved
+
+	// Opnum244Reserved operation.
+	// Opnum244Reserved
+
+	// Opnum245Reserved operation.
+	// Opnum245Reserved
+
+	// Opnum246Reserved operation.
+	// Opnum246Reserved
+
+	// Opnum247Reserved operation.
+	// Opnum247Reserved
+
+	// Opnum248Reserved operation.
+	// Opnum248Reserved
+
+	// Opnum249Reserved operation.
+	// Opnum249Reserved
+
+	// Opnum250Reserved operation.
+	// Opnum250Reserved
+
+	// Opnum251Reserved operation.
+	// Opnum251Reserved
+
+	// Opnum252Reserved operation.
+	// Opnum252Reserved
+
+	// Opnum253Reserved operation.
+	// Opnum253Reserved
+
+	// Opnum254Reserved operation.
+	// Opnum254Reserved
+
+	// Opnum255Reserved operation.
+	// Opnum255Reserved
+
+	// Opnum256Reserved operation.
+	// Opnum256Reserved
+
+	// Opnum257Reserved operation.
+	// Opnum257Reserved
+
+	// Opnum258Reserved operation.
+	// Opnum258Reserved
+
+	// Opnum259Reserved operation.
+	// Opnum259Reserved
+
+	// Opnum260Reserved operation.
+	// Opnum260Reserved
+
+	// Opnum261Reserved operation.
+	// Opnum261Reserved
+
+	// Opnum262Reserved operation.
+	// Opnum262Reserved
+
+	// Opnum263Reserved operation.
+	// Opnum263Reserved
+
+	// Opnum264NotUsedOnWire operation.
+	// Opnum264NotUsedOnWire
+
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
@@ -6475,6 +6715,19 @@ func (o *xxx_DefaultClusapi3Client) ChangeResourceGroupEx(ctx context.Context, i
 		return nil, err
 	}
 	out := &ChangeResourceGroupExResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultClusapi3Client) ClusterNativeUpdateControl(ctx context.Context, in *ClusterNativeUpdateControlRequest, opts ...dcerpc.CallOption) (*ClusterNativeUpdateControlResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &ClusterNativeUpdateControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
@@ -49726,6 +49979,262 @@ func (o *ChangeResourceGroupExResponse) MarshalNDR(ctx context.Context, w ndr.Wr
 }
 func (o *ChangeResourceGroupExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangeResourceGroupExOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_ClusterNativeUpdateControlOperation structure represents the ApiClusterNativeUpdateControl operation
+type xxx_ClusterNativeUpdateControlOperation struct {
+	InBuffer      uint8  `idl:"name:inBuffer" json:"in_buffer"`
+	InBufferSize  uint32 `idl:"name:inBufferSize" json:"in_buffer_size"`
+	OutBuffer     uint8  `idl:"name:outBuffer" json:"out_buffer"`
+	OutBufferSize uint32 `idl:"name:outBufferSize" json:"out_buffer_size"`
+	BytesReturned uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
+	BytesNeeded   uint32 `idl:"name:lpBytesNeeded" json:"bytes_needed"`
+	RPCStatus     uint32 `idl:"name:rpc_status" json:"rpc_status"`
+	Return        uint32 `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of ApiClusterNativeUpdateControl operation.
+func (o *xxx_ClusterNativeUpdateControlOperation) OpNum() int { return 185 }
+
+// OpName returns the operation name of ApiClusterNativeUpdateControl operation.
+func (o *xxx_ClusterNativeUpdateControlOperation) OpName() string {
+	return "/clusapi3/v3/ApiClusterNativeUpdateControl"
+}
+
+func (o *xxx_ClusterNativeUpdateControlOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ClusterNativeUpdateControlOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// inBuffer {in} (1:{pointer=ref}*(1))(2:{alias=UCHAR}(uchar))
+	{
+		if err := w.WriteData(o.InBuffer); err != nil {
+			return err
+		}
+	}
+	// inBufferSize {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.InBufferSize); err != nil {
+			return err
+		}
+	}
+	// outBufferSize {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.OutBufferSize); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ClusterNativeUpdateControlOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// inBuffer {in} (1:{pointer=ref}*(1))(2:{alias=UCHAR}(uchar))
+	{
+		if err := w.ReadData(&o.InBuffer); err != nil {
+			return err
+		}
+	}
+	// inBufferSize {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.InBufferSize); err != nil {
+			return err
+		}
+	}
+	// outBufferSize {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.OutBufferSize); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ClusterNativeUpdateControlOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ClusterNativeUpdateControlOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// outBuffer {out} (1:{pointer=ref}*(1))(2:{alias=UCHAR}(uchar))
+	{
+		if err := w.WriteData(o.OutBuffer); err != nil {
+			return err
+		}
+	}
+	// lpBytesReturned {out} (1:{alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.BytesReturned); err != nil {
+			return err
+		}
+	}
+	// lpBytesNeeded {out} (1:{alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.BytesNeeded); err != nil {
+			return err
+		}
+	}
+	// rpc_status {out} (1:{pointer=ref}*(1)(error_status_t))
+	{
+		if err := w.WriteData(o.RPCStatus); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:(error_status_t))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ClusterNativeUpdateControlOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// outBuffer {out} (1:{pointer=ref}*(1))(2:{alias=UCHAR}(uchar))
+	{
+		if err := w.ReadData(&o.OutBuffer); err != nil {
+			return err
+		}
+	}
+	// lpBytesReturned {out} (1:{alias=LPDWORD,pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.BytesReturned); err != nil {
+			return err
+		}
+	}
+	// lpBytesNeeded {out} (1:{alias=LPDWORD,pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.BytesNeeded); err != nil {
+			return err
+		}
+	}
+	// rpc_status {out} (1:{pointer=ref}*(1)(error_status_t))
+	{
+		if err := w.ReadData(&o.RPCStatus); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:(error_status_t))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// ClusterNativeUpdateControlRequest structure represents the ApiClusterNativeUpdateControl operation request
+type ClusterNativeUpdateControlRequest struct {
+	InBuffer      uint8  `idl:"name:inBuffer" json:"in_buffer"`
+	InBufferSize  uint32 `idl:"name:inBufferSize" json:"in_buffer_size"`
+	OutBufferSize uint32 `idl:"name:outBufferSize" json:"out_buffer_size"`
+}
+
+func (o *ClusterNativeUpdateControlRequest) xxx_ToOp(ctx context.Context, op *xxx_ClusterNativeUpdateControlOperation) *xxx_ClusterNativeUpdateControlOperation {
+	if op == nil {
+		op = &xxx_ClusterNativeUpdateControlOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
+	return op
+}
+
+func (o *ClusterNativeUpdateControlRequest) xxx_FromOp(ctx context.Context, op *xxx_ClusterNativeUpdateControlOperation) {
+	if o == nil {
+		return
+	}
+	o.InBuffer = op.InBuffer
+	o.InBufferSize = op.InBufferSize
+	o.OutBufferSize = op.OutBufferSize
+}
+func (o *ClusterNativeUpdateControlRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *ClusterNativeUpdateControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ClusterNativeUpdateControlOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeClusterNativeUpdateControlRequest build a response structure from the given request structure.
+func (o *ClusterNativeUpdateControlRequest) MakeResponse() *ClusterNativeUpdateControlResponse {
+	return &ClusterNativeUpdateControlResponse{}
+}
+
+// OpNum returns the operation number of ApiClusterNativeUpdateControl operation.
+func (o *ClusterNativeUpdateControlRequest) OpNum() int { return 185 }
+
+// OpName returns the operation name of ApiClusterNativeUpdateControl operation.
+func (o *ClusterNativeUpdateControlRequest) OpName() string {
+	return "/clusapi3/v3/ApiClusterNativeUpdateControl"
+}
+
+// ClusterNativeUpdateControlResponse structure represents the ApiClusterNativeUpdateControl operation response
+type ClusterNativeUpdateControlResponse struct {
+	OutBuffer     uint8  `idl:"name:outBuffer" json:"out_buffer"`
+	BytesReturned uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
+	BytesNeeded   uint32 `idl:"name:lpBytesNeeded" json:"bytes_needed"`
+	RPCStatus     uint32 `idl:"name:rpc_status" json:"rpc_status"`
+	// Return: The ApiClusterNativeUpdateControl return value.
+	Return uint32 `idl:"name:Return" json:"return"`
+}
+
+func (o *ClusterNativeUpdateControlResponse) xxx_ToOp(ctx context.Context, op *xxx_ClusterNativeUpdateControlOperation) *xxx_ClusterNativeUpdateControlOperation {
+	if op == nil {
+		op = &xxx_ClusterNativeUpdateControlOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.BytesNeeded = o.BytesNeeded
+	op.RPCStatus = o.RPCStatus
+	op.Return = o.Return
+	return op
+}
+
+func (o *ClusterNativeUpdateControlResponse) xxx_FromOp(ctx context.Context, op *xxx_ClusterNativeUpdateControlOperation) {
+	if o == nil {
+		return
+	}
+	o.OutBuffer = op.OutBuffer
+	o.BytesReturned = op.BytesReturned
+	o.BytesNeeded = op.BytesNeeded
+	o.RPCStatus = op.RPCStatus
+	o.Return = op.Return
+}
+func (o *ClusterNativeUpdateControlResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *ClusterNativeUpdateControlResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ClusterNativeUpdateControlOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

@@ -1479,6 +1479,15 @@ type SvcctlClient interface {
 	//	+--------------------------------------+----------------------------------------------------------------------------------+
 	CreateWOWService(context.Context, *CreateWOWServiceRequest, ...dcerpc.CallOption) (*CreateWOWServiceResponse, error)
 
+	// Opnum61NotUsedOnWire operation.
+	// Opnum61NotUsedOnWire
+
+	// Opnum62NotUsedOnWire operation.
+	// Opnum62NotUsedOnWire
+
+	// Opnum63NotUsedOnWire operation.
+	// Opnum63NotUsedOnWire
+
 	// The ROpenSCManager2 method establishes a connection to server and opens the SCM database
 	// on the specified server.<87>
 	//
@@ -27122,7 +27131,7 @@ type xxx_OpenSCM2Operation struct {
 }
 
 // OpNum returns the operation number of ROpenSCManager2 operation.
-func (o *xxx_OpenSCM2Operation) OpNum() int { return 61 }
+func (o *xxx_OpenSCM2Operation) OpNum() int { return 64 }
 
 // OpName returns the operation name of ROpenSCManager2 operation.
 func (o *xxx_OpenSCM2Operation) OpName() string { return "/svcctl/v2/ROpenSCManager2" }
@@ -27295,7 +27304,7 @@ func (o *OpenSCM2Request) MakeResponse() *OpenSCM2Response {
 }
 
 // OpNum returns the operation number of ROpenSCManager2 operation.
-func (o *OpenSCM2Request) OpNum() int { return 61 }
+func (o *OpenSCM2Request) OpNum() int { return 64 }
 
 // OpName returns the operation name of ROpenSCManager2 operation.
 func (o *OpenSCM2Request) OpName() string { return "/svcctl/v2/ROpenSCManager2" }

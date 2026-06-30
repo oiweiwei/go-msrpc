@@ -1,4 +1,3 @@
- 
 import "ms-dtyp.idl";
 // XXX: defined in ms-dtyp: typedef [context_handle] void * PCONTEXT_HANDLE;
 typedef [context_handle] PCONTEXT_HANDLE PCONTEXT_HANDLE_SHARED;
@@ -56,4 +55,7 @@ interface Witness {
         [in] [string] [unique] LPWSTR ClientComputerName,
         [in] ULONG Flags,
         [in] ULONG KeepAliveTimeout);
+    DWORD WitnessrUnRegisterEx(
+        [in] handle_t Handle,
+        [in, out] PPCONTEXT_HANDLE ppContext);
 };

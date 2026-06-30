@@ -186,72 +186,71 @@ Based on the [hirochachacha/go-smb2 fork](https://github.com/oiweiwei/go-smb2.fo
 
 | Spec | Description | Package | Revision |
 |------|-------------|---------|----------|
-| [MS-ADTS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts) | Active Directory Technical Specification: Claims | [msrpc/adts](./msrpc/adts) ||
-| [MS-BKRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-bkrp) | BackupKey Remote Protocol | [msrpc/bkrp](./msrpc/bkrp) ||
-| [MS-BPAU](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-bpau) | BITS Peer-Caching: Peer Authentication Protocol | [msrpc/bpau](./msrpc/bpau) ||
-| [MS-BRWSA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-brwsa) | CIFS Browser Auxiliary Protocol | [msrpc/brwsa](./msrpc/brwsa) ||
-| [MS-CAPR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-capr) | Central Access Policy ID Retrieval Protocol | [msrpc/capr](./msrpc/capr) ||
-| [MS-CMPO](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-cmpo) | MSDTC Connection Manager: OleTx Transports Protocol | [msrpc/cmpo](./msrpc/cmpo) ||
-| [MS-CMRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-cmrp) | Failover Cluster: Management API (ClusAPI) Protocol | [msrpc/cmrp](./msrpc/cmrp) ||
-| [MS-DFSNM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dfsnm) | DFS Namespace Management Protocol | [msrpc/dfsnm](./msrpc/dfsnm) ||
-| [MS-DHCPM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dhcpm) | DHCP Server Management Protocol | [msrpc/dhcpm](./msrpc/dhcpm) ||
-| [MS-DLTM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dltm) | Distributed Link Tracking: Central Manager Protocol | [msrpc/dltm](./msrpc/dltm) ||
-| [MS-DLTW](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dltw) | Distributed Link Tracking: Workstation Protocol | [msrpc/dltw](./msrpc/dltw) ||
-| [MS-DNSP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dnsp) | DNS Server Management Protocol | [msrpc/dnsp](./msrpc/dnsp) ||
-| [MS-DRSR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-drsr) | Directory Replication Service (DRS) Remote Protocol | [msrpc/drsr](./msrpc/drsr) ||
-| [MS-DSSP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dssp) | Directory Services Setup Remote Protocol | [msrpc/dssp](./msrpc/dssp) ||
-| [MS-DTYP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp) | Windows Data Types | [msrpc/dtyp](./msrpc/dtyp) ||
-| [MS-EERR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-eerr) | ExtendedError Remote Data Structure | [msrpc/eerr](./msrpc/eerr) ||
-| [MS-EFSR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-efsr) | Encrypting File System Remote (EFSRPC) Protocol | [msrpc/efsr](./msrpc/efsr) ||
-| [MS-ERREF](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref) | Windows Error Codes | [msrpc/erref](./msrpc/erref) ||
-| [MS-EVEN6-BINXML](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-even6/c73573ae-1c90-43a2-a65f-ad7501155956) | EventLog BinXML encoding | [msrpc/binxml](./msrpc/binxml) ||
-| [MS-EVEN6](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-even6) | EventLog Remoting Protocol Version 6.0 | [msrpc/even6](./msrpc/even6) ||
-| [MS-EVEN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-even) | EventLog Remoting Protocol | [msrpc/even](./msrpc/even) ||
-| [MS-FASP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fasp) | Firewall and Advanced Security Protocol | [msrpc/fasp](./msrpc/fasp) ||
-| [MS-FAX](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fax) | Fax Server and Client Remote Protocol | [msrpc/fax](./msrpc/fax) ||
-| [MS-FRS1](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-frs1) | File Replication Service (FRS) Remote Protocol | [msrpc/frs1](./msrpc/frs1) ||
-| [MS-FSR2](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-frs2) | File Replication Service (FRS) Remote Protocol Version 2 | [msrpc/frs2](./msrpc/frs2) ||
-| [MS-ICPR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-icpr) | ICertPassage Remote Protocol | [msrpc/icpr](./msrpc/icpr) ||
-| [MS-IRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-irp) | IIS Inetinfo Remote Protocol | [msrpc/irp](./msrpc/irp) ||
-| [MS-LREC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-lrec) | Live Remote Event Capture (LREC) Protocol | [msrpc/lrec](./msrpc/lrec) ||
-| [MS-LSAD](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-lsad) | Local Security Authority (Domain Policy) Remote Protocol | [msrpc/lsad](./msrpc/lsad) ||
-| [MS-LSAT](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-lsat) | Local Security Authority (Translation Methods) Remote Protocol | [msrpc/lsat](./msrpc/lsat) ||
-| [MS-MQDS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-mqds) | MSMQ: Directory Service Protocol | [msrpc/mqds](./msrpc/mqds) ||
-| [MS-MQMP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-mqmp) | MSMQ: Queue Manager Client Protocol | [msrpc/mqmp](./msrpc/mqmp) ||
-| [MS-MQMQ](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-mqmq) | MSMQ: Data Structures | [msrpc/mqmq](./msrpc/mqmq) ||
-| [MS-MQMR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-mqmr) | MSMQ: Queue Manager Management Protocol | [msrpc/mqmr](./msrpc/mqmr) ||
-| [MS-MQQP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-mqqp) | MSMQ: Queue Manager to Queue Manager Protocol | [msrpc/mqqp](./msrpc/mqqp) ||
-| [MS-MQRR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-mqrr) | MSMQ: Queue Manager Remote Read Protocol | [msrpc/mqrr](./msrpc/mqrr) ||
-| [MS-MSRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-msrp) | Messenger Service Remote Protocol | [msrpc/msrp](./msrpc/msrp) ||
-| [MS-NEGOEX](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-negoex) | SPNEGO Extended Negotiation (NEGOEX) Security Mechanism | [msrpc/negoex](./msrpc/negoex) ||
-| [MS-NRPC-SECCHANNEL](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nrpc/fb50db72-7f71-478d-a180-12eb0ca3b36b) | Netlogon Secure Channel | [msrpc/nrpc](./msrpc/nrpc) ||
-| [MS-NRPC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nrpc) | Netlogon Remote Protocol | [msrpc/nrpc](./msrpc/nrpc) ||
-| [MS-NSPI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nspi) | Name Service Provider Interface (NSPI) Protocol | [msrpc/nspi](./msrpc/nspi) ||
-| [MS-OXABREF](https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oxabref) | Address Book NSPI Referral Protocol | - ||
-| [MS-OXCRPC](https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oxcrpc) | Wire Format Protocol | [msrpc/oxcrpc](./msrpc/oxcrpc) ||
-| [MS-OXNSPI](https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oxnspi) | Exchange NSPI Protocol | [msrpc/nspi](./msrpc/nspi) ||
-| [MS-PAC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pac) | Privilege Attribute Certificate Data Structure | [msrpc/pac](./msrpc/pac) ||
-| [MS-PAN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pan) | Print System Asynchronous Notification Protocol | [msrpc/pan](./msrpc/pan) ||
-| [MS-PAR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-par) | Print System Asynchronous Remote Protocol | [msrpc/par](./msrpc/par) ||
-| [MS-PCQ](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pcq) | Performance Counter Query Protocol | [msrpc/pcq](./msrpc/pcq) ||
-| [MS-RAA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-raa) | Remote Authorization API Protocol | [msrpc/raa](./msrpc/raa) ||
-| [MS-RAIW](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-raiw) | Remote Administrative Interface: WINS | [msrpc/raiw](./msrpc/raiw) ||
+| [MS-ADTS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts) | Active Directory Technical Specification: Claims | [msrpc/adts](./msrpc/adts) | 68.0 Major 5/25/2026 |
+| [MS-BKRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-bkrp) | BackupKey Remote Protocol | [msrpc/bkrp](./msrpc/bkrp) | 27.0 Major 4/23/2024 |
+| [MS-BPAU](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-bpau) | BITS Peer-Caching: Peer Authentication Protocol | [msrpc/bpau](./msrpc/bpau) | 4.2 None 6/1/2017 |
+| [MS-BRWSA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-brwsa) | CIFS Browser Auxiliary Protocol | [msrpc/brwsa](./msrpc/brwsa) | 15.0 Major 4/23/2024 |
+| [MS-CAPR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-capr) | Central Access Policy ID Retrieval Protocol | [msrpc/capr](./msrpc/capr) | 9.0 Major 4/23/2024 |
+| [MS-CMPO](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-cmpo) | MSDTC Connection Manager: OleTx Transports Protocol | [msrpc/cmpo](./msrpc/cmpo) | 31.0 Major 7/29/2024 |
+| [MS-CMRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-cmrp) | Failover Cluster: Management API (ClusAPI) Protocol | [msrpc/cmrp](./msrpc/cmrp) | 44.0 Major 8/11/2025 |
+| [MS-DFSNM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dfsnm) | DFS Namespace Management Protocol | [msrpc/dfsnm](./msrpc/dfsnm) | 33.0 Major 4/23/2024 |
+| [MS-DHCPM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dhcpm) | DHCP Server Management Protocol | [msrpc/dhcpm](./msrpc/dhcpm) | 36.0 None 9/16/2024 |
+| [MS-DLTM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dltm) | Distributed Link Tracking: Central Manager Protocol | [msrpc/dltm](./msrpc/dltm) | 9.1 None 6/1/2017 |
+| [MS-DLTW](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dltw) | Distributed Link Tracking: Workstation Protocol | [msrpc/dltw](./msrpc/dltw) | 17.0 Major 4/23/2024 |
+| [MS-DNSP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dnsp) | DNS Server Management Protocol | [msrpc/dnsp](./msrpc/dnsp) | 40.0 Major 3/9/2026 |
+| [MS-DRSR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-drsr) | Directory Replication Service (DRS) Remote Protocol | [msrpc/drsr](./msrpc/drsr) | 46.0 Major 3/9/2026 |
+| [MS-DSSP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dssp) | Directory Services Setup Remote Protocol | [msrpc/dssp](./msrpc/dssp) | 16.0 Major 4/23/2024 |
+| [MS-DTYP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp) | Windows Data Types | [msrpc/dtyp](./msrpc/dtyp) | 42.0 Major 11/19/2024 |
+| [MS-EERR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-eerr) | ExtendedError Remote Data Structure | [msrpc/eerr](./msrpc/eerr) | 16.0 Major 4/23/2024 |
+| [MS-EFSR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-efsr) | Encrypting File System Remote (EFSRPC) Protocol | [msrpc/efsr](./msrpc/efsr) | 32.0 None 9/16/2024 |
+| [MS-ERREF](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref) | Windows Error Codes | [msrpc/erref](./msrpc/erref) | 23.0 Major 11/19/2024 |
+| [MS-EVEN6-BINXML](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-even6/c73573ae-1c90-43a2-a65f-ad7501155956) | EventLog BinXML encoding | [msrpc/binxml](./msrpc/binxml) | 25.0 Major 4/23/2024 |
+| [MS-EVEN6](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-even6) | EventLog Remoting Protocol Version 6.0 | [msrpc/even6](./msrpc/even6) | 25.0 Major 4/23/2024 |
+| [MS-EVEN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-even) | EventLog Remoting Protocol | [msrpc/even](./msrpc/even) | 26.0 Major 4/23/2024 |
+| [MS-FASP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fasp) | Firewall and Advanced Security Protocol | [msrpc/fasp](./msrpc/fasp) | 36.0 Major 6/8/2026 |
+| [MS-FAX](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fax) | Fax Server and Client Remote Protocol | [msrpc/fax](./msrpc/fax) | 29.0 None 4/23/2024 |
+| [MS-FRS1](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-frs1) | File Replication Service (FRS) Remote Protocol | [msrpc/frs1](./msrpc/frs1) | 29.0 None 9/16/2024 |
+| [MS-FSR2](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-frs2) | File Replication Service (FRS) Remote Protocol Version 2 | [msrpc/frs2](./msrpc/frs2) | 30.0 Major 4/23/2024 |
+| [MS-ICPR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-icpr) | ICertPassage Remote Protocol | [msrpc/icpr](./msrpc/icpr) | 24.0 Major 4/23/2024 |
+| [MS-IRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-irp) | IIS Inetinfo Remote Protocol | [msrpc/irp](./msrpc/irp) | 13.0 Major 4/23/2024 |
+| [MS-LREC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-lrec) | Live Remote Event Capture (LREC) Protocol | [msrpc/lrec](./msrpc/lrec) | 5.0 Major 4/23/2024 |
+| [MS-LSAD](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-lsad) | Local Security Authority (Domain Policy) Remote Protocol | [msrpc/lsad](./msrpc/lsad) | 49.0 Major 6/10/2025 |
+| [MS-LSAT](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-lsat) | Local Security Authority (Translation Methods) Remote Protocol | [msrpc/lsat](./msrpc/lsat) | 33.0 Major 5/1/2024 |
+| [MS-MQDS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-mqds) | MSMQ: Directory Service Protocol | [msrpc/mqds](./msrpc/mqds) | 24.1 None 6/1/2017 |
+| [MS-MQMP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-mqmp) | MSMQ: Queue Manager Client Protocol | [msrpc/mqmp](./msrpc/mqmp) | 31.0 Major 4/23/2024 |
+| [MS-MQMQ](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-mqmq) | MSMQ: Data Structures | [msrpc/mqmq](./msrpc/mqmq) | 26.0 Major 4/23/2024 |
+| [MS-MQMR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-mqmr) | MSMQ: Queue Manager Management Protocol | [msrpc/mqmr](./msrpc/mqmr) | 18.0 Major 4/23/2024 |
+| [MS-MQQP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-mqqp) | MSMQ: Queue Manager to Queue Manager Protocol | [msrpc/mqqp](./msrpc/mqqp) | 25.0 Major 4/23/2024 |
+| [MS-MQRR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-mqrr) | MSMQ: Queue Manager Remote Read Protocol | [msrpc/mqrr](./msrpc/mqrr) | 29.0 Major 11/21/2025 |
+| [MS-MSRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-msrp) | Messenger Service Remote Protocol | [msrpc/msrp](./msrpc/msrp) | 10.3 None 6/1/2017 |
+| [MS-NEGOEX](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-negoex) | SPNEGO Extended Negotiation (NEGOEX) Security Mechanism | [msrpc/negoex](./msrpc/negoex) | 4.0 Major 4/23/2024 |
+| [MS-NRPC-SECCHANNEL](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nrpc/fb50db72-7f71-478d-a180-12eb0ca3b36b) | Netlogon Secure Channel | [msrpc/nrpc](./msrpc/nrpc) | 49.0 Major 2/9/2026 |
+| [MS-NRPC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nrpc) | Netlogon Remote Protocol | [msrpc/nrpc](./msrpc/nrpc) | 49.0 Major 2/9/2026 |
+| [MS-NSPI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nspi) | Name Service Provider Interface (NSPI) Protocol | [msrpc/nspi](./msrpc/nspi) | 16.0 Major 4/23/2024 |
+| [MS-OXABREF](https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oxabref) | Address Book NSPI Referral Protocol | [msrpc/oxabref](./msrpc/oxabref) | 15.0 Major 5/20/2025 |
+| [MS-OXCRPC](https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oxcrpc) | Wire Format Protocol | [msrpc/oxcrpc](./msrpc/oxcrpc) | 25.0 Major 5/20/2025 |
+| [MS-OXNSPI](https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oxnspi) | Exchange NSPI Protocol | [msrpc/nspi](./msrpc/nspi) | 15.0 Major 5/20/2025 |
+| [MS-PAC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pac) | Privilege Attribute Certificate Data Structure | [msrpc/pac](./msrpc/pac) | 26.0 Major 6/10/2024 |
+| [MS-PAN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pan) | Print System Asynchronous Notification Protocol | [msrpc/pan](./msrpc/pan) | 19.0 Major 4/23/2024 |
+| [MS-PAR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-par) | Print System Asynchronous Remote Protocol | [msrpc/par](./msrpc/par) | 19.0 Major 8/11/2025 |
+| [MS-PCQ](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pcq) | Performance Counter Query Protocol | [msrpc/pcq](./msrpc/pcq) | 18.0 Major 4/23/2024 |
+| [MS-RAA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-raa) | Remote Authorization API Protocol | [msrpc/raa](./msrpc/raa) | 11.0 Major 4/23/2024 |
+| [MS-RAIW](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-raiw) | Remote Administrative Interface: WINS | [msrpc/raiw](./msrpc/raiw) | 14.0 Major 4/23/2024 |
 | [MS-RPCE-EPM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rpce) / [C706-EPM](https://pubs.opengroup.org/onlinepubs/9629399/apdxo.htm#tagcjh_35) | Endpoint Mapper | [msrpc/epm](./msrpc/epm) ||
-| [MS-RPCL](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rpcl) | RPC Location Services Extensions | [msrpc/rpcl](./msrpc/rpcl) ||
-| [MS-RPRN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rprn) | Print System Remote Protocol | [msrpc/rprn](./msrpc/rprn) ||
-| [MS-RRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rrp) | Windows Remote Registry Protocol | [msrpc/rrp](./msrpc/rrp) ||
-| [MS-RSP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rsp) | Remote Shutdown Protocol | [msrpc/rsp](./msrpc/rsp) ||
-| [MS-SAMR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-samr) | Security Account Manager (SAM) Remote Protocol | [msrpc/samr](./msrpc/samr) ||
-| [MS-SCH](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tsch) | Task Scheduler Service Remoting Protocol | [msrpc/sch](./msrpc/sch) ||
-| [MS-SCMR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-scmr) | Service Control Manager Remote Protocol | [msrpc/scmr](./msrpc/scmr) ||
-| [MS-SRVS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-srvs) | Server Service Remote Protocol | [msrpc/srvs](./msrpc/srvs) ||
-| [MS-SSP](https://learn.microsoft.com/en-us/openspecs/sharepoint_protocols/ms-ssp) | Single Sign-On Protocol | [msrpc/ssp](./msrpc/ssp) ||
-| [MS-SWN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-swn) | Service Witness Protocol | [msrpc/swn](./msrpc/swn) ||
-| [MS-TRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-trp) | Telephony Remote Protocol | [msrpc/trp](./msrpc/trp) ||
-| [MS-TSCH](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tsch) | Task Scheduler Service Remoting Protocol | [msrpc/tsch](./msrpc/tsch) ||
-| [MS-TSGU](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tsgu) | Terminal Services Gateway Server Protocol | [msrpc/tsgu](./msrpc/tsgu) ||
-| [MS-TSTS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tsts) | Terminal Services Runtime Interface Protocol | [msrpc/tsts](./msrpc/tsts) ||
-| [MS-W32T](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-w32t) | W32Time Remote Protocol | [msrpc/w32t](./msrpc/w32t) ||
+| [MS-RPCL](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rpcl) | RPC Location Services Extensions | [msrpc/rpcl](./msrpc/rpcl) | 12.1 None 6/1/2017 |
+| [MS-RPRN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rprn) | Print System Remote Protocol | [msrpc/rprn](./msrpc/rprn) | 39.0 8/11/2025 |
+| [MS-RRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rrp) | Windows Remote Registry Protocol | [msrpc/rrp](./msrpc/rrp) | 39.0 Major 10/21/2024 |
+| [MS-RSP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rsp) | Remote Shutdown Protocol | [msrpc/rsp](./msrpc/rsp) | 12.0 Major 4/23/2024 |
+| [MS-SAMR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-samr) | Security Account Manager (SAM) Remote Protocol | [msrpc/samr](./msrpc/samr) | 51.1 Minor 4/27/2026 |
+| [MS-SCMR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-scmr) | Service Control Manager Remote Protocol | [msrpc/scmr](./msrpc/scmr) | 35.0 Major 8/11/2025 |
+| [MS-SRVS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-srvs) | Server Service Remote Protocol | [msrpc/srvs](./msrpc/srvs) | 39.0 None 9/16/2024 |
+| [MS-SSP](https://learn.microsoft.com/en-us/openspecs/sharepoint_protocols/ms-ssp) | Single Sign-On Protocol | [msrpc/ssp](./msrpc/ssp) | 7.0 Major 10/5/2021 |
+| [MS-SWN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-swn) | Service Witness Protocol | [msrpc/swn](./msrpc/swn) | 14.0 None 11/19/2024 |
+| [MS-TRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-trp) | Telephony Remote Protocol | [msrpc/trp](./msrpc/trp) | 20.0 Major 4/23/2024 |
+| [MS-TSCH](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tsch) | Task Scheduler Service Remoting Protocol | [msrpc/tsch](./msrpc/tsch) | 28.0 Major 4/23/2024 |
+| [MS-TSGU](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tsgu) | Terminal Services Gateway Server Protocol | [msrpc/tsgu](./msrpc/tsgu) | 42.0 Major 4/23/2024 |
+| [MS-TSTS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tsts) | Terminal Services Runtime Interface Protocol | [msrpc/tsts](./msrpc/tsts) | 33.0 Major 11/21/2025 |
+| [MS-W32T](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-w32t) | W32Time Remote Protocol | [msrpc/w32t](./msrpc/w32t) | 23.0 Major 4/23/2024 |
 | [MS-WDSC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wdsc) | Windows Deployment Services Control Protocol | [msrpc/wdsc](./msrpc/wdsc) ||
 | [MS-WKST](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wkst) | Workstation Service Remote Protocol | [msrpc/wkst](./msrpc/wkst) | 32.0 Major 4/23/2024 |
 

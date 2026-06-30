@@ -1,27 +1,27 @@
 // XXX: import.
 import "ms-dtyp.idl";
 
- #define MESSAGE_SIGNATURE   0x535458454f47454e // i64  // "NEGOEXTS"
+ #define MESSAGE_SIGNATURE   0x535458454f47454e /* go-msrpc: trim i64 */  // "NEGOEXTS"
   
- typedef struct
+ /* go-msrpc: missing typedef */ typedef struct
  {
     ULONG ByteArrayOffset; // each element contains a byte
     ULONG ByteArrayLength;
  } BYTE_VECTOR;
   
- typedef struct
+ /* go-msrpc: missing typedef */ typedef struct
  {
    ULONG AuthSchemeArrayOffset;  // each element contains an AUTH_SCHEME
    USHORT AuthSchemeCount;
  } AUTH_SCHEME_VECTOR;
   
- typedef struct
+ /* go-msrpc: missing typedef */ typedef struct
  {
    ULONG ExtensionArrayOffset;  // each element contains an EXTENSION
    USHORT ExtensionCount;
  } EXTENSION_VECTOR;
   
- typedef struct
+ /* go-msrpc: missing typedef */ typedef struct
  {
    ULONG ExtensionType; // negative extensions are critical
    BYTE_VECTOR ExtensionValue;
@@ -32,7 +32,7 @@ import "ms-dtyp.idl";
  //
   
  #define CHECKSUM_SCHEME_RFC3961  1
- typedef struct
+ /* go-msrpc: missing typedef */ typedef struct
  {
    ULONG cbHeaderLength;
    ULONG ChecksumScheme;
@@ -43,7 +43,7 @@ import "ms-dtyp.idl";
  typedef GUID AUTH_SCHEME;
 typedef GUID CONVERSATION_ID;
  
- typedef enum
+ /* go-msrpc: missing typedef */ typedef enum
  {
    MESSAGE_TYPE_INITIATOR_NEGO = 0,
    MESSAGE_TYPE_ACCEPTOR_NEGO,
@@ -55,7 +55,7 @@ typedef GUID CONVERSATION_ID;
    MESSAGE_TYPE_ALERT,
 } MESSAGE_TYPE;
   
- typedef struct
+ /* go-msrpc: missing typedef */ typedef struct
  {
    ULONG64 Signature; // contains MESSAGE_SIGNATURE
    MESSAGE_TYPE MessageType;
@@ -69,7 +69,7 @@ typedef GUID CONVERSATION_ID;
    CONVERSATION_ID ConversationId;
 } MESSAGE_HEADER;
   
- typedef struct
+ /* go-msrpc: missing typedef */ typedef struct
  {
    MESSAGE_HEADER Header;  
      // MESSAGE_TYPE_INITIATOR_NEGO for the initiator,
@@ -80,7 +80,7 @@ typedef GUID CONVERSATION_ID;
    EXTENSION_VECTOR Extensions;
 } NEGO_MESSAGE;
  
- typedef struct
+ /* go-msrpc: missing typedef */ typedef struct
  {
    MESSAGE_HEADER Header;
      // MESSAGE_TYPE_CHALLENGE for the acceptor, or
@@ -92,7 +92,7 @@ typedef GUID CONVERSATION_ID;
      // contains the opaque handshake message for the authentication scheme
 } EXCHANGE_MESSAGE;
  
- typedef struct
+ /* go-msrpc: missing typedef */ typedef struct
  {
    MESSAGE_HEADER Header; // MESSAGE_TYPE_VERIFY
    AUTH_SCHEME AuthScheme;
@@ -101,7 +101,7 @@ typedef GUID CONVERSATION_ID;
      // exchanged messages in the order they were sent.
 } VERIFY_MESSAGE;
  
- typedef struct
+ /* go-msrpc: missing typedef */ typedef struct
  {
    ULONG AlertType;
    BYTE_VECTOR AlertValue;
@@ -119,19 +119,19 @@ typedef GUID CONVERSATION_ID;
   
  #define ALERT_VERIFY_NO_KEY  1
   
- typedef struct
+ /* go-msrpc: missing typedef */ typedef struct
  {
    ULONG cbHeaderLength;
    ULONG Reason;
 } ALERT_PULSE;
  
- typedef struct
+ /* go-msrpc: missing typedef */ typedef struct
  {
    ULONG AlertArrayOffset; // the element is an ALERT
    USHORT AlertCount; // contains the number of alerts
 } ALERT_VECTOR;
  
- typedef struct
+ /* go-msrpc: missing typedef */ typedef struct
  {
    MESSAGE_HEADER Header;
    AUTH_SCHEME AuthScheme;

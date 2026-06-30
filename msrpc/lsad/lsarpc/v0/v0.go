@@ -1370,12 +1370,219 @@ type LsarpcClient interface {
 	//	+----------------------------------------+----------------------------------------------------------------------------------+
 	SetForestTrustInformation(context.Context, *SetForestTrustInformationRequest, ...dcerpc.CallOption) (*SetForestTrustInformationResponse, error)
 
+	// Opnum75NotUsedOnWire operation.
+	// Opnum75NotUsedOnWire
+
+	// Opnum76NotUsedOnWire operation.
+	// Opnum76NotUsedOnWire
+
+	// Opnum77NotUsedOnWire operation.
+	// Opnum77NotUsedOnWire
+
+	// Opnum78NotUsedOnWire operation.
+	// Opnum78NotUsedOnWire
+
+	// Opnum79NotUsedOnWire operation.
+	// Opnum79NotUsedOnWire
+
+	// Opnum80NotUsedOnWire operation.
+	// Opnum80NotUsedOnWire
+
+	// Opnum81NotUsedOnWire operation.
+	// Opnum81NotUsedOnWire
+
+	// Opnum82NotUsedOnWire operation.
+	// Opnum82NotUsedOnWire
+
+	// Opnum83NotUsedOnWire operation.
+	// Opnum83NotUsedOnWire
+
+	// Opnum84NotUsedOnWire operation.
+	// Opnum84NotUsedOnWire
+
+	// Opnum85NotUsedOnWire operation.
+	// Opnum85NotUsedOnWire
+
+	// Opnum86NotUsedOnWire operation.
+	// Opnum86NotUsedOnWire
+
+	// Opnum87NotUsedOnWire operation.
+	// Opnum87NotUsedOnWire
+
+	// Opnum88NotUsedOnWire operation.
+	// Opnum88NotUsedOnWire
+
+	// Opnum89NotUsedOnWire operation.
+	// Opnum89NotUsedOnWire
+
+	// Opnum90NotUsedOnWire operation.
+	// Opnum90NotUsedOnWire
+
+	// Opnum91NotUsedOnWire operation.
+	// Opnum91NotUsedOnWire
+
+	// Opnum92NotUsedOnWire operation.
+	// Opnum92NotUsedOnWire
+
+	// Opnum93NotUsedOnWire operation.
+	// Opnum93NotUsedOnWire
+
+	// Opnum94NotUsedOnWire operation.
+	// Opnum94NotUsedOnWire
+
+	// Opnum95NotUsedOnWire operation.
+	// Opnum95NotUsedOnWire
+
+	// Opnum96NotUsedOnWire operation.
+	// Opnum96NotUsedOnWire
+
+	// Opnum97NotUsedOnWire operation.
+	// Opnum97NotUsedOnWire
+
+	// Opnum98NotUsedOnWire operation.
+	// Opnum98NotUsedOnWire
+
+	// Opnum99NotUsedOnWire operation.
+	// Opnum99NotUsedOnWire
+
+	// Opnum100NotUsedOnWire operation.
+	// Opnum100NotUsedOnWire
+
+	// Opnum101NotUsedOnWire operation.
+	// Opnum101NotUsedOnWire
+
+	// Opnum102NotUsedOnWire operation.
+	// Opnum102NotUsedOnWire
+
+	// Opnum103NotUsedOnWire operation.
+	// Opnum103NotUsedOnWire
+
+	// Opnum104NotUsedOnWire operation.
+	// Opnum104NotUsedOnWire
+
+	// Opnum105NotUsedOnWire operation.
+	// Opnum105NotUsedOnWire
+
+	// Opnum106NotUsedOnWire operation.
+	// Opnum106NotUsedOnWire
+
+	// Opnum107NotUsedOnWire operation.
+	// Opnum107NotUsedOnWire
+
+	// Opnum108NotUsedOnWire operation.
+	// Opnum108NotUsedOnWire
+
+	// Opnum109NotUsedOnWire operation.
+	// Opnum109NotUsedOnWire
+
+	// Opnum110NotUsedOnWire operation.
+	// Opnum110NotUsedOnWire
+
+	// Opnum111NotUsedOnWire operation.
+	// Opnum111NotUsedOnWire
+
+	// Opnum112NotUsedOnWire operation.
+	// Opnum112NotUsedOnWire
+
+	// Opnum113NotUsedOnWire operation.
+	// Opnum113NotUsedOnWire
+
+	// Opnum114NotUsedOnWire operation.
+	// Opnum114NotUsedOnWire
+
+	// Opnum115NotUsedOnWire operation.
+	// Opnum115NotUsedOnWire
+
+	// Opnum116NotUsedOnWire operation.
+	// Opnum116NotUsedOnWire
+
+	// Opnum117NotUsedOnWire operation.
+	// Opnum117NotUsedOnWire
+
+	// Opnum118NotUsedOnWire operation.
+	// Opnum118NotUsedOnWire
+
+	// Opnum119NotUsedOnWire operation.
+	// Opnum119NotUsedOnWire
+
+	// Opnum120NotUsedOnWire operation.
+	// Opnum120NotUsedOnWire
+
+	// Opnum121NotUsedOnWire operation.
+	// Opnum121NotUsedOnWire
+
+	// Opnum122NotUsedOnWire operation.
+	// Opnum122NotUsedOnWire
+
+	// Opnum123NotUsedOnWire operation.
+	// Opnum123NotUsedOnWire
+
+	// Opnum124NotUsedOnWire operation.
+	// Opnum124NotUsedOnWire
+
+	// Opnum125NotUsedOnWire operation.
+	// Opnum125NotUsedOnWire
+
+	// Opnum126NotUsedOnWire operation.
+	// Opnum126NotUsedOnWire
+
+	// Opnum127NotUsedOnWire operation.
+	// Opnum127NotUsedOnWire
+
+	// Opnum128NotUsedOnWire operation.
+	// Opnum128NotUsedOnWire
+
+	// LsarCreateTrustedDomainEx3 operation.
+	CreateTrustedDomainEx3(context.Context, *CreateTrustedDomainEx3Request, ...dcerpc.CallOption) (*CreateTrustedDomainEx3Response, error)
+
+	// LsarOpenPolicy3 operation.
+	OpenPolicy3(context.Context, *OpenPolicy3Request, ...dcerpc.CallOption) (*OpenPolicy3Response, error)
+
+	// Opnum131NotUsedOnWire operation.
+	// Opnum131NotUsedOnWire
+
+	// LsarQueryForestTrustInformation2 operation.
+	QueryForestTrustInformation2(context.Context, *QueryForestTrustInformation2Request, ...dcerpc.CallOption) (*QueryForestTrustInformation2Response, error)
+
+	// LsarSetForestTrustInformation2 operation.
+	SetForestTrustInformation2(context.Context, *SetForestTrustInformation2Request, ...dcerpc.CallOption) (*SetForestTrustInformation2Response, error)
+
+	// Opnum134NotUsedOnWire operation.
+	// Opnum134NotUsedOnWire
+
+	// LsarOpenPolicyWithCreds operation.
+	OpenPolicyWithCreds(context.Context, *OpenPolicyWithCredsRequest, ...dcerpc.CallOption) (*OpenPolicyWithCredsResponse, error)
+
+	// LsarOpenSecret2 operation.
+	OpenSecret2(context.Context, *OpenSecret2Request, ...dcerpc.CallOption) (*OpenSecret2Response, error)
+
+	// LsarCreateSecret2 operation.
+	CreateSecret2(context.Context, *CreateSecret2Request, ...dcerpc.CallOption) (*CreateSecret2Response, error)
+
+	// LsarSetSecret2 operation.
+	SetSecret2(context.Context, *SetSecret2Request, ...dcerpc.CallOption) (*SetSecret2Response, error)
+
+	// LsarQuerySecret2 operation.
+	QuerySecret2(context.Context, *QuerySecret2Request, ...dcerpc.CallOption) (*QuerySecret2Response, error)
+
+	// LsarStorePrivateData2 operation.
+	StorePrivateData2(context.Context, *StorePrivateData2Request, ...dcerpc.CallOption) (*StorePrivateData2Response, error)
+
+	// LsarRetrievePrivateData2 operation.
+	RetrievePrivateData2(context.Context, *RetrievePrivateData2Request, ...dcerpc.CallOption) (*RetrievePrivateData2Response, error)
+
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
 	// Conn returns the client connection (unsafe)
 	Conn() dcerpc.Conn
 }
+
+// MaxCipherSize represents the MAX_CIPHER_SIZE RPC constant
+var MaxCipherSize = 131088
+
+// MaxAuthblobSize represents the MAX_AUTHBLOB_SIZE RPC constant
+var MaxAuthblobSize = 65536
 
 // Handle structure represents LSAPR_HANDLE RPC structure.
 type Handle dcetypes.ContextHandle
@@ -3201,6 +3408,19 @@ var (
 	// TrustedDomainSupportedEncryptionTypes: The trusted domain information contains the
 	// TRUSTED_DOMAIN_SUPPORTED_ENCRYPTION_TYPES structure specified in section 2.2.7.18.
 	TrustedInformationClassDomainSupportedEncryptionTypes TrustedInformationClass = 13
+	// TrustedDomainAuthInformationInternalAes: The trusted domain information contains
+	// the LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL_AES structure specified in section
+	// 2.2.7.29.
+	TrustedInformationClassDomainAuthInformationInternalAES TrustedInformationClass = 14
+	// TrustedDomainFullInformationInternalAes: The trusted domain information contains
+	// the LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION_INTERNAL_AES structure specified in section
+	// 2.2.7.30.
+	//
+	// The following citation contains a timeline of when each enumeration value was introduced.<32>
+	//
+	// The values in this enumeration are used in defining the contents of the LSAPR_TRUSTED_DOMAIN_INFO
+	// union.
+	TrustedInformationClassDomainFullInformationInternalAES TrustedInformationClass = 15
 )
 
 func (o TrustedInformationClass) String() string {
@@ -3231,6 +3451,10 @@ func (o TrustedInformationClass) String() string {
 		return "TrustedInformationClassDomainFullInformation2Internal"
 	case TrustedInformationClassDomainSupportedEncryptionTypes:
 		return "TrustedInformationClassDomainSupportedEncryptionTypes"
+	case TrustedInformationClassDomainAuthInformationInternalAES:
+		return "TrustedInformationClassDomainAuthInformationInternalAES"
+	case TrustedInformationClassDomainFullInformationInternalAES:
+		return "TrustedInformationClassDomainFullInformationInternalAES"
 	}
 	return "Invalid"
 }
@@ -3251,6 +3475,11 @@ var (
 	// ForestTrustDomainInfo:  This field specifies a record containing identification
 	// and name information.
 	ForestTrustRecordTypeDomainInfo ForestTrustRecordType = 2
+	// ForestTrustBinaryInfo:  This field specifies an opaque record.
+	ForestTrustRecordTypeBinaryInfo ForestTrustRecordType = 3
+	// ForestTrustScannerInfo: This field specifies a record containing identification and
+	// name information created by the PDC FSMO Role DC (see [MS-ADTS] section 3.1.1.6.4).
+	ForestTrustRecordTypeScannerInfo ForestTrustRecordType = 4
 	// ForestTrustRecordTypeLast: The highest record value for this type is equal to the
 	// ForestTrustScannerInfo enum value (4).
 	ForestTrustRecordTypeLast ForestTrustRecordType = 2
@@ -3264,6 +3493,10 @@ func (o ForestTrustRecordType) String() string {
 		return "ForestTrustRecordTypeTopLevelNameEx"
 	case ForestTrustRecordTypeDomainInfo:
 		return "ForestTrustRecordTypeDomainInfo"
+	case ForestTrustRecordTypeBinaryInfo:
+		return "ForestTrustRecordTypeBinaryInfo"
+	case ForestTrustRecordTypeScannerInfo:
+		return "ForestTrustRecordTypeScannerInfo"
 	case ForestTrustRecordTypeLast:
 		return "ForestTrustRecordTypeLast"
 	}
@@ -3483,6 +3716,102 @@ func (o *ForestTrustDomainInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
+// ForestTrustScannerInfo structure represents LSA_FOREST_TRUST_SCANNER_INFO RPC structure.
+type ForestTrustScannerInfo struct {
+	DomainSID   *dtyp.SID      `idl:"name:DomainSid" json:"domain_sid"`
+	DNSName     *UnicodeString `idl:"name:DnsName" json:"dns_name"`
+	NetBIOSName *UnicodeString `idl:"name:NetbiosName" json:"netbios_name"`
+}
+
+func (o *ForestTrustScannerInfo) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *ForestTrustScannerInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(7); err != nil {
+		return err
+	}
+	if o.DomainSID != nil {
+		_ptr_DomainSid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.DomainSID != nil {
+				if err := o.DomainSID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&dtyp.SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.DomainSID, _ptr_DomainSid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.DNSName != nil {
+		if err := o.DNSName.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&UnicodeString{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.NetBIOSName != nil {
+		if err := o.NetBIOSName.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&UnicodeString{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ForestTrustScannerInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(7); err != nil {
+		return err
+	}
+	_ptr_DomainSid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.DomainSID == nil {
+			o.DomainSID = &dtyp.SID{}
+		}
+		if err := o.DomainSID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_DomainSid := func(ptr interface{}) { o.DomainSID = *ptr.(**dtyp.SID) }
+	if err := w.ReadPointer(&o.DomainSID, _s_DomainSid, _ptr_DomainSid); err != nil {
+		return err
+	}
+	if o.DNSName == nil {
+		o.DNSName = &UnicodeString{}
+	}
+	if err := o.DNSName.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.NetBIOSName == nil {
+		o.NetBIOSName = &UnicodeString{}
+	}
+	if err := o.NetBIOSName.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
 // ForestTrustRecord structure represents LSA_FOREST_TRUST_RECORD RPC structure.
 //
 // The LSA_FOREST_TRUST_RECORD structure is used to communicate the type, creation time,
@@ -3588,6 +3917,7 @@ type ForestTrustRecord_ForestTrustData struct {
 	//
 	// *ForestTrustData_TopLevelName
 	// *ForestTrustData_DomainInfo
+	// *ForestTrustData_ScannerInfo
 	// *ForestTrustData_Data
 	Value is_ForestTrustRecord_ForestTrustData `json:"value"`
 }
@@ -3604,6 +3934,10 @@ func (o *ForestTrustRecord_ForestTrustData) GetValue() any {
 	case *ForestTrustData_DomainInfo:
 		if value != nil {
 			return value.DomainInfo
+		}
+	case *ForestTrustData_ScannerInfo:
+		if value != nil {
+			return value.ScannerInfo
 		}
 	case *ForestTrustData_Data:
 		if value != nil {
@@ -3633,6 +3967,8 @@ func (o *ForestTrustRecord_ForestTrustData) NDRSwitchValue(sw uint16) uint16 {
 		return uint16(0)
 	case *ForestTrustData_DomainInfo:
 		return uint16(2)
+	case *ForestTrustData_ScannerInfo:
+		return uint16(4)
 	}
 	return uint16(0)
 }
@@ -3672,6 +4008,17 @@ func (o *ForestTrustRecord_ForestTrustData) MarshalUnionNDR(ctx context.Context,
 				return err
 			}
 		}
+	case uint16(4):
+		_o, _ := o.Value.(*ForestTrustData_ScannerInfo)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ForestTrustData_ScannerInfo{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
 	default:
 		_o, _ := o.Value.(*ForestTrustData_Data)
 		if _o != nil {
@@ -3707,6 +4054,11 @@ func (o *ForestTrustRecord_ForestTrustData) UnmarshalUnionNDR(ctx context.Contex
 		}
 	case uint16(2):
 		o.Value = &ForestTrustData_DomainInfo{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(4):
+		o.Value = &ForestTrustData_ScannerInfo{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -3781,6 +4133,37 @@ func (o *ForestTrustData_DomainInfo) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	return nil
 }
 
+// ForestTrustData_ScannerInfo structure represents ForestTrustRecord_ForestTrustData RPC union arm.
+//
+// It has following labels: 4
+type ForestTrustData_ScannerInfo struct {
+	ScannerInfo *ForestTrustScannerInfo `idl:"name:ScannerInfo" json:"scanner_info"`
+}
+
+func (*ForestTrustData_ScannerInfo) is_ForestTrustRecord_ForestTrustData() {}
+
+func (o *ForestTrustData_ScannerInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.ScannerInfo != nil {
+		if err := o.ScannerInfo.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&ForestTrustScannerInfo{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ForestTrustData_ScannerInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.ScannerInfo == nil {
+		o.ScannerInfo = &ForestTrustScannerInfo{}
+	}
+	if err := o.ScannerInfo.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
 // ForestTrustData_Data structure represents ForestTrustRecord_ForestTrustData RPC default union arm.
 type ForestTrustData_Data struct {
 	Data *ForestTrustBinaryData `idl:"name:Data" json:"data"`
@@ -3805,6 +4188,379 @@ func (o *ForestTrustData_Data) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		o.Data = &ForestTrustBinaryData{}
 	}
 	if err := o.Data.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ForestTrustRecord2 structure represents LSA_FOREST_TRUST_RECORD2 RPC structure.
+type ForestTrustRecord2 struct {
+	Flags           uint32                              `idl:"name:Flags" json:"flags"`
+	ForestTrustType ForestTrustRecordType               `idl:"name:ForestTrustType" json:"forest_trust_type"`
+	Time            *dtyp.LargeInteger                  `idl:"name:Time" json:"time"`
+	ForestTrustData *ForestTrustRecord2_ForestTrustData `idl:"name:ForestTrustData;switch_is:ForestTrustType" json:"forest_trust_data"`
+}
+
+func (o *ForestTrustRecord2) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *ForestTrustRecord2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(8); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if err := w.WriteEnum(uint16(o.ForestTrustType)); err != nil {
+		return err
+	}
+	if o.Time != nil {
+		if err := o.Time.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	_swForestTrustData := uint16(o.ForestTrustType)
+	if o.ForestTrustData != nil {
+		if err := o.ForestTrustData.MarshalUnionNDR(ctx, w, _swForestTrustData); err != nil {
+			return err
+		}
+	} else {
+		if err := (&ForestTrustRecord2_ForestTrustData{}).MarshalUnionNDR(ctx, w, _swForestTrustData); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *ForestTrustRecord2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(8); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.ForestTrustType)); err != nil {
+		return err
+	}
+	if o.Time == nil {
+		o.Time = &dtyp.LargeInteger{}
+	}
+	if err := o.Time.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.ForestTrustData == nil {
+		o.ForestTrustData = &ForestTrustRecord2_ForestTrustData{}
+	}
+	_swForestTrustData := uint16(o.ForestTrustType)
+	if err := o.ForestTrustData.UnmarshalUnionNDR(ctx, w, _swForestTrustData); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ForestTrustRecord2_ForestTrustData structure represents LSA_FOREST_TRUST_RECORD2 union anonymous member.
+type ForestTrustRecord2_ForestTrustData struct {
+	// Types that are assignable to Value
+	//
+	// *ForestTrustRecord2_ForestTrustData_TopLevelName
+	// *ForestTrustRecord2_ForestTrustData_DomainInfo
+	// *ForestTrustRecord2_ForestTrustData_BinaryData
+	// *ForestTrustRecord2_ForestTrustData_ScannerInfo
+	Value is_ForestTrustRecord2_ForestTrustData `json:"value"`
+}
+
+func (o *ForestTrustRecord2_ForestTrustData) GetValue() any {
+	if o == nil {
+		return nil
+	}
+	switch value := (interface{})(o.Value).(type) {
+	case *ForestTrustRecord2_ForestTrustData_TopLevelName:
+		if value != nil {
+			return value.TopLevelName
+		}
+	case *ForestTrustRecord2_ForestTrustData_DomainInfo:
+		if value != nil {
+			return value.DomainInfo
+		}
+	case *ForestTrustRecord2_ForestTrustData_BinaryData:
+		if value != nil {
+			return value.BinaryData
+		}
+	case *ForestTrustRecord2_ForestTrustData_ScannerInfo:
+		if value != nil {
+			return value.ScannerInfo
+		}
+	}
+	return nil
+}
+
+type is_ForestTrustRecord2_ForestTrustData interface {
+	ndr.Marshaler
+	ndr.Unmarshaler
+	is_ForestTrustRecord2_ForestTrustData()
+}
+
+func (o *ForestTrustRecord2_ForestTrustData) NDRSwitchValue(sw uint16) uint16 {
+	if o == nil {
+		return uint16(0)
+	}
+	switch (interface{})(o.Value).(type) {
+	case *ForestTrustRecord2_ForestTrustData_TopLevelName:
+		switch sw {
+		case uint16(0),
+			uint16(1):
+			return sw
+		}
+		return uint16(0)
+	case *ForestTrustRecord2_ForestTrustData_DomainInfo:
+		return uint16(2)
+	case *ForestTrustRecord2_ForestTrustData_BinaryData:
+		return uint16(3)
+	case *ForestTrustRecord2_ForestTrustData_ScannerInfo:
+		return uint16(4)
+	}
+	return uint16(0)
+}
+
+func (o *ForestTrustRecord2_ForestTrustData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
+		return err
+	}
+	// ms_union
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	switch sw {
+	case uint16(0),
+		uint16(1):
+		_o, _ := o.Value.(*ForestTrustRecord2_ForestTrustData_TopLevelName)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ForestTrustRecord2_ForestTrustData_TopLevelName{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint16(2):
+		_o, _ := o.Value.(*ForestTrustRecord2_ForestTrustData_DomainInfo)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ForestTrustRecord2_ForestTrustData_DomainInfo{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint16(3):
+		_o, _ := o.Value.(*ForestTrustRecord2_ForestTrustData_BinaryData)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ForestTrustRecord2_ForestTrustData_BinaryData{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint16(4):
+		_o, _ := o.Value.(*ForestTrustRecord2_ForestTrustData_ScannerInfo)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ForestTrustRecord2_ForestTrustData_ScannerInfo{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	default:
+		return fmt.Errorf("unsupported switch case value %v", sw)
+	}
+	return nil
+}
+
+func (o *ForestTrustRecord2_ForestTrustData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	// ms_union
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	switch sw {
+	case uint16(0),
+		uint16(1):
+		o.Value = &ForestTrustRecord2_ForestTrustData_TopLevelName{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(2):
+		o.Value = &ForestTrustRecord2_ForestTrustData_DomainInfo{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(3):
+		o.Value = &ForestTrustRecord2_ForestTrustData_BinaryData{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(4):
+		o.Value = &ForestTrustRecord2_ForestTrustData_ScannerInfo{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	default:
+		return fmt.Errorf("unsupported switch case value %v", sw)
+	}
+	return nil
+}
+
+// ForestTrustRecord2_ForestTrustData_TopLevelName structure represents ForestTrustRecord2_ForestTrustData RPC union arm.
+//
+// It has following labels: 0, 1
+type ForestTrustRecord2_ForestTrustData_TopLevelName struct {
+	TopLevelName *UnicodeString `idl:"name:TopLevelName" json:"top_level_name"`
+}
+
+func (*ForestTrustRecord2_ForestTrustData_TopLevelName) is_ForestTrustRecord2_ForestTrustData() {}
+
+func (o *ForestTrustRecord2_ForestTrustData_TopLevelName) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.TopLevelName != nil {
+		if err := o.TopLevelName.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&UnicodeString{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ForestTrustRecord2_ForestTrustData_TopLevelName) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.TopLevelName == nil {
+		o.TopLevelName = &UnicodeString{}
+	}
+	if err := o.TopLevelName.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ForestTrustRecord2_ForestTrustData_DomainInfo structure represents ForestTrustRecord2_ForestTrustData RPC union arm.
+//
+// It has following labels: 2
+type ForestTrustRecord2_ForestTrustData_DomainInfo struct {
+	DomainInfo *ForestTrustDomainInfo `idl:"name:DomainInfo" json:"domain_info"`
+}
+
+func (*ForestTrustRecord2_ForestTrustData_DomainInfo) is_ForestTrustRecord2_ForestTrustData() {}
+
+func (o *ForestTrustRecord2_ForestTrustData_DomainInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.DomainInfo != nil {
+		if err := o.DomainInfo.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&ForestTrustDomainInfo{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ForestTrustRecord2_ForestTrustData_DomainInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.DomainInfo == nil {
+		o.DomainInfo = &ForestTrustDomainInfo{}
+	}
+	if err := o.DomainInfo.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ForestTrustRecord2_ForestTrustData_BinaryData structure represents ForestTrustRecord2_ForestTrustData RPC union arm.
+//
+// It has following labels: 3
+type ForestTrustRecord2_ForestTrustData_BinaryData struct {
+	BinaryData *ForestTrustBinaryData `idl:"name:BinaryData" json:"binary_data"`
+}
+
+func (*ForestTrustRecord2_ForestTrustData_BinaryData) is_ForestTrustRecord2_ForestTrustData() {}
+
+func (o *ForestTrustRecord2_ForestTrustData_BinaryData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.BinaryData != nil {
+		if err := o.BinaryData.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&ForestTrustBinaryData{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ForestTrustRecord2_ForestTrustData_BinaryData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.BinaryData == nil {
+		o.BinaryData = &ForestTrustBinaryData{}
+	}
+	if err := o.BinaryData.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ForestTrustRecord2_ForestTrustData_ScannerInfo structure represents ForestTrustRecord2_ForestTrustData RPC union arm.
+//
+// It has following labels: 4
+type ForestTrustRecord2_ForestTrustData_ScannerInfo struct {
+	ScannerInfo *ForestTrustScannerInfo `idl:"name:ScannerInfo" json:"scanner_info"`
+}
+
+func (*ForestTrustRecord2_ForestTrustData_ScannerInfo) is_ForestTrustRecord2_ForestTrustData() {}
+
+func (o *ForestTrustRecord2_ForestTrustData_ScannerInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.ScannerInfo != nil {
+		if err := o.ScannerInfo.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&ForestTrustScannerInfo{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ForestTrustRecord2_ForestTrustData_ScannerInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.ScannerInfo == nil {
+		o.ScannerInfo = &ForestTrustScannerInfo{}
+	}
+	if err := o.ScannerInfo.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -3943,6 +4699,139 @@ func (o *ForestTrustInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		return nil
 	})
 	_s_Entries := func(ptr interface{}) { o.Entries = *ptr.(*[]*ForestTrustRecord) }
+	if err := w.ReadPointer(&o.Entries, _s_Entries, _ptr_Entries); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ForestTrustInformation2 structure represents LSA_FOREST_TRUST_INFORMATION2 RPC structure.
+type ForestTrustInformation2 struct {
+	RecordCount uint32                `idl:"name:RecordCount" json:"record_count"`
+	Entries     []*ForestTrustRecord2 `idl:"name:Entries;size_is:(RecordCount)" json:"entries"`
+}
+
+func (o *ForestTrustInformation2) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.Entries != nil && o.RecordCount == 0 {
+		o.RecordCount = uint32(len(o.Entries))
+	}
+	if o.RecordCount > uint32(4000) {
+		return fmt.Errorf("RecordCount is out of range")
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *ForestTrustInformation2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.RecordCount); err != nil {
+		return err
+	}
+	if o.Entries != nil || o.RecordCount > 0 {
+		_ptr_Entries := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.RecordCount)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.Entries {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.Entries[i1] != nil {
+					_ptr_Entries := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.Entries[i1] != nil {
+							if err := o.Entries[i1].MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&ForestTrustRecord2{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.Entries[i1], _ptr_Entries); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.Entries); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WritePointer(nil); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Entries, _ptr_Entries); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ForestTrustInformation2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.RecordCount); err != nil {
+		return err
+	}
+	_ptr_Entries := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.RecordCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.RecordCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Entries", sizeInfo[0])
+		}
+		o.Entries = make([]*ForestTrustRecord2, sizeInfo[0])
+		for i1 := range o.Entries {
+			i1 := i1
+			_ptr_Entries := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.Entries[i1] == nil {
+					o.Entries[i1] = &ForestTrustRecord2{}
+				}
+				if err := o.Entries[i1].UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_Entries := func(ptr interface{}) { o.Entries[i1] = *ptr.(**ForestTrustRecord2) }
+			if err := w.ReadPointer(&o.Entries[i1], _s_Entries, _ptr_Entries); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_Entries := func(ptr interface{}) { o.Entries = *ptr.(*[]*ForestTrustRecord2) }
 	if err := w.ReadPointer(&o.Entries, _s_Entries, _ptr_Entries); err != nil {
 		return err
 	}
@@ -5028,6 +5917,155 @@ func (o *CRCipherValue) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	})
 	_s_Buffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
 	if err := w.ReadPointer(&o.Buffer, _s_Buffer, _ptr_Buffer); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AESCipherValue structure represents LSAPR_AES_CIPHER_VALUE RPC structure.
+type AESCipherValue struct {
+	AuthData     []byte `idl:"name:AuthData" json:"auth_data"`
+	Salt         []byte `idl:"name:Salt" json:"salt"`
+	CipherLength uint32 `idl:"name:cbCipher" json:"cipher_length"`
+	Cipher       []byte `idl:"name:Cipher;size_is:(cbCipher)" json:"cipher"`
+}
+
+func (o *AESCipherValue) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.Cipher != nil && o.CipherLength == 0 {
+		o.CipherLength = uint32(len(o.Cipher))
+	}
+	if o.CipherLength > uint32(131088) {
+		return fmt.Errorf("CipherLength is out of range")
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *AESCipherValue) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	for i1 := range o.AuthData {
+		i1 := i1
+		if uint64(i1) >= 64 {
+			break
+		}
+		if err := w.WriteData(o.AuthData[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.AuthData); uint64(i1) < 64; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	for i1 := range o.Salt {
+		i1 := i1
+		if uint64(i1) >= 16 {
+			break
+		}
+		if err := w.WriteData(o.Salt[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Salt); uint64(i1) < 16; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.CipherLength); err != nil {
+		return err
+	}
+	if o.Cipher != nil || o.CipherLength > 0 {
+		_ptr_Cipher := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.CipherLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.Cipher {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.Cipher[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.Cipher); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Cipher, _ptr_Cipher); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AESCipherValue) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	o.AuthData = make([]byte, 64)
+	for i1 := range o.AuthData {
+		i1 := i1
+		if err := w.ReadData(&o.AuthData[i1]); err != nil {
+			return err
+		}
+	}
+	o.Salt = make([]byte, 16)
+	for i1 := range o.Salt {
+		i1 := i1
+		if err := w.ReadData(&o.Salt[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadData(&o.CipherLength); err != nil {
+		return err
+	}
+	_ptr_Cipher := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.CipherLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.CipherLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Cipher", sizeInfo[0])
+		}
+		o.Cipher = make([]byte, sizeInfo[0])
+		for i1 := range o.Cipher {
+			i1 := i1
+			if err := w.ReadData(&o.Cipher[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_Cipher := func(ptr interface{}) { o.Cipher = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.Cipher, _s_Cipher, _ptr_Cipher); err != nil {
 		return err
 	}
 	return nil
@@ -8443,6 +9481,232 @@ func (o *TrustedDomainFullInformationInternal) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
+// TrustedDomainAuthInformationInternalAES structure represents LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL_AES RPC structure.
+type TrustedDomainAuthInformationInternalAES struct {
+	AuthData     []byte `idl:"name:AuthData" json:"auth_data"`
+	Salt         []byte `idl:"name:Salt" json:"salt"`
+	CipherLength uint32 `idl:"name:cbCipher" json:"cipher_length"`
+	Cipher       []byte `idl:"name:Cipher;size_is:(cbCipher)" json:"cipher"`
+}
+
+func (o *TrustedDomainAuthInformationInternalAES) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.Cipher != nil && o.CipherLength == 0 {
+		o.CipherLength = uint32(len(o.Cipher))
+	}
+	if o.CipherLength > uint32(65536) {
+		return fmt.Errorf("CipherLength is out of range")
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *TrustedDomainAuthInformationInternalAES) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	for i1 := range o.AuthData {
+		i1 := i1
+		if uint64(i1) >= 64 {
+			break
+		}
+		if err := w.WriteData(o.AuthData[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.AuthData); uint64(i1) < 64; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	for i1 := range o.Salt {
+		i1 := i1
+		if uint64(i1) >= 16 {
+			break
+		}
+		if err := w.WriteData(o.Salt[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Salt); uint64(i1) < 16; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.CipherLength); err != nil {
+		return err
+	}
+	if o.Cipher != nil || o.CipherLength > 0 {
+		_ptr_Cipher := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.CipherLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.Cipher {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.Cipher[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.Cipher); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Cipher, _ptr_Cipher); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *TrustedDomainAuthInformationInternalAES) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	o.AuthData = make([]byte, 64)
+	for i1 := range o.AuthData {
+		i1 := i1
+		if err := w.ReadData(&o.AuthData[i1]); err != nil {
+			return err
+		}
+	}
+	o.Salt = make([]byte, 16)
+	for i1 := range o.Salt {
+		i1 := i1
+		if err := w.ReadData(&o.Salt[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadData(&o.CipherLength); err != nil {
+		return err
+	}
+	_ptr_Cipher := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.CipherLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.CipherLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Cipher", sizeInfo[0])
+		}
+		o.Cipher = make([]byte, sizeInfo[0])
+		for i1 := range o.Cipher {
+			i1 := i1
+			if err := w.ReadData(&o.Cipher[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_Cipher := func(ptr interface{}) { o.Cipher = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.Cipher, _s_Cipher, _ptr_Cipher); err != nil {
+		return err
+	}
+	return nil
+}
+
+// TrustedDomainFullInformationInternalAES structure represents LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION_INTERNAL_AES RPC structure.
+type TrustedDomainFullInformationInternalAES struct {
+	Information     *TrustedDomainInformationEx              `idl:"name:Information" json:"information"`
+	POSIXOffset     *TrustedPOSIXOffsetInfo                  `idl:"name:PosixOffset" json:"posix_offset"`
+	AuthInformation *TrustedDomainAuthInformationInternalAES `idl:"name:AuthInformation" json:"auth_information"`
+}
+
+func (o *TrustedDomainFullInformationInternalAES) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *TrustedDomainFullInformationInternalAES) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.Information != nil {
+		if err := o.Information.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&TrustedDomainInformationEx{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.POSIXOffset != nil {
+		if err := o.POSIXOffset.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&TrustedPOSIXOffsetInfo{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.AuthInformation != nil {
+		if err := o.AuthInformation.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&TrustedDomainAuthInformationInternalAES{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *TrustedDomainFullInformationInternalAES) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if o.Information == nil {
+		o.Information = &TrustedDomainInformationEx{}
+	}
+	if err := o.Information.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.POSIXOffset == nil {
+		o.POSIXOffset = &TrustedPOSIXOffsetInfo{}
+	}
+	if err := o.POSIXOffset.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.AuthInformation == nil {
+		o.AuthInformation = &TrustedDomainAuthInformationInternalAES{}
+	}
+	if err := o.AuthInformation.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
 // TrustedDomainInformationEx2 structure represents LSAPR_TRUSTED_DOMAIN_INFORMATION_EX2 RPC structure.
 //
 // The LSAPR_TRUSTED_DOMAIN_INFORMATION_EX2 structure communicates properties of a trusted
@@ -8822,6 +10086,8 @@ type TrustedDomainInfo struct {
 	// *TrustedDomainInfo_Ex2
 	// *TrustedDomainInfo_TrustedFullInfo2
 	// *TrustedDomainInfo_TrustedDomainSETs
+	// *TrustedDomainInfo_TrustedAuthInfoInternalAES
+	// *TrustedDomainInfo_TrustedFullInfoInternalAES
 	Value is_TrustedDomainInfo `json:"value"`
 }
 
@@ -8882,6 +10148,14 @@ func (o *TrustedDomainInfo) GetValue() any {
 		if value != nil {
 			return value.TrustedDomainSETs
 		}
+	case *TrustedDomainInfo_TrustedAuthInfoInternalAES:
+		if value != nil {
+			return value.TrustedAuthInfoInternalAES
+		}
+	case *TrustedDomainInfo_TrustedFullInfoInternalAES:
+		if value != nil {
+			return value.TrustedFullInfoInternalAES
+		}
 	}
 	return nil
 }
@@ -8923,6 +10197,10 @@ func (o *TrustedDomainInfo) NDRSwitchValue(sw uint16) uint16 {
 		return uint16(12)
 	case *TrustedDomainInfo_TrustedDomainSETs:
 		return uint16(13)
+	case *TrustedDomainInfo_TrustedAuthInfoInternalAES:
+		return uint16(14)
+	case *TrustedDomainInfo_TrustedFullInfoInternalAES:
+		return uint16(15)
 	}
 	return uint16(0)
 }
@@ -9082,6 +10360,28 @@ func (o *TrustedDomainInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 				return err
 			}
 		}
+	case uint16(14):
+		_o, _ := o.Value.(*TrustedDomainInfo_TrustedAuthInfoInternalAES)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&TrustedDomainInfo_TrustedAuthInfoInternalAES{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint16(15):
+		_o, _ := o.Value.(*TrustedDomainInfo_TrustedFullInfoInternalAES)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&TrustedDomainInfo_TrustedFullInfoInternalAES{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
 	default:
 		return fmt.Errorf("unsupported switch case value %v", sw)
 	}
@@ -9162,6 +10462,16 @@ func (o *TrustedDomainInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader,
 		}
 	case uint16(13):
 		o.Value = &TrustedDomainInfo_TrustedDomainSETs{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(14):
+		o.Value = &TrustedDomainInfo_TrustedAuthInfoInternalAES{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(15):
+		o.Value = &TrustedDomainInfo_TrustedFullInfoInternalAES{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -9574,6 +10884,68 @@ func (o *TrustedDomainInfo_TrustedDomainSETs) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
+// TrustedDomainInfo_TrustedAuthInfoInternalAES structure represents LSAPR_TRUSTED_DOMAIN_INFO RPC union arm.
+//
+// It has following labels: 14
+type TrustedDomainInfo_TrustedAuthInfoInternalAES struct {
+	TrustedAuthInfoInternalAES *TrustedDomainAuthInformationInternalAES `idl:"name:TrustedAuthInfoInternalAes" json:"trusted_auth_info_internal_aes"`
+}
+
+func (*TrustedDomainInfo_TrustedAuthInfoInternalAES) is_TrustedDomainInfo() {}
+
+func (o *TrustedDomainInfo_TrustedAuthInfoInternalAES) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.TrustedAuthInfoInternalAES != nil {
+		if err := o.TrustedAuthInfoInternalAES.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&TrustedDomainAuthInformationInternalAES{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *TrustedDomainInfo_TrustedAuthInfoInternalAES) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.TrustedAuthInfoInternalAES == nil {
+		o.TrustedAuthInfoInternalAES = &TrustedDomainAuthInformationInternalAES{}
+	}
+	if err := o.TrustedAuthInfoInternalAES.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// TrustedDomainInfo_TrustedFullInfoInternalAES structure represents LSAPR_TRUSTED_DOMAIN_INFO RPC union arm.
+//
+// It has following labels: 15
+type TrustedDomainInfo_TrustedFullInfoInternalAES struct {
+	TrustedFullInfoInternalAES *TrustedDomainFullInformationInternalAES `idl:"name:TrustedFullInfoInternalAes" json:"trusted_full_info_internal_aes"`
+}
+
+func (*TrustedDomainInfo_TrustedFullInfoInternalAES) is_TrustedDomainInfo() {}
+
+func (o *TrustedDomainInfo_TrustedFullInfoInternalAES) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.TrustedFullInfoInternalAES != nil {
+		if err := o.TrustedFullInfoInternalAES.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&TrustedDomainFullInformationInternalAES{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *TrustedDomainInfo_TrustedFullInfoInternalAES) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.TrustedFullInfoInternalAES == nil {
+		o.TrustedFullInfoInternalAES = &TrustedDomainFullInformationInternalAES{}
+	}
+	if err := o.TrustedFullInfoInternalAES.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
 // UserRightSet structure represents LSAPR_USER_RIGHT_SET RPC structure.
 //
 // The LSAPR_USER_RIGHT_SET structure specifies a collection of user rights.
@@ -9807,6 +11179,170 @@ func (o *TrustedEnumBufferEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	})
 	_s_EnumerationBuffer := func(ptr interface{}) { o.EnumerationBuffer = *ptr.(*[]*TrustedDomainInformationEx) }
 	if err := w.ReadPointer(&o.EnumerationBuffer, _s_EnumerationBuffer, _ptr_EnumerationBuffer); err != nil {
+		return err
+	}
+	return nil
+}
+
+// RevisionInfoV1 structure represents LSAPR_REVISION_INFO_V1 RPC structure.
+type RevisionInfoV1 struct {
+	Revision          uint32 `idl:"name:Revision" json:"revision"`
+	SupportedFeatures uint32 `idl:"name:SupportedFeatures" json:"supported_features"`
+}
+
+func (o *RevisionInfoV1) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *RevisionInfoV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Revision); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.SupportedFeatures); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *RevisionInfoV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Revision); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SupportedFeatures); err != nil {
+		return err
+	}
+	return nil
+}
+
+// RevisionInfo structure represents LSAPR_REVISION_INFO RPC union.
+type RevisionInfo struct {
+	// Types that are assignable to Value
+	//
+	// *RevisionInfo_V1
+	Value is_RevisionInfo `json:"value"`
+}
+
+func (o *RevisionInfo) GetValue() any {
+	if o == nil {
+		return nil
+	}
+	switch value := (interface{})(o.Value).(type) {
+	case *RevisionInfo_V1:
+		if value != nil {
+			return value.V1
+		}
+	}
+	return nil
+}
+
+type is_RevisionInfo interface {
+	ndr.Marshaler
+	ndr.Unmarshaler
+	is_RevisionInfo()
+}
+
+func (o *RevisionInfo) NDRSwitchValue(sw uint32) uint32 {
+	if o == nil {
+		return uint32(0)
+	}
+	switch (interface{})(o.Value).(type) {
+	case *RevisionInfo_V1:
+		return uint32(1)
+	}
+	return uint32(0)
+}
+
+func (o *RevisionInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteSwitch(uint32(sw)); err != nil {
+		return err
+	}
+	// ms_union
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	switch sw {
+	case uint32(1):
+		_o, _ := o.Value.(*RevisionInfo_V1)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&RevisionInfo_V1{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	default:
+		return fmt.Errorf("unsupported switch case value %v", sw)
+	}
+	return nil
+}
+
+func (o *RevisionInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	// ms_union
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	switch sw {
+	case uint32(1):
+		o.Value = &RevisionInfo_V1{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	default:
+		return fmt.Errorf("unsupported switch case value %v", sw)
+	}
+	return nil
+}
+
+// RevisionInfo_V1 structure represents LSAPR_REVISION_INFO RPC union arm.
+//
+// It has following labels: 1
+type RevisionInfo_V1 struct {
+	V1 *RevisionInfoV1 `idl:"name:V1" json:"v1"`
+}
+
+func (*RevisionInfo_V1) is_RevisionInfo() {}
+
+func (o *RevisionInfo_V1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.V1 != nil {
+		if err := o.V1.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&RevisionInfoV1{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *RevisionInfo_V1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.V1 == nil {
+		o.V1 = &RevisionInfoV1{}
+	}
+	if err := o.V1.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -10459,6 +11995,149 @@ func (o *xxx_DefaultLsarpcClient) SetForestTrustInformation(ctx context.Context,
 		return nil, err
 	}
 	out := &SetForestTrustInformationResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultLsarpcClient) CreateTrustedDomainEx3(ctx context.Context, in *CreateTrustedDomainEx3Request, opts ...dcerpc.CallOption) (*CreateTrustedDomainEx3Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &CreateTrustedDomainEx3Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultLsarpcClient) OpenPolicy3(ctx context.Context, in *OpenPolicy3Request, opts ...dcerpc.CallOption) (*OpenPolicy3Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &OpenPolicy3Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultLsarpcClient) QueryForestTrustInformation2(ctx context.Context, in *QueryForestTrustInformation2Request, opts ...dcerpc.CallOption) (*QueryForestTrustInformation2Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &QueryForestTrustInformation2Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultLsarpcClient) SetForestTrustInformation2(ctx context.Context, in *SetForestTrustInformation2Request, opts ...dcerpc.CallOption) (*SetForestTrustInformation2Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &SetForestTrustInformation2Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultLsarpcClient) OpenPolicyWithCreds(ctx context.Context, in *OpenPolicyWithCredsRequest, opts ...dcerpc.CallOption) (*OpenPolicyWithCredsResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &OpenPolicyWithCredsResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultLsarpcClient) OpenSecret2(ctx context.Context, in *OpenSecret2Request, opts ...dcerpc.CallOption) (*OpenSecret2Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &OpenSecret2Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultLsarpcClient) CreateSecret2(ctx context.Context, in *CreateSecret2Request, opts ...dcerpc.CallOption) (*CreateSecret2Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &CreateSecret2Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultLsarpcClient) SetSecret2(ctx context.Context, in *SetSecret2Request, opts ...dcerpc.CallOption) (*SetSecret2Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &SetSecret2Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultLsarpcClient) QuerySecret2(ctx context.Context, in *QuerySecret2Request, opts ...dcerpc.CallOption) (*QuerySecret2Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &QuerySecret2Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultLsarpcClient) StorePrivateData2(ctx context.Context, in *StorePrivateData2Request, opts ...dcerpc.CallOption) (*StorePrivateData2Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &StorePrivateData2Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultLsarpcClient) RetrievePrivateData2(ctx context.Context, in *RetrievePrivateData2Request, opts ...dcerpc.CallOption) (*RetrievePrivateData2Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &RetrievePrivateData2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
@@ -23135,6 +24814,3453 @@ func (o *SetForestTrustInformationResponse) MarshalNDR(ctx context.Context, w nd
 }
 func (o *SetForestTrustInformationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetForestTrustInformationOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_CreateTrustedDomainEx3Operation structure represents the LsarCreateTrustedDomainEx3 operation
+type xxx_CreateTrustedDomainEx3Operation struct {
+	Policy                    *Handle                                  `idl:"name:PolicyHandle" json:"policy"`
+	TrustedDomainInformation  *TrustedDomainInformationEx              `idl:"name:TrustedDomainInformation" json:"trusted_domain_information"`
+	AuthenticationInformation *TrustedDomainAuthInformationInternalAES `idl:"name:AuthenticationInformation" json:"authentication_information"`
+	DesiredAccess             uint32                                   `idl:"name:DesiredAccess" json:"desired_access"`
+	TrustedDomain             *Handle                                  `idl:"name:TrustedDomainHandle" json:"trusted_domain"`
+	Return                    int32                                    `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of LsarCreateTrustedDomainEx3 operation.
+func (o *xxx_CreateTrustedDomainEx3Operation) OpNum() int { return 129 }
+
+// OpName returns the operation name of LsarCreateTrustedDomainEx3 operation.
+func (o *xxx_CreateTrustedDomainEx3Operation) OpName() string {
+	return "/lsarpc/v0/LsarCreateTrustedDomainEx3"
+}
+
+func (o *xxx_CreateTrustedDomainEx3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CreateTrustedDomainEx3Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy != nil {
+			if err := o.Policy.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// TrustedDomainInformation {in} (1:{alias=PLSAPR_TRUSTED_DOMAIN_INFORMATION_EX}*(1))(2:{alias=LSAPR_TRUSTED_DOMAIN_INFORMATION_EX}(struct))
+	{
+		if o.TrustedDomainInformation != nil {
+			if err := o.TrustedDomainInformation.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&TrustedDomainInformationEx{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// AuthenticationInformation {in} (1:{alias=PLSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL_AES}*(1))(2:{alias=LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL_AES}(struct))
+	{
+		if o.AuthenticationInformation != nil {
+			if err := o.AuthenticationInformation.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&TrustedDomainAuthInformationInternalAES{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// DesiredAccess {in} (1:{alias=ACCESS_MASK, names=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.DesiredAccess); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CreateTrustedDomainEx3Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy == nil {
+			o.Policy = &Handle{}
+		}
+		if err := o.Policy.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// TrustedDomainInformation {in} (1:{alias=PLSAPR_TRUSTED_DOMAIN_INFORMATION_EX,pointer=ref}*(1))(2:{alias=LSAPR_TRUSTED_DOMAIN_INFORMATION_EX}(struct))
+	{
+		if o.TrustedDomainInformation == nil {
+			o.TrustedDomainInformation = &TrustedDomainInformationEx{}
+		}
+		if err := o.TrustedDomainInformation.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// AuthenticationInformation {in} (1:{alias=PLSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL_AES,pointer=ref}*(1))(2:{alias=LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL_AES}(struct))
+	{
+		if o.AuthenticationInformation == nil {
+			o.AuthenticationInformation = &TrustedDomainAuthInformationInternalAES{}
+		}
+		if err := o.AuthenticationInformation.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// DesiredAccess {in} (1:{alias=ACCESS_MASK, names=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.DesiredAccess); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CreateTrustedDomainEx3Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CreateTrustedDomainEx3Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// TrustedDomainHandle {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.TrustedDomain != nil {
+			if err := o.TrustedDomain.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CreateTrustedDomainEx3Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// TrustedDomainHandle {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.TrustedDomain == nil {
+			o.TrustedDomain = &Handle{}
+		}
+		if err := o.TrustedDomain.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// CreateTrustedDomainEx3Request structure represents the LsarCreateTrustedDomainEx3 operation request
+type CreateTrustedDomainEx3Request struct {
+	Policy                    *Handle                                  `idl:"name:PolicyHandle" json:"policy"`
+	TrustedDomainInformation  *TrustedDomainInformationEx              `idl:"name:TrustedDomainInformation" json:"trusted_domain_information"`
+	AuthenticationInformation *TrustedDomainAuthInformationInternalAES `idl:"name:AuthenticationInformation" json:"authentication_information"`
+	DesiredAccess             uint32                                   `idl:"name:DesiredAccess" json:"desired_access"`
+}
+
+func (o *CreateTrustedDomainEx3Request) xxx_ToOp(ctx context.Context, op *xxx_CreateTrustedDomainEx3Operation) *xxx_CreateTrustedDomainEx3Operation {
+	if op == nil {
+		op = &xxx_CreateTrustedDomainEx3Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Policy = o.Policy
+	op.TrustedDomainInformation = o.TrustedDomainInformation
+	op.AuthenticationInformation = o.AuthenticationInformation
+	op.DesiredAccess = o.DesiredAccess
+	return op
+}
+
+func (o *CreateTrustedDomainEx3Request) xxx_FromOp(ctx context.Context, op *xxx_CreateTrustedDomainEx3Operation) {
+	if o == nil {
+		return
+	}
+	o.Policy = op.Policy
+	o.TrustedDomainInformation = op.TrustedDomainInformation
+	o.AuthenticationInformation = op.AuthenticationInformation
+	o.DesiredAccess = op.DesiredAccess
+}
+func (o *CreateTrustedDomainEx3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *CreateTrustedDomainEx3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_CreateTrustedDomainEx3Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeCreateTrustedDomainEx3Request build a response structure from the given request structure.
+func (o *CreateTrustedDomainEx3Request) MakeResponse() *CreateTrustedDomainEx3Response {
+	return &CreateTrustedDomainEx3Response{}
+}
+
+// OpNum returns the operation number of LsarCreateTrustedDomainEx3 operation.
+func (o *CreateTrustedDomainEx3Request) OpNum() int { return 129 }
+
+// OpName returns the operation name of LsarCreateTrustedDomainEx3 operation.
+func (o *CreateTrustedDomainEx3Request) OpName() string {
+	return "/lsarpc/v0/LsarCreateTrustedDomainEx3"
+}
+
+// CreateTrustedDomainEx3Response structure represents the LsarCreateTrustedDomainEx3 operation response
+type CreateTrustedDomainEx3Response struct {
+	TrustedDomain *Handle `idl:"name:TrustedDomainHandle" json:"trusted_domain"`
+	// Return: The LsarCreateTrustedDomainEx3 return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *CreateTrustedDomainEx3Response) xxx_ToOp(ctx context.Context, op *xxx_CreateTrustedDomainEx3Operation) *xxx_CreateTrustedDomainEx3Operation {
+	if op == nil {
+		op = &xxx_CreateTrustedDomainEx3Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.TrustedDomain = o.TrustedDomain
+	op.Return = o.Return
+	return op
+}
+
+func (o *CreateTrustedDomainEx3Response) xxx_FromOp(ctx context.Context, op *xxx_CreateTrustedDomainEx3Operation) {
+	if o == nil {
+		return
+	}
+	o.TrustedDomain = op.TrustedDomain
+	o.Return = op.Return
+}
+func (o *CreateTrustedDomainEx3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *CreateTrustedDomainEx3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_CreateTrustedDomainEx3Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_OpenPolicy3Operation structure represents the LsarOpenPolicy3 operation
+type xxx_OpenPolicy3Operation struct {
+	SystemName       string            `idl:"name:SystemName;string;pointer:unique" json:"system_name"`
+	ObjectAttributes *ObjectAttributes `idl:"name:ObjectAttributes" json:"object_attributes"`
+	DesiredAccess    uint32            `idl:"name:DesiredAccess" json:"desired_access"`
+	InVersion        uint32            `idl:"name:InVersion" json:"in_version"`
+	InRevisionInfo   *RevisionInfo     `idl:"name:InRevisionInfo;switch_is:InVersion" json:"in_revision_info"`
+	OutVersion       uint32            `idl:"name:OutVersion" json:"out_version"`
+	OutRevisionInfo  *RevisionInfo     `idl:"name:OutRevisionInfo;switch_is:*OutVersion" json:"out_revision_info"`
+	Policy           *Handle           `idl:"name:PolicyHandle" json:"policy"`
+	Return           int32             `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of LsarOpenPolicy3 operation.
+func (o *xxx_OpenPolicy3Operation) OpNum() int { return 130 }
+
+// OpName returns the operation name of LsarOpenPolicy3 operation.
+func (o *xxx_OpenPolicy3Operation) OpName() string { return "/lsarpc/v0/LsarOpenPolicy3" }
+
+func (o *xxx_OpenPolicy3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenPolicy3Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// SystemName {in} (1:{handle, string, pointer=unique, alias=PLSAPR_SERVER_NAME, names=LPWSTR}*(1)[dim:0,string,null](wchar))
+	{
+		if o.SystemName != "" {
+			_ptr_SystemName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.SystemName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.SystemName, _ptr_SystemName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// ObjectAttributes {in} (1:{alias=PLSAPR_OBJECT_ATTRIBUTES}*(1))(2:{alias=LSAPR_OBJECT_ATTRIBUTES}(struct))
+	{
+		if o.ObjectAttributes != nil {
+			if err := o.ObjectAttributes.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ObjectAttributes{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// DesiredAccess {in} (1:{alias=ACCESS_MASK, names=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.DesiredAccess); err != nil {
+			return err
+		}
+	}
+	// InVersion {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.InVersion); err != nil {
+			return err
+		}
+	}
+	// InRevisionInfo {in} (1:{pointer=ref}*(1))(2:{switch_type={alias=ULONG}(uint32), alias=LSAPR_REVISION_INFO}(union))
+	{
+		_swInRevisionInfo := uint32(o.InVersion)
+		if o.InRevisionInfo != nil {
+			if err := o.InRevisionInfo.MarshalUnionNDR(ctx, w, _swInRevisionInfo); err != nil {
+				return err
+			}
+		} else {
+			if err := (&RevisionInfo{}).MarshalUnionNDR(ctx, w, _swInRevisionInfo); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenPolicy3Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// SystemName {in} (1:{handle, string, pointer=unique, alias=PLSAPR_SERVER_NAME, names=LPWSTR}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_SystemName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.SystemName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_SystemName := func(ptr interface{}) { o.SystemName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.SystemName, _s_SystemName, _ptr_SystemName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// ObjectAttributes {in} (1:{alias=PLSAPR_OBJECT_ATTRIBUTES,pointer=ref}*(1))(2:{alias=LSAPR_OBJECT_ATTRIBUTES}(struct))
+	{
+		if o.ObjectAttributes == nil {
+			o.ObjectAttributes = &ObjectAttributes{}
+		}
+		if err := o.ObjectAttributes.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// DesiredAccess {in} (1:{alias=ACCESS_MASK, names=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.DesiredAccess); err != nil {
+			return err
+		}
+	}
+	// InVersion {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.InVersion); err != nil {
+			return err
+		}
+	}
+	// InRevisionInfo {in} (1:{pointer=ref}*(1))(2:{switch_type={alias=ULONG}(uint32), alias=LSAPR_REVISION_INFO}(union))
+	{
+		if o.InRevisionInfo == nil {
+			o.InRevisionInfo = &RevisionInfo{}
+		}
+		_swInRevisionInfo := uint32(o.InVersion)
+		if err := o.InRevisionInfo.UnmarshalUnionNDR(ctx, w, _swInRevisionInfo); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenPolicy3Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenPolicy3Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// OutVersion {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.OutVersion); err != nil {
+			return err
+		}
+	}
+	// OutRevisionInfo {out} (1:{pointer=ref}*(1))(2:{switch_type={alias=ULONG}(uint32), alias=LSAPR_REVISION_INFO}(union))
+	{
+		_swOutRevisionInfo := uint32(o.OutVersion)
+		if o.OutRevisionInfo != nil {
+			if err := o.OutRevisionInfo.MarshalUnionNDR(ctx, w, _swOutRevisionInfo); err != nil {
+				return err
+			}
+		} else {
+			if err := (&RevisionInfo{}).MarshalUnionNDR(ctx, w, _swOutRevisionInfo); err != nil {
+				return err
+			}
+		}
+	}
+	// PolicyHandle {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy != nil {
+			if err := o.Policy.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenPolicy3Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// OutVersion {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.OutVersion); err != nil {
+			return err
+		}
+	}
+	// OutRevisionInfo {out} (1:{pointer=ref}*(1))(2:{switch_type={alias=ULONG}(uint32), alias=LSAPR_REVISION_INFO}(union))
+	{
+		if o.OutRevisionInfo == nil {
+			o.OutRevisionInfo = &RevisionInfo{}
+		}
+		_swOutRevisionInfo := uint32(o.OutVersion)
+		if err := o.OutRevisionInfo.UnmarshalUnionNDR(ctx, w, _swOutRevisionInfo); err != nil {
+			return err
+		}
+	}
+	// PolicyHandle {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy == nil {
+			o.Policy = &Handle{}
+		}
+		if err := o.Policy.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// OpenPolicy3Request structure represents the LsarOpenPolicy3 operation request
+type OpenPolicy3Request struct {
+	SystemName       string            `idl:"name:SystemName;string;pointer:unique" json:"system_name"`
+	ObjectAttributes *ObjectAttributes `idl:"name:ObjectAttributes" json:"object_attributes"`
+	DesiredAccess    uint32            `idl:"name:DesiredAccess" json:"desired_access"`
+	InVersion        uint32            `idl:"name:InVersion" json:"in_version"`
+	InRevisionInfo   *RevisionInfo     `idl:"name:InRevisionInfo;switch_is:InVersion" json:"in_revision_info"`
+}
+
+func (o *OpenPolicy3Request) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicy3Operation) *xxx_OpenPolicy3Operation {
+	if op == nil {
+		op = &xxx_OpenPolicy3Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.SystemName = o.SystemName
+	op.ObjectAttributes = o.ObjectAttributes
+	op.DesiredAccess = o.DesiredAccess
+	op.InVersion = o.InVersion
+	op.InRevisionInfo = o.InRevisionInfo
+	return op
+}
+
+func (o *OpenPolicy3Request) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicy3Operation) {
+	if o == nil {
+		return
+	}
+	o.SystemName = op.SystemName
+	o.ObjectAttributes = op.ObjectAttributes
+	o.DesiredAccess = op.DesiredAccess
+	o.InVersion = op.InVersion
+	o.InRevisionInfo = op.InRevisionInfo
+}
+func (o *OpenPolicy3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *OpenPolicy3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_OpenPolicy3Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeOpenPolicy3Request build a response structure from the given request structure.
+func (o *OpenPolicy3Request) MakeResponse() *OpenPolicy3Response {
+	return &OpenPolicy3Response{}
+}
+
+// OpNum returns the operation number of LsarOpenPolicy3 operation.
+func (o *OpenPolicy3Request) OpNum() int { return 130 }
+
+// OpName returns the operation name of LsarOpenPolicy3 operation.
+func (o *OpenPolicy3Request) OpName() string { return "/lsarpc/v0/LsarOpenPolicy3" }
+
+// OpenPolicy3Response structure represents the LsarOpenPolicy3 operation response
+type OpenPolicy3Response struct {
+	OutVersion      uint32        `idl:"name:OutVersion" json:"out_version"`
+	OutRevisionInfo *RevisionInfo `idl:"name:OutRevisionInfo;switch_is:*OutVersion" json:"out_revision_info"`
+	Policy          *Handle       `idl:"name:PolicyHandle" json:"policy"`
+	// Return: The LsarOpenPolicy3 return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *OpenPolicy3Response) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicy3Operation) *xxx_OpenPolicy3Operation {
+	if op == nil {
+		op = &xxx_OpenPolicy3Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.OutVersion = o.OutVersion
+	op.OutRevisionInfo = o.OutRevisionInfo
+	op.Policy = o.Policy
+	op.Return = o.Return
+	return op
+}
+
+func (o *OpenPolicy3Response) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicy3Operation) {
+	if o == nil {
+		return
+	}
+	o.OutVersion = op.OutVersion
+	o.OutRevisionInfo = op.OutRevisionInfo
+	o.Policy = op.Policy
+	o.Return = op.Return
+}
+func (o *OpenPolicy3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *OpenPolicy3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_OpenPolicy3Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_QueryForestTrustInformation2Operation structure represents the LsarQueryForestTrustInformation2 operation
+type xxx_QueryForestTrustInformation2Operation struct {
+	Policy            *Handle                  `idl:"name:PolicyHandle" json:"policy"`
+	TrustedDomainName *UnicodeString           `idl:"name:TrustedDomainName" json:"trusted_domain_name"`
+	HighestRecordType ForestTrustRecordType    `idl:"name:HighestRecordType" json:"highest_record_type"`
+	ForestTrustInfo2  *ForestTrustInformation2 `idl:"name:ForestTrustInfo2" json:"forest_trust_info2"`
+	Return            int32                    `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of LsarQueryForestTrustInformation2 operation.
+func (o *xxx_QueryForestTrustInformation2Operation) OpNum() int { return 132 }
+
+// OpName returns the operation name of LsarQueryForestTrustInformation2 operation.
+func (o *xxx_QueryForestTrustInformation2Operation) OpName() string {
+	return "/lsarpc/v0/LsarQueryForestTrustInformation2"
+}
+
+func (o *xxx_QueryForestTrustInformation2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QueryForestTrustInformation2Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy != nil {
+			if err := o.Policy.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// TrustedDomainName {in} (1:{alias=PLSA_UNICODE_STRING}*(1))(2:{alias=LSA_UNICODE_STRING, names=RPC_UNICODE_STRING}(struct))
+	{
+		if o.TrustedDomainName != nil {
+			if err := o.TrustedDomainName.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&UnicodeString{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// HighestRecordType {in} (1:{alias=LSA_FOREST_TRUST_RECORD_TYPE}(enum))
+	{
+		if err := w.WriteEnum(uint16(o.HighestRecordType)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QueryForestTrustInformation2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy == nil {
+			o.Policy = &Handle{}
+		}
+		if err := o.Policy.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// TrustedDomainName {in} (1:{alias=PLSA_UNICODE_STRING,pointer=ref}*(1))(2:{alias=LSA_UNICODE_STRING, names=RPC_UNICODE_STRING}(struct))
+	{
+		if o.TrustedDomainName == nil {
+			o.TrustedDomainName = &UnicodeString{}
+		}
+		if err := o.TrustedDomainName.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// HighestRecordType {in} (1:{alias=LSA_FOREST_TRUST_RECORD_TYPE}(enum))
+	{
+		if err := w.ReadEnum((*uint16)(&o.HighestRecordType)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QueryForestTrustInformation2Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QueryForestTrustInformation2Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// ForestTrustInfo2 {out} (1:{pointer=ref}*(2))(2:{alias=PLSA_FOREST_TRUST_INFORMATION2}*(1))(3:{alias=LSA_FOREST_TRUST_INFORMATION2}(struct))
+	{
+		if o.ForestTrustInfo2 != nil {
+			_ptr_ForestTrustInfo2 := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ForestTrustInfo2 != nil {
+					if err := o.ForestTrustInfo2.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&ForestTrustInformation2{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ForestTrustInfo2, _ptr_ForestTrustInfo2); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QueryForestTrustInformation2Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// ForestTrustInfo2 {out} (1:{pointer=ref}*(2))(2:{alias=PLSA_FOREST_TRUST_INFORMATION2,pointer=ref}*(1))(3:{alias=LSA_FOREST_TRUST_INFORMATION2}(struct))
+	{
+		_ptr_ForestTrustInfo2 := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ForestTrustInfo2 == nil {
+				o.ForestTrustInfo2 = &ForestTrustInformation2{}
+			}
+			if err := o.ForestTrustInfo2.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ForestTrustInfo2 := func(ptr interface{}) { o.ForestTrustInfo2 = *ptr.(**ForestTrustInformation2) }
+		if err := w.ReadPointer(&o.ForestTrustInfo2, _s_ForestTrustInfo2, _ptr_ForestTrustInfo2); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// QueryForestTrustInformation2Request structure represents the LsarQueryForestTrustInformation2 operation request
+type QueryForestTrustInformation2Request struct {
+	Policy            *Handle               `idl:"name:PolicyHandle" json:"policy"`
+	TrustedDomainName *UnicodeString        `idl:"name:TrustedDomainName" json:"trusted_domain_name"`
+	HighestRecordType ForestTrustRecordType `idl:"name:HighestRecordType" json:"highest_record_type"`
+}
+
+func (o *QueryForestTrustInformation2Request) xxx_ToOp(ctx context.Context, op *xxx_QueryForestTrustInformation2Operation) *xxx_QueryForestTrustInformation2Operation {
+	if op == nil {
+		op = &xxx_QueryForestTrustInformation2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Policy = o.Policy
+	op.TrustedDomainName = o.TrustedDomainName
+	op.HighestRecordType = o.HighestRecordType
+	return op
+}
+
+func (o *QueryForestTrustInformation2Request) xxx_FromOp(ctx context.Context, op *xxx_QueryForestTrustInformation2Operation) {
+	if o == nil {
+		return
+	}
+	o.Policy = op.Policy
+	o.TrustedDomainName = op.TrustedDomainName
+	o.HighestRecordType = op.HighestRecordType
+}
+func (o *QueryForestTrustInformation2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *QueryForestTrustInformation2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_QueryForestTrustInformation2Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeQueryForestTrustInformation2Request build a response structure from the given request structure.
+func (o *QueryForestTrustInformation2Request) MakeResponse() *QueryForestTrustInformation2Response {
+	return &QueryForestTrustInformation2Response{}
+}
+
+// OpNum returns the operation number of LsarQueryForestTrustInformation2 operation.
+func (o *QueryForestTrustInformation2Request) OpNum() int { return 132 }
+
+// OpName returns the operation name of LsarQueryForestTrustInformation2 operation.
+func (o *QueryForestTrustInformation2Request) OpName() string {
+	return "/lsarpc/v0/LsarQueryForestTrustInformation2"
+}
+
+// QueryForestTrustInformation2Response structure represents the LsarQueryForestTrustInformation2 operation response
+type QueryForestTrustInformation2Response struct {
+	ForestTrustInfo2 *ForestTrustInformation2 `idl:"name:ForestTrustInfo2" json:"forest_trust_info2"`
+	// Return: The LsarQueryForestTrustInformation2 return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *QueryForestTrustInformation2Response) xxx_ToOp(ctx context.Context, op *xxx_QueryForestTrustInformation2Operation) *xxx_QueryForestTrustInformation2Operation {
+	if op == nil {
+		op = &xxx_QueryForestTrustInformation2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ForestTrustInfo2 = o.ForestTrustInfo2
+	op.Return = o.Return
+	return op
+}
+
+func (o *QueryForestTrustInformation2Response) xxx_FromOp(ctx context.Context, op *xxx_QueryForestTrustInformation2Operation) {
+	if o == nil {
+		return
+	}
+	o.ForestTrustInfo2 = op.ForestTrustInfo2
+	o.Return = op.Return
+}
+func (o *QueryForestTrustInformation2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *QueryForestTrustInformation2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_QueryForestTrustInformation2Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_SetForestTrustInformation2Operation structure represents the LsarSetForestTrustInformation2 operation
+type xxx_SetForestTrustInformation2Operation struct {
+	Policy            *Handle                          `idl:"name:PolicyHandle" json:"policy"`
+	TrustedDomainName *UnicodeString                   `idl:"name:TrustedDomainName" json:"trusted_domain_name"`
+	HighestRecordType ForestTrustRecordType            `idl:"name:HighestRecordType" json:"highest_record_type"`
+	ForestTrustInfo2  *ForestTrustInformation2         `idl:"name:ForestTrustInfo2" json:"forest_trust_info2"`
+	CheckOnly         uint8                            `idl:"name:CheckOnly" json:"check_only"`
+	CollisionInfo     *ForestTrustCollisionInformation `idl:"name:CollisionInfo" json:"collision_info"`
+	Return            int32                            `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of LsarSetForestTrustInformation2 operation.
+func (o *xxx_SetForestTrustInformation2Operation) OpNum() int { return 133 }
+
+// OpName returns the operation name of LsarSetForestTrustInformation2 operation.
+func (o *xxx_SetForestTrustInformation2Operation) OpName() string {
+	return "/lsarpc/v0/LsarSetForestTrustInformation2"
+}
+
+func (o *xxx_SetForestTrustInformation2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetForestTrustInformation2Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy != nil {
+			if err := o.Policy.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// TrustedDomainName {in} (1:{alias=PLSA_UNICODE_STRING}*(1))(2:{alias=LSA_UNICODE_STRING, names=RPC_UNICODE_STRING}(struct))
+	{
+		if o.TrustedDomainName != nil {
+			if err := o.TrustedDomainName.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&UnicodeString{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// HighestRecordType {in} (1:{alias=LSA_FOREST_TRUST_RECORD_TYPE}(enum))
+	{
+		if err := w.WriteEnum(uint16(o.HighestRecordType)); err != nil {
+			return err
+		}
+	}
+	// ForestTrustInfo2 {in} (1:{alias=PLSA_FOREST_TRUST_INFORMATION2}*(1))(2:{alias=LSA_FOREST_TRUST_INFORMATION2}(struct))
+	{
+		if o.ForestTrustInfo2 != nil {
+			if err := o.ForestTrustInfo2.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ForestTrustInformation2{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// CheckOnly {in} (1:(uchar))
+	{
+		if err := w.WriteData(o.CheckOnly); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetForestTrustInformation2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy == nil {
+			o.Policy = &Handle{}
+		}
+		if err := o.Policy.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// TrustedDomainName {in} (1:{alias=PLSA_UNICODE_STRING,pointer=ref}*(1))(2:{alias=LSA_UNICODE_STRING, names=RPC_UNICODE_STRING}(struct))
+	{
+		if o.TrustedDomainName == nil {
+			o.TrustedDomainName = &UnicodeString{}
+		}
+		if err := o.TrustedDomainName.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// HighestRecordType {in} (1:{alias=LSA_FOREST_TRUST_RECORD_TYPE}(enum))
+	{
+		if err := w.ReadEnum((*uint16)(&o.HighestRecordType)); err != nil {
+			return err
+		}
+	}
+	// ForestTrustInfo2 {in} (1:{alias=PLSA_FOREST_TRUST_INFORMATION2,pointer=ref}*(1))(2:{alias=LSA_FOREST_TRUST_INFORMATION2}(struct))
+	{
+		if o.ForestTrustInfo2 == nil {
+			o.ForestTrustInfo2 = &ForestTrustInformation2{}
+		}
+		if err := o.ForestTrustInfo2.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// CheckOnly {in} (1:(uchar))
+	{
+		if err := w.ReadData(&o.CheckOnly); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetForestTrustInformation2Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetForestTrustInformation2Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// CollisionInfo {out} (1:{pointer=ref}*(2))(2:{alias=PLSA_FOREST_TRUST_COLLISION_INFORMATION}*(1))(3:{alias=LSA_FOREST_TRUST_COLLISION_INFORMATION}(struct))
+	{
+		if o.CollisionInfo != nil {
+			_ptr_CollisionInfo := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.CollisionInfo != nil {
+					if err := o.CollisionInfo.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&ForestTrustCollisionInformation{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.CollisionInfo, _ptr_CollisionInfo); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetForestTrustInformation2Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// CollisionInfo {out} (1:{pointer=ref}*(2))(2:{alias=PLSA_FOREST_TRUST_COLLISION_INFORMATION,pointer=ref}*(1))(3:{alias=LSA_FOREST_TRUST_COLLISION_INFORMATION}(struct))
+	{
+		_ptr_CollisionInfo := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.CollisionInfo == nil {
+				o.CollisionInfo = &ForestTrustCollisionInformation{}
+			}
+			if err := o.CollisionInfo.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_CollisionInfo := func(ptr interface{}) { o.CollisionInfo = *ptr.(**ForestTrustCollisionInformation) }
+		if err := w.ReadPointer(&o.CollisionInfo, _s_CollisionInfo, _ptr_CollisionInfo); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// SetForestTrustInformation2Request structure represents the LsarSetForestTrustInformation2 operation request
+type SetForestTrustInformation2Request struct {
+	Policy            *Handle                  `idl:"name:PolicyHandle" json:"policy"`
+	TrustedDomainName *UnicodeString           `idl:"name:TrustedDomainName" json:"trusted_domain_name"`
+	HighestRecordType ForestTrustRecordType    `idl:"name:HighestRecordType" json:"highest_record_type"`
+	ForestTrustInfo2  *ForestTrustInformation2 `idl:"name:ForestTrustInfo2" json:"forest_trust_info2"`
+	CheckOnly         uint8                    `idl:"name:CheckOnly" json:"check_only"`
+}
+
+func (o *SetForestTrustInformation2Request) xxx_ToOp(ctx context.Context, op *xxx_SetForestTrustInformation2Operation) *xxx_SetForestTrustInformation2Operation {
+	if op == nil {
+		op = &xxx_SetForestTrustInformation2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Policy = o.Policy
+	op.TrustedDomainName = o.TrustedDomainName
+	op.HighestRecordType = o.HighestRecordType
+	op.ForestTrustInfo2 = o.ForestTrustInfo2
+	op.CheckOnly = o.CheckOnly
+	return op
+}
+
+func (o *SetForestTrustInformation2Request) xxx_FromOp(ctx context.Context, op *xxx_SetForestTrustInformation2Operation) {
+	if o == nil {
+		return
+	}
+	o.Policy = op.Policy
+	o.TrustedDomainName = op.TrustedDomainName
+	o.HighestRecordType = op.HighestRecordType
+	o.ForestTrustInfo2 = op.ForestTrustInfo2
+	o.CheckOnly = op.CheckOnly
+}
+func (o *SetForestTrustInformation2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *SetForestTrustInformation2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetForestTrustInformation2Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeSetForestTrustInformation2Request build a response structure from the given request structure.
+func (o *SetForestTrustInformation2Request) MakeResponse() *SetForestTrustInformation2Response {
+	return &SetForestTrustInformation2Response{}
+}
+
+// OpNum returns the operation number of LsarSetForestTrustInformation2 operation.
+func (o *SetForestTrustInformation2Request) OpNum() int { return 133 }
+
+// OpName returns the operation name of LsarSetForestTrustInformation2 operation.
+func (o *SetForestTrustInformation2Request) OpName() string {
+	return "/lsarpc/v0/LsarSetForestTrustInformation2"
+}
+
+// SetForestTrustInformation2Response structure represents the LsarSetForestTrustInformation2 operation response
+type SetForestTrustInformation2Response struct {
+	CollisionInfo *ForestTrustCollisionInformation `idl:"name:CollisionInfo" json:"collision_info"`
+	// Return: The LsarSetForestTrustInformation2 return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *SetForestTrustInformation2Response) xxx_ToOp(ctx context.Context, op *xxx_SetForestTrustInformation2Operation) *xxx_SetForestTrustInformation2Operation {
+	if op == nil {
+		op = &xxx_SetForestTrustInformation2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.CollisionInfo = o.CollisionInfo
+	op.Return = o.Return
+	return op
+}
+
+func (o *SetForestTrustInformation2Response) xxx_FromOp(ctx context.Context, op *xxx_SetForestTrustInformation2Operation) {
+	if o == nil {
+		return
+	}
+	o.CollisionInfo = op.CollisionInfo
+	o.Return = op.Return
+}
+func (o *SetForestTrustInformation2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *SetForestTrustInformation2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetForestTrustInformation2Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_OpenPolicyWithCredsOperation structure represents the LsarOpenPolicyWithCreds operation
+type xxx_OpenPolicyWithCredsOperation struct {
+	ObjectAttributes *ObjectAttributes `idl:"name:ObjectAttributes" json:"object_attributes"`
+	DesiredAccess    uint32            `idl:"name:DesiredAccess" json:"desired_access"`
+	InVersion        uint32            `idl:"name:InVersion" json:"in_version"`
+	InRevisionInfo   *RevisionInfo     `idl:"name:InRevisionInfo;switch_is:InVersion" json:"in_revision_info"`
+	OutVersion       uint32            `idl:"name:OutVersion" json:"out_version"`
+	OutRevisionInfo  *RevisionInfo     `idl:"name:OutRevisionInfo;switch_is:*OutVersion" json:"out_revision_info"`
+	Policy           *Handle           `idl:"name:PolicyHandle" json:"policy"`
+	Return           int32             `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of LsarOpenPolicyWithCreds operation.
+func (o *xxx_OpenPolicyWithCredsOperation) OpNum() int { return 135 }
+
+// OpName returns the operation name of LsarOpenPolicyWithCreds operation.
+func (o *xxx_OpenPolicyWithCredsOperation) OpName() string {
+	return "/lsarpc/v0/LsarOpenPolicyWithCreds"
+}
+
+func (o *xxx_OpenPolicyWithCredsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenPolicyWithCredsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// ObjectAttributes {in} (1:{alias=PLSAPR_OBJECT_ATTRIBUTES}*(1))(2:{alias=LSAPR_OBJECT_ATTRIBUTES}(struct))
+	{
+		if o.ObjectAttributes != nil {
+			if err := o.ObjectAttributes.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ObjectAttributes{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// DesiredAccess {in} (1:{alias=ACCESS_MASK, names=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.DesiredAccess); err != nil {
+			return err
+		}
+	}
+	// InVersion {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.InVersion); err != nil {
+			return err
+		}
+	}
+	// InRevisionInfo {in} (1:{pointer=ref}*(1))(2:{switch_type={alias=ULONG}(uint32), alias=LSAPR_REVISION_INFO}(union))
+	{
+		_swInRevisionInfo := uint32(o.InVersion)
+		if o.InRevisionInfo != nil {
+			if err := o.InRevisionInfo.MarshalUnionNDR(ctx, w, _swInRevisionInfo); err != nil {
+				return err
+			}
+		} else {
+			if err := (&RevisionInfo{}).MarshalUnionNDR(ctx, w, _swInRevisionInfo); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenPolicyWithCredsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// ObjectAttributes {in} (1:{alias=PLSAPR_OBJECT_ATTRIBUTES,pointer=ref}*(1))(2:{alias=LSAPR_OBJECT_ATTRIBUTES}(struct))
+	{
+		if o.ObjectAttributes == nil {
+			o.ObjectAttributes = &ObjectAttributes{}
+		}
+		if err := o.ObjectAttributes.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// DesiredAccess {in} (1:{alias=ACCESS_MASK, names=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.DesiredAccess); err != nil {
+			return err
+		}
+	}
+	// InVersion {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.InVersion); err != nil {
+			return err
+		}
+	}
+	// InRevisionInfo {in} (1:{pointer=ref}*(1))(2:{switch_type={alias=ULONG}(uint32), alias=LSAPR_REVISION_INFO}(union))
+	{
+		if o.InRevisionInfo == nil {
+			o.InRevisionInfo = &RevisionInfo{}
+		}
+		_swInRevisionInfo := uint32(o.InVersion)
+		if err := o.InRevisionInfo.UnmarshalUnionNDR(ctx, w, _swInRevisionInfo); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenPolicyWithCredsOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenPolicyWithCredsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// OutVersion {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.OutVersion); err != nil {
+			return err
+		}
+	}
+	// OutRevisionInfo {out} (1:{pointer=ref}*(1))(2:{switch_type={alias=ULONG}(uint32), alias=LSAPR_REVISION_INFO}(union))
+	{
+		_swOutRevisionInfo := uint32(o.OutVersion)
+		if o.OutRevisionInfo != nil {
+			if err := o.OutRevisionInfo.MarshalUnionNDR(ctx, w, _swOutRevisionInfo); err != nil {
+				return err
+			}
+		} else {
+			if err := (&RevisionInfo{}).MarshalUnionNDR(ctx, w, _swOutRevisionInfo); err != nil {
+				return err
+			}
+		}
+	}
+	// PolicyHandle {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy != nil {
+			if err := o.Policy.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenPolicyWithCredsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// OutVersion {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.OutVersion); err != nil {
+			return err
+		}
+	}
+	// OutRevisionInfo {out} (1:{pointer=ref}*(1))(2:{switch_type={alias=ULONG}(uint32), alias=LSAPR_REVISION_INFO}(union))
+	{
+		if o.OutRevisionInfo == nil {
+			o.OutRevisionInfo = &RevisionInfo{}
+		}
+		_swOutRevisionInfo := uint32(o.OutVersion)
+		if err := o.OutRevisionInfo.UnmarshalUnionNDR(ctx, w, _swOutRevisionInfo); err != nil {
+			return err
+		}
+	}
+	// PolicyHandle {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy == nil {
+			o.Policy = &Handle{}
+		}
+		if err := o.Policy.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// OpenPolicyWithCredsRequest structure represents the LsarOpenPolicyWithCreds operation request
+type OpenPolicyWithCredsRequest struct {
+	ObjectAttributes *ObjectAttributes `idl:"name:ObjectAttributes" json:"object_attributes"`
+	DesiredAccess    uint32            `idl:"name:DesiredAccess" json:"desired_access"`
+	InVersion        uint32            `idl:"name:InVersion" json:"in_version"`
+	InRevisionInfo   *RevisionInfo     `idl:"name:InRevisionInfo;switch_is:InVersion" json:"in_revision_info"`
+}
+
+func (o *OpenPolicyWithCredsRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicyWithCredsOperation) *xxx_OpenPolicyWithCredsOperation {
+	if op == nil {
+		op = &xxx_OpenPolicyWithCredsOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ObjectAttributes = o.ObjectAttributes
+	op.DesiredAccess = o.DesiredAccess
+	op.InVersion = o.InVersion
+	op.InRevisionInfo = o.InRevisionInfo
+	return op
+}
+
+func (o *OpenPolicyWithCredsRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicyWithCredsOperation) {
+	if o == nil {
+		return
+	}
+	o.ObjectAttributes = op.ObjectAttributes
+	o.DesiredAccess = op.DesiredAccess
+	o.InVersion = op.InVersion
+	o.InRevisionInfo = op.InRevisionInfo
+}
+func (o *OpenPolicyWithCredsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *OpenPolicyWithCredsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_OpenPolicyWithCredsOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeOpenPolicyWithCredsRequest build a response structure from the given request structure.
+func (o *OpenPolicyWithCredsRequest) MakeResponse() *OpenPolicyWithCredsResponse {
+	return &OpenPolicyWithCredsResponse{}
+}
+
+// OpNum returns the operation number of LsarOpenPolicyWithCreds operation.
+func (o *OpenPolicyWithCredsRequest) OpNum() int { return 135 }
+
+// OpName returns the operation name of LsarOpenPolicyWithCreds operation.
+func (o *OpenPolicyWithCredsRequest) OpName() string { return "/lsarpc/v0/LsarOpenPolicyWithCreds" }
+
+// OpenPolicyWithCredsResponse structure represents the LsarOpenPolicyWithCreds operation response
+type OpenPolicyWithCredsResponse struct {
+	OutVersion      uint32        `idl:"name:OutVersion" json:"out_version"`
+	OutRevisionInfo *RevisionInfo `idl:"name:OutRevisionInfo;switch_is:*OutVersion" json:"out_revision_info"`
+	Policy          *Handle       `idl:"name:PolicyHandle" json:"policy"`
+	// Return: The LsarOpenPolicyWithCreds return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *OpenPolicyWithCredsResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicyWithCredsOperation) *xxx_OpenPolicyWithCredsOperation {
+	if op == nil {
+		op = &xxx_OpenPolicyWithCredsOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.OutVersion = o.OutVersion
+	op.OutRevisionInfo = o.OutRevisionInfo
+	op.Policy = o.Policy
+	op.Return = o.Return
+	return op
+}
+
+func (o *OpenPolicyWithCredsResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicyWithCredsOperation) {
+	if o == nil {
+		return
+	}
+	o.OutVersion = op.OutVersion
+	o.OutRevisionInfo = op.OutRevisionInfo
+	o.Policy = op.Policy
+	o.Return = op.Return
+}
+func (o *OpenPolicyWithCredsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *OpenPolicyWithCredsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_OpenPolicyWithCredsOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_OpenSecret2Operation structure represents the LsarOpenSecret2 operation
+type xxx_OpenSecret2Operation struct {
+	Policy              *Handle         `idl:"name:PolicyHandle" json:"policy"`
+	EncryptedSecretName *AESCipherValue `idl:"name:EncryptedSecretName" json:"encrypted_secret_name"`
+	DesiredAccess       uint32          `idl:"name:DesiredAccess" json:"desired_access"`
+	Secret              *Handle         `idl:"name:SecretHandle" json:"secret"`
+	Return              int32           `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of LsarOpenSecret2 operation.
+func (o *xxx_OpenSecret2Operation) OpNum() int { return 136 }
+
+// OpName returns the operation name of LsarOpenSecret2 operation.
+func (o *xxx_OpenSecret2Operation) OpName() string { return "/lsarpc/v0/LsarOpenSecret2" }
+
+func (o *xxx_OpenSecret2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenSecret2Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy != nil {
+			if err := o.Policy.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// EncryptedSecretName {in} (1:{alias=PLSAPR_AES_CIPHER_VALUE}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedSecretName != nil {
+			if err := o.EncryptedSecretName.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&AESCipherValue{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// DesiredAccess {in} (1:{alias=ACCESS_MASK, names=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.DesiredAccess); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenSecret2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy == nil {
+			o.Policy = &Handle{}
+		}
+		if err := o.Policy.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// EncryptedSecretName {in} (1:{alias=PLSAPR_AES_CIPHER_VALUE,pointer=ref}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedSecretName == nil {
+			o.EncryptedSecretName = &AESCipherValue{}
+		}
+		if err := o.EncryptedSecretName.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// DesiredAccess {in} (1:{alias=ACCESS_MASK, names=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.DesiredAccess); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenSecret2Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenSecret2Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// SecretHandle {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Secret != nil {
+			if err := o.Secret.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenSecret2Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// SecretHandle {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Secret == nil {
+			o.Secret = &Handle{}
+		}
+		if err := o.Secret.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// OpenSecret2Request structure represents the LsarOpenSecret2 operation request
+type OpenSecret2Request struct {
+	Policy              *Handle         `idl:"name:PolicyHandle" json:"policy"`
+	EncryptedSecretName *AESCipherValue `idl:"name:EncryptedSecretName" json:"encrypted_secret_name"`
+	DesiredAccess       uint32          `idl:"name:DesiredAccess" json:"desired_access"`
+}
+
+func (o *OpenSecret2Request) xxx_ToOp(ctx context.Context, op *xxx_OpenSecret2Operation) *xxx_OpenSecret2Operation {
+	if op == nil {
+		op = &xxx_OpenSecret2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Policy = o.Policy
+	op.EncryptedSecretName = o.EncryptedSecretName
+	op.DesiredAccess = o.DesiredAccess
+	return op
+}
+
+func (o *OpenSecret2Request) xxx_FromOp(ctx context.Context, op *xxx_OpenSecret2Operation) {
+	if o == nil {
+		return
+	}
+	o.Policy = op.Policy
+	o.EncryptedSecretName = op.EncryptedSecretName
+	o.DesiredAccess = op.DesiredAccess
+}
+func (o *OpenSecret2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *OpenSecret2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_OpenSecret2Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeOpenSecret2Request build a response structure from the given request structure.
+func (o *OpenSecret2Request) MakeResponse() *OpenSecret2Response {
+	return &OpenSecret2Response{}
+}
+
+// OpNum returns the operation number of LsarOpenSecret2 operation.
+func (o *OpenSecret2Request) OpNum() int { return 136 }
+
+// OpName returns the operation name of LsarOpenSecret2 operation.
+func (o *OpenSecret2Request) OpName() string { return "/lsarpc/v0/LsarOpenSecret2" }
+
+// OpenSecret2Response structure represents the LsarOpenSecret2 operation response
+type OpenSecret2Response struct {
+	Secret *Handle `idl:"name:SecretHandle" json:"secret"`
+	// Return: The LsarOpenSecret2 return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *OpenSecret2Response) xxx_ToOp(ctx context.Context, op *xxx_OpenSecret2Operation) *xxx_OpenSecret2Operation {
+	if op == nil {
+		op = &xxx_OpenSecret2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Secret = o.Secret
+	op.Return = o.Return
+	return op
+}
+
+func (o *OpenSecret2Response) xxx_FromOp(ctx context.Context, op *xxx_OpenSecret2Operation) {
+	if o == nil {
+		return
+	}
+	o.Secret = op.Secret
+	o.Return = op.Return
+}
+func (o *OpenSecret2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *OpenSecret2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_OpenSecret2Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_CreateSecret2Operation structure represents the LsarCreateSecret2 operation
+type xxx_CreateSecret2Operation struct {
+	Policy              *Handle         `idl:"name:PolicyHandle" json:"policy"`
+	EncryptedSecretName *AESCipherValue `idl:"name:EncryptedSecretName" json:"encrypted_secret_name"`
+	DesiredAccess       uint32          `idl:"name:DesiredAccess" json:"desired_access"`
+	Secret              *Handle         `idl:"name:SecretHandle" json:"secret"`
+	Return              int32           `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of LsarCreateSecret2 operation.
+func (o *xxx_CreateSecret2Operation) OpNum() int { return 137 }
+
+// OpName returns the operation name of LsarCreateSecret2 operation.
+func (o *xxx_CreateSecret2Operation) OpName() string { return "/lsarpc/v0/LsarCreateSecret2" }
+
+func (o *xxx_CreateSecret2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CreateSecret2Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy != nil {
+			if err := o.Policy.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// EncryptedSecretName {in} (1:{alias=PLSAPR_AES_CIPHER_VALUE}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedSecretName != nil {
+			if err := o.EncryptedSecretName.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&AESCipherValue{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// DesiredAccess {in} (1:{alias=ACCESS_MASK, names=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.DesiredAccess); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CreateSecret2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy == nil {
+			o.Policy = &Handle{}
+		}
+		if err := o.Policy.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// EncryptedSecretName {in} (1:{alias=PLSAPR_AES_CIPHER_VALUE,pointer=ref}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedSecretName == nil {
+			o.EncryptedSecretName = &AESCipherValue{}
+		}
+		if err := o.EncryptedSecretName.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// DesiredAccess {in} (1:{alias=ACCESS_MASK, names=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.DesiredAccess); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CreateSecret2Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CreateSecret2Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// SecretHandle {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Secret != nil {
+			if err := o.Secret.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CreateSecret2Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// SecretHandle {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Secret == nil {
+			o.Secret = &Handle{}
+		}
+		if err := o.Secret.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// CreateSecret2Request structure represents the LsarCreateSecret2 operation request
+type CreateSecret2Request struct {
+	Policy              *Handle         `idl:"name:PolicyHandle" json:"policy"`
+	EncryptedSecretName *AESCipherValue `idl:"name:EncryptedSecretName" json:"encrypted_secret_name"`
+	DesiredAccess       uint32          `idl:"name:DesiredAccess" json:"desired_access"`
+}
+
+func (o *CreateSecret2Request) xxx_ToOp(ctx context.Context, op *xxx_CreateSecret2Operation) *xxx_CreateSecret2Operation {
+	if op == nil {
+		op = &xxx_CreateSecret2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Policy = o.Policy
+	op.EncryptedSecretName = o.EncryptedSecretName
+	op.DesiredAccess = o.DesiredAccess
+	return op
+}
+
+func (o *CreateSecret2Request) xxx_FromOp(ctx context.Context, op *xxx_CreateSecret2Operation) {
+	if o == nil {
+		return
+	}
+	o.Policy = op.Policy
+	o.EncryptedSecretName = op.EncryptedSecretName
+	o.DesiredAccess = op.DesiredAccess
+}
+func (o *CreateSecret2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *CreateSecret2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_CreateSecret2Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeCreateSecret2Request build a response structure from the given request structure.
+func (o *CreateSecret2Request) MakeResponse() *CreateSecret2Response {
+	return &CreateSecret2Response{}
+}
+
+// OpNum returns the operation number of LsarCreateSecret2 operation.
+func (o *CreateSecret2Request) OpNum() int { return 137 }
+
+// OpName returns the operation name of LsarCreateSecret2 operation.
+func (o *CreateSecret2Request) OpName() string { return "/lsarpc/v0/LsarCreateSecret2" }
+
+// CreateSecret2Response structure represents the LsarCreateSecret2 operation response
+type CreateSecret2Response struct {
+	Secret *Handle `idl:"name:SecretHandle" json:"secret"`
+	// Return: The LsarCreateSecret2 return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *CreateSecret2Response) xxx_ToOp(ctx context.Context, op *xxx_CreateSecret2Operation) *xxx_CreateSecret2Operation {
+	if op == nil {
+		op = &xxx_CreateSecret2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Secret = o.Secret
+	op.Return = o.Return
+	return op
+}
+
+func (o *CreateSecret2Response) xxx_FromOp(ctx context.Context, op *xxx_CreateSecret2Operation) {
+	if o == nil {
+		return
+	}
+	o.Secret = op.Secret
+	o.Return = op.Return
+}
+func (o *CreateSecret2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *CreateSecret2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_CreateSecret2Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_SetSecret2Operation structure represents the LsarSetSecret2 operation
+type xxx_SetSecret2Operation struct {
+	Secret                *Handle         `idl:"name:SecretHandle" json:"secret"`
+	EncryptedCurrentValue *AESCipherValue `idl:"name:EncryptedCurrentValue;pointer:unique" json:"encrypted_current_value"`
+	EncryptedOldValue     *AESCipherValue `idl:"name:EncryptedOldValue;pointer:unique" json:"encrypted_old_value"`
+	Return                int32           `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of LsarSetSecret2 operation.
+func (o *xxx_SetSecret2Operation) OpNum() int { return 138 }
+
+// OpName returns the operation name of LsarSetSecret2 operation.
+func (o *xxx_SetSecret2Operation) OpName() string { return "/lsarpc/v0/LsarSetSecret2" }
+
+func (o *xxx_SetSecret2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetSecret2Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// SecretHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Secret != nil {
+			if err := o.Secret.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// EncryptedCurrentValue {in} (1:{pointer=unique, alias=PLSAPR_AES_CIPHER_VALUE}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedCurrentValue != nil {
+			_ptr_EncryptedCurrentValue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.EncryptedCurrentValue != nil {
+					if err := o.EncryptedCurrentValue.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&AESCipherValue{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncryptedCurrentValue, _ptr_EncryptedCurrentValue); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedOldValue {in} (1:{pointer=unique, alias=PLSAPR_AES_CIPHER_VALUE}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedOldValue != nil {
+			_ptr_EncryptedOldValue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.EncryptedOldValue != nil {
+					if err := o.EncryptedOldValue.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&AESCipherValue{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncryptedOldValue, _ptr_EncryptedOldValue); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetSecret2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// SecretHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Secret == nil {
+			o.Secret = &Handle{}
+		}
+		if err := o.Secret.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// EncryptedCurrentValue {in} (1:{pointer=unique, alias=PLSAPR_AES_CIPHER_VALUE}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		_ptr_EncryptedCurrentValue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.EncryptedCurrentValue == nil {
+				o.EncryptedCurrentValue = &AESCipherValue{}
+			}
+			if err := o.EncryptedCurrentValue.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_EncryptedCurrentValue := func(ptr interface{}) { o.EncryptedCurrentValue = *ptr.(**AESCipherValue) }
+		if err := w.ReadPointer(&o.EncryptedCurrentValue, _s_EncryptedCurrentValue, _ptr_EncryptedCurrentValue); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedOldValue {in} (1:{pointer=unique, alias=PLSAPR_AES_CIPHER_VALUE}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		_ptr_EncryptedOldValue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.EncryptedOldValue == nil {
+				o.EncryptedOldValue = &AESCipherValue{}
+			}
+			if err := o.EncryptedOldValue.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_EncryptedOldValue := func(ptr interface{}) { o.EncryptedOldValue = *ptr.(**AESCipherValue) }
+		if err := w.ReadPointer(&o.EncryptedOldValue, _s_EncryptedOldValue, _ptr_EncryptedOldValue); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetSecret2Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetSecret2Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_SetSecret2Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// SetSecret2Request structure represents the LsarSetSecret2 operation request
+type SetSecret2Request struct {
+	Secret                *Handle         `idl:"name:SecretHandle" json:"secret"`
+	EncryptedCurrentValue *AESCipherValue `idl:"name:EncryptedCurrentValue;pointer:unique" json:"encrypted_current_value"`
+	EncryptedOldValue     *AESCipherValue `idl:"name:EncryptedOldValue;pointer:unique" json:"encrypted_old_value"`
+}
+
+func (o *SetSecret2Request) xxx_ToOp(ctx context.Context, op *xxx_SetSecret2Operation) *xxx_SetSecret2Operation {
+	if op == nil {
+		op = &xxx_SetSecret2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Secret = o.Secret
+	op.EncryptedCurrentValue = o.EncryptedCurrentValue
+	op.EncryptedOldValue = o.EncryptedOldValue
+	return op
+}
+
+func (o *SetSecret2Request) xxx_FromOp(ctx context.Context, op *xxx_SetSecret2Operation) {
+	if o == nil {
+		return
+	}
+	o.Secret = op.Secret
+	o.EncryptedCurrentValue = op.EncryptedCurrentValue
+	o.EncryptedOldValue = op.EncryptedOldValue
+}
+func (o *SetSecret2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *SetSecret2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetSecret2Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeSetSecret2Request build a response structure from the given request structure.
+func (o *SetSecret2Request) MakeResponse() *SetSecret2Response {
+	return &SetSecret2Response{}
+}
+
+// OpNum returns the operation number of LsarSetSecret2 operation.
+func (o *SetSecret2Request) OpNum() int { return 138 }
+
+// OpName returns the operation name of LsarSetSecret2 operation.
+func (o *SetSecret2Request) OpName() string { return "/lsarpc/v0/LsarSetSecret2" }
+
+// SetSecret2Response structure represents the LsarSetSecret2 operation response
+type SetSecret2Response struct {
+	// Return: The LsarSetSecret2 return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *SetSecret2Response) xxx_ToOp(ctx context.Context, op *xxx_SetSecret2Operation) *xxx_SetSecret2Operation {
+	if op == nil {
+		op = &xxx_SetSecret2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *SetSecret2Response) xxx_FromOp(ctx context.Context, op *xxx_SetSecret2Operation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *SetSecret2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *SetSecret2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetSecret2Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_QuerySecret2Operation structure represents the LsarQuerySecret2 operation
+type xxx_QuerySecret2Operation struct {
+	Secret                *Handle            `idl:"name:SecretHandle" json:"secret"`
+	EncryptedCurrentValue *AESCipherValue    `idl:"name:EncryptedCurrentValue;pointer:unique" json:"encrypted_current_value"`
+	CurrentValueSetTime   *dtyp.LargeInteger `idl:"name:CurrentValueSetTime;pointer:unique" json:"current_value_set_time"`
+	EncryptedOldValue     *AESCipherValue    `idl:"name:EncryptedOldValue;pointer:unique" json:"encrypted_old_value"`
+	OldValueSetTime       *dtyp.LargeInteger `idl:"name:OldValueSetTime;pointer:unique" json:"old_value_set_time"`
+	Return                int32              `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of LsarQuerySecret2 operation.
+func (o *xxx_QuerySecret2Operation) OpNum() int { return 139 }
+
+// OpName returns the operation name of LsarQuerySecret2 operation.
+func (o *xxx_QuerySecret2Operation) OpName() string { return "/lsarpc/v0/LsarQuerySecret2" }
+
+func (o *xxx_QuerySecret2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QuerySecret2Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// SecretHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Secret != nil {
+			if err := o.Secret.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// EncryptedCurrentValue {in, out} (1:{pointer=unique}*(2))(2:{alias=PLSAPR_AES_CIPHER_VALUE}*(1))(3:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedCurrentValue != nil {
+			_ptr_EncryptedCurrentValue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.EncryptedCurrentValue != nil {
+					_ptr_EncryptedCurrentValue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.EncryptedCurrentValue != nil {
+							if err := o.EncryptedCurrentValue.MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&AESCipherValue{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.EncryptedCurrentValue, _ptr_EncryptedCurrentValue); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncryptedCurrentValue, _ptr_EncryptedCurrentValue); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// CurrentValueSetTime {in, out} (1:{pointer=unique, alias=PLARGE_INTEGER}*(1))(2:{alias=LARGE_INTEGER}(struct))
+	{
+		if o.CurrentValueSetTime != nil {
+			_ptr_CurrentValueSetTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.CurrentValueSetTime != nil {
+					if err := o.CurrentValueSetTime.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.CurrentValueSetTime, _ptr_CurrentValueSetTime); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedOldValue {in, out} (1:{pointer=unique}*(2))(2:{alias=PLSAPR_AES_CIPHER_VALUE}*(1))(3:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedOldValue != nil {
+			_ptr_EncryptedOldValue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.EncryptedOldValue != nil {
+					_ptr_EncryptedOldValue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.EncryptedOldValue != nil {
+							if err := o.EncryptedOldValue.MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&AESCipherValue{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.EncryptedOldValue, _ptr_EncryptedOldValue); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncryptedOldValue, _ptr_EncryptedOldValue); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// OldValueSetTime {in, out} (1:{pointer=unique, alias=PLARGE_INTEGER}*(1))(2:{alias=LARGE_INTEGER}(struct))
+	{
+		if o.OldValueSetTime != nil {
+			_ptr_OldValueSetTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.OldValueSetTime != nil {
+					if err := o.OldValueSetTime.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.OldValueSetTime, _ptr_OldValueSetTime); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QuerySecret2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// SecretHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Secret == nil {
+			o.Secret = &Handle{}
+		}
+		if err := o.Secret.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// EncryptedCurrentValue {in, out} (1:{pointer=unique}*(2))(2:{alias=PLSAPR_AES_CIPHER_VALUE,pointer=ref}*(1))(3:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		_ptr_EncryptedCurrentValue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			_ptr_EncryptedCurrentValue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.EncryptedCurrentValue == nil {
+					o.EncryptedCurrentValue = &AESCipherValue{}
+				}
+				if err := o.EncryptedCurrentValue.UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_EncryptedCurrentValue := func(ptr interface{}) { o.EncryptedCurrentValue = *ptr.(**AESCipherValue) }
+			if err := w.ReadPointer(&o.EncryptedCurrentValue, _s_EncryptedCurrentValue, _ptr_EncryptedCurrentValue); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_EncryptedCurrentValue := func(ptr interface{}) { o.EncryptedCurrentValue = *ptr.(**AESCipherValue) }
+		if err := w.ReadPointer(&o.EncryptedCurrentValue, _s_EncryptedCurrentValue, _ptr_EncryptedCurrentValue); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// CurrentValueSetTime {in, out} (1:{pointer=unique, alias=PLARGE_INTEGER}*(1))(2:{alias=LARGE_INTEGER}(struct))
+	{
+		_ptr_CurrentValueSetTime := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.CurrentValueSetTime == nil {
+				o.CurrentValueSetTime = &dtyp.LargeInteger{}
+			}
+			if err := o.CurrentValueSetTime.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_CurrentValueSetTime := func(ptr interface{}) { o.CurrentValueSetTime = *ptr.(**dtyp.LargeInteger) }
+		if err := w.ReadPointer(&o.CurrentValueSetTime, _s_CurrentValueSetTime, _ptr_CurrentValueSetTime); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedOldValue {in, out} (1:{pointer=unique}*(2))(2:{alias=PLSAPR_AES_CIPHER_VALUE,pointer=ref}*(1))(3:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		_ptr_EncryptedOldValue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			_ptr_EncryptedOldValue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.EncryptedOldValue == nil {
+					o.EncryptedOldValue = &AESCipherValue{}
+				}
+				if err := o.EncryptedOldValue.UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_EncryptedOldValue := func(ptr interface{}) { o.EncryptedOldValue = *ptr.(**AESCipherValue) }
+			if err := w.ReadPointer(&o.EncryptedOldValue, _s_EncryptedOldValue, _ptr_EncryptedOldValue); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_EncryptedOldValue := func(ptr interface{}) { o.EncryptedOldValue = *ptr.(**AESCipherValue) }
+		if err := w.ReadPointer(&o.EncryptedOldValue, _s_EncryptedOldValue, _ptr_EncryptedOldValue); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// OldValueSetTime {in, out} (1:{pointer=unique, alias=PLARGE_INTEGER}*(1))(2:{alias=LARGE_INTEGER}(struct))
+	{
+		_ptr_OldValueSetTime := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.OldValueSetTime == nil {
+				o.OldValueSetTime = &dtyp.LargeInteger{}
+			}
+			if err := o.OldValueSetTime.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_OldValueSetTime := func(ptr interface{}) { o.OldValueSetTime = *ptr.(**dtyp.LargeInteger) }
+		if err := w.ReadPointer(&o.OldValueSetTime, _s_OldValueSetTime, _ptr_OldValueSetTime); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QuerySecret2Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QuerySecret2Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// EncryptedCurrentValue {in, out} (1:{pointer=unique}*(2))(2:{alias=PLSAPR_AES_CIPHER_VALUE}*(1))(3:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedCurrentValue != nil {
+			_ptr_EncryptedCurrentValue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.EncryptedCurrentValue != nil {
+					_ptr_EncryptedCurrentValue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.EncryptedCurrentValue != nil {
+							if err := o.EncryptedCurrentValue.MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&AESCipherValue{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.EncryptedCurrentValue, _ptr_EncryptedCurrentValue); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncryptedCurrentValue, _ptr_EncryptedCurrentValue); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// CurrentValueSetTime {in, out} (1:{pointer=unique, alias=PLARGE_INTEGER}*(1))(2:{alias=LARGE_INTEGER}(struct))
+	{
+		if o.CurrentValueSetTime != nil {
+			_ptr_CurrentValueSetTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.CurrentValueSetTime != nil {
+					if err := o.CurrentValueSetTime.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.CurrentValueSetTime, _ptr_CurrentValueSetTime); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedOldValue {in, out} (1:{pointer=unique}*(2))(2:{alias=PLSAPR_AES_CIPHER_VALUE}*(1))(3:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedOldValue != nil {
+			_ptr_EncryptedOldValue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.EncryptedOldValue != nil {
+					_ptr_EncryptedOldValue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.EncryptedOldValue != nil {
+							if err := o.EncryptedOldValue.MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&AESCipherValue{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.EncryptedOldValue, _ptr_EncryptedOldValue); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncryptedOldValue, _ptr_EncryptedOldValue); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// OldValueSetTime {in, out} (1:{pointer=unique, alias=PLARGE_INTEGER}*(1))(2:{alias=LARGE_INTEGER}(struct))
+	{
+		if o.OldValueSetTime != nil {
+			_ptr_OldValueSetTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.OldValueSetTime != nil {
+					if err := o.OldValueSetTime.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.OldValueSetTime, _ptr_OldValueSetTime); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_QuerySecret2Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// EncryptedCurrentValue {in, out} (1:{pointer=unique}*(2))(2:{alias=PLSAPR_AES_CIPHER_VALUE,pointer=ref}*(1))(3:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		_ptr_EncryptedCurrentValue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			_ptr_EncryptedCurrentValue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.EncryptedCurrentValue == nil {
+					o.EncryptedCurrentValue = &AESCipherValue{}
+				}
+				if err := o.EncryptedCurrentValue.UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_EncryptedCurrentValue := func(ptr interface{}) { o.EncryptedCurrentValue = *ptr.(**AESCipherValue) }
+			if err := w.ReadPointer(&o.EncryptedCurrentValue, _s_EncryptedCurrentValue, _ptr_EncryptedCurrentValue); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_EncryptedCurrentValue := func(ptr interface{}) { o.EncryptedCurrentValue = *ptr.(**AESCipherValue) }
+		if err := w.ReadPointer(&o.EncryptedCurrentValue, _s_EncryptedCurrentValue, _ptr_EncryptedCurrentValue); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// CurrentValueSetTime {in, out} (1:{pointer=unique, alias=PLARGE_INTEGER}*(1))(2:{alias=LARGE_INTEGER}(struct))
+	{
+		_ptr_CurrentValueSetTime := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.CurrentValueSetTime == nil {
+				o.CurrentValueSetTime = &dtyp.LargeInteger{}
+			}
+			if err := o.CurrentValueSetTime.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_CurrentValueSetTime := func(ptr interface{}) { o.CurrentValueSetTime = *ptr.(**dtyp.LargeInteger) }
+		if err := w.ReadPointer(&o.CurrentValueSetTime, _s_CurrentValueSetTime, _ptr_CurrentValueSetTime); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedOldValue {in, out} (1:{pointer=unique}*(2))(2:{alias=PLSAPR_AES_CIPHER_VALUE,pointer=ref}*(1))(3:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		_ptr_EncryptedOldValue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			_ptr_EncryptedOldValue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.EncryptedOldValue == nil {
+					o.EncryptedOldValue = &AESCipherValue{}
+				}
+				if err := o.EncryptedOldValue.UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_EncryptedOldValue := func(ptr interface{}) { o.EncryptedOldValue = *ptr.(**AESCipherValue) }
+			if err := w.ReadPointer(&o.EncryptedOldValue, _s_EncryptedOldValue, _ptr_EncryptedOldValue); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_EncryptedOldValue := func(ptr interface{}) { o.EncryptedOldValue = *ptr.(**AESCipherValue) }
+		if err := w.ReadPointer(&o.EncryptedOldValue, _s_EncryptedOldValue, _ptr_EncryptedOldValue); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// OldValueSetTime {in, out} (1:{pointer=unique, alias=PLARGE_INTEGER}*(1))(2:{alias=LARGE_INTEGER}(struct))
+	{
+		_ptr_OldValueSetTime := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.OldValueSetTime == nil {
+				o.OldValueSetTime = &dtyp.LargeInteger{}
+			}
+			if err := o.OldValueSetTime.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_OldValueSetTime := func(ptr interface{}) { o.OldValueSetTime = *ptr.(**dtyp.LargeInteger) }
+		if err := w.ReadPointer(&o.OldValueSetTime, _s_OldValueSetTime, _ptr_OldValueSetTime); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// QuerySecret2Request structure represents the LsarQuerySecret2 operation request
+type QuerySecret2Request struct {
+	Secret                *Handle            `idl:"name:SecretHandle" json:"secret"`
+	EncryptedCurrentValue *AESCipherValue    `idl:"name:EncryptedCurrentValue;pointer:unique" json:"encrypted_current_value"`
+	CurrentValueSetTime   *dtyp.LargeInteger `idl:"name:CurrentValueSetTime;pointer:unique" json:"current_value_set_time"`
+	EncryptedOldValue     *AESCipherValue    `idl:"name:EncryptedOldValue;pointer:unique" json:"encrypted_old_value"`
+	OldValueSetTime       *dtyp.LargeInteger `idl:"name:OldValueSetTime;pointer:unique" json:"old_value_set_time"`
+}
+
+func (o *QuerySecret2Request) xxx_ToOp(ctx context.Context, op *xxx_QuerySecret2Operation) *xxx_QuerySecret2Operation {
+	if op == nil {
+		op = &xxx_QuerySecret2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Secret = o.Secret
+	op.EncryptedCurrentValue = o.EncryptedCurrentValue
+	op.CurrentValueSetTime = o.CurrentValueSetTime
+	op.EncryptedOldValue = o.EncryptedOldValue
+	op.OldValueSetTime = o.OldValueSetTime
+	return op
+}
+
+func (o *QuerySecret2Request) xxx_FromOp(ctx context.Context, op *xxx_QuerySecret2Operation) {
+	if o == nil {
+		return
+	}
+	o.Secret = op.Secret
+	o.EncryptedCurrentValue = op.EncryptedCurrentValue
+	o.CurrentValueSetTime = op.CurrentValueSetTime
+	o.EncryptedOldValue = op.EncryptedOldValue
+	o.OldValueSetTime = op.OldValueSetTime
+}
+func (o *QuerySecret2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *QuerySecret2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_QuerySecret2Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeQuerySecret2Request build a response structure from the given request structure.
+func (o *QuerySecret2Request) MakeResponse() *QuerySecret2Response {
+	return &QuerySecret2Response{}
+}
+
+// OpNum returns the operation number of LsarQuerySecret2 operation.
+func (o *QuerySecret2Request) OpNum() int { return 139 }
+
+// OpName returns the operation name of LsarQuerySecret2 operation.
+func (o *QuerySecret2Request) OpName() string { return "/lsarpc/v0/LsarQuerySecret2" }
+
+// QuerySecret2Response structure represents the LsarQuerySecret2 operation response
+type QuerySecret2Response struct {
+	EncryptedCurrentValue *AESCipherValue    `idl:"name:EncryptedCurrentValue;pointer:unique" json:"encrypted_current_value"`
+	CurrentValueSetTime   *dtyp.LargeInteger `idl:"name:CurrentValueSetTime;pointer:unique" json:"current_value_set_time"`
+	EncryptedOldValue     *AESCipherValue    `idl:"name:EncryptedOldValue;pointer:unique" json:"encrypted_old_value"`
+	OldValueSetTime       *dtyp.LargeInteger `idl:"name:OldValueSetTime;pointer:unique" json:"old_value_set_time"`
+	// Return: The LsarQuerySecret2 return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *QuerySecret2Response) xxx_ToOp(ctx context.Context, op *xxx_QuerySecret2Operation) *xxx_QuerySecret2Operation {
+	if op == nil {
+		op = &xxx_QuerySecret2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.EncryptedCurrentValue = o.EncryptedCurrentValue
+	op.CurrentValueSetTime = o.CurrentValueSetTime
+	op.EncryptedOldValue = o.EncryptedOldValue
+	op.OldValueSetTime = o.OldValueSetTime
+	op.Return = o.Return
+	return op
+}
+
+func (o *QuerySecret2Response) xxx_FromOp(ctx context.Context, op *xxx_QuerySecret2Operation) {
+	if o == nil {
+		return
+	}
+	o.EncryptedCurrentValue = op.EncryptedCurrentValue
+	o.CurrentValueSetTime = op.CurrentValueSetTime
+	o.EncryptedOldValue = op.EncryptedOldValue
+	o.OldValueSetTime = op.OldValueSetTime
+	o.Return = op.Return
+}
+func (o *QuerySecret2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *QuerySecret2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_QuerySecret2Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_StorePrivateData2Operation structure represents the LsarStorePrivateData2 operation
+type xxx_StorePrivateData2Operation struct {
+	Policy           *Handle         `idl:"name:PolicyHandle" json:"policy"`
+	EncryptedKeyName *AESCipherValue `idl:"name:EncryptedKeyName" json:"encrypted_key_name"`
+	EncryptedData    *AESCipherValue `idl:"name:EncryptedData;pointer:unique" json:"encrypted_data"`
+	Return           int32           `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of LsarStorePrivateData2 operation.
+func (o *xxx_StorePrivateData2Operation) OpNum() int { return 140 }
+
+// OpName returns the operation name of LsarStorePrivateData2 operation.
+func (o *xxx_StorePrivateData2Operation) OpName() string { return "/lsarpc/v0/LsarStorePrivateData2" }
+
+func (o *xxx_StorePrivateData2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_StorePrivateData2Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy != nil {
+			if err := o.Policy.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// EncryptedKeyName {in} (1:{alias=PLSAPR_AES_CIPHER_VALUE}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedKeyName != nil {
+			if err := o.EncryptedKeyName.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&AESCipherValue{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedData {in} (1:{pointer=unique, alias=PLSAPR_AES_CIPHER_VALUE}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedData != nil {
+			_ptr_EncryptedData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.EncryptedData != nil {
+					if err := o.EncryptedData.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&AESCipherValue{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncryptedData, _ptr_EncryptedData); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_StorePrivateData2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy == nil {
+			o.Policy = &Handle{}
+		}
+		if err := o.Policy.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// EncryptedKeyName {in} (1:{alias=PLSAPR_AES_CIPHER_VALUE,pointer=ref}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedKeyName == nil {
+			o.EncryptedKeyName = &AESCipherValue{}
+		}
+		if err := o.EncryptedKeyName.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedData {in} (1:{pointer=unique, alias=PLSAPR_AES_CIPHER_VALUE}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		_ptr_EncryptedData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.EncryptedData == nil {
+				o.EncryptedData = &AESCipherValue{}
+			}
+			if err := o.EncryptedData.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_EncryptedData := func(ptr interface{}) { o.EncryptedData = *ptr.(**AESCipherValue) }
+		if err := w.ReadPointer(&o.EncryptedData, _s_EncryptedData, _ptr_EncryptedData); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_StorePrivateData2Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_StorePrivateData2Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_StorePrivateData2Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// StorePrivateData2Request structure represents the LsarStorePrivateData2 operation request
+type StorePrivateData2Request struct {
+	Policy           *Handle         `idl:"name:PolicyHandle" json:"policy"`
+	EncryptedKeyName *AESCipherValue `idl:"name:EncryptedKeyName" json:"encrypted_key_name"`
+	EncryptedData    *AESCipherValue `idl:"name:EncryptedData;pointer:unique" json:"encrypted_data"`
+}
+
+func (o *StorePrivateData2Request) xxx_ToOp(ctx context.Context, op *xxx_StorePrivateData2Operation) *xxx_StorePrivateData2Operation {
+	if op == nil {
+		op = &xxx_StorePrivateData2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Policy = o.Policy
+	op.EncryptedKeyName = o.EncryptedKeyName
+	op.EncryptedData = o.EncryptedData
+	return op
+}
+
+func (o *StorePrivateData2Request) xxx_FromOp(ctx context.Context, op *xxx_StorePrivateData2Operation) {
+	if o == nil {
+		return
+	}
+	o.Policy = op.Policy
+	o.EncryptedKeyName = op.EncryptedKeyName
+	o.EncryptedData = op.EncryptedData
+}
+func (o *StorePrivateData2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *StorePrivateData2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_StorePrivateData2Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeStorePrivateData2Request build a response structure from the given request structure.
+func (o *StorePrivateData2Request) MakeResponse() *StorePrivateData2Response {
+	return &StorePrivateData2Response{}
+}
+
+// OpNum returns the operation number of LsarStorePrivateData2 operation.
+func (o *StorePrivateData2Request) OpNum() int { return 140 }
+
+// OpName returns the operation name of LsarStorePrivateData2 operation.
+func (o *StorePrivateData2Request) OpName() string { return "/lsarpc/v0/LsarStorePrivateData2" }
+
+// StorePrivateData2Response structure represents the LsarStorePrivateData2 operation response
+type StorePrivateData2Response struct {
+	// Return: The LsarStorePrivateData2 return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *StorePrivateData2Response) xxx_ToOp(ctx context.Context, op *xxx_StorePrivateData2Operation) *xxx_StorePrivateData2Operation {
+	if op == nil {
+		op = &xxx_StorePrivateData2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *StorePrivateData2Response) xxx_FromOp(ctx context.Context, op *xxx_StorePrivateData2Operation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *StorePrivateData2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *StorePrivateData2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_StorePrivateData2Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_RetrievePrivateData2Operation structure represents the LsarRetrievePrivateData2 operation
+type xxx_RetrievePrivateData2Operation struct {
+	Policy           *Handle         `idl:"name:PolicyHandle" json:"policy"`
+	EncryptedKeyName *AESCipherValue `idl:"name:EncryptedKeyName" json:"encrypted_key_name"`
+	EncryptedData    *AESCipherValue `idl:"name:EncryptedData;pointer:unique" json:"encrypted_data"`
+	Return           int32           `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of LsarRetrievePrivateData2 operation.
+func (o *xxx_RetrievePrivateData2Operation) OpNum() int { return 141 }
+
+// OpName returns the operation name of LsarRetrievePrivateData2 operation.
+func (o *xxx_RetrievePrivateData2Operation) OpName() string {
+	return "/lsarpc/v0/LsarRetrievePrivateData2"
+}
+
+func (o *xxx_RetrievePrivateData2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RetrievePrivateData2Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy != nil {
+			if err := o.Policy.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// EncryptedKeyName {in} (1:{alias=PLSAPR_AES_CIPHER_VALUE}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedKeyName != nil {
+			if err := o.EncryptedKeyName.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&AESCipherValue{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedData {in, out} (1:{pointer=unique}*(2))(2:{alias=PLSAPR_AES_CIPHER_VALUE}*(1))(3:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedData != nil {
+			_ptr_EncryptedData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.EncryptedData != nil {
+					_ptr_EncryptedData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.EncryptedData != nil {
+							if err := o.EncryptedData.MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&AESCipherValue{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.EncryptedData, _ptr_EncryptedData); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncryptedData, _ptr_EncryptedData); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RetrievePrivateData2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// PolicyHandle {in} (1:{context_handle, alias=LSAPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Policy == nil {
+			o.Policy = &Handle{}
+		}
+		if err := o.Policy.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// EncryptedKeyName {in} (1:{alias=PLSAPR_AES_CIPHER_VALUE,pointer=ref}*(1))(2:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedKeyName == nil {
+			o.EncryptedKeyName = &AESCipherValue{}
+		}
+		if err := o.EncryptedKeyName.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedData {in, out} (1:{pointer=unique}*(2))(2:{alias=PLSAPR_AES_CIPHER_VALUE,pointer=ref}*(1))(3:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		_ptr_EncryptedData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			_ptr_EncryptedData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.EncryptedData == nil {
+					o.EncryptedData = &AESCipherValue{}
+				}
+				if err := o.EncryptedData.UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_EncryptedData := func(ptr interface{}) { o.EncryptedData = *ptr.(**AESCipherValue) }
+			if err := w.ReadPointer(&o.EncryptedData, _s_EncryptedData, _ptr_EncryptedData); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_EncryptedData := func(ptr interface{}) { o.EncryptedData = *ptr.(**AESCipherValue) }
+		if err := w.ReadPointer(&o.EncryptedData, _s_EncryptedData, _ptr_EncryptedData); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RetrievePrivateData2Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RetrievePrivateData2Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// EncryptedData {in, out} (1:{pointer=unique}*(2))(2:{alias=PLSAPR_AES_CIPHER_VALUE}*(1))(3:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		if o.EncryptedData != nil {
+			_ptr_EncryptedData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.EncryptedData != nil {
+					_ptr_EncryptedData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.EncryptedData != nil {
+							if err := o.EncryptedData.MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&AESCipherValue{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.EncryptedData, _ptr_EncryptedData); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncryptedData, _ptr_EncryptedData); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_RetrievePrivateData2Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// EncryptedData {in, out} (1:{pointer=unique}*(2))(2:{alias=PLSAPR_AES_CIPHER_VALUE,pointer=ref}*(1))(3:{alias=LSAPR_AES_CIPHER_VALUE}(struct))
+	{
+		_ptr_EncryptedData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			_ptr_EncryptedData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.EncryptedData == nil {
+					o.EncryptedData = &AESCipherValue{}
+				}
+				if err := o.EncryptedData.UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_EncryptedData := func(ptr interface{}) { o.EncryptedData = *ptr.(**AESCipherValue) }
+			if err := w.ReadPointer(&o.EncryptedData, _s_EncryptedData, _ptr_EncryptedData); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_EncryptedData := func(ptr interface{}) { o.EncryptedData = *ptr.(**AESCipherValue) }
+		if err := w.ReadPointer(&o.EncryptedData, _s_EncryptedData, _ptr_EncryptedData); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// RetrievePrivateData2Request structure represents the LsarRetrievePrivateData2 operation request
+type RetrievePrivateData2Request struct {
+	Policy           *Handle         `idl:"name:PolicyHandle" json:"policy"`
+	EncryptedKeyName *AESCipherValue `idl:"name:EncryptedKeyName" json:"encrypted_key_name"`
+	EncryptedData    *AESCipherValue `idl:"name:EncryptedData;pointer:unique" json:"encrypted_data"`
+}
+
+func (o *RetrievePrivateData2Request) xxx_ToOp(ctx context.Context, op *xxx_RetrievePrivateData2Operation) *xxx_RetrievePrivateData2Operation {
+	if op == nil {
+		op = &xxx_RetrievePrivateData2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Policy = o.Policy
+	op.EncryptedKeyName = o.EncryptedKeyName
+	op.EncryptedData = o.EncryptedData
+	return op
+}
+
+func (o *RetrievePrivateData2Request) xxx_FromOp(ctx context.Context, op *xxx_RetrievePrivateData2Operation) {
+	if o == nil {
+		return
+	}
+	o.Policy = op.Policy
+	o.EncryptedKeyName = op.EncryptedKeyName
+	o.EncryptedData = op.EncryptedData
+}
+func (o *RetrievePrivateData2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *RetrievePrivateData2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_RetrievePrivateData2Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeRetrievePrivateData2Request build a response structure from the given request structure.
+func (o *RetrievePrivateData2Request) MakeResponse() *RetrievePrivateData2Response {
+	return &RetrievePrivateData2Response{}
+}
+
+// OpNum returns the operation number of LsarRetrievePrivateData2 operation.
+func (o *RetrievePrivateData2Request) OpNum() int { return 141 }
+
+// OpName returns the operation name of LsarRetrievePrivateData2 operation.
+func (o *RetrievePrivateData2Request) OpName() string { return "/lsarpc/v0/LsarRetrievePrivateData2" }
+
+// RetrievePrivateData2Response structure represents the LsarRetrievePrivateData2 operation response
+type RetrievePrivateData2Response struct {
+	EncryptedData *AESCipherValue `idl:"name:EncryptedData;pointer:unique" json:"encrypted_data"`
+	// Return: The LsarRetrievePrivateData2 return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *RetrievePrivateData2Response) xxx_ToOp(ctx context.Context, op *xxx_RetrievePrivateData2Operation) *xxx_RetrievePrivateData2Operation {
+	if op == nil {
+		op = &xxx_RetrievePrivateData2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.EncryptedData = o.EncryptedData
+	op.Return = o.Return
+	return op
+}
+
+func (o *RetrievePrivateData2Response) xxx_FromOp(ctx context.Context, op *xxx_RetrievePrivateData2Operation) {
+	if o == nil {
+		return
+	}
+	o.EncryptedData = op.EncryptedData
+	o.Return = op.Return
+}
+func (o *RetrievePrivateData2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *RetrievePrivateData2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_RetrievePrivateData2Operation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

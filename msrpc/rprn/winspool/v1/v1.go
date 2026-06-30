@@ -4992,7 +4992,7 @@ type JobInfo1 struct {
 	UserName     string `idl:"name:pUserName;string" json:"user_name"`
 	Document     string `idl:"name:pDocument;string" json:"document"`
 	DataType     string `idl:"name:pDatatype;string" json:"data_type"`
-	StatusString string `idl:"name:__pStatus;string" json:"status_string"`
+	StatusString string `idl:"name:pStatus;string" json:"status_string"`
 	// Status (4 bytes): The current printer status (section 2.2.3.12).
 	Status uint32 `idl:"name:Status" json:"status"`
 	// Priority (4 bytes): The job priority as a decimal number from 0 through 99, inclusive.
@@ -5105,13 +5105,13 @@ func (o *JobInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		}
 	}
 	if o.StatusString != "" {
-		_ptr___pStatus := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+		_ptr_pStatus := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := ndr.WriteUTF16NString(ctx, w, o.StatusString); err != nil {
 				return err
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.StatusString, _ptr___pStatus); err != nil {
+		if err := w.WritePointer(&o.StatusString, _ptr_pStatus); err != nil {
 			return err
 		}
 	} else {
@@ -5205,14 +5205,14 @@ func (o *JobInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.DataType, _s_pDatatype, _ptr_pDatatype); err != nil {
 		return err
 	}
-	_ptr___pStatus := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+	_ptr_pStatus := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if err := ndr.ReadUTF16NString(ctx, w, &o.StatusString); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s___pStatus := func(ptr interface{}) { o.StatusString = *ptr.(*string) }
-	if err := w.ReadPointer(&o.StatusString, _s___pStatus, _ptr___pStatus); err != nil {
+	_s_pStatus := func(ptr interface{}) { o.StatusString = *ptr.(*string) }
+	if err := w.ReadPointer(&o.StatusString, _s_pStatus, _ptr_pStatus); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Status); err != nil {
@@ -5277,7 +5277,7 @@ type JobInfo2 struct {
 	Parameters         string `idl:"name:pParameters;string" json:"parameters"`
 	DriverName         string `idl:"name:pDriverName;string" json:"driver_name"`
 	DevMode            uint64 `idl:"name:pDevMode" json:"dev_mode"`
-	StatusString       string `idl:"name:__pStatus;string" json:"status_string"`
+	StatusString       string `idl:"name:pStatus;string" json:"status_string"`
 	SecurityDescriptor uint64 `idl:"name:pSecurityDescriptor" json:"security_descriptor"`
 	// Status (4 bytes): The current printer status (section 2.2.3.12).
 	Status uint32 `idl:"name:Status" json:"status"`
@@ -5464,13 +5464,13 @@ func (o *JobInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	if o.StatusString != "" {
-		_ptr___pStatus := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+		_ptr_pStatus := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := ndr.WriteUTF16NString(ctx, w, o.StatusString); err != nil {
 				return err
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.StatusString, _ptr___pStatus); err != nil {
+		if err := w.WritePointer(&o.StatusString, _ptr_pStatus); err != nil {
 			return err
 		}
 	} else {
@@ -5622,14 +5622,14 @@ func (o *JobInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData((*ndr.Uint3264)(&o.DevMode)); err != nil {
 		return err
 	}
-	_ptr___pStatus := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+	_ptr_pStatus := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if err := ndr.ReadUTF16NString(ctx, w, &o.StatusString); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s___pStatus := func(ptr interface{}) { o.StatusString = *ptr.(*string) }
-	if err := w.ReadPointer(&o.StatusString, _s___pStatus, _ptr___pStatus); err != nil {
+	_s_pStatus := func(ptr interface{}) { o.StatusString = *ptr.(*string) }
+	if err := w.ReadPointer(&o.StatusString, _s_pStatus, _ptr_pStatus); err != nil {
 		return err
 	}
 	if err := w.ReadData((*ndr.Uint3264)(&o.SecurityDescriptor)); err != nil {
@@ -5795,7 +5795,7 @@ type JobInfo4 struct {
 	Parameters         string `idl:"name:pParameters;string" json:"parameters"`
 	DriverName         string `idl:"name:pDriverName;string" json:"driver_name"`
 	DevMode            uint64 `idl:"name:pDevMode" json:"dev_mode"`
-	StatusString       string `idl:"name:__pStatus;string" json:"status_string"`
+	StatusString       string `idl:"name:pStatus;string" json:"status_string"`
 	SecurityDescriptor uint64 `idl:"name:pSecurityDescriptor" json:"security_descriptor"`
 	// Status (4 bytes): The current printer status (section 2.2.3.12).
 	Status uint32 `idl:"name:Status" json:"status"`
@@ -5990,13 +5990,13 @@ func (o *JobInfo4) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	if o.StatusString != "" {
-		_ptr___pStatus := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+		_ptr_pStatus := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := ndr.WriteUTF16NString(ctx, w, o.StatusString); err != nil {
 				return err
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.StatusString, _ptr___pStatus); err != nil {
+		if err := w.WritePointer(&o.StatusString, _ptr_pStatus); err != nil {
 			return err
 		}
 	} else {
@@ -6151,14 +6151,14 @@ func (o *JobInfo4) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData((*ndr.Uint3264)(&o.DevMode)); err != nil {
 		return err
 	}
-	_ptr___pStatus := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+	_ptr_pStatus := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if err := ndr.ReadUTF16NString(ctx, w, &o.StatusString); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s___pStatus := func(ptr interface{}) { o.StatusString = *ptr.(*string) }
-	if err := w.ReadPointer(&o.StatusString, _s___pStatus, _ptr___pStatus); err != nil {
+	_s_pStatus := func(ptr interface{}) { o.StatusString = *ptr.(*string) }
+	if err := w.ReadPointer(&o.StatusString, _s_pStatus, _ptr_pStatus); err != nil {
 		return err
 	}
 	if err := w.ReadData((*ndr.Uint3264)(&o.SecurityDescriptor)); err != nil {
@@ -12574,7 +12574,9 @@ func (o *BIDIData_Union) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw
 //
 // It has following labels: 0, 3
 type BIDIData_Union_BoolData struct {
-	BoolData int32 `idl:"name:boolData" json:"bool_data"`
+	// bData: This case indicates that either there is no bidirectional data, or the bidirectional
+	// data is a Boolean value.
+	BoolData int32 `idl:"name:bData" json:"bool_data"`
 }
 
 func (*BIDIData_Union_BoolData) is_BIDIData_Union() {}
@@ -12596,7 +12598,8 @@ func (o *BIDIData_Union_BoolData) UnmarshalNDR(ctx context.Context, w ndr.Reader
 //
 // It has following labels: 1
 type BIDIData_Union_IntData struct {
-	IntData int32 `idl:"name:intData" json:"int_data"`
+	// iData: This case indicates that the bidirectional data is an integer.
+	IntData int32 `idl:"name:iData" json:"int_data"`
 }
 
 func (*BIDIData_Union_IntData) is_BIDIData_Union() {}
@@ -12618,20 +12621,22 @@ func (o *BIDIData_Union_IntData) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 //
 // It has following labels: 4, 5, 6
 type BIDIData_Union_StringData struct {
-	StringData string `idl:"name:stringData;string;pointer:unique" json:"string_data"`
+	// sData: This case indicates that the bidirectional data is either a string, text data,
+	// or an enumeration.
+	StringData string `idl:"name:sData;string;pointer:unique" json:"string_data"`
 }
 
 func (*BIDIData_Union_StringData) is_BIDIData_Union() {}
 
 func (o *BIDIData_Union_StringData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.StringData != "" {
-		_ptr_stringData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+		_ptr_sData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := ndr.WriteUTF16NString(ctx, w, o.StringData); err != nil {
 				return err
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.StringData, _ptr_stringData); err != nil {
+		if err := w.WritePointer(&o.StringData, _ptr_sData); err != nil {
 			return err
 		}
 	} else {
@@ -12642,14 +12647,14 @@ func (o *BIDIData_Union_StringData) MarshalNDR(ctx context.Context, w ndr.Writer
 	return nil
 }
 func (o *BIDIData_Union_StringData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	_ptr_stringData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+	_ptr_sData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if err := ndr.ReadUTF16NString(ctx, w, &o.StringData); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_stringData := func(ptr interface{}) { o.StringData = *ptr.(*string) }
-	if err := w.ReadPointer(&o.StringData, _s_stringData, _ptr_stringData); err != nil {
+	_s_sData := func(ptr interface{}) { o.StringData = *ptr.(*string) }
+	if err := w.ReadPointer(&o.StringData, _s_sData, _ptr_sData); err != nil {
 		return err
 	}
 	return nil
@@ -12659,7 +12664,8 @@ func (o *BIDIData_Union_StringData) UnmarshalNDR(ctx context.Context, w ndr.Read
 //
 // It has following labels: 2
 type BIDIData_Union_FloatData struct {
-	FloatData float32 `idl:"name:floatData" json:"float_data"`
+	// fData: The bidirectional data is a floating-point number.
+	FloatData float32 `idl:"name:fData" json:"float_data"`
 }
 
 func (*BIDIData_Union_FloatData) is_BIDIData_Union() {}
@@ -12681,7 +12687,9 @@ func (o *BIDIData_Union_FloatData) UnmarshalNDR(ctx context.Context, w ndr.Reade
 //
 // It has following labels: 7
 type BIDIData_Union_BinaryData struct {
-	BinaryData *BinaryContainer `idl:"name:binaryData" json:"binary_data"`
+	// biData: This case indicates that the bidirectional data is an RPC_BINARY_CONTAINER
+	// structure.
+	BinaryData *BinaryContainer `idl:"name:biData" json:"binary_data"`
 }
 
 func (*BIDIData_Union_BinaryData) is_BIDIData_Union() {}
@@ -18171,7 +18179,7 @@ func (o *xxx_EnumPrintersOperation) MarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// pPrinterEnum {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrinterEnum {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.PrinterEnum != nil || o.BufferLength > 0 {
 			_ptr_pPrinterEnum := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -18248,7 +18256,7 @@ func (o *xxx_EnumPrintersOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// pPrinterEnum {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrinterEnum {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pPrinterEnum := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -18301,7 +18309,7 @@ func (o *xxx_EnumPrintersOperation) MarshalNDRResponse(ctx context.Context, w nd
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pPrinterEnum {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrinterEnum {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.PrinterEnum != nil || o.BufferLength > 0 {
 			_ptr_pPrinterEnum := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -18362,7 +18370,7 @@ func (o *xxx_EnumPrintersOperation) MarshalNDRResponse(ctx context.Context, w nd
 }
 
 func (o *xxx_EnumPrintersOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pPrinterEnum {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrinterEnum {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pPrinterEnum := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -19232,7 +19240,7 @@ func (o *xxx_GetJobOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 			return err
 		}
 	}
-	// pJob {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pJob {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Job != nil || o.BufferLength > 0 {
 			_ptr_pJob := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -19302,7 +19310,7 @@ func (o *xxx_GetJobOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			return err
 		}
 	}
-	// pJob {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pJob {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pJob := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -19355,7 +19363,7 @@ func (o *xxx_GetJobOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pJob {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pJob {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Job != nil || o.BufferLength > 0 {
 			_ptr_pJob := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -19410,7 +19418,7 @@ func (o *xxx_GetJobOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 }
 
 func (o *xxx_GetJobOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pJob {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pJob {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pJob := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -19647,7 +19655,7 @@ func (o *xxx_EnumJobsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wri
 			return err
 		}
 	}
-	// pJob {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pJob {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Job != nil || o.BufferLength > 0 {
 			_ptr_pJob := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -19723,7 +19731,7 @@ func (o *xxx_EnumJobsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			return err
 		}
 	}
-	// pJob {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pJob {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pJob := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -19776,7 +19784,7 @@ func (o *xxx_EnumJobsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wr
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pJob {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pJob {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Job != nil || o.BufferLength > 0 {
 			_ptr_pJob := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -19837,7 +19845,7 @@ func (o *xxx_EnumJobsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wr
 }
 
 func (o *xxx_EnumJobsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pJob {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pJob {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pJob := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -20857,7 +20865,7 @@ func (o *xxx_GetPrinterOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 			return err
 		}
 	}
-	// pPrinter {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrinter {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.PrinterBuffer != nil || o.BufferLength > 0 {
 			_ptr_pPrinter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -20921,7 +20929,7 @@ func (o *xxx_GetPrinterOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// pPrinter {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrinter {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pPrinter := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -20974,7 +20982,7 @@ func (o *xxx_GetPrinterOperation) MarshalNDRResponse(ctx context.Context, w ndr.
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pPrinter {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrinter {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.PrinterBuffer != nil || o.BufferLength > 0 {
 			_ptr_pPrinter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -21029,7 +21037,7 @@ func (o *xxx_GetPrinterOperation) MarshalNDRResponse(ctx context.Context, w ndr.
 }
 
 func (o *xxx_GetPrinterOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pPrinter {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrinter {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pPrinter := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -21521,7 +21529,7 @@ func (o *xxx_EnumPrinterDriversOperation) MarshalNDRRequest(ctx context.Context,
 			return err
 		}
 	}
-	// pDrivers {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDrivers {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Drivers != nil || o.BufferLength > 0 {
 			_ptr_pDrivers := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -21608,7 +21616,7 @@ func (o *xxx_EnumPrinterDriversOperation) UnmarshalNDRRequest(ctx context.Contex
 			return err
 		}
 	}
-	// pDrivers {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDrivers {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pDrivers := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -21661,7 +21669,7 @@ func (o *xxx_EnumPrinterDriversOperation) MarshalNDRResponse(ctx context.Context
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pDrivers {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDrivers {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Drivers != nil || o.BufferLength > 0 {
 			_ptr_pDrivers := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -21722,7 +21730,7 @@ func (o *xxx_EnumPrinterDriversOperation) MarshalNDRResponse(ctx context.Context
 }
 
 func (o *xxx_EnumPrinterDriversOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pDrivers {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDrivers {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pDrivers := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -21994,7 +22002,7 @@ func (o *xxx_GetPrinterDriverOperation) MarshalNDRRequest(ctx context.Context, w
 			return err
 		}
 	}
-	// pDriver {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDriver {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Driver != nil || o.BufferLength > 0 {
 			_ptr_pDriver := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -22074,7 +22082,7 @@ func (o *xxx_GetPrinterDriverOperation) UnmarshalNDRRequest(ctx context.Context,
 			return err
 		}
 	}
-	// pDriver {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDriver {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pDriver := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -22127,7 +22135,7 @@ func (o *xxx_GetPrinterDriverOperation) MarshalNDRResponse(ctx context.Context, 
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pDriver {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDriver {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Driver != nil || o.BufferLength > 0 {
 			_ptr_pDriver := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -22182,7 +22190,7 @@ func (o *xxx_GetPrinterDriverOperation) MarshalNDRResponse(ctx context.Context, 
 }
 
 func (o *xxx_GetPrinterDriverOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pDriver {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDriver {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pDriver := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -22455,7 +22463,7 @@ func (o *xxx_GetPrinterDriverDirectoryOperation) MarshalNDRRequest(ctx context.C
 			return err
 		}
 	}
-	// pDriverDirectory {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDriverDirectory {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.DriverDirectory != nil || o.BufferLength > 0 {
 			_ptr_pDriverDirectory := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -22542,7 +22550,7 @@ func (o *xxx_GetPrinterDriverDirectoryOperation) UnmarshalNDRRequest(ctx context
 			return err
 		}
 	}
-	// pDriverDirectory {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDriverDirectory {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pDriverDirectory := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -22595,7 +22603,7 @@ func (o *xxx_GetPrinterDriverDirectoryOperation) MarshalNDRResponse(ctx context.
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pDriverDirectory {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDriverDirectory {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.DriverDirectory != nil || o.BufferLength > 0 {
 			_ptr_pDriverDirectory := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -22650,7 +22658,7 @@ func (o *xxx_GetPrinterDriverDirectoryOperation) MarshalNDRResponse(ctx context.
 }
 
 func (o *xxx_GetPrinterDriverDirectoryOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pDriverDirectory {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDriverDirectory {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pDriverDirectory := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -23361,7 +23369,7 @@ func (o *xxx_EnumPrintProcessorsOperation) MarshalNDRRequest(ctx context.Context
 			return err
 		}
 	}
-	// pPrintProcessorInfo {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrintProcessorInfo {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.PrintProcessorInfo != nil || o.BufferLength > 0 {
 			_ptr_pPrintProcessorInfo := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -23448,7 +23456,7 @@ func (o *xxx_EnumPrintProcessorsOperation) UnmarshalNDRRequest(ctx context.Conte
 			return err
 		}
 	}
-	// pPrintProcessorInfo {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrintProcessorInfo {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pPrintProcessorInfo := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -23501,7 +23509,7 @@ func (o *xxx_EnumPrintProcessorsOperation) MarshalNDRResponse(ctx context.Contex
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pPrintProcessorInfo {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrintProcessorInfo {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.PrintProcessorInfo != nil || o.BufferLength > 0 {
 			_ptr_pPrintProcessorInfo := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -23562,7 +23570,7 @@ func (o *xxx_EnumPrintProcessorsOperation) MarshalNDRResponse(ctx context.Contex
 }
 
 func (o *xxx_EnumPrintProcessorsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pPrintProcessorInfo {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrintProcessorInfo {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pPrintProcessorInfo := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -23824,7 +23832,7 @@ func (o *xxx_GetPrintProcessorDirectoryOperation) MarshalNDRRequest(ctx context.
 			return err
 		}
 	}
-	// pPrintProcessorDirectory {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrintProcessorDirectory {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.PrintProcessorDirectory != nil || o.BufferLength > 0 {
 			_ptr_pPrintProcessorDirectory := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -23911,7 +23919,7 @@ func (o *xxx_GetPrintProcessorDirectoryOperation) UnmarshalNDRRequest(ctx contex
 			return err
 		}
 	}
-	// pPrintProcessorDirectory {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrintProcessorDirectory {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pPrintProcessorDirectory := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -23964,7 +23972,7 @@ func (o *xxx_GetPrintProcessorDirectoryOperation) MarshalNDRResponse(ctx context
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pPrintProcessorDirectory {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrintProcessorDirectory {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.PrintProcessorDirectory != nil || o.BufferLength > 0 {
 			_ptr_pPrintProcessorDirectory := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -24019,7 +24027,7 @@ func (o *xxx_GetPrintProcessorDirectoryOperation) MarshalNDRResponse(ctx context
 }
 
 func (o *xxx_GetPrintProcessorDirectoryOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pPrintProcessorDirectory {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrintProcessorDirectory {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pPrintProcessorDirectory := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -25666,7 +25674,7 @@ func (o *xxx_AddJobOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 			return err
 		}
 	}
-	// pAddJob {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pAddJob {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.AddJob != nil || o.BufferLength > 0 {
 			_ptr_pAddJob := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -25730,7 +25738,7 @@ func (o *xxx_AddJobOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			return err
 		}
 	}
-	// pAddJob {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pAddJob {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pAddJob := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -25783,7 +25791,7 @@ func (o *xxx_AddJobOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pAddJob {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pAddJob {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.AddJob != nil || o.BufferLength > 0 {
 			_ptr_pAddJob := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -25838,7 +25846,7 @@ func (o *xxx_AddJobOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 }
 
 func (o *xxx_AddJobOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pAddJob {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pAddJob {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pAddJob := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -26798,7 +26806,7 @@ func (o *SetPrinterDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 type xxx_WaitForPrinterChangeOperation struct {
 	Printer  *Printer `idl:"name:hPrinter" json:"printer"`
 	Flags    uint32   `idl:"name:Flags" json:"flags"`
-	FlagsOut uint32   `idl:"name:pFlagsOut" json:"flags_out"`
+	FlagsOut uint32   `idl:"name:pFlags" json:"flags_out"`
 	Return   uint32   `idl:"name:Return" json:"return"`
 }
 
@@ -26876,7 +26884,7 @@ func (o *xxx_WaitForPrinterChangeOperation) MarshalNDRResponse(ctx context.Conte
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pFlagsOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pFlags {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.WriteData(o.FlagsOut); err != nil {
 			return err
@@ -26892,7 +26900,7 @@ func (o *xxx_WaitForPrinterChangeOperation) MarshalNDRResponse(ctx context.Conte
 }
 
 func (o *xxx_WaitForPrinterChangeOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pFlagsOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pFlags {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.FlagsOut); err != nil {
 			return err
@@ -26963,7 +26971,9 @@ func (o *WaitForPrinterChangeRequest) OpName() string { return "/winspool/v1/Rpc
 
 // WaitForPrinterChangeResponse structure represents the RpcWaitForPrinterChange operation response
 type WaitForPrinterChangeResponse struct {
-	FlagsOut uint32 `idl:"name:pFlagsOut" json:"flags_out"`
+	// pFlags: A pointer to a variable that receives the bitwise OR combination of one or
+	// more printer change values.
+	FlagsOut uint32 `idl:"name:pFlags" json:"flags_out"`
 	// Return: The RpcWaitForPrinterChange return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -27639,7 +27649,7 @@ func (o *xxx_GetFormOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 			return err
 		}
 	}
-	// pForm {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pForm {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Form != nil || o.BufferLength > 0 {
 			_ptr_pForm := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -27709,7 +27719,7 @@ func (o *xxx_GetFormOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			return err
 		}
 	}
-	// pForm {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pForm {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pForm := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -27762,7 +27772,7 @@ func (o *xxx_GetFormOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pForm {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pForm {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Form != nil || o.BufferLength > 0 {
 			_ptr_pForm := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -27817,7 +27827,7 @@ func (o *xxx_GetFormOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 }
 
 func (o *xxx_GetFormOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pForm {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pForm {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pForm := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -28269,7 +28279,7 @@ func (o *xxx_EnumFormsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 			return err
 		}
 	}
-	// pForm {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pForm {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Form != nil || o.BufferLength > 0 {
 			_ptr_pForm := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -28333,7 +28343,7 @@ func (o *xxx_EnumFormsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// pForm {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pForm {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pForm := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -28386,7 +28396,7 @@ func (o *xxx_EnumFormsOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pForm {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pForm {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Form != nil || o.BufferLength > 0 {
 			_ptr_pForm := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -28447,7 +28457,7 @@ func (o *xxx_EnumFormsOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 }
 
 func (o *xxx_EnumFormsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pForm {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pForm {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pForm := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -28698,7 +28708,7 @@ func (o *xxx_EnumPortsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 			return err
 		}
 	}
-	// pPort {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPort {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Port != nil || o.BufferLength > 0 {
 			_ptr_pPort := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -28769,7 +28779,7 @@ func (o *xxx_EnumPortsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// pPort {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPort {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pPort := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -28822,7 +28832,7 @@ func (o *xxx_EnumPortsOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pPort {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPort {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Port != nil || o.BufferLength > 0 {
 			_ptr_pPort := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -28883,7 +28893,7 @@ func (o *xxx_EnumPortsOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 }
 
 func (o *xxx_EnumPortsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pPort {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPort {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pPort := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -29129,7 +29139,7 @@ func (o *xxx_EnumMonitorsOperation) MarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// pMonitor {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pMonitor {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Monitor != nil || o.BufferLength > 0 {
 			_ptr_pMonitor := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -29200,7 +29210,7 @@ func (o *xxx_EnumMonitorsOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// pMonitor {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pMonitor {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pMonitor := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -29253,7 +29263,7 @@ func (o *xxx_EnumMonitorsOperation) MarshalNDRResponse(ctx context.Context, w nd
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pMonitor {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pMonitor {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Monitor != nil || o.BufferLength > 0 {
 			_ptr_pMonitor := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -29314,7 +29324,7 @@ func (o *xxx_EnumMonitorsOperation) MarshalNDRResponse(ctx context.Context, w nd
 }
 
 func (o *xxx_EnumMonitorsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pMonitor {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pMonitor {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pMonitor := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -31276,7 +31286,7 @@ func (o *xxx_EnumPrintProcessorDataTypesOperation) MarshalNDRRequest(ctx context
 			return err
 		}
 	}
-	// pDatatypes {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDatatypes {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.DataTypes != nil || o.BufferLength > 0 {
 			_ptr_pDatatypes := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -31363,7 +31373,7 @@ func (o *xxx_EnumPrintProcessorDataTypesOperation) UnmarshalNDRRequest(ctx conte
 			return err
 		}
 	}
-	// pDatatypes {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDatatypes {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pDatatypes := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -31416,7 +31426,7 @@ func (o *xxx_EnumPrintProcessorDataTypesOperation) MarshalNDRResponse(ctx contex
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pDatatypes {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDatatypes {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.DataTypes != nil || o.BufferLength > 0 {
 			_ptr_pDatatypes := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -31477,7 +31487,7 @@ func (o *xxx_EnumPrintProcessorDataTypesOperation) MarshalNDRResponse(ctx contex
 }
 
 func (o *xxx_EnumPrintProcessorDataTypesOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pDatatypes {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDatatypes {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pDatatypes := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -31982,7 +31992,7 @@ func (o *xxx_GetPrinterDriver2Operation) MarshalNDRRequest(ctx context.Context, 
 			return err
 		}
 	}
-	// pDriver {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDriver {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Driver != nil || o.BufferLength > 0 {
 			_ptr_pDriver := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -32074,7 +32084,7 @@ func (o *xxx_GetPrinterDriver2Operation) UnmarshalNDRRequest(ctx context.Context
 			return err
 		}
 	}
-	// pDriver {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDriver {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pDriver := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -32139,7 +32149,7 @@ func (o *xxx_GetPrinterDriver2Operation) MarshalNDRResponse(ctx context.Context,
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pDriver {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDriver {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.Driver != nil || o.BufferLength > 0 {
 			_ptr_pDriver := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -32206,7 +32216,7 @@ func (o *xxx_GetPrinterDriver2Operation) MarshalNDRResponse(ctx context.Context,
 }
 
 func (o *xxx_GetPrinterDriver2Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pDriver {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pDriver {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pDriver := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -32664,7 +32674,7 @@ func (o *xxx_ReplyOpenPrinterOperation) MarshalNDRRequest(ctx context.Context, w
 			return err
 		}
 	}
-	// pBuffer {in, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
+	// pBuffer {in} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
 	{
 		if o.Buffer != nil || o.BufferLength > 0 {
 			_ptr_pBuffer := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -32731,7 +32741,7 @@ func (o *xxx_ReplyOpenPrinterOperation) UnmarshalNDRRequest(ctx context.Context,
 			return err
 		}
 	}
-	// pBuffer {in, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
+	// pBuffer {in} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
 	{
 		_ptr_pBuffer := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -32985,7 +32995,7 @@ func (o *xxx_RouterReplyPrinterOperation) MarshalNDRRequest(ctx context.Context,
 			return err
 		}
 	}
-	// pBuffer {in, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
+	// pBuffer {in} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
 	{
 		if o.Buffer != nil || o.BufferLength > 0 {
 			_ptr_pBuffer := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -33049,7 +33059,7 @@ func (o *xxx_RouterReplyPrinterOperation) UnmarshalNDRRequest(ctx context.Contex
 			return err
 		}
 	}
-	// pBuffer {in, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
+	// pBuffer {in} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
 	{
 		_ptr_pBuffer := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -33766,7 +33776,7 @@ func (o *xxx_RemoteFindFirstPrinterChangeNotificationOperation) MarshalNDRReques
 			return err
 		}
 	}
-	// pBuffer {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
+	// pBuffer {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
 	{
 		if o.Buffer != nil || o.BufferLength > 0 {
 			_ptr_pBuffer := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -33858,7 +33868,7 @@ func (o *xxx_RemoteFindFirstPrinterChangeNotificationOperation) UnmarshalNDRRequ
 			return err
 		}
 	}
-	// pBuffer {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
+	// pBuffer {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
 	{
 		_ptr_pBuffer := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -33905,7 +33915,7 @@ func (o *xxx_RemoteFindFirstPrinterChangeNotificationOperation) MarshalNDRRespon
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pBuffer {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
+	// pBuffer {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
 	{
 		if o.Buffer != nil || o.BufferLength > 0 {
 			_ptr_pBuffer := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -33954,7 +33964,7 @@ func (o *xxx_RemoteFindFirstPrinterChangeNotificationOperation) MarshalNDRRespon
 }
 
 func (o *xxx_RemoteFindFirstPrinterChangeNotificationOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pBuffer {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
+	// pBuffer {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuffer](uchar))
 	{
 		_ptr_pBuffer := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -34140,7 +34150,7 @@ type xxx_RemoteFindFirstPrinterChangeNotificationExOperation struct {
 	Options       uint32           `idl:"name:fdwOptions" json:"options"`
 	LocalMachine  string           `idl:"name:pszLocalMachine;string;pointer:unique" json:"local_machine"`
 	PrinterLocal  uint32           `idl:"name:dwPrinterLocal" json:"printer_local"`
-	NotifyOptions *V2NotifyOptions `idl:"name:pNotifyOptions;pointer:unique" json:"notify_options"`
+	NotifyOptions *V2NotifyOptions `idl:"name:pOptions;pointer:unique" json:"notify_options"`
 	Return        uint32           `idl:"name:Return" json:"return"`
 }
 
@@ -34216,10 +34226,10 @@ func (o *xxx_RemoteFindFirstPrinterChangeNotificationExOperation) MarshalNDRRequ
 			return err
 		}
 	}
-	// pNotifyOptions {in} (1:{pointer=unique}*(1))(2:{alias=RPC_V2_NOTIFY_OPTIONS}(struct))
+	// pOptions {in} (1:{pointer=unique}*(1))(2:{alias=RPC_V2_NOTIFY_OPTIONS}(struct))
 	{
 		if o.NotifyOptions != nil {
-			_ptr_pNotifyOptions := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_ptr_pOptions := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if o.NotifyOptions != nil {
 					if err := o.NotifyOptions.MarshalNDR(ctx, w); err != nil {
 						return err
@@ -34231,7 +34241,7 @@ func (o *xxx_RemoteFindFirstPrinterChangeNotificationExOperation) MarshalNDRRequ
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.NotifyOptions, _ptr_pNotifyOptions); err != nil {
+			if err := w.WritePointer(&o.NotifyOptions, _ptr_pOptions); err != nil {
 				return err
 			}
 		} else {
@@ -34290,9 +34300,9 @@ func (o *xxx_RemoteFindFirstPrinterChangeNotificationExOperation) UnmarshalNDRRe
 			return err
 		}
 	}
-	// pNotifyOptions {in} (1:{pointer=unique}*(1))(2:{alias=RPC_V2_NOTIFY_OPTIONS}(struct))
+	// pOptions {in} (1:{pointer=unique}*(1))(2:{alias=RPC_V2_NOTIFY_OPTIONS}(struct))
 	{
-		_ptr_pNotifyOptions := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		_ptr_pOptions := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.NotifyOptions == nil {
 				o.NotifyOptions = &V2NotifyOptions{}
 			}
@@ -34301,8 +34311,8 @@ func (o *xxx_RemoteFindFirstPrinterChangeNotificationExOperation) UnmarshalNDRRe
 			}
 			return nil
 		})
-		_s_pNotifyOptions := func(ptr interface{}) { o.NotifyOptions = *ptr.(**V2NotifyOptions) }
-		if err := w.ReadPointer(&o.NotifyOptions, _s_pNotifyOptions, _ptr_pNotifyOptions); err != nil {
+		_s_pOptions := func(ptr interface{}) { o.NotifyOptions = *ptr.(**V2NotifyOptions) }
+		if err := w.ReadPointer(&o.NotifyOptions, _s_pOptions, _ptr_pOptions); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -34367,8 +34377,14 @@ type RemoteFindFirstPrinterChangeNotificationExRequest struct {
 	// dwPrinterLocal: An implementation-specific unique value that MUST be sufficient for
 	// the client to determine whether a call to RpcReplyOpenPrinter (section 3.2.4.1.1)
 	// by the server is associated with the hPrinter parameter in this call.<382>
-	PrinterLocal  uint32           `idl:"name:dwPrinterLocal" json:"printer_local"`
-	NotifyOptions *V2NotifyOptions `idl:"name:pNotifyOptions;pointer:unique" json:"notify_options"`
+	PrinterLocal uint32 `idl:"name:dwPrinterLocal" json:"printer_local"`
+	// pOptions: A pointer to an RPC_V2_NOTIFY_OPTIONS (section 2.2.1.13.1) structure that
+	// specifies printer or job members that the client listens to for notifications. For
+	// lists of members that can be monitored, see Printer Notification Values (section
+	// 2.2.3.8) and Job Notification Values (section 2.2.3.3).
+	//
+	// The value of this parameter can be NULL if the value of fdwFlags is nonzero.
+	NotifyOptions *V2NotifyOptions `idl:"name:pOptions;pointer:unique" json:"notify_options"`
 }
 
 func (o *RemoteFindFirstPrinterChangeNotificationExRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteFindFirstPrinterChangeNotificationExOperation) *xxx_RemoteFindFirstPrinterChangeNotificationExOperation {
@@ -34736,10 +34752,11 @@ func (o *RouterReplyPrinterExResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // xxx_RouterRefreshPrinterChangeNotificationOperation structure represents the RpcRouterRefreshPrinterChangeNotification operation
 type xxx_RouterRefreshPrinterChangeNotificationOperation struct {
-	Printer *Printer         `idl:"name:hPrinter" json:"printer"`
-	Color   uint32           `idl:"name:dwColor" json:"color"`
-	Out     *V2NotifyOptions `idl:"name:out;pointer:unique" json:"out"`
-	Return  uint32           `idl:"name:Return" json:"return"`
+	Printer       *Printer         `idl:"name:hPrinter" json:"printer"`
+	Color         uint32           `idl:"name:dwColor" json:"color"`
+	NotifyOptions *V2NotifyOptions `idl:"name:pOptions;pointer:unique" json:"notify_options"`
+	Info          *V2NotifyInfo    `idl:"name:ppInfo" json:"info"`
+	Return        uint32           `idl:"name:Return" json:"return"`
 }
 
 // OpNum returns the operation number of RpcRouterRefreshPrinterChangeNotification operation.
@@ -34781,12 +34798,12 @@ func (o *xxx_RouterRefreshPrinterChangeNotificationOperation) MarshalNDRRequest(
 			return err
 		}
 	}
-	// out {in} (1:{pointer=unique}*(1))(2:{alias=RPC_V2_NOTIFY_OPTIONS}(struct))
+	// pOptions {in} (1:{pointer=unique}*(1))(2:{alias=RPC_V2_NOTIFY_OPTIONS}(struct))
 	{
-		if o.Out != nil {
-			_ptr_out := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Out != nil {
-					if err := o.Out.MarshalNDR(ctx, w); err != nil {
+		if o.NotifyOptions != nil {
+			_ptr_pOptions := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.NotifyOptions != nil {
+					if err := o.NotifyOptions.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -34796,7 +34813,7 @@ func (o *xxx_RouterRefreshPrinterChangeNotificationOperation) MarshalNDRRequest(
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Out, _ptr_out); err != nil {
+			if err := w.WritePointer(&o.NotifyOptions, _ptr_pOptions); err != nil {
 				return err
 			}
 		} else {
@@ -34827,19 +34844,19 @@ func (o *xxx_RouterRefreshPrinterChangeNotificationOperation) UnmarshalNDRReques
 			return err
 		}
 	}
-	// out {in} (1:{pointer=unique}*(1))(2:{alias=RPC_V2_NOTIFY_OPTIONS}(struct))
+	// pOptions {in} (1:{pointer=unique}*(1))(2:{alias=RPC_V2_NOTIFY_OPTIONS}(struct))
 	{
-		_ptr_out := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Out == nil {
-				o.Out = &V2NotifyOptions{}
+		_ptr_pOptions := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.NotifyOptions == nil {
+				o.NotifyOptions = &V2NotifyOptions{}
 			}
-			if err := o.Out.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.NotifyOptions.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_out := func(ptr interface{}) { o.Out = *ptr.(**V2NotifyOptions) }
-		if err := w.ReadPointer(&o.Out, _s_out, _ptr_out); err != nil {
+		_s_pOptions := func(ptr interface{}) { o.NotifyOptions = *ptr.(**V2NotifyOptions) }
+		if err := w.ReadPointer(&o.NotifyOptions, _s_pOptions, _ptr_pOptions); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -34862,6 +34879,33 @@ func (o *xxx_RouterRefreshPrinterChangeNotificationOperation) MarshalNDRResponse
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
+	// ppInfo {out} (1:{pointer=ref}*(2)*(1))(2:{alias=RPC_V2_NOTIFY_INFO}(struct))
+	{
+		if o.Info != nil {
+			_ptr_ppInfo := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.Info != nil {
+					if err := o.Info.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&V2NotifyInfo{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Info, _ptr_ppInfo); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.WriteData(o.Return); err != nil {
@@ -34872,6 +34916,25 @@ func (o *xxx_RouterRefreshPrinterChangeNotificationOperation) MarshalNDRResponse
 }
 
 func (o *xxx_RouterRefreshPrinterChangeNotificationOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// ppInfo {out} (1:{pointer=ref}*(2)*(1))(2:{alias=RPC_V2_NOTIFY_INFO}(struct))
+	{
+		_ptr_ppInfo := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.Info == nil {
+				o.Info = &V2NotifyInfo{}
+			}
+			if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ppInfo := func(ptr interface{}) { o.Info = *ptr.(**V2NotifyInfo) }
+		if err := w.ReadPointer(&o.Info, _s_ppInfo, _ptr_ppInfo); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -34894,8 +34957,12 @@ type RouterRefreshPrinterChangeNotificationRequest struct {
 	Printer *Printer `idl:"name:hPrinter" json:"printer"`
 	// dwColor: An implementation-specific value that MAY be used by print clients to get
 	// an indication of the order of notifications.<384>
-	Color uint32           `idl:"name:dwColor" json:"color"`
-	Out   *V2NotifyOptions `idl:"name:out;pointer:unique" json:"out"`
+	Color uint32 `idl:"name:dwColor" json:"color"`
+	// pOptions: A pointer to an RPC_V2_NOTIFY_OPTIONS (section 2.2.1.13.1) structure that
+	// specifies printer or job members that the client listens to for notifications. For
+	// lists of members that can be monitored, see Printer Notification Values (section
+	// 2.2.3.8) and Job Notification Values (section 2.2.3.3).
+	NotifyOptions *V2NotifyOptions `idl:"name:pOptions;pointer:unique" json:"notify_options"`
 }
 
 func (o *RouterRefreshPrinterChangeNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterRefreshPrinterChangeNotificationOperation) *xxx_RouterRefreshPrinterChangeNotificationOperation {
@@ -34907,7 +34974,7 @@ func (o *RouterRefreshPrinterChangeNotificationRequest) xxx_ToOp(ctx context.Con
 	}
 	op.Printer = o.Printer
 	op.Color = o.Color
-	op.Out = o.Out
+	op.NotifyOptions = o.NotifyOptions
 	return op
 }
 
@@ -34917,7 +34984,7 @@ func (o *RouterRefreshPrinterChangeNotificationRequest) xxx_FromOp(ctx context.C
 	}
 	o.Printer = op.Printer
 	o.Color = op.Color
-	o.Out = op.Out
+	o.NotifyOptions = op.NotifyOptions
 }
 func (o *RouterRefreshPrinterChangeNotificationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -34946,6 +35013,9 @@ func (o *RouterRefreshPrinterChangeNotificationRequest) OpName() string {
 
 // RouterRefreshPrinterChangeNotificationResponse structure represents the RpcRouterRefreshPrinterChangeNotification operation response
 type RouterRefreshPrinterChangeNotificationResponse struct {
+	// ppInfo: A pointer to a variable that receives a pointer to an RPC_V2_NOTIFY_INFO
+	// (section 2.2.1.13.3) structure that contains notification information.
+	Info *V2NotifyInfo `idl:"name:ppInfo" json:"info"`
 	// Return: The RpcRouterRefreshPrinterChangeNotification return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -34957,6 +35027,7 @@ func (o *RouterRefreshPrinterChangeNotificationResponse) xxx_ToOp(ctx context.Co
 	if o == nil {
 		return op
 	}
+	op.Info = o.Info
 	op.Return = o.Return
 	return op
 }
@@ -34965,6 +35036,7 @@ func (o *RouterRefreshPrinterChangeNotificationResponse) xxx_FromOp(ctx context.
 	if o == nil {
 		return
 	}
+	o.Info = op.Info
 	o.Return = op.Return
 }
 func (o *RouterRefreshPrinterChangeNotificationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -35934,13 +36006,13 @@ func (o *SetPortResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 type xxx_EnumPrinterDataOperation struct {
 	Printer            *Printer `idl:"name:hPrinter" json:"printer"`
 	Index              uint32   `idl:"name:dwIndex" json:"index"`
-	ValueName          string   `idl:"name:pValueName;size_is:((cbValueNameIn/2))" json:"value_name"`
-	ValueNameInLength  uint32   `idl:"name:cbValueNameIn" json:"value_name_in_length"`
-	ValueNameOutLength uint32   `idl:"name:pcbValueNameOut" json:"value_name_out_length"`
+	ValueName          string   `idl:"name:pValueName;size_is:((cbValueName/2))" json:"value_name"`
+	ValueNameLength    uint32   `idl:"name:cbValueName" json:"value_name_length"`
+	ValueNameOutLength uint32   `idl:"name:pcbValueName" json:"value_name_out_length"`
 	Type               uint32   `idl:"name:pType" json:"type"`
-	Data               []byte   `idl:"name:pData;size_is:(cbDataIn)" json:"data"`
-	DataInLength       uint32   `idl:"name:cbDataIn" json:"data_in_length"`
-	DataOutLength      uint32   `idl:"name:pcbDataOut" json:"data_out_length"`
+	Data               []byte   `idl:"name:pData;size_is:(cbData)" json:"data"`
+	DataLength         uint32   `idl:"name:cbData" json:"data_length"`
+	DataOutLength      uint32   `idl:"name:pcbData" json:"data_out_length"`
 	Return             uint32   `idl:"name:Return" json:"return"`
 }
 
@@ -35981,15 +36053,15 @@ func (o *xxx_EnumPrinterDataOperation) MarshalNDRRequest(ctx context.Context, w 
 			return err
 		}
 	}
-	// cbValueNameIn {in} (1:{alias=DWORD}(uint32))
+	// cbValueName {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.ValueNameInLength); err != nil {
+		if err := w.WriteData(o.ValueNameLength); err != nil {
 			return err
 		}
 	}
-	// cbDataIn {in} (1:{alias=DWORD}(uint32))
+	// cbData {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.DataInLength); err != nil {
+		if err := w.WriteData(o.DataLength); err != nil {
 			return err
 		}
 	}
@@ -36012,15 +36084,15 @@ func (o *xxx_EnumPrinterDataOperation) UnmarshalNDRRequest(ctx context.Context, 
 			return err
 		}
 	}
-	// cbValueNameIn {in} (1:{alias=DWORD}(uint32))
+	// cbValueName {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.ValueNameInLength); err != nil {
+		if err := w.ReadData(&o.ValueNameLength); err != nil {
 			return err
 		}
 	}
-	// cbDataIn {in} (1:{alias=DWORD}(uint32))
+	// cbData {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.DataInLength); err != nil {
+		if err := w.ReadData(&o.DataLength); err != nil {
 			return err
 		}
 	}
@@ -36040,9 +36112,9 @@ func (o *xxx_EnumPrinterDataOperation) MarshalNDRResponse(ctx context.Context, w
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pValueName {out} (1:{pointer=ref}*(1)[dim:0,size_is=(cbValueNameIn/2),string](wchar))
+	// pValueName {out} (1:{pointer=ref}*(1)[dim:0,size_is=(cbValueName/2),string](wchar))
 	{
-		dimSize1 := uint64((o.ValueNameInLength / 2))
+		dimSize1 := uint64((o.ValueNameLength / 2))
 		if err := w.WriteSize(dimSize1); err != nil {
 			return err
 		}
@@ -36068,7 +36140,7 @@ func (o *xxx_EnumPrinterDataOperation) MarshalNDRResponse(ctx context.Context, w
 			}
 		}
 	}
-	// pcbValueNameOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcbValueName {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.WriteData(o.ValueNameOutLength); err != nil {
 			return err
@@ -36080,9 +36152,9 @@ func (o *xxx_EnumPrinterDataOperation) MarshalNDRResponse(ctx context.Context, w
 			return err
 		}
 	}
-	// pData {out} (1:{pointer=ref}*(1))(2:{alias=BYTE}[dim:0,size_is=cbDataIn](uchar))
+	// pData {out} (1:{pointer=ref}*(1))(2:{alias=BYTE}[dim:0,size_is=cbData](uchar))
 	{
-		dimSize1 := uint64(o.DataInLength)
+		dimSize1 := uint64(o.DataLength)
 		if err := w.WriteSize(dimSize1); err != nil {
 			return err
 		}
@@ -36104,7 +36176,7 @@ func (o *xxx_EnumPrinterDataOperation) MarshalNDRResponse(ctx context.Context, w
 			}
 		}
 	}
-	// pcbDataOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcbData {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.WriteData(o.DataOutLength); err != nil {
 			return err
@@ -36120,7 +36192,7 @@ func (o *xxx_EnumPrinterDataOperation) MarshalNDRResponse(ctx context.Context, w
 }
 
 func (o *xxx_EnumPrinterDataOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pValueName {out} (1:{pointer=ref}*(1)[dim:0,size_is=(cbValueNameIn/2),string](wchar))
+	// pValueName {out} (1:{pointer=ref}*(1)[dim:0,size_is=(cbValueName/2),string](wchar))
 	{
 		sizeInfo := []uint64{
 			0,
@@ -36143,7 +36215,7 @@ func (o *xxx_EnumPrinterDataOperation) UnmarshalNDRResponse(ctx context.Context,
 		}
 		o.ValueName = strings.TrimRight(string(utf16.Decode(_ValueName_buf)), ndr.ZeroString)
 	}
-	// pcbValueNameOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcbValueName {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.ValueNameOutLength); err != nil {
 			return err
@@ -36155,7 +36227,7 @@ func (o *xxx_EnumPrinterDataOperation) UnmarshalNDRResponse(ctx context.Context,
 			return err
 		}
 	}
-	// pData {out} (1:{pointer=ref}*(1))(2:{alias=BYTE}[dim:0,size_is=cbDataIn](uchar))
+	// pData {out} (1:{pointer=ref}*(1))(2:{alias=BYTE}[dim:0,size_is=cbData](uchar))
 	{
 		sizeInfo := []uint64{
 			0,
@@ -36176,7 +36248,7 @@ func (o *xxx_EnumPrinterDataOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 		}
 	}
-	// pcbDataOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcbData {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.DataOutLength); err != nil {
 			return err
@@ -36201,9 +36273,12 @@ type EnumPrinterDataRequest struct {
 	// greater than or equal to zero and less than the total number of configuration data
 	// values for the printer. The client SHOULD use RpcEnumPrinterKeys to determine the
 	// total number of configuration data values for the printer.
-	Index             uint32 `idl:"name:dwIndex" json:"index"`
-	ValueNameInLength uint32 `idl:"name:cbValueNameIn" json:"value_name_in_length"`
-	DataInLength      uint32 `idl:"name:cbDataIn" json:"data_in_length"`
+	Index uint32 `idl:"name:dwIndex" json:"index"`
+	// cbValueName: The size, in bytes, of the buffer that is pointed to by the pValueName
+	// parameter.
+	ValueNameLength uint32 `idl:"name:cbValueName" json:"value_name_length"`
+	// cbData: A parameter specified in Dynamically Typed Query Parameters.
+	DataLength uint32 `idl:"name:cbData" json:"data_length"`
 }
 
 func (o *EnumPrinterDataRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinterDataOperation) *xxx_EnumPrinterDataOperation {
@@ -36215,8 +36290,8 @@ func (o *EnumPrinterDataRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrint
 	}
 	op.Printer = o.Printer
 	op.Index = o.Index
-	op.ValueNameInLength = o.ValueNameInLength
-	op.DataInLength = o.DataInLength
+	op.ValueNameLength = o.ValueNameLength
+	op.DataLength = o.DataLength
 	return op
 }
 
@@ -36226,8 +36301,8 @@ func (o *EnumPrinterDataRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPri
 	}
 	o.Printer = op.Printer
 	o.Index = op.Index
-	o.ValueNameInLength = op.ValueNameInLength
-	o.DataInLength = op.DataInLength
+	o.ValueNameLength = op.ValueNameLength
+	o.DataLength = op.DataLength
 }
 func (o *EnumPrinterDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -36247,8 +36322,8 @@ func (o *EnumPrinterDataRequest) MakeResponse() *EnumPrinterDataResponse {
 		return &EnumPrinterDataResponse{}
 	}
 	return &EnumPrinterDataResponse{
-		ValueNameInLength: o.ValueNameInLength,
-		DataInLength:      o.DataInLength,
+		ValueNameLength: o.ValueNameLength,
+		DataLength:      o.DataLength,
 	}
 }
 
@@ -36260,23 +36335,26 @@ func (o *EnumPrinterDataRequest) OpName() string { return "/winspool/v1/RpcEnumP
 
 // EnumPrinterDataResponse structure represents the RpcEnumPrinterData operation response
 type EnumPrinterDataResponse struct {
-	// XXX: cbValueNameIn is an implicit input depedency for output parameters
-	ValueNameInLength uint32 `idl:"name:cbValueNameIn" json:"value_name_in_length"`
-	// XXX: cbDataIn is an implicit input depedency for output parameters
-	DataInLength uint32 `idl:"name:cbDataIn" json:"data_in_length"`
+	// XXX: cbValueName is an implicit input depedency for output parameters
+	ValueNameLength uint32 `idl:"name:cbValueName" json:"value_name_length"`
+	// XXX: cbData is an implicit input depedency for output parameters
+	DataLength uint32 `idl:"name:cbData" json:"data_length"`
 
 	// pValueName: A pointer to a buffer that receives a string specifying the name of the
 	// configuration data value. For rules governing value names, see section 2.2.4.18.
 	//
 	// This parameter can be NULL if cbValueName equals zero.
-	ValueName          string `idl:"name:pValueName;size_is:((cbValueNameIn/2))" json:"value_name"`
-	ValueNameOutLength uint32 `idl:"name:pcbValueNameOut" json:"value_name_out_length"`
+	ValueName string `idl:"name:pValueName;size_is:((cbValueName/2))" json:"value_name"`
+	// pcbValueName: A pointer to a variable that receives the number of bytes stored in
+	// the buffer that is pointed to by the pValueName parameter.
+	ValueNameOutLength uint32 `idl:"name:pcbValueName" json:"value_name_out_length"`
 	// pType: A parameter specified in Dynamically Typed Query Parameters (section 3.1.4.1.2).
 	Type uint32 `idl:"name:pType" json:"type"`
 	// pData: A pointer to BUFFER as specified in Dynamically Typed Query Parameters. This
 	// parameter can be NULL if cbData equals zero.
-	Data          []byte `idl:"name:pData;size_is:(cbDataIn)" json:"data"`
-	DataOutLength uint32 `idl:"name:pcbDataOut" json:"data_out_length"`
+	Data []byte `idl:"name:pData;size_is:(cbData)" json:"data"`
+	// pcbData: A parameter specified in Dynamically Typed Query Parameters.
+	DataOutLength uint32 `idl:"name:pcbData" json:"data_out_length"`
 	// Return: The RpcEnumPrinterData return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -36289,11 +36367,11 @@ func (o *EnumPrinterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrin
 		return op
 	}
 	// XXX: implicit input dependencies for output parameters
-	if op.ValueNameInLength == uint32(0) {
-		op.ValueNameInLength = o.ValueNameInLength
+	if op.ValueNameLength == uint32(0) {
+		op.ValueNameLength = o.ValueNameLength
 	}
-	if op.DataInLength == uint32(0) {
-		op.DataInLength = o.DataInLength
+	if op.DataLength == uint32(0) {
+		op.DataLength = o.DataLength
 	}
 
 	op.ValueName = o.ValueName
@@ -36310,8 +36388,8 @@ func (o *EnumPrinterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPr
 		return
 	}
 	// XXX: implicit input dependencies for output parameters
-	o.ValueNameInLength = op.ValueNameInLength
-	o.DataInLength = op.DataInLength
+	o.ValueNameLength = op.ValueNameLength
+	o.DataLength = op.DataLength
 
 	o.ValueName = op.ValueName
 	o.ValueNameOutLength = op.ValueNameOutLength
@@ -37163,13 +37241,13 @@ func (o *GetPrinterDataExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // xxx_EnumPrinterDataExOperation structure represents the RpcEnumPrinterDataEx operation
 type xxx_EnumPrinterDataExOperation struct {
-	Printer             *Printer `idl:"name:hPrinter" json:"printer"`
-	KeyName             string   `idl:"name:pKeyName;string" json:"key_name"`
-	EnumValues          []byte   `idl:"name:pEnumValues;size_is:(cbEnumValuesIn)" json:"enum_values"`
-	EnumValuesInLength  uint32   `idl:"name:cbEnumValuesIn" json:"enum_values_in_length"`
-	EnumValuesOutLength uint32   `idl:"name:pcbEnumValuesOut" json:"enum_values_out_length"`
-	EnumValuesLength    uint32   `idl:"name:numEnumValues" json:"enum_values_length"`
-	Return              uint32   `idl:"name:Return" json:"return"`
+	Printer                   *Printer `idl:"name:hPrinter" json:"printer"`
+	KeyName                   string   `idl:"name:pKeyName;string" json:"key_name"`
+	EnumValues                []byte   `idl:"name:pEnumValues;size_is:(cbEnumValues)" json:"enum_values"`
+	EnumValuesLength          uint32   `idl:"name:cbEnumValues" json:"enum_values_length"`
+	EnumValuesOutLength       uint32   `idl:"name:pcbEnumValues" json:"enum_values_out_length"`
+	EnumValuesOutActualLength uint32   `idl:"name:pnEnumValues" json:"enum_values_out_actual_length"`
+	Return                    uint32   `idl:"name:Return" json:"return"`
 }
 
 // OpNum returns the operation number of RpcEnumPrinterDataEx operation.
@@ -37209,9 +37287,9 @@ func (o *xxx_EnumPrinterDataExOperation) MarshalNDRRequest(ctx context.Context, 
 			return err
 		}
 	}
-	// cbEnumValuesIn {in} (1:{alias=DWORD}(uint32))
+	// cbEnumValues {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.EnumValuesInLength); err != nil {
+		if err := w.WriteData(o.EnumValuesLength); err != nil {
 			return err
 		}
 	}
@@ -37234,9 +37312,9 @@ func (o *xxx_EnumPrinterDataExOperation) UnmarshalNDRRequest(ctx context.Context
 			return err
 		}
 	}
-	// cbEnumValuesIn {in} (1:{alias=DWORD}(uint32))
+	// cbEnumValues {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.EnumValuesInLength); err != nil {
+		if err := w.ReadData(&o.EnumValuesLength); err != nil {
 			return err
 		}
 	}
@@ -37256,9 +37334,9 @@ func (o *xxx_EnumPrinterDataExOperation) MarshalNDRResponse(ctx context.Context,
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pEnumValues {out} (1:{pointer=ref}*(1))(2:{alias=BYTE}[dim:0,size_is=cbEnumValuesIn](uchar))
+	// pEnumValues {out} (1:{pointer=ref}*(1))(2:{alias=BYTE}[dim:0,size_is=cbEnumValues](uchar))
 	{
-		dimSize1 := uint64(o.EnumValuesInLength)
+		dimSize1 := uint64(o.EnumValuesLength)
 		if err := w.WriteSize(dimSize1); err != nil {
 			return err
 		}
@@ -37280,15 +37358,15 @@ func (o *xxx_EnumPrinterDataExOperation) MarshalNDRResponse(ctx context.Context,
 			}
 		}
 	}
-	// pcbEnumValuesOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcbEnumValues {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.WriteData(o.EnumValuesOutLength); err != nil {
 			return err
 		}
 	}
-	// numEnumValues {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pnEnumValues {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.EnumValuesLength); err != nil {
+		if err := w.WriteData(o.EnumValuesOutActualLength); err != nil {
 			return err
 		}
 	}
@@ -37302,7 +37380,7 @@ func (o *xxx_EnumPrinterDataExOperation) MarshalNDRResponse(ctx context.Context,
 }
 
 func (o *xxx_EnumPrinterDataExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pEnumValues {out} (1:{pointer=ref}*(1))(2:{alias=BYTE}[dim:0,size_is=cbEnumValuesIn](uchar))
+	// pEnumValues {out} (1:{pointer=ref}*(1))(2:{alias=BYTE}[dim:0,size_is=cbEnumValues](uchar))
 	{
 		sizeInfo := []uint64{
 			0,
@@ -37323,15 +37401,15 @@ func (o *xxx_EnumPrinterDataExOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 		}
 	}
-	// pcbEnumValuesOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcbEnumValues {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.EnumValuesOutLength); err != nil {
 			return err
 		}
 	}
-	// numEnumValues {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pnEnumValues {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.EnumValuesLength); err != nil {
+		if err := w.ReadData(&o.EnumValuesOutActualLength); err != nil {
 			return err
 		}
 	}
@@ -37353,8 +37431,9 @@ type EnumPrinterDataExRequest struct {
 	// pKeyName: A pointer to a string that specifies the key containing the values to enumerate.
 	// A key name is an arbitrary string defined by the printer driver associated with the
 	// printer object. For rules governing key names, see section 2.2.4.7.
-	KeyName            string `idl:"name:pKeyName;string" json:"key_name"`
-	EnumValuesInLength uint32 `idl:"name:cbEnumValuesIn" json:"enum_values_in_length"`
+	KeyName string `idl:"name:pKeyName;string" json:"key_name"`
+	// cbEnumValues: A parameter specified in PRINTER_ENUM_VALUES Structures Query Parameters.
+	EnumValuesLength uint32 `idl:"name:cbEnumValues" json:"enum_values_length"`
 }
 
 func (o *EnumPrinterDataExRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinterDataExOperation) *xxx_EnumPrinterDataExOperation {
@@ -37366,7 +37445,7 @@ func (o *EnumPrinterDataExRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPri
 	}
 	op.Printer = o.Printer
 	op.KeyName = o.KeyName
-	op.EnumValuesInLength = o.EnumValuesInLength
+	op.EnumValuesLength = o.EnumValuesLength
 	return op
 }
 
@@ -37376,7 +37455,7 @@ func (o *EnumPrinterDataExRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumP
 	}
 	o.Printer = op.Printer
 	o.KeyName = op.KeyName
-	o.EnumValuesInLength = op.EnumValuesInLength
+	o.EnumValuesLength = op.EnumValuesLength
 }
 func (o *EnumPrinterDataExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -37396,7 +37475,7 @@ func (o *EnumPrinterDataExRequest) MakeResponse() *EnumPrinterDataExResponse {
 		return &EnumPrinterDataExResponse{}
 	}
 	return &EnumPrinterDataExResponse{
-		EnumValuesInLength: o.EnumValuesInLength,
+		EnumValuesLength: o.EnumValuesLength,
 	}
 }
 
@@ -37408,16 +37487,18 @@ func (o *EnumPrinterDataExRequest) OpName() string { return "/winspool/v1/RpcEnu
 
 // EnumPrinterDataExResponse structure represents the RpcEnumPrinterDataEx operation response
 type EnumPrinterDataExResponse struct {
-	// XXX: cbEnumValuesIn is an implicit input depedency for output parameters
-	EnumValuesInLength uint32 `idl:"name:cbEnumValuesIn" json:"enum_values_in_length"`
+	// XXX: cbEnumValues is an implicit input depedency for output parameters
+	EnumValuesLength uint32 `idl:"name:cbEnumValues" json:"enum_values_length"`
 
 	// pEnumValues: A pointer to BUFFER as specified in PRINTER_ENUM_VALUES Structures Query
 	// Parameters (section 3.1.4.1.10).
 	//
 	// This parameter can be NULL if cbEnumValues equals zero.
-	EnumValues          []byte `idl:"name:pEnumValues;size_is:(cbEnumValuesIn)" json:"enum_values"`
-	EnumValuesOutLength uint32 `idl:"name:pcbEnumValuesOut" json:"enum_values_out_length"`
-	EnumValuesLength    uint32 `idl:"name:numEnumValues" json:"enum_values_length"`
+	EnumValues []byte `idl:"name:pEnumValues;size_is:(cbEnumValues)" json:"enum_values"`
+	// pcbEnumValues: A parameter specified in PRINTER_ENUM_VALUES Structures Query Parameters.
+	EnumValuesOutLength uint32 `idl:"name:pcbEnumValues" json:"enum_values_out_length"`
+	// pnEnumValues: A parameter specified in PRINTER_ENUM_VALUES Structures Query Parameters.
+	EnumValuesOutActualLength uint32 `idl:"name:pnEnumValues" json:"enum_values_out_actual_length"`
 	// Return: The RpcEnumPrinterDataEx return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -37430,13 +37511,13 @@ func (o *EnumPrinterDataExResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPr
 		return op
 	}
 	// XXX: implicit input dependencies for output parameters
-	if op.EnumValuesInLength == uint32(0) {
-		op.EnumValuesInLength = o.EnumValuesInLength
+	if op.EnumValuesLength == uint32(0) {
+		op.EnumValuesLength = o.EnumValuesLength
 	}
 
 	op.EnumValues = o.EnumValues
 	op.EnumValuesOutLength = o.EnumValuesOutLength
-	op.EnumValuesLength = o.EnumValuesLength
+	op.EnumValuesOutActualLength = o.EnumValuesOutActualLength
 	op.Return = o.Return
 	return op
 }
@@ -37446,11 +37527,11 @@ func (o *EnumPrinterDataExResponse) xxx_FromOp(ctx context.Context, op *xxx_Enum
 		return
 	}
 	// XXX: implicit input dependencies for output parameters
-	o.EnumValuesInLength = op.EnumValuesInLength
+	o.EnumValuesLength = op.EnumValuesLength
 
 	o.EnumValues = op.EnumValues
 	o.EnumValuesOutLength = op.EnumValuesOutLength
-	o.EnumValuesLength = op.EnumValuesLength
+	o.EnumValuesOutActualLength = op.EnumValuesOutActualLength
 	o.Return = op.Return
 }
 func (o *EnumPrinterDataExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -37469,9 +37550,9 @@ func (o *EnumPrinterDataExResponse) UnmarshalNDR(ctx context.Context, r ndr.Read
 type xxx_EnumPrinterKeyOperation struct {
 	Printer         *Printer `idl:"name:hPrinter" json:"printer"`
 	KeyName         string   `idl:"name:pKeyName;string" json:"key_name"`
-	Subkey          string   `idl:"name:pSubkey;size_is:((cbSubkeyIn/2))" json:"subkey"`
-	SubkeyInLength  uint32   `idl:"name:cbSubkeyIn" json:"subkey_in_length"`
-	SubkeyOutLength uint32   `idl:"name:pcbSubkeyOut" json:"subkey_out_length"`
+	Subkey          string   `idl:"name:pSubkey;size_is:((cbSubkey/2))" json:"subkey"`
+	SubkeyLength    uint32   `idl:"name:cbSubkey" json:"subkey_length"`
+	SubKeyOutLength uint32   `idl:"name:pcbSubkey" json:"sub_key_out_length"`
 	Return          uint32   `idl:"name:Return" json:"return"`
 }
 
@@ -37512,9 +37593,9 @@ func (o *xxx_EnumPrinterKeyOperation) MarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// cbSubkeyIn {in} (1:{alias=DWORD}(uint32))
+	// cbSubkey {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.SubkeyInLength); err != nil {
+		if err := w.WriteData(o.SubkeyLength); err != nil {
 			return err
 		}
 	}
@@ -37537,9 +37618,9 @@ func (o *xxx_EnumPrinterKeyOperation) UnmarshalNDRRequest(ctx context.Context, w
 			return err
 		}
 	}
-	// cbSubkeyIn {in} (1:{alias=DWORD}(uint32))
+	// cbSubkey {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.SubkeyInLength); err != nil {
+		if err := w.ReadData(&o.SubkeyLength); err != nil {
 			return err
 		}
 	}
@@ -37559,9 +37640,9 @@ func (o *xxx_EnumPrinterKeyOperation) MarshalNDRResponse(ctx context.Context, w 
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pSubkey {out} (1:{pointer=ref}*(1)[dim:0,size_is=(cbSubkeyIn/2),string](wchar))
+	// pSubkey {out} (1:{pointer=ref}*(1)[dim:0,size_is=(cbSubkey/2),string](wchar))
 	{
-		dimSize1 := uint64((o.SubkeyInLength / 2))
+		dimSize1 := uint64((o.SubkeyLength / 2))
 		if err := w.WriteSize(dimSize1); err != nil {
 			return err
 		}
@@ -37587,9 +37668,9 @@ func (o *xxx_EnumPrinterKeyOperation) MarshalNDRResponse(ctx context.Context, w 
 			}
 		}
 	}
-	// pcbSubkeyOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcbSubkey {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.SubkeyOutLength); err != nil {
+		if err := w.WriteData(o.SubKeyOutLength); err != nil {
 			return err
 		}
 	}
@@ -37603,7 +37684,7 @@ func (o *xxx_EnumPrinterKeyOperation) MarshalNDRResponse(ctx context.Context, w 
 }
 
 func (o *xxx_EnumPrinterKeyOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pSubkey {out} (1:{pointer=ref}*(1)[dim:0,size_is=(cbSubkeyIn/2),string](wchar))
+	// pSubkey {out} (1:{pointer=ref}*(1)[dim:0,size_is=(cbSubkey/2),string](wchar))
 	{
 		sizeInfo := []uint64{
 			0,
@@ -37626,9 +37707,9 @@ func (o *xxx_EnumPrinterKeyOperation) UnmarshalNDRResponse(ctx context.Context, 
 		}
 		o.Subkey = strings.TrimRight(string(utf16.Decode(_Subkey_buf)), ndr.ZeroString)
 	}
-	// pcbSubkeyOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcbSubkey {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.SubkeyOutLength); err != nil {
+		if err := w.ReadData(&o.SubKeyOutLength); err != nil {
 			return err
 		}
 	}
@@ -37650,8 +37731,10 @@ type EnumPrinterKeyRequest struct {
 	// pKeyName: A pointer to a string that specifies the key containing the subkeys to
 	// enumerate. A key name is an arbitrary string defined by the printer driver associated
 	// with the printer object. For rules governing key names, see section 2.2.4.7.
-	KeyName        string `idl:"name:pKeyName;string" json:"key_name"`
-	SubkeyInLength uint32 `idl:"name:cbSubkeyIn" json:"subkey_in_length"`
+	KeyName string `idl:"name:pKeyName;string" json:"key_name"`
+	// cbSubkey: A value that is synonymous with the cbBuf parameter specified in String
+	// Query Parameters.
+	SubkeyLength uint32 `idl:"name:cbSubkey" json:"subkey_length"`
 }
 
 func (o *EnumPrinterKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinterKeyOperation) *xxx_EnumPrinterKeyOperation {
@@ -37663,7 +37746,7 @@ func (o *EnumPrinterKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinte
 	}
 	op.Printer = o.Printer
 	op.KeyName = o.KeyName
-	op.SubkeyInLength = o.SubkeyInLength
+	op.SubkeyLength = o.SubkeyLength
 	return op
 }
 
@@ -37673,7 +37756,7 @@ func (o *EnumPrinterKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPrin
 	}
 	o.Printer = op.Printer
 	o.KeyName = op.KeyName
-	o.SubkeyInLength = op.SubkeyInLength
+	o.SubkeyLength = op.SubkeyLength
 }
 func (o *EnumPrinterKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -37693,7 +37776,7 @@ func (o *EnumPrinterKeyRequest) MakeResponse() *EnumPrinterKeyResponse {
 		return &EnumPrinterKeyResponse{}
 	}
 	return &EnumPrinterKeyResponse{
-		SubkeyInLength: o.SubkeyInLength,
+		SubkeyLength: o.SubkeyLength,
 	}
 }
 
@@ -37705,14 +37788,16 @@ func (o *EnumPrinterKeyRequest) OpName() string { return "/winspool/v1/RpcEnumPr
 
 // EnumPrinterKeyResponse structure represents the RpcEnumPrinterKey operation response
 type EnumPrinterKeyResponse struct {
-	// XXX: cbSubkeyIn is an implicit input depedency for output parameters
-	SubkeyInLength uint32 `idl:"name:cbSubkeyIn" json:"subkey_in_length"`
+	// XXX: cbSubkey is an implicit input depedency for output parameters
+	SubkeyLength uint32 `idl:"name:cbSubkey" json:"subkey_length"`
 
 	// pSubkey: A pointer to BUFFER as specified in String Query Parameters (section 3.1.4.1.7).
 	//
 	// This parameter can be NULL if cbSubkey equals zero.
-	Subkey          string `idl:"name:pSubkey;size_is:((cbSubkeyIn/2))" json:"subkey"`
-	SubkeyOutLength uint32 `idl:"name:pcbSubkeyOut" json:"subkey_out_length"`
+	Subkey string `idl:"name:pSubkey;size_is:((cbSubkey/2))" json:"subkey"`
+	// pcbSubkey: A value that is synonymous with the pcbNeeded parameter specified in String
+	// Query Parameters.
+	SubKeyOutLength uint32 `idl:"name:pcbSubkey" json:"sub_key_out_length"`
 	// Return: The RpcEnumPrinterKey return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -37725,12 +37810,12 @@ func (o *EnumPrinterKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrint
 		return op
 	}
 	// XXX: implicit input dependencies for output parameters
-	if op.SubkeyInLength == uint32(0) {
-		op.SubkeyInLength = o.SubkeyInLength
+	if op.SubkeyLength == uint32(0) {
+		op.SubkeyLength = o.SubkeyLength
 	}
 
 	op.Subkey = o.Subkey
-	op.SubkeyOutLength = o.SubkeyOutLength
+	op.SubKeyOutLength = o.SubKeyOutLength
 	op.Return = o.Return
 	return op
 }
@@ -37740,10 +37825,10 @@ func (o *EnumPrinterKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPri
 		return
 	}
 	// XXX: implicit input dependencies for output parameters
-	o.SubkeyInLength = op.SubkeyInLength
+	o.SubkeyLength = op.SubkeyLength
 
 	o.Subkey = op.Subkey
-	o.SubkeyOutLength = op.SubkeyOutLength
+	o.SubKeyOutLength = op.SubKeyOutLength
 	o.Return = op.Return
 }
 func (o *EnumPrinterKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -38950,7 +39035,7 @@ func (o *xxx_EnumPerMachineConnectionsOperation) MarshalNDRRequest(ctx context.C
 			return err
 		}
 	}
-	// pPrinterEnum {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrinterEnum {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.PrinterEnum != nil || o.BufferLength > 0 {
 			_ptr_pPrinterEnum := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -39015,7 +39100,7 @@ func (o *xxx_EnumPerMachineConnectionsOperation) UnmarshalNDRRequest(ctx context
 			return err
 		}
 	}
-	// pPrinterEnum {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrinterEnum {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pPrinterEnum := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{
@@ -39068,7 +39153,7 @@ func (o *xxx_EnumPerMachineConnectionsOperation) MarshalNDRResponse(ctx context.
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pPrinterEnum {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrinterEnum {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		if o.PrinterEnum != nil || o.BufferLength > 0 {
 			_ptr_pPrinterEnum := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -39129,7 +39214,7 @@ func (o *xxx_EnumPerMachineConnectionsOperation) MarshalNDRResponse(ctx context.
 }
 
 func (o *xxx_EnumPerMachineConnectionsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pPrinterEnum {in, out, disable_consistency_check} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
+	// pPrinterEnum {in, out} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=cbBuf](uchar))
 	{
 		_ptr_pPrinterEnum := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			sizeInfo := []uint64{

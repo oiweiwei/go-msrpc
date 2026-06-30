@@ -66,7 +66,7 @@ NetrJobGetInfo(
     [in]                    DWORD                   JobId,
     [out]                   LPAT_INFO *             ppAtInfo
     );
-};
+}
 
 [
     uuid(378E52B0-C0A9-11CF-822D-00AA0051E40F),
@@ -79,9 +79,9 @@ NetrJobGetInfo(
  
 interface sasec
 {
-#define CNLEN       15                  
-#define DNLEN       CNLEN               
-#define UNLEN       256   
+#define CNLEN       15
+#define DNLEN       CNLEN
+#define UNLEN       256
  
 #define MAX_BUFFER_SIZE (DNLEN+UNLEN+1+1)
 typedef [handle] const wchar_t* SASEC_HANDLE;
@@ -115,7 +115,7 @@ SAGetAccountInformation(
     [ in, range(0, MAX_BUFFER_SIZE) ] DWORD ccBufferSize,
     [ in, out, size_is(ccBufferSize) ]
                             wchar_t wszBuffer[]);
-};
+}
 
 import "ms-dtyp.idl";
  

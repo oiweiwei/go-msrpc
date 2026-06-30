@@ -880,6 +880,36 @@ type LogonClient interface {
 	// Return Values: The method returns 0x00000000 on success.
 	ChainSetClientAttributes(context.Context, *ChainSetClientAttributesRequest, ...dcerpc.CallOption) (*ChainSetClientAttributesResponse, error)
 
+	// Opnum50NotUsedOnWire operation.
+	// Opnum50NotUsedOnWire
+
+	// Opnum51NotUsedOnWire operation.
+	// Opnum51NotUsedOnWire
+
+	// Opnum52NotUsedOnWire operation.
+	// Opnum52NotUsedOnWire
+
+	// Opnum53NotUsedOnWire operation.
+	// Opnum53NotUsedOnWire
+
+	// Opnum54NotUsedOnWire operation.
+	// Opnum54NotUsedOnWire
+
+	// Opnum55NotUsedOnWire operation.
+	// Opnum55NotUsedOnWire
+
+	// Opnum56NotUsedOnWire operation.
+	// Opnum56NotUsedOnWire
+
+	// Opnum57NotUsedOnWire operation.
+	// Opnum57NotUsedOnWire
+
+	// Opnum58NotUsedOnWire operation.
+	// Opnum58NotUsedOnWire
+
+	// NetrServerAuthenticateKerberos operation.
+	AuthenticateKerberos(context.Context, *AuthenticateKerberosRequest, ...dcerpc.CallOption) (*AuthenticateKerberosResponse, error)
+
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
@@ -8779,6 +8809,9 @@ var (
 	// NetlogonServiceTransitiveInformation: Logon information pertains to a transitive
 	// service account logon and can be passed through transitive trust links.
 	LogonInfoClassServiceTransitiveInformation LogonInfoClass = 7
+	// NetlogonTicketLogonInformation: Logon information pertains to a Kerberos account
+	// logon.
+	LogonInfoClassTicketLogonInformation LogonInfoClass = 8
 )
 
 func (o LogonInfoClass) String() string {
@@ -8797,6 +8830,8 @@ func (o LogonInfoClass) String() string {
 		return "LogonInfoClassNetworkTransitiveInformation"
 	case LogonInfoClassServiceTransitiveInformation:
 		return "LogonInfoClassServiceTransitiveInformation"
+	case LogonInfoClassTicketLogonInformation:
+		return "LogonInfoClassTicketLogonInformation"
 	}
 	return "Invalid"
 }
@@ -9216,6 +9251,7 @@ type Level struct {
 	// *Level_LogonNetwork
 	// *Level_LogonNetworkTransitive
 	// *Level_LogonGeneric
+	// *Level_LogonTicket
 	Value is_Level `json:"value"`
 }
 
@@ -9252,6 +9288,10 @@ func (o *Level) GetValue() any {
 		if value != nil {
 			return value.LogonGeneric
 		}
+	case *Level_LogonTicket:
+		if value != nil {
+			return value.LogonTicket
+		}
 	}
 	return nil
 }
@@ -9281,6 +9321,8 @@ func (o *Level) NDRSwitchValue(sw uint16) uint16 {
 		return uint16(6)
 	case *Level_LogonGeneric:
 		return uint16(4)
+	case *Level_LogonTicket:
+		return uint16(8)
 	}
 	return uint16(0)
 }
@@ -9374,6 +9416,17 @@ func (o *Level) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) er
 				return err
 			}
 		}
+	case uint16(8):
+		_o, _ := o.Value.(*Level_LogonTicket)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Level_LogonTicket{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
 	default:
 	}
 	return nil
@@ -9423,6 +9476,11 @@ func (o *Level) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) 
 		}
 	case uint16(4):
 		o.Value = &Level_LogonGeneric{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(8):
+		o.Value = &Level_LogonTicket{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -9798,6 +9856,58 @@ func (o *Level_LogonGeneric) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
+// Level_LogonTicket structure represents NETLOGON_LEVEL RPC union arm.
+//
+// It has following labels: 8
+type Level_LogonTicket struct {
+	// LogonTicket: This field is selected when the logon information type is NetlogonTicketLogonInformation.
+	// The data type is NETLOGON_TICKET_LOGON_INFO, as specified in section 2.2.1.4.19.
+	LogonTicket *TicketLogonInfo `idl:"name:LogonTicket" json:"logon_ticket"`
+}
+
+func (*Level_LogonTicket) is_Level() {}
+
+func (o *Level_LogonTicket) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.LogonTicket != nil {
+		_ptr_LogonTicket := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.LogonTicket != nil {
+				if err := o.LogonTicket.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&TicketLogonInfo{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.LogonTicket, _ptr_LogonTicket); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Level_LogonTicket) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_LogonTicket := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.LogonTicket == nil {
+			o.LogonTicket = &TicketLogonInfo{}
+		}
+		if err := o.LogonTicket.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_LogonTicket := func(ptr interface{}) { o.LogonTicket = *ptr.(**TicketLogonInfo) }
+	if err := w.ReadPointer(&o.LogonTicket, _s_LogonTicket, _ptr_LogonTicket); err != nil {
+		return err
+	}
+	return nil
+}
+
 // ValidationInfoClass type represents NETLOGON_VALIDATION_INFO_CLASS RPC enumeration.
 //
 // The NETLOGON_VALIDATION_INFO_CLASS enumeration SHOULD<49> select the type of logon
@@ -9822,6 +9932,9 @@ var (
 	// NetlogonValidationSamInfo4: Associated structure is NETLOGON_VALIDATION_SAM_INFO4
 	// (section 2.2.1.4.13).
 	ValidationInfoClassSAMInfo4 ValidationInfoClass = 6
+	// NetlogonValidationTicketLogon: Associated structure is NETLOGON_VALIDATION_TICKET_LOGON
+	// (section 2.2.1.4.20).
+	ValidationInfoClassTicketLogon ValidationInfoClass = 7
 )
 
 func (o ValidationInfoClass) String() string {
@@ -9838,6 +9951,8 @@ func (o ValidationInfoClass) String() string {
 		return "ValidationInfoClassGenericInfo2"
 	case ValidationInfoClassSAMInfo4:
 		return "ValidationInfoClassSAMInfo4"
+	case ValidationInfoClassTicketLogon:
+		return "ValidationInfoClassTicketLogon"
 	}
 	return "Invalid"
 }
@@ -10156,6 +10271,9 @@ func (o *ValidationSAMInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	if o.GroupIDs != nil && o.GroupCount == 0 {
 		o.GroupCount = uint32(len(o.GroupIDs))
+	}
+	if o.GroupCount > uint32(2048) {
+		return fmt.Errorf("GroupCount is out of range")
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -10625,6 +10743,12 @@ func (o *ValidationSAMInfo2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	if o.ExtraSIDs != nil && o.SIDCount == 0 {
 		o.SIDCount = uint32(len(o.ExtraSIDs))
+	}
+	if o.GroupCount > uint32(2048) {
+		return fmt.Errorf("GroupCount is out of range")
+	}
+	if o.SIDCount > uint32(2048) {
+		return fmt.Errorf("SIDCount is out of range")
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -11312,6 +11436,12 @@ func (o *ValidationSAMInfo4) xxx_PreparePayload(ctx context.Context) error {
 	}
 	if o.ExtraSIDs != nil && o.SIDCount == 0 {
 		o.SIDCount = uint32(len(o.ExtraSIDs))
+	}
+	if o.GroupCount > uint32(2048) {
+		return fmt.Errorf("GroupCount is out of range")
+	}
+	if o.SIDCount > uint32(2048) {
+		return fmt.Errorf("SIDCount is out of range")
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -12041,6 +12171,498 @@ func (o *ValidationSAMInfo4) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
+// TicketLogonInfo structure represents NETLOGON_TICKET_LOGON_INFO RPC structure.
+type TicketLogonInfo struct {
+	Identity               *LogonIdentityInfo `idl:"name:Identity" json:"identity"`
+	RequestOptions         uint64             `idl:"name:RequestOptions" json:"request_options"`
+	ServiceTicketLength    uint32             `idl:"name:ServiceTicketLength" json:"service_ticket_length"`
+	ServiceTicket          []byte             `idl:"name:ServiceTicket;size_is:(ServiceTicketLength)" json:"service_ticket"`
+	AdditionalTicketLength uint32             `idl:"name:AdditionalTicketLength" json:"additional_ticket_length"`
+	AdditionalTicket       []byte             `idl:"name:AdditionalTicket;size_is:(AdditionalTicketLength)" json:"additional_ticket"`
+}
+
+func (o *TicketLogonInfo) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.ServiceTicket != nil && o.ServiceTicketLength == 0 {
+		o.ServiceTicketLength = uint32(len(o.ServiceTicket))
+	}
+	if o.AdditionalTicket != nil && o.AdditionalTicketLength == 0 {
+		o.AdditionalTicketLength = uint32(len(o.AdditionalTicket))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *TicketLogonInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(8); err != nil {
+		return err
+	}
+	if o.Identity != nil {
+		if err := o.Identity.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&LogonIdentityInfo{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.RequestOptions); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ServiceTicketLength); err != nil {
+		return err
+	}
+	if o.ServiceTicket != nil || o.ServiceTicketLength > 0 {
+		_ptr_ServiceTicket := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.ServiceTicketLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.ServiceTicket {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.ServiceTicket[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.ServiceTicket); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ServiceTicket, _ptr_ServiceTicket); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.AdditionalTicketLength); err != nil {
+		return err
+	}
+	if o.AdditionalTicket != nil || o.AdditionalTicketLength > 0 {
+		_ptr_AdditionalTicket := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.AdditionalTicketLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.AdditionalTicket {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.AdditionalTicket[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.AdditionalTicket); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.AdditionalTicket, _ptr_AdditionalTicket); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *TicketLogonInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(8); err != nil {
+		return err
+	}
+	if o.Identity == nil {
+		o.Identity = &LogonIdentityInfo{}
+	}
+	if err := o.Identity.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.RequestOptions); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ServiceTicketLength); err != nil {
+		return err
+	}
+	_ptr_ServiceTicket := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.ServiceTicketLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.ServiceTicketLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.ServiceTicket", sizeInfo[0])
+		}
+		o.ServiceTicket = make([]byte, sizeInfo[0])
+		for i1 := range o.ServiceTicket {
+			i1 := i1
+			if err := w.ReadData(&o.ServiceTicket[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_ServiceTicket := func(ptr interface{}) { o.ServiceTicket = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.ServiceTicket, _s_ServiceTicket, _ptr_ServiceTicket); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.AdditionalTicketLength); err != nil {
+		return err
+	}
+	_ptr_AdditionalTicket := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.AdditionalTicketLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.AdditionalTicketLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.AdditionalTicket", sizeInfo[0])
+		}
+		o.AdditionalTicket = make([]byte, sizeInfo[0])
+		for i1 := range o.AdditionalTicket {
+			i1 := i1
+			if err := w.ReadData(&o.AdditionalTicket[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_AdditionalTicket := func(ptr interface{}) { o.AdditionalTicket = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.AdditionalTicket, _s_AdditionalTicket, _ptr_AdditionalTicket); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ValidationTicketLogon structure represents NETLOGON_VALIDATION_TICKET_LOGON RPC structure.
+type ValidationTicketLogon struct {
+	Results            uint64              `idl:"name:Results" json:"results"`
+	KerberosStatus     int32               `idl:"name:KerberosStatus" json:"kerberos_status"`
+	Status             int32               `idl:"name:NetlogonStatus" json:"status"`
+	SourceOfStatus     *dtyp.UnicodeString `idl:"name:SourceOfStatus" json:"source_of_status"`
+	UserInformation    *ValidationSAMInfo4 `idl:"name:UserInformation" json:"user_information"`
+	DeviceInformation  *ValidationSAMInfo4 `idl:"name:DeviceInformation" json:"device_information"`
+	UserClaimsLength   uint32              `idl:"name:UserClaimsLength" json:"user_claims_length"`
+	UserClaims         []byte              `idl:"name:UserClaims;size_is:(UserClaimsLength)" json:"user_claims"`
+	DeviceClaimsLength uint32              `idl:"name:DeviceClaimsLength" json:"device_claims_length"`
+	DeviceClaims       []byte              `idl:"name:DeviceClaims;size_is:(DeviceClaimsLength)" json:"device_claims"`
+}
+
+func (o *ValidationTicketLogon) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.UserClaims != nil && o.UserClaimsLength == 0 {
+		o.UserClaimsLength = uint32(len(o.UserClaims))
+	}
+	if o.DeviceClaims != nil && o.DeviceClaimsLength == 0 {
+		o.DeviceClaimsLength = uint32(len(o.DeviceClaims))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *ValidationTicketLogon) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(8); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Results); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.KerberosStatus); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Status); err != nil {
+		return err
+	}
+	if o.SourceOfStatus != nil {
+		if err := o.SourceOfStatus.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.UnicodeString{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.UserInformation != nil {
+		_ptr_UserInformation := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.UserInformation != nil {
+				if err := o.UserInformation.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ValidationSAMInfo4{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.UserInformation, _ptr_UserInformation); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.DeviceInformation != nil {
+		_ptr_DeviceInformation := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.DeviceInformation != nil {
+				if err := o.DeviceInformation.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ValidationSAMInfo4{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.DeviceInformation, _ptr_DeviceInformation); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.UserClaimsLength); err != nil {
+		return err
+	}
+	if o.UserClaims != nil || o.UserClaimsLength > 0 {
+		_ptr_UserClaims := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.UserClaimsLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.UserClaims {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.UserClaims[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.UserClaims); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.UserClaims, _ptr_UserClaims); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.DeviceClaimsLength); err != nil {
+		return err
+	}
+	if o.DeviceClaims != nil || o.DeviceClaimsLength > 0 {
+		_ptr_DeviceClaims := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.DeviceClaimsLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.DeviceClaims {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.DeviceClaims[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.DeviceClaims); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.DeviceClaims, _ptr_DeviceClaims); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *ValidationTicketLogon) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(8); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Results); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.KerberosStatus); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Status); err != nil {
+		return err
+	}
+	if o.SourceOfStatus == nil {
+		o.SourceOfStatus = &dtyp.UnicodeString{}
+	}
+	if err := o.SourceOfStatus.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	_ptr_UserInformation := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.UserInformation == nil {
+			o.UserInformation = &ValidationSAMInfo4{}
+		}
+		if err := o.UserInformation.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_UserInformation := func(ptr interface{}) { o.UserInformation = *ptr.(**ValidationSAMInfo4) }
+	if err := w.ReadPointer(&o.UserInformation, _s_UserInformation, _ptr_UserInformation); err != nil {
+		return err
+	}
+	_ptr_DeviceInformation := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.DeviceInformation == nil {
+			o.DeviceInformation = &ValidationSAMInfo4{}
+		}
+		if err := o.DeviceInformation.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_DeviceInformation := func(ptr interface{}) { o.DeviceInformation = *ptr.(**ValidationSAMInfo4) }
+	if err := w.ReadPointer(&o.DeviceInformation, _s_DeviceInformation, _ptr_DeviceInformation); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.UserClaimsLength); err != nil {
+		return err
+	}
+	_ptr_UserClaims := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.UserClaimsLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.UserClaimsLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.UserClaims", sizeInfo[0])
+		}
+		o.UserClaims = make([]byte, sizeInfo[0])
+		for i1 := range o.UserClaims {
+			i1 := i1
+			if err := w.ReadData(&o.UserClaims[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_UserClaims := func(ptr interface{}) { o.UserClaims = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.UserClaims, _s_UserClaims, _ptr_UserClaims); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DeviceClaimsLength); err != nil {
+		return err
+	}
+	_ptr_DeviceClaims := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.DeviceClaimsLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.DeviceClaimsLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.DeviceClaims", sizeInfo[0])
+		}
+		o.DeviceClaims = make([]byte, sizeInfo[0])
+		for i1 := range o.DeviceClaims {
+			i1 := i1
+			if err := w.ReadData(&o.DeviceClaims[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_DeviceClaims := func(ptr interface{}) { o.DeviceClaims = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.DeviceClaims, _s_DeviceClaims, _ptr_DeviceClaims); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+
 // Validation structure represents NETLOGON_VALIDATION RPC union.
 //
 // The NETLOGON_VALIDATION union defines a union of all types of user validation information
@@ -12052,6 +12674,7 @@ type Validation struct {
 	// *Validation_SAM2
 	// *Validation_Generic2
 	// *Validation_SAM4
+	// *Validation_Ticket
 	Value is_Validation `json:"value"`
 }
 
@@ -12076,6 +12699,10 @@ func (o *Validation) GetValue() any {
 		if value != nil {
 			return value.ValidationSAM4
 		}
+	case *Validation_Ticket:
+		if value != nil {
+			return value.ValidationTicket
+		}
 	}
 	return nil
 }
@@ -12099,6 +12726,8 @@ func (o *Validation) NDRSwitchValue(sw uint16) uint16 {
 		return uint16(5)
 	case *Validation_SAM4:
 		return uint16(6)
+	case *Validation_Ticket:
+		return uint16(7)
 	}
 	return uint16(0)
 }
@@ -12159,6 +12788,17 @@ func (o *Validation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint1
 				return err
 			}
 		}
+	case uint16(7):
+		_o, _ := o.Value.(*Validation_Ticket)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Validation_Ticket{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
 	default:
 	}
 	return nil
@@ -12193,6 +12833,11 @@ func (o *Validation) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uin
 		}
 	case uint16(6):
 		o.Value = &Validation_SAM4{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(7):
+		o.Value = &Validation_Ticket{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -12407,6 +13052,59 @@ func (o *Validation_SAM4) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	})
 	_s_ValidationSam4 := func(ptr interface{}) { o.ValidationSAM4 = *ptr.(**ValidationSAMInfo4) }
 	if err := w.ReadPointer(&o.ValidationSAM4, _s_ValidationSam4, _ptr_ValidationSam4); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Validation_Ticket structure represents NETLOGON_VALIDATION RPC union arm.
+//
+// It has following labels: 7
+type Validation_Ticket struct {
+	// ValidationTicket: This field is selected when the validation information type is
+	// NetlogonValidationTicketLogon. The selected data type is NETLOGON_VALIDATION_TICKET_LOGON,
+	// as specified in section 2.2.1.4.20.
+	ValidationTicket *ValidationTicketLogon `idl:"name:ValidationTicket" json:"validation_ticket"`
+}
+
+func (*Validation_Ticket) is_Validation() {}
+
+func (o *Validation_Ticket) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.ValidationTicket != nil {
+		_ptr_ValidationTicket := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.ValidationTicket != nil {
+				if err := o.ValidationTicket.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ValidationTicketLogon{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ValidationTicket, _ptr_ValidationTicket); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Validation_Ticket) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_ValidationTicket := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.ValidationTicket == nil {
+			o.ValidationTicket = &ValidationTicketLogon{}
+		}
+		if err := o.ValidationTicket.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_ValidationTicket := func(ptr interface{}) { o.ValidationTicket = *ptr.(**ValidationTicketLogon) }
+	if err := w.ReadPointer(&o.ValidationTicket, _s_ValidationTicket, _ptr_ValidationTicket); err != nil {
 		return err
 	}
 	return nil
@@ -12833,6 +13531,9 @@ func (o *Info2) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
+	if len(o.TrustedDCName) > int(257) {
+		return fmt.Errorf("TrustedDCName is out of range")
+	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -13034,6 +13735,12 @@ type Info4 struct {
 func (o *Info4) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
+	}
+	if len(o.TrustedDCName) > int(257) {
+		return fmt.Errorf("TrustedDCName is out of range")
+	}
+	if len(o.TrustedDomainName) > int(257) {
+		return fmt.Errorf("TrustedDomainName is out of range")
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -14631,6 +15338,12 @@ func (o *WorkstationInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
+	if len(o.DNSHostName) > int(256) {
+		return fmt.Errorf("DNSHostName is out of range")
+	}
+	if len(o.SiteName) > int(256) {
+		return fmt.Errorf("SiteName is out of range")
+	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -15107,6 +15820,9 @@ func (o *SocketAddress) xxx_PreparePayload(ctx context.Context) error {
 	}
 	if o.Sockaddr != nil && o.SockaddrLength == 0 {
 		o.SockaddrLength = uint32(len(o.Sockaddr))
+	}
+	if o.SockaddrLength > uint32(128) {
+		return fmt.Errorf("SockaddrLength is out of range")
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -15945,6 +16661,12 @@ func (o *GenericRPCData) xxx_PreparePayload(ctx context.Context) error {
 	if o.UnicodeStringData != nil && o.UnicodeStringEntryCount == 0 {
 		o.UnicodeStringEntryCount = uint32(len(o.UnicodeStringData))
 	}
+	if o.EntryCount > uint32(4096) {
+		return fmt.Errorf("EntryCount is out of range")
+	}
+	if o.UnicodeStringEntryCount > uint32(4096) {
+		return fmt.Errorf("UnicodeStringEntryCount is out of range")
+	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -16394,6 +17116,7 @@ type Capabilities struct {
 	// Types that are assignable to Value
 	//
 	// *Capabilities_Server
+	// *Capabilities_RequestedFlags
 	Value is_Capabilities `json:"value"`
 }
 
@@ -16405,6 +17128,10 @@ func (o *Capabilities) GetValue() any {
 	case *Capabilities_Server:
 		if value != nil {
 			return value.ServerCapabilities
+		}
+	case *Capabilities_RequestedFlags:
+		if value != nil {
+			return value.RequestedFlags
 		}
 	}
 	return nil
@@ -16423,6 +17150,8 @@ func (o *Capabilities) NDRSwitchValue(sw uint32) uint32 {
 	switch (interface{})(o.Value).(type) {
 	case *Capabilities_Server:
 		return uint32(1)
+	case *Capabilities_RequestedFlags:
+		return uint32(2)
 	}
 	return uint32(0)
 }
@@ -16450,6 +17179,17 @@ func (o *Capabilities) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uin
 				return err
 			}
 		}
+	case uint32(2):
+		_o, _ := o.Value.(*Capabilities_RequestedFlags)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Capabilities_RequestedFlags{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
 	default:
 		return fmt.Errorf("unsupported switch case value %v", sw)
 	}
@@ -16470,6 +17210,11 @@ func (o *Capabilities) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw u
 	switch sw {
 	case uint32(1):
 		o.Value = &Capabilities_Server{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint32(2):
+		o.Value = &Capabilities_RequestedFlags{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -16496,6 +17241,28 @@ func (o *Capabilities_Server) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 }
 func (o *Capabilities_Server) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.ServerCapabilities); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Capabilities_RequestedFlags structure represents NETLOGON_CAPABILITIES RPC union arm.
+//
+// It has following labels: 2
+type Capabilities_RequestedFlags struct {
+	RequestedFlags uint32 `idl:"name:RequestedFlags" json:"requested_flags"`
+}
+
+func (*Capabilities_RequestedFlags) is_Capabilities() {}
+
+func (o *Capabilities_RequestedFlags) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := w.WriteData(o.RequestedFlags); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *Capabilities_RequestedFlags) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadData(&o.RequestedFlags); err != nil {
 		return err
 	}
 	return nil
@@ -17231,7 +17998,7 @@ func (o ForestTrustRecordType) String() string {
 	return "Invalid"
 }
 
-// UnicodeString structure represents LSA_RPC_UNICODE_STRING RPC structure.
+// UnicodeString structure represents LSA_UNICODE_STRING RPC structure.
 type UnicodeString dtyp.UnicodeString
 
 func (o *UnicodeString) UnicodeString() *dtyp.UnicodeString { return (*dtyp.UnicodeString)(o) }
@@ -18098,6 +18865,9 @@ func (o *DNSNameInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
+	if len(o.DNSDomainInfo) > int(256) {
+		return fmt.Errorf("DNSDomainInfo is out of range")
+	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18210,6 +18980,9 @@ func (o *DNSNameInfoArray) xxx_PreparePayload(ctx context.Context) error {
 	}
 	if o.DNSNamesInfo != nil && o.EntryCount == 0 {
 		o.EntryCount = uint32(len(o.DNSNamesInfo))
+	}
+	if o.EntryCount > uint32(2048) {
+		return fmt.Errorf("EntryCount is out of range")
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -18517,6 +19290,12 @@ type InChainSetClientAttributesV1 struct {
 func (o *InChainSetClientAttributesV1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
+	}
+	if len(o.ClientDNSHostName) > int(256) {
+		return fmt.Errorf("ClientDNSHostName is out of range")
+	}
+	if len(o.OSName) > int(256) {
+		return fmt.Errorf("OSName is out of range")
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -19650,6 +20429,19 @@ func (o *xxx_DefaultLogonClient) ChainSetClientAttributes(ctx context.Context, i
 	return out, nil
 }
 
+func (o *xxx_DefaultLogonClient) AuthenticateKerberos(ctx context.Context, in *AuthenticateKerberosRequest, opts ...dcerpc.CallOption) (*AuthenticateKerberosResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &AuthenticateKerberosResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
 func (o *xxx_DefaultLogonClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
@@ -19682,6 +20474,12 @@ func (o *xxx_UASLogonOperation) OpNum() int { return 0 }
 func (o *xxx_UASLogonOperation) OpName() string { return "/logon/v1/NetrLogonUasLogon" }
 
 func (o *xxx_UASLogonOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.UserName) > int(256) {
+		return fmt.Errorf("UserName is out of range")
+	}
+	if len(o.Workstation) > int(256) {
+		return fmt.Errorf("Workstation is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -19715,13 +20513,13 @@ func (o *xxx_UASLogonOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wri
 			return err
 		}
 	}
-	// UserName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// UserName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.UserName); err != nil {
 			return err
 		}
 	}
-	// Workstation {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// Workstation {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.Workstation); err != nil {
 			return err
@@ -19747,13 +20545,13 @@ func (o *xxx_UASLogonOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			return err
 		}
 	}
-	// UserName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// UserName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.UserName); err != nil {
 			return err
 		}
 	}
-	// Workstation {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// Workstation {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.Workstation); err != nil {
 			return err
@@ -19945,6 +20743,12 @@ func (o *xxx_UASLogoffOperation) OpNum() int { return 1 }
 func (o *xxx_UASLogoffOperation) OpName() string { return "/logon/v1/NetrLogonUasLogoff" }
 
 func (o *xxx_UASLogoffOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.UserName) > int(256) {
+		return fmt.Errorf("UserName is out of range")
+	}
+	if len(o.Workstation) > int(256) {
+		return fmt.Errorf("Workstation is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -19978,13 +20782,13 @@ func (o *xxx_UASLogoffOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 			return err
 		}
 	}
-	// UserName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// UserName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.UserName); err != nil {
 			return err
 		}
 	}
-	// Workstation {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// Workstation {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.Workstation); err != nil {
 			return err
@@ -20010,13 +20814,13 @@ func (o *xxx_UASLogoffOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// UserName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// UserName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.UserName); err != nil {
 			return err
 		}
 	}
-	// Workstation {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// Workstation {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.Workstation); err != nil {
 			return err
@@ -21972,6 +22776,9 @@ func (o *xxx_DatabaseDeltasOperation) OpNum() int { return 7 }
 func (o *xxx_DatabaseDeltasOperation) OpName() string { return "/logon/v1/NetrDatabaseDeltas" }
 
 func (o *xxx_DatabaseDeltasOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -21990,7 +22797,7 @@ func (o *xxx_DatabaseDeltasOperation) MarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -22054,7 +22861,7 @@ func (o *xxx_DatabaseDeltasOperation) UnmarshalNDRRequest(ctx context.Context, w
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -22393,6 +23200,9 @@ func (o *xxx_DatabaseSyncOperation) OpNum() int { return 8 }
 func (o *xxx_DatabaseSyncOperation) OpName() string { return "/logon/v1/NetrDatabaseSync" }
 
 func (o *xxx_DatabaseSyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -22411,7 +23221,7 @@ func (o *xxx_DatabaseSyncOperation) MarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -22469,7 +23279,7 @@ func (o *xxx_DatabaseSyncOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -22756,6 +23566,9 @@ func (o *xxx_AccountDeltasOperation) OpNum() int { return 9 }
 func (o *xxx_AccountDeltasOperation) OpName() string { return "/logon/v1/NetrAccountDeltas" }
 
 func (o *xxx_AccountDeltasOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -22789,7 +23602,7 @@ func (o *xxx_AccountDeltasOperation) MarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -22869,7 +23682,7 @@ func (o *xxx_AccountDeltasOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -23222,6 +24035,12 @@ func (o *xxx_AccountSyncOperation) OpNum() int { return 10 }
 func (o *xxx_AccountSyncOperation) OpName() string { return "/logon/v1/NetrAccountSync" }
 
 func (o *xxx_AccountSyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
+	if o.BufferSize > uint32(4096) {
+		return fmt.Errorf("BufferSize is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -23255,7 +24074,7 @@ func (o *xxx_AccountSyncOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -23297,7 +24116,7 @@ func (o *xxx_AccountSyncOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// BufferSize {in} (1:{alias=DWORD}(uint32))
+	// BufferSize {in} (1:{range=(0,4096), alias=DWORD}(uint32))
 	{
 		if err := w.WriteData(o.BufferSize); err != nil {
 			return err
@@ -23323,7 +24142,7 @@ func (o *xxx_AccountSyncOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -23359,7 +24178,7 @@ func (o *xxx_AccountSyncOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// BufferSize {in} (1:{alias=DWORD}(uint32))
+	// BufferSize {in} (1:{range=(0,4096), alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.BufferSize); err != nil {
 			return err
@@ -23670,6 +24489,9 @@ func (o *xxx_GetNetrDCNameOperation) OpNum() int { return 11 }
 func (o *xxx_GetNetrDCNameOperation) OpName() string { return "/logon/v1/NetrGetDCName" }
 
 func (o *xxx_GetNetrDCNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.DomainName) > int(256) {
+		return fmt.Errorf("DomainName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -23688,7 +24510,7 @@ func (o *xxx_GetNetrDCNameOperation) MarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.DomainName != "" {
 			_ptr_DomainName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -23719,7 +24541,7 @@ func (o *xxx_GetNetrDCNameOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_DomainName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.DomainName); err != nil {
@@ -24177,6 +24999,9 @@ func (o *xxx_GetAnyDCNameOperation) OpNum() int { return 13 }
 func (o *xxx_GetAnyDCNameOperation) OpName() string { return "/logon/v1/NetrGetAnyDCName" }
 
 func (o *xxx_GetAnyDCNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.DomainName) > int(256) {
+		return fmt.Errorf("DomainName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -24210,7 +25035,7 @@ func (o *xxx_GetAnyDCNameOperation) MarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.DomainName != "" {
 			_ptr_DomainName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -24251,7 +25076,7 @@ func (o *xxx_GetAnyDCNameOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_DomainName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.DomainName); err != nil {
@@ -24746,6 +25571,12 @@ func (o *xxx_Authenticate2Operation) OpNum() int { return 15 }
 func (o *xxx_Authenticate2Operation) OpName() string { return "/logon/v1/NetrServerAuthenticate2" }
 
 func (o *xxx_Authenticate2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.AccountName) > int(256) {
+		return fmt.Errorf("AccountName is out of range")
+	}
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -24779,7 +25610,7 @@ func (o *xxx_Authenticate2Operation) MarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.AccountName); err != nil {
 			return err
@@ -24791,7 +25622,7 @@ func (o *xxx_Authenticate2Operation) MarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -24835,7 +25666,7 @@ func (o *xxx_Authenticate2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.AccountName); err != nil {
 			return err
@@ -24847,7 +25678,7 @@ func (o *xxx_Authenticate2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -25058,6 +25889,9 @@ func (o *xxx_DatabaseSync2Operation) OpNum() int { return 16 }
 func (o *xxx_DatabaseSync2Operation) OpName() string { return "/logon/v1/NetrDatabaseSync2" }
 
 func (o *xxx_DatabaseSync2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -25076,7 +25910,7 @@ func (o *xxx_DatabaseSync2Operation) MarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -25140,7 +25974,7 @@ func (o *xxx_DatabaseSync2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -25534,6 +26368,12 @@ func (o *xxx_DatabaseRedoOperation) xxx_PrepareRequestPayload(ctx context.Contex
 	if o.ChangeLogEntry != nil && o.ChangeLogEntrySize == 0 {
 		o.ChangeLogEntrySize = uint32(len(o.ChangeLogEntry))
 	}
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
+	if o.ChangeLogEntrySize > uint32(4096) {
+		return fmt.Errorf("ChangeLogEntrySize is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -25552,7 +26392,7 @@ func (o *xxx_DatabaseRedoOperation) MarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -25606,7 +26446,7 @@ func (o *xxx_DatabaseRedoOperation) MarshalNDRRequest(ctx context.Context, w ndr
 			}
 		}
 	}
-	// ChangeLogEntrySize {in} (1:{alias=DWORD}(uint32))
+	// ChangeLogEntrySize {in} (1:{range=(0,4096), alias=DWORD}(uint32))
 	{
 		if err := w.WriteData(o.ChangeLogEntrySize); err != nil {
 			return err
@@ -25622,7 +26462,7 @@ func (o *xxx_DatabaseRedoOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -25667,7 +26507,7 @@ func (o *xxx_DatabaseRedoOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 		}
 	}
-	// ChangeLogEntrySize {in} (1:{alias=DWORD}(uint32))
+	// ChangeLogEntrySize {in} (1:{range=(0,4096), alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.ChangeLogEntrySize); err != nil {
 			return err
@@ -26504,6 +27344,9 @@ func (o *xxx_GetDCNameOperation) OpNum() int { return 20 }
 func (o *xxx_GetDCNameOperation) OpName() string { return "/logon/v1/DsrGetDcName" }
 
 func (o *xxx_GetDCNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.DomainName) > int(256) {
+		return fmt.Errorf("DomainName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -26537,7 +27380,7 @@ func (o *xxx_GetDCNameOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.DomainName != "" {
 			_ptr_DomainName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -26638,7 +27481,7 @@ func (o *xxx_GetDCNameOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_DomainName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.DomainName); err != nil {
@@ -26886,7 +27729,7 @@ type xxx_GetCapabilitiesOperation struct {
 	Authenticator       *Authenticator `idl:"name:Authenticator" json:"authenticator"`
 	ReturnAuthenticator *Authenticator `idl:"name:ReturnAuthenticator" json:"return_authenticator"`
 	QueryLevel          uint32         `idl:"name:QueryLevel" json:"query_level"`
-	ServerCapabilities  *Capabilities  `idl:"name:ServerCapabilities;switch_is:QueryLevel" json:"server_capabilities"`
+	Capabilities        *Capabilities  `idl:"name:Capabilities;switch_is:QueryLevel" json:"capabilities"`
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
@@ -26897,6 +27740,9 @@ func (o *xxx_GetCapabilitiesOperation) OpNum() int { return 21 }
 func (o *xxx_GetCapabilitiesOperation) OpName() string { return "/logon/v1/NetrLogonGetCapabilities" }
 
 func (o *xxx_GetCapabilitiesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -26915,7 +27761,7 @@ func (o *xxx_GetCapabilitiesOperation) MarshalNDRRequest(ctx context.Context, w 
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.ComputerName != "" {
 			_ptr_ComputerName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -26976,7 +27822,7 @@ func (o *xxx_GetCapabilitiesOperation) UnmarshalNDRRequest(ctx context.Context, 
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_ComputerName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
@@ -27044,15 +27890,15 @@ func (o *xxx_GetCapabilitiesOperation) MarshalNDRResponse(ctx context.Context, w
 			}
 		}
 	}
-	// ServerCapabilities {out} (1:{switch_type={alias=DWORD}(uint32), alias=PNETLOGON_CAPABILITIES}*(1))(2:{switch_type={alias=DWORD}(uint32), alias=NETLOGON_CAPABILITIES}(union))
+	// Capabilities {out} (1:{switch_type={alias=DWORD}(uint32), alias=PNETLOGON_CAPABILITIES}*(1))(2:{switch_type={alias=DWORD}(uint32), alias=NETLOGON_CAPABILITIES}(union))
 	{
-		_swServerCapabilities := uint32(o.QueryLevel)
-		if o.ServerCapabilities != nil {
-			if err := o.ServerCapabilities.MarshalUnionNDR(ctx, w, _swServerCapabilities); err != nil {
+		_swCapabilities := uint32(o.QueryLevel)
+		if o.Capabilities != nil {
+			if err := o.Capabilities.MarshalUnionNDR(ctx, w, _swCapabilities); err != nil {
 				return err
 			}
 		} else {
-			if err := (&Capabilities{}).MarshalUnionNDR(ctx, w, _swServerCapabilities); err != nil {
+			if err := (&Capabilities{}).MarshalUnionNDR(ctx, w, _swCapabilities); err != nil {
 				return err
 			}
 		}
@@ -27076,13 +27922,13 @@ func (o *xxx_GetCapabilitiesOperation) UnmarshalNDRResponse(ctx context.Context,
 			return err
 		}
 	}
-	// ServerCapabilities {out} (1:{switch_type={alias=DWORD}(uint32), alias=PNETLOGON_CAPABILITIES,pointer=ref}*(1))(2:{switch_type={alias=DWORD}(uint32), alias=NETLOGON_CAPABILITIES}(union))
+	// Capabilities {out} (1:{switch_type={alias=DWORD}(uint32), alias=PNETLOGON_CAPABILITIES,pointer=ref}*(1))(2:{switch_type={alias=DWORD}(uint32), alias=NETLOGON_CAPABILITIES}(union))
 	{
-		if o.ServerCapabilities == nil {
-			o.ServerCapabilities = &Capabilities{}
+		if o.Capabilities == nil {
+			o.Capabilities = &Capabilities{}
 		}
-		_swServerCapabilities := uint32(o.QueryLevel)
-		if err := o.ServerCapabilities.UnmarshalUnionNDR(ctx, w, _swServerCapabilities); err != nil {
+		_swCapabilities := uint32(o.QueryLevel)
+		if err := o.Capabilities.UnmarshalUnionNDR(ctx, w, _swCapabilities); err != nil {
 			return err
 		}
 	}
@@ -27179,7 +28025,9 @@ type GetCapabilitiesResponse struct {
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure, as specified
 	// in section 2.2.1.1.5, that contains the server return authenticator.
 	ReturnAuthenticator *Authenticator `idl:"name:ReturnAuthenticator" json:"return_authenticator"`
-	ServerCapabilities  *Capabilities  `idl:"name:ServerCapabilities;switch_is:QueryLevel" json:"server_capabilities"`
+	// Capabilities: A pointer to a 32-bit set of bit flags that identify the server's capabilities
+	// or client’s capabilities received by server during negotiation.<205>
+	Capabilities *Capabilities `idl:"name:Capabilities;switch_is:QueryLevel" json:"capabilities"`
 	// Return: The NetrLogonGetCapabilities return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -27197,7 +28045,7 @@ func (o *GetCapabilitiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCapab
 	}
 
 	op.ReturnAuthenticator = o.ReturnAuthenticator
-	op.ServerCapabilities = o.ServerCapabilities
+	op.Capabilities = o.Capabilities
 	op.Return = o.Return
 	return op
 }
@@ -27210,7 +28058,7 @@ func (o *GetCapabilitiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCap
 	o.QueryLevel = op.QueryLevel
 
 	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.ServerCapabilities = op.ServerCapabilities
+	o.Capabilities = op.Capabilities
 	o.Return = op.Return
 }
 func (o *GetCapabilitiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -27518,6 +28366,9 @@ func (o *xxx_GetTrustRIDOperation) OpNum() int { return 23 }
 func (o *xxx_GetTrustRIDOperation) OpName() string { return "/logon/v1/NetrLogonGetTrustRid" }
 
 func (o *xxx_GetTrustRIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.DomainName) > int(256) {
+		return fmt.Errorf("DomainName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -27551,7 +28402,7 @@ func (o *xxx_GetTrustRIDOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.DomainName != "" {
 			_ptr_DomainName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -27592,7 +28443,7 @@ func (o *xxx_GetTrustRIDOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_DomainName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.DomainName); err != nil {
@@ -27769,6 +28620,9 @@ func (o *xxx_ComputeServerDigestOperation) xxx_PrepareRequestPayload(ctx context
 	if o.Message != nil && o.MessageSize == 0 {
 		o.MessageSize = uint32(len(o.Message))
 	}
+	if o.MessageSize > uint32(2048) {
+		return fmt.Errorf("MessageSize is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -27832,7 +28686,7 @@ func (o *xxx_ComputeServerDigestOperation) MarshalNDRRequest(ctx context.Context
 			}
 		}
 	}
-	// MessageSize {in} (1:{alias=ULONG}(uint32))
+	// MessageSize {in} (1:{range=(0,2048), alias=ULONG}(uint32))
 	{
 		if err := w.WriteData(o.MessageSize); err != nil {
 			return err
@@ -27885,7 +28739,7 @@ func (o *xxx_ComputeServerDigestOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 		}
 	}
-	// MessageSize {in} (1:{alias=ULONG}(uint32))
+	// MessageSize {in} (1:{range=(0,2048), alias=ULONG}(uint32))
 	{
 		if err := w.ReadData(&o.MessageSize); err != nil {
 			return err
@@ -28109,6 +28963,12 @@ func (o *xxx_ComputeClientDigestOperation) xxx_PrepareRequestPayload(ctx context
 	if o.Message != nil && o.MessageSize == 0 {
 		o.MessageSize = uint32(len(o.Message))
 	}
+	if len(o.DomainName) > int(256) {
+		return fmt.Errorf("DomainName is out of range")
+	}
+	if o.MessageSize > uint32(2048) {
+		return fmt.Errorf("MessageSize is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -28142,7 +29002,7 @@ func (o *xxx_ComputeClientDigestOperation) MarshalNDRRequest(ctx context.Context
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.DomainName != "" {
 			_ptr_DomainName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -28187,7 +29047,7 @@ func (o *xxx_ComputeClientDigestOperation) MarshalNDRRequest(ctx context.Context
 			}
 		}
 	}
-	// MessageSize {in} (1:{alias=ULONG}(uint32))
+	// MessageSize {in} (1:{range=(0,2048), alias=ULONG}(uint32))
 	{
 		if err := w.WriteData(o.MessageSize); err != nil {
 			return err
@@ -28213,7 +29073,7 @@ func (o *xxx_ComputeClientDigestOperation) UnmarshalNDRRequest(ctx context.Conte
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_DomainName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.DomainName); err != nil {
@@ -28250,7 +29110,7 @@ func (o *xxx_ComputeClientDigestOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 		}
 	}
-	// MessageSize {in} (1:{alias=ULONG}(uint32))
+	// MessageSize {in} (1:{range=(0,2048), alias=ULONG}(uint32))
 	{
 		if err := w.ReadData(&o.MessageSize); err != nil {
 			return err
@@ -28472,6 +29332,12 @@ func (o *xxx_Authenticate3Operation) OpNum() int { return 26 }
 func (o *xxx_Authenticate3Operation) OpName() string { return "/logon/v1/NetrServerAuthenticate3" }
 
 func (o *xxx_Authenticate3Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.AccountName) > int(256) {
+		return fmt.Errorf("AccountName is out of range")
+	}
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -28505,7 +29371,7 @@ func (o *xxx_Authenticate3Operation) MarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.AccountName); err != nil {
 			return err
@@ -28517,7 +29383,7 @@ func (o *xxx_Authenticate3Operation) MarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -28535,7 +29401,7 @@ func (o *xxx_Authenticate3Operation) MarshalNDRRequest(ctx context.Context, w nd
 			}
 		}
 	}
-	// NegotiateFlags {in, out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	// NegotiateFlags {in, out} (1:{alias=PULONG}*(1))(2:{alias=ULONG}(uint32))
 	{
 		if err := w.WriteData(o.NegotiateFlags); err != nil {
 			return err
@@ -28561,7 +29427,7 @@ func (o *xxx_Authenticate3Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.AccountName); err != nil {
 			return err
@@ -28573,7 +29439,7 @@ func (o *xxx_Authenticate3Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -28588,7 +29454,7 @@ func (o *xxx_Authenticate3Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			return err
 		}
 	}
-	// NegotiateFlags {in, out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	// NegotiateFlags {in, out} (1:{alias=PULONG,pointer=ref}*(1))(2:{alias=ULONG}(uint32))
 	{
 		if err := w.ReadData(&o.NegotiateFlags); err != nil {
 			return err
@@ -28622,13 +29488,13 @@ func (o *xxx_Authenticate3Operation) MarshalNDRResponse(ctx context.Context, w n
 			}
 		}
 	}
-	// NegotiateFlags {in, out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	// NegotiateFlags {in, out} (1:{alias=PULONG}*(1))(2:{alias=ULONG}(uint32))
 	{
 		if err := w.WriteData(o.NegotiateFlags); err != nil {
 			return err
 		}
 	}
-	// AccountRid {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	// AccountRid {out} (1:{alias=PULONG}*(1))(2:{alias=ULONG}(uint32))
 	{
 		if err := w.WriteData(o.AccountRID); err != nil {
 			return err
@@ -28653,13 +29519,13 @@ func (o *xxx_Authenticate3Operation) UnmarshalNDRResponse(ctx context.Context, w
 			return err
 		}
 	}
-	// NegotiateFlags {in, out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	// NegotiateFlags {in, out} (1:{alias=PULONG,pointer=ref}*(1))(2:{alias=ULONG}(uint32))
 	{
 		if err := w.ReadData(&o.NegotiateFlags); err != nil {
 			return err
 		}
 	}
-	// AccountRid {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	// AccountRid {out} (1:{alias=PULONG,pointer=ref}*(1))(2:{alias=ULONG}(uint32))
 	{
 		if err := w.ReadData(&o.AccountRID); err != nil {
 			return err
@@ -28824,6 +29690,12 @@ func (o *xxx_GetDCNameExOperation) OpNum() int { return 27 }
 func (o *xxx_GetDCNameExOperation) OpName() string { return "/logon/v1/DsrGetDcNameEx" }
 
 func (o *xxx_GetDCNameExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.DomainName) > int(256) {
+		return fmt.Errorf("DomainName is out of range")
+	}
+	if len(o.SiteName) > int(256) {
+		return fmt.Errorf("SiteName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -28857,7 +29729,7 @@ func (o *xxx_GetDCNameExOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.DomainName != "" {
 			_ptr_DomainName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -28905,7 +29777,7 @@ func (o *xxx_GetDCNameExOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// SiteName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// SiteName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.SiteName != "" {
 			_ptr_SiteName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -28952,7 +29824,7 @@ func (o *xxx_GetDCNameExOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_DomainName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.DomainName); err != nil {
@@ -28987,7 +29859,7 @@ func (o *xxx_GetDCNameExOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// SiteName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// SiteName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_SiteName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.SiteName); err != nil {
@@ -29429,6 +30301,9 @@ func (o *xxx_GetDomainInfoOperation) OpNum() int { return 29 }
 func (o *xxx_GetDomainInfoOperation) OpName() string { return "/logon/v1/NetrLogonGetDomainInfo" }
 
 func (o *xxx_GetDomainInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -29447,7 +30322,7 @@ func (o *xxx_GetDomainInfoOperation) MarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.ComputerName != "" {
 			_ptr_ComputerName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -29524,7 +30399,7 @@ func (o *xxx_GetDomainInfoOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_ComputerName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
@@ -29824,6 +30699,12 @@ func (o *xxx_PasswordSet2Operation) OpNum() int { return 30 }
 func (o *xxx_PasswordSet2Operation) OpName() string { return "/logon/v1/NetrServerPasswordSet2" }
 
 func (o *xxx_PasswordSet2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.AccountName) > int(256) {
+		return fmt.Errorf("AccountName is out of range")
+	}
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -29857,7 +30738,7 @@ func (o *xxx_PasswordSet2Operation) MarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.AccountName); err != nil {
 			return err
@@ -29869,7 +30750,7 @@ func (o *xxx_PasswordSet2Operation) MarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -29919,7 +30800,7 @@ func (o *xxx_PasswordSet2Operation) UnmarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.AccountName); err != nil {
 			return err
@@ -29931,7 +30812,7 @@ func (o *xxx_PasswordSet2Operation) UnmarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -30142,6 +31023,12 @@ func (o *xxx_PasswordGetOperation) OpNum() int { return 31 }
 func (o *xxx_PasswordGetOperation) OpName() string { return "/logon/v1/NetrServerPasswordGet" }
 
 func (o *xxx_PasswordGetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.AccountName) > int(256) {
+		return fmt.Errorf("AccountName is out of range")
+	}
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -30175,7 +31062,7 @@ func (o *xxx_PasswordGetOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.AccountName); err != nil {
 			return err
@@ -30187,7 +31074,7 @@ func (o *xxx_PasswordGetOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -30225,7 +31112,7 @@ func (o *xxx_PasswordGetOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.AccountName); err != nil {
 			return err
@@ -30237,7 +31124,7 @@ func (o *xxx_PasswordGetOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -30461,6 +31348,9 @@ func (o *xxx_SendToSAMOperation) xxx_PrepareRequestPayload(ctx context.Context) 
 	if o.OpaqueBuffer != nil && o.OpaqueBufferSize == 0 {
 		o.OpaqueBufferSize = uint32(len(o.OpaqueBuffer))
 	}
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -30494,7 +31384,7 @@ func (o *xxx_SendToSAMOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -30562,7 +31452,7 @@ func (o *xxx_SendToSAMOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -30784,7 +31674,7 @@ func (o *xxx_AddressToSiteNamesWOperation) xxx_PrepareRequestPayload(ctx context
 	if o.SocketAddresses != nil && o.EntryCount == 0 {
 		o.EntryCount = uint32(len(o.SocketAddresses))
 	}
-	if o.EntryCount > uint32(32000) {
+	if o.EntryCount > uint32(4096) {
 		return fmt.Errorf("EntryCount is out of range")
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
@@ -30820,7 +31710,7 @@ func (o *xxx_AddressToSiteNamesWOperation) MarshalNDRRequest(ctx context.Context
 			return err
 		}
 	}
-	// EntryCount {in} (1:{range=(0,32000), alias=DWORD}(uint32))
+	// EntryCount {in} (1:{range=(0,4096), alias=DWORD}(uint32))
 	{
 		if err := w.WriteData(o.EntryCount); err != nil {
 			return err
@@ -30879,7 +31769,7 @@ func (o *xxx_AddressToSiteNamesWOperation) UnmarshalNDRRequest(ctx context.Conte
 			return err
 		}
 	}
-	// EntryCount {in} (1:{range=(0,32000), alias=DWORD}(uint32))
+	// EntryCount {in} (1:{range=(0,4096), alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.EntryCount); err != nil {
 			return err
@@ -31116,6 +32006,15 @@ func (o *xxx_GetDCNameEx2Operation) OpNum() int { return 34 }
 func (o *xxx_GetDCNameEx2Operation) OpName() string { return "/logon/v1/DsrGetDcNameEx2" }
 
 func (o *xxx_GetDCNameEx2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.AccountName) > int(256) {
+		return fmt.Errorf("AccountName is out of range")
+	}
+	if len(o.DomainName) > int(256) {
+		return fmt.Errorf("DomainName is out of range")
+	}
+	if len(o.SiteName) > int(256) {
+		return fmt.Errorf("SiteName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -31149,7 +32048,7 @@ func (o *xxx_GetDCNameEx2Operation) MarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.AccountName != "" {
 			_ptr_AccountName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -31176,7 +32075,7 @@ func (o *xxx_GetDCNameEx2Operation) MarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.DomainName != "" {
 			_ptr_DomainName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -31224,7 +32123,7 @@ func (o *xxx_GetDCNameEx2Operation) MarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// SiteName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// SiteName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.SiteName != "" {
 			_ptr_SiteName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -31271,7 +32170,7 @@ func (o *xxx_GetDCNameEx2Operation) UnmarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_AccountName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.AccountName); err != nil {
@@ -31293,7 +32192,7 @@ func (o *xxx_GetDCNameEx2Operation) UnmarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// DomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_DomainName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.DomainName); err != nil {
@@ -31328,7 +32227,7 @@ func (o *xxx_GetDCNameEx2Operation) UnmarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// SiteName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// SiteName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_SiteName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.SiteName); err != nil {
@@ -32167,7 +33066,7 @@ func (o *xxx_AddressToSiteNamesExWOperation) xxx_PrepareRequestPayload(ctx conte
 	if o.SocketAddresses != nil && o.EntryCount == 0 {
 		o.EntryCount = uint32(len(o.SocketAddresses))
 	}
-	if o.EntryCount > uint32(32000) {
+	if o.EntryCount > uint32(4096) {
 		return fmt.Errorf("EntryCount is out of range")
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
@@ -32203,7 +33102,7 @@ func (o *xxx_AddressToSiteNamesExWOperation) MarshalNDRRequest(ctx context.Conte
 			return err
 		}
 	}
-	// EntryCount {in} (1:{range=(0,32000), alias=DWORD}(uint32))
+	// EntryCount {in} (1:{range=(0,4096), alias=DWORD}(uint32))
 	{
 		if err := w.WriteData(o.EntryCount); err != nil {
 			return err
@@ -32262,7 +33161,7 @@ func (o *xxx_AddressToSiteNamesExWOperation) UnmarshalNDRRequest(ctx context.Con
 			return err
 		}
 	}
-	// EntryCount {in} (1:{range=(0,32000), alias=DWORD}(uint32))
+	// EntryCount {in} (1:{range=(0,4096), alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.EntryCount); err != nil {
 			return err
@@ -32735,6 +33634,12 @@ func (o *xxx_SAMLogonExOperation) OpNum() int { return 39 }
 func (o *xxx_SAMLogonExOperation) OpName() string { return "/logon/v1/NetrLogonSamLogonEx" }
 
 func (o *xxx_SAMLogonExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.LogonServer) > int(256) {
+		return fmt.Errorf("LogonServer is out of range")
+	}
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -32747,7 +33652,7 @@ func (o *xxx_SAMLogonExOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
-	// LogonServer {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// LogonServer {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.LogonServer != "" {
 			_ptr_LogonServer := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -32768,7 +33673,7 @@ func (o *xxx_SAMLogonExOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.ComputerName != "" {
 			_ptr_ComputerName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -32827,7 +33732,7 @@ func (o *xxx_SAMLogonExOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 }
 
 func (o *xxx_SAMLogonExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
-	// LogonServer {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// LogonServer {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_LogonServer := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.LogonServer); err != nil {
@@ -32843,7 +33748,7 @@ func (o *xxx_SAMLogonExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_ComputerName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
@@ -33464,7 +34369,7 @@ type xxx_DeregisterDNSHostRecordsOperation struct {
 	DNSDomainName string     `idl:"name:DnsDomainName;string;pointer:unique" json:"dns_domain_name"`
 	DomainGUID    *dtyp.GUID `idl:"name:DomainGuid;pointer:unique" json:"domain_guid"`
 	DSAGUID       *dtyp.GUID `idl:"name:DsaGuid;pointer:unique" json:"dsa_guid"`
-	DNSHostName   string     `idl:"name:DnsHostName;string" json:"dns_host_name"`
+	DNSHostName   string     `idl:"name:DnsHostName;string;pointer:unique" json:"dns_host_name"`
 	Return        uint32     `idl:"name:Return" json:"return"`
 }
 
@@ -33477,6 +34382,12 @@ func (o *xxx_DeregisterDNSHostRecordsOperation) OpName() string {
 }
 
 func (o *xxx_DeregisterDNSHostRecordsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.DNSDomainName) > int(256) {
+		return fmt.Errorf("DNSDomainName is out of range")
+	}
+	if len(o.DNSHostName) > int(256) {
+		return fmt.Errorf("DNSHostName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -33510,7 +34421,7 @@ func (o *xxx_DeregisterDNSHostRecordsOperation) MarshalNDRRequest(ctx context.Co
 			return err
 		}
 	}
-	// DnsDomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DnsDomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.DNSDomainName != "" {
 			_ptr_DnsDomainName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -33585,9 +34496,24 @@ func (o *xxx_DeregisterDNSHostRecordsOperation) MarshalNDRRequest(ctx context.Co
 			return err
 		}
 	}
-	// DnsHostName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// DnsHostName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.WriteUTF16NString(ctx, w, o.DNSHostName); err != nil {
+		if o.DNSHostName != "" {
+			_ptr_DnsHostName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.DNSHostName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.DNSHostName, _ptr_DnsHostName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
 			return err
 		}
 	}
@@ -33611,7 +34537,7 @@ func (o *xxx_DeregisterDNSHostRecordsOperation) UnmarshalNDRRequest(ctx context.
 			return err
 		}
 	}
-	// DnsDomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// DnsDomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_DnsDomainName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.DNSDomainName); err != nil {
@@ -33665,9 +34591,19 @@ func (o *xxx_DeregisterDNSHostRecordsOperation) UnmarshalNDRRequest(ctx context.
 			return err
 		}
 	}
-	// DnsHostName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// DnsHostName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.ReadUTF16NString(ctx, w, &o.DNSHostName); err != nil {
+		_ptr_DnsHostName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.DNSHostName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_DnsHostName := func(ptr interface{}) { o.DNSHostName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.DNSHostName, _s_DnsHostName, _ptr_DnsHostName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
 			return err
 		}
 	}
@@ -33723,7 +34659,7 @@ type DeregisterDNSHostRecordsRequest struct {
 	DSAGUID *dtyp.GUID `idl:"name:DsaGuid;pointer:unique" json:"dsa_guid"`
 	// DnsHostName: A null-terminated Unicode string that specifies the FQDN of the DC whose
 	// records are being deregistered.
-	DNSHostName string `idl:"name:DnsHostName;string" json:"dns_host_name"`
+	DNSHostName string `idl:"name:DnsHostName;string;pointer:unique" json:"dns_host_name"`
 }
 
 func (o *DeregisterDNSHostRecordsRequest) xxx_ToOp(ctx context.Context, op *xxx_DeregisterDNSHostRecordsOperation) *xxx_DeregisterDNSHostRecordsOperation {
@@ -33833,6 +34769,12 @@ func (o *xxx_TrustPasswordsGetOperation) OpName() string {
 }
 
 func (o *xxx_TrustPasswordsGetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.AccountName) > int(256) {
+		return fmt.Errorf("AccountName is out of range")
+	}
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -33866,7 +34808,7 @@ func (o *xxx_TrustPasswordsGetOperation) MarshalNDRRequest(ctx context.Context, 
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.AccountName); err != nil {
 			return err
@@ -33878,7 +34820,7 @@ func (o *xxx_TrustPasswordsGetOperation) MarshalNDRRequest(ctx context.Context, 
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -33916,7 +34858,7 @@ func (o *xxx_TrustPasswordsGetOperation) UnmarshalNDRRequest(ctx context.Context
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.AccountName); err != nil {
 			return err
@@ -33928,7 +34870,7 @@ func (o *xxx_TrustPasswordsGetOperation) UnmarshalNDRRequest(ctx context.Context
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -34186,6 +35128,9 @@ func (o *xxx_GetForestTrustInformationOperation) OpName() string {
 }
 
 func (o *xxx_GetForestTrustInformationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.TrustedDomainName) > int(256) {
+		return fmt.Errorf("TrustedDomainName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -34219,7 +35164,7 @@ func (o *xxx_GetForestTrustInformationOperation) MarshalNDRRequest(ctx context.C
 			return err
 		}
 	}
-	// TrustedDomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// TrustedDomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.TrustedDomainName != "" {
 			_ptr_TrustedDomainName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -34266,7 +35211,7 @@ func (o *xxx_GetForestTrustInformationOperation) UnmarshalNDRRequest(ctx context
 			return err
 		}
 	}
-	// TrustedDomainName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// TrustedDomainName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_TrustedDomainName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.TrustedDomainName); err != nil {
@@ -34510,6 +35455,9 @@ func (o *xxx_GetNetrForestTrustInformationOperation) OpName() string {
 }
 
 func (o *xxx_GetNetrForestTrustInformationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -34543,7 +35491,7 @@ func (o *xxx_GetNetrForestTrustInformationOperation) MarshalNDRRequest(ctx conte
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -34587,7 +35535,7 @@ func (o *xxx_GetNetrForestTrustInformationOperation) UnmarshalNDRRequest(ctx con
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -34841,6 +35789,9 @@ func (o *xxx_SAMLogonWithFlagsOperation) OpName() string {
 }
 
 func (o *xxx_SAMLogonWithFlagsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -34874,7 +35825,7 @@ func (o *xxx_SAMLogonWithFlagsOperation) MarshalNDRRequest(ctx context.Context, 
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.ComputerName != "" {
 			_ptr_ComputerName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -35003,7 +35954,7 @@ func (o *xxx_SAMLogonWithFlagsOperation) UnmarshalNDRRequest(ctx context.Context
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_ComputerName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
@@ -35463,6 +36414,12 @@ func (o *xxx_GetTrustInfoOperation) OpNum() int { return 46 }
 func (o *xxx_GetTrustInfoOperation) OpName() string { return "/logon/v1/NetrServerGetTrustInfo" }
 
 func (o *xxx_GetTrustInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.AccountName) > int(256) {
+		return fmt.Errorf("AccountName is out of range")
+	}
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -35496,7 +36453,7 @@ func (o *xxx_GetTrustInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.AccountName); err != nil {
 			return err
@@ -35508,7 +36465,7 @@ func (o *xxx_GetTrustInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -35546,7 +36503,7 @@ func (o *xxx_GetTrustInfoOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// AccountName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.AccountName); err != nil {
 			return err
@@ -35558,7 +36515,7 @@ func (o *xxx_GetTrustInfoOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -35871,6 +36828,12 @@ func (o *xxx_UpdateReadOnlyServerDNSRecordsOperation) OpName() string {
 }
 
 func (o *xxx_UpdateReadOnlyServerDNSRecordsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
+	if len(o.SiteName) > int(256) {
+		return fmt.Errorf("SiteName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -35904,7 +36867,7 @@ func (o *xxx_UpdateReadOnlyServerDNSRecordsOperation) MarshalNDRRequest(ctx cont
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
 			return err
@@ -35922,7 +36885,7 @@ func (o *xxx_UpdateReadOnlyServerDNSRecordsOperation) MarshalNDRRequest(ctx cont
 			}
 		}
 	}
-	// SiteName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// SiteName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if o.SiteName != "" {
 			_ptr_SiteName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -35984,7 +36947,7 @@ func (o *xxx_UpdateReadOnlyServerDNSRecordsOperation) UnmarshalNDRRequest(ctx co
 			return err
 		}
 	}
-	// ComputerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
 			return err
@@ -35999,7 +36962,7 @@ func (o *xxx_UpdateReadOnlyServerDNSRecordsOperation) UnmarshalNDRRequest(ctx co
 			return err
 		}
 	}
-	// SiteName {in} (1:{string, pointer=unique}*(1)[dim:0,string,null](wchar))
+	// SiteName {in} (1:{string, pointer=unique, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_SiteName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if err := ndr.ReadUTF16NString(ctx, w, &o.SiteName); err != nil {
@@ -36258,6 +37221,12 @@ func (o *xxx_ChainSetClientAttributesOperation) OpName() string {
 }
 
 func (o *xxx_ChainSetClientAttributesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.ChainedFromServerName) > int(256) {
+		return fmt.Errorf("ChainedFromServerName is out of range")
+	}
+	if len(o.ChainedForClientName) > int(256) {
+		return fmt.Errorf("ChainedForClientName is out of range")
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -36276,13 +37245,13 @@ func (o *xxx_ChainSetClientAttributesOperation) MarshalNDRRequest(ctx context.Co
 			return err
 		}
 	}
-	// ChainedFromServerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ChainedFromServerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ChainedFromServerName); err != nil {
 			return err
 		}
 	}
-	// ChainedForClientName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ChainedForClientName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.WriteUTF16NString(ctx, w, o.ChainedForClientName); err != nil {
 			return err
@@ -36366,13 +37335,13 @@ func (o *xxx_ChainSetClientAttributesOperation) UnmarshalNDRRequest(ctx context.
 			return err
 		}
 	}
-	// ChainedFromServerName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ChainedFromServerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ChainedFromServerName); err != nil {
 			return err
 		}
 	}
-	// ChainedForClientName {in} (1:{string, pointer=ref}*(1)[dim:0,string,null](wchar))
+	// ChainedForClientName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.ChainedForClientName); err != nil {
 			return err
@@ -36666,6 +37635,292 @@ func (o *ChainSetClientAttributesResponse) MarshalNDR(ctx context.Context, w ndr
 }
 func (o *ChainSetClientAttributesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChainSetClientAttributesOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_AuthenticateKerberosOperation structure represents the NetrServerAuthenticateKerberos operation
+type xxx_AuthenticateKerberosOperation struct {
+	PrimaryName    string            `idl:"name:PrimaryName;string;pointer:unique" json:"primary_name"`
+	AccountName    string            `idl:"name:AccountName;string" json:"account_name"`
+	AccountType    SecureChannelType `idl:"name:AccountType" json:"account_type"`
+	ComputerName   string            `idl:"name:ComputerName;string" json:"computer_name"`
+	NegotiateFlags uint32            `idl:"name:NegotiateFlags" json:"negotiate_flags"`
+	AccountRID     uint32            `idl:"name:AccountRid" json:"account_rid"`
+	Return         int32             `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of NetrServerAuthenticateKerberos operation.
+func (o *xxx_AuthenticateKerberosOperation) OpNum() int { return 59 }
+
+// OpName returns the operation name of NetrServerAuthenticateKerberos operation.
+func (o *xxx_AuthenticateKerberosOperation) OpName() string {
+	return "/logon/v1/NetrServerAuthenticateKerberos"
+}
+
+func (o *xxx_AuthenticateKerberosOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if len(o.AccountName) > int(256) {
+		return fmt.Errorf("AccountName is out of range")
+	}
+	if len(o.ComputerName) > int(256) {
+		return fmt.Errorf("ComputerName is out of range")
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AuthenticateKerberosOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// PrimaryName {in} (1:{handle, string, pointer=unique, alias=LOGONSRV_HANDLE}*(1)[dim:0,string,null](wchar))
+	{
+		if o.PrimaryName != "" {
+			_ptr_PrimaryName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.PrimaryName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.PrimaryName, _ptr_PrimaryName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
+	{
+		if err := ndr.WriteUTF16NString(ctx, w, o.AccountName); err != nil {
+			return err
+		}
+	}
+	// AccountType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
+	{
+		if err := w.WriteEnum(uint16(o.AccountType)); err != nil {
+			return err
+		}
+	}
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
+	{
+		if err := ndr.WriteUTF16NString(ctx, w, o.ComputerName); err != nil {
+			return err
+		}
+	}
+	// NegotiateFlags {in, out} (1:{alias=PULONG}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.NegotiateFlags); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AuthenticateKerberosOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// PrimaryName {in} (1:{handle, string, pointer=unique, alias=LOGONSRV_HANDLE}*(1)[dim:0,string,null](wchar))
+	{
+		_ptr_PrimaryName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.PrimaryName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_PrimaryName := func(ptr interface{}) { o.PrimaryName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.PrimaryName, _s_PrimaryName, _ptr_PrimaryName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// AccountName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
+	{
+		if err := ndr.ReadUTF16NString(ctx, w, &o.AccountName); err != nil {
+			return err
+		}
+	}
+	// AccountType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
+	{
+		if err := w.ReadEnum((*uint16)(&o.AccountType)); err != nil {
+			return err
+		}
+	}
+	// ComputerName {in} (1:{string, pointer=ref, range=(0,256)}*(1)[dim:0,string,null](wchar))
+	{
+		if err := ndr.ReadUTF16NString(ctx, w, &o.ComputerName); err != nil {
+			return err
+		}
+	}
+	// NegotiateFlags {in, out} (1:{alias=PULONG,pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.NegotiateFlags); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AuthenticateKerberosOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AuthenticateKerberosOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// NegotiateFlags {in, out} (1:{alias=PULONG}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.NegotiateFlags); err != nil {
+			return err
+		}
+	}
+	// AccountRid {out} (1:{alias=PULONG}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.AccountRID); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AuthenticateKerberosOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// NegotiateFlags {in, out} (1:{alias=PULONG,pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.NegotiateFlags); err != nil {
+			return err
+		}
+	}
+	// AccountRid {out} (1:{alias=PULONG,pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.AccountRID); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// AuthenticateKerberosRequest structure represents the NetrServerAuthenticateKerberos operation request
+type AuthenticateKerberosRequest struct {
+	PrimaryName    string            `idl:"name:PrimaryName;string;pointer:unique" json:"primary_name"`
+	AccountName    string            `idl:"name:AccountName;string" json:"account_name"`
+	AccountType    SecureChannelType `idl:"name:AccountType" json:"account_type"`
+	ComputerName   string            `idl:"name:ComputerName;string" json:"computer_name"`
+	NegotiateFlags uint32            `idl:"name:NegotiateFlags" json:"negotiate_flags"`
+}
+
+func (o *AuthenticateKerberosRequest) xxx_ToOp(ctx context.Context, op *xxx_AuthenticateKerberosOperation) *xxx_AuthenticateKerberosOperation {
+	if op == nil {
+		op = &xxx_AuthenticateKerberosOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.PrimaryName = o.PrimaryName
+	op.AccountName = o.AccountName
+	op.AccountType = o.AccountType
+	op.ComputerName = o.ComputerName
+	op.NegotiateFlags = o.NegotiateFlags
+	return op
+}
+
+func (o *AuthenticateKerberosRequest) xxx_FromOp(ctx context.Context, op *xxx_AuthenticateKerberosOperation) {
+	if o == nil {
+		return
+	}
+	o.PrimaryName = op.PrimaryName
+	o.AccountName = op.AccountName
+	o.AccountType = op.AccountType
+	o.ComputerName = op.ComputerName
+	o.NegotiateFlags = op.NegotiateFlags
+}
+func (o *AuthenticateKerberosRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *AuthenticateKerberosRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_AuthenticateKerberosOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeAuthenticateKerberosRequest build a response structure from the given request structure.
+func (o *AuthenticateKerberosRequest) MakeResponse() *AuthenticateKerberosResponse {
+	return &AuthenticateKerberosResponse{}
+}
+
+// OpNum returns the operation number of NetrServerAuthenticateKerberos operation.
+func (o *AuthenticateKerberosRequest) OpNum() int { return 59 }
+
+// OpName returns the operation name of NetrServerAuthenticateKerberos operation.
+func (o *AuthenticateKerberosRequest) OpName() string {
+	return "/logon/v1/NetrServerAuthenticateKerberos"
+}
+
+// AuthenticateKerberosResponse structure represents the NetrServerAuthenticateKerberos operation response
+type AuthenticateKerberosResponse struct {
+	NegotiateFlags uint32 `idl:"name:NegotiateFlags" json:"negotiate_flags"`
+	AccountRID     uint32 `idl:"name:AccountRid" json:"account_rid"`
+	// Return: The NetrServerAuthenticateKerberos return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *AuthenticateKerberosResponse) xxx_ToOp(ctx context.Context, op *xxx_AuthenticateKerberosOperation) *xxx_AuthenticateKerberosOperation {
+	if op == nil {
+		op = &xxx_AuthenticateKerberosOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.NegotiateFlags = o.NegotiateFlags
+	op.AccountRID = o.AccountRID
+	op.Return = o.Return
+	return op
+}
+
+func (o *AuthenticateKerberosResponse) xxx_FromOp(ctx context.Context, op *xxx_AuthenticateKerberosOperation) {
+	if o == nil {
+		return
+	}
+	o.NegotiateFlags = op.NegotiateFlags
+	o.AccountRID = op.AccountRID
+	o.Return = op.Return
+}
+func (o *AuthenticateKerberosResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *AuthenticateKerberosResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_AuthenticateKerberosOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

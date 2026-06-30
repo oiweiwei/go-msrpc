@@ -10,24 +10,24 @@ interface TsProxyRpcInterface
 {
     typedef [context_handle] void* 
         PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE;
-        
+
     typedef [context_handle] void* 
         PCHANNEL_CONTEXT_HANDLE_NOSERIALIZE;
-        
+
     typedef [context_handle] 
     PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE 
     PTUNNEL_CONTEXT_HANDLE_SERIALIZE;
-        
+
     typedef [context_handle] 
     PCHANNEL_CONTEXT_HANDLE_NOSERIALIZE 
     PCHANNEL_CONTEXT_HANDLE_SERIALIZE;
-        
+
     typedef [string] wchar_t* RESOURCENAME;
  
 #define MAX_RESOURCE_NAMES 50
  
     typedef struct _tsendpointinfo {
-        [size_is(numResourceNames)] RESOURCENAME* resourceName;       
+        [size_is(numResourceNames)] RESOURCENAME* resourceName;
         [range(0, MAX_RESOURCE_NAMES)] 
             unsigned long numResourceNames;
         [unique, size_is(numAlternateResourceNames)] 
@@ -90,14 +90,14 @@ interface TsProxyRpcInterface
     typedef struct _TSG_PACKET_VERSIONCAPS {
         TSG_PACKET_HEADER tsgHeader;
         [size_is(numCapabilities)]
-            PTSG_PACKET_CAPABILITIES TSGCaps;      
+            PTSG_PACKET_CAPABILITIES TSGCaps;
         [range(0, 32)] unsigned long numCapabilities;
         unsigned short majorVersion;
         unsigned short minorVersion;
         unsigned short quarantineCapabilities;
     } TSG_PACKET_VERSIONCAPS,
      *PTSG_PACKET_VERSIONCAPS;
-    
+
     typedef struct _TSG_PACKET_QUARCONFIGREQUEST {
         unsigned long flags;
     } TSG_PACKET_QUARCONFIGREQUEST,
@@ -135,7 +135,7 @@ interface TsProxyRpcInterface
  
     typedef struct _TSG_PACKET_QUARENC_RESPONSE {
         unsigned long flags; 
-        [range(0, 24000)] unsigned long certChainLen;     
+        [range(0, 24000)] unsigned long certChainLen;
         [string, size_is(certChainLen)] wchar_t* certChainData; 
         GUID nonce;
         PTSG_PACKET_VERSIONCAPS versionCaps;
@@ -274,16 +274,16 @@ typedef [switch_type(unsigned long)] union {
    );
  
    void Opnum5NotUsedOnWire(void);
-     
+
    HRESULT
    TsProxyCloseChannel(
        [in, out] PCHANNEL_CONTEXT_HANDLE_NOSERIALIZE* context
-   );   
-   
+   );
+
    HRESULT
    TsProxyCloseTunnel(
        [in, out] PTUNNEL_CONTEXT_HANDLE_SERIALIZE* context
-   );  
+   );
  
 //see section 2.2.3.3 for decoding instructions
    DWORD
@@ -298,4 +298,3 @@ typedef [switch_type(unsigned long)] union {
    );
  
 };
-

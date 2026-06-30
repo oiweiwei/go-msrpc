@@ -6,3 +6,52 @@ go:
 gonames:
   # The relative path to gonames configuration files.
   path: "./gonames"
+  idl:
+  - eerr:
+      rename:
+        EEComputerNamePresent: [Computer, Name, Present, Type]
+  - fasp:
+      rename:
+        FW_DUPLICATE_STATUS_FLAGS_EVALUATING: [Rule, Duplicate, Status, Flags, Evaluating]
+        FW_DUPLICATE_STATUS_FLAGS_HAS_DUPLICATE: [Rule, Duplicate, Status, Flags, Has, Duplicate]
+        FW_DUPLICATE_STATUS_FLAGS_IS_ENFORCED: [Rule, Duplicate, Status, Flags, Is, Enforced]
+  - par:
+      rename:
+        pcbData: [Data, Out, Length]
+        pcbValueName: [Value, Name, Out, Length]
+        pcbEnumValues: [Enum, Values, Out, Length]
+        pnEnumValues: [Enum, Values, Out, Actual, Length]
+        pcbSubkey: [Sub, Key, Out, Length]
+        RPC_PrintNamedProperty: [Print, Job, Named, Property]
+        RPC_EPrintPropertyType: [Print, Job, Property, Type]
+        RPC_PrintPropertyValue: [Print, Job, Property, Value]
+      lookBehind:
+        p: {status: [status, string], flags: [flags, out], options: [notify, options]}
+        bi: {data: [binary, data]}
+        b: {data: [bool, data]}
+        s: {data: [string, data]}
+        i: {data: [int, data]}
+        f: {data: [float, data]}
+        rpc: {e: [rpce]}
+        rpce: {print: [print, job]}
+  - rprn:
+      rename:
+        pcbData: [Data, Out, Length]
+        pcbValueName: [Value, Name, Out, Length]
+        pcbEnumValues: [Enum, Values, Out, Length]
+        pnEnumValues: [Enum, Values, Out, Actual, Length]
+        pcbSubkey: [Sub, Key, Out, Length]
+      lookBehind:
+        p: {status: [status, string], flags: [flags, out], options: [notify, options]}
+        bi: {data: [binary, data]}
+        b: {data: [bool, data]}
+        s: {data: [string, data]}
+        i: {data: [int, data]}
+        f: {data: [float, data]}
+  - raiw:
+      abbr: 
+        add: Addr
+        adds: Addrs
+      lookBehind:
+        p: {add: [addrs]}
+        addrs: {vers: [addr, vers]}

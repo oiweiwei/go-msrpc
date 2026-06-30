@@ -315,6 +315,30 @@ type SamrClient interface {
 	// Opnum69NotUsedOnWire operation.
 	// Opnum69NotUsedOnWire
 
+	// Opnum70NotUsedOnWire operation.
+	// Opnum70NotUsedOnWire
+
+	// Opnum71NotUsedOnWire operation.
+	// Opnum71NotUsedOnWire
+
+	// Opnum72NotUsedOnWire operation.
+	// Opnum72NotUsedOnWire
+
+	// SamrUnicodeChangePasswordUser4 operation.
+	UnicodeChangePasswordUser4(context.Context, *UnicodeChangePasswordUser4Request, ...dcerpc.CallOption) (*UnicodeChangePasswordUser4Response, error)
+
+	// SamrValidateComputerAccountReuseAttempt operation.
+	ValidateComputerAccountReuseAttempt(context.Context, *ValidateComputerAccountReuseAttemptRequest, ...dcerpc.CallOption) (*ValidateComputerAccountReuseAttemptResponse, error)
+
+	// Opnum75NotUsedOnWire operation.
+	// Opnum75NotUsedOnWire
+
+	// Opnum76NotUsedOnWire operation.
+	// Opnum76NotUsedOnWire
+
+	// SamrAccountIsDelegatedManagedServiceAccount operation.
+	AccountIsDelegatedManagedServiceAccount(context.Context, *AccountIsDelegatedManagedServiceAccountRequest, ...dcerpc.CallOption) (*AccountIsDelegatedManagedServiceAccountResponse, error)
+
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
@@ -9621,6 +9645,64 @@ func (o *EncryptedUserPassword) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
+// UserPassword structure represents SAMPR_USER_PASSWORD RPC structure.
+type UserPassword struct {
+	Buffer []uint16 `idl:"name:Buffer" json:"buffer"`
+	Length uint32   `idl:"name:Length" json:"length"`
+}
+
+func (o *UserPassword) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *UserPassword) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	for i1 := range o.Buffer {
+		i1 := i1
+		if uint64(i1) >= 256 {
+			break
+		}
+		if err := w.WriteData(o.Buffer[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Buffer); uint64(i1) < 256; i1++ {
+		if err := w.WriteData(uint16(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Length); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *UserPassword) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	o.Buffer = make([]uint16, 256)
+	for i1 := range o.Buffer {
+		i1 := i1
+		if err := w.ReadData(&o.Buffer[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadData(&o.Length); err != nil {
+		return err
+	}
+	return nil
+}
+
 // EncryptedUserPasswordNew structure represents SAMPR_ENCRYPTED_USER_PASSWORD_NEW RPC structure.
 //
 // The SAMPR_ENCRYPTED_USER_PASSWORD_NEW structure carries an encrypted string.
@@ -9696,6 +9778,92 @@ func (o *EncryptedUserPasswordNew) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		if err := w.ReadData(&o.Buffer[i1]); err != nil {
 			return err
 		}
+	}
+	return nil
+}
+
+// UserPasswordNew structure represents SAMPR_USER_PASSWORD_NEW RPC structure.
+type UserPasswordNew struct {
+	Buffer    []uint16 `idl:"name:Buffer" json:"buffer"`
+	Length    uint32   `idl:"name:Length" json:"length"`
+	ClearSalt []byte   `idl:"name:ClearSalt" json:"clear_salt"`
+}
+
+func (o *UserPasswordNew) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *UserPasswordNew) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	for i1 := range o.Buffer {
+		i1 := i1
+		if uint64(i1) >= 256 {
+			break
+		}
+		if err := w.WriteData(o.Buffer[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Buffer); uint64(i1) < 256; i1++ {
+		if err := w.WriteData(uint16(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Length); err != nil {
+		return err
+	}
+	for i1 := range o.ClearSalt {
+		i1 := i1
+		if uint64(i1) >= 16 {
+			break
+		}
+		if err := w.WriteData(o.ClearSalt[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.ClearSalt); uint64(i1) < 16; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *UserPasswordNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	o.Buffer = make([]uint16, 256)
+	for i1 := range o.Buffer {
+		i1 := i1
+		if err := w.ReadData(&o.Buffer[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadData(&o.Length); err != nil {
+		return err
+	}
+	o.ClearSalt = make([]byte, 16)
+	for i1 := range o.ClearSalt {
+		i1 := i1
+		if err := w.ReadData(&o.ClearSalt[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
 	}
 	return nil
 }
@@ -12072,6 +12240,278 @@ func (o *UserInternal5InformationNew) UnmarshalNDR(ctx context.Context, w ndr.Re
 	return nil
 }
 
+// EncryptedPasswordAES structure represents SAMPR_ENCRYPTED_PASSWORD_AES RPC structure.
+type EncryptedPasswordAES struct {
+	AuthData         []byte `idl:"name:AuthData" json:"auth_data"`
+	Salt             []byte `idl:"name:Salt" json:"salt"`
+	CipherLength     uint32 `idl:"name:cbCipher" json:"cipher_length"`
+	Cipher           []byte `idl:"name:Cipher;size_is:(cbCipher)" json:"cipher"`
+	Pbkdf2Iterations uint64 `idl:"name:PBKDF2Iterations" json:"pbkdf2_iterations"`
+}
+
+func (o *EncryptedPasswordAES) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.Cipher != nil && o.CipherLength == 0 {
+		o.CipherLength = uint32(len(o.Cipher))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *EncryptedPasswordAES) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(8); err != nil {
+		return err
+	}
+	for i1 := range o.AuthData {
+		i1 := i1
+		if uint64(i1) >= 64 {
+			break
+		}
+		if err := w.WriteData(o.AuthData[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.AuthData); uint64(i1) < 64; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	for i1 := range o.Salt {
+		i1 := i1
+		if uint64(i1) >= 16 {
+			break
+		}
+		if err := w.WriteData(o.Salt[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Salt); uint64(i1) < 16; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.CipherLength); err != nil {
+		return err
+	}
+	if o.Cipher != nil || o.CipherLength > 0 {
+		_ptr_Cipher := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.CipherLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.Cipher {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.Cipher[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.Cipher); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Cipher, _ptr_Cipher); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Pbkdf2Iterations); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *EncryptedPasswordAES) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(8); err != nil {
+		return err
+	}
+	o.AuthData = make([]byte, 64)
+	for i1 := range o.AuthData {
+		i1 := i1
+		if err := w.ReadData(&o.AuthData[i1]); err != nil {
+			return err
+		}
+	}
+	o.Salt = make([]byte, 16)
+	for i1 := range o.Salt {
+		i1 := i1
+		if err := w.ReadData(&o.Salt[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadData(&o.CipherLength); err != nil {
+		return err
+	}
+	_ptr_Cipher := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.CipherLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.CipherLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Cipher", sizeInfo[0])
+		}
+		o.Cipher = make([]byte, sizeInfo[0])
+		for i1 := range o.Cipher {
+			i1 := i1
+			if err := w.ReadData(&o.Cipher[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_Cipher := func(ptr interface{}) { o.Cipher = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.Cipher, _s_Cipher, _ptr_Cipher); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Pbkdf2Iterations); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UserInternal7Information structure represents SAMPR_USER_INTERNAL7_INFORMATION RPC structure.
+type UserInternal7Information struct {
+	UserPassword    *EncryptedPasswordAES `idl:"name:UserPassword" json:"user_password"`
+	PasswordExpired bool                  `idl:"name:PasswordExpired" json:"password_expired"`
+}
+
+func (o *UserInternal7Information) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *UserInternal7Information) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(8); err != nil {
+		return err
+	}
+	if o.UserPassword != nil {
+		if err := o.UserPassword.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&EncryptedPasswordAES{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.PasswordExpired); err != nil {
+		return err
+	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *UserInternal7Information) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(8); err != nil {
+		return err
+	}
+	if o.UserPassword == nil {
+		o.UserPassword = &EncryptedPasswordAES{}
+	}
+	if err := o.UserPassword.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.PasswordExpired); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UserInternal8Information structure represents SAMPR_USER_INTERNAL8_INFORMATION RPC structure.
+type UserInternal8Information struct {
+	I1           *UserAllInformation   `idl:"name:I1" json:"i1"`
+	UserPassword *EncryptedPasswordAES `idl:"name:UserPassword" json:"user_password"`
+}
+
+func (o *UserInternal8Information) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *UserInternal8Information) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(8); err != nil {
+		return err
+	}
+	if o.I1 != nil {
+		if err := o.I1.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&UserAllInformation{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.UserPassword != nil {
+		if err := o.UserPassword.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&EncryptedPasswordAES{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserInternal8Information) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(8); err != nil {
+		return err
+	}
+	if o.I1 == nil {
+		o.I1 = &UserAllInformation{}
+	}
+	if err := o.I1.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.UserPassword == nil {
+		o.UserPassword = &EncryptedPasswordAES{}
+	}
+	if err := o.UserPassword.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
 // UserInformationClass type represents USER_INFORMATION_CLASS RPC enumeration.
 //
 // The USER_INFORMATION_CLASS enumeration indicates how to interpret the Buffer parameter
@@ -12149,6 +12589,12 @@ var (
 	// UserInternal5InformationNew:  Indicates the Buffer parameter is to be interpreted
 	// as a SAMPR_USER_INTERNAL5_INFORMATION_NEW structure (see section 2.2.6.27).
 	UserInformationClassInternal5InformationNew UserInformationClass = 26
+	// UserInternal7Information: Indicates the Buffer parameter is to be interpreted as
+	// a SAMPR_USER_INTERNAL7_INFORMATION structure (see section section 2.2.6.30).
+	UserInformationClassInternal7Information UserInformationClass = 31
+	// UserInternal8Information: Indicates the Buffer parameter is to be interpreted as
+	// a SAMPR_USER_INTERNAL8_INFORMATION structure (see section section 2.2.6.31).
+	UserInformationClassInternal8Information UserInformationClass = 32
 )
 
 func (o UserInformationClass) String() string {
@@ -12199,6 +12645,10 @@ func (o UserInformationClass) String() string {
 		return "UserInformationClassInternal4InformationNew"
 	case UserInformationClassInternal5InformationNew:
 		return "UserInformationClassInternal5InformationNew"
+	case UserInformationClassInternal7Information:
+		return "UserInformationClassInternal7Information"
+	case UserInformationClassInternal8Information:
+		return "UserInformationClassInternal8Information"
 	}
 	return "Invalid"
 }
@@ -12235,6 +12685,8 @@ type UserInfoBuffer struct {
 	// *UserInfoBuffer_Internal5
 	// *UserInfoBuffer_Internal4New
 	// *UserInfoBuffer_Internal5New
+	// *UserInfoBuffer_Internal7
+	// *UserInfoBuffer_Internal8
 	Value is_UserInfoBuffer `json:"value"`
 }
 
@@ -12335,6 +12787,14 @@ func (o *UserInfoBuffer) GetValue() any {
 		if value != nil {
 			return value.Internal5New
 		}
+	case *UserInfoBuffer_Internal7:
+		if value != nil {
+			return value.Internal7
+		}
+	case *UserInfoBuffer_Internal8:
+		if value != nil {
+			return value.Internal8
+		}
 	}
 	return nil
 }
@@ -12396,19 +12856,23 @@ func (o *UserInfoBuffer) NDRSwitchValue(sw uint16) uint16 {
 		return uint16(25)
 	case *UserInfoBuffer_Internal5New:
 		return uint16(26)
+	case *UserInfoBuffer_Internal7:
+		return uint16(31)
+	case *UserInfoBuffer_Internal8:
+		return uint16(32)
 	}
 	return uint16(0)
 }
 
 func (o *UserInfoBuffer) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteUnionAlign(9); err != nil {
+	if err := w.WriteUnionAlign(8); err != nil {
 		return err
 	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
-	if err := w.WriteAlign(9); err != nil {
+	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -12665,6 +13129,28 @@ func (o *UserInfoBuffer) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw u
 				return err
 			}
 		}
+	case uint16(31):
+		_o, _ := o.Value.(*UserInfoBuffer_Internal7)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&UserInfoBuffer_Internal7{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint16(32):
+		_o, _ := o.Value.(*UserInfoBuffer_Internal8)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&UserInfoBuffer_Internal8{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
 	default:
 		return fmt.Errorf("unsupported switch case value %v", sw)
 	}
@@ -12672,14 +13158,14 @@ func (o *UserInfoBuffer) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw u
 }
 
 func (o *UserInfoBuffer) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadUnionAlign(9); err != nil {
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
-	if err := w.ReadAlign(9); err != nil {
+	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -12795,6 +13281,16 @@ func (o *UserInfoBuffer) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw
 		}
 	case uint16(26):
 		o.Value = &UserInfoBuffer_Internal5New{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(31):
+		o.Value = &UserInfoBuffer_Internal7{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(32):
+		o.Value = &UserInfoBuffer_Internal8{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -13512,6 +14008,68 @@ func (o *UserInfoBuffer_Internal5New) UnmarshalNDR(ctx context.Context, w ndr.Re
 		o.Internal5New = &UserInternal5InformationNew{}
 	}
 	if err := o.Internal5New.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UserInfoBuffer_Internal7 structure represents SAMPR_USER_INFO_BUFFER RPC union arm.
+//
+// It has following labels: 31
+type UserInfoBuffer_Internal7 struct {
+	Internal7 *UserInternal7Information `idl:"name:Internal7" json:"internal7"`
+}
+
+func (*UserInfoBuffer_Internal7) is_UserInfoBuffer() {}
+
+func (o *UserInfoBuffer_Internal7) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.Internal7 != nil {
+		if err := o.Internal7.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&UserInternal7Information{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserInfoBuffer_Internal7) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.Internal7 == nil {
+		o.Internal7 = &UserInternal7Information{}
+	}
+	if err := o.Internal7.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UserInfoBuffer_Internal8 structure represents SAMPR_USER_INFO_BUFFER RPC union arm.
+//
+// It has following labels: 32
+type UserInfoBuffer_Internal8 struct {
+	Internal8 *UserInternal8Information `idl:"name:Internal8" json:"internal8"`
+}
+
+func (*UserInfoBuffer_Internal8) is_UserInfoBuffer() {}
+
+func (o *UserInfoBuffer_Internal8) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.Internal8 != nil {
+		if err := o.Internal8.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&UserInternal8Information{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserInfoBuffer_Internal8) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.Internal8 == nil {
+		o.Internal8 = &UserInternal8Information{}
+	}
+	if err := o.Internal8.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -15555,6 +16113,45 @@ func (o *xxx_DefaultSamrClient) ValidatePassword(ctx context.Context, in *Valida
 		return nil, err
 	}
 	out := &ValidatePasswordResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultSamrClient) UnicodeChangePasswordUser4(ctx context.Context, in *UnicodeChangePasswordUser4Request, opts ...dcerpc.CallOption) (*UnicodeChangePasswordUser4Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &UnicodeChangePasswordUser4Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultSamrClient) ValidateComputerAccountReuseAttempt(ctx context.Context, in *ValidateComputerAccountReuseAttemptRequest, opts ...dcerpc.CallOption) (*ValidateComputerAccountReuseAttemptResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &ValidateComputerAccountReuseAttemptResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultSamrClient) AccountIsDelegatedManagedServiceAccount(ctx context.Context, in *AccountIsDelegatedManagedServiceAccountRequest, opts ...dcerpc.CallOption) (*AccountIsDelegatedManagedServiceAccountResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &AccountIsDelegatedManagedServiceAccountResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
@@ -31262,6 +31859,712 @@ func (o *ValidatePasswordResponse) MarshalNDR(ctx context.Context, w ndr.Writer)
 }
 func (o *ValidatePasswordResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ValidatePasswordOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_UnicodeChangePasswordUser4Operation structure represents the SamrUnicodeChangePasswordUser4 operation
+type xxx_UnicodeChangePasswordUser4Operation struct {
+	ServerName        *dtyp.UnicodeString   `idl:"name:ServerName;pointer:unique" json:"server_name"`
+	UserName          *dtyp.UnicodeString   `idl:"name:UserName" json:"user_name"`
+	EncryptedPassword *EncryptedPasswordAES `idl:"name:EncryptedPassword" json:"encrypted_password"`
+	Return            int32                 `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of SamrUnicodeChangePasswordUser4 operation.
+func (o *xxx_UnicodeChangePasswordUser4Operation) OpNum() int { return 73 }
+
+// OpName returns the operation name of SamrUnicodeChangePasswordUser4 operation.
+func (o *xxx_UnicodeChangePasswordUser4Operation) OpName() string {
+	return "/samr/v1/SamrUnicodeChangePasswordUser4"
+}
+
+func (o *xxx_UnicodeChangePasswordUser4Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnicodeChangePasswordUser4Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// ServerName {in} (1:{pointer=unique, alias=PRPC_UNICODE_STRING}*(1))(2:{alias=RPC_UNICODE_STRING}(struct))
+	{
+		if o.ServerName != nil {
+			_ptr_ServerName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ServerName != nil {
+					if err := o.ServerName.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&dtyp.UnicodeString{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ServerName, _ptr_ServerName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// UserName {in} (1:{alias=PRPC_UNICODE_STRING}*(1))(2:{alias=RPC_UNICODE_STRING}(struct))
+	{
+		if o.UserName != nil {
+			if err := o.UserName.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dtyp.UnicodeString{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedPassword {in} (1:{alias=PSAMPR_ENCRYPTED_PASSWORD_AES}*(1))(2:{alias=SAMPR_ENCRYPTED_PASSWORD_AES}(struct))
+	{
+		if o.EncryptedPassword != nil {
+			if err := o.EncryptedPassword.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&EncryptedPasswordAES{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnicodeChangePasswordUser4Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// ServerName {in} (1:{pointer=unique, alias=PRPC_UNICODE_STRING}*(1))(2:{alias=RPC_UNICODE_STRING}(struct))
+	{
+		_ptr_ServerName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ServerName == nil {
+				o.ServerName = &dtyp.UnicodeString{}
+			}
+			if err := o.ServerName.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(**dtyp.UnicodeString) }
+		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// UserName {in} (1:{alias=PRPC_UNICODE_STRING,pointer=ref}*(1))(2:{alias=RPC_UNICODE_STRING}(struct))
+	{
+		if o.UserName == nil {
+			o.UserName = &dtyp.UnicodeString{}
+		}
+		if err := o.UserName.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// EncryptedPassword {in} (1:{alias=PSAMPR_ENCRYPTED_PASSWORD_AES,pointer=ref}*(1))(2:{alias=SAMPR_ENCRYPTED_PASSWORD_AES}(struct))
+	{
+		if o.EncryptedPassword == nil {
+			o.EncryptedPassword = &EncryptedPasswordAES{}
+		}
+		if err := o.EncryptedPassword.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnicodeChangePasswordUser4Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnicodeChangePasswordUser4Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnicodeChangePasswordUser4Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// UnicodeChangePasswordUser4Request structure represents the SamrUnicodeChangePasswordUser4 operation request
+type UnicodeChangePasswordUser4Request struct {
+	ServerName        *dtyp.UnicodeString   `idl:"name:ServerName;pointer:unique" json:"server_name"`
+	UserName          *dtyp.UnicodeString   `idl:"name:UserName" json:"user_name"`
+	EncryptedPassword *EncryptedPasswordAES `idl:"name:EncryptedPassword" json:"encrypted_password"`
+}
+
+func (o *UnicodeChangePasswordUser4Request) xxx_ToOp(ctx context.Context, op *xxx_UnicodeChangePasswordUser4Operation) *xxx_UnicodeChangePasswordUser4Operation {
+	if op == nil {
+		op = &xxx_UnicodeChangePasswordUser4Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ServerName = o.ServerName
+	op.UserName = o.UserName
+	op.EncryptedPassword = o.EncryptedPassword
+	return op
+}
+
+func (o *UnicodeChangePasswordUser4Request) xxx_FromOp(ctx context.Context, op *xxx_UnicodeChangePasswordUser4Operation) {
+	if o == nil {
+		return
+	}
+	o.ServerName = op.ServerName
+	o.UserName = op.UserName
+	o.EncryptedPassword = op.EncryptedPassword
+}
+func (o *UnicodeChangePasswordUser4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *UnicodeChangePasswordUser4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_UnicodeChangePasswordUser4Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeUnicodeChangePasswordUser4Request build a response structure from the given request structure.
+func (o *UnicodeChangePasswordUser4Request) MakeResponse() *UnicodeChangePasswordUser4Response {
+	return &UnicodeChangePasswordUser4Response{}
+}
+
+// OpNum returns the operation number of SamrUnicodeChangePasswordUser4 operation.
+func (o *UnicodeChangePasswordUser4Request) OpNum() int { return 73 }
+
+// OpName returns the operation name of SamrUnicodeChangePasswordUser4 operation.
+func (o *UnicodeChangePasswordUser4Request) OpName() string {
+	return "/samr/v1/SamrUnicodeChangePasswordUser4"
+}
+
+// UnicodeChangePasswordUser4Response structure represents the SamrUnicodeChangePasswordUser4 operation response
+type UnicodeChangePasswordUser4Response struct {
+	// Return: The SamrUnicodeChangePasswordUser4 return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *UnicodeChangePasswordUser4Response) xxx_ToOp(ctx context.Context, op *xxx_UnicodeChangePasswordUser4Operation) *xxx_UnicodeChangePasswordUser4Operation {
+	if op == nil {
+		op = &xxx_UnicodeChangePasswordUser4Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *UnicodeChangePasswordUser4Response) xxx_FromOp(ctx context.Context, op *xxx_UnicodeChangePasswordUser4Operation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *UnicodeChangePasswordUser4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *UnicodeChangePasswordUser4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_UnicodeChangePasswordUser4Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_ValidateComputerAccountReuseAttemptOperation structure represents the SamrValidateComputerAccountReuseAttempt operation
+type xxx_ValidateComputerAccountReuseAttemptOperation struct {
+	Server      *Handle   `idl:"name:ServerHandle" json:"server"`
+	ComputerSID *dtyp.SID `idl:"name:ComputerSid" json:"computer_sid"`
+	Result      bool      `idl:"name:Result" json:"result"`
+	Return      int32     `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of SamrValidateComputerAccountReuseAttempt operation.
+func (o *xxx_ValidateComputerAccountReuseAttemptOperation) OpNum() int { return 74 }
+
+// OpName returns the operation name of SamrValidateComputerAccountReuseAttempt operation.
+func (o *xxx_ValidateComputerAccountReuseAttemptOperation) OpName() string {
+	return "/samr/v1/SamrValidateComputerAccountReuseAttempt"
+}
+
+func (o *xxx_ValidateComputerAccountReuseAttemptOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ValidateComputerAccountReuseAttemptOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// ServerHandle {in} (1:{context_handle, alias=SAMPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Server != nil {
+			if err := o.Server.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// ComputerSid {in} (1:{alias=PRPC_SID}*(1))(2:{alias=RPC_SID}(struct))
+	{
+		if o.ComputerSID != nil {
+			if err := o.ComputerSID.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dtyp.SID{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ValidateComputerAccountReuseAttemptOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// ServerHandle {in} (1:{context_handle, alias=SAMPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Server == nil {
+			o.Server = &Handle{}
+		}
+		if err := o.Server.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// ComputerSid {in} (1:{alias=PRPC_SID,pointer=ref}*(1))(2:{alias=RPC_SID}(struct))
+	{
+		if o.ComputerSID == nil {
+			o.ComputerSID = &dtyp.SID{}
+		}
+		if err := o.ComputerSID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ValidateComputerAccountReuseAttemptOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ValidateComputerAccountReuseAttemptOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Result {out} (1:{pointer=ref}*(1))(2:{alias=BOOL}(int32))
+	{
+		if !o.Result {
+			if err := w.WriteData(int32(0)); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WriteData(int32(1)); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ValidateComputerAccountReuseAttemptOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Result {out} (1:{pointer=ref}*(1))(2:{alias=BOOL}(int32))
+	{
+		var _bResult int32
+		if err := w.ReadData(&_bResult); err != nil {
+			return err
+		}
+		o.Result = _bResult != 0
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// ValidateComputerAccountReuseAttemptRequest structure represents the SamrValidateComputerAccountReuseAttempt operation request
+type ValidateComputerAccountReuseAttemptRequest struct {
+	Server      *Handle   `idl:"name:ServerHandle" json:"server"`
+	ComputerSID *dtyp.SID `idl:"name:ComputerSid" json:"computer_sid"`
+}
+
+func (o *ValidateComputerAccountReuseAttemptRequest) xxx_ToOp(ctx context.Context, op *xxx_ValidateComputerAccountReuseAttemptOperation) *xxx_ValidateComputerAccountReuseAttemptOperation {
+	if op == nil {
+		op = &xxx_ValidateComputerAccountReuseAttemptOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Server = o.Server
+	op.ComputerSID = o.ComputerSID
+	return op
+}
+
+func (o *ValidateComputerAccountReuseAttemptRequest) xxx_FromOp(ctx context.Context, op *xxx_ValidateComputerAccountReuseAttemptOperation) {
+	if o == nil {
+		return
+	}
+	o.Server = op.Server
+	o.ComputerSID = op.ComputerSID
+}
+func (o *ValidateComputerAccountReuseAttemptRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *ValidateComputerAccountReuseAttemptRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ValidateComputerAccountReuseAttemptOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeValidateComputerAccountReuseAttemptRequest build a response structure from the given request structure.
+func (o *ValidateComputerAccountReuseAttemptRequest) MakeResponse() *ValidateComputerAccountReuseAttemptResponse {
+	return &ValidateComputerAccountReuseAttemptResponse{}
+}
+
+// OpNum returns the operation number of SamrValidateComputerAccountReuseAttempt operation.
+func (o *ValidateComputerAccountReuseAttemptRequest) OpNum() int { return 74 }
+
+// OpName returns the operation name of SamrValidateComputerAccountReuseAttempt operation.
+func (o *ValidateComputerAccountReuseAttemptRequest) OpName() string {
+	return "/samr/v1/SamrValidateComputerAccountReuseAttempt"
+}
+
+// ValidateComputerAccountReuseAttemptResponse structure represents the SamrValidateComputerAccountReuseAttempt operation response
+type ValidateComputerAccountReuseAttemptResponse struct {
+	Result bool `idl:"name:Result" json:"result"`
+	// Return: The SamrValidateComputerAccountReuseAttempt return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *ValidateComputerAccountReuseAttemptResponse) xxx_ToOp(ctx context.Context, op *xxx_ValidateComputerAccountReuseAttemptOperation) *xxx_ValidateComputerAccountReuseAttemptOperation {
+	if op == nil {
+		op = &xxx_ValidateComputerAccountReuseAttemptOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Result = o.Result
+	op.Return = o.Return
+	return op
+}
+
+func (o *ValidateComputerAccountReuseAttemptResponse) xxx_FromOp(ctx context.Context, op *xxx_ValidateComputerAccountReuseAttemptOperation) {
+	if o == nil {
+		return
+	}
+	o.Result = op.Result
+	o.Return = op.Return
+}
+func (o *ValidateComputerAccountReuseAttemptResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *ValidateComputerAccountReuseAttemptResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ValidateComputerAccountReuseAttemptOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_AccountIsDelegatedManagedServiceAccountOperation structure represents the SamrAccountIsDelegatedManagedServiceAccount operation
+type xxx_AccountIsDelegatedManagedServiceAccountOperation struct {
+	Server      *Handle             `idl:"name:ServerHandle" json:"server"`
+	AccountName *dtyp.UnicodeString `idl:"name:AccountName" json:"account_name"`
+	Result      bool                `idl:"name:Result" json:"result"`
+	Authorized  bool                `idl:"name:Authorized" json:"authorized"`
+	Return      int32               `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of SamrAccountIsDelegatedManagedServiceAccount operation.
+func (o *xxx_AccountIsDelegatedManagedServiceAccountOperation) OpNum() int { return 77 }
+
+// OpName returns the operation name of SamrAccountIsDelegatedManagedServiceAccount operation.
+func (o *xxx_AccountIsDelegatedManagedServiceAccountOperation) OpName() string {
+	return "/samr/v1/SamrAccountIsDelegatedManagedServiceAccount"
+}
+
+func (o *xxx_AccountIsDelegatedManagedServiceAccountOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AccountIsDelegatedManagedServiceAccountOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// ServerHandle {in} (1:{context_handle, alias=SAMPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Server != nil {
+			if err := o.Server.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// AccountName {in} (1:{alias=PRPC_UNICODE_STRING}*(1))(2:{alias=RPC_UNICODE_STRING}(struct))
+	{
+		if o.AccountName != nil {
+			if err := o.AccountName.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dtyp.UnicodeString{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AccountIsDelegatedManagedServiceAccountOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// ServerHandle {in} (1:{context_handle, alias=SAMPR_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Server == nil {
+			o.Server = &Handle{}
+		}
+		if err := o.Server.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// AccountName {in} (1:{alias=PRPC_UNICODE_STRING,pointer=ref}*(1))(2:{alias=RPC_UNICODE_STRING}(struct))
+	{
+		if o.AccountName == nil {
+			o.AccountName = &dtyp.UnicodeString{}
+		}
+		if err := o.AccountName.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AccountIsDelegatedManagedServiceAccountOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AccountIsDelegatedManagedServiceAccountOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Result {out} (1:{pointer=ref}*(1))(2:{alias=BOOLEAN, names=BYTE}(uchar))
+	{
+		if err := w.WriteData(o.Result); err != nil {
+			return err
+		}
+	}
+	// Authorized {out} (1:{pointer=ref}*(1))(2:{alias=BOOLEAN, names=BYTE}(uchar))
+	{
+		if err := w.WriteData(o.Authorized); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_AccountIsDelegatedManagedServiceAccountOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Result {out} (1:{pointer=ref}*(1))(2:{alias=BOOLEAN, names=BYTE}(uchar))
+	{
+		if err := w.ReadData(&o.Result); err != nil {
+			return err
+		}
+	}
+	// Authorized {out} (1:{pointer=ref}*(1))(2:{alias=BOOLEAN, names=BYTE}(uchar))
+	{
+		if err := w.ReadData(&o.Authorized); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// AccountIsDelegatedManagedServiceAccountRequest structure represents the SamrAccountIsDelegatedManagedServiceAccount operation request
+type AccountIsDelegatedManagedServiceAccountRequest struct {
+	Server      *Handle             `idl:"name:ServerHandle" json:"server"`
+	AccountName *dtyp.UnicodeString `idl:"name:AccountName" json:"account_name"`
+}
+
+func (o *AccountIsDelegatedManagedServiceAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_AccountIsDelegatedManagedServiceAccountOperation) *xxx_AccountIsDelegatedManagedServiceAccountOperation {
+	if op == nil {
+		op = &xxx_AccountIsDelegatedManagedServiceAccountOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Server = o.Server
+	op.AccountName = o.AccountName
+	return op
+}
+
+func (o *AccountIsDelegatedManagedServiceAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_AccountIsDelegatedManagedServiceAccountOperation) {
+	if o == nil {
+		return
+	}
+	o.Server = op.Server
+	o.AccountName = op.AccountName
+}
+func (o *AccountIsDelegatedManagedServiceAccountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *AccountIsDelegatedManagedServiceAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_AccountIsDelegatedManagedServiceAccountOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeAccountIsDelegatedManagedServiceAccountRequest build a response structure from the given request structure.
+func (o *AccountIsDelegatedManagedServiceAccountRequest) MakeResponse() *AccountIsDelegatedManagedServiceAccountResponse {
+	return &AccountIsDelegatedManagedServiceAccountResponse{}
+}
+
+// OpNum returns the operation number of SamrAccountIsDelegatedManagedServiceAccount operation.
+func (o *AccountIsDelegatedManagedServiceAccountRequest) OpNum() int { return 77 }
+
+// OpName returns the operation name of SamrAccountIsDelegatedManagedServiceAccount operation.
+func (o *AccountIsDelegatedManagedServiceAccountRequest) OpName() string {
+	return "/samr/v1/SamrAccountIsDelegatedManagedServiceAccount"
+}
+
+// AccountIsDelegatedManagedServiceAccountResponse structure represents the SamrAccountIsDelegatedManagedServiceAccount operation response
+type AccountIsDelegatedManagedServiceAccountResponse struct {
+	Result     bool `idl:"name:Result" json:"result"`
+	Authorized bool `idl:"name:Authorized" json:"authorized"`
+	// Return: The SamrAccountIsDelegatedManagedServiceAccount return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *AccountIsDelegatedManagedServiceAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_AccountIsDelegatedManagedServiceAccountOperation) *xxx_AccountIsDelegatedManagedServiceAccountOperation {
+	if op == nil {
+		op = &xxx_AccountIsDelegatedManagedServiceAccountOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Result = o.Result
+	op.Authorized = o.Authorized
+	op.Return = o.Return
+	return op
+}
+
+func (o *AccountIsDelegatedManagedServiceAccountResponse) xxx_FromOp(ctx context.Context, op *xxx_AccountIsDelegatedManagedServiceAccountOperation) {
+	if o == nil {
+		return
+	}
+	o.Result = op.Result
+	o.Authorized = op.Authorized
+	o.Return = op.Return
+}
+func (o *AccountIsDelegatedManagedServiceAccountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *AccountIsDelegatedManagedServiceAccountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_AccountIsDelegatedManagedServiceAccountOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

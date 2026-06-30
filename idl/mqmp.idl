@@ -43,12 +43,12 @@ typedef struct CACTransferBufferV1 {
   [range(0,2)] DWORD uTransferType;
   [switch_is(uTransferType)] union {
     [case(CACTB_SEND)] 
-      struct _Send {
+      struct /* go-msrpc: anonymous struct */ _Send {
       QUEUE_FORMAT* pAdminQueueFormat;
       QUEUE_FORMAT* pResponseQueueFormat;
     } Send;
     [case(CACTB_RECEIVE)] 
-      struct _Receive {
+      struct /* go-msrpc: anonymous struct */ _Receive {
       DWORD RequestTimeout;
       DWORD Action;
       DWORD Asynchronous;

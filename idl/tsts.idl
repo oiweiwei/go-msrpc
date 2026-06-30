@@ -1,25 +1,25 @@
 import "ms-dtyp.idl";
 
 cpp_quote( "#define TS_PROCESS_INFO_MAGIC_NT4  0x23495452" )
-  
+
 typedef struct _TS_PROCESS_INFORMATION_NT4 {
      ULONG MagicNumber;
      ULONG LogonId;
      PVOID ProcessSid;
      ULONG Pad;
 } TS_PROCESS_INFORMATION_NT4, * PTS_PROCESS_INFORMATION_NT4;
-  
+
 cpp_quote( "#define SIZEOF_TS4_SYSTEM_THREAD_INFORMATION    64" )
 cpp_quote( "#define SIZEOF_TS4_SYSTEM_PROCESS_INFORMATION   136" )
 cpp_quote( "#define GAP_LEVEL_BASIC 0" )
- 
+
 typedef struct _TS_UNICODE_STRING {
      USHORT Length;
      USHORT MaximumLength;
      [size_is(MaximumLength),length_is(Length)]PWSTR  Buffer;
 } TS_UNICODE_STRING, *PTS_UNICODE_STRING;
-  
-  
+
+
 typedef struct _TS_SYS_PROCESS_INFORMATION {
      ULONG NextEntryOffset;
      ULONG NumberOfThreads;
@@ -49,26 +49,26 @@ typedef struct _TS_SYS_PROCESS_INFORMATION {
      SIZE_T PeakPagefileUsage;
      SIZE_T PrivatePageCount;
 } TS_SYS_PROCESS_INFORMATION, *PTS_SYS_PROCESS_INFORMATION;
-  
+
 typedef struct _TS_ALL_PROCESSES_INFO {
      PTS_SYS_PROCESS_INFORMATION pTsProcessInfo;
      DWORD                           SizeOfSid;
      [size_is(SizeOfSid)] PBYTE      pSid;
 } TS_ALL_PROCESSES_INFO, *PTS_ALL_PROCESSES_INFO;
-  
-  
+
+
  //=======================================================================
-  
- // The following structures are defined for taking care of interface 
+
+ // The following structures are defined for taking care of interface
  // change in Whistler.
-  
+
 typedef struct _NT6_TS_UNICODE_STRING {
      USHORT Length;
      USHORT MaximumLength;
      [size_is(MaximumLength / 2),length_is(Length / 2)]PWSTR  Buffer;
 } NT6_TS_UNICODE_STRING, *PNT6_TS_UNICODE_STRING;
-  
-  
+
+
 typedef struct _TS_SYS_PROCESS_INFORMATION_NT6 {
      ULONG NextEntryOffset;
      ULONG NumberOfThreads;
@@ -98,31 +98,31 @@ typedef struct _TS_SYS_PROCESS_INFORMATION_NT6 {
      SIZE_T PeakPagefileUsage;
      SIZE_T PrivatePageCount;
  } TS_SYS_PROCESS_INFORMATION_NT6, *PTS_SYS_PROCESS_INFORMATION_NT6;
-  
+
 typedef struct _TS_ALL_PROCESSES_INFO_NT6 {
      PTS_SYS_PROCESS_INFORMATION_NT6 pTsProcessInfo;
      DWORD                           SizeOfSid;
      [size_is(SizeOfSid)] PBYTE      pSid;
 } TS_ALL_PROCESSES_INFO_NT6, *PTS_ALL_PROCESSES_INFO_NT6;
-  
+
  //=========================================================================================
-  
+
  //
  // TermSrv Counter Header
- // 
+ //
 typedef struct _TS_COUNTER_HEADER {
      DWORD dwCounterID;     // identifies counter
      boolean bResult;       // result of operation performed on counter
 } TS_COUNTER_HEADER, *PTS_COUNTER_HEADER;
-  
+
 typedef struct _TS_COUNTER {
-     TS_COUNTER_HEADER counterHead; 
+     TS_COUNTER_HEADER counterHead;
      DWORD             dwValue;      // returned value
      LARGE_INTEGER     startTime;    // start time for counter
 } TS_COUNTER, *PTS_COUNTER;
-  
+
 #define  TSVIP_MAX_ADAPTER_ADDRESS_LENGTH  16
-  
+
 typedef  struct  _TSVIP_SOCKADDR {
      union switch (unsigned short sin_family) u
      {
@@ -142,30 +142,30 @@ typedef  struct  _TSVIP_SOCKADDR {
      };
 }  TSVIP_SOCKADDR,
     *PTSVIP_SOCKADDR;
-  
+
 typedef  struct  _TSVIPAddress {
      DWORD             dwVersion;   //Structure version
      TSVIP_SOCKADDR    IPAddress;    //IPv4 is in network byte order.
      ULONG             PrefixOrSubnetMask;    //IPv4 is a mask in network byte order,
-     [range(0, TSVIP_MAX_ADAPTER_ADDRESS_LENGTH)]  
+     [range(0, TSVIP_MAX_ADAPTER_ADDRESS_LENGTH)]
        UINT            PhysicalAddressLength;
-     [length_is(PhysicalAddressLength)] 
+     [length_is(PhysicalAddressLength)]
        BYTE  PhysicalAddress[TSVIP_MAX_ADAPTER_ADDRESS_LENGTH];
      ULONG             LeaseExpires;
      ULONG             T1;
      ULONG             T2;
  }  TSVIPAddress,
     *PTSVIPAddress;
-  
+
  typedef  struct  _TSVIPSession {
      DWORD             dwVersion;   //Structure version
      DWORD             SessionId;   //Session ID
      TSVIPAddress      SessionIP;   //IPAddress assign to session
  }  TSVIPSession,
-    *PTSVIPSession;    
-  
+    *PTSVIPSession;
+
  typedef ULONG TNotificationId;
-  
+
  #define WTS_NOTIFY_NONE ( 0x0 )
  #define WTS_NOTIFY_CREATE ( 0x1 )
  #define WTS_NOTIFY_CONNECT ( 0x2 )
@@ -180,17 +180,17 @@ typedef  struct  _TSVIPAddress {
  #define WTS_NOTIFY_LOCK ( 0x400 )
  #define WTS_NOTIFY_UNLOCK ( 0x800 )
  #define WTS_NOTIFY_ALL ( 0xffffffff )
-  
+
  typedef enum _WINSTATIONUPDATECFGCLASS {
      WINSTACFG_LEGACY,
      WINSTACFG_SESSDIR
  } WINSTATIONUPDATECFGCLASS;
-  
+
 typedef struct _SESSION_CHANGE {
      LONG SessionId;
      TNotificationId NotificationId;
 } SESSION_CHANGE, *PSESSION_CHANGE;
-  
+
 typedef struct _TS_SYSTEMTIME {
          USHORT wYear;
          USHORT wMonth;
@@ -201,7 +201,7 @@ typedef struct _TS_SYSTEMTIME {
          USHORT wSecond;
          USHORT wMilliseconds;
 } TS_SYSTEMTIME, *PTS_SYSTEMTIME;
-  
+
 typedef struct _TS_TIME_ZONE_INFORMATION {
          LONG Bias;
          WCHAR StandardName[ 32 ];
@@ -211,29 +211,29 @@ typedef struct _TS_TIME_ZONE_INFORMATION {
          TS_SYSTEMTIME DaylightDate;
          LONG DaylightBias;
 } TS_TIME_ZONE_INFORMATION, *PTS_TIME_ZONE_INFORMATION;
-  
+
 typedef enum _SESSION_FILTER {
         SF_SERVICES_SESSION_POPUP
 } SESSION_FILTER;
-  
+
 typedef struct _CLIENT_ID {
-         HANDLE UniqueProcess; 
-         HANDLE UniqueThread; 
+         HANDLE UniqueProcess;
+         HANDLE UniqueThread;
 } CLIENT_ID, *PCLIENT_ID;
-  
+
 typedef struct _SYSTEM_THREAD_INFORMATION {
-         LARGE_INTEGER KernelTime; 
+         LARGE_INTEGER KernelTime;
          LARGE_INTEGER UserTime;
-         LARGE_INTEGER CreateTime; 
-         ULONG WaitTime; 
-         PVOID StartAddress; 
-         CLIENT_ID ClientId; 
-         LONG Priority; 
-         LONG BasePriority; 
+         LARGE_INTEGER CreateTime;
+         ULONG WaitTime;
+         PVOID StartAddress;
+         CLIENT_ID ClientId;
+         LONG Priority;
+         LONG BasePriority;
          ULONG ContextSwitches;
          ULONG ThreadState;
-         ULONG WaitReason; 
-} SYSTEM_THREAD_INFORMATION, *PSYSTEM_THREAD_INFORMATION; 
+         ULONG WaitReason;
+} SYSTEM_THREAD_INFORMATION, *PSYSTEM_THREAD_INFORMATION;
 
 
  [
@@ -241,19 +241,19 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
      version(1.0),
      pointer_default(unique)
  ]
-  
+
  //
  //  Public rpc interface to the session object
  //
-  
+
  interface TermSrvSession
  {
      cpp_quote("#define  WTS_SESSIONSTATE_UNKNOWN    0xFFFFFFFF")
      cpp_quote("#define  WTS_SESSIONSTATE_LOCK       0x00000000")
      cpp_quote("#define  WTS_SESSIONSTATE_UNLOCK     0x00000001")
-  
+
      typedef [context_handle] void *SESSION_HANDLE;
-  
+
      typedef struct _LSMSessionInformation {
          [string] WCHAR* pszUserName;
          [string] WCHAR* pszDomain;
@@ -263,9 +263,9 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          hyper           ConnectTime;
          hyper           DisconnectTime;
          hyper           LogonTime;
-     } LSMSESSIONINFORMATION, 
+     } LSMSESSIONINFORMATION,
          *PLSMSESSIONINFORMATION;
-  
+
      typedef struct _LSM_SESSIONINFO_EX_LEVEL1 {
          LONG            SessionState;
          LONG            SessionFlags;
@@ -277,22 +277,22 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          hyper           LogonTime;
          hyper           LastInputTime;
          ULONG           ProtocolDataSize;
-         [size_is(ProtocolDataSize)]  PBYTE  ProtocolData;                
-     } LSM_SESSIONINFO_EX_LEVEL1, 
+         [size_is(ProtocolDataSize)]  PBYTE  ProtocolData;
+     } LSM_SESSIONINFO_EX_LEVEL1,
          *PLSM_SESSIONINFO_EX_LEVEL1;
-  
+
      typedef [switch_type (DWORD)]  union _LSM_SESSIONINFO_UNION_EX /* XXX add _UNION */ {
          [case(1)]
            LSM_SESSIONINFO_EX_LEVEL1  LSM_SessionInfo_Level1;
-     } LSM_SESSIONINFO_EX, 
+     } LSM_SESSIONINFO_EX,
          *PLSM_SESSIONINFO_EX;
-  
+
      typedef struct _LSMSESSIONINFORMATION_EX {
          DWORD               Level;
          [switch_is(Level)]  LSM_SESSIONINFO_EX  Data;
-     } LSMSESSIONINFORMATION_EX, 
+     } LSMSESSIONINFORMATION_EX,
          *PLSMSESSIONINFORMATION_EX;
-  
+
      //
      // Per Session specific call
      HRESULT RpcOpenSession(
@@ -300,45 +300,45 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [in]    LONG        SessionId,
          [out]   SESSION_HANDLE *phSession
          );
-  
+
      HRESULT RpcCloseSession(
          [in,out] SESSION_HANDLE *phSession
          );
-  
+
      HRESULT RpcConnect(
          [in]    SESSION_HANDLE  hSession,
          [in]    LONG            TargetSessionId,
          [in,string]    WCHAR    *szPassword
          );
-  
+
      HRESULT RpcDisconnect(
          [in]    SESSION_HANDLE hSession
          );
-  
+
      HRESULT RpcLogoff(
          [in]    SESSION_HANDLE hSession
          );
-  
+
      HRESULT RpcGetUserName(
          [in]    SESSION_HANDLE hSession,
          [out, string]   WCHAR   **pszUserName,
          [out, string]   WCHAR   **pszDomain
          );
-  
+
      HRESULT RpcGetTerminalName(
          [in]    SESSION_HANDLE hSession,
          [out, string]   WCHAR   **pszTerminalName
          );
-  
+
      HRESULT RpcGetState(
          [in]    SESSION_HANDLE  hSession,
          [out]   LONG            *plState
          );
-  
+
      HRESULT RpcIsSessionDesktopLocked(
          [in]    SESSION_HANDLE  hSession
          );
-  
+
      HRESULT RpcShowMessageBox(
          [in]    SESSION_HANDLE  hSession,
          [in, string] WCHAR      *szTitle,
@@ -348,65 +348,65 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [out]   ULONG           *pulResponse,
          [in]    BOOL            bDoNotWait
          );
-  
+
      HRESULT RpcGetTimes(
          [in]    SESSION_HANDLE  hSession,
          [out]   hyper           *pConnectTime,
          [out]   hyper           *pDisconnectTime,
          [out]   hyper           *pLogonTime
          );
-     
-  
+
+
      HRESULT RpcGetSessionCounters(
          [in]    handle_t            hBinding,
          [in,out, size_is(uEntries)] PTS_COUNTER pCounter,
          [in]                        ULONG       uEntries
          );
-  
+
      HRESULT RpcGetSessionInformation(
          [in]    handle_t    hBinding,
          [in]    LONG        SessionId,
          [ref, out] PLSMSESSIONINFORMATION pSessionInfo
          );
-  
+
      VOID Opnum13NotUsedOnWire();
-  
+
      VOID Opnum14NotUsedOnWire();
-  
+
      HRESULT RpcGetLoggedOnCount(
          [in] handle_t hBinding,
          [out] ULONG *pUserSessions,
          [out] ULONG *pDeviceSessions
          );
-  
+
      HRESULT RpcGetSessionType (
          [in]   handle_t          hBinding,
          [in]   LONG             *SessionId,
          [out]  ULONG            *pSessionType
          );
-  
+
      HRESULT RpcGetSessionInformationEx(
          [in]        handle_t                   hBinding,
          [in]        LONG                       SessionId,
          [in]        DWORD                      Level,
          [ref, out]  PLSMSESSIONINFORMATION_EX  LSMSessionInfoExPtr
          );
-  
+
      VOID Opnum18NotUsedOnWire();
      VOID Opnum19NotUsedOnWire();
      VOID Opnum20NotUsedOnWire();
-  
+
      HRESULT RpcGetActivityId(
          [in]    SESSION_HANDLE  hSession,
-         [out, ref] GUID*             *pActivityId   
+         [out, ref] GUID*             *pActivityId
          );
  }
-  
-  
+
+
  //
  //  notifications
  //
-  
+
  [
      uuid(11899a43-2b68-4a76-92e3-a3d6ad8c26ce),
      version(1.0),
@@ -420,32 +420,32 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [in]        LONG            State,
          [in]        ULONG           Timeout
          );
-  
+
      typedef [context_handle] void *NOTIFY_HANDLE;
-  
+
      HRESULT RpcRegisterAsyncNotification(
          [in]        handle_t        hBinding,
          [in]        LONG            SessionId,
          [in]        TNotificationId Mask,
          [out]       NOTIFY_HANDLE   *phNotify
          );
-  
+
      HRESULT RpcWaitAsyncNotification(
          [in]        NOTIFY_HANDLE   hNotify,
-         [out, size_is(, *pEntries)] 
+         [out, size_is(, *pEntries)]
      PSESSION_CHANGE *SessionChange,
          [out]       ULONG           *pEntries
          );
-  
+
      HRESULT RpcUnRegisterAsyncNotification(
          [in,out]    NOTIFY_HANDLE *phNotify
          );
  }
-  
+
  //
  // enumerations
  //
-  
+
  [
      uuid(88143fd0-c28d-4b2b-8fef-8d882f6a9390),
      version(1.0),
@@ -458,14 +458,14 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
  #define ENUM_LEVEL2          2
  #define ENUM_LEVEL3          3
  #define CURRENT_ENUM_LEVEL   2
-  
+
      typedef struct _SESSIONENUM_LEVEL1 {
          LONG    SessionId;
          LONG    State;
          WCHAR   Name[33];
-     } SESSIONENUM_LEVEL1, 
+     } SESSIONENUM_LEVEL1,
          *PSESSIONENUM_LEVEL1;
-  
+
      typedef struct _SESSIONENUM_LEVEL2 {
          LONG    SessionId;
          LONG    State;
@@ -473,9 +473,9 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          ULONG   Source;
          BOOL    bFullDesktop;
          GUID    SessionType;
-     } SESSIONENUM_LEVEL2, 
+     } SESSIONENUM_LEVEL2,
          *PSESSIONENUM_LEVEL2;
-  
+
      typedef struct _SESSIONENUM_LEVEL3 {
          LONG   SessionId;
          LONG   State;
@@ -485,23 +485,23 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          GUID   SessionType;
          ULONG  ProtoDataSize;
          [size_is(ProtoDataSize)]UCHAR *  pProtocolData;
-     } SESSIONENUM_LEVEL3, 
+     } SESSIONENUM_LEVEL3,
          *PSESSIONENUM_LEVEL3;
-  
+
      typedef [switch_type(DWORD)] union _SessionInfo {
          [case(1)]
            SESSIONENUM_LEVEL1 SessionEnum_Level1;
          [case(2)]
            SESSIONENUM_LEVEL2 SessionEnum_Level2;
-     } SessionInfo, 
+     } SessionInfo,
          *PSessionInfo;
-  
+
      typedef struct _SESSIONENUM {
          DWORD               Level;
          [switch_is(Level)]  SessionInfo Data;
-     } SESSIONENUM, 
+     } SESSIONENUM,
          *PSESSIONENUM;
-  
+
      typedef [switch_type(DWORD)]  union  _SessionInfo_Ex {
          [case(1)]
            SESSIONENUM_LEVEL1  SessionEnum_Level1;
@@ -511,24 +511,24 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
            SESSIONENUM_LEVEL3  SessionEnum_Level3;
      }  SessionInfo_Ex,
           *PSessionInfo_Ex;
-  
+
      typedef  struct  _SESSIONENUM_EX {
          DWORD                Level;
          [switch_is(Level)]  SessionInfo_Ex  Data;
      }  SESSIONENUM_EX,
           *PSESSIONENUM_EX;
-  
+
      #define  UNIFIED_ENUM_LEVEL1           1
      #define  UNIFIED_ENUM_LEVEL2           2
      #define  CURRENT_UNIFIED_ENUM_LEVEL    2
-  
+
      typedef  struct  _EXECENVDATA_LEVEL1 {
          LONG        ExecEnvId;
          LONG        State;
          WCHAR       SessionName[33];
      }  EXECENVDATA_LEVEL1,
           *PEXECENVDATA_LEVEL1;
-  
+
      typedef  struct  _EXECENVDATA_LEVEL2 {
          LONG        ExecEnvId;
          LONG        State;
@@ -540,7 +540,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          WCHAR       FarmName[33];
      }  EXECENVDATA_LEVEL2,
           *PEXECENVDATA_LEVEL2;
-  
+
      typedef  [switch_type(DWORD)]  union _ExecEnvEnum {
          [case(1)]
            EXECENVDATA_LEVEL1    ExecEnvEnum_Level1;
@@ -548,13 +548,13 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
            EXECENVDATA_LEVEL2    ExecEnvEnum_Level2;
      }  ExecEnvEnum,
           *PExecEnvEnum;
-  
+
      typedef  struct  _EXECENVDATA {
          DWORD                              Level;
          [switch_is(Level)]  ExecEnvEnum    Data;
      }  EXECENVDATA,
-          *PEXECENVDATA;   
-  
+          *PEXECENVDATA;
+
      typedef  struct  _EXECENVDATAEX_LEVEL1 {
          LONG        ExecEnvId;
          LONG        State;
@@ -566,99 +566,99 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [string, max_is(256)] LPWSTR       pszFarmName;
      }  EXECENVDATAEX_LEVEL1,
           *PEXECENVDATAEX_LEVEL1;
-  
+
      typedef  [switch_type(DWORD)]  union _ExecEnvEnumEx {
          [case(1)]
            EXECENVDATAEX_LEVEL1    ExecEnvEnumEx_Level1;
      }  ExecEnvEnumEx,
           *PExecEnvEnumEx;
-  
+
      typedef  struct  _EXECENVDATAEX {
          DWORD                              Level;
          [switch_is(Level)]  ExecEnvEnumEx    Data;
      }  EXECENVDATAEX,
-          *PEXECENVDATAEX;   
-  
+          *PEXECENVDATAEX;
+
      HRESULT RpcOpenEnum(
          [in]        handle_t        hBinding,
          [out]       ENUM_HANDLE     *phEnum
          );
-  
+
      HRESULT RpcCloseEnum(
          [in,out]    ENUM_HANDLE     *phEnum
          );
-  
+
      HRESULT RpcFilterByState(
          [in]        ENUM_HANDLE     hEnum,
          [in]        LONG            State,
          [in]        BOOL            bInvert
          );
-  
+
      HRESULT RpcFilterByCallersName(
          [in]        ENUM_HANDLE     hEnum
          );
-  
+
      HRESULT RpcEnumAddFilter(
          [in]        ENUM_HANDLE     hEnum,
          [in]        ENUM_HANDLE     hSubEnum
          );
-  
+
      HRESULT RpcGetEnumResult(
          [in]        ENUM_HANDLE     hEnum,
-         [out, size_is(,*pEntries)] 
+         [out, size_is(,*pEntries)]
                      PSESSIONENUM   *ppSessionEnumResult,
          [in]        DWORD           Level,
          [out]       ULONG          *pEntries
          );
-  
+
      HRESULT RpcFilterBySessionType(
          [in]        ENUM_HANDLE    hEnum,
          [in]        GUID*          pSessionType
          );
-  
+
      VOID Opnum7NotUsedOnWire(void);
-  
+
      HRESULT RpcGetSessionIds(
          [in]        handle_t       hBinding,
          [in]        SESSION_FILTER Filter,
-         [in, range( 0, 0xFFFF )] 
+         [in, range( 0, 0xFFFF )]
                      ULONG          MaxEntries,
-         [out, size_is(,*pcSessionIds)] 
+         [out, size_is(,*pcSessionIds)]
                      LONG**         pSessionIds,
          [out]       ULONG*         pcSessionIds
          );
-  
+
      HRESULT RpcGetEnumResultEx(
          [in]        ENUM_HANDLE    hEnum,
-         [out, size_is(,*pEntries)] 
-                     PSESSIONENUM_EX  *ppSessionEnumResult,        
+         [out, size_is(,*pEntries)]
+                     PSESSIONENUM_EX  *ppSessionEnumResult,
          [in]        DWORD          Level,
          [out]       ULONG          *pEntries
          );
-  
+
      HRESULT RpcGetAllSessions(
          [in]        handle_t       hBinding,
-         [in, out]   ULONG          *pLevel, 
-         [out, size_is(,*pcEntries)] 
+         [in, out]   ULONG          *pLevel,
+         [out, size_is(,*pcEntries)]
        PEXECENVDATA   *ppSessionData,
          [out]       ULONG          *pcEntries
          );
-  
+
      HRESULT RpcGetAllSessionsEx(
          [in]        handle_t       hBinding,
-         [in]        ULONG          Level, 
-         [out, size_is(,*pcEntries)] 
+         [in]        ULONG          Level,
+         [out, size_is(,*pcEntries)]
        PEXECENVDATAEX   *ppSessionData,
          [out]       ULONG          *pcEntries
          );
-  
+
  }
 
 
  //
  //  public access ( local & remote )
  //
-  
+
  [
      uuid(bde95fdf-eee0-45de-9e12-e5a61cd0d4fe),
      version(1.0),
@@ -667,7 +667,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
  interface RCMPublic
  {
      // static const WCHAR TSRCMRPC_REMOTE_ENDPOINT[] = L"\\pipe\\TermSrv_API_service";
-  
+
      typedef struct {
          USHORT sin_family;
          union switch (USHORT sin_family) {
@@ -687,28 +687,28 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          };
      } RCM_REMOTEADDRESS, *PRCM_REMOTEADDRESS;
      typedef WCHAR   LISTENER_NAME[32];
-  
+
  #define LST_ENUM_LEVEL1          1
  #define CURRENT_LST_ENUM_LEVEL   1
-  
+
      typedef struct _LISTENERENUM_LEVEL1 {
          LONG    Id;
          BOOL    bListening;
          WCHAR   Name[33];
      } LISTENERENUM_LEVEL1, *PLISTENERENUM_LEVEL1;
-  
+
      typedef [switch_type(DWORD)] union _ListenerInfo {
          [case(1)]
          LISTENERENUM_LEVEL1 ListenerEnum_Level1;
          [default]
          ;
      } ListenerInfo, *PListenerInfo;
-  
+
      typedef struct _LISTENERENUM {
          DWORD Level;
          [switch_is(Level)] ListenerInfo Data;
      } LISTENERENUM, *PLISTENERENUM;
-  
+
      HRESULT RpcGetClientData(
          [in]    handle_t        hBinding,
          [in]    ULONG           SessionId,
@@ -716,7 +716,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
      unsigned char **ppBuff,
          [out]   ULONG          *pOutBuffByteLen
          );
-  
+
      HRESULT RpcGetConfigData(
          [in]    handle_t        hBinding,
          [in]    ULONG           SessionId,
@@ -728,7 +728,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          PROTOCOLSTATUS_INFO_BASIC = 0,
          PROTOCOLSTATUS_INFO_EXTENDED = 1,
      } PROTOCOLSTATUS_INFO_TYPE;
-  
+
      HRESULT RpcGetProtocolStatus(
          [in]    handle_t        hBinding,
          [in]    ULONG           SessionId,
@@ -737,32 +737,32 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
      unsigned char **ppProtoStatus,
          [out]   ULONG           *pcbProtoStatus
          );
-  
+
      HRESULT RpcGetLastInputTime(
          [in]    handle_t        hBinding,
          [in]    ULONG           SessionId,
          [out]   hyper           *pLastInputTime
          );
-  
+
      HRESULT RpcGetRemoteAddress(
          [in]            handle_t        hBinding,
          [in]            ULONG           SessionId,
          [out]           PRCM_REMOTEADDRESS pRemoteAddress
          );
-  
+
      VOID Opnum5NotUsedOnWire();
-  
+
      VOID Opnum6NotUsedOnWire();
-  
+
      VOID Opnum7NotUsedOnWire();
-  
+
      HRESULT RpcGetAllListeners(
          [in]        handle_t        hBinding,
          [out, size_is(,*pNumListeners)] PLISTENERENUM *ppListeners,
          [in]        DWORD Level,
          [out]       ULONG   *pNumListeners
          );
-  
+
      HRESULT RpcGetSessionProtocolLastInputTime(
          [in]    handle_t        hBinding,
          [in]    ULONG           SessionId,
@@ -772,7 +772,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [out]   ULONG           *pcbProtoStatus,
          [out]   hyper           *pLastInputTime
          );
-  
+
      HRESULT RpcGetUserCertificates(
          [in] handle_t hBinding,
          [in] ULONG SessionId,
@@ -780,7 +780,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [out, size_is(, *pcbCerts)] byte** ppbCerts,
          [out] ULONG* pcbCerts
          );
-  
+
      typedef enum {
          QUERY_SESSION_DATA_MODULE = 0,
          QUERY_SESSION_DATA_WDCONFIG,
@@ -789,25 +789,25 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          QUERY_SESSION_DATA_DEVICEID,
          QUERY_SESSION_DATA_LICENSE_VALIDATION
      } QUERY_SESSION_DATA_TYPE;
-  
+
      HRESULT RpcQuerySessionData(
          [in]       handle_t                hBinding,
          [in]       ULONG                   SessionId,
          [in]       QUERY_SESSION_DATA_TYPE type,
          [in, unique, size_is( cbInputData )] byte* pbInputData,
          [in, range(0, 8192) ] DWORD        cbInputData,
-         [out, ref, size_is(cbSessionData), length_is(*pcbReturnLength)] 
+         [out, ref, size_is(cbSessionData), length_is(*pcbReturnLength)]
      byte*                   pbSessionData,
          [in, range(0, 8192)] ULONG         cbSessionData,
          [out, ref] ULONG                  *pcbReturnLength,
          [out, ref] ULONG                  *pcbRequireBufferSize
          );
  };
-  
+
  //
  //  Describe a listener
  //
-  
+
  [
      uuid(497d95a6-2d27-4bf5-9bbd-a6046957133c),
      version(1.0),
@@ -816,25 +816,25 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
  interface RCMListener
  {
      typedef [context_handle] void *HLISTENER;
-  
+
      HRESULT RpcOpenListener(
          [in]            handle_t        hBinding,
          [in,string]     WCHAR           *szListenerName,
          [out]           HLISTENER       *phListener
          );
-  
+
      HRESULT RpcCloseListener(
          [in,out]        HLISTENER *phListener
          );
-  
+
      HRESULT RpcStopListener(
          [in]            HLISTENER       hListener
          );
-  
+
      HRESULT RpcStartListener(
          [in]            HLISTENER       hListener
          );
-  
+
      HRESULT RpcIsListening(
          [in]            HLISTENER       hListener,
          [out]           BOOL            *pbIsListening
@@ -842,12 +842,12 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
  }
 
  typedef UINT *        UINT_PTR;
-  
- //static const WCHAR TSRPC_LEGACY_REMOTE_ENDPOINT[] = 
+
+ //static const WCHAR TSRPC_LEGACY_REMOTE_ENDPOINT[] =
  // L"\\pipe\\Ctx_WinStation_API_service";
-  
+
  typedef [context_handle] void *SERVER_HANDLE;
-  
+
  [
      uuid(5ca4a760-ebb1-11cf-8611-00a0245420ed),
      version(1.0),
@@ -855,25 +855,25 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
  ]
  interface IcaApi
  {
-  
+
      typedef [range(0, 0x8000)] ULONG BOUNDED_ULONG;
-  
+
      BOOLEAN RpcWinStationOpenServer(
          [in]   handle_t      hBinding,
          [out]  DWORD         *pResult,
          [out]  SERVER_HANDLE *phServer
          );
-  
+
      BOOLEAN RpcWinStationCloseServer(
          [in]   SERVER_HANDLE hServer,
          [out]  DWORD        *pResult
          );
-  
+
      BOOLEAN RpcIcaServerPing(
          [in]   SERVER_HANDLE hServer,
          [out]  DWORD        *pResult
          );
-  
+
      BOOLEAN RpcWinStationEnumerate(
          [in]      SERVER_HANDLE  hServer,
          [out]     DWORD         *pResult,
@@ -883,11 +883,11 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [in,out]  PULONG         pByteCount,
          [in,out]  PULONG         pIndex
          );
-  
+
      BOOLEAN RpcWinStationRename(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
-         [in,size_is(NameOldSize)] 
+         [in,size_is(NameOldSize)]
                     PWCHAR        pWinStationNameOld,
          [in,range(0, 256)]
                     DWORD         NameOldSize,
@@ -896,7 +896,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [in,range(0, 256)]
                     DWORD         NameNewSize
          );
-  
+
      BOOLEAN RpcWinStationQueryInformation(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
@@ -908,7 +908,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
                     DWORD         WinStationInformationLength,
          [out]      DWORD         *pReturnLength
          );
-  
+
      BOOLEAN RpcWinStationSetInformation(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
@@ -919,7 +919,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [in, range( 0, 0x8000)]
                     DWORD         WinStationInformationLength
          );
-  
+
      BOOLEAN RpcWinStationSendMessage(
          [in]       SERVER_HANDLE  hServer,
          [out]      DWORD          *pResult,
@@ -936,7 +936,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [out]      DWORD          *pResponse,
          [in]       BOOLEAN        DoNotWait
          );
-  
+
      BOOLEAN RpcLogonIdFromWinStationName(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
@@ -946,7 +946,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
                     DWORD         NameSize,
          [out]      DWORD         *pLogonId
          );
-  
+
      BOOLEAN RpcWinStationNameFromLogonId(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
@@ -956,7 +956,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [in, range( 0, 256 )]
                     DWORD         NameSize
          );
-  
+
      BOOLEAN RpcWinStationConnect(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
@@ -968,39 +968,39 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
                     DWORD         PasswordSize,
          [in]       BOOLEAN       Wait
          );
-  
+
      void Opnum11NotUsedOnWire(void);
-  
+
      void Opnum12NotUsedOnWire(void);
-  
+
      BOOLEAN RpcWinStationDisconnect(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
          [in]       DWORD         LogonId,
          [in]       BOOLEAN       bWait
          );
-  
+
      BOOLEAN RpcWinStationReset(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
          [in]       DWORD         LogonId,
          [in]       BOOLEAN       bWait
          );
-  
+
      BOOLEAN RpcWinStationShutdownSystem(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
          [in]       DWORD         ClientLogonId,
          [in]       DWORD         ShutdownFlags
          );
-  
+
      BOOLEAN RpcWinStationWaitSystemEvent(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
          [in]       DWORD         EventMask,
          [out]      DWORD         *pEventFlags
          );
-  
+
      BOOLEAN RpcWinStationShadow(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
@@ -1011,93 +1011,93 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [in]       BYTE          HotKeyVk,
          [in]       USHORT        HotkeyModifiers
          );
-  
+
      void Opnum18NotUsedOnWire(void);
-  
+
      void Opnum19NotUsedOnWire(void);
-  
+
      void Opnum20NotUsedOnWire(void);
-  
+
      void Opnum21NotUsedOnWire(void);
-  
+
      void Opnum22NotUsedOnWire(void);
-  
+
      void Opnum23NotUsedOnWire(void);
-  
+
      void Opnum24NotUsedOnWire(void);
-  
+
      void Opnum25NotUsedOnWire(void);
-  
+
      void Opnum26NotUsedOnWire(void);
-  
+
      void Opnum27NotUsedOnWire(void);
-  
+
      void Opnum28NotUsedOnWire(void);
-  
+
      BOOLEAN RpcWinStationBreakPoint(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
          [in]       DWORD         LogonId,
          [in]       BOOLEAN       KernelFlag
          );
-  
+
      BOOLEAN RpcWinStationReadRegistry(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult
          );
-  
+
      void Opnum31NotUsedOnWire(void);
-  
+
      void Opnum32NotUsedOnWire(void);
-  
+
      void Opnum33NotUsedOnWire(void);
-  
+
      BOOLEAN OldRpcWinStationEnumerateProcesses(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
-         [out,size_is(ByteCount)] 
+         [out,size_is(ByteCount)]
                     PBYTE         pProcessBuffer,
          [in, range( 0, 0x8000 )]
                     DWORD         ByteCount
          );
-  
+
      void Opnum35NotUsedOnWire(void);
-  
+
      BOOLEAN RpcWinStationEnumerateProcesses(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
-         [out,size_is(ByteCount)] 
+         [out,size_is(ByteCount)]
                     PBYTE         pProcessBuffer,
          [in, range( 0, 0x8000 )]
                     DWORD         ByteCount
          );
-  
+
      BOOLEAN RpcWinStationTerminateProcess(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
          [in]       DWORD         ProcessId,
          [in]       DWORD         ExitCode
          );
-  
+
      void Opnum38NotUsedOnWire(void);
-  
+
      void Opnum39NotUsedOnWire(void);
-  
+
      void Opnum40NotUsedOnWire(void);
-  
+
      void Opnum41NotUsedOnWire(void);
-  
+
      void Opnum42NotUsedOnWire(void);
-  
+
      BOOLEAN RpcWinStationGetAllProcesses(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
-         [in]       ULONG         Level,   
+         [in]       ULONG         Level,
          [in, out]  BOUNDED_ULONG           *pNumberOfProcesses,
          [out, size_is(,*pNumberOfProcesses)]
                     PTS_ALL_PROCESSES_INFO  *ppTsAllProcessesInfo
          );
-  
+
      BOOLEAN RpcWinStationGetProcessSid(
          [in]       SERVER_HANDLE hServer,
          [in]       DWORD         dwUniqueProcessId,
@@ -1109,33 +1109,33 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
                     DWORD         dwSidSize,
          [in,out]   DWORD         *pdwSizeNeeded
          );
-  
+
      BOOLEAN RpcWinStationGetTermSrvCountersValue(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
          [in, range( 0, 0x1000 )]
                     DWORD         dwEntries,
-         [in,out, size_is(dwEntries)] 
+         [in,out, size_is(dwEntries)]
                     PTS_COUNTER   pCounter
-         );      
-  
+         );
+
      BOOLEAN RpcWinStationReInitializeSecurity(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult
-         );       
-  
+         );
+
      void Opnum47NotUsedOnWire(void);
-  
+
      void Opnum48NotUsedOnWire(void);
-  
+
      void Opnum49NotUsedOnWire(void);
-  
+
      void Opnum50NotUsedOnWire(void);
-  
+
      void Opnum51NotUsedOnWire(void);
-  
+
      void Opnum52NotUsedOnWire(void);
-  
+
      BOOLEAN RpcWinStationGetLanAdapterName(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
@@ -1143,57 +1143,57 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
                     DWORD         PdNameSize,
          [in,size_is(PdNameSize)] PWCHAR pPdName,
          [in, range( 0, 1024) ]
-                    ULONG         LanAdapter,   
+                    ULONG         LanAdapter,
          [out]      ULONG         *pLength,
          [out, size_is(,*pLength)]
                     PWCHAR        *ppLanAdapter
          );
-  
+
      void Opnum54NotUsedOnWire(void);
-  
+
      void Opnum55NotUsedOnWire(void);
-  
+
      void Opnum56NotUsedOnWire(void);
-  
+
      void Opnum57NotUsedOnWire(void);
-  
+
      BOOLEAN RpcWinStationUpdateSettings(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
          [in]       DWORD         SettingsClass,
          [in]       DWORD         SettingsParameters
          );
-  
+
      BOOLEAN RpcWinStationShadowStop(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
          [in]       DWORD         LogonId,
          [in]       BOOLEAN       bWait
          );
-  
+
      BOOLEAN RpcWinStationCloseServerEx(
          [in, out]  SERVER_HANDLE *phServer,
          [out]      DWORD        *pResult
          );
-  
+
      BOOLEAN RpcWinStationIsHelpAssistantSession(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD*        pResult,
          [in]       ULONG         SessionId
          );
-  
+
      BOOLEAN RpcWinStationGetMachinePolicy(
          [in]       SERVER_HANDLE hServer,
-         [in,out,size_is(bufferSize)] 
+         [in,out,size_is(bufferSize)]
                     PBYTE         pPolicy,
-         [in, range( 0, 0x8000 )] 
+         [in, range( 0, 0x8000 )]
                     ULONG         bufferSize
          );
-  
+
      void Opnum63NotUsedOnWire(void);
-  
+
      void Opnum64NotUsedOnWire(void);
-  
+
      BOOLEAN RpcWinStationCheckLoopBack(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
@@ -1204,7 +1204,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [in, range( 0, 1024 )]
                     DWORD         NameSize
          );
-  
+
      BOOLEAN RpcConnectCallback(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
@@ -1214,30 +1214,30 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
          [in, range( 0, 0x1000 )]
                     ULONG         AddressSize
          );
-  
+
      void Opnum67NotUsedOnWire(void);
-  
+
      void Opnum68NotUsedOnWire(void);
-  
+
      void Opnum69NotUsedOnWire(void);
-  
+
      BOOLEAN RpcWinStationGetAllProcesses_NT6(
          [in]       SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
-         [in]       ULONG         Level,   
+         [in]       ULONG         Level,
          [in, out]  BOUNDED_ULONG *pNumberOfProcesses,
          [out, size_is(,*pNumberOfProcesses)]
                     PTS_ALL_PROCESSES_INFO_NT6  *ppTsAllProcessesInfo
          );
-  
+
      void Opnum71NotUsedOnWire(void);
-  
+
      void Opnum72NotUsedOnWire(void);
-  
+
      void Opnum73NotUsedOnWire(void);
-  
+
      void Opnum74NotUsedOnWire(void);
-  
+
      BOOLEAN RpcWinStationOpenSessionDirectory(
          [in]                     SERVER_HANDLE hServer,
          [out]      DWORD         *pResult,
@@ -1251,9 +1251,9 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
      version(1.0),
      pointer_default(unique)
  ]
-  
+
  interface TSVIPPublic
-  
+
  {
      HRESULT  RpcGetSessionIP(
          [in]        handle_t       hBinding,
@@ -1275,22 +1275,22 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
      //cpp_quote( "static LPCWSTR SESSENVPUBLICRPC_ENDPOINT = L\"\\\\pipe\\\\SessEnvPublicRpc\"; ")
      //cpp_quote( "static LPCWSTR SESSENVPUBLICRPC_PROTOCOL_SEQUENCE = L\"ncacn_np\"; ")
      //cpp_quote( "#endif // !_SESSENVPUBLICRPC_ENDPOINT_DEF" )
-  
- typedef  enum 
+
+ typedef  enum
  {
    SHADOW_CONTROL_REQUEST_VIEW = 0,
    SHADOW_CONTROL_REQUEST_TAKECONTROL,
    SHADOW_CONTROL_REQUEST_Count
  } SHADOW_CONTROL_REQUEST;
-  
- typedef  enum 
+
+ typedef  enum
  {
    SHADOW_PERMISSION_REQUEST_SILENT = 0,
    SHADOW_PERMISSION_REQUEST_REQUESTPERMISSION,
    SHADOW_PERMISSION_REQUEST_Count
  } SHADOW_PERMISSION_REQUEST;
-  
- typedef  enum 
+
+ typedef  enum
  {
    SHADOW_REQUEST_RESPONSE_ALLOW = 0,
    SHADOW_REQUEST_RESPONSE_DECLINE,
@@ -1300,7 +1300,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION {
    SHADOW_REQUEST_RESPONSE_POLICY_VIEW_ONLY_PERMISSION_REQUIRED,
    SHADOW_REQUEST_RESPONSE_SESSION_ALREADY_CONTROLLED
  } SHADOW_REQUEST_RESPONSE;
-  
+
 
      // Purpose:
      //  Create shadow invitation
