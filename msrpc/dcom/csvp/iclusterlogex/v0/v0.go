@@ -106,6 +106,87 @@ type ClusterLogExClient interface {
 	// The opnum field value for this method is 4.
 	GenerateClusterHealthLog(context.Context, *GenerateClusterHealthLogRequest, ...dcerpc.CallOption) (*GenerateClusterHealthLogResponse, error)
 
+	// The GenerateClusterSetLog method<47> generates the cluster set log file on cluster
+	// nodes. The content and format of the file is implementation-specific but SHOULD contain
+	// diagnostic information.
+	//
+	// Return Values: Return values are the same as the return values for the GenerateClusterLog
+	// method specified in section 3.12.4.1.
+	//
+	//	+-------------------+--------------------------+
+	//	|      RETURN       |                          |
+	//	|    VALUE/CODE     |       DESCRIPTION        |
+	//	|                   |                          |
+	//	+-------------------+--------------------------+
+	//	+-------------------+--------------------------+
+	//	| 0x00000000 S_OK   | The call was successful. |
+	//	+-------------------+--------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in an identical manner for
+	// all return values not listed in the preceding table.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The opnum field value for this method is 5.
+	GenerateClusterSetLog(context.Context, *GenerateClusterSetLogRequest, ...dcerpc.CallOption) (*GenerateClusterSetLogResponse, error)
+
+	// GenerateClusterNetworkhLog operation.
+	GenerateClusterNetworkLog(context.Context, *GenerateClusterNetworkLogRequest, ...dcerpc.CallOption) (*GenerateClusterNetworkLogResponse, error)
+
+	// The ExportClusterPerformanceHistroy method<49> generates the health log file on cluster
+	// nodes. The content and format of the file is implementation-specific but SHOULD contain
+	// diagnostic information.
+	//
+	// Return Values: Return values are the same as the return values for the GenerateClusterLog
+	// method specified in section 3.12.4.1.
+	//
+	//	+-------------------+--------------------------+
+	//	|      RETURN       |                          |
+	//	|    VALUE/CODE     |       DESCRIPTION        |
+	//	|                   |                          |
+	//	+-------------------+--------------------------+
+	//	+-------------------+--------------------------+
+	//	| 0x00000000 S_OK   | The call was successful. |
+	//	+-------------------+--------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in an identical manner for
+	// all return values not listed in the preceding table.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The opnum field value for this method is 7.
+	ExportClusterPerformanceHistory(context.Context, *ExportClusterPerformanceHistoryRequest, ...dcerpc.CallOption) (*ExportClusterPerformanceHistoryResponse, error)
+
+	// The GenerateNetftLog method<50> generates the Netft log file on cluster nodes. The
+	// content and format of the file is implementation-specific but SHOULD contain diagnostic
+	// information.
+	//
+	// Return Values: Return values are the same as the return values for the GenerateClusterLog
+	// method specified in section 3.12.4.1.
+	//
+	//	+-------------------+--------------------------+
+	//	|      RETURN       |                          |
+	//	|    VALUE/CODE     |       DESCRIPTION        |
+	//	|                   |                          |
+	//	+-------------------+--------------------------+
+	//	+-------------------+--------------------------+
+	//	| 0x00000000 S_OK   | The call was successful. |
+	//	+-------------------+--------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in an identical manner for
+	// all return values not listed in the preceding table.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The opnum field value for this method is 8.
+	GenerateNetFTLog(context.Context, *GenerateNetFTLogRequest, ...dcerpc.CallOption) (*GenerateNetFTLogResponse, error)
+
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
@@ -159,6 +240,86 @@ func (o *xxx_DefaultClusterLogExClient) GenerateClusterHealthLog(ctx context.Con
 		return nil, err
 	}
 	out := &GenerateClusterHealthLogResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultClusterLogExClient) GenerateClusterSetLog(ctx context.Context, in *GenerateClusterSetLogRequest, opts ...dcerpc.CallOption) (*GenerateClusterSetLogResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if _, ok := dcom.HasIPID(opts); !ok {
+		if o.ipid != nil {
+			opts = append(opts, dcom.WithIPID(o.ipid))
+		} else {
+			return nil, fmt.Errorf("%s: ipid is missing", op.OpName())
+		}
+	}
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GenerateClusterSetLogResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultClusterLogExClient) GenerateClusterNetworkLog(ctx context.Context, in *GenerateClusterNetworkLogRequest, opts ...dcerpc.CallOption) (*GenerateClusterNetworkLogResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if _, ok := dcom.HasIPID(opts); !ok {
+		if o.ipid != nil {
+			opts = append(opts, dcom.WithIPID(o.ipid))
+		} else {
+			return nil, fmt.Errorf("%s: ipid is missing", op.OpName())
+		}
+	}
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GenerateClusterNetworkLogResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultClusterLogExClient) ExportClusterPerformanceHistory(ctx context.Context, in *ExportClusterPerformanceHistoryRequest, opts ...dcerpc.CallOption) (*ExportClusterPerformanceHistoryResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if _, ok := dcom.HasIPID(opts); !ok {
+		if o.ipid != nil {
+			opts = append(opts, dcom.WithIPID(o.ipid))
+		} else {
+			return nil, fmt.Errorf("%s: ipid is missing", op.OpName())
+		}
+	}
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &ExportClusterPerformanceHistoryResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultClusterLogExClient) GenerateNetFTLog(ctx context.Context, in *GenerateNetFTLogRequest, opts ...dcerpc.CallOption) (*GenerateNetFTLogResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if _, ok := dcom.HasIPID(opts); !ok {
+		if o.ipid != nil {
+			opts = append(opts, dcom.WithIPID(o.ipid))
+		} else {
+			return nil, fmt.Errorf("%s: ipid is missing", op.OpName())
+		}
+	}
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GenerateNetFTLogResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
@@ -792,6 +953,1278 @@ func (o *GenerateClusterHealthLogResponse) MarshalNDR(ctx context.Context, w ndr
 }
 func (o *GenerateClusterHealthLogResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateClusterHealthLogOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GenerateClusterSetLogOperation structure represents the GenerateClusterSetLog operation
+type xxx_GenerateClusterSetLogOperation struct {
+	This        *dcom.ORPCThis        `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	SpanMinutes uint32                `idl:"name:SpanMinutes" json:"span_minutes"`
+	Flags       csvp.ClusterLogExFlag `idl:"name:flags" json:"flags"`
+	LogFilePath *oaut.String          `idl:"name:LogFilePath" json:"log_file_path"`
+	Return      int32                 `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of GenerateClusterSetLog operation.
+func (o *xxx_GenerateClusterSetLogOperation) OpNum() int { return 5 }
+
+// OpName returns the operation name of GenerateClusterSetLog operation.
+func (o *xxx_GenerateClusterSetLogOperation) OpName() string {
+	return "/IClusterLogEx/v0/GenerateClusterSetLog"
+}
+
+func (o *xxx_GenerateClusterSetLogOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateClusterSetLogOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This != nil {
+			if err := o.This.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThis{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// SpanMinutes {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.SpanMinutes); err != nil {
+			return err
+		}
+	}
+	// flags {in} (1:{alias=ClusterLogExFlag}(enum))
+	{
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateClusterSetLogOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This == nil {
+			o.This = &dcom.ORPCThis{}
+		}
+		if err := o.This.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// SpanMinutes {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.SpanMinutes); err != nil {
+			return err
+		}
+	}
+	// flags {in} (1:{alias=ClusterLogExFlag}(enum))
+	{
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateClusterSetLogOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateClusterSetLogOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That != nil {
+			if err := o.That.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThat{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// LogFilePath {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.LogFilePath != nil {
+			_ptr_LogFilePath := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.LogFilePath != nil {
+					if err := o.LogFilePath.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.LogFilePath, _ptr_LogFilePath); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateClusterSetLogOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That == nil {
+			o.That = &dcom.ORPCThat{}
+		}
+		if err := o.That.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// LogFilePath {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_LogFilePath := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.LogFilePath == nil {
+				o.LogFilePath = &oaut.String{}
+			}
+			if err := o.LogFilePath.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_LogFilePath := func(ptr interface{}) { o.LogFilePath = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.LogFilePath, _s_LogFilePath, _ptr_LogFilePath); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GenerateClusterSetLogRequest structure represents the GenerateClusterSetLog operation request
+type GenerateClusterSetLogRequest struct {
+	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// SpanMinutes: A value, in minutes, that indicates those values that SHOULD be in the
+	// log. Events that occurred in the range of Now to (Now – SpanMinutes) MUST be in
+	// the log and no others. If ClusterLogFlagLocalTime is set in the Flags field, Now
+	// is the GMT on the server; otherwise, it is the local time on the server.
+	SpanMinutes uint32                `idl:"name:SpanMinutes" json:"span_minutes"`
+	Flags       csvp.ClusterLogExFlag `idl:"name:flags" json:"flags"`
+}
+
+func (o *GenerateClusterSetLogRequest) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterSetLogOperation) *xxx_GenerateClusterSetLogOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterSetLogOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.This = o.This
+	op.SpanMinutes = o.SpanMinutes
+	op.Flags = o.Flags
+	return op
+}
+
+func (o *GenerateClusterSetLogRequest) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterSetLogOperation) {
+	if o == nil {
+		return
+	}
+	o.This = op.This
+	o.SpanMinutes = op.SpanMinutes
+	o.Flags = op.Flags
+}
+func (o *GenerateClusterSetLogRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GenerateClusterSetLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GenerateClusterSetLogOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeGenerateClusterSetLogRequest build a response structure from the given request structure.
+func (o *GenerateClusterSetLogRequest) MakeResponse() *GenerateClusterSetLogResponse {
+	return &GenerateClusterSetLogResponse{}
+}
+
+// OpNum returns the operation number of GenerateClusterSetLog operation.
+func (o *GenerateClusterSetLogRequest) OpNum() int { return 5 }
+
+// OpName returns the operation name of GenerateClusterSetLog operation.
+func (o *GenerateClusterSetLogRequest) OpName() string {
+	return "/IClusterLogEx/v0/GenerateClusterSetLog"
+}
+
+// GenerateClusterSetLogResponse structure represents the GenerateClusterSetLog operation response
+type GenerateClusterSetLogResponse struct {
+	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// LogFilePath: Has the same meaning as parameter LogFilePath for the GenerateClusterLog
+	// method specified in section 3.12.4.1.
+	LogFilePath *oaut.String `idl:"name:LogFilePath" json:"log_file_path"`
+	// Return: The GenerateClusterSetLog return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GenerateClusterSetLogResponse) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterSetLogOperation) *xxx_GenerateClusterSetLogOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterSetLogOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.That = o.That
+	op.LogFilePath = o.LogFilePath
+	op.Return = o.Return
+	return op
+}
+
+func (o *GenerateClusterSetLogResponse) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterSetLogOperation) {
+	if o == nil {
+		return
+	}
+	o.That = op.That
+	o.LogFilePath = op.LogFilePath
+	o.Return = op.Return
+}
+func (o *GenerateClusterSetLogResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GenerateClusterSetLogResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GenerateClusterSetLogOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GenerateClusterNetworkLogOperation structure represents the GenerateClusterNetworkhLog operation
+type xxx_GenerateClusterNetworkLogOperation struct {
+	This                    *dcom.ORPCThis        `idl:"name:This" json:"this"`
+	That                    *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	SpanMinutes             uint32                `idl:"name:SpanMinutes" json:"span_minutes"`
+	NetworkDiagnosticsLevel int32                 `idl:"name:NetworkDiagnosticsLevel" json:"network_diagnostics_level"`
+	Flags                   csvp.ClusterLogExFlag `idl:"name:flags" json:"flags"`
+	LogFilePath             *oaut.String          `idl:"name:LogFilePath" json:"log_file_path"`
+	Return                  int32                 `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of GenerateClusterNetworkhLog operation.
+func (o *xxx_GenerateClusterNetworkLogOperation) OpNum() int { return 6 }
+
+// OpName returns the operation name of GenerateClusterNetworkhLog operation.
+func (o *xxx_GenerateClusterNetworkLogOperation) OpName() string {
+	return "/IClusterLogEx/v0/GenerateClusterNetworkhLog"
+}
+
+func (o *xxx_GenerateClusterNetworkLogOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateClusterNetworkLogOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This != nil {
+			if err := o.This.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThis{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// SpanMinutes {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.SpanMinutes); err != nil {
+			return err
+		}
+	}
+	// NetworkDiagnosticsLevel {in} (1:(int32))
+	{
+		if err := w.WriteData(o.NetworkDiagnosticsLevel); err != nil {
+			return err
+		}
+	}
+	// flags {in} (1:{alias=ClusterLogExFlag}(enum))
+	{
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateClusterNetworkLogOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This == nil {
+			o.This = &dcom.ORPCThis{}
+		}
+		if err := o.This.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// SpanMinutes {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.SpanMinutes); err != nil {
+			return err
+		}
+	}
+	// NetworkDiagnosticsLevel {in} (1:(int32))
+	{
+		if err := w.ReadData(&o.NetworkDiagnosticsLevel); err != nil {
+			return err
+		}
+	}
+	// flags {in} (1:{alias=ClusterLogExFlag}(enum))
+	{
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateClusterNetworkLogOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateClusterNetworkLogOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That != nil {
+			if err := o.That.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThat{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// LogFilePath {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.LogFilePath != nil {
+			_ptr_LogFilePath := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.LogFilePath != nil {
+					if err := o.LogFilePath.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.LogFilePath, _ptr_LogFilePath); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateClusterNetworkLogOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That == nil {
+			o.That = &dcom.ORPCThat{}
+		}
+		if err := o.That.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// LogFilePath {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_LogFilePath := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.LogFilePath == nil {
+				o.LogFilePath = &oaut.String{}
+			}
+			if err := o.LogFilePath.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_LogFilePath := func(ptr interface{}) { o.LogFilePath = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.LogFilePath, _s_LogFilePath, _ptr_LogFilePath); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GenerateClusterNetworkLogRequest structure represents the GenerateClusterNetworkhLog operation request
+type GenerateClusterNetworkLogRequest struct {
+	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
+	This                    *dcom.ORPCThis        `idl:"name:This" json:"this"`
+	SpanMinutes             uint32                `idl:"name:SpanMinutes" json:"span_minutes"`
+	NetworkDiagnosticsLevel int32                 `idl:"name:NetworkDiagnosticsLevel" json:"network_diagnostics_level"`
+	Flags                   csvp.ClusterLogExFlag `idl:"name:flags" json:"flags"`
+}
+
+func (o *GenerateClusterNetworkLogRequest) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterNetworkLogOperation) *xxx_GenerateClusterNetworkLogOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterNetworkLogOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.This = o.This
+	op.SpanMinutes = o.SpanMinutes
+	op.NetworkDiagnosticsLevel = o.NetworkDiagnosticsLevel
+	op.Flags = o.Flags
+	return op
+}
+
+func (o *GenerateClusterNetworkLogRequest) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterNetworkLogOperation) {
+	if o == nil {
+		return
+	}
+	o.This = op.This
+	o.SpanMinutes = op.SpanMinutes
+	o.NetworkDiagnosticsLevel = op.NetworkDiagnosticsLevel
+	o.Flags = op.Flags
+}
+func (o *GenerateClusterNetworkLogRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GenerateClusterNetworkLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GenerateClusterNetworkLogOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeGenerateClusterNetworkLogRequest build a response structure from the given request structure.
+func (o *GenerateClusterNetworkLogRequest) MakeResponse() *GenerateClusterNetworkLogResponse {
+	return &GenerateClusterNetworkLogResponse{}
+}
+
+// OpNum returns the operation number of GenerateClusterNetworkhLog operation.
+func (o *GenerateClusterNetworkLogRequest) OpNum() int { return 6 }
+
+// OpName returns the operation name of GenerateClusterNetworkhLog operation.
+func (o *GenerateClusterNetworkLogRequest) OpName() string {
+	return "/IClusterLogEx/v0/GenerateClusterNetworkhLog"
+}
+
+// GenerateClusterNetworkLogResponse structure represents the GenerateClusterNetworkhLog operation response
+type GenerateClusterNetworkLogResponse struct {
+	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
+	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
+	LogFilePath *oaut.String   `idl:"name:LogFilePath" json:"log_file_path"`
+	// Return: The GenerateClusterNetworkhLog return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GenerateClusterNetworkLogResponse) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterNetworkLogOperation) *xxx_GenerateClusterNetworkLogOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterNetworkLogOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.That = o.That
+	op.LogFilePath = o.LogFilePath
+	op.Return = o.Return
+	return op
+}
+
+func (o *GenerateClusterNetworkLogResponse) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterNetworkLogOperation) {
+	if o == nil {
+		return
+	}
+	o.That = op.That
+	o.LogFilePath = op.LogFilePath
+	o.Return = op.Return
+}
+func (o *GenerateClusterNetworkLogResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GenerateClusterNetworkLogResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GenerateClusterNetworkLogOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_ExportClusterPerformanceHistoryOperation structure represents the ExportClusterPerformanceHistory operation
+type xxx_ExportClusterPerformanceHistoryOperation struct {
+	This        *dcom.ORPCThis        `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	Pattern     *oaut.String          `idl:"name:Pattern" json:"pattern"`
+	StreamName  *oaut.String          `idl:"name:StreamName" json:"stream_name"`
+	Flags       csvp.ClusterLogExFlag `idl:"name:flags" json:"flags"`
+	LogFilePath *oaut.String          `idl:"name:LogFilePath" json:"log_file_path"`
+	Return      int32                 `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of ExportClusterPerformanceHistory operation.
+func (o *xxx_ExportClusterPerformanceHistoryOperation) OpNum() int { return 7 }
+
+// OpName returns the operation name of ExportClusterPerformanceHistory operation.
+func (o *xxx_ExportClusterPerformanceHistoryOperation) OpName() string {
+	return "/IClusterLogEx/v0/ExportClusterPerformanceHistory"
+}
+
+func (o *xxx_ExportClusterPerformanceHistoryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportClusterPerformanceHistoryOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This != nil {
+			if err := o.This.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThis{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Pattern {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.Pattern != nil {
+			_ptr_Pattern := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.Pattern != nil {
+					if err := o.Pattern.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Pattern, _ptr_Pattern); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// StreamName {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.StreamName != nil {
+			_ptr_StreamName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.StreamName != nil {
+					if err := o.StreamName.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.StreamName, _ptr_StreamName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// flags {in} (1:{alias=ClusterLogExFlag}(enum))
+	{
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportClusterPerformanceHistoryOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This == nil {
+			o.This = &dcom.ORPCThis{}
+		}
+		if err := o.This.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Pattern {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_Pattern := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.Pattern == nil {
+				o.Pattern = &oaut.String{}
+			}
+			if err := o.Pattern.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_Pattern := func(ptr interface{}) { o.Pattern = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.Pattern, _s_Pattern, _ptr_Pattern); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// StreamName {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_StreamName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.StreamName == nil {
+				o.StreamName = &oaut.String{}
+			}
+			if err := o.StreamName.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_StreamName := func(ptr interface{}) { o.StreamName = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.StreamName, _s_StreamName, _ptr_StreamName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// flags {in} (1:{alias=ClusterLogExFlag}(enum))
+	{
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportClusterPerformanceHistoryOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportClusterPerformanceHistoryOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That != nil {
+			if err := o.That.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThat{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// LogFilePath {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.LogFilePath != nil {
+			_ptr_LogFilePath := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.LogFilePath != nil {
+					if err := o.LogFilePath.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.LogFilePath, _ptr_LogFilePath); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportClusterPerformanceHistoryOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That == nil {
+			o.That = &dcom.ORPCThat{}
+		}
+		if err := o.That.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// LogFilePath {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_LogFilePath := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.LogFilePath == nil {
+				o.LogFilePath = &oaut.String{}
+			}
+			if err := o.LogFilePath.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_LogFilePath := func(ptr interface{}) { o.LogFilePath = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.LogFilePath, _s_LogFilePath, _ptr_LogFilePath); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// ExportClusterPerformanceHistoryRequest structure represents the ExportClusterPerformanceHistory operation request
+type ExportClusterPerformanceHistoryRequest struct {
+	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// Pattern: This parameter MUST be ignored.
+	Pattern *oaut.String `idl:"name:Pattern" json:"pattern"`
+	// StreamName: The name of the performance history stream to be exported.
+	StreamName *oaut.String          `idl:"name:StreamName" json:"stream_name"`
+	Flags      csvp.ClusterLogExFlag `idl:"name:flags" json:"flags"`
+}
+
+func (o *ExportClusterPerformanceHistoryRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportClusterPerformanceHistoryOperation) *xxx_ExportClusterPerformanceHistoryOperation {
+	if op == nil {
+		op = &xxx_ExportClusterPerformanceHistoryOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.This = o.This
+	op.Pattern = o.Pattern
+	op.StreamName = o.StreamName
+	op.Flags = o.Flags
+	return op
+}
+
+func (o *ExportClusterPerformanceHistoryRequest) xxx_FromOp(ctx context.Context, op *xxx_ExportClusterPerformanceHistoryOperation) {
+	if o == nil {
+		return
+	}
+	o.This = op.This
+	o.Pattern = op.Pattern
+	o.StreamName = op.StreamName
+	o.Flags = op.Flags
+}
+func (o *ExportClusterPerformanceHistoryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *ExportClusterPerformanceHistoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ExportClusterPerformanceHistoryOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeExportClusterPerformanceHistoryRequest build a response structure from the given request structure.
+func (o *ExportClusterPerformanceHistoryRequest) MakeResponse() *ExportClusterPerformanceHistoryResponse {
+	return &ExportClusterPerformanceHistoryResponse{}
+}
+
+// OpNum returns the operation number of ExportClusterPerformanceHistory operation.
+func (o *ExportClusterPerformanceHistoryRequest) OpNum() int { return 7 }
+
+// OpName returns the operation name of ExportClusterPerformanceHistory operation.
+func (o *ExportClusterPerformanceHistoryRequest) OpName() string {
+	return "/IClusterLogEx/v0/ExportClusterPerformanceHistory"
+}
+
+// ExportClusterPerformanceHistoryResponse structure represents the ExportClusterPerformanceHistory operation response
+type ExportClusterPerformanceHistoryResponse struct {
+	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// LogFilePath: Has the same meaning as parameter LogFilePath for the GenerateClusterLog
+	// method specified in section 3.12.4.1.
+	LogFilePath *oaut.String `idl:"name:LogFilePath" json:"log_file_path"`
+	// Return: The ExportClusterPerformanceHistory return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *ExportClusterPerformanceHistoryResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportClusterPerformanceHistoryOperation) *xxx_ExportClusterPerformanceHistoryOperation {
+	if op == nil {
+		op = &xxx_ExportClusterPerformanceHistoryOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.That = o.That
+	op.LogFilePath = o.LogFilePath
+	op.Return = o.Return
+	return op
+}
+
+func (o *ExportClusterPerformanceHistoryResponse) xxx_FromOp(ctx context.Context, op *xxx_ExportClusterPerformanceHistoryOperation) {
+	if o == nil {
+		return
+	}
+	o.That = op.That
+	o.LogFilePath = op.LogFilePath
+	o.Return = op.Return
+}
+func (o *ExportClusterPerformanceHistoryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *ExportClusterPerformanceHistoryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ExportClusterPerformanceHistoryOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GenerateNetFTLogOperation structure represents the GenerateNetftLog operation
+type xxx_GenerateNetFTLogOperation struct {
+	This        *dcom.ORPCThis        `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	SpanMinutes uint32                `idl:"name:SpanMinutes" json:"span_minutes"`
+	Flags       csvp.ClusterLogExFlag `idl:"name:flags" json:"flags"`
+	LogFilePath *oaut.String          `idl:"name:LogFilePath" json:"log_file_path"`
+	Return      int32                 `idl:"name:Return" json:"return"`
+}
+
+// OpNum returns the operation number of GenerateNetftLog operation.
+func (o *xxx_GenerateNetFTLogOperation) OpNum() int { return 8 }
+
+// OpName returns the operation name of GenerateNetftLog operation.
+func (o *xxx_GenerateNetFTLogOperation) OpName() string { return "/IClusterLogEx/v0/GenerateNetftLog" }
+
+func (o *xxx_GenerateNetFTLogOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateNetFTLogOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This != nil {
+			if err := o.This.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThis{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// SpanMinutes {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.SpanMinutes); err != nil {
+			return err
+		}
+	}
+	// flags {in} (1:{alias=ClusterLogExFlag}(enum))
+	{
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateNetFTLogOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This == nil {
+			o.This = &dcom.ORPCThis{}
+		}
+		if err := o.This.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// SpanMinutes {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.SpanMinutes); err != nil {
+			return err
+		}
+	}
+	// flags {in} (1:{alias=ClusterLogExFlag}(enum))
+	{
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateNetFTLogOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateNetFTLogOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That != nil {
+			if err := o.That.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThat{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// LogFilePath {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.LogFilePath != nil {
+			_ptr_LogFilePath := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.LogFilePath != nil {
+					if err := o.LogFilePath.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.LogFilePath, _ptr_LogFilePath); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GenerateNetFTLogOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That == nil {
+			o.That = &dcom.ORPCThat{}
+		}
+		if err := o.That.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// LogFilePath {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_LogFilePath := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.LogFilePath == nil {
+				o.LogFilePath = &oaut.String{}
+			}
+			if err := o.LogFilePath.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_LogFilePath := func(ptr interface{}) { o.LogFilePath = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.LogFilePath, _s_LogFilePath, _ptr_LogFilePath); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GenerateNetFTLogRequest structure represents the GenerateNetftLog operation request
+type GenerateNetFTLogRequest struct {
+	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// SpanMinutes: A value, in minutes, that indicates those values that SHOULD be in the
+	// log. Events that occurred in the range of Now to (Now – SpanMinutes) MUST be in
+	// the log and no others. If ClusterLogFlagLocalTime is set in the Flags field, Now
+	// is the GMT on the server; otherwise, it is the local time on the server.
+	SpanMinutes uint32                `idl:"name:SpanMinutes" json:"span_minutes"`
+	Flags       csvp.ClusterLogExFlag `idl:"name:flags" json:"flags"`
+}
+
+func (o *GenerateNetFTLogRequest) xxx_ToOp(ctx context.Context, op *xxx_GenerateNetFTLogOperation) *xxx_GenerateNetFTLogOperation {
+	if op == nil {
+		op = &xxx_GenerateNetFTLogOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.This = o.This
+	op.SpanMinutes = o.SpanMinutes
+	op.Flags = o.Flags
+	return op
+}
+
+func (o *GenerateNetFTLogRequest) xxx_FromOp(ctx context.Context, op *xxx_GenerateNetFTLogOperation) {
+	if o == nil {
+		return
+	}
+	o.This = op.This
+	o.SpanMinutes = op.SpanMinutes
+	o.Flags = op.Flags
+}
+func (o *GenerateNetFTLogRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GenerateNetFTLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GenerateNetFTLogOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// MakeGenerateNetFTLogRequest build a response structure from the given request structure.
+func (o *GenerateNetFTLogRequest) MakeResponse() *GenerateNetFTLogResponse {
+	return &GenerateNetFTLogResponse{}
+}
+
+// OpNum returns the operation number of GenerateNetftLog operation.
+func (o *GenerateNetFTLogRequest) OpNum() int { return 8 }
+
+// OpName returns the operation name of GenerateNetftLog operation.
+func (o *GenerateNetFTLogRequest) OpName() string { return "/IClusterLogEx/v0/GenerateNetftLog" }
+
+// GenerateNetFTLogResponse structure represents the GenerateNetftLog operation response
+type GenerateNetFTLogResponse struct {
+	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// LogFilePath: Has the same meaning as parameter LogFilePath for the GenerateClusterLog
+	// method specified in section 3.12.4.1.
+	LogFilePath *oaut.String `idl:"name:LogFilePath" json:"log_file_path"`
+	// Return: The GenerateNetftLog return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GenerateNetFTLogResponse) xxx_ToOp(ctx context.Context, op *xxx_GenerateNetFTLogOperation) *xxx_GenerateNetFTLogOperation {
+	if op == nil {
+		op = &xxx_GenerateNetFTLogOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.That = o.That
+	op.LogFilePath = o.LogFilePath
+	op.Return = o.Return
+	return op
+}
+
+func (o *GenerateNetFTLogResponse) xxx_FromOp(ctx context.Context, op *xxx_GenerateNetFTLogOperation) {
+	if o == nil {
+		return
+	}
+	o.That = op.That
+	o.LogFilePath = op.LogFilePath
+	o.Return = op.Return
+}
+func (o *GenerateNetFTLogResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GenerateNetFTLogResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GenerateNetFTLogOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

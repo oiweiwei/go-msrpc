@@ -3404,7 +3404,7 @@ type xxx_EnumViewColumnOperation struct {
 	Authority      string                  `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
 	Column         uint32                  `idl:"name:iColumn" json:"column"`
 	ColumnCount    uint32                  `idl:"name:cColumn" json:"column_count"`
-	ColumnOutCount uint32                  `idl:"name:pcColumnOut" json:"column_out_count"`
+	ColumnOutCount uint32                  `idl:"name:pcColumn" json:"column_out_count"`
 	ColumnInfo     *csra.CertTransportBlob `idl:"name:pctbColumnInfo;pointer:ref" json:"column_info"`
 	Return         int32                   `idl:"name:Return" json:"return"`
 }
@@ -3551,7 +3551,7 @@ func (o *xxx_EnumViewColumnOperation) MarshalNDRResponse(ctx context.Context, w 
 			return err
 		}
 	}
-	// pcColumnOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcColumn {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.WriteData(o.ColumnOutCount); err != nil {
 			return err
@@ -3594,7 +3594,7 @@ func (o *xxx_EnumViewColumnOperation) UnmarshalNDRResponse(ctx context.Context, 
 			return err
 		}
 	}
-	// pcColumnOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcColumn {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.ColumnOutCount); err != nil {
 			return err
@@ -3685,8 +3685,10 @@ func (o *EnumViewColumnRequest) OpName() string { return "/ICertAdminD/v0/EnumVi
 // EnumViewColumnResponse structure represents the EnumViewColumn operation response
 type EnumViewColumnResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ColumnOutCount uint32         `idl:"name:pcColumnOut" json:"column_out_count"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pcColumn: A pointer to an unsigned integer that receives the actual number of CERTTRANSDBCOLUMN
+	// structures returned by the server in the pctbColumnInfo parameter.
+	ColumnOutCount uint32 `idl:"name:pcColumn" json:"column_out_count"`
 	// pctbColumnInfo: A pointer to a CERTTRANSBLOB structure. Upon return, the pb member
 	// of this structure points to an array of the marshaled CERTTRANSDBCOLUMN structures
 	// as described in section 2.2.1.7.
@@ -3740,7 +3742,7 @@ type xxx_GetViewDefaultColumnSetOperation struct {
 	That             *dcom.ORPCThat          `idl:"name:That" json:"that"`
 	Authority        string                  `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
 	ColumnSetDefault uint32                  `idl:"name:iColumnSetDefault" json:"column_set_default"`
-	ColumnOutCount   uint32                  `idl:"name:pcColumnOut" json:"column_out_count"`
+	ColumnOutCount   uint32                  `idl:"name:pcColumn" json:"column_out_count"`
 	ColumnInfo       *csra.CertTransportBlob `idl:"name:pctbColumnInfo;pointer:ref" json:"column_info"`
 	Return           int32                   `idl:"name:Return" json:"return"`
 }
@@ -3877,7 +3879,7 @@ func (o *xxx_GetViewDefaultColumnSetOperation) MarshalNDRResponse(ctx context.Co
 			return err
 		}
 	}
-	// pcColumnOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcColumn {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.WriteData(o.ColumnOutCount); err != nil {
 			return err
@@ -3920,7 +3922,7 @@ func (o *xxx_GetViewDefaultColumnSetOperation) UnmarshalNDRResponse(ctx context.
 			return err
 		}
 	}
-	// pcColumnOut {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	// pcColumn {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.ColumnOutCount); err != nil {
 			return err
@@ -4037,8 +4039,10 @@ func (o *GetViewDefaultColumnSetRequest) OpName() string {
 // GetViewDefaultColumnSetResponse structure represents the GetViewDefaultColumnSet operation response
 type GetViewDefaultColumnSetResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ColumnOutCount uint32         `idl:"name:pcColumnOut" json:"column_out_count"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pcColumn: A pointer to the unsigned integer that receives the count of Column identifiers
+	// that are returned by the server in the pctbColumnInfo parameter.
+	ColumnOutCount uint32 `idl:"name:pcColumn" json:"column_out_count"`
 	// pctbColumnInfo: A pointer to a CERTTRANSBLOB structure. Its cb member MUST contain
 	// the length, in bytes, of the array that is referenced by the pb member. The pb member
 	// MUST point to an array of DWORDs, where each DWORD value represents the identifier

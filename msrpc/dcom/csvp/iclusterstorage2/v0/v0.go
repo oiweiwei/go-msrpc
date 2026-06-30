@@ -9057,12 +9057,12 @@ func (o *IsReadableResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // xxx_GetDSMsOperation structure represents the CprepDiskGetDsms operation
 type xxx_GetDSMsOperation struct {
-	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Size            uint32         `idl:"name:Size" json:"size"`
-	ResgisteredDSMs uint32         `idl:"name:pResgisteredDsms" json:"resgistered_dsms"`
-	RegisteredDSMs  []byte         `idl:"name:RegisteredDsms;size_is:(Size);length_is:(pResgisteredDsms)" json:"registered_dsms"`
-	Return          int32          `idl:"name:Return" json:"return"`
+	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Size                uint32         `idl:"name:Size" json:"size"`
+	RegisteredDSMsCount uint32         `idl:"name:pReserved" json:"registered_dsms_count"`
+	RegisteredDSMs      []byte         `idl:"name:RegisteredDsms;size_is:(Size);length_is:(pReserved)" json:"registered_dsms"`
+	Return              int32          `idl:"name:Return" json:"return"`
 }
 
 // OpNum returns the operation number of CprepDiskGetDsms operation.
@@ -9131,8 +9131,8 @@ func (o *xxx_GetDSMsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 }
 
 func (o *xxx_GetDSMsOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
-	if o.RegisteredDSMs != nil && o.ResgisteredDSMs == 0 {
-		o.ResgisteredDSMs = uint32(len(o.RegisteredDSMs))
+	if o.RegisteredDSMs != nil && o.RegisteredDSMsCount == 0 {
+		o.RegisteredDSMsCount = uint32(len(o.RegisteredDSMs))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
@@ -9161,13 +9161,13 @@ func (o *xxx_GetDSMsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 			return err
 		}
 	}
-	// pResgisteredDsms {out} (1:{pointer=ref}*(1)(uint32))
+	// pReserved {out} (1:{pointer=ref}*(1)(uint32))
 	{
-		if err := w.WriteData(o.ResgisteredDSMs); err != nil {
+		if err := w.WriteData(o.RegisteredDSMsCount); err != nil {
 			return err
 		}
 	}
-	// RegisteredDsms {out} (1:{pointer=ref}*(1)[dim:0,size_is=Size,length_is=pResgisteredDsms](uint8))
+	// RegisteredDsms {out} (1:{pointer=ref}*(1)[dim:0,size_is=Size,length_is=pReserved](uint8))
 	{
 		dimSize1 := uint64(o.Size)
 		if err := w.WriteSize(dimSize1); err != nil {
@@ -9176,7 +9176,7 @@ func (o *xxx_GetDSMsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 		sizeInfo := []uint64{
 			dimSize1,
 		}
-		dimLength1 := uint64(o.ResgisteredDSMs)
+		dimLength1 := uint64(o.RegisteredDSMsCount)
 		if dimLength1 > sizeInfo[0] {
 			dimLength1 = sizeInfo[0]
 		} else {
@@ -9225,13 +9225,13 @@ func (o *xxx_GetDSMsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			return err
 		}
 	}
-	// pResgisteredDsms {out} (1:{pointer=ref}*(1)(uint32))
+	// pReserved {out} (1:{pointer=ref}*(1)(uint32))
 	{
-		if err := w.ReadData(&o.ResgisteredDSMs); err != nil {
+		if err := w.ReadData(&o.RegisteredDSMsCount); err != nil {
 			return err
 		}
 	}
-	// RegisteredDsms {out} (1:{pointer=ref}*(1)[dim:0,size_is=Size,length_is=pResgisteredDsms](uint8))
+	// RegisteredDsms {out} (1:{pointer=ref}*(1)[dim:0,size_is=Size,length_is=pReserved](uint8))
 	{
 		sizeInfo := []uint64{
 			0,
@@ -9330,11 +9330,12 @@ type GetDSMsResponse struct {
 	Size uint32 `idl:"name:Size" json:"size"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ResgisteredDSMs uint32         `idl:"name:pResgisteredDsms" json:"resgistered_dsms"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pReserved: After completion of the method, the client MUST ignore this value.
+	RegisteredDSMsCount uint32 `idl:"name:pReserved" json:"registered_dsms_count"`
 	// RegisteredDsms: The buffer that holds the DSM data. The format of the buffer is a
 	// REGISTERED_DSMS structure.
-	RegisteredDSMs []byte `idl:"name:RegisteredDsms;size_is:(Size);length_is:(pResgisteredDsms)" json:"registered_dsms"`
+	RegisteredDSMs []byte `idl:"name:RegisteredDsms;size_is:(Size);length_is:(pReserved)" json:"registered_dsms"`
 	// Return: The CprepDiskGetDsms return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -9352,7 +9353,7 @@ func (o *GetDSMsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDSMsOperation
 	}
 
 	op.That = o.That
-	op.ResgisteredDSMs = o.ResgisteredDSMs
+	op.RegisteredDSMsCount = o.RegisteredDSMsCount
 	op.RegisteredDSMs = o.RegisteredDSMs
 	op.Return = o.Return
 	return op
@@ -9366,7 +9367,7 @@ func (o *GetDSMsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDSMsOperati
 	o.Size = op.Size
 
 	o.That = op.That
-	o.ResgisteredDSMs = op.ResgisteredDSMs
+	o.RegisteredDSMsCount = op.RegisteredDSMsCount
 	o.RegisteredDSMs = op.RegisteredDSMs
 	o.Return = op.Return
 }

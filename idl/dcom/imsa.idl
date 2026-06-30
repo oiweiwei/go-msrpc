@@ -450,7 +450,8 @@ interface IIISCertObj : IDispatch
         [in] DWORD cbSize,
         [in,string,size_is(cbSize)] CHAR *pBlobBinary,
         [out] DWORD *pcbCertHashSize,
-        [out, size_is(,pcbCertHashSize)] CHAR **pCertHash
+        [size_is(,pcbCertHashSize)] /* go-msrpc: add size */
+        [out] CHAR **pCertHash
         );
  
     [id(18), local] 

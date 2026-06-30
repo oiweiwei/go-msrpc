@@ -85,6 +85,87 @@ type ClusterLogExServer interface {
 	//
 	// The opnum field value for this method is 4.
 	GenerateClusterHealthLog(context.Context, *GenerateClusterHealthLogRequest) (*GenerateClusterHealthLogResponse, error)
+
+	// The GenerateClusterSetLog method<47> generates the cluster set log file on cluster
+	// nodes. The content and format of the file is implementation-specific but SHOULD contain
+	// diagnostic information.
+	//
+	// Return Values: Return values are the same as the return values for the GenerateClusterLog
+	// method specified in section 3.12.4.1.
+	//
+	//	+-------------------+--------------------------+
+	//	|      RETURN       |                          |
+	//	|    VALUE/CODE     |       DESCRIPTION        |
+	//	|                   |                          |
+	//	+-------------------+--------------------------+
+	//	+-------------------+--------------------------+
+	//	| 0x00000000 S_OK   | The call was successful. |
+	//	+-------------------+--------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in an identical manner for
+	// all return values not listed in the preceding table.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The opnum field value for this method is 5.
+	GenerateClusterSetLog(context.Context, *GenerateClusterSetLogRequest) (*GenerateClusterSetLogResponse, error)
+
+	// GenerateClusterNetworkhLog operation.
+	GenerateClusterNetworkLog(context.Context, *GenerateClusterNetworkLogRequest) (*GenerateClusterNetworkLogResponse, error)
+
+	// The ExportClusterPerformanceHistroy method<49> generates the health log file on cluster
+	// nodes. The content and format of the file is implementation-specific but SHOULD contain
+	// diagnostic information.
+	//
+	// Return Values: Return values are the same as the return values for the GenerateClusterLog
+	// method specified in section 3.12.4.1.
+	//
+	//	+-------------------+--------------------------+
+	//	|      RETURN       |                          |
+	//	|    VALUE/CODE     |       DESCRIPTION        |
+	//	|                   |                          |
+	//	+-------------------+--------------------------+
+	//	+-------------------+--------------------------+
+	//	| 0x00000000 S_OK   | The call was successful. |
+	//	+-------------------+--------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in an identical manner for
+	// all return values not listed in the preceding table.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The opnum field value for this method is 7.
+	ExportClusterPerformanceHistory(context.Context, *ExportClusterPerformanceHistoryRequest) (*ExportClusterPerformanceHistoryResponse, error)
+
+	// The GenerateNetftLog method<50> generates the Netft log file on cluster nodes. The
+	// content and format of the file is implementation-specific but SHOULD contain diagnostic
+	// information.
+	//
+	// Return Values: Return values are the same as the return values for the GenerateClusterLog
+	// method specified in section 3.12.4.1.
+	//
+	//	+-------------------+--------------------------+
+	//	|      RETURN       |                          |
+	//	|    VALUE/CODE     |       DESCRIPTION        |
+	//	|                   |                          |
+	//	+-------------------+--------------------------+
+	//	+-------------------+--------------------------+
+	//	| 0x00000000 S_OK   | The call was successful. |
+	//	+-------------------+--------------------------+
+	//
+	// For any other condition, this method MUST return a value that is not one of the values
+	// listed in the preceding table. The client MUST behave in an identical manner for
+	// all return values not listed in the preceding table.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The opnum field value for this method is 8.
+	GenerateNetFTLog(context.Context, *GenerateNetFTLogRequest) (*GenerateNetFTLogResponse, error)
 }
 
 func RegisterClusterLogExServer(conn dcerpc.Conn, o ClusterLogExServer, opts ...dcerpc.Option) {
@@ -121,6 +202,42 @@ func ClusterLogExServerHandle(ctx context.Context, o ClusterLogExServer, opNum i
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.GenerateClusterHealthLog(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
+	case 5: // GenerateClusterSetLog
+		op := &xxx_GenerateClusterSetLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GenerateClusterSetLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GenerateClusterSetLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 6: // GenerateClusterNetworkhLog
+		op := &xxx_GenerateClusterNetworkLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GenerateClusterNetworkLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GenerateClusterNetworkLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 7: // ExportClusterPerformanceHistory
+		op := &xxx_ExportClusterPerformanceHistoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &ExportClusterPerformanceHistoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExportClusterPerformanceHistory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 8: // GenerateNetftLog
+		op := &xxx_GenerateNetFTLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GenerateNetFTLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GenerateNetFTLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
@@ -134,6 +251,18 @@ func (UnimplementedClusterLogExServer) GenerateClusterLog(context.Context, *Gene
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedClusterLogExServer) GenerateClusterHealthLog(context.Context, *GenerateClusterHealthLogRequest) (*GenerateClusterHealthLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterLogExServer) GenerateClusterSetLog(context.Context, *GenerateClusterSetLogRequest) (*GenerateClusterSetLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterLogExServer) GenerateClusterNetworkLog(context.Context, *GenerateClusterNetworkLogRequest) (*GenerateClusterNetworkLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterLogExServer) ExportClusterPerformanceHistory(context.Context, *ExportClusterPerformanceHistoryRequest) (*ExportClusterPerformanceHistoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterLogExServer) GenerateNetFTLog(context.Context, *GenerateNetFTLogRequest) (*GenerateNetFTLogResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
