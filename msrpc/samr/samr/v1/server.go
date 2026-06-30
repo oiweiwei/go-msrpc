@@ -296,6 +296,30 @@ type SamrServer interface {
 
 	// Opnum69NotUsedOnWire operation.
 	// Opnum69NotUsedOnWire
+
+	// Opnum70NotUsedOnWire operation.
+	// Opnum70NotUsedOnWire
+
+	// Opnum71NotUsedOnWire operation.
+	// Opnum71NotUsedOnWire
+
+	// Opnum72NotUsedOnWire operation.
+	// Opnum72NotUsedOnWire
+
+	// SamrUnicodeChangePasswordUser4 operation.
+	UnicodeChangePasswordUser4(context.Context, *UnicodeChangePasswordUser4Request) (*UnicodeChangePasswordUser4Response, error)
+
+	// SamrValidateComputerAccountReuseAttempt operation.
+	ValidateComputerAccountReuseAttempt(context.Context, *ValidateComputerAccountReuseAttemptRequest) (*ValidateComputerAccountReuseAttemptResponse, error)
+
+	// Opnum75NotUsedOnWire operation.
+	// Opnum75NotUsedOnWire
+
+	// Opnum76NotUsedOnWire operation.
+	// Opnum76NotUsedOnWire
+
+	// SamrAccountIsDelegatedManagedServiceAccount operation.
+	AccountIsDelegatedManagedServiceAccount(context.Context, *AccountIsDelegatedManagedServiceAccountRequest) (*AccountIsDelegatedManagedServiceAccountResponse, error)
 }
 
 func RegisterSamrServer(conn dcerpc.Conn, o SamrServer, opts ...dcerpc.Option) {
@@ -886,6 +910,48 @@ func SamrServerHandle(ctx context.Context, o SamrServer, opNum int, r ndr.Reader
 	case 69: // Opnum69NotUsedOnWire
 		// Opnum69NotUsedOnWire
 		return nil, nil
+	case 70: // Opnum70NotUsedOnWire
+		// Opnum70NotUsedOnWire
+		return nil, nil
+	case 71: // Opnum71NotUsedOnWire
+		// Opnum71NotUsedOnWire
+		return nil, nil
+	case 72: // Opnum72NotUsedOnWire
+		// Opnum72NotUsedOnWire
+		return nil, nil
+	case 73: // SamrUnicodeChangePasswordUser4
+		op := &xxx_UnicodeChangePasswordUser4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &UnicodeChangePasswordUser4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UnicodeChangePasswordUser4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 74: // SamrValidateComputerAccountReuseAttempt
+		op := &xxx_ValidateComputerAccountReuseAttemptOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &ValidateComputerAccountReuseAttemptRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ValidateComputerAccountReuseAttempt(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 75: // Opnum75NotUsedOnWire
+		// Opnum75NotUsedOnWire
+		return nil, nil
+	case 76: // Opnum76NotUsedOnWire
+		// Opnum76NotUsedOnWire
+		return nil, nil
+	case 77: // SamrAccountIsDelegatedManagedServiceAccount
+		op := &xxx_AccountIsDelegatedManagedServiceAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &AccountIsDelegatedManagedServiceAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AccountIsDelegatedManagedServiceAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
@@ -1075,6 +1141,15 @@ func (UnimplementedSamrServer) SetDSRMPassword(context.Context, *SetDSRMPassword
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedSamrServer) ValidatePassword(context.Context, *ValidatePasswordRequest) (*ValidatePasswordResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) UnicodeChangePasswordUser4(context.Context, *UnicodeChangePasswordUser4Request) (*UnicodeChangePasswordUser4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) ValidateComputerAccountReuseAttempt(context.Context, *ValidateComputerAccountReuseAttemptRequest) (*ValidateComputerAccountReuseAttemptResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) AccountIsDelegatedManagedServiceAccount(context.Context, *AccountIsDelegatedManagedServiceAccountRequest) (*AccountIsDelegatedManagedServiceAccountResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 

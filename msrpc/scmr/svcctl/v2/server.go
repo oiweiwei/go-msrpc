@@ -1463,6 +1463,15 @@ type SvcctlServer interface {
 	//	+--------------------------------------+----------------------------------------------------------------------------------+
 	CreateWOWService(context.Context, *CreateWOWServiceRequest) (*CreateWOWServiceResponse, error)
 
+	// Opnum61NotUsedOnWire operation.
+	// Opnum61NotUsedOnWire
+
+	// Opnum62NotUsedOnWire operation.
+	// Opnum62NotUsedOnWire
+
+	// Opnum63NotUsedOnWire operation.
+	// Opnum63NotUsedOnWire
+
 	// The ROpenSCManager2 method establishes a connection to server and opens the SCM database
 	// on the specified server.<87>
 	//
@@ -1977,7 +1986,16 @@ func SvcctlServerHandle(ctx context.Context, o SvcctlServer, opNum int, r ndr.Re
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.CreateWOWService(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 61: // ROpenSCManager2
+	case 61: // Opnum61NotUsedOnWire
+		// Opnum61NotUsedOnWire
+		return nil, nil
+	case 62: // Opnum62NotUsedOnWire
+		// Opnum62NotUsedOnWire
+		return nil, nil
+	case 63: // Opnum63NotUsedOnWire
+		// Opnum63NotUsedOnWire
+		return nil, nil
+	case 64: // ROpenSCManager2
 		op := &xxx_OpenSCM2Operation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err

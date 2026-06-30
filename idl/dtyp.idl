@@ -45,6 +45,7 @@ typedef signed __int64 LONG64, *PLONG64;
 typedef const char* LPCSTR;
 typedef const void* LPCVOID;
 typedef const wchar_t* LPCWSTR;
+typedef LPCWSTR PCWSTR;
 typedef char* PSTR, *LPSTR;
 
 typedef wchar_t* LPWSTR, *PWSTR;

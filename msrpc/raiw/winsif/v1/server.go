@@ -351,7 +351,27 @@ type WinsifServer interface {
 	// RPC protocol [MS-RPCE].
 	WorkerThreadUpdate(context.Context, *WorkerThreadUpdateRequest) (*WorkerThreadUpdateResponse, error)
 
-	// R_WinsGetNameAndAddr operation.
+	// The R_WinsGetNameAndAdd method retrieves the NetBIOS name and the corresponding IP
+	// address of the target WINS server.
+	//
+	// Return Values: A 32 bit unsigned integer that indicates the return status. A return
+	// value of ERROR_SUCCESS (0x00000000) indicates that operation completed successfully.
+	// A nonzero return value is a Win32 error code, as specified in [MS-ERREF]. The following
+	// Win32 error codes can be returned:
+	//
+	//	+--------------------------------+-------------------------------------------------+
+	//	|             RETURN             |                                                 |
+	//	|           VALUE/CODE           |                   DESCRIPTION                   |
+	//	|                                |                                                 |
+	//	+--------------------------------+-------------------------------------------------+
+	//	+--------------------------------+-------------------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS       | The call was successful.                        |
+	//	+--------------------------------+-------------------------------------------------+
+	//	| 0x00000005 ERROR_ACCESS_DENIED | The caller doesn't have sufficient permissions. |
+	//	+--------------------------------+-------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	GetNameAndAddr(context.Context, *GetNameAndAddrRequest) (*GetNameAndAddrResponse, error)
 
 	// The R_WinsGetBrowserNames_Old method always returns an ERROR_WINS_INTERNAL error
@@ -668,7 +688,7 @@ func WinsifServerHandle(ctx context.Context, o WinsifServer, opNum int, r ndr.Re
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.WorkerThreadUpdate(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 13: // R_WinsGetNameAndAddr
+	case 13: // R_WinsGetNameAndAdd
 		op := &xxx_GetNameAndAddrOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err

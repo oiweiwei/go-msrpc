@@ -365,7 +365,27 @@ type WinsifClient interface {
 	// RPC protocol [MS-RPCE].
 	WorkerThreadUpdate(context.Context, *WorkerThreadUpdateRequest, ...dcerpc.CallOption) (*WorkerThreadUpdateResponse, error)
 
-	// R_WinsGetNameAndAddr operation.
+	// The R_WinsGetNameAndAdd method retrieves the NetBIOS name and the corresponding IP
+	// address of the target WINS server.
+	//
+	// Return Values: A 32 bit unsigned integer that indicates the return status. A return
+	// value of ERROR_SUCCESS (0x00000000) indicates that operation completed successfully.
+	// A nonzero return value is a Win32 error code, as specified in [MS-ERREF]. The following
+	// Win32 error codes can be returned:
+	//
+	//	+--------------------------------+-------------------------------------------------+
+	//	|             RETURN             |                                                 |
+	//	|           VALUE/CODE           |                   DESCRIPTION                   |
+	//	|                                |                                                 |
+	//	+--------------------------------+-------------------------------------------------+
+	//	+--------------------------------+-------------------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS       | The call was successful.                        |
+	//	+--------------------------------+-------------------------------------------------+
+	//	| 0x00000005 ERROR_ACCESS_DENIED | The caller doesn't have sufficient permissions. |
+	//	+--------------------------------+-------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	GetNameAndAddr(context.Context, *GetNameAndAddrRequest, ...dcerpc.CallOption) (*GetNameAndAddrResponse, error)
 
 	// The R_WinsGetBrowserNames_Old method always returns an ERROR_WINS_INTERNAL error
@@ -1611,7 +1631,7 @@ func (o *StatusResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_TriggerOperation structure represents the R_WinsTrigger operation
 type xxx_TriggerOperation struct {
-	WINSAddr     *raiw.Addr        `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
+	WINSAddr     *raiw.Addr        `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
 	TriggerTypeE raiw.TriggerTypeE `idl:"name:TrigType_e" json:"trigger_type_e"`
 	Return       uint32            `idl:"name:Return" json:"return"`
 }
@@ -1635,7 +1655,7 @@ func (o *xxx_TriggerOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
-	// pWinsAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr != nil {
 			if err := o.WINSAddr.MarshalNDR(ctx, w); err != nil {
@@ -1657,7 +1677,7 @@ func (o *xxx_TriggerOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 }
 
 func (o *xxx_TriggerOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
-	// pWinsAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr == nil {
 			o.WINSAddr = &raiw.Addr{}
@@ -1709,7 +1729,9 @@ func (o *xxx_TriggerOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 
 // TriggerRequest structure represents the R_WinsTrigger operation request
 type TriggerRequest struct {
-	WINSAddr *raiw.Addr `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
+	// pWinsAdd: Address of the WINS server with which the target WINS server performs the
+	// replication operation.
+	WINSAddr *raiw.Addr `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
 	// TrigType_e: The type of replication operation requested.
 	TriggerTypeE raiw.TriggerTypeE `idl:"name:TrigType_e" json:"trigger_type_e"`
 }
@@ -2147,7 +2169,7 @@ func (o *DoScavengingResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // xxx_GetDBRecordsOperation structure represents the R_WinsGetDbRecs operation
 type xxx_GetDBRecordsOperation struct {
-	WINSAddr  *raiw.Addr    `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
+	WINSAddr  *raiw.Addr    `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
 	MinVersNo *raiw.VersNo  `idl:"name:MinVersNo" json:"min_vers_no"`
 	MaxVersNo *raiw.VersNo  `idl:"name:MaxVersNo" json:"max_vers_no"`
 	Records   *raiw.Records `idl:"name:pRecs" json:"records"`
@@ -2173,7 +2195,7 @@ func (o *xxx_GetDBRecordsOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
-	// pWinsAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr != nil {
 			if err := o.WINSAddr.MarshalNDR(ctx, w); err != nil {
@@ -2213,7 +2235,7 @@ func (o *xxx_GetDBRecordsOperation) MarshalNDRRequest(ctx context.Context, w ndr
 }
 
 func (o *xxx_GetDBRecordsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
-	// pWinsAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr == nil {
 			o.WINSAddr = &raiw.Addr{}
@@ -2304,7 +2326,9 @@ func (o *xxx_GetDBRecordsOperation) UnmarshalNDRResponse(ctx context.Context, w 
 
 // GetDBRecordsRequest structure represents the R_WinsGetDbRecs operation request
 type GetDBRecordsRequest struct {
-	WINSAddr *raiw.Addr `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
+	// pWinsAdd: Address of an owner WINS server whose records are retrieved from the target
+	// WINS server.
+	WINSAddr *raiw.Addr `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
 	// MinVersNo: The lower bound on the version range of the records to be retrieved.
 	MinVersNo *raiw.VersNo `idl:"name:MinVersNo" json:"min_vers_no"`
 	// MaxVersNo: The upper bound on the version range of the records to be retrieved.
@@ -2731,7 +2755,7 @@ func (o *BackupResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_DeleteDBRecordsOperation structure represents the R_WinsDelDbRecs operation
 type xxx_DeleteDBRecordsOperation struct {
-	WINSAddr  *raiw.Addr   `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
+	WINSAddr  *raiw.Addr   `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
 	MinVersNo *raiw.VersNo `idl:"name:MinVersNo" json:"min_vers_no"`
 	MaxVersNo *raiw.VersNo `idl:"name:MaxVersNo" json:"max_vers_no"`
 	Return    uint32       `idl:"name:Return" json:"return"`
@@ -2756,7 +2780,7 @@ func (o *xxx_DeleteDBRecordsOperation) MarshalNDRRequest(ctx context.Context, w 
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
-	// pWinsAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr != nil {
 			if err := o.WINSAddr.MarshalNDR(ctx, w); err != nil {
@@ -2796,7 +2820,7 @@ func (o *xxx_DeleteDBRecordsOperation) MarshalNDRRequest(ctx context.Context, w 
 }
 
 func (o *xxx_DeleteDBRecordsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
-	// pWinsAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr == nil {
 			o.WINSAddr = &raiw.Addr{}
@@ -2860,7 +2884,9 @@ func (o *xxx_DeleteDBRecordsOperation) UnmarshalNDRResponse(ctx context.Context,
 
 // DeleteDBRecordsRequest structure represents the R_WinsDelDbRecs operation request
 type DeleteDBRecordsRequest struct {
-	WINSAddr *raiw.Addr `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
+	// pWinsAdd: A pointer to an owner WINS server address whose records are to be deleted
+	// from the target WINS server.
+	WINSAddr *raiw.Addr `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
 	// MinVersNo: The lower bound on the version number of the records to be deleted.
 	MinVersNo *raiw.VersNo `idl:"name:MinVersNo" json:"min_vers_no"`
 	// MaxVersNo: The upper bound on the version number of the records to be deleted.
@@ -2948,8 +2974,8 @@ func (o *DeleteDBRecordsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // xxx_PullRangeOperation structure represents the R_WinsPullRange operation
 type xxx_PullRangeOperation struct {
-	WINSAddr  *raiw.Addr   `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
-	OwnerAddr *raiw.Addr   `idl:"name:pOwnerAddr;pointer:ref" json:"owner_addr"`
+	WINSAddr  *raiw.Addr   `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
+	OwnerAddr *raiw.Addr   `idl:"name:pOwnerAdd;pointer:ref" json:"owner_addr"`
 	MinVersNo *raiw.VersNo `idl:"name:MinVersNo" json:"min_vers_no"`
 	MaxVersNo *raiw.VersNo `idl:"name:MaxVersNo" json:"max_vers_no"`
 	Return    uint32       `idl:"name:Return" json:"return"`
@@ -2974,7 +3000,7 @@ func (o *xxx_PullRangeOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
-	// pWinsAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr != nil {
 			if err := o.WINSAddr.MarshalNDR(ctx, w); err != nil {
@@ -2986,7 +3012,7 @@ func (o *xxx_PullRangeOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 			}
 		}
 	}
-	// pOwnerAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pOwnerAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.OwnerAddr != nil {
 			if err := o.OwnerAddr.MarshalNDR(ctx, w); err != nil {
@@ -3026,7 +3052,7 @@ func (o *xxx_PullRangeOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 }
 
 func (o *xxx_PullRangeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
-	// pWinsAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr == nil {
 			o.WINSAddr = &raiw.Addr{}
@@ -3035,7 +3061,7 @@ func (o *xxx_PullRangeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// pOwnerAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pOwnerAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.OwnerAddr == nil {
 			o.OwnerAddr = &raiw.Addr{}
@@ -3099,8 +3125,10 @@ func (o *xxx_PullRangeOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 
 // PullRangeRequest structure represents the R_WinsPullRange operation request
 type PullRangeRequest struct {
-	WINSAddr  *raiw.Addr `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
-	OwnerAddr *raiw.Addr `idl:"name:pOwnerAddr;pointer:ref" json:"owner_addr"`
+	// pWinsAdd: The address of the WINS server from which the entries are pulled.
+	WINSAddr *raiw.Addr `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
+	// pOwnerAdd: The address of the owner WINS server whose entries are pulled.
+	OwnerAddr *raiw.Addr `idl:"name:pOwnerAdd;pointer:ref" json:"owner_addr"`
 	// MinVersNo: The lower bound on the range of version numbers for the records to be
 	// pulled.
 	MinVersNo *raiw.VersNo `idl:"name:MinVersNo" json:"min_vers_no"`
@@ -3645,18 +3673,18 @@ func (o *WorkerThreadUpdateResponse) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
-// xxx_GetNameAndAddrOperation structure represents the R_WinsGetNameAndAddr operation
+// xxx_GetNameAndAddrOperation structure represents the R_WinsGetNameAndAdd operation
 type xxx_GetNameAndAddrOperation struct {
-	WINSAddr *raiw.Addr `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
+	WINSAddr *raiw.Addr `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
 	UNCName  string     `idl:"name:pUncName;size_is:(80);string" json:"unc_name"`
 	Return   uint32     `idl:"name:Return" json:"return"`
 }
 
-// OpNum returns the operation number of R_WinsGetNameAndAddr operation.
+// OpNum returns the operation number of R_WinsGetNameAndAdd operation.
 func (o *xxx_GetNameAndAddrOperation) OpNum() int { return 13 }
 
-// OpName returns the operation name of R_WinsGetNameAndAddr operation.
-func (o *xxx_GetNameAndAddrOperation) OpName() string { return "/winsif/v1/R_WinsGetNameAndAddr" }
+// OpName returns the operation name of R_WinsGetNameAndAdd operation.
+func (o *xxx_GetNameAndAddrOperation) OpName() string { return "/winsif/v1/R_WinsGetNameAndAdd" }
 
 func (o *xxx_GetNameAndAddrOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
@@ -3692,7 +3720,7 @@ func (o *xxx_GetNameAndAddrOperation) MarshalNDRResponse(ctx context.Context, w 
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// pWinsAddr {out} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {out} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr != nil {
 			if err := o.WINSAddr.MarshalNDR(ctx, w); err != nil {
@@ -3757,7 +3785,7 @@ func (o *xxx_GetNameAndAddrOperation) MarshalNDRResponse(ctx context.Context, w 
 }
 
 func (o *xxx_GetNameAndAddrOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// pWinsAddr {out} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {out} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr == nil {
 			o.WINSAddr = &raiw.Addr{}
@@ -3806,7 +3834,7 @@ func (o *xxx_GetNameAndAddrOperation) UnmarshalNDRResponse(ctx context.Context, 
 	return nil
 }
 
-// GetNameAndAddrRequest structure represents the R_WinsGetNameAndAddr operation request
+// GetNameAndAddrRequest structure represents the R_WinsGetNameAndAdd operation request
 type GetNameAndAddrRequest struct {
 }
 
@@ -3842,17 +3870,21 @@ func (o *GetNameAndAddrRequest) MakeResponse() *GetNameAndAddrResponse {
 	return &GetNameAndAddrResponse{}
 }
 
-// OpNum returns the operation number of R_WinsGetNameAndAddr operation.
+// OpNum returns the operation number of R_WinsGetNameAndAdd operation.
 func (o *GetNameAndAddrRequest) OpNum() int { return 13 }
 
-// OpName returns the operation name of R_WinsGetNameAndAddr operation.
-func (o *GetNameAndAddrRequest) OpName() string { return "/winsif/v1/R_WinsGetNameAndAddr" }
+// OpName returns the operation name of R_WinsGetNameAndAdd operation.
+func (o *GetNameAndAddrRequest) OpName() string { return "/winsif/v1/R_WinsGetNameAndAdd" }
 
-// GetNameAndAddrResponse structure represents the R_WinsGetNameAndAddr operation response
+// GetNameAndAddrResponse structure represents the R_WinsGetNameAndAdd operation response
 type GetNameAndAddrResponse struct {
-	WINSAddr *raiw.Addr `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
-	UNCName  string     `idl:"name:pUncName;size_is:(80);string" json:"unc_name"`
-	// Return: The R_WinsGetNameAndAddr return value.
+	// pWinsAdd:  A pointer to a structure containing the IP address of the target WINS
+	// server.
+	WINSAddr *raiw.Addr `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
+	// pUncName: A  pointer to a NULL-terminated string containing the NetBIOS name of
+	// the target WINS server.
+	UNCName string `idl:"name:pUncName;size_is:(80);string" json:"unc_name"`
+	// Return: The R_WinsGetNameAndAdd return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
@@ -4065,7 +4097,7 @@ func (o *GetBrowserNamesOldResponse) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // xxx_DeleteWINSOperation structure represents the R_WinsDeleteWins operation
 type xxx_DeleteWINSOperation struct {
-	WINSAddr *raiw.Addr `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
+	WINSAddr *raiw.Addr `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
 	Return   uint32     `idl:"name:Return" json:"return"`
 }
 
@@ -4088,7 +4120,7 @@ func (o *xxx_DeleteWINSOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
-	// pWinsAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr != nil {
 			if err := o.WINSAddr.MarshalNDR(ctx, w); err != nil {
@@ -4104,7 +4136,7 @@ func (o *xxx_DeleteWINSOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 }
 
 func (o *xxx_DeleteWINSOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
-	// pWinsAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr == nil {
 			o.WINSAddr = &raiw.Addr{}
@@ -4150,7 +4182,9 @@ func (o *xxx_DeleteWINSOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 
 // DeleteWINSRequest structure represents the R_WinsDeleteWins operation request
 type DeleteWINSRequest struct {
-	WINSAddr *raiw.Addr `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
+	// pWinsAdd: A pointer to the address of the owner WINS server whose records are to
+	// be deleted from the target WINS server.
+	WINSAddr *raiw.Addr `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
 }
 
 func (o *DeleteWINSRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteWINSOperation) *xxx_DeleteWINSOperation {
@@ -4596,7 +4630,7 @@ func (o *GetBrowserNamesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // xxx_GetDBRecordsByNameOperation structure represents the R_WinsGetDbRecsByName operation
 type xxx_GetDBRecordsByNameOperation struct {
-	WINSAddr               *raiw.Addr    `idl:"name:pWinsAddr;pointer:unique" json:"wins_addr"`
+	WINSAddr               *raiw.Addr    `idl:"name:pWinsAdd;pointer:unique" json:"wins_addr"`
 	Location               uint32        `idl:"name:Location" json:"location"`
 	Name                   []byte        `idl:"name:pName;size_is:((NameLen+1));pointer:unique" json:"name"`
 	NameLength             uint32        `idl:"name:NameLen" json:"name_length"`
@@ -4631,10 +4665,10 @@ func (o *xxx_GetDBRecordsByNameOperation) MarshalNDRRequest(ctx context.Context,
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
-	// pWinsAddr {in} (1:{pointer=unique, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=unique, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr != nil {
-			_ptr_pWinsAddr := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_ptr_pWinsAdd := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if o.WINSAddr != nil {
 					if err := o.WINSAddr.MarshalNDR(ctx, w); err != nil {
 						return err
@@ -4646,7 +4680,7 @@ func (o *xxx_GetDBRecordsByNameOperation) MarshalNDRRequest(ctx context.Context,
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.WINSAddr, _ptr_pWinsAddr); err != nil {
+			if err := w.WritePointer(&o.WINSAddr, _ptr_pWinsAdd); err != nil {
 				return err
 			}
 		} else {
@@ -4725,9 +4759,9 @@ func (o *xxx_GetDBRecordsByNameOperation) MarshalNDRRequest(ctx context.Context,
 }
 
 func (o *xxx_GetDBRecordsByNameOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
-	// pWinsAddr {in} (1:{pointer=unique, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=unique, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
-		_ptr_pWinsAddr := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		_ptr_pWinsAdd := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.WINSAddr == nil {
 				o.WINSAddr = &raiw.Addr{}
 			}
@@ -4736,8 +4770,8 @@ func (o *xxx_GetDBRecordsByNameOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pWinsAddr := func(ptr interface{}) { o.WINSAddr = *ptr.(**raiw.Addr) }
-		if err := w.ReadPointer(&o.WINSAddr, _s_pWinsAddr, _ptr_pWinsAddr); err != nil {
+		_s_pWinsAdd := func(ptr interface{}) { o.WINSAddr = *ptr.(**raiw.Addr) }
+		if err := w.ReadPointer(&o.WINSAddr, _s_pWinsAdd, _ptr_pWinsAdd); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4863,7 +4897,9 @@ func (o *xxx_GetDBRecordsByNameOperation) UnmarshalNDRResponse(ctx context.Conte
 
 // GetDBRecordsByNameRequest structure represents the R_WinsGetDbRecsByName operation request
 type GetDBRecordsByNameRequest struct {
-	WINSAddr *raiw.Addr `idl:"name:pWinsAddr;pointer:unique" json:"wins_addr"`
+	// pWinsAdd: A pointer to the address of the owner WINS server whose records are to
+	// be retrieved. If the pointer is NULL, the records for all owners are retrieved.
+	WINSAddr *raiw.Addr `idl:"name:pWinsAdd;pointer:unique" json:"wins_addr"`
 	// Location: A value specifying the direction in which the database is searched. If
 	// the value is zero, the database is searched forward starting from the beginning.
 	// If the value is 1, the database is searched backward starting from the last record

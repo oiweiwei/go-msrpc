@@ -10,10 +10,6 @@ interface winspool {
  
 import "ms-dtyp.idl";
  
-// #if __midl < 700
-// #define disable_consistency_check
-// #endif
- 
 // [MS-RPRN] common constants
 #define TABLE_DWORD              0x1
 #define TABLE_STRING             0x2
@@ -252,7 +248,7 @@ typedef struct _JOB_INFO_1 {
     [string] wchar_t* pUserName;
     [string] wchar_t* pDocument;
     [string] wchar_t* pDatatype;
-    [string] wchar_t* __pStatus;
+    [string] wchar_t* pStatus;
     DWORD Status;
     DWORD Priority;
     DWORD Position;
@@ -273,7 +269,7 @@ typedef struct _JOB_INFO_2 {
     [string] wchar_t* pParameters;
     [string] wchar_t* pDriverName;
     ULONG_PTR pDevMode;
-    [string] wchar_t* __pStatus;
+    [string] wchar_t* pStatus;
     ULONG_PTR pSecurityDescriptor;
     DWORD Status;
     DWORD Priority;
@@ -305,7 +301,7 @@ typedef struct _JOB_INFO_4 {
     [string] wchar_t* pParameters;
     [string] wchar_t* pDriverName;
     ULONG_PTR pDevMode;
-    [string] wchar_t* __pStatus;
+    [string] wchar_t* pStatus;
     ULONG_PTR pSecurityDescriptor;
     DWORD Status;
     DWORD Priority;
@@ -562,7 +558,7 @@ typedef struct _PORT_CONTAINER {
  
 typedef struct _PORT_VAR_CONTAINER {
     DWORD cbMonitorData;
-    [size_is(cbMonitorData), unique, disable_consistency_check] BYTE*
+    [size_is(cbMonitorData), unique] BYTE*
       pMonitorData;
 } PORT_VAR_CONTAINER;
  
@@ -601,15 +597,15 @@ typedef struct _RPC_BIDI_DATA {
     DWORD dwBidiType;
     [switch_is(dwBidiType)] union {
     [case(BIDI_NULL, BIDI_BOOL)]
-        int boolData; // bData
+        int bData;
     [case(BIDI_INT)]
-        long intData; // iData
+        long iData;
     [case(BIDI_STRING, BIDI_TEXT, BIDI_ENUM)]
-        [string,unique] wchar_t* stringData; // sData
+        [string,unique] wchar_t* sData;
     [case(BIDI_FLOAT)]
-        float floatData; // fData
+        float fData;
     [case(BIDI_BLOB)]
-        RPC_BINARY_CONTAINER binaryData; // biData
+        RPC_BINARY_CONTAINER biData;
     } u;
 } RPC_BIDI_DATA;
  
@@ -701,9 +697,9 @@ typedef
 typedef struct _RPC_V2_NOTIFY_INFO_DATA {
     unsigned short Type;
     unsigned short Field;
-    DWORD NotifyInfoDataType; // Reserved ?
+    DWORD NotifyInfoDataType; // go-msrpc: Reserved
     DWORD Id;
-    [switch_is(NotifyInfoDataType & 0xffff)]  // Reserved
+    [switch_is(NotifyInfoDataType & 0xFFFF)] // go-msrpc: Reserved
       RPC_V2_NOTIFY_INFO_DATA_DATA Data;
 } RPC_V2_NOTIFY_INFO_DATA;
  
@@ -740,7 +736,7 @@ typedef struct {
         [case(kRpcPropertyTypeByte)]
             BYTE              propertyByte;
         [case(kRpcPropertyTypeBuffer)]
-            struct _PropertyBlob {
+            struct _PropertyBlob /* go-msrpc: anonymous struct */ {
                                  DWORD  cbBuf;
                 [size_is(cbBuf)] BYTE   *pBuf;
             } propertyBlob;
@@ -837,7 +833,7 @@ RpcEnumPrinters(
    [in] DWORD Flags,
    [in, string, unique]  STRING_HANDLE Name,
    [in] DWORD Level,
-   [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+   [in, out, unique, size_is(cbBuf)] BYTE*
        pPrinterEnum,
    [in] DWORD  cbBuf,
    [out] DWORD*  pcbNeeded,
@@ -866,7 +862,7 @@ RpcGetJob(
    [in] PRINTER_HANDLE hPrinter,
    [in] DWORD JobId,
    [in] DWORD Level,
-   [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+   [in, out, unique, size_is(cbBuf)] BYTE*
        pJob,
    [in] DWORD cbBuf,
    [out] DWORD* pcbNeeded
@@ -878,7 +874,7 @@ RpcEnumJobs(
    [in] DWORD FirstJob,
    [in] DWORD NoJobs,
    [in] DWORD Level,
-   [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+   [in, out, unique, size_is(cbBuf)] BYTE*
        pJob,
    [in] DWORD cbBuf,
    [out] DWORD* pcbNeeded,
@@ -912,7 +908,7 @@ DWORD
 RpcGetPrinter(
     [in] PRINTER_HANDLE hPrinter,
     [in] DWORD Level,
-    [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+    [in, out, unique, size_is(cbBuf)] BYTE*
         pPrinter,
     [in] DWORD cbBuf,
     [out] DWORD* pcbNeeded
@@ -929,7 +925,7 @@ RpcEnumPrinterDrivers(
    [in, string, unique] STRING_HANDLE pName,
    [in, string, unique] wchar_t* pEnvironment,
    [in] DWORD Level,
-   [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+   [in, out, unique, size_is(cbBuf)] BYTE*
        pDrivers,
    [in] DWORD cbBuf,
    [out] DWORD* pcbNeeded,
@@ -941,7 +937,7 @@ RpcGetPrinterDriver(
    [in] PRINTER_HANDLE hPrinter,
    [in, string, unique] wchar_t* pEnvironment,
    [in] DWORD Level,
-   [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+   [in, out, unique, size_is(cbBuf)] BYTE*
         pDriver,
    [in] DWORD cbBuf,
    [out] DWORD* pcbNeeded
@@ -952,7 +948,7 @@ RpcGetPrinterDriverDirectory(
     [in, string, unique] STRING_HANDLE  pName,
     [in, string, unique] wchar_t*  pEnvironment,
     [in] DWORD Level,
-    [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+    [in, out, unique, size_is(cbBuf)] BYTE*
          pDriverDirectory,
     [in] DWORD cbBuf,
     [out] DWORD* pcbNeeded
@@ -978,7 +974,7 @@ RpcEnumPrintProcessors(
    [in, string, unique] STRING_HANDLE pName,
    [in, string, unique] wchar_t* pEnvironment,
    [in] DWORD Level,
-   [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+   [in, out, unique, size_is(cbBuf)] BYTE*
         pPrintProcessorInfo,
    [in] DWORD cbBuf,
    [out] DWORD* pcbNeeded,
@@ -990,7 +986,7 @@ RpcGetPrintProcessorDirectory(
     [in, string, unique] STRING_HANDLE  pName,
     [in, string, unique] wchar_t*  pEnvironment,
     [in] DWORD Level,
-    [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+    [in, out, unique, size_is(cbBuf)] BYTE*
          pPrintProcessorDirectory,
     [in] DWORD cbBuf,
     [out] DWORD* pcbNeeded
@@ -1043,7 +1039,7 @@ DWORD
 RpcAddJob(
     [in] PRINTER_HANDLE  hPrinter,
     [in] DWORD Level,
-    [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+    [in, out, unique, size_is(cbBuf)] BYTE*
          pAddJob,
     [in] DWORD cbBuf,
     [out] DWORD* pcbNeeded
@@ -1078,7 +1074,7 @@ DWORD
 RpcWaitForPrinterChange(
    [in] PRINTER_HANDLE hPrinter,
    [in] DWORD Flags,
-   [out] DWORD* pFlagsOut // XXX: pFlags -> pFlagsOut
+   [out] DWORD* pFlags
 );
  
 DWORD
@@ -1103,7 +1099,7 @@ RpcGetForm(
     [in] PRINTER_HANDLE hPrinter,
     [in, string] wchar_t* pFormName,
     [in] DWORD Level,
-    [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+    [in, out, unique, size_is(cbBuf)] BYTE*
          pForm,
     [in] DWORD cbBuf,
     [out] DWORD* pcbNeeded
@@ -1120,7 +1116,7 @@ DWORD
 RpcEnumForms(
    [in] PRINTER_HANDLE hPrinter,
    [in] DWORD Level,
-   [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+   [in, out, unique, size_is(cbBuf)] BYTE*
         pForm,
    [in] DWORD  cbBuf,
    [out] DWORD*  pcbNeeded,
@@ -1131,7 +1127,7 @@ DWORD
 RpcEnumPorts(
    [in, string, unique] STRING_HANDLE pName,
    [in] DWORD Level,
-   [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+   [in, out, unique, size_is(cbBuf)] BYTE*
         pPort,
    [in] DWORD  cbBuf,
    [out] DWORD*  pcbNeeded,
@@ -1142,7 +1138,7 @@ DWORD
 RpcEnumMonitors(
    [in, string, unique] STRING_HANDLE pName,
    [in] DWORD Level,
-   [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+   [in, out, unique, size_is(cbBuf)] BYTE*
         pMonitor,
    [in] DWORD  cbBuf,
    [out] DWORD*  pcbNeeded,
@@ -1224,7 +1220,7 @@ RpcEnumPrintProcessorDatatypes(
    [in, string, unique] STRING_HANDLE pName,
    [in, string, unique] wchar_t* pPrintProcessorName,
    [in] DWORD Level,
-   [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+   [in, out, unique, size_is(cbBuf)] BYTE*
         pDatatypes,
    [in] DWORD  cbBuf,
    [out] DWORD*  pcbNeeded,
@@ -1243,7 +1239,7 @@ RpcGetPrinterDriver2(
    [in] PRINTER_HANDLE hPrinter,
    [in, string, unique] wchar_t* pEnvironment,
    [in] DWORD Level,
-   [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+   [in, out, unique, size_is(cbBuf)] BYTE*
         pDriver,
    [in] DWORD cbBuf,
    [out] DWORD* pcbNeeded,
@@ -1274,7 +1270,7 @@ RpcReplyOpenPrinter(
    [in] DWORD dwPrinterRemote,
    [in] DWORD dwType,
    [in, range(0, 512)] DWORD cbBuffer,
-   [in, unique, size_is(cbBuffer), disable_consistency_check] BYTE*
+   [in, unique, size_is(cbBuffer)] BYTE*
         pBuffer
 );
  
@@ -1283,7 +1279,7 @@ RpcRouterReplyPrinter(
    [in] PRINTER_HANDLE hNotify,
    [in] DWORD fdwFlags,
    [in, range(0, 512)] DWORD cbBuffer,
-   [in, unique, size_is(cbBuffer), disable_consistency_check] BYTE*
+   [in, unique, size_is(cbBuffer)] BYTE*
         pBuffer
 );
  
@@ -1308,7 +1304,7 @@ RpcRemoteFindFirstPrinterChangeNotification(
    [in, string, unique] wchar_t* pszLocalMachine,
     [in] DWORD dwPrinterLocal,
    [in, range(0, 512)] DWORD cbBuffer,
-   [in, out, unique, size_is(cbBuffer), disable_consistency_check]
+   [in, out, unique, size_is(cbBuffer)]
          BYTE* pBuffer
 );
  
@@ -1325,7 +1321,7 @@ RpcRemoteFindFirstPrinterChangeNotificationEx(
    [in] DWORD fdwOptions,
    [in, string, unique] wchar_t* pszLocalMachine,
    [in] DWORD dwPrinterLocal,
-   [in, unique] RPC_V2_NOTIFY_OPTIONS* pNotifyOptions // XXX: pOptions -> pNotifyOptions
+   [in, unique] RPC_V2_NOTIFY_OPTIONS* pOptions
 );
  
 DWORD
@@ -1342,7 +1338,7 @@ DWORD
 RpcRouterRefreshPrinterChangeNotification(
    [in] PRINTER_HANDLE hPrinter,
    [in] DWORD dwColor,
-   [in, unique] RPC_V2_NOTIFY_OPTIONS* pNotifyOptions // XXX: pOptions -> pNotifyOptions,
+   [in, unique] RPC_V2_NOTIFY_OPTIONS* pOptions,
    [out] RPC_V2_NOTIFY_INFO** ppInfo
 );
  
@@ -1380,13 +1376,13 @@ DWORD
 RpcEnumPrinterData(
     [in] PRINTER_HANDLE hPrinter,
     [in] DWORD dwIndex,
-    [out, size_is(cbValueNameIn/sizeof(wchar_t))] wchar_t* pValueName, // XXX: cbValueName -> cbValueNameIn
-    [in]  DWORD cbValueNameIn, // XXX: cbValueName -> cbValueNameIn
-    [out] DWORD* pcbValueNameOut, // XXX: pcbValueName -> pcbValueNameOut
+    [out, size_is(cbValueName/sizeof(wchar_t))] wchar_t* pValueName,
+    [in]  DWORD cbValueName,
+    [out] DWORD* pcbValueName,
     [out] DWORD* pType,
-    [out, size_is(cbDataIn)] BYTE* pData,
-    [in]  DWORD cbDataIn, // XXX: cbData -> cbDataIn
-    [out] DWORD* pcbDataOut // XXX: pcbData -> cbDataOut
+    [out, size_is(cbData)] BYTE* pData,
+    [in]  DWORD cbData,
+    [out] DWORD* pcbData
 );
  
 DWORD
@@ -1429,19 +1425,21 @@ DWORD
 RpcEnumPrinterDataEx(
     [in] PRINTER_HANDLE hPrinter,
     [in, string]  const wchar_t* pKeyName,
-    [out, size_is(cbEnumValuesIn)] BYTE* pEnumValues, // XXX: cbEnumValues -> cbEnumValuesIn
-    [in]  DWORD cbEnumValuesIn, // XXX: cbEnumValues -> cbEnumValuesIn
-    [out] DWORD* pcbEnumValuesOut, // XXX: pcbEnumValues -> pcbEnumValuesOut
-    [out] DWORD* numEnumValues // XXX: pnEnumValues -> numEnumValues
+    [out, size_is(cbEnumValues)] BYTE* pEnumValues,
+    [in]  DWORD cbEnumValues,
+    [out] DWORD* pcbEnumValues,
+    [out] DWORD* pnEnumValues
+
 );
  
 DWORD
 RpcEnumPrinterKey(
     [in] PRINTER_HANDLE hPrinter,
     [in, string] const wchar_t* pKeyName,
-    [out, size_is(cbSubkeyIn/sizeof(wchar_t))] wchar_t* pSubkey, // XXX: cbSubkey -> cbSubkeyIn
-    [in]  DWORD cbSubkeyIn, // XXX: cbSubkey -> cbSubkeyIn
-    [out] DWORD* pcbSubkeyOut // XXX: pcbSubkey -> pcbSubkeyOut
+    [out, size_is(cbSubkey/sizeof(wchar_t))] wchar_t* pSubkey,
+    [in]  DWORD cbSubkey,
+    [out] DWORD* pcbSubkey
+
 );
  
 DWORD
@@ -1486,7 +1484,7 @@ RpcDeletePerMachineConnection(
 DWORD
 RpcEnumPerMachineConnections(
    [in, string, unique]  STRING_HANDLE pServer,
-   [in, out, unique, size_is(cbBuf), disable_consistency_check] BYTE*
+   [in, out, unique, size_is(cbBuf)] BYTE*
         pPrinterEnum,
    [in]  DWORD  cbBuf,
    [out] DWORD*  pcbNeeded,
@@ -1682,5 +1680,4 @@ RpcIppSetPrinterAttributes(
     [out, ref] DWORD* ippResponseBufferSize,
     [out, size_is(, *ippResponseBufferSize), ref] BYTE** ippResponseBuffer
 );
- 
 }

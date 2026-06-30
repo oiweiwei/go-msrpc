@@ -1,5 +1,5 @@
 import "ms-dtyp.idl";
- 
+
 [
     uuid( 338CD001-2244-31F1-AAAA-900038001003 ),
     pointer_default( unique ),
@@ -10,11 +10,12 @@ interface winreg
     typedef RPC_UNICODE_STRING RRP_UNICODE_STRING, *PRRP_UNICODE_STRING;
     typedef [context_handle] HANDLE    RPC_HKEY;
     typedef                  RPC_HKEY  *PRPC_HKEY;
- 
+
     typedef [handle] PWCHAR PREGISTRY_SERVER_NAME;
-    typedef DWORD           SECURITY_INFORMATION, 
+    typedef DWORD           SECURITY_INFORMATION,
                            *PSECURITY_INFORMATION;
 
+    /* go-msrpc */
     const SECURITY_INFORMATION OWNER_SECURITY_INFORMATION = 0x00000001;
     const SECURITY_INFORMATION GROUP_SECURITY_INFORMATION = 0x00000002;
     const SECURITY_INFORMATION DACL_SECURITY_INFORMATION = 0x00000004;
@@ -37,16 +38,19 @@ interface winreg
     const DWORD REG_QWORD = 11;
     const DWORD REG_QWORD_LITTLE_ENDIAN = 11;
     const DWORD REG_SZ = 1;
- 
-    typedef struct value_ent {  
-        PRPC_UNICODE_STRING   ve_valuename;  
-        DWORD             ve_valuelen;  
-        /* XXX: LPDWORD */ DWORD           ve_valueptr;
+    /* go-msrpc */
+
+    typedef struct value_ent {
+        PRPC_UNICODE_STRING   ve_valuename;
+        DWORD             ve_valuelen;
+        /* go-msrpc: LPDWORD */
+        DWORD           ve_valueptr;
         DWORD             ve_type;
     } RVALENT,  *PRVALENT;
- 
+
     typedef ULONG REGSAM;
 
+    /* go-msrpc */
     const REGSAM KEY_QUERY_VALUE = 0x00000001;
     const REGSAM KEY_SET_VALUE = 0x00000002;
     const REGSAM KEY_CREATE_SUB_KEY = 0x00000004;
@@ -54,63 +58,64 @@ interface winreg
     const REGSAM KEY_CREATE_LINK = 0x00000020;
     const REGSAM KEY_WOW64_64KEY = 0x00000100;
     const REGSAM KEY_WOW64_32KEY = 0x00000200;
- 
+    /* go-msrpc */
+
     typedef struct _RPC_SECURITY_DESCRIPTOR {
         [ size_is( cbInSecurityDescriptor ),
-        length_is( cbOutSecurityDescriptor ) ] 
+        length_is( cbOutSecurityDescriptor ) ]
             PBYTE lpSecurityDescriptor;
         DWORD cbInSecurityDescriptor;
         DWORD cbOutSecurityDescriptor;
     } RPC_SECURITY_DESCRIPTOR, *PRPC_SECURITY_DESCRIPTOR;
- 
+
     typedef struct _RPC_SECURITY_ATTRIBUTES {
         DWORD nLength;
         RPC_SECURITY_DESCRIPTOR RpcSecurityDescriptor;
         BOOLEAN bInheritHandle;
     } RPC_SECURITY_ATTRIBUTES, *PRPC_SECURITY_ATTRIBUTES;
- 
+
     // method declarations
- 
+
     error_status_t
     OpenClassesRoot(
         [ in, unique ] PREGISTRY_SERVER_NAME ServerName,
         [ in ] REGSAM  samDesired,
         [ out ] PRPC_HKEY phKey
         );
- 
+
     error_status_t
     OpenCurrentUser(
         [ in, unique ] PREGISTRY_SERVER_NAME ServerName,
         [ in ] REGSAM  samDesired,
         [ out ] PRPC_HKEY phKey
         );
- 
+
     error_status_t
     OpenLocalMachine(
         [ in, unique ] PREGISTRY_SERVER_NAME ServerName,
         [ in ] REGSAM  samDesired,
         [ out ] PRPC_HKEY phKey
         );
- 
+
     error_status_t
     OpenPerformanceData(
         [ in, unique ] PREGISTRY_SERVER_NAME ServerName,
         [ in ] REGSAM  samDesired,
         [ out ] PRPC_HKEY phKey
         );
- 
+
     error_status_t
     OpenUsers(
         [ in, unique ] PREGISTRY_SERVER_NAME ServerName,
         [ in ] REGSAM  samDesired,
         [ out ] PRPC_HKEY phKey
         );
- 
+
     error_status_t
     BaseRegCloseKey(
         [ in, out ] PRPC_HKEY hKey
         );
- 
+
     error_status_t
     BaseRegCreateKey(
         [ in ] RPC_HKEY hKey,
@@ -122,20 +127,20 @@ interface winreg
         [ out ] PRPC_HKEY phkResult,
         [ in, out, unique ] LPDWORD lpdwDisposition
         );
- 
+
     error_status_t
     BaseRegDeleteKey(
         [ in ] RPC_HKEY hKey,
         [ in ] PRRP_UNICODE_STRING lpSubKey
         );
- 
+
     error_status_t
     BaseRegDeleteValue(
         [ in ] RPC_HKEY hKey,
         [ in ] PRRP_UNICODE_STRING lpValueName
         );
- 
-    error_status_t 
+
+    error_status_t
     BaseRegEnumKey(
         [in] RPC_HKEY hKey,
         [in] DWORD dwIndex,
@@ -143,9 +148,9 @@ interface winreg
         [out] PRRP_UNICODE_STRING lpNameOut,
         [in, unique] PRRP_UNICODE_STRING lpClassIn,
         [out] PRPC_UNICODE_STRING *lplpClassOut,
-        [in, out, unique] PFILETIME lpftLastWriteTime    
+        [in, out, unique] PFILETIME lpftLastWriteTime
     );
- 
+
     error_status_t
     BaseRegEnumValue (
         [ in ] RPC_HKEY hKey,
@@ -153,18 +158,18 @@ interface winreg
         [ in ] PRRP_UNICODE_STRING lpValueNameIn,
         [ out ] PRPC_UNICODE_STRING lpValueNameOut,
         [ in, out, unique ] LPDWORD lpType,
-        [ in, out, unique, size_is( lpcbData ? *lpcbData : 0 ), 
+        [ in, out, unique, size_is( lpcbData ? *lpcbData : 0 ),
             length_is ( lpcbLen ? *lpcbLen : 0 ),
             range(0, 0x4000000) ] LPBYTE lpData,
         [ in, out, unique ] LPDWORD lpcbData,
         [ in, out, unique ] LPDWORD lpcbLen
         );
- 
+
     error_status_t
     BaseRegFlushKey(
         [ in ] RPC_HKEY hKey
         );
- 
+
     error_status_t
     BaseRegGetKeySecurity(
         [ in ] RPC_HKEY hKey,
@@ -172,16 +177,16 @@ interface winreg
         [ in ]  PRPC_SECURITY_DESCRIPTOR pRpcSecurityDescriptorIn,
         [ out ] PRPC_SECURITY_DESCRIPTOR pRpcSecurityDescriptorOut
         );
- 
+
     error_status_t
     BaseRegLoadKey(
         [ in ] RPC_HKEY hKey,
         [ in ] PRRP_UNICODE_STRING lpSubKey,
         [ in ] PRRP_UNICODE_STRING lpFile
         );
- 
+
     void Opnum14NotImplemented();
- 
+
     error_status_t
     BaseRegOpenKey(
         [ in ] RPC_HKEY hKey,
@@ -190,7 +195,7 @@ interface winreg
         [ in ] REGSAM  samDesired,
         [ out ] PRPC_HKEY phkResult
         );
- 
+
     error_status_t
     BaseRegQueryInfoKey(
         [ in ] RPC_HKEY hKey,
@@ -205,19 +210,19 @@ interface winreg
         [ out ] LPDWORD lpcbSecurityDescriptor,
         [ out ] PFILETIME lpftLastWriteTime
         );
- 
+
     error_status_t
     BaseRegQueryValue(
         [ in ] RPC_HKEY hKey,
         [ in ] PRRP_UNICODE_STRING lpValueName,
         [ in, out, unique ] LPDWORD lpType,
-        [ in, out, unique, size_is( lpcbData ? *lpcbData : 0 ), 
+        [ in, out, unique, size_is( lpcbData ? *lpcbData : 0 ),
             length_is ( lpcbLen ? *lpcbLen : 0 ),
             range(0, 0x4000000) ] LPBYTE lpData,
         [ in, out, unique ] LPDWORD lpcbData,
         [ in, out, unique ] LPDWORD lpcbLen
         );
- 
+
     error_status_t
     BaseRegReplaceKey(
         [ in ] RPC_HKEY  hKey,
@@ -225,28 +230,28 @@ interface winreg
         [ in ] PRRP_UNICODE_STRING lpNewFile,
         [ in ] PRRP_UNICODE_STRING lpOldFile
         );
- 
+
     error_status_t
     BaseRegRestoreKey(
         [ in ] RPC_HKEY hKey,
         [ in ] PRRP_UNICODE_STRING lpFile,
         [ in ] DWORD    Flags
         );
- 
+
     error_status_t
     BaseRegSaveKey(
         [ in ] RPC_HKEY hKey,
         [ in ] PRRP_UNICODE_STRING lpFile,
         [ in, unique ] PRPC_SECURITY_ATTRIBUTES pSecurityAttributes
         );
- 
+
     error_status_t
     BaseRegSetKeySecurity(
         [ in ] RPC_HKEY hKey,
         [ in ] SECURITY_INFORMATION SecurityInformation,
         [ in ] PRPC_SECURITY_DESCRIPTOR pRpcSecurityDescriptor
         );
- 
+
     error_status_t
     BaseRegSetValue(
         [ in ] RPC_HKEY hKey,
@@ -255,48 +260,48 @@ interface winreg
         [ in, size_is( cbData )] LPBYTE lpData,
         [ in ] DWORD cbData
         );
- 
+
     error_status_t
     BaseRegUnLoadKey(
         [ in ] RPC_HKEY  hKey,
         [ in ] PRRP_UNICODE_STRING lpSubKey
         );
- 
+
     void Opnum24NotImplemented();
- 
+
     void Opnum25NotImplemented();
- 
+
     error_status_t
     BaseRegGetVersion(
         [ in ] RPC_HKEY hKey,
         [ out ] LPDWORD lpdwVersion
         );
- 
+
     error_status_t
     OpenCurrentConfig(
         [ in, unique ] PREGISTRY_SERVER_NAME ServerName,
         [ in ] REGSAM  samDesired,
         [ out ] PRPC_HKEY phKey
         );
- 
+
     void Opnum28NotImplemented();
- 
+
     error_status_t
     BaseRegQueryMultipleValues(
         [ in ] RPC_HKEY hKey,
-        [ in, size_is(num_vals), length_is(num_vals) ] 
+        [ in, size_is(num_vals), length_is(num_vals) ]
             PRVALENT val_listIn,
-        [ out, size_is(num_vals), length_is(num_vals) ] 
+        [ out, size_is(num_vals), length_is(num_vals) ]
             PRVALENT val_listOut,
         [ in ] DWORD num_vals,
-        [ in, out, unique, size_is(*ldwTotsize), 
+        [ in, out, unique, size_is(*ldwTotsize),
             length_is(*ldwTotsize) ] char* lpvalueBuf,
         [ in, out, ref ] LPDWORD ldwTotsize
         );
- 
- 
+
+
     void Opnum30NotImplemented();
- 
+
     error_status_t
     BaseRegSaveKeyEx(
         [ in ] RPC_HKEY hKey,
@@ -304,27 +309,27 @@ interface winreg
         [ in, unique ] PRPC_SECURITY_ATTRIBUTES pSecurityAttributes,
         [ in ] DWORD    Flags
         );
- 
+
     error_status_t
     OpenPerformanceText(
         [ in, unique ] PREGISTRY_SERVER_NAME ServerName,
         [ in ] REGSAM  samDesired,
         [ out ] PRPC_HKEY phKey
         );
- 
+
     error_status_t
     OpenPerformanceNlsText(
         [ in, unique ] PREGISTRY_SERVER_NAME ServerName,
         [ in ] REGSAM  samDesired,
         [ out ] PRPC_HKEY phKey
         );
-        
+
     error_status_t
     BaseRegQueryMultipleValues2(
         [ in ] RPC_HKEY hKey,
-        [ in, size_is(num_vals), length_is(num_vals) ] 
+        [ in, size_is(num_vals), length_is(num_vals) ]
             PRVALENT val_listIn,
-        [ out, size_is(num_vals), length_is(num_vals) ] 
+        [ out, size_is(num_vals), length_is(num_vals) ]
             PRVALENT val_listOut,
         [ in ] DWORD num_vals,
         [ in, out, unique, size_is(*ldwTotsize), length_is(*ldwTotsize) ]
@@ -332,7 +337,7 @@ interface winreg
         [ in ] LPDWORD ldwTotsize,
         [ out ] LPDWORD ldwRequiredSize
         );
- 
+
     error_status_t
     BaseRegDeleteKeyEx(
         [ in ] RPC_HKEY hKey,
@@ -340,5 +345,5 @@ interface winreg
         [ in ] REGSAM AccessMask,
         [ in ] DWORD Reserved
         );
- 
+
 }

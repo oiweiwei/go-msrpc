@@ -57,11 +57,11 @@ typedef enum tagEEComputerNamePresent
 {
 eecnpPresent = 1,
 eecnpNotPresent
-} EEComputerNamePresentType;
+} EEComputerNamePresent;
  
 typedef struct tagEEComputerName
 {
-EEComputerNamePresentType Type;
+EEComputerNamePresent Type;
 [switch_type(short),switch_is(Type)] union {
 [case(1)] EEUString Name;
 [case(2)] ;

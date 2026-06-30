@@ -1,19 +1,15 @@
 import "ms-dtyp.idl";
-
-// XXX: ADD_ -> ADDR_
-// XXX: Add -> Addr
-// XXX: pAdd -> Addrs
  
 #define WINSINTF_MAX_NO_RPL_PNRS 25
  
 typedef PVOID LPVOID;
 typedef LARGE_INTEGER WINSINTF_VERS_NO_T;
  
-typedef struct _WINSINTF_ADDR_T {
+typedef struct _WINSINTF_ADD_T {
    BYTE Type;
    DWORD Len;
-   DWORD IPAddr;
-} WINSINTF_ADDR_T, *PWINSINTF_ADDR_T;
+   DWORD IPAdd;
+} WINSINTF_ADD_T, *PWINSINTF_ADD_T;
  
 typedef enum _WINSINTF_PRIORITY_CLASS_E {
    WINSINTF_E_NORMAL = 0,
@@ -38,9 +34,9 @@ typedef struct _WINSINTF_RECORD_ACTION_T {
    [size_is(NameLen + 1)] LPBYTE pName;
    DWORD NameLen;
    DWORD TypOfRec_e;
-   DWORD NoOfAddrs;
-   [unique, size_is(NoOfAddrs)] PWINSINTF_ADDR_T pAddrs;
-   WINSINTF_ADDR_T Addr;
+   DWORD NoOfAdds;
+   [unique, size_is(NoOfAdds)] PWINSINTF_ADD_T pAdd;
+   WINSINTF_ADD_T Add;
    LARGE_INTEGER VersNo;
    BYTE NodeTyp;
    DWORD OwnerId;
@@ -50,7 +46,7 @@ typedef struct _WINSINTF_RECORD_ACTION_T {
 } WINSINTF_RECORD_ACTION_T, *PWINSINTF_RECORD_ACTION_T;
  
 typedef struct _WINSINTF_RPL_COUNTERS_T {
-   WINSINTF_ADDR_T Addr;
+   WINSINTF_ADD_T Add;
    DWORD NoOfRpls;
    DWORD NoOfCommFails;
 } WINSINTF_RPL_COUNTERS_T, *PWINSINTF_RPL_COUNTERS_T;
@@ -87,14 +83,14 @@ typedef struct _WINSINTF_STAT_T {
    [unique, size_is(NoOfPnrs)] PWINSINTF_RPL_COUNTERS_T pRplPnrs;
 } WINSINTF_STAT_T, *PWINSINTF_STAT_T;
  
-typedef struct _WINSINTF_ADDR_VERS_MAP_T {
-   WINSINTF_ADDR_T Addr;
+typedef struct _WINSINTF_ADD_VERS_MAP_T {
+   WINSINTF_ADD_T Add;
    LARGE_INTEGER VersNo;
-} WINSINTF_ADDR_VERS_MAP_T, *PWINSINTF_ADDR_VERS_MAP_T;
+} WINSINTF_ADD_VERS_MAP_T, *PWINSINTF_ADD_VERS_MAP_T;
  
 typedef struct _WINSINTF_RESULTS_T {
    DWORD NoOfOwners;
-   WINSINTF_ADDR_VERS_MAP_T AddrVersMaps[WINSINTF_MAX_NO_RPL_PNRS];
+   WINSINTF_ADD_VERS_MAP_T AddVersMaps[WINSINTF_MAX_NO_RPL_PNRS];
    LARGE_INTEGER MyMaxVersNo;
    DWORD RefreshInterval;
    DWORD TombstoneInterval;
@@ -108,7 +104,7 @@ typedef struct _WINSINTF_RESULTS_T {
 typedef struct _WINSINTF_RESULTS_NEW_T {
    DWORD NoOfOwners;
    [unique, size_is(NoOfOwners)] 
-      PWINSINTF_ADDR_VERS_MAP_T pAddrVersMaps;
+      PWINSINTF_ADD_VERS_MAP_T pAddVersMaps;
  
    LARGE_INTEGER MyMaxVersNo;
    DWORD RefreshInterval;
@@ -135,7 +131,7 @@ typedef struct _WINSINTF_RECS_T {
  
 typedef struct _WINSINTF_PULL_RANGE_INFO_T {
    LPVOID pPnr;
-   WINSINTF_ADDR_T OwnAddr;
+   WINSINTF_ADD_T OwnAdd;
    WINSINTF_VERS_NO_T MinVersNo;
    WINSINTF_VERS_NO_T MaxVersNo;
 } WINSINTF_PULL_RANGE_INFO_T, *PWINSINTF_PULL_RANGE_INFO_T;
@@ -163,7 +159,7 @@ typedef struct _WINSINTF_SCV_REQ_T {
  
 typedef struct _WINSINTF_BIND_DATA_T {
    DWORD fTcpIp;
-   [string] LPSTR pServerAddr; 
+   [string] LPSTR pServerAdd; 
    [string] LPSTR pPipeName;  
  } WINSINTF_BIND_DATA_T, *PWINSINTF_BIND_DATA_T;
  
@@ -175,15 +171,15 @@ typedef struct _WINSINTF_BIND_DATA_T {
  
 interface winsif {
  
-// XXX: not used.
-// #define MIDL_PASS
+// go-msrpc: #define MIDL_PASS
  
 typedef [handle] PWINSINTF_BIND_DATA_T WINSIF_HANDLE;
 typedef handle_t WINSIF2_HANDLE;
  
-// XXX: macros replaces.
-// #define DECLARE_WINS_HANDLE(_hdl ) [in] WINSIF2_HANDLE _hdl,
-// #define DECLARE_WINS_HANDLE0(_hdl ) [in] WINSIF2_HANDLE _hdl
+/* go-msrpc: macros expanded
+#define DECLARE_WINS_HANDLE(_hdl ) [in] WINSIF2_HANDLE _hdl,
+#define DECLARE_WINS_HANDLE0(_hdl ) [in] WINSIF2_HANDLE _hdl
+*/
  
 DWORD R_WinsRecordAction(
            [in] WINSIF2_HANDLE ServerHdl,
@@ -198,7 +194,7 @@ DWORD R_WinsStatus(
  
 DWORD R_WinsTrigger(
            [in] WINSIF2_HANDLE ServerHdl,
-    [in, ref] PWINSINTF_ADDR_T pWinsAddr,
+    [in, ref] PWINSINTF_ADD_T pWinsAdd,
     [in]   WINSINTF_TRIG_TYPE_E  TrigType_e
 );
  
@@ -214,7 +210,7 @@ DWORD R_WinsDoScavenging(
  
 DWORD R_WinsGetDbRecs(
            [in] WINSIF2_HANDLE ServerHdl,
-    [in, ref] PWINSINTF_ADDR_T pWinsAddr,
+    [in, ref] PWINSINTF_ADD_T pWinsAdd,
     [in]   WINSINTF_VERS_NO_T MinVersNo,
     [in]   WINSINTF_VERS_NO_T MaxVersNo,
     [out]  PWINSINTF_RECS_T pRecs
@@ -233,15 +229,15 @@ DWORD R_WinsBackup(
  
 DWORD R_WinsDelDbRecs(
            [in] WINSIF2_HANDLE ServerHdl,
-    [in, ref] PWINSINTF_ADDR_T pWinsAddr,
+    [in, ref] PWINSINTF_ADD_T pWinsAdd,
     [in]   WINSINTF_VERS_NO_T MinVersNo,
     [in]   WINSINTF_VERS_NO_T MaxVersNo
 );
  
 DWORD R_WinsPullRange(
            [in] WINSIF2_HANDLE ServerHdl,
-    [in, ref] PWINSINTF_ADDR_T pWinsAddr,
-    [in, ref] PWINSINTF_ADDR_T pOwnerAddr,
+    [in, ref] PWINSINTF_ADD_T pWinsAdd,
+    [in, ref] PWINSINTF_ADD_T pOwnerAdd,
     [in]   WINSINTF_VERS_NO_T MinVersNo,
     [in]   WINSINTF_VERS_NO_T MaxVersNo
 );
@@ -260,9 +256,9 @@ DWORD R_WinsWorkerThdUpd(
     [in]   DWORD NewNoOfNbtThds
 );
  
-DWORD R_WinsGetNameAndAddr(
+DWORD R_WinsGetNameAndAdd(
            [in] WINSIF2_HANDLE ServerHdl,
-    [out, ref] PWINSINTF_ADDR_T pWinsAddr,
+    [out, ref] PWINSINTF_ADD_T pWinsAdd,
     [out, string, size_is(80)] LPBYTE pUncName
 );
  
@@ -273,7 +269,7 @@ DWORD R_WinsGetBrowserNames_Old(
  
 DWORD R_WinsDeleteWins(
            [in] WINSIF2_HANDLE ServerHdl,
-    [in, ref] PWINSINTF_ADDR_T pWinsAddr
+    [in, ref] PWINSINTF_ADD_T pWinsAdd
 );
  
 DWORD R_WinsSetFlags(
@@ -288,7 +284,7 @@ DWORD R_WinsGetBrowserNames(
  
 DWORD R_WinsGetDbRecsByName(
            [in] WINSIF2_HANDLE ServerHdl,
-    [in, unique] PWINSINTF_ADDR_T pWinsAddr,
+    [in, unique] PWINSINTF_ADD_T pWinsAdd,
     [in]   DWORD Location,
     [in, unique, size_is(NameLen + 1)] LPBYTE pName,
     [in]   DWORD NameLen,
@@ -313,7 +309,7 @@ DWORD R_WinsDoScavengingNew(
            [in] WINSIF2_HANDLE ServerHdl,
     [in, ref] PWINSINTF_SCV_REQ_T pScvReq
 );
-};
+}
 
 [
     uuid(811109bf-a4e1-11d1-ab54-00a0c91e9b45),
@@ -323,15 +319,14 @@ DWORD R_WinsDoScavengingNew(
  
 interface winsi2 {
  
-// XXX: not used.
-// #define MIDL_PASS
+// go-msrpc: #define MIDL_PASS
  
 typedef handle_t WINSIF2_HANDLE;
  
 DWORD
 R_WinsTombstoneDbRecs(
     [in]      WINSIF2_HANDLE ServerHdl,
-    [in, ref] PWINSINTF_ADDR_T pWinsAddr,
+    [in, ref] PWINSINTF_ADD_T pWinsAdd,
     [in]      WINSINTF_VERS_NO_T MinVersNo,
     [in]      WINSINTF_VERS_NO_T MaxVersNo
 );

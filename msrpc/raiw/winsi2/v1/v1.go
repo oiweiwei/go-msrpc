@@ -140,7 +140,7 @@ func NewWinsi2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option)
 
 // xxx_TombstoneDBRecordsOperation structure represents the R_WinsTombstoneDbRecs operation
 type xxx_TombstoneDBRecordsOperation struct {
-	WINSAddr  *raiw.Addr   `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
+	WINSAddr  *raiw.Addr   `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
 	MinVersNo *raiw.VersNo `idl:"name:MinVersNo" json:"min_vers_no"`
 	MaxVersNo *raiw.VersNo `idl:"name:MaxVersNo" json:"max_vers_no"`
 	Return    uint32       `idl:"name:Return" json:"return"`
@@ -165,7 +165,7 @@ func (o *xxx_TombstoneDBRecordsOperation) MarshalNDRRequest(ctx context.Context,
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
-	// pWinsAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr != nil {
 			if err := o.WINSAddr.MarshalNDR(ctx, w); err != nil {
@@ -205,7 +205,7 @@ func (o *xxx_TombstoneDBRecordsOperation) MarshalNDRRequest(ctx context.Context,
 }
 
 func (o *xxx_TombstoneDBRecordsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
-	// pWinsAddr {in} (1:{pointer=ref, alias=PWINSINTF_ADDR_T}*(1))(2:{alias=WINSINTF_ADDR_T}(struct))
+	// pWinsAdd {in} (1:{pointer=ref, alias=PWINSINTF_ADD_T}*(1))(2:{alias=WINSINTF_ADD_T}(struct))
 	{
 		if o.WINSAddr == nil {
 			o.WINSAddr = &raiw.Addr{}
@@ -269,7 +269,9 @@ func (o *xxx_TombstoneDBRecordsOperation) UnmarshalNDRResponse(ctx context.Conte
 
 // TombstoneDBRecordsRequest structure represents the R_WinsTombstoneDbRecs operation request
 type TombstoneDBRecordsRequest struct {
-	WINSAddr *raiw.Addr `idl:"name:pWinsAddr;pointer:ref" json:"wins_addr"`
+	// pWinsAdd: A pointer to the address of the owner WINS server whose records are to
+	// be tombstoned. This value MUST NOT be NULL.
+	WINSAddr *raiw.Addr `idl:"name:pWinsAdd;pointer:ref" json:"wins_addr"`
 	// MinVersNo: The lower bound on the range of version numbers that identifies the range
 	// of records to be tombstoned.
 	MinVersNo *raiw.VersNo `idl:"name:MinVersNo" json:"min_vers_no"`

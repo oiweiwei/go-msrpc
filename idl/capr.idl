@@ -16,4 +16,3 @@ interface lsacap {
         [in] handle_t BindingHandle,
         [out] LSAPR_WRAPPED_CAPID_SET * WrappedCAPIDs);
 };
- 

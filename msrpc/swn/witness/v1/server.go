@@ -220,6 +220,28 @@ type WitnessServer interface {
 	// as specified in [MS-SRVS] section 2.2.2.4 ( ../ms-srvs/6069f8c0-c93f-43a0-a5b4-7ed447eb4b84
 	// ) , the server MUST fail the request with ERROR_INVALID_STATE. **
 	RegisterEx(context.Context, *RegisterExRequest) (*RegisterExResponse, error)
+
+	// The WitnessrUnRegisterEx method allows the client to unregister for notifications
+	// from the server.<6> The Witness Service removes its internal state of the registration
+	// and no longer notifies the client in the event of any resource state changes.
+	//
+	// Return Values: Returns 0x00000000 (ERROR_SUCCESS) on success or a nonzero error code,
+	// as specified in [MS-ERREF] section 2.2. The most common error codes are listed in
+	// the following table.
+	//
+	//	+--------------------------------+--------------------------------------------+
+	//	|             RETURN             |                                            |
+	//	|           VALUE/CODE           |                DESCRIPTION                 |
+	//	|                                |                                            |
+	//	+--------------------------------+--------------------------------------------+
+	//	+--------------------------------+--------------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS       | The operation completed successfully.      |
+	//	+--------------------------------+--------------------------------------------+
+	//	| 0x00000005 ERROR_ACCESS_DENIED | Access is denied.                          |
+	//	+--------------------------------+--------------------------------------------+
+	//	| 0x00000490 ERROR_NOT_FOUND     | The specified CONTEXT_HANDLE is not found. |
+	//	+--------------------------------+--------------------------------------------+
+	UnregisterEx(context.Context, *UnregisterExRequest) (*UnregisterExResponse, error)
 }
 
 func RegisterWitnessServer(conn dcerpc.Conn, o WitnessServer, opts ...dcerpc.Option) {
@@ -279,6 +301,15 @@ func WitnessServerHandle(ctx context.Context, o WitnessServer, opNum int, r ndr.
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.RegisterEx(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
+	case 5: // WitnessrUnRegisterEx
+		op := &xxx_UnregisterExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &UnregisterExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UnregisterEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
@@ -300,6 +331,9 @@ func (UnimplementedWitnessServer) AsyncNotify(context.Context, *AsyncNotifyReque
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedWitnessServer) RegisterEx(context.Context, *RegisterExRequest) (*RegisterExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWitnessServer) UnregisterEx(context.Context, *UnregisterExRequest) (*UnregisterExResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 

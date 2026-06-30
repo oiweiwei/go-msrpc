@@ -10,7 +10,7 @@ long RfrGetNewDSA(
  [in, string]               unsigned char *   pUserDN,
  [in,out,unique, string]    unsigned char * * ppszUnused,
  [in,out,unique, string]    unsigned char * * ppszServer);
- 
+
 long RfrGetFQDNFromServerDN(
    [in]                                     handle_t           hRpc,
    [in]                                     unsigned long      ulFlags,

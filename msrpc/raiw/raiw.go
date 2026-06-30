@@ -110,11 +110,19 @@ func (o *VersNo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// Addr structure represents WINSINTF_ADDR_T RPC structure.
+// Addr structure represents WINSINTF_ADD_T RPC structure.
+//
+// The WINSINTF_ADD_T structure defines the IP address information of a WINS server.
+// It is used by several data structures including WINSINTF_RECORD_ACTION_T and WINSINTF_ADD_VERS_MAP_T
+// and by RPC methods like R_WinsTrigger and R_WinsGetDbRecs.
 type Addr struct {
-	Type   uint8  `idl:"name:Type" json:"type"`
+	// Type:  Specifies the address type. This field MUST be set to zero.
+	Type uint8 `idl:"name:Type" json:"type"`
+	// Len:  Indicates the length, in bytes, of the IP address that is stored in IPAdd.
 	Length uint32 `idl:"name:Len" json:"length"`
-	IPAddr uint32 `idl:"name:IPAddr" json:"ip_addr"`
+	// IPAdd:  Stores an IP address in little-endian format. For example, the IP address
+	// 172.22.32.42 is stored as 0xAC16202A.
+	IPAddr uint32 `idl:"name:IPAdd" json:"ip_addr"`
 }
 
 func (o *Addr) xxx_PreparePayload(ctx context.Context) error {
@@ -302,10 +310,17 @@ type RecordAction struct {
 	//	+-------+-------------------------+
 	//	|     3 | Multihomed machine name |
 	//	+-------+-------------------------+
-	TypeOfRecord  uint32  `idl:"name:TypOfRec_e" json:"type_of_record"`
-	NumberOfAddrs uint32  `idl:"name:NoOfAddrs" json:"number_of_addrs"`
-	Addrs         []*Addr `idl:"name:pAddrs;size_is:(NoOfAddrs);pointer:unique" json:"addrs"`
-	Addr          *Addr   `idl:"name:Addr" json:"addr"`
+	TypeOfRecord uint32 `idl:"name:TypOfRec_e" json:"type_of_record"`
+	// NoOfAdds:  The number of IP addresses that are mapped to the NetBIOS name given in
+	// pName. It SHOULD have the value zero for unique names and normal groups, and it SHOULD
+	// have a value greater than 0x00000001 for other types of records.
+	NumberOfAddrs uint32 `idl:"name:NoOfAdds" json:"number_of_addrs"`
+	// pAdd:  A pointer to an array of IP addresses that are mapped to the name given in
+	// pName. It MUST be used only for multihomed (2) and special group types of records.
+	Addrs []*Addr `idl:"name:pAdd;size_is:(NoOfAdds);pointer:unique" json:"addrs"`
+	// Add:  The IP address mapped to the name given in pName. This member MUST be used
+	// only for unique and normal group types of records.
+	Addr *Addr `idl:"name:Add" json:"addr"`
 	// VersNo:  The version number of the record.
 	VersNo *dtyp.LargeInteger `idl:"name:VersNo" json:"vers_no"`
 	// NodeTyp:  The NetBT node type. Only the two least-significant bits of the member
@@ -427,7 +442,7 @@ func (o *RecordAction) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	if o.Addrs != nil || o.NumberOfAddrs > 0 {
-		_ptr_pAddrs := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+		_ptr_pAdd := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			dimSize1 := uint64(o.NumberOfAddrs)
 			if err := w.WriteSize(dimSize1); err != nil {
 				return err
@@ -457,7 +472,7 @@ func (o *RecordAction) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.Addrs, _ptr_pAddrs); err != nil {
+		if err := w.WritePointer(&o.Addrs, _ptr_pAdd); err != nil {
 			return err
 		}
 	} else {
@@ -548,7 +563,7 @@ func (o *RecordAction) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.NumberOfAddrs); err != nil {
 		return err
 	}
-	_ptr_pAddrs := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+	_ptr_pAdd := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		sizeInfo := []uint64{
 			0,
 		}
@@ -576,8 +591,8 @@ func (o *RecordAction) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pAddrs := func(ptr interface{}) { o.Addrs = *ptr.(*[]*Addr) }
-	if err := w.ReadPointer(&o.Addrs, _s_pAddrs, _ptr_pAddrs); err != nil {
+	_s_pAdd := func(ptr interface{}) { o.Addrs = *ptr.(*[]*Addr) }
+	if err := w.ReadPointer(&o.Addrs, _s_pAdd, _ptr_pAdd); err != nil {
 		return err
 	}
 	if o.Addr == nil {
@@ -619,7 +634,8 @@ func (o *RecordAction) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 // successful pull replications and the number of communication failures for a given
 // replication partner. It is used in the structure WINSINTF_STAT_T.
 type ReplicationCounters struct {
-	Addr *Addr `idl:"name:Addr" json:"addr"`
+	// Add:  The IP address of a partner WINS server.
+	Addr *Addr `idl:"name:Add" json:"addr"`
 	// NoOfRpls:  The number of successful pull replications that have been performed with
 	// the replication partner. The target WINS server stores the replication partner's
 	// IP address in the Add member.
@@ -1217,9 +1233,17 @@ func (o *Stat_Timestamps) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// AddrVersMap structure represents WINSINTF_ADDR_VERS_MAP_T RPC structure.
+// AddrVersMap structure represents WINSINTF_ADD_VERS_MAP_T RPC structure.
+//
+// The WINSINTF_ADD_VERS_MAP_T structure defines an address version map pair. This data
+// structure is generally used by other data structures, such as WINSINTF_RESULTS_T
+// and WINSINTF_RESULTS_NEW_T.
 type AddrVersMap struct {
-	Addr   *Addr              `idl:"name:Addr" json:"addr"`
+	// Add:  A structure containing the IP address of a partner WINS server.
+	Addr *Addr `idl:"name:Add" json:"addr"`
+	// VersNo:  The highest version number from all of the records owned by a WINS server
+	// at the target WINS server database. Each record in the database has a version number
+	// and owner Id associated with it.
 	VersNo *dtyp.LargeInteger `idl:"name:VersNo" json:"vers_no"`
 }
 
@@ -1285,8 +1309,10 @@ func (o *AddrVersMap) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 type Results struct {
 	// NoOfOwners:  The number of owners whose records are part of the target WINS server
 	// database. The value of this member MUST be less than or equal to 25.
-	NumberOfOwners uint32         `idl:"name:NoOfOwners" json:"number_of_owners"`
-	AddrVersMaps   []*AddrVersMap `idl:"name:AddrVersMaps" json:"addr_vers_maps"`
+	NumberOfOwners uint32 `idl:"name:NoOfOwners" json:"number_of_owners"`
+	// AddVersMaps:  A structure containing the owner version map of the target WINS server.
+	// The number of valid entries is defined by the NoOfOwners value.
+	AddrVersMaps []*AddrVersMap `idl:"name:AddVersMaps" json:"addr_vers_maps"`
 	// MyMaxVersNo:  This member is not set and MUST be ignored on receipt.
 	MyMaxVersNo *dtyp.LargeInteger `idl:"name:MyMaxVersNo" json:"my_max_vers_no"`
 	// RefreshInterval:  The refresh time interval configured on the target WINS server,
@@ -1467,8 +1493,10 @@ func (o *Results) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 type ResultsNew struct {
 	// NoOfOwners:  The number of owners whose records are part of the target WINS server
 	// database.
-	NumberOfOwners uint32         `idl:"name:NoOfOwners" json:"number_of_owners"`
-	AddrVersMaps   []*AddrVersMap `idl:"name:pAddrVersMaps;size_is:(NoOfOwners);pointer:unique" json:"addr_vers_maps"`
+	NumberOfOwners uint32 `idl:"name:NoOfOwners" json:"number_of_owners"`
+	// pAddVersMaps:  A pointer to an array of WINSINTF_ADD_VERS_MAP_T structure (section
+	// 2.2.2.4) elements. The NoOfOwners member contains the number of elements in the array.
+	AddrVersMaps []*AddrVersMap `idl:"name:pAddVersMaps;size_is:(NoOfOwners);pointer:unique" json:"addr_vers_maps"`
 	// MyMaxVersNo:  This member is not set and MUST be ignored on receipt.
 	MyMaxVersNo *dtyp.LargeInteger `idl:"name:MyMaxVersNo" json:"my_max_vers_no"`
 	// RefreshInterval:  The refresh time interval configured on the target WINS server,
@@ -1531,7 +1559,7 @@ func (o *ResultsNew) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	if o.AddrVersMaps != nil || o.NumberOfOwners > 0 {
-		_ptr_pAddrVersMaps := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+		_ptr_pAddVersMaps := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			dimSize1 := uint64(o.NumberOfOwners)
 			if err := w.WriteSize(dimSize1); err != nil {
 				return err
@@ -1561,7 +1589,7 @@ func (o *ResultsNew) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.AddrVersMaps, _ptr_pAddrVersMaps); err != nil {
+		if err := w.WritePointer(&o.AddrVersMaps, _ptr_pAddVersMaps); err != nil {
 			return err
 		}
 	} else {
@@ -1617,7 +1645,7 @@ func (o *ResultsNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.NumberOfOwners); err != nil {
 		return err
 	}
-	_ptr_pAddrVersMaps := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+	_ptr_pAddVersMaps := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		sizeInfo := []uint64{
 			0,
 		}
@@ -1645,8 +1673,8 @@ func (o *ResultsNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pAddrVersMaps := func(ptr interface{}) { o.AddrVersMaps = *ptr.(*[]*AddrVersMap) }
-	if err := w.ReadPointer(&o.AddrVersMaps, _s_pAddrVersMaps, _ptr_pAddrVersMaps); err != nil {
+	_s_pAddVersMaps := func(ptr interface{}) { o.AddrVersMaps = *ptr.(*[]*AddrVersMap) }
+	if err := w.ReadPointer(&o.AddrVersMaps, _s_pAddVersMaps, _ptr_pAddVersMaps); err != nil {
 		return err
 	}
 	if o.MyMaxVersNo == nil {
@@ -1695,7 +1723,7 @@ type Cmd uint16
 var (
 	// WINSINTF_E_ADDVERSMAP:  Gets an entry from the owner version map of the target WINS
 	// server.
-	CmdAddVersMap Cmd = 0
+	CmdAddrVersMap Cmd = 0
 	// WINSINTF_E_CONFIG:  Get the configuration details of the target WINS server.
 	CmdConfig Cmd = 1
 	// WINSINTF_E_STAT:   Get statistics for the target WINS server.
@@ -1707,8 +1735,8 @@ var (
 
 func (o Cmd) String() string {
 	switch o {
-	case CmdAddVersMap:
-		return "CmdAddVersMap"
+	case CmdAddrVersMap:
+		return "CmdAddrVersMap"
 	case CmdConfig:
 		return "CmdConfig"
 	case CmdStat:
@@ -1861,7 +1889,7 @@ func (o *Records) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 // PullRangeInfo structure represents WINSINTF_PULL_RANGE_INFO_T RPC structure.
 type PullRangeInfo struct {
 	PullPartner []byte  `idl:"name:pPnr" json:"pull_partner"`
-	OwnAddr     *Addr   `idl:"name:OwnAddr" json:"own_addr"`
+	OwnAddr     *Addr   `idl:"name:OwnAdd" json:"own_addr"`
 	MinVersNo   *VersNo `idl:"name:MinVersNo" json:"min_vers_no"`
 	MaxVersNo   *VersNo `idl:"name:MaxVersNo" json:"max_vers_no"`
 }
@@ -2243,8 +2271,9 @@ func (o *ScavengingRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 type BindData struct {
 	// fTcpIp:  The transport mechanism to be used. If this value is 0x00000001, then TCP/IP
 	// is selected; otherwise, the named pipe is selected.
-	TCPIP      uint32 `idl:"name:fTcpIp" json:"tcp_ip"`
-	ServerAddr string `idl:"name:pServerAddr;string" json:"server_addr"`
+	TCPIP uint32 `idl:"name:fTcpIp" json:"tcp_ip"`
+	// pServerAdd:  A NULL-terminated string that specifies the server IP address.
+	ServerAddr string `idl:"name:pServerAdd;string" json:"server_addr"`
 	// pPipeName:  A NULL-terminated string that specifies the pipe name. This value MUST
 	// be NULL when fTcpIP is 0x00000001.
 	PipeName string `idl:"name:pPipeName;string" json:"pipe_name"`
@@ -2270,13 +2299,13 @@ func (o *BindData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	if o.ServerAddr != "" {
-		_ptr_pServerAddr := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+		_ptr_pServerAdd := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := ndr.WriteCharNString(ctx, w, o.ServerAddr); err != nil {
 				return err
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.ServerAddr, _ptr_pServerAddr); err != nil {
+		if err := w.WritePointer(&o.ServerAddr, _ptr_pServerAdd); err != nil {
 			return err
 		}
 	} else {
@@ -2308,14 +2337,14 @@ func (o *BindData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.TCPIP); err != nil {
 		return err
 	}
-	_ptr_pServerAddr := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+	_ptr_pServerAdd := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if err := ndr.ReadCharNString(ctx, w, &o.ServerAddr); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pServerAddr := func(ptr interface{}) { o.ServerAddr = *ptr.(*string) }
-	if err := w.ReadPointer(&o.ServerAddr, _s_pServerAddr, _ptr_pServerAddr); err != nil {
+	_s_pServerAdd := func(ptr interface{}) { o.ServerAddr = *ptr.(*string) }
+	if err := w.ReadPointer(&o.ServerAddr, _s_pServerAdd, _ptr_pServerAdd); err != nil {
 		return err
 	}
 	_ptr_pPipeName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {

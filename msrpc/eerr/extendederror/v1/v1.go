@@ -864,11 +864,17 @@ func (o *ExtendedErrorParam_Blob) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	return nil
 }
 
-// ComputerNamePresentType type represents EEComputerNamePresentType RPC enumeration.
+// ComputerNamePresentType type represents EEComputerNamePresent RPC enumeration.
+//
+// The EEComputerNamePresent enumeration defines the allowed values for the Type field
+// in the EEComputerName structure.
 type ComputerNamePresentType uint16
 
 var (
-	ComputerNamePresentTypePresent    ComputerNamePresentType = 1
+	// eecnpPresent:  Name member of the EEComputerName structure is valid and contains
+	// a network node identifier.
+	ComputerNamePresentTypePresent ComputerNamePresentType = 1
+	// eecnpNotPresent:  This structure does not contain a network node identifier.
 	ComputerNamePresentTypeNotPresent ComputerNamePresentType = 2
 )
 

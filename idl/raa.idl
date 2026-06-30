@@ -1,5 +1,5 @@
 import "ms-dtyp.idl";
- 
+
 [uuid(0b1c2170-5732-4e0e-8cd3-d9b16f3b84d7)]
 [version(0.0)]
 [pointer_default(ptr)]
@@ -12,18 +12,18 @@ interface authzr {
         [range(0,256)] DWORD ObjectTypeListLength;
         [size_is(ObjectTypeListLength)] OBJECT_TYPE_LIST * ObjectTypeList;
     } AUTHZR_ACCESS_REQUEST;
- 
+
     typedef struct _SR_SD {
         [range(20,131228)] DWORD dwLength;
         [size_is(dwLength)] BYTE * pSrSd;
     } SR_SD;
- 
+
     typedef struct _AUTHZR_ACCESS_REPLY {
         [range(0,256)] DWORD ResultListLength;
         [size_is(ResultListLength)] ACCESS_MASK * GrantedAccessMask;
         [size_is(ResultListLength)] DWORD * Error;
     } AUTHZR_ACCESS_REPLY;
- 
+
     typedef enum _AUTHZ_CONTEXT_INFORMATION_CLASS {
         AuthzContextInfoUserSid = 1,
         AuthzContextInfoGroupsSids = 2,
@@ -42,26 +42,26 @@ interface authzr {
         ReservedEnumValue15 = 15,
         ReservedEnumValue16 = 16
     } AUTHZ_CONTEXT_INFORMATION_CLASS;
- 
+
     typedef struct _AUTHZR_SID_AND_ATTRIBUTES {
         RPC_SID * Sid;
         DWORD Attributes;
     } AUTHZR_SID_AND_ATTRIBUTES;
- 
+
     typedef struct _AUTHZR_TOKEN_USER {
         AUTHZR_SID_AND_ATTRIBUTES User;
     } AUTHZR_TOKEN_USER;
- 
+
     typedef struct _AUTHZR_TOKEN_GROUPS {
         DWORD GroupCount;
         [size_is(GroupCount)] AUTHZR_SID_AND_ATTRIBUTES Groups[];
     } AUTHZR_TOKEN_GROUPS;
- 
+
     typedef struct _AUTHZR_SECURITY_ATTRIBUTE_STRING_VALUE {
         [range(2,32768)] ULONG Length;
         [string] [size_is(Length)] WCHAR * Value;
     } AUTHZR_SECURITY_ATTRIBUTE_STRING_VALUE;
- 
+
     typedef struct _AUTHZR_SECURITY_ATTRIBUTE_V1_VALUE {
         USHORT ValueType;
         [switch_is(ValueType)] union AUTHZR_SECURITY_ATTRIBUTE_UNION {
@@ -73,7 +73,7 @@ interface authzr {
                 AUTHZR_SECURITY_ATTRIBUTE_STRING_VALUE String;
         } AttributeUnion;
     } AUTHZR_SECURITY_ATTRIBUTE_V1_VALUE;
- 
+
     typedef struct _AUTHZR_SECURITY_ATTRIBUTE_V1 {
         [range(2,256)] ULONG Length;
         [string] [size_is(Length)] WCHAR * Value;
@@ -83,14 +83,14 @@ interface authzr {
         [range(0,1024)] ULONG ValueCount;
         [size_is(ValueCount)] AUTHZR_SECURITY_ATTRIBUTE_V1_VALUE * Values;
     } AUTHZR_SECURITY_ATTRIBUTE_V1;
- 
+
     typedef struct _AUTHZR_SECURITY_ATTRIBUTES_INFORMATION {
         USHORT Version;
         USHORT Reserved;
         [range(0,1024)] ULONG AttributeCount;
         [size_is(AttributeCount)] AUTHZR_SECURITY_ATTRIBUTE_V1 * Attributes;
     } AUTHZR_SECURITY_ATTRIBUTES_INFORMATION;
- 
+
     typedef struct _AUTHZR_CONTEXT_INFORMATION {
         USHORT ValueType;
         [switch_is(ValueType)] union AUTHZR_CONTEXT_INFORMATION_UNION {
@@ -102,7 +102,7 @@ interface authzr {
                 AUTHZR_SECURITY_ATTRIBUTES_INFORMATION * pTokenClaims;
         } ContextInfoUnion;
     } AUTHZR_CONTEXT_INFORMATION;
- 
+
     typedef enum _AUTHZ_SECURITY_ATTRIBUTE_OPERATION {
         AUTHZ_SECURITY_ATTRIBUTE_OPERATION_NONE = 0,
         AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE_ALL = 1,
@@ -110,7 +110,7 @@ interface authzr {
         AUTHZ_SECURITY_ATTRIBUTE_OPERATION_DELETE = 3,
         AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE = 4
     } AUTHZ_SECURITY_ATTRIBUTE_OPERATION;
- 
+
     typedef enum _AUTHZ_SID_OPERATION {
         AUTHZ_SID_OPERATION_NONE = 0,
         AUTHZ_SID_OPERATION_REPLACE_ALL = 1,
@@ -118,7 +118,7 @@ interface authzr {
         AUTHZ_SID_OPERATION_DELETE = 3,
         AUTHZ_SID_OPERATION_REPLACE = 4
     } AUTHZ_SID_OPERATION;
- 
+
     DWORD AuthzrFreeContext(
         [in, out] AUTHZR_HANDLE * ContextHandle);
     DWORD AuthzrInitializeContextFromSid(
@@ -156,4 +156,3 @@ interface authzr {
         [in] [size_is(OperationCount)] AUTHZ_SID_OPERATION * pSidOperations,
         [in] [unique] AUTHZR_TOKEN_GROUPS * pSids);
 };
- 

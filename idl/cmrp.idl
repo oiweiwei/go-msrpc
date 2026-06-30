@@ -2512,4 +2512,99 @@ error_status_t
            [ in ] ULONGLONG flags,
  [ out ] error_status_t *rpc_status
          );
+
+error_status_t
+         ApiClusterNativeUpdateControl(
+             [in] handle_t  IDL_handle,
+             [in] UCHAR* inBuffer,
+             [in] DWORD inBufferSize,
+             [out] UCHAR* outBuffer,
+             [in] DWORD outBufferSize,
+             [out] LPDWORD lpBytesReturned,
+             [out] LPDWORD lpBytesNeeded,
+             [out] error_status_t *rpc_status
+         );
+          
+         // reserved opnums
+         error_status_t Opnum186Reserved(void);
+         error_status_t Opnum187Reserved(void);
+         error_status_t Opnum188Reserved(void);
+         error_status_t Opnum189Reserved(void);
+         error_status_t Opnum190Reserved(void);
+         error_status_t Opnum191Reserved(void);
+         error_status_t Opnum192Reserved(void);
+         error_status_t Opnum193Reserved(void);
+         error_status_t Opnum194Reserved(void);
+         error_status_t Opnum195Reserved(void);
+         error_status_t Opnum196Reserved(void);
+         error_status_t Opnum197Reserved(void);
+         error_status_t Opnum198Reserved(void);
+         error_status_t Opnum199Reserved(void);
+         error_status_t Opnum200Reserved(void);
+         error_status_t Opnum201Reserved(void);
+         error_status_t Opnum202Reserved(void);
+         error_status_t Opnum203Reserved(void);
+         error_status_t Opnum204Reserved(void);
+         error_status_t Opnum205Reserved(void);
+         error_status_t Opnum206Reserved(void);
+         error_status_t Opnum207Reserved(void);
+         error_status_t Opnum208Reserved(void);
+         error_status_t Opnum209Reserved(void);
+         error_status_t Opnum210Reserved(void);
+         error_status_t Opnum211Reserved(void);
+         error_status_t Opnum212Reserved(void);
+         error_status_t Opnum213Reserved(void);
+         error_status_t Opnum214Reserved(void);
+         error_status_t Opnum215Reserved(void);
+         error_status_t Opnum216Reserved(void);
+         error_status_t Opnum217Reserved(void);
+         error_status_t Opnum218Reserved(void);
+         error_status_t Opnum219Reserved(void);
+         error_status_t Opnum220Reserved(void);
+         error_status_t Opnum221Reserved(void);
+         error_status_t Opnum222Reserved(void);
+         error_status_t Opnum223Reserved(void);
+         error_status_t Opnum224Reserved(void);
+         error_status_t Opnum225Reserved(void);
+         error_status_t Opnum226Reserved(void);
+         error_status_t Opnum227Reserved(void);
+         error_status_t Opnum228Reserved(void);
+         error_status_t Opnum229Reserved(void);
+         error_status_t Opnum230Reserved(void);
+         error_status_t Opnum231Reserved(void);
+         error_status_t Opnum232Reserved(void);
+         error_status_t Opnum233Reserved(void);
+         error_status_t Opnum234Reserved(void);
+         error_status_t Opnum235Reserved(void);
+         error_status_t Opnum236Reserved(void);
+         error_status_t Opnum237Reserved(void);
+         error_status_t Opnum238Reserved(void);
+         error_status_t Opnum239Reserved(void);
+         error_status_t Opnum240Reserved(void);
+         error_status_t Opnum241Reserved(void);
+         error_status_t Opnum242Reserved(void);
+         error_status_t Opnum243Reserved(void);
+         error_status_t Opnum244Reserved(void);
+         error_status_t Opnum245Reserved(void);
+         error_status_t Opnum246Reserved(void);
+         error_status_t Opnum247Reserved(void);
+         error_status_t Opnum248Reserved(void);
+         error_status_t Opnum249Reserved(void);
+         error_status_t Opnum250Reserved(void);
+         error_status_t Opnum251Reserved(void);
+         error_status_t Opnum252Reserved(void);
+         error_status_t Opnum253Reserved(void);
+         error_status_t Opnum254Reserved(void);
+         error_status_t Opnum255Reserved(void);
+         error_status_t Opnum256Reserved(void);
+         error_status_t Opnum257Reserved(void);
+         error_status_t Opnum258Reserved(void);
+         error_status_t Opnum259Reserved(void);
+         error_status_t Opnum260Reserved(void);
+         error_status_t Opnum261Reserved(void);
+         error_status_t Opnum262Reserved(void);
+         error_status_t Opnum263Reserved(void);
+         // not used on wire
+         error_status_t Opnum264NotUsedOnWire(void);
+
 }

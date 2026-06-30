@@ -2,7 +2,7 @@ import "ms-dtyp.idl";
  
 [
 uuid(c681d488-d850-11d0-8c52-00c04fd90f7e),
-version(1.0) // XXX: remove comma: ,
+version(1.0),
 ]
 interface efsrpc
 {

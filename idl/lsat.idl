@@ -67,7 +67,7 @@ typedef struct _SECURITY_QUALITY_OF_SERVICE {
  
 typedef struct _LSAPR_OBJECT_ATTRIBUTES {
     unsigned long Length;
-    unsigned char * RootDirectory[]; /* add array declarator */
+    unsigned char * RootDirectory[]; /* go-msrpc: add array declaration */
     PSTRING ObjectName;
     unsigned long Attributes;
     PLSAPR_SECURITY_DESCRIPTOR SecurityDescriptor;

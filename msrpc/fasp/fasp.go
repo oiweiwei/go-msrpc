@@ -178,10 +178,11 @@ var (
 	// FW_STORE_TYPE_NOT_USED_VALUE_11:  This store is currently not used over the wire.
 	// This symbolic constant has a value of 11.
 	StoreTypeNotUsedValue11 StoreType = 11
+	StoreTypeNotUsedValue12 StoreType = 12
 	// FW_STORE_TYPE_MAX:  This value and values that exceed this value are not valid and
 	// MUST NOT be used. This symbolic constant is defined for simplicity in writing IDL
 	// definitions and code. It has a value of 8.
-	StoreTypeMax StoreType = 12
+	StoreTypeMax StoreType = 13
 )
 
 func (o StoreType) String() string {
@@ -210,6 +211,8 @@ func (o StoreType) String() string {
 		return "StoreTypeNotUsedValue10"
 	case StoreTypeNotUsedValue11:
 		return "StoreTypeNotUsedValue11"
+	case StoreTypeNotUsedValue12:
+		return "StoreTypeNotUsedValue12"
 	case StoreTypeMax:
 		return "StoreTypeMax"
 	}
@@ -372,6 +375,27 @@ func (o PolicyStoreFlags) String() string {
 		return "PolicyStoreFlagsNotUsedValue16"
 	case PolicyStoreFlagsMax:
 		return "PolicyStoreFlagsMax"
+	}
+	return "Invalid"
+}
+
+// RuleDuplicateStatusFlags type represents FW_RULE_DUPLICATE_STATUS_FLAGS RPC enumeration.
+type RuleDuplicateStatusFlags uint16
+
+var (
+	RuleDuplicateStatusFlagsEvaluating   RuleDuplicateStatusFlags = 1
+	RuleDuplicateStatusFlagsHasDuplicate RuleDuplicateStatusFlags = 2
+	RuleDuplicateStatusFlagsIsEnforced   RuleDuplicateStatusFlags = 4
+)
+
+func (o RuleDuplicateStatusFlags) String() string {
+	switch o {
+	case RuleDuplicateStatusFlagsEvaluating:
+		return "RuleDuplicateStatusFlagsEvaluating"
+	case RuleDuplicateStatusFlagsHasDuplicate:
+		return "RuleDuplicateStatusFlagsHasDuplicate"
+	case RuleDuplicateStatusFlagsIsEnforced:
+		return "RuleDuplicateStatusFlagsIsEnforced"
 	}
 	return "Invalid"
 }
@@ -1894,10 +1918,11 @@ var (
 	// current captive portal. For schema versions 0x021D and earlier, this value is invalid
 	// and MUST NOT be used.
 	AddressKeywordCaptivePortal AddressKeyword = 512
-	// FW_ADDRESS_KEYWORD_MAX:  This value and values that exceed this value are not valid
-	// and MUST NOT be used. It is defined for simplicity in writing IDL definitions and
-	// code. This symbolic constant has a value of 0x0800.
-	AddressKeywordMax AddressKeyword = 1024
+	// FW_ADDRESS_KEYWORD_INTERNAL_LOCAL_ADDRESSES: Represents the collection of addresses
+	// of the host machines and local addresses associated with Hyper-V machines on the
+	// system. For schema versions 0x21F and earlier, this value is invalid and MUST NOT
+	// be used.
+	AddressKeywordInternalLocalAddresses AddressKeyword = 1024
 	// FW_ADDRESS_KEYWORD_MAX_V2_10:  This value and values that exceed this value are
 	// not valid and MUST NOT be used by servers and clients with schema version 0x020A
 	// and earlier. It is defined for simplicity in writing IDL definitions and code. This
@@ -1908,6 +1933,11 @@ var (
 	// and earlier. It is defined for simplicity in writing IDL definitions and code. This
 	// symbolic constant has a value of 0x0200.
 	AddressKeywordMaxV229 AddressKeyword = 512
+	AddressKeywordMaxV233 AddressKeyword = 1024
+	// FW_ADDRESS_KEYWORD_MAX:  This value and values that exceed this value are not valid
+	// and MUST NOT be used. It is defined for simplicity in writing IDL definitions and
+	// code. This symbolic constant has a value of 0x0800.
+	AddressKeywordMax AddressKeyword = 2048
 )
 
 func (o AddressKeyword) String() string {
@@ -1934,12 +1964,16 @@ func (o AddressKeyword) String() string {
 		return "AddressKeywordRemoteIntranet"
 	case AddressKeywordCaptivePortal:
 		return "AddressKeywordCaptivePortal"
-	case AddressKeywordMax:
-		return "AddressKeywordMax"
+	case AddressKeywordInternalLocalAddresses:
+		return "AddressKeywordInternalLocalAddresses"
 	case AddressKeywordMaxV210:
 		return "AddressKeywordMaxV210"
 	case AddressKeywordMaxV229:
 		return "AddressKeywordMaxV229"
+	case AddressKeywordMaxV233:
+		return "AddressKeywordMaxV233"
+	case AddressKeywordMax:
+		return "AddressKeywordMax"
 	}
 	return "Invalid"
 }
@@ -2074,6 +2108,548 @@ func (o *Addresses) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.RangesV6 = &IPv6RangeList{}
 	}
 	if err := o.RangesV6.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// DynamicKeywordAddressIDList structure represents FW_DYNAMIC_KEYWORD_ADDRESS_ID_LIST RPC structure.
+type DynamicKeywordAddressIDList struct {
+	IDsLength uint32       `idl:"name:dwNumIds" json:"ids_length"`
+	IDs       []*dtyp.GUID `idl:"name:ids;size_is:(dwNumIds)" json:"ids"`
+}
+
+func (o *DynamicKeywordAddressIDList) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.IDs != nil && o.IDsLength == 0 {
+		o.IDsLength = uint32(len(o.IDs))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *DynamicKeywordAddressIDList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.IDsLength); err != nil {
+		return err
+	}
+	if o.IDs != nil || o.IDsLength > 0 {
+		_ptr_ids := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.IDsLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.IDs {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.IDs[i1] != nil {
+					if err := o.IDs[i1].MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.IDs); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.IDs, _ptr_ids); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *DynamicKeywordAddressIDList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.IDsLength); err != nil {
+		return err
+	}
+	_ptr_ids := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.IDsLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.IDsLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.IDs", sizeInfo[0])
+		}
+		o.IDs = make([]*dtyp.GUID, sizeInfo[0])
+		for i1 := range o.IDs {
+			i1 := i1
+			if o.IDs[i1] == nil {
+				o.IDs[i1] = &dtyp.GUID{}
+			}
+			if err := o.IDs[i1].UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_ids := func(ptr interface{}) { o.IDs = *ptr.(*[]*dtyp.GUID) }
+	if err := w.ReadPointer(&o.IDs, _s_ids, _ptr_ids); err != nil {
+		return err
+	}
+	return nil
+}
+
+// DynamicKeywordAddressFlags type represents FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS RPC enumeration.
+type DynamicKeywordAddressFlags uint16
+
+var (
+	DynamicKeywordAddressFlagsNone        DynamicKeywordAddressFlags = 0
+	DynamicKeywordAddressFlagsAutoResolve DynamicKeywordAddressFlags = 1
+	DynamicKeywordAddressFlagsMax         DynamicKeywordAddressFlags = 2
+)
+
+func (o DynamicKeywordAddressFlags) String() string {
+	switch o {
+	case DynamicKeywordAddressFlagsNone:
+		return "DynamicKeywordAddressFlagsNone"
+	case DynamicKeywordAddressFlagsAutoResolve:
+		return "DynamicKeywordAddressFlagsAutoResolve"
+	case DynamicKeywordAddressFlagsMax:
+		return "DynamicKeywordAddressFlagsMax"
+	}
+	return "Invalid"
+}
+
+// DynamicKeywordOriginType type represents FW_DYNAMIC_KEYWORD_ORIGIN_TYPE RPC enumeration.
+type DynamicKeywordOriginType uint16
+
+var (
+	DynamicKeywordOriginTypeInvalid DynamicKeywordOriginType = 0
+	DynamicKeywordOriginTypeLocal   DynamicKeywordOriginType = 1
+	DynamicKeywordOriginTypeMdm     DynamicKeywordOriginType = 2
+	DynamicKeywordOriginTypeMax     DynamicKeywordOriginType = 3
+)
+
+func (o DynamicKeywordOriginType) String() string {
+	switch o {
+	case DynamicKeywordOriginTypeInvalid:
+		return "DynamicKeywordOriginTypeInvalid"
+	case DynamicKeywordOriginTypeLocal:
+		return "DynamicKeywordOriginTypeLocal"
+	case DynamicKeywordOriginTypeMdm:
+		return "DynamicKeywordOriginTypeMdm"
+	case DynamicKeywordOriginTypeMax:
+		return "DynamicKeywordOriginTypeMax"
+	}
+	return "Invalid"
+}
+
+// DynamicKeywordAddress0 structure represents FW_DYNAMIC_KEYWORD_ADDRESS0 RPC structure.
+type DynamicKeywordAddress0 struct {
+	ID        *dtyp.GUID `idl:"name:id" json:"id"`
+	Keyword   string     `idl:"name:keyword;string" json:"keyword"`
+	Flags     uint32     `idl:"name:flags" json:"flags"`
+	Addresses string     `idl:"name:addresses;string" json:"addresses"`
+}
+
+func (o *DynamicKeywordAddress0) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if len(o.Keyword) > int(10001) {
+		return fmt.Errorf("Keyword is out of range")
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *DynamicKeywordAddress0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.ID != nil {
+		if err := o.ID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.Keyword != "" {
+		_ptr_keyword := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.Keyword); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Keyword, _ptr_keyword); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if o.Addresses != "" {
+		_ptr_addresses := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.Addresses); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Addresses, _ptr_addresses); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *DynamicKeywordAddress0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if o.ID == nil {
+		o.ID = &dtyp.GUID{}
+	}
+	if err := o.ID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	_ptr_keyword := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.Keyword); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_keyword := func(ptr interface{}) { o.Keyword = *ptr.(*string) }
+	if err := w.ReadPointer(&o.Keyword, _s_keyword, _ptr_keyword); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	_ptr_addresses := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.Addresses); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_addresses := func(ptr interface{}) { o.Addresses = *ptr.(*string) }
+	if err := w.ReadPointer(&o.Addresses, _s_addresses, _ptr_addresses); err != nil {
+		return err
+	}
+	return nil
+}
+
+// DynamicKeywordAddressData0 structure represents FW_DYNAMIC_KEYWORD_ADDRESS_DATA0 RPC structure.
+type DynamicKeywordAddressData0 struct {
+	DynamicKeywordAddress *DynamicKeywordAddress0     `idl:"name:dynamicKeywordAddress" json:"dynamic_keyword_address"`
+	Next                  *DynamicKeywordAddressData0 `idl:"name:next" json:"next"`
+	SchemaVersion         uint16                      `idl:"name:schemaVersion" json:"schema_version"`
+	OriginType            DynamicKeywordOriginType    `idl:"name:originType" json:"origin_type"`
+}
+
+func (o *DynamicKeywordAddressData0) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *DynamicKeywordAddressData0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.DynamicKeywordAddress != nil {
+		if err := o.DynamicKeywordAddress.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&DynamicKeywordAddress0{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.Next != nil {
+		_ptr_next := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.Next != nil {
+				if err := o.Next.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&DynamicKeywordAddressData0{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Next, _ptr_next); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.SchemaVersion); err != nil {
+		return err
+	}
+	if err := w.WriteEnum(uint16(o.OriginType)); err != nil {
+		return err
+	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *DynamicKeywordAddressData0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if o.DynamicKeywordAddress == nil {
+		o.DynamicKeywordAddress = &DynamicKeywordAddress0{}
+	}
+	if err := o.DynamicKeywordAddress.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	_ptr_next := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.Next == nil {
+			o.Next = &DynamicKeywordAddressData0{}
+		}
+		if err := o.Next.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_next := func(ptr interface{}) { o.Next = *ptr.(**DynamicKeywordAddressData0) }
+	if err := w.ReadPointer(&o.Next, _s_next, _ptr_next); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SchemaVersion); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.OriginType)); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
+	return nil
+}
+
+// DynamicKeywordAddressEnumFlags type represents FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS RPC enumeration.
+type DynamicKeywordAddressEnumFlags uint16
+
+var (
+	DynamicKeywordAddressEnumFlagsNone           DynamicKeywordAddressEnumFlags = 0
+	DynamicKeywordAddressEnumFlagsAutoResolve    DynamicKeywordAddressEnumFlags = 1
+	DynamicKeywordAddressEnumFlagsNonAutoResolve DynamicKeywordAddressEnumFlags = 2
+	DynamicKeywordAddressEnumFlagsAll            DynamicKeywordAddressEnumFlags = 3
+	DynamicKeywordAddressEnumFlagsMax            DynamicKeywordAddressEnumFlags = 4
+)
+
+func (o DynamicKeywordAddressEnumFlags) String() string {
+	switch o {
+	case DynamicKeywordAddressEnumFlagsNone:
+		return "DynamicKeywordAddressEnumFlagsNone"
+	case DynamicKeywordAddressEnumFlagsAutoResolve:
+		return "DynamicKeywordAddressEnumFlagsAutoResolve"
+	case DynamicKeywordAddressEnumFlagsNonAutoResolve:
+		return "DynamicKeywordAddressEnumFlagsNonAutoResolve"
+	case DynamicKeywordAddressEnumFlagsAll:
+		return "DynamicKeywordAddressEnumFlagsAll"
+	case DynamicKeywordAddressEnumFlagsMax:
+		return "DynamicKeywordAddressEnumFlagsMax"
+	}
+	return "Invalid"
+}
+
+// DynamicKeywordAddressInternal structure represents FW_DYNAMIC_KEYWORD_ADDRESS_INTERNAL RPC structure.
+type DynamicKeywordAddressInternal struct {
+	Next          *DynamicKeywordAddressInternal `idl:"name:next" json:"next"`
+	SchemaVersion uint16                         `idl:"name:schemaVersion" json:"schema_version"`
+	ID            *dtyp.GUID                     `idl:"name:id" json:"id"`
+	Keyword       string                         `idl:"name:keyword;string" json:"keyword"`
+	Flags         uint32                         `idl:"name:flags" json:"flags"`
+	Addresses     *Addresses                     `idl:"name:addresses" json:"addresses"`
+	OriginType    DynamicKeywordOriginType       `idl:"name:originType" json:"origin_type"`
+}
+
+func (o *DynamicKeywordAddressInternal) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if len(o.Keyword) > int(10001) {
+		return fmt.Errorf("Keyword is out of range")
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *DynamicKeywordAddressInternal) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.Next != nil {
+		_ptr_next := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.Next != nil {
+				if err := o.Next.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&DynamicKeywordAddressInternal{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Next, _ptr_next); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.SchemaVersion); err != nil {
+		return err
+	}
+	if o.ID != nil {
+		if err := o.ID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.Keyword != "" {
+		_ptr_keyword := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.Keyword); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Keyword, _ptr_keyword); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if o.Addresses != nil {
+		if err := o.Addresses.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Addresses{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteEnum(uint16(o.OriginType)); err != nil {
+		return err
+	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *DynamicKeywordAddressInternal) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	_ptr_next := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.Next == nil {
+			o.Next = &DynamicKeywordAddressInternal{}
+		}
+		if err := o.Next.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_next := func(ptr interface{}) { o.Next = *ptr.(**DynamicKeywordAddressInternal) }
+	if err := w.ReadPointer(&o.Next, _s_next, _ptr_next); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SchemaVersion); err != nil {
+		return err
+	}
+	if o.ID == nil {
+		o.ID = &dtyp.GUID{}
+	}
+	if err := o.ID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	_ptr_keyword := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.Keyword); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_keyword := func(ptr interface{}) { o.Keyword = *ptr.(*string) }
+	if err := w.ReadPointer(&o.Keyword, _s_keyword, _ptr_keyword); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if o.Addresses == nil {
+		o.Addresses = &Addresses{}
+	}
+	if err := o.Addresses.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.OriginType)); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -2509,6 +3085,9 @@ var (
 	RuleStatusSemanticErrorFQBNVer              RuleStatus = 1049606
 	RuleStatusSemanticErrorCompartmentIDVer     RuleStatus = 1049607
 	RuleStatusSemanticErrorCalloutAndAuditVer   RuleStatus = 1049608
+	// FW_RULE_STATUS_SEMANTIC_ERROR_APPCONTAINER_LOOPBACK_VER: The target schema version
+	// does not support specifying the app container loopback flag.
+	RuleStatusSemanticErrorAppcontainerLoopbackVer RuleStatus = 1049609
 	// FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_AUTH_SET_ID: Semantic error: Phase1 authentication
 	// set ID is not specified.
 	RuleStatusSemanticErrorPhase1AuthSetID RuleStatus = 1049856
@@ -2765,6 +3344,12 @@ var (
 	// FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_NOENCAP_ON_PSK: Semantic error: Cannot mix FW_CRYPTO_PROTOCOL_AUTH_NO_ENCAP
 	// (see section 2.2.69) protocol with Preshared key authentication methods.
 	RuleStatusSemanticErrorAuthNoEncapOnPSK RuleStatus = 1077251
+	// FW_RULE_STATUS_SEMANTIC_ERROR_REMOTE_DYNAMIC_KEYWORD_ADDRESSES: The target schema
+	// version does not support remote dynamic keyword addresses.
+	RuleStatusSemanticErrorRemoteDynamicKeywordAddresses RuleStatus = 1077252
+	// FW_RULE_STATUS_SEMANTIC_ERROR_PACKAGE_FAMILY_NAME_FIELD_NOT_FOUND: The target schema
+	// version does not support package family names.
+	RuleStatusSemanticErrorPackageFamilyNameFieldNotFound RuleStatus = 1077253
 	// FW_RULE_STATUS_RUNTIME_ERROR:  There is a runtime error when the object is considered
 	// with other policy objects.
 	RuleStatusRuntimeError RuleStatus = 2097152
@@ -3038,6 +3623,8 @@ func (o RuleStatus) String() string {
 		return "RuleStatusSemanticErrorCompartmentIDVer"
 	case RuleStatusSemanticErrorCalloutAndAuditVer:
 		return "RuleStatusSemanticErrorCalloutAndAuditVer"
+	case RuleStatusSemanticErrorAppcontainerLoopbackVer:
+		return "RuleStatusSemanticErrorAppcontainerLoopbackVer"
 	case RuleStatusSemanticErrorPhase1AuthSetID:
 		return "RuleStatusSemanticErrorPhase1AuthSetID"
 	case RuleStatusSemanticErrorPhase2CryptoSetID:
@@ -3200,6 +3787,10 @@ func (o RuleStatus) String() string {
 		return "RuleStatusSemanticErrorAuthNoEncapOnTunnel"
 	case RuleStatusSemanticErrorAuthNoEncapOnPSK:
 		return "RuleStatusSemanticErrorAuthNoEncapOnPSK"
+	case RuleStatusSemanticErrorRemoteDynamicKeywordAddresses:
+		return "RuleStatusSemanticErrorRemoteDynamicKeywordAddresses"
+	case RuleStatusSemanticErrorPackageFamilyNameFieldNotFound:
+		return "RuleStatusSemanticErrorPackageFamilyNameFieldNotFound"
 	case RuleStatusRuntimeError:
 		return "RuleStatusRuntimeError"
 	case RuleStatusRuntimeErrorPhase1AuthNotFound:
@@ -3419,10 +4010,17 @@ var (
 	// has a value of 23.
 	EnforcementStateTupleResolutionEmpty       EnforcementState = 23
 	EnforcementStateNetworkNameResolutionEmpty EnforcementState = 24
+	// FW_ENFORCEMENT_STATE_DUPLICATE: This object is not enforced because the Firewall
+	// and Advanced Security component determined that the object is a duplicate of an already
+	// enforced object and is therefore irrelevant, as it would not change or affect traffic
+	// that is otherwise allowed or permitted. Therefore, the component essentially optimized-out
+	// the irrelevant functionality by ignoring it. This is a pure optimization. This symbolic
+	// constant has a value of 24.
+	EnforcementStateDuplicate EnforcementState = 25
 	// FW_ENFORCEMENT_STATE_MAX:  This value and values that exceed this value are not
 	// valid and MUST NOT be used. It is defined for simplicity in writing IDL definitions
 	// and code. This symbolic constant has a value of 25.
-	EnforcementStateMax EnforcementState = 25
+	EnforcementStateMax EnforcementState = 26
 )
 
 func (o EnforcementState) String() string {
@@ -3477,6 +4075,8 @@ func (o EnforcementState) String() string {
 		return "EnforcementStateTupleResolutionEmpty"
 	case EnforcementStateNetworkNameResolutionEmpty:
 		return "EnforcementStateNetworkNameResolutionEmpty"
+	case EnforcementStateDuplicate:
+		return "EnforcementStateDuplicate"
 	case EnforcementStateMax:
 		return "EnforcementStateMax"
 	}
@@ -4009,10 +4609,33 @@ var (
 	// sets, which are defined in sections 2.2.65 and 2.2.74, respectively.<5> This symbolic
 	// constant has a value of 5.
 	RuleOriginTypeHardcoded RuleOriginType = 5
+	// FW_RULE_ORIGIN_MDM: Specifies that the policy object originates from the MDM store.
+	// This symbolic constant has a value of 6.
+	RuleOriginTypeMdm RuleOriginType = 6
 	// FW_RULE_ORIGIN_MAX:  This value and values that exceed this value are not valid
 	// and MUST NOT be used. It is defined for simplicity in writing IDL definitions and
 	// code. This symbolic constant has a value of 7.
-	RuleOriginTypeMax RuleOriginType = 6
+	RuleOriginTypeMax RuleOriginType = 7
+	// FW_RULE_ORIGIN_HOST_LOCAL: Specifies that the policy object originates from the local
+	// store and applies to Hyper-V interfaces on the host machine. This symbolic constant
+	// has a value of 8.
+	RuleOriginTypeHostLocal RuleOriginType = 8
+	// FW_RULE_ORIGIN_HOST_GP: Specifies that the policy object originates from the GP store
+	// and applies to Hyper-V interfaces on the host machine. This symbolic constant has
+	// a value of 9.
+	RuleOriginTypeHostGP RuleOriginType = 9
+	// FW_RULE_ORIGIN_HOST_DYNAMIC: Specifies that the policy object originates from the
+	// dynamic store and applies to Hyper-V interfaces on the host machine. This symbolic
+	// constant has a value of 10.
+	RuleOriginTypeHostDynamic RuleOriginType = 10
+	// FW_RULE_ORIGIN_HOST_MDM: Specifies that the policy object originates from the MDM
+	// store and applies to Hyper-V interfaces on the host machine. This symbolic constant
+	// has a value of 11.
+	RuleOriginTypeHostMdm RuleOriginType = 11
+	// FW_RULE_ORIGIN_HOST_MAX: This value and values that exceed this value are not valid
+	// and MUST NOT be used. It is defined for simplicity in writing IDL definitions and
+	// code. This symbolic constant has a value of 12.
+	RuleOriginTypeHostMax RuleOriginType = 12
 )
 
 func (o RuleOriginType) String() string {
@@ -4029,8 +4652,20 @@ func (o RuleOriginType) String() string {
 		return "RuleOriginTypeAutogen"
 	case RuleOriginTypeHardcoded:
 		return "RuleOriginTypeHardcoded"
+	case RuleOriginTypeMdm:
+		return "RuleOriginTypeMdm"
 	case RuleOriginTypeMax:
 		return "RuleOriginTypeMax"
+	case RuleOriginTypeHostLocal:
+		return "RuleOriginTypeHostLocal"
+	case RuleOriginTypeHostGP:
+		return "RuleOriginTypeHostGP"
+	case RuleOriginTypeHostDynamic:
+		return "RuleOriginTypeHostDynamic"
+	case RuleOriginTypeHostMdm:
+		return "RuleOriginTypeHostMdm"
+	case RuleOriginTypeHostMax:
+		return "RuleOriginTypeHostMax"
 	}
 	return "Invalid"
 }
@@ -4315,20 +4950,23 @@ func (o RuleFlags) String() string {
 type RuleFlags2 uint16
 
 var (
-	RuleFlags2None             RuleFlags2 = 0
-	RuleFlags2SystemOSOnly     RuleFlags2 = 1
-	RuleFlags2GameOSOnly       RuleFlags2 = 2
-	RuleFlags2DevMode          RuleFlags2 = 4
-	RuleFlags2MaxV226          RuleFlags2 = 8
-	RuleFlags2NotUsedValue8    RuleFlags2 = 8
-	RuleFlags2NotUsedValue16   RuleFlags2 = 16
-	RuleFlags2NotUsedValue32   RuleFlags2 = 32
-	RuleFlags2NotUsedValue64   RuleFlags2 = 64
-	RuleFlags2CalloutAndAudit  RuleFlags2 = 128
-	RuleFlags2NotUsedValue256  RuleFlags2 = 256
-	RuleFlags2NotUsedValue512  RuleFlags2 = 512
-	RuleFlags2NotUsedValue1024 RuleFlags2 = 1024
-	RuleFlags2Max              RuleFlags2 = 2048
+	RuleFlags2None                        RuleFlags2 = 0
+	RuleFlags2SystemOSOnly                RuleFlags2 = 1
+	RuleFlags2GameOSOnly                  RuleFlags2 = 2
+	RuleFlags2DevMode                     RuleFlags2 = 4
+	RuleFlags2MaxV226                     RuleFlags2 = 8
+	RuleFlags2NotUsedValue8               RuleFlags2 = 8
+	RuleFlags2EmptyRemotename             RuleFlags2 = 16
+	RuleFlags2NotRemotename               RuleFlags2 = 32
+	RuleFlags2NotUsedValue64              RuleFlags2 = 64
+	RuleFlags2CalloutAndAudit             RuleFlags2 = 128
+	RuleFlags2AppLoopback                 RuleFlags2 = 256
+	RuleFlags2NotUsedValue512             RuleFlags2 = 512
+	RuleFlags2NotUsedValue1024            RuleFlags2 = 1024
+	RuleFlags2NotUsedValue2048            RuleFlags2 = 2048
+	RuleFlags2IndirectNameResolved        RuleFlags2 = 4096
+	RuleFlags2IndirectDescriptionResolved RuleFlags2 = 8192
+	RuleFlags2Max                         RuleFlags2 = 8192
 )
 
 func (o RuleFlags2) String() string {
@@ -4345,20 +4983,26 @@ func (o RuleFlags2) String() string {
 		return "RuleFlags2MaxV226"
 	case RuleFlags2NotUsedValue8:
 		return "RuleFlags2NotUsedValue8"
-	case RuleFlags2NotUsedValue16:
-		return "RuleFlags2NotUsedValue16"
-	case RuleFlags2NotUsedValue32:
-		return "RuleFlags2NotUsedValue32"
+	case RuleFlags2EmptyRemotename:
+		return "RuleFlags2EmptyRemotename"
+	case RuleFlags2NotRemotename:
+		return "RuleFlags2NotRemotename"
 	case RuleFlags2NotUsedValue64:
 		return "RuleFlags2NotUsedValue64"
 	case RuleFlags2CalloutAndAudit:
 		return "RuleFlags2CalloutAndAudit"
-	case RuleFlags2NotUsedValue256:
-		return "RuleFlags2NotUsedValue256"
+	case RuleFlags2AppLoopback:
+		return "RuleFlags2AppLoopback"
 	case RuleFlags2NotUsedValue512:
 		return "RuleFlags2NotUsedValue512"
 	case RuleFlags2NotUsedValue1024:
 		return "RuleFlags2NotUsedValue1024"
+	case RuleFlags2NotUsedValue2048:
+		return "RuleFlags2NotUsedValue2048"
+	case RuleFlags2IndirectNameResolved:
+		return "RuleFlags2IndirectNameResolved"
+	case RuleFlags2IndirectDescriptionResolved:
+		return "RuleFlags2IndirectDescriptionResolved"
 	case RuleFlags2Max:
 		return "RuleFlags2Max"
 	}
@@ -4395,7 +5039,7 @@ type Rule20 struct {
 	Status                         RuleStatus             `idl:"name:Status" json:"status"`
 	Origin                         RuleOriginType         `idl:"name:Origin" json:"origin"`
 	GPOName                        string                 `idl:"name:wszGPOName;string" json:"gpo_name"`
-	MetadataReserved               uint32                 `idl:"name:MetaDataReserved" json:"metadata_reserved"`
+	_                              uint32                 `idl:"name:Reserved"`
 }
 
 func (o *Rule20) xxx_PreparePayload(ctx context.Context) error {
@@ -4435,7 +5079,7 @@ func (o *Rule20) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.EmbeddedContext) > int(10001) {
 		return fmt.Errorf("EmbeddedContext is out of range")
 	}
-	if o.Origin > RuleOriginType(6) {
+	if o.Origin > RuleOriginType(7) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -4682,7 +5326,8 @@ func (o *Rule20) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.MetadataReserved); err != nil {
+	// reserved Reserved
+	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
 	if err := w.WriteTrailingGap(9); err != nil {
@@ -4855,7 +5500,9 @@ func (o *Rule20) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.GPOName, _s_wszGPOName, _ptr_wszGPOName); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.MetadataReserved); err != nil {
+	// reserved Reserved
+	var _Reserved uint32
+	if err := w.ReadData(&_Reserved); err != nil {
 		return err
 	}
 	if err := w.ReadTrailingGap(9); err != nil {
@@ -5192,7 +5839,7 @@ func (o *Rule210) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.EmbeddedContext) > int(10001) {
 		return fmt.Errorf("EmbeddedContext is out of range")
 	}
-	if o.Origin > RuleOriginType(6) {
+	if o.Origin > RuleOriginType(7) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -6032,7 +6679,7 @@ func (o *Rule220) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.EmbeddedContext) > int(10001) {
 		return fmt.Errorf("EmbeddedContext is out of range")
 	}
-	if o.Origin > RuleOriginType(6) {
+	if o.Origin > RuleOriginType(7) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -6970,7 +7617,7 @@ func (o *Rule224) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.EmbeddedContext) > int(10001) {
 		return fmt.Errorf("EmbeddedContext is out of range")
 	}
-	if o.Origin > RuleOriginType(6) {
+	if o.Origin > RuleOriginType(7) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -7946,7 +8593,7 @@ func (o *Rule225) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.EmbeddedContext) > int(10001) {
 		return fmt.Errorf("EmbeddedContext is out of range")
 	}
-	if o.Origin > RuleOriginType(6) {
+	if o.Origin > RuleOriginType(7) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -8877,7 +9524,7 @@ type Rule226 struct {
 	Action                         RuleAction              `idl:"name:Action" json:"action"`
 	Flags                          uint16                  `idl:"name:wFlags" json:"flags"`
 	RemoteMachineAuthorizationList string                  `idl:"name:wszRemoteMachineAuthorizationList;string" json:"remote_machine_authorization_list"`
-	RemoteUserAuthorizationList    string                  `idl:"name:wszRemoteUserAuthorizationList" json:"remote_user_authorization_list"`
+	RemoteUserAuthorizationList    string                  `idl:"name:wszRemoteUserAuthorizationList;string" json:"remote_user_authorization_list"`
 	EmbeddedContext                string                  `idl:"name:wszEmbeddedContext;string" json:"embedded_context"`
 	PlatformValidityList           *OSPlatformList         `idl:"name:PlatformValidityList" json:"platform_validity_list"`
 	Status                         RuleStatus              `idl:"name:Status" json:"status"`
@@ -8929,10 +9576,13 @@ func (o *Rule226) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.RemoteMachineAuthorizationList) > int(10001) {
 		return fmt.Errorf("RemoteMachineAuthorizationList is out of range")
 	}
+	if len(o.RemoteUserAuthorizationList) > int(10001) {
+		return fmt.Errorf("RemoteUserAuthorizationList is out of range")
+	}
 	if len(o.EmbeddedContext) > int(10001) {
 		return fmt.Errorf("EmbeddedContext is out of range")
 	}
-	if o.Origin > RuleOriginType(6) {
+	if o.Origin > RuleOriginType(7) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -9133,7 +9783,7 @@ func (o *Rule226) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	if o.RemoteUserAuthorizationList != "" {
 		_ptr_wszRemoteUserAuthorizationList := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := ndr.WriteUTF16String(ctx, w, o.RemoteUserAuthorizationList); err != nil {
+			if err := ndr.WriteUTF16NString(ctx, w, o.RemoteUserAuthorizationList); err != nil {
 				return err
 			}
 			return nil
@@ -9455,7 +10105,7 @@ func (o *Rule226) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	_ptr_wszRemoteUserAuthorizationList := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := ndr.ReadUTF16String(ctx, w, &o.RemoteUserAuthorizationList); err != nil {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.RemoteUserAuthorizationList); err != nil {
 			return err
 		}
 		return nil
@@ -9932,7 +10582,7 @@ func (o *Rule227) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.EmbeddedContext) > int(10001) {
 		return fmt.Errorf("EmbeddedContext is out of range")
 	}
-	if o.Origin > RuleOriginType(6) {
+	if o.Origin > RuleOriginType(7) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -10892,60 +11542,135 @@ func (o *Rule227_IPProtocolData_TypeCodeListV6) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
-// DynamicKeywordAddressIDList structure represents FW_DYNAMIC_KEYWORD_ADDRESS_ID_LIST RPC structure.
-type DynamicKeywordAddressIDList struct {
-	IDsLength uint32   `idl:"name:dwNumIds" json:"ids_length"`
-	IDs       []uint32 `idl:"name:ids;size_is:(dwNumIds)" json:"ids"`
+// Rule231 structure represents FW_RULE2_31 RPC structure.
+type Rule231 struct {
+	Next                           *Rule231                     `idl:"name:pNext" json:"next"`
+	SchemaVersion                  uint16                       `idl:"name:wSchemaVersion" json:"schema_version"`
+	RuleID                         string                       `idl:"name:wszRuleId;string;pointer:ref" json:"rule_id"`
+	Name                           string                       `idl:"name:wszName;string" json:"name"`
+	Description                    string                       `idl:"name:wszDescription;string" json:"description"`
+	Profiles                       uint32                       `idl:"name:dwProfiles" json:"profiles"`
+	Direction                      Direction                    `idl:"name:Direction" json:"direction"`
+	IPProtocol                     uint16                       `idl:"name:wIpProtocol" json:"ip_protocol"`
+	IPProtocolData                 *Rule231_IPProtocolData      `idl:"name:IpProtocolData;switch_is:wIpProtocol" json:"ip_protocol_data"`
+	LocalAddresses                 *Addresses                   `idl:"name:LocalAddresses" json:"local_addresses"`
+	RemoteAddresses                *Addresses                   `idl:"name:RemoteAddresses" json:"remote_addresses"`
+	LocalInterfaceIDs              *InterfaceLUIDs              `idl:"name:LocalInterfaceIds" json:"local_interface_ids"`
+	LocalInterfaceTypes            uint32                       `idl:"name:dwLocalInterfaceTypes" json:"local_interface_types"`
+	LocalApplication               string                       `idl:"name:wszLocalApplication;string" json:"local_application"`
+	LocalService                   string                       `idl:"name:wszLocalService;string" json:"local_service"`
+	Action                         RuleAction                   `idl:"name:Action" json:"action"`
+	Flags                          uint16                       `idl:"name:wFlags" json:"flags"`
+	RemoteMachineAuthorizationList string                       `idl:"name:wszRemoteMachineAuthorizationList;string" json:"remote_machine_authorization_list"`
+	RemoteUserAuthorizationList    string                       `idl:"name:wszRemoteUserAuthorizationList;string" json:"remote_user_authorization_list"`
+	EmbeddedContext                string                       `idl:"name:wszEmbeddedContext;string" json:"embedded_context"`
+	PlatformValidityList           *OSPlatformList              `idl:"name:PlatformValidityList" json:"platform_validity_list"`
+	Status                         RuleStatus                   `idl:"name:Status" json:"status"`
+	Origin                         RuleOriginType               `idl:"name:Origin" json:"origin"`
+	GPOName                        string                       `idl:"name:wszGPOName;string" json:"gpo_name"`
+	MetadataReserved               uint32                       `idl:"name:MetaDataReserved" json:"metadata_reserved"`
+	Metadata                       []*ObjectMetadata            `idl:"name:pMetaData;size_is:(((MetaDataReserved&1)?1:0))" json:"metadata"`
+	LocalUserAuthorizationList     string                       `idl:"name:wszLocalUserAuthorizationList;string" json:"local_user_authorization_list"`
+	PackageID                      string                       `idl:"name:wszPackageId;string" json:"package_id"`
+	LocalUserOwner                 string                       `idl:"name:wszLocalUserOwner;string" json:"local_user_owner"`
+	TrustTupleKeywords             uint32                       `idl:"name:dwTrustTupleKeywords" json:"trust_tuple_keywords"`
+	OnNetworkNames                 *NetworkNames                `idl:"name:OnNetworkNames" json:"on_network_names"`
+	SecurityRealmID                string                       `idl:"name:wszSecurityRealmId;string" json:"security_realm_id"`
+	Flags2                         uint16                       `idl:"name:wFlags2" json:"flags2"`
+	RemoteOutServerNames           *NetworkNames                `idl:"name:RemoteOutServerNames" json:"remote_out_server_names"`
+	FQBN                           string                       `idl:"name:wszFqbn;string" json:"fqbn"`
+	CompartmentID                  uint32                       `idl:"name:compartmentId" json:"compartment_id"`
+	ProviderContextKey             *dtyp.GUID                   `idl:"name:providerContextKey" json:"provider_context_key"`
+	RemoteDynamicKeywordAddresses  *DynamicKeywordAddressIDList `idl:"name:RemoteDynamicKeywordAddresses" json:"remote_dynamic_keyword_addresses"`
 }
 
-func (o *DynamicKeywordAddressIDList) xxx_PreparePayload(ctx context.Context) error {
+func (o *Rule231) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
-	if o.IDs != nil && o.IDsLength == 0 {
-		o.IDsLength = uint32(len(o.IDs))
+	if o.Metadata != nil && o.MetadataReserved == 0 {
+		o.MetadataReserved = uint32(len(o.Metadata))
+	}
+	if len(o.RuleID) > int(512) {
+		return fmt.Errorf("RuleID is out of range")
+	}
+	if len(o.Name) > int(10001) {
+		return fmt.Errorf("Name is out of range")
+	}
+	if len(o.Description) > int(10001) {
+		return fmt.Errorf("Description is out of range")
+	}
+	if o.Direction > Direction(2) {
+		return fmt.Errorf("Direction is out of range")
+	}
+	if o.IPProtocol > uint16(256) {
+		return fmt.Errorf("IPProtocol is out of range")
+	}
+	if len(o.LocalApplication) > int(10001) {
+		return fmt.Errorf("LocalApplication is out of range")
+	}
+	if len(o.LocalService) > int(10001) {
+		return fmt.Errorf("LocalService is out of range")
+	}
+	if o.Action > RuleAction(4) {
+		return fmt.Errorf("Action is out of range")
+	}
+	if len(o.RemoteMachineAuthorizationList) > int(10001) {
+		return fmt.Errorf("RemoteMachineAuthorizationList is out of range")
+	}
+	if len(o.RemoteUserAuthorizationList) > int(10001) {
+		return fmt.Errorf("RemoteUserAuthorizationList is out of range")
+	}
+	if len(o.EmbeddedContext) > int(10001) {
+		return fmt.Errorf("EmbeddedContext is out of range")
+	}
+	if o.Origin > RuleOriginType(7) {
+		return fmt.Errorf("Origin is out of range")
+	}
+	if len(o.GPOName) > int(10001) {
+		return fmt.Errorf("GPOName is out of range")
+	}
+	if len(o.LocalUserAuthorizationList) > int(10001) {
+		return fmt.Errorf("LocalUserAuthorizationList is out of range")
+	}
+	if len(o.PackageID) > int(10001) {
+		return fmt.Errorf("PackageID is out of range")
+	}
+	if len(o.LocalUserOwner) > int(10001) {
+		return fmt.Errorf("LocalUserOwner is out of range")
+	}
+	if len(o.SecurityRealmID) > int(10001) {
+		return fmt.Errorf("SecurityRealmID is out of range")
+	}
+	if len(o.FQBN) > int(10001) {
+		return fmt.Errorf("FQBN is out of range")
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *DynamicKeywordAddressIDList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Rule231) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IDsLength); err != nil {
-		return err
-	}
-	if o.IDs != nil || o.IDsLength > 0 {
-		_ptr_ids := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			dimSize1 := uint64(o.IDsLength)
-			if err := w.WriteSize(dimSize1); err != nil {
-				return err
-			}
-			sizeInfo := []uint64{
-				dimSize1,
-			}
-			for i1 := range o.IDs {
-				i1 := i1
-				if uint64(i1) >= sizeInfo[0] {
-					break
-				}
-				if err := w.WriteData(o.IDs[i1]); err != nil {
+	if o.Next != nil {
+		_ptr_pNext := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.Next != nil {
+				if err := o.Next.MarshalNDR(ctx, w); err != nil {
 					return err
 				}
-			}
-			for i1 := len(o.IDs); uint64(i1) < sizeInfo[0]; i1++ {
-				if err := w.WriteData(uint32(0)); err != nil {
+			} else {
+				if err := (&Rule231{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.IDs, _ptr_ids); err != nil {
+		if err := w.WritePointer(&o.Next, _ptr_pNext); err != nil {
 			return err
 		}
 	} else {
@@ -10953,16 +11678,559 @@ func (o *DynamicKeywordAddressIDList) MarshalNDR(ctx context.Context, w ndr.Writ
 			return err
 		}
 	}
+	if err := w.WriteData(o.SchemaVersion); err != nil {
+		return err
+	}
+	if o.RuleID != "" {
+		_ptr_wszRuleId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.RuleID); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.RuleID, _ptr_wszRuleId); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.Name != "" {
+		_ptr_wszName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.Name); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Name, _ptr_wszName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.Description != "" {
+		_ptr_wszDescription := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.Description); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Description, _ptr_wszDescription); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Profiles); err != nil {
+		return err
+	}
+	if err := w.WriteEnum(uint16(o.Direction)); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.IPProtocol); err != nil {
+		return err
+	}
+	_swIPProtocolData := uint16(o.IPProtocol)
+	if o.IPProtocolData != nil {
+		if err := o.IPProtocolData.MarshalUnionNDR(ctx, w, _swIPProtocolData); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Rule231_IPProtocolData{}).MarshalUnionNDR(ctx, w, _swIPProtocolData); err != nil {
+			return err
+		}
+	}
+	if o.LocalAddresses != nil {
+		if err := o.LocalAddresses.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Addresses{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemoteAddresses != nil {
+		if err := o.RemoteAddresses.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Addresses{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.LocalInterfaceIDs != nil {
+		if err := o.LocalInterfaceIDs.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&InterfaceLUIDs{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.LocalInterfaceTypes); err != nil {
+		return err
+	}
+	if o.LocalApplication != "" {
+		_ptr_wszLocalApplication := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.LocalApplication); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.LocalApplication, _ptr_wszLocalApplication); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.LocalService != "" {
+		_ptr_wszLocalService := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.LocalService); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.LocalService, _ptr_wszLocalService); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if o.RemoteMachineAuthorizationList != "" {
+		_ptr_wszRemoteMachineAuthorizationList := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.RemoteMachineAuthorizationList); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.RemoteMachineAuthorizationList, _ptr_wszRemoteMachineAuthorizationList); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.RemoteUserAuthorizationList != "" {
+		_ptr_wszRemoteUserAuthorizationList := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.RemoteUserAuthorizationList); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.RemoteUserAuthorizationList, _ptr_wszRemoteUserAuthorizationList); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.EmbeddedContext != "" {
+		_ptr_wszEmbeddedContext := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.EmbeddedContext); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.EmbeddedContext, _ptr_wszEmbeddedContext); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.PlatformValidityList != nil {
+		if err := o.PlatformValidityList.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&OSPlatformList{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
+		return err
+	}
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
+		return err
+	}
+	if o.GPOName != "" {
+		_ptr_wszGPOName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.GPOName); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.GPOName, _ptr_wszGPOName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.MetadataReserved); err != nil {
+		return err
+	}
+	_exprMetaDataReserved := uint32(0)
+	if (o.MetadataReserved & 1) != 0 {
+		_exprMetaDataReserved = uint32(1)
+	} else {
+		_exprMetaDataReserved = uint32(0)
+	}
+	if o.Metadata != nil || _exprMetaDataReserved > 0 {
+		_ptr_pMetaData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_exprMetaDataReserved := uint64(0)
+			if (o.MetadataReserved & 1) != 0 {
+				_exprMetaDataReserved = uint64(1)
+			} else {
+				_exprMetaDataReserved = uint64(0)
+			}
+			dimSize1 := uint64(_exprMetaDataReserved)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.Metadata {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.Metadata[i1] != nil {
+					if err := o.Metadata[i1].MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&ObjectMetadata{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.Metadata); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := (&ObjectMetadata{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Metadata, _ptr_pMetaData); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.LocalUserAuthorizationList != "" {
+		_ptr_wszLocalUserAuthorizationList := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.LocalUserAuthorizationList); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.LocalUserAuthorizationList, _ptr_wszLocalUserAuthorizationList); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.PackageID != "" {
+		_ptr_wszPackageId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.PackageID); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.PackageID, _ptr_wszPackageId); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.LocalUserOwner != "" {
+		_ptr_wszLocalUserOwner := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.LocalUserOwner); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.LocalUserOwner, _ptr_wszLocalUserOwner); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.TrustTupleKeywords); err != nil {
+		return err
+	}
+	if o.OnNetworkNames != nil {
+		if err := o.OnNetworkNames.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&NetworkNames{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.SecurityRealmID != "" {
+		_ptr_wszSecurityRealmId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.SecurityRealmID); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SecurityRealmID, _ptr_wszSecurityRealmId); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Flags2); err != nil {
+		return err
+	}
+	if o.RemoteOutServerNames != nil {
+		if err := o.RemoteOutServerNames.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&NetworkNames{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.FQBN != "" {
+		_ptr_wszFqbn := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.FQBN); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.FQBN, _ptr_wszFqbn); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.CompartmentID); err != nil {
+		return err
+	}
+	if o.ProviderContextKey != nil {
+		if err := o.ProviderContextKey.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemoteDynamicKeywordAddresses != nil {
+		if err := o.RemoteDynamicKeywordAddresses.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&DynamicKeywordAddressIDList{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
 	return nil
 }
-func (o *DynamicKeywordAddressIDList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Rule231) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IDsLength); err != nil {
+	_ptr_pNext := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.Next == nil {
+			o.Next = &Rule231{}
+		}
+		if err := o.Next.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_pNext := func(ptr interface{}) { o.Next = *ptr.(**Rule231) }
+	if err := w.ReadPointer(&o.Next, _s_pNext, _ptr_pNext); err != nil {
 		return err
 	}
-	_ptr_ids := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadData(&o.SchemaVersion); err != nil {
+		return err
+	}
+	_ptr_wszRuleId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.RuleID); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszRuleId := func(ptr interface{}) { o.RuleID = *ptr.(*string) }
+	if err := w.ReadPointer(&o.RuleID, _s_wszRuleId, _ptr_wszRuleId); err != nil {
+		return err
+	}
+	_ptr_wszName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.Name); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszName := func(ptr interface{}) { o.Name = *ptr.(*string) }
+	if err := w.ReadPointer(&o.Name, _s_wszName, _ptr_wszName); err != nil {
+		return err
+	}
+	_ptr_wszDescription := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.Description); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszDescription := func(ptr interface{}) { o.Description = *ptr.(*string) }
+	if err := w.ReadPointer(&o.Description, _s_wszDescription, _ptr_wszDescription); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Profiles); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.Direction)); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.IPProtocol); err != nil {
+		return err
+	}
+	if o.IPProtocolData == nil {
+		o.IPProtocolData = &Rule231_IPProtocolData{}
+	}
+	_swIPProtocolData := uint16(o.IPProtocol)
+	if err := o.IPProtocolData.UnmarshalUnionNDR(ctx, w, _swIPProtocolData); err != nil {
+		return err
+	}
+	if o.LocalAddresses == nil {
+		o.LocalAddresses = &Addresses{}
+	}
+	if err := o.LocalAddresses.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemoteAddresses == nil {
+		o.RemoteAddresses = &Addresses{}
+	}
+	if err := o.RemoteAddresses.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.LocalInterfaceIDs == nil {
+		o.LocalInterfaceIDs = &InterfaceLUIDs{}
+	}
+	if err := o.LocalInterfaceIDs.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.LocalInterfaceTypes); err != nil {
+		return err
+	}
+	_ptr_wszLocalApplication := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.LocalApplication); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszLocalApplication := func(ptr interface{}) { o.LocalApplication = *ptr.(*string) }
+	if err := w.ReadPointer(&o.LocalApplication, _s_wszLocalApplication, _ptr_wszLocalApplication); err != nil {
+		return err
+	}
+	_ptr_wszLocalService := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.LocalService); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszLocalService := func(ptr interface{}) { o.LocalService = *ptr.(*string) }
+	if err := w.ReadPointer(&o.LocalService, _s_wszLocalService, _ptr_wszLocalService); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	_ptr_wszRemoteMachineAuthorizationList := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.RemoteMachineAuthorizationList); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszRemoteMachineAuthorizationList := func(ptr interface{}) { o.RemoteMachineAuthorizationList = *ptr.(*string) }
+	if err := w.ReadPointer(&o.RemoteMachineAuthorizationList, _s_wszRemoteMachineAuthorizationList, _ptr_wszRemoteMachineAuthorizationList); err != nil {
+		return err
+	}
+	_ptr_wszRemoteUserAuthorizationList := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.RemoteUserAuthorizationList); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszRemoteUserAuthorizationList := func(ptr interface{}) { o.RemoteUserAuthorizationList = *ptr.(*string) }
+	if err := w.ReadPointer(&o.RemoteUserAuthorizationList, _s_wszRemoteUserAuthorizationList, _ptr_wszRemoteUserAuthorizationList); err != nil {
+		return err
+	}
+	_ptr_wszEmbeddedContext := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.EmbeddedContext); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszEmbeddedContext := func(ptr interface{}) { o.EmbeddedContext = *ptr.(*string) }
+	if err := w.ReadPointer(&o.EmbeddedContext, _s_wszEmbeddedContext, _ptr_wszEmbeddedContext); err != nil {
+		return err
+	}
+	if o.PlatformValidityList == nil {
+		o.PlatformValidityList = &OSPlatformList{}
+	}
+	if err := o.PlatformValidityList.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
+		return err
+	}
+	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.GPOName); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszGPOName := func(ptr interface{}) { o.GPOName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.GPOName, _s_wszGPOName, _ptr_wszGPOName); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.MetadataReserved); err != nil {
+		return err
+	}
+	_ptr_pMetaData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		sizeInfo := []uint64{
 			0,
 		}
@@ -10972,23 +12240,369 @@ func (o *DynamicKeywordAddressIDList) UnmarshalNDR(ctx context.Context, w ndr.Re
 			}
 		}
 		// XXX: for opaque unmarshaling
-		if o.IDsLength > 0 && sizeInfo[0] == 0 {
-			sizeInfo[0] = uint64(o.IDsLength)
+		_exprpMetaData := uint64(0)
+		if (o.MetadataReserved & 1) != 0 {
+			_exprpMetaData = uint64(1)
+		} else {
+			_exprpMetaData = uint64(0)
+		}
+		if _exprpMetaData > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(_exprpMetaData)
 		}
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.IDs", sizeInfo[0])
+			return fmt.Errorf("buffer overflow for size %d of array o.Metadata", sizeInfo[0])
 		}
-		o.IDs = make([]uint32, sizeInfo[0])
-		for i1 := range o.IDs {
+		o.Metadata = make([]*ObjectMetadata, sizeInfo[0])
+		for i1 := range o.Metadata {
 			i1 := i1
-			if err := w.ReadData(&o.IDs[i1]); err != nil {
+			if o.Metadata[i1] == nil {
+				o.Metadata[i1] = &ObjectMetadata{}
+			}
+			if err := o.Metadata[i1].UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_ids := func(ptr interface{}) { o.IDs = *ptr.(*[]uint32) }
-	if err := w.ReadPointer(&o.IDs, _s_ids, _ptr_ids); err != nil {
+	_s_pMetaData := func(ptr interface{}) { o.Metadata = *ptr.(*[]*ObjectMetadata) }
+	if err := w.ReadPointer(&o.Metadata, _s_pMetaData, _ptr_pMetaData); err != nil {
+		return err
+	}
+	_ptr_wszLocalUserAuthorizationList := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.LocalUserAuthorizationList); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszLocalUserAuthorizationList := func(ptr interface{}) { o.LocalUserAuthorizationList = *ptr.(*string) }
+	if err := w.ReadPointer(&o.LocalUserAuthorizationList, _s_wszLocalUserAuthorizationList, _ptr_wszLocalUserAuthorizationList); err != nil {
+		return err
+	}
+	_ptr_wszPackageId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.PackageID); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszPackageId := func(ptr interface{}) { o.PackageID = *ptr.(*string) }
+	if err := w.ReadPointer(&o.PackageID, _s_wszPackageId, _ptr_wszPackageId); err != nil {
+		return err
+	}
+	_ptr_wszLocalUserOwner := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.LocalUserOwner); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszLocalUserOwner := func(ptr interface{}) { o.LocalUserOwner = *ptr.(*string) }
+	if err := w.ReadPointer(&o.LocalUserOwner, _s_wszLocalUserOwner, _ptr_wszLocalUserOwner); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.TrustTupleKeywords); err != nil {
+		return err
+	}
+	if o.OnNetworkNames == nil {
+		o.OnNetworkNames = &NetworkNames{}
+	}
+	if err := o.OnNetworkNames.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	_ptr_wszSecurityRealmId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.SecurityRealmID); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszSecurityRealmId := func(ptr interface{}) { o.SecurityRealmID = *ptr.(*string) }
+	if err := w.ReadPointer(&o.SecurityRealmID, _s_wszSecurityRealmId, _ptr_wszSecurityRealmId); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags2); err != nil {
+		return err
+	}
+	if o.RemoteOutServerNames == nil {
+		o.RemoteOutServerNames = &NetworkNames{}
+	}
+	if err := o.RemoteOutServerNames.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	_ptr_wszFqbn := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.FQBN); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszFqbn := func(ptr interface{}) { o.FQBN = *ptr.(*string) }
+	if err := w.ReadPointer(&o.FQBN, _s_wszFqbn, _ptr_wszFqbn); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.CompartmentID); err != nil {
+		return err
+	}
+	if o.ProviderContextKey == nil {
+		o.ProviderContextKey = &dtyp.GUID{}
+	}
+	if err := o.ProviderContextKey.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemoteDynamicKeywordAddresses == nil {
+		o.RemoteDynamicKeywordAddresses = &DynamicKeywordAddressIDList{}
+	}
+	if err := o.RemoteDynamicKeywordAddresses.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Rule231_IPProtocolData structure represents FW_RULE2_31 union anonymous member.
+type Rule231_IPProtocolData struct {
+	// Types that are assignable to Value
+	//
+	// *Rule231_IPProtocolData_Ports
+	// *Rule231_IPProtocolData_TypeCodeListV4
+	// *Rule231_IPProtocolData_TypeCodeListV6
+	Value is_Rule231_IPProtocolData `json:"value"`
+}
+
+func (o *Rule231_IPProtocolData) GetValue() any {
+	if o == nil {
+		return nil
+	}
+	switch value := (interface{})(o.Value).(type) {
+	case *Rule231_IPProtocolData_Ports:
+		if value != nil {
+			return value
+		}
+	case *Rule231_IPProtocolData_TypeCodeListV4:
+		if value != nil {
+			return value.TypeCodeListV4
+		}
+	case *Rule231_IPProtocolData_TypeCodeListV6:
+		if value != nil {
+			return value.TypeCodeListV6
+		}
+	}
+	return nil
+}
+
+type is_Rule231_IPProtocolData interface {
+	ndr.Marshaler
+	ndr.Unmarshaler
+	is_Rule231_IPProtocolData()
+}
+
+func (o *Rule231_IPProtocolData) NDRSwitchValue(sw uint16) uint16 {
+	if o == nil {
+		return uint16(0)
+	}
+	switch (interface{})(o.Value).(type) {
+	case *Rule231_IPProtocolData_Ports:
+		switch sw {
+		case uint16(6),
+			uint16(17):
+			return sw
+		}
+		return uint16(6)
+	case *Rule231_IPProtocolData_TypeCodeListV4:
+		return uint16(1)
+	case *Rule231_IPProtocolData_TypeCodeListV6:
+		return uint16(58)
+	}
+	return uint16(0)
+}
+
+func (o *Rule231_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteSwitch(uint16(sw)); err != nil {
+		return err
+	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
+	switch sw {
+	case uint16(6),
+		uint16(17):
+		_o, _ := o.Value.(*Rule231_IPProtocolData_Ports)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Rule231_IPProtocolData_Ports{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint16(1):
+		_o, _ := o.Value.(*Rule231_IPProtocolData_TypeCodeListV4)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Rule231_IPProtocolData_TypeCodeListV4{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint16(58):
+		_o, _ := o.Value.(*Rule231_IPProtocolData_TypeCodeListV6)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Rule231_IPProtocolData_TypeCodeListV6{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	default:
+	}
+	return nil
+}
+
+func (o *Rule231_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
+	switch sw {
+	case uint16(6),
+		uint16(17):
+		o.Value = &Rule231_IPProtocolData_Ports{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(1):
+		o.Value = &Rule231_IPProtocolData_TypeCodeListV4{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(58):
+		o.Value = &Rule231_IPProtocolData_TypeCodeListV6{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	default:
+	}
+	return nil
+}
+
+// Rule231_IPProtocolData_Ports structure represents Rule231_IPProtocolData RPC union arm.
+//
+// It has following labels: 6, 17
+type Rule231_IPProtocolData_Ports struct {
+	LocalPorts  *Ports `idl:"name:LocalPorts" json:"local_ports"`
+	RemotePorts *Ports `idl:"name:RemotePorts" json:"remote_ports"`
+}
+
+func (*Rule231_IPProtocolData_Ports) is_Rule231_IPProtocolData() {}
+
+func (o *Rule231_IPProtocolData_Ports) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.LocalPorts != nil {
+		if err := o.LocalPorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemotePorts != nil {
+		if err := o.RemotePorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Rule231_IPProtocolData_Ports) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if o.LocalPorts == nil {
+		o.LocalPorts = &Ports{}
+	}
+	if err := o.LocalPorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemotePorts == nil {
+		o.RemotePorts = &Ports{}
+	}
+	if err := o.RemotePorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Rule231_IPProtocolData_TypeCodeListV4 structure represents Rule231_IPProtocolData RPC union arm.
+//
+// It has following labels: 1
+type Rule231_IPProtocolData_TypeCodeListV4 struct {
+	TypeCodeListV4 *ICMPTypeCodeList `idl:"name:V4TypeCodeList" json:"type_code_list_v4"`
+}
+
+func (*Rule231_IPProtocolData_TypeCodeListV4) is_Rule231_IPProtocolData() {}
+
+func (o *Rule231_IPProtocolData_TypeCodeListV4) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.TypeCodeListV4 != nil {
+		if err := o.TypeCodeListV4.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&ICMPTypeCodeList{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Rule231_IPProtocolData_TypeCodeListV4) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.TypeCodeListV4 == nil {
+		o.TypeCodeListV4 = &ICMPTypeCodeList{}
+	}
+	if err := o.TypeCodeListV4.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Rule231_IPProtocolData_TypeCodeListV6 structure represents Rule231_IPProtocolData RPC union arm.
+//
+// It has following labels: 58
+type Rule231_IPProtocolData_TypeCodeListV6 struct {
+	TypeCodeListV6 *ICMPTypeCodeList `idl:"name:V6TypeCodeList" json:"type_code_list_v6"`
+}
+
+func (*Rule231_IPProtocolData_TypeCodeListV6) is_Rule231_IPProtocolData() {}
+
+func (o *Rule231_IPProtocolData_TypeCodeListV6) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.TypeCodeListV6 != nil {
+		if err := o.TypeCodeListV6.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&ICMPTypeCodeList{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Rule231_IPProtocolData_TypeCodeListV6) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.TypeCodeListV6 == nil {
+		o.TypeCodeListV6 = &ICMPTypeCodeList{}
+	}
+	if err := o.TypeCodeListV6.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -11125,6 +12739,9 @@ type Rule struct {
 	// RemoteDynamicKeywordAddresses: A type that specifies the dynamic keyword address
 	// Ids to be used for the remote host of the traffic matched by this rule.
 	RemoteDynamicKeywordAddresses *DynamicKeywordAddressIDList `idl:"name:RemoteDynamicKeywordAddresses" json:"remote_dynamic_keyword_addresses"`
+	// wszPackageFamilyName: A pointer to a unicode string containing the Package Family
+	// Name of a packaged application (UWP).
+	PackageFamilyName string `idl:"name:wszPackageFamilyName;string" json:"package_family_name"`
 }
 
 func (o *Rule) xxx_PreparePayload(ctx context.Context) error {
@@ -11167,7 +12784,7 @@ func (o *Rule) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.EmbeddedContext) > int(10001) {
 		return fmt.Errorf("EmbeddedContext is out of range")
 	}
-	if o.Origin > RuleOriginType(6) {
+	if o.Origin > RuleOriginType(7) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -11187,6 +12804,9 @@ func (o *Rule) xxx_PreparePayload(ctx context.Context) error {
 	}
 	if len(o.FQBN) > int(10001) {
 		return fmt.Errorf("FQBN is out of range")
+	}
+	if len(o.PackageFamilyName) > int(10001) {
+		return fmt.Errorf("PackageFamilyName is out of range")
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -11603,6 +13223,21 @@ func (o *Rule) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if o.PackageFamilyName != "" {
+		_ptr_wszPackageFamilyName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.PackageFamilyName); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.PackageFamilyName, _ptr_wszPackageFamilyName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
 	return nil
 }
 func (o *Rule) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -11892,6 +13527,16 @@ func (o *Rule) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.RemoteDynamicKeywordAddresses = &DynamicKeywordAddressIDList{}
 	}
 	if err := o.RemoteDynamicKeywordAddresses.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	_ptr_wszPackageFamilyName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.PackageFamilyName); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_wszPackageFamilyName := func(ptr interface{}) { o.PackageFamilyName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.PackageFamilyName, _s_wszPackageFamilyName, _ptr_wszPackageFamilyName); err != nil {
 		return err
 	}
 	return nil
@@ -13307,10 +14952,14 @@ var (
 	// versions 0x0200, 0x0201, 0x20A, and 0x0214, this value is invalid and MUST NOT be
 	// used.
 	CSRuleFlagsSecurityRealm CSRuleFlags = 256
+	// FW_CS_RULE_FLAGS_TUNNEL_TYPE_POINT_TO_SITE: This flag MUST only be set on tunnel
+	// mode rules. If this flag is set, the connection security rule uses point to site
+	// tunnel policies. This symbolic constant has a value of 0x200.<14>
+	CSRuleFlagsTunnelTypePointToSite CSRuleFlags = 512
 	// FW_CS_RULE_FLAGS_MAX: This value and values that exceed this value are not valid
 	// for all schema versions and MUST NOT be used. It is only defined for simplicity in
 	// writing IDL definitions and code. This symbolic constant has a value of 0x400.
-	CSRuleFlagsMax    CSRuleFlags = 512
+	CSRuleFlagsMax    CSRuleFlags = 1024
 	CSRuleFlagsMaxV21 CSRuleFlags = 2
 	// FW_CS_RULE_FLAGS_MAX_V2_8: This value and values that exceed this value are not valid
 	// and MUST NOT be used by servers and clients with schema version 0x0208 and earlier.
@@ -13349,6 +14998,8 @@ func (o CSRuleFlags) String() string {
 		return "CSRuleFlagsKeyManagerAllowNotifyKey"
 	case CSRuleFlagsSecurityRealm:
 		return "CSRuleFlagsSecurityRealm"
+	case CSRuleFlagsTunnelTypePointToSite:
+		return "CSRuleFlagsTunnelTypePointToSite"
 	case CSRuleFlagsMax:
 		return "CSRuleFlagsMax"
 	case CSRuleFlagsMaxV21:
@@ -13478,7 +15129,7 @@ func (o *CSRule20) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.EmbeddedContext) > int(10001) {
 		return fmt.Errorf("EmbeddedContext is out of range")
 	}
-	if o.Origin > RuleOriginType(5) {
+	if o.Origin > RuleOriginType(6) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -14046,7 +15697,7 @@ func (o *CSRule210) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.EmbeddedContext) > int(10001) {
 		return fmt.Errorf("EmbeddedContext is out of range")
 	}
-	if o.Origin > RuleOriginType(5) {
+	if o.Origin > RuleOriginType(6) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -14793,7 +16444,7 @@ func (o *CSRule) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.EmbeddedContext) > int(10001) {
 		return fmt.Errorf("EmbeddedContext is out of range")
 	}
-	if o.Origin > RuleOriginType(5) {
+	if o.Origin > RuleOriginType(6) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -17011,7 +18662,7 @@ func (o *AuthSet210) xxx_PreparePayload(ctx context.Context) error {
 	if o.SuitesLength > uint32(10000) {
 		return fmt.Errorf("SuitesLength is out of range")
 	}
-	if o.Origin > RuleOriginType(5) {
+	if o.Origin > RuleOriginType(6) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -17386,7 +19037,7 @@ func (o *AuthSet) xxx_PreparePayload(ctx context.Context) error {
 	if o.SuitesLength > uint32(10000) {
 		return fmt.Errorf("SuitesLength is out of range")
 	}
-	if o.Origin > RuleOriginType(5) {
+	if o.Origin > RuleOriginType(6) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -17768,7 +19419,9 @@ var (
 	CryptoEncryptionTypeNone CryptoEncryptionType = 0
 	// FW_CRYPTO_ENCRYPTION_DES:  Uses the DES algorithm for encryption. This symbolic
 	// constant has a value of 1.
-	CryptoEncryptionTypeDES  CryptoEncryptionType = 1
+	CryptoEncryptionTypeDES CryptoEncryptionType = 1
+	// FW_CRYPTO_ENCRYPTION_3DES:  Uses the 3DES algorithm for encryption. This symbolic
+	// constant has a value of 2.
 	CryptoEncryptionType3DES CryptoEncryptionType = 2
 	// FW_CRYPTO_ENCRYPTION_AES128:  Uses the AES algorithm with a 128-bit key size for
 	// encryption. This symbolic constant has a value of 3.
@@ -18353,7 +20006,7 @@ func (o *CryptoSet) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.EmbeddedContext) > int(10001) {
 		return fmt.Errorf("EmbeddedContext is out of range")
 	}
-	if o.Origin > RuleOriginType(5) {
+	if o.Origin > RuleOriginType(6) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -19229,10 +20882,11 @@ var (
 	// FW_PHASE1_KEY_MODULE_AUTH_IP:  The keying protocol was AuthIP. This symbolic constant
 	// has a value of 2.
 	Phase1KeyModuleTypeAuthIP Phase1KeyModuleType = 2
+	Phase1KeyModuleTypeIKEv2  Phase1KeyModuleType = 3
 	// FW_PHASE1_KEY_MODULE_MAX:  This value and values that exceed this value are not
 	// valid and MUST NOT be used. It is defined for simplicity in writing IDL definitions
 	// and code. This symbolic constant has a value of 3.
-	Phase1KeyModuleTypeMax Phase1KeyModuleType = 3
+	Phase1KeyModuleTypeMax Phase1KeyModuleType = 4
 )
 
 func (o Phase1KeyModuleType) String() string {
@@ -19243,6 +20897,8 @@ func (o Phase1KeyModuleType) String() string {
 		return "Phase1KeyModuleTypeIKE"
 	case Phase1KeyModuleTypeAuthIP:
 		return "Phase1KeyModuleTypeAuthIP"
+	case Phase1KeyModuleTypeIKEv2:
+		return "Phase1KeyModuleTypeIKEv2"
 	case Phase1KeyModuleTypeMax:
 		return "Phase1KeyModuleTypeMax"
 	}
@@ -19914,7 +21570,7 @@ func (o *Phase1SADetails) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
-	if o.KeyModuleType < Phase1KeyModuleType(1) || o.KeyModuleType > Phase1KeyModuleType(2) {
+	if o.KeyModuleType < Phase1KeyModuleType(1) || o.KeyModuleType > Phase1KeyModuleType(3) {
 		return fmt.Errorf("KeyModuleType is out of range")
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
@@ -20687,7 +22343,7 @@ func (o *MMRule) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.EmbeddedContext) > int(10001) {
 		return fmt.Errorf("EmbeddedContext is out of range")
 	}
-	if o.Origin > RuleOriginType(5) {
+	if o.Origin > RuleOriginType(6) {
 		return fmt.Errorf("Origin is out of range")
 	}
 	if len(o.GPOName) > int(10001) {
@@ -21147,11 +22803,16 @@ var (
 	// FW_MATCH_KEY_COMPARTMENT_ID: This key matches the compartment ID condition of the
 	// queried object. For schema versions 0x0200 through 0x021A, this value is invalid
 	// and MUST NOT be used. This symbolic constant has a value of 14.
-	MatchKeyCompartmentID MatchKey = 14
+	MatchKeyCompartmentID      MatchKey = 14
+	MatchKeyRemoteUserAuthList MatchKey = 15
+	// FW_MATCH_KEY_PACKAGE_FAMILY_NAME: This key matches the package family name (PFN)
+	// condition of the queried object. For schema versions 0x0200 through 0x0220, this
+	// value is invalid and MUST NOT be used. This symbolic constant has a value of 15.
+	MatchKeyPackageFamilyName MatchKey = 16
 	// FW_MATCH_KEY_MAX:  This value and values that exceed this value are not valid and
 	// MUST NOT be used. It is defined for simplicity in writing IDL definitions and code.
 	// This symbolic constant has a value of 16.
-	MatchKeyMax MatchKey = 15
+	MatchKeyMax MatchKey = 17
 )
 
 func (o MatchKey) String() string {
@@ -21186,6 +22847,10 @@ func (o MatchKey) String() string {
 		return "MatchKeyFQBN"
 	case MatchKeyCompartmentID:
 		return "MatchKeyCompartmentID"
+	case MatchKeyRemoteUserAuthList:
+		return "MatchKeyRemoteUserAuthList"
+	case MatchKeyPackageFamilyName:
+		return "MatchKeyPackageFamilyName"
 	case MatchKeyMax:
 		return "MatchKeyMax"
 	}
@@ -21304,7 +22969,7 @@ type MatchValue_MatchValue struct {
 	// *MatchValue_Int16
 	// *MatchValue_Uint32
 	// *MatchValue_Uint64
-	// *MatchValue_UnicodeString
+	// *MatchValue_UncodeString
 	// *MatchValue_DataTypeEmpty
 	Value is_MatchValue_MatchValue `json:"value"`
 }
@@ -21330,9 +22995,9 @@ func (o *MatchValue_MatchValue) GetValue() any {
 		if value != nil {
 			return value.Uint64
 		}
-	case *MatchValue_UnicodeString:
+	case *MatchValue_UncodeString:
 		if value != nil {
-			return value.UnicodeString
+			return value.UncodeString
 		}
 	}
 	return nil
@@ -21357,7 +23022,7 @@ func (o *MatchValue_MatchValue) NDRSwitchValue(sw uint16) uint16 {
 		return uint16(3)
 	case *MatchValue_Uint64:
 		return uint16(4)
-	case *MatchValue_UnicodeString:
+	case *MatchValue_UncodeString:
 		return uint16(5)
 	case *MatchValue_DataTypeEmpty:
 		return uint16(0)
@@ -21421,13 +23086,13 @@ func (o *MatchValue_MatchValue) MarshalUnionNDR(ctx context.Context, w ndr.Write
 			}
 		}
 	case uint16(5):
-		_o, _ := o.Value.(*MatchValue_UnicodeString)
+		_o, _ := o.Value.(*MatchValue_UncodeString)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&MatchValue_UnicodeString{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MatchValue_UncodeString{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -21470,7 +23135,7 @@ func (o *MatchValue_MatchValue) UnmarshalUnionNDR(ctx context.Context, w ndr.Rea
 			return err
 		}
 	case uint16(5):
-		o.Value = &MatchValue_UnicodeString{}
+		o.Value = &MatchValue_UncodeString{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -21574,46 +23239,46 @@ func (o *MatchValue_Uint64) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	return nil
 }
 
-// MatchValue_UnicodeString structure represents MatchValue_MatchValue RPC union arm.
+// MatchValue_UncodeString structure represents MatchValue_MatchValue RPC union arm.
 //
 // It has following labels: 5
-type MatchValue_UnicodeString struct {
-	UnicodeString *MatchValue_MatchValue_UnicodeString `idl:"name:UnicodeString" json:"unicode_string"`
+type MatchValue_UncodeString struct {
+	UncodeString *MatchValue_MatchValue_UncodeString `idl:"name:UncodeString" json:"uncode_string"`
 }
 
-func (*MatchValue_UnicodeString) is_MatchValue_MatchValue() {}
+func (*MatchValue_UncodeString) is_MatchValue_MatchValue() {}
 
-func (o *MatchValue_UnicodeString) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.UnicodeString != nil {
-		if err := o.UnicodeString.MarshalNDR(ctx, w); err != nil {
+func (o *MatchValue_UncodeString) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.UncodeString != nil {
+		if err := o.UncodeString.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&MatchValue_MatchValue_UnicodeString{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MatchValue_MatchValue_UncodeString{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MatchValue_UnicodeString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.UnicodeString == nil {
-		o.UnicodeString = &MatchValue_MatchValue_UnicodeString{}
+func (o *MatchValue_UncodeString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.UncodeString == nil {
+		o.UncodeString = &MatchValue_MatchValue_UncodeString{}
 	}
-	if err := o.UnicodeString.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.UncodeString.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// MatchValue_MatchValue_UnicodeString structure represents FW_MATCH_VALUE structure anonymous member.
+// MatchValue_MatchValue_UncodeString structure represents FW_MATCH_VALUE structure anonymous member.
 //
 // This structure is used to generically store different data types.
-type MatchValue_MatchValue_UnicodeString struct {
+type MatchValue_MatchValue_UncodeString struct {
 	// wszString:  This field contains a pointer to a Unicode string.
 	String string `idl:"name:wszString;string" json:"string"`
 }
 
-func (o *MatchValue_MatchValue_UnicodeString) xxx_PreparePayload(ctx context.Context) error {
+func (o *MatchValue_MatchValue_UncodeString) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -21625,7 +23290,7 @@ func (o *MatchValue_MatchValue_UnicodeString) xxx_PreparePayload(ctx context.Con
 	}
 	return nil
 }
-func (o *MatchValue_MatchValue_UnicodeString) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MatchValue_MatchValue_UncodeString) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -21649,7 +23314,7 @@ func (o *MatchValue_MatchValue_UnicodeString) MarshalNDR(ctx context.Context, w 
 	}
 	return nil
 }
-func (o *MatchValue_MatchValue_UnicodeString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MatchValue_MatchValue_UncodeString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(6); err != nil {
 		return err
 	}
@@ -22074,6 +23739,1588 @@ func (o *Query) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
+	return nil
+}
+
+// HypervVmCreator0 structure represents FW_HYPERV_VM_CREATOR0 RPC structure.
+type HypervVmCreator0 struct {
+	Next          *HypervVmCreator0 `idl:"name:next" json:"next"`
+	SchemaVersion uint16            `idl:"name:schemaVersion" json:"schema_version"`
+	ID            *dtyp.GUID        `idl:"name:id" json:"id"`
+	FriendlyName  string            `idl:"name:friendlyName;string;pointer:unique" json:"friendly_name"`
+}
+
+func (o *HypervVmCreator0) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if len(o.FriendlyName) > int(10001) {
+		return fmt.Errorf("FriendlyName is out of range")
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *HypervVmCreator0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.Next != nil {
+		_ptr_next := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.Next != nil {
+				if err := o.Next.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&HypervVmCreator0{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Next, _ptr_next); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.SchemaVersion); err != nil {
+		return err
+	}
+	if o.ID != nil {
+		if err := o.ID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.FriendlyName != "" {
+		_ptr_friendlyName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.FriendlyName); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.FriendlyName, _ptr_friendlyName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *HypervVmCreator0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	_ptr_next := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.Next == nil {
+			o.Next = &HypervVmCreator0{}
+		}
+		if err := o.Next.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_next := func(ptr interface{}) { o.Next = *ptr.(**HypervVmCreator0) }
+	if err := w.ReadPointer(&o.Next, _s_next, _ptr_next); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SchemaVersion); err != nil {
+		return err
+	}
+	if o.ID == nil {
+		o.ID = &dtyp.GUID{}
+	}
+	if err := o.ID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	_ptr_friendlyName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.FriendlyName); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_friendlyName := func(ptr interface{}) { o.FriendlyName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.FriendlyName, _s_friendlyName, _ptr_friendlyName); err != nil {
+		return err
+	}
+	return nil
+}
+
+// HypervPortFlags type represents FW_HYPERV_PORT_FLAGS RPC enumeration.
+type HypervPortFlags uint16
+
+var (
+	HypervPortFlagsNone                 HypervPortFlags = 0
+	HypervPortFlagsConstrainedInterface HypervPortFlags = 1
+	HypervPortFlagsMax                  HypervPortFlags = 2
+)
+
+func (o HypervPortFlags) String() string {
+	switch o {
+	case HypervPortFlagsNone:
+		return "HypervPortFlagsNone"
+	case HypervPortFlagsConstrainedInterface:
+		return "HypervPortFlagsConstrainedInterface"
+	case HypervPortFlagsMax:
+		return "HypervPortFlagsMax"
+	}
+	return "Invalid"
+}
+
+// HypervNetworkType type represents FW_HYPERV_NETWORK_TYPE RPC enumeration.
+type HypervNetworkType uint16
+
+var (
+	HypervNetworkTypeInvalid HypervNetworkType = 0
+	HypervNetworkTypeFse     HypervNetworkType = 1
+	HypervNetworkTypeNAT     HypervNetworkType = 2
+	HypervNetworkTypeMax     HypervNetworkType = 4
+)
+
+func (o HypervNetworkType) String() string {
+	switch o {
+	case HypervNetworkTypeInvalid:
+		return "HypervNetworkTypeInvalid"
+	case HypervNetworkTypeFse:
+		return "HypervNetworkTypeFse"
+	case HypervNetworkTypeNAT:
+		return "HypervNetworkTypeNAT"
+	case HypervNetworkTypeMax:
+		return "HypervNetworkTypeMax"
+	}
+	return "Invalid"
+}
+
+// HypervPort0 structure represents FW_HYPERV_PORT0 RPC structure.
+type HypervPort0 struct {
+	Next          *HypervPort0 `idl:"name:next" json:"next"`
+	SwitchName    string       `idl:"name:switchName;string;pointer:ref" json:"switch_name"`
+	PortName      string       `idl:"name:portName;string;pointer:ref" json:"port_name"`
+	VmCreatorID   *dtyp.GUID   `idl:"name:vmCreatorId" json:"vm_creator_id"`
+	InterfaceGUID *dtyp.GUID   `idl:"name:interfaceGuid" json:"interface_guid"`
+	PartitionGUID *dtyp.GUID   `idl:"name:partitionGuid" json:"partition_guid"`
+	Flags         uint32       `idl:"name:flags" json:"flags"`
+}
+
+func (o *HypervPort0) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if len(o.SwitchName) > int(10001) {
+		return fmt.Errorf("SwitchName is out of range")
+	}
+	if len(o.PortName) > int(10001) {
+		return fmt.Errorf("PortName is out of range")
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *HypervPort0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.Next != nil {
+		_ptr_next := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.Next != nil {
+				if err := o.Next.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&HypervPort0{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Next, _ptr_next); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.SwitchName != "" {
+		_ptr_switchName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.SwitchName); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SwitchName, _ptr_switchName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.PortName != "" {
+		_ptr_portName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.PortName); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.PortName, _ptr_portName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.VmCreatorID != nil {
+		if err := o.VmCreatorID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.InterfaceGUID != nil {
+		if err := o.InterfaceGUID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.PartitionGUID != nil {
+		if err := o.PartitionGUID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *HypervPort0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	_ptr_next := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.Next == nil {
+			o.Next = &HypervPort0{}
+		}
+		if err := o.Next.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_next := func(ptr interface{}) { o.Next = *ptr.(**HypervPort0) }
+	if err := w.ReadPointer(&o.Next, _s_next, _ptr_next); err != nil {
+		return err
+	}
+	_ptr_switchName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.SwitchName); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_switchName := func(ptr interface{}) { o.SwitchName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.SwitchName, _s_switchName, _ptr_switchName); err != nil {
+		return err
+	}
+	_ptr_portName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.PortName); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_portName := func(ptr interface{}) { o.PortName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.PortName, _s_portName, _ptr_portName); err != nil {
+		return err
+	}
+	if o.VmCreatorID == nil {
+		o.VmCreatorID = &dtyp.GUID{}
+	}
+	if err := o.VmCreatorID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.InterfaceGUID == nil {
+		o.InterfaceGUID = &dtyp.GUID{}
+	}
+	if err := o.InterfaceGUID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.PartitionGUID == nil {
+		o.PartitionGUID = &dtyp.GUID{}
+	}
+	if err := o.PartitionGUID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
+	return nil
+}
+
+// HypervPort1 structure represents FW_HYPERV_PORT1 RPC structure.
+type HypervPort1 struct {
+	Next                      *HypervPort1      `idl:"name:next" json:"next"`
+	SwitchName                string            `idl:"name:switchName;string;pointer:ref" json:"switch_name"`
+	PortName                  string            `idl:"name:portName;string;pointer:ref" json:"port_name"`
+	VmCreatorID               *dtyp.GUID        `idl:"name:vmCreatorId" json:"vm_creator_id"`
+	InterfaceGUID             *dtyp.GUID        `idl:"name:interfaceGuid" json:"interface_guid"`
+	PartitionGUID             *dtyp.GUID        `idl:"name:partitionGuid" json:"partition_guid"`
+	Flags                     uint32            `idl:"name:flags" json:"flags"`
+	ProfileType               ProfileType       `idl:"name:profileType" json:"profile_type"`
+	NetworkType               HypervNetworkType `idl:"name:networkType" json:"network_type"`
+	ConstrainedInterfaceAlias string            `idl:"name:constrainedInterfaceAlias;string" json:"constrained_interface_alias"`
+}
+
+func (o *HypervPort1) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if len(o.SwitchName) > int(10001) {
+		return fmt.Errorf("SwitchName is out of range")
+	}
+	if len(o.PortName) > int(10001) {
+		return fmt.Errorf("PortName is out of range")
+	}
+	if len(o.ConstrainedInterfaceAlias) > int(10001) {
+		return fmt.Errorf("ConstrainedInterfaceAlias is out of range")
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *HypervPort1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.Next != nil {
+		_ptr_next := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.Next != nil {
+				if err := o.Next.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&HypervPort1{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Next, _ptr_next); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.SwitchName != "" {
+		_ptr_switchName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.SwitchName); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SwitchName, _ptr_switchName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.PortName != "" {
+		_ptr_portName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.PortName); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.PortName, _ptr_portName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.VmCreatorID != nil {
+		if err := o.VmCreatorID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.InterfaceGUID != nil {
+		if err := o.InterfaceGUID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.PartitionGUID != nil {
+		if err := o.PartitionGUID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if err := w.WriteEnum(uint32(o.ProfileType)); err != nil {
+		return err
+	}
+	if err := w.WriteEnum(uint16(o.NetworkType)); err != nil {
+		return err
+	}
+	if o.ConstrainedInterfaceAlias != "" {
+		_ptr_constrainedInterfaceAlias := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.ConstrainedInterfaceAlias); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ConstrainedInterfaceAlias, _ptr_constrainedInterfaceAlias); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *HypervPort1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	_ptr_next := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.Next == nil {
+			o.Next = &HypervPort1{}
+		}
+		if err := o.Next.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_next := func(ptr interface{}) { o.Next = *ptr.(**HypervPort1) }
+	if err := w.ReadPointer(&o.Next, _s_next, _ptr_next); err != nil {
+		return err
+	}
+	_ptr_switchName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.SwitchName); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_switchName := func(ptr interface{}) { o.SwitchName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.SwitchName, _s_switchName, _ptr_switchName); err != nil {
+		return err
+	}
+	_ptr_portName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.PortName); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_portName := func(ptr interface{}) { o.PortName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.PortName, _s_portName, _ptr_portName); err != nil {
+		return err
+	}
+	if o.VmCreatorID == nil {
+		o.VmCreatorID = &dtyp.GUID{}
+	}
+	if err := o.VmCreatorID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.InterfaceGUID == nil {
+		o.InterfaceGUID = &dtyp.GUID{}
+	}
+	if err := o.InterfaceGUID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.PartitionGUID == nil {
+		o.PartitionGUID = &dtyp.GUID{}
+	}
+	if err := o.PartitionGUID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint32)(&o.ProfileType)); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.NetworkType)); err != nil {
+		return err
+	}
+	_ptr_constrainedInterfaceAlias := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.ConstrainedInterfaceAlias); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_constrainedInterfaceAlias := func(ptr interface{}) { o.ConstrainedInterfaceAlias = *ptr.(*string) }
+	if err := w.ReadPointer(&o.ConstrainedInterfaceAlias, _s_constrainedInterfaceAlias, _ptr_constrainedInterfaceAlias); err != nil {
+		return err
+	}
+	return nil
+}
+
+// HypervVmConfig type represents FW_HYPERV_VM_CONFIG RPC enumeration.
+type HypervVmConfig uint16
+
+var (
+	HypervVmConfigInvalid              HypervVmConfig = 0
+	HypervVmConfigLoopbackEnabled      HypervVmConfig = 1
+	HypervVmConfigAllowHostPolicyMerge HypervVmConfig = 2
+	HypervVmConfigMax                  HypervVmConfig = 3
+)
+
+func (o HypervVmConfig) String() string {
+	switch o {
+	case HypervVmConfigInvalid:
+		return "HypervVmConfigInvalid"
+	case HypervVmConfigLoopbackEnabled:
+		return "HypervVmConfigLoopbackEnabled"
+	case HypervVmConfigAllowHostPolicyMerge:
+		return "HypervVmConfigAllowHostPolicyMerge"
+	case HypervVmConfigMax:
+		return "HypervVmConfigMax"
+	}
+	return "Invalid"
+}
+
+// HypervProfileConfig type represents FW_HYPERV_PROFILE_CONFIG RPC enumeration.
+type HypervProfileConfig uint16
+
+var (
+	HypervProfileConfigInvalid               HypervProfileConfig = 0
+	HypervProfileConfigEnabled               HypervProfileConfig = 1
+	HypervProfileConfigAllowLocalPolicyMerge HypervProfileConfig = 2
+	HypervProfileConfigMax                   HypervProfileConfig = 3
+)
+
+func (o HypervProfileConfig) String() string {
+	switch o {
+	case HypervProfileConfigInvalid:
+		return "HypervProfileConfigInvalid"
+	case HypervProfileConfigEnabled:
+		return "HypervProfileConfigEnabled"
+	case HypervProfileConfigAllowLocalPolicyMerge:
+		return "HypervProfileConfigAllowLocalPolicyMerge"
+	case HypervProfileConfigMax:
+		return "HypervProfileConfigMax"
+	}
+	return "Invalid"
+}
+
+// HypervVmConfigValue0 structure represents FW_HYPERV_VM_CONFIG_VALUE0 RPC structure.
+type HypervVmConfigValue0 struct {
+	Value uint32 `idl:"name:pdwVal" json:"value"`
+}
+
+func (o *HypervVmConfigValue0) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *HypervVmConfigValue0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(6); err != nil {
+		return err
+	}
+	// XXX pointer to primitive type, default behavior is to write non-null pointer.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
+	_ptr_pdwVal := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+		if err := w.WriteData(o.Value); err != nil {
+			return err
+		}
+		return nil
+	})
+	if err := w.WritePointer(&o.Value, _ptr_pdwVal); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *HypervVmConfigValue0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(6); err != nil {
+		return err
+	}
+	_ptr_pdwVal := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := w.ReadData(&o.Value); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_pdwVal := func(ptr interface{}) { o.Value = *ptr.(*uint32) }
+	if err := w.ReadPointer(&o.Value, _s_pdwVal, _ptr_pdwVal); err != nil {
+		return err
+	}
+	return nil
+}
+
+// HypervRulePortEnforcementState type represents FW_HYPERV_RULE_PORT_ENFORCEMENT_STATE RPC enumeration.
+type HypervRulePortEnforcementState uint16
+
+var (
+	HypervRulePortEnforcementStateInvalid                                     HypervRulePortEnforcementState = 0
+	HypervRulePortEnforcementStateEnforced                                    HypervRulePortEnforcementState = 1
+	HypervRulePortEnforcementStateError                                       HypervRulePortEnforcementState = 2
+	HypervRulePortEnforcementStateEnforcedEmptyResolution                     HypervRulePortEnforcementState = 3
+	HypervRulePortEnforcementStatePortNotFound                                HypervRulePortEnforcementState = 4
+	HypervRulePortEnforcementStateRuleInactive                                HypervRulePortEnforcementState = 5
+	HypervRulePortEnforcementStateVmCreatorNotApplicable                      HypervRulePortEnforcementState = 6
+	HypervRulePortEnforcementStateProfileNotApplicable                        HypervRulePortEnforcementState = 7
+	HypervRulePortEnforcementStateProfileDisabled                             HypervRulePortEnforcementState = 8
+	HypervRulePortEnforcementStateProfileLocalRulesDisallowed                 HypervRulePortEnforcementState = 9
+	HypervRulePortEnforcementStateConstrainedInterfaceNotApplicable           HypervRulePortEnforcementState = 10
+	HypervRulePortEnforcementStateNATInboundNotApplicable                     HypervRulePortEnforcementState = 11
+	HypervRulePortEnforcementStateNATLocalAddressNotSupported                 HypervRulePortEnforcementState = 12
+	HypervRulePortEnforcementStateHostPolicyMergeDisabled                     HypervRulePortEnforcementState = 13
+	HypervRulePortEnforcementStateHostFirewallProfileDisabled                 HypervRulePortEnforcementState = 14
+	HypervRulePortEnforcementStateHostFirewallDefaultActionConflict           HypervRulePortEnforcementState = 15
+	HypervRulePortEnforcementStateHostFirewallProfileLocalPolicyMergeDisabled HypervRulePortEnforcementState = 16
+	HypervRulePortEnforcementStateHostFirewallRuleCategoryDisabled            HypervRulePortEnforcementState = 17
+	HypervRulePortEnforcementStateMax                                         HypervRulePortEnforcementState = 18
+)
+
+func (o HypervRulePortEnforcementState) String() string {
+	switch o {
+	case HypervRulePortEnforcementStateInvalid:
+		return "HypervRulePortEnforcementStateInvalid"
+	case HypervRulePortEnforcementStateEnforced:
+		return "HypervRulePortEnforcementStateEnforced"
+	case HypervRulePortEnforcementStateError:
+		return "HypervRulePortEnforcementStateError"
+	case HypervRulePortEnforcementStateEnforcedEmptyResolution:
+		return "HypervRulePortEnforcementStateEnforcedEmptyResolution"
+	case HypervRulePortEnforcementStatePortNotFound:
+		return "HypervRulePortEnforcementStatePortNotFound"
+	case HypervRulePortEnforcementStateRuleInactive:
+		return "HypervRulePortEnforcementStateRuleInactive"
+	case HypervRulePortEnforcementStateVmCreatorNotApplicable:
+		return "HypervRulePortEnforcementStateVmCreatorNotApplicable"
+	case HypervRulePortEnforcementStateProfileNotApplicable:
+		return "HypervRulePortEnforcementStateProfileNotApplicable"
+	case HypervRulePortEnforcementStateProfileDisabled:
+		return "HypervRulePortEnforcementStateProfileDisabled"
+	case HypervRulePortEnforcementStateProfileLocalRulesDisallowed:
+		return "HypervRulePortEnforcementStateProfileLocalRulesDisallowed"
+	case HypervRulePortEnforcementStateConstrainedInterfaceNotApplicable:
+		return "HypervRulePortEnforcementStateConstrainedInterfaceNotApplicable"
+	case HypervRulePortEnforcementStateNATInboundNotApplicable:
+		return "HypervRulePortEnforcementStateNATInboundNotApplicable"
+	case HypervRulePortEnforcementStateNATLocalAddressNotSupported:
+		return "HypervRulePortEnforcementStateNATLocalAddressNotSupported"
+	case HypervRulePortEnforcementStateHostPolicyMergeDisabled:
+		return "HypervRulePortEnforcementStateHostPolicyMergeDisabled"
+	case HypervRulePortEnforcementStateHostFirewallProfileDisabled:
+		return "HypervRulePortEnforcementStateHostFirewallProfileDisabled"
+	case HypervRulePortEnforcementStateHostFirewallDefaultActionConflict:
+		return "HypervRulePortEnforcementStateHostFirewallDefaultActionConflict"
+	case HypervRulePortEnforcementStateHostFirewallProfileLocalPolicyMergeDisabled:
+		return "HypervRulePortEnforcementStateHostFirewallProfileLocalPolicyMergeDisabled"
+	case HypervRulePortEnforcementStateHostFirewallRuleCategoryDisabled:
+		return "HypervRulePortEnforcementStateHostFirewallRuleCategoryDisabled"
+	case HypervRulePortEnforcementStateMax:
+		return "HypervRulePortEnforcementStateMax"
+	}
+	return "Invalid"
+}
+
+// HypervRuleStatus type represents FW_HYPERV_RULE_STATUS RPC enumeration.
+type HypervRuleStatus uint16
+
+var (
+	HypervRuleStatusInvalid           HypervRuleStatus = 0
+	HypervRuleStatusOK                HypervRuleStatus = 1
+	HypervRuleStatusPartiallyEnforced HypervRuleStatus = 2
+	HypervRuleStatusNoApplicablePorts HypervRuleStatus = 3
+	HypervRuleStatusParsingError      HypervRuleStatus = 4
+	HypervRuleStatusError             HypervRuleStatus = 5
+	HypervRuleStatusMax               HypervRuleStatus = 6
+)
+
+func (o HypervRuleStatus) String() string {
+	switch o {
+	case HypervRuleStatusInvalid:
+		return "HypervRuleStatusInvalid"
+	case HypervRuleStatusOK:
+		return "HypervRuleStatusOK"
+	case HypervRuleStatusPartiallyEnforced:
+		return "HypervRuleStatusPartiallyEnforced"
+	case HypervRuleStatusNoApplicablePorts:
+		return "HypervRuleStatusNoApplicablePorts"
+	case HypervRuleStatusParsingError:
+		return "HypervRuleStatusParsingError"
+	case HypervRuleStatusError:
+		return "HypervRuleStatusError"
+	case HypervRuleStatusMax:
+		return "HypervRuleStatusMax"
+	}
+	return "Invalid"
+}
+
+// HypervRuleFlags type represents FW_HYPERV_RULE_FLAGS RPC enumeration.
+type HypervRuleFlags uint16
+
+var (
+	HypervRuleFlagsNone                 HypervRuleFlags = 0
+	HypervRuleFlagsActive               HypervRuleFlags = 1
+	HypervRuleFlagsConstrainedInterface HypervRuleFlags = 2
+	HypervRuleFlagsMaxV232              HypervRuleFlags = 4
+	HypervRuleFlagsInternalMinPriority  HypervRuleFlags = 4
+	HypervRuleFlagsMaxV233              HypervRuleFlags = 8
+	HypervRuleFlagsMax                  HypervRuleFlags = 8
+)
+
+func (o HypervRuleFlags) String() string {
+	switch o {
+	case HypervRuleFlagsNone:
+		return "HypervRuleFlagsNone"
+	case HypervRuleFlagsActive:
+		return "HypervRuleFlagsActive"
+	case HypervRuleFlagsConstrainedInterface:
+		return "HypervRuleFlagsConstrainedInterface"
+	case HypervRuleFlagsMaxV232:
+		return "HypervRuleFlagsMaxV232"
+	case HypervRuleFlagsInternalMinPriority:
+		return "HypervRuleFlagsInternalMinPriority"
+	case HypervRuleFlagsMaxV233:
+		return "HypervRuleFlagsMaxV233"
+	case HypervRuleFlagsMax:
+		return "HypervRuleFlagsMax"
+	}
+	return "Invalid"
+}
+
+// HypervRuleMetadata structure represents FW_HYPERV_RULE_METADATA RPC structure.
+type HypervRuleMetadata struct {
+	SwitchName       string                         `idl:"name:switchName;string;pointer:ref" json:"switch_name"`
+	PortName         string                         `idl:"name:portName;string;pointer:ref" json:"port_name"`
+	EnforcementState HypervRulePortEnforcementState `idl:"name:enforcementState" json:"enforcement_state"`
+}
+
+func (o *HypervRuleMetadata) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if len(o.SwitchName) > int(10001) {
+		return fmt.Errorf("SwitchName is out of range")
+	}
+	if len(o.PortName) > int(10001) {
+		return fmt.Errorf("PortName is out of range")
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *HypervRuleMetadata) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(7); err != nil {
+		return err
+	}
+	if o.SwitchName != "" {
+		_ptr_switchName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.SwitchName); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SwitchName, _ptr_switchName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.PortName != "" {
+		_ptr_portName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.PortName); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.PortName, _ptr_portName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteEnum(uint16(o.EnforcementState)); err != nil {
+		return err
+	}
+	if err := w.WriteTrailingGap(7); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *HypervRuleMetadata) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(7); err != nil {
+		return err
+	}
+	_ptr_switchName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.SwitchName); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_switchName := func(ptr interface{}) { o.SwitchName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.SwitchName, _s_switchName, _ptr_switchName); err != nil {
+		return err
+	}
+	_ptr_portName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.PortName); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_portName := func(ptr interface{}) { o.PortName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.PortName, _s_portName, _ptr_portName); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.EnforcementState)); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(7); err != nil {
+		return err
+	}
+	return nil
+}
+
+// HypervRuleMetadataList structure represents FW_HYPERV_RULE_METADATA_LIST RPC structure.
+type HypervRuleMetadataList struct {
+	EntriesLength uint32                `idl:"name:numEntries" json:"entries_length"`
+	List          []*HypervRuleMetadata `idl:"name:list;size_is:(numEntries)" json:"list"`
+}
+
+func (o *HypervRuleMetadataList) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.List != nil && o.EntriesLength == 0 {
+		o.EntriesLength = uint32(len(o.List))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *HypervRuleMetadataList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.EntriesLength); err != nil {
+		return err
+	}
+	if o.List != nil || o.EntriesLength > 0 {
+		_ptr_list := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.EntriesLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.List {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.List[i1] != nil {
+					if err := o.List[i1].MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&HypervRuleMetadata{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.List); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := (&HypervRuleMetadata{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.List, _ptr_list); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *HypervRuleMetadataList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.EntriesLength); err != nil {
+		return err
+	}
+	_ptr_list := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.EntriesLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.EntriesLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.List", sizeInfo[0])
+		}
+		o.List = make([]*HypervRuleMetadata, sizeInfo[0])
+		for i1 := range o.List {
+			i1 := i1
+			if o.List[i1] == nil {
+				o.List[i1] = &HypervRuleMetadata{}
+			}
+			if err := o.List[i1].UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_list := func(ptr interface{}) { o.List = *ptr.(*[]*HypervRuleMetadata) }
+	if err := w.ReadPointer(&o.List, _s_list, _ptr_list); err != nil {
+		return err
+	}
+	return nil
+}
+
+// HypervRule0 structure represents FW_HYPERV_RULE0 RPC structure.
+type HypervRule0 struct {
+	Next            *HypervRule0            `idl:"name:next" json:"next"`
+	SchemaVersion   uint16                  `idl:"name:schemaVersion" json:"schema_version"`
+	RuleID          string                  `idl:"name:ruleId;string;pointer:ref" json:"rule_id"`
+	RuleName        string                  `idl:"name:ruleName;string;pointer:ref" json:"rule_name"`
+	Priority        uint16                  `idl:"name:priority" json:"priority"`
+	Direction       Direction               `idl:"name:direction" json:"direction"`
+	VmCreatorID     *dtyp.GUID              `idl:"name:vmCreatorId" json:"vm_creator_id"`
+	Protocol        uint16                  `idl:"name:protocol" json:"protocol"`
+	LocalAddresses  *Addresses              `idl:"name:localAddresses" json:"local_addresses"`
+	LocalPorts      *Ports                  `idl:"name:localPorts" json:"local_ports"`
+	RemoteAddresses *Addresses              `idl:"name:remoteAddresses" json:"remote_addresses"`
+	RemotePorts     *Ports                  `idl:"name:remotePorts" json:"remote_ports"`
+	Action          RuleAction              `idl:"name:action" json:"action"`
+	Flags           uint16                  `idl:"name:flags" json:"flags"`
+	Status          HypervRuleStatus        `idl:"name:status" json:"status"`
+	Origin          RuleOriginType          `idl:"name:origin" json:"origin"`
+	MetadataList    *HypervRuleMetadataList `idl:"name:metadataList" json:"metadata_list"`
+}
+
+func (o *HypervRule0) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if len(o.RuleID) > int(10001) {
+		return fmt.Errorf("RuleID is out of range")
+	}
+	if len(o.RuleName) > int(10001) {
+		return fmt.Errorf("RuleName is out of range")
+	}
+	if o.Direction > Direction(2) {
+		return fmt.Errorf("Direction is out of range")
+	}
+	if o.Action > RuleAction(4) {
+		return fmt.Errorf("Action is out of range")
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *HypervRule0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.Next != nil {
+		_ptr_next := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.Next != nil {
+				if err := o.Next.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&HypervRule0{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Next, _ptr_next); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.SchemaVersion); err != nil {
+		return err
+	}
+	if o.RuleID != "" {
+		_ptr_ruleId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.RuleID); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.RuleID, _ptr_ruleId); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.RuleName != "" {
+		_ptr_ruleName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.RuleName); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.RuleName, _ptr_ruleName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Priority); err != nil {
+		return err
+	}
+	if err := w.WriteEnum(uint16(o.Direction)); err != nil {
+		return err
+	}
+	if o.VmCreatorID != nil {
+		if err := o.VmCreatorID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Protocol); err != nil {
+		return err
+	}
+	if o.LocalAddresses != nil {
+		if err := o.LocalAddresses.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Addresses{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.LocalPorts != nil {
+		if err := o.LocalPorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemoteAddresses != nil {
+		if err := o.RemoteAddresses.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Addresses{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemotePorts != nil {
+		if err := o.RemotePorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
+		return err
+	}
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
+		return err
+	}
+	if o.MetadataList != nil {
+		if err := o.MetadataList.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&HypervRuleMetadataList{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *HypervRule0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	_ptr_next := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.Next == nil {
+			o.Next = &HypervRule0{}
+		}
+		if err := o.Next.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_next := func(ptr interface{}) { o.Next = *ptr.(**HypervRule0) }
+	if err := w.ReadPointer(&o.Next, _s_next, _ptr_next); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SchemaVersion); err != nil {
+		return err
+	}
+	_ptr_ruleId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.RuleID); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_ruleId := func(ptr interface{}) { o.RuleID = *ptr.(*string) }
+	if err := w.ReadPointer(&o.RuleID, _s_ruleId, _ptr_ruleId); err != nil {
+		return err
+	}
+	_ptr_ruleName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.RuleName); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_ruleName := func(ptr interface{}) { o.RuleName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.RuleName, _s_ruleName, _ptr_ruleName); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Priority); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.Direction)); err != nil {
+		return err
+	}
+	if o.VmCreatorID == nil {
+		o.VmCreatorID = &dtyp.GUID{}
+	}
+	if err := o.VmCreatorID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Protocol); err != nil {
+		return err
+	}
+	if o.LocalAddresses == nil {
+		o.LocalAddresses = &Addresses{}
+	}
+	if err := o.LocalAddresses.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.LocalPorts == nil {
+		o.LocalPorts = &Ports{}
+	}
+	if err := o.LocalPorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemoteAddresses == nil {
+		o.RemoteAddresses = &Addresses{}
+	}
+	if err := o.RemoteAddresses.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemotePorts == nil {
+		o.RemotePorts = &Ports{}
+	}
+	if err := o.RemotePorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
+		return err
+	}
+	if o.MetadataList == nil {
+		o.MetadataList = &HypervRuleMetadataList{}
+	}
+	if err := o.MetadataList.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// HypervRule1 structure represents FW_HYPERV_RULE1 RPC structure.
+type HypervRule1 struct {
+	Next            *HypervRule1            `idl:"name:next" json:"next"`
+	SchemaVersion   uint16                  `idl:"name:schemaVersion" json:"schema_version"`
+	RuleID          string                  `idl:"name:ruleId;string;pointer:ref" json:"rule_id"`
+	RuleName        string                  `idl:"name:ruleName;string;pointer:ref" json:"rule_name"`
+	Priority        uint16                  `idl:"name:priority" json:"priority"`
+	Direction       Direction               `idl:"name:direction" json:"direction"`
+	VmCreatorID     *dtyp.GUID              `idl:"name:vmCreatorId" json:"vm_creator_id"`
+	Protocol        uint16                  `idl:"name:protocol" json:"protocol"`
+	LocalAddresses  *Addresses              `idl:"name:localAddresses" json:"local_addresses"`
+	LocalPorts      *Ports                  `idl:"name:localPorts" json:"local_ports"`
+	RemoteAddresses *Addresses              `idl:"name:remoteAddresses" json:"remote_addresses"`
+	RemotePorts     *Ports                  `idl:"name:remotePorts" json:"remote_ports"`
+	Action          RuleAction              `idl:"name:action" json:"action"`
+	Flags           uint16                  `idl:"name:flags" json:"flags"`
+	Status          HypervRuleStatus        `idl:"name:status" json:"status"`
+	Origin          RuleOriginType          `idl:"name:origin" json:"origin"`
+	MetadataList    *HypervRuleMetadataList `idl:"name:metadataList" json:"metadata_list"`
+	ProfileTypes    uint32                  `idl:"name:profileTypes" json:"profile_types"`
+}
+
+func (o *HypervRule1) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if len(o.RuleID) > int(10001) {
+		return fmt.Errorf("RuleID is out of range")
+	}
+	if len(o.RuleName) > int(10001) {
+		return fmt.Errorf("RuleName is out of range")
+	}
+	if o.Direction > Direction(2) {
+		return fmt.Errorf("Direction is out of range")
+	}
+	if o.Action > RuleAction(4) {
+		return fmt.Errorf("Action is out of range")
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *HypervRule1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.Next != nil {
+		_ptr_next := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.Next != nil {
+				if err := o.Next.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&HypervRule1{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Next, _ptr_next); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.SchemaVersion); err != nil {
+		return err
+	}
+	if o.RuleID != "" {
+		_ptr_ruleId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.RuleID); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.RuleID, _ptr_ruleId); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.RuleName != "" {
+		_ptr_ruleName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.RuleName); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.RuleName, _ptr_ruleName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Priority); err != nil {
+		return err
+	}
+	if err := w.WriteEnum(uint16(o.Direction)); err != nil {
+		return err
+	}
+	if o.VmCreatorID != nil {
+		if err := o.VmCreatorID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Protocol); err != nil {
+		return err
+	}
+	if o.LocalAddresses != nil {
+		if err := o.LocalAddresses.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Addresses{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.LocalPorts != nil {
+		if err := o.LocalPorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemoteAddresses != nil {
+		if err := o.RemoteAddresses.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Addresses{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemotePorts != nil {
+		if err := o.RemotePorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
+		return err
+	}
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
+		return err
+	}
+	if o.MetadataList != nil {
+		if err := o.MetadataList.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&HypervRuleMetadataList{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.ProfileTypes); err != nil {
+		return err
+	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *HypervRule1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	_ptr_next := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.Next == nil {
+			o.Next = &HypervRule1{}
+		}
+		if err := o.Next.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_next := func(ptr interface{}) { o.Next = *ptr.(**HypervRule1) }
+	if err := w.ReadPointer(&o.Next, _s_next, _ptr_next); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SchemaVersion); err != nil {
+		return err
+	}
+	_ptr_ruleId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.RuleID); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_ruleId := func(ptr interface{}) { o.RuleID = *ptr.(*string) }
+	if err := w.ReadPointer(&o.RuleID, _s_ruleId, _ptr_ruleId); err != nil {
+		return err
+	}
+	_ptr_ruleName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.RuleName); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_ruleName := func(ptr interface{}) { o.RuleName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.RuleName, _s_ruleName, _ptr_ruleName); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Priority); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.Direction)); err != nil {
+		return err
+	}
+	if o.VmCreatorID == nil {
+		o.VmCreatorID = &dtyp.GUID{}
+	}
+	if err := o.VmCreatorID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Protocol); err != nil {
+		return err
+	}
+	if o.LocalAddresses == nil {
+		o.LocalAddresses = &Addresses{}
+	}
+	if err := o.LocalAddresses.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.LocalPorts == nil {
+		o.LocalPorts = &Ports{}
+	}
+	if err := o.LocalPorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemoteAddresses == nil {
+		o.RemoteAddresses = &Addresses{}
+	}
+	if err := o.RemoteAddresses.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemotePorts == nil {
+		o.RemotePorts = &Ports{}
+	}
+	if err := o.RemotePorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
+		return err
+	}
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
+		return err
+	}
+	if o.MetadataList == nil {
+		o.MetadataList = &HypervRuleMetadataList{}
+	}
+	if err := o.MetadataList.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ProfileTypes); err != nil {
 		return err
 	}
 	if err := w.ReadTrailingGap(9); err != nil {

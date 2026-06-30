@@ -104,6 +104,7 @@ abbr:
   dc: DC
   del: Delete
   des: DES
+  3des: 3DES
   descr: Description
   dest: Destination
   dfs: DFS

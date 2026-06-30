@@ -670,7 +670,10 @@ typedef struct {
     unsigned long dwReplEpoch;
     unsigned long dwFlagsExt;
     GUID ConfigObjGUID;
-    unsigned long dwExtCaps;
+    [goext_layout(
+        unsigned long dwExtCaps
+    )]
+    [size_is(*)] BYTE Extensions[];
 } DRS_EXTENSIONS_INT;
  
 typedef struct {

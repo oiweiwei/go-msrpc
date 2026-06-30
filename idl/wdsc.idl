@@ -4,7 +4,7 @@ import "ms-dtyp.idl";
     uuid(1A927394-352E-4553-AE3F-7CF4AAFCA620),
     version(1.0)
 ]
-interface WdsRpc
+interface WdsRpcInterface
 {
     unsigned long
     WdsRpcMessage(          

@@ -865,6 +865,36 @@ type LogonServer interface {
 	//
 	// Return Values: The method returns 0x00000000 on success.
 	ChainSetClientAttributes(context.Context, *ChainSetClientAttributesRequest) (*ChainSetClientAttributesResponse, error)
+
+	// Opnum50NotUsedOnWire operation.
+	// Opnum50NotUsedOnWire
+
+	// Opnum51NotUsedOnWire operation.
+	// Opnum51NotUsedOnWire
+
+	// Opnum52NotUsedOnWire operation.
+	// Opnum52NotUsedOnWire
+
+	// Opnum53NotUsedOnWire operation.
+	// Opnum53NotUsedOnWire
+
+	// Opnum54NotUsedOnWire operation.
+	// Opnum54NotUsedOnWire
+
+	// Opnum55NotUsedOnWire operation.
+	// Opnum55NotUsedOnWire
+
+	// Opnum56NotUsedOnWire operation.
+	// Opnum56NotUsedOnWire
+
+	// Opnum57NotUsedOnWire operation.
+	// Opnum57NotUsedOnWire
+
+	// Opnum58NotUsedOnWire operation.
+	// Opnum58NotUsedOnWire
+
+	// NetrServerAuthenticateKerberos operation.
+	AuthenticateKerberos(context.Context, *AuthenticateKerberosRequest) (*AuthenticateKerberosResponse, error)
 }
 
 func RegisterLogonServer(conn dcerpc.Conn, o LogonServer, opts ...dcerpc.Option) {
@@ -1323,6 +1353,42 @@ func LogonServerHandle(ctx context.Context, o LogonServer, opNum int, r ndr.Read
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.ChainSetClientAttributes(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
+	case 50: // Opnum50NotUsedOnWire
+		// Opnum50NotUsedOnWire
+		return nil, nil
+	case 51: // Opnum51NotUsedOnWire
+		// Opnum51NotUsedOnWire
+		return nil, nil
+	case 52: // Opnum52NotUsedOnWire
+		// Opnum52NotUsedOnWire
+		return nil, nil
+	case 53: // Opnum53NotUsedOnWire
+		// Opnum53NotUsedOnWire
+		return nil, nil
+	case 54: // Opnum54NotUsedOnWire
+		// Opnum54NotUsedOnWire
+		return nil, nil
+	case 55: // Opnum55NotUsedOnWire
+		// Opnum55NotUsedOnWire
+		return nil, nil
+	case 56: // Opnum56NotUsedOnWire
+		// Opnum56NotUsedOnWire
+		return nil, nil
+	case 57: // Opnum57NotUsedOnWire
+		// Opnum57NotUsedOnWire
+		return nil, nil
+	case 58: // Opnum58NotUsedOnWire
+		// Opnum58NotUsedOnWire
+		return nil, nil
+	case 59: // NetrServerAuthenticateKerberos
+		op := &xxx_AuthenticateKerberosOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &AuthenticateKerberosRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AuthenticateKerberos(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
@@ -1476,6 +1542,9 @@ func (UnimplementedLogonServer) UpdateReadOnlyServerDNSRecords(context.Context, 
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedLogonServer) ChainSetClientAttributes(context.Context, *ChainSetClientAttributesRequest) (*ChainSetClientAttributesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) AuthenticateKerberos(context.Context, *AuthenticateKerberosRequest) (*AuthenticateKerberosResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 

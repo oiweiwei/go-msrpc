@@ -1353,6 +1353,207 @@ type LsarpcServer interface {
 	//	| 0xC000000D STATUS_INVALID_PARAMETER    | Some of the parameters supplied were invalid.                                    |
 	//	+----------------------------------------+----------------------------------------------------------------------------------+
 	SetForestTrustInformation(context.Context, *SetForestTrustInformationRequest) (*SetForestTrustInformationResponse, error)
+
+	// Opnum75NotUsedOnWire operation.
+	// Opnum75NotUsedOnWire
+
+	// Opnum76NotUsedOnWire operation.
+	// Opnum76NotUsedOnWire
+
+	// Opnum77NotUsedOnWire operation.
+	// Opnum77NotUsedOnWire
+
+	// Opnum78NotUsedOnWire operation.
+	// Opnum78NotUsedOnWire
+
+	// Opnum79NotUsedOnWire operation.
+	// Opnum79NotUsedOnWire
+
+	// Opnum80NotUsedOnWire operation.
+	// Opnum80NotUsedOnWire
+
+	// Opnum81NotUsedOnWire operation.
+	// Opnum81NotUsedOnWire
+
+	// Opnum82NotUsedOnWire operation.
+	// Opnum82NotUsedOnWire
+
+	// Opnum83NotUsedOnWire operation.
+	// Opnum83NotUsedOnWire
+
+	// Opnum84NotUsedOnWire operation.
+	// Opnum84NotUsedOnWire
+
+	// Opnum85NotUsedOnWire operation.
+	// Opnum85NotUsedOnWire
+
+	// Opnum86NotUsedOnWire operation.
+	// Opnum86NotUsedOnWire
+
+	// Opnum87NotUsedOnWire operation.
+	// Opnum87NotUsedOnWire
+
+	// Opnum88NotUsedOnWire operation.
+	// Opnum88NotUsedOnWire
+
+	// Opnum89NotUsedOnWire operation.
+	// Opnum89NotUsedOnWire
+
+	// Opnum90NotUsedOnWire operation.
+	// Opnum90NotUsedOnWire
+
+	// Opnum91NotUsedOnWire operation.
+	// Opnum91NotUsedOnWire
+
+	// Opnum92NotUsedOnWire operation.
+	// Opnum92NotUsedOnWire
+
+	// Opnum93NotUsedOnWire operation.
+	// Opnum93NotUsedOnWire
+
+	// Opnum94NotUsedOnWire operation.
+	// Opnum94NotUsedOnWire
+
+	// Opnum95NotUsedOnWire operation.
+	// Opnum95NotUsedOnWire
+
+	// Opnum96NotUsedOnWire operation.
+	// Opnum96NotUsedOnWire
+
+	// Opnum97NotUsedOnWire operation.
+	// Opnum97NotUsedOnWire
+
+	// Opnum98NotUsedOnWire operation.
+	// Opnum98NotUsedOnWire
+
+	// Opnum99NotUsedOnWire operation.
+	// Opnum99NotUsedOnWire
+
+	// Opnum100NotUsedOnWire operation.
+	// Opnum100NotUsedOnWire
+
+	// Opnum101NotUsedOnWire operation.
+	// Opnum101NotUsedOnWire
+
+	// Opnum102NotUsedOnWire operation.
+	// Opnum102NotUsedOnWire
+
+	// Opnum103NotUsedOnWire operation.
+	// Opnum103NotUsedOnWire
+
+	// Opnum104NotUsedOnWire operation.
+	// Opnum104NotUsedOnWire
+
+	// Opnum105NotUsedOnWire operation.
+	// Opnum105NotUsedOnWire
+
+	// Opnum106NotUsedOnWire operation.
+	// Opnum106NotUsedOnWire
+
+	// Opnum107NotUsedOnWire operation.
+	// Opnum107NotUsedOnWire
+
+	// Opnum108NotUsedOnWire operation.
+	// Opnum108NotUsedOnWire
+
+	// Opnum109NotUsedOnWire operation.
+	// Opnum109NotUsedOnWire
+
+	// Opnum110NotUsedOnWire operation.
+	// Opnum110NotUsedOnWire
+
+	// Opnum111NotUsedOnWire operation.
+	// Opnum111NotUsedOnWire
+
+	// Opnum112NotUsedOnWire operation.
+	// Opnum112NotUsedOnWire
+
+	// Opnum113NotUsedOnWire operation.
+	// Opnum113NotUsedOnWire
+
+	// Opnum114NotUsedOnWire operation.
+	// Opnum114NotUsedOnWire
+
+	// Opnum115NotUsedOnWire operation.
+	// Opnum115NotUsedOnWire
+
+	// Opnum116NotUsedOnWire operation.
+	// Opnum116NotUsedOnWire
+
+	// Opnum117NotUsedOnWire operation.
+	// Opnum117NotUsedOnWire
+
+	// Opnum118NotUsedOnWire operation.
+	// Opnum118NotUsedOnWire
+
+	// Opnum119NotUsedOnWire operation.
+	// Opnum119NotUsedOnWire
+
+	// Opnum120NotUsedOnWire operation.
+	// Opnum120NotUsedOnWire
+
+	// Opnum121NotUsedOnWire operation.
+	// Opnum121NotUsedOnWire
+
+	// Opnum122NotUsedOnWire operation.
+	// Opnum122NotUsedOnWire
+
+	// Opnum123NotUsedOnWire operation.
+	// Opnum123NotUsedOnWire
+
+	// Opnum124NotUsedOnWire operation.
+	// Opnum124NotUsedOnWire
+
+	// Opnum125NotUsedOnWire operation.
+	// Opnum125NotUsedOnWire
+
+	// Opnum126NotUsedOnWire operation.
+	// Opnum126NotUsedOnWire
+
+	// Opnum127NotUsedOnWire operation.
+	// Opnum127NotUsedOnWire
+
+	// Opnum128NotUsedOnWire operation.
+	// Opnum128NotUsedOnWire
+
+	// LsarCreateTrustedDomainEx3 operation.
+	CreateTrustedDomainEx3(context.Context, *CreateTrustedDomainEx3Request) (*CreateTrustedDomainEx3Response, error)
+
+	// LsarOpenPolicy3 operation.
+	OpenPolicy3(context.Context, *OpenPolicy3Request) (*OpenPolicy3Response, error)
+
+	// Opnum131NotUsedOnWire operation.
+	// Opnum131NotUsedOnWire
+
+	// LsarQueryForestTrustInformation2 operation.
+	QueryForestTrustInformation2(context.Context, *QueryForestTrustInformation2Request) (*QueryForestTrustInformation2Response, error)
+
+	// LsarSetForestTrustInformation2 operation.
+	SetForestTrustInformation2(context.Context, *SetForestTrustInformation2Request) (*SetForestTrustInformation2Response, error)
+
+	// Opnum134NotUsedOnWire operation.
+	// Opnum134NotUsedOnWire
+
+	// LsarOpenPolicyWithCreds operation.
+	OpenPolicyWithCreds(context.Context, *OpenPolicyWithCredsRequest) (*OpenPolicyWithCredsResponse, error)
+
+	// LsarOpenSecret2 operation.
+	OpenSecret2(context.Context, *OpenSecret2Request) (*OpenSecret2Response, error)
+
+	// LsarCreateSecret2 operation.
+	CreateSecret2(context.Context, *CreateSecret2Request) (*CreateSecret2Response, error)
+
+	// LsarSetSecret2 operation.
+	SetSecret2(context.Context, *SetSecret2Request) (*SetSecret2Response, error)
+
+	// LsarQuerySecret2 operation.
+	QuerySecret2(context.Context, *QuerySecret2Request) (*QuerySecret2Response, error)
+
+	// LsarStorePrivateData2 operation.
+	StorePrivateData2(context.Context, *StorePrivateData2Request) (*StorePrivateData2Response, error)
+
+	// LsarRetrievePrivateData2 operation.
+	RetrievePrivateData2(context.Context, *RetrievePrivateData2Request) (*RetrievePrivateData2Response, error)
 }
 
 func RegisterLsarpcServer(conn dcerpc.Conn, o LsarpcServer, opts ...dcerpc.Option) {
@@ -1892,6 +2093,273 @@ func LsarpcServerHandle(ctx context.Context, o LsarpcServer, opNum int, r ndr.Re
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SetForestTrustInformation(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
+	case 75: // Opnum75NotUsedOnWire
+		// Opnum75NotUsedOnWire
+		return nil, nil
+	case 76: // Opnum76NotUsedOnWire
+		// Opnum76NotUsedOnWire
+		return nil, nil
+	case 77: // Opnum77NotUsedOnWire
+		// Opnum77NotUsedOnWire
+		return nil, nil
+	case 78: // Opnum78NotUsedOnWire
+		// Opnum78NotUsedOnWire
+		return nil, nil
+	case 79: // Opnum79NotUsedOnWire
+		// Opnum79NotUsedOnWire
+		return nil, nil
+	case 80: // Opnum80NotUsedOnWire
+		// Opnum80NotUsedOnWire
+		return nil, nil
+	case 81: // Opnum81NotUsedOnWire
+		// Opnum81NotUsedOnWire
+		return nil, nil
+	case 82: // Opnum82NotUsedOnWire
+		// Opnum82NotUsedOnWire
+		return nil, nil
+	case 83: // Opnum83NotUsedOnWire
+		// Opnum83NotUsedOnWire
+		return nil, nil
+	case 84: // Opnum84NotUsedOnWire
+		// Opnum84NotUsedOnWire
+		return nil, nil
+	case 85: // Opnum85NotUsedOnWire
+		// Opnum85NotUsedOnWire
+		return nil, nil
+	case 86: // Opnum86NotUsedOnWire
+		// Opnum86NotUsedOnWire
+		return nil, nil
+	case 87: // Opnum87NotUsedOnWire
+		// Opnum87NotUsedOnWire
+		return nil, nil
+	case 88: // Opnum88NotUsedOnWire
+		// Opnum88NotUsedOnWire
+		return nil, nil
+	case 89: // Opnum89NotUsedOnWire
+		// Opnum89NotUsedOnWire
+		return nil, nil
+	case 90: // Opnum90NotUsedOnWire
+		// Opnum90NotUsedOnWire
+		return nil, nil
+	case 91: // Opnum91NotUsedOnWire
+		// Opnum91NotUsedOnWire
+		return nil, nil
+	case 92: // Opnum92NotUsedOnWire
+		// Opnum92NotUsedOnWire
+		return nil, nil
+	case 93: // Opnum93NotUsedOnWire
+		// Opnum93NotUsedOnWire
+		return nil, nil
+	case 94: // Opnum94NotUsedOnWire
+		// Opnum94NotUsedOnWire
+		return nil, nil
+	case 95: // Opnum95NotUsedOnWire
+		// Opnum95NotUsedOnWire
+		return nil, nil
+	case 96: // Opnum96NotUsedOnWire
+		// Opnum96NotUsedOnWire
+		return nil, nil
+	case 97: // Opnum97NotUsedOnWire
+		// Opnum97NotUsedOnWire
+		return nil, nil
+	case 98: // Opnum98NotUsedOnWire
+		// Opnum98NotUsedOnWire
+		return nil, nil
+	case 99: // Opnum99NotUsedOnWire
+		// Opnum99NotUsedOnWire
+		return nil, nil
+	case 100: // Opnum100NotUsedOnWire
+		// Opnum100NotUsedOnWire
+		return nil, nil
+	case 101: // Opnum101NotUsedOnWire
+		// Opnum101NotUsedOnWire
+		return nil, nil
+	case 102: // Opnum102NotUsedOnWire
+		// Opnum102NotUsedOnWire
+		return nil, nil
+	case 103: // Opnum103NotUsedOnWire
+		// Opnum103NotUsedOnWire
+		return nil, nil
+	case 104: // Opnum104NotUsedOnWire
+		// Opnum104NotUsedOnWire
+		return nil, nil
+	case 105: // Opnum105NotUsedOnWire
+		// Opnum105NotUsedOnWire
+		return nil, nil
+	case 106: // Opnum106NotUsedOnWire
+		// Opnum106NotUsedOnWire
+		return nil, nil
+	case 107: // Opnum107NotUsedOnWire
+		// Opnum107NotUsedOnWire
+		return nil, nil
+	case 108: // Opnum108NotUsedOnWire
+		// Opnum108NotUsedOnWire
+		return nil, nil
+	case 109: // Opnum109NotUsedOnWire
+		// Opnum109NotUsedOnWire
+		return nil, nil
+	case 110: // Opnum110NotUsedOnWire
+		// Opnum110NotUsedOnWire
+		return nil, nil
+	case 111: // Opnum111NotUsedOnWire
+		// Opnum111NotUsedOnWire
+		return nil, nil
+	case 112: // Opnum112NotUsedOnWire
+		// Opnum112NotUsedOnWire
+		return nil, nil
+	case 113: // Opnum113NotUsedOnWire
+		// Opnum113NotUsedOnWire
+		return nil, nil
+	case 114: // Opnum114NotUsedOnWire
+		// Opnum114NotUsedOnWire
+		return nil, nil
+	case 115: // Opnum115NotUsedOnWire
+		// Opnum115NotUsedOnWire
+		return nil, nil
+	case 116: // Opnum116NotUsedOnWire
+		// Opnum116NotUsedOnWire
+		return nil, nil
+	case 117: // Opnum117NotUsedOnWire
+		// Opnum117NotUsedOnWire
+		return nil, nil
+	case 118: // Opnum118NotUsedOnWire
+		// Opnum118NotUsedOnWire
+		return nil, nil
+	case 119: // Opnum119NotUsedOnWire
+		// Opnum119NotUsedOnWire
+		return nil, nil
+	case 120: // Opnum120NotUsedOnWire
+		// Opnum120NotUsedOnWire
+		return nil, nil
+	case 121: // Opnum121NotUsedOnWire
+		// Opnum121NotUsedOnWire
+		return nil, nil
+	case 122: // Opnum122NotUsedOnWire
+		// Opnum122NotUsedOnWire
+		return nil, nil
+	case 123: // Opnum123NotUsedOnWire
+		// Opnum123NotUsedOnWire
+		return nil, nil
+	case 124: // Opnum124NotUsedOnWire
+		// Opnum124NotUsedOnWire
+		return nil, nil
+	case 125: // Opnum125NotUsedOnWire
+		// Opnum125NotUsedOnWire
+		return nil, nil
+	case 126: // Opnum126NotUsedOnWire
+		// Opnum126NotUsedOnWire
+		return nil, nil
+	case 127: // Opnum127NotUsedOnWire
+		// Opnum127NotUsedOnWire
+		return nil, nil
+	case 128: // Opnum128NotUsedOnWire
+		// Opnum128NotUsedOnWire
+		return nil, nil
+	case 129: // LsarCreateTrustedDomainEx3
+		op := &xxx_CreateTrustedDomainEx3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &CreateTrustedDomainEx3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateTrustedDomainEx3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 130: // LsarOpenPolicy3
+		op := &xxx_OpenPolicy3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &OpenPolicy3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenPolicy3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 131: // Opnum131NotUsedOnWire
+		// Opnum131NotUsedOnWire
+		return nil, nil
+	case 132: // LsarQueryForestTrustInformation2
+		op := &xxx_QueryForestTrustInformation2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &QueryForestTrustInformation2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryForestTrustInformation2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 133: // LsarSetForestTrustInformation2
+		op := &xxx_SetForestTrustInformation2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &SetForestTrustInformation2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetForestTrustInformation2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 134: // Opnum134NotUsedOnWire
+		// Opnum134NotUsedOnWire
+		return nil, nil
+	case 135: // LsarOpenPolicyWithCreds
+		op := &xxx_OpenPolicyWithCredsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &OpenPolicyWithCredsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenPolicyWithCreds(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 136: // LsarOpenSecret2
+		op := &xxx_OpenSecret2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &OpenSecret2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenSecret2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 137: // LsarCreateSecret2
+		op := &xxx_CreateSecret2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &CreateSecret2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateSecret2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 138: // LsarSetSecret2
+		op := &xxx_SetSecret2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &SetSecret2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSecret2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 139: // LsarQuerySecret2
+		op := &xxx_QuerySecret2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &QuerySecret2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QuerySecret2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 140: // LsarStorePrivateData2
+		op := &xxx_StorePrivateData2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &StorePrivateData2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StorePrivateData2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 141: // LsarRetrievePrivateData2
+		op := &xxx_RetrievePrivateData2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &RetrievePrivateData2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RetrievePrivateData2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
@@ -2048,6 +2516,39 @@ func (UnimplementedLsarpcServer) QueryForestTrustInformation(context.Context, *Q
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedLsarpcServer) SetForestTrustInformation(context.Context, *SetForestTrustInformationRequest) (*SetForestTrustInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) CreateTrustedDomainEx3(context.Context, *CreateTrustedDomainEx3Request) (*CreateTrustedDomainEx3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) OpenPolicy3(context.Context, *OpenPolicy3Request) (*OpenPolicy3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) QueryForestTrustInformation2(context.Context, *QueryForestTrustInformation2Request) (*QueryForestTrustInformation2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) SetForestTrustInformation2(context.Context, *SetForestTrustInformation2Request) (*SetForestTrustInformation2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) OpenPolicyWithCreds(context.Context, *OpenPolicyWithCredsRequest) (*OpenPolicyWithCredsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) OpenSecret2(context.Context, *OpenSecret2Request) (*OpenSecret2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) CreateSecret2(context.Context, *CreateSecret2Request) (*CreateSecret2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) SetSecret2(context.Context, *SetSecret2Request) (*SetSecret2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) QuerySecret2(context.Context, *QuerySecret2Request) (*QuerySecret2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) StorePrivateData2(context.Context, *StorePrivateData2Request) (*StorePrivateData2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) RetrievePrivateData2(context.Context, *RetrievePrivateData2Request) (*RetrievePrivateData2Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 

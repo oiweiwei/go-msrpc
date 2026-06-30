@@ -1,46 +1,46 @@
 import "ms-dtyp.idl";
- 
+
 [
     uuid(12345778-1234-ABCD-EF00-0123456789AB),
     version(0.0),
     ms_union,
     pointer_default(unique)
 ]
- 
+
 interface lsarpc
 {
- 
+
 //
 // Type definitions.
 //
- 
- 
+
+
 //
 // Start of common types.
 //
- 
+#define MAX_CIPHER_SIZE ( 2 * ( ( 64 * 1024 ) + 8 ) )
 typedef [context_handle] void * LSAPR_HANDLE;
- 
+
 typedef unsigned char SECURITY_CONTEXT_TRACKING_MODE,
                       *PSECURITY_CONTEXT_TRACKING_MODE;
- 
+
 typedef unsigned short SECURITY_DESCRIPTOR_CONTROL,
                        *PSECURITY_DESCRIPTOR_CONTROL;
- 
+
 typedef struct _STRING {
     unsigned short Length;
     unsigned short MaximumLength;
     [size_is(MaximumLength), length_is(Length)]
      char * Buffer;
 } STRING, *PSTRING;
- 
+
 typedef struct _LSAPR_ACL {
     unsigned char AclRevision;
     unsigned char Sbz1;
     unsigned short AclSize;
     [size_is(AclSize - 4)] unsigned char Dummy1[*];
 } LSAPR_ACL, *PLSAPR_ACL;
- 
+
 typedef struct _LSAPR_SECURITY_DESCRIPTOR {
     unsigned char Revision;
     unsigned char Sbz1;
@@ -50,40 +50,40 @@ typedef struct _LSAPR_SECURITY_DESCRIPTOR {
     PLSAPR_ACL Sacl;
     PLSAPR_ACL Dacl;
 } LSAPR_SECURITY_DESCRIPTOR, *PLSAPR_SECURITY_DESCRIPTOR;
- 
+
 typedef enum _SECURITY_IMPERSONATION_LEVEL {
     SecurityAnonymous = 0,
     SecurityIdentification = 1,
     SecurityImpersonation = 2,
     SecurityDelegation = 3
 } SECURITY_IMPERSONATION_LEVEL, * PSECURITY_IMPERSONATION_LEVEL;
- 
+
 typedef struct _SECURITY_QUALITY_OF_SERVICE {
     unsigned long Length;
     SECURITY_IMPERSONATION_LEVEL ImpersonationLevel;
     SECURITY_CONTEXT_TRACKING_MODE ContextTrackingMode;
     unsigned char EffectiveOnly;
 } SECURITY_QUALITY_OF_SERVICE, * PSECURITY_QUALITY_OF_SERVICE;
- 
+
 typedef struct _LSAPR_OBJECT_ATTRIBUTES {
     unsigned long Length;
-    unsigned char * RootDirectory[]; /* add array declarator */
+    unsigned char * RootDirectory[]; /* go-msrpc: add array declarator */
     PSTRING ObjectName;
     unsigned long Attributes;
     PLSAPR_SECURITY_DESCRIPTOR SecurityDescriptor;
     PSECURITY_QUALITY_OF_SERVICE SecurityQualityOfService;
 } LSAPR_OBJECT_ATTRIBUTES, *PLSAPR_OBJECT_ATTRIBUTES;
- 
+
 typedef struct _LSAPR_TRUST_INFORMATION {
     RPC_UNICODE_STRING Name;
     PRPC_SID Sid;
 } LSAPR_TRUST_INFORMATION, *PLSAPR_TRUST_INFORMATION;
- 
+
 //
 // End of common types.
 //
- 
- 
+
+
 typedef enum _POLICY_INFORMATION_CLASS {
     PolicyAuditLogInformation = 1,
     PolicyAuditEventsInformation,
@@ -102,7 +102,7 @@ typedef enum _POLICY_INFORMATION_CLASS {
     PolicyMachineAccountInformation,
     PolicyLastEntry
 } POLICY_INFORMATION_CLASS, *PPOLICY_INFORMATION_CLASS;
- 
+
 typedef enum _POLICY_AUDIT_EVENT_TYPE {
     AuditCategorySystem = 0,
     AuditCategoryLogon,
@@ -112,12 +112,12 @@ typedef enum _POLICY_AUDIT_EVENT_TYPE {
     AuditCategoryPolicyChange,
     AuditCategoryAccountManagement,
     AuditCategoryDirectoryServiceAccess,
-    AuditCategoryAccountLogon 
+    AuditCategoryAccountLogon
 } POLICY_AUDIT_EVENT_TYPE, *PPOLICY_AUDIT_EVENT_TYPE;
- 
+
 typedef RPC_UNICODE_STRING LSA_UNICODE_STRING,
                              *PLSA_UNICODE_STRING;
- 
+
 typedef struct _POLICY_AUDIT_LOG_INFO {
     unsigned long AuditLogPercentFull;
     unsigned long MaximumLogSize;
@@ -126,39 +126,39 @@ typedef struct _POLICY_AUDIT_LOG_INFO {
     LARGE_INTEGER TimeToShutdown;
     unsigned long NextAuditRecordId;
 } POLICY_AUDIT_LOG_INFO, *PPOLICY_AUDIT_LOG_INFO;
- 
+
 typedef enum _POLICY_LSA_SERVER_ROLE {
     PolicyServerRoleBackup = 2,
     PolicyServerRolePrimary
 } POLICY_LSA_SERVER_ROLE, *PPOLICY_LSA_SERVER_ROLE;
- 
+
 typedef struct _POLICY_LSA_SERVER_ROLE_INFO {
     POLICY_LSA_SERVER_ROLE LsaServerRole;
 } POLICY_LSA_SERVER_ROLE_INFO, *PPOLICY_LSA_SERVER_ROLE_INFO;
- 
+
 typedef struct _POLICY_MODIFICATION_INFO {
     LARGE_INTEGER ModifiedId;
     LARGE_INTEGER DatabaseCreationTime;
 } POLICY_MODIFICATION_INFO, *PPOLICY_MODIFICATION_INFO;
- 
+
 typedef struct _POLICY_AUDIT_FULL_SET_INFO {
     unsigned char ShutDownOnFull;
-} POLICY_AUDIT_FULL_SET_INFO, 
+} POLICY_AUDIT_FULL_SET_INFO,
 *PPOLICY_AUDIT_FULL_SET_INFO;
- 
+
 typedef struct _POLICY_AUDIT_FULL_QUERY_INFO {
     unsigned char ShutDownOnFull;
     unsigned char LogIsFull;
-} POLICY_AUDIT_FULL_QUERY_INFO, 
+} POLICY_AUDIT_FULL_QUERY_INFO,
 *PPOLICY_AUDIT_FULL_QUERY_INFO;
- 
+
 typedef enum _POLICY_DOMAIN_INFORMATION_CLASS {
     PolicyDomainQualityOfServiceInformation = 1,
     PolicyDomainEfsInformation = 2,
     PolicyDomainKerberosTicketInformation = 3
-} POLICY_DOMAIN_INFORMATION_CLASS, 
+} POLICY_DOMAIN_INFORMATION_CLASS,
 *PPOLICY_DOMAIN_INFORMATION_CLASS;
- 
+
 typedef struct _POLICY_DOMAIN_KERBEROS_TICKET_INFO {
     unsigned long AuthenticationOptions;
     LARGE_INTEGER MaxServiceTicketAge;
@@ -168,12 +168,12 @@ typedef struct _POLICY_DOMAIN_KERBEROS_TICKET_INFO {
     LARGE_INTEGER Reserved;
 } POLICY_DOMAIN_KERBEROS_TICKET_INFO,
   *PPOLICY_DOMAIN_KERBEROS_TICKET_INFO;
- 
+
 typedef struct _TRUSTED_POSIX_OFFSET_INFO {
     unsigned long Offset;
-} TRUSTED_POSIX_OFFSET_INFO, 
+} TRUSTED_POSIX_OFFSET_INFO,
 *PTRUSTED_POSIX_OFFSET_INFO;
- 
+
 typedef enum _TRUSTED_INFORMATION_CLASS {
     TrustedDomainNameInformation = 1,
     TrustedControllersInformation,
@@ -187,30 +187,38 @@ typedef enum _TRUSTED_INFORMATION_CLASS {
     TrustedDomainFullInformationInternal,
     TrustedDomainInformationEx2Internal,
     TrustedDomainFullInformation2Internal,
-    TrustedDomainSupportedEncryptionTypes
-} TRUSTED_INFORMATION_CLASS, 
+    TrustedDomainSupportedEncryptionTypes,
+    TrustedDomainAuthInformationInternalAes,
+    TrustedDomainFullInformationInternalAes
+} TRUSTED_INFORMATION_CLASS,
 *PTRUSTED_INFORMATION_CLASS;
- 
+
 typedef enum _LSA_FOREST_TRUST_RECORD_TYPE {
     ForestTrustTopLevelName = 0,
     ForestTrustTopLevelNameEx = 1,
     ForestTrustDomainInfo = 2,
+    ForestTrustBinaryInfo = 3,
+    ForestTrustScannerInfo = 4,
     ForestTrustRecordTypeLast = ForestTrustDomainInfo
 } LSA_FOREST_TRUST_RECORD_TYPE;
- 
+
 typedef struct _LSA_FOREST_TRUST_BINARY_DATA {
     [range(0, 131072)] unsigned long Length;
     [size_is( Length )] unsigned char * Buffer;
-} LSA_FOREST_TRUST_BINARY_DATA, 
+} LSA_FOREST_TRUST_BINARY_DATA,
 *PLSA_FOREST_TRUST_BINARY_DATA;
- 
+
 typedef struct _LSA_FOREST_TRUST_DOMAIN_INFO {
     PRPC_SID Sid;
     LSA_UNICODE_STRING DnsName;
     LSA_UNICODE_STRING NetbiosName;
-} LSA_FOREST_TRUST_DOMAIN_INFO, 
+} LSA_FOREST_TRUST_DOMAIN_INFO,
 *PLSA_FOREST_TRUST_DOMAIN_INFO;
- 
+typedef struct _LSA_FOREST_TRUST_SCANNER_INFO {
+   PRPC_SID DomainSid;
+   LSA_UNICODE_STRING DnsName;
+   LSA_UNICODE_STRING NetbiosName;
+} LSA_FOREST_TRUST_SCANNER_INFO, * PLSA_FOREST_TRUST_SCANNER_INFO;
 typedef struct _LSA_FOREST_TRUST_RECORD {
     unsigned long Flags;
     LSA_FOREST_TRUST_RECORD_TYPE ForestTrustType;
@@ -219,26 +227,46 @@ typedef struct _LSA_FOREST_TRUST_RECORD {
         switch_is( ForestTrustType )]
     union
     {
-        [case( ForestTrustTopLevelName, 
+        [case( ForestTrustTopLevelName,
              ForestTrustTopLevelNameEx )]
             LSA_UNICODE_STRING TopLevelName;
         [case( ForestTrustDomainInfo )]
             LSA_FOREST_TRUST_DOMAIN_INFO DomainInfo;
+        [case( ForestTrustScannerInfo )]
+            LSA_FOREST_TRUST_SCANNER_INFO ScannerInfo;
         [default] LSA_FOREST_TRUST_BINARY_DATA Data;
     } ForestTrustData;
 } LSA_FOREST_TRUST_RECORD, *PLSA_FOREST_TRUST_RECORD;
- 
+typedef struct _LSA_FOREST_TRUST_RECORD2 {
+   unsigned long Flags;
+   LSA_FOREST_TRUST_RECORD_TYPE ForestTrustType;
+   LARGE_INTEGER Time;
+   [switch_type(LSA_FOREST_TRUST_RECORD_TYPE), switch_is(ForestTrustType)]
+   union {
+          [case( ForestTrustTopLevelName, ForestTrustTopLevelNameEx )]
+                 LSA_UNICODE_STRING TopLevelName;
+          [case( ForestTrustDomainInfo )]
+                 LSA_FOREST_TRUST_DOMAIN_INFO DomainInfo;
+          [case( ForestTrustBinaryInfo )]
+                 LSA_FOREST_TRUST_BINARY_DATA BinaryData;
+          [case( ForestTrustScannerInfo )]
+                 LSA_FOREST_TRUST_SCANNER_INFO ScannerInfo;
+   } ForestTrustData;
+} LSA_FOREST_TRUST_RECORD2, * PLSA_FOREST_TRUST_RECORD2;
 typedef struct _LSA_FOREST_TRUST_INFORMATION {
     [range(0,4000)] unsigned long RecordCount;
     [size_is( RecordCount )] PLSA_FOREST_TRUST_RECORD * Entries;
 } LSA_FOREST_TRUST_INFORMATION, *PLSA_FOREST_TRUST_INFORMATION;
- 
+typedef struct _LSA_FOREST_TRUST_INFORMATION2 {
+   [range(0, 4000)] unsigned long RecordCount;
+   [size_is(RecordCount)] PLSA_FOREST_TRUST_RECORD2* Entries;
+} LSA_FOREST_TRUST_INFORMATION2, * PLSA_FOREST_TRUST_INFORMATION2;
 typedef enum _LSA_FOREST_TRUST_COLLISION_RECORD_TYPE {
     CollisionTdo = 0,
     CollisionXref,
     CollisionOther
 } LSA_FOREST_TRUST_COLLISION_RECORD_TYPE;
- 
+
 typedef struct _LSA_FOREST_TRUST_COLLISION_RECORD {
     unsigned long Index;
     LSA_FOREST_TRUST_COLLISION_RECORD_TYPE Type;
@@ -246,73 +274,78 @@ typedef struct _LSA_FOREST_TRUST_COLLISION_RECORD {
     LSA_UNICODE_STRING Name;
 } LSA_FOREST_TRUST_COLLISION_RECORD,
   *PLSA_FOREST_TRUST_COLLISION_RECORD;
- 
+
 typedef struct _LSA_FOREST_TRUST_COLLISION_INFORMATION {
     unsigned long RecordCount;
     [size_is( RecordCount )]
         PLSA_FOREST_TRUST_COLLISION_RECORD * Entries;
 } LSA_FOREST_TRUST_COLLISION_INFORMATION,
   *PLSA_FOREST_TRUST_COLLISION_INFORMATION;
- 
+
 typedef LSAPR_HANDLE *PLSAPR_HANDLE;
- 
+
 typedef struct _LSAPR_ACCOUNT_INFORMATION {
     PRPC_SID Sid;
 } LSAPR_ACCOUNT_INFORMATION, *PLSAPR_ACCOUNT_INFORMATION;
- 
+
 typedef struct _LSAPR_ACCOUNT_ENUM_BUFFER {
     unsigned long EntriesRead;
     [size_is(EntriesRead)] PLSAPR_ACCOUNT_INFORMATION Information;
 } LSAPR_ACCOUNT_ENUM_BUFFER, *PLSAPR_ACCOUNT_ENUM_BUFFER;
- 
+
 typedef struct _LSAPR_SR_SECURITY_DESCRIPTOR {
     [range(0,262144)] unsigned long Length;
     [size_is(Length)] unsigned char * SecurityDescriptor;
 } LSAPR_SR_SECURITY_DESCRIPTOR, *PLSAPR_SR_SECURITY_DESCRIPTOR;
- 
+
 typedef struct _LSAPR_LUID_AND_ATTRIBUTES {
     LUID Luid;
     unsigned long Attributes;
 } LSAPR_LUID_AND_ATTRIBUTES, * PLSAPR_LUID_AND_ATTRIBUTES;
- 
+
 typedef struct _LSAPR_PRIVILEGE_SET {
     [range(0,1000)] unsigned long PrivilegeCount;
     unsigned long Control;
     [size_is(PrivilegeCount)] LSAPR_LUID_AND_ATTRIBUTES Privilege[*];
 } LSAPR_PRIVILEGE_SET, *PLSAPR_PRIVILEGE_SET;
- 
+
 typedef struct _LSAPR_POLICY_PRIVILEGE_DEF {
     RPC_UNICODE_STRING Name;
     LUID LocalValue;
 } LSAPR_POLICY_PRIVILEGE_DEF, *PLSAPR_POLICY_PRIVILEGE_DEF;
- 
+
 typedef struct _LSAPR_PRIVILEGE_ENUM_BUFFER {
     unsigned long Entries;
     [size_is(Entries)] PLSAPR_POLICY_PRIVILEGE_DEF Privileges;
 } LSAPR_PRIVILEGE_ENUM_BUFFER, *PLSAPR_PRIVILEGE_ENUM_BUFFER;
- 
+
 typedef struct _LSAPR_CR_CIPHER_VALUE {
     [range(0, 131088)] unsigned long Length;
     [range(0, 131088)] unsigned long MaximumLength;
     [size_is(MaximumLength), length_is(Length)]
         unsigned char *Buffer;
 } LSAPR_CR_CIPHER_VALUE, *PLSAPR_CR_CIPHER_VALUE;
- 
+typedef struct _LSAPR_AES_CIPHER_VALUE {
+    UCHAR                                   AuthData[64];
+    UCHAR                                   Salt[16];
+    [range(0, MAX_CIPHER_SIZE)] ULONG       cbCipher;
+    [size_is(cbCipher)] PUCHAR              Cipher;
+} LSAPR_AES_CIPHER_VALUE, *PLSAPR_AES_CIPHER_VALUE;
 typedef struct _LSAPR_TRUSTED_ENUM_BUFFER {
     unsigned long EntriesRead;
     [size_is(EntriesRead)] PLSAPR_TRUST_INFORMATION Information;
 } LSAPR_TRUSTED_ENUM_BUFFER, *PLSAPR_TRUSTED_ENUM_BUFFER;
- 
+
 typedef struct _LSAPR_POLICY_ACCOUNT_DOM_INFO {
     RPC_UNICODE_STRING DomainName;
     PRPC_SID DomainSid;
 } LSAPR_POLICY_ACCOUNT_DOM_INFO, *PLSAPR_POLICY_ACCOUNT_DOM_INFO;
- 
+
 typedef struct _LSAPR_POLICY_PRIMARY_DOM_INFO {
     RPC_UNICODE_STRING Name;
     PRPC_SID Sid;
 } LSAPR_POLICY_PRIMARY_DOM_INFO, *PLSAPR_POLICY_PRIMARY_DOM_INFO;
- 
+
 typedef struct _LSAPR_POLICY_DNS_DOMAIN_INFO {
     RPC_UNICODE_STRING Name;
     RPC_UNICODE_STRING DnsDomainName;
@@ -320,28 +353,28 @@ typedef struct _LSAPR_POLICY_DNS_DOMAIN_INFO {
     GUID DomainGuid;
     PRPC_SID Sid;
 } LSAPR_POLICY_DNS_DOMAIN_INFO, *PLSAPR_POLICY_DNS_DOMAIN_INFO;
- 
+
 typedef struct _LSAPR_POLICY_PD_ACCOUNT_INFO {
     RPC_UNICODE_STRING Name;
 } LSAPR_POLICY_PD_ACCOUNT_INFO, *PLSAPR_POLICY_PD_ACCOUNT_INFO;
- 
+
 typedef struct _LSAPR_POLICY_REPLICA_SRCE_INFO {
     RPC_UNICODE_STRING ReplicaSource;
     RPC_UNICODE_STRING ReplicaAccountName;
 } LSAPR_POLICY_REPLICA_SRCE_INFO, *PLSAPR_POLICY_REPLICA_SRCE_INFO;
- 
+
 typedef struct _LSAPR_POLICY_AUDIT_EVENTS_INFO {
     unsigned char AuditingMode;
     [size_is(MaximumAuditEventCount)]
         unsigned long *EventAuditingOptions;
     [range(0,1000)] unsigned long MaximumAuditEventCount;
 } LSAPR_POLICY_AUDIT_EVENTS_INFO, *PLSAPR_POLICY_AUDIT_EVENTS_INFO;
- 
+
 typedef struct _LSAPR_POLICY_MACHINE_ACCT_INFO {
     unsigned long Rid;
     PRPC_SID Sid;
 } LSAPR_POLICY_MACHINE_ACCT_INFO, *PLSAPR_POLICY_MACHINE_ACCT_INFO;
- 
+
 typedef [switch_type(POLICY_INFORMATION_CLASS)]
 union _LSAPR_POLICY_INFORMATION {
     [case(PolicyAuditLogInformation)]
@@ -373,18 +406,18 @@ union _LSAPR_POLICY_INFORMATION {
     [case(PolicyMachineAccountInformation)]
         LSAPR_POLICY_MACHINE_ACCT_INFO PolicyMachineAccountInfo;
 } LSAPR_POLICY_INFORMATION, *PLSAPR_POLICY_INFORMATION;
- 
+
 typedef struct _POLICY_DOMAIN_QUALITY_OF_SERVICE_INFO {
     unsigned long QualityOfService;
-} POLICY_DOMAIN_QUALITY_OF_SERVICE_INFO, 
+} POLICY_DOMAIN_QUALITY_OF_SERVICE_INFO,
 *PPOLICY_DOMAIN_QUALITY_OF_SERVICE_INFO;
- 
- 
+
+
 typedef struct _LSAPR_POLICY_DOMAIN_EFS_INFO {
     unsigned long InfoLength;
     [size_is(InfoLength)] unsigned char * EfsBlob;
 } LSAPR_POLICY_DOMAIN_EFS_INFO, *PLSAPR_POLICY_DOMAIN_EFS_INFO;
- 
+
 typedef [switch_type(POLICY_DOMAIN_INFORMATION_CLASS)]
 union _LSAPR_POLICY_DOMAIN_INFORMATION {
     [case(PolicyDomainQualityOfServiceInformation)]
@@ -396,21 +429,21 @@ union _LSAPR_POLICY_DOMAIN_INFORMATION {
         POLICY_DOMAIN_KERBEROS_TICKET_INFO
             PolicyDomainKerbTicketInfo;
 } LSAPR_POLICY_DOMAIN_INFORMATION, *PLSAPR_POLICY_DOMAIN_INFORMATION;
- 
+
 typedef struct _LSAPR_TRUSTED_DOMAIN_NAME_INFO {
     RPC_UNICODE_STRING Name;
 } LSAPR_TRUSTED_DOMAIN_NAME_INFO, *PLSAPR_TRUSTED_DOMAIN_NAME_INFO;
- 
+
 typedef struct _LSAPR_TRUSTED_CONTROLLERS_INFO {
     [range(0,5)] unsigned long Entries;
     [size_is(Entries)] PRPC_UNICODE_STRING Names;
 } LSAPR_TRUSTED_CONTROLLERS_INFO, *PLSAPR_TRUSTED_CONTROLLERS_INFO;
- 
+
 typedef struct _LSAPR_TRUSTED_PASSWORD_INFO {
     PLSAPR_CR_CIPHER_VALUE Password;
     PLSAPR_CR_CIPHER_VALUE OldPassword;
 } LSAPR_TRUSTED_PASSWORD_INFO, *PLSAPR_TRUSTED_PASSWORD_INFO;
- 
+
 typedef struct _LSAPR_TRUSTED_DOMAIN_INFORMATION_EX {
     RPC_UNICODE_STRING Name;
     RPC_UNICODE_STRING FlatName;
@@ -420,14 +453,14 @@ typedef struct _LSAPR_TRUSTED_DOMAIN_INFORMATION_EX {
     unsigned long TrustAttributes;
 } LSAPR_TRUSTED_DOMAIN_INFORMATION_EX,
   *PLSAPR_TRUSTED_DOMAIN_INFORMATION_EX;
- 
+
 typedef struct _LSAPR_AUTH_INFORMATION {
     LARGE_INTEGER LastUpdateTime;
     unsigned long AuthType;
     [range(0,65536)] unsigned long AuthInfoLength;
     [size_is(AuthInfoLength)] unsigned char * AuthInfo;
 } LSAPR_AUTH_INFORMATION, *PLSAPR_AUTH_INFORMATION;
- 
+
 typedef struct _LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION {
     [range(0,1)] unsigned long IncomingAuthInfos;
     PLSAPR_AUTH_INFORMATION IncomingAuthenticationInformation;
@@ -439,34 +472,48 @@ typedef struct _LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION {
         OutgoingPreviousAuthenticationInformation;
 } LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION,
   *PLSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION;
- 
+
 typedef struct _LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION {
     LSAPR_TRUSTED_DOMAIN_INFORMATION_EX Information;
     TRUSTED_POSIX_OFFSET_INFO PosixOffset;
     LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION AuthInformation;
 } LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION,
   *PLSAPR_TRUSTED_DOMAIN_FULL_INFORMATION;
- 
+
 typedef LSAPR_TRUST_INFORMATION
     LSAPR_TRUSTED_DOMAIN_INFORMATION_BASIC;
- 
+
 typedef struct _LSAPR_TRUSTED_DOMAIN_AUTH_BLOB {
     [range(0, 65536)] unsigned long AuthSize;
     [size_is( AuthSize )] unsigned char * AuthBlob;
 } LSAPR_TRUSTED_DOMAIN_AUTH_BLOB, *PLSAPR_TRUSTED_DOMAIN_AUTH_BLOB;
- 
+
 typedef struct _LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL {
     LSAPR_TRUSTED_DOMAIN_AUTH_BLOB AuthBlob;
 } LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL,
   *PLSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL;
- 
+
 typedef struct _LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION_INTERNAL {
     LSAPR_TRUSTED_DOMAIN_INFORMATION_EX Information;
     TRUSTED_POSIX_OFFSET_INFO PosixOffset;
     LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL AuthInformation;
 } LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION_INTERNAL,
   *PLSAPR_TRUSTED_DOMAIN_FULL_INFORMATION_INTERNAL;
- 
+#define MAX_AUTHBLOB_SIZE ( 64 * 1024 )
+
+typedef struct _LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL_AES {
+    UCHAR AuthData[64];
+    UCHAR Salt[16];
+    [range(0, MAX_AUTHBLOB_SIZE)] ULONG cbCipher;
+    [size_is(cbCipher)] PUCHAR Cipher;
+} LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL_AES,  *PLSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL_AES;
+
+typedef struct _LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION_INTERNAL_AES {
+    LSAPR_TRUSTED_DOMAIN_INFORMATION_EX   Information;
+    TRUSTED_POSIX_OFFSET_INFO             PosixOffset;
+    LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL_AES AuthInformation;
+
+} LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION_INTERNAL_AES, *PLSAPR_TRUSTED_DOMAIN_FULL_INFORMATION_INTERNAL_AES;
 typedef struct _LSAPR_TRUSTED_DOMAIN_INFORMATION_EX2 {
     RPC_UNICODE_STRING Name;
     RPC_UNICODE_STRING FlatName;
@@ -478,19 +525,19 @@ typedef struct _LSAPR_TRUSTED_DOMAIN_INFORMATION_EX2 {
     [size_is(ForestTrustLength)] unsigned char * ForestTrustInfo;
 } LSAPR_TRUSTED_DOMAIN_INFORMATION_EX2,
   *PLSAPR_TRUSTED_DOMAIN_INFORMATION_EX2;
- 
+
 typedef struct _LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION2 {
     LSAPR_TRUSTED_DOMAIN_INFORMATION_EX2 Information;
     TRUSTED_POSIX_OFFSET_INFO PosixOffset;
     LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION AuthInformation;
 } LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION2,
   *PLSAPR_TRUSTED_DOMAIN_FULL_INFORMATION2;
- 
+
 typedef struct _TRUSTED_DOMAIN_SUPPORTED_ENCRYPTION_TYPES {
    unsigned long SupportedEncryptionTypes;
 } TRUSTED_DOMAIN_SUPPORTED_ENCRYPTION_TYPES,
   *PTRUSTED_DOMAIN_SUPPORTED_ENCRYPTION_TYPES;
- 
+
 typedef [switch_type(TRUSTED_INFORMATION_CLASS)]
 union _LSAPR_TRUSTED_DOMAIN_INFO {
     [case(TrustedDomainNameInformation)]
@@ -521,20 +568,24 @@ union _LSAPR_TRUSTED_DOMAIN_INFO {
         LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION2 TrustedFullInfo2;
     [case(TrustedDomainSupportedEncryptionTypes)]
         TRUSTED_DOMAIN_SUPPORTED_ENCRYPTION_TYPES TrustedDomainSETs;
+    [case(TrustedDomainAuthInformationInternalAes)]
+       LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL_AES TrustedAuthInfoInternalAes;
+    [case(TrustedDomainFullInformationInternalAes)]
+       LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION_INTERNAL_AES TrustedFullInfoInternalAes;
 } LSAPR_TRUSTED_DOMAIN_INFO, *PLSAPR_TRUSTED_DOMAIN_INFO;
- 
+
 typedef struct _LSAPR_USER_RIGHT_SET {
     [range(0,256)] unsigned long Entries;
     [size_is(Entries)] PRPC_UNICODE_STRING UserRights;
 } LSAPR_USER_RIGHT_SET, *PLSAPR_USER_RIGHT_SET;
- 
+
 typedef struct _LSAPR_TRUSTED_ENUM_BUFFER_EX {
     unsigned long EntriesRead;
     [size_is(EntriesRead)]
         PLSAPR_TRUSTED_DOMAIN_INFORMATION_EX EnumerationBuffer;
 } LSAPR_TRUSTED_ENUM_BUFFER_EX, *PLSAPR_TRUSTED_ENUM_BUFFER_EX;
- 
- 
+
+
 //
 // Methods
 //
@@ -558,16 +609,16 @@ typedef struct _LSAPR_TRUSTED_ENUM_BUFFER_EX {
 //   This notation indicates that the method is defined in this
 //   interface but is not seen on the wire.
 //
- 
+
 // Opnum 0
 NTSTATUS
 LsarClose(
     [in,out] LSAPR_HANDLE *ObjectHandle
     );
- 
+
 // Opnum 1
 void Opnum1NotUsedOnWire(void);
- 
+
 // Opnum 2
 NTSTATUS
 LsarEnumeratePrivileges(
@@ -576,7 +627,7 @@ LsarEnumeratePrivileges(
     [out] PLSAPR_PRIVILEGE_ENUM_BUFFER EnumerationBuffer,
     [in] unsigned long PreferedMaximumLength
     );
- 
+
 // Opnum 3
 NTSTATUS
 LsarQuerySecurityObject(
@@ -584,7 +635,7 @@ LsarQuerySecurityObject(
     [in] SECURITY_INFORMATION SecurityInformation,
     [out] PLSAPR_SR_SECURITY_DESCRIPTOR *SecurityDescriptor
     );
- 
+
 // Opnum 4
 NTSTATUS
 LsarSetSecurityObject(
@@ -592,10 +643,10 @@ LsarSetSecurityObject(
     [in] SECURITY_INFORMATION SecurityInformation,
     [in] PLSAPR_SR_SECURITY_DESCRIPTOR SecurityDescriptor
     );
- 
+
 // Opnum 5
 void Opnum5NotUsedOnWire(void);
- 
+
 // Opnum 6
 NTSTATUS
 LsarOpenPolicy(
@@ -604,7 +655,7 @@ LsarOpenPolicy(
     [in] ACCESS_MASK DesiredAccess,
     [out] LSAPR_HANDLE *PolicyHandle
     );
- 
+
 // Opnum 7
 NTSTATUS
 LsarQueryInformationPolicy(
@@ -613,7 +664,7 @@ LsarQueryInformationPolicy(
     [out, switch_is(InformationClass)]
         PLSAPR_POLICY_INFORMATION *PolicyInformation
     );
- 
+
 // Opnum 8
 NTSTATUS
 LsarSetInformationPolicy(
@@ -622,10 +673,10 @@ LsarSetInformationPolicy(
     [in, switch_is(InformationClass)]
         PLSAPR_POLICY_INFORMATION PolicyInformation
     );
- 
+
 // Opnum 9
 void Opnum9NotUsedOnWire(void);
- 
+
 // Opnum 10
 NTSTATUS
 LsarCreateAccount(
@@ -634,7 +685,7 @@ LsarCreateAccount(
     [in] ACCESS_MASK DesiredAccess,
     [out] LSAPR_HANDLE *AccountHandle
     );
- 
+
 // Opnum 11
 NTSTATUS
 LsarEnumerateAccounts(
@@ -643,7 +694,7 @@ LsarEnumerateAccounts(
     [out] PLSAPR_ACCOUNT_ENUM_BUFFER EnumerationBuffer,
     [in] unsigned long PreferedMaximumLength
     );
- 
+
 // Opnum 12
 NTSTATUS
 LsarCreateTrustedDomain(
@@ -652,7 +703,7 @@ LsarCreateTrustedDomain(
     [in] ACCESS_MASK DesiredAccess,
     [out] LSAPR_HANDLE *TrustedDomainHandle
     );
- 
+
 // Opnum 13
 NTSTATUS
 LsarEnumerateTrustedDomains(
@@ -661,15 +712,15 @@ LsarEnumerateTrustedDomains(
     [out] PLSAPR_TRUSTED_ENUM_BUFFER EnumerationBuffer,
     [in] unsigned long PreferedMaximumLength
     );
- 
+
 // Opnum 14
 void
 Lsar_LSA_TM_14( void );
- 
+
 // Opnum 15
 void
 Lsar_LSA_TM_15( void );
- 
+
 // Opnum 16
 NTSTATUS
 LsarCreateSecret(
@@ -678,7 +729,7 @@ LsarCreateSecret(
     [in] ACCESS_MASK DesiredAccess,
     [out] LSAPR_HANDLE *SecretHandle
     );
- 
+
 // Opnum 17
 NTSTATUS
 LsarOpenAccount(
@@ -687,21 +738,21 @@ LsarOpenAccount(
     [in] ACCESS_MASK DesiredAccess,
     [out] LSAPR_HANDLE *AccountHandle
     );
- 
+
 // Opnum 18
 NTSTATUS
 LsarEnumeratePrivilegesAccount(
     [in] LSAPR_HANDLE AccountHandle,
     [out] PLSAPR_PRIVILEGE_SET *Privileges
     );
- 
+
 // Opnum 19
 NTSTATUS
 LsarAddPrivilegesToAccount(
     [in] LSAPR_HANDLE AccountHandle,
     [in] PLSAPR_PRIVILEGE_SET Privileges
     );
- 
+
 // Opnum 20
 NTSTATUS
 LsarRemovePrivilegesFromAccount(
@@ -709,27 +760,27 @@ LsarRemovePrivilegesFromAccount(
     [in] unsigned char AllPrivileges,
     [in, unique] PLSAPR_PRIVILEGE_SET Privileges
     );
- 
+
 // Opnum 21
 void Opnum21NotUsedOnWire(void);
- 
+
 // Opnum 22
 void Opnum22NotUsedOnWire(void);
- 
+
 // Opnum 23
 NTSTATUS
 LsarGetSystemAccessAccount(
     [in] LSAPR_HANDLE AccountHandle,
     [out] unsigned long  *SystemAccess
     );
- 
+
 // Opnum 24
 NTSTATUS
 LsarSetSystemAccessAccount(
     [in] LSAPR_HANDLE AccountHandle,
     [in] unsigned long SystemAccess
     );
- 
+
 // Opnum 25
 NTSTATUS
 LsarOpenTrustedDomain(
@@ -738,7 +789,7 @@ LsarOpenTrustedDomain(
     [in] ACCESS_MASK DesiredAccess,
     [out] LSAPR_HANDLE *TrustedDomainHandle
     );
- 
+
 // Opnum 26
 NTSTATUS
 LsarQueryInfoTrustedDomain(
@@ -747,7 +798,7 @@ LsarQueryInfoTrustedDomain(
     [out, switch_is(InformationClass)]
         PLSAPR_TRUSTED_DOMAIN_INFO *TrustedDomainInformation
     );
- 
+
 // Opnum 27
 NTSTATUS
 LsarSetInformationTrustedDomain(
@@ -756,7 +807,7 @@ LsarSetInformationTrustedDomain(
     [in, switch_is(InformationClass)]
         PLSAPR_TRUSTED_DOMAIN_INFO TrustedDomainInformation
     );
- 
+
 // Opnum 28
 NTSTATUS
 LsarOpenSecret(
@@ -765,7 +816,7 @@ LsarOpenSecret(
     [in] ACCESS_MASK DesiredAccess,
     [out] LSAPR_HANDLE *SecretHandle
     );
- 
+
 // Opnum 29
 NTSTATUS
 LsarSetSecret(
@@ -773,7 +824,7 @@ LsarSetSecret(
     [in, unique] PLSAPR_CR_CIPHER_VALUE EncryptedCurrentValue,
     [in, unique] PLSAPR_CR_CIPHER_VALUE EncryptedOldValue
     );
- 
+
 // Opnum 30
 NTSTATUS
 LsarQuerySecret(
@@ -783,7 +834,7 @@ LsarQuerySecret(
     [in, out, unique] PLSAPR_CR_CIPHER_VALUE *EncryptedOldValue,
     [in, out, unique] PLARGE_INTEGER OldValueSetTime
     );
- 
+
 // Opnum 31
 NTSTATUS
 LsarLookupPrivilegeValue(
@@ -791,7 +842,7 @@ LsarLookupPrivilegeValue(
     [in] PRPC_UNICODE_STRING Name,
     [out] PLUID Value
     );
- 
+
 // Opnum 32
 NTSTATUS
 LsarLookupPrivilegeName(
@@ -799,7 +850,7 @@ LsarLookupPrivilegeName(
     [in] PLUID Value,
     [out] PRPC_UNICODE_STRING *Name
     );
- 
+
 // Opnum 33
 NTSTATUS
 LsarLookupPrivilegeDisplayName(
@@ -810,13 +861,13 @@ LsarLookupPrivilegeDisplayName(
     [out] PRPC_UNICODE_STRING *DisplayName,
     [out] unsigned short *LanguageReturned
     );
- 
+
 // Opnum 34
 NTSTATUS
 LsarDeleteObject(
     [in,out] LSAPR_HANDLE *ObjectHandle
     );
- 
+
 // Opnum 35
 NTSTATUS
 LsarEnumerateAccountsWithUserRight(
@@ -824,7 +875,7 @@ LsarEnumerateAccountsWithUserRight(
     [in,unique] PRPC_UNICODE_STRING UserRight,
     [out] PLSAPR_ACCOUNT_ENUM_BUFFER EnumerationBuffer
     );
- 
+
 // Opnum 36
 NTSTATUS
 LsarEnumerateAccountRights(
@@ -832,7 +883,7 @@ LsarEnumerateAccountRights(
     [in] PRPC_SID AccountSid,
     [out] PLSAPR_USER_RIGHT_SET UserRights
     );
- 
+
 // Opnum 37
 NTSTATUS
 LsarAddAccountRights(
@@ -840,7 +891,7 @@ LsarAddAccountRights(
     [in] PRPC_SID AccountSid,
     [in] PLSAPR_USER_RIGHT_SET UserRights
     );
- 
+
 // Opnum 38
 NTSTATUS
 LsarRemoveAccountRights(
@@ -849,7 +900,7 @@ LsarRemoveAccountRights(
     [in] unsigned char AllRights,
     [in] PLSAPR_USER_RIGHT_SET UserRights
     );
- 
+
 // Opnum 39
 NTSTATUS
 LsarQueryTrustedDomainInfo(
@@ -859,7 +910,7 @@ LsarQueryTrustedDomainInfo(
     [out, switch_is(InformationClass)]
         PLSAPR_TRUSTED_DOMAIN_INFO * TrustedDomainInformation
     );
- 
+
 // Opnum 40
 NTSTATUS
 LsarSetTrustedDomainInfo(
@@ -869,14 +920,14 @@ LsarSetTrustedDomainInfo(
     [in, switch_is(InformationClass)]
         PLSAPR_TRUSTED_DOMAIN_INFO TrustedDomainInformation
     );
- 
+
 // Opnum 41
 NTSTATUS
 LsarDeleteTrustedDomain(
     [in] LSAPR_HANDLE PolicyHandle,
     [in] PRPC_SID TrustedDomainSid
     );
- 
+
 // Opnum 42
 NTSTATUS
 LsarStorePrivateData(
@@ -884,7 +935,7 @@ LsarStorePrivateData(
     [in] PRPC_UNICODE_STRING KeyName,
     [in,unique] PLSAPR_CR_CIPHER_VALUE EncryptedData
     );
- 
+
 // Opnum 43
 NTSTATUS
 LsarRetrievePrivateData(
@@ -892,7 +943,7 @@ LsarRetrievePrivateData(
     [in] PRPC_UNICODE_STRING KeyName,
     [in, out] PLSAPR_CR_CIPHER_VALUE *EncryptedData
     );
- 
+
 // Opnum 44
 NTSTATUS
 LsarOpenPolicy2(
@@ -901,11 +952,11 @@ LsarOpenPolicy2(
     [in] ACCESS_MASK DesiredAccess,
     [out] LSAPR_HANDLE *PolicyHandle
     );
- 
+
 // Opnum 45
 void
 Lsar_LSA_TM_45( void );
- 
+
 // Opnum 46
 NTSTATUS
 LsarQueryInformationPolicy2(
@@ -914,7 +965,7 @@ LsarQueryInformationPolicy2(
     [out, switch_is(InformationClass)]
         PLSAPR_POLICY_INFORMATION *PolicyInformation
     );
- 
+
 // Opnum 47
 NTSTATUS
 LsarSetInformationPolicy2(
@@ -923,7 +974,7 @@ LsarSetInformationPolicy2(
     [in, switch_is(InformationClass)]
         PLSAPR_POLICY_INFORMATION PolicyInformation
     );
- 
+
 // Opnum 48
 NTSTATUS
 LsarQueryTrustedDomainInfoByName(
@@ -933,7 +984,7 @@ LsarQueryTrustedDomainInfoByName(
     [out, switch_is(InformationClass)]
         PLSAPR_TRUSTED_DOMAIN_INFO *TrustedDomainInformation
     );
- 
+
 // Opnum 49
 NTSTATUS
 LsarSetTrustedDomainInfoByName(
@@ -943,7 +994,7 @@ LsarSetTrustedDomainInfoByName(
     [in, switch_is(InformationClass)]
         PLSAPR_TRUSTED_DOMAIN_INFO TrustedDomainInformation
     );
- 
+
 // Opnum 50
 NTSTATUS
 LsarEnumerateTrustedDomainsEx(
@@ -952,7 +1003,7 @@ LsarEnumerateTrustedDomainsEx(
     [out] PLSAPR_TRUSTED_ENUM_BUFFER_EX EnumerationBuffer,
     [in] unsigned long PreferedMaximumLength
     );
- 
+
 // Opnum 51
 NTSTATUS
 LsarCreateTrustedDomainEx(
@@ -964,10 +1015,10 @@ LsarCreateTrustedDomainEx(
     [in] ACCESS_MASK DesiredAccess,
     [out] LSAPR_HANDLE *TrustedDomainHandle
     );
- 
+
 // Opnum 52
 void Opnum52NotUsedOnWire(void);
- 
+
 // Opnum 53
 NTSTATUS
 LsarQueryDomainInformationPolicy(
@@ -976,7 +1027,7 @@ LsarQueryDomainInformationPolicy(
     [out, switch_is(InformationClass)]
         PLSAPR_POLICY_DOMAIN_INFORMATION *PolicyDomainInformation
     );
- 
+
 // Opnum 54
 NTSTATUS
 LsarSetDomainInformationPolicy(
@@ -985,7 +1036,7 @@ LsarSetDomainInformationPolicy(
     [in, unique, switch_is(InformationClass)]
         PLSAPR_POLICY_DOMAIN_INFORMATION PolicyDomainInformation
     );
- 
+
 // Opnum 55
 NTSTATUS
 LsarOpenTrustedDomainByName(
@@ -994,18 +1045,18 @@ LsarOpenTrustedDomainByName(
     [in] ACCESS_MASK DesiredAccess,
     [out] LSAPR_HANDLE *TrustedDomainHandle
     );
- 
+
 // Opnum 56
 void Opnum56NotUsedOnWire(void);
- 
+
 // Opnum 57
 void
 Lsar_LSA_TM_57( void );
- 
+
 // Opnum 58
 void
 Lsar_LSA_TM_58( void );
- 
+
 // Opnum 59
 NTSTATUS
 LsarCreateTrustedDomainEx2(
@@ -1017,47 +1068,47 @@ LsarCreateTrustedDomainEx2(
     [in] ACCESS_MASK DesiredAccess,
     [out] LSAPR_HANDLE *TrustedDomainHandle
     );
- 
+
 // Opnum 60
 void Opnum60NotUsedOnWire(void);
- 
+
 // Opnum 61
 void Opnum61NotUsedOnWire(void);
- 
+
 // Opnum 62
 void Opnum62NotUsedOnWire(void);
- 
+
 // Opnum 63
 void Opnum63NotUsedOnWire(void);
- 
+
 // Opnum 64
 void Opnum64NotUsedOnWire(void);
- 
+
 // Opnum 65
 void Opnum65NotUsedOnWire(void);
- 
+
 // Opnum 66
 void Opnum66NotUsedOnWire(void);
- 
+
 // Opnum 67
 void Opnum67NotUsedOnWire(void);
- 
+
 // Opnum 68
 void
 Lsar_LSA_TM_68( void );
- 
+
 // Opnum 69
 void Opnum69NotUsedOnWire(void);
- 
+
 // Opnum 70
 void Opnum70NotUsedOnWire(void);
- 
+
 // Opnum 71
 void Opnum71NotUsedOnWire(void);
- 
+
 // Opnum 72
 void Opnum72NotUsedOnWire(void);
- 
+
 // Opnum 73
 NTSTATUS
 LsarQueryForestTrustInformation(
@@ -1066,7 +1117,7 @@ LsarQueryForestTrustInformation(
     [in] LSA_FOREST_TRUST_RECORD_TYPE HighestRecordType,
     [out] PLSA_FOREST_TRUST_INFORMATION * ForestTrustInfo
     );
- 
+
 // Opnum 74
 NTSTATUS
 LsarSetForestTrustInformation(
@@ -1077,5 +1128,292 @@ LsarSetForestTrustInformation(
     [in] unsigned char CheckOnly,
     [out] PLSA_FOREST_TRUST_COLLISION_INFORMATION * CollisionInfo
     );
- 
+
+// Opnum 75
+void Opnum75NotUsedOnWire(void);
+
+// Opnum 76
+void Opnum76NotUsedOnWire(void);
+
+// Opnum 77
+void Opnum77NotUsedOnWire(void);
+
+// Opnum 78
+void Opnum78NotUsedOnWire(void);
+
+// Opnum 79
+void Opnum79NotUsedOnWire(void);
+
+// Opnum 80
+void Opnum80NotUsedOnWire(void);
+
+// Opnum 81
+void Opnum81NotUsedOnWire(void);
+
+// Opnum 82
+void Opnum82NotUsedOnWire(void);
+
+// Opnum 83
+void Opnum83NotUsedOnWire(void);
+
+// Opnum 84
+void Opnum84NotUsedOnWire(void);
+
+// Opnum 85
+void Opnum85NotUsedOnWire(void);
+
+// Opnum 86
+void Opnum86NotUsedOnWire(void);
+
+// Opnum 87
+void Opnum87NotUsedOnWire(void);
+
+// Opnum 88
+void Opnum88NotUsedOnWire(void);
+
+// Opnum 89
+void Opnum89NotUsedOnWire(void);
+
+// Opnum 90
+void Opnum90NotUsedOnWire(void);
+
+// Opnum 91
+void Opnum91NotUsedOnWire(void);
+
+// Opnum 92
+void Opnum92NotUsedOnWire(void);
+
+// Opnum 93
+void Opnum93NotUsedOnWire(void);
+
+// Opnum 94
+void Opnum94NotUsedOnWire(void);
+
+// Opnum 95
+void Opnum95NotUsedOnWire(void);
+
+// Opnum 96
+void Opnum96NotUsedOnWire(void);
+
+// Opnum 97
+void Opnum97NotUsedOnWire(void);
+
+// Opnum 98
+void Opnum98NotUsedOnWire(void);
+
+// Opnum 99
+void Opnum99NotUsedOnWire(void);
+
+// Opnum 100
+void Opnum100NotUsedOnWire(void);
+
+// Opnum 101
+void Opnum101NotUsedOnWire(void);
+
+// Opnum 102
+void Opnum102NotUsedOnWire(void);
+
+// Opnum 103
+void Opnum103NotUsedOnWire(void);
+
+// Opnum 104
+void Opnum104NotUsedOnWire(void);
+
+// Opnum 105
+void Opnum105NotUsedOnWire(void);
+
+// Opnum 106
+void Opnum106NotUsedOnWire(void);
+
+// Opnum 107
+void Opnum107NotUsedOnWire(void);
+
+// Opnum 108
+void Opnum108NotUsedOnWire(void);
+
+// Opnum 109
+void Opnum109NotUsedOnWire(void);
+
+// Opnum 110
+void Opnum110NotUsedOnWire(void);
+
+// Opnum 111
+void Opnum111NotUsedOnWire(void);
+
+// Opnum 112
+void Opnum112NotUsedOnWire(void);
+
+// Opnum 113
+void Opnum113NotUsedOnWire(void);
+
+// Opnum 114
+void Opnum114NotUsedOnWire(void);
+
+// Opnum 115
+void Opnum115NotUsedOnWire(void);
+
+// Opnum 116
+void Opnum116NotUsedOnWire(void);
+
+// Opnum 117
+void Opnum117NotUsedOnWire(void);
+
+// Opnum 118
+void Opnum118NotUsedOnWire(void);
+
+// Opnum 119
+void Opnum119NotUsedOnWire(void);
+
+// Opnum 120
+void Opnum120NotUsedOnWire(void);
+
+// Opnum 121
+void Opnum121NotUsedOnWire(void);
+
+// Opnum 122
+void Opnum122NotUsedOnWire(void);
+
+// Opnum 123
+void Opnum123NotUsedOnWire(void);
+
+// Opnum 124
+void Opnum124NotUsedOnWire(void);
+
+// Opnum 125
+void Opnum125NotUsedOnWire(void);
+
+// Opnum 126
+void Opnum126NotUsedOnWire(void);
+
+// Opnum 127
+void Opnum127NotUsedOnWire(void);
+
+// Opnum 128
+void Opnum128NotUsedOnWire(void);
+// Opnum 129
+NTSTATUS
+LsarCreateTrustedDomainEx3(
+    [in] LSAPR_HANDLE                                          PolicyHandle,
+    [in] PLSAPR_TRUSTED_DOMAIN_INFORMATION_EX                  TrustedDomainInformation,
+    [in] PLSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL_AES   AuthenticationInformation,
+    [in] ACCESS_MASK                                           DesiredAccess,
+    [out] LSAPR_HANDLE*                                        TrustedDomainHandle
+    );
+
+// Opnum 130
+typedef [handle] LPWSTR PLSAPR_SERVER_NAME, *PPLSAPR_SERVER_NAME;
+
+typedef struct _LSAPR_REVISION_INFO_V1
+{
+    ULONG Revision;
+    ULONG SupportedFeatures;
+
+} LSAPR_REVISION_INFO_V1, *PLSAPR_REVISION_INFO_V1;
+
+typedef [switch_type(ULONG)] union
+{
+    [case(1)] LSAPR_REVISION_INFO_V1 V1;
+
+} LSAPR_REVISION_INFO, *PLSAPR_REVISION_INFO;
+
+NTSTATUS
+LsarOpenPolicy3(
+    [in,unique,string] PLSAPR_SERVER_NAME               SystemName,
+    [in] PLSAPR_OBJECT_ATTRIBUTES                       ObjectAttributes,
+    [in] ACCESS_MASK                                    DesiredAccess,
+    [in] ULONG                                          InVersion,
+    [in] [switch_is(InVersion)] LSAPR_REVISION_INFO*    InRevisionInfo,
+    [out] ULONG*                                        OutVersion,
+    [out] [switch_is(*OutVersion)] LSAPR_REVISION_INFO* OutRevisionInfo,
+    [out] LSAPR_HANDLE*                                 PolicyHandle
+   );
+// Opnum 131
+void Opnum131NotUsedOnWire(void);
+
+// Opnum 132
+NTSTATUS
+LsarQueryForestTrustInformation2(
+    [in] LSAPR_HANDLE                       PolicyHandle,
+    [in] PLSA_UNICODE_STRING                TrustedDomainName,
+    [in] LSA_FOREST_TRUST_RECORD_TYPE              HighestRecordType,
+    [out] PLSA_FOREST_TRUST_INFORMATION2*   ForestTrustInfo2
+    );
+
+// Opnum 133
+NTSTATUS LsarSetForestTrustInformation2(
+    [in] LSAPR_HANDLE                              PolicyHandle,
+    [in] PLSA_UNICODE_STRING                       TrustedDomainName,
+    [in] LSA_FOREST_TRUST_RECORD_TYPE                     HighestRecordType,
+    [in] PLSA_FOREST_TRUST_INFORMATION2                   ForestTrustInfo2,
+    [in] unsigned char                             CheckOnly,
+    [out] PLSA_FOREST_TRUST_COLLISION_INFORMATION*  CollisionInfo
+    );
+
+// Opnum 134
+void Opnum134NotUsedOnWire(void);
+
+// Opnum 135
+NTSTATUS
+LsarOpenPolicyWithCreds(
+    [in] handle_t                                       BindingHandle,
+    [in] PLSAPR_OBJECT_ATTRIBUTES                       ObjectAttributes,
+    [in] ACCESS_MASK                                    DesiredAccess,
+    [in] ULONG                                          InVersion,
+    [in] [switch_is(InVersion)] LSAPR_REVISION_INFO*    InRevisionInfo,
+    [out] ULONG*                                        OutVersion,
+    [out] [switch_is(*OutVersion)] LSAPR_REVISION_INFO* OutRevisionInfo,
+    [out] LSAPR_HANDLE*                                 PolicyHandle
+    );
+
+// Opnum 136
+NTSTATUS
+LsarOpenSecret2(
+    [in] LSAPR_HANDLE          PolicyHandle,
+    [in] PLSAPR_AES_CIPHER_VALUE      EncryptedSecretName,
+    [in] ACCESS_MASK           DesiredAccess,
+    [out] LSAPR_HANDLE         *SecretHandle
+    );
+
+// Opnum 137
+NTSTATUS
+LsarCreateSecret2(
+    [in] LSAPR_HANDLE          PolicyHandle,
+    [in] PLSAPR_AES_CIPHER_VALUE      EncryptedSecretName,
+    [in] ACCESS_MASK           DesiredAccess,
+    [out] LSAPR_HANDLE         *SecretHandle
+    );
+
+// Opnum 138
+NTSTATUS
+LsarSetSecret2(
+    [in] LSAPR_HANDLE                 SecretHandle,
+    [in, unique] PLSAPR_AES_CIPHER_VALUE EncryptedCurrentValue,
+    [in, unique] PLSAPR_AES_CIPHER_VALUE EncryptedOldValue
+    );
+
+// Opnum 139
+NTSTATUS
+LsarQuerySecret2(
+    [in] LSAPR_HANDLE                       SecretHandle,
+    [in, out, unique] PLSAPR_AES_CIPHER_VALUE      *EncryptedCurrentValue,
+    [in, out, unique] PLARGE_INTEGER        CurrentValueSetTime,
+    [in, out, unique] PLSAPR_AES_CIPHER_VALUE      *EncryptedOldValue,
+    [in, out, unique] PLARGE_INTEGER        OldValueSetTime
+    );
+
+// Opnum 140
+NTSTATUS
+LsarStorePrivateData2(
+    [in] LSAPR_HANDLE                 PolicyHandle,
+    [in] PLSAPR_AES_CIPHER_VALUE            EncryptedKeyName,
+    [in,unique] PLSAPR_AES_CIPHER_VALUE     EncryptedData
+    );
+
+// Opnum 141
+NTSTATUS
+LsarRetrievePrivateData2(
+    [in] LSAPR_HANDLE                       PolicyHandle,
+    [in] PLSAPR_AES_CIPHER_VALUE                   EncryptedKeyName,
+    [in, out, unique] PLSAPR_AES_CIPHER_VALUE      *EncryptedData
+   );
 }

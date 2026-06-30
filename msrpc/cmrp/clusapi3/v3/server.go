@@ -1319,6 +1319,246 @@ type Clusapi3Server interface {
 
 	// ApiChangeResourceGroupEx operation.
 	ChangeResourceGroupEx(context.Context, *ChangeResourceGroupExRequest) (*ChangeResourceGroupExResponse, error)
+
+	// ApiClusterNativeUpdateControl operation.
+	ClusterNativeUpdateControl(context.Context, *ClusterNativeUpdateControlRequest) (*ClusterNativeUpdateControlResponse, error)
+
+	// Opnum186Reserved operation.
+	// Opnum186Reserved
+
+	// Opnum187Reserved operation.
+	// Opnum187Reserved
+
+	// Opnum188Reserved operation.
+	// Opnum188Reserved
+
+	// Opnum189Reserved operation.
+	// Opnum189Reserved
+
+	// Opnum190Reserved operation.
+	// Opnum190Reserved
+
+	// Opnum191Reserved operation.
+	// Opnum191Reserved
+
+	// Opnum192Reserved operation.
+	// Opnum192Reserved
+
+	// Opnum193Reserved operation.
+	// Opnum193Reserved
+
+	// Opnum194Reserved operation.
+	// Opnum194Reserved
+
+	// Opnum195Reserved operation.
+	// Opnum195Reserved
+
+	// Opnum196Reserved operation.
+	// Opnum196Reserved
+
+	// Opnum197Reserved operation.
+	// Opnum197Reserved
+
+	// Opnum198Reserved operation.
+	// Opnum198Reserved
+
+	// Opnum199Reserved operation.
+	// Opnum199Reserved
+
+	// Opnum200Reserved operation.
+	// Opnum200Reserved
+
+	// Opnum201Reserved operation.
+	// Opnum201Reserved
+
+	// Opnum202Reserved operation.
+	// Opnum202Reserved
+
+	// Opnum203Reserved operation.
+	// Opnum203Reserved
+
+	// Opnum204Reserved operation.
+	// Opnum204Reserved
+
+	// Opnum205Reserved operation.
+	// Opnum205Reserved
+
+	// Opnum206Reserved operation.
+	// Opnum206Reserved
+
+	// Opnum207Reserved operation.
+	// Opnum207Reserved
+
+	// Opnum208Reserved operation.
+	// Opnum208Reserved
+
+	// Opnum209Reserved operation.
+	// Opnum209Reserved
+
+	// Opnum210Reserved operation.
+	// Opnum210Reserved
+
+	// Opnum211Reserved operation.
+	// Opnum211Reserved
+
+	// Opnum212Reserved operation.
+	// Opnum212Reserved
+
+	// Opnum213Reserved operation.
+	// Opnum213Reserved
+
+	// Opnum214Reserved operation.
+	// Opnum214Reserved
+
+	// Opnum215Reserved operation.
+	// Opnum215Reserved
+
+	// Opnum216Reserved operation.
+	// Opnum216Reserved
+
+	// Opnum217Reserved operation.
+	// Opnum217Reserved
+
+	// Opnum218Reserved operation.
+	// Opnum218Reserved
+
+	// Opnum219Reserved operation.
+	// Opnum219Reserved
+
+	// Opnum220Reserved operation.
+	// Opnum220Reserved
+
+	// Opnum221Reserved operation.
+	// Opnum221Reserved
+
+	// Opnum222Reserved operation.
+	// Opnum222Reserved
+
+	// Opnum223Reserved operation.
+	// Opnum223Reserved
+
+	// Opnum224Reserved operation.
+	// Opnum224Reserved
+
+	// Opnum225Reserved operation.
+	// Opnum225Reserved
+
+	// Opnum226Reserved operation.
+	// Opnum226Reserved
+
+	// Opnum227Reserved operation.
+	// Opnum227Reserved
+
+	// Opnum228Reserved operation.
+	// Opnum228Reserved
+
+	// Opnum229Reserved operation.
+	// Opnum229Reserved
+
+	// Opnum230Reserved operation.
+	// Opnum230Reserved
+
+	// Opnum231Reserved operation.
+	// Opnum231Reserved
+
+	// Opnum232Reserved operation.
+	// Opnum232Reserved
+
+	// Opnum233Reserved operation.
+	// Opnum233Reserved
+
+	// Opnum234Reserved operation.
+	// Opnum234Reserved
+
+	// Opnum235Reserved operation.
+	// Opnum235Reserved
+
+	// Opnum236Reserved operation.
+	// Opnum236Reserved
+
+	// Opnum237Reserved operation.
+	// Opnum237Reserved
+
+	// Opnum238Reserved operation.
+	// Opnum238Reserved
+
+	// Opnum239Reserved operation.
+	// Opnum239Reserved
+
+	// Opnum240Reserved operation.
+	// Opnum240Reserved
+
+	// Opnum241Reserved operation.
+	// Opnum241Reserved
+
+	// Opnum242Reserved operation.
+	// Opnum242Reserved
+
+	// Opnum243Reserved operation.
+	// Opnum243Reserved
+
+	// Opnum244Reserved operation.
+	// Opnum244Reserved
+
+	// Opnum245Reserved operation.
+	// Opnum245Reserved
+
+	// Opnum246Reserved operation.
+	// Opnum246Reserved
+
+	// Opnum247Reserved operation.
+	// Opnum247Reserved
+
+	// Opnum248Reserved operation.
+	// Opnum248Reserved
+
+	// Opnum249Reserved operation.
+	// Opnum249Reserved
+
+	// Opnum250Reserved operation.
+	// Opnum250Reserved
+
+	// Opnum251Reserved operation.
+	// Opnum251Reserved
+
+	// Opnum252Reserved operation.
+	// Opnum252Reserved
+
+	// Opnum253Reserved operation.
+	// Opnum253Reserved
+
+	// Opnum254Reserved operation.
+	// Opnum254Reserved
+
+	// Opnum255Reserved operation.
+	// Opnum255Reserved
+
+	// Opnum256Reserved operation.
+	// Opnum256Reserved
+
+	// Opnum257Reserved operation.
+	// Opnum257Reserved
+
+	// Opnum258Reserved operation.
+	// Opnum258Reserved
+
+	// Opnum259Reserved operation.
+	// Opnum259Reserved
+
+	// Opnum260Reserved operation.
+	// Opnum260Reserved
+
+	// Opnum261Reserved operation.
+	// Opnum261Reserved
+
+	// Opnum262Reserved operation.
+	// Opnum262Reserved
+
+	// Opnum263Reserved operation.
+	// Opnum263Reserved
+
+	// Opnum264NotUsedOnWire operation.
+	// Opnum264NotUsedOnWire
 }
 
 func RegisterClusapi3Server(conn dcerpc.Conn, o Clusapi3Server, opts ...dcerpc.Option) {
@@ -2890,6 +3130,252 @@ func Clusapi3ServerHandle(ctx context.Context, o Clusapi3Server, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.ChangeResourceGroupEx(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
+	case 185: // ApiClusterNativeUpdateControl
+		op := &xxx_ClusterNativeUpdateControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &ClusterNativeUpdateControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClusterNativeUpdateControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 186: // Opnum186Reserved
+		// Opnum186Reserved
+		return nil, nil
+	case 187: // Opnum187Reserved
+		// Opnum187Reserved
+		return nil, nil
+	case 188: // Opnum188Reserved
+		// Opnum188Reserved
+		return nil, nil
+	case 189: // Opnum189Reserved
+		// Opnum189Reserved
+		return nil, nil
+	case 190: // Opnum190Reserved
+		// Opnum190Reserved
+		return nil, nil
+	case 191: // Opnum191Reserved
+		// Opnum191Reserved
+		return nil, nil
+	case 192: // Opnum192Reserved
+		// Opnum192Reserved
+		return nil, nil
+	case 193: // Opnum193Reserved
+		// Opnum193Reserved
+		return nil, nil
+	case 194: // Opnum194Reserved
+		// Opnum194Reserved
+		return nil, nil
+	case 195: // Opnum195Reserved
+		// Opnum195Reserved
+		return nil, nil
+	case 196: // Opnum196Reserved
+		// Opnum196Reserved
+		return nil, nil
+	case 197: // Opnum197Reserved
+		// Opnum197Reserved
+		return nil, nil
+	case 198: // Opnum198Reserved
+		// Opnum198Reserved
+		return nil, nil
+	case 199: // Opnum199Reserved
+		// Opnum199Reserved
+		return nil, nil
+	case 200: // Opnum200Reserved
+		// Opnum200Reserved
+		return nil, nil
+	case 201: // Opnum201Reserved
+		// Opnum201Reserved
+		return nil, nil
+	case 202: // Opnum202Reserved
+		// Opnum202Reserved
+		return nil, nil
+	case 203: // Opnum203Reserved
+		// Opnum203Reserved
+		return nil, nil
+	case 204: // Opnum204Reserved
+		// Opnum204Reserved
+		return nil, nil
+	case 205: // Opnum205Reserved
+		// Opnum205Reserved
+		return nil, nil
+	case 206: // Opnum206Reserved
+		// Opnum206Reserved
+		return nil, nil
+	case 207: // Opnum207Reserved
+		// Opnum207Reserved
+		return nil, nil
+	case 208: // Opnum208Reserved
+		// Opnum208Reserved
+		return nil, nil
+	case 209: // Opnum209Reserved
+		// Opnum209Reserved
+		return nil, nil
+	case 210: // Opnum210Reserved
+		// Opnum210Reserved
+		return nil, nil
+	case 211: // Opnum211Reserved
+		// Opnum211Reserved
+		return nil, nil
+	case 212: // Opnum212Reserved
+		// Opnum212Reserved
+		return nil, nil
+	case 213: // Opnum213Reserved
+		// Opnum213Reserved
+		return nil, nil
+	case 214: // Opnum214Reserved
+		// Opnum214Reserved
+		return nil, nil
+	case 215: // Opnum215Reserved
+		// Opnum215Reserved
+		return nil, nil
+	case 216: // Opnum216Reserved
+		// Opnum216Reserved
+		return nil, nil
+	case 217: // Opnum217Reserved
+		// Opnum217Reserved
+		return nil, nil
+	case 218: // Opnum218Reserved
+		// Opnum218Reserved
+		return nil, nil
+	case 219: // Opnum219Reserved
+		// Opnum219Reserved
+		return nil, nil
+	case 220: // Opnum220Reserved
+		// Opnum220Reserved
+		return nil, nil
+	case 221: // Opnum221Reserved
+		// Opnum221Reserved
+		return nil, nil
+	case 222: // Opnum222Reserved
+		// Opnum222Reserved
+		return nil, nil
+	case 223: // Opnum223Reserved
+		// Opnum223Reserved
+		return nil, nil
+	case 224: // Opnum224Reserved
+		// Opnum224Reserved
+		return nil, nil
+	case 225: // Opnum225Reserved
+		// Opnum225Reserved
+		return nil, nil
+	case 226: // Opnum226Reserved
+		// Opnum226Reserved
+		return nil, nil
+	case 227: // Opnum227Reserved
+		// Opnum227Reserved
+		return nil, nil
+	case 228: // Opnum228Reserved
+		// Opnum228Reserved
+		return nil, nil
+	case 229: // Opnum229Reserved
+		// Opnum229Reserved
+		return nil, nil
+	case 230: // Opnum230Reserved
+		// Opnum230Reserved
+		return nil, nil
+	case 231: // Opnum231Reserved
+		// Opnum231Reserved
+		return nil, nil
+	case 232: // Opnum232Reserved
+		// Opnum232Reserved
+		return nil, nil
+	case 233: // Opnum233Reserved
+		// Opnum233Reserved
+		return nil, nil
+	case 234: // Opnum234Reserved
+		// Opnum234Reserved
+		return nil, nil
+	case 235: // Opnum235Reserved
+		// Opnum235Reserved
+		return nil, nil
+	case 236: // Opnum236Reserved
+		// Opnum236Reserved
+		return nil, nil
+	case 237: // Opnum237Reserved
+		// Opnum237Reserved
+		return nil, nil
+	case 238: // Opnum238Reserved
+		// Opnum238Reserved
+		return nil, nil
+	case 239: // Opnum239Reserved
+		// Opnum239Reserved
+		return nil, nil
+	case 240: // Opnum240Reserved
+		// Opnum240Reserved
+		return nil, nil
+	case 241: // Opnum241Reserved
+		// Opnum241Reserved
+		return nil, nil
+	case 242: // Opnum242Reserved
+		// Opnum242Reserved
+		return nil, nil
+	case 243: // Opnum243Reserved
+		// Opnum243Reserved
+		return nil, nil
+	case 244: // Opnum244Reserved
+		// Opnum244Reserved
+		return nil, nil
+	case 245: // Opnum245Reserved
+		// Opnum245Reserved
+		return nil, nil
+	case 246: // Opnum246Reserved
+		// Opnum246Reserved
+		return nil, nil
+	case 247: // Opnum247Reserved
+		// Opnum247Reserved
+		return nil, nil
+	case 248: // Opnum248Reserved
+		// Opnum248Reserved
+		return nil, nil
+	case 249: // Opnum249Reserved
+		// Opnum249Reserved
+		return nil, nil
+	case 250: // Opnum250Reserved
+		// Opnum250Reserved
+		return nil, nil
+	case 251: // Opnum251Reserved
+		// Opnum251Reserved
+		return nil, nil
+	case 252: // Opnum252Reserved
+		// Opnum252Reserved
+		return nil, nil
+	case 253: // Opnum253Reserved
+		// Opnum253Reserved
+		return nil, nil
+	case 254: // Opnum254Reserved
+		// Opnum254Reserved
+		return nil, nil
+	case 255: // Opnum255Reserved
+		// Opnum255Reserved
+		return nil, nil
+	case 256: // Opnum256Reserved
+		// Opnum256Reserved
+		return nil, nil
+	case 257: // Opnum257Reserved
+		// Opnum257Reserved
+		return nil, nil
+	case 258: // Opnum258Reserved
+		// Opnum258Reserved
+		return nil, nil
+	case 259: // Opnum259Reserved
+		// Opnum259Reserved
+		return nil, nil
+	case 260: // Opnum260Reserved
+		// Opnum260Reserved
+		return nil, nil
+	case 261: // Opnum261Reserved
+		// Opnum261Reserved
+		return nil, nil
+	case 262: // Opnum262Reserved
+		// Opnum262Reserved
+		return nil, nil
+	case 263: // Opnum263Reserved
+		// Opnum263Reserved
+		return nil, nil
+	case 264: // Opnum264NotUsedOnWire
+		// Opnum264NotUsedOnWire
+		return nil, nil
 	}
 	return nil, nil
 }
@@ -3397,6 +3883,9 @@ func (UnimplementedClusapi3Server) AddGroupToGroupSetEx(context.Context, *AddGro
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedClusapi3Server) ChangeResourceGroupEx(context.Context, *ChangeResourceGroupExRequest) (*ChangeResourceGroupExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ClusterNativeUpdateControl(context.Context, *ClusterNativeUpdateControlRequest) (*ClusterNativeUpdateControlResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 

@@ -73,7 +73,7 @@ import "ms-dtyp.idl";
        [in, string, unique] PWCHAR ReplicaSetName,
        [in, string, unique] PWCHAR PartnerDnsName
        );
- };
+ }
 
 [
     uuid (F5CC59B4-4264-101A-8C59-08002B2F8426), version(1.1),
