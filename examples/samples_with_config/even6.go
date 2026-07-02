@@ -30,6 +30,7 @@ import (
 
 	_ "github.com/oiweiwei/go-msrpc/msrpc/erref/hresult"
 	"github.com/oiweiwei/go-msrpc/msrpc/erref/win32"
+	"github.com/oiweiwei/go-msrpc/msrpc/lcid"
 )
 
 var (
@@ -180,7 +181,7 @@ func Metadata(ctx context.Context, cli ieventservice.EventServiceClient) {
 
 	meta, err := cli.GetPublisherMetadata(ctx, &ieventservice.GetPublisherMetadataRequest{
 		PublisherID: pbl,
-		Locale:      1033,
+		Locale:      (uint32)(lcid.LangEN_US),
 	})
 
 	if err != nil {
