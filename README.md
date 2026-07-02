@@ -296,6 +296,7 @@ Based on the [hirochachacha/go-smb2 fork](https://github.com/oiweiwei/go-smb2.fo
 | Spec | Description | Package |
 |------|-------------|---------|
 | [MIMICOM](https://gist.github.com/gentilkiwi/e3d9c92b93ed4bb48f7956492c1d335a) | Mimikatz Command Interface | [msrpc/mimicom](./msrpc/mimicom) |
+| [MS-LCID](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid) | Windows Language Code Identifier (LCID) Reference | [msrpc/lcid](./msrpc/lcid) |
 
 ### Documentation
 
