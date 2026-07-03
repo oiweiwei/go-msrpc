@@ -14713,12 +14713,12 @@ func (o *UnjoinDomain3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // xxx_RenameMachineInDomain3Operation structure represents the NetrRenameMachineInDomain3 operation
 type xxx_RenameMachineInDomain3Operation struct {
-	ServerName  string                 `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
-	MachineName string                 `idl:"name:MachineName;string;pointer:unique" json:"machine_name"`
-	AccountName string                 `idl:"name:AccountName;string;pointer:unique" json:"account_name"`
-	Password    *EncryptedUserPassword `idl:"name:Password;pointer:unique" json:"password"`
-	Options     uint32                 `idl:"name:Options" json:"options"`
-	Return      uint32                 `idl:"name:Return" json:"return"`
+	ServerName  string                    `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	MachineName string                    `idl:"name:MachineName;string;pointer:unique" json:"machine_name"`
+	AccountName string                    `idl:"name:AccountName;string;pointer:unique" json:"account_name"`
+	Password    *EncryptedUserPasswordAES `idl:"name:Password;pointer:unique" json:"password"`
+	Options     uint32                    `idl:"name:Options" json:"options"`
+	Return      uint32                    `idl:"name:Return" json:"return"`
 }
 
 // OpNum returns the operation number of NetrRenameMachineInDomain3 operation.
@@ -14805,7 +14805,7 @@ func (o *xxx_RenameMachineInDomain3Operation) MarshalNDRRequest(ctx context.Cont
 			return err
 		}
 	}
-	// Password {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD}(struct))
+	// Password {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
 	{
 		if o.Password != nil {
 			_ptr_Password := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -14814,7 +14814,7 @@ func (o *xxx_RenameMachineInDomain3Operation) MarshalNDRRequest(ctx context.Cont
 						return err
 					}
 				} else {
-					if err := (&EncryptedUserPassword{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&EncryptedUserPasswordAES{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -14890,18 +14890,18 @@ func (o *xxx_RenameMachineInDomain3Operation) UnmarshalNDRRequest(ctx context.Co
 			return err
 		}
 	}
-	// Password {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD}(struct))
+	// Password {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
 	{
 		_ptr_Password := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.Password == nil {
-				o.Password = &EncryptedUserPassword{}
+				o.Password = &EncryptedUserPasswordAES{}
 			}
 			if err := o.Password.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_Password := func(ptr interface{}) { o.Password = *ptr.(**EncryptedUserPassword) }
+		_s_Password := func(ptr interface{}) { o.Password = *ptr.(**EncryptedUserPasswordAES) }
 		if err := w.ReadPointer(&o.Password, _s_Password, _ptr_Password); err != nil {
 			return err
 		}
@@ -14967,7 +14967,7 @@ type RenameMachineInDomain3Request struct {
 	// Password: An optional pointer to a JOINPR_ENCRYPTED_USER_PASSWORD_AES structure (section
 	// 2.2.5.19) that specifies the encrypted password to use with the AccountName parameter.
 	// If this parameter is NULL, the caller's security context MUST be used.
-	Password *EncryptedUserPassword `idl:"name:Password;pointer:unique" json:"password"`
+	Password *EncryptedUserPasswordAES `idl:"name:Password;pointer:unique" json:"password"`
 	// Options: A 32-bit bitfield that specifies modifications to default server behavior
 	// in message processing.
 	//
@@ -16096,12 +16096,12 @@ func (o *RemoveAlternateComputerName2Response) UnmarshalNDR(ctx context.Context,
 
 // xxx_SetPrimaryComputerName2Operation structure represents the NetrSetPrimaryComputerName2 operation
 type xxx_SetPrimaryComputerName2Operation struct {
-	ServerName        string                 `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
-	PrimaryName       string                 `idl:"name:PrimaryName;string;pointer:unique" json:"primary_name"`
-	DomainAccount     string                 `idl:"name:DomainAccount;string;pointer:unique" json:"domain_account"`
-	EncryptedPassword *EncryptedUserPassword `idl:"name:EncryptedPassword;pointer:unique" json:"encrypted_password"`
-	_                 uint32                 `idl:"name:Reserved"`
-	Return            uint32                 `idl:"name:Return" json:"return"`
+	ServerName        string                    `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
+	PrimaryName       string                    `idl:"name:PrimaryName;string;pointer:unique" json:"primary_name"`
+	DomainAccount     string                    `idl:"name:DomainAccount;string;pointer:unique" json:"domain_account"`
+	EncryptedPassword *EncryptedUserPasswordAES `idl:"name:EncryptedPassword;pointer:unique" json:"encrypted_password"`
+	_                 uint32                    `idl:"name:Reserved"`
+	Return            uint32                    `idl:"name:Return" json:"return"`
 }
 
 // OpNum returns the operation number of NetrSetPrimaryComputerName2 operation.
@@ -16188,7 +16188,7 @@ func (o *xxx_SetPrimaryComputerName2Operation) MarshalNDRRequest(ctx context.Con
 			return err
 		}
 	}
-	// EncryptedPassword {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD}(struct))
+	// EncryptedPassword {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
 	{
 		if o.EncryptedPassword != nil {
 			_ptr_EncryptedPassword := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -16197,7 +16197,7 @@ func (o *xxx_SetPrimaryComputerName2Operation) MarshalNDRRequest(ctx context.Con
 						return err
 					}
 				} else {
-					if err := (&EncryptedUserPassword{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&EncryptedUserPasswordAES{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -16274,18 +16274,18 @@ func (o *xxx_SetPrimaryComputerName2Operation) UnmarshalNDRRequest(ctx context.C
 			return err
 		}
 	}
-	// EncryptedPassword {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD}(struct))
+	// EncryptedPassword {in} (1:{pointer=unique, alias=PJOINPR_ENCRYPTED_USER_PASSWORD_AES}*(1))(2:{alias=JOINPR_ENCRYPTED_USER_PASSWORD_AES}(struct))
 	{
 		_ptr_EncryptedPassword := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.EncryptedPassword == nil {
-				o.EncryptedPassword = &EncryptedUserPassword{}
+				o.EncryptedPassword = &EncryptedUserPasswordAES{}
 			}
 			if err := o.EncryptedPassword.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_EncryptedPassword := func(ptr interface{}) { o.EncryptedPassword = *ptr.(**EncryptedUserPassword) }
+		_s_EncryptedPassword := func(ptr interface{}) { o.EncryptedPassword = *ptr.(**EncryptedUserPasswordAES) }
 		if err := w.ReadPointer(&o.EncryptedPassword, _s_EncryptedPassword, _ptr_EncryptedPassword); err != nil {
 			return err
 		}
@@ -16361,7 +16361,7 @@ type SetPrimaryComputerName2Request struct {
 	// (section 2.2.5.19) that specifies the encrypted password to use with the DomainAccount
 	// parameter. If the DomainAccount parameter is NULL, the caller's security context
 	// MUST be used, and this parameter MUST be ignored.
-	EncryptedPassword *EncryptedUserPassword `idl:"name:EncryptedPassword;pointer:unique" json:"encrypted_password"`
+	EncryptedPassword *EncryptedUserPasswordAES `idl:"name:EncryptedPassword;pointer:unique" json:"encrypted_password"`
 }
 
 func (o *SetPrimaryComputerName2Request) xxx_ToOp(ctx context.Context, op *xxx_SetPrimaryComputerName2Operation) *xxx_SetPrimaryComputerName2Operation {

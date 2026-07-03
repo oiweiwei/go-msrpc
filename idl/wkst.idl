@@ -576,7 +576,7 @@ interface wkssvc
       [in, string, unique] wchar_t* ServerName,
       [in, string, unique] wchar_t* MachineName,
       [in, string, unique] wchar_t* AccountName,
-      [in, unique] PJOINPR_ENCRYPTED_USER_PASSWORD Password,
+      [in, unique] PJOINPR_ENCRYPTED_USER_PASSWORD_AES Password,
       [in] unsigned long Options
     );
 
@@ -616,7 +616,7 @@ interface wkssvc
       [in, string, unique] wchar_t* ServerName,
       [in, string, unique] wchar_t* PrimaryName,
       [in, string, unique] wchar_t* DomainAccount,
-      [in, unique] PJOINPR_ENCRYPTED_USER_PASSWORD EncryptedPassword,
+      [in, unique] PJOINPR_ENCRYPTED_USER_PASSWORD_AES EncryptedPassword,
       [in] unsigned long Reserved
     );
 
