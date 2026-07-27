@@ -12,7 +12,7 @@ require (
 	github.com/miekg/dns v1.1.72
 	github.com/oiweiwei/go-math v1.0.0
 	github.com/oiweiwei/go-oem v1.0.0
-	github.com/oiweiwei/go-smb2.fork v1.0.1
+	github.com/oiweiwei/go-smb2.fork v1.0.2
 	github.com/oiweiwei/gokrb5.fork/v9 v9.0.6
 	github.com/rs/zerolog v1.35.1
 	github.com/stretchr/testify v1.11.1
