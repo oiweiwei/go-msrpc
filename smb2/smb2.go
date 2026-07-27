@@ -88,6 +88,11 @@ type NamedPipe struct {
 }
 
 func (pipe *NamedPipe) Dialect() Dialect {
+	if pipe.Session != nil {
+		if dialect := pipe.Session.NegotiatedDialect(); dialect != 0 {
+			return Dialect(dialect)
+		}
+	}
 	return Dialect(pipe.Dialer.Negotiator.SpecifiedDialect)
 }
 
