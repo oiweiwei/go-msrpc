@@ -2,6 +2,7 @@ package ndr
 
 import (
 	"context"
+	"fmt"
 	"strings"
 	"unicode/utf16"
 )
@@ -97,6 +98,14 @@ func ReadCharNString(ctx context.Context, r Reader, s *string) error {
 		return err
 	}
 
+	// sz is attacker-controlled (NDR actual_count). Each character occupies at
+	// least one byte on the wire, so a count larger than the bytes remaining in
+	// the buffer is invalid; reject it before allocating to avoid a tiny message
+	// forcing a multi-gigabyte make([]byte, sz).
+	if sz > uint64(r.Len()) {
+		return fmt.Errorf("ndr: string length %d exceeds %d remaining bytes", sz, r.Len())
+	}
+
 	var buf = make([]byte, sz)
 
 	for i := range buf {
@@ -151,6 +160,11 @@ func ReadCharString(ctx context.Context, r Reader, s *string) error {
 		return err
 	}
 
+	// See ReadCharNString: reject a count larger than the remaining buffer.
+	if sz > uint64(r.Len()) {
+		return fmt.Errorf("ndr: string length %d exceeds %d remaining bytes", sz, r.Len())
+	}
+
 	var buf = make([]byte, sz)
 
 	for i := range buf {
@@ -203,6 +217,14 @@ func ReadUTF16String(ctx context.Context, r Reader, s *string) error {
 	// actual_count.
 	if err := r.ReadSize(&sz); err != nil {
 		return err
+	}
+
+	// sz is attacker-controlled (NDR actual_count). Each UTF-16 code unit
+	// occupies two bytes on the wire, so a count larger than the bytes remaining
+	// in the buffer is invalid; reject it before allocating to avoid a tiny
+	// message forcing a multi-gigabyte make([]uint16, sz).
+	if sz > uint64(r.Len()) {
+		return fmt.Errorf("ndr: string length %d exceeds %d remaining bytes", sz, r.Len())
 	}
 
 	var buf = make([]uint16, sz)
@@ -260,6 +282,14 @@ func ReadUTF16NString(ctx context.Context, r Reader, s *string) error {
 	// actual_count.
 	if err := r.ReadSize(&sz); err != nil {
 		return err
+	}
+
+	// sz is attacker-controlled (NDR actual_count). Each UTF-16 code unit
+	// occupies two bytes on the wire, so a count larger than the bytes remaining
+	// in the buffer is invalid; reject it before allocating to avoid a tiny
+	// message forcing a multi-gigabyte make([]uint16, sz).
+	if sz > uint64(r.Len()) {
+		return fmt.Errorf("ndr: string length %d exceeds %d remaining bytes", sz, r.Len())
 	}
 
 	var buf = make([]uint16, sz)
