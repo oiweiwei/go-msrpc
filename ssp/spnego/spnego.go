@@ -265,6 +265,8 @@ type NegTokenResp struct {
 	// This field, if present, contains an MIC token for the mechanism
 	// list in the initial negotiation message.
 	MechListMIC []byte
+	// IsTarget indicates whether the token is from the target or the initiator.
+	IsTarget bool
 }
 
 // Marshal function marshals the negotiate token response.
@@ -277,7 +279,7 @@ func (tok *NegTokenResp) Marshal(ctx context.Context) ([]byte, error) {
 		// NegTokenResp ::= SEQUENCE
 		b.AddASN1(cb_asn1.SEQUENCE, func(b *cb.Builder) {
 			// [0] ENUMERATED [...] OPTIONAL
-			if tok.State != 0 {
+			if tok.IsTarget {
 				b.AddASN1(cb_asn1.Tag(0).ContextSpecific().Constructed(), func(b *cb.Builder) {
 					b.AddASN1Enum(int64(tok.State))
 				})
@@ -285,9 +287,7 @@ func (tok *NegTokenResp) Marshal(ctx context.Context) ([]byte, error) {
 			// [1] MechType OPTIONAL
 			if tok.SupportedMech != nil {
 				b.AddASN1(cb_asn1.Tag(1).ContextSpecific().Constructed(), func(b *cb.Builder) {
-					b.AddASN1(cb_asn1.SEQUENCE, func(b *cb.Builder) {
-						b.AddASN1ObjectIdentifier(tok.SupportedMech)
-					})
+					b.AddASN1ObjectIdentifier(tok.SupportedMech)
 				})
 			}
 			// [2] OCTET STRING OPTIONAL
@@ -335,13 +335,7 @@ func (tok *NegTokenResp) Unmarshal(ctx context.Context, b []byte) error {
 	// [1] MechType OPTIONAL
 	if s.ReadOptionalASN1(&tag, &present, cb_asn1.Tag(1).ContextSpecific().Constructed()) {
 		if present {
-			if tag.ReadOptionalASN1(&tag, &present, cb_asn1.SEQUENCE) {
-				if present {
-					tag.ReadASN1ObjectIdentifier((*asn1.ObjectIdentifier)(&tok.SupportedMech))
-				}
-			} else {
-				return fmt.Errorf("neg_token_resp: unmarshal: mech_type sequence read error")
-			}
+			tag.ReadASN1ObjectIdentifier((*asn1.ObjectIdentifier)(&tok.SupportedMech))
 		}
 	} else {
 		return fmt.Errorf("neg_token_resp: unmarshal: mech_type read error")

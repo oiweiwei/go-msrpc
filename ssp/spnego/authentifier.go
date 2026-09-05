@@ -59,7 +59,8 @@ func (a *Authentifier) Negotiate(ctx context.Context) ([]byte, error) {
 func (a *Authentifier) Reject(ctx context.Context) ([]byte, error) {
 
 	resp := &NegTokenResp{
-		State: Reject,
+		State:    Reject,
+		IsTarget: true,
 	}
 
 	b, err := resp.Marshal(ctx)
@@ -108,8 +109,6 @@ func (a *Authentifier) ServerRespond(ctx context.Context, b []byte) ([]byte, err
 		return b, nil
 	}
 
-	var resp = new(NegTokenResp)
-
 	if a.IsNegTokenInit(ctx, b) {
 
 		init := &NegTokenInit{}
@@ -133,10 +132,11 @@ func (a *Authentifier) ServerRespond(ctx context.Context, b []byte) ([]byte, err
 			return nil, fmt.Errorf("spnego: init: mechanism accept: %w", err)
 		}
 
-		resp = &NegTokenResp{
+		resp := &NegTokenResp{
 			SupportedMech: (asn1.ObjectIdentifier)(a.Mechanism.Type()),
 			ResponseToken: tok.Payload,
 			State:         AcceptIncomplete,
+			IsTarget:      true,
 		}
 
 		if gssapi.IsComplete(ctx) {
@@ -159,6 +159,8 @@ func (a *Authentifier) ServerRespond(ctx context.Context, b []byte) ([]byte, err
 		return b, nil
 	}
 
+	var resp = new(NegTokenResp)
+
 	if err := resp.Unmarshal(ctx, b); err != nil {
 		return nil, fmt.Errorf("spnego: init: unmarshal neg token resp: %w", err)
 	}
@@ -174,6 +176,7 @@ func (a *Authentifier) ServerRespond(ctx context.Context, b []byte) ([]byte, err
 		SupportedMech: (asn1.ObjectIdentifier)(a.Mechanism.Type()),
 		ResponseToken: mechTok.Payload,
 		State:         AcceptIncomplete,
+		IsTarget:      true,
 	}
 
 	if a.Config.RequireMechanismListMIC {
