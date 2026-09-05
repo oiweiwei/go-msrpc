@@ -2,6 +2,7 @@ package ndr
 
 import (
 	"context"
+	"fmt"
 	"strings"
 	"unicode/utf16"
 )
@@ -97,6 +98,10 @@ func ReadCharNString(ctx context.Context, r Reader, s *string) error {
 		return err
 	}
 
+	if sz > uint64(r.Len()) {
+		return fmt.Errorf("buffer overflow for size %d of string", sz)
+	}
+
 	var buf = make([]byte, sz)
 
 	for i := range buf {
@@ -151,6 +156,10 @@ func ReadCharString(ctx context.Context, r Reader, s *string) error {
 		return err
 	}
 
+	if sz > uint64(r.Len()) {
+		return fmt.Errorf("buffer overflow for size %d of string", sz)
+	}
+
 	var buf = make([]byte, sz)
 
 	for i := range buf {
@@ -203,6 +212,10 @@ func ReadUTF16String(ctx context.Context, r Reader, s *string) error {
 	// actual_count.
 	if err := r.ReadSize(&sz); err != nil {
 		return err
+	}
+
+	if sz > uint64(r.Len()) {
+		return fmt.Errorf("buffer overflow for size %d of string", sz)
 	}
 
 	var buf = make([]uint16, sz)
@@ -260,6 +273,10 @@ func ReadUTF16NString(ctx context.Context, r Reader, s *string) error {
 	// actual_count.
 	if err := r.ReadSize(&sz); err != nil {
 		return err
+	}
+
+	if sz > uint64(r.Len()) {
+		return fmt.Errorf("buffer overflow for size %d of string", sz)
 	}
 
 	var buf = make([]uint16, sz)
