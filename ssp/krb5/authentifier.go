@@ -308,6 +308,10 @@ func (a *Authentifier) VerifyAPRequest(ctx context.Context, b []byte) ([]byte, e
 
 	encPart := messages.NewEncAPRepPart(a.APReq.Authenticator.SeqNumber)
 	encPart.Subkey = a.SessionKey
+	// RFC-4120: The timestamp and microsecond fields used in the reply MUST be
+	// the client's timestamp and microsecond fields (as provided in authenticator).
+	encPart.Cusec = a.APReq.Authenticator.Cusec
+	encPart.CTime = a.APReq.Authenticator.CTime
 
 	ap, err := messages.NewAPRep(a.SessionKey, encPart)
 	if err != nil {
@@ -319,11 +323,11 @@ func (a *Authentifier) VerifyAPRequest(ctx context.Context, b []byte) ([]byte, e
 		return nil, fmt.Errorf("krb5: verify apreq: aprep: marshal: %w", err)
 	}
 
+	a.APRep = &ap
+
 	if err := a.makeSecurityService(ctx); err != nil {
 		return nil, fmt.Errorf("krb5: accept: make security service: %w", err)
 	}
-
-	a.APRep = &ap
 
 	return b, nil
 }

@@ -5,3 +5,4 @@ examples/testing
 test/
 vendor/
 .vimrc
+.exrc

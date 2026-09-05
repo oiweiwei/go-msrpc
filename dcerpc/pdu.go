@@ -499,6 +499,7 @@ func (pdu *Response) MarshalZerologObject(e *zerolog.Event) {
 func (pdu *Response) WriteTo(ctx context.Context, w ndr.Writer) error {
 	w.WriteData(pdu.AllocHint)
 	w.WriteData(pdu.ContextID)
+	w.WriteData(pdu.CancelCount)
 	w.WriteData((uint8)(0)) // pad.
 	return w.Err()
 }
