@@ -208,7 +208,7 @@ type xxx_NextOperation struct {
 	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
 	Count   uint32         `idl:"name:celt" json:"count"`
-	Entries []string       `idl:"name:rgelt;size_is:(celt)" json:"entries"`
+	Entries []string       `idl:"name:rgelt;size_is:(celt);length_is:(pceltFetched)" json:"entries"`
 	Fetched uint32         `idl:"name:pceltFetched" json:"fetched"`
 	Return  int32          `idl:"name:Return" json:"return"`
 }
@@ -279,6 +279,9 @@ func (o *xxx_NextOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 }
 
 func (o *xxx_NextOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if o.Entries != nil && o.Fetched == 0 {
+		o.Fetched = uint32(len(o.Entries))
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -306,7 +309,7 @@ func (o *xxx_NextOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 			return err
 		}
 	}
-	// rgelt {out} (1:{pointer=ref}*(1))(2:{string, alias=LPOLESTR}[dim:0,size_is=celt]*(1)[dim:0,string,null](wchar))
+	// rgelt {out} (1:{pointer=ref}*(1))(2:{string, alias=LPOLESTR}[dim:0,size_is=celt,length_is=pceltFetched]*(1)[dim:0,string,null](wchar))
 	{
 		dimSize1 := uint64(o.Count)
 		if err := w.WriteSize(dimSize1); err != nil {
@@ -314,6 +317,18 @@ func (o *xxx_NextOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 		}
 		sizeInfo := []uint64{
 			dimSize1,
+		}
+		dimLength1 := uint64(o.Fetched)
+		if dimLength1 > sizeInfo[0] {
+			dimLength1 = sizeInfo[0]
+		} else {
+			sizeInfo[0] = dimLength1
+		}
+		if err := w.WriteSize(0); err != nil {
+			return err
+		}
+		if err := w.WriteSize(dimLength1); err != nil {
+			return err
 		}
 		for i1 := range o.Entries {
 			i1 := i1
@@ -373,12 +388,20 @@ func (o *xxx_NextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			return err
 		}
 	}
-	// rgelt {out} (1:{pointer=ref}*(1))(2:{string, alias=LPOLESTR}[dim:0,size_is=celt]*(1)[dim:0,string,null](wchar))
+	// rgelt {out} (1:{pointer=ref}*(1))(2:{string, alias=LPOLESTR}[dim:0,size_is=celt,length_is=pceltFetched]*(1)[dim:0,string,null](wchar))
 	{
 		sizeInfo := []uint64{
 			0,
 		}
 		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
 			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
 				return err
 			}
@@ -480,7 +503,7 @@ type NextResponse struct {
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Entries []string       `idl:"name:rgelt;size_is:(celt)" json:"entries"`
+	Entries []string       `idl:"name:rgelt;size_is:(celt);length_is:(pceltFetched)" json:"entries"`
 	Fetched uint32         `idl:"name:pceltFetched" json:"fetched"`
 	// Return: The Next return value.
 	Return int32 `idl:"name:Return" json:"return"`

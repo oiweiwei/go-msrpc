@@ -129,7 +129,7 @@ interface IRunningObjectTable : IUnknown
 interface IEnumString : IUnknown
 {
     HRESULT Next([in] ULONG celt,
-                 [out, size_is(celt)] LPOLESTR *rgelt,
+                 [out, size_is(celt), length_is(pceltFetched)] LPOLESTR *rgelt,
                  [out] ULONG *pceltFetched);
 
     HRESULT Skip([in] ULONG celt);
