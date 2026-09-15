@@ -181,7 +181,7 @@ func (o *xxx_DefaultDataManagerClient) GetEnabled(ctx context.Context, in *GetEn
 	}
 	out := &GetEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -201,7 +201,7 @@ func (o *xxx_DefaultDataManagerClient) SetEnabled(ctx context.Context, in *SetEn
 	}
 	out := &SetEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -221,7 +221,7 @@ func (o *xxx_DefaultDataManagerClient) GetCheckBeforeRunning(ctx context.Context
 	}
 	out := &GetCheckBeforeRunningResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -241,7 +241,7 @@ func (o *xxx_DefaultDataManagerClient) SetCheckBeforeRunning(ctx context.Context
 	}
 	out := &SetCheckBeforeRunningResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -261,7 +261,7 @@ func (o *xxx_DefaultDataManagerClient) GetMinFreeDisk(ctx context.Context, in *G
 	}
 	out := &GetMinFreeDiskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -281,7 +281,7 @@ func (o *xxx_DefaultDataManagerClient) SetMinFreeDisk(ctx context.Context, in *S
 	}
 	out := &SetMinFreeDiskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -301,7 +301,7 @@ func (o *xxx_DefaultDataManagerClient) GetMaxSize(ctx context.Context, in *GetMa
 	}
 	out := &GetMaxSizeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -321,7 +321,7 @@ func (o *xxx_DefaultDataManagerClient) SetMaxSize(ctx context.Context, in *SetMa
 	}
 	out := &SetMaxSizeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -341,7 +341,7 @@ func (o *xxx_DefaultDataManagerClient) GetMaxFolderCount(ctx context.Context, in
 	}
 	out := &GetMaxFolderCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -361,7 +361,7 @@ func (o *xxx_DefaultDataManagerClient) SetMaxFolderCount(ctx context.Context, in
 	}
 	out := &SetMaxFolderCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -381,7 +381,7 @@ func (o *xxx_DefaultDataManagerClient) GetResourcePolicy(ctx context.Context, in
 	}
 	out := &GetResourcePolicyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -401,7 +401,7 @@ func (o *xxx_DefaultDataManagerClient) SetResourcePolicy(ctx context.Context, in
 	}
 	out := &SetResourcePolicyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -421,7 +421,7 @@ func (o *xxx_DefaultDataManagerClient) GetFolderActions(ctx context.Context, in 
 	}
 	out := &GetFolderActionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -441,7 +441,7 @@ func (o *xxx_DefaultDataManagerClient) GetReportSchema(ctx context.Context, in *
 	}
 	out := &GetReportSchemaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -461,7 +461,7 @@ func (o *xxx_DefaultDataManagerClient) SetReportSchema(ctx context.Context, in *
 	}
 	out := &SetReportSchemaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -481,7 +481,7 @@ func (o *xxx_DefaultDataManagerClient) GetReportFileName(ctx context.Context, in
 	}
 	out := &GetReportFileNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -501,7 +501,7 @@ func (o *xxx_DefaultDataManagerClient) SetReportFileName(ctx context.Context, in
 	}
 	out := &SetReportFileNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -521,7 +521,7 @@ func (o *xxx_DefaultDataManagerClient) GetRuleTargetFileName(ctx context.Context
 	}
 	out := &GetRuleTargetFileNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -541,7 +541,7 @@ func (o *xxx_DefaultDataManagerClient) SetRuleTargetFileName(ctx context.Context
 	}
 	out := &SetRuleTargetFileNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -561,7 +561,7 @@ func (o *xxx_DefaultDataManagerClient) GetEventsFileName(ctx context.Context, in
 	}
 	out := &GetEventsFileNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -581,7 +581,7 @@ func (o *xxx_DefaultDataManagerClient) SetEventsFileName(ctx context.Context, in
 	}
 	out := &SetEventsFileNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -601,7 +601,7 @@ func (o *xxx_DefaultDataManagerClient) GetRules(ctx context.Context, in *GetRule
 	}
 	out := &GetRulesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -621,7 +621,7 @@ func (o *xxx_DefaultDataManagerClient) SetRules(ctx context.Context, in *SetRule
 	}
 	out := &SetRulesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -641,7 +641,7 @@ func (o *xxx_DefaultDataManagerClient) Run(ctx context.Context, in *RunRequest, 
 	}
 	out := &RunResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -661,7 +661,7 @@ func (o *xxx_DefaultDataManagerClient) Extract(ctx context.Context, in *ExtractR
 	}
 	out := &ExtractResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

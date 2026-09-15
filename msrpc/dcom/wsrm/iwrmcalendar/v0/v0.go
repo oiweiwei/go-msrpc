@@ -441,7 +441,7 @@ func (o *xxx_DefaultCalendarClient) GetCalendarInfo(ctx context.Context, in *Get
 	}
 	out := &GetCalendarInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -461,7 +461,7 @@ func (o *xxx_DefaultCalendarClient) CreateCalendar(ctx context.Context, in *Crea
 	}
 	out := &CreateCalendarResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -481,7 +481,7 @@ func (o *xxx_DefaultCalendarClient) ModifyCalendar(ctx context.Context, in *Modi
 	}
 	out := &ModifyCalendarResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -501,7 +501,7 @@ func (o *xxx_DefaultCalendarClient) DeleteCalendar(ctx context.Context, in *Dele
 	}
 	out := &DeleteCalendarResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -521,7 +521,7 @@ func (o *xxx_DefaultCalendarClient) RenameCalendar(ctx context.Context, in *Rena
 	}
 	out := &RenameCalendarResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -541,7 +541,7 @@ func (o *xxx_DefaultCalendarClient) ComputeEvents(ctx context.Context, in *Compu
 	}
 	out := &ComputeEventsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -561,7 +561,7 @@ func (o *xxx_DefaultCalendarClient) GetScheduleInfo(ctx context.Context, in *Get
 	}
 	out := &GetScheduleInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -581,7 +581,7 @@ func (o *xxx_DefaultCalendarClient) CreateSchedule(ctx context.Context, in *Crea
 	}
 	out := &CreateScheduleResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -601,7 +601,7 @@ func (o *xxx_DefaultCalendarClient) ModifySchedule(ctx context.Context, in *Modi
 	}
 	out := &ModifyScheduleResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -621,7 +621,7 @@ func (o *xxx_DefaultCalendarClient) DeleteSchedule(ctx context.Context, in *Dele
 	}
 	out := &DeleteScheduleResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -641,7 +641,7 @@ func (o *xxx_DefaultCalendarClient) RenameSchedule(ctx context.Context, in *Rena
 	}
 	out := &RenameScheduleResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -661,7 +661,7 @@ func (o *xxx_DefaultCalendarClient) MoveBeforeCalendar(ctx context.Context, in *
 	}
 	out := &MoveBeforeCalendarResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -681,7 +681,7 @@ func (o *xxx_DefaultCalendarClient) MoveAfterCalendar(ctx context.Context, in *M
 	}
 	out := &MoveAfterCalendarResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -701,7 +701,7 @@ func (o *xxx_DefaultCalendarClient) GetServerTimeZone(ctx context.Context, in *G
 	}
 	out := &GetServerTimeZoneResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

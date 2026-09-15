@@ -331,7 +331,7 @@ func (o *xxx_DefaultOutgoingQueueManagementClient) GetState(ctx context.Context,
 	}
 	out := &GetStateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -351,7 +351,7 @@ func (o *xxx_DefaultOutgoingQueueManagementClient) GetNextHops(ctx context.Conte
 	}
 	out := &GetNextHopsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -371,7 +371,7 @@ func (o *xxx_DefaultOutgoingQueueManagementClient) EODGetSendInfo(ctx context.Co
 	}
 	out := &EODGetSendInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -391,7 +391,7 @@ func (o *xxx_DefaultOutgoingQueueManagementClient) Resume(ctx context.Context, i
 	}
 	out := &ResumeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -411,7 +411,7 @@ func (o *xxx_DefaultOutgoingQueueManagementClient) Pause(ctx context.Context, in
 	}
 	out := &PauseResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -431,7 +431,7 @@ func (o *xxx_DefaultOutgoingQueueManagementClient) EODResend(ctx context.Context
 	}
 	out := &EODResendResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

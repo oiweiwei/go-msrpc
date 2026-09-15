@@ -250,7 +250,7 @@ func (o *xxx_DefaultResourceGroupClient) GetResourceGroupInfo(ctx context.Contex
 	}
 	out := &GetResourceGroupInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -270,7 +270,7 @@ func (o *xxx_DefaultResourceGroupClient) ModifyResourceGroup(ctx context.Context
 	}
 	out := &ModifyResourceGroupResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -290,7 +290,7 @@ func (o *xxx_DefaultResourceGroupClient) CreateResourceGroup(ctx context.Context
 	}
 	out := &CreateResourceGroupResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -310,7 +310,7 @@ func (o *xxx_DefaultResourceGroupClient) DeleteResourceGroup(ctx context.Context
 	}
 	out := &DeleteResourceGroupResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -330,7 +330,7 @@ func (o *xxx_DefaultResourceGroupClient) RenameResourceGroup(ctx context.Context
 	}
 	out := &RenameResourceGroupResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

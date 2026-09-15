@@ -172,7 +172,7 @@ func (o *xxx_DefaultClusterLogEx2Client) GenerateLogEx(ctx context.Context, in *
 	}
 	out := &GenerateLogExResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -192,7 +192,7 @@ func (o *xxx_DefaultClusterLogEx2Client) GetCountLogs(ctx context.Context, in *G
 	}
 	out := &GetCountLogsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -212,7 +212,7 @@ func (o *xxx_DefaultClusterLogEx2Client) GetLogFilePath(ctx context.Context, in 
 	}
 	out := &GetLogFilePathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

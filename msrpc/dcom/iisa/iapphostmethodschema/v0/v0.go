@@ -135,7 +135,7 @@ func (o *xxx_DefaultAppHostMethodSchemaClient) GetName(ctx context.Context, in *
 	}
 	out := &GetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -155,7 +155,7 @@ func (o *xxx_DefaultAppHostMethodSchemaClient) GetInputSchema(ctx context.Contex
 	}
 	out := &GetInputSchemaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -175,7 +175,7 @@ func (o *xxx_DefaultAppHostMethodSchemaClient) GetOutputSchema(ctx context.Conte
 	}
 	out := &GetOutputSchemaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -195,7 +195,7 @@ func (o *xxx_DefaultAppHostMethodSchemaClient) GetMetadata(ctx context.Context, 
 	}
 	out := &GetMetadataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

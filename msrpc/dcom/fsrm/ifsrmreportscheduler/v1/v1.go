@@ -171,7 +171,7 @@ func (o *xxx_DefaultReportSchedulerClient) VerifyNamespaces(ctx context.Context,
 	}
 	out := &VerifyNamespacesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -191,7 +191,7 @@ func (o *xxx_DefaultReportSchedulerClient) CreateScheduleTask(ctx context.Contex
 	}
 	out := &CreateScheduleTaskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -211,7 +211,7 @@ func (o *xxx_DefaultReportSchedulerClient) ModifyScheduleTask(ctx context.Contex
 	}
 	out := &ModifyScheduleTaskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -231,7 +231,7 @@ func (o *xxx_DefaultReportSchedulerClient) DeleteScheduleTask(ctx context.Contex
 	}
 	out := &DeleteScheduleTaskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

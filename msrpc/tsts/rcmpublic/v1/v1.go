@@ -863,7 +863,7 @@ func (o *xxx_DefaultRcmPublicClient) GetClientData(ctx context.Context, in *GetC
 	}
 	out := &GetClientDataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -876,7 +876,7 @@ func (o *xxx_DefaultRcmPublicClient) GetConfigData(ctx context.Context, in *GetC
 	}
 	out := &GetConfigDataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -889,7 +889,7 @@ func (o *xxx_DefaultRcmPublicClient) GetProtocolStatus(ctx context.Context, in *
 	}
 	out := &GetProtocolStatusResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -902,7 +902,7 @@ func (o *xxx_DefaultRcmPublicClient) GetLastInputTime(ctx context.Context, in *G
 	}
 	out := &GetLastInputTimeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -915,7 +915,7 @@ func (o *xxx_DefaultRcmPublicClient) GetRemoteAddress(ctx context.Context, in *G
 	}
 	out := &GetRemoteAddressResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -928,7 +928,7 @@ func (o *xxx_DefaultRcmPublicClient) GetAllListeners(ctx context.Context, in *Ge
 	}
 	out := &GetAllListenersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -941,7 +941,7 @@ func (o *xxx_DefaultRcmPublicClient) GetSessionProtocolLastInputTime(ctx context
 	}
 	out := &GetSessionProtocolLastInputTimeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -954,7 +954,7 @@ func (o *xxx_DefaultRcmPublicClient) GetUserCertificates(ctx context.Context, in
 	}
 	out := &GetUserCertificatesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -967,7 +967,7 @@ func (o *xxx_DefaultRcmPublicClient) QuerySessionData(ctx context.Context, in *Q
 	}
 	out := &QuerySessionDataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

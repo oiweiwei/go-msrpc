@@ -183,7 +183,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) GetCount(ctx context.Context
 	}
 	out := &GetCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -203,7 +203,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) GetItem(ctx context.Context,
 	}
 	out := &GetItemResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -223,7 +223,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) AddElement(ctx context.Conte
 	}
 	out := &AddElementResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -243,7 +243,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) DeleteElement(ctx context.Co
 	}
 	out := &DeleteElementResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -263,7 +263,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) Clear(ctx context.Context, i
 	}
 	out := &ClearResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -283,7 +283,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) CreateNewElement(ctx context
 	}
 	out := &CreateNewElementResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -303,7 +303,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) GetSchema(ctx context.Contex
 	}
 	out := &GetSchemaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

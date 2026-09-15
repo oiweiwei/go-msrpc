@@ -119,7 +119,7 @@ func (o *xxx_DefaultLevel1LoginClient) EstablishPosition(ctx context.Context, in
 	}
 	out := &EstablishPositionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -139,7 +139,7 @@ func (o *xxx_DefaultLevel1LoginClient) RequestChallenge(ctx context.Context, in 
 	}
 	out := &RequestChallengeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -159,7 +159,7 @@ func (o *xxx_DefaultLevel1LoginClient) WBEMLogin(ctx context.Context, in *WBEMLo
 	}
 	out := &WBEMLoginResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -179,7 +179,7 @@ func (o *xxx_DefaultLevel1LoginClient) NTLMLogin(ctx context.Context, in *NTLMLo
 	}
 	out := &NTLMLoginResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

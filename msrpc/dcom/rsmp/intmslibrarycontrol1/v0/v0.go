@@ -160,7 +160,7 @@ func (o *xxx_DefaultLibraryControl1Client) EjectNTMSMedia(ctx context.Context, i
 	}
 	out := &EjectNTMSMediaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -180,7 +180,7 @@ func (o *xxx_DefaultLibraryControl1Client) InjectNTMSMedia(ctx context.Context, 
 	}
 	out := &InjectNTMSMediaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -200,7 +200,7 @@ func (o *xxx_DefaultLibraryControl1Client) AccessNTMSLibraryDoor(ctx context.Con
 	}
 	out := &AccessNTMSLibraryDoorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -220,7 +220,7 @@ func (o *xxx_DefaultLibraryControl1Client) CleanNTMSDrive(ctx context.Context, i
 	}
 	out := &CleanNTMSDriveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -240,7 +240,7 @@ func (o *xxx_DefaultLibraryControl1Client) DismountNTMSDrive(ctx context.Context
 	}
 	out := &DismountNTMSDriveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -260,7 +260,7 @@ func (o *xxx_DefaultLibraryControl1Client) InventoryNTMSLibrary(ctx context.Cont
 	}
 	out := &InventoryNTMSLibraryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -280,7 +280,7 @@ func (o *xxx_DefaultLibraryControl1Client) LibraryControl1LocalOnlyOpnum09(ctx c
 	}
 	out := &LibraryControl1LocalOnlyOpnum09Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -300,7 +300,7 @@ func (o *xxx_DefaultLibraryControl1Client) CancelNTMSLibraryRequest(ctx context.
 	}
 	out := &CancelNTMSLibraryRequestResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -320,7 +320,7 @@ func (o *xxx_DefaultLibraryControl1Client) ReserveNTMSCleanerSlot(ctx context.Co
 	}
 	out := &ReserveNTMSCleanerSlotResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -340,7 +340,7 @@ func (o *xxx_DefaultLibraryControl1Client) ReleaseNTMSCleanerSlot(ctx context.Co
 	}
 	out := &ReleaseNTMSCleanerSlotResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -360,7 +360,7 @@ func (o *xxx_DefaultLibraryControl1Client) InjectNTMSCleaner(ctx context.Context
 	}
 	out := &InjectNTMSCleanerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -380,7 +380,7 @@ func (o *xxx_DefaultLibraryControl1Client) EjectNTMSCleaner(ctx context.Context,
 	}
 	out := &EjectNTMSCleanerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -400,7 +400,7 @@ func (o *xxx_DefaultLibraryControl1Client) DeleteNTMSLibrary(ctx context.Context
 	}
 	out := &DeleteNTMSLibraryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -420,7 +420,7 @@ func (o *xxx_DefaultLibraryControl1Client) DeleteNTMSDrive(ctx context.Context, 
 	}
 	out := &DeleteNTMSDriveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -440,7 +440,7 @@ func (o *xxx_DefaultLibraryControl1Client) GetNTMSRequestOrder(ctx context.Conte
 	}
 	out := &GetNTMSRequestOrderResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -460,7 +460,7 @@ func (o *xxx_DefaultLibraryControl1Client) SetNTMSRequestOrder(ctx context.Conte
 	}
 	out := &SetNTMSRequestOrderResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -480,7 +480,7 @@ func (o *xxx_DefaultLibraryControl1Client) DeleteNTMSRequests(ctx context.Contex
 	}
 	out := &DeleteNTMSRequestsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -500,7 +500,7 @@ func (o *xxx_DefaultLibraryControl1Client) BeginNTMSDeviceChangeDetection(ctx co
 	}
 	out := &BeginNTMSDeviceChangeDetectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -520,7 +520,7 @@ func (o *xxx_DefaultLibraryControl1Client) SetNTMSDeviceChangeDetection(ctx cont
 	}
 	out := &SetNTMSDeviceChangeDetectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -540,7 +540,7 @@ func (o *xxx_DefaultLibraryControl1Client) EndNTMSDeviceChangeDetection(ctx cont
 	}
 	out := &EndNTMSDeviceChangeDetectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

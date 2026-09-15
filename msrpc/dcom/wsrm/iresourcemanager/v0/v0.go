@@ -309,7 +309,7 @@ func (o *xxx_DefaultResourceManagerClient) RetrieveEventList(ctx context.Context
 	}
 	out := &RetrieveEventListResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -329,7 +329,7 @@ func (o *xxx_DefaultResourceManagerClient) GetSystemAffinity(ctx context.Context
 	}
 	out := &GetSystemAffinityResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -349,7 +349,7 @@ func (o *xxx_DefaultResourceManagerClient) ImportXMLFiles(ctx context.Context, i
 	}
 	out := &ImportXMLFilesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -369,7 +369,7 @@ func (o *xxx_DefaultResourceManagerClient) ExportXMLFiles(ctx context.Context, i
 	}
 	out := &ExportXMLFilesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -389,7 +389,7 @@ func (o *xxx_DefaultResourceManagerClient) RestoreXMLFiles(ctx context.Context, 
 	}
 	out := &RestoreXMLFilesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -409,7 +409,7 @@ func (o *xxx_DefaultResourceManagerClient) GetDependencies(ctx context.Context, 
 	}
 	out := &GetDependenciesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -429,7 +429,7 @@ func (o *xxx_DefaultResourceManagerClient) GetServiceList(ctx context.Context, i
 	}
 	out := &GetServiceListResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -449,7 +449,7 @@ func (o *xxx_DefaultResourceManagerClient) GetIISAppPoolNames(ctx context.Contex
 	}
 	out := &GetIISAppPoolNamesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -469,7 +469,7 @@ func (o *xxx_DefaultResourceManagerClient) GetServerName(ctx context.Context, in
 	}
 	out := &GetServerNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -489,7 +489,7 @@ func (o *xxx_DefaultResourceManagerClient) GetCurrentMemory(ctx context.Context,
 	}
 	out := &GetCurrentMemoryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

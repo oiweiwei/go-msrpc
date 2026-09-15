@@ -123,7 +123,7 @@ func (o *xxx_DefaultConnectionPointClient) GetConnectionInterface(ctx context.Co
 	}
 	out := &GetConnectionInterfaceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -143,7 +143,7 @@ func (o *xxx_DefaultConnectionPointClient) GetConnectionPointContainer(ctx conte
 	}
 	out := &GetConnectionPointContainerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -163,7 +163,7 @@ func (o *xxx_DefaultConnectionPointClient) Advise(ctx context.Context, in *Advis
 	}
 	out := &AdviseResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -183,7 +183,7 @@ func (o *xxx_DefaultConnectionPointClient) Unadvise(ctx context.Context, in *Una
 	}
 	out := &UnadviseResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -203,7 +203,7 @@ func (o *xxx_DefaultConnectionPointClient) EnumConnections(ctx context.Context, 
 	}
 	out := &EnumConnectionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

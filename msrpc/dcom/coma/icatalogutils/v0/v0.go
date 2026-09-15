@@ -136,7 +136,7 @@ func (o *xxx_DefaultCatalogUtilsClient) ValidateUser(ctx context.Context, in *Va
 	}
 	out := &ValidateUserResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -156,7 +156,7 @@ func (o *xxx_DefaultCatalogUtilsClient) WaitForEndWrites(ctx context.Context, in
 	}
 	out := &WaitForEndWritesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -176,7 +176,7 @@ func (o *xxx_DefaultCatalogUtilsClient) GetEventClassesForIID(ctx context.Contex
 	}
 	out := &GetEventClassesForIIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

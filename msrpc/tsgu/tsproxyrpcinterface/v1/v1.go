@@ -4486,7 +4486,7 @@ func (o *xxx_DefaultInterfaceClient) CreateTunnel(ctx context.Context, in *Creat
 	}
 	out := &CreateTunnelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -4499,7 +4499,7 @@ func (o *xxx_DefaultInterfaceClient) AuthorizeTunnel(ctx context.Context, in *Au
 	}
 	out := &AuthorizeTunnelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -4512,7 +4512,7 @@ func (o *xxx_DefaultInterfaceClient) MakeTunnelCall(ctx context.Context, in *Mak
 	}
 	out := &MakeTunnelCallResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -4525,7 +4525,7 @@ func (o *xxx_DefaultInterfaceClient) CreateChannel(ctx context.Context, in *Crea
 	}
 	out := &CreateChannelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -4538,7 +4538,7 @@ func (o *xxx_DefaultInterfaceClient) CloseChannel(ctx context.Context, in *Close
 	}
 	out := &CloseChannelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -4551,7 +4551,7 @@ func (o *xxx_DefaultInterfaceClient) CloseTunnel(ctx context.Context, in *CloseT
 	}
 	out := &CloseTunnelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

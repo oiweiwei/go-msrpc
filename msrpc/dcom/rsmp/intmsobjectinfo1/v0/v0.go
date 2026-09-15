@@ -109,7 +109,7 @@ func (o *xxx_DefaultObjectInfo1Client) GetNTMSServerObjectInformationA(ctx conte
 	}
 	out := &GetNTMSServerObjectInformationAResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -129,7 +129,7 @@ func (o *xxx_DefaultObjectInfo1Client) GetNTMSServerObjectInformationW(ctx conte
 	}
 	out := &GetNTMSServerObjectInformationWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -149,7 +149,7 @@ func (o *xxx_DefaultObjectInfo1Client) SetNTMSObjectInformationA(ctx context.Con
 	}
 	out := &SetNTMSObjectInformationAResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -169,7 +169,7 @@ func (o *xxx_DefaultObjectInfo1Client) SetNTMSObjectInformationW(ctx context.Con
 	}
 	out := &SetNTMSObjectInformationWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -189,7 +189,7 @@ func (o *xxx_DefaultObjectInfo1Client) CreateNTMSMediaA(ctx context.Context, in 
 	}
 	out := &CreateNTMSMediaAResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -209,7 +209,7 @@ func (o *xxx_DefaultObjectInfo1Client) CreateNTMSMediaW(ctx context.Context, in 
 	}
 	out := &CreateNTMSMediaWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

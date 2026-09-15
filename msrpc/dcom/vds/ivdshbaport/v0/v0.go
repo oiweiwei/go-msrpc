@@ -95,7 +95,7 @@ func (o *xxx_DefaultHBAPortClient) GetProperties(ctx context.Context, in *GetPro
 	}
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -115,7 +115,7 @@ func (o *xxx_DefaultHBAPortClient) SetAllPathStatuses(ctx context.Context, in *S
 	}
 	out := &SetAllPathStatusesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

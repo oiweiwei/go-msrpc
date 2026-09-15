@@ -110,7 +110,7 @@ func (o *xxx_DefaultVolumeMF3Client) QueryVolumeGUIDPathnames(ctx context.Contex
 	}
 	out := &QueryVolumeGUIDPathnamesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -130,7 +130,7 @@ func (o *xxx_DefaultVolumeMF3Client) FormatEx2(ctx context.Context, in *FormatEx
 	}
 	out := &FormatEx2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -150,7 +150,7 @@ func (o *xxx_DefaultVolumeMF3Client) OfflineVolume(ctx context.Context, in *Offl
 	}
 	out := &OfflineVolumeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

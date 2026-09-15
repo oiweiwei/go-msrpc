@@ -94,7 +94,7 @@ func (o *xxx_DefaultAutoApplyQuotaClient) GetExcludeFolders(ctx context.Context,
 	}
 	out := &GetExcludeFoldersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -114,7 +114,7 @@ func (o *xxx_DefaultAutoApplyQuotaClient) SetExcludeFolders(ctx context.Context,
 	}
 	out := &SetExcludeFoldersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -134,7 +134,7 @@ func (o *xxx_DefaultAutoApplyQuotaClient) CommitAndUpdateDerived(ctx context.Con
 	}
 	out := &CommitAndUpdateDerivedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

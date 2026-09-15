@@ -130,7 +130,7 @@ func (o *xxx_DefaultCallResultClient) GetResultObject(ctx context.Context, in *G
 	}
 	out := &GetResultObjectResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -150,7 +150,7 @@ func (o *xxx_DefaultCallResultClient) GetResultString(ctx context.Context, in *G
 	}
 	out := &GetResultStringResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -170,7 +170,7 @@ func (o *xxx_DefaultCallResultClient) GetResultServices(ctx context.Context, in 
 	}
 	out := &GetResultServicesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -190,7 +190,7 @@ func (o *xxx_DefaultCallResultClient) GetCallStatus(ctx context.Context, in *Get
 	}
 	out := &GetCallStatusResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -167,7 +167,7 @@ func (o *xxx_DefaultServerHealthReportClient) GetReport(ctx context.Context, in 
 	}
 	out := &GetReportResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -187,7 +187,7 @@ func (o *xxx_DefaultServerHealthReportClient) GetCompressedReport(ctx context.Co
 	}
 	out := &GetCompressedReportResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -207,7 +207,7 @@ func (o *xxx_DefaultServerHealthReportClient) GetRawReportEx(ctx context.Context
 	}
 	out := &GetRawReportExResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -227,7 +227,7 @@ func (o *xxx_DefaultServerHealthReportClient) GetReferenceVersionVectors(ctx con
 	}
 	out := &GetReferenceVersionVectorsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -247,7 +247,7 @@ func (o *xxx_DefaultServerHealthReportClient) GetReferenceBacklogCounts(ctx cont
 	}
 	out := &GetReferenceBacklogCountsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

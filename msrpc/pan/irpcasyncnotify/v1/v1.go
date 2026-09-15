@@ -680,7 +680,7 @@ func (o *xxx_DefaultIrpcAsyncNotifyClient) RegisterClient(ctx context.Context, i
 	}
 	out := &RegisterClientResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -693,7 +693,7 @@ func (o *xxx_DefaultIrpcAsyncNotifyClient) UnregisterClient(ctx context.Context,
 	}
 	out := &UnregisterClientResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -706,7 +706,7 @@ func (o *xxx_DefaultIrpcAsyncNotifyClient) GetNewChannel(ctx context.Context, in
 	}
 	out := &GetNewChannelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -719,7 +719,7 @@ func (o *xxx_DefaultIrpcAsyncNotifyClient) GetNotificationSendResponse(ctx conte
 	}
 	out := &GetNotificationSendResponseResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -732,7 +732,7 @@ func (o *xxx_DefaultIrpcAsyncNotifyClient) GetNotification(ctx context.Context, 
 	}
 	out := &GetNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -745,7 +745,7 @@ func (o *xxx_DefaultIrpcAsyncNotifyClient) CloseChannel(ctx context.Context, in 
 	}
 	out := &CloseChannelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -203,7 +203,7 @@ func (o *xxx_DefaultRcmListenerClient) OpenListener(ctx context.Context, in *Ope
 	}
 	out := &OpenListenerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -216,7 +216,7 @@ func (o *xxx_DefaultRcmListenerClient) CloseListener(ctx context.Context, in *Cl
 	}
 	out := &CloseListenerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -229,7 +229,7 @@ func (o *xxx_DefaultRcmListenerClient) StopListener(ctx context.Context, in *Sto
 	}
 	out := &StopListenerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -242,7 +242,7 @@ func (o *xxx_DefaultRcmListenerClient) StartListener(ctx context.Context, in *St
 	}
 	out := &StartListenerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -255,7 +255,7 @@ func (o *xxx_DefaultRcmListenerClient) IsListening(ctx context.Context, in *IsLi
 	}
 	out := &IsListeningResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

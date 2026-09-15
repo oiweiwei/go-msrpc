@@ -115,7 +115,7 @@ func (o *xxx_DefaultTransactionStreamClient) GetSeqAndTxViaExport(ctx context.Co
 	}
 	out := &GetSeqAndTxViaExportResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -135,7 +135,7 @@ func (o *xxx_DefaultTransactionStreamClient) GetSeqAndTxViaTransmitter(ctx conte
 	}
 	out := &GetSeqAndTxViaTransmitterResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -155,7 +155,7 @@ func (o *xxx_DefaultTransactionStreamClient) GetTxViaExport(ctx context.Context,
 	}
 	out := &GetTxViaExportResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -175,7 +175,7 @@ func (o *xxx_DefaultTransactionStreamClient) GetTxViaTransmitter(ctx context.Con
 	}
 	out := &GetTxViaTransmitterResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

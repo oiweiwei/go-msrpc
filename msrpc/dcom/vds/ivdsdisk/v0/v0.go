@@ -117,7 +117,7 @@ func (o *xxx_DefaultDiskClient) GetProperties(ctx context.Context, in *GetProper
 	}
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -137,7 +137,7 @@ func (o *xxx_DefaultDiskClient) GetPack(ctx context.Context, in *GetPackRequest,
 	}
 	out := &GetPackResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -157,7 +157,7 @@ func (o *xxx_DefaultDiskClient) GetIdentificationData(ctx context.Context, in *G
 	}
 	out := &GetIdentificationDataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -177,7 +177,7 @@ func (o *xxx_DefaultDiskClient) QueryExtents(ctx context.Context, in *QueryExten
 	}
 	out := &QueryExtentsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -197,7 +197,7 @@ func (o *xxx_DefaultDiskClient) ConvertStyle(ctx context.Context, in *ConvertSty
 	}
 	out := &ConvertStyleResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -217,7 +217,7 @@ func (o *xxx_DefaultDiskClient) SetFlags(ctx context.Context, in *SetFlagsReques
 	}
 	out := &SetFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -237,7 +237,7 @@ func (o *xxx_DefaultDiskClient) ClearFlags(ctx context.Context, in *ClearFlagsRe
 	}
 	out := &ClearFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

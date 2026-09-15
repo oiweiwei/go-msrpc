@@ -120,7 +120,7 @@ func (o *xxx_DefaultDataCollectorCollectionClient) GetCount(ctx context.Context,
 	}
 	out := &GetCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -140,7 +140,7 @@ func (o *xxx_DefaultDataCollectorCollectionClient) GetItem(ctx context.Context, 
 	}
 	out := &GetItemResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -160,7 +160,7 @@ func (o *xxx_DefaultDataCollectorCollectionClient) Get_NewEnum(ctx context.Conte
 	}
 	out := &Get_NewEnumResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -180,7 +180,7 @@ func (o *xxx_DefaultDataCollectorCollectionClient) Add(ctx context.Context, in *
 	}
 	out := &AddResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -200,7 +200,7 @@ func (o *xxx_DefaultDataCollectorCollectionClient) Remove(ctx context.Context, i
 	}
 	out := &RemoveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -220,7 +220,7 @@ func (o *xxx_DefaultDataCollectorCollectionClient) Clear(ctx context.Context, in
 	}
 	out := &ClearResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -240,7 +240,7 @@ func (o *xxx_DefaultDataCollectorCollectionClient) AddRange(ctx context.Context,
 	}
 	out := &AddRangeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -260,7 +260,7 @@ func (o *xxx_DefaultDataCollectorCollectionClient) CreateDataCollectorFromXML(ct
 	}
 	out := &CreateDataCollectorFromXMLResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -280,7 +280,7 @@ func (o *xxx_DefaultDataCollectorCollectionClient) CreateDataCollector(ctx conte
 	}
 	out := &CreateDataCollectorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

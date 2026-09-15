@@ -119,7 +119,7 @@ func (o *xxx_DefaultAlternateLaunchClient) CreateConfiguration(ctx context.Conte
 	}
 	out := &CreateConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -139,7 +139,7 @@ func (o *xxx_DefaultAlternateLaunchClient) DeleteConfiguration(ctx context.Conte
 	}
 	out := &DeleteConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -146,7 +146,7 @@ func (o *xxx_DefaultClusterCleanupClient) CleanupEvictedNode(ctx context.Context
 	}
 	out := &CleanupEvictedNodeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -166,7 +166,7 @@ func (o *xxx_DefaultClusterCleanupClient) ClearPR(ctx context.Context, in *Clear
 	}
 	out := &ClearPRResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

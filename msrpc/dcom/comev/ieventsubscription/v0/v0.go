@@ -223,7 +223,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetSubscriptionID(ctx context.Conte
 	}
 	out := &GetSubscriptionIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -243,7 +243,7 @@ func (o *xxx_DefaultEventSubscriptionClient) SetSubscriptionID(ctx context.Conte
 	}
 	out := &SetSubscriptionIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -263,7 +263,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetSubscriptionName(ctx context.Con
 	}
 	out := &GetSubscriptionNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -283,7 +283,7 @@ func (o *xxx_DefaultEventSubscriptionClient) SetSubscriptionName(ctx context.Con
 	}
 	out := &SetSubscriptionNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -303,7 +303,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetPublisherID(ctx context.Context,
 	}
 	out := &GetPublisherIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -323,7 +323,7 @@ func (o *xxx_DefaultEventSubscriptionClient) SetPublisherID(ctx context.Context,
 	}
 	out := &SetPublisherIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -343,7 +343,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetEventClassID(ctx context.Context
 	}
 	out := &GetEventClassIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -363,7 +363,7 @@ func (o *xxx_DefaultEventSubscriptionClient) SetEventClassID(ctx context.Context
 	}
 	out := &SetEventClassIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -383,7 +383,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetMethodName(ctx context.Context, 
 	}
 	out := &GetMethodNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -403,7 +403,7 @@ func (o *xxx_DefaultEventSubscriptionClient) SetMethodName(ctx context.Context, 
 	}
 	out := &SetMethodNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -423,7 +423,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetSubscriberClassID(ctx context.Co
 	}
 	out := &GetSubscriberClassIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -443,7 +443,7 @@ func (o *xxx_DefaultEventSubscriptionClient) SetSubscriberClassID(ctx context.Co
 	}
 	out := &SetSubscriberClassIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -463,7 +463,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetSubscriberInterface(ctx context.
 	}
 	out := &GetSubscriberInterfaceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -483,7 +483,7 @@ func (o *xxx_DefaultEventSubscriptionClient) SetSubscriberInterface(ctx context.
 	}
 	out := &SetSubscriberInterfaceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -503,7 +503,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetPerUser(ctx context.Context, in 
 	}
 	out := &GetPerUserResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -523,7 +523,7 @@ func (o *xxx_DefaultEventSubscriptionClient) SetPerUser(ctx context.Context, in 
 	}
 	out := &SetPerUserResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -543,7 +543,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetOwnerSID(ctx context.Context, in
 	}
 	out := &GetOwnerSIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -563,7 +563,7 @@ func (o *xxx_DefaultEventSubscriptionClient) SetOwnerSID(ctx context.Context, in
 	}
 	out := &SetOwnerSIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -583,7 +583,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetEnabled(ctx context.Context, in 
 	}
 	out := &GetEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -603,7 +603,7 @@ func (o *xxx_DefaultEventSubscriptionClient) SetEnabled(ctx context.Context, in 
 	}
 	out := &SetEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -623,7 +623,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetDescription(ctx context.Context,
 	}
 	out := &GetDescriptionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -643,7 +643,7 @@ func (o *xxx_DefaultEventSubscriptionClient) SetDescription(ctx context.Context,
 	}
 	out := &SetDescriptionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -663,7 +663,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetMachineName(ctx context.Context,
 	}
 	out := &GetMachineNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -683,7 +683,7 @@ func (o *xxx_DefaultEventSubscriptionClient) SetMachineName(ctx context.Context,
 	}
 	out := &SetMachineNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -703,7 +703,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetPublisherProperty(ctx context.Co
 	}
 	out := &GetPublisherPropertyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -723,7 +723,7 @@ func (o *xxx_DefaultEventSubscriptionClient) PutPublisherProperty(ctx context.Co
 	}
 	out := &PutPublisherPropertyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -743,7 +743,7 @@ func (o *xxx_DefaultEventSubscriptionClient) RemovePublisherProperty(ctx context
 	}
 	out := &RemovePublisherPropertyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -763,7 +763,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetPublisherPropertyCollection(ctx 
 	}
 	out := &GetPublisherPropertyCollectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -783,7 +783,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetSubscriberProperty(ctx context.C
 	}
 	out := &GetSubscriberPropertyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -803,7 +803,7 @@ func (o *xxx_DefaultEventSubscriptionClient) PutSubscriberProperty(ctx context.C
 	}
 	out := &PutSubscriberPropertyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -823,7 +823,7 @@ func (o *xxx_DefaultEventSubscriptionClient) RemoveSubscriberProperty(ctx contex
 	}
 	out := &RemoveSubscriberPropertyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -843,7 +843,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetSubscriberPropertyCollection(ctx
 	}
 	out := &GetSubscriberPropertyCollectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -863,7 +863,7 @@ func (o *xxx_DefaultEventSubscriptionClient) GetInterfaceID(ctx context.Context,
 	}
 	out := &GetInterfaceIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -883,7 +883,7 @@ func (o *xxx_DefaultEventSubscriptionClient) SetInterfaceID(ctx context.Context,
 	}
 	out := &SetInterfaceIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

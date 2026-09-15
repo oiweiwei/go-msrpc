@@ -800,7 +800,7 @@ func (o *xxx_DefaultIxnRemoteClient) Poke(ctx context.Context, in *PokeRequest, 
 	}
 	out := &PokeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -813,7 +813,7 @@ func (o *xxx_DefaultIxnRemoteClient) BuildContext(ctx context.Context, in *Build
 	}
 	out := &BuildContextResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -826,7 +826,7 @@ func (o *xxx_DefaultIxnRemoteClient) NegotiateResources(ctx context.Context, in 
 	}
 	out := &NegotiateResourcesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -839,7 +839,7 @@ func (o *xxx_DefaultIxnRemoteClient) SendReceive(ctx context.Context, in *SendRe
 	}
 	out := &SendReceiveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -852,7 +852,7 @@ func (o *xxx_DefaultIxnRemoteClient) TearDownContext(ctx context.Context, in *Te
 	}
 	out := &TearDownContextResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -865,7 +865,7 @@ func (o *xxx_DefaultIxnRemoteClient) BeginTearDown(ctx context.Context, in *Begi
 	}
 	out := &BeginTearDownResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -878,7 +878,7 @@ func (o *xxx_DefaultIxnRemoteClient) PokeW(ctx context.Context, in *PokeWRequest
 	}
 	out := &PokeWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -891,7 +891,7 @@ func (o *xxx_DefaultIxnRemoteClient) BuildContextW(ctx context.Context, in *Buil
 	}
 	out := &BuildContextWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

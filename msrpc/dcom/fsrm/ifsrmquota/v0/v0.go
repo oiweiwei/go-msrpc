@@ -168,7 +168,7 @@ func (o *xxx_DefaultQuotaClient) GetQuotaUsed(ctx context.Context, in *GetQuotaU
 	}
 	out := &GetQuotaUsedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -188,7 +188,7 @@ func (o *xxx_DefaultQuotaClient) GetQuotaPeakUsage(ctx context.Context, in *GetQ
 	}
 	out := &GetQuotaPeakUsageResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -208,7 +208,7 @@ func (o *xxx_DefaultQuotaClient) GetQuotaPeakUsageTime(ctx context.Context, in *
 	}
 	out := &GetQuotaPeakUsageTimeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -228,7 +228,7 @@ func (o *xxx_DefaultQuotaClient) ResetPeakUsage(ctx context.Context, in *ResetPe
 	}
 	out := &ResetPeakUsageResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -248,7 +248,7 @@ func (o *xxx_DefaultQuotaClient) RefreshUsageProperties(ctx context.Context, in 
 	}
 	out := &RefreshUsagePropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

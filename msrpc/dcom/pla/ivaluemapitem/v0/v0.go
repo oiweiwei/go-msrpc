@@ -121,7 +121,7 @@ func (o *xxx_DefaultValueMapItemClient) GetDescription(ctx context.Context, in *
 	}
 	out := &GetDescriptionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -141,7 +141,7 @@ func (o *xxx_DefaultValueMapItemClient) SetDescription(ctx context.Context, in *
 	}
 	out := &SetDescriptionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -161,7 +161,7 @@ func (o *xxx_DefaultValueMapItemClient) GetEnabled(ctx context.Context, in *GetE
 	}
 	out := &GetEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -181,7 +181,7 @@ func (o *xxx_DefaultValueMapItemClient) SetEnabled(ctx context.Context, in *SetE
 	}
 	out := &SetEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -201,7 +201,7 @@ func (o *xxx_DefaultValueMapItemClient) GetKey(ctx context.Context, in *GetKeyRe
 	}
 	out := &GetKeyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -221,7 +221,7 @@ func (o *xxx_DefaultValueMapItemClient) SetKey(ctx context.Context, in *SetKeyRe
 	}
 	out := &SetKeyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -241,7 +241,7 @@ func (o *xxx_DefaultValueMapItemClient) GetValue(ctx context.Context, in *GetVal
 	}
 	out := &GetValueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -261,7 +261,7 @@ func (o *xxx_DefaultValueMapItemClient) SetValue(ctx context.Context, in *SetVal
 	}
 	out := &SetValueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -281,7 +281,7 @@ func (o *xxx_DefaultValueMapItemClient) GetValueMapType(ctx context.Context, in 
 	}
 	out := &GetValueMapTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -301,7 +301,7 @@ func (o *xxx_DefaultValueMapItemClient) SetValueMapType(ctx context.Context, in 
 	}
 	out := &SetValueMapTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

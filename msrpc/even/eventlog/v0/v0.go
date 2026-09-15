@@ -535,7 +535,7 @@ func (o *xxx_DefaultEventlogClient) ClearEventLogW(ctx context.Context, in *Clea
 	}
 	out := &ClearEventLogWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -548,7 +548,7 @@ func (o *xxx_DefaultEventlogClient) BackupEventLogW(ctx context.Context, in *Bac
 	}
 	out := &BackupEventLogWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -561,7 +561,7 @@ func (o *xxx_DefaultEventlogClient) CloseEventLog(ctx context.Context, in *Close
 	}
 	out := &CloseEventLogResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -574,7 +574,7 @@ func (o *xxx_DefaultEventlogClient) DeregisterEventSource(ctx context.Context, i
 	}
 	out := &DeregisterEventSourceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -587,7 +587,7 @@ func (o *xxx_DefaultEventlogClient) NumberOfRecords(ctx context.Context, in *Num
 	}
 	out := &NumberOfRecordsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -600,7 +600,7 @@ func (o *xxx_DefaultEventlogClient) OldestRecord(ctx context.Context, in *Oldest
 	}
 	out := &OldestRecordResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -613,7 +613,7 @@ func (o *xxx_DefaultEventlogClient) ChangeNotify(ctx context.Context, in *Change
 	}
 	out := &ChangeNotifyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -626,7 +626,7 @@ func (o *xxx_DefaultEventlogClient) OpenEventLogW(ctx context.Context, in *OpenE
 	}
 	out := &OpenEventLogWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -639,7 +639,7 @@ func (o *xxx_DefaultEventlogClient) RegisterEventSourceW(ctx context.Context, in
 	}
 	out := &RegisterEventSourceWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -652,7 +652,7 @@ func (o *xxx_DefaultEventlogClient) OpenBackupEventLogW(ctx context.Context, in 
 	}
 	out := &OpenBackupEventLogWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -665,7 +665,7 @@ func (o *xxx_DefaultEventlogClient) ReadEventLogW(ctx context.Context, in *ReadE
 	}
 	out := &ReadEventLogWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -678,7 +678,7 @@ func (o *xxx_DefaultEventlogClient) ReportEventW(ctx context.Context, in *Report
 	}
 	out := &ReportEventWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -691,7 +691,7 @@ func (o *xxx_DefaultEventlogClient) ClearEventLogA(ctx context.Context, in *Clea
 	}
 	out := &ClearEventLogAResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -704,7 +704,7 @@ func (o *xxx_DefaultEventlogClient) BackupEventLogA(ctx context.Context, in *Bac
 	}
 	out := &BackupEventLogAResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -717,7 +717,7 @@ func (o *xxx_DefaultEventlogClient) OpenEventLogA(ctx context.Context, in *OpenE
 	}
 	out := &OpenEventLogAResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -730,7 +730,7 @@ func (o *xxx_DefaultEventlogClient) RegisterEventSourceA(ctx context.Context, in
 	}
 	out := &RegisterEventSourceAResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -743,7 +743,7 @@ func (o *xxx_DefaultEventlogClient) OpenBackupEventLogA(ctx context.Context, in 
 	}
 	out := &OpenBackupEventLogAResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -756,7 +756,7 @@ func (o *xxx_DefaultEventlogClient) ReadEventLogA(ctx context.Context, in *ReadE
 	}
 	out := &ReadEventLogAResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -769,7 +769,7 @@ func (o *xxx_DefaultEventlogClient) ReportEventA(ctx context.Context, in *Report
 	}
 	out := &ReportEventAResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -782,7 +782,7 @@ func (o *xxx_DefaultEventlogClient) GetLogInformation(ctx context.Context, in *G
 	}
 	out := &GetLogInformationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -795,7 +795,7 @@ func (o *xxx_DefaultEventlogClient) ReportEventAndSourceW(ctx context.Context, i
 	}
 	out := &ReportEventAndSourceWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -808,7 +808,7 @@ func (o *xxx_DefaultEventlogClient) ReportEventExW(ctx context.Context, in *Repo
 	}
 	out := &ReportEventExWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -821,7 +821,7 @@ func (o *xxx_DefaultEventlogClient) ReportEventExA(ctx context.Context, in *Repo
 	}
 	out := &ReportEventExAResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

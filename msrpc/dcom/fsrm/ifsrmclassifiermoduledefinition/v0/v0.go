@@ -101,7 +101,7 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) GetPropertiesAffected(ctx 
 	}
 	out := &GetPropertiesAffectedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -121,7 +121,7 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) SetPropertiesAffected(ctx 
 	}
 	out := &SetPropertiesAffectedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -141,7 +141,7 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) GetPropertiesUsed(ctx cont
 	}
 	out := &GetPropertiesUsedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -161,7 +161,7 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) SetPropertiesUsed(ctx cont
 	}
 	out := &SetPropertiesUsedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -181,7 +181,7 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) GetNeedsExplicitValue(ctx 
 	}
 	out := &GetNeedsExplicitValueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -201,7 +201,7 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) SetNeedsExplicitValue(ctx 
 	}
 	out := &SetNeedsExplicitValueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

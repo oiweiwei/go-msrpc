@@ -99,7 +99,7 @@ func (o *xxx_DefaultProcessDumpClient) IsSupported(ctx context.Context, in *IsSu
 	}
 	out := &IsSupportedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -119,7 +119,7 @@ func (o *xxx_DefaultProcessDumpClient) DumpProcess(ctx context.Context, in *Dump
 	}
 	out := &DumpProcessResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

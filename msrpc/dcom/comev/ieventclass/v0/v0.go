@@ -125,7 +125,7 @@ func (o *xxx_DefaultEventClassClient) GetEventClassID(ctx context.Context, in *G
 	}
 	out := &GetEventClassIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -145,7 +145,7 @@ func (o *xxx_DefaultEventClassClient) SetEventClassID(ctx context.Context, in *S
 	}
 	out := &SetEventClassIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -165,7 +165,7 @@ func (o *xxx_DefaultEventClassClient) GetEventClassName(ctx context.Context, in 
 	}
 	out := &GetEventClassNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -185,7 +185,7 @@ func (o *xxx_DefaultEventClassClient) SetEventClassName(ctx context.Context, in 
 	}
 	out := &SetEventClassNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -205,7 +205,7 @@ func (o *xxx_DefaultEventClassClient) GetOwnerSID(ctx context.Context, in *GetOw
 	}
 	out := &GetOwnerSIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -225,7 +225,7 @@ func (o *xxx_DefaultEventClassClient) SetOwnerSID(ctx context.Context, in *SetOw
 	}
 	out := &SetOwnerSIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -245,7 +245,7 @@ func (o *xxx_DefaultEventClassClient) GetFiringInterfaceID(ctx context.Context, 
 	}
 	out := &GetFiringInterfaceIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -265,7 +265,7 @@ func (o *xxx_DefaultEventClassClient) SetFiringInterfaceID(ctx context.Context, 
 	}
 	out := &SetFiringInterfaceIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -285,7 +285,7 @@ func (o *xxx_DefaultEventClassClient) GetDescription(ctx context.Context, in *Ge
 	}
 	out := &GetDescriptionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -305,7 +305,7 @@ func (o *xxx_DefaultEventClassClient) SetDescription(ctx context.Context, in *Se
 	}
 	out := &SetDescriptionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -325,7 +325,7 @@ func (o *xxx_DefaultEventClassClient) GetTypeLib(ctx context.Context, in *GetTyp
 	}
 	out := &GetTypeLibResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -345,7 +345,7 @@ func (o *xxx_DefaultEventClassClient) SetTypeLib(ctx context.Context, in *SetTyp
 	}
 	out := &SetTypeLibResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

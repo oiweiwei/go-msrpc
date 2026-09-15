@@ -131,7 +131,7 @@ func (o *xxx_DefaultRemoteRefresherClient) RemoteRefresh(ctx context.Context, in
 	}
 	out := &RemoteRefreshResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -151,7 +151,7 @@ func (o *xxx_DefaultRemoteRefresherClient) StopRefreshing(ctx context.Context, i
 	}
 	out := &StopRefreshingResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

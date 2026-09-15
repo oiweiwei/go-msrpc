@@ -130,7 +130,7 @@ func (o *xxx_DefaultOpenVDiskClient) Attach(ctx context.Context, in *AttachReque
 	}
 	out := &AttachResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -150,7 +150,7 @@ func (o *xxx_DefaultOpenVDiskClient) Detach(ctx context.Context, in *DetachReque
 	}
 	out := &DetachResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -170,7 +170,7 @@ func (o *xxx_DefaultOpenVDiskClient) DetachAndDelete(ctx context.Context, in *De
 	}
 	out := &DetachAndDeleteResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -190,7 +190,7 @@ func (o *xxx_DefaultOpenVDiskClient) Compact(ctx context.Context, in *CompactReq
 	}
 	out := &CompactResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -210,7 +210,7 @@ func (o *xxx_DefaultOpenVDiskClient) Merge(ctx context.Context, in *MergeRequest
 	}
 	out := &MergeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -230,7 +230,7 @@ func (o *xxx_DefaultOpenVDiskClient) Expand(ctx context.Context, in *ExpandReque
 	}
 	out := &ExpandResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

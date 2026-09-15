@@ -734,7 +734,7 @@ func (o *xxx_DefaultDscommClient) CreateObject(ctx context.Context, in *CreateOb
 	}
 	out := &CreateObjectResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -747,7 +747,7 @@ func (o *xxx_DefaultDscommClient) DeleteObject(ctx context.Context, in *DeleteOb
 	}
 	out := &DeleteObjectResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -760,7 +760,7 @@ func (o *xxx_DefaultDscommClient) GetProperties(ctx context.Context, in *GetProp
 	}
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -773,7 +773,7 @@ func (o *xxx_DefaultDscommClient) SetProperties(ctx context.Context, in *SetProp
 	}
 	out := &SetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -786,7 +786,7 @@ func (o *xxx_DefaultDscommClient) GetObjectSecurity(ctx context.Context, in *Get
 	}
 	out := &GetObjectSecurityResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -799,7 +799,7 @@ func (o *xxx_DefaultDscommClient) SetObjectSecurity(ctx context.Context, in *Set
 	}
 	out := &SetObjectSecurityResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -812,7 +812,7 @@ func (o *xxx_DefaultDscommClient) LookupBegin(ctx context.Context, in *LookupBeg
 	}
 	out := &LookupBeginResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -825,7 +825,7 @@ func (o *xxx_DefaultDscommClient) LookupNext(ctx context.Context, in *LookupNext
 	}
 	out := &LookupNextResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -838,7 +838,7 @@ func (o *xxx_DefaultDscommClient) LookupEnd(ctx context.Context, in *LookupEndRe
 	}
 	out := &LookupEndResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -851,7 +851,7 @@ func (o *xxx_DefaultDscommClient) DeleteObjectGUID(ctx context.Context, in *Dele
 	}
 	out := &DeleteObjectGUIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -864,7 +864,7 @@ func (o *xxx_DefaultDscommClient) GetPropertiesGUID(ctx context.Context, in *Get
 	}
 	out := &GetPropertiesGUIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -877,7 +877,7 @@ func (o *xxx_DefaultDscommClient) SetPropertiesGUID(ctx context.Context, in *Set
 	}
 	out := &SetPropertiesGUIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -890,7 +890,7 @@ func (o *xxx_DefaultDscommClient) GetObjectSecurityGUID(ctx context.Context, in 
 	}
 	out := &GetObjectSecurityGUIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -903,7 +903,7 @@ func (o *xxx_DefaultDscommClient) SetObjectSecurityGUID(ctx context.Context, in 
 	}
 	out := &SetObjectSecurityGUIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -916,7 +916,7 @@ func (o *xxx_DefaultDscommClient) QMSetMachineProperties(ctx context.Context, in
 	}
 	out := &QMSetMachinePropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -929,7 +929,7 @@ func (o *xxx_DefaultDscommClient) CreateServersCache(ctx context.Context, in *Cr
 	}
 	out := &CreateServersCacheResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -942,7 +942,7 @@ func (o *xxx_DefaultDscommClient) QMSetMachinePropertiesSignProc(ctx context.Con
 	}
 	out := &QMSetMachinePropertiesSignProcResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -955,7 +955,7 @@ func (o *xxx_DefaultDscommClient) QMGetObjectSecurity(ctx context.Context, in *Q
 	}
 	out := &QMGetObjectSecurityResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -968,7 +968,7 @@ func (o *xxx_DefaultDscommClient) QMGetObjectSecurityChallengeResponseProc(ctx c
 	}
 	out := &QMGetObjectSecurityChallengeResponseProcResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -981,7 +981,7 @@ func (o *xxx_DefaultDscommClient) InitSecurityContext(ctx context.Context, in *I
 	}
 	out := &InitSecurityContextResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -994,7 +994,7 @@ func (o *xxx_DefaultDscommClient) ValidateServer(ctx context.Context, in *Valida
 	}
 	out := &ValidateServerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1007,7 +1007,7 @@ func (o *xxx_DefaultDscommClient) CloseServer(ctx context.Context, in *CloseServ
 	}
 	out := &CloseServerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

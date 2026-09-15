@@ -129,7 +129,7 @@ func (o *xxx_DefaultOCSPAdminDClient) GetOCSPProperty(ctx context.Context, in *G
 	}
 	out := &GetOCSPPropertyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -149,7 +149,7 @@ func (o *xxx_DefaultOCSPAdminDClient) SetOCSPProperty(ctx context.Context, in *S
 	}
 	out := &SetOCSPPropertyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -169,7 +169,7 @@ func (o *xxx_DefaultOCSPAdminDClient) GetCAConfigInformation(ctx context.Context
 	}
 	out := &GetCAConfigInformationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -189,7 +189,7 @@ func (o *xxx_DefaultOCSPAdminDClient) SetCAConfigInformation(ctx context.Context
 	}
 	out := &SetCAConfigInformationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -209,7 +209,7 @@ func (o *xxx_DefaultOCSPAdminDClient) GetSecurity(ctx context.Context, in *GetSe
 	}
 	out := &GetSecurityResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -229,7 +229,7 @@ func (o *xxx_DefaultOCSPAdminDClient) SetSecurity(ctx context.Context, in *SetSe
 	}
 	out := &SetSecurityResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -249,7 +249,7 @@ func (o *xxx_DefaultOCSPAdminDClient) GetSigningCertificates(ctx context.Context
 	}
 	out := &GetSigningCertificatesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -269,7 +269,7 @@ func (o *xxx_DefaultOCSPAdminDClient) GetHashAlgorithms(ctx context.Context, in 
 	}
 	out := &GetHashAlgorithmsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -289,7 +289,7 @@ func (o *xxx_DefaultOCSPAdminDClient) GetMyRoles(ctx context.Context, in *GetMyR
 	}
 	out := &GetMyRolesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -309,7 +309,7 @@ func (o *xxx_DefaultOCSPAdminDClient) Ping(ctx context.Context, in *PingRequest,
 	}
 	out := &PingResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

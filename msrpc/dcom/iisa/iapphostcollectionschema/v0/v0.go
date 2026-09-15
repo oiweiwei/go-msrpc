@@ -241,7 +241,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) GetAddElementNames(ctx contex
 	}
 	out := &GetAddElementNamesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -261,7 +261,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) GetAddElementSchema(ctx conte
 	}
 	out := &GetAddElementSchemaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -281,7 +281,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) GetRemoveElementSchema(ctx co
 	}
 	out := &GetRemoveElementSchemaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -301,7 +301,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) GetClearElementSchema(ctx con
 	}
 	out := &GetClearElementSchemaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -321,7 +321,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) GetIsMergeAppend(ctx context.
 	}
 	out := &GetIsMergeAppendResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -341,7 +341,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) GetMetadata(ctx context.Conte
 	}
 	out := &GetMetadataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -361,7 +361,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) GetDoesAllowDuplicates(ctx co
 	}
 	out := &GetDoesAllowDuplicatesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

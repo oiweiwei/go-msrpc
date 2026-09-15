@@ -215,7 +215,7 @@ func (o *xxx_DefaultQueue2Client) GetAccess(ctx context.Context, in *GetAccessRe
 	}
 	out := &GetAccessResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -235,7 +235,7 @@ func (o *xxx_DefaultQueue2Client) GetShareMode(ctx context.Context, in *GetShare
 	}
 	out := &GetShareModeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -255,7 +255,7 @@ func (o *xxx_DefaultQueue2Client) GetQueueInfo(ctx context.Context, in *GetQueue
 	}
 	out := &GetQueueInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -275,7 +275,7 @@ func (o *xxx_DefaultQueue2Client) GetHandle(ctx context.Context, in *GetHandleRe
 	}
 	out := &GetHandleResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -295,7 +295,7 @@ func (o *xxx_DefaultQueue2Client) GetIsOpen(ctx context.Context, in *GetIsOpenRe
 	}
 	out := &GetIsOpenResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -315,7 +315,7 @@ func (o *xxx_DefaultQueue2Client) Close(ctx context.Context, in *CloseRequest, o
 	}
 	out := &CloseResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -335,7 +335,7 @@ func (o *xxx_DefaultQueue2Client) ReceiveV1(ctx context.Context, in *ReceiveV1Re
 	}
 	out := &ReceiveV1Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -355,7 +355,7 @@ func (o *xxx_DefaultQueue2Client) PeekV1(ctx context.Context, in *PeekV1Request,
 	}
 	out := &PeekV1Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -375,7 +375,7 @@ func (o *xxx_DefaultQueue2Client) EnableNotification(ctx context.Context, in *En
 	}
 	out := &EnableNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -395,7 +395,7 @@ func (o *xxx_DefaultQueue2Client) Reset(ctx context.Context, in *ResetRequest, o
 	}
 	out := &ResetResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -415,7 +415,7 @@ func (o *xxx_DefaultQueue2Client) ReceiveCurrentV1(ctx context.Context, in *Rece
 	}
 	out := &ReceiveCurrentV1Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -435,7 +435,7 @@ func (o *xxx_DefaultQueue2Client) PeekNextV1(ctx context.Context, in *PeekNextV1
 	}
 	out := &PeekNextV1Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -455,7 +455,7 @@ func (o *xxx_DefaultQueue2Client) PeekCurrentV1(ctx context.Context, in *PeekCur
 	}
 	out := &PeekCurrentV1Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -475,7 +475,7 @@ func (o *xxx_DefaultQueue2Client) Receive(ctx context.Context, in *ReceiveReques
 	}
 	out := &ReceiveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -495,7 +495,7 @@ func (o *xxx_DefaultQueue2Client) Peek(ctx context.Context, in *PeekRequest, opt
 	}
 	out := &PeekResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -515,7 +515,7 @@ func (o *xxx_DefaultQueue2Client) ReceiveCurrent(ctx context.Context, in *Receiv
 	}
 	out := &ReceiveCurrentResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -535,7 +535,7 @@ func (o *xxx_DefaultQueue2Client) PeekNext(ctx context.Context, in *PeekNextRequ
 	}
 	out := &PeekNextResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -555,7 +555,7 @@ func (o *xxx_DefaultQueue2Client) PeekCurrent(ctx context.Context, in *PeekCurre
 	}
 	out := &PeekCurrentResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -575,7 +575,7 @@ func (o *xxx_DefaultQueue2Client) GetProperties(ctx context.Context, in *GetProp
 	}
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

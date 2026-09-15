@@ -110,7 +110,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) GetName(ctx context.Context,
 	}
 	out := &GetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -130,7 +130,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) GetType(ctx context.Context,
 	}
 	out := &GetTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -150,7 +150,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) SetType(ctx context.Context,
 	}
 	out := &SetTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -170,7 +170,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) GetOverrideModeDefault(ctx c
 	}
 	out := &GetOverrideModeDefaultResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -190,7 +190,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) SetOverrideModeDefault(ctx c
 	}
 	out := &SetOverrideModeDefaultResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -210,7 +210,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) GetAllowDefinition(ctx conte
 	}
 	out := &GetAllowDefinitionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -230,7 +230,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) SetAllowDefinition(ctx conte
 	}
 	out := &SetAllowDefinitionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -250,7 +250,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) GetAllowLocation(ctx context
 	}
 	out := &GetAllowLocationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -270,7 +270,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) SetAllowLocation(ctx context
 	}
 	out := &SetAllowLocationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

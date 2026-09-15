@@ -135,7 +135,7 @@ func (o *xxx_DefaultDataCollectorSetCollectionClient) GetCount(ctx context.Conte
 	}
 	out := &GetCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -155,7 +155,7 @@ func (o *xxx_DefaultDataCollectorSetCollectionClient) GetItem(ctx context.Contex
 	}
 	out := &GetItemResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -175,7 +175,7 @@ func (o *xxx_DefaultDataCollectorSetCollectionClient) Get_NewEnum(ctx context.Co
 	}
 	out := &Get_NewEnumResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -195,7 +195,7 @@ func (o *xxx_DefaultDataCollectorSetCollectionClient) Add(ctx context.Context, i
 	}
 	out := &AddResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -215,7 +215,7 @@ func (o *xxx_DefaultDataCollectorSetCollectionClient) Remove(ctx context.Context
 	}
 	out := &RemoveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -235,7 +235,7 @@ func (o *xxx_DefaultDataCollectorSetCollectionClient) Clear(ctx context.Context,
 	}
 	out := &ClearResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -255,7 +255,7 @@ func (o *xxx_DefaultDataCollectorSetCollectionClient) AddRange(ctx context.Conte
 	}
 	out := &AddRangeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -275,7 +275,7 @@ func (o *xxx_DefaultDataCollectorSetCollectionClient) GetDataCollectorSets(ctx c
 	}
 	out := &GetDataCollectorSetsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

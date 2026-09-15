@@ -203,7 +203,7 @@ func (o *xxx_DefaultUpdateHistoryEntryCollectionClient) GetItem(ctx context.Cont
 	}
 	out := &GetItemResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -223,7 +223,7 @@ func (o *xxx_DefaultUpdateHistoryEntryCollectionClient) Get_NewEnum(ctx context.
 	}
 	out := &Get_NewEnumResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -243,7 +243,7 @@ func (o *xxx_DefaultUpdateHistoryEntryCollectionClient) GetCount(ctx context.Con
 	}
 	out := &GetCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

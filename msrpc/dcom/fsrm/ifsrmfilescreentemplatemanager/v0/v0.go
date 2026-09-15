@@ -100,7 +100,7 @@ func (o *xxx_DefaultFileScreenTemplateManagerClient) CreateTemplate(ctx context.
 	}
 	out := &CreateTemplateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -120,7 +120,7 @@ func (o *xxx_DefaultFileScreenTemplateManagerClient) GetTemplate(ctx context.Con
 	}
 	out := &GetTemplateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -140,7 +140,7 @@ func (o *xxx_DefaultFileScreenTemplateManagerClient) EnumTemplates(ctx context.C
 	}
 	out := &EnumTemplatesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -160,7 +160,7 @@ func (o *xxx_DefaultFileScreenTemplateManagerClient) ExportTemplates(ctx context
 	}
 	out := &ExportTemplatesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -180,7 +180,7 @@ func (o *xxx_DefaultFileScreenTemplateManagerClient) ImportTemplates(ctx context
 	}
 	out := &ImportTemplatesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

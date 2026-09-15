@@ -107,7 +107,7 @@ func (o *xxx_DefaultEventSubscription3Client) GetEventClassPartitionID(ctx conte
 	}
 	out := &GetEventClassPartitionIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -127,7 +127,7 @@ func (o *xxx_DefaultEventSubscription3Client) SetEventClassPartitionID(ctx conte
 	}
 	out := &SetEventClassPartitionIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -147,7 +147,7 @@ func (o *xxx_DefaultEventSubscription3Client) GetEventClassApplicationID(ctx con
 	}
 	out := &GetEventClassApplicationIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -167,7 +167,7 @@ func (o *xxx_DefaultEventSubscription3Client) SetEventClassApplicationID(ctx con
 	}
 	out := &SetEventClassApplicationIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -187,7 +187,7 @@ func (o *xxx_DefaultEventSubscription3Client) GetSubscriberPartitionID(ctx conte
 	}
 	out := &GetSubscriberPartitionIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -207,7 +207,7 @@ func (o *xxx_DefaultEventSubscription3Client) SetSubscriberPartitionID(ctx conte
 	}
 	out := &SetSubscriberPartitionIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -227,7 +227,7 @@ func (o *xxx_DefaultEventSubscription3Client) GetSubscriberApplicationID(ctx con
 	}
 	out := &GetSubscriberApplicationIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -247,7 +247,7 @@ func (o *xxx_DefaultEventSubscription3Client) SetSubscriberApplicationID(ctx con
 	}
 	out := &SetSubscriberApplicationIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

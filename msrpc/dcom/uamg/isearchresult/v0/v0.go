@@ -151,7 +151,7 @@ func (o *xxx_DefaultSearchResultClient) GetResultCode(ctx context.Context, in *G
 	}
 	out := &GetResultCodeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -171,7 +171,7 @@ func (o *xxx_DefaultSearchResultClient) GetRootCategories(ctx context.Context, i
 	}
 	out := &GetRootCategoriesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -191,7 +191,7 @@ func (o *xxx_DefaultSearchResultClient) GetUpdates(ctx context.Context, in *GetU
 	}
 	out := &GetUpdatesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -211,7 +211,7 @@ func (o *xxx_DefaultSearchResultClient) GetWarnings(ctx context.Context, in *Get
 	}
 	out := &GetWarningsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

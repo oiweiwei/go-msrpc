@@ -221,7 +221,7 @@ func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) AddDiffArea(ct
 	}
 	out := &AddDiffAreaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -241,7 +241,7 @@ func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) ChangeDiffArea
 	}
 	out := &ChangeDiffAreaMaximumSizeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -261,7 +261,7 @@ func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) QueryVolumesSu
 	}
 	out := &QueryVolumesSupportedForDiffAreasResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -281,7 +281,7 @@ func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) QueryDiffAreas
 	}
 	out := &QueryDiffAreasForVolumeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -301,7 +301,7 @@ func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) QueryDiffAreas
 	}
 	out := &QueryDiffAreasOnVolumeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

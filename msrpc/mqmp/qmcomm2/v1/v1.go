@@ -131,7 +131,7 @@ func (o *xxx_DefaultQmcomm2Client) QMSendMessageInternalEx(ctx context.Context, 
 	}
 	out := &QMSendMessageInternalExResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -144,7 +144,7 @@ func (o *xxx_DefaultQmcomm2Client) SendMessageEx(ctx context.Context, in *SendMe
 	}
 	out := &SendMessageExResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -157,7 +157,7 @@ func (o *xxx_DefaultQmcomm2Client) ReceiveMessageEx(ctx context.Context, in *Rec
 	}
 	out := &ReceiveMessageExResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -170,7 +170,7 @@ func (o *xxx_DefaultQmcomm2Client) CreateCursorEx(ctx context.Context, in *Creat
 	}
 	out := &CreateCursorExResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

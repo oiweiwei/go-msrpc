@@ -2492,7 +2492,7 @@ func (o *xxx_DefaultTerminateServerEnumerationClient) OpenEnum(ctx context.Conte
 	}
 	out := &OpenEnumResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2505,7 +2505,7 @@ func (o *xxx_DefaultTerminateServerEnumerationClient) CloseEnum(ctx context.Cont
 	}
 	out := &CloseEnumResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2518,7 +2518,7 @@ func (o *xxx_DefaultTerminateServerEnumerationClient) FilterByState(ctx context.
 	}
 	out := &FilterByStateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2531,7 +2531,7 @@ func (o *xxx_DefaultTerminateServerEnumerationClient) FilterByCallersName(ctx co
 	}
 	out := &FilterByCallersNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2544,7 +2544,7 @@ func (o *xxx_DefaultTerminateServerEnumerationClient) EnumAddFilter(ctx context.
 	}
 	out := &EnumAddFilterResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2557,7 +2557,7 @@ func (o *xxx_DefaultTerminateServerEnumerationClient) GetEnumResult(ctx context.
 	}
 	out := &GetEnumResultResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2570,7 +2570,7 @@ func (o *xxx_DefaultTerminateServerEnumerationClient) FilterBySessionType(ctx co
 	}
 	out := &FilterBySessionTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2583,7 +2583,7 @@ func (o *xxx_DefaultTerminateServerEnumerationClient) GetSessionIDs(ctx context.
 	}
 	out := &GetSessionIDsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2596,7 +2596,7 @@ func (o *xxx_DefaultTerminateServerEnumerationClient) GetEnumResultEx(ctx contex
 	}
 	out := &GetEnumResultExResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2609,7 +2609,7 @@ func (o *xxx_DefaultTerminateServerEnumerationClient) GetAllSessions(ctx context
 	}
 	out := &GetAllSessionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2622,7 +2622,7 @@ func (o *xxx_DefaultTerminateServerEnumerationClient) GetAllSessionsEx(ctx conte
 	}
 	out := &GetAllSessionsExResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -207,7 +207,7 @@ func (o *xxx_DefaultTrkwksClient) SearchMachine(ctx context.Context, in *SearchM
 	}
 	out := &SearchMachineResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

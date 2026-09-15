@@ -448,7 +448,7 @@ func (o *xxx_DefaultQmmgmtClient) ManagementGetInfo(ctx context.Context, in *Man
 	}
 	out := &ManagementGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -461,7 +461,7 @@ func (o *xxx_DefaultQmmgmtClient) ManagementAction(ctx context.Context, in *Mana
 	}
 	out := &ManagementActionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

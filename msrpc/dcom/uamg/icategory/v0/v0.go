@@ -241,7 +241,7 @@ func (o *xxx_DefaultCategoryClient) GetName(ctx context.Context, in *GetNameRequ
 	}
 	out := &GetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -261,7 +261,7 @@ func (o *xxx_DefaultCategoryClient) GetCategoryID(ctx context.Context, in *GetCa
 	}
 	out := &GetCategoryIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -281,7 +281,7 @@ func (o *xxx_DefaultCategoryClient) GetChildren(ctx context.Context, in *GetChil
 	}
 	out := &GetChildrenResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -301,7 +301,7 @@ func (o *xxx_DefaultCategoryClient) GetDescription(ctx context.Context, in *GetD
 	}
 	out := &GetDescriptionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -321,7 +321,7 @@ func (o *xxx_DefaultCategoryClient) GetImage(ctx context.Context, in *GetImageRe
 	}
 	out := &GetImageResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -341,7 +341,7 @@ func (o *xxx_DefaultCategoryClient) GetOrder(ctx context.Context, in *GetOrderRe
 	}
 	out := &GetOrderResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -361,7 +361,7 @@ func (o *xxx_DefaultCategoryClient) GetParent(ctx context.Context, in *GetParent
 	}
 	out := &GetParentResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -381,7 +381,7 @@ func (o *xxx_DefaultCategoryClient) GetType(ctx context.Context, in *GetTypeRequ
 	}
 	out := &GetTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -401,7 +401,7 @@ func (o *xxx_DefaultCategoryClient) GetUpdates(ctx context.Context, in *GetUpdat
 	}
 	out := &GetUpdatesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

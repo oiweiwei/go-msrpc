@@ -142,7 +142,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionCollectionClient) GetCount(ctx conte
 	}
 	out := &GetCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -162,7 +162,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionCollectionClient) GetItem(ctx contex
 	}
 	out := &GetItemResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -182,7 +182,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionCollectionClient) AddSection(ctx con
 	}
 	out := &AddSectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -202,7 +202,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionCollectionClient) DeleteSection(ctx 
 	}
 	out := &DeleteSectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

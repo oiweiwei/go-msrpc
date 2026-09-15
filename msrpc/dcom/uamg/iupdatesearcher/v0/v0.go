@@ -540,7 +540,7 @@ func (o *xxx_DefaultUpdateSearcherClient) GetCanAutomaticallyUpgradeService(ctx 
 	}
 	out := &GetCanAutomaticallyUpgradeServiceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -560,7 +560,7 @@ func (o *xxx_DefaultUpdateSearcherClient) SetCanAutomaticallyUpgradeService(ctx 
 	}
 	out := &SetCanAutomaticallyUpgradeServiceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -580,7 +580,7 @@ func (o *xxx_DefaultUpdateSearcherClient) GetClientApplicationID(ctx context.Con
 	}
 	out := &GetClientApplicationIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -600,7 +600,7 @@ func (o *xxx_DefaultUpdateSearcherClient) SetClientApplicationID(ctx context.Con
 	}
 	out := &SetClientApplicationIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -620,7 +620,7 @@ func (o *xxx_DefaultUpdateSearcherClient) GetIncludePotentiallySupersededUpdates
 	}
 	out := &GetIncludePotentiallySupersededUpdatesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -640,7 +640,7 @@ func (o *xxx_DefaultUpdateSearcherClient) SetIncludePotentiallySupersededUpdates
 	}
 	out := &SetIncludePotentiallySupersededUpdatesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -660,7 +660,7 @@ func (o *xxx_DefaultUpdateSearcherClient) GetServerSelection(ctx context.Context
 	}
 	out := &GetServerSelectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -680,7 +680,7 @@ func (o *xxx_DefaultUpdateSearcherClient) SetServerSelection(ctx context.Context
 	}
 	out := &SetServerSelectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -700,7 +700,7 @@ func (o *xxx_DefaultUpdateSearcherClient) EscapeString(ctx context.Context, in *
 	}
 	out := &EscapeStringResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -720,7 +720,7 @@ func (o *xxx_DefaultUpdateSearcherClient) QueryHistory(ctx context.Context, in *
 	}
 	out := &QueryHistoryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -740,7 +740,7 @@ func (o *xxx_DefaultUpdateSearcherClient) Search(ctx context.Context, in *Search
 	}
 	out := &SearchResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -760,7 +760,7 @@ func (o *xxx_DefaultUpdateSearcherClient) GetOnline(ctx context.Context, in *Get
 	}
 	out := &GetOnlineResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -780,7 +780,7 @@ func (o *xxx_DefaultUpdateSearcherClient) SetOnline(ctx context.Context, in *Set
 	}
 	out := &SetOnlineResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -800,7 +800,7 @@ func (o *xxx_DefaultUpdateSearcherClient) GetTotalHistoryCount(ctx context.Conte
 	}
 	out := &GetTotalHistoryCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -820,7 +820,7 @@ func (o *xxx_DefaultUpdateSearcherClient) GetServiceID(ctx context.Context, in *
 	}
 	out := &GetServiceIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -840,7 +840,7 @@ func (o *xxx_DefaultUpdateSearcherClient) SetServiceID(ctx context.Context, in *
 	}
 	out := &SetServiceIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

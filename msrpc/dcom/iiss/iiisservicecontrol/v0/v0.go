@@ -296,7 +296,7 @@ func (o *xxx_DefaultIISServiceControlClient) Stop(ctx context.Context, in *StopR
 	}
 	out := &StopResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -316,7 +316,7 @@ func (o *xxx_DefaultIISServiceControlClient) Start(ctx context.Context, in *Star
 	}
 	out := &StartResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -336,7 +336,7 @@ func (o *xxx_DefaultIISServiceControlClient) Reboot(ctx context.Context, in *Reb
 	}
 	out := &RebootResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -356,7 +356,7 @@ func (o *xxx_DefaultIISServiceControlClient) Status(ctx context.Context, in *Sta
 	}
 	out := &StatusResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -376,7 +376,7 @@ func (o *xxx_DefaultIISServiceControlClient) Kill(ctx context.Context, in *KillR
 	}
 	out := &KillResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

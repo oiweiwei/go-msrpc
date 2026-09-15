@@ -101,7 +101,7 @@ func (o *xxx_DefaultFileScreenClient) GetPath(ctx context.Context, in *GetPathRe
 	}
 	out := &GetPathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -121,7 +121,7 @@ func (o *xxx_DefaultFileScreenClient) GetSourceTemplateName(ctx context.Context,
 	}
 	out := &GetSourceTemplateNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -141,7 +141,7 @@ func (o *xxx_DefaultFileScreenClient) GetMatchesSourceTemplate(ctx context.Conte
 	}
 	out := &GetMatchesSourceTemplateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -161,7 +161,7 @@ func (o *xxx_DefaultFileScreenClient) GetUserSID(ctx context.Context, in *GetUse
 	}
 	out := &GetUserSIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -181,7 +181,7 @@ func (o *xxx_DefaultFileScreenClient) GetUserAccount(ctx context.Context, in *Ge
 	}
 	out := &GetUserAccountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -201,7 +201,7 @@ func (o *xxx_DefaultFileScreenClient) ApplyTemplate(ctx context.Context, in *App
 	}
 	out := &ApplyTemplateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

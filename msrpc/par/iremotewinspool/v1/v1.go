@@ -17586,7 +17586,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SyncRegisterForRemoteNotifications(ctx
 	}
 	out := &SyncRegisterForRemoteNotificationsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -17599,7 +17599,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SyncUnregisterForRemoteNotifications(c
 	}
 	out := &SyncUnregisterForRemoteNotificationsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -17612,7 +17612,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SyncRefreshRemoteNotifications(ctx con
 	}
 	out := &SyncRefreshRemoteNotificationsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -17625,7 +17625,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetRemoteNotifications(ctx context.Con
 	}
 	out := &GetRemoteNotificationsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -17638,7 +17638,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) InstallPrinterDriverFromPackage(ctx co
 	}
 	out := &InstallPrinterDriverFromPackageResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -17651,7 +17651,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) UploadPrinterDriverPackage(ctx context
 	}
 	out := &UploadPrinterDriverPackageResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -17664,7 +17664,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetCorePrinterDrivers(ctx context.Cont
 	}
 	out := &GetCorePrinterDriversResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -17677,7 +17677,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) CorePrinterDriverInstalled(ctx context
 	}
 	out := &CorePrinterDriverInstalledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -17690,7 +17690,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetPrinterDriverPackagePath(ctx contex
 	}
 	out := &GetPrinterDriverPackagePathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -17703,7 +17703,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterDriverPackage(ctx context
 	}
 	out := &DeletePrinterDriverPackageResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

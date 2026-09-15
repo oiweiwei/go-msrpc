@@ -114,7 +114,7 @@ func (o *xxx_DefaultAsyncClient) Cancel(ctx context.Context, in *CancelRequest, 
 	}
 	out := &CancelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -134,7 +134,7 @@ func (o *xxx_DefaultAsyncClient) Wait(ctx context.Context, in *WaitRequest, opts
 	}
 	out := &WaitResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -154,7 +154,7 @@ func (o *xxx_DefaultAsyncClient) QueryStatus(ctx context.Context, in *QueryStatu
 	}
 	out := &QueryStatusResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

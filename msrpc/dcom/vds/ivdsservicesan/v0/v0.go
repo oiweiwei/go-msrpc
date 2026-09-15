@@ -99,7 +99,7 @@ func (o *xxx_DefaultServiceSANClient) GetSANPolicy(ctx context.Context, in *GetS
 	}
 	out := &GetSANPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -119,7 +119,7 @@ func (o *xxx_DefaultServiceSANClient) SetSANPolicy(ctx context.Context, in *SetS
 	}
 	out := &SetSANPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

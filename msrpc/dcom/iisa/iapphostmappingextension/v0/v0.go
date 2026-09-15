@@ -171,7 +171,7 @@ func (o *xxx_DefaultAppHostMappingExtensionClient) GetSiteNameFromSiteID(ctx con
 	}
 	out := &GetSiteNameFromSiteIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -191,7 +191,7 @@ func (o *xxx_DefaultAppHostMappingExtensionClient) GetSiteIDFromSiteName(ctx con
 	}
 	out := &GetSiteIDFromSiteNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -211,7 +211,7 @@ func (o *xxx_DefaultAppHostMappingExtensionClient) GetSiteElementFromSiteID(ctx 
 	}
 	out := &GetSiteElementFromSiteIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -231,7 +231,7 @@ func (o *xxx_DefaultAppHostMappingExtensionClient) MapPath(ctx context.Context, 
 	}
 	out := &MapPathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

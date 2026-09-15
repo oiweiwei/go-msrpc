@@ -134,7 +134,7 @@ func (o *xxx_DefaultUpdateExceptionClient) GetMessage(ctx context.Context, in *G
 	}
 	out := &GetMessageResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -154,7 +154,7 @@ func (o *xxx_DefaultUpdateExceptionClient) GetHResult(ctx context.Context, in *G
 	}
 	out := &GetHResultResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -174,7 +174,7 @@ func (o *xxx_DefaultUpdateExceptionClient) GetContext(ctx context.Context, in *G
 	}
 	out := &GetContextResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

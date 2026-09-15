@@ -115,7 +115,7 @@ func (o *xxx_DefaultDerivedObjectsResultClient) GetDerivedObjects(ctx context.Co
 	}
 	out := &GetDerivedObjectsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -135,7 +135,7 @@ func (o *xxx_DefaultDerivedObjectsResultClient) GetResults(ctx context.Context, 
 	}
 	out := &GetResultsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

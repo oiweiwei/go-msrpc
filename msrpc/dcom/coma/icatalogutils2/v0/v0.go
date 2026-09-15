@@ -175,7 +175,7 @@ func (o *xxx_DefaultCatalogUtils2Client) CopyConglomerations(ctx context.Context
 	}
 	out := &CopyConglomerationsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -195,7 +195,7 @@ func (o *xxx_DefaultCatalogUtils2Client) CopyComponentConfiguration(ctx context.
 	}
 	out := &CopyComponentConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -215,7 +215,7 @@ func (o *xxx_DefaultCatalogUtils2Client) AliasComponent(ctx context.Context, in 
 	}
 	out := &AliasComponentResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -235,7 +235,7 @@ func (o *xxx_DefaultCatalogUtils2Client) MoveComponentConfiguration(ctx context.
 	}
 	out := &MoveComponentConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -255,7 +255,7 @@ func (o *xxx_DefaultCatalogUtils2Client) GetEventClassesForIid2(ctx context.Cont
 	}
 	out := &GetEventClassesForIid2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -275,7 +275,7 @@ func (o *xxx_DefaultCatalogUtils2Client) IsSafeToDelete(ctx context.Context, in 
 	}
 	out := &IsSafeToDeleteResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -295,7 +295,7 @@ func (o *xxx_DefaultCatalogUtils2Client) FlushPartitionCache(ctx context.Context
 	}
 	out := &FlushPartitionCacheResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -315,7 +315,7 @@ func (o *xxx_DefaultCatalogUtils2Client) EnumerateSRPLevels(ctx context.Context,
 	}
 	out := &EnumerateSRPLevelsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -335,7 +335,7 @@ func (o *xxx_DefaultCatalogUtils2Client) GetComponentVersions(ctx context.Contex
 	}
 	out := &GetComponentVersionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

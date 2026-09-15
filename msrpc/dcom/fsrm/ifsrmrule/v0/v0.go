@@ -147,7 +147,7 @@ func (o *xxx_DefaultRuleClient) GetName(ctx context.Context, in *GetNameRequest,
 	}
 	out := &GetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -167,7 +167,7 @@ func (o *xxx_DefaultRuleClient) SetName(ctx context.Context, in *SetNameRequest,
 	}
 	out := &SetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -187,7 +187,7 @@ func (o *xxx_DefaultRuleClient) GetRuleType(ctx context.Context, in *GetRuleType
 	}
 	out := &GetRuleTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -207,7 +207,7 @@ func (o *xxx_DefaultRuleClient) GetModuleDefinitionName(ctx context.Context, in 
 	}
 	out := &GetModuleDefinitionNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -227,7 +227,7 @@ func (o *xxx_DefaultRuleClient) SetModuleDefinitionName(ctx context.Context, in 
 	}
 	out := &SetModuleDefinitionNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -247,7 +247,7 @@ func (o *xxx_DefaultRuleClient) GetNamespaceRoots(ctx context.Context, in *GetNa
 	}
 	out := &GetNamespaceRootsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -267,7 +267,7 @@ func (o *xxx_DefaultRuleClient) SetNamespaceRoots(ctx context.Context, in *SetNa
 	}
 	out := &SetNamespaceRootsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -287,7 +287,7 @@ func (o *xxx_DefaultRuleClient) GetRuleFlags(ctx context.Context, in *GetRuleFla
 	}
 	out := &GetRuleFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -307,7 +307,7 @@ func (o *xxx_DefaultRuleClient) SetRuleFlags(ctx context.Context, in *SetRuleFla
 	}
 	out := &SetRuleFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -327,7 +327,7 @@ func (o *xxx_DefaultRuleClient) GetParameters(ctx context.Context, in *GetParame
 	}
 	out := &GetParametersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -347,7 +347,7 @@ func (o *xxx_DefaultRuleClient) SetParameters(ctx context.Context, in *SetParame
 	}
 	out := &SetParametersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -367,7 +367,7 @@ func (o *xxx_DefaultRuleClient) GetLastModified(ctx context.Context, in *GetLast
 	}
 	out := &GetLastModifiedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

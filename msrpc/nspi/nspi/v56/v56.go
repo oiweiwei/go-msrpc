@@ -4968,7 +4968,7 @@ func (o *xxx_DefaultNspiClient) Bind(ctx context.Context, in *BindRequest, opts 
 	}
 	out := &BindResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -4994,7 +4994,7 @@ func (o *xxx_DefaultNspiClient) UpdateStat(ctx context.Context, in *UpdateStatRe
 	}
 	out := &UpdateStatResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5007,7 +5007,7 @@ func (o *xxx_DefaultNspiClient) QueryRows(ctx context.Context, in *QueryRowsRequ
 	}
 	out := &QueryRowsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5020,7 +5020,7 @@ func (o *xxx_DefaultNspiClient) SeekEntries(ctx context.Context, in *SeekEntries
 	}
 	out := &SeekEntriesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5033,7 +5033,7 @@ func (o *xxx_DefaultNspiClient) GetMatches(ctx context.Context, in *GetMatchesRe
 	}
 	out := &GetMatchesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5046,7 +5046,7 @@ func (o *xxx_DefaultNspiClient) ResortRestriction(ctx context.Context, in *Resor
 	}
 	out := &ResortRestrictionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5059,7 +5059,7 @@ func (o *xxx_DefaultNspiClient) DNToMID(ctx context.Context, in *DNToMIDRequest,
 	}
 	out := &DNToMIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5072,7 +5072,7 @@ func (o *xxx_DefaultNspiClient) GetPropertyList(ctx context.Context, in *GetProp
 	}
 	out := &GetPropertyListResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5085,7 +5085,7 @@ func (o *xxx_DefaultNspiClient) GetProperties(ctx context.Context, in *GetProper
 	}
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5098,7 +5098,7 @@ func (o *xxx_DefaultNspiClient) CompareMIDs(ctx context.Context, in *CompareMIDs
 	}
 	out := &CompareMIDsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5111,7 +5111,7 @@ func (o *xxx_DefaultNspiClient) ModifyProperties(ctx context.Context, in *Modify
 	}
 	out := &ModifyPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5124,7 +5124,7 @@ func (o *xxx_DefaultNspiClient) GetSpecialTable(ctx context.Context, in *GetSpec
 	}
 	out := &GetSpecialTableResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5137,7 +5137,7 @@ func (o *xxx_DefaultNspiClient) GetTemplateInfo(ctx context.Context, in *GetTemp
 	}
 	out := &GetTemplateInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5150,7 +5150,7 @@ func (o *xxx_DefaultNspiClient) ModifyLinkAttribute(ctx context.Context, in *Mod
 	}
 	out := &ModifyLinkAttributeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5163,7 +5163,7 @@ func (o *xxx_DefaultNspiClient) QueryColumns(ctx context.Context, in *QueryColum
 	}
 	out := &QueryColumnsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5176,7 +5176,7 @@ func (o *xxx_DefaultNspiClient) GetNamesFromIDs(ctx context.Context, in *GetName
 	}
 	out := &GetNamesFromIDsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5189,7 +5189,7 @@ func (o *xxx_DefaultNspiClient) GetIDsFromNames(ctx context.Context, in *GetIDsF
 	}
 	out := &GetIDsFromNamesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5202,7 +5202,7 @@ func (o *xxx_DefaultNspiClient) ResolveNames(ctx context.Context, in *ResolveNam
 	}
 	out := &ResolveNamesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -5215,7 +5215,7 @@ func (o *xxx_DefaultNspiClient) ResolveNamesW(ctx context.Context, in *ResolveNa
 	}
 	out := &ResolveNamesWResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

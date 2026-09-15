@@ -92,7 +92,7 @@ func (o *xxx_DefaultSasecClient) SetAccountInformation(ctx context.Context, in *
 	}
 	out := &SetAccountInformationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -105,7 +105,7 @@ func (o *xxx_DefaultSasecClient) SetNSAccountInformation(ctx context.Context, in
 	}
 	out := &SetNSAccountInformationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -118,7 +118,7 @@ func (o *xxx_DefaultSasecClient) GetNSAccountInformation(ctx context.Context, in
 	}
 	out := &GetNSAccountInformationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -131,7 +131,7 @@ func (o *xxx_DefaultSasecClient) GetAccountInformation(ctx context.Context, in *
 	}
 	out := &GetAccountInformationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

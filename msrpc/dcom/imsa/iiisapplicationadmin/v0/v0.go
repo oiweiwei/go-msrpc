@@ -247,7 +247,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) CreateApplication(ctx context.Con
 	}
 	out := &CreateApplicationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -267,7 +267,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) DeleteApplication(ctx context.Con
 	}
 	out := &DeleteApplicationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -287,7 +287,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) CreateApplicationPool(ctx context
 	}
 	out := &CreateApplicationPoolResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -307,7 +307,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) DeleteApplicationPool(ctx context
 	}
 	out := &DeleteApplicationPoolResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -327,7 +327,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) EnumerateApplicationsInPool(ctx c
 	}
 	out := &EnumerateApplicationsInPoolResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -347,7 +347,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) RecycleApplicationPool(ctx contex
 	}
 	out := &RecycleApplicationPoolResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -367,7 +367,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) GetProcessMode(ctx context.Contex
 	}
 	out := &GetProcessModeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

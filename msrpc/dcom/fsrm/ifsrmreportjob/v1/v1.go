@@ -178,7 +178,7 @@ func (o *xxx_DefaultReportJobClient) GetTask(ctx context.Context, in *GetTaskReq
 	}
 	out := &GetTaskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -198,7 +198,7 @@ func (o *xxx_DefaultReportJobClient) SetTask(ctx context.Context, in *SetTaskReq
 	}
 	out := &SetTaskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -218,7 +218,7 @@ func (o *xxx_DefaultReportJobClient) GetNamespaceRoots(ctx context.Context, in *
 	}
 	out := &GetNamespaceRootsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -238,7 +238,7 @@ func (o *xxx_DefaultReportJobClient) SetNamespaceRoots(ctx context.Context, in *
 	}
 	out := &SetNamespaceRootsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -258,7 +258,7 @@ func (o *xxx_DefaultReportJobClient) GetFormats(ctx context.Context, in *GetForm
 	}
 	out := &GetFormatsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -278,7 +278,7 @@ func (o *xxx_DefaultReportJobClient) SetFormats(ctx context.Context, in *SetForm
 	}
 	out := &SetFormatsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -298,7 +298,7 @@ func (o *xxx_DefaultReportJobClient) GetMailTo(ctx context.Context, in *GetMailT
 	}
 	out := &GetMailToResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -318,7 +318,7 @@ func (o *xxx_DefaultReportJobClient) SetMailTo(ctx context.Context, in *SetMailT
 	}
 	out := &SetMailToResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -338,7 +338,7 @@ func (o *xxx_DefaultReportJobClient) GetRunningStatus(ctx context.Context, in *G
 	}
 	out := &GetRunningStatusResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -358,7 +358,7 @@ func (o *xxx_DefaultReportJobClient) GetLastRun(ctx context.Context, in *GetLast
 	}
 	out := &GetLastRunResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -378,7 +378,7 @@ func (o *xxx_DefaultReportJobClient) GetLastError(ctx context.Context, in *GetLa
 	}
 	out := &GetLastErrorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -398,7 +398,7 @@ func (o *xxx_DefaultReportJobClient) GetLastGeneratedInDirectory(ctx context.Con
 	}
 	out := &GetLastGeneratedInDirectoryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -418,7 +418,7 @@ func (o *xxx_DefaultReportJobClient) EnumReports(ctx context.Context, in *EnumRe
 	}
 	out := &EnumReportsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -438,7 +438,7 @@ func (o *xxx_DefaultReportJobClient) CreateReport(ctx context.Context, in *Creat
 	}
 	out := &CreateReportResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -458,7 +458,7 @@ func (o *xxx_DefaultReportJobClient) Run(ctx context.Context, in *RunRequest, op
 	}
 	out := &RunResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -478,7 +478,7 @@ func (o *xxx_DefaultReportJobClient) WaitForCompletion(ctx context.Context, in *
 	}
 	out := &WaitForCompletionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -498,7 +498,7 @@ func (o *xxx_DefaultReportJobClient) Cancel(ctx context.Context, in *CancelReque
 	}
 	out := &CancelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

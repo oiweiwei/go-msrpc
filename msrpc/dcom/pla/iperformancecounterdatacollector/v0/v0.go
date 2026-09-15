@@ -115,7 +115,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetDataSourceName(ctx
 	}
 	out := &GetDataSourceNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -135,7 +135,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetDataSourceName(ctx
 	}
 	out := &SetDataSourceNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -155,7 +155,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetPerformanceCounter
 	}
 	out := &GetPerformanceCountersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -175,7 +175,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetPerformanceCounter
 	}
 	out := &SetPerformanceCountersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -195,7 +195,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetLogFileFormat(ctx 
 	}
 	out := &GetLogFileFormatResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -215,7 +215,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetLogFileFormat(ctx 
 	}
 	out := &SetLogFileFormatResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -235,7 +235,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetSampleInterval(ctx
 	}
 	out := &GetSampleIntervalResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -255,7 +255,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetSampleInterval(ctx
 	}
 	out := &SetSampleIntervalResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -275,7 +275,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetSegmentMaxRecords(
 	}
 	out := &GetSegmentMaxRecordsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -295,7 +295,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetSegmentMaxRecords(
 	}
 	out := &SetSegmentMaxRecordsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -19825,7 +19825,7 @@ func (o *xxx_DefaultLogonClient) SAMLogon(ctx context.Context, in *SAMLogonReque
 	}
 	out := &SAMLogonResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -19838,7 +19838,7 @@ func (o *xxx_DefaultLogonClient) SAMLogoff(ctx context.Context, in *SAMLogoffReq
 	}
 	out := &SAMLogoffResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -19851,7 +19851,7 @@ func (o *xxx_DefaultLogonClient) RequestChallenge(ctx context.Context, in *Reque
 	}
 	out := &RequestChallengeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -19864,7 +19864,7 @@ func (o *xxx_DefaultLogonClient) Authenticate(ctx context.Context, in *Authentic
 	}
 	out := &AuthenticateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -19877,7 +19877,7 @@ func (o *xxx_DefaultLogonClient) PasswordSet(ctx context.Context, in *PasswordSe
 	}
 	out := &PasswordSetResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -19890,7 +19890,7 @@ func (o *xxx_DefaultLogonClient) DatabaseDeltas(ctx context.Context, in *Databas
 	}
 	out := &DatabaseDeltasResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -19903,7 +19903,7 @@ func (o *xxx_DefaultLogonClient) DatabaseSync(ctx context.Context, in *DatabaseS
 	}
 	out := &DatabaseSyncResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -19916,7 +19916,7 @@ func (o *xxx_DefaultLogonClient) AccountDeltas(ctx context.Context, in *AccountD
 	}
 	out := &AccountDeltasResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -19929,7 +19929,7 @@ func (o *xxx_DefaultLogonClient) AccountSync(ctx context.Context, in *AccountSyn
 	}
 	out := &AccountSyncResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -19994,7 +19994,7 @@ func (o *xxx_DefaultLogonClient) Authenticate2(ctx context.Context, in *Authenti
 	}
 	out := &Authenticate2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20007,7 +20007,7 @@ func (o *xxx_DefaultLogonClient) DatabaseSync2(ctx context.Context, in *Database
 	}
 	out := &DatabaseSync2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20020,7 +20020,7 @@ func (o *xxx_DefaultLogonClient) DatabaseRedo(ctx context.Context, in *DatabaseR
 	}
 	out := &DatabaseRedoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20046,7 +20046,7 @@ func (o *xxx_DefaultLogonClient) EnumerateTrustedDomains(ctx context.Context, in
 	}
 	out := &EnumerateTrustedDomainsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20072,7 +20072,7 @@ func (o *xxx_DefaultLogonClient) GetCapabilities(ctx context.Context, in *GetCap
 	}
 	out := &GetCapabilitiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20085,7 +20085,7 @@ func (o *xxx_DefaultLogonClient) SetServiceBits(ctx context.Context, in *SetServ
 	}
 	out := &SetServiceBitsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20137,7 +20137,7 @@ func (o *xxx_DefaultLogonClient) Authenticate3(ctx context.Context, in *Authenti
 	}
 	out := &Authenticate3Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20176,7 +20176,7 @@ func (o *xxx_DefaultLogonClient) GetDomainInfo(ctx context.Context, in *GetDomai
 	}
 	out := &GetDomainInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20189,7 +20189,7 @@ func (o *xxx_DefaultLogonClient) PasswordSet2(ctx context.Context, in *PasswordS
 	}
 	out := &PasswordSet2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20202,7 +20202,7 @@ func (o *xxx_DefaultLogonClient) PasswordGet(ctx context.Context, in *PasswordGe
 	}
 	out := &PasswordGetResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20215,7 +20215,7 @@ func (o *xxx_DefaultLogonClient) SendToSAM(ctx context.Context, in *SendToSAMReq
 	}
 	out := &SendToSAMResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20306,7 +20306,7 @@ func (o *xxx_DefaultLogonClient) SAMLogonEx(ctx context.Context, in *SAMLogonExR
 	}
 	out := &SAMLogonExResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20345,7 +20345,7 @@ func (o *xxx_DefaultLogonClient) TrustPasswordsGet(ctx context.Context, in *Trus
 	}
 	out := &TrustPasswordsGetResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20371,7 +20371,7 @@ func (o *xxx_DefaultLogonClient) GetNetrForestTrustInformation(ctx context.Conte
 	}
 	out := &GetNetrForestTrustInformationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20384,7 +20384,7 @@ func (o *xxx_DefaultLogonClient) SAMLogonWithFlags(ctx context.Context, in *SAML
 	}
 	out := &SAMLogonWithFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20397,7 +20397,7 @@ func (o *xxx_DefaultLogonClient) GetTrustInfo(ctx context.Context, in *GetTrustI
 	}
 	out := &GetTrustInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20410,7 +20410,7 @@ func (o *xxx_DefaultLogonClient) UpdateReadOnlyServerDNSRecords(ctx context.Cont
 	}
 	out := &UpdateReadOnlyServerDNSRecordsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20423,7 +20423,7 @@ func (o *xxx_DefaultLogonClient) ChainSetClientAttributes(ctx context.Context, i
 	}
 	out := &ChainSetClientAttributesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -20436,7 +20436,7 @@ func (o *xxx_DefaultLogonClient) AuthenticateKerberos(ctx context.Context, in *A
 	}
 	out := &AuthenticateKerberosResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

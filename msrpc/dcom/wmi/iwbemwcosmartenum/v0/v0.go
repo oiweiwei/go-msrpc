@@ -86,7 +86,7 @@ func (o *xxx_DefaultWCOSmartEnumClient) Next(ctx context.Context, in *NextReques
 	}
 	out := &NextResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -189,7 +189,7 @@ func (o *xxx_DefaultTerminateServerNotificationClient) WaitForSessionState(ctx c
 	}
 	out := &WaitForSessionStateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -202,7 +202,7 @@ func (o *xxx_DefaultTerminateServerNotificationClient) RegisterAsyncNotification
 	}
 	out := &RegisterAsyncNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -215,7 +215,7 @@ func (o *xxx_DefaultTerminateServerNotificationClient) WaitAsyncNotification(ctx
 	}
 	out := &WaitAsyncNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -228,7 +228,7 @@ func (o *xxx_DefaultTerminateServerNotificationClient) UnregisterAsyncNotificati
 	}
 	out := &UnregisterAsyncNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

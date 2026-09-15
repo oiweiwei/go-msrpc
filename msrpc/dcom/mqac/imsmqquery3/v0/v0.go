@@ -108,7 +108,7 @@ func (o *xxx_DefaultQuery3Client) LookupQueueV2(ctx context.Context, in *LookupQ
 	}
 	out := &LookupQueueV2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -128,7 +128,7 @@ func (o *xxx_DefaultQuery3Client) GetProperties(ctx context.Context, in *GetProp
 	}
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -148,7 +148,7 @@ func (o *xxx_DefaultQuery3Client) LookupQueue(ctx context.Context, in *LookupQue
 	}
 	out := &LookupQueueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

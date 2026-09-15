@@ -208,7 +208,7 @@ func (o *xxx_DefaultAppHostElementSchemaClient) GetName(ctx context.Context, in 
 	}
 	out := &GetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -228,7 +228,7 @@ func (o *xxx_DefaultAppHostElementSchemaClient) GetDoesAllowUnschematizedPropert
 	}
 	out := &GetDoesAllowUnschematizedPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -248,7 +248,7 @@ func (o *xxx_DefaultAppHostElementSchemaClient) GetMetadata(ctx context.Context,
 	}
 	out := &GetMetadataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -268,7 +268,7 @@ func (o *xxx_DefaultAppHostElementSchemaClient) GetCollectionSchema(ctx context.
 	}
 	out := &GetCollectionSchemaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -288,7 +288,7 @@ func (o *xxx_DefaultAppHostElementSchemaClient) GetChildElementSchemas(ctx conte
 	}
 	out := &GetChildElementSchemasResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -308,7 +308,7 @@ func (o *xxx_DefaultAppHostElementSchemaClient) GetPropertySchemas(ctx context.C
 	}
 	out := &GetPropertySchemasResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -328,7 +328,7 @@ func (o *xxx_DefaultAppHostElementSchemaClient) GetIsCollectionDefault(ctx conte
 	}
 	out := &GetIsCollectionDefaultResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

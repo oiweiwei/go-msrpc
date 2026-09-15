@@ -121,7 +121,7 @@ func (o *xxx_DefaultUpdateSession3Client) CreateUpdateServiceManager(ctx context
 	}
 	out := &CreateUpdateServiceManagerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -141,7 +141,7 @@ func (o *xxx_DefaultUpdateSession3Client) QueryHistory(ctx context.Context, in *
 	}
 	out := &QueryHistoryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
