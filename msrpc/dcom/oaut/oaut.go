@@ -2069,7 +2069,6 @@ type Variant struct {
 	// * If none of the preceding flags is specified in the *vt* field, the *_varUnion*
 	// field MUST be marshaled by using a little-endian data representation, regardless
 	// of the data representation format label.
-	//
 	VarUnion *Variant_VarUnion `idl:"name:_varUnion;switch_is:(((vt 8192 &) 0 !=) (vt (8192 16384 |) &) vt ?:)" json:"var_union"`
 }
 
