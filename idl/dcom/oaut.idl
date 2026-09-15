@@ -268,7 +268,9 @@ typedef struct _wireVARIANT {
     USHORT wReserved1;
     USHORT wReserved2;
     USHORT wReserved3;
-    [switch_type(ULONG), switch_is(vt)] 
+    // MS-OAUT 2.2.29.1: array values retain their element type in vt,
+    // but the wire union selects only VT_ARRAY and the optional VT_BYREF flag.
+    [switch_type(ULONG), switch_is((vt & VT_ARRAY) != 0 ? (vt & (VT_ARRAY | VT_BYREF)) : vt)]
     union {
         [case(VT_I8)]
           LONGLONG llVal;
