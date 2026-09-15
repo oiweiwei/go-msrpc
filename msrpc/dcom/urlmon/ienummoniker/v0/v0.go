@@ -95,7 +95,7 @@ func (o *xxx_DefaultEnumMonikerClient) Next(ctx context.Context, in *NextRequest
 	}
 	out := &NextResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -115,7 +115,7 @@ func (o *xxx_DefaultEnumMonikerClient) Skip(ctx context.Context, in *SkipRequest
 	}
 	out := &SkipResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -135,7 +135,7 @@ func (o *xxx_DefaultEnumMonikerClient) Reset(ctx context.Context, in *ResetReque
 	}
 	out := &ResetResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -155,7 +155,7 @@ func (o *xxx_DefaultEnumMonikerClient) Clone(ctx context.Context, in *CloneReque
 	}
 	out := &CloneResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

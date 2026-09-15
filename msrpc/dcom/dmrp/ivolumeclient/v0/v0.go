@@ -348,7 +348,7 @@ func (o *xxx_DefaultVolumeClientClient) EnumDisks(ctx context.Context, in *EnumD
 	}
 	out := &EnumDisksResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -368,7 +368,7 @@ func (o *xxx_DefaultVolumeClientClient) EnumDiskRegions(ctx context.Context, in 
 	}
 	out := &EnumDiskRegionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -388,7 +388,7 @@ func (o *xxx_DefaultVolumeClientClient) CreatePartition(ctx context.Context, in 
 	}
 	out := &CreatePartitionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -408,7 +408,7 @@ func (o *xxx_DefaultVolumeClientClient) CreatePartitionAssignAndFormat(ctx conte
 	}
 	out := &CreatePartitionAssignAndFormatResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -428,7 +428,7 @@ func (o *xxx_DefaultVolumeClientClient) CreatePartitionAssignAndFormatEx(ctx con
 	}
 	out := &CreatePartitionAssignAndFormatExResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -448,7 +448,7 @@ func (o *xxx_DefaultVolumeClientClient) DeletePartition(ctx context.Context, in 
 	}
 	out := &DeletePartitionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -468,7 +468,7 @@ func (o *xxx_DefaultVolumeClientClient) WriteSignature(ctx context.Context, in *
 	}
 	out := &WriteSignatureResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -488,7 +488,7 @@ func (o *xxx_DefaultVolumeClientClient) MarkActivePartition(ctx context.Context,
 	}
 	out := &MarkActivePartitionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -508,7 +508,7 @@ func (o *xxx_DefaultVolumeClientClient) Eject(ctx context.Context, in *EjectRequ
 	}
 	out := &EjectResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -528,7 +528,7 @@ func (o *xxx_DefaultVolumeClientClient) FTEnumVolumes(ctx context.Context, in *F
 	}
 	out := &FTEnumVolumesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -548,7 +548,7 @@ func (o *xxx_DefaultVolumeClientClient) FTEnumLogicalDiskMembers(ctx context.Con
 	}
 	out := &FTEnumLogicalDiskMembersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -568,7 +568,7 @@ func (o *xxx_DefaultVolumeClientClient) FTDeleteVolume(ctx context.Context, in *
 	}
 	out := &FTDeleteVolumeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -588,7 +588,7 @@ func (o *xxx_DefaultVolumeClientClient) FTBreakMirror(ctx context.Context, in *F
 	}
 	out := &FTBreakMirrorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -608,7 +608,7 @@ func (o *xxx_DefaultVolumeClientClient) FTResyncMirror(ctx context.Context, in *
 	}
 	out := &FTResyncMirrorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -628,7 +628,7 @@ func (o *xxx_DefaultVolumeClientClient) FTRegenerateParityStripe(ctx context.Con
 	}
 	out := &FTRegenerateParityStripeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -648,7 +648,7 @@ func (o *xxx_DefaultVolumeClientClient) FTReplaceMirrorPartition(ctx context.Con
 	}
 	out := &FTReplaceMirrorPartitionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -668,7 +668,7 @@ func (o *xxx_DefaultVolumeClientClient) FTReplaceParityStripePartition(ctx conte
 	}
 	out := &FTReplaceParityStripePartitionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -688,7 +688,7 @@ func (o *xxx_DefaultVolumeClientClient) EnumDriveLetters(ctx context.Context, in
 	}
 	out := &EnumDriveLettersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -708,7 +708,7 @@ func (o *xxx_DefaultVolumeClientClient) AssignDriveLetter(ctx context.Context, i
 	}
 	out := &AssignDriveLetterResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -728,7 +728,7 @@ func (o *xxx_DefaultVolumeClientClient) FreeDriveLetter(ctx context.Context, in 
 	}
 	out := &FreeDriveLetterResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -748,7 +748,7 @@ func (o *xxx_DefaultVolumeClientClient) EnumLocalFileSystems(ctx context.Context
 	}
 	out := &EnumLocalFileSystemsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -768,7 +768,7 @@ func (o *xxx_DefaultVolumeClientClient) GetInstalledFileSystems(ctx context.Cont
 	}
 	out := &GetInstalledFileSystemsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -788,7 +788,7 @@ func (o *xxx_DefaultVolumeClientClient) Format(ctx context.Context, in *FormatRe
 	}
 	out := &FormatResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -808,7 +808,7 @@ func (o *xxx_DefaultVolumeClientClient) EnumVolumes(ctx context.Context, in *Enu
 	}
 	out := &EnumVolumesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -828,7 +828,7 @@ func (o *xxx_DefaultVolumeClientClient) EnumVolumeMembers(ctx context.Context, i
 	}
 	out := &EnumVolumeMembersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -848,7 +848,7 @@ func (o *xxx_DefaultVolumeClientClient) CreateVolume(ctx context.Context, in *Cr
 	}
 	out := &CreateVolumeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -868,7 +868,7 @@ func (o *xxx_DefaultVolumeClientClient) CreateVolumeAssignAndFormat(ctx context.
 	}
 	out := &CreateVolumeAssignAndFormatResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -888,7 +888,7 @@ func (o *xxx_DefaultVolumeClientClient) CreateVolumeAssignAndFormatEx(ctx contex
 	}
 	out := &CreateVolumeAssignAndFormatExResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -908,7 +908,7 @@ func (o *xxx_DefaultVolumeClientClient) GetVolumeMountName(ctx context.Context, 
 	}
 	out := &GetVolumeMountNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -928,7 +928,7 @@ func (o *xxx_DefaultVolumeClientClient) GrowVolume(ctx context.Context, in *Grow
 	}
 	out := &GrowVolumeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -948,7 +948,7 @@ func (o *xxx_DefaultVolumeClientClient) DeleteVolume(ctx context.Context, in *De
 	}
 	out := &DeleteVolumeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -968,7 +968,7 @@ func (o *xxx_DefaultVolumeClientClient) AddMirror(ctx context.Context, in *AddMi
 	}
 	out := &AddMirrorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -988,7 +988,7 @@ func (o *xxx_DefaultVolumeClientClient) RemoveMirror(ctx context.Context, in *Re
 	}
 	out := &RemoveMirrorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1008,7 +1008,7 @@ func (o *xxx_DefaultVolumeClientClient) SplitMirror(ctx context.Context, in *Spl
 	}
 	out := &SplitMirrorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1028,7 +1028,7 @@ func (o *xxx_DefaultVolumeClientClient) InitializeDisk(ctx context.Context, in *
 	}
 	out := &InitializeDiskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1048,7 +1048,7 @@ func (o *xxx_DefaultVolumeClientClient) UninitializeDisk(ctx context.Context, in
 	}
 	out := &UninitializeDiskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1068,7 +1068,7 @@ func (o *xxx_DefaultVolumeClientClient) ReConnectDisk(ctx context.Context, in *R
 	}
 	out := &ReConnectDiskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1088,7 +1088,7 @@ func (o *xxx_DefaultVolumeClientClient) ImportDiskGroup(ctx context.Context, in 
 	}
 	out := &ImportDiskGroupResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1108,7 +1108,7 @@ func (o *xxx_DefaultVolumeClientClient) DiskMergeQuery(ctx context.Context, in *
 	}
 	out := &DiskMergeQueryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1128,7 +1128,7 @@ func (o *xxx_DefaultVolumeClientClient) DiskMerge(ctx context.Context, in *DiskM
 	}
 	out := &DiskMergeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1148,7 +1148,7 @@ func (o *xxx_DefaultVolumeClientClient) ReAttachDisk(ctx context.Context, in *Re
 	}
 	out := &ReAttachDiskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1168,7 +1168,7 @@ func (o *xxx_DefaultVolumeClientClient) ReplaceRAID5Column(ctx context.Context, 
 	}
 	out := &ReplaceRAID5ColumnResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1188,7 +1188,7 @@ func (o *xxx_DefaultVolumeClientClient) RestartVolume(ctx context.Context, in *R
 	}
 	out := &RestartVolumeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1208,7 +1208,7 @@ func (o *xxx_DefaultVolumeClientClient) GetEncapsulateDiskInfo(ctx context.Conte
 	}
 	out := &GetEncapsulateDiskInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1228,7 +1228,7 @@ func (o *xxx_DefaultVolumeClientClient) EncapsulateDisk(ctx context.Context, in 
 	}
 	out := &EncapsulateDiskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1248,7 +1248,7 @@ func (o *xxx_DefaultVolumeClientClient) QueryChangePartitionNumbers(ctx context.
 	}
 	out := &QueryChangePartitionNumbersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1268,7 +1268,7 @@ func (o *xxx_DefaultVolumeClientClient) DeletePartitionNumberInfoFromRegistry(ct
 	}
 	out := &DeletePartitionNumberInfoFromRegistryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1288,7 +1288,7 @@ func (o *xxx_DefaultVolumeClientClient) SetDontShow(ctx context.Context, in *Set
 	}
 	out := &SetDontShowResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1308,7 +1308,7 @@ func (o *xxx_DefaultVolumeClientClient) GetDontShow(ctx context.Context, in *Get
 	}
 	out := &GetDontShowResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1328,7 +1328,7 @@ func (o *xxx_DefaultVolumeClientClient) EnumTasks(ctx context.Context, in *EnumT
 	}
 	out := &EnumTasksResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1348,7 +1348,7 @@ func (o *xxx_DefaultVolumeClientClient) GetTaskDetail(ctx context.Context, in *G
 	}
 	out := &GetTaskDetailResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1368,7 +1368,7 @@ func (o *xxx_DefaultVolumeClientClient) AbortTask(ctx context.Context, in *Abort
 	}
 	out := &AbortTaskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1388,7 +1388,7 @@ func (o *xxx_DefaultVolumeClientClient) HResultGetErrorData(ctx context.Context,
 	}
 	out := &HResultGetErrorDataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1408,7 +1408,7 @@ func (o *xxx_DefaultVolumeClientClient) Initialize(ctx context.Context, in *Init
 	}
 	out := &InitializeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1428,7 +1428,7 @@ func (o *xxx_DefaultVolumeClientClient) Uninitialize(ctx context.Context, in *Un
 	}
 	out := &UninitializeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1448,7 +1448,7 @@ func (o *xxx_DefaultVolumeClientClient) Refresh(ctx context.Context, in *Refresh
 	}
 	out := &RefreshResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1468,7 +1468,7 @@ func (o *xxx_DefaultVolumeClientClient) RescanDisks(ctx context.Context, in *Res
 	}
 	out := &RescanDisksResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1488,7 +1488,7 @@ func (o *xxx_DefaultVolumeClientClient) RefreshFileSystem(ctx context.Context, i
 	}
 	out := &RefreshFileSystemResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1508,7 +1508,7 @@ func (o *xxx_DefaultVolumeClientClient) SecureSystemPartition(ctx context.Contex
 	}
 	out := &SecureSystemPartitionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1528,7 +1528,7 @@ func (o *xxx_DefaultVolumeClientClient) ShutDownSystem(ctx context.Context, in *
 	}
 	out := &ShutDownSystemResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1548,7 +1548,7 @@ func (o *xxx_DefaultVolumeClientClient) EnumAccessPath(ctx context.Context, in *
 	}
 	out := &EnumAccessPathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1568,7 +1568,7 @@ func (o *xxx_DefaultVolumeClientClient) EnumAccessPathForVolume(ctx context.Cont
 	}
 	out := &EnumAccessPathForVolumeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1588,7 +1588,7 @@ func (o *xxx_DefaultVolumeClientClient) AddAccessPath(ctx context.Context, in *A
 	}
 	out := &AddAccessPathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1608,7 +1608,7 @@ func (o *xxx_DefaultVolumeClientClient) DeleteAccessPath(ctx context.Context, in
 	}
 	out := &DeleteAccessPathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

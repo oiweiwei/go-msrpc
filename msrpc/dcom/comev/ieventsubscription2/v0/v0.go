@@ -95,7 +95,7 @@ func (o *xxx_DefaultEventSubscription2Client) GetFilterCriteria(ctx context.Cont
 	}
 	out := &GetFilterCriteriaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -115,7 +115,7 @@ func (o *xxx_DefaultEventSubscription2Client) SetFilterCriteria(ctx context.Cont
 	}
 	out := &SetFilterCriteriaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -135,7 +135,7 @@ func (o *xxx_DefaultEventSubscription2Client) GetSubscriberMoniker(ctx context.C
 	}
 	out := &GetSubscriberMonikerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -155,7 +155,7 @@ func (o *xxx_DefaultEventSubscription2Client) SetSubscriberMoniker(ctx context.C
 	}
 	out := &SetSubscriberMonikerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -436,7 +436,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetName(ctx context.Context, in *Ge
 	}
 	out := &GetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -456,7 +456,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetName(ctx context.Context, in *Se
 	}
 	out := &SetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -476,7 +476,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetNamespaceRoots(ctx context.Conte
 	}
 	out := &GetNamespaceRootsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -496,7 +496,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetNamespaceRoots(ctx context.Conte
 	}
 	out := &SetNamespaceRootsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -516,7 +516,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetEnabled(ctx context.Context, in 
 	}
 	out := &GetEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -536,7 +536,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetEnabled(ctx context.Context, in 
 	}
 	out := &SetEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -556,7 +556,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetOperationType(ctx context.Contex
 	}
 	out := &GetOperationTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -576,7 +576,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetOperationType(ctx context.Contex
 	}
 	out := &SetOperationTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -596,7 +596,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetExpirationDirectory(ctx context.
 	}
 	out := &GetExpirationDirectoryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -616,7 +616,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetExpirationDirectory(ctx context.
 	}
 	out := &SetExpirationDirectoryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -636,7 +636,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetCustomAction(ctx context.Context
 	}
 	out := &GetCustomActionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -656,7 +656,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetNotifications(ctx context.Contex
 	}
 	out := &GetNotificationsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -676,7 +676,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetLogging(ctx context.Context, in 
 	}
 	out := &GetLoggingResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -696,7 +696,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetLogging(ctx context.Context, in 
 	}
 	out := &SetLoggingResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -716,7 +716,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetReportEnabled(ctx context.Contex
 	}
 	out := &GetReportEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -736,7 +736,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetReportEnabled(ctx context.Contex
 	}
 	out := &SetReportEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -756,7 +756,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetFormats(ctx context.Context, in 
 	}
 	out := &GetFormatsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -776,7 +776,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetFormats(ctx context.Context, in 
 	}
 	out := &SetFormatsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -796,7 +796,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetMailTo(ctx context.Context, in *
 	}
 	out := &GetMailToResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -816,7 +816,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetMailTo(ctx context.Context, in *
 	}
 	out := &SetMailToResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -836,7 +836,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetDaysSinceFileCreated(ctx context
 	}
 	out := &GetDaysSinceFileCreatedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -856,7 +856,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetDaysSinceFileCreated(ctx context
 	}
 	out := &SetDaysSinceFileCreatedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -876,7 +876,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetDaysSinceFileLastAccessed(ctx co
 	}
 	out := &GetDaysSinceFileLastAccessedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -896,7 +896,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetDaysSinceFileLastAccessed(ctx co
 	}
 	out := &SetDaysSinceFileLastAccessedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -916,7 +916,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetDaysSinceFileLastModified(ctx co
 	}
 	out := &GetDaysSinceFileLastModifiedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -936,7 +936,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetDaysSinceFileLastModified(ctx co
 	}
 	out := &SetDaysSinceFileLastModifiedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -956,7 +956,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetPropertyConditions(ctx context.C
 	}
 	out := &GetPropertyConditionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -976,7 +976,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetFromDate(ctx context.Context, in
 	}
 	out := &GetFromDateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -996,7 +996,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetFromDate(ctx context.Context, in
 	}
 	out := &SetFromDateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1016,7 +1016,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetTask(ctx context.Context, in *Ge
 	}
 	out := &GetTaskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1036,7 +1036,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetTask(ctx context.Context, in *Se
 	}
 	out := &SetTaskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1056,7 +1056,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetParameters(ctx context.Context, 
 	}
 	out := &GetParametersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1076,7 +1076,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetParameters(ctx context.Context, 
 	}
 	out := &SetParametersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1096,7 +1096,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetRunningStatus(ctx context.Contex
 	}
 	out := &GetRunningStatusResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1116,7 +1116,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetLastError(ctx context.Context, i
 	}
 	out := &GetLastErrorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1136,7 +1136,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetLastReportPathWithoutExtension(c
 	}
 	out := &GetLastReportPathWithoutExtensionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1156,7 +1156,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetLastRun(ctx context.Context, in 
 	}
 	out := &GetLastRunResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1176,7 +1176,7 @@ func (o *xxx_DefaultFileManagementJobClient) GetFileNamePattern(ctx context.Cont
 	}
 	out := &GetFileNamePatternResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1196,7 +1196,7 @@ func (o *xxx_DefaultFileManagementJobClient) SetFileNamePattern(ctx context.Cont
 	}
 	out := &SetFileNamePatternResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1216,7 +1216,7 @@ func (o *xxx_DefaultFileManagementJobClient) Run(ctx context.Context, in *RunReq
 	}
 	out := &RunResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1236,7 +1236,7 @@ func (o *xxx_DefaultFileManagementJobClient) WaitForCompletion(ctx context.Conte
 	}
 	out := &WaitForCompletionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1256,7 +1256,7 @@ func (o *xxx_DefaultFileManagementJobClient) Cancel(ctx context.Context, in *Can
 	}
 	out := &CancelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1276,7 +1276,7 @@ func (o *xxx_DefaultFileManagementJobClient) AddNotification(ctx context.Context
 	}
 	out := &AddNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1296,7 +1296,7 @@ func (o *xxx_DefaultFileManagementJobClient) DeleteNotification(ctx context.Cont
 	}
 	out := &DeleteNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1316,7 +1316,7 @@ func (o *xxx_DefaultFileManagementJobClient) ModifyNotification(ctx context.Cont
 	}
 	out := &ModifyNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1336,7 +1336,7 @@ func (o *xxx_DefaultFileManagementJobClient) CreateNotificationAction(ctx contex
 	}
 	out := &CreateNotificationActionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1356,7 +1356,7 @@ func (o *xxx_DefaultFileManagementJobClient) EnumNotificationActions(ctx context
 	}
 	out := &EnumNotificationActionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1376,7 +1376,7 @@ func (o *xxx_DefaultFileManagementJobClient) CreatePropertyCondition(ctx context
 	}
 	out := &CreatePropertyConditionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1396,7 +1396,7 @@ func (o *xxx_DefaultFileManagementJobClient) CreateCustomAction(ctx context.Cont
 	}
 	out := &CreateCustomActionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

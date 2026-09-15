@@ -110,7 +110,7 @@ func (o *xxx_DefaultVDiskClient) Open(ctx context.Context, in *OpenRequest, opts
 	}
 	out := &OpenResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -130,7 +130,7 @@ func (o *xxx_DefaultVDiskClient) GetProperties(ctx context.Context, in *GetPrope
 	}
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -150,7 +150,7 @@ func (o *xxx_DefaultVDiskClient) GetHostVolume(ctx context.Context, in *GetHostV
 	}
 	out := &GetHostVolumeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -170,7 +170,7 @@ func (o *xxx_DefaultVDiskClient) GetDeviceName(ctx context.Context, in *GetDevic
 	}
 	out := &GetDeviceNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

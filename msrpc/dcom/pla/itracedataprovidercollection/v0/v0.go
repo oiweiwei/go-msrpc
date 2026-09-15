@@ -129,7 +129,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) GetCount(ctx context.Cont
 	}
 	out := &GetCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -149,7 +149,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) GetItem(ctx context.Conte
 	}
 	out := &GetItemResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -169,7 +169,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) Get_NewEnum(ctx context.C
 	}
 	out := &Get_NewEnumResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -189,7 +189,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) Add(ctx context.Context, 
 	}
 	out := &AddResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -209,7 +209,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) Remove(ctx context.Contex
 	}
 	out := &RemoveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -229,7 +229,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) Clear(ctx context.Context
 	}
 	out := &ClearResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -249,7 +249,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) AddRange(ctx context.Cont
 	}
 	out := &AddRangeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -269,7 +269,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) CreateTraceDataProvider(c
 	}
 	out := &CreateTraceDataProviderResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -289,7 +289,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) GetTraceDataProviders(ctx
 	}
 	out := &GetTraceDataProvidersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -309,7 +309,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) GetTraceDataProvidersByPr
 	}
 	out := &GetTraceDataProvidersByProcessResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

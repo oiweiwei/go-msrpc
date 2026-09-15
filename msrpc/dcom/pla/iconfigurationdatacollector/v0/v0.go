@@ -137,7 +137,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) GetFileMaxCount(ctx contex
 	}
 	out := &GetFileMaxCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -157,7 +157,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) SetFileMaxCount(ctx contex
 	}
 	out := &SetFileMaxCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -177,7 +177,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) GetFileMaxRecursiveDepth(c
 	}
 	out := &GetFileMaxRecursiveDepthResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -197,7 +197,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) SetFileMaxRecursiveDepth(c
 	}
 	out := &SetFileMaxRecursiveDepthResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -217,7 +217,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) GetFileMaxTotalSize(ctx co
 	}
 	out := &GetFileMaxTotalSizeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -237,7 +237,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) SetFileMaxTotalSize(ctx co
 	}
 	out := &SetFileMaxTotalSizeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -257,7 +257,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) GetFiles(ctx context.Conte
 	}
 	out := &GetFilesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -277,7 +277,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) SetFiles(ctx context.Conte
 	}
 	out := &SetFilesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -297,7 +297,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) GetManagementQueries(ctx c
 	}
 	out := &GetManagementQueriesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -317,7 +317,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) SetManagementQueries(ctx c
 	}
 	out := &SetManagementQueriesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -337,7 +337,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) GetQueryNetworkAdapters(ct
 	}
 	out := &GetQueryNetworkAdaptersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -357,7 +357,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) SetQueryNetworkAdapters(ct
 	}
 	out := &SetQueryNetworkAdaptersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -377,7 +377,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) GetRegistryKeys(ctx contex
 	}
 	out := &GetRegistryKeysResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -397,7 +397,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) SetRegistryKeys(ctx contex
 	}
 	out := &SetRegistryKeysResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -417,7 +417,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) GetRegistryMaxRecursiveDep
 	}
 	out := &GetRegistryMaxRecursiveDepthResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -437,7 +437,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) SetRegistryMaxRecursiveDep
 	}
 	out := &SetRegistryMaxRecursiveDepthResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -457,7 +457,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) GetSystemStateFile(ctx con
 	}
 	out := &GetSystemStateFileResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -477,7 +477,7 @@ func (o *xxx_DefaultConfigurationDataCollectorClient) SetSystemStateFile(ctx con
 	}
 	out := &SetSystemStateFileResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

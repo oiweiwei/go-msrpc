@@ -229,7 +229,7 @@ func (o *xxx_DefaultMimicomClient) Bind(ctx context.Context, in *BindRequest, op
 	}
 	out := &BindResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -242,7 +242,7 @@ func (o *xxx_DefaultMimicomClient) Unbind(ctx context.Context, in *UnbindRequest
 	}
 	out := &UnbindResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -255,7 +255,7 @@ func (o *xxx_DefaultMimicomClient) Command(ctx context.Context, in *CommandReque
 	}
 	out := &CommandResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

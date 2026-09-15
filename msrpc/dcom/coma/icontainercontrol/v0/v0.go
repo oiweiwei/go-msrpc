@@ -116,7 +116,7 @@ func (o *xxx_DefaultContainerControlClient) CreateContainer(ctx context.Context,
 	}
 	out := &CreateContainerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -136,7 +136,7 @@ func (o *xxx_DefaultContainerControlClient) ShutdownContainers(ctx context.Conte
 	}
 	out := &ShutdownContainersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -156,7 +156,7 @@ func (o *xxx_DefaultContainerControlClient) RefreshComponents(ctx context.Contex
 	}
 	out := &RefreshComponentsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

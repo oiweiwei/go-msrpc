@@ -167,7 +167,7 @@ func (o *xxx_DefaultPackClient) GetProperties(ctx context.Context, in *GetProper
 	}
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -187,7 +187,7 @@ func (o *xxx_DefaultPackClient) GetProvider(ctx context.Context, in *GetProvider
 	}
 	out := &GetProviderResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -207,7 +207,7 @@ func (o *xxx_DefaultPackClient) QueryVolumes(ctx context.Context, in *QueryVolum
 	}
 	out := &QueryVolumesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -227,7 +227,7 @@ func (o *xxx_DefaultPackClient) QueryDisks(ctx context.Context, in *QueryDisksRe
 	}
 	out := &QueryDisksResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -247,7 +247,7 @@ func (o *xxx_DefaultPackClient) CreateVolume(ctx context.Context, in *CreateVolu
 	}
 	out := &CreateVolumeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -267,7 +267,7 @@ func (o *xxx_DefaultPackClient) AddDisk(ctx context.Context, in *AddDiskRequest,
 	}
 	out := &AddDiskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -287,7 +287,7 @@ func (o *xxx_DefaultPackClient) MigrateDisks(ctx context.Context, in *MigrateDis
 	}
 	out := &MigrateDisksResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -307,7 +307,7 @@ func (o *xxx_DefaultPackClient) RemoveMissingDisk(ctx context.Context, in *Remov
 	}
 	out := &RemoveMissingDiskResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -327,7 +327,7 @@ func (o *xxx_DefaultPackClient) Recover(ctx context.Context, in *RecoverRequest,
 	}
 	out := &RecoverResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

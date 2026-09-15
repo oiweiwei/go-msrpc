@@ -125,7 +125,7 @@ func (o *xxx_DefaultTransaction2Client) InitNew(ctx context.Context, in *InitNew
 	}
 	out := &InitNewResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -145,7 +145,7 @@ func (o *xxx_DefaultTransaction2Client) GetProperties(ctx context.Context, in *G
 	}
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -109,7 +109,7 @@ func (o *xxx_DefaultPrivateEventClient) GetHandle(ctx context.Context, in *GetHa
 	}
 	out := &GetHandleResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -129,7 +129,7 @@ func (o *xxx_DefaultPrivateEventClient) FireArrivedEvent(ctx context.Context, in
 	}
 	out := &FireArrivedEventResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -149,7 +149,7 @@ func (o *xxx_DefaultPrivateEventClient) FireArrivedErrorEvent(ctx context.Contex
 	}
 	out := &FireArrivedErrorEventResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

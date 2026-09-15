@@ -106,7 +106,7 @@ func (o *xxx_DefaultPropertyConditionClient) GetName(ctx context.Context, in *Ge
 	}
 	out := &GetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -126,7 +126,7 @@ func (o *xxx_DefaultPropertyConditionClient) SetName(ctx context.Context, in *Se
 	}
 	out := &SetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -146,7 +146,7 @@ func (o *xxx_DefaultPropertyConditionClient) GetType(ctx context.Context, in *Ge
 	}
 	out := &GetTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -166,7 +166,7 @@ func (o *xxx_DefaultPropertyConditionClient) SetType(ctx context.Context, in *Se
 	}
 	out := &SetTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -186,7 +186,7 @@ func (o *xxx_DefaultPropertyConditionClient) GetValue(ctx context.Context, in *G
 	}
 	out := &GetValueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -206,7 +206,7 @@ func (o *xxx_DefaultPropertyConditionClient) SetValue(ctx context.Context, in *S
 	}
 	out := &SetValueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -226,7 +226,7 @@ func (o *xxx_DefaultPropertyConditionClient) Delete(ctx context.Context, in *Del
 	}
 	out := &DeleteResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

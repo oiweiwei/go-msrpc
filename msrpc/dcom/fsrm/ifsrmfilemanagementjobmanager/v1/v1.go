@@ -146,7 +146,7 @@ func (o *xxx_DefaultFileManagementJobManagerClient) GetActionVariables(ctx conte
 	}
 	out := &GetActionVariablesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -166,7 +166,7 @@ func (o *xxx_DefaultFileManagementJobManagerClient) GetActionVariableDescription
 	}
 	out := &GetActionVariableDescriptionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -186,7 +186,7 @@ func (o *xxx_DefaultFileManagementJobManagerClient) EnumFileManagementJobs(ctx c
 	}
 	out := &EnumFileManagementJobsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -206,7 +206,7 @@ func (o *xxx_DefaultFileManagementJobManagerClient) CreateFileManagementJob(ctx 
 	}
 	out := &CreateFileManagementJobResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -226,7 +226,7 @@ func (o *xxx_DefaultFileManagementJobManagerClient) GetFileManagementJob(ctx con
 	}
 	out := &GetFileManagementJobResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

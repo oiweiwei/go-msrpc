@@ -207,7 +207,7 @@ func (o *xxx_DefaultAppHostConfigFileClient) GetConfigPath(ctx context.Context, 
 	}
 	out := &GetConfigPathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -227,7 +227,7 @@ func (o *xxx_DefaultAppHostConfigFileClient) GetFilePath(ctx context.Context, in
 	}
 	out := &GetFilePathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -247,7 +247,7 @@ func (o *xxx_DefaultAppHostConfigFileClient) GetLocations(ctx context.Context, i
 	}
 	out := &GetLocationsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -267,7 +267,7 @@ func (o *xxx_DefaultAppHostConfigFileClient) GetAdminSection(ctx context.Context
 	}
 	out := &GetAdminSectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -287,7 +287,7 @@ func (o *xxx_DefaultAppHostConfigFileClient) GetMetadata(ctx context.Context, in
 	}
 	out := &GetMetadataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -307,7 +307,7 @@ func (o *xxx_DefaultAppHostConfigFileClient) SetMetadata(ctx context.Context, in
 	}
 	out := &SetMetadataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -327,7 +327,7 @@ func (o *xxx_DefaultAppHostConfigFileClient) ClearInvalidSections(ctx context.Co
 	}
 	out := &ClearInvalidSectionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -347,7 +347,7 @@ func (o *xxx_DefaultAppHostConfigFileClient) GetRootSectionGroup(ctx context.Con
 	}
 	out := &GetRootSectionGroupResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -17934,7 +17934,7 @@ func (o *xxx_DefaultWinspoolClient) GetCorePrinterDrivers(ctx context.Context, i
 	}
 	out := &GetCorePrinterDriversResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -17947,7 +17947,7 @@ func (o *xxx_DefaultWinspoolClient) GetPrinterDriverPackagePath(ctx context.Cont
 	}
 	out := &GetPrinterDriverPackagePathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -18038,7 +18038,7 @@ func (o *xxx_DefaultWinspoolClient) CreateJobOnPrinter(ctx context.Context, in *
 	}
 	out := &CreateJobOnPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -18051,7 +18051,7 @@ func (o *xxx_DefaultWinspoolClient) GetJobAttributes(ctx context.Context, in *Ge
 	}
 	out := &GetJobAttributesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -18064,7 +18064,7 @@ func (o *xxx_DefaultWinspoolClient) SetJobAttributes(ctx context.Context, in *Se
 	}
 	out := &SetJobAttributesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -18077,7 +18077,7 @@ func (o *xxx_DefaultWinspoolClient) GetPrinterAttributes(ctx context.Context, in
 	}
 	out := &GetPrinterAttributesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -18090,7 +18090,7 @@ func (o *xxx_DefaultWinspoolClient) SetPrinterAttributes(ctx context.Context, in
 	}
 	out := &SetPrinterAttributesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

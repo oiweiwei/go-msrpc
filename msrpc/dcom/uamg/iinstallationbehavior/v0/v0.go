@@ -148,7 +148,7 @@ func (o *xxx_DefaultInstallationBehaviorClient) GetCanRequestUserInput(ctx conte
 	}
 	out := &GetCanRequestUserInputResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -168,7 +168,7 @@ func (o *xxx_DefaultInstallationBehaviorClient) GetImpact(ctx context.Context, i
 	}
 	out := &GetImpactResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -188,7 +188,7 @@ func (o *xxx_DefaultInstallationBehaviorClient) GetRebootBehavior(ctx context.Co
 	}
 	out := &GetRebootBehaviorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -208,7 +208,7 @@ func (o *xxx_DefaultInstallationBehaviorClient) GetRequiresNetworkConnectivity(c
 	}
 	out := &GetRequiresNetworkConnectivityResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

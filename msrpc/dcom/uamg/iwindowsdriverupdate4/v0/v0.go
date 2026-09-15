@@ -117,7 +117,7 @@ func (o *xxx_DefaultWindowsDriverUpdate4Client) GetWindowsDriverUpdateEntries(ct
 	}
 	out := &GetWindowsDriverUpdateEntriesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -137,7 +137,7 @@ func (o *xxx_DefaultWindowsDriverUpdate4Client) GetPerUser(ctx context.Context, 
 	}
 	out := &GetPerUserResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

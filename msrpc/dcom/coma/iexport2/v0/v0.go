@@ -100,7 +100,7 @@ func (o *xxx_DefaultExport2Client) ExportPartition(ctx context.Context, in *Expo
 	}
 	out := &ExportPartitionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

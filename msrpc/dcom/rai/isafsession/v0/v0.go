@@ -109,7 +109,7 @@ func (o *xxx_DefaultSAFSessionClient) GetSessionID(ctx context.Context, in *GetS
 	}
 	out := &GetSessionIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -129,7 +129,7 @@ func (o *xxx_DefaultSAFSessionClient) SetSessionID(ctx context.Context, in *SetS
 	}
 	out := &SetSessionIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -149,7 +149,7 @@ func (o *xxx_DefaultSAFSessionClient) GetSessionState(ctx context.Context, in *G
 	}
 	out := &GetSessionStateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -169,7 +169,7 @@ func (o *xxx_DefaultSAFSessionClient) SetSessionState(ctx context.Context, in *S
 	}
 	out := &SetSessionStateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -189,7 +189,7 @@ func (o *xxx_DefaultSAFSessionClient) GetDomainName(ctx context.Context, in *Get
 	}
 	out := &GetDomainNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -209,7 +209,7 @@ func (o *xxx_DefaultSAFSessionClient) SetDomainName(ctx context.Context, in *Set
 	}
 	out := &SetDomainNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -229,7 +229,7 @@ func (o *xxx_DefaultSAFSessionClient) GetUserName(ctx context.Context, in *GetUs
 	}
 	out := &GetUserNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -249,7 +249,7 @@ func (o *xxx_DefaultSAFSessionClient) SetUserName(ctx context.Context, in *SetUs
 	}
 	out := &SetUserNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

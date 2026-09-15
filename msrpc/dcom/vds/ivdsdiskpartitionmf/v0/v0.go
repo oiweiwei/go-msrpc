@@ -140,7 +140,7 @@ func (o *xxx_DefaultDiskPartitionMFClient) GetPartitionFileSystemProperties(ctx 
 	}
 	out := &GetPartitionFileSystemPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -160,7 +160,7 @@ func (o *xxx_DefaultDiskPartitionMFClient) GetPartitionFileSystemTypeName(ctx co
 	}
 	out := &GetPartitionFileSystemTypeNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -180,7 +180,7 @@ func (o *xxx_DefaultDiskPartitionMFClient) QueryPartitionFileSystemFormatSupport
 	}
 	out := &QueryPartitionFileSystemFormatSupportResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -200,7 +200,7 @@ func (o *xxx_DefaultDiskPartitionMFClient) FormatPartitionEx(ctx context.Context
 	}
 	out := &FormatPartitionExResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -107,7 +107,7 @@ func (o *xxx_DefaultCertRequestDClient) Request(ctx context.Context, in *Request
 	}
 	out := &RequestResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -127,7 +127,7 @@ func (o *xxx_DefaultCertRequestDClient) GetCACert(ctx context.Context, in *GetCA
 	}
 	out := &GetCACertResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -147,7 +147,7 @@ func (o *xxx_DefaultCertRequestDClient) Ping(ctx context.Context, in *PingReques
 	}
 	out := &PingResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

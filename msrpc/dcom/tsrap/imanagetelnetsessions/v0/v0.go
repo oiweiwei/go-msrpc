@@ -115,7 +115,7 @@ func (o *xxx_DefaultManageTelnetSessionsClient) GetTelnetSessions(ctx context.Co
 	}
 	out := &GetTelnetSessionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -135,7 +135,7 @@ func (o *xxx_DefaultManageTelnetSessionsClient) TerminateSession(ctx context.Con
 	}
 	out := &TerminateSessionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -155,7 +155,7 @@ func (o *xxx_DefaultManageTelnetSessionsClient) SendMessageToASession(ctx contex
 	}
 	out := &SendMessageToASessionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

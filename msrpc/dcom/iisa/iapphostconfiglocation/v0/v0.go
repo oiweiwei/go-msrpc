@@ -175,7 +175,7 @@ func (o *xxx_DefaultAppHostConfigLocationClient) GetPath(ctx context.Context, in
 	}
 	out := &GetPathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -195,7 +195,7 @@ func (o *xxx_DefaultAppHostConfigLocationClient) GetCount(ctx context.Context, i
 	}
 	out := &GetCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -215,7 +215,7 @@ func (o *xxx_DefaultAppHostConfigLocationClient) GetItem(ctx context.Context, in
 	}
 	out := &GetItemResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -235,7 +235,7 @@ func (o *xxx_DefaultAppHostConfigLocationClient) AddConfigSection(ctx context.Co
 	}
 	out := &AddConfigSectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -255,7 +255,7 @@ func (o *xxx_DefaultAppHostConfigLocationClient) DeleteConfigSection(ctx context
 	}
 	out := &DeleteConfigSectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

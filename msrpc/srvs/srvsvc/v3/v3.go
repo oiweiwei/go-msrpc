@@ -19173,7 +19173,7 @@ func (o *xxx_DefaultSrvsvcClient) PathCompare(ctx context.Context, in *PathCompa
 	}
 	out := &PathCompareResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -19212,7 +19212,7 @@ func (o *xxx_DefaultSrvsvcClient) NameCompare(ctx context.Context, in *NameCompa
 	}
 	out := &NameCompareResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

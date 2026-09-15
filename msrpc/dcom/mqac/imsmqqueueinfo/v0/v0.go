@@ -243,7 +243,7 @@ func (o *xxx_DefaultQueueInfoClient) GetQueueGUID(ctx context.Context, in *GetQu
 	}
 	out := &GetQueueGUIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -263,7 +263,7 @@ func (o *xxx_DefaultQueueInfoClient) GetServiceTypeGUID(ctx context.Context, in 
 	}
 	out := &GetServiceTypeGUIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -283,7 +283,7 @@ func (o *xxx_DefaultQueueInfoClient) SetServiceTypeGUID(ctx context.Context, in 
 	}
 	out := &SetServiceTypeGUIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -303,7 +303,7 @@ func (o *xxx_DefaultQueueInfoClient) GetLabel(ctx context.Context, in *GetLabelR
 	}
 	out := &GetLabelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -323,7 +323,7 @@ func (o *xxx_DefaultQueueInfoClient) SetLabel(ctx context.Context, in *SetLabelR
 	}
 	out := &SetLabelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -343,7 +343,7 @@ func (o *xxx_DefaultQueueInfoClient) GetPathName(ctx context.Context, in *GetPat
 	}
 	out := &GetPathNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -363,7 +363,7 @@ func (o *xxx_DefaultQueueInfoClient) SetPathName(ctx context.Context, in *SetPat
 	}
 	out := &SetPathNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -383,7 +383,7 @@ func (o *xxx_DefaultQueueInfoClient) GetFormatName(ctx context.Context, in *GetF
 	}
 	out := &GetFormatNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -403,7 +403,7 @@ func (o *xxx_DefaultQueueInfoClient) SetFormatName(ctx context.Context, in *SetF
 	}
 	out := &SetFormatNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -423,7 +423,7 @@ func (o *xxx_DefaultQueueInfoClient) GetIsTransactional(ctx context.Context, in 
 	}
 	out := &GetIsTransactionalResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -443,7 +443,7 @@ func (o *xxx_DefaultQueueInfoClient) GetPrivacyLevel(ctx context.Context, in *Ge
 	}
 	out := &GetPrivacyLevelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -463,7 +463,7 @@ func (o *xxx_DefaultQueueInfoClient) SetPrivacyLevel(ctx context.Context, in *Se
 	}
 	out := &SetPrivacyLevelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -483,7 +483,7 @@ func (o *xxx_DefaultQueueInfoClient) GetJournal(ctx context.Context, in *GetJour
 	}
 	out := &GetJournalResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -503,7 +503,7 @@ func (o *xxx_DefaultQueueInfoClient) SetJournal(ctx context.Context, in *SetJour
 	}
 	out := &SetJournalResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -523,7 +523,7 @@ func (o *xxx_DefaultQueueInfoClient) GetQuota(ctx context.Context, in *GetQuotaR
 	}
 	out := &GetQuotaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -543,7 +543,7 @@ func (o *xxx_DefaultQueueInfoClient) SetQuota(ctx context.Context, in *SetQuotaR
 	}
 	out := &SetQuotaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -563,7 +563,7 @@ func (o *xxx_DefaultQueueInfoClient) GetBasePriority(ctx context.Context, in *Ge
 	}
 	out := &GetBasePriorityResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -583,7 +583,7 @@ func (o *xxx_DefaultQueueInfoClient) SetBasePriority(ctx context.Context, in *Se
 	}
 	out := &SetBasePriorityResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -603,7 +603,7 @@ func (o *xxx_DefaultQueueInfoClient) GetCreateTime(ctx context.Context, in *GetC
 	}
 	out := &GetCreateTimeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -623,7 +623,7 @@ func (o *xxx_DefaultQueueInfoClient) GetModifyTime(ctx context.Context, in *GetM
 	}
 	out := &GetModifyTimeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -643,7 +643,7 @@ func (o *xxx_DefaultQueueInfoClient) GetAuthenticate(ctx context.Context, in *Ge
 	}
 	out := &GetAuthenticateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -663,7 +663,7 @@ func (o *xxx_DefaultQueueInfoClient) SetAuthenticate(ctx context.Context, in *Se
 	}
 	out := &SetAuthenticateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -683,7 +683,7 @@ func (o *xxx_DefaultQueueInfoClient) GetJournalQuota(ctx context.Context, in *Ge
 	}
 	out := &GetJournalQuotaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -703,7 +703,7 @@ func (o *xxx_DefaultQueueInfoClient) SetJournalQuota(ctx context.Context, in *Se
 	}
 	out := &SetJournalQuotaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -723,7 +723,7 @@ func (o *xxx_DefaultQueueInfoClient) GetIsWorldReadable(ctx context.Context, in 
 	}
 	out := &GetIsWorldReadableResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -743,7 +743,7 @@ func (o *xxx_DefaultQueueInfoClient) Create(ctx context.Context, in *CreateReque
 	}
 	out := &CreateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -763,7 +763,7 @@ func (o *xxx_DefaultQueueInfoClient) Delete(ctx context.Context, in *DeleteReque
 	}
 	out := &DeleteResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -783,7 +783,7 @@ func (o *xxx_DefaultQueueInfoClient) Open(ctx context.Context, in *OpenRequest, 
 	}
 	out := &OpenResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -803,7 +803,7 @@ func (o *xxx_DefaultQueueInfoClient) Refresh(ctx context.Context, in *RefreshReq
 	}
 	out := &RefreshResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -823,7 +823,7 @@ func (o *xxx_DefaultQueueInfoClient) Update(ctx context.Context, in *UpdateReque
 	}
 	out := &UpdateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

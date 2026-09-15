@@ -147,7 +147,7 @@ func (o *xxx_DefaultRemoteSessionManagementClient) GetRemoteUserCategories(ctx c
 	}
 	out := &GetRemoteUserCategoriesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -167,7 +167,7 @@ func (o *xxx_DefaultRemoteSessionManagementClient) SetRemoteUserCategories(ctx c
 	}
 	out := &SetRemoteUserCategoriesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -187,7 +187,7 @@ func (o *xxx_DefaultRemoteSessionManagementClient) RefreshRemoteSessionWeights(c
 	}
 	out := &RefreshRemoteSessionWeightsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

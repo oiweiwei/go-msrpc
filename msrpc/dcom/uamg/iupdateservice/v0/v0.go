@@ -306,7 +306,7 @@ func (o *xxx_DefaultUpdateServiceClient) GetName(ctx context.Context, in *GetNam
 	}
 	out := &GetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -326,7 +326,7 @@ func (o *xxx_DefaultUpdateServiceClient) GetContentValidationCert(ctx context.Co
 	}
 	out := &GetContentValidationCertResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -346,7 +346,7 @@ func (o *xxx_DefaultUpdateServiceClient) GetExpirationDate(ctx context.Context, 
 	}
 	out := &GetExpirationDateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -366,7 +366,7 @@ func (o *xxx_DefaultUpdateServiceClient) GetIsManaged(ctx context.Context, in *G
 	}
 	out := &GetIsManagedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -386,7 +386,7 @@ func (o *xxx_DefaultUpdateServiceClient) GetIsRegisteredWithAU(ctx context.Conte
 	}
 	out := &GetIsRegisteredWithAUResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -406,7 +406,7 @@ func (o *xxx_DefaultUpdateServiceClient) GetIssueDate(ctx context.Context, in *G
 	}
 	out := &GetIssueDateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -426,7 +426,7 @@ func (o *xxx_DefaultUpdateServiceClient) GetOffersWindowsUpdates(ctx context.Con
 	}
 	out := &GetOffersWindowsUpdatesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -446,7 +446,7 @@ func (o *xxx_DefaultUpdateServiceClient) GetRedirectUrls(ctx context.Context, in
 	}
 	out := &GetRedirectUrlsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -466,7 +466,7 @@ func (o *xxx_DefaultUpdateServiceClient) GetServiceID(ctx context.Context, in *G
 	}
 	out := &GetServiceIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -486,7 +486,7 @@ func (o *xxx_DefaultUpdateServiceClient) GetIsScanPackageService(ctx context.Con
 	}
 	out := &GetIsScanPackageServiceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -506,7 +506,7 @@ func (o *xxx_DefaultUpdateServiceClient) GetCanRegisterWithAU(ctx context.Contex
 	}
 	out := &GetCanRegisterWithAUResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -526,7 +526,7 @@ func (o *xxx_DefaultUpdateServiceClient) GetServiceURL(ctx context.Context, in *
 	}
 	out := &GetServiceURLResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -546,7 +546,7 @@ func (o *xxx_DefaultUpdateServiceClient) GetSetupPrefix(ctx context.Context, in 
 	}
 	out := &GetSetupPrefixResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

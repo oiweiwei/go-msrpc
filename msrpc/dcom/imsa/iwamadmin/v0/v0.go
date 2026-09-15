@@ -222,7 +222,7 @@ func (o *xxx_DefaultWAMAdminClient) AppCreate(ctx context.Context, in *AppCreate
 	}
 	out := &AppCreateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -242,7 +242,7 @@ func (o *xxx_DefaultWAMAdminClient) AppDelete(ctx context.Context, in *AppDelete
 	}
 	out := &AppDeleteResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -262,7 +262,7 @@ func (o *xxx_DefaultWAMAdminClient) AppUnload(ctx context.Context, in *AppUnload
 	}
 	out := &AppUnloadResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -282,7 +282,7 @@ func (o *xxx_DefaultWAMAdminClient) AppGetStatus(ctx context.Context, in *AppGet
 	}
 	out := &AppGetStatusResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -302,7 +302,7 @@ func (o *xxx_DefaultWAMAdminClient) AppDeleteRecoverable(ctx context.Context, in
 	}
 	out := &AppDeleteRecoverableResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -322,7 +322,7 @@ func (o *xxx_DefaultWAMAdminClient) AppRecover(ctx context.Context, in *AppRecov
 	}
 	out := &AppRecoverResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -103,7 +103,7 @@ func (o *xxx_DefaultPersistMonikerClient) GetClassID(ctx context.Context, in *Ge
 	}
 	out := &GetClassIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -123,7 +123,7 @@ func (o *xxx_DefaultPersistMonikerClient) IsDirty(ctx context.Context, in *IsDir
 	}
 	out := &IsDirtyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -143,7 +143,7 @@ func (o *xxx_DefaultPersistMonikerClient) Load(ctx context.Context, in *LoadRequ
 	}
 	out := &LoadResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -163,7 +163,7 @@ func (o *xxx_DefaultPersistMonikerClient) Save(ctx context.Context, in *SaveRequ
 	}
 	out := &SaveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -183,7 +183,7 @@ func (o *xxx_DefaultPersistMonikerClient) SaveCompleted(ctx context.Context, in 
 	}
 	out := &SaveCompletedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -203,7 +203,7 @@ func (o *xxx_DefaultPersistMonikerClient) GetCurMoniker(ctx context.Context, in 
 	}
 	out := &GetCurMonikerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

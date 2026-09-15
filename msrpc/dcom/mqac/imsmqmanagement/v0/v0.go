@@ -266,7 +266,7 @@ func (o *xxx_DefaultManagementClient) Init(ctx context.Context, in *InitRequest,
 	}
 	out := &InitResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -286,7 +286,7 @@ func (o *xxx_DefaultManagementClient) GetFormatName(ctx context.Context, in *Get
 	}
 	out := &GetFormatNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -306,7 +306,7 @@ func (o *xxx_DefaultManagementClient) GetMachine(ctx context.Context, in *GetMac
 	}
 	out := &GetMachineResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -326,7 +326,7 @@ func (o *xxx_DefaultManagementClient) GetMessageCount(ctx context.Context, in *G
 	}
 	out := &GetMessageCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -346,7 +346,7 @@ func (o *xxx_DefaultManagementClient) GetForeignStatus(ctx context.Context, in *
 	}
 	out := &GetForeignStatusResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -366,7 +366,7 @@ func (o *xxx_DefaultManagementClient) GetQueueType(ctx context.Context, in *GetQ
 	}
 	out := &GetQueueTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -386,7 +386,7 @@ func (o *xxx_DefaultManagementClient) GetIsLocal(ctx context.Context, in *GetIsL
 	}
 	out := &GetIsLocalResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -406,7 +406,7 @@ func (o *xxx_DefaultManagementClient) GetTransactionalStatus(ctx context.Context
 	}
 	out := &GetTransactionalStatusResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -426,7 +426,7 @@ func (o *xxx_DefaultManagementClient) GetBytesInQueue(ctx context.Context, in *G
 	}
 	out := &GetBytesInQueueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

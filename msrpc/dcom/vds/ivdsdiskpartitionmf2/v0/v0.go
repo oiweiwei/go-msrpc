@@ -95,7 +95,7 @@ func (o *xxx_DefaultDiskPartitionMF2Client) FormatPartitionEx2(ctx context.Conte
 	}
 	out := &FormatPartitionEx2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

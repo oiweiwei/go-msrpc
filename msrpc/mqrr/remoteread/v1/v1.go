@@ -831,7 +831,7 @@ func (o *xxx_DefaultRemoteReadClient) CloseQueue(ctx context.Context, in *CloseQ
 	}
 	out := &CloseQueueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -844,7 +844,7 @@ func (o *xxx_DefaultRemoteReadClient) CreateCursor(ctx context.Context, in *Crea
 	}
 	out := &CreateCursorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -857,7 +857,7 @@ func (o *xxx_DefaultRemoteReadClient) CloseCursor(ctx context.Context, in *Close
 	}
 	out := &CloseCursorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -870,7 +870,7 @@ func (o *xxx_DefaultRemoteReadClient) PurgeQueue(ctx context.Context, in *PurgeQ
 	}
 	out := &PurgeQueueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -883,7 +883,7 @@ func (o *xxx_DefaultRemoteReadClient) StartReceive(ctx context.Context, in *Star
 	}
 	out := &StartReceiveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -896,7 +896,7 @@ func (o *xxx_DefaultRemoteReadClient) CancelReceive(ctx context.Context, in *Can
 	}
 	out := &CancelReceiveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -909,7 +909,7 @@ func (o *xxx_DefaultRemoteReadClient) EndReceive(ctx context.Context, in *EndRec
 	}
 	out := &EndReceiveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -922,7 +922,7 @@ func (o *xxx_DefaultRemoteReadClient) MoveMessage(ctx context.Context, in *MoveM
 	}
 	out := &MoveMessageResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -945,7 +945,7 @@ func (o *xxx_DefaultRemoteReadClient) EnlistRemoteTransaction(ctx context.Contex
 	}
 	out := &EnlistRemoteTransactionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -958,7 +958,7 @@ func (o *xxx_DefaultRemoteReadClient) StartTransactionalReceive(ctx context.Cont
 	}
 	out := &StartTransactionalReceiveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -971,7 +971,7 @@ func (o *xxx_DefaultRemoteReadClient) SetUserAcknowledgementClass(ctx context.Co
 	}
 	out := &SetUserAcknowledgementClassResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -984,7 +984,7 @@ func (o *xxx_DefaultRemoteReadClient) EndTransactionalReceive(ctx context.Contex
 	}
 	out := &EndTransactionalReceiveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

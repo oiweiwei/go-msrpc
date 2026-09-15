@@ -97,7 +97,7 @@ func (o *xxx_DefaultWindowsUpdateAgentInfoClient) GetInfo(ctx context.Context, i
 	}
 	out := &GetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

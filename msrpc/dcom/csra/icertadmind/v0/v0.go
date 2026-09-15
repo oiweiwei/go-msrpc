@@ -210,7 +210,7 @@ func (o *xxx_DefaultCertAdminDClient) SetExtension(ctx context.Context, in *SetE
 	}
 	out := &SetExtensionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -230,7 +230,7 @@ func (o *xxx_DefaultCertAdminDClient) SetAttributes(ctx context.Context, in *Set
 	}
 	out := &SetAttributesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -250,7 +250,7 @@ func (o *xxx_DefaultCertAdminDClient) ResubmitRequest(ctx context.Context, in *R
 	}
 	out := &ResubmitRequestResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -270,7 +270,7 @@ func (o *xxx_DefaultCertAdminDClient) DenyRequest(ctx context.Context, in *DenyR
 	}
 	out := &DenyRequestResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -290,7 +290,7 @@ func (o *xxx_DefaultCertAdminDClient) IsValidCertificate(ctx context.Context, in
 	}
 	out := &IsValidCertificateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -310,7 +310,7 @@ func (o *xxx_DefaultCertAdminDClient) PublishCRL(ctx context.Context, in *Publis
 	}
 	out := &PublishCRLResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -330,7 +330,7 @@ func (o *xxx_DefaultCertAdminDClient) GetCRL(ctx context.Context, in *GetCRLRequ
 	}
 	out := &GetCRLResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -350,7 +350,7 @@ func (o *xxx_DefaultCertAdminDClient) RevokeCertificate(ctx context.Context, in 
 	}
 	out := &RevokeCertificateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -370,7 +370,7 @@ func (o *xxx_DefaultCertAdminDClient) EnumViewColumn(ctx context.Context, in *En
 	}
 	out := &EnumViewColumnResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -390,7 +390,7 @@ func (o *xxx_DefaultCertAdminDClient) GetViewDefaultColumnSet(ctx context.Contex
 	}
 	out := &GetViewDefaultColumnSetResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -410,7 +410,7 @@ func (o *xxx_DefaultCertAdminDClient) EnumAttributesOrExtensions(ctx context.Con
 	}
 	out := &EnumAttributesOrExtensionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -430,7 +430,7 @@ func (o *xxx_DefaultCertAdminDClient) OpenView(ctx context.Context, in *OpenView
 	}
 	out := &OpenViewResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -450,7 +450,7 @@ func (o *xxx_DefaultCertAdminDClient) EnumView(ctx context.Context, in *EnumView
 	}
 	out := &EnumViewResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -470,7 +470,7 @@ func (o *xxx_DefaultCertAdminDClient) CloseView(ctx context.Context, in *CloseVi
 	}
 	out := &CloseViewResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -490,7 +490,7 @@ func (o *xxx_DefaultCertAdminDClient) ServerControl(ctx context.Context, in *Ser
 	}
 	out := &ServerControlResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -510,7 +510,7 @@ func (o *xxx_DefaultCertAdminDClient) Ping(ctx context.Context, in *PingRequest,
 	}
 	out := &PingResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -530,7 +530,7 @@ func (o *xxx_DefaultCertAdminDClient) GetServerState(ctx context.Context, in *Ge
 	}
 	out := &GetServerStateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -550,7 +550,7 @@ func (o *xxx_DefaultCertAdminDClient) BackupPrepare(ctx context.Context, in *Bac
 	}
 	out := &BackupPrepareResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -570,7 +570,7 @@ func (o *xxx_DefaultCertAdminDClient) BackupEnd(ctx context.Context, in *BackupE
 	}
 	out := &BackupEndResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -590,7 +590,7 @@ func (o *xxx_DefaultCertAdminDClient) BackupGetAttachmentInformation(ctx context
 	}
 	out := &BackupGetAttachmentInformationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -610,7 +610,7 @@ func (o *xxx_DefaultCertAdminDClient) BackupGetBackupLogs(ctx context.Context, i
 	}
 	out := &BackupGetBackupLogsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -630,7 +630,7 @@ func (o *xxx_DefaultCertAdminDClient) BackupOpenFile(ctx context.Context, in *Ba
 	}
 	out := &BackupOpenFileResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -650,7 +650,7 @@ func (o *xxx_DefaultCertAdminDClient) BackupReadFile(ctx context.Context, in *Ba
 	}
 	out := &BackupReadFileResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -670,7 +670,7 @@ func (o *xxx_DefaultCertAdminDClient) BackupCloseFile(ctx context.Context, in *B
 	}
 	out := &BackupCloseFileResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -690,7 +690,7 @@ func (o *xxx_DefaultCertAdminDClient) BackupTruncateLogs(ctx context.Context, in
 	}
 	out := &BackupTruncateLogsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -710,7 +710,7 @@ func (o *xxx_DefaultCertAdminDClient) ImportCertificate(ctx context.Context, in 
 	}
 	out := &ImportCertificateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -730,7 +730,7 @@ func (o *xxx_DefaultCertAdminDClient) BackupGetDynamicFiles(ctx context.Context,
 	}
 	out := &BackupGetDynamicFilesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -750,7 +750,7 @@ func (o *xxx_DefaultCertAdminDClient) RestoreGetDatabaseLocations(ctx context.Co
 	}
 	out := &RestoreGetDatabaseLocationsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

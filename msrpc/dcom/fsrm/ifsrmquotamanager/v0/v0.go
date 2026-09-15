@@ -293,7 +293,7 @@ func (o *xxx_DefaultQuotaManagerClient) GetActionVariables(ctx context.Context, 
 	}
 	out := &GetActionVariablesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -313,7 +313,7 @@ func (o *xxx_DefaultQuotaManagerClient) GetActionVariableDescriptions(ctx contex
 	}
 	out := &GetActionVariableDescriptionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -333,7 +333,7 @@ func (o *xxx_DefaultQuotaManagerClient) CreateQuota(ctx context.Context, in *Cre
 	}
 	out := &CreateQuotaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -353,7 +353,7 @@ func (o *xxx_DefaultQuotaManagerClient) CreateAutoApplyQuota(ctx context.Context
 	}
 	out := &CreateAutoApplyQuotaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -373,7 +373,7 @@ func (o *xxx_DefaultQuotaManagerClient) GetQuota(ctx context.Context, in *GetQuo
 	}
 	out := &GetQuotaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -393,7 +393,7 @@ func (o *xxx_DefaultQuotaManagerClient) GetAutoApplyQuota(ctx context.Context, i
 	}
 	out := &GetAutoApplyQuotaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -413,7 +413,7 @@ func (o *xxx_DefaultQuotaManagerClient) GetRestrictiveQuota(ctx context.Context,
 	}
 	out := &GetRestrictiveQuotaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -433,7 +433,7 @@ func (o *xxx_DefaultQuotaManagerClient) EnumQuotas(ctx context.Context, in *Enum
 	}
 	out := &EnumQuotasResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -453,7 +453,7 @@ func (o *xxx_DefaultQuotaManagerClient) EnumAutoApplyQuotas(ctx context.Context,
 	}
 	out := &EnumAutoApplyQuotasResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -473,7 +473,7 @@ func (o *xxx_DefaultQuotaManagerClient) EnumEffectiveQuotas(ctx context.Context,
 	}
 	out := &EnumEffectiveQuotasResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -493,7 +493,7 @@ func (o *xxx_DefaultQuotaManagerClient) Scan(ctx context.Context, in *ScanReques
 	}
 	out := &ScanResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -513,7 +513,7 @@ func (o *xxx_DefaultQuotaManagerClient) CreateQuotaCollection(ctx context.Contex
 	}
 	out := &CreateQuotaCollectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

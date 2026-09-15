@@ -127,7 +127,7 @@ func (o *xxx_DefaultEventObjectCollectionClient) Get_NewEnum(ctx context.Context
 	}
 	out := &Get_NewEnumResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -147,7 +147,7 @@ func (o *xxx_DefaultEventObjectCollectionClient) GetItem(ctx context.Context, in
 	}
 	out := &GetItemResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -167,7 +167,7 @@ func (o *xxx_DefaultEventObjectCollectionClient) GetNewEnum(ctx context.Context,
 	}
 	out := &GetNewEnumResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -187,7 +187,7 @@ func (o *xxx_DefaultEventObjectCollectionClient) GetCount(ctx context.Context, i
 	}
 	out := &GetCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -207,7 +207,7 @@ func (o *xxx_DefaultEventObjectCollectionClient) Add(ctx context.Context, in *Ad
 	}
 	out := &AddResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -227,7 +227,7 @@ func (o *xxx_DefaultEventObjectCollectionClient) Remove(ctx context.Context, in 
 	}
 	out := &RemoveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

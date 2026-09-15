@@ -122,7 +122,7 @@ func (o *xxx_DefaultCapabilitySupportClient) Start(ctx context.Context, in *Star
 	}
 	out := &StartResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -142,7 +142,7 @@ func (o *xxx_DefaultCapabilitySupportClient) Stop(ctx context.Context, in *StopR
 	}
 	out := &StopResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -162,7 +162,7 @@ func (o *xxx_DefaultCapabilitySupportClient) IsInstalled(ctx context.Context, in
 	}
 	out := &IsInstalledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -182,7 +182,7 @@ func (o *xxx_DefaultCapabilitySupportClient) IsRunning(ctx context.Context, in *
 	}
 	out := &IsRunningResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

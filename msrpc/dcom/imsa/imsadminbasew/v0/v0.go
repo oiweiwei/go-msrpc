@@ -968,7 +968,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) AddKey(ctx context.Context, in *AddKeyR
 	}
 	out := &AddKeyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -988,7 +988,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) DeleteKey(ctx context.Context, in *Dele
 	}
 	out := &DeleteKeyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1008,7 +1008,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) DeleteChildKeys(ctx context.Context, in
 	}
 	out := &DeleteChildKeysResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1028,7 +1028,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) EnumKeys(ctx context.Context, in *EnumK
 	}
 	out := &EnumKeysResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1048,7 +1048,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) CopyKey(ctx context.Context, in *CopyKe
 	}
 	out := &CopyKeyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1068,7 +1068,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) RenameKey(ctx context.Context, in *Rena
 	}
 	out := &RenameKeyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1088,7 +1088,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) SetData(ctx context.Context, in *SetDat
 	}
 	out := &SetDataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1108,7 +1108,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) GetData(ctx context.Context, in *GetDat
 	}
 	out := &GetDataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1128,7 +1128,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) DeleteData(ctx context.Context, in *Del
 	}
 	out := &DeleteDataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1148,7 +1148,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) EnumData(ctx context.Context, in *EnumD
 	}
 	out := &EnumDataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1168,7 +1168,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) GetAllData(ctx context.Context, in *Get
 	}
 	out := &GetAllDataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1188,7 +1188,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) DeleteAllData(ctx context.Context, in *
 	}
 	out := &DeleteAllDataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1208,7 +1208,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) CopyData(ctx context.Context, in *CopyD
 	}
 	out := &CopyDataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1228,7 +1228,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) GetDataPaths(ctx context.Context, in *G
 	}
 	out := &GetDataPathsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1248,7 +1248,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) OpenKey(ctx context.Context, in *OpenKe
 	}
 	out := &OpenKeyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1268,7 +1268,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) CloseKey(ctx context.Context, in *Close
 	}
 	out := &CloseKeyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1288,7 +1288,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) ChangePermissions(ctx context.Context, 
 	}
 	out := &ChangePermissionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1308,7 +1308,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) SaveData(ctx context.Context, in *SaveD
 	}
 	out := &SaveDataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1328,7 +1328,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) GetHandleInfo(ctx context.Context, in *
 	}
 	out := &GetHandleInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1348,7 +1348,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) GetSystemChangeNumber(ctx context.Conte
 	}
 	out := &GetSystemChangeNumberResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1368,7 +1368,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) GetDataSetNumber(ctx context.Context, i
 	}
 	out := &GetDataSetNumberResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1388,7 +1388,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) SetLastChangeTime(ctx context.Context, 
 	}
 	out := &SetLastChangeTimeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1408,7 +1408,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) GetLastChangeTime(ctx context.Context, 
 	}
 	out := &GetLastChangeTimeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1428,7 +1428,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) KeyExchangePhase1(ctx context.Context, 
 	}
 	out := &KeyExchangePhase1Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1448,7 +1448,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) KeyExchangePhase2(ctx context.Context, 
 	}
 	out := &KeyExchangePhase2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1468,7 +1468,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) Backup(ctx context.Context, in *BackupR
 	}
 	out := &BackupResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1488,7 +1488,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) Restore(ctx context.Context, in *Restor
 	}
 	out := &RestoreResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1508,7 +1508,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) EnumBackups(ctx context.Context, in *En
 	}
 	out := &EnumBackupsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1528,7 +1528,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) DeleteBackup(ctx context.Context, in *D
 	}
 	out := &DeleteBackupResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1548,7 +1548,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) UnmarshalInterface(ctx context.Context,
 	}
 	out := &UnmarshalInterfaceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1568,7 +1568,7 @@ func (o *xxx_DefaultIMSAdminBaseWClient) GetServerGUID(ctx context.Context, in *
 	}
 	out := &GetServerGUIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -212,7 +212,7 @@ func (o *xxx_DefaultQuotaBaseClient) GetQuotaLimit(ctx context.Context, in *GetQ
 	}
 	out := &GetQuotaLimitResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -232,7 +232,7 @@ func (o *xxx_DefaultQuotaBaseClient) SetQuotaLimit(ctx context.Context, in *SetQ
 	}
 	out := &SetQuotaLimitResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -252,7 +252,7 @@ func (o *xxx_DefaultQuotaBaseClient) GetQuotaFlags(ctx context.Context, in *GetQ
 	}
 	out := &GetQuotaFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -272,7 +272,7 @@ func (o *xxx_DefaultQuotaBaseClient) SetQuotaFlags(ctx context.Context, in *SetQ
 	}
 	out := &SetQuotaFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -292,7 +292,7 @@ func (o *xxx_DefaultQuotaBaseClient) GetThresholds(ctx context.Context, in *GetT
 	}
 	out := &GetThresholdsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -312,7 +312,7 @@ func (o *xxx_DefaultQuotaBaseClient) AddThreshold(ctx context.Context, in *AddTh
 	}
 	out := &AddThresholdResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -332,7 +332,7 @@ func (o *xxx_DefaultQuotaBaseClient) DeleteThreshold(ctx context.Context, in *De
 	}
 	out := &DeleteThresholdResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -352,7 +352,7 @@ func (o *xxx_DefaultQuotaBaseClient) ModifyThreshold(ctx context.Context, in *Mo
 	}
 	out := &ModifyThresholdResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -372,7 +372,7 @@ func (o *xxx_DefaultQuotaBaseClient) CreateThresholdAction(ctx context.Context, 
 	}
 	out := &CreateThresholdActionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -392,7 +392,7 @@ func (o *xxx_DefaultQuotaBaseClient) EnumThresholdActions(ctx context.Context, i
 	}
 	out := &EnumThresholdActionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

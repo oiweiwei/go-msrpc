@@ -116,7 +116,7 @@ func (o *xxx_DefaultCatalogSessionClient) InitializeSession(ctx context.Context,
 	}
 	out := &InitializeSessionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -136,7 +136,7 @@ func (o *xxx_DefaultCatalogSessionClient) GetServerInformation(ctx context.Conte
 	}
 	out := &GetServerInformationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

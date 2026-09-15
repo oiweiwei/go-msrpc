@@ -282,7 +282,7 @@ func (o *xxx_DefaultMessageClient) GetClass(ctx context.Context, in *GetClassReq
 	}
 	out := &GetClassResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -302,7 +302,7 @@ func (o *xxx_DefaultMessageClient) GetPrivacyLevel(ctx context.Context, in *GetP
 	}
 	out := &GetPrivacyLevelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -322,7 +322,7 @@ func (o *xxx_DefaultMessageClient) SetPrivacyLevel(ctx context.Context, in *SetP
 	}
 	out := &SetPrivacyLevelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -342,7 +342,7 @@ func (o *xxx_DefaultMessageClient) GetAuthLevel(ctx context.Context, in *GetAuth
 	}
 	out := &GetAuthLevelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -362,7 +362,7 @@ func (o *xxx_DefaultMessageClient) SetAuthLevel(ctx context.Context, in *SetAuth
 	}
 	out := &SetAuthLevelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -382,7 +382,7 @@ func (o *xxx_DefaultMessageClient) GetIsAuthenticated(ctx context.Context, in *G
 	}
 	out := &GetIsAuthenticatedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -402,7 +402,7 @@ func (o *xxx_DefaultMessageClient) GetDelivery(ctx context.Context, in *GetDeliv
 	}
 	out := &GetDeliveryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -422,7 +422,7 @@ func (o *xxx_DefaultMessageClient) SetDelivery(ctx context.Context, in *SetDeliv
 	}
 	out := &SetDeliveryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -442,7 +442,7 @@ func (o *xxx_DefaultMessageClient) GetTrace(ctx context.Context, in *GetTraceReq
 	}
 	out := &GetTraceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -462,7 +462,7 @@ func (o *xxx_DefaultMessageClient) SetTrace(ctx context.Context, in *SetTraceReq
 	}
 	out := &SetTraceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -482,7 +482,7 @@ func (o *xxx_DefaultMessageClient) GetPriority(ctx context.Context, in *GetPrior
 	}
 	out := &GetPriorityResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -502,7 +502,7 @@ func (o *xxx_DefaultMessageClient) SetPriority(ctx context.Context, in *SetPrior
 	}
 	out := &SetPriorityResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -522,7 +522,7 @@ func (o *xxx_DefaultMessageClient) GetJournal(ctx context.Context, in *GetJourna
 	}
 	out := &GetJournalResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -542,7 +542,7 @@ func (o *xxx_DefaultMessageClient) SetJournal(ctx context.Context, in *SetJourna
 	}
 	out := &SetJournalResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -562,7 +562,7 @@ func (o *xxx_DefaultMessageClient) GetResponseQueueInfo(ctx context.Context, in 
 	}
 	out := &GetResponseQueueInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -582,7 +582,7 @@ func (o *xxx_DefaultMessageClient) SetByRefResponseQueueInfo(ctx context.Context
 	}
 	out := &SetByRefResponseQueueInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -602,7 +602,7 @@ func (o *xxx_DefaultMessageClient) GetAppSpecific(ctx context.Context, in *GetAp
 	}
 	out := &GetAppSpecificResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -622,7 +622,7 @@ func (o *xxx_DefaultMessageClient) SetAppSpecific(ctx context.Context, in *SetAp
 	}
 	out := &SetAppSpecificResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -642,7 +642,7 @@ func (o *xxx_DefaultMessageClient) GetSourceMachineGUID(ctx context.Context, in 
 	}
 	out := &GetSourceMachineGUIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -662,7 +662,7 @@ func (o *xxx_DefaultMessageClient) GetBodyLength(ctx context.Context, in *GetBod
 	}
 	out := &GetBodyLengthResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -682,7 +682,7 @@ func (o *xxx_DefaultMessageClient) GetBody(ctx context.Context, in *GetBodyReque
 	}
 	out := &GetBodyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -702,7 +702,7 @@ func (o *xxx_DefaultMessageClient) SetBody(ctx context.Context, in *SetBodyReque
 	}
 	out := &SetBodyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -722,7 +722,7 @@ func (o *xxx_DefaultMessageClient) GetAdminQueueInfo(ctx context.Context, in *Ge
 	}
 	out := &GetAdminQueueInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -742,7 +742,7 @@ func (o *xxx_DefaultMessageClient) SetByRefAdminQueueInfo(ctx context.Context, i
 	}
 	out := &SetByRefAdminQueueInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -762,7 +762,7 @@ func (o *xxx_DefaultMessageClient) GetID(ctx context.Context, in *GetIDRequest, 
 	}
 	out := &GetIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -782,7 +782,7 @@ func (o *xxx_DefaultMessageClient) GetCorrelationID(ctx context.Context, in *Get
 	}
 	out := &GetCorrelationIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -802,7 +802,7 @@ func (o *xxx_DefaultMessageClient) SetCorrelationID(ctx context.Context, in *Set
 	}
 	out := &SetCorrelationIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -822,7 +822,7 @@ func (o *xxx_DefaultMessageClient) GetAck(ctx context.Context, in *GetAckRequest
 	}
 	out := &GetAckResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -842,7 +842,7 @@ func (o *xxx_DefaultMessageClient) SetAck(ctx context.Context, in *SetAckRequest
 	}
 	out := &SetAckResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -862,7 +862,7 @@ func (o *xxx_DefaultMessageClient) GetLabel(ctx context.Context, in *GetLabelReq
 	}
 	out := &GetLabelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -882,7 +882,7 @@ func (o *xxx_DefaultMessageClient) SetLabel(ctx context.Context, in *SetLabelReq
 	}
 	out := &SetLabelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -902,7 +902,7 @@ func (o *xxx_DefaultMessageClient) GetMaxTimeToReachQueue(ctx context.Context, i
 	}
 	out := &GetMaxTimeToReachQueueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -922,7 +922,7 @@ func (o *xxx_DefaultMessageClient) SetMaxTimeToReachQueue(ctx context.Context, i
 	}
 	out := &SetMaxTimeToReachQueueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -942,7 +942,7 @@ func (o *xxx_DefaultMessageClient) GetMaxTimeToReceive(ctx context.Context, in *
 	}
 	out := &GetMaxTimeToReceiveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -962,7 +962,7 @@ func (o *xxx_DefaultMessageClient) SetMaxTimeToReceive(ctx context.Context, in *
 	}
 	out := &SetMaxTimeToReceiveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -982,7 +982,7 @@ func (o *xxx_DefaultMessageClient) GetHashAlgorithm(ctx context.Context, in *Get
 	}
 	out := &GetHashAlgorithmResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1002,7 +1002,7 @@ func (o *xxx_DefaultMessageClient) SetHashAlgorithm(ctx context.Context, in *Set
 	}
 	out := &SetHashAlgorithmResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1022,7 +1022,7 @@ func (o *xxx_DefaultMessageClient) GetEncryptAlgorithm(ctx context.Context, in *
 	}
 	out := &GetEncryptAlgorithmResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1042,7 +1042,7 @@ func (o *xxx_DefaultMessageClient) SetEncryptAlgorithm(ctx context.Context, in *
 	}
 	out := &SetEncryptAlgorithmResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1062,7 +1062,7 @@ func (o *xxx_DefaultMessageClient) GetSentTime(ctx context.Context, in *GetSentT
 	}
 	out := &GetSentTimeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1082,7 +1082,7 @@ func (o *xxx_DefaultMessageClient) GetArrivedTime(ctx context.Context, in *GetAr
 	}
 	out := &GetArrivedTimeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1102,7 +1102,7 @@ func (o *xxx_DefaultMessageClient) GetDestinationQueueInfo(ctx context.Context, 
 	}
 	out := &GetDestinationQueueInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1122,7 +1122,7 @@ func (o *xxx_DefaultMessageClient) GetSenderCertificate(ctx context.Context, in 
 	}
 	out := &GetSenderCertificateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1142,7 +1142,7 @@ func (o *xxx_DefaultMessageClient) SetSenderCertificate(ctx context.Context, in 
 	}
 	out := &SetSenderCertificateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1162,7 +1162,7 @@ func (o *xxx_DefaultMessageClient) GetSenderID(ctx context.Context, in *GetSende
 	}
 	out := &GetSenderIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1182,7 +1182,7 @@ func (o *xxx_DefaultMessageClient) GetSenderIDType(ctx context.Context, in *GetS
 	}
 	out := &GetSenderIDTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1202,7 +1202,7 @@ func (o *xxx_DefaultMessageClient) SetSenderIDType(ctx context.Context, in *SetS
 	}
 	out := &SetSenderIDTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1222,7 +1222,7 @@ func (o *xxx_DefaultMessageClient) Send(ctx context.Context, in *SendRequest, op
 	}
 	out := &SendResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1242,7 +1242,7 @@ func (o *xxx_DefaultMessageClient) AttachCurrentSecurityContext(ctx context.Cont
 	}
 	out := &AttachCurrentSecurityContextResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -87,7 +87,7 @@ func (o *xxx_DefaultRemoteNetworkConfigClient) UpgradeRouterConfig(ctx context.C
 	}
 	out := &UpgradeRouterConfigResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -107,7 +107,7 @@ func (o *xxx_DefaultRemoteNetworkConfigClient) SetUserConfig(ctx context.Context
 	}
 	out := &SetUserConfigResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

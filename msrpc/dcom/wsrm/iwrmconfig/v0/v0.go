@@ -329,7 +329,7 @@ func (o *xxx_DefaultConfigClient) GetConfig(ctx context.Context, in *GetConfigRe
 	}
 	out := &GetConfigResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -349,7 +349,7 @@ func (o *xxx_DefaultConfigClient) SetConfig(ctx context.Context, in *SetConfigRe
 	}
 	out := &SetConfigResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -369,7 +369,7 @@ func (o *xxx_DefaultConfigClient) IsEnabled(ctx context.Context, in *IsEnabledRe
 	}
 	out := &IsEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -389,7 +389,7 @@ func (o *xxx_DefaultConfigClient) EnableDisable(ctx context.Context, in *EnableD
 	}
 	out := &EnableDisableResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -409,7 +409,7 @@ func (o *xxx_DefaultConfigClient) GetExclusionList(ctx context.Context, in *GetE
 	}
 	out := &GetExclusionListResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -429,7 +429,7 @@ func (o *xxx_DefaultConfigClient) SetExclusionList(ctx context.Context, in *SetE
 	}
 	out := &SetExclusionListResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -449,7 +449,7 @@ func (o *xxx_DefaultConfigClient) WSRMActivate(ctx context.Context, in *WSRMActi
 	}
 	out := &WSRMActivateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -469,7 +469,7 @@ func (o *xxx_DefaultConfigClient) IsWSRMActivated(ctx context.Context, in *IsWSR
 	}
 	out := &IsWSRMActivatedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -489,7 +489,7 @@ func (o *xxx_DefaultConfigClient) RestoreExclusionList(ctx context.Context, in *
 	}
 	out := &RestoreExclusionListResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

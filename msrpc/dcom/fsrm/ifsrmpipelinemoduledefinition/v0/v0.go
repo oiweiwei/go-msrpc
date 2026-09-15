@@ -156,7 +156,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) GetModuleClassID(ctx context
 	}
 	out := &GetModuleClassIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -176,7 +176,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) SetModuleClassID(ctx context
 	}
 	out := &SetModuleClassIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -196,7 +196,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) GetName(ctx context.Context,
 	}
 	out := &GetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -216,7 +216,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) SetName(ctx context.Context,
 	}
 	out := &SetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -236,7 +236,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) GetCompany(ctx context.Conte
 	}
 	out := &GetCompanyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -256,7 +256,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) SetCompany(ctx context.Conte
 	}
 	out := &SetCompanyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -276,7 +276,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) GetVersion(ctx context.Conte
 	}
 	out := &GetVersionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -296,7 +296,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) SetVersion(ctx context.Conte
 	}
 	out := &SetVersionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -316,7 +316,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) GetModuleType(ctx context.Co
 	}
 	out := &GetModuleTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -336,7 +336,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) GetEnabled(ctx context.Conte
 	}
 	out := &GetEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -356,7 +356,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) SetEnabled(ctx context.Conte
 	}
 	out := &SetEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -376,7 +376,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) GetNeedsFileContent(ctx cont
 	}
 	out := &GetNeedsFileContentResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -396,7 +396,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) SetNeedsFileContent(ctx cont
 	}
 	out := &SetNeedsFileContentResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -416,7 +416,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) GetAccount(ctx context.Conte
 	}
 	out := &GetAccountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -436,7 +436,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) SetAccount(ctx context.Conte
 	}
 	out := &SetAccountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -456,7 +456,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) GetSupportedExtensions(ctx c
 	}
 	out := &GetSupportedExtensionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -476,7 +476,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) SetSupportedExtensions(ctx c
 	}
 	out := &SetSupportedExtensionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -496,7 +496,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) GetParameters(ctx context.Co
 	}
 	out := &GetParametersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -516,7 +516,7 @@ func (o *xxx_DefaultPipelineModuleDefinitionClient) SetParameters(ctx context.Co
 	}
 	out := &SetParametersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

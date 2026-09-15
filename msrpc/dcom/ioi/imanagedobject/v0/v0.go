@@ -122,7 +122,7 @@ func (o *xxx_DefaultManagedObjectClient) GetSerializedBuffer(ctx context.Context
 	}
 	out := &GetSerializedBufferResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -142,7 +142,7 @@ func (o *xxx_DefaultManagedObjectClient) GetObjectIdentity(ctx context.Context, 
 	}
 	out := &GetObjectIdentityResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

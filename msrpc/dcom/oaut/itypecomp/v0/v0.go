@@ -131,7 +131,7 @@ func (o *xxx_DefaultTypeCompClient) Bind(ctx context.Context, in *BindRequest, o
 	}
 	out := &BindResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -151,7 +151,7 @@ func (o *xxx_DefaultTypeCompClient) BindType(ctx context.Context, in *BindTypeRe
 	}
 	out := &BindTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

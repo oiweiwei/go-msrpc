@@ -4,7 +4,6 @@ package main
 
 import (
 	"context"
-	"errors"
 	"flag"
 	"fmt"
 	"os"
@@ -18,8 +17,6 @@ import (
 
 	"github.com/oiweiwei/go-msrpc/msrpc/dtyp"
 	"github.com/oiweiwei/go-msrpc/msrpc/samr/samr/v1"
-
-	"github.com/oiweiwei/go-msrpc/msrpc/erref/ntstatus"
 
 	. "github.com/oiweiwei/go-msrpc/examples/common"
 )
@@ -181,9 +178,7 @@ func ListDomains(ctx context.Context, cli samr.SamrClient, handle *samr.Handle) 
 			EnumerationContext: enum,
 		})
 		if err != nil {
-			if !errors.Is(err, ntstatus.StatusMoreEntries) {
-				return nil, err
-			}
+			return nil, err
 		}
 
 		for _, dom := range doms.Buffer.Buffer {
@@ -209,9 +204,7 @@ func ListGroups(ctx context.Context, cli samr.SamrClient, handle *samr.Handle) (
 			EnumerationContext: enum,
 		})
 		if err != nil {
-			if !errors.Is(err, ntstatus.StatusMoreEntries) {
-				return nil, err
-			}
+			return nil, err
 		}
 
 		groups = append(groups, grps.Buffer.Buffer...)
@@ -235,9 +228,7 @@ func ListAliases(ctx context.Context, cli samr.SamrClient, handle *samr.Handle) 
 			EnumerationContext: enum,
 		})
 		if err != nil {
-			if !errors.Is(err, ntstatus.StatusMoreEntries) {
-				return nil, err
-			}
+			return nil, err
 		}
 
 		aliases = append(aliases, alses.Buffer.Buffer...)
@@ -261,9 +252,7 @@ func ListUsers(ctx context.Context, cli samr.SamrClient, handle *samr.Handle) ([
 			EnumerationContext: enum,
 		})
 		if err != nil {
-			if !errors.Is(err, ntstatus.StatusMoreEntries) {
-				return nil, err
-			}
+			return nil, err
 		}
 
 		users = append(users, usrs.Buffer.Buffer...)

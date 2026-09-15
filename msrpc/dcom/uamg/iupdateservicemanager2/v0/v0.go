@@ -193,7 +193,7 @@ func (o *xxx_DefaultUpdateServiceManager2Client) GetClientApplicationID(ctx cont
 	}
 	out := &GetClientApplicationIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -213,7 +213,7 @@ func (o *xxx_DefaultUpdateServiceManager2Client) SetClientApplicationID(ctx cont
 	}
 	out := &SetClientApplicationIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -233,7 +233,7 @@ func (o *xxx_DefaultUpdateServiceManager2Client) QueryServiceRegistration(ctx co
 	}
 	out := &QueryServiceRegistrationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -253,7 +253,7 @@ func (o *xxx_DefaultUpdateServiceManager2Client) AddService2(ctx context.Context
 	}
 	out := &AddService2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

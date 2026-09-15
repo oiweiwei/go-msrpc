@@ -129,7 +129,7 @@ func (o *xxx_DefaultRemoteIPv6ConfigClient) GetAddressList(ctx context.Context, 
 	}
 	out := &GetAddressListResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

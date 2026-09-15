@@ -242,10 +242,8 @@ func main() {
 			Count:   uint32(page),
 		}, dcom.WithIPID(smartenum.SmartEnum.InterfacePointer().IPID()))
 		if err != nil {
-			if wmi.Status(ret.Return) != wmi.StatusFalse {
-				fmt.Fprintln(os.Stderr, "smart_enum_next", err)
-				return
-			}
+			fmt.Fprintln(os.Stderr, "smart_enum_next", err)
+			return
 		}
 
 		if len(ret.Buffer) == 0 {

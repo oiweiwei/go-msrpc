@@ -308,7 +308,7 @@ func (o *xxx_DefaultDispatchClient) GetTypeInfoCount(ctx context.Context, in *Ge
 	}
 	out := &GetTypeInfoCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -328,7 +328,7 @@ func (o *xxx_DefaultDispatchClient) GetTypeInfo(ctx context.Context, in *GetType
 	}
 	out := &GetTypeInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -348,7 +348,7 @@ func (o *xxx_DefaultDispatchClient) GetIDsOfNames(ctx context.Context, in *GetID
 	}
 	out := &GetIDsOfNamesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -368,7 +368,7 @@ func (o *xxx_DefaultDispatchClient) Invoke(ctx context.Context, in *InvokeReques
 	}
 	out := &InvokeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

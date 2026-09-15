@@ -173,7 +173,7 @@ func (o *xxx_DefaultSettingClient) GetSMTPServer(ctx context.Context, in *GetSMT
 	}
 	out := &GetSMTPServerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -193,7 +193,7 @@ func (o *xxx_DefaultSettingClient) SetSMTPServer(ctx context.Context, in *SetSMT
 	}
 	out := &SetSMTPServerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -213,7 +213,7 @@ func (o *xxx_DefaultSettingClient) GetMailFrom(ctx context.Context, in *GetMailF
 	}
 	out := &GetMailFromResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -233,7 +233,7 @@ func (o *xxx_DefaultSettingClient) SetMailFrom(ctx context.Context, in *SetMailF
 	}
 	out := &SetMailFromResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -253,7 +253,7 @@ func (o *xxx_DefaultSettingClient) GetAdminEmail(ctx context.Context, in *GetAdm
 	}
 	out := &GetAdminEmailResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -273,7 +273,7 @@ func (o *xxx_DefaultSettingClient) SetAdminEmail(ctx context.Context, in *SetAdm
 	}
 	out := &SetAdminEmailResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -293,7 +293,7 @@ func (o *xxx_DefaultSettingClient) GetDisableCommandLine(ctx context.Context, in
 	}
 	out := &GetDisableCommandLineResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -313,7 +313,7 @@ func (o *xxx_DefaultSettingClient) SetDisableCommandLine(ctx context.Context, in
 	}
 	out := &SetDisableCommandLineResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -333,7 +333,7 @@ func (o *xxx_DefaultSettingClient) GetEnableScreeningAudit(ctx context.Context, 
 	}
 	out := &GetEnableScreeningAuditResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -353,7 +353,7 @@ func (o *xxx_DefaultSettingClient) SetEnableScreeningAudit(ctx context.Context, 
 	}
 	out := &SetEnableScreeningAuditResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -373,7 +373,7 @@ func (o *xxx_DefaultSettingClient) EmailTest(ctx context.Context, in *EmailTestR
 	}
 	out := &EmailTestResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -393,7 +393,7 @@ func (o *xxx_DefaultSettingClient) SetActionRunLimitInterval(ctx context.Context
 	}
 	out := &SetActionRunLimitIntervalResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -413,7 +413,7 @@ func (o *xxx_DefaultSettingClient) GetActionRunLimitInterval(ctx context.Context
 	}
 	out := &GetActionRunLimitIntervalResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

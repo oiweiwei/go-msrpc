@@ -125,7 +125,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetLogAPINamesOnly(ctx contex
 	}
 	out := &GetLogAPINamesOnlyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -145,7 +145,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) SetLogAPINamesOnly(ctx contex
 	}
 	out := &SetLogAPINamesOnlyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -165,7 +165,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetLogAPIsRecursively(ctx con
 	}
 	out := &GetLogAPIsRecursivelyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -185,7 +185,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) SetLogAPIsRecursively(ctx con
 	}
 	out := &SetLogAPIsRecursivelyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -205,7 +205,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetExePath(ctx context.Contex
 	}
 	out := &GetExePathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -225,7 +225,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) SetExePath(ctx context.Contex
 	}
 	out := &SetExePathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -245,7 +245,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetLogFilePath(ctx context.Co
 	}
 	out := &GetLogFilePathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -265,7 +265,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) SetLogFilePath(ctx context.Co
 	}
 	out := &SetLogFilePathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -285,7 +285,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetIncludeModules(ctx context
 	}
 	out := &GetIncludeModulesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -305,7 +305,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) SetIncludeModules(ctx context
 	}
 	out := &SetIncludeModulesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -325,7 +325,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetIncludeAPIs(ctx context.Co
 	}
 	out := &GetIncludeAPIsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -345,7 +345,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) SetIncludeAPIs(ctx context.Co
 	}
 	out := &SetIncludeAPIsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -365,7 +365,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetExcludeAPIs(ctx context.Co
 	}
 	out := &GetExcludeAPIsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -385,7 +385,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) SetExcludeAPIs(ctx context.Co
 	}
 	out := &SetExcludeAPIsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -145,7 +145,7 @@ func (o *xxx_DefaultRemoteAssistanceServerClient) GetNoviceUserInfo(ctx context.
 	}
 	out := &GetNoviceUserInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -165,7 +165,7 @@ func (o *xxx_DefaultRemoteAssistanceServerClient) GetSessionInfo(ctx context.Con
 	}
 	out := &GetSessionInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

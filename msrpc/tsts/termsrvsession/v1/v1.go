@@ -1050,7 +1050,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) OpenSession(ctx context.Contex
 	}
 	out := &OpenSessionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1063,7 +1063,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) CloseSession(ctx context.Conte
 	}
 	out := &CloseSessionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1076,7 +1076,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) Connect(ctx context.Context, i
 	}
 	out := &ConnectResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1089,7 +1089,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) Disconnect(ctx context.Context
 	}
 	out := &DisconnectResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1102,7 +1102,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) Logoff(ctx context.Context, in
 	}
 	out := &LogoffResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1115,7 +1115,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) GetUserName(ctx context.Contex
 	}
 	out := &GetUserNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1128,7 +1128,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) GetTerminalName(ctx context.Co
 	}
 	out := &GetTerminalNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1141,7 +1141,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) GetState(ctx context.Context, 
 	}
 	out := &GetStateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1154,7 +1154,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) IsSessionDesktopLocked(ctx con
 	}
 	out := &IsSessionDesktopLockedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1167,7 +1167,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) ShowMessageBox(ctx context.Con
 	}
 	out := &ShowMessageBoxResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1180,7 +1180,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) GetTimes(ctx context.Context, 
 	}
 	out := &GetTimesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1193,7 +1193,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) GetSessionCounters(ctx context
 	}
 	out := &GetSessionCountersResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1206,7 +1206,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) GetSessionInformation(ctx cont
 	}
 	out := &GetSessionInformationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1219,7 +1219,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) GetLoggedOnCount(ctx context.C
 	}
 	out := &GetLoggedOnCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1232,7 +1232,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) GetSessionType(ctx context.Con
 	}
 	out := &GetSessionTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1245,7 +1245,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) GetSessionInformationEx(ctx co
 	}
 	out := &GetSessionInformationExResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -1258,7 +1258,7 @@ func (o *xxx_DefaultTerminateServerSessionClient) GetActivityID(ctx context.Cont
 	}
 	out := &GetActivityIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

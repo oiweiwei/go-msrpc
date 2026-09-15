@@ -106,7 +106,7 @@ func (o *xxx_DefaultRunningObjectTableClient) Register(ctx context.Context, in *
 	}
 	out := &RegisterResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -126,7 +126,7 @@ func (o *xxx_DefaultRunningObjectTableClient) Revoke(ctx context.Context, in *Re
 	}
 	out := &RevokeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -146,7 +146,7 @@ func (o *xxx_DefaultRunningObjectTableClient) IsRunning(ctx context.Context, in 
 	}
 	out := &IsRunningResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -166,7 +166,7 @@ func (o *xxx_DefaultRunningObjectTableClient) GetObject(ctx context.Context, in 
 	}
 	out := &GetObjectResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -186,7 +186,7 @@ func (o *xxx_DefaultRunningObjectTableClient) NoteChangeTime(ctx context.Context
 	}
 	out := &NoteChangeTimeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -206,7 +206,7 @@ func (o *xxx_DefaultRunningObjectTableClient) GetTimeOfLastChange(ctx context.Co
 	}
 	out := &GetTimeOfLastChangeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -226,7 +226,7 @@ func (o *xxx_DefaultRunningObjectTableClient) EnumRunning(ctx context.Context, i
 	}
 	out := &EnumRunningResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

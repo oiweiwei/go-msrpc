@@ -88,7 +88,7 @@ func (o *xxx_DefaultRemoteUnknown2Client) RemoteQueryInterface2(ctx context.Cont
 	}
 	out := &RemoteQueryInterface2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

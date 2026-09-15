@@ -140,7 +140,7 @@ func (o *xxx_DefaultApplication2Client) RegisterCertificate(ctx context.Context,
 	}
 	out := &RegisterCertificateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -160,7 +160,7 @@ func (o *xxx_DefaultApplication2Client) MachineNameOfMachineID(ctx context.Conte
 	}
 	out := &MachineNameOfMachineIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -180,7 +180,7 @@ func (o *xxx_DefaultApplication2Client) GetVersionMajor(ctx context.Context, in 
 	}
 	out := &GetVersionMajorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -200,7 +200,7 @@ func (o *xxx_DefaultApplication2Client) GetVersionMinor(ctx context.Context, in 
 	}
 	out := &GetVersionMinorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -220,7 +220,7 @@ func (o *xxx_DefaultApplication2Client) GetVersionBuild(ctx context.Context, in 
 	}
 	out := &GetVersionBuildResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -240,7 +240,7 @@ func (o *xxx_DefaultApplication2Client) GetIsDSEnabled(ctx context.Context, in *
 	}
 	out := &GetIsDSEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -260,7 +260,7 @@ func (o *xxx_DefaultApplication2Client) GetProperties(ctx context.Context, in *G
 	}
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

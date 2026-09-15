@@ -221,7 +221,7 @@ func (o *xxx_DefaultClusterLogExClient) GenerateClusterLog(ctx context.Context, 
 	}
 	out := &GenerateClusterLogResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -241,7 +241,7 @@ func (o *xxx_DefaultClusterLogExClient) GenerateClusterHealthLog(ctx context.Con
 	}
 	out := &GenerateClusterHealthLogResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -261,7 +261,7 @@ func (o *xxx_DefaultClusterLogExClient) GenerateClusterSetLog(ctx context.Contex
 	}
 	out := &GenerateClusterSetLogResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -281,7 +281,7 @@ func (o *xxx_DefaultClusterLogExClient) GenerateClusterNetworkLog(ctx context.Co
 	}
 	out := &GenerateClusterNetworkLogResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -301,7 +301,7 @@ func (o *xxx_DefaultClusterLogExClient) ExportClusterPerformanceHistory(ctx cont
 	}
 	out := &ExportClusterPerformanceHistoryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -321,7 +321,7 @@ func (o *xxx_DefaultClusterLogExClient) GenerateNetFTLog(ctx context.Context, in
 	}
 	out := &GenerateNetFTLogResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

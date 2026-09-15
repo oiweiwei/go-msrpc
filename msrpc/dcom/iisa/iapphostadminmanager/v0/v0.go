@@ -120,7 +120,7 @@ func (o *xxx_DefaultAppHostAdminManagerClient) GetAdminSection(ctx context.Conte
 	}
 	out := &GetAdminSectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -140,7 +140,7 @@ func (o *xxx_DefaultAppHostAdminManagerClient) GetMetadata(ctx context.Context, 
 	}
 	out := &GetMetadataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -160,7 +160,7 @@ func (o *xxx_DefaultAppHostAdminManagerClient) SetMetadata(ctx context.Context, 
 	}
 	out := &SetMetadataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -180,7 +180,7 @@ func (o *xxx_DefaultAppHostAdminManagerClient) GetConfigManager(ctx context.Cont
 	}
 	out := &GetConfigManagerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

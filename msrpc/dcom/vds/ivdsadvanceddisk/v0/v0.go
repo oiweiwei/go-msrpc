@@ -198,7 +198,7 @@ func (o *xxx_DefaultAdvancedDiskClient) GetPartitionProperties(ctx context.Conte
 	}
 	out := &GetPartitionPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -218,7 +218,7 @@ func (o *xxx_DefaultAdvancedDiskClient) QueryPartitions(ctx context.Context, in 
 	}
 	out := &QueryPartitionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -238,7 +238,7 @@ func (o *xxx_DefaultAdvancedDiskClient) CreatePartition(ctx context.Context, in 
 	}
 	out := &CreatePartitionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -258,7 +258,7 @@ func (o *xxx_DefaultAdvancedDiskClient) DeletePartition(ctx context.Context, in 
 	}
 	out := &DeletePartitionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -278,7 +278,7 @@ func (o *xxx_DefaultAdvancedDiskClient) ChangeAttributes(ctx context.Context, in
 	}
 	out := &ChangeAttributesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -298,7 +298,7 @@ func (o *xxx_DefaultAdvancedDiskClient) AssignDriveLetter(ctx context.Context, i
 	}
 	out := &AssignDriveLetterResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -318,7 +318,7 @@ func (o *xxx_DefaultAdvancedDiskClient) DeleteDriveLetter(ctx context.Context, i
 	}
 	out := &DeleteDriveLetterResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -338,7 +338,7 @@ func (o *xxx_DefaultAdvancedDiskClient) GetDriveLetter(ctx context.Context, in *
 	}
 	out := &GetDriveLetterResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -358,7 +358,7 @@ func (o *xxx_DefaultAdvancedDiskClient) FormatPartition(ctx context.Context, in 
 	}
 	out := &FormatPartitionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -378,7 +378,7 @@ func (o *xxx_DefaultAdvancedDiskClient) Clean(ctx context.Context, in *CleanRequ
 	}
 	out := &CleanResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

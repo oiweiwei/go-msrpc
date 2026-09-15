@@ -121,7 +121,7 @@ func (o *xxx_DefaultAppHostWritableAdminManagerClient) CommitChanges(ctx context
 	}
 	out := &CommitChangesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -141,7 +141,7 @@ func (o *xxx_DefaultAppHostWritableAdminManagerClient) GetCommitPath(ctx context
 	}
 	out := &GetCommitPathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -161,7 +161,7 @@ func (o *xxx_DefaultAppHostWritableAdminManagerClient) SetCommitPath(ctx context
 	}
 	out := &SetCommitPathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

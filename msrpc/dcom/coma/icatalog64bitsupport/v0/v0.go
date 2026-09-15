@@ -97,7 +97,7 @@ func (o *xxx_DefaultCatalog64BitSupportClient) SupportsMultipleBitness(ctx conte
 	}
 	out := &SupportsMultipleBitnessResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -117,7 +117,7 @@ func (o *xxx_DefaultCatalog64BitSupportClient) Initialize64BitQueryCellSupport(c
 	}
 	out := &Initialize64BitQueryCellSupportResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

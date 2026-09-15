@@ -99,7 +99,7 @@ func (o *xxx_DefaultQueueInfos3Client) Reset(ctx context.Context, in *ResetReque
 	}
 	out := &ResetResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -119,7 +119,7 @@ func (o *xxx_DefaultQueueInfos3Client) Next(ctx context.Context, in *NextRequest
 	}
 	out := &NextResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -139,7 +139,7 @@ func (o *xxx_DefaultQueueInfos3Client) GetProperties(ctx context.Context, in *Ge
 	}
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

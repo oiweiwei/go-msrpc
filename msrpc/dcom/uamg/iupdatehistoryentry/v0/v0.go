@@ -372,7 +372,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetOperation(ctx context.Context, 
 	}
 	out := &GetOperationResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -392,7 +392,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetResultCode(ctx context.Context,
 	}
 	out := &GetResultCodeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -412,7 +412,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetHResult(ctx context.Context, in
 	}
 	out := &GetHResultResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -432,7 +432,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetDate(ctx context.Context, in *G
 	}
 	out := &GetDateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -452,7 +452,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetUpdateIdentity(ctx context.Cont
 	}
 	out := &GetUpdateIdentityResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -472,7 +472,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetTitle(ctx context.Context, in *
 	}
 	out := &GetTitleResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -492,7 +492,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetDescription(ctx context.Context
 	}
 	out := &GetDescriptionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -512,7 +512,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetUnmappedResultCode(ctx context.
 	}
 	out := &GetUnmappedResultCodeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -532,7 +532,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetClientApplicationID(ctx context
 	}
 	out := &GetClientApplicationIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -552,7 +552,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetServerSelection(ctx context.Con
 	}
 	out := &GetServerSelectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -572,7 +572,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetServiceID(ctx context.Context, 
 	}
 	out := &GetServiceIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -592,7 +592,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetUninstallationSteps(ctx context
 	}
 	out := &GetUninstallationStepsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -612,7 +612,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetUninstallationNotes(ctx context
 	}
 	out := &GetUninstallationNotesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -632,7 +632,7 @@ func (o *xxx_DefaultUpdateHistoryEntryClient) GetSupportURL(ctx context.Context,
 	}
 	out := &GetSupportURLResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -2064,7 +2064,7 @@ func (o *xxx_DefaultEfsrpcClient) OpenFileRaw(ctx context.Context, in *OpenFileR
 	}
 	out := &OpenFileRawResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2077,7 +2077,7 @@ func (o *xxx_DefaultEfsrpcClient) ReadFileRaw(ctx context.Context, in *ReadFileR
 	}
 	out := &ReadFileRawResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2090,7 +2090,7 @@ func (o *xxx_DefaultEfsrpcClient) WriteFileRaw(ctx context.Context, in *WriteFil
 	}
 	out := &WriteFileRawResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2113,7 +2113,7 @@ func (o *xxx_DefaultEfsrpcClient) EncryptFileServer(ctx context.Context, in *Enc
 	}
 	out := &EncryptFileServerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2126,7 +2126,7 @@ func (o *xxx_DefaultEfsrpcClient) DecryptFileServer(ctx context.Context, in *Dec
 	}
 	out := &DecryptFileServerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -2295,7 +2295,7 @@ func (o *xxx_DefaultEfsrpcClient) EncryptFileExServer(ctx context.Context, in *E
 	}
 	out := &EncryptFileExServerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

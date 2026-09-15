@@ -92,7 +92,7 @@ func (o *xxx_DefaultIADProxy2Client) CreateObject2(ctx context.Context, in *Crea
 	}
 	out := &CreateObject2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -112,7 +112,7 @@ func (o *xxx_DefaultIADProxy2Client) DeleteObject2(ctx context.Context, in *Dele
 	}
 	out := &DeleteObject2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -132,7 +132,7 @@ func (o *xxx_DefaultIADProxy2Client) ModifyObject2(ctx context.Context, in *Modi
 	}
 	out := &ModifyObject2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

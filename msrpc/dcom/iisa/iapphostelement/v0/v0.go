@@ -252,7 +252,7 @@ func (o *xxx_DefaultAppHostElementClient) GetName(ctx context.Context, in *GetNa
 	}
 	out := &GetNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -272,7 +272,7 @@ func (o *xxx_DefaultAppHostElementClient) GetCollection(ctx context.Context, in 
 	}
 	out := &GetCollectionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -292,7 +292,7 @@ func (o *xxx_DefaultAppHostElementClient) GetProperties(ctx context.Context, in 
 	}
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -312,7 +312,7 @@ func (o *xxx_DefaultAppHostElementClient) GetChildElements(ctx context.Context, 
 	}
 	out := &GetChildElementsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -332,7 +332,7 @@ func (o *xxx_DefaultAppHostElementClient) GetMetadata(ctx context.Context, in *G
 	}
 	out := &GetMetadataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -352,7 +352,7 @@ func (o *xxx_DefaultAppHostElementClient) SetMetadata(ctx context.Context, in *S
 	}
 	out := &SetMetadataResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -372,7 +372,7 @@ func (o *xxx_DefaultAppHostElementClient) GetSchema(ctx context.Context, in *Get
 	}
 	out := &GetSchemaResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -392,7 +392,7 @@ func (o *xxx_DefaultAppHostElementClient) GetElementByName(ctx context.Context, 
 	}
 	out := &GetElementByNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -412,7 +412,7 @@ func (o *xxx_DefaultAppHostElementClient) GetPropertyByName(ctx context.Context,
 	}
 	out := &GetPropertyByNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -432,7 +432,7 @@ func (o *xxx_DefaultAppHostElementClient) Clear(ctx context.Context, in *ClearRe
 	}
 	out := &ClearResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -452,7 +452,7 @@ func (o *xxx_DefaultAppHostElementClient) GetMethods(ctx context.Context, in *Ge
 	}
 	out := &GetMethodsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

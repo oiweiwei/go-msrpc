@@ -137,7 +137,7 @@ func (o *xxx_DefaultEnumClassObjectClient) Reset(ctx context.Context, in *ResetR
 	}
 	out := &ResetResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -157,7 +157,7 @@ func (o *xxx_DefaultEnumClassObjectClient) Next(ctx context.Context, in *NextReq
 	}
 	out := &NextResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -177,7 +177,7 @@ func (o *xxx_DefaultEnumClassObjectClient) NextAsync(ctx context.Context, in *Ne
 	}
 	out := &NextAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -197,7 +197,7 @@ func (o *xxx_DefaultEnumClassObjectClient) Clone(ctx context.Context, in *CloneR
 	}
 	out := &CloneResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -217,7 +217,7 @@ func (o *xxx_DefaultEnumClassObjectClient) Skip(ctx context.Context, in *SkipReq
 	}
 	out := &SkipResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

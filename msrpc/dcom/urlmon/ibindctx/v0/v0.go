@@ -113,7 +113,7 @@ func (o *xxx_DefaultBindContextClient) RegisterObjectBound(ctx context.Context, 
 	}
 	out := &RegisterObjectBoundResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -133,7 +133,7 @@ func (o *xxx_DefaultBindContextClient) RevokeObjectBound(ctx context.Context, in
 	}
 	out := &RevokeObjectBoundResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -153,7 +153,7 @@ func (o *xxx_DefaultBindContextClient) ReleaseBoundObjects(ctx context.Context, 
 	}
 	out := &ReleaseBoundObjectsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -173,7 +173,7 @@ func (o *xxx_DefaultBindContextClient) SetBindOptions(ctx context.Context, in *S
 	}
 	out := &SetBindOptionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -193,7 +193,7 @@ func (o *xxx_DefaultBindContextClient) GetBindOptions(ctx context.Context, in *G
 	}
 	out := &GetBindOptionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -213,7 +213,7 @@ func (o *xxx_DefaultBindContextClient) GetRunningObjectTable(ctx context.Context
 	}
 	out := &GetRunningObjectTableResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -233,7 +233,7 @@ func (o *xxx_DefaultBindContextClient) RegisterObjectParam(ctx context.Context, 
 	}
 	out := &RegisterObjectParamResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -253,7 +253,7 @@ func (o *xxx_DefaultBindContextClient) GetObjectParam(ctx context.Context, in *G
 	}
 	out := &GetObjectParamResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -273,7 +273,7 @@ func (o *xxx_DefaultBindContextClient) EnumObjectParam(ctx context.Context, in *
 	}
 	out := &EnumObjectParamResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -293,7 +293,7 @@ func (o *xxx_DefaultBindContextClient) RevokeObjectParam(ctx context.Context, in
 	}
 	out := &RevokeObjectParamResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

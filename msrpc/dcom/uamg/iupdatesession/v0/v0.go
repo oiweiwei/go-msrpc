@@ -209,7 +209,7 @@ func (o *xxx_DefaultUpdateSessionClient) GetClientApplicationID(ctx context.Cont
 	}
 	out := &GetClientApplicationIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -229,7 +229,7 @@ func (o *xxx_DefaultUpdateSessionClient) SetClientApplicationID(ctx context.Cont
 	}
 	out := &SetClientApplicationIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -249,7 +249,7 @@ func (o *xxx_DefaultUpdateSessionClient) GetReadOnly(ctx context.Context, in *Ge
 	}
 	out := &GetReadOnlyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -269,7 +269,7 @@ func (o *xxx_DefaultUpdateSessionClient) CreateUpdateSearcher(ctx context.Contex
 	}
 	out := &CreateUpdateSearcherResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

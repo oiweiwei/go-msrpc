@@ -383,7 +383,7 @@ func (o *xxx_DefaultClusterSetupClient) ConfigServiceSecret(ctx context.Context,
 	}
 	out := &ConfigServiceSecretResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -403,7 +403,7 @@ func (o *xxx_DefaultClusterSetupClient) RetrieveServiceSecret(ctx context.Contex
 	}
 	out := &RetrieveServiceSecretResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -423,7 +423,7 @@ func (o *xxx_DefaultClusterSetupClient) RetrieveHostLabel(ctx context.Context, i
 	}
 	out := &RetrieveHostLabelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -443,7 +443,7 @@ func (o *xxx_DefaultClusterSetupClient) GetFunctionalLevel(ctx context.Context, 
 	}
 	out := &GetFunctionalLevelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -463,7 +463,7 @@ func (o *xxx_DefaultClusterSetupClient) ConfigClusterCert(ctx context.Context, i
 	}
 	out := &ConfigClusterCertResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -483,7 +483,7 @@ func (o *xxx_DefaultClusterSetupClient) RetrieveClusterCert(ctx context.Context,
 	}
 	out := &RetrieveClusterCertResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -503,7 +503,7 @@ func (o *xxx_DefaultClusterSetupClient) GenerateClusterCert(ctx context.Context,
 	}
 	out := &GenerateClusterCertResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -523,7 +523,7 @@ func (o *xxx_DefaultClusterSetupClient) GetUpgradeVersion(ctx context.Context, i
 	}
 	out := &GetUpgradeVersionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -543,7 +543,7 @@ func (o *xxx_DefaultClusterSetupClient) ConfigClusterCerV2(ctx context.Context, 
 	}
 	out := &ConfigClusterCerV2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -563,7 +563,7 @@ func (o *xxx_DefaultClusterSetupClient) RetrieveClusterCertV2(ctx context.Contex
 	}
 	out := &RetrieveClusterCertV2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -583,7 +583,7 @@ func (o *xxx_DefaultClusterSetupClient) GenerateClusterCertV2(ctx context.Contex
 	}
 	out := &GenerateClusterCertV2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

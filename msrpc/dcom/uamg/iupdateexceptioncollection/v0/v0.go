@@ -203,7 +203,7 @@ func (o *xxx_DefaultUpdateExceptionCollectionClient) GetItem(ctx context.Context
 	}
 	out := &GetItemResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -223,7 +223,7 @@ func (o *xxx_DefaultUpdateExceptionCollectionClient) Get_NewEnum(ctx context.Con
 	}
 	out := &Get_NewEnumResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -243,7 +243,7 @@ func (o *xxx_DefaultUpdateExceptionCollectionClient) GetCount(ctx context.Contex
 	}
 	out := &GetCountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

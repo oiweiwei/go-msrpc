@@ -127,7 +127,7 @@ func (o *xxx_DefaultActionCommandClient) GetExecutablePath(ctx context.Context, 
 	}
 	out := &GetExecutablePathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -147,7 +147,7 @@ func (o *xxx_DefaultActionCommandClient) SetExecutablePath(ctx context.Context, 
 	}
 	out := &SetExecutablePathResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -167,7 +167,7 @@ func (o *xxx_DefaultActionCommandClient) GetArguments(ctx context.Context, in *G
 	}
 	out := &GetArgumentsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -187,7 +187,7 @@ func (o *xxx_DefaultActionCommandClient) SetArguments(ctx context.Context, in *S
 	}
 	out := &SetArgumentsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -207,7 +207,7 @@ func (o *xxx_DefaultActionCommandClient) GetAccount(ctx context.Context, in *Get
 	}
 	out := &GetAccountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -227,7 +227,7 @@ func (o *xxx_DefaultActionCommandClient) SetAccount(ctx context.Context, in *Set
 	}
 	out := &SetAccountResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -247,7 +247,7 @@ func (o *xxx_DefaultActionCommandClient) GetWorkingDirectory(ctx context.Context
 	}
 	out := &GetWorkingDirectoryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -267,7 +267,7 @@ func (o *xxx_DefaultActionCommandClient) SetWorkingDirectory(ctx context.Context
 	}
 	out := &SetWorkingDirectoryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -287,7 +287,7 @@ func (o *xxx_DefaultActionCommandClient) GetMonitorCommand(ctx context.Context, 
 	}
 	out := &GetMonitorCommandResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -307,7 +307,7 @@ func (o *xxx_DefaultActionCommandClient) SetMonitorCommand(ctx context.Context, 
 	}
 	out := &SetMonitorCommandResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -327,7 +327,7 @@ func (o *xxx_DefaultActionCommandClient) GetKillTimeout(ctx context.Context, in 
 	}
 	out := &GetKillTimeoutResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -347,7 +347,7 @@ func (o *xxx_DefaultActionCommandClient) SetKillTimeout(ctx context.Context, in 
 	}
 	out := &SetKillTimeoutResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -367,7 +367,7 @@ func (o *xxx_DefaultActionCommandClient) GetLogResult(ctx context.Context, in *G
 	}
 	out := &GetLogResultResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -387,7 +387,7 @@ func (o *xxx_DefaultActionCommandClient) SetLogResult(ctx context.Context, in *S
 	}
 	out := &SetLogResultResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

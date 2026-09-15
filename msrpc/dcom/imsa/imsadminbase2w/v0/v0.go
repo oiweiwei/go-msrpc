@@ -274,7 +274,7 @@ func (o *xxx_DefaultIMSAdminBase2WClient) BackupWithPassword(ctx context.Context
 	}
 	out := &BackupWithPasswordResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -294,7 +294,7 @@ func (o *xxx_DefaultIMSAdminBase2WClient) RestoreWithPassword(ctx context.Contex
 	}
 	out := &RestoreWithPasswordResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -314,7 +314,7 @@ func (o *xxx_DefaultIMSAdminBase2WClient) Export(ctx context.Context, in *Export
 	}
 	out := &ExportResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -334,7 +334,7 @@ func (o *xxx_DefaultIMSAdminBase2WClient) Import(ctx context.Context, in *Import
 	}
 	out := &ImportResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -354,7 +354,7 @@ func (o *xxx_DefaultIMSAdminBase2WClient) RestoreHistory(ctx context.Context, in
 	}
 	out := &RestoreHistoryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -374,7 +374,7 @@ func (o *xxx_DefaultIMSAdminBase2WClient) EnumHistory(ctx context.Context, in *E
 	}
 	out := &EnumHistoryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -122,7 +122,7 @@ func (o *xxx_DefaultITransactionClient) Commit(ctx context.Context, in *CommitRe
 	}
 	out := &CommitResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -142,7 +142,7 @@ func (o *xxx_DefaultITransactionClient) Abort(ctx context.Context, in *AbortRequ
 	}
 	out := &AbortResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -162,7 +162,7 @@ func (o *xxx_DefaultITransactionClient) GetTransactionInfo(ctx context.Context, 
 	}
 	out := &GetTransactionInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

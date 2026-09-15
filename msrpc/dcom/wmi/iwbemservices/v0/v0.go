@@ -358,7 +358,7 @@ func (o *xxx_DefaultServicesClient) OpenNamespace(ctx context.Context, in *OpenN
 	}
 	out := &OpenNamespaceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -378,7 +378,7 @@ func (o *xxx_DefaultServicesClient) CancelAsyncCall(ctx context.Context, in *Can
 	}
 	out := &CancelAsyncCallResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -398,7 +398,7 @@ func (o *xxx_DefaultServicesClient) QueryObjectSink(ctx context.Context, in *Que
 	}
 	out := &QueryObjectSinkResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -418,7 +418,7 @@ func (o *xxx_DefaultServicesClient) GetObject(ctx context.Context, in *GetObject
 	}
 	out := &GetObjectResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -438,7 +438,7 @@ func (o *xxx_DefaultServicesClient) GetObjectAsync(ctx context.Context, in *GetO
 	}
 	out := &GetObjectAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -458,7 +458,7 @@ func (o *xxx_DefaultServicesClient) PutClass(ctx context.Context, in *PutClassRe
 	}
 	out := &PutClassResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -478,7 +478,7 @@ func (o *xxx_DefaultServicesClient) PutClassAsync(ctx context.Context, in *PutCl
 	}
 	out := &PutClassAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -498,7 +498,7 @@ func (o *xxx_DefaultServicesClient) DeleteClass(ctx context.Context, in *DeleteC
 	}
 	out := &DeleteClassResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -518,7 +518,7 @@ func (o *xxx_DefaultServicesClient) DeleteClassAsync(ctx context.Context, in *De
 	}
 	out := &DeleteClassAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -538,7 +538,7 @@ func (o *xxx_DefaultServicesClient) CreateClassEnum(ctx context.Context, in *Cre
 	}
 	out := &CreateClassEnumResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -558,7 +558,7 @@ func (o *xxx_DefaultServicesClient) CreateClassEnumAsync(ctx context.Context, in
 	}
 	out := &CreateClassEnumAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -578,7 +578,7 @@ func (o *xxx_DefaultServicesClient) PutInstance(ctx context.Context, in *PutInst
 	}
 	out := &PutInstanceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -598,7 +598,7 @@ func (o *xxx_DefaultServicesClient) PutInstanceAsync(ctx context.Context, in *Pu
 	}
 	out := &PutInstanceAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -618,7 +618,7 @@ func (o *xxx_DefaultServicesClient) DeleteInstance(ctx context.Context, in *Dele
 	}
 	out := &DeleteInstanceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -638,7 +638,7 @@ func (o *xxx_DefaultServicesClient) DeleteInstanceAsync(ctx context.Context, in 
 	}
 	out := &DeleteInstanceAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -658,7 +658,7 @@ func (o *xxx_DefaultServicesClient) CreateInstanceEnum(ctx context.Context, in *
 	}
 	out := &CreateInstanceEnumResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -678,7 +678,7 @@ func (o *xxx_DefaultServicesClient) CreateInstanceEnumAsync(ctx context.Context,
 	}
 	out := &CreateInstanceEnumAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -698,7 +698,7 @@ func (o *xxx_DefaultServicesClient) ExecQuery(ctx context.Context, in *ExecQuery
 	}
 	out := &ExecQueryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -718,7 +718,7 @@ func (o *xxx_DefaultServicesClient) ExecQueryAsync(ctx context.Context, in *Exec
 	}
 	out := &ExecQueryAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -738,7 +738,7 @@ func (o *xxx_DefaultServicesClient) ExecNotificationQuery(ctx context.Context, i
 	}
 	out := &ExecNotificationQueryResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -758,7 +758,7 @@ func (o *xxx_DefaultServicesClient) ExecNotificationQueryAsync(ctx context.Conte
 	}
 	out := &ExecNotificationQueryAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -778,7 +778,7 @@ func (o *xxx_DefaultServicesClient) ExecMethod(ctx context.Context, in *ExecMeth
 	}
 	out := &ExecMethodResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -798,7 +798,7 @@ func (o *xxx_DefaultServicesClient) ExecMethodAsync(ctx context.Context, in *Exe
 	}
 	out := &ExecMethodAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

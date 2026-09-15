@@ -261,7 +261,7 @@ func (o *xxx_DefaultApplication3Client) ActiveQueues(ctx context.Context, in *Ac
 	}
 	out := &ActiveQueuesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -281,7 +281,7 @@ func (o *xxx_DefaultApplication3Client) GetPrivateQueues(ctx context.Context, in
 	}
 	out := &GetPrivateQueuesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -301,7 +301,7 @@ func (o *xxx_DefaultApplication3Client) GetDirectoryServiceServer(ctx context.Co
 	}
 	out := &GetDirectoryServiceServerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -321,7 +321,7 @@ func (o *xxx_DefaultApplication3Client) GetIsConnected(ctx context.Context, in *
 	}
 	out := &GetIsConnectedResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -341,7 +341,7 @@ func (o *xxx_DefaultApplication3Client) GetBytesInAllQueues(ctx context.Context,
 	}
 	out := &GetBytesInAllQueuesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -361,7 +361,7 @@ func (o *xxx_DefaultApplication3Client) SetMachine(ctx context.Context, in *SetM
 	}
 	out := &SetMachineResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -381,7 +381,7 @@ func (o *xxx_DefaultApplication3Client) GetMachine(ctx context.Context, in *GetM
 	}
 	out := &GetMachineResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -401,7 +401,7 @@ func (o *xxx_DefaultApplication3Client) Connect(ctx context.Context, in *Connect
 	}
 	out := &ConnectResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -421,7 +421,7 @@ func (o *xxx_DefaultApplication3Client) Disconnect(ctx context.Context, in *Disc
 	}
 	out := &DisconnectResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -441,7 +441,7 @@ func (o *xxx_DefaultApplication3Client) Tidy(ctx context.Context, in *TidyReques
 	}
 	out := &TidyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

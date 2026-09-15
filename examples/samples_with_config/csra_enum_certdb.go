@@ -8,7 +8,6 @@ package main
 
 import (
 	"context"
-	"errors"
 	"flag"
 	"fmt"
 	"os"
@@ -205,7 +204,7 @@ func main() {
 
 	resultRows := view.ResultRows
 
-	if err != nil && !errors.Is(err, hresult.ErrorArithmeticOverflow) {
+	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return
 	}

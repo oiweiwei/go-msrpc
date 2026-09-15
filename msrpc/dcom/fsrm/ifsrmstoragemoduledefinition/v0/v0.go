@@ -101,7 +101,7 @@ func (o *xxx_DefaultStorageModuleDefinitionClient) GetCapabilities(ctx context.C
 	}
 	out := &GetCapabilitiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -121,7 +121,7 @@ func (o *xxx_DefaultStorageModuleDefinitionClient) SetCapabilities(ctx context.C
 	}
 	out := &SetCapabilitiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -141,7 +141,7 @@ func (o *xxx_DefaultStorageModuleDefinitionClient) GetStorageType(ctx context.Co
 	}
 	out := &GetStorageTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -161,7 +161,7 @@ func (o *xxx_DefaultStorageModuleDefinitionClient) SetStorageType(ctx context.Co
 	}
 	out := &SetStorageTypeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -181,7 +181,7 @@ func (o *xxx_DefaultStorageModuleDefinitionClient) GetUpdatesFileContent(ctx con
 	}
 	out := &GetUpdatesFileContentResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -201,7 +201,7 @@ func (o *xxx_DefaultStorageModuleDefinitionClient) SetUpdatesFileContent(ctx con
 	}
 	out := &SetUpdatesFileContentResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -145,7 +145,7 @@ func (o *xxx_DefaultMonikerClient) GetClassID(ctx context.Context, in *GetClassI
 	}
 	out := &GetClassIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -165,7 +165,7 @@ func (o *xxx_DefaultMonikerClient) IsDirty(ctx context.Context, in *IsDirtyReque
 	}
 	out := &IsDirtyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -185,7 +185,7 @@ func (o *xxx_DefaultMonikerClient) Load(ctx context.Context, in *LoadRequest, op
 	}
 	out := &LoadResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -205,7 +205,7 @@ func (o *xxx_DefaultMonikerClient) Save(ctx context.Context, in *SaveRequest, op
 	}
 	out := &SaveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -225,7 +225,7 @@ func (o *xxx_DefaultMonikerClient) GetSizeMax(ctx context.Context, in *GetSizeMa
 	}
 	out := &GetSizeMaxResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -245,7 +245,7 @@ func (o *xxx_DefaultMonikerClient) BindToObject(ctx context.Context, in *BindToO
 	}
 	out := &BindToObjectResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -265,7 +265,7 @@ func (o *xxx_DefaultMonikerClient) BindToStorage(ctx context.Context, in *BindTo
 	}
 	out := &BindToStorageResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -285,7 +285,7 @@ func (o *xxx_DefaultMonikerClient) Reduce(ctx context.Context, in *ReduceRequest
 	}
 	out := &ReduceResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -305,7 +305,7 @@ func (o *xxx_DefaultMonikerClient) ComposeWith(ctx context.Context, in *ComposeW
 	}
 	out := &ComposeWithResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -325,7 +325,7 @@ func (o *xxx_DefaultMonikerClient) Enum(ctx context.Context, in *EnumRequest, op
 	}
 	out := &EnumResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -345,7 +345,7 @@ func (o *xxx_DefaultMonikerClient) IsEqual(ctx context.Context, in *IsEqualReque
 	}
 	out := &IsEqualResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -365,7 +365,7 @@ func (o *xxx_DefaultMonikerClient) Hash(ctx context.Context, in *HashRequest, op
 	}
 	out := &HashResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -385,7 +385,7 @@ func (o *xxx_DefaultMonikerClient) IsRunning(ctx context.Context, in *IsRunningR
 	}
 	out := &IsRunningResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -405,7 +405,7 @@ func (o *xxx_DefaultMonikerClient) GetTimeOfLastChange(ctx context.Context, in *
 	}
 	out := &GetTimeOfLastChangeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -425,7 +425,7 @@ func (o *xxx_DefaultMonikerClient) Inverse(ctx context.Context, in *InverseReque
 	}
 	out := &InverseResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -445,7 +445,7 @@ func (o *xxx_DefaultMonikerClient) CommonPrefixWith(ctx context.Context, in *Com
 	}
 	out := &CommonPrefixWithResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -465,7 +465,7 @@ func (o *xxx_DefaultMonikerClient) RelativePathTo(ctx context.Context, in *Relat
 	}
 	out := &RelativePathToResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -485,7 +485,7 @@ func (o *xxx_DefaultMonikerClient) GetDisplayName(ctx context.Context, in *GetDi
 	}
 	out := &GetDisplayNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -505,7 +505,7 @@ func (o *xxx_DefaultMonikerClient) ParseDisplayName(ctx context.Context, in *Par
 	}
 	out := &ParseDisplayNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -525,7 +525,7 @@ func (o *xxx_DefaultMonikerClient) IsSystemMoniker(ctx context.Context, in *IsSy
 	}
 	out := &IsSystemMonikerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -129,7 +129,7 @@ func (o *xxx_DefaultFileScreenBaseClient) GetBlockedFileGroups(ctx context.Conte
 	}
 	out := &GetBlockedFileGroupsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -149,7 +149,7 @@ func (o *xxx_DefaultFileScreenBaseClient) SetBlockedFileGroups(ctx context.Conte
 	}
 	out := &SetBlockedFileGroupsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -169,7 +169,7 @@ func (o *xxx_DefaultFileScreenBaseClient) GetFileScreenFlags(ctx context.Context
 	}
 	out := &GetFileScreenFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -189,7 +189,7 @@ func (o *xxx_DefaultFileScreenBaseClient) SetFileScreenFlags(ctx context.Context
 	}
 	out := &SetFileScreenFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -209,7 +209,7 @@ func (o *xxx_DefaultFileScreenBaseClient) CreateAction(ctx context.Context, in *
 	}
 	out := &CreateActionResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -229,7 +229,7 @@ func (o *xxx_DefaultFileScreenBaseClient) EnumActions(ctx context.Context, in *E
 	}
 	out := &EnumActionsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

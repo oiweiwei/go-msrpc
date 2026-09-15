@@ -95,7 +95,7 @@ func (o *xxx_DefaultEnumManagementObjectClient) Next(ctx context.Context, in *Ne
 	}
 	out := &NextResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -115,7 +115,7 @@ func (o *xxx_DefaultEnumManagementObjectClient) Skip(ctx context.Context, in *Sk
 	}
 	out := &SkipResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -135,7 +135,7 @@ func (o *xxx_DefaultEnumManagementObjectClient) Reset(ctx context.Context, in *R
 	}
 	out := &ResetResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -155,7 +155,7 @@ func (o *xxx_DefaultEnumManagementObjectClient) Clone(ctx context.Context, in *C
 	}
 	out := &CloneResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

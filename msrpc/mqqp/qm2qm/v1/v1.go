@@ -802,7 +802,7 @@ func (o *xxx_DefaultQm2qmClient) StartReceive(ctx context.Context, in *StartRece
 	}
 	out := &StartReceiveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -815,7 +815,7 @@ func (o *xxx_DefaultQm2qmClient) EndReceive(ctx context.Context, in *EndReceiveR
 	}
 	out := &EndReceiveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -828,7 +828,7 @@ func (o *xxx_DefaultQm2qmClient) OpenQueue(ctx context.Context, in *OpenQueueReq
 	}
 	out := &OpenQueueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -841,7 +841,7 @@ func (o *xxx_DefaultQm2qmClient) CloseQueue(ctx context.Context, in *CloseQueueR
 	}
 	out := &CloseQueueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -854,7 +854,7 @@ func (o *xxx_DefaultQm2qmClient) CloseCursor(ctx context.Context, in *CloseCurso
 	}
 	out := &CloseCursorResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -867,7 +867,7 @@ func (o *xxx_DefaultQm2qmClient) CancelReceive(ctx context.Context, in *CancelRe
 	}
 	out := &CancelReceiveResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -880,7 +880,7 @@ func (o *xxx_DefaultQm2qmClient) PurgeQueue(ctx context.Context, in *PurgeQueueR
 	}
 	out := &PurgeQueueResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -916,7 +916,7 @@ func (o *xxx_DefaultQm2qmClient) StartReceive2(ctx context.Context, in *StartRec
 	}
 	out := &StartReceive2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -929,7 +929,7 @@ func (o *xxx_DefaultQm2qmClient) StartReceiveByLookupID(ctx context.Context, in 
 	}
 	out := &StartReceiveByLookupIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -312,7 +312,7 @@ func (o *xxx_DefaultIISCertObjectClient) SetInstanceName(ctx context.Context, in
 	}
 	out := &SetInstanceNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -332,7 +332,7 @@ func (o *xxx_DefaultIISCertObjectClient) IsInstalledRemote(ctx context.Context, 
 	}
 	out := &IsInstalledRemoteResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -352,7 +352,7 @@ func (o *xxx_DefaultIISCertObjectClient) IsExportableRemote(ctx context.Context,
 	}
 	out := &IsExportableRemoteResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -372,7 +372,7 @@ func (o *xxx_DefaultIISCertObjectClient) GetCertInfoRemote(ctx context.Context, 
 	}
 	out := &GetCertInfoRemoteResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -392,7 +392,7 @@ func (o *xxx_DefaultIISCertObjectClient) ImportFromBlob(ctx context.Context, in 
 	}
 	out := &ImportFromBlobResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -412,7 +412,7 @@ func (o *xxx_DefaultIISCertObjectClient) ImportFromBlobGetHash(ctx context.Conte
 	}
 	out := &ImportFromBlobGetHashResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -432,7 +432,7 @@ func (o *xxx_DefaultIISCertObjectClient) ExportToBlob(ctx context.Context, in *E
 	}
 	out := &ExportToBlobResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

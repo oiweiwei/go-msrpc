@@ -153,7 +153,7 @@ func (o *xxx_DefaultVolumeClient) GetProperties(ctx context.Context, in *GetProp
 	}
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -173,7 +173,7 @@ func (o *xxx_DefaultVolumeClient) GetPack(ctx context.Context, in *GetPackReques
 	}
 	out := &GetPackResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -193,7 +193,7 @@ func (o *xxx_DefaultVolumeClient) QueryPlexes(ctx context.Context, in *QueryPlex
 	}
 	out := &QueryPlexesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -213,7 +213,7 @@ func (o *xxx_DefaultVolumeClient) Extend(ctx context.Context, in *ExtendRequest,
 	}
 	out := &ExtendResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -233,7 +233,7 @@ func (o *xxx_DefaultVolumeClient) Shrink(ctx context.Context, in *ShrinkRequest,
 	}
 	out := &ShrinkResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -253,7 +253,7 @@ func (o *xxx_DefaultVolumeClient) AddPlex(ctx context.Context, in *AddPlexReques
 	}
 	out := &AddPlexResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -273,7 +273,7 @@ func (o *xxx_DefaultVolumeClient) BreakPlex(ctx context.Context, in *BreakPlexRe
 	}
 	out := &BreakPlexResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -293,7 +293,7 @@ func (o *xxx_DefaultVolumeClient) RemovePlex(ctx context.Context, in *RemovePlex
 	}
 	out := &RemovePlexResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -313,7 +313,7 @@ func (o *xxx_DefaultVolumeClient) Delete(ctx context.Context, in *DeleteRequest,
 	}
 	out := &DeleteResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -333,7 +333,7 @@ func (o *xxx_DefaultVolumeClient) SetFlags(ctx context.Context, in *SetFlagsRequ
 	}
 	out := &SetFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -353,7 +353,7 @@ func (o *xxx_DefaultVolumeClient) ClearFlags(ctx context.Context, in *ClearFlags
 	}
 	out := &ClearFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

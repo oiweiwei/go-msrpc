@@ -136,7 +136,7 @@ func (o *xxx_DefaultReplicationUtilClient) CreateShare(ctx context.Context, in *
 	}
 	out := &CreateShareResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -156,7 +156,7 @@ func (o *xxx_DefaultReplicationUtilClient) CreateEmptyDir(ctx context.Context, i
 	}
 	out := &CreateEmptyDirResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -176,7 +176,7 @@ func (o *xxx_DefaultReplicationUtilClient) RemoveShare(ctx context.Context, in *
 	}
 	out := &RemoveShareResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -196,7 +196,7 @@ func (o *xxx_DefaultReplicationUtilClient) BeginReplicationAsTarget(ctx context.
 	}
 	out := &BeginReplicationAsTargetResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -216,7 +216,7 @@ func (o *xxx_DefaultReplicationUtilClient) QueryConglomerationPassword(ctx conte
 	}
 	out := &QueryConglomerationPasswordResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -236,7 +236,7 @@ func (o *xxx_DefaultReplicationUtilClient) CreateReplicationDir(ctx context.Cont
 	}
 	out := &CreateReplicationDirResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

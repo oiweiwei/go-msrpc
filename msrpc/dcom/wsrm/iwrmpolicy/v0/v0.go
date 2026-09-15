@@ -488,7 +488,7 @@ func (o *xxx_DefaultPolicyClient) GetPolicyInfo(ctx context.Context, in *GetPoli
 	}
 	out := &GetPolicyInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -508,7 +508,7 @@ func (o *xxx_DefaultPolicyClient) CreatePolicy(ctx context.Context, in *CreatePo
 	}
 	out := &CreatePolicyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -528,7 +528,7 @@ func (o *xxx_DefaultPolicyClient) ModifyPolicy(ctx context.Context, in *ModifyPo
 	}
 	out := &ModifyPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -548,7 +548,7 @@ func (o *xxx_DefaultPolicyClient) DeletePolicy(ctx context.Context, in *DeletePo
 	}
 	out := &DeletePolicyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -568,7 +568,7 @@ func (o *xxx_DefaultPolicyClient) RenameAllocationPolicy(ctx context.Context, in
 	}
 	out := &RenameAllocationPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -588,7 +588,7 @@ func (o *xxx_DefaultPolicyClient) MoveBefore(ctx context.Context, in *MoveBefore
 	}
 	out := &MoveBeforeResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -608,7 +608,7 @@ func (o *xxx_DefaultPolicyClient) MoveAfter(ctx context.Context, in *MoveAfterRe
 	}
 	out := &MoveAfterResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -628,7 +628,7 @@ func (o *xxx_DefaultPolicyClient) SetCALDefaultPolicyName(ctx context.Context, i
 	}
 	out := &SetCALDefaultPolicyNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -648,7 +648,7 @@ func (o *xxx_DefaultPolicyClient) GetCALDefaultPolicyName(ctx context.Context, i
 	}
 	out := &GetCALDefaultPolicyNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -668,7 +668,7 @@ func (o *xxx_DefaultPolicyClient) GetProcessList(ctx context.Context, in *GetPro
 	}
 	out := &GetProcessListResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -688,7 +688,7 @@ func (o *xxx_DefaultPolicyClient) GetCurrentPolicy(ctx context.Context, in *GetC
 	}
 	out := &GetCurrentPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -708,7 +708,7 @@ func (o *xxx_DefaultPolicyClient) SetCurrentPolicy(ctx context.Context, in *SetC
 	}
 	out := &SetCurrentPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -728,7 +728,7 @@ func (o *xxx_DefaultPolicyClient) GetCurrentStateAndActivePolicyName(ctx context
 	}
 	out := &GetCurrentStateAndActivePolicyNameResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -748,7 +748,7 @@ func (o *xxx_DefaultPolicyClient) GetConditionalPolicy(ctx context.Context, in *
 	}
 	out := &GetConditionalPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -768,7 +768,7 @@ func (o *xxx_DefaultPolicyClient) SetConditionalPolicy(ctx context.Context, in *
 	}
 	out := &SetConditionalPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

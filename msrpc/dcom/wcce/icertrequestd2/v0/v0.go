@@ -109,7 +109,7 @@ func (o *xxx_DefaultCertRequestD2Client) Request2(ctx context.Context, in *Reque
 	}
 	out := &Request2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -129,7 +129,7 @@ func (o *xxx_DefaultCertRequestD2Client) GetCAProperty(ctx context.Context, in *
 	}
 	out := &GetCAPropertyResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -149,7 +149,7 @@ func (o *xxx_DefaultCertRequestD2Client) GetCAPropertyInfo(ctx context.Context, 
 	}
 	out := &GetCAPropertyInfoResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -169,7 +169,7 @@ func (o *xxx_DefaultCertRequestD2Client) Ping2(ctx context.Context, in *Ping2Req
 	}
 	out := &Ping2Response{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

@@ -75,7 +75,7 @@ func (o *xxx_DefaultRfriClient) GetNewDSA(ctx context.Context, in *GetNewDSARequ
 	}
 	out := &GetNewDSAResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -88,7 +88,7 @@ func (o *xxx_DefaultRfriClient) GetFQDNFromServerDN(ctx context.Context, in *Get
 	}
 	out := &GetFQDNFromServerDNResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

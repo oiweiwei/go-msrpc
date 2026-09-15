@@ -95,7 +95,7 @@ func (o *xxx_DefaultActionReportClient) GetReportTypes(ctx context.Context, in *
 	}
 	out := &GetReportTypesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -115,7 +115,7 @@ func (o *xxx_DefaultActionReportClient) SetReportTypes(ctx context.Context, in *
 	}
 	out := &SetReportTypesResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -135,7 +135,7 @@ func (o *xxx_DefaultActionReportClient) GetMailTo(ctx context.Context, in *GetMa
 	}
 	out := &GetMailToResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -155,7 +155,7 @@ func (o *xxx_DefaultActionReportClient) SetMailTo(ctx context.Context, in *SetMa
 	}
 	out := &SetMailToResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

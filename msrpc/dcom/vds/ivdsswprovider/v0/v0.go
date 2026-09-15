@@ -99,7 +99,7 @@ func (o *xxx_DefaultSwProviderClient) QueryPacks(ctx context.Context, in *QueryP
 	}
 	out := &QueryPacksResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -119,7 +119,7 @@ func (o *xxx_DefaultSwProviderClient) CreatePack(ctx context.Context, in *Create
 	}
 	out := &CreatePackResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil

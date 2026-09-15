@@ -245,7 +245,7 @@ func (o *xxx_DefaultWindowsDriverUpdateEntryClient) GetDriverClass(ctx context.C
 	}
 	out := &GetDriverClassResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -265,7 +265,7 @@ func (o *xxx_DefaultWindowsDriverUpdateEntryClient) GetDriverHardwareID(ctx cont
 	}
 	out := &GetDriverHardwareIDResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -285,7 +285,7 @@ func (o *xxx_DefaultWindowsDriverUpdateEntryClient) GetDriverManufacturer(ctx co
 	}
 	out := &GetDriverManufacturerResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -305,7 +305,7 @@ func (o *xxx_DefaultWindowsDriverUpdateEntryClient) GetDriverModel(ctx context.C
 	}
 	out := &GetDriverModelResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -325,7 +325,7 @@ func (o *xxx_DefaultWindowsDriverUpdateEntryClient) GetDriverProvider(ctx contex
 	}
 	out := &GetDriverProviderResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -345,7 +345,7 @@ func (o *xxx_DefaultWindowsDriverUpdateEntryClient) GetDriverVerDate(ctx context
 	}
 	out := &GetDriverVerDateResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -365,7 +365,7 @@ func (o *xxx_DefaultWindowsDriverUpdateEntryClient) GetDeviceProblemNumber(ctx c
 	}
 	out := &GetDeviceProblemNumberResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
@@ -385,7 +385,7 @@ func (o *xxx_DefaultWindowsDriverUpdateEntryClient) GetDeviceStatus(ctx context.
 	}
 	out := &GetDeviceStatusResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.Return != int32(0) {
+	if op.Return < int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
