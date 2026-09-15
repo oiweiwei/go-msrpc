@@ -17,28 +17,30 @@ func MultiSzLen(s []string) uint64 {
 
 // UTF16NLen function ...
 func UTF16NLen(s string) uint64 {
-	l := len(s)
+	var length uint64
 	for _, r := range s {
-		if r == 0x0000 {
-			l--
-			// null-terminated string.
-			break
+		if r == 0 {
+			return length + 1
 		}
-		if r >= 0x10000 && r <= '\U0010FFFF' {
-			l++
+		if r >= 0x10000 {
+			length += 2
+			continue
 		}
+		length++
 	}
-	return uint64(l) + 1
+	return length + 1
 }
 
 func UTF16Len(s string) uint64 {
-	l := len(s)
+	var length uint64
 	for _, r := range s {
-		if r >= 0x10000 && r <= '\U0010FFFF' {
-			l++
+		if r >= 0x10000 {
+			length += 2
+			continue
 		}
+		length++
 	}
-	return uint64(l)
+	return length
 }
 
 func CharLen(s string) uint64 {
@@ -246,8 +248,7 @@ func WriteUTF16NString(ctx context.Context, w Writer, s string) error {
 		return err
 	}
 
-	s = strings.TrimRight(s, ZeroString)
-
+	s, _, _ = strings.Cut(s, ZeroString)
 	for _, chr := range utf16.Encode([]rune(s)) {
 		if err := w.WriteData(chr); err != nil {
 			return err
