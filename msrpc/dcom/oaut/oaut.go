@@ -2069,7 +2069,8 @@ type Variant struct {
 	// * If none of the preceding flags is specified in the *vt* field, the *_varUnion*
 	// field MUST be marshaled by using a little-endian data representation, regardless
 	// of the data representation format label.
-	VarUnion *Variant_VarUnion `idl:"name:_varUnion;switch_is:vt" json:"var_union"`
+	//
+	VarUnion *Variant_VarUnion `idl:"name:_varUnion;switch_is:(((vt 8192 &) 0 !=) (vt (8192 16384 |) &) vt ?:)" json:"var_union"`
 }
 
 func (o *Variant) xxx_PreparePayload(ctx context.Context) error {
@@ -2110,7 +2111,13 @@ func (o *Variant) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint16(0)); err != nil {
 		return err
 	}
-	_swVarUnion := uint32(o.VT)
+	_exprvt := uint32(0)
+	if (o.VT & 8192) != 0 {
+		_exprvt = uint32((o.VT & (8192 | 16384)))
+	} else {
+		_exprvt = uint32(o.VT)
+	}
+	_swVarUnion := uint32(_exprvt)
 	if o.VarUnion != nil {
 		if err := o.VarUnion.MarshalUnionNDR(ctx, w, _swVarUnion); err != nil {
 			return err
@@ -2155,7 +2162,13 @@ func (o *Variant) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.VarUnion == nil {
 		o.VarUnion = &Variant_VarUnion{}
 	}
-	_swVarUnion := uint32(o.VT)
+	_exprvt := uint32(0)
+	if (o.VT & 8192) != 0 {
+		_exprvt = uint32((o.VT & (8192 | 16384)))
+	} else {
+		_exprvt = uint32(o.VT)
+	}
+	_swVarUnion := uint32(_exprvt)
 	if err := o.VarUnion.UnmarshalUnionNDR(ctx, w, _swVarUnion); err != nil {
 		return err
 	}
