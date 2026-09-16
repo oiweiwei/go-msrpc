@@ -347,7 +347,8 @@ typedef struct _wireVARIANT {
         [case(VT_DECIMAL)]
           DECIMAL decVal;
         [case(VT_I1|VT_BYREF)]
-          CHAR* pcVal;
+          // Use the signed 8-bit scalar without implicit CHAR* string inference.
+          signed small* pcVal;
         [case(VT_UI2|VT_BYREF)]
           USHORT* puiVal;
         [case(VT_UI4|VT_BYREF)]

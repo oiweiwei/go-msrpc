@@ -3003,11 +3003,17 @@ func (o *Variant_VarUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw
 	case uint32(16400):
 		_o, _ := o.Value.(*Variant_VarUnion_CharPtr)
 		if _o != nil {
-			if err := _o.MarshalNDR(ctx, w); err != nil {
+			_ptr_o := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := _o.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&_o, _ptr_o); err != nil {
 				return err
 			}
 		} else {
-			if err := (&Variant_VarUnion_CharPtr{}).MarshalNDR(ctx, w); err != nil {
+			if err := w.WritePointer(nil); err != nil {
 				return err
 			}
 		}
@@ -3203,6 +3209,7 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16401):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_BytePtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -3215,6 +3222,7 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16386):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_ShortPtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -3227,6 +3235,7 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16387):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_LongPtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -3239,6 +3248,7 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16404):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_LongLongPtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -3251,6 +3261,7 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16388):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_FloatPtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -3263,6 +3274,7 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16389):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_DoublePtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -3275,6 +3287,7 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16395):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_BoolPtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -3287,6 +3300,7 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16394):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_HResultPtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -3304,6 +3318,7 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16391):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_DatePtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -3376,11 +3391,20 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16400):
-		o.Value = &Variant_VarUnion_CharPtr{}
-		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+		o.Value = nil
+		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			o.Value = &Variant_VarUnion_CharPtr{}
+			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_CharPtr) }
+		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
 	case uint32(16402):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_UshortPtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -3393,6 +3417,7 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16403):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_UlongPtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -3405,6 +3430,7 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16405):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_UlongLongPtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -3417,6 +3443,7 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16406):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_IntPtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -3429,6 +3456,7 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			return err
 		}
 	case uint32(16407):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Variant_VarUnion_UintPtr{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
@@ -4732,38 +4760,19 @@ func (o *Variant_VarUnion_Decimal) UnmarshalNDR(ctx context.Context, w ndr.Reade
 //
 // It has following labels: 16400
 type Variant_VarUnion_CharPtr struct {
-	CharPtr string `idl:"name:pcVal" json:"char_ptr"`
+	CharPtr int8 `idl:"name:pcVal" json:"char_ptr"`
 }
 
 func (*Variant_VarUnion_CharPtr) is_Variant_VarUnion() {}
 
 func (o *Variant_VarUnion_CharPtr) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.CharPtr != "" {
-		_ptr_pcVal := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := ndr.WriteCharString(ctx, w, o.CharPtr); err != nil {
-				return err
-			}
-			return nil
-		})
-		if err := w.WritePointer(&o.CharPtr, _ptr_pcVal); err != nil {
-			return err
-		}
-	} else {
-		if err := w.WritePointer(nil); err != nil {
-			return err
-		}
+	if err := w.WriteData(o.CharPtr); err != nil {
+		return err
 	}
 	return nil
 }
 func (o *Variant_VarUnion_CharPtr) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	_ptr_pcVal := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := ndr.ReadCharString(ctx, w, &o.CharPtr); err != nil {
-			return err
-		}
-		return nil
-	})
-	_s_pcVal := func(ptr interface{}) { o.CharPtr = *ptr.(*string) }
-	if err := w.ReadPointer(&o.CharPtr, _s_pcVal, _ptr_pcVal); err != nil {
+	if err := w.ReadData(&o.CharPtr); err != nil {
 		return err
 	}
 	return nil
