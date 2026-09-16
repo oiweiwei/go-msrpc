@@ -19948,6 +19948,7 @@ func (o *Union) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) 
 	}
 	switch sw {
 	case uint32(0):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &Union_Null{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {

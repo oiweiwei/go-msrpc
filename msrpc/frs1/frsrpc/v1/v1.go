@@ -383,9 +383,9 @@ type CommPacket struct {
 	//	+-------+-----------------------------------------------------+----------------------------------------------------------------------------------+
 	Packet []byte `idl:"name:Pkt;size_is:(PktLen)" json:"packet"`
 	// DataName:   MUST be 0.
-	DataName []byte `idl:"name:DataName" json:"data_name"`
+	DataName []byte `idl:"name:DataName;ignore" json:"data_name"`
 	// DataHandle:   MUST be 0.
-	DataHandle []byte `idl:"name:DataHandle" json:"data_handle"`
+	DataHandle []byte `idl:"name:DataHandle;ignore" json:"data_handle"`
 }
 
 func (o *CommPacket) xxx_PreparePayload(ctx context.Context) error {

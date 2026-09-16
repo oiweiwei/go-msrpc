@@ -226,9 +226,14 @@ typedef [v1_enum] enum tagDESCKIND {
 } DESCKIND;
  
 typedef struct _FLAGGED_WORD_BLOB {
-    unsigned long cBytes = clSize != 0 ? clSize * 2 : 0xFFFFFFFF;
+    unsigned long cBytes = (clSize != 0 || isEmpty) ? clSize * 2 : 0xFFFFFFFF;
     unsigned long clSize;
     [size_is(clSize)] wchar_t asData[];
+    [doc_string(
+        "Use this field to indicate that the blob represents an empty string. "
+        "Otherwise, when clSize is zero, the blob represents a NULL data."
+    )]
+    [ignore] boolean isEmpty = (clSize == 0 && cBytes == 0);
 } FLAGGED_WORD_BLOB;
  
 typedef [unique] FLAGGED_WORD_BLOB  _BSTR, *BSTR;
@@ -347,7 +352,8 @@ typedef struct _wireVARIANT {
         [case(VT_DECIMAL)]
           DECIMAL decVal;
         [case(VT_I1|VT_BYREF)]
-          CHAR* pcVal;
+           [format(rune)]
+           CHAR* pcVal;
         [case(VT_UI2|VT_BYREF)]
           USHORT* puiVal;
         [case(VT_UI4|VT_BYREF)]
