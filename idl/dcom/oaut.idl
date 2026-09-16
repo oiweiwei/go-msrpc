@@ -226,7 +226,7 @@ typedef [v1_enum] enum tagDESCKIND {
 } DESCKIND;
  
 typedef struct _FLAGGED_WORD_BLOB {
-    unsigned long cBytes = clSize != 0 ? clSize * 2 : 0xFFFFFFFF;
+    unsigned long cBytes = clSize * 2;
     unsigned long clSize;
     [size_is(clSize)] wchar_t asData[];
 } FLAGGED_WORD_BLOB;

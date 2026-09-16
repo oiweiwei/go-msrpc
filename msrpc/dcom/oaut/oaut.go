@@ -1500,13 +1500,7 @@ func (o *FlaggedWordBlob) xxx_PreparePayload(ctx context.Context) error {
 		o.Size = uint32(ndr.UTF16Len(o.Data))
 	}
 	if o.BytesCount == uint32(0) {
-		_exprclSize := uint32(0)
-		if o.Size != 0 {
-			_exprclSize = uint32((o.Size * 2))
-		} else {
-			_exprclSize = uint32(4294967295)
-		}
-		o.BytesCount = uint32(_exprclSize)
+		o.BytesCount = uint32((o.Size * 2))
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -1598,7 +1592,7 @@ func (o *FlaggedWordBlob) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 			return err
 		}
 	}
-	o.Data = strings.TrimRight(string(utf16.Decode(_Data_buf)), ndr.ZeroString)
+	o.Data = string(utf16.Decode(_Data_buf))
 	return nil
 }
 
@@ -1615,13 +1609,7 @@ func (o *String) xxx_PreparePayload(ctx context.Context) error {
 		o.Size = uint32(ndr.UTF16Len(o.Data))
 	}
 	if o.BytesCount == uint32(0) {
-		_exprclSize := uint32(0)
-		if o.Size != 0 {
-			_exprclSize = uint32((o.Size * 2))
-		} else {
-			_exprclSize = uint32(4294967295)
-		}
-		o.BytesCount = uint32(_exprclSize)
+		o.BytesCount = uint32((o.Size * 2))
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -1713,7 +1701,7 @@ func (o *String) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 			return err
 		}
 	}
-	o.Data = strings.TrimRight(string(utf16.Decode(_Data_buf)), ndr.ZeroString)
+	o.Data = string(utf16.Decode(_Data_buf))
 	return nil
 }
 
