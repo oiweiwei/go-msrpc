@@ -9507,7 +9507,7 @@ type ExtensionsInt struct {
 	// cb (4 bytes): The count of bytes in the fields dwFlags through dwExtCaps, inclusive.<38><39><40>
 	// This field allows the DRS_EXTENSIONS_INT structure to be extended by including new
 	// fields at the end of the structure.
-	Length uint32 `idl:"name:cb" json:"length"`
+	Length uint32 `idl:"name:cb;ignore" json:"length"`
 	// dwFlags (4 bytes): The dwFlags field contains individual bit flags that describe
 	// the capabilities of the DC that produced the DRS_EXTENSIONS_INT structure.<41>
 	//

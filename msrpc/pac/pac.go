@@ -2018,7 +2018,7 @@ type SecurityPackageSupplementalCred struct {
 	// Credentials: A pointer that MUST reference the serialized credentials being presented
 	// to the security protocol named in PackageName.
 	Credentials                []byte                      `idl:"name:Credentials;size_is:(CredentialSize)" json:"credentials"`
-	NTLMSupplementalCredential *NTLMSupplementalCredential `idl:"name:NtlmSupplementalCredential" json:"ntlm_supplemental_credential"`
+	NTLMSupplementalCredential *NTLMSupplementalCredential `idl:"name:NtlmSupplementalCredential;ignore" json:"ntlm_supplemental_credential"`
 }
 
 func (o *SecurityPackageSupplementalCred) xxx_PreparePayload(ctx context.Context) error {
@@ -2821,15 +2821,15 @@ type UPNDNSInfo struct {
 	// specifies the length, in bytes, of the SAM name. The location of the SAM name is
 	// described later in this section. This field is only present if the S flag bit is
 	// set.
-	SAMNameLength uint16 `idl:"name:SamNameLength" json:"sam_name_length"`
+	SAMNameLength uint16 `idl:"name:SamNameLength;ignore" json:"sam_name_length"`
 	// SamNameOffset (2 bytes): An unsigned 16-bit integer in little-endian format that
 	// contains the offset to the beginning of the SAM name, in bytes, from the beginning
 	// of the UPN_DNS_INFO structure. This field is only present if the S flag bit is set.
-	SAMNameOffset uint16 `idl:"name:SamNameOffset" json:"sam_name_offset"`
+	SAMNameOffset uint16 `idl:"name:SamNameOffset;ignore" json:"sam_name_offset"`
 	// SidLength (2 bytes): An unsigned 16-bit integer in little-endian format that specifies
 	// the length, in bytes, of the client’s SID. The location of the SID is described
 	// later in this section. This field is only present if the S flag bit is set.
-	SIDLength uint16 `idl:"name:SidLength" json:"sid_length"`
+	SIDLength uint16 `idl:"name:SidLength;ignore" json:"sid_length"`
 	// SidOffset (2 byte): An unsigned 16-bit integer in little-endian format that contains
 	// the offset to the beginning of the client’s SID, in bytes, from the beginning of
 	// the UPN_DNS_INFO structure. This field is only present if the S flag bit is set.
@@ -2838,11 +2838,11 @@ type UPNDNSInfo struct {
 	// SID) is placed after the UPN_DNS_INFO structure following the header and starting
 	// with the corresponding offset in a consecutive buffer. The UPN, FQDN, and SAM name
 	// are encoded using a two-byte UTF16 scheme, in little-endian order.
-	SIDOffset     uint16    `idl:"name:SidOffset" json:"sid_offset"`
-	UPN           string    `idl:"name:Upn" json:"upn"`
-	DNSDomainName string    `idl:"name:DnsDomainName" json:"dns_domain_name"`
-	SAMName       string    `idl:"name:SamName" json:"sam_name"`
-	SID           *dtyp.SID `idl:"name:Sid" json:"sid"`
+	SIDOffset     uint16    `idl:"name:SidOffset;ignore" json:"sid_offset"`
+	UPN           string    `idl:"name:Upn;ignore" json:"upn"`
+	DNSDomainName string    `idl:"name:DnsDomainName;ignore" json:"dns_domain_name"`
+	SAMName       string    `idl:"name:SamName;ignore" json:"sam_name"`
+	SID           *dtyp.SID `idl:"name:Sid;ignore" json:"sid"`
 }
 
 func (o *UPNDNSInfo) xxx_PreparePayload(ctx context.Context) error {

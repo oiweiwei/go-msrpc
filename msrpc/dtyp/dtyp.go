@@ -7257,25 +7257,25 @@ type SecurityDescriptor struct {
 	// SID. This SID specifies the owner of the object to which the security descriptor
 	// is associated. This must be a valid offset if the OD flag is not set. If this field
 	// is set to zero, the OwnerSid field MUST not be present.
-	OffsetOwner uint32 `idl:"name:OffsetOwner" json:"offset_owner"`
+	OffsetOwner uint32 `idl:"name:OffsetOwner;ignore" json:"offset_owner"`
 	// OffsetGroup (4 bytes): An unsigned 32-bit integer that specifies the offset to the
 	// SID. This SID specifies the group of the object to which the security descriptor
 	// is associated. This must be a valid offset if the GD flag is not set. If this field
 	// is set to zero, the GroupSid field MUST not be present.
-	OffsetGroup uint32 `idl:"name:OffsetGroup" json:"offset_group"`
+	OffsetGroup uint32 `idl:"name:OffsetGroup;ignore" json:"offset_group"`
 	// OffsetSacl (4 bytes): An unsigned 32-bit integer that specifies the offset to the
 	// ACL that contains system ACEs. Typically, the system ACL contains auditing ACEs (such
 	// as SYSTEM_AUDIT_ACE, SYSTEM_AUDIT_CALLBACK_ACE, or SYSTEM_AUDIT_CALLBACK_OBJECT_ACE),
 	// and at most one Label ACE (as specified in section 2.4.4.13). This must be a valid
 	// offset if the SP flag is set; if the SP flag is not set, this field MUST be set to
 	// zero. If this field is set to zero, the Sacl field MUST not be present.
-	OffsetSACL uint32 `idl:"name:OffsetSacl" json:"offset_sacl"`
+	OffsetSACL uint32 `idl:"name:OffsetSacl;ignore" json:"offset_sacl"`
 	// OffsetDacl (4 bytes): An unsigned 32-bit integer that specifies the offset to the
 	// ACL that contains ACEs that control access. Typically, the DACL contains ACEs that
 	// grant or deny access to principals or groups. This must be a valid offset if the
 	// DP flag is set; if the DP flag is not set, this field MUST be set to zero. If this
 	// field is set to zero, the Dacl field MUST not be present.
-	OffsetDACL uint32 `idl:"name:OffsetDacl" json:"offset_dacl"`
+	OffsetDACL uint32 `idl:"name:OffsetDacl;ignore" json:"offset_dacl"`
 	// Owner:  Pointer to the Owner SID (OwnerSid), as specified in section 2.4.6.
 	Owner *SID `idl:"name:Owner" json:"owner"`
 	// Group:  Pointer to the Group SID (GroupSid), as specified in section 2.4.6.

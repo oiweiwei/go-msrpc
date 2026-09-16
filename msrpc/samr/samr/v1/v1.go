@@ -1002,7 +1002,7 @@ type KerberosKeyData struct {
 	// to where the key value starts. The key value is the hash value specified according
 	// to the KeyType.
 	KeyOffset uint32 `idl:"name:KeyOffset" json:"key_offset"`
-	KeyData   []byte `idl:"name:KeyData" json:"key_data"`
+	KeyData   []byte `idl:"name:KeyData;ignore" json:"key_data"`
 }
 
 func (o *KerberosKeyData) xxx_PreparePayload(ctx context.Context) error {
@@ -1042,9 +1042,6 @@ func (o *KerberosKeyData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.KeyOffset); err != nil {
 		return err
 	}
-	if err := w.WriteTrailingGap(4); err != nil {
-		return err
-	}
 	return nil
 }
 func (o *KerberosKeyData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1073,9 +1070,6 @@ func (o *KerberosKeyData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		return err
 	}
 	if err := w.ReadData(&o.KeyOffset); err != nil {
-		return err
-	}
-	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil
@@ -1552,7 +1546,7 @@ type KerberosKeyDataNew struct {
 	// the property value (that is, from the beginning of the Revision field of KERB_STORED_CREDENTIAL_NEW)
 	// to where the key value starts.
 	KeyOffset uint32 `idl:"name:KeyOffset" json:"key_offset"`
-	KeyData   []byte `idl:"name:KeyData" json:"key_data"`
+	KeyData   []byte `idl:"name:KeyData;ignore" json:"key_data"`
 }
 
 func (o *KerberosKeyDataNew) xxx_PreparePayload(ctx context.Context) error {
@@ -1595,9 +1589,6 @@ func (o *KerberosKeyDataNew) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.KeyOffset); err != nil {
 		return err
 	}
-	if err := w.WriteTrailingGap(4); err != nil {
-		return err
-	}
 	return nil
 }
 func (o *KerberosKeyDataNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1629,9 +1620,6 @@ func (o *KerberosKeyDataNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		return err
 	}
 	if err := w.ReadData(&o.KeyOffset); err != nil {
-		return err
-	}
-	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil
@@ -3306,14 +3294,14 @@ type UserProperties struct {
 	// field. When there are zero USER_PROPERTY elements in the UserProperties field, this
 	// field MUST be omitted; the resultant USER_PROPERTIES structure has a constant size
 	// of 0x6F bytes.
-	PropertyCount      uint16              `idl:"name:PropertyCount" json:"property_count"`
+	PropertyCount      uint16              `idl:"name:PropertyCount;ignore" json:"property_count"`
 	UserPropertiesRaw  []byte              `idl:"name:UserPropertiesRaw;size_is:((Length-98))" json:"user_properties_raw"`
 	UserPropertiesList *UserPropertiesList `idl:"name:UserPropertiesList" json:"user_properties_list"`
 	// Reserved5 (1 byte): This value SHOULD<23> be set to zero and MUST be ignored by the
 	// recipient.
 	_ uint8 `idl:"name:Reserved5"`
 	// UserProperties (variable): An array of PropertyCount USER_PROPERTY elements.
-	UserProperties []*UserProperty `idl:"name:UserProperties;size_is:(PropertyCount)" json:"user_properties"`
+	UserProperties []*UserProperty `idl:"name:UserProperties;size_is:(PropertyCount);ignore" json:"user_properties"`
 }
 
 func (o *UserProperties) xxx_PreparePayload(ctx context.Context) error {
@@ -3414,6 +3402,9 @@ func (o *UserProperties) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	// reserved Reserved5
 	if err := w.WriteData(uint8(0)); err != nil {
+		return err
+	}
+	if err := w.WriteTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -3519,6 +3510,9 @@ func (o *UserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	// reserved Reserved5
 	var _Reserved5 uint8
 	if err := w.ReadData(&_Reserved5); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil

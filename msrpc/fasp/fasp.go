@@ -22124,6 +22124,7 @@ func (o *ProfileConfigValue) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader
 		uint16(16),
 		uint16(17),
 		uint16(18):
+		o.Value = nil
 		_ptr_o := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			o.Value = &ProfileConfigValue_Value{}
 			if err := o.Value.UnmarshalNDR(ctx, w); err != nil {

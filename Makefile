@@ -19,6 +19,10 @@ ifeq ($(DEBUG),1)
 DOCKER_RUNNER_FLAGS += --verbose
 endif
 
+ifeq ($(NOFORMAT),1)
+DOCKER_RUNNER_FLAGS += --no-format
+endif
+
 DUMP_RUNNER ?= docker run --rm \
 	-v $(shell pwd):/work \
 	-u $(shell id -u):$(shell id -g) \
