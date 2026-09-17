@@ -119,6 +119,9 @@ type Reader interface {
 	// It receives the setter function in case if pointer is not null.
 	ReadPointer(Pointer, func(any), ...Unmarshaler) error
 
+	// ReadPointerWithHook function reads the implementation-specific pointer.
+	ReadPointerWithHook(Pointer, PointerHook, ...Unmarshaler) error
+
 	// ReadDeferred function reads all the deferred pointers.
 	ReadDeferred() error
 }
@@ -237,3 +240,5 @@ type padding uint8
 func Pad(n int) padding {
 	return padding(n)
 }
+
+type NullMask uint64

@@ -187,7 +187,14 @@ func (w *ndr64) WriteEnum(enum any) error {
 // ReadPointer function reads the pointer value and defers the actual data read
 // until the ReadDeferred is called. The `setter` value is used in case of the
 // pointer aliasing.
-func (w *ndr64) ReadPointer(ptr Pointer, setter func(interface{}), mrs ...Unmarshaler) error {
+func (w *ndr64) ReadPointer(ptr Pointer, setter func(any), mrs ...Unmarshaler) error {
+	return w.ReadPointerWithHook(ptr, PointerHook{OnSet: setter}, mrs...)
+}
+
+// ReadPointer function reads the pointer value and defers the actual data read
+// until the ReadDeferred is called. The `hook` value is used in case of the
+// pointer aliasing or null-pointers.
+func (w *ndr64) ReadPointerWithHook(ptr Pointer, hook PointerHook, mrs ...Unmarshaler) error {
 
 	if w.err != nil {
 		return w.err
@@ -210,6 +217,9 @@ func (w *ndr64) ReadPointer(ptr Pointer, setter func(interface{}), mrs ...Unmars
 	}
 
 	if pptr == 0 {
+		if hook.OnNull != nil {
+			hook.OnNull()
+		}
 		return nil
 	}
 
