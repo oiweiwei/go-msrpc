@@ -720,8 +720,25 @@ func (o *JobDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+type JobEnumNullMask ndr.NullMask
+
+var (
+	JobEnumNullMaskResume JobEnumNullMask = 1 << 0
+
+	JobEnumNullMaskRequestAll  JobEnumNullMask = 0 | JobEnumNullMaskResume
+	JobEnumNullMaskResponseAll JobEnumNullMask = 0 | JobEnumNullMaskResume
+)
+
+func (o JobEnumNullMask) IsSet(v JobEnumNullMask) bool { return o&v != 0 }
+
+func (o JobEnumNullMask) Set(v JobEnumNullMask) JobEnumNullMask { return o | v }
+
 // xxx_JobEnumOperation structure represents the NetrJobEnum operation
 type xxx_JobEnumOperation struct {
+
+	// JobEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask JobEnumNullMask
+
 	ServerName             string           `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
 	EnumContainer          *ATEnumContainer `idl:"name:pEnumContainer" json:"enum_container"`
 	PreferredMaximumLength uint32           `idl:"name:PreferedMaximumLength" json:"preferred_maximum_length"`
@@ -793,16 +810,20 @@ func (o *xxx_JobEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// pResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_pResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&JobEnumNullMaskResume == 0 {
+			_ptr_pResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_pResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_pResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -855,7 +876,8 @@ func (o *xxx_JobEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			return nil
 		})
 		_s_pResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_pResumeHandle, _ptr_pResumeHandle); err != nil {
+		_m_pResumeHandle := func() { o.NullMask |= JobEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_pResumeHandle, _m_pResumeHandle}, _ptr_pResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -901,16 +923,20 @@ func (o *xxx_JobEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 	}
 	// pResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_pResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&JobEnumNullMaskResume == 0 {
+			_ptr_pResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_pResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_pResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -953,7 +979,8 @@ func (o *xxx_JobEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			return nil
 		})
 		_s_pResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_pResumeHandle, _ptr_pResumeHandle); err != nil {
+		_m_pResumeHandle := func() { o.NullMask |= JobEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_pResumeHandle, _m_pResumeHandle}, _ptr_pResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -971,6 +998,10 @@ func (o *xxx_JobEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 
 // JobEnumRequest structure represents the NetrJobEnum operation request
 type JobEnumRequest struct {
+
+	// JobEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask JobEnumNullMask
+
 	// ServerName: Pointer to a Unicode string that MUST specify the server. The client
 	// MUST map this string to an RPC binding handle. The server MUST ignore this parameter.
 	// For more information, see [C706] sections 4.3.5 and 5.1.5.2.
@@ -1000,6 +1031,7 @@ func (o *JobEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_JobEnumOperation)
 	op.EnumContainer = o.EnumContainer
 	op.PreferredMaximumLength = o.PreferredMaximumLength
 	op.Resume = o.Resume
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -1011,6 +1043,7 @@ func (o *JobEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_JobEnumOperatio
 	o.EnumContainer = op.EnumContainer
 	o.PreferredMaximumLength = op.PreferredMaximumLength
 	o.Resume = op.Resume
+	o.NullMask = JobEnumNullMask(op.NullMask) & JobEnumNullMaskRequestAll
 }
 func (o *JobEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -1037,6 +1070,10 @@ func (o *JobEnumRequest) OpName() string { return "/atsvc/v1/NetrJobEnum" }
 
 // JobEnumResponse structure represents the NetrJobEnum operation response
 type JobEnumResponse struct {
+
+	// JobEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask JobEnumNullMask
+
 	// pEnumContainer:  Pointer to an AT_ENUM_CONTAINER (section 2.3.5) structure that
 	// MUST contain a count of the number of entries returned and a buffer that contains
 	// the entries. The client MUST send a pointer to this structure to the server with
@@ -1064,6 +1101,7 @@ func (o *JobEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_JobEnumOperation
 	op.TotalEntries = o.TotalEntries
 	op.Resume = o.Resume
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -1075,6 +1113,7 @@ func (o *JobEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_JobEnumOperati
 	o.TotalEntries = op.TotalEntries
 	o.Resume = op.Resume
 	o.Return = op.Return
+	o.NullMask = JobEnumNullMask(op.NullMask) & JobEnumNullMaskResponseAll
 }
 func (o *JobEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)

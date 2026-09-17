@@ -1391,8 +1391,25 @@ func (o *MessageNameAddResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+type MessageNameEnumNullMask ndr.NullMask
+
+var (
+	MessageNameEnumNullMaskResume MessageNameEnumNullMask = 1 << 0
+
+	MessageNameEnumNullMaskRequestAll  MessageNameEnumNullMask = 0 | MessageNameEnumNullMaskResume
+	MessageNameEnumNullMaskResponseAll MessageNameEnumNullMask = 0 | MessageNameEnumNullMaskResume
+)
+
+func (o MessageNameEnumNullMask) IsSet(v MessageNameEnumNullMask) bool { return o&v != 0 }
+
+func (o MessageNameEnumNullMask) Set(v MessageNameEnumNullMask) MessageNameEnumNullMask { return o | v }
+
 // xxx_MessageNameEnumOperation structure represents the NetrMessageNameEnum operation
 type xxx_MessageNameEnumOperation struct {
+
+	// MessageNameEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask MessageNameEnumNullMask
+
 	ServerName    string       `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
 	Info          *MessageEnum `idl:"name:InfoStruct" json:"info"`
 	PrefMaxLength uint32       `idl:"name:PrefMaxLen" json:"pref_max_length"`
@@ -1464,16 +1481,20 @@ func (o *xxx_MessageNameEnumOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&MessageNameEnumNullMaskResume == 0 {
+			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -1526,7 +1547,8 @@ func (o *xxx_MessageNameEnumOperation) UnmarshalNDRRequest(ctx context.Context, 
 			return nil
 		})
 		_s_ResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_ResumeHandle, _ptr_ResumeHandle); err != nil {
+		_m_ResumeHandle := func() { o.NullMask |= MessageNameEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1572,16 +1594,20 @@ func (o *xxx_MessageNameEnumOperation) MarshalNDRResponse(ctx context.Context, w
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&MessageNameEnumNullMaskResume == 0 {
+			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -1624,7 +1650,8 @@ func (o *xxx_MessageNameEnumOperation) UnmarshalNDRResponse(ctx context.Context,
 			return nil
 		})
 		_s_ResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_ResumeHandle, _ptr_ResumeHandle); err != nil {
+		_m_ResumeHandle := func() { o.NullMask |= MessageNameEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1642,6 +1669,10 @@ func (o *xxx_MessageNameEnumOperation) UnmarshalNDRResponse(ctx context.Context,
 
 // MessageNameEnumRequest structure represents the NetrMessageNameEnum operation request
 type MessageNameEnumRequest struct {
+
+	// MessageNameEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask MessageNameEnumNullMask
+
 	// ServerName: A pointer to a null-terminated string that MUST denote the NetBIOS name
 	// (as specified in [RFC1001] section 5.2) or the fully qualified domain name (FQDN)
 	// of the remote computer on which the function is to execute. There are no other constraints
@@ -1674,6 +1705,7 @@ func (o *MessageNameEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_MessageNa
 	op.Info = o.Info
 	op.PrefMaxLength = o.PrefMaxLength
 	op.Resume = o.Resume
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -1685,6 +1717,7 @@ func (o *MessageNameEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_Message
 	o.Info = op.Info
 	o.PrefMaxLength = op.PrefMaxLength
 	o.Resume = op.Resume
+	o.NullMask = MessageNameEnumNullMask(op.NullMask) & MessageNameEnumNullMaskRequestAll
 }
 func (o *MessageNameEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -1711,6 +1744,10 @@ func (o *MessageNameEnumRequest) OpName() string { return "/msgsvc/v1/NetrMessag
 
 // MessageNameEnumResponse structure represents the NetrMessageNameEnum operation response
 type MessageNameEnumResponse struct {
+
+	// MessageNameEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask MessageNameEnumNullMask
+
 	// InfoStruct: A pointer to a buffer that receives a variable-length data structure
 	// of type MSG_ENUM_STRUCT. The buffer MUST be allocated, and the pointer MUST be assigned
 	// by the message server. On return, the structure MUST contain the list of names for
@@ -1738,6 +1775,7 @@ func (o *MessageNameEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_MessageN
 	op.TotalEntries = o.TotalEntries
 	op.Resume = o.Resume
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -1749,6 +1787,7 @@ func (o *MessageNameEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_Messag
 	o.TotalEntries = op.TotalEntries
 	o.Resume = op.Resume
 	o.Return = op.Return
+	o.NullMask = MessageNameEnumNullMask(op.NullMask) & MessageNameEnumNullMaskResponseAll
 }
 func (o *MessageNameEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)

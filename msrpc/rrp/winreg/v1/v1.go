@@ -3185,8 +3185,27 @@ func (o *BaseRegCloseKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+type BaseRegCreateKeyNullMask ndr.NullMask
+
+var (
+	BaseRegCreateKeyNullMaskDisposition BaseRegCreateKeyNullMask = 1 << 0
+
+	BaseRegCreateKeyNullMaskRequestAll  BaseRegCreateKeyNullMask = 0 | BaseRegCreateKeyNullMaskDisposition
+	BaseRegCreateKeyNullMaskResponseAll BaseRegCreateKeyNullMask = 0 | BaseRegCreateKeyNullMaskDisposition
+)
+
+func (o BaseRegCreateKeyNullMask) IsSet(v BaseRegCreateKeyNullMask) bool { return o&v != 0 }
+
+func (o BaseRegCreateKeyNullMask) Set(v BaseRegCreateKeyNullMask) BaseRegCreateKeyNullMask {
+	return o | v
+}
+
 // xxx_BaseRegCreateKeyOperation structure represents the BaseRegCreateKey operation
 type xxx_BaseRegCreateKeyOperation struct {
+
+	// BaseRegCreateKeyNullMask is used to carry information on null-valued primitive values.
+	NullMask BaseRegCreateKeyNullMask
+
 	Key                *Key                `idl:"name:hKey" json:"key"`
 	SubKey             *UnicodeString      `idl:"name:lpSubKey" json:"sub_key"`
 	Class              *UnicodeString      `idl:"name:lpClass" json:"class"`
@@ -3300,16 +3319,20 @@ func (o *xxx_BaseRegCreateKeyOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpdwDisposition {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwDisposition := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Disposition); err != nil {
+		if o.NullMask&BaseRegCreateKeyNullMaskDisposition == 0 {
+			_ptr_lpdwDisposition := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Disposition); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Disposition, _ptr_lpdwDisposition); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Disposition, _ptr_lpdwDisposition); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -3392,7 +3415,8 @@ func (o *xxx_BaseRegCreateKeyOperation) UnmarshalNDRRequest(ctx context.Context,
 			return nil
 		})
 		_s_lpdwDisposition := func(ptr interface{}) { o.Disposition = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Disposition, _s_lpdwDisposition, _ptr_lpdwDisposition); err != nil {
+		_m_lpdwDisposition := func() { o.NullMask |= BaseRegCreateKeyNullMaskDisposition }
+		if err := w.ReadPointerWithHook(&o.Disposition, ndr.PointerHook{_s_lpdwDisposition, _m_lpdwDisposition}, _ptr_lpdwDisposition); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3429,16 +3453,20 @@ func (o *xxx_BaseRegCreateKeyOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpdwDisposition {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwDisposition := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Disposition); err != nil {
+		if o.NullMask&BaseRegCreateKeyNullMaskDisposition == 0 {
+			_ptr_lpdwDisposition := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Disposition); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Disposition, _ptr_lpdwDisposition); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Disposition, _ptr_lpdwDisposition); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -3472,7 +3500,8 @@ func (o *xxx_BaseRegCreateKeyOperation) UnmarshalNDRResponse(ctx context.Context
 			return nil
 		})
 		_s_lpdwDisposition := func(ptr interface{}) { o.Disposition = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Disposition, _s_lpdwDisposition, _ptr_lpdwDisposition); err != nil {
+		_m_lpdwDisposition := func() { o.NullMask |= BaseRegCreateKeyNullMaskDisposition }
+		if err := w.ReadPointerWithHook(&o.Disposition, ndr.PointerHook{_s_lpdwDisposition, _m_lpdwDisposition}, _ptr_lpdwDisposition); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3490,6 +3519,10 @@ func (o *xxx_BaseRegCreateKeyOperation) UnmarshalNDRResponse(ctx context.Context
 
 // BaseRegCreateKeyRequest structure represents the BaseRegCreateKey operation request
 type BaseRegCreateKeyRequest struct {
+
+	// BaseRegCreateKeyNullMask is used to carry information on null-valued primitive values.
+	NullMask BaseRegCreateKeyNullMask
+
 	// hKey: A handle to a key that MUST have been opened previously by using one of the
 	// open methods that are specified in section 3.1.5: BaseRegCreateKey, OpenClassesRoot,
 	// OpenCurrentUser, OpenLocalMachine, OpenPerformanceData, OpenUsers, BaseRegOpenKey,
@@ -3559,6 +3592,7 @@ func (o *BaseRegCreateKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegC
 	op.DesiredAccess = o.DesiredAccess
 	op.SecurityAttributes = o.SecurityAttributes
 	op.Disposition = o.Disposition
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -3573,6 +3607,7 @@ func (o *BaseRegCreateKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRe
 	o.DesiredAccess = op.DesiredAccess
 	o.SecurityAttributes = op.SecurityAttributes
 	o.Disposition = op.Disposition
+	o.NullMask = BaseRegCreateKeyNullMask(op.NullMask) & BaseRegCreateKeyNullMaskRequestAll
 }
 func (o *BaseRegCreateKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -3599,6 +3634,10 @@ func (o *BaseRegCreateKeyRequest) OpName() string { return "/winreg/v1/BaseRegCr
 
 // BaseRegCreateKeyResponse structure represents the BaseRegCreateKey operation response
 type BaseRegCreateKeyResponse struct {
+
+	// BaseRegCreateKeyNullMask is used to carry information on null-valued primitive values.
+	NullMask BaseRegCreateKeyNullMask
+
 	// phkResult: A pointer to a variable that receives a handle to the opened or created
 	// key.
 	ResultKey *Key `idl:"name:phkResult" json:"result_key"`
@@ -3631,6 +3670,7 @@ func (o *BaseRegCreateKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseReg
 	op.ResultKey = o.ResultKey
 	op.Disposition = o.Disposition
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -3641,6 +3681,7 @@ func (o *BaseRegCreateKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseR
 	o.ResultKey = op.ResultKey
 	o.Disposition = op.Disposition
 	o.Return = op.Return
+	o.NullMask = BaseRegCreateKeyNullMask(op.NullMask) & BaseRegCreateKeyNullMaskResponseAll
 }
 func (o *BaseRegCreateKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -4522,8 +4563,29 @@ func (o *BaseRegEnumKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+type BaseRegEnumValueNullMask ndr.NullMask
+
+var (
+	BaseRegEnumValueNullMaskType       BaseRegEnumValueNullMask = 1 << 0
+	BaseRegEnumValueNullMaskDataLength BaseRegEnumValueNullMask = 1 << 1
+	BaseRegEnumValueNullMaskLength     BaseRegEnumValueNullMask = 1 << 2
+
+	BaseRegEnumValueNullMaskRequestAll  BaseRegEnumValueNullMask = 0 | BaseRegEnumValueNullMaskType | BaseRegEnumValueNullMaskDataLength | BaseRegEnumValueNullMaskLength
+	BaseRegEnumValueNullMaskResponseAll BaseRegEnumValueNullMask = 0 | BaseRegEnumValueNullMaskType | BaseRegEnumValueNullMaskDataLength | BaseRegEnumValueNullMaskLength
+)
+
+func (o BaseRegEnumValueNullMask) IsSet(v BaseRegEnumValueNullMask) bool { return o&v != 0 }
+
+func (o BaseRegEnumValueNullMask) Set(v BaseRegEnumValueNullMask) BaseRegEnumValueNullMask {
+	return o | v
+}
+
 // xxx_BaseRegEnumValueOperation structure represents the BaseRegEnumValue operation
 type xxx_BaseRegEnumValueOperation struct {
+
+	// BaseRegEnumValueNullMask is used to carry information on null-valued primitive values.
+	NullMask BaseRegEnumValueNullMask
+
 	Key          *Key                `idl:"name:hKey" json:"key"`
 	Index        uint32              `idl:"name:dwIndex" json:"index"`
 	ValueNameIn  *UnicodeString      `idl:"name:lpValueNameIn" json:"value_name_in"`
@@ -4598,16 +4660,20 @@ func (o *xxx_BaseRegEnumValueOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpType {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Type); err != nil {
+		if o.NullMask&BaseRegEnumValueNullMaskType == 0 {
+			_ptr_lpType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Type); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Type, _ptr_lpType); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Type, _ptr_lpType); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -4666,16 +4732,20 @@ func (o *xxx_BaseRegEnumValueOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpcbData {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpcbData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.DataLength); err != nil {
+		if o.NullMask&BaseRegEnumValueNullMaskDataLength == 0 {
+			_ptr_lpcbData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.DataLength); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.DataLength, _ptr_lpcbData); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.DataLength, _ptr_lpcbData); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -4683,16 +4753,20 @@ func (o *xxx_BaseRegEnumValueOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpcbLen {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpcbLen := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Length); err != nil {
+		if o.NullMask&BaseRegEnumValueNullMaskLength == 0 {
+			_ptr_lpcbLen := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Length); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Length, _ptr_lpcbLen); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Length, _ptr_lpcbLen); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -4738,7 +4812,8 @@ func (o *xxx_BaseRegEnumValueOperation) UnmarshalNDRRequest(ctx context.Context,
 			return nil
 		})
 		_s_lpType := func(ptr interface{}) { o.Type = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Type, _s_lpType, _ptr_lpType); err != nil {
+		_m_lpType := func() { o.NullMask |= BaseRegEnumValueNullMaskType }
+		if err := w.ReadPointerWithHook(&o.Type, ndr.PointerHook{_s_lpType, _m_lpType}, _ptr_lpType); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4793,7 +4868,8 @@ func (o *xxx_BaseRegEnumValueOperation) UnmarshalNDRRequest(ctx context.Context,
 			return nil
 		})
 		_s_lpcbData := func(ptr interface{}) { o.DataLength = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.DataLength, _s_lpcbData, _ptr_lpcbData); err != nil {
+		_m_lpcbData := func() { o.NullMask |= BaseRegEnumValueNullMaskDataLength }
+		if err := w.ReadPointerWithHook(&o.DataLength, ndr.PointerHook{_s_lpcbData, _m_lpcbData}, _ptr_lpcbData); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4809,7 +4885,8 @@ func (o *xxx_BaseRegEnumValueOperation) UnmarshalNDRRequest(ctx context.Context,
 			return nil
 		})
 		_s_lpcbLen := func(ptr interface{}) { o.Length = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Length, _s_lpcbLen, _ptr_lpcbLen); err != nil {
+		_m_lpcbLen := func() { o.NullMask |= BaseRegEnumValueNullMaskLength }
+		if err := w.ReadPointerWithHook(&o.Length, ndr.PointerHook{_s_lpcbLen, _m_lpcbLen}, _ptr_lpcbLen); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4858,16 +4935,20 @@ func (o *xxx_BaseRegEnumValueOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpType {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Type); err != nil {
+		if o.NullMask&BaseRegEnumValueNullMaskType == 0 {
+			_ptr_lpType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Type); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Type, _ptr_lpType); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Type, _ptr_lpType); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -4926,16 +5007,20 @@ func (o *xxx_BaseRegEnumValueOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpcbData {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpcbData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.DataLength); err != nil {
+		if o.NullMask&BaseRegEnumValueNullMaskDataLength == 0 {
+			_ptr_lpcbData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.DataLength); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.DataLength, _ptr_lpcbData); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.DataLength, _ptr_lpcbData); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -4943,16 +5028,20 @@ func (o *xxx_BaseRegEnumValueOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpcbLen {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpcbLen := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Length); err != nil {
+		if o.NullMask&BaseRegEnumValueNullMaskLength == 0 {
+			_ptr_lpcbLen := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Length); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Length, _ptr_lpcbLen); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Length, _ptr_lpcbLen); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -4989,7 +5078,8 @@ func (o *xxx_BaseRegEnumValueOperation) UnmarshalNDRResponse(ctx context.Context
 			return nil
 		})
 		_s_lpType := func(ptr interface{}) { o.Type = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Type, _s_lpType, _ptr_lpType); err != nil {
+		_m_lpType := func() { o.NullMask |= BaseRegEnumValueNullMaskType }
+		if err := w.ReadPointerWithHook(&o.Type, ndr.PointerHook{_s_lpType, _m_lpType}, _ptr_lpType); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5044,7 +5134,8 @@ func (o *xxx_BaseRegEnumValueOperation) UnmarshalNDRResponse(ctx context.Context
 			return nil
 		})
 		_s_lpcbData := func(ptr interface{}) { o.DataLength = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.DataLength, _s_lpcbData, _ptr_lpcbData); err != nil {
+		_m_lpcbData := func() { o.NullMask |= BaseRegEnumValueNullMaskDataLength }
+		if err := w.ReadPointerWithHook(&o.DataLength, ndr.PointerHook{_s_lpcbData, _m_lpcbData}, _ptr_lpcbData); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5060,7 +5151,8 @@ func (o *xxx_BaseRegEnumValueOperation) UnmarshalNDRResponse(ctx context.Context
 			return nil
 		})
 		_s_lpcbLen := func(ptr interface{}) { o.Length = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Length, _s_lpcbLen, _ptr_lpcbLen); err != nil {
+		_m_lpcbLen := func() { o.NullMask |= BaseRegEnumValueNullMaskLength }
+		if err := w.ReadPointerWithHook(&o.Length, ndr.PointerHook{_s_lpcbLen, _m_lpcbLen}, _ptr_lpcbLen); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5078,6 +5170,10 @@ func (o *xxx_BaseRegEnumValueOperation) UnmarshalNDRResponse(ctx context.Context
 
 // BaseRegEnumValueRequest structure represents the BaseRegEnumValue operation request
 type BaseRegEnumValueRequest struct {
+
+	// BaseRegEnumValueNullMask is used to carry information on null-valued primitive values.
+	NullMask BaseRegEnumValueNullMask
+
 	// hKey: A handle to a key that MUST have been opened previously by using one of the
 	// open methods that are specified in section 3.1.5: OpenClassesRoot, OpenCurrentUser,
 	// OpenLocalMachine, OpenPerformanceData, OpenUsers, BaseRegCreateKey, BaseRegOpenKey,
@@ -5117,6 +5213,7 @@ func (o *BaseRegEnumValueRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegE
 	op.Data = o.Data
 	op.DataLength = o.DataLength
 	op.Length = o.Length
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -5131,6 +5228,7 @@ func (o *BaseRegEnumValueRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRe
 	o.Data = op.Data
 	o.DataLength = op.DataLength
 	o.Length = op.Length
+	o.NullMask = BaseRegEnumValueNullMask(op.NullMask) & BaseRegEnumValueNullMaskRequestAll
 }
 func (o *BaseRegEnumValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -5157,6 +5255,10 @@ func (o *BaseRegEnumValueRequest) OpName() string { return "/winreg/v1/BaseRegEn
 
 // BaseRegEnumValueResponse structure represents the BaseRegEnumValue operation response
 type BaseRegEnumValueResponse struct {
+
+	// BaseRegEnumValueNullMask is used to carry information on null-valued primitive values.
+	NullMask BaseRegEnumValueNullMask
+
 	// lpValueNameOut: A pointer to an RPC_UNICODE_STRING structure that receives the retrieved
 	// value name, as specified in section 3.1.1.5.
 	ValueNameOut *dtyp.UnicodeString `idl:"name:lpValueNameOut" json:"value_name_out"`
@@ -5187,6 +5289,7 @@ func (o *BaseRegEnumValueResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseReg
 	op.DataLength = o.DataLength
 	op.Length = o.Length
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -5200,6 +5303,7 @@ func (o *BaseRegEnumValueResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseR
 	o.DataLength = op.DataLength
 	o.Length = op.Length
 	o.Return = op.Return
+	o.NullMask = BaseRegEnumValueNullMask(op.NullMask) & BaseRegEnumValueNullMaskResponseAll
 }
 func (o *BaseRegEnumValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -6558,8 +6662,29 @@ func (o *BaseRegQueryInfoKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+type BaseRegQueryValueNullMask ndr.NullMask
+
+var (
+	BaseRegQueryValueNullMaskType       BaseRegQueryValueNullMask = 1 << 0
+	BaseRegQueryValueNullMaskDataLength BaseRegQueryValueNullMask = 1 << 1
+	BaseRegQueryValueNullMaskLength     BaseRegQueryValueNullMask = 1 << 2
+
+	BaseRegQueryValueNullMaskRequestAll  BaseRegQueryValueNullMask = 0 | BaseRegQueryValueNullMaskType | BaseRegQueryValueNullMaskDataLength | BaseRegQueryValueNullMaskLength
+	BaseRegQueryValueNullMaskResponseAll BaseRegQueryValueNullMask = 0 | BaseRegQueryValueNullMaskType | BaseRegQueryValueNullMaskDataLength | BaseRegQueryValueNullMaskLength
+)
+
+func (o BaseRegQueryValueNullMask) IsSet(v BaseRegQueryValueNullMask) bool { return o&v != 0 }
+
+func (o BaseRegQueryValueNullMask) Set(v BaseRegQueryValueNullMask) BaseRegQueryValueNullMask {
+	return o | v
+}
+
 // xxx_BaseRegQueryValueOperation structure represents the BaseRegQueryValue operation
 type xxx_BaseRegQueryValueOperation struct {
+
+	// BaseRegQueryValueNullMask is used to carry information on null-valued primitive values.
+	NullMask BaseRegQueryValueNullMask
+
 	Key        *Key           `idl:"name:hKey" json:"key"`
 	ValueName  *UnicodeString `idl:"name:lpValueName" json:"value_name"`
 	Type       uint32         `idl:"name:lpType;pointer:unique" json:"type"`
@@ -6626,16 +6751,20 @@ func (o *xxx_BaseRegQueryValueOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// lpType {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Type); err != nil {
+		if o.NullMask&BaseRegQueryValueNullMaskType == 0 {
+			_ptr_lpType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Type); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Type, _ptr_lpType); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Type, _ptr_lpType); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -6694,16 +6823,20 @@ func (o *xxx_BaseRegQueryValueOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// lpcbData {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpcbData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.DataLength); err != nil {
+		if o.NullMask&BaseRegQueryValueNullMaskDataLength == 0 {
+			_ptr_lpcbData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.DataLength); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.DataLength, _ptr_lpcbData); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.DataLength, _ptr_lpcbData); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -6711,16 +6844,20 @@ func (o *xxx_BaseRegQueryValueOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// lpcbLen {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpcbLen := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Length); err != nil {
+		if o.NullMask&BaseRegQueryValueNullMaskLength == 0 {
+			_ptr_lpcbLen := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Length); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Length, _ptr_lpcbLen); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Length, _ptr_lpcbLen); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -6760,7 +6897,8 @@ func (o *xxx_BaseRegQueryValueOperation) UnmarshalNDRRequest(ctx context.Context
 			return nil
 		})
 		_s_lpType := func(ptr interface{}) { o.Type = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Type, _s_lpType, _ptr_lpType); err != nil {
+		_m_lpType := func() { o.NullMask |= BaseRegQueryValueNullMaskType }
+		if err := w.ReadPointerWithHook(&o.Type, ndr.PointerHook{_s_lpType, _m_lpType}, _ptr_lpType); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6815,7 +6953,8 @@ func (o *xxx_BaseRegQueryValueOperation) UnmarshalNDRRequest(ctx context.Context
 			return nil
 		})
 		_s_lpcbData := func(ptr interface{}) { o.DataLength = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.DataLength, _s_lpcbData, _ptr_lpcbData); err != nil {
+		_m_lpcbData := func() { o.NullMask |= BaseRegQueryValueNullMaskDataLength }
+		if err := w.ReadPointerWithHook(&o.DataLength, ndr.PointerHook{_s_lpcbData, _m_lpcbData}, _ptr_lpcbData); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6831,7 +6970,8 @@ func (o *xxx_BaseRegQueryValueOperation) UnmarshalNDRRequest(ctx context.Context
 			return nil
 		})
 		_s_lpcbLen := func(ptr interface{}) { o.Length = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Length, _s_lpcbLen, _ptr_lpcbLen); err != nil {
+		_m_lpcbLen := func() { o.NullMask |= BaseRegQueryValueNullMaskLength }
+		if err := w.ReadPointerWithHook(&o.Length, ndr.PointerHook{_s_lpcbLen, _m_lpcbLen}, _ptr_lpcbLen); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6865,16 +7005,20 @@ func (o *xxx_BaseRegQueryValueOperation) MarshalNDRResponse(ctx context.Context,
 	}
 	// lpType {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Type); err != nil {
+		if o.NullMask&BaseRegQueryValueNullMaskType == 0 {
+			_ptr_lpType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Type); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Type, _ptr_lpType); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Type, _ptr_lpType); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -6933,16 +7077,20 @@ func (o *xxx_BaseRegQueryValueOperation) MarshalNDRResponse(ctx context.Context,
 	}
 	// lpcbData {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpcbData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.DataLength); err != nil {
+		if o.NullMask&BaseRegQueryValueNullMaskDataLength == 0 {
+			_ptr_lpcbData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.DataLength); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.DataLength, _ptr_lpcbData); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.DataLength, _ptr_lpcbData); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -6950,16 +7098,20 @@ func (o *xxx_BaseRegQueryValueOperation) MarshalNDRResponse(ctx context.Context,
 	}
 	// lpcbLen {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpcbLen := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Length); err != nil {
+		if o.NullMask&BaseRegQueryValueNullMaskLength == 0 {
+			_ptr_lpcbLen := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Length); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Length, _ptr_lpcbLen); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Length, _ptr_lpcbLen); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -6984,7 +7136,8 @@ func (o *xxx_BaseRegQueryValueOperation) UnmarshalNDRResponse(ctx context.Contex
 			return nil
 		})
 		_s_lpType := func(ptr interface{}) { o.Type = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Type, _s_lpType, _ptr_lpType); err != nil {
+		_m_lpType := func() { o.NullMask |= BaseRegQueryValueNullMaskType }
+		if err := w.ReadPointerWithHook(&o.Type, ndr.PointerHook{_s_lpType, _m_lpType}, _ptr_lpType); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7039,7 +7192,8 @@ func (o *xxx_BaseRegQueryValueOperation) UnmarshalNDRResponse(ctx context.Contex
 			return nil
 		})
 		_s_lpcbData := func(ptr interface{}) { o.DataLength = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.DataLength, _s_lpcbData, _ptr_lpcbData); err != nil {
+		_m_lpcbData := func() { o.NullMask |= BaseRegQueryValueNullMaskDataLength }
+		if err := w.ReadPointerWithHook(&o.DataLength, ndr.PointerHook{_s_lpcbData, _m_lpcbData}, _ptr_lpcbData); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7055,7 +7209,8 @@ func (o *xxx_BaseRegQueryValueOperation) UnmarshalNDRResponse(ctx context.Contex
 			return nil
 		})
 		_s_lpcbLen := func(ptr interface{}) { o.Length = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Length, _s_lpcbLen, _ptr_lpcbLen); err != nil {
+		_m_lpcbLen := func() { o.NullMask |= BaseRegQueryValueNullMaskLength }
+		if err := w.ReadPointerWithHook(&o.Length, ndr.PointerHook{_s_lpcbLen, _m_lpcbLen}, _ptr_lpcbLen); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7073,6 +7228,10 @@ func (o *xxx_BaseRegQueryValueOperation) UnmarshalNDRResponse(ctx context.Contex
 
 // BaseRegQueryValueRequest structure represents the BaseRegQueryValue operation request
 type BaseRegQueryValueRequest struct {
+
+	// BaseRegQueryValueNullMask is used to carry information on null-valued primitive values.
+	NullMask BaseRegQueryValueNullMask
+
 	// hKey: On input, a handle to a key that MUST have been opened previously by using
 	// one of the open methods that are specified in section 3.1.5: OpenClassesRoot, OpenCurrentUser,
 	// OpenLocalMachine, OpenPerformanceData, OpenUsers, BaseRegCreateKey, BaseRegOpenKey,
@@ -7121,6 +7280,7 @@ func (o *BaseRegQueryValueRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseReg
 	op.Data = o.Data
 	op.DataLength = o.DataLength
 	op.Length = o.Length
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -7134,6 +7294,7 @@ func (o *BaseRegQueryValueRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseR
 	o.Data = op.Data
 	o.DataLength = op.DataLength
 	o.Length = op.Length
+	o.NullMask = BaseRegQueryValueNullMask(op.NullMask) & BaseRegQueryValueNullMaskRequestAll
 }
 func (o *BaseRegQueryValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -7160,6 +7321,10 @@ func (o *BaseRegQueryValueRequest) OpName() string { return "/winreg/v1/BaseRegQ
 
 // BaseRegQueryValueResponse structure represents the BaseRegQueryValue operation response
 type BaseRegQueryValueResponse struct {
+
+	// BaseRegQueryValueNullMask is used to carry information on null-valued primitive values.
+	NullMask BaseRegQueryValueNullMask
+
 	// lpType: On input, the client sets lpType to a pointer to a variable to receive the
 	// type code of a value entry. On output, the server MUST set this parameter to NULL
 	// if the value specified by the lpValueName parameter is not found. If the client sets
@@ -7199,6 +7364,7 @@ func (o *BaseRegQueryValueResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRe
 	op.DataLength = o.DataLength
 	op.Length = o.Length
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -7211,6 +7377,7 @@ func (o *BaseRegQueryValueResponse) xxx_FromOp(ctx context.Context, op *xxx_Base
 	o.DataLength = op.DataLength
 	o.Length = op.Length
 	o.Return = op.Return
+	o.NullMask = BaseRegQueryValueNullMask(op.NullMask) & BaseRegQueryValueNullMaskResponseAll
 }
 func (o *BaseRegQueryValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)

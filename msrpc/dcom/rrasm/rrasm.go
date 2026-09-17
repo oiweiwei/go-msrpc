@@ -18278,7 +18278,19 @@ func (o *Interface1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 // DWORD dwVpnStrategy;
 //
 // } MPRI_INTERFACE_2,
+type Interface2NullMask ndr.NullMask
+
+var (
+	Interface2NullMaskCustomAuthData Interface2NullMask = 1 << 0
+)
+
+func (o Interface2NullMask) IsSet(v Interface2NullMask) bool { return o&v != 0 }
+
 type Interface2 struct {
+
+	// Interface2NullMask is used to carry information on null-valued primitive values.
+	NullMask Interface2NullMask
+
 	// wszInterfaceName: Specifies a Unicode string that contains the name of a valid interface.
 	// This value MUST be specified during the call to the RRouterInterfaceCreate<63> method
 	// and cannot be modified after the interface is created.<64>
@@ -18928,16 +18940,20 @@ func (o *Interface2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.CustomAuthDataSize); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_lpbCustomAuthData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.CustomAuthData); err != nil {
+	if o.NullMask&Interface2NullMaskCustomAuthData == 0 {
+		_ptr_lpbCustomAuthData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.CustomAuthData); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.CustomAuthData, _ptr_lpbCustomAuthData); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.CustomAuthData, _ptr_lpbCustomAuthData); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if o.ID != nil {
 		if err := o.ID.MarshalNDR(ctx, w); err != nil {
@@ -19110,7 +19126,8 @@ func (o *Interface2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return nil
 	})
 	_s_lpbCustomAuthData := func(ptr interface{}) { o.CustomAuthData = *ptr.(*uint8) }
-	if err := w.ReadPointer(&o.CustomAuthData, _s_lpbCustomAuthData, _ptr_lpbCustomAuthData); err != nil {
+	_m_lpbCustomAuthData := func() { o.NullMask |= Interface2NullMaskCustomAuthData }
+	if err := w.ReadPointerWithHook(&o.CustomAuthData, ndr.PointerHook{_s_lpbCustomAuthData, _m_lpbCustomAuthData}, _ptr_lpbCustomAuthData); err != nil {
 		return err
 	}
 	if o.ID == nil {
@@ -19225,7 +19242,19 @@ func (o *Interface2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 // IN6_ADDR ipv6addrDnsAlt;
 //
 // * } MPRI_INTERFACE_3,
+type Interface3NullMask ndr.NullMask
+
+var (
+	Interface3NullMaskCustomAuthData Interface3NullMask = 1 << 0
+)
+
+func (o Interface3NullMask) IsSet(v Interface3NullMask) bool { return o&v != 0 }
+
 type Interface3 struct {
+
+	// Interface3NullMask is used to carry information on null-valued primitive values.
+	NullMask Interface3NullMask
+
 	// wszInterfaceName: A pointer to a Unicode string that contains the name of the interface.
 	// This value MUST be specified during the call to the RRouterInterfaceCreate<73> method
 	// and cannot be modified after the interface is created.<74>
@@ -19847,16 +19876,20 @@ func (o *Interface3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.CustomAuthDataSize); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_lpbCustomAuthData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.CustomAuthData); err != nil {
+	if o.NullMask&Interface3NullMaskCustomAuthData == 0 {
+		_ptr_lpbCustomAuthData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.CustomAuthData); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.CustomAuthData, _ptr_lpbCustomAuthData); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.CustomAuthData, _ptr_lpbCustomAuthData); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if o.ID != nil {
 		if err := o.ID.MarshalNDR(ctx, w); err != nil {
@@ -20068,7 +20101,8 @@ func (o *Interface3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return nil
 	})
 	_s_lpbCustomAuthData := func(ptr interface{}) { o.CustomAuthData = *ptr.(*uint8) }
-	if err := w.ReadPointer(&o.CustomAuthData, _s_lpbCustomAuthData, _ptr_lpbCustomAuthData); err != nil {
+	_m_lpbCustomAuthData := func() { o.NullMask |= Interface3NullMaskCustomAuthData }
+	if err := w.ReadPointerWithHook(&o.CustomAuthData, ndr.PointerHook{_s_lpbCustomAuthData, _m_lpbCustomAuthData}, _ptr_lpbCustomAuthData); err != nil {
 		return err
 	}
 	if o.ID == nil {

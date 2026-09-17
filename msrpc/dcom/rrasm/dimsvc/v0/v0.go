@@ -2299,8 +2299,25 @@ func (o *ServerGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+type ConnectionEnumNullMask ndr.NullMask
+
+var (
+	ConnectionEnumNullMaskResume ConnectionEnumNullMask = 1 << 0
+
+	ConnectionEnumNullMaskRequestAll  ConnectionEnumNullMask = 0 | ConnectionEnumNullMaskResume
+	ConnectionEnumNullMaskResponseAll ConnectionEnumNullMask = 0 | ConnectionEnumNullMaskResume
+)
+
+func (o ConnectionEnumNullMask) IsSet(v ConnectionEnumNullMask) bool { return o&v != 0 }
+
+func (o ConnectionEnumNullMask) Set(v ConnectionEnumNullMask) ConnectionEnumNullMask { return o | v }
+
 // xxx_ConnectionEnumOperation structure represents the RRasAdminConnectionEnum operation
 type xxx_ConnectionEnumOperation struct {
+
+	// ConnectionEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask ConnectionEnumNullMask
+
 	Level                  uint32                      `idl:"name:dwLevel" json:"level"`
 	Info                   *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
 	PreferredMaximumLength uint32                      `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
@@ -2358,16 +2375,20 @@ func (o *xxx_ConnectionEnumOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&ConnectionEnumNullMaskResume == 0 {
+			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -2410,7 +2431,8 @@ func (o *xxx_ConnectionEnumOperation) UnmarshalNDRRequest(ctx context.Context, w
 			return nil
 		})
 		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_lpdwResumeHandle, _ptr_lpdwResumeHandle); err != nil {
+		_m_lpdwResumeHandle := func() { o.NullMask |= ConnectionEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2462,16 +2484,20 @@ func (o *xxx_ConnectionEnumOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&ConnectionEnumNullMaskResume == 0 {
+			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -2520,7 +2546,8 @@ func (o *xxx_ConnectionEnumOperation) UnmarshalNDRResponse(ctx context.Context, 
 			return nil
 		})
 		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_lpdwResumeHandle, _ptr_lpdwResumeHandle); err != nil {
+		_m_lpdwResumeHandle := func() { o.NullMask |= ConnectionEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2538,6 +2565,10 @@ func (o *xxx_ConnectionEnumOperation) UnmarshalNDRResponse(ctx context.Context, 
 
 // ConnectionEnumRequest structure represents the RRasAdminConnectionEnum operation request
 type ConnectionEnumRequest struct {
+
+	// ConnectionEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask ConnectionEnumNullMask
+
 	// dwLevel: This is of type DWORD and SHOULD be set to one of the following values.
 	//
 	//	+-------+----------------------------------------------------------------------------------+
@@ -2599,6 +2630,7 @@ func (o *ConnectionEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_Connection
 	op.Info = o.Info
 	op.PreferredMaximumLength = o.PreferredMaximumLength
 	op.Resume = o.Resume
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -2610,6 +2642,7 @@ func (o *ConnectionEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_Connecti
 	o.Info = op.Info
 	o.PreferredMaximumLength = op.PreferredMaximumLength
 	o.Resume = op.Resume
+	o.NullMask = ConnectionEnumNullMask(op.NullMask) & ConnectionEnumNullMaskRequestAll
 }
 func (o *ConnectionEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -2636,6 +2669,10 @@ func (o *ConnectionEnumRequest) OpName() string { return "/dimsvc/v0/RRasAdminCo
 
 // ConnectionEnumResponse structure represents the RRasAdminConnectionEnum operation response
 type ConnectionEnumResponse struct {
+
+	// ConnectionEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask ConnectionEnumNullMask
+
 	// pInfoStruct: This is a pointer of type DIM_INFORMATION_CONTAINER, and DIM_INFORMATION_CONTAINER.dwBufferSize
 	// is initialized to zero (0). Upon successful return, the pInfoStruct->pBuffer is a
 	// typecast array of RASI_CONNECTION_0, RASI_CONNECTION_1, RASI_CONNECTION_2, RASI_CONNECTION_3,<253>
@@ -2676,6 +2713,7 @@ func (o *ConnectionEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_Connectio
 	op.TotalEntries = o.TotalEntries
 	op.Resume = o.Resume
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -2688,6 +2726,7 @@ func (o *ConnectionEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_Connect
 	o.TotalEntries = op.TotalEntries
 	o.Resume = op.Resume
 	o.Return = op.Return
+	o.NullMask = ConnectionEnumNullMask(op.NullMask) & ConnectionEnumNullMaskResponseAll
 }
 func (o *ConnectionEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -3100,8 +3139,25 @@ func (o *ConnectionClearStatsResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+type PortEnumNullMask ndr.NullMask
+
+var (
+	PortEnumNullMaskResume PortEnumNullMask = 1 << 0
+
+	PortEnumNullMaskRequestAll  PortEnumNullMask = 0 | PortEnumNullMaskResume
+	PortEnumNullMaskResponseAll PortEnumNullMask = 0 | PortEnumNullMaskResume
+)
+
+func (o PortEnumNullMask) IsSet(v PortEnumNullMask) bool { return o&v != 0 }
+
+func (o PortEnumNullMask) Set(v PortEnumNullMask) PortEnumNullMask { return o | v }
+
 // xxx_PortEnumOperation structure represents the RRasAdminPortEnum operation
 type xxx_PortEnumOperation struct {
+
+	// PortEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask PortEnumNullMask
+
 	Level                  uint32                      `idl:"name:dwLevel" json:"level"`
 	Connection             uint32                      `idl:"name:hRasConnection" json:"connection"`
 	Info                   *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
@@ -3166,16 +3222,20 @@ func (o *xxx_PortEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wri
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&PortEnumNullMaskResume == 0 {
+			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -3224,7 +3284,8 @@ func (o *xxx_PortEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			return nil
 		})
 		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_lpdwResumeHandle, _ptr_lpdwResumeHandle); err != nil {
+		_m_lpdwResumeHandle := func() { o.NullMask |= PortEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3276,16 +3337,20 @@ func (o *xxx_PortEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wr
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&PortEnumNullMaskResume == 0 {
+			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -3334,7 +3399,8 @@ func (o *xxx_PortEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			return nil
 		})
 		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_lpdwResumeHandle, _ptr_lpdwResumeHandle); err != nil {
+		_m_lpdwResumeHandle := func() { o.NullMask |= PortEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3352,6 +3418,10 @@ func (o *xxx_PortEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 
 // PortEnumRequest structure represents the RRasAdminPortEnum operation request
 type PortEnumRequest struct {
+
+	// PortEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask PortEnumNullMask
+
 	// dwLevel: This is of type DWORD and MUST be set to the following value.
 	//
 	//	+-------+----------------------------------------------------------------------------------+
@@ -3407,6 +3477,7 @@ func (o *PortEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_PortEnumOperatio
 	op.Info = o.Info
 	op.PreferredMaximumLength = o.PreferredMaximumLength
 	op.Resume = o.Resume
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -3419,6 +3490,7 @@ func (o *PortEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_PortEnumOperat
 	o.Info = op.Info
 	o.PreferredMaximumLength = op.PreferredMaximumLength
 	o.Resume = op.Resume
+	o.NullMask = PortEnumNullMask(op.NullMask) & PortEnumNullMaskRequestAll
 }
 func (o *PortEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -3445,6 +3517,10 @@ func (o *PortEnumRequest) OpName() string { return "/dimsvc/v0/RRasAdminPortEnum
 
 // PortEnumResponse structure represents the RRasAdminPortEnum operation response
 type PortEnumResponse struct {
+
+	// PortEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask PortEnumNullMask
+
 	// pInfoStruct: This is a pointer of type DIM_INFORMATION_CONTAINER (section 2.2.1.2.1),
 	// and DIM_INFORMATION_CONTAINER.dwBufferSize is initialized to zero (0). Upon successful
 	// return, the pInfoStruct->pBuffer is typecast to an array of RASI_PORT_0, and the
@@ -3480,6 +3556,7 @@ func (o *PortEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_PortEnumOperati
 	op.TotalEntries = o.TotalEntries
 	op.Resume = o.Resume
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -3492,6 +3569,7 @@ func (o *PortEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_PortEnumOpera
 	o.TotalEntries = op.TotalEntries
 	o.Resume = op.Resume
 	o.Return = op.Return
+	o.NullMask = PortEnumNullMask(op.NullMask) & PortEnumNullMaskResponseAll
 }
 func (o *PortEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -7107,8 +7185,27 @@ func (o *RouterInterfaceTransportSetInfoResponse) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
+type RouterInterfaceEnumNullMask ndr.NullMask
+
+var (
+	RouterInterfaceEnumNullMaskResume RouterInterfaceEnumNullMask = 1 << 0
+
+	RouterInterfaceEnumNullMaskRequestAll  RouterInterfaceEnumNullMask = 0 | RouterInterfaceEnumNullMaskResume
+	RouterInterfaceEnumNullMaskResponseAll RouterInterfaceEnumNullMask = 0 | RouterInterfaceEnumNullMaskResume
+)
+
+func (o RouterInterfaceEnumNullMask) IsSet(v RouterInterfaceEnumNullMask) bool { return o&v != 0 }
+
+func (o RouterInterfaceEnumNullMask) Set(v RouterInterfaceEnumNullMask) RouterInterfaceEnumNullMask {
+	return o | v
+}
+
 // xxx_RouterInterfaceEnumOperation structure represents the RRouterInterfaceEnum operation
 type xxx_RouterInterfaceEnumOperation struct {
+
+	// RouterInterfaceEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask RouterInterfaceEnumNullMask
+
 	Level                  uint32                      `idl:"name:dwLevel" json:"level"`
 	Info                   *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
 	PreferredMaximumLength uint32                      `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
@@ -7166,16 +7263,20 @@ func (o *xxx_RouterInterfaceEnumOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&RouterInterfaceEnumNullMaskResume == 0 {
+			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -7218,7 +7319,8 @@ func (o *xxx_RouterInterfaceEnumOperation) UnmarshalNDRRequest(ctx context.Conte
 			return nil
 		})
 		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_lpdwResumeHandle, _ptr_lpdwResumeHandle); err != nil {
+		_m_lpdwResumeHandle := func() { o.NullMask |= RouterInterfaceEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7270,16 +7372,20 @@ func (o *xxx_RouterInterfaceEnumOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&RouterInterfaceEnumNullMaskResume == 0 {
+			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -7328,7 +7434,8 @@ func (o *xxx_RouterInterfaceEnumOperation) UnmarshalNDRResponse(ctx context.Cont
 			return nil
 		})
 		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_lpdwResumeHandle, _ptr_lpdwResumeHandle); err != nil {
+		_m_lpdwResumeHandle := func() { o.NullMask |= RouterInterfaceEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7346,6 +7453,10 @@ func (o *xxx_RouterInterfaceEnumOperation) UnmarshalNDRResponse(ctx context.Cont
 
 // RouterInterfaceEnumRequest structure represents the RRouterInterfaceEnum operation request
 type RouterInterfaceEnumRequest struct {
+
+	// RouterInterfaceEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask RouterInterfaceEnumNullMask
+
 	// dwLevel: This is of type DWORD and SHOULD be set to zero (0).
 	Level uint32 `idl:"name:dwLevel" json:"level"`
 	// pInfoStruct: This is a pointer of type DIM_INFORMATION_CONTAINER. pInfoStruct.dwBufferSize
@@ -7378,6 +7489,7 @@ func (o *RouterInterfaceEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_Route
 	op.Info = o.Info
 	op.PreferredMaximumLength = o.PreferredMaximumLength
 	op.Resume = o.Resume
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -7389,6 +7501,7 @@ func (o *RouterInterfaceEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_Rou
 	o.Info = op.Info
 	o.PreferredMaximumLength = op.PreferredMaximumLength
 	o.Resume = op.Resume
+	o.NullMask = RouterInterfaceEnumNullMask(op.NullMask) & RouterInterfaceEnumNullMaskRequestAll
 }
 func (o *RouterInterfaceEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -7415,6 +7528,10 @@ func (o *RouterInterfaceEnumRequest) OpName() string { return "/dimsvc/v0/RRoute
 
 // RouterInterfaceEnumResponse structure represents the RRouterInterfaceEnum operation response
 type RouterInterfaceEnumResponse struct {
+
+	// RouterInterfaceEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask RouterInterfaceEnumNullMask
+
 	// pInfoStruct: This is a pointer of type DIM_INFORMATION_CONTAINER. pInfoStruct.dwBufferSize
 	// SHOULD be initialized to zero (0). Upon successful return, the pInfoStruct->pBuffer
 	// is cast to an array of MPRI_INTERFACE_0 (section 2.2.1.2.81), and the array size
@@ -7452,6 +7569,7 @@ func (o *RouterInterfaceEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_Rout
 	op.TotalEntries = o.TotalEntries
 	op.Resume = o.Resume
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -7464,6 +7582,7 @@ func (o *RouterInterfaceEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_Ro
 	o.TotalEntries = op.TotalEntries
 	o.Resume = op.Resume
 	o.Return = op.Return
+	o.NullMask = RouterInterfaceEnumNullMask(op.NullMask) & RouterInterfaceEnumNullMaskResponseAll
 }
 func (o *RouterInterfaceEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -13329,8 +13448,27 @@ func (o *ServerGetInfoExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+type ConnectionEnumExNullMask ndr.NullMask
+
+var (
+	ConnectionEnumExNullMaskResume ConnectionEnumExNullMask = 1 << 0
+
+	ConnectionEnumExNullMaskRequestAll  ConnectionEnumExNullMask = 0 | ConnectionEnumExNullMaskResume
+	ConnectionEnumExNullMaskResponseAll ConnectionEnumExNullMask = 0 | ConnectionEnumExNullMaskResume
+)
+
+func (o ConnectionEnumExNullMask) IsSet(v ConnectionEnumExNullMask) bool { return o&v != 0 }
+
+func (o ConnectionEnumExNullMask) Set(v ConnectionEnumExNullMask) ConnectionEnumExNullMask {
+	return o | v
+}
+
 // xxx_ConnectionEnumExOperation structure represents the RRasAdminConnectionEnumEx operation
 type xxx_ConnectionEnumExOperation struct {
+
+	// ConnectionEnumExNullMask is used to carry information on null-valued primitive values.
+	NullMask ConnectionEnumExNullMask
+
 	ObjectHeader        *rrasm.ObjectHeaderIDL      `idl:"name:objectHeader" json:"object_header"`
 	PreferredMaxLength  uint32                      `idl:"name:dwPreferedMaxLen" json:"preferred_max_length"`
 	EntriesRead         uint32                      `idl:"name:lpdwEntriesRead" json:"entries_read"`
@@ -13381,16 +13519,20 @@ func (o *xxx_ConnectionEnumExOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&ConnectionEnumExNullMaskResume == 0 {
+			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -13424,7 +13566,8 @@ func (o *xxx_ConnectionEnumExOperation) UnmarshalNDRRequest(ctx context.Context,
 			return nil
 		})
 		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_lpdwResumeHandle, _ptr_lpdwResumeHandle); err != nil {
+		_m_lpdwResumeHandle := func() { o.NullMask |= ConnectionEnumExNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -13509,16 +13652,20 @@ func (o *xxx_ConnectionEnumExOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&ConnectionEnumExNullMaskResume == 0 {
+			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_lpdwResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -13589,7 +13736,8 @@ func (o *xxx_ConnectionEnumExOperation) UnmarshalNDRResponse(ctx context.Context
 			return nil
 		})
 		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_lpdwResumeHandle, _ptr_lpdwResumeHandle); err != nil {
+		_m_lpdwResumeHandle := func() { o.NullMask |= ConnectionEnumExNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -13607,6 +13755,10 @@ func (o *xxx_ConnectionEnumExOperation) UnmarshalNDRResponse(ctx context.Context
 
 // ConnectionEnumExRequest structure represents the RRasAdminConnectionEnumEx operation request
 type ConnectionEnumExRequest struct {
+
+	// ConnectionEnumExNullMask is used to carry information on null-valued primitive values.
+	NullMask ConnectionEnumExNullMask
+
 	// objectHeader: The pointer to an MPRAPI_OBJECT_HEADER_IDL structure (section 2.2.1.2.129).
 	// In the structure, the revision field MUST be MPRAPI_RAS_CONNECTION_OBJECT_REVISION_1,
 	// type filed MUST be MPRAPI_OBJECT_TYPE_RAS_CONNECTION_OBJECT, and size MUST be size
@@ -13639,6 +13791,7 @@ func (o *ConnectionEnumExRequest) xxx_ToOp(ctx context.Context, op *xxx_Connecti
 	op.ObjectHeader = o.ObjectHeader
 	op.PreferredMaxLength = o.PreferredMaxLength
 	op.Resume = o.Resume
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -13649,6 +13802,7 @@ func (o *ConnectionEnumExRequest) xxx_FromOp(ctx context.Context, op *xxx_Connec
 	o.ObjectHeader = op.ObjectHeader
 	o.PreferredMaxLength = op.PreferredMaxLength
 	o.Resume = op.Resume
+	o.NullMask = ConnectionEnumExNullMask(op.NullMask) & ConnectionEnumExNullMaskRequestAll
 }
 func (o *ConnectionEnumExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -13675,6 +13829,10 @@ func (o *ConnectionEnumExRequest) OpName() string { return "/dimsvc/v0/RRasAdmin
 
 // ConnectionEnumExResponse structure represents the RRasAdminConnectionEnumEx operation response
 type ConnectionEnumExResponse struct {
+
+	// ConnectionEnumExNullMask is used to carry information on null-valued primitive values.
+	NullMask ConnectionEnumExNullMask
+
 	// lpdwEntriesRead: This is a pointer to type DWORD. Upon a successful function call
 	// return, this parameter determines the total number of connections enumerated from
 	// the current resume position given by lpdwResumeHandle.
@@ -13711,6 +13869,7 @@ func (o *ConnectionEnumExResponse) xxx_ToOp(ctx context.Context, op *xxx_Connect
 	op.RASConections = o.RASConections
 	op.Resume = o.Resume
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -13723,6 +13882,7 @@ func (o *ConnectionEnumExResponse) xxx_FromOp(ctx context.Context, op *xxx_Conne
 	o.RASConections = op.RASConections
 	o.Resume = op.Resume
 	o.Return = op.Return
+	o.NullMask = ConnectionEnumExNullMask(op.NullMask) & ConnectionEnumExNullMaskResponseAll
 }
 func (o *ConnectionEnumExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)

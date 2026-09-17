@@ -11668,8 +11668,25 @@ func (o *SetSecurityResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+type AccessCheckNullMask ndr.NullMask
+
+var (
+	AccessCheckNullMaskRights AccessCheckNullMask = 1 << 0
+
+	AccessCheckNullMaskRequestAll  AccessCheckNullMask = 0 | AccessCheckNullMaskRights
+	AccessCheckNullMaskResponseAll AccessCheckNullMask = 0 | AccessCheckNullMaskRights
+)
+
+func (o AccessCheckNullMask) IsSet(v AccessCheckNullMask) bool { return o&v != 0 }
+
+func (o AccessCheckNullMask) Set(v AccessCheckNullMask) AccessCheckNullMask { return o | v }
+
 // xxx_AccessCheckOperation structure represents the FAX_AccessCheck operation
 type xxx_AccessCheckOperation struct {
+
+	// AccessCheckNullMask is used to carry information on null-valued primitive values.
+	NullMask AccessCheckNullMask
+
 	AccessMask uint32 `idl:"name:AccessMask" json:"access_mask"`
 	Access     bool   `idl:"name:pfAccess;pointer:ref" json:"access"`
 	Rights     uint32 `idl:"name:lpdwRights;pointer:unique" json:"rights"`
@@ -11703,16 +11720,20 @@ func (o *xxx_AccessCheckOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Rights); err != nil {
+		if o.NullMask&AccessCheckNullMaskRights == 0 {
+			_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Rights); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Rights, _ptr_lpdwRights); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Rights, _ptr_lpdwRights); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -11737,7 +11758,8 @@ func (o *xxx_AccessCheckOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			return nil
 		})
 		_s_lpdwRights := func(ptr interface{}) { o.Rights = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Rights, _s_lpdwRights, _ptr_lpdwRights); err != nil {
+		_m_lpdwRights := func() { o.NullMask |= AccessCheckNullMaskRights }
+		if err := w.ReadPointerWithHook(&o.Rights, ndr.PointerHook{_s_lpdwRights, _m_lpdwRights}, _ptr_lpdwRights); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -11774,16 +11796,20 @@ func (o *xxx_AccessCheckOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Rights); err != nil {
+		if o.NullMask&AccessCheckNullMaskRights == 0 {
+			_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Rights); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Rights, _ptr_lpdwRights); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Rights, _ptr_lpdwRights); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -11816,7 +11842,8 @@ func (o *xxx_AccessCheckOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			return nil
 		})
 		_s_lpdwRights := func(ptr interface{}) { o.Rights = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Rights, _s_lpdwRights, _ptr_lpdwRights); err != nil {
+		_m_lpdwRights := func() { o.NullMask |= AccessCheckNullMaskRights }
+		if err := w.ReadPointerWithHook(&o.Rights, ndr.PointerHook{_s_lpdwRights, _m_lpdwRights}, _ptr_lpdwRights); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -11834,6 +11861,10 @@ func (o *xxx_AccessCheckOperation) UnmarshalNDRResponse(ctx context.Context, w n
 
 // AccessCheckRequest structure represents the FAX_AccessCheck operation request
 type AccessCheckRequest struct {
+
+	// AccessCheckNullMask is used to carry information on null-valued primitive values.
+	NullMask AccessCheckNullMask
+
 	// AccessMask: A DWORD ([MS-DTYP] section 2.2.9) variable that MUST contain a set of
 	// bit flags that define the fax access permissions specified by the client to be validated
 	// against the access permissions of the client's fax user account. This parameter can
@@ -11969,6 +12000,7 @@ func (o *AccessCheckRequest) xxx_ToOp(ctx context.Context, op *xxx_AccessCheckOp
 	}
 	op.AccessMask = o.AccessMask
 	op.Rights = o.Rights
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -11978,6 +12010,7 @@ func (o *AccessCheckRequest) xxx_FromOp(ctx context.Context, op *xxx_AccessCheck
 	}
 	o.AccessMask = op.AccessMask
 	o.Rights = op.Rights
+	o.NullMask = AccessCheckNullMask(op.NullMask) & AccessCheckNullMaskRequestAll
 }
 func (o *AccessCheckRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -12004,6 +12037,10 @@ func (o *AccessCheckRequest) OpName() string { return "/fax/v4/FAX_AccessCheck" 
 
 // AccessCheckResponse structure represents the FAX_AccessCheck operation response
 type AccessCheckResponse struct {
+
+	// AccessCheckNullMask is used to carry information on null-valued primitive values.
+	NullMask AccessCheckNullMask
+
 	// pfAccess: A pointer to a BOOL ([MS-DTYP] section 2.2.3) to receive the access check
 	// return value. This value MUST be TRUE if the client's fax user account has all of
 	// the fax access rights specified by the AccessMask parameter; otherwise, this value
@@ -12033,6 +12070,7 @@ func (o *AccessCheckResponse) xxx_ToOp(ctx context.Context, op *xxx_AccessCheckO
 	op.Access = o.Access
 	op.Rights = o.Rights
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -12043,6 +12081,7 @@ func (o *AccessCheckResponse) xxx_FromOp(ctx context.Context, op *xxx_AccessChec
 	o.Access = op.Access
 	o.Rights = op.Rights
 	o.Return = op.Return
+	o.NullMask = AccessCheckNullMask(op.NullMask) & AccessCheckNullMaskResponseAll
 }
 func (o *AccessCheckResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -12056,8 +12095,27 @@ func (o *AccessCheckResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
+type CheckServerProtocolSeqNullMask ndr.NullMask
+
+var (
+	CheckServerProtocolSeqNullMaskProtocolSeq CheckServerProtocolSeqNullMask = 1 << 0
+
+	CheckServerProtocolSeqNullMaskRequestAll  CheckServerProtocolSeqNullMask = 0 | CheckServerProtocolSeqNullMaskProtocolSeq
+	CheckServerProtocolSeqNullMaskResponseAll CheckServerProtocolSeqNullMask = 0 | CheckServerProtocolSeqNullMaskProtocolSeq
+)
+
+func (o CheckServerProtocolSeqNullMask) IsSet(v CheckServerProtocolSeqNullMask) bool { return o&v != 0 }
+
+func (o CheckServerProtocolSeqNullMask) Set(v CheckServerProtocolSeqNullMask) CheckServerProtocolSeqNullMask {
+	return o | v
+}
+
 // xxx_CheckServerProtocolSeqOperation structure represents the FAX_CheckServerProtSeq operation
 type xxx_CheckServerProtocolSeqOperation struct {
+
+	// CheckServerProtocolSeqNullMask is used to carry information on null-valued primitive values.
+	NullMask CheckServerProtocolSeqNullMask
+
 	ProtocolSeq uint32 `idl:"name:lpdwProtSeq;pointer:unique" json:"protocol_seq"`
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
@@ -12085,16 +12143,20 @@ func (o *xxx_CheckServerProtocolSeqOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// lpdwProtSeq {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwProtSeq := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ProtocolSeq); err != nil {
+		if o.NullMask&CheckServerProtocolSeqNullMaskProtocolSeq == 0 {
+			_ptr_lpdwProtSeq := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ProtocolSeq); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ProtocolSeq, _ptr_lpdwProtSeq); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ProtocolSeq, _ptr_lpdwProtSeq); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -12113,7 +12175,8 @@ func (o *xxx_CheckServerProtocolSeqOperation) UnmarshalNDRRequest(ctx context.Co
 			return nil
 		})
 		_s_lpdwProtSeq := func(ptr interface{}) { o.ProtocolSeq = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ProtocolSeq, _s_lpdwProtSeq, _ptr_lpdwProtSeq); err != nil {
+		_m_lpdwProtSeq := func() { o.NullMask |= CheckServerProtocolSeqNullMaskProtocolSeq }
+		if err := w.ReadPointerWithHook(&o.ProtocolSeq, ndr.PointerHook{_s_lpdwProtSeq, _m_lpdwProtSeq}, _ptr_lpdwProtSeq); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -12138,16 +12201,20 @@ func (o *xxx_CheckServerProtocolSeqOperation) MarshalNDRResponse(ctx context.Con
 	}
 	// lpdwProtSeq {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwProtSeq := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ProtocolSeq); err != nil {
+		if o.NullMask&CheckServerProtocolSeqNullMaskProtocolSeq == 0 {
+			_ptr_lpdwProtSeq := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ProtocolSeq); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ProtocolSeq, _ptr_lpdwProtSeq); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ProtocolSeq, _ptr_lpdwProtSeq); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -12172,7 +12239,8 @@ func (o *xxx_CheckServerProtocolSeqOperation) UnmarshalNDRResponse(ctx context.C
 			return nil
 		})
 		_s_lpdwProtSeq := func(ptr interface{}) { o.ProtocolSeq = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ProtocolSeq, _s_lpdwProtSeq, _ptr_lpdwProtSeq); err != nil {
+		_m_lpdwProtSeq := func() { o.NullMask |= CheckServerProtocolSeqNullMaskProtocolSeq }
+		if err := w.ReadPointerWithHook(&o.ProtocolSeq, ndr.PointerHook{_s_lpdwProtSeq, _m_lpdwProtSeq}, _ptr_lpdwProtSeq); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -12190,6 +12258,10 @@ func (o *xxx_CheckServerProtocolSeqOperation) UnmarshalNDRResponse(ctx context.C
 
 // CheckServerProtocolSeqRequest structure represents the FAX_CheckServerProtSeq operation request
 type CheckServerProtocolSeqRequest struct {
+
+	// CheckServerProtocolSeqNullMask is used to carry information on null-valued primitive values.
+	NullMask CheckServerProtocolSeqNullMask
+
 	// lpdwProtSeq: A variable into which the requested sequence is specified. If the specified
 	// protocol sequence is supported, upon return, lpdwProtSeq contains the value for this
 	// validated sequence.
@@ -12215,6 +12287,7 @@ func (o *CheckServerProtocolSeqRequest) xxx_ToOp(ctx context.Context, op *xxx_Ch
 		return op
 	}
 	op.ProtocolSeq = o.ProtocolSeq
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -12223,6 +12296,7 @@ func (o *CheckServerProtocolSeqRequest) xxx_FromOp(ctx context.Context, op *xxx_
 		return
 	}
 	o.ProtocolSeq = op.ProtocolSeq
+	o.NullMask = CheckServerProtocolSeqNullMask(op.NullMask) & CheckServerProtocolSeqNullMaskRequestAll
 }
 func (o *CheckServerProtocolSeqRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -12249,6 +12323,10 @@ func (o *CheckServerProtocolSeqRequest) OpName() string { return "/fax/v4/FAX_Ch
 
 // CheckServerProtocolSeqResponse structure represents the FAX_CheckServerProtSeq operation response
 type CheckServerProtocolSeqResponse struct {
+
+	// CheckServerProtocolSeqNullMask is used to carry information on null-valued primitive values.
+	NullMask CheckServerProtocolSeqNullMask
+
 	// lpdwProtSeq: A variable into which the requested sequence is specified. If the specified
 	// protocol sequence is supported, upon return, lpdwProtSeq contains the value for this
 	// validated sequence.
@@ -12277,6 +12355,7 @@ func (o *CheckServerProtocolSeqResponse) xxx_ToOp(ctx context.Context, op *xxx_C
 	}
 	op.ProtocolSeq = o.ProtocolSeq
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -12286,6 +12365,7 @@ func (o *CheckServerProtocolSeqResponse) xxx_FromOp(ctx context.Context, op *xxx
 	}
 	o.ProtocolSeq = op.ProtocolSeq
 	o.Return = op.Return
+	o.NullMask = CheckServerProtocolSeqNullMask(op.NullMask) & CheckServerProtocolSeqNullMaskResponseAll
 }
 func (o *CheckServerProtocolSeqResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -12299,8 +12379,25 @@ func (o *CheckServerProtocolSeqResponse) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+type SendDocumentExNullMask ndr.NullMask
+
+var (
+	SendDocumentExNullMaskJobID SendDocumentExNullMask = 1 << 0
+
+	SendDocumentExNullMaskRequestAll  SendDocumentExNullMask = 0 | SendDocumentExNullMaskJobID
+	SendDocumentExNullMaskResponseAll SendDocumentExNullMask = 0 | SendDocumentExNullMaskJobID
+)
+
+func (o SendDocumentExNullMask) IsSet(v SendDocumentExNullMask) bool { return o&v != 0 }
+
+func (o SendDocumentExNullMask) Set(v SendDocumentExNullMask) SendDocumentExNullMask { return o | v }
+
 // xxx_SendDocumentExOperation structure represents the FAX_SendDocumentEx operation
 type xxx_SendDocumentExOperation struct {
+
+	// SendDocumentExNullMask is used to carry information on null-valued primitive values.
+	NullMask SendDocumentExNullMask
+
 	FileName            string                `idl:"name:lpcwstrFileName;string;pointer:unique" json:"file_name"`
 	CoverPageInfo       *fax.CoverPageInfoExW `idl:"name:lpcCoverPageInfo" json:"cover_page_info"`
 	SenderProfile       []byte                `idl:"name:lpcSenderProfile" json:"sender_profile"`
@@ -12388,16 +12485,23 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRRequest(ctx context.Context, w n
 			if uint64(i1) >= sizeInfo[0] {
 				break
 			}
-			// XXX pointer to primitive type, default behavior is to write non-null pointer.
-			// if this behavior is not desired, use goext_default_null([cond]) attribute.
-			_ptr_lpcSenderProfile := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if err := w.WriteData(o.SenderProfile[i1]); err != nil {
+			// XXX: pointer default mask was not generated as conditions
+			// for automatic generation were not met.
+			// If this behavior is not desired, use goext_default_null([cond]) attribute.
+			if o.SenderProfile[i1] != uint8(0) {
+				_ptr_lpcSenderProfile := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+					if err := w.WriteData(o.SenderProfile[i1]); err != nil {
+						return err
+					}
+					return nil
+				})
+				if err := w.WritePointer(&o.SenderProfile[i1], _ptr_lpcSenderProfile); err != nil {
 					return err
 				}
-				return nil
-			})
-			if err := w.WritePointer(&o.SenderProfile[i1], _ptr_lpcSenderProfile); err != nil {
-				return err
+			} else {
+				if err := w.WritePointer(nil); err != nil {
+					return err
+				}
 			}
 		}
 		for i1 := len(o.SenderProfile); uint64(i1) < sizeInfo[0]; i1++ {
@@ -12471,16 +12575,20 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwJobId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwJobId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.JobID); err != nil {
+		if o.NullMask&SendDocumentExNullMaskJobID == 0 {
+			_ptr_lpdwJobId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.JobID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.JobID, _ptr_lpdwJobId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.JobID, _ptr_lpdwJobId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -12607,7 +12715,8 @@ func (o *xxx_SendDocumentExOperation) UnmarshalNDRRequest(ctx context.Context, w
 			return nil
 		})
 		_s_lpdwJobId := func(ptr interface{}) { o.JobID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.JobID, _s_lpdwJobId, _ptr_lpdwJobId); err != nil {
+		_m_lpdwJobId := func() { o.NullMask |= SendDocumentExNullMaskJobID }
+		if err := w.ReadPointerWithHook(&o.JobID, ndr.PointerHook{_s_lpdwJobId, _m_lpdwJobId}, _ptr_lpdwJobId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -12632,16 +12741,20 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwJobId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwJobId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.JobID); err != nil {
+		if o.NullMask&SendDocumentExNullMaskJobID == 0 {
+			_ptr_lpdwJobId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.JobID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.JobID, _ptr_lpdwJobId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.JobID, _ptr_lpdwJobId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -12696,7 +12809,8 @@ func (o *xxx_SendDocumentExOperation) UnmarshalNDRResponse(ctx context.Context, 
 			return nil
 		})
 		_s_lpdwJobId := func(ptr interface{}) { o.JobID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.JobID, _s_lpdwJobId, _ptr_lpdwJobId); err != nil {
+		_m_lpdwJobId := func() { o.NullMask |= SendDocumentExNullMaskJobID }
+		if err := w.ReadPointerWithHook(&o.JobID, ndr.PointerHook{_s_lpdwJobId, _m_lpdwJobId}, _ptr_lpdwJobId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -12741,6 +12855,10 @@ func (o *xxx_SendDocumentExOperation) UnmarshalNDRResponse(ctx context.Context, 
 
 // SendDocumentExRequest structure represents the FAX_SendDocumentEx operation request
 type SendDocumentExRequest struct {
+
+	// SendDocumentExNullMask is used to carry information on null-valued primitive values.
+	NullMask SendDocumentExNullMask
+
 	// lpcwstrFileName: A pointer to a null-terminated character string that contains the
 	// name of the file, without path information, of the body of the fax in TIFF. The body
 	// file is previously copied to the server queue directory using the call sequence of
@@ -12800,6 +12918,7 @@ func (o *SendDocumentExRequest) xxx_ToOp(ctx context.Context, op *xxx_SendDocume
 	op.RecipientList = o.RecipientList
 	op.JobParams = o.JobParams
 	op.JobID = o.JobID
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -12814,6 +12933,7 @@ func (o *SendDocumentExRequest) xxx_FromOp(ctx context.Context, op *xxx_SendDocu
 	o.RecipientList = op.RecipientList
 	o.JobParams = op.JobParams
 	o.JobID = op.JobID
+	o.NullMask = SendDocumentExNullMask(op.NullMask) & SendDocumentExNullMaskRequestAll
 }
 func (o *SendDocumentExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -12845,6 +12965,10 @@ func (o *SendDocumentExRequest) OpName() string { return "/fax/v4/FAX_SendDocume
 
 // SendDocumentExResponse structure represents the FAX_SendDocumentEx operation response
 type SendDocumentExResponse struct {
+
+	// SendDocumentExNullMask is used to carry information on null-valued primitive values.
+	NullMask SendDocumentExNullMask
+
 	// XXX: dwNumRecipients is an implicit input depedency for output parameters
 	RecipientsLength uint32 `idl:"name:dwNumRecipients" json:"recipients_length"`
 
@@ -12882,6 +13006,7 @@ func (o *SendDocumentExResponse) xxx_ToOp(ctx context.Context, op *xxx_SendDocum
 	op.MessageID = o.MessageID
 	op.RecipientMessageIDs = o.RecipientMessageIDs
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -12896,6 +13021,7 @@ func (o *SendDocumentExResponse) xxx_FromOp(ctx context.Context, op *xxx_SendDoc
 	o.MessageID = op.MessageID
 	o.RecipientMessageIDs = op.RecipientMessageIDs
 	o.Return = op.Return
+	o.NullMask = SendDocumentExNullMask(op.NullMask) & SendDocumentExNullMaskResponseAll
 }
 func (o *SendDocumentExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -29347,8 +29473,25 @@ func (o *SetSecurityEx2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+type AccessCheckEx2NullMask ndr.NullMask
+
+var (
+	AccessCheckEx2NullMaskRights AccessCheckEx2NullMask = 1 << 0
+
+	AccessCheckEx2NullMaskRequestAll  AccessCheckEx2NullMask = 0 | AccessCheckEx2NullMaskRights
+	AccessCheckEx2NullMaskResponseAll AccessCheckEx2NullMask = 0 | AccessCheckEx2NullMaskRights
+)
+
+func (o AccessCheckEx2NullMask) IsSet(v AccessCheckEx2NullMask) bool { return o&v != 0 }
+
+func (o AccessCheckEx2NullMask) Set(v AccessCheckEx2NullMask) AccessCheckEx2NullMask { return o | v }
+
 // xxx_AccessCheckEx2Operation structure represents the FAX_AccessCheckEx2 operation
 type xxx_AccessCheckEx2Operation struct {
+
+	// AccessCheckEx2NullMask is used to carry information on null-valued primitive values.
+	NullMask AccessCheckEx2NullMask
+
 	AccessMask uint32 `idl:"name:AccessMask" json:"access_mask"`
 	Access     bool   `idl:"name:pfAccess;pointer:ref" json:"access"`
 	Rights     uint32 `idl:"name:lpdwRights;pointer:unique" json:"rights"`
@@ -29382,16 +29525,20 @@ func (o *xxx_AccessCheckEx2Operation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Rights); err != nil {
+		if o.NullMask&AccessCheckEx2NullMaskRights == 0 {
+			_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Rights); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Rights, _ptr_lpdwRights); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Rights, _ptr_lpdwRights); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -29416,7 +29563,8 @@ func (o *xxx_AccessCheckEx2Operation) UnmarshalNDRRequest(ctx context.Context, w
 			return nil
 		})
 		_s_lpdwRights := func(ptr interface{}) { o.Rights = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Rights, _s_lpdwRights, _ptr_lpdwRights); err != nil {
+		_m_lpdwRights := func() { o.NullMask |= AccessCheckEx2NullMaskRights }
+		if err := w.ReadPointerWithHook(&o.Rights, ndr.PointerHook{_s_lpdwRights, _m_lpdwRights}, _ptr_lpdwRights); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -29453,16 +29601,20 @@ func (o *xxx_AccessCheckEx2Operation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Rights); err != nil {
+		if o.NullMask&AccessCheckEx2NullMaskRights == 0 {
+			_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Rights); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Rights, _ptr_lpdwRights); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Rights, _ptr_lpdwRights); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -29495,7 +29647,8 @@ func (o *xxx_AccessCheckEx2Operation) UnmarshalNDRResponse(ctx context.Context, 
 			return nil
 		})
 		_s_lpdwRights := func(ptr interface{}) { o.Rights = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Rights, _s_lpdwRights, _ptr_lpdwRights); err != nil {
+		_m_lpdwRights := func() { o.NullMask |= AccessCheckEx2NullMaskRights }
+		if err := w.ReadPointerWithHook(&o.Rights, ndr.PointerHook{_s_lpdwRights, _m_lpdwRights}, _ptr_lpdwRights); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -29513,6 +29666,10 @@ func (o *xxx_AccessCheckEx2Operation) UnmarshalNDRResponse(ctx context.Context, 
 
 // AccessCheckEx2Request structure represents the FAX_AccessCheckEx2 operation request
 type AccessCheckEx2Request struct {
+
+	// AccessCheckEx2NullMask is used to carry information on null-valued primitive values.
+	NullMask AccessCheckEx2NullMask
+
 	// AccessMask: A DWORD ([MS-DTYP] section 2.2.9) variable that contains a set of bit
 	// flags specified by the client to be validated. Zero is a valid value for this parameter
 	// and means that no access rights are specified by the client to be validated. This
@@ -29608,6 +29765,7 @@ func (o *AccessCheckEx2Request) xxx_ToOp(ctx context.Context, op *xxx_AccessChec
 	}
 	op.AccessMask = o.AccessMask
 	op.Rights = o.Rights
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -29617,6 +29775,7 @@ func (o *AccessCheckEx2Request) xxx_FromOp(ctx context.Context, op *xxx_AccessCh
 	}
 	o.AccessMask = op.AccessMask
 	o.Rights = op.Rights
+	o.NullMask = AccessCheckEx2NullMask(op.NullMask) & AccessCheckEx2NullMaskRequestAll
 }
 func (o *AccessCheckEx2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -29643,6 +29802,10 @@ func (o *AccessCheckEx2Request) OpName() string { return "/fax/v4/FAX_AccessChec
 
 // AccessCheckEx2Response structure represents the FAX_AccessCheckEx2 operation response
 type AccessCheckEx2Response struct {
+
+	// AccessCheckEx2NullMask is used to carry information on null-valued primitive values.
+	NullMask AccessCheckEx2NullMask
+
 	// pfAccess: A pointer to a Boolean value that receives the access check return value.
 	// This value MUST be TRUE if the client's fax user account has all of the fax access
 	// rights specified by the AccessMask parameter; otherwise, this value MUST be FALSE.
@@ -29672,6 +29835,7 @@ func (o *AccessCheckEx2Response) xxx_ToOp(ctx context.Context, op *xxx_AccessChe
 	op.Access = o.Access
 	op.Rights = o.Rights
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -29682,6 +29846,7 @@ func (o *AccessCheckEx2Response) xxx_FromOp(ctx context.Context, op *xxx_AccessC
 	o.Access = op.Access
 	o.Rights = op.Rights
 	o.Return = op.Return
+	o.NullMask = AccessCheckEx2NullMask(op.NullMask) & AccessCheckEx2NullMaskResponseAll
 }
 func (o *AccessCheckEx2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)

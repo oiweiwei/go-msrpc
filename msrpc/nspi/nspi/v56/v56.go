@@ -5759,8 +5759,25 @@ func (o *UnbindResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
+type UpdateStatNullMask ndr.NullMask
+
+var (
+	UpdateStatNullMaskDelta UpdateStatNullMask = 1 << 0
+
+	UpdateStatNullMaskRequestAll  UpdateStatNullMask = 0 | UpdateStatNullMaskDelta
+	UpdateStatNullMaskResponseAll UpdateStatNullMask = 0 | UpdateStatNullMaskDelta
+)
+
+func (o UpdateStatNullMask) IsSet(v UpdateStatNullMask) bool { return o&v != 0 }
+
+func (o UpdateStatNullMask) Set(v UpdateStatNullMask) UpdateStatNullMask { return o | v }
+
 // xxx_UpdateStatOperation structure represents the NspiUpdateStat operation
 type xxx_UpdateStatOperation struct {
+
+	// UpdateStatNullMask is used to carry information on null-valued primitive values.
+	NullMask UpdateStatNullMask
+
 	Handle *Handle `idl:"name:hRpc" json:"handle"`
 	_      uint32  `idl:"name:Reserved"`
 	Stat   *Stat   `idl:"name:pStat" json:"stat"`
@@ -5820,16 +5837,20 @@ func (o *xxx_UpdateStatOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	}
 	// plDelta {in, out} (1:{pointer=unique}*(1)(int32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_plDelta := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Delta); err != nil {
+		if o.NullMask&UpdateStatNullMaskDelta == 0 {
+			_ptr_plDelta := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Delta); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Delta, _ptr_plDelta); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Delta, _ptr_plDelta); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -5874,7 +5895,8 @@ func (o *xxx_UpdateStatOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			return nil
 		})
 		_s_plDelta := func(ptr interface{}) { o.Delta = *ptr.(*int32) }
-		if err := w.ReadPointer(&o.Delta, _s_plDelta, _ptr_plDelta); err != nil {
+		_m_plDelta := func() { o.NullMask |= UpdateStatNullMaskDelta }
+		if err := w.ReadPointerWithHook(&o.Delta, ndr.PointerHook{_s_plDelta, _m_plDelta}, _ptr_plDelta); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5911,16 +5933,20 @@ func (o *xxx_UpdateStatOperation) MarshalNDRResponse(ctx context.Context, w ndr.
 	}
 	// plDelta {in, out} (1:{pointer=unique}*(1)(int32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_plDelta := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Delta); err != nil {
+		if o.NullMask&UpdateStatNullMaskDelta == 0 {
+			_ptr_plDelta := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Delta); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Delta, _ptr_plDelta); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Delta, _ptr_plDelta); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -5954,7 +5980,8 @@ func (o *xxx_UpdateStatOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			return nil
 		})
 		_s_plDelta := func(ptr interface{}) { o.Delta = *ptr.(*int32) }
-		if err := w.ReadPointer(&o.Delta, _s_plDelta, _ptr_plDelta); err != nil {
+		_m_plDelta := func() { o.NullMask |= UpdateStatNullMaskDelta }
+		if err := w.ReadPointerWithHook(&o.Delta, ndr.PointerHook{_s_plDelta, _m_plDelta}, _ptr_plDelta); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5972,6 +5999,10 @@ func (o *xxx_UpdateStatOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 
 // UpdateStatRequest structure represents the NspiUpdateStat operation request
 type UpdateStatRequest struct {
+
+	// UpdateStatNullMask is used to carry information on null-valued primitive values.
+	NullMask UpdateStatNullMask
+
 	// hRpc: An RPC context handle as specified in section 2.3.9.
 	Handle *Handle `idl:"name:hRpc" json:"handle"`
 	// pStat: A pointer to a STAT block describing a logical position in a specific address
@@ -5993,6 +6024,7 @@ func (o *UpdateStatRequest) xxx_ToOp(ctx context.Context, op *xxx_UpdateStatOper
 	op.Handle = o.Handle
 	op.Stat = o.Stat
 	op.Delta = o.Delta
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -6003,6 +6035,7 @@ func (o *UpdateStatRequest) xxx_FromOp(ctx context.Context, op *xxx_UpdateStatOp
 	o.Handle = op.Handle
 	o.Stat = op.Stat
 	o.Delta = op.Delta
+	o.NullMask = UpdateStatNullMask(op.NullMask) & UpdateStatNullMaskRequestAll
 }
 func (o *UpdateStatRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -6029,6 +6062,10 @@ func (o *UpdateStatRequest) OpName() string { return "/nspi/v56/NspiUpdateStat" 
 
 // UpdateStatResponse structure represents the NspiUpdateStat operation response
 type UpdateStatResponse struct {
+
+	// UpdateStatNullMask is used to carry information on null-valued primitive values.
+	NullMask UpdateStatNullMask
+
 	// pStat: A pointer to a STAT block describing a logical position in a specific address
 	// book container. This parameter is used to specify both input parameters from the
 	// client and return values from the NSPI server.
@@ -6050,6 +6087,7 @@ func (o *UpdateStatResponse) xxx_ToOp(ctx context.Context, op *xxx_UpdateStatOpe
 	op.Stat = o.Stat
 	op.Delta = o.Delta
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -6060,6 +6098,7 @@ func (o *UpdateStatResponse) xxx_FromOp(ctx context.Context, op *xxx_UpdateStatO
 	o.Stat = op.Stat
 	o.Delta = op.Delta
 	o.Return = op.Return
+	o.NullMask = UpdateStatNullMask(op.NullMask) & UpdateStatNullMaskResponseAll
 }
 func (o *UpdateStatResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
