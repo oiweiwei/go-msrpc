@@ -1,10 +1,6 @@
 package oaut
 
-import (
-	"strings"
-
-	"github.com/oiweiwei/go-msrpc/ndr"
-)
+import "unicode/utf16"
 
 // NullString returns the NULL-data representation of BSTR blob.
 func NullString() *String {
@@ -24,18 +20,14 @@ func (o *String) Canonical() *String {
 		return &String{BytesCount: 0xFFFFFFFF}
 	}
 
-	data := o.Data
-
-	if l := ndr.UTF16Len(data); l < uint64(o.Size) {
-		data += strings.Repeat("\x00", int(o.Size)-int(l))
-	}
-
-	data = data[:int(o.Size)]
+	// Size counts UTF-16 code units, not Go string bytes.
+	data := make([]uint16, o.Size)
+	copy(data, utf16.Encode([]rune(o.Data)))
 
 	return &String{
 		BytesCount: o.Size * 2,
 		Size:       o.Size,
-		Data:       data,
+		Data:       string(utf16.Decode(data)),
 		IsEmpty:    len(data) == 0,
 	}
 }
