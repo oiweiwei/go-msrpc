@@ -663,7 +663,45 @@ func (o TransferType) String() string {
 //
 // Following is the layout of the CACTransferBufferV1 structure with IDL annotations
 // followed by descriptions of the structure members.
+type TransferBufferV1NullMask ndr.NullMask
+
+var (
+	TransferBufferV1NullMaskClass                          TransferBufferV1NullMask = 1 << 0
+	TransferBufferV1NullMaskSentTime                       TransferBufferV1NullMask = 1 << 1
+	TransferBufferV1NullMaskArrivedTime                    TransferBufferV1NullMask = 1 << 2
+	TransferBufferV1NullMaskPriority                       TransferBufferV1NullMask = 1 << 3
+	TransferBufferV1NullMaskDelivery                       TransferBufferV1NullMask = 1 << 4
+	TransferBufferV1NullMaskAcknowledge                    TransferBufferV1NullMask = 1 << 5
+	TransferBufferV1NullMaskAuditing                       TransferBufferV1NullMask = 1 << 6
+	TransferBufferV1NullMaskApplicationTag                 TransferBufferV1NullMask = 1 << 7
+	TransferBufferV1NullMaskBodySize                       TransferBufferV1NullMask = 1 << 8
+	TransferBufferV1NullMaskActualTitleBufferSizeInWchars  TransferBufferV1NullMask = 1 << 9
+	TransferBufferV1NullMaskActualRelativeTimeToQueue      TransferBufferV1NullMask = 1 << 10
+	TransferBufferV1NullMaskActualRelativeTimeToLive       TransferBufferV1NullMask = 1 << 11
+	TransferBufferV1NullMaskTrace                          TransferBufferV1NullMask = 1 << 12
+	TransferBufferV1NullMaskSenderIDType                   TransferBufferV1NullMask = 1 << 13
+	TransferBufferV1NullMaskSenderIDLengthProperty         TransferBufferV1NullMask = 1 << 14
+	TransferBufferV1NullMaskPrivacyLevel                   TransferBufferV1NullMask = 1 << 15
+	TransferBufferV1NullMaskAuthenticated                  TransferBufferV1NullMask = 1 << 16
+	TransferBufferV1NullMaskHashAlgorithm                  TransferBufferV1NullMask = 1 << 17
+	TransferBufferV1NullMaskEncryptAlgorithm               TransferBufferV1NullMask = 1 << 18
+	TransferBufferV1NullMaskSenderCertLengthProperty       TransferBufferV1NullMask = 1 << 19
+	TransferBufferV1NullMaskAuthProviderNameLengthProperty TransferBufferV1NullMask = 1 << 20
+	TransferBufferV1NullMaskProviderType                   TransferBufferV1NullMask = 1 << 21
+	TransferBufferV1NullMaskSymmetricKeysSizeProperty      TransferBufferV1NullMask = 1 << 22
+	TransferBufferV1NullMaskSignatureSizeProperty          TransferBufferV1NullMask = 1 << 23
+	TransferBufferV1NullMaskMessageExtensionSize           TransferBufferV1NullMask = 1 << 24
+	TransferBufferV1NullMaskBodyType                       TransferBufferV1NullMask = 1 << 25
+	TransferBufferV1NullMaskVersion                        TransferBufferV1NullMask = 1 << 26
+)
+
+func (o TransferBufferV1NullMask) IsSet(v TransferBufferV1NullMask) bool { return o&v != 0 }
+
 type TransferBufferV1 struct {
+
+	// TransferBufferV1NullMask is used to carry information on null-valued primitive values.
+	NullMask TransferBufferV1NullMask
+
 	// uTransferType:  The uTransferType member specifies which of the Send, Receive, or
 	// CreateCursor union members is present in the CACTransferBufferV1 structure. The uTransferType
 	// member MUST be assigned a value from the TRANSFER_TYPE (section 2.2.2.1) enumeration.
@@ -1258,16 +1296,20 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pClass := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Class); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskClass == 0 {
+		_ptr_pClass := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.Class); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Class, _ptr_pClass); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Class, _ptr_pClass); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if o.MessageID != nil {
 		_ptr_ppMessageID := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -1359,82 +1401,110 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pSentTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.SentTime); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskSentTime == 0 {
+		_ptr_pSentTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.SentTime); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SentTime, _ptr_pSentTime); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.SentTime, _ptr_pSentTime); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pArrivedTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.ArrivedTime); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskArrivedTime == 0 {
+		_ptr_pArrivedTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.ArrivedTime); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ArrivedTime, _ptr_pArrivedTime); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.ArrivedTime, _ptr_pArrivedTime); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pPriority := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Priority); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskPriority == 0 {
+		_ptr_pPriority := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.Priority); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Priority, _ptr_pPriority); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Priority, _ptr_pPriority); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pDelivery := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Delivery); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskDelivery == 0 {
+		_ptr_pDelivery := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.Delivery); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Delivery, _ptr_pDelivery); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Delivery, _ptr_pDelivery); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pAcknowledge := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Acknowledge); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskAcknowledge == 0 {
+		_ptr_pAcknowledge := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.Acknowledge); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Acknowledge, _ptr_pAcknowledge); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Acknowledge, _ptr_pAcknowledge); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pAuditing := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Auditing); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskAuditing == 0 {
+		_ptr_pAuditing := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.Auditing); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Auditing, _ptr_pAuditing); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Auditing, _ptr_pAuditing); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pApplicationTag := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.ApplicationTag); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskApplicationTag == 0 {
+		_ptr_pApplicationTag := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.ApplicationTag); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ApplicationTag, _ptr_pApplicationTag); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.ApplicationTag, _ptr_pApplicationTag); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if o.Body != nil {
 		_ptr_ppBody := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -1499,16 +1569,20 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.AllocBodyBufferInBytes); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pBodySize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.BodySize); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskBodySize == 0 {
+		_ptr_pBodySize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.BodySize); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.BodySize, _ptr_pBodySize); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.BodySize, _ptr_pBodySize); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if o.Title != "" {
 		_ptr_ppTitle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -1574,66 +1648,86 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.TitleBufferSizeInWchars); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulTitleBufferSizeInWCHARs := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.ActualTitleBufferSizeInWchars); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskActualTitleBufferSizeInWchars == 0 {
+		_ptr_pulTitleBufferSizeInWCHARs := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.ActualTitleBufferSizeInWchars); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ActualTitleBufferSizeInWchars, _ptr_pulTitleBufferSizeInWCHARs); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.ActualTitleBufferSizeInWchars, _ptr_pulTitleBufferSizeInWCHARs); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if err := w.WriteData(o.AbsoluteTimeToQueue); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulRelativeTimeToQueue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.ActualRelativeTimeToQueue); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskActualRelativeTimeToQueue == 0 {
+		_ptr_pulRelativeTimeToQueue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.ActualRelativeTimeToQueue); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ActualRelativeTimeToQueue, _ptr_pulRelativeTimeToQueue); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.ActualRelativeTimeToQueue, _ptr_pulRelativeTimeToQueue); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if err := w.WriteData(o.RelativeTimeToLive); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulRelativeTimeToLive := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.ActualRelativeTimeToLive); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskActualRelativeTimeToLive == 0 {
+		_ptr_pulRelativeTimeToLive := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.ActualRelativeTimeToLive); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ActualRelativeTimeToLive, _ptr_pulRelativeTimeToLive); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.ActualRelativeTimeToLive, _ptr_pulRelativeTimeToLive); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pTrace := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Trace); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskTrace == 0 {
+		_ptr_pTrace := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.Trace); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Trace, _ptr_pTrace); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Trace, _ptr_pTrace); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulSenderIDType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.SenderIDType); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskSenderIDType == 0 {
+		_ptr_pulSenderIDType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.SenderIDType); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SenderIDType, _ptr_pulSenderIDType); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.SenderIDType, _ptr_pulSenderIDType); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if o.SenderID != nil {
 		_ptr_ppSenderID := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -1680,63 +1774,83 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulSenderIDLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.SenderIDLengthProperty); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskSenderIDLengthProperty == 0 {
+		_ptr_pulSenderIDLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.SenderIDLengthProperty); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SenderIDLengthProperty, _ptr_pulSenderIDLenProp); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.SenderIDLengthProperty, _ptr_pulSenderIDLenProp); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulPrivLevel := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.PrivacyLevel); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskPrivacyLevel == 0 {
+		_ptr_pulPrivLevel := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.PrivacyLevel); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.PrivacyLevel, _ptr_pulPrivLevel); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.PrivacyLevel, _ptr_pulPrivLevel); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if err := w.WriteData(o.AuthLevel); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pAuthenticated := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Authenticated); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskAuthenticated == 0 {
+		_ptr_pAuthenticated := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.Authenticated); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Authenticated, _ptr_pAuthenticated); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Authenticated, _ptr_pAuthenticated); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulHashAlg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.HashAlgorithm); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskHashAlgorithm == 0 {
+		_ptr_pulHashAlg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.HashAlgorithm); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.HashAlgorithm, _ptr_pulHashAlg); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.HashAlgorithm, _ptr_pulHashAlg); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulEncryptAlg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.EncryptAlgorithm); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskEncryptAlgorithm == 0 {
+		_ptr_pulEncryptAlg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.EncryptAlgorithm); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.EncryptAlgorithm, _ptr_pulEncryptAlg); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.EncryptAlgorithm, _ptr_pulEncryptAlg); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if o.SenderCert != nil {
 		_ptr_ppSenderCert := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -1786,16 +1900,20 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SenderCertLength); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulSenderCertLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.SenderCertLengthProperty); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskSenderCertLengthProperty == 0 {
+		_ptr_pulSenderCertLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.SenderCertLengthProperty); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SenderCertLengthProperty, _ptr_pulSenderCertLenProp); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.SenderCertLengthProperty, _ptr_pulSenderCertLenProp); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if o.ProviderName != "" {
 		_ptr_ppwcsProvName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -1849,27 +1967,35 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.ProviderNameLength); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulAuthProvNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.AuthProviderNameLengthProperty); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskAuthProviderNameLengthProperty == 0 {
+		_ptr_pulAuthProvNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.AuthProviderNameLengthProperty); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.AuthProviderNameLengthProperty, _ptr_pulAuthProvNameLenProp); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.AuthProviderNameLengthProperty, _ptr_pulAuthProvNameLenProp); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulProvType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.ProviderType); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskProviderType == 0 {
+		_ptr_pulProvType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.ProviderType); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ProviderType, _ptr_pulProvType); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.ProviderType, _ptr_pulProvType); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if err := w.WriteData(o.DefaultProvider); err != nil {
 		return err
@@ -1922,16 +2048,20 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SymmetricKeysSize); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulSymmKeysSizeProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.SymmetricKeysSizeProperty); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskSymmetricKeysSizeProperty == 0 {
+		_ptr_pulSymmKeysSizeProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.SymmetricKeysSizeProperty); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SymmetricKeysSizeProperty, _ptr_pulSymmKeysSizeProp); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.SymmetricKeysSizeProperty, _ptr_pulSymmKeysSizeProp); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if err := w.WriteData(o.Encrypted); err != nil {
 		return err
@@ -1990,16 +2120,20 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SignatureSize); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulSignatureSizeProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.SignatureSizeProperty); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskSignatureSizeProperty == 0 {
+		_ptr_pulSignatureSizeProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.SignatureSizeProperty); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SignatureSizeProperty, _ptr_pulSignatureSizeProp); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.SignatureSizeProperty, _ptr_pulSignatureSizeProp); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if o.SourceQMID != nil {
 		_ptr_ppSrcQMID := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -2115,16 +2249,20 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.MessageExtensionBufferInBytes); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pMsgExtensionSize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.MessageExtensionSize); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskMessageExtensionSize == 0 {
+		_ptr_pMsgExtensionSize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.MessageExtensionSize); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.MessageExtensionSize, _ptr_pMsgExtensionSize); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.MessageExtensionSize, _ptr_pMsgExtensionSize); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if o.ConnectorType != nil {
 		_ptr_ppConnectorType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -2159,27 +2297,35 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulBodyType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.BodyType); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskBodyType == 0 {
+		_ptr_pulBodyType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.BodyType); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.BodyType, _ptr_pulBodyType); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.BodyType, _ptr_pulBodyType); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulVersion := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Version); err != nil {
+	if o.NullMask&TransferBufferV1NullMaskVersion == 0 {
+		_ptr_pulVersion := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.Version); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Version, _ptr_pulVersion); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Version, _ptr_pulVersion); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -2204,7 +2350,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pClass := func(ptr interface{}) { o.Class = *ptr.(*uint16) }
-	if err := w.ReadPointer(&o.Class, _s_pClass, _ptr_pClass); err != nil {
+	_m_pClass := func() { o.NullMask |= TransferBufferV1NullMaskClass }
+	if err := w.ReadPointerWithHook(&o.Class, ndr.PointerHook{_s_pClass, _m_pClass}, _ptr_pClass); err != nil {
 		return err
 	}
 	_ptr_ppMessageID := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2274,7 +2421,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pSentTime := func(ptr interface{}) { o.SentTime = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.SentTime, _s_pSentTime, _ptr_pSentTime); err != nil {
+	_m_pSentTime := func() { o.NullMask |= TransferBufferV1NullMaskSentTime }
+	if err := w.ReadPointerWithHook(&o.SentTime, ndr.PointerHook{_s_pSentTime, _m_pSentTime}, _ptr_pSentTime); err != nil {
 		return err
 	}
 	_ptr_pArrivedTime := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2284,7 +2432,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pArrivedTime := func(ptr interface{}) { o.ArrivedTime = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.ArrivedTime, _s_pArrivedTime, _ptr_pArrivedTime); err != nil {
+	_m_pArrivedTime := func() { o.NullMask |= TransferBufferV1NullMaskArrivedTime }
+	if err := w.ReadPointerWithHook(&o.ArrivedTime, ndr.PointerHook{_s_pArrivedTime, _m_pArrivedTime}, _ptr_pArrivedTime); err != nil {
 		return err
 	}
 	_ptr_pPriority := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2294,7 +2443,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pPriority := func(ptr interface{}) { o.Priority = *ptr.(*uint8) }
-	if err := w.ReadPointer(&o.Priority, _s_pPriority, _ptr_pPriority); err != nil {
+	_m_pPriority := func() { o.NullMask |= TransferBufferV1NullMaskPriority }
+	if err := w.ReadPointerWithHook(&o.Priority, ndr.PointerHook{_s_pPriority, _m_pPriority}, _ptr_pPriority); err != nil {
 		return err
 	}
 	_ptr_pDelivery := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2304,7 +2454,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pDelivery := func(ptr interface{}) { o.Delivery = *ptr.(*uint8) }
-	if err := w.ReadPointer(&o.Delivery, _s_pDelivery, _ptr_pDelivery); err != nil {
+	_m_pDelivery := func() { o.NullMask |= TransferBufferV1NullMaskDelivery }
+	if err := w.ReadPointerWithHook(&o.Delivery, ndr.PointerHook{_s_pDelivery, _m_pDelivery}, _ptr_pDelivery); err != nil {
 		return err
 	}
 	_ptr_pAcknowledge := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2314,7 +2465,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pAcknowledge := func(ptr interface{}) { o.Acknowledge = *ptr.(*uint8) }
-	if err := w.ReadPointer(&o.Acknowledge, _s_pAcknowledge, _ptr_pAcknowledge); err != nil {
+	_m_pAcknowledge := func() { o.NullMask |= TransferBufferV1NullMaskAcknowledge }
+	if err := w.ReadPointerWithHook(&o.Acknowledge, ndr.PointerHook{_s_pAcknowledge, _m_pAcknowledge}, _ptr_pAcknowledge); err != nil {
 		return err
 	}
 	_ptr_pAuditing := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2324,7 +2476,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pAuditing := func(ptr interface{}) { o.Auditing = *ptr.(*uint8) }
-	if err := w.ReadPointer(&o.Auditing, _s_pAuditing, _ptr_pAuditing); err != nil {
+	_m_pAuditing := func() { o.NullMask |= TransferBufferV1NullMaskAuditing }
+	if err := w.ReadPointerWithHook(&o.Auditing, ndr.PointerHook{_s_pAuditing, _m_pAuditing}, _ptr_pAuditing); err != nil {
 		return err
 	}
 	_ptr_pApplicationTag := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2334,7 +2487,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pApplicationTag := func(ptr interface{}) { o.ApplicationTag = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.ApplicationTag, _s_pApplicationTag, _ptr_pApplicationTag); err != nil {
+	_m_pApplicationTag := func() { o.NullMask |= TransferBufferV1NullMaskApplicationTag }
+	if err := w.ReadPointerWithHook(&o.ApplicationTag, ndr.PointerHook{_s_pApplicationTag, _m_pApplicationTag}, _ptr_pApplicationTag); err != nil {
 		return err
 	}
 	_ptr_ppBody := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2390,7 +2544,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pBodySize := func(ptr interface{}) { o.BodySize = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.BodySize, _s_pBodySize, _ptr_pBodySize); err != nil {
+	_m_pBodySize := func() { o.NullMask |= TransferBufferV1NullMaskBodySize }
+	if err := w.ReadPointerWithHook(&o.BodySize, ndr.PointerHook{_s_pBodySize, _m_pBodySize}, _ptr_pBodySize); err != nil {
 		return err
 	}
 	_ptr_ppTitle := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2445,7 +2600,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulTitleBufferSizeInWCHARs := func(ptr interface{}) { o.ActualTitleBufferSizeInWchars = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.ActualTitleBufferSizeInWchars, _s_pulTitleBufferSizeInWCHARs, _ptr_pulTitleBufferSizeInWCHARs); err != nil {
+	_m_pulTitleBufferSizeInWCHARs := func() { o.NullMask |= TransferBufferV1NullMaskActualTitleBufferSizeInWchars }
+	if err := w.ReadPointerWithHook(&o.ActualTitleBufferSizeInWchars, ndr.PointerHook{_s_pulTitleBufferSizeInWCHARs, _m_pulTitleBufferSizeInWCHARs}, _ptr_pulTitleBufferSizeInWCHARs); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.AbsoluteTimeToQueue); err != nil {
@@ -2458,7 +2614,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulRelativeTimeToQueue := func(ptr interface{}) { o.ActualRelativeTimeToQueue = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.ActualRelativeTimeToQueue, _s_pulRelativeTimeToQueue, _ptr_pulRelativeTimeToQueue); err != nil {
+	_m_pulRelativeTimeToQueue := func() { o.NullMask |= TransferBufferV1NullMaskActualRelativeTimeToQueue }
+	if err := w.ReadPointerWithHook(&o.ActualRelativeTimeToQueue, ndr.PointerHook{_s_pulRelativeTimeToQueue, _m_pulRelativeTimeToQueue}, _ptr_pulRelativeTimeToQueue); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.RelativeTimeToLive); err != nil {
@@ -2471,7 +2628,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulRelativeTimeToLive := func(ptr interface{}) { o.ActualRelativeTimeToLive = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.ActualRelativeTimeToLive, _s_pulRelativeTimeToLive, _ptr_pulRelativeTimeToLive); err != nil {
+	_m_pulRelativeTimeToLive := func() { o.NullMask |= TransferBufferV1NullMaskActualRelativeTimeToLive }
+	if err := w.ReadPointerWithHook(&o.ActualRelativeTimeToLive, ndr.PointerHook{_s_pulRelativeTimeToLive, _m_pulRelativeTimeToLive}, _ptr_pulRelativeTimeToLive); err != nil {
 		return err
 	}
 	_ptr_pTrace := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2481,7 +2639,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pTrace := func(ptr interface{}) { o.Trace = *ptr.(*uint8) }
-	if err := w.ReadPointer(&o.Trace, _s_pTrace, _ptr_pTrace); err != nil {
+	_m_pTrace := func() { o.NullMask |= TransferBufferV1NullMaskTrace }
+	if err := w.ReadPointerWithHook(&o.Trace, ndr.PointerHook{_s_pTrace, _m_pTrace}, _ptr_pTrace); err != nil {
 		return err
 	}
 	_ptr_pulSenderIDType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2491,7 +2650,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulSenderIDType := func(ptr interface{}) { o.SenderIDType = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.SenderIDType, _s_pulSenderIDType, _ptr_pulSenderIDType); err != nil {
+	_m_pulSenderIDType := func() { o.NullMask |= TransferBufferV1NullMaskSenderIDType }
+	if err := w.ReadPointerWithHook(&o.SenderIDType, ndr.PointerHook{_s_pulSenderIDType, _m_pulSenderIDType}, _ptr_pulSenderIDType); err != nil {
 		return err
 	}
 	_ptr_ppSenderID := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2537,7 +2697,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulSenderIDLenProp := func(ptr interface{}) { o.SenderIDLengthProperty = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.SenderIDLengthProperty, _s_pulSenderIDLenProp, _ptr_pulSenderIDLenProp); err != nil {
+	_m_pulSenderIDLenProp := func() { o.NullMask |= TransferBufferV1NullMaskSenderIDLengthProperty }
+	if err := w.ReadPointerWithHook(&o.SenderIDLengthProperty, ndr.PointerHook{_s_pulSenderIDLenProp, _m_pulSenderIDLenProp}, _ptr_pulSenderIDLenProp); err != nil {
 		return err
 	}
 	_ptr_pulPrivLevel := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2547,7 +2708,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulPrivLevel := func(ptr interface{}) { o.PrivacyLevel = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.PrivacyLevel, _s_pulPrivLevel, _ptr_pulPrivLevel); err != nil {
+	_m_pulPrivLevel := func() { o.NullMask |= TransferBufferV1NullMaskPrivacyLevel }
+	if err := w.ReadPointerWithHook(&o.PrivacyLevel, ndr.PointerHook{_s_pulPrivLevel, _m_pulPrivLevel}, _ptr_pulPrivLevel); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.AuthLevel); err != nil {
@@ -2560,7 +2722,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pAuthenticated := func(ptr interface{}) { o.Authenticated = *ptr.(*uint8) }
-	if err := w.ReadPointer(&o.Authenticated, _s_pAuthenticated, _ptr_pAuthenticated); err != nil {
+	_m_pAuthenticated := func() { o.NullMask |= TransferBufferV1NullMaskAuthenticated }
+	if err := w.ReadPointerWithHook(&o.Authenticated, ndr.PointerHook{_s_pAuthenticated, _m_pAuthenticated}, _ptr_pAuthenticated); err != nil {
 		return err
 	}
 	_ptr_pulHashAlg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2570,7 +2733,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulHashAlg := func(ptr interface{}) { o.HashAlgorithm = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.HashAlgorithm, _s_pulHashAlg, _ptr_pulHashAlg); err != nil {
+	_m_pulHashAlg := func() { o.NullMask |= TransferBufferV1NullMaskHashAlgorithm }
+	if err := w.ReadPointerWithHook(&o.HashAlgorithm, ndr.PointerHook{_s_pulHashAlg, _m_pulHashAlg}, _ptr_pulHashAlg); err != nil {
 		return err
 	}
 	_ptr_pulEncryptAlg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2580,7 +2744,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulEncryptAlg := func(ptr interface{}) { o.EncryptAlgorithm = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.EncryptAlgorithm, _s_pulEncryptAlg, _ptr_pulEncryptAlg); err != nil {
+	_m_pulEncryptAlg := func() { o.NullMask |= TransferBufferV1NullMaskEncryptAlgorithm }
+	if err := w.ReadPointerWithHook(&o.EncryptAlgorithm, ndr.PointerHook{_s_pulEncryptAlg, _m_pulEncryptAlg}, _ptr_pulEncryptAlg); err != nil {
 		return err
 	}
 	_ptr_ppSenderCert := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2629,7 +2794,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulSenderCertLenProp := func(ptr interface{}) { o.SenderCertLengthProperty = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.SenderCertLengthProperty, _s_pulSenderCertLenProp, _ptr_pulSenderCertLenProp); err != nil {
+	_m_pulSenderCertLenProp := func() { o.NullMask |= TransferBufferV1NullMaskSenderCertLengthProperty }
+	if err := w.ReadPointerWithHook(&o.SenderCertLengthProperty, ndr.PointerHook{_s_pulSenderCertLenProp, _m_pulSenderCertLenProp}, _ptr_pulSenderCertLenProp); err != nil {
 		return err
 	}
 	_ptr_ppwcsProvName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2680,7 +2846,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulAuthProvNameLenProp := func(ptr interface{}) { o.AuthProviderNameLengthProperty = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.AuthProviderNameLengthProperty, _s_pulAuthProvNameLenProp, _ptr_pulAuthProvNameLenProp); err != nil {
+	_m_pulAuthProvNameLenProp := func() { o.NullMask |= TransferBufferV1NullMaskAuthProviderNameLengthProperty }
+	if err := w.ReadPointerWithHook(&o.AuthProviderNameLengthProperty, ndr.PointerHook{_s_pulAuthProvNameLenProp, _m_pulAuthProvNameLenProp}, _ptr_pulAuthProvNameLenProp); err != nil {
 		return err
 	}
 	_ptr_pulProvType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2690,7 +2857,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulProvType := func(ptr interface{}) { o.ProviderType = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.ProviderType, _s_pulProvType, _ptr_pulProvType); err != nil {
+	_m_pulProvType := func() { o.NullMask |= TransferBufferV1NullMaskProviderType }
+	if err := w.ReadPointerWithHook(&o.ProviderType, ndr.PointerHook{_s_pulProvType, _m_pulProvType}, _ptr_pulProvType); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.DefaultProvider); err != nil {
@@ -2742,7 +2910,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulSymmKeysSizeProp := func(ptr interface{}) { o.SymmetricKeysSizeProperty = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.SymmetricKeysSizeProperty, _s_pulSymmKeysSizeProp, _ptr_pulSymmKeysSizeProp); err != nil {
+	_m_pulSymmKeysSizeProp := func() { o.NullMask |= TransferBufferV1NullMaskSymmetricKeysSizeProperty }
+	if err := w.ReadPointerWithHook(&o.SymmetricKeysSizeProperty, ndr.PointerHook{_s_pulSymmKeysSizeProp, _m_pulSymmKeysSizeProp}, _ptr_pulSymmKeysSizeProp); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Encrypted); err != nil {
@@ -2800,7 +2969,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulSignatureSizeProp := func(ptr interface{}) { o.SignatureSizeProperty = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.SignatureSizeProperty, _s_pulSignatureSizeProp, _ptr_pulSignatureSizeProp); err != nil {
+	_m_pulSignatureSizeProp := func() { o.NullMask |= TransferBufferV1NullMaskSignatureSizeProperty }
+	if err := w.ReadPointerWithHook(&o.SignatureSizeProperty, ndr.PointerHook{_s_pulSignatureSizeProp, _m_pulSignatureSizeProp}, _ptr_pulSignatureSizeProp); err != nil {
 		return err
 	}
 	_ptr_ppSrcQMID := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2886,7 +3056,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pMsgExtensionSize := func(ptr interface{}) { o.MessageExtensionSize = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.MessageExtensionSize, _s_pMsgExtensionSize, _ptr_pMsgExtensionSize); err != nil {
+	_m_pMsgExtensionSize := func() { o.NullMask |= TransferBufferV1NullMaskMessageExtensionSize }
+	if err := w.ReadPointerWithHook(&o.MessageExtensionSize, ndr.PointerHook{_s_pMsgExtensionSize, _m_pMsgExtensionSize}, _ptr_pMsgExtensionSize); err != nil {
 		return err
 	}
 	_ptr_ppConnectorType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2916,7 +3087,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulBodyType := func(ptr interface{}) { o.BodyType = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.BodyType, _s_pulBodyType, _ptr_pulBodyType); err != nil {
+	_m_pulBodyType := func() { o.NullMask |= TransferBufferV1NullMaskBodyType }
+	if err := w.ReadPointerWithHook(&o.BodyType, ndr.PointerHook{_s_pulBodyType, _m_pulBodyType}, _ptr_pulBodyType); err != nil {
 		return err
 	}
 	_ptr_pulVersion := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2926,7 +3098,8 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pulVersion := func(ptr interface{}) { o.Version = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.Version, _s_pulVersion, _ptr_pulVersion); err != nil {
+	_m_pulVersion := func() { o.NullMask |= TransferBufferV1NullMaskVersion }
+	if err := w.ReadPointerWithHook(&o.Version, ndr.PointerHook{_s_pulVersion, _m_pulVersion}, _ptr_pulVersion); err != nil {
 		return err
 	}
 	return nil
@@ -3258,7 +3431,24 @@ func (o *TransferBufferV1_Receive) UnmarshalNDR(ctx context.Context, w ndr.Reade
 //
 // Following is the layout of the CACTransferBufferV1 structure with IDL annotations
 // followed by descriptions of the structure members.
+type TransferBufferV1_TransferBufferV1_ReceiveNullMask ndr.NullMask
+
+var (
+	TransferBufferV1_TransferBufferV1_ReceiveNullMaskResponseFormatNameLengthProperty    TransferBufferV1_TransferBufferV1_ReceiveNullMask = 1 << 0
+	TransferBufferV1_TransferBufferV1_ReceiveNullMaskAdminFormatNameLengthProperty       TransferBufferV1_TransferBufferV1_ReceiveNullMask = 1 << 1
+	TransferBufferV1_TransferBufferV1_ReceiveNullMaskDestinationFormatNameLengthProperty TransferBufferV1_TransferBufferV1_ReceiveNullMask = 1 << 2
+	TransferBufferV1_TransferBufferV1_ReceiveNullMaskOrderingFormatNameLengthProperty    TransferBufferV1_TransferBufferV1_ReceiveNullMask = 1 << 3
+)
+
+func (o TransferBufferV1_TransferBufferV1_ReceiveNullMask) IsSet(v TransferBufferV1_TransferBufferV1_ReceiveNullMask) bool {
+	return o&v != 0
+}
+
 type TransferBufferV1_TransferBufferV1_Receive struct {
+
+	// TransferBufferV1_TransferBufferV1_ReceiveNullMask is used to carry information on null-valued primitive values.
+	NullMask TransferBufferV1_TransferBufferV1_ReceiveNullMask
+
 	// RequestTimeout:  The RequestTimeout member specifies the amount of time (in milliseconds)
 	// to wait for a message to be returned before returning a failure.
 	RequestTimeout uint32 `idl:"name:RequestTimeout" json:"request_timeout"`
@@ -3445,16 +3635,20 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) MarshalNDR(ctx context.Conte
 			return err
 		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulResponseFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.ResponseFormatNameLengthProperty); err != nil {
+	if o.NullMask&TransferBufferV1_TransferBufferV1_ReceiveNullMaskResponseFormatNameLengthProperty == 0 {
+		_ptr_pulResponseFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.ResponseFormatNameLengthProperty); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ResponseFormatNameLengthProperty, _ptr_pulResponseFormatNameLenProp); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.ResponseFormatNameLengthProperty, _ptr_pulResponseFormatNameLenProp); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if err := w.WriteData(o.AdminFormatNameLength); err != nil {
 		return err
@@ -3508,16 +3702,20 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) MarshalNDR(ctx context.Conte
 			return err
 		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulAdminFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.AdminFormatNameLengthProperty); err != nil {
+	if o.NullMask&TransferBufferV1_TransferBufferV1_ReceiveNullMaskAdminFormatNameLengthProperty == 0 {
+		_ptr_pulAdminFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.AdminFormatNameLengthProperty); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.AdminFormatNameLengthProperty, _ptr_pulAdminFormatNameLenProp); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.AdminFormatNameLengthProperty, _ptr_pulAdminFormatNameLenProp); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if err := w.WriteData(o.DestinationFormatNameLength); err != nil {
 		return err
@@ -3571,16 +3769,20 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) MarshalNDR(ctx context.Conte
 			return err
 		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulDestFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.DestinationFormatNameLengthProperty); err != nil {
+	if o.NullMask&TransferBufferV1_TransferBufferV1_ReceiveNullMaskDestinationFormatNameLengthProperty == 0 {
+		_ptr_pulDestFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.DestinationFormatNameLengthProperty); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.DestinationFormatNameLengthProperty, _ptr_pulDestFormatNameLenProp); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.DestinationFormatNameLengthProperty, _ptr_pulDestFormatNameLenProp); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if err := w.WriteData(o.OrderingFormatNameLength); err != nil {
 		return err
@@ -3634,16 +3836,20 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) MarshalNDR(ctx context.Conte
 			return err
 		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pulOrderingFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.OrderingFormatNameLengthProperty); err != nil {
+	if o.NullMask&TransferBufferV1_TransferBufferV1_ReceiveNullMaskOrderingFormatNameLengthProperty == 0 {
+		_ptr_pulOrderingFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.OrderingFormatNameLengthProperty); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.OrderingFormatNameLengthProperty, _ptr_pulOrderingFormatNameLenProp); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.OrderingFormatNameLengthProperty, _ptr_pulOrderingFormatNameLenProp); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -3711,7 +3917,10 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) UnmarshalNDR(ctx context.Con
 		return nil
 	})
 	_s_pulResponseFormatNameLenProp := func(ptr interface{}) { o.ResponseFormatNameLengthProperty = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.ResponseFormatNameLengthProperty, _s_pulResponseFormatNameLenProp, _ptr_pulResponseFormatNameLenProp); err != nil {
+	_m_pulResponseFormatNameLenProp := func() {
+		o.NullMask |= TransferBufferV1_TransferBufferV1_ReceiveNullMaskResponseFormatNameLengthProperty
+	}
+	if err := w.ReadPointerWithHook(&o.ResponseFormatNameLengthProperty, ndr.PointerHook{_s_pulResponseFormatNameLenProp, _m_pulResponseFormatNameLenProp}, _ptr_pulResponseFormatNameLenProp); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.AdminFormatNameLength); err != nil {
@@ -3762,7 +3971,8 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) UnmarshalNDR(ctx context.Con
 		return nil
 	})
 	_s_pulAdminFormatNameLenProp := func(ptr interface{}) { o.AdminFormatNameLengthProperty = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.AdminFormatNameLengthProperty, _s_pulAdminFormatNameLenProp, _ptr_pulAdminFormatNameLenProp); err != nil {
+	_m_pulAdminFormatNameLenProp := func() { o.NullMask |= TransferBufferV1_TransferBufferV1_ReceiveNullMaskAdminFormatNameLengthProperty }
+	if err := w.ReadPointerWithHook(&o.AdminFormatNameLengthProperty, ndr.PointerHook{_s_pulAdminFormatNameLenProp, _m_pulAdminFormatNameLenProp}, _ptr_pulAdminFormatNameLenProp); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.DestinationFormatNameLength); err != nil {
@@ -3813,7 +4023,10 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) UnmarshalNDR(ctx context.Con
 		return nil
 	})
 	_s_pulDestFormatNameLenProp := func(ptr interface{}) { o.DestinationFormatNameLengthProperty = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.DestinationFormatNameLengthProperty, _s_pulDestFormatNameLenProp, _ptr_pulDestFormatNameLenProp); err != nil {
+	_m_pulDestFormatNameLenProp := func() {
+		o.NullMask |= TransferBufferV1_TransferBufferV1_ReceiveNullMaskDestinationFormatNameLengthProperty
+	}
+	if err := w.ReadPointerWithHook(&o.DestinationFormatNameLengthProperty, ndr.PointerHook{_s_pulDestFormatNameLenProp, _m_pulDestFormatNameLenProp}, _ptr_pulDestFormatNameLenProp); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.OrderingFormatNameLength); err != nil {
@@ -3864,7 +4077,10 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) UnmarshalNDR(ctx context.Con
 		return nil
 	})
 	_s_pulOrderingFormatNameLenProp := func(ptr interface{}) { o.OrderingFormatNameLengthProperty = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.OrderingFormatNameLengthProperty, _s_pulOrderingFormatNameLenProp, _ptr_pulOrderingFormatNameLenProp); err != nil {
+	_m_pulOrderingFormatNameLenProp := func() {
+		o.NullMask |= TransferBufferV1_TransferBufferV1_ReceiveNullMaskOrderingFormatNameLengthProperty
+	}
+	if err := w.ReadPointerWithHook(&o.OrderingFormatNameLengthProperty, ndr.PointerHook{_s_pulOrderingFormatNameLenProp, _m_pulOrderingFormatNameLenProp}, _ptr_pulOrderingFormatNameLenProp); err != nil {
 		return err
 	}
 	return nil
@@ -3912,7 +4128,20 @@ func (o *TransferBufferV1_CreateCursor) UnmarshalNDR(ctx context.Context, w ndr.
 //
 // Following is the layout of the CACTransferBufferV2 structure followed by descriptions
 // of the structure members.
+type TransferBufferV2NullMask ndr.NullMask
+
+var (
+	TransferBufferV2NullMaskFirstInTransaction TransferBufferV2NullMask = 1 << 0
+	TransferBufferV2NullMaskLastInTransaction  TransferBufferV2NullMask = 1 << 1
+)
+
+func (o TransferBufferV2NullMask) IsSet(v TransferBufferV2NullMask) bool { return o&v != 0 }
+
 type TransferBufferV2 struct {
+
+	// TransferBufferV2NullMask is used to carry information on null-valued primitive values.
+	NullMask TransferBufferV2NullMask
+
 	// old:   The CACTransferBufferOld MUST be a CACTransferBufferV1, as defined in section
 	// 2.2.3.2.
 	Old *TransferBufferV1 `idl:"name:old" json:"old"`
@@ -3956,27 +4185,35 @@ func (o *TransferBufferV2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pbFirstInXact := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.FirstInTransaction); err != nil {
+	if o.NullMask&TransferBufferV2NullMaskFirstInTransaction == 0 {
+		_ptr_pbFirstInXact := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.FirstInTransaction); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.FirstInTransaction, _ptr_pbFirstInXact); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.FirstInTransaction, _ptr_pbFirstInXact); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pbLastInXact := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.LastInTransaction); err != nil {
+	if o.NullMask&TransferBufferV2NullMaskLastInTransaction == 0 {
+		_ptr_pbLastInXact := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.LastInTransaction); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.LastInTransaction, _ptr_pbLastInXact); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.LastInTransaction, _ptr_pbLastInXact); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if o.TransactionID != nil {
 		_ptr_ppXactID := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
@@ -4030,7 +4267,8 @@ func (o *TransferBufferV2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pbFirstInXact := func(ptr interface{}) { o.FirstInTransaction = *ptr.(*uint8) }
-	if err := w.ReadPointer(&o.FirstInTransaction, _s_pbFirstInXact, _ptr_pbFirstInXact); err != nil {
+	_m_pbFirstInXact := func() { o.NullMask |= TransferBufferV2NullMaskFirstInTransaction }
+	if err := w.ReadPointerWithHook(&o.FirstInTransaction, ndr.PointerHook{_s_pbFirstInXact, _m_pbFirstInXact}, _ptr_pbFirstInXact); err != nil {
 		return err
 	}
 	_ptr_pbLastInXact := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -4040,7 +4278,8 @@ func (o *TransferBufferV2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return nil
 	})
 	_s_pbLastInXact := func(ptr interface{}) { o.LastInTransaction = *ptr.(*uint8) }
-	if err := w.ReadPointer(&o.LastInTransaction, _s_pbLastInXact, _ptr_pbLastInXact); err != nil {
+	_m_pbLastInXact := func() { o.NullMask |= TransferBufferV2NullMaskLastInTransaction }
+	if err := w.ReadPointerWithHook(&o.LastInTransaction, ndr.PointerHook{_s_pbLastInXact, _m_pbLastInXact}, _ptr_pbLastInXact); err != nil {
 		return err
 	}
 	_ptr_ppXactID := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {

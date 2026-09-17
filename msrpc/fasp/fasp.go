@@ -24361,7 +24361,19 @@ func (o HypervProfileConfig) String() string {
 }
 
 // HypervVmConfigValue0 structure represents FW_HYPERV_VM_CONFIG_VALUE0 RPC structure.
+type HypervVmConfigValue0NullMask ndr.NullMask
+
+var (
+	HypervVmConfigValue0NullMaskValue HypervVmConfigValue0NullMask = 1 << 0
+)
+
+func (o HypervVmConfigValue0NullMask) IsSet(v HypervVmConfigValue0NullMask) bool { return o&v != 0 }
+
 type HypervVmConfigValue0 struct {
+
+	// HypervVmConfigValue0NullMask is used to carry information on null-valued primitive values.
+	NullMask HypervVmConfigValue0NullMask
+
 	Value uint32 `idl:"name:pdwVal" json:"value"`
 }
 
@@ -24381,16 +24393,20 @@ func (o *HypervVmConfigValue0) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	if err := w.WriteAlign(6); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pdwVal := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Value); err != nil {
+	if o.NullMask&HypervVmConfigValue0NullMaskValue == 0 {
+		_ptr_pdwVal := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.Value); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Value, _ptr_pdwVal); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Value, _ptr_pdwVal); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -24405,7 +24421,8 @@ func (o *HypervVmConfigValue0) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		return nil
 	})
 	_s_pdwVal := func(ptr interface{}) { o.Value = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.Value, _s_pdwVal, _ptr_pdwVal); err != nil {
+	_m_pdwVal := func() { o.NullMask |= HypervVmConfigValue0NullMaskValue }
+	if err := w.ReadPointerWithHook(&o.Value, ndr.PointerHook{_s_pdwVal, _m_pdwVal}, _ptr_pdwVal); err != nil {
 		return err
 	}
 	return nil

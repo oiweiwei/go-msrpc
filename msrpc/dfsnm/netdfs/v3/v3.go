@@ -9487,8 +9487,25 @@ func (o *GetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+type EnumNullMask ndr.NullMask
+
+var (
+	EnumNullMaskResume EnumNullMask = 1 << 0
+
+	EnumNullMaskRequestAll  EnumNullMask = 0 | EnumNullMaskResume
+	EnumNullMaskResponseAll EnumNullMask = 0 | EnumNullMaskResume
+)
+
+func (o EnumNullMask) IsSet(v EnumNullMask) bool { return o&v != 0 }
+
+func (o EnumNullMask) Set(v EnumNullMask) EnumNullMask { return o | v }
+
 // xxx_EnumOperation structure represents the NetrDfsEnum operation
 type xxx_EnumOperation struct {
+
+	// EnumNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumNullMask
+
 	Level         uint32    `idl:"name:Level" json:"level"`
 	PrefMaxLength uint32    `idl:"name:PrefMaxLen" json:"pref_max_length"`
 	Enum          *InfoEnum `idl:"name:DfsEnum;pointer:unique" json:"enum"`
@@ -9556,16 +9573,20 @@ func (o *xxx_EnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&EnumNullMaskResume == 0 {
+			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -9615,7 +9636,8 @@ func (o *xxx_EnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			return nil
 		})
 		_s_ResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_ResumeHandle, _ptr_ResumeHandle); err != nil {
+		_m_ResumeHandle := func() { o.NullMask |= EnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -9667,16 +9689,20 @@ func (o *xxx_EnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&EnumNullMaskResume == 0 {
+			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -9720,7 +9746,8 @@ func (o *xxx_EnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			return nil
 		})
 		_s_ResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_ResumeHandle, _ptr_ResumeHandle); err != nil {
+		_m_ResumeHandle := func() { o.NullMask |= EnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -9738,6 +9765,10 @@ func (o *xxx_EnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 
 // EnumRequest structure represents the NetrDfsEnum operation request
 type EnumRequest struct {
+
+	// EnumNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumNullMask
+
 	// Level: This parameter specifies the information level of the data and, in turn, determines
 	// the action that the method performs. On successful return, the server MUST return
 	// an array of the corresponding structures in the buffer pointed to by DfsEnum.
@@ -9830,6 +9861,7 @@ func (o *EnumRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumOperation) *xxx_
 	op.PrefMaxLength = o.PrefMaxLength
 	op.Enum = o.Enum
 	op.Resume = o.Resume
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -9841,6 +9873,7 @@ func (o *EnumRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumOperation) {
 	o.PrefMaxLength = op.PrefMaxLength
 	o.Enum = op.Enum
 	o.Resume = op.Resume
+	o.NullMask = EnumNullMask(op.NullMask) & EnumNullMaskRequestAll
 }
 func (o *EnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -9867,6 +9900,10 @@ func (o *EnumRequest) OpName() string { return "/netdfs/v3/NetrDfsEnum" }
 
 // EnumResponse structure represents the NetrDfsEnum operation response
 type EnumResponse struct {
+
+	// EnumNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumNullMask
+
 	// DfsEnum: A pointer to a DFS_INFO_ENUM_STRUCT union to receive the returned information.
 	// The client SHOULD set the Level member to the same value as the method's Level parameter,
 	// and MUST set the DfsInfoContainer union member to a pointer to the corresponding
@@ -9904,6 +9941,7 @@ func (o *EnumResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumOperation) *xxx
 	op.Enum = o.Enum
 	op.Resume = o.Resume
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -9914,6 +9952,7 @@ func (o *EnumResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumOperation) {
 	o.Enum = op.Enum
 	o.Resume = op.Resume
 	o.Return = op.Return
+	o.NullMask = EnumNullMask(op.NullMask) & EnumNullMaskResponseAll
 }
 func (o *EnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -13361,8 +13400,25 @@ func (o *Remove2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+type EnumExNullMask ndr.NullMask
+
+var (
+	EnumExNullMaskResume EnumExNullMask = 1 << 0
+
+	EnumExNullMaskRequestAll  EnumExNullMask = 0 | EnumExNullMaskResume
+	EnumExNullMaskResponseAll EnumExNullMask = 0 | EnumExNullMaskResume
+)
+
+func (o EnumExNullMask) IsSet(v EnumExNullMask) bool { return o&v != 0 }
+
+func (o EnumExNullMask) Set(v EnumExNullMask) EnumExNullMask { return o | v }
+
 // xxx_EnumExOperation structure represents the NetrDfsEnumEx operation
 type xxx_EnumExOperation struct {
+
+	// EnumExNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumExNullMask
+
 	EntryPath     string    `idl:"name:DfsEntryPath;string" json:"entry_path"`
 	Level         uint32    `idl:"name:Level" json:"level"`
 	PrefMaxLength uint32    `idl:"name:PrefMaxLen" json:"pref_max_length"`
@@ -13437,16 +13493,20 @@ func (o *xxx_EnumExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&EnumExNullMaskResume == 0 {
+			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -13502,7 +13562,8 @@ func (o *xxx_EnumExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			return nil
 		})
 		_s_ResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_ResumeHandle, _ptr_ResumeHandle); err != nil {
+		_m_ResumeHandle := func() { o.NullMask |= EnumExNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -13554,16 +13615,20 @@ func (o *xxx_EnumExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&EnumExNullMaskResume == 0 {
+			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -13607,7 +13672,8 @@ func (o *xxx_EnumExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			return nil
 		})
 		_s_ResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_ResumeHandle, _ptr_ResumeHandle); err != nil {
+		_m_ResumeHandle := func() { o.NullMask |= EnumExNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -13625,6 +13691,10 @@ func (o *xxx_EnumExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 
 // EnumExRequest structure represents the NetrDfsEnumEx operation request
 type EnumExRequest struct {
+
+	// EnumExNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumExNullMask
+
 	// DfsEntryPath: The pointer to a domain name, a host name, or a DFS path, depending
 	// on the Level parameter.
 	//
@@ -13745,6 +13815,7 @@ func (o *EnumExRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumExOperation) *
 	op.PrefMaxLength = o.PrefMaxLength
 	op.Enum = o.Enum
 	op.Resume = o.Resume
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -13757,6 +13828,7 @@ func (o *EnumExRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumExOperation)
 	o.PrefMaxLength = op.PrefMaxLength
 	o.Enum = op.Enum
 	o.Resume = op.Resume
+	o.NullMask = EnumExNullMask(op.NullMask) & EnumExNullMaskRequestAll
 }
 func (o *EnumExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -13783,6 +13855,10 @@ func (o *EnumExRequest) OpName() string { return "/netdfs/v3/NetrDfsEnumEx" }
 
 // EnumExResponse structure represents the NetrDfsEnumEx operation response
 type EnumExResponse struct {
+
+	// EnumExNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumExNullMask
+
 	// DfsEnum: A pointer to a DFS_INFO_ENUM_STRUCT union to receive the returned information.
 	// The client SHOULD set the Level member to the same value as the method's Level parameter,
 	// and MUST set the DfsInfoContainer union member to a pointer to the corresponding
@@ -13819,6 +13895,7 @@ func (o *EnumExResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumExOperation) 
 	op.Enum = o.Enum
 	op.Resume = o.Resume
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -13829,6 +13906,7 @@ func (o *EnumExResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumExOperation
 	o.Enum = op.Enum
 	o.Resume = op.Resume
 	o.Return = op.Return
+	o.NullMask = EnumExNullMask(op.NullMask) & EnumExNullMaskResponseAll
 }
 func (o *EnumExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)

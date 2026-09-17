@@ -18353,7 +18353,19 @@ func (o *MessageMoveRequest_V2) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 //
 // The DRS_MSG_MOVEREPLY_V1 structure defines a response message received from the IDL_DRSInterDomainMove
 // method. This response version is obsolete.<35>
+type MessageMoveReplyV1NullMask ndr.NullMask
+
+var (
+	MessageMoveReplyV1NullMaskError MessageMoveReplyV1NullMask = 1 << 0
+)
+
+func (o MessageMoveReplyV1NullMask) IsSet(v MessageMoveReplyV1NullMask) bool { return o&v != 0 }
+
 type MessageMoveReplyV1 struct {
+
+	// MessageMoveReplyV1NullMask is used to carry information on null-valued primitive values.
+	NullMask MessageMoveReplyV1NullMask
+
 	// ppResult:  The object as it appears following the move operation.
 	Result *EntityInfo `idl:"name:ppResult" json:"result"`
 	// PrefixTable:  The prefix table with which to translate the ATTRTYP values in ppResult
@@ -18421,16 +18433,20 @@ func (o *MessageMoveReplyV1) MarshalNDR(ctx context.Context, w ndr.Writer) error
 			return err
 		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pError := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Error); err != nil {
+	if o.NullMask&MessageMoveReplyV1NullMaskError == 0 {
+		_ptr_pError := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.Error); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Error, _ptr_pError); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Error, _ptr_pError); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -18471,7 +18487,8 @@ func (o *MessageMoveReplyV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		return nil
 	})
 	_s_pError := func(ptr interface{}) { o.Error = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.Error, _s_pError, _ptr_pError); err != nil {
+	_m_pError := func() { o.NullMask |= MessageMoveReplyV1NullMaskError }
+	if err := w.ReadPointerWithHook(&o.Error, ndr.PointerHook{_s_pError, _m_pError}, _ptr_pError); err != nil {
 		return err
 	}
 	return nil

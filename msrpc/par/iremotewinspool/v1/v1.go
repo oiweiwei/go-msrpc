@@ -6483,7 +6483,19 @@ func (o *PortInfo3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // PortInfo255 structure represents PORT_INFO_FF RPC structure.
+type PortInfo255NullMask ndr.NullMask
+
+var (
+	PortInfo255NullMaskMonitorData PortInfo255NullMask = 1 << 0
+)
+
+func (o PortInfo255NullMask) IsSet(v PortInfo255NullMask) bool { return o&v != 0 }
+
 type PortInfo255 struct {
+
+	// PortInfo255NullMask is used to carry information on null-valued primitive values.
+	NullMask PortInfo255NullMask
+
 	PortName          string `idl:"name:pPortName;string" json:"port_name"`
 	MonitorDataLength uint32 `idl:"name:cbMonitorData" json:"monitor_data_length"`
 	MonitorData       uint8  `idl:"name:pMonitorData" json:"monitor_data"`
@@ -6523,16 +6535,20 @@ func (o *PortInfo255) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.MonitorDataLength); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_pMonitorData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.MonitorData); err != nil {
+	if o.NullMask&PortInfo255NullMaskMonitorData == 0 {
+		_ptr_pMonitorData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.MonitorData); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.MonitorData, _ptr_pMonitorData); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.MonitorData, _ptr_pMonitorData); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -6560,7 +6576,8 @@ func (o *PortInfo255) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return nil
 	})
 	_s_pMonitorData := func(ptr interface{}) { o.MonitorData = *ptr.(*uint8) }
-	if err := w.ReadPointer(&o.MonitorData, _s_pMonitorData, _ptr_pMonitorData); err != nil {
+	_m_pMonitorData := func() { o.NullMask |= PortInfo255NullMaskMonitorData }
+	if err := w.ReadPointerWithHook(&o.MonitorData, ndr.PointerHook{_s_pMonitorData, _m_pMonitorData}, _ptr_pMonitorData); err != nil {
 		return err
 	}
 	return nil

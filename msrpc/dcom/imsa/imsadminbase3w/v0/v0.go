@@ -174,8 +174,25 @@ func NewIMSAdminBase3WClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc
 	}, nil
 }
 
+type GetChildPathsNullMask ndr.NullMask
+
+var (
+	GetChildPathsNullMaskRequiredBufferSize GetChildPathsNullMask = 1 << 0
+
+	GetChildPathsNullMaskRequestAll  GetChildPathsNullMask = 0 | GetChildPathsNullMaskRequiredBufferSize
+	GetChildPathsNullMaskResponseAll GetChildPathsNullMask = 0 | GetChildPathsNullMaskRequiredBufferSize
+)
+
+func (o GetChildPathsNullMask) IsSet(v GetChildPathsNullMask) bool { return o&v != 0 }
+
+func (o GetChildPathsNullMask) Set(v GetChildPathsNullMask) GetChildPathsNullMask { return o | v }
+
 // xxx_GetChildPathsOperation structure represents the GetChildPaths operation
 type xxx_GetChildPathsOperation struct {
+
+	// GetChildPathsNullMask is used to carry information on null-valued primitive values.
+	NullMask GetChildPathsNullMask
+
 	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
 	Handle             uint32         `idl:"name:hMDHandle" json:"handle"`
@@ -301,16 +318,20 @@ func (o *xxx_GetChildPathsOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// pcchMDRequiredBufferSize {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_pcchMDRequiredBufferSize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.RequiredBufferSize); err != nil {
+		if o.NullMask&GetChildPathsNullMaskRequiredBufferSize == 0 {
+			_ptr_pcchMDRequiredBufferSize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.RequiredBufferSize); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RequiredBufferSize, _ptr_pcchMDRequiredBufferSize); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.RequiredBufferSize, _ptr_pcchMDRequiredBufferSize); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -402,7 +423,8 @@ func (o *xxx_GetChildPathsOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			return nil
 		})
 		_s_pcchMDRequiredBufferSize := func(ptr interface{}) { o.RequiredBufferSize = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.RequiredBufferSize, _s_pcchMDRequiredBufferSize, _ptr_pcchMDRequiredBufferSize); err != nil {
+		_m_pcchMDRequiredBufferSize := func() { o.NullMask |= GetChildPathsNullMaskRequiredBufferSize }
+		if err := w.ReadPointerWithHook(&o.RequiredBufferSize, ndr.PointerHook{_s_pcchMDRequiredBufferSize, _m_pcchMDRequiredBufferSize}, _ptr_pcchMDRequiredBufferSize); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -485,16 +507,20 @@ func (o *xxx_GetChildPathsOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// pcchMDRequiredBufferSize {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_pcchMDRequiredBufferSize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.RequiredBufferSize); err != nil {
+		if o.NullMask&GetChildPathsNullMaskRequiredBufferSize == 0 {
+			_ptr_pcchMDRequiredBufferSize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.RequiredBufferSize); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RequiredBufferSize, _ptr_pcchMDRequiredBufferSize); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.RequiredBufferSize, _ptr_pcchMDRequiredBufferSize); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -564,7 +590,8 @@ func (o *xxx_GetChildPathsOperation) UnmarshalNDRResponse(ctx context.Context, w
 			return nil
 		})
 		_s_pcchMDRequiredBufferSize := func(ptr interface{}) { o.RequiredBufferSize = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.RequiredBufferSize, _s_pcchMDRequiredBufferSize, _ptr_pcchMDRequiredBufferSize); err != nil {
+		_m_pcchMDRequiredBufferSize := func() { o.NullMask |= GetChildPathsNullMaskRequiredBufferSize }
+		if err := w.ReadPointerWithHook(&o.RequiredBufferSize, ndr.PointerHook{_s_pcchMDRequiredBufferSize, _m_pcchMDRequiredBufferSize}, _ptr_pcchMDRequiredBufferSize); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -582,6 +609,10 @@ func (o *xxx_GetChildPathsOperation) UnmarshalNDRResponse(ctx context.Context, w
 
 // GetChildPathsRequest structure represents the GetChildPaths operation request
 type GetChildPathsRequest struct {
+
+	// GetChildPathsNullMask is used to carry information on null-valued primitive values.
+	NullMask GetChildPathsNullMask
+
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
 	Handle uint32         `idl:"name:hMDHandle" json:"handle"`
@@ -614,6 +645,7 @@ func (o *GetChildPathsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetChildPat
 	op.BufferSize = o.BufferSize
 	op.Buffer = o.Buffer
 	op.RequiredBufferSize = o.RequiredBufferSize
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -627,6 +659,7 @@ func (o *GetChildPathsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetChildP
 	o.BufferSize = op.BufferSize
 	o.Buffer = op.Buffer
 	o.RequiredBufferSize = op.RequiredBufferSize
+	o.NullMask = GetChildPathsNullMask(op.NullMask) & GetChildPathsNullMaskRequestAll
 }
 func (o *GetChildPathsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -658,6 +691,10 @@ func (o *GetChildPathsRequest) OpName() string { return "/IMSAdminBase3W/v0/GetC
 
 // GetChildPathsResponse structure represents the GetChildPaths operation response
 type GetChildPathsResponse struct {
+
+	// GetChildPathsNullMask is used to carry information on null-valued primitive values.
+	NullMask GetChildPathsNullMask
+
 	// XXX: cchMDBufferSize is an implicit input depedency for output parameters
 	BufferSize uint32 `idl:"name:cchMDBufferSize" json:"buffer_size"`
 
@@ -691,6 +728,7 @@ func (o *GetChildPathsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetChildPa
 	op.Buffer = o.Buffer
 	op.RequiredBufferSize = o.RequiredBufferSize
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -705,6 +743,7 @@ func (o *GetChildPathsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetChild
 	o.Buffer = op.Buffer
 	o.RequiredBufferSize = op.RequiredBufferSize
 	o.Return = op.Return
+	o.NullMask = GetChildPathsNullMask(op.NullMask) & GetChildPathsNullMaskResponseAll
 }
 func (o *GetChildPathsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)

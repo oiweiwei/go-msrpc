@@ -3510,8 +3510,26 @@ func (o *ReadEventLogWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+type ReportEventWNullMask ndr.NullMask
+
+var (
+	ReportEventWNullMaskRecordNumber ReportEventWNullMask = 1 << 0
+	ReportEventWNullMaskTimeWritten  ReportEventWNullMask = 1 << 1
+
+	ReportEventWNullMaskRequestAll  ReportEventWNullMask = 0 | ReportEventWNullMaskRecordNumber | ReportEventWNullMaskTimeWritten
+	ReportEventWNullMaskResponseAll ReportEventWNullMask = 0 | ReportEventWNullMaskRecordNumber | ReportEventWNullMaskTimeWritten
+)
+
+func (o ReportEventWNullMask) IsSet(v ReportEventWNullMask) bool { return o&v != 0 }
+
+func (o ReportEventWNullMask) Set(v ReportEventWNullMask) ReportEventWNullMask { return o | v }
+
 // xxx_ReportEventWOperation structure represents the ElfrReportEventW operation
 type xxx_ReportEventWOperation struct {
+
+	// ReportEventWNullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventWNullMask
+
 	Log           *Handle               `idl:"name:LogHandle" json:"log"`
 	Time          uint32                `idl:"name:Time" json:"time"`
 	EventType     uint16                `idl:"name:EventType" json:"event_type"`
@@ -3742,16 +3760,20 @@ func (o *xxx_ReportEventWOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.RecordNumber); err != nil {
+		if o.NullMask&ReportEventWNullMaskRecordNumber == 0 {
+			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.RecordNumber); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -3759,16 +3781,20 @@ func (o *xxx_ReportEventWOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// TimeWritten {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TimeWritten); err != nil {
+		if o.NullMask&ReportEventWNullMaskTimeWritten == 0 {
+			_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TimeWritten); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TimeWritten, _ptr_TimeWritten); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TimeWritten, _ptr_TimeWritten); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -3934,7 +3960,8 @@ func (o *xxx_ReportEventWOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			return nil
 		})
 		_s_RecordNumber := func(ptr interface{}) { o.RecordNumber = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.RecordNumber, _s_RecordNumber, _ptr_RecordNumber); err != nil {
+		_m_RecordNumber := func() { o.NullMask |= ReportEventWNullMaskRecordNumber }
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3950,7 +3977,8 @@ func (o *xxx_ReportEventWOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			return nil
 		})
 		_s_TimeWritten := func(ptr interface{}) { o.TimeWritten = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TimeWritten, _s_TimeWritten, _ptr_TimeWritten); err != nil {
+		_m_TimeWritten := func() { o.NullMask |= ReportEventWNullMaskTimeWritten }
+		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{_s_TimeWritten, _m_TimeWritten}, _ptr_TimeWritten); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3975,16 +4003,20 @@ func (o *xxx_ReportEventWOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.RecordNumber); err != nil {
+		if o.NullMask&ReportEventWNullMaskRecordNumber == 0 {
+			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.RecordNumber); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -3992,16 +4024,20 @@ func (o *xxx_ReportEventWOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// TimeWritten {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TimeWritten); err != nil {
+		if o.NullMask&ReportEventWNullMaskTimeWritten == 0 {
+			_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TimeWritten); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TimeWritten, _ptr_TimeWritten); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TimeWritten, _ptr_TimeWritten); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -4026,7 +4062,8 @@ func (o *xxx_ReportEventWOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			return nil
 		})
 		_s_RecordNumber := func(ptr interface{}) { o.RecordNumber = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.RecordNumber, _s_RecordNumber, _ptr_RecordNumber); err != nil {
+		_m_RecordNumber := func() { o.NullMask |= ReportEventWNullMaskRecordNumber }
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4042,7 +4079,8 @@ func (o *xxx_ReportEventWOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			return nil
 		})
 		_s_TimeWritten := func(ptr interface{}) { o.TimeWritten = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TimeWritten, _s_TimeWritten, _ptr_TimeWritten); err != nil {
+		_m_TimeWritten := func() { o.NullMask |= ReportEventWNullMaskTimeWritten }
+		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{_s_TimeWritten, _m_TimeWritten}, _ptr_TimeWritten); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4060,6 +4098,10 @@ func (o *xxx_ReportEventWOperation) UnmarshalNDRResponse(ctx context.Context, w 
 
 // ReportEventWRequest structure represents the ElfrReportEventW operation request
 type ReportEventWRequest struct {
+
+	// ReportEventWNullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventWNullMask
+
 	// LogHandle: Handle to an event log. This parameter is a server context handle, as
 	// specified in section 2.2.6. This handle MUST NOT be obtained via the ElfrOpenBELA
 	// (section 3.1.4.2) method or the ElfrOpenBELW (section 3.1.4.1) method. A handle received
@@ -4132,6 +4174,7 @@ func (o *ReportEventWRequest) xxx_ToOp(ctx context.Context, op *xxx_ReportEventW
 	op.Flags = o.Flags
 	op.RecordNumber = o.RecordNumber
 	op.TimeWritten = o.TimeWritten
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -4153,6 +4196,7 @@ func (o *ReportEventWRequest) xxx_FromOp(ctx context.Context, op *xxx_ReportEven
 	o.Flags = op.Flags
 	o.RecordNumber = op.RecordNumber
 	o.TimeWritten = op.TimeWritten
+	o.NullMask = ReportEventWNullMask(op.NullMask) & ReportEventWNullMaskRequestAll
 }
 func (o *ReportEventWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -4179,6 +4223,10 @@ func (o *ReportEventWRequest) OpName() string { return "/eventlog/v0/ElfrReportE
 
 // ReportEventWResponse structure represents the ElfrReportEventW operation response
 type ReportEventWResponse struct {
+
+	// ReportEventWNullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventWNullMask
+
 	// RecordNumber: Unused. Can be set to any arbitrary value when sent, and any value
 	// sent by the client MUST be ignored on receipt by the server.
 	RecordNumber uint32 `idl:"name:RecordNumber;pointer:unique" json:"record_number"`
@@ -4199,6 +4247,7 @@ func (o *ReportEventWResponse) xxx_ToOp(ctx context.Context, op *xxx_ReportEvent
 	op.RecordNumber = o.RecordNumber
 	op.TimeWritten = o.TimeWritten
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -4209,6 +4258,7 @@ func (o *ReportEventWResponse) xxx_FromOp(ctx context.Context, op *xxx_ReportEve
 	o.RecordNumber = op.RecordNumber
 	o.TimeWritten = op.TimeWritten
 	o.Return = op.Return
+	o.NullMask = ReportEventWNullMask(op.NullMask) & ReportEventWNullMaskResponseAll
 }
 func (o *ReportEventWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -5916,8 +5966,26 @@ func (o *ReadEventLogAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+type ReportEventANullMask ndr.NullMask
+
+var (
+	ReportEventANullMaskRecordNumber ReportEventANullMask = 1 << 0
+	ReportEventANullMaskTimeWritten  ReportEventANullMask = 1 << 1
+
+	ReportEventANullMaskRequestAll  ReportEventANullMask = 0 | ReportEventANullMaskRecordNumber | ReportEventANullMaskTimeWritten
+	ReportEventANullMaskResponseAll ReportEventANullMask = 0 | ReportEventANullMaskRecordNumber | ReportEventANullMaskTimeWritten
+)
+
+func (o ReportEventANullMask) IsSet(v ReportEventANullMask) bool { return o&v != 0 }
+
+func (o ReportEventANullMask) Set(v ReportEventANullMask) ReportEventANullMask { return o | v }
+
 // xxx_ReportEventAOperation structure represents the ElfrReportEventA operation
 type xxx_ReportEventAOperation struct {
+
+	// ReportEventANullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventANullMask
+
 	Log           *Handle   `idl:"name:LogHandle" json:"log"`
 	Time          uint32    `idl:"name:Time" json:"time"`
 	EventType     uint16    `idl:"name:EventType" json:"event_type"`
@@ -6148,16 +6216,20 @@ func (o *xxx_ReportEventAOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.RecordNumber); err != nil {
+		if o.NullMask&ReportEventANullMaskRecordNumber == 0 {
+			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.RecordNumber); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -6165,16 +6237,20 @@ func (o *xxx_ReportEventAOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// TimeWritten {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TimeWritten); err != nil {
+		if o.NullMask&ReportEventANullMaskTimeWritten == 0 {
+			_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TimeWritten); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TimeWritten, _ptr_TimeWritten); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TimeWritten, _ptr_TimeWritten); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -6340,7 +6416,8 @@ func (o *xxx_ReportEventAOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			return nil
 		})
 		_s_RecordNumber := func(ptr interface{}) { o.RecordNumber = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.RecordNumber, _s_RecordNumber, _ptr_RecordNumber); err != nil {
+		_m_RecordNumber := func() { o.NullMask |= ReportEventANullMaskRecordNumber }
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6356,7 +6433,8 @@ func (o *xxx_ReportEventAOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			return nil
 		})
 		_s_TimeWritten := func(ptr interface{}) { o.TimeWritten = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TimeWritten, _s_TimeWritten, _ptr_TimeWritten); err != nil {
+		_m_TimeWritten := func() { o.NullMask |= ReportEventANullMaskTimeWritten }
+		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{_s_TimeWritten, _m_TimeWritten}, _ptr_TimeWritten); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6381,16 +6459,20 @@ func (o *xxx_ReportEventAOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.RecordNumber); err != nil {
+		if o.NullMask&ReportEventANullMaskRecordNumber == 0 {
+			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.RecordNumber); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -6398,16 +6480,20 @@ func (o *xxx_ReportEventAOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// TimeWritten {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TimeWritten); err != nil {
+		if o.NullMask&ReportEventANullMaskTimeWritten == 0 {
+			_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TimeWritten); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TimeWritten, _ptr_TimeWritten); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TimeWritten, _ptr_TimeWritten); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -6432,7 +6518,8 @@ func (o *xxx_ReportEventAOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			return nil
 		})
 		_s_RecordNumber := func(ptr interface{}) { o.RecordNumber = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.RecordNumber, _s_RecordNumber, _ptr_RecordNumber); err != nil {
+		_m_RecordNumber := func() { o.NullMask |= ReportEventANullMaskRecordNumber }
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6448,7 +6535,8 @@ func (o *xxx_ReportEventAOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			return nil
 		})
 		_s_TimeWritten := func(ptr interface{}) { o.TimeWritten = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TimeWritten, _s_TimeWritten, _ptr_TimeWritten); err != nil {
+		_m_TimeWritten := func() { o.NullMask |= ReportEventANullMaskTimeWritten }
+		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{_s_TimeWritten, _m_TimeWritten}, _ptr_TimeWritten); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6466,6 +6554,10 @@ func (o *xxx_ReportEventAOperation) UnmarshalNDRResponse(ctx context.Context, w 
 
 // ReportEventARequest structure represents the ElfrReportEventA operation request
 type ReportEventARequest struct {
+
+	// ReportEventANullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventANullMask
+
 	// LogHandle: Handle to an event log. This parameter is a server context handle, as
 	// specified in section 2.2.6. This handle MUST NOT be obtained via the ElfrOpenBELA
 	// (section 3.1.4.2) method or the ElfrOpenBELW (section 3.1.4.1) method.
@@ -6533,6 +6625,7 @@ func (o *ReportEventARequest) xxx_ToOp(ctx context.Context, op *xxx_ReportEventA
 	op.Flags = o.Flags
 	op.RecordNumber = o.RecordNumber
 	op.TimeWritten = o.TimeWritten
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -6554,6 +6647,7 @@ func (o *ReportEventARequest) xxx_FromOp(ctx context.Context, op *xxx_ReportEven
 	o.Flags = op.Flags
 	o.RecordNumber = op.RecordNumber
 	o.TimeWritten = op.TimeWritten
+	o.NullMask = ReportEventANullMask(op.NullMask) & ReportEventANullMaskRequestAll
 }
 func (o *ReportEventARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -6580,6 +6674,10 @@ func (o *ReportEventARequest) OpName() string { return "/eventlog/v0/ElfrReportE
 
 // ReportEventAResponse structure represents the ElfrReportEventA operation response
 type ReportEventAResponse struct {
+
+	// ReportEventANullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventANullMask
+
 	// RecordNumber: Unused. Can be set to any arbitrary value when sent, and any value
 	// sent by the client MUST be ignored on receipt by the server.
 	RecordNumber uint32 `idl:"name:RecordNumber;pointer:unique" json:"record_number"`
@@ -6600,6 +6698,7 @@ func (o *ReportEventAResponse) xxx_ToOp(ctx context.Context, op *xxx_ReportEvent
 	op.RecordNumber = o.RecordNumber
 	op.TimeWritten = o.TimeWritten
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -6610,6 +6709,7 @@ func (o *ReportEventAResponse) xxx_FromOp(ctx context.Context, op *xxx_ReportEve
 	o.RecordNumber = op.RecordNumber
 	o.TimeWritten = op.TimeWritten
 	o.Return = op.Return
+	o.NullMask = ReportEventANullMask(op.NullMask) & ReportEventANullMaskResponseAll
 }
 func (o *ReportEventAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -6912,8 +7012,28 @@ func (o *GetLogInformationResponse) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
+type ReportEventAndSourceWNullMask ndr.NullMask
+
+var (
+	ReportEventAndSourceWNullMaskRecordNumber ReportEventAndSourceWNullMask = 1 << 0
+	ReportEventAndSourceWNullMaskTimeWritten  ReportEventAndSourceWNullMask = 1 << 1
+
+	ReportEventAndSourceWNullMaskRequestAll  ReportEventAndSourceWNullMask = 0 | ReportEventAndSourceWNullMaskRecordNumber | ReportEventAndSourceWNullMaskTimeWritten
+	ReportEventAndSourceWNullMaskResponseAll ReportEventAndSourceWNullMask = 0 | ReportEventAndSourceWNullMaskRecordNumber | ReportEventAndSourceWNullMaskTimeWritten
+)
+
+func (o ReportEventAndSourceWNullMask) IsSet(v ReportEventAndSourceWNullMask) bool { return o&v != 0 }
+
+func (o ReportEventAndSourceWNullMask) Set(v ReportEventAndSourceWNullMask) ReportEventAndSourceWNullMask {
+	return o | v
+}
+
 // xxx_ReportEventAndSourceWOperation structure represents the ElfrReportEventAndSourceW operation
 type xxx_ReportEventAndSourceWOperation struct {
+
+	// ReportEventAndSourceWNullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventAndSourceWNullMask
+
 	Log           *Handle               `idl:"name:LogHandle" json:"log"`
 	Time          uint32                `idl:"name:Time" json:"time"`
 	EventType     uint16                `idl:"name:EventType" json:"event_type"`
@@ -7162,16 +7282,20 @@ func (o *xxx_ReportEventAndSourceWOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.RecordNumber); err != nil {
+		if o.NullMask&ReportEventAndSourceWNullMaskRecordNumber == 0 {
+			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.RecordNumber); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -7179,16 +7303,20 @@ func (o *xxx_ReportEventAndSourceWOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// TimeWritten {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TimeWritten); err != nil {
+		if o.NullMask&ReportEventAndSourceWNullMaskTimeWritten == 0 {
+			_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TimeWritten); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TimeWritten, _ptr_TimeWritten); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TimeWritten, _ptr_TimeWritten); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -7366,7 +7494,8 @@ func (o *xxx_ReportEventAndSourceWOperation) UnmarshalNDRRequest(ctx context.Con
 			return nil
 		})
 		_s_RecordNumber := func(ptr interface{}) { o.RecordNumber = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.RecordNumber, _s_RecordNumber, _ptr_RecordNumber); err != nil {
+		_m_RecordNumber := func() { o.NullMask |= ReportEventAndSourceWNullMaskRecordNumber }
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7382,7 +7511,8 @@ func (o *xxx_ReportEventAndSourceWOperation) UnmarshalNDRRequest(ctx context.Con
 			return nil
 		})
 		_s_TimeWritten := func(ptr interface{}) { o.TimeWritten = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TimeWritten, _s_TimeWritten, _ptr_TimeWritten); err != nil {
+		_m_TimeWritten := func() { o.NullMask |= ReportEventAndSourceWNullMaskTimeWritten }
+		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{_s_TimeWritten, _m_TimeWritten}, _ptr_TimeWritten); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7407,16 +7537,20 @@ func (o *xxx_ReportEventAndSourceWOperation) MarshalNDRResponse(ctx context.Cont
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.RecordNumber); err != nil {
+		if o.NullMask&ReportEventAndSourceWNullMaskRecordNumber == 0 {
+			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.RecordNumber); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -7424,16 +7558,20 @@ func (o *xxx_ReportEventAndSourceWOperation) MarshalNDRResponse(ctx context.Cont
 	}
 	// TimeWritten {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TimeWritten); err != nil {
+		if o.NullMask&ReportEventAndSourceWNullMaskTimeWritten == 0 {
+			_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TimeWritten); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TimeWritten, _ptr_TimeWritten); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TimeWritten, _ptr_TimeWritten); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -7458,7 +7596,8 @@ func (o *xxx_ReportEventAndSourceWOperation) UnmarshalNDRResponse(ctx context.Co
 			return nil
 		})
 		_s_RecordNumber := func(ptr interface{}) { o.RecordNumber = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.RecordNumber, _s_RecordNumber, _ptr_RecordNumber); err != nil {
+		_m_RecordNumber := func() { o.NullMask |= ReportEventAndSourceWNullMaskRecordNumber }
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7474,7 +7613,8 @@ func (o *xxx_ReportEventAndSourceWOperation) UnmarshalNDRResponse(ctx context.Co
 			return nil
 		})
 		_s_TimeWritten := func(ptr interface{}) { o.TimeWritten = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TimeWritten, _s_TimeWritten, _ptr_TimeWritten); err != nil {
+		_m_TimeWritten := func() { o.NullMask |= ReportEventAndSourceWNullMaskTimeWritten }
+		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{_s_TimeWritten, _m_TimeWritten}, _ptr_TimeWritten); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7492,6 +7632,10 @@ func (o *xxx_ReportEventAndSourceWOperation) UnmarshalNDRResponse(ctx context.Co
 
 // ReportEventAndSourceWRequest structure represents the ElfrReportEventAndSourceW operation request
 type ReportEventAndSourceWRequest struct {
+
+	// ReportEventAndSourceWNullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventAndSourceWNullMask
+
 	// LogHandle: Handle to an event log. This parameter is a server context handle, as
 	// specified in section 2.2.6. This handle MUST NOT be obtained via the ElfrOpenBELA
 	// (section 3.1.4.2) method or the ElfrOpenBELW (section 3.1.4.1) method.
@@ -7563,6 +7707,7 @@ func (o *ReportEventAndSourceWRequest) xxx_ToOp(ctx context.Context, op *xxx_Rep
 	op.Flags = o.Flags
 	op.RecordNumber = o.RecordNumber
 	op.TimeWritten = o.TimeWritten
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -7585,6 +7730,7 @@ func (o *ReportEventAndSourceWRequest) xxx_FromOp(ctx context.Context, op *xxx_R
 	o.Flags = op.Flags
 	o.RecordNumber = op.RecordNumber
 	o.TimeWritten = op.TimeWritten
+	o.NullMask = ReportEventAndSourceWNullMask(op.NullMask) & ReportEventAndSourceWNullMaskRequestAll
 }
 func (o *ReportEventAndSourceWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -7613,6 +7759,10 @@ func (o *ReportEventAndSourceWRequest) OpName() string {
 
 // ReportEventAndSourceWResponse structure represents the ElfrReportEventAndSourceW operation response
 type ReportEventAndSourceWResponse struct {
+
+	// ReportEventAndSourceWNullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventAndSourceWNullMask
+
 	// RecordNumber: Unused. Can be set to any arbitrary value when sent, and any value
 	// sent by the client MUST be ignored on receipt by the server.
 	RecordNumber uint32 `idl:"name:RecordNumber;pointer:unique" json:"record_number"`
@@ -7633,6 +7783,7 @@ func (o *ReportEventAndSourceWResponse) xxx_ToOp(ctx context.Context, op *xxx_Re
 	op.RecordNumber = o.RecordNumber
 	op.TimeWritten = o.TimeWritten
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -7643,6 +7794,7 @@ func (o *ReportEventAndSourceWResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.RecordNumber = op.RecordNumber
 	o.TimeWritten = op.TimeWritten
 	o.Return = op.Return
+	o.NullMask = ReportEventAndSourceWNullMask(op.NullMask) & ReportEventAndSourceWNullMaskResponseAll
 }
 func (o *ReportEventAndSourceWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -7656,8 +7808,25 @@ func (o *ReportEventAndSourceWResponse) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+type ReportEventExWNullMask ndr.NullMask
+
+var (
+	ReportEventExWNullMaskRecordNumber ReportEventExWNullMask = 1 << 0
+
+	ReportEventExWNullMaskRequestAll  ReportEventExWNullMask = 0 | ReportEventExWNullMaskRecordNumber
+	ReportEventExWNullMaskResponseAll ReportEventExWNullMask = 0 | ReportEventExWNullMaskRecordNumber
+)
+
+func (o ReportEventExWNullMask) IsSet(v ReportEventExWNullMask) bool { return o&v != 0 }
+
+func (o ReportEventExWNullMask) Set(v ReportEventExWNullMask) ReportEventExWNullMask { return o | v }
+
 // xxx_ReportEventExWOperation structure represents the ElfrReportEventExW operation
 type xxx_ReportEventExWOperation struct {
+
+	// ReportEventExWNullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventExWNullMask
+
 	Log           *Handle               `idl:"name:LogHandle" json:"log"`
 	TimeGenerated *dtyp.Filetime        `idl:"name:TimeGenerated" json:"time_generated"`
 	EventType     uint16                `idl:"name:EventType" json:"event_type"`
@@ -7893,16 +8062,20 @@ func (o *xxx_ReportEventExWOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.RecordNumber); err != nil {
+		if o.NullMask&ReportEventExWNullMaskRecordNumber == 0 {
+			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.RecordNumber); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -8071,7 +8244,8 @@ func (o *xxx_ReportEventExWOperation) UnmarshalNDRRequest(ctx context.Context, w
 			return nil
 		})
 		_s_RecordNumber := func(ptr interface{}) { o.RecordNumber = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.RecordNumber, _s_RecordNumber, _ptr_RecordNumber); err != nil {
+		_m_RecordNumber := func() { o.NullMask |= ReportEventExWNullMaskRecordNumber }
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8096,16 +8270,20 @@ func (o *xxx_ReportEventExWOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.RecordNumber); err != nil {
+		if o.NullMask&ReportEventExWNullMaskRecordNumber == 0 {
+			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.RecordNumber); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -8130,7 +8308,8 @@ func (o *xxx_ReportEventExWOperation) UnmarshalNDRResponse(ctx context.Context, 
 			return nil
 		})
 		_s_RecordNumber := func(ptr interface{}) { o.RecordNumber = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.RecordNumber, _s_RecordNumber, _ptr_RecordNumber); err != nil {
+		_m_RecordNumber := func() { o.NullMask |= ReportEventExWNullMaskRecordNumber }
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8148,6 +8327,10 @@ func (o *xxx_ReportEventExWOperation) UnmarshalNDRResponse(ctx context.Context, 
 
 // ReportEventExWRequest structure represents the ElfrReportEventExW operation request
 type ReportEventExWRequest struct {
+
+	// ReportEventExWNullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventExWNullMask
+
 	// LogHandle: A handle to an event log. This parameter is a server context handle, as
 	// specified in section 2.2.6. This handle MUST NOT be obtained via the ElfrOpenBELA
 	// (section 3.1.4.2) method or the ElfrOpenBELW (section 3.1.4.1) method. A handle received
@@ -8215,6 +8398,7 @@ func (o *ReportEventExWRequest) xxx_ToOp(ctx context.Context, op *xxx_ReportEven
 	op.Data = o.Data
 	op.Flags = o.Flags
 	op.RecordNumber = o.RecordNumber
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -8235,6 +8419,7 @@ func (o *ReportEventExWRequest) xxx_FromOp(ctx context.Context, op *xxx_ReportEv
 	o.Data = op.Data
 	o.Flags = op.Flags
 	o.RecordNumber = op.RecordNumber
+	o.NullMask = ReportEventExWNullMask(op.NullMask) & ReportEventExWNullMaskRequestAll
 }
 func (o *ReportEventExWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -8261,6 +8446,10 @@ func (o *ReportEventExWRequest) OpName() string { return "/eventlog/v0/ElfrRepor
 
 // ReportEventExWResponse structure represents the ElfrReportEventExW operation response
 type ReportEventExWResponse struct {
+
+	// ReportEventExWNullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventExWNullMask
+
 	// RecordNumber: Unused. Can be set to any arbitrary value when sent, and any value
 	// sent by the client MUST be ignored on receipt by the server.
 	RecordNumber uint32 `idl:"name:RecordNumber;pointer:unique" json:"record_number"`
@@ -8277,6 +8466,7 @@ func (o *ReportEventExWResponse) xxx_ToOp(ctx context.Context, op *xxx_ReportEve
 	}
 	op.RecordNumber = o.RecordNumber
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -8286,6 +8476,7 @@ func (o *ReportEventExWResponse) xxx_FromOp(ctx context.Context, op *xxx_ReportE
 	}
 	o.RecordNumber = op.RecordNumber
 	o.Return = op.Return
+	o.NullMask = ReportEventExWNullMask(op.NullMask) & ReportEventExWNullMaskResponseAll
 }
 func (o *ReportEventExWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -8299,8 +8490,25 @@ func (o *ReportEventExWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
+type ReportEventExANullMask ndr.NullMask
+
+var (
+	ReportEventExANullMaskRecordNumber ReportEventExANullMask = 1 << 0
+
+	ReportEventExANullMaskRequestAll  ReportEventExANullMask = 0 | ReportEventExANullMaskRecordNumber
+	ReportEventExANullMaskResponseAll ReportEventExANullMask = 0 | ReportEventExANullMaskRecordNumber
+)
+
+func (o ReportEventExANullMask) IsSet(v ReportEventExANullMask) bool { return o&v != 0 }
+
+func (o ReportEventExANullMask) Set(v ReportEventExANullMask) ReportEventExANullMask { return o | v }
+
 // xxx_ReportEventExAOperation structure represents the ElfrReportEventExA operation
 type xxx_ReportEventExAOperation struct {
+
+	// ReportEventExANullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventExANullMask
+
 	Log           *Handle        `idl:"name:LogHandle" json:"log"`
 	TimeGenerated *dtyp.Filetime `idl:"name:TimeGenerated" json:"time_generated"`
 	EventType     uint16         `idl:"name:EventType" json:"event_type"`
@@ -8536,16 +8744,20 @@ func (o *xxx_ReportEventExAOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.RecordNumber); err != nil {
+		if o.NullMask&ReportEventExANullMaskRecordNumber == 0 {
+			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.RecordNumber); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -8714,7 +8926,8 @@ func (o *xxx_ReportEventExAOperation) UnmarshalNDRRequest(ctx context.Context, w
 			return nil
 		})
 		_s_RecordNumber := func(ptr interface{}) { o.RecordNumber = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.RecordNumber, _s_RecordNumber, _ptr_RecordNumber); err != nil {
+		_m_RecordNumber := func() { o.NullMask |= ReportEventExANullMaskRecordNumber }
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8739,16 +8952,20 @@ func (o *xxx_ReportEventExAOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.RecordNumber); err != nil {
+		if o.NullMask&ReportEventExANullMaskRecordNumber == 0 {
+			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.RecordNumber); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.RecordNumber, _ptr_RecordNumber); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -8773,7 +8990,8 @@ func (o *xxx_ReportEventExAOperation) UnmarshalNDRResponse(ctx context.Context, 
 			return nil
 		})
 		_s_RecordNumber := func(ptr interface{}) { o.RecordNumber = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.RecordNumber, _s_RecordNumber, _ptr_RecordNumber); err != nil {
+		_m_RecordNumber := func() { o.NullMask |= ReportEventExANullMaskRecordNumber }
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8791,6 +9009,10 @@ func (o *xxx_ReportEventExAOperation) UnmarshalNDRResponse(ctx context.Context, 
 
 // ReportEventExARequest structure represents the ElfrReportEventExA operation request
 type ReportEventExARequest struct {
+
+	// ReportEventExANullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventExANullMask
+
 	// LogHandle: A handle to an event log. This parameter is a server context handle, as
 	// specified in section 2.2.6. This handle MUST NOT be obtained via the ElfrOpenBELA
 	// (section 3.1.4.2) method or the ElfrOpenBELW (section 3.1.4.1) method. A handle received
@@ -8858,6 +9080,7 @@ func (o *ReportEventExARequest) xxx_ToOp(ctx context.Context, op *xxx_ReportEven
 	op.Data = o.Data
 	op.Flags = o.Flags
 	op.RecordNumber = o.RecordNumber
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -8878,6 +9101,7 @@ func (o *ReportEventExARequest) xxx_FromOp(ctx context.Context, op *xxx_ReportEv
 	o.Data = op.Data
 	o.Flags = op.Flags
 	o.RecordNumber = op.RecordNumber
+	o.NullMask = ReportEventExANullMask(op.NullMask) & ReportEventExANullMaskRequestAll
 }
 func (o *ReportEventExARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -8904,6 +9128,10 @@ func (o *ReportEventExARequest) OpName() string { return "/eventlog/v0/ElfrRepor
 
 // ReportEventExAResponse structure represents the ElfrReportEventExA operation response
 type ReportEventExAResponse struct {
+
+	// ReportEventExANullMask is used to carry information on null-valued primitive values.
+	NullMask ReportEventExANullMask
+
 	// RecordNumber: Unused. This can be set to any arbitrary value when sent. Any value
 	// sent by the client MUST be ignored on receipt by the server.
 	RecordNumber uint32 `idl:"name:RecordNumber;pointer:unique" json:"record_number"`
@@ -8920,6 +9148,7 @@ func (o *ReportEventExAResponse) xxx_ToOp(ctx context.Context, op *xxx_ReportEve
 	}
 	op.RecordNumber = o.RecordNumber
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -8929,6 +9158,7 @@ func (o *ReportEventExAResponse) xxx_FromOp(ctx context.Context, op *xxx_ReportE
 	}
 	o.RecordNumber = op.RecordNumber
 	o.Return = op.Return
+	o.NullMask = ReportEventExANullMask(op.NullMask) & ReportEventExANullMaskResponseAll
 }
 func (o *ReportEventExAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)

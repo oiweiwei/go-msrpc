@@ -19530,7 +19530,21 @@ func (o *InChainSetClientAttributes_V1) UnmarshalNDR(ctx context.Context, w ndr.
 //
 // The NL_OUT_CHAIN_SET_CLIENT_ATTRIBUTES_V1 structure SHOULD<44> specify the values
 // returned from the normal (writable) DC.
+type OutChainSetClientAttributesV1NullMask ndr.NullMask
+
+var (
+	OutChainSetClientAttributesV1NullMaskSupportedEncTypes OutChainSetClientAttributesV1NullMask = 1 << 0
+)
+
+func (o OutChainSetClientAttributesV1NullMask) IsSet(v OutChainSetClientAttributesV1NullMask) bool {
+	return o&v != 0
+}
+
 type OutChainSetClientAttributesV1 struct {
+
+	// OutChainSetClientAttributesV1NullMask is used to carry information on null-valued primitive values.
+	NullMask OutChainSetClientAttributesV1NullMask
+
 	// HubName: The NetBIOS name of the writable domain controller receiving NetrChainSetClientAttributes
 	// (section 3.5.4.4.12). The read-only domain controller (RODC) that invoked the method
 	// NetrChainSetClientAttributes SHOULD<45> attempt to replicate the computer account
@@ -19606,16 +19620,20 @@ func (o *OutChainSetClientAttributesV1) MarshalNDR(ctx context.Context, w ndr.Wr
 			return err
 		}
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_SupportedEncTypes := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.SupportedEncTypes); err != nil {
+	if o.NullMask&OutChainSetClientAttributesV1NullMaskSupportedEncTypes == 0 {
+		_ptr_SupportedEncTypes := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := w.WriteData(o.SupportedEncTypes); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SupportedEncTypes, _ptr_SupportedEncTypes); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.SupportedEncTypes, _ptr_SupportedEncTypes); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -19657,7 +19675,8 @@ func (o *OutChainSetClientAttributesV1) UnmarshalNDR(ctx context.Context, w ndr.
 		return nil
 	})
 	_s_SupportedEncTypes := func(ptr interface{}) { o.SupportedEncTypes = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.SupportedEncTypes, _s_SupportedEncTypes, _ptr_SupportedEncTypes); err != nil {
+	_m_SupportedEncTypes := func() { o.NullMask |= OutChainSetClientAttributesV1NullMaskSupportedEncTypes }
+	if err := w.ReadPointerWithHook(&o.SupportedEncTypes, ndr.PointerHook{_s_SupportedEncTypes, _m_SupportedEncTypes}, _ptr_SupportedEncTypes); err != nil {
 		return err
 	}
 	return nil

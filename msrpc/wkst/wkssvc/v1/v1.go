@@ -7258,8 +7258,25 @@ func (o *GetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+type SetInfoNullMask ndr.NullMask
+
+var (
+	SetInfoNullMaskErrorParameter SetInfoNullMask = 1 << 0
+
+	SetInfoNullMaskRequestAll  SetInfoNullMask = 0 | SetInfoNullMaskErrorParameter
+	SetInfoNullMaskResponseAll SetInfoNullMask = 0 | SetInfoNullMaskErrorParameter
+)
+
+func (o SetInfoNullMask) IsSet(v SetInfoNullMask) bool { return o&v != 0 }
+
+func (o SetInfoNullMask) Set(v SetInfoNullMask) SetInfoNullMask { return o | v }
+
 // xxx_SetInfoOperation structure represents the NetrWkstaSetInfo operation
 type xxx_SetInfoOperation struct {
+
+	// SetInfoNullMask is used to carry information on null-valued primitive values.
+	NullMask SetInfoNullMask
+
 	ServerName      string           `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
 	Level           uint32           `idl:"name:Level" json:"level"`
 	WorkstationInfo *WorkstationInfo `idl:"name:WkstaInfo;switch_is:Level" json:"workstation_info"`
@@ -7331,16 +7348,20 @@ func (o *xxx_SetInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// ErrorParameter {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ErrorParameter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ErrorParameter); err != nil {
+		if o.NullMask&SetInfoNullMaskErrorParameter == 0 {
+			_ptr_ErrorParameter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ErrorParameter); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ErrorParameter, _ptr_ErrorParameter); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ErrorParameter, _ptr_ErrorParameter); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -7394,7 +7415,8 @@ func (o *xxx_SetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			return nil
 		})
 		_s_ErrorParameter := func(ptr interface{}) { o.ErrorParameter = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ErrorParameter, _s_ErrorParameter, _ptr_ErrorParameter); err != nil {
+		_m_ErrorParameter := func() { o.NullMask |= SetInfoNullMaskErrorParameter }
+		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{_s_ErrorParameter, _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7419,16 +7441,20 @@ func (o *xxx_SetInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 	}
 	// ErrorParameter {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ErrorParameter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ErrorParameter); err != nil {
+		if o.NullMask&SetInfoNullMaskErrorParameter == 0 {
+			_ptr_ErrorParameter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ErrorParameter); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ErrorParameter, _ptr_ErrorParameter); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ErrorParameter, _ptr_ErrorParameter); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -7453,7 +7479,8 @@ func (o *xxx_SetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			return nil
 		})
 		_s_ErrorParameter := func(ptr interface{}) { o.ErrorParameter = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ErrorParameter, _s_ErrorParameter, _ptr_ErrorParameter); err != nil {
+		_m_ErrorParameter := func() { o.NullMask |= SetInfoNullMaskErrorParameter }
+		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{_s_ErrorParameter, _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7471,6 +7498,10 @@ func (o *xxx_SetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 
 // SetInfoRequest structure represents the NetrWkstaSetInfo operation request
 type SetInfoRequest struct {
+
+	// SetInfoNullMask is used to carry information on null-valued primitive values.
+	NullMask SetInfoNullMask
+
 	// ServerName: A WKSSVC_IDENTIFY_HANDLE structure (section 2.2.2.1) that identifies
 	// the server (2). The client MUST map this structure to an RPC binding handle ([C706]
 	// sections 4.3.5 and 5.1.5.2). The server MUST ignore this parameter.
@@ -7517,6 +7548,7 @@ func (o *SetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetInfoOperation)
 	op.Level = o.Level
 	op.WorkstationInfo = o.WorkstationInfo
 	op.ErrorParameter = o.ErrorParameter
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -7528,6 +7560,7 @@ func (o *SetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_SetInfoOperatio
 	o.Level = op.Level
 	o.WorkstationInfo = op.WorkstationInfo
 	o.ErrorParameter = op.ErrorParameter
+	o.NullMask = SetInfoNullMask(op.NullMask) & SetInfoNullMaskRequestAll
 }
 func (o *SetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -7554,6 +7587,10 @@ func (o *SetInfoRequest) OpName() string { return "/wkssvc/v1/NetrWkstaSetInfo" 
 
 // SetInfoResponse structure represents the NetrWkstaSetInfo operation response
 type SetInfoResponse struct {
+
+	// SetInfoNullMask is used to carry information on null-valued primitive values.
+	NullMask SetInfoNullMask
+
 	// ErrorParameter: A pointer to a value that receives an unsigned 32-bit integer. This
 	// parameter is meaningful only if the method returns ERROR_INVALID_PARAMETER and Level
 	// is equal to one of the values in the preceding table.
@@ -7575,6 +7612,7 @@ func (o *SetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetInfoOperation
 	}
 	op.ErrorParameter = o.ErrorParameter
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -7584,6 +7622,7 @@ func (o *SetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_SetInfoOperati
 	}
 	o.ErrorParameter = op.ErrorParameter
 	o.Return = op.Return
+	o.NullMask = SetInfoNullMask(op.NullMask) & SetInfoNullMaskResponseAll
 }
 func (o *SetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -7597,8 +7636,25 @@ func (o *SetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
+type UserEnumNullMask ndr.NullMask
+
+var (
+	UserEnumNullMaskResume UserEnumNullMask = 1 << 0
+
+	UserEnumNullMaskRequestAll  UserEnumNullMask = 0 | UserEnumNullMaskResume
+	UserEnumNullMaskResponseAll UserEnumNullMask = 0 | UserEnumNullMaskResume
+)
+
+func (o UserEnumNullMask) IsSet(v UserEnumNullMask) bool { return o&v != 0 }
+
+func (o UserEnumNullMask) Set(v UserEnumNullMask) UserEnumNullMask { return o | v }
+
 // xxx_UserEnumOperation structure represents the NetrWkstaUserEnum operation
 type xxx_UserEnumOperation struct {
+
+	// UserEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask UserEnumNullMask
+
 	ServerName             string               `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
 	UserInfo               *WorkstationUserEnum `idl:"name:UserInfo" json:"user_info"`
 	PreferredMaximumLength uint32               `idl:"name:PreferredMaximumLength" json:"preferred_maximum_length"`
@@ -7670,16 +7726,20 @@ func (o *xxx_UserEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wri
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&UserEnumNullMaskResume == 0 {
+			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -7732,7 +7792,8 @@ func (o *xxx_UserEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			return nil
 		})
 		_s_ResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_ResumeHandle, _ptr_ResumeHandle); err != nil {
+		_m_ResumeHandle := func() { o.NullMask |= UserEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7778,16 +7839,20 @@ func (o *xxx_UserEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wr
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&UserEnumNullMaskResume == 0 {
+			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -7830,7 +7895,8 @@ func (o *xxx_UserEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			return nil
 		})
 		_s_ResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_ResumeHandle, _ptr_ResumeHandle); err != nil {
+		_m_ResumeHandle := func() { o.NullMask |= UserEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7848,6 +7914,10 @@ func (o *xxx_UserEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 
 // UserEnumRequest structure represents the NetrWkstaUserEnum operation request
 type UserEnumRequest struct {
+
+	// UserEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask UserEnumNullMask
+
 	// ServerName: A WKSSVC_IDENTIFY_HANDLE structure (section 2.2.2.1) that identifies
 	// the server (2). The client MUST map this structure to an RPC binding handle ([C706]
 	// sections 4.3.5 and 5.1.5.2). The server MUST ignore this parameter.
@@ -7878,6 +7948,7 @@ func (o *UserEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_UserEnumOperatio
 	op.UserInfo = o.UserInfo
 	op.PreferredMaximumLength = o.PreferredMaximumLength
 	op.Resume = o.Resume
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -7889,6 +7960,7 @@ func (o *UserEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_UserEnumOperat
 	o.UserInfo = op.UserInfo
 	o.PreferredMaximumLength = op.PreferredMaximumLength
 	o.Resume = op.Resume
+	o.NullMask = UserEnumNullMask(op.NullMask) & UserEnumNullMaskRequestAll
 }
 func (o *UserEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -7915,6 +7987,10 @@ func (o *UserEnumRequest) OpName() string { return "/wkssvc/v1/NetrWkstaUserEnum
 
 // UserEnumResponse structure represents the NetrWkstaUserEnum operation response
 type UserEnumResponse struct {
+
+	// UserEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask UserEnumNullMask
+
 	// UserInfo: A pointer to the buffer to receive the data. The data MUST be returned
 	// as a WKSTA_USER_ENUM_STRUCT structure (section 2.2.5.14) that contains a Level member
 	// that specifies the type of structure to return.
@@ -7944,6 +8020,7 @@ func (o *UserEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_UserEnumOperati
 	op.TotalEntries = o.TotalEntries
 	op.Resume = o.Resume
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -7955,6 +8032,7 @@ func (o *UserEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_UserEnumOpera
 	o.TotalEntries = op.TotalEntries
 	o.Resume = op.Resume
 	o.Return = op.Return
+	o.NullMask = UserEnumNullMask(op.NullMask) & UserEnumNullMaskResponseAll
 }
 func (o *UserEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -7968,8 +8046,25 @@ func (o *UserEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
+type TransportEnumNullMask ndr.NullMask
+
+var (
+	TransportEnumNullMaskResume TransportEnumNullMask = 1 << 0
+
+	TransportEnumNullMaskRequestAll  TransportEnumNullMask = 0 | TransportEnumNullMaskResume
+	TransportEnumNullMaskResponseAll TransportEnumNullMask = 0 | TransportEnumNullMaskResume
+)
+
+func (o TransportEnumNullMask) IsSet(v TransportEnumNullMask) bool { return o&v != 0 }
+
+func (o TransportEnumNullMask) Set(v TransportEnumNullMask) TransportEnumNullMask { return o | v }
+
 // xxx_TransportEnumOperation structure represents the NetrWkstaTransportEnum operation
 type xxx_TransportEnumOperation struct {
+
+	// TransportEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask TransportEnumNullMask
+
 	ServerName             string                    `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
 	TransportInfo          *WorkstationTransportEnum `idl:"name:TransportInfo" json:"transport_info"`
 	PreferredMaximumLength uint32                    `idl:"name:PreferredMaximumLength" json:"preferred_maximum_length"`
@@ -8041,16 +8136,20 @@ func (o *xxx_TransportEnumOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&TransportEnumNullMaskResume == 0 {
+			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -8103,7 +8202,8 @@ func (o *xxx_TransportEnumOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			return nil
 		})
 		_s_ResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_ResumeHandle, _ptr_ResumeHandle); err != nil {
+		_m_ResumeHandle := func() { o.NullMask |= TransportEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8149,16 +8249,20 @@ func (o *xxx_TransportEnumOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&TransportEnumNullMaskResume == 0 {
+			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -8201,7 +8305,8 @@ func (o *xxx_TransportEnumOperation) UnmarshalNDRResponse(ctx context.Context, w
 			return nil
 		})
 		_s_ResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_ResumeHandle, _ptr_ResumeHandle); err != nil {
+		_m_ResumeHandle := func() { o.NullMask |= TransportEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8219,6 +8324,10 @@ func (o *xxx_TransportEnumOperation) UnmarshalNDRResponse(ctx context.Context, w
 
 // TransportEnumRequest structure represents the NetrWkstaTransportEnum operation request
 type TransportEnumRequest struct {
+
+	// TransportEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask TransportEnumNullMask
+
 	// ServerName: A WKSSVC_IDENTIFY_HANDLE structure (section 2.2.2.1) that identifies
 	// the server (2). The client MUST map this structure to an RPC binding handle ([C706]
 	// sections 4.3.5 and 5.1.5.2). The server MUST ignore this parameter.
@@ -8249,6 +8358,7 @@ func (o *TransportEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_TransportEn
 	op.TransportInfo = o.TransportInfo
 	op.PreferredMaximumLength = o.PreferredMaximumLength
 	op.Resume = o.Resume
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -8260,6 +8370,7 @@ func (o *TransportEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_Transport
 	o.TransportInfo = op.TransportInfo
 	o.PreferredMaximumLength = op.PreferredMaximumLength
 	o.Resume = op.Resume
+	o.NullMask = TransportEnumNullMask(op.NullMask) & TransportEnumNullMaskRequestAll
 }
 func (o *TransportEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -8286,6 +8397,10 @@ func (o *TransportEnumRequest) OpName() string { return "/wkssvc/v1/NetrWkstaTra
 
 // TransportEnumResponse structure represents the NetrWkstaTransportEnum operation response
 type TransportEnumResponse struct {
+
+	// TransportEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask TransportEnumNullMask
+
 	// TransportInfo: A pointer to a buffer that receives a WKSTA_TRANSPORT_ENUM_STRUCT
 	// structure (section 2.2.5.16), which contains a Level member that MUST be set to zero.
 	TransportInfo *WorkstationTransportEnum `idl:"name:TransportInfo" json:"transport_info"`
@@ -8316,6 +8431,7 @@ func (o *TransportEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_TransportE
 	op.TotalEntries = o.TotalEntries
 	op.Resume = o.Resume
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -8327,6 +8443,7 @@ func (o *TransportEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_Transpor
 	o.TotalEntries = op.TotalEntries
 	o.Resume = op.Resume
 	o.Return = op.Return
+	o.NullMask = TransportEnumNullMask(op.NullMask) & TransportEnumNullMaskResponseAll
 }
 func (o *TransportEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -8340,8 +8457,25 @@ func (o *TransportEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
+type TransportAddNullMask ndr.NullMask
+
+var (
+	TransportAddNullMaskErrorParameter TransportAddNullMask = 1 << 0
+
+	TransportAddNullMaskRequestAll  TransportAddNullMask = 0 | TransportAddNullMaskErrorParameter
+	TransportAddNullMaskResponseAll TransportAddNullMask = 0 | TransportAddNullMaskErrorParameter
+)
+
+func (o TransportAddNullMask) IsSet(v TransportAddNullMask) bool { return o&v != 0 }
+
+func (o TransportAddNullMask) Set(v TransportAddNullMask) TransportAddNullMask { return o | v }
+
 // xxx_TransportAddOperation structure represents the NetrWkstaTransportAdd operation
 type xxx_TransportAddOperation struct {
+
+	// TransportAddNullMask is used to carry information on null-valued primitive values.
+	NullMask TransportAddNullMask
+
 	ServerName     string                     `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
 	Level          uint32                     `idl:"name:Level" json:"level"`
 	TransportInfo  *WorkstationTransportInfo0 `idl:"name:TransportInfo" json:"transport_info"`
@@ -8412,16 +8546,20 @@ func (o *xxx_TransportAddOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// ErrorParameter {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ErrorParameter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ErrorParameter); err != nil {
+		if o.NullMask&TransportAddNullMaskErrorParameter == 0 {
+			_ptr_ErrorParameter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ErrorParameter); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ErrorParameter, _ptr_ErrorParameter); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ErrorParameter, _ptr_ErrorParameter); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -8474,7 +8612,8 @@ func (o *xxx_TransportAddOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			return nil
 		})
 		_s_ErrorParameter := func(ptr interface{}) { o.ErrorParameter = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ErrorParameter, _s_ErrorParameter, _ptr_ErrorParameter); err != nil {
+		_m_ErrorParameter := func() { o.NullMask |= TransportAddNullMaskErrorParameter }
+		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{_s_ErrorParameter, _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8499,16 +8638,20 @@ func (o *xxx_TransportAddOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// ErrorParameter {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ErrorParameter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ErrorParameter); err != nil {
+		if o.NullMask&TransportAddNullMaskErrorParameter == 0 {
+			_ptr_ErrorParameter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ErrorParameter); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ErrorParameter, _ptr_ErrorParameter); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ErrorParameter, _ptr_ErrorParameter); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -8533,7 +8676,8 @@ func (o *xxx_TransportAddOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			return nil
 		})
 		_s_ErrorParameter := func(ptr interface{}) { o.ErrorParameter = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ErrorParameter, _s_ErrorParameter, _ptr_ErrorParameter); err != nil {
+		_m_ErrorParameter := func() { o.NullMask |= TransportAddNullMaskErrorParameter }
+		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{_s_ErrorParameter, _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8551,6 +8695,10 @@ func (o *xxx_TransportAddOperation) UnmarshalNDRResponse(ctx context.Context, w 
 
 // TransportAddRequest structure represents the NetrWkstaTransportAdd operation request
 type TransportAddRequest struct {
+
+	// TransportAddNullMask is used to carry information on null-valued primitive values.
+	NullMask TransportAddNullMask
+
 	// ServerName: A WKSSVC_IDENTIFY_HANDLE structure (section 2.2.2.1) that identifies
 	// the server (2). The client MUST map this structure to an RPC binding handle ([C706]
 	// sections 4.3.5 and 5.1.5.2). The server MUST ignore this parameter.
@@ -8578,6 +8726,7 @@ func (o *TransportAddRequest) xxx_ToOp(ctx context.Context, op *xxx_TransportAdd
 	op.Level = o.Level
 	op.TransportInfo = o.TransportInfo
 	op.ErrorParameter = o.ErrorParameter
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -8589,6 +8738,7 @@ func (o *TransportAddRequest) xxx_FromOp(ctx context.Context, op *xxx_TransportA
 	o.Level = op.Level
 	o.TransportInfo = op.TransportInfo
 	o.ErrorParameter = op.ErrorParameter
+	o.NullMask = TransportAddNullMask(op.NullMask) & TransportAddNullMaskRequestAll
 }
 func (o *TransportAddRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -8615,6 +8765,10 @@ func (o *TransportAddRequest) OpName() string { return "/wkssvc/v1/NetrWkstaTran
 
 // TransportAddResponse structure represents the NetrWkstaTransportAdd operation response
 type TransportAddResponse struct {
+
+	// TransportAddNullMask is used to carry information on null-valued primitive values.
+	NullMask TransportAddNullMask
+
 	// ErrorParameter: A pointer to a value that receives the index, starting at 0, of the
 	// first member of the WKSTA_TRANSPORT_INFO_0 structure that causes the function to
 	// return ERROR_INVALID_PARAMETER. If this parameter is NULL, the index is not returned
@@ -8633,6 +8787,7 @@ func (o *TransportAddResponse) xxx_ToOp(ctx context.Context, op *xxx_TransportAd
 	}
 	op.ErrorParameter = o.ErrorParameter
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -8642,6 +8797,7 @@ func (o *TransportAddResponse) xxx_FromOp(ctx context.Context, op *xxx_Transport
 	}
 	o.ErrorParameter = op.ErrorParameter
 	o.Return = op.Return
+	o.NullMask = TransportAddNullMask(op.NullMask) & TransportAddNullMaskResponseAll
 }
 func (o *TransportAddResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -8916,8 +9072,25 @@ func (o *TransportDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
+type UseAddNullMask ndr.NullMask
+
+var (
+	UseAddNullMaskErrorParameter UseAddNullMask = 1 << 0
+
+	UseAddNullMaskRequestAll  UseAddNullMask = 0 | UseAddNullMaskErrorParameter
+	UseAddNullMaskResponseAll UseAddNullMask = 0 | UseAddNullMaskErrorParameter
+)
+
+func (o UseAddNullMask) IsSet(v UseAddNullMask) bool { return o&v != 0 }
+
+func (o UseAddNullMask) Set(v UseAddNullMask) UseAddNullMask { return o | v }
+
 // xxx_UseAddOperation structure represents the NetrUseAdd operation
 type xxx_UseAddOperation struct {
+
+	// UseAddNullMask is used to carry information on null-valued primitive values.
+	NullMask UseAddNullMask
+
 	ServerName     string   `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
 	Level          uint32   `idl:"name:Level" json:"level"`
 	Info           *UseInfo `idl:"name:InfoStruct;switch_is:Level" json:"info"`
@@ -8989,16 +9162,20 @@ func (o *xxx_UseAddOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// ErrorParameter {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ErrorParameter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ErrorParameter); err != nil {
+		if o.NullMask&UseAddNullMaskErrorParameter == 0 {
+			_ptr_ErrorParameter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ErrorParameter); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ErrorParameter, _ptr_ErrorParameter); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ErrorParameter, _ptr_ErrorParameter); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -9052,7 +9229,8 @@ func (o *xxx_UseAddOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			return nil
 		})
 		_s_ErrorParameter := func(ptr interface{}) { o.ErrorParameter = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ErrorParameter, _s_ErrorParameter, _ptr_ErrorParameter); err != nil {
+		_m_ErrorParameter := func() { o.NullMask |= UseAddNullMaskErrorParameter }
+		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{_s_ErrorParameter, _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -9077,16 +9255,20 @@ func (o *xxx_UseAddOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 	}
 	// ErrorParameter {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ErrorParameter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ErrorParameter); err != nil {
+		if o.NullMask&UseAddNullMaskErrorParameter == 0 {
+			_ptr_ErrorParameter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ErrorParameter); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ErrorParameter, _ptr_ErrorParameter); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ErrorParameter, _ptr_ErrorParameter); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -9111,7 +9293,8 @@ func (o *xxx_UseAddOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			return nil
 		})
 		_s_ErrorParameter := func(ptr interface{}) { o.ErrorParameter = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ErrorParameter, _s_ErrorParameter, _ptr_ErrorParameter); err != nil {
+		_m_ErrorParameter := func() { o.NullMask |= UseAddNullMaskErrorParameter }
+		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{_s_ErrorParameter, _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -9129,6 +9312,10 @@ func (o *xxx_UseAddOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 
 // UseAddRequest structure represents the NetrUseAdd operation request
 type UseAddRequest struct {
+
+	// UseAddNullMask is used to carry information on null-valued primitive values.
+	NullMask UseAddNullMask
+
 	// ServerName: A WKSSVC_IMPERSONATE_HANDLE structure (section 2.2.2.2) that identifies
 	// the server (2). The client MUST map this structure to an RPC binding handle ([C706]
 	// sections 4.3.5 and 5.1.5.2). The server MUST ignore this parameter.
@@ -9171,6 +9358,7 @@ func (o *UseAddRequest) xxx_ToOp(ctx context.Context, op *xxx_UseAddOperation) *
 	op.Level = o.Level
 	op.Info = o.Info
 	op.ErrorParameter = o.ErrorParameter
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -9182,6 +9370,7 @@ func (o *UseAddRequest) xxx_FromOp(ctx context.Context, op *xxx_UseAddOperation)
 	o.Level = op.Level
 	o.Info = op.Info
 	o.ErrorParameter = op.ErrorParameter
+	o.NullMask = UseAddNullMask(op.NullMask) & UseAddNullMaskRequestAll
 }
 func (o *UseAddRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -9208,6 +9397,10 @@ func (o *UseAddRequest) OpName() string { return "/wkssvc/v1/NetrUseAdd" }
 
 // UseAddResponse structure represents the NetrUseAdd operation response
 type UseAddResponse struct {
+
+	// UseAddNullMask is used to carry information on null-valued primitive values.
+	NullMask UseAddNullMask
+
 	// ErrorParameter: A pointer to a value that receives an unsigned 32-bit integer. This
 	// parameter is meaningful only if the method returns ERROR_INVALID_PARAMETER.
 	ErrorParameter uint32 `idl:"name:ErrorParameter;pointer:unique" json:"error_parameter"`
@@ -9224,6 +9417,7 @@ func (o *UseAddResponse) xxx_ToOp(ctx context.Context, op *xxx_UseAddOperation) 
 	}
 	op.ErrorParameter = o.ErrorParameter
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -9233,6 +9427,7 @@ func (o *UseAddResponse) xxx_FromOp(ctx context.Context, op *xxx_UseAddOperation
 	}
 	o.ErrorParameter = op.ErrorParameter
 	o.Return = op.Return
+	o.NullMask = UseAddNullMask(op.NullMask) & UseAddNullMaskResponseAll
 }
 func (o *UseAddResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -9768,8 +9963,25 @@ func (o *UseDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
+type UseEnumNullMask ndr.NullMask
+
+var (
+	UseEnumNullMaskResume UseEnumNullMask = 1 << 0
+
+	UseEnumNullMaskRequestAll  UseEnumNullMask = 0 | UseEnumNullMaskResume
+	UseEnumNullMaskResponseAll UseEnumNullMask = 0 | UseEnumNullMaskResume
+)
+
+func (o UseEnumNullMask) IsSet(v UseEnumNullMask) bool { return o&v != 0 }
+
+func (o UseEnumNullMask) Set(v UseEnumNullMask) UseEnumNullMask { return o | v }
+
 // xxx_UseEnumOperation structure represents the NetrUseEnum operation
 type xxx_UseEnumOperation struct {
+
+	// UseEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask UseEnumNullMask
+
 	ServerName             string   `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
 	Info                   *UseEnum `idl:"name:InfoStruct" json:"info"`
 	PreferredMaximumLength uint32   `idl:"name:PreferredMaximumLength" json:"preferred_maximum_length"`
@@ -9841,16 +10053,20 @@ func (o *xxx_UseEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&UseEnumNullMaskResume == 0 {
+			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -9903,7 +10119,8 @@ func (o *xxx_UseEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			return nil
 		})
 		_s_ResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_ResumeHandle, _ptr_ResumeHandle); err != nil {
+		_m_ResumeHandle := func() { o.NullMask |= UseEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -9949,16 +10166,20 @@ func (o *xxx_UseEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.Resume); err != nil {
+		if o.NullMask&UseEnumNullMaskResume == 0 {
+			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.Resume); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.Resume, _ptr_ResumeHandle); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -10001,7 +10222,8 @@ func (o *xxx_UseEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			return nil
 		})
 		_s_ResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.Resume, _s_ResumeHandle, _ptr_ResumeHandle); err != nil {
+		_m_ResumeHandle := func() { o.NullMask |= UseEnumNullMaskResume }
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -10019,6 +10241,10 @@ func (o *xxx_UseEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 
 // UseEnumRequest structure represents the NetrUseEnum operation request
 type UseEnumRequest struct {
+
+	// UseEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask UseEnumNullMask
+
 	// ServerName: A WKSSVC_IDENTIFY_HANDLE structure (section 2.2.2.1) that identifies
 	// the server (2). The client MUST map this structure to an RPC binding handle ([C706]
 	// sections 4.3.5 and 5.1.5.2). The server MUST ignore this parameter.
@@ -10064,6 +10290,7 @@ func (o *UseEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_UseEnumOperation)
 	op.Info = o.Info
 	op.PreferredMaximumLength = o.PreferredMaximumLength
 	op.Resume = o.Resume
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -10075,6 +10302,7 @@ func (o *UseEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_UseEnumOperatio
 	o.Info = op.Info
 	o.PreferredMaximumLength = op.PreferredMaximumLength
 	o.Resume = op.Resume
+	o.NullMask = UseEnumNullMask(op.NullMask) & UseEnumNullMaskRequestAll
 }
 func (o *UseEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -10101,6 +10329,10 @@ func (o *UseEnumRequest) OpName() string { return "/wkssvc/v1/NetrUseEnum" }
 
 // UseEnumResponse structure represents the NetrUseEnum operation response
 type UseEnumResponse struct {
+
+	// UseEnumNullMask is used to carry information on null-valued primitive values.
+	NullMask UseEnumNullMask
+
 	// InfoStruct: The USE_ENUM_STRUCT structure (section 2.2.5.29) contains a Level parameter
 	// that indicates the type of structure to return.
 	//
@@ -10145,6 +10377,7 @@ func (o *UseEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_UseEnumOperation
 	op.TotalEntries = o.TotalEntries
 	op.Resume = o.Resume
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -10156,6 +10389,7 @@ func (o *UseEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_UseEnumOperati
 	o.TotalEntries = op.TotalEntries
 	o.Resume = op.Resume
 	o.Return = op.Return
+	o.NullMask = UseEnumNullMask(op.NullMask) & UseEnumNullMaskResponseAll
 }
 func (o *UseEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)

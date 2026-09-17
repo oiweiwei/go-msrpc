@@ -11513,8 +11513,27 @@ func (o *NotifyBootConfigStatusResponse) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+type ChangeServiceConfigWNullMask ndr.NullMask
+
+var (
+	ChangeServiceConfigWNullMaskTagID ChangeServiceConfigWNullMask = 1 << 0
+
+	ChangeServiceConfigWNullMaskRequestAll  ChangeServiceConfigWNullMask = 0 | ChangeServiceConfigWNullMaskTagID
+	ChangeServiceConfigWNullMaskResponseAll ChangeServiceConfigWNullMask = 0 | ChangeServiceConfigWNullMaskTagID
+)
+
+func (o ChangeServiceConfigWNullMask) IsSet(v ChangeServiceConfigWNullMask) bool { return o&v != 0 }
+
+func (o ChangeServiceConfigWNullMask) Set(v ChangeServiceConfigWNullMask) ChangeServiceConfigWNullMask {
+	return o | v
+}
+
 // xxx_ChangeServiceConfigWOperation structure represents the RChangeServiceConfigW operation
 type xxx_ChangeServiceConfigWOperation struct {
+
+	// ChangeServiceConfigWNullMask is used to carry information on null-valued primitive values.
+	NullMask ChangeServiceConfigWNullMask
+
 	Service          *Handle `idl:"name:hService" json:"service"`
 	ServiceType      uint32  `idl:"name:dwServiceType" json:"service_type"`
 	StartType        uint32  `idl:"name:dwStartType" json:"start_type"`
@@ -11650,7 +11669,7 @@ func (o *xxx_ChangeServiceConfigWOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&ChangeServiceConfigWNullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -11873,7 +11892,8 @@ func (o *xxx_ChangeServiceConfigWOperation) UnmarshalNDRRequest(ctx context.Cont
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= ChangeServiceConfigWNullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -12004,7 +12024,7 @@ func (o *xxx_ChangeServiceConfigWOperation) MarshalNDRResponse(ctx context.Conte
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&ChangeServiceConfigWNullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -12042,7 +12062,8 @@ func (o *xxx_ChangeServiceConfigWOperation) UnmarshalNDRResponse(ctx context.Con
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= ChangeServiceConfigWNullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -12060,6 +12081,10 @@ func (o *xxx_ChangeServiceConfigWOperation) UnmarshalNDRResponse(ctx context.Con
 
 // ChangeServiceConfigWRequest structure represents the RChangeServiceConfigW operation request
 type ChangeServiceConfigWRequest struct {
+
+	// ChangeServiceConfigWNullMask is used to carry information on null-valued primitive values.
+	NullMask ChangeServiceConfigWNullMask
+
 	// hService: An SC_RPC_HANDLE (section 2.2.4) data type that defines the handle to the
 	// service record that MUST have been created previously, using one of the open methods
 	// specified in section 3.1.4. The SERVICE_CHANGE_CONFIG access right MUST have been
@@ -12214,6 +12239,7 @@ func (o *ChangeServiceConfigWRequest) xxx_ToOp(ctx context.Context, op *xxx_Chan
 	op.Password = o.Password
 	op.PasswordSize = o.PasswordSize
 	op.DisplayName = o.DisplayName
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -12234,6 +12260,7 @@ func (o *ChangeServiceConfigWRequest) xxx_FromOp(ctx context.Context, op *xxx_Ch
 	o.Password = op.Password
 	o.PasswordSize = op.PasswordSize
 	o.DisplayName = op.DisplayName
+	o.NullMask = ChangeServiceConfigWNullMask(op.NullMask) & ChangeServiceConfigWNullMaskRequestAll
 }
 func (o *ChangeServiceConfigWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -12260,6 +12287,10 @@ func (o *ChangeServiceConfigWRequest) OpName() string { return "/svcctl/v2/RChan
 
 // ChangeServiceConfigWResponse structure represents the RChangeServiceConfigW operation response
 type ChangeServiceConfigWResponse struct {
+
+	// ChangeServiceConfigWNullMask is used to carry information on null-valued primitive values.
+	NullMask ChangeServiceConfigWNullMask
+
 	// lpdwTagId: A Tag value for the service record (section 3.1.1) as a pointer to a variable
 	// that receives a tag value. The value is unique to the group specified in the lpLoadOrderGroup
 	// parameter.
@@ -12277,6 +12308,7 @@ func (o *ChangeServiceConfigWResponse) xxx_ToOp(ctx context.Context, op *xxx_Cha
 	}
 	op.TagID = o.TagID
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -12286,6 +12318,7 @@ func (o *ChangeServiceConfigWResponse) xxx_FromOp(ctx context.Context, op *xxx_C
 	}
 	o.TagID = op.TagID
 	o.Return = op.Return
+	o.NullMask = ChangeServiceConfigWNullMask(op.NullMask) & ChangeServiceConfigWNullMaskResponseAll
 }
 func (o *ChangeServiceConfigWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -12299,8 +12332,25 @@ func (o *ChangeServiceConfigWResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+type CreateServiceWNullMask ndr.NullMask
+
+var (
+	CreateServiceWNullMaskTagID CreateServiceWNullMask = 1 << 0
+
+	CreateServiceWNullMaskRequestAll  CreateServiceWNullMask = 0 | CreateServiceWNullMaskTagID
+	CreateServiceWNullMaskResponseAll CreateServiceWNullMask = 0 | CreateServiceWNullMaskTagID
+)
+
+func (o CreateServiceWNullMask) IsSet(v CreateServiceWNullMask) bool { return o&v != 0 }
+
+func (o CreateServiceWNullMask) Set(v CreateServiceWNullMask) CreateServiceWNullMask { return o | v }
+
 // xxx_CreateServiceWOperation structure represents the RCreateServiceW operation
 type xxx_CreateServiceWOperation struct {
+
+	// CreateServiceWNullMask is used to carry information on null-valued primitive values.
+	NullMask CreateServiceWNullMask
+
 	ServiceManager   *Handle `idl:"name:hSCManager" json:"service_manager"`
 	ServiceName      string  `idl:"name:lpServiceName;string" json:"service_name"`
 	DisplayName      string  `idl:"name:lpDisplayName;string;pointer:unique" json:"display_name"`
@@ -12458,7 +12508,7 @@ func (o *xxx_CreateServiceWOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWNullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -12678,7 +12728,8 @@ func (o *xxx_CreateServiceWOperation) UnmarshalNDRRequest(ctx context.Context, w
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= CreateServiceWNullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -12793,7 +12844,7 @@ func (o *xxx_CreateServiceWOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWNullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -12843,7 +12894,8 @@ func (o *xxx_CreateServiceWOperation) UnmarshalNDRResponse(ctx context.Context, 
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= CreateServiceWNullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -12870,6 +12922,10 @@ func (o *xxx_CreateServiceWOperation) UnmarshalNDRResponse(ctx context.Context, 
 
 // CreateServiceWRequest structure represents the RCreateServiceW operation request
 type CreateServiceWRequest struct {
+
+	// CreateServiceWNullMask is used to carry information on null-valued primitive values.
+	NullMask CreateServiceWNullMask
+
 	// hSCManager: An SC_RPC_HANDLE (section 2.2.4) data type that defines the handle to
 	// the SCM database created using one of the open methods specified in section 3.1.4.
 	// The SC_MANAGER_CREATE_SERVICE access right MUST have been granted to the caller when
@@ -13012,6 +13068,7 @@ func (o *CreateServiceWRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateServ
 	op.ServiceStartName = o.ServiceStartName
 	op.Password = o.Password
 	op.PasswordSize = o.PasswordSize
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -13034,6 +13091,7 @@ func (o *CreateServiceWRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateSe
 	o.ServiceStartName = op.ServiceStartName
 	o.Password = op.Password
 	o.PasswordSize = op.PasswordSize
+	o.NullMask = CreateServiceWNullMask(op.NullMask) & CreateServiceWNullMaskRequestAll
 }
 func (o *CreateServiceWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -13060,6 +13118,10 @@ func (o *CreateServiceWRequest) OpName() string { return "/svcctl/v2/RCreateServ
 
 // CreateServiceWResponse structure represents the RCreateServiceW operation response
 type CreateServiceWResponse struct {
+
+	// CreateServiceWNullMask is used to carry information on null-valued primitive values.
+	NullMask CreateServiceWNullMask
+
 	// lpdwTagId: A pointer to a variable that receives a tag value. The value is unique
 	// to the group specified in the lpLoadOrderGroup parameter.
 	TagID uint32 `idl:"name:lpdwTagId;pointer:unique" json:"tag_id"`
@@ -13080,6 +13142,7 @@ func (o *CreateServiceWResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateSer
 	op.TagID = o.TagID
 	op.Service = o.Service
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -13090,6 +13153,7 @@ func (o *CreateServiceWResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateS
 	o.TagID = op.TagID
 	o.Service = op.Service
 	o.Return = op.Return
+	o.NullMask = CreateServiceWNullMask(op.NullMask) & CreateServiceWNullMaskResponseAll
 }
 func (o *CreateServiceWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -13436,8 +13500,27 @@ func (o *EnumDependentServicesWResponse) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+type EnumServicesStatusWNullMask ndr.NullMask
+
+var (
+	EnumServicesStatusWNullMaskResumeIndex EnumServicesStatusWNullMask = 1 << 0
+
+	EnumServicesStatusWNullMaskRequestAll  EnumServicesStatusWNullMask = 0 | EnumServicesStatusWNullMaskResumeIndex
+	EnumServicesStatusWNullMaskResponseAll EnumServicesStatusWNullMask = 0 | EnumServicesStatusWNullMaskResumeIndex
+)
+
+func (o EnumServicesStatusWNullMask) IsSet(v EnumServicesStatusWNullMask) bool { return o&v != 0 }
+
+func (o EnumServicesStatusWNullMask) Set(v EnumServicesStatusWNullMask) EnumServicesStatusWNullMask {
+	return o | v
+}
+
 // xxx_EnumServicesStatusWOperation structure represents the REnumServicesStatusW operation
 type xxx_EnumServicesStatusWOperation struct {
+
+	// EnumServicesStatusWNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServicesStatusWNullMask
+
 	ServiceManager    *Handle `idl:"name:hSCManager" json:"service_manager"`
 	ServiceType       uint32  `idl:"name:dwServiceType" json:"service_type"`
 	ServiceState      uint32  `idl:"name:dwServiceState" json:"service_state"`
@@ -13503,16 +13586,20 @@ func (o *xxx_EnumServicesStatusWOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ResumeIndex); err != nil {
+		if o.NullMask&EnumServicesStatusWNullMaskResumeIndex == 0 {
+			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ResumeIndex); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -13558,7 +13645,8 @@ func (o *xxx_EnumServicesStatusWOperation) UnmarshalNDRRequest(ctx context.Conte
 			return nil
 		})
 		_s_lpResumeIndex := func(ptr interface{}) { o.ResumeIndex = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ResumeIndex, _s_lpResumeIndex, _ptr_lpResumeIndex); err != nil {
+		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusWNullMaskResumeIndex }
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -13619,16 +13707,20 @@ func (o *xxx_EnumServicesStatusWOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ResumeIndex); err != nil {
+		if o.NullMask&EnumServicesStatusWNullMaskResumeIndex == 0 {
+			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ResumeIndex); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -13686,7 +13778,8 @@ func (o *xxx_EnumServicesStatusWOperation) UnmarshalNDRResponse(ctx context.Cont
 			return nil
 		})
 		_s_lpResumeIndex := func(ptr interface{}) { o.ResumeIndex = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ResumeIndex, _s_lpResumeIndex, _ptr_lpResumeIndex); err != nil {
+		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusWNullMaskResumeIndex }
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -13704,6 +13797,10 @@ func (o *xxx_EnumServicesStatusWOperation) UnmarshalNDRResponse(ctx context.Cont
 
 // EnumServicesStatusWRequest structure represents the REnumServicesStatusW operation request
 type EnumServicesStatusWRequest struct {
+
+	// EnumServicesStatusWNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServicesStatusWNullMask
+
 	// hSCManager: An SC_RPC_HANDLE (section 2.2.4) data type that defines the handle to
 	// the SCM database that MUST have been created previously, using one of the open methods
 	// specified in section 3.1.4. The SC_MANAGER_ENUMERATE_SERVICE access right MUST have
@@ -13775,6 +13872,7 @@ func (o *EnumServicesStatusWRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumS
 	op.ServiceState = o.ServiceState
 	op.BufferLength = o.BufferLength
 	op.ResumeIndex = o.ResumeIndex
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -13787,6 +13885,7 @@ func (o *EnumServicesStatusWRequest) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.ServiceState = op.ServiceState
 	o.BufferLength = op.BufferLength
 	o.ResumeIndex = op.ResumeIndex
+	o.NullMask = EnumServicesStatusWNullMask(op.NullMask) & EnumServicesStatusWNullMaskRequestAll
 }
 func (o *EnumServicesStatusWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -13818,6 +13917,10 @@ func (o *EnumServicesStatusWRequest) OpName() string { return "/svcctl/v2/REnumS
 
 // EnumServicesStatusWResponse structure represents the REnumServicesStatusW operation response
 type EnumServicesStatusWResponse struct {
+
+	// EnumServicesStatusWNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServicesStatusWNullMask
+
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 
@@ -13858,6 +13961,7 @@ func (o *EnumServicesStatusWResponse) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	op.ServicesReturned = o.ServicesReturned
 	op.ResumeIndex = o.ResumeIndex
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -13873,6 +13977,7 @@ func (o *EnumServicesStatusWResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.ServicesReturned = op.ServicesReturned
 	o.ResumeIndex = op.ResumeIndex
 	o.Return = op.Return
+	o.NullMask = EnumServicesStatusWNullMask(op.NullMask) & EnumServicesStatusWNullMaskResponseAll
 }
 func (o *EnumServicesStatusWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -15796,8 +15901,27 @@ func (o *GetServiceKeyNameWResponse) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+type ChangeServiceConfigANullMask ndr.NullMask
+
+var (
+	ChangeServiceConfigANullMaskTagID ChangeServiceConfigANullMask = 1 << 0
+
+	ChangeServiceConfigANullMaskRequestAll  ChangeServiceConfigANullMask = 0 | ChangeServiceConfigANullMaskTagID
+	ChangeServiceConfigANullMaskResponseAll ChangeServiceConfigANullMask = 0 | ChangeServiceConfigANullMaskTagID
+)
+
+func (o ChangeServiceConfigANullMask) IsSet(v ChangeServiceConfigANullMask) bool { return o&v != 0 }
+
+func (o ChangeServiceConfigANullMask) Set(v ChangeServiceConfigANullMask) ChangeServiceConfigANullMask {
+	return o | v
+}
+
 // xxx_ChangeServiceConfigAOperation structure represents the RChangeServiceConfigA operation
 type xxx_ChangeServiceConfigAOperation struct {
+
+	// ChangeServiceConfigANullMask is used to carry information on null-valued primitive values.
+	NullMask ChangeServiceConfigANullMask
+
 	Service          *Handle `idl:"name:hService" json:"service"`
 	ServiceType      uint32  `idl:"name:dwServiceType" json:"service_type"`
 	StartType        uint32  `idl:"name:dwStartType" json:"start_type"`
@@ -15933,7 +16057,7 @@ func (o *xxx_ChangeServiceConfigAOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&ChangeServiceConfigANullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -16156,7 +16280,8 @@ func (o *xxx_ChangeServiceConfigAOperation) UnmarshalNDRRequest(ctx context.Cont
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= ChangeServiceConfigANullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -16287,7 +16412,7 @@ func (o *xxx_ChangeServiceConfigAOperation) MarshalNDRResponse(ctx context.Conte
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&ChangeServiceConfigANullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -16325,7 +16450,8 @@ func (o *xxx_ChangeServiceConfigAOperation) UnmarshalNDRResponse(ctx context.Con
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= ChangeServiceConfigANullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -16343,6 +16469,10 @@ func (o *xxx_ChangeServiceConfigAOperation) UnmarshalNDRResponse(ctx context.Con
 
 // ChangeServiceConfigARequest structure represents the RChangeServiceConfigA operation request
 type ChangeServiceConfigARequest struct {
+
+	// ChangeServiceConfigANullMask is used to carry information on null-valued primitive values.
+	NullMask ChangeServiceConfigANullMask
+
 	// hService: An SC_RPC_HANDLE (section 2.2.4) data type that defines the handle to the
 	// service record that MUST have been created previously, using one of the open methods
 	// specified in section 3.1.4. The SERVICE_CHANGE_CONFIG access right MUST have been
@@ -16496,6 +16626,7 @@ func (o *ChangeServiceConfigARequest) xxx_ToOp(ctx context.Context, op *xxx_Chan
 	op.Password = o.Password
 	op.PasswordSize = o.PasswordSize
 	op.DisplayName = o.DisplayName
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -16516,6 +16647,7 @@ func (o *ChangeServiceConfigARequest) xxx_FromOp(ctx context.Context, op *xxx_Ch
 	o.Password = op.Password
 	o.PasswordSize = op.PasswordSize
 	o.DisplayName = op.DisplayName
+	o.NullMask = ChangeServiceConfigANullMask(op.NullMask) & ChangeServiceConfigANullMaskRequestAll
 }
 func (o *ChangeServiceConfigARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -16542,6 +16674,10 @@ func (o *ChangeServiceConfigARequest) OpName() string { return "/svcctl/v2/RChan
 
 // ChangeServiceConfigAResponse structure represents the RChangeServiceConfigA operation response
 type ChangeServiceConfigAResponse struct {
+
+	// ChangeServiceConfigANullMask is used to carry information on null-valued primitive values.
+	NullMask ChangeServiceConfigANullMask
+
 	// lpdwTagId: A Tag value for the service record (section 3.1.1) as a pointer to a variable
 	// that receives a tag value. The value is unique to the group specified in the lpLoadOrderGroup
 	// parameter.
@@ -16559,6 +16695,7 @@ func (o *ChangeServiceConfigAResponse) xxx_ToOp(ctx context.Context, op *xxx_Cha
 	}
 	op.TagID = o.TagID
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -16568,6 +16705,7 @@ func (o *ChangeServiceConfigAResponse) xxx_FromOp(ctx context.Context, op *xxx_C
 	}
 	o.TagID = op.TagID
 	o.Return = op.Return
+	o.NullMask = ChangeServiceConfigANullMask(op.NullMask) & ChangeServiceConfigANullMaskResponseAll
 }
 func (o *ChangeServiceConfigAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -16581,8 +16719,25 @@ func (o *ChangeServiceConfigAResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+type CreateServiceANullMask ndr.NullMask
+
+var (
+	CreateServiceANullMaskTagID CreateServiceANullMask = 1 << 0
+
+	CreateServiceANullMaskRequestAll  CreateServiceANullMask = 0 | CreateServiceANullMaskTagID
+	CreateServiceANullMaskResponseAll CreateServiceANullMask = 0 | CreateServiceANullMaskTagID
+)
+
+func (o CreateServiceANullMask) IsSet(v CreateServiceANullMask) bool { return o&v != 0 }
+
+func (o CreateServiceANullMask) Set(v CreateServiceANullMask) CreateServiceANullMask { return o | v }
+
 // xxx_CreateServiceAOperation structure represents the RCreateServiceA operation
 type xxx_CreateServiceAOperation struct {
+
+	// CreateServiceANullMask is used to carry information on null-valued primitive values.
+	NullMask CreateServiceANullMask
+
 	ServiceManager   *Handle `idl:"name:hSCManager" json:"service_manager"`
 	ServiceName      string  `idl:"name:lpServiceName;string" json:"service_name"`
 	DisplayName      string  `idl:"name:lpDisplayName;string;pointer:unique" json:"display_name"`
@@ -16740,7 +16895,7 @@ func (o *xxx_CreateServiceAOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceANullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -16960,7 +17115,8 @@ func (o *xxx_CreateServiceAOperation) UnmarshalNDRRequest(ctx context.Context, w
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= CreateServiceANullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -17075,7 +17231,7 @@ func (o *xxx_CreateServiceAOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceANullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -17125,7 +17281,8 @@ func (o *xxx_CreateServiceAOperation) UnmarshalNDRResponse(ctx context.Context, 
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= CreateServiceANullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -17152,6 +17309,10 @@ func (o *xxx_CreateServiceAOperation) UnmarshalNDRResponse(ctx context.Context, 
 
 // CreateServiceARequest structure represents the RCreateServiceA operation request
 type CreateServiceARequest struct {
+
+	// CreateServiceANullMask is used to carry information on null-valued primitive values.
+	NullMask CreateServiceANullMask
+
 	// hSCManager: An SC_RPC_HANDLE (section 2.2.4) data type that defines the handle to
 	// the SCM database created using one of the open methods specified in section 3.1.4.
 	// The SC_MANAGER_CREATE_SERVICE access right MUST have been granted to the caller when
@@ -17297,6 +17458,7 @@ func (o *CreateServiceARequest) xxx_ToOp(ctx context.Context, op *xxx_CreateServ
 	op.ServiceStartName = o.ServiceStartName
 	op.Password = o.Password
 	op.PasswordSize = o.PasswordSize
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -17319,6 +17481,7 @@ func (o *CreateServiceARequest) xxx_FromOp(ctx context.Context, op *xxx_CreateSe
 	o.ServiceStartName = op.ServiceStartName
 	o.Password = op.Password
 	o.PasswordSize = op.PasswordSize
+	o.NullMask = CreateServiceANullMask(op.NullMask) & CreateServiceANullMaskRequestAll
 }
 func (o *CreateServiceARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -17345,6 +17508,10 @@ func (o *CreateServiceARequest) OpName() string { return "/svcctl/v2/RCreateServ
 
 // CreateServiceAResponse structure represents the RCreateServiceA operation response
 type CreateServiceAResponse struct {
+
+	// CreateServiceANullMask is used to carry information on null-valued primitive values.
+	NullMask CreateServiceANullMask
+
 	// lpdwTagId: A pointer to a variable that receives a tag value. The value is unique
 	// to the group specified in the lpLoadOrderGroup parameter.
 	TagID uint32 `idl:"name:lpdwTagId;pointer:unique" json:"tag_id"`
@@ -17365,6 +17532,7 @@ func (o *CreateServiceAResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateSer
 	op.TagID = o.TagID
 	op.Service = o.Service
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -17375,6 +17543,7 @@ func (o *CreateServiceAResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateS
 	o.TagID = op.TagID
 	o.Service = op.Service
 	o.Return = op.Return
+	o.NullMask = CreateServiceANullMask(op.NullMask) & CreateServiceANullMaskResponseAll
 }
 func (o *CreateServiceAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -17722,8 +17891,27 @@ func (o *EnumDependentServicesAResponse) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
+type EnumServicesStatusANullMask ndr.NullMask
+
+var (
+	EnumServicesStatusANullMaskResumeIndex EnumServicesStatusANullMask = 1 << 0
+
+	EnumServicesStatusANullMaskRequestAll  EnumServicesStatusANullMask = 0 | EnumServicesStatusANullMaskResumeIndex
+	EnumServicesStatusANullMaskResponseAll EnumServicesStatusANullMask = 0 | EnumServicesStatusANullMaskResumeIndex
+)
+
+func (o EnumServicesStatusANullMask) IsSet(v EnumServicesStatusANullMask) bool { return o&v != 0 }
+
+func (o EnumServicesStatusANullMask) Set(v EnumServicesStatusANullMask) EnumServicesStatusANullMask {
+	return o | v
+}
+
 // xxx_EnumServicesStatusAOperation structure represents the REnumServicesStatusA operation
 type xxx_EnumServicesStatusAOperation struct {
+
+	// EnumServicesStatusANullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServicesStatusANullMask
+
 	ServiceManager    *Handle `idl:"name:hSCManager" json:"service_manager"`
 	ServiceType       uint32  `idl:"name:dwServiceType" json:"service_type"`
 	ServiceState      uint32  `idl:"name:dwServiceState" json:"service_state"`
@@ -17789,16 +17977,20 @@ func (o *xxx_EnumServicesStatusAOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ResumeIndex); err != nil {
+		if o.NullMask&EnumServicesStatusANullMaskResumeIndex == 0 {
+			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ResumeIndex); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -17844,7 +18036,8 @@ func (o *xxx_EnumServicesStatusAOperation) UnmarshalNDRRequest(ctx context.Conte
 			return nil
 		})
 		_s_lpResumeIndex := func(ptr interface{}) { o.ResumeIndex = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ResumeIndex, _s_lpResumeIndex, _ptr_lpResumeIndex); err != nil {
+		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusANullMaskResumeIndex }
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -17905,16 +18098,20 @@ func (o *xxx_EnumServicesStatusAOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ResumeIndex); err != nil {
+		if o.NullMask&EnumServicesStatusANullMaskResumeIndex == 0 {
+			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ResumeIndex); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -17972,7 +18169,8 @@ func (o *xxx_EnumServicesStatusAOperation) UnmarshalNDRResponse(ctx context.Cont
 			return nil
 		})
 		_s_lpResumeIndex := func(ptr interface{}) { o.ResumeIndex = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ResumeIndex, _s_lpResumeIndex, _ptr_lpResumeIndex); err != nil {
+		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusANullMaskResumeIndex }
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -17990,6 +18188,10 @@ func (o *xxx_EnumServicesStatusAOperation) UnmarshalNDRResponse(ctx context.Cont
 
 // EnumServicesStatusARequest structure represents the REnumServicesStatusA operation request
 type EnumServicesStatusARequest struct {
+
+	// EnumServicesStatusANullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServicesStatusANullMask
+
 	// hSCManager: An SC_RPC_HANDLE (section 2.2.4) data type that defines the handle to
 	// the SCM database that MUST have been created previously, using one of the open methods
 	// specified in section 3.1.4. The SC_MANAGER_ENUMERATE_SERVICE access right MUST have
@@ -18060,6 +18262,7 @@ func (o *EnumServicesStatusARequest) xxx_ToOp(ctx context.Context, op *xxx_EnumS
 	op.ServiceState = o.ServiceState
 	op.BufferLength = o.BufferLength
 	op.ResumeIndex = o.ResumeIndex
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -18072,6 +18275,7 @@ func (o *EnumServicesStatusARequest) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.ServiceState = op.ServiceState
 	o.BufferLength = op.BufferLength
 	o.ResumeIndex = op.ResumeIndex
+	o.NullMask = EnumServicesStatusANullMask(op.NullMask) & EnumServicesStatusANullMaskRequestAll
 }
 func (o *EnumServicesStatusARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -18103,6 +18307,10 @@ func (o *EnumServicesStatusARequest) OpName() string { return "/svcctl/v2/REnumS
 
 // EnumServicesStatusAResponse structure represents the REnumServicesStatusA operation response
 type EnumServicesStatusAResponse struct {
+
+	// EnumServicesStatusANullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServicesStatusANullMask
+
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 
@@ -18144,6 +18352,7 @@ func (o *EnumServicesStatusAResponse) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	op.ServicesReturned = o.ServicesReturned
 	op.ResumeIndex = o.ResumeIndex
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -18159,6 +18368,7 @@ func (o *EnumServicesStatusAResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.ServicesReturned = op.ServicesReturned
 	o.ResumeIndex = op.ResumeIndex
 	o.Return = op.Return
+	o.NullMask = EnumServicesStatusANullMask(op.NullMask) & EnumServicesStatusANullMaskResponseAll
 }
 func (o *EnumServicesStatusAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -20074,8 +20284,27 @@ func (o *GetServiceKeyNameAResponse) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
+type EnumServiceGroupWNullMask ndr.NullMask
+
+var (
+	EnumServiceGroupWNullMaskResumeIndex EnumServiceGroupWNullMask = 1 << 0
+
+	EnumServiceGroupWNullMaskRequestAll  EnumServiceGroupWNullMask = 0 | EnumServiceGroupWNullMaskResumeIndex
+	EnumServiceGroupWNullMaskResponseAll EnumServiceGroupWNullMask = 0 | EnumServiceGroupWNullMaskResumeIndex
+)
+
+func (o EnumServiceGroupWNullMask) IsSet(v EnumServiceGroupWNullMask) bool { return o&v != 0 }
+
+func (o EnumServiceGroupWNullMask) Set(v EnumServiceGroupWNullMask) EnumServiceGroupWNullMask {
+	return o | v
+}
+
 // xxx_EnumServiceGroupWOperation structure represents the REnumServiceGroupW operation
 type xxx_EnumServiceGroupWOperation struct {
+
+	// EnumServiceGroupWNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServiceGroupWNullMask
+
 	ServiceManager    *Handle `idl:"name:hSCManager" json:"service_manager"`
 	ServiceType       uint32  `idl:"name:dwServiceType" json:"service_type"`
 	ServiceState      uint32  `idl:"name:dwServiceState" json:"service_state"`
@@ -20145,16 +20374,20 @@ func (o *xxx_EnumServiceGroupWOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ResumeIndex); err != nil {
+		if o.NullMask&EnumServiceGroupWNullMaskResumeIndex == 0 {
+			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ResumeIndex); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -20221,7 +20454,8 @@ func (o *xxx_EnumServiceGroupWOperation) UnmarshalNDRRequest(ctx context.Context
 			return nil
 		})
 		_s_lpResumeIndex := func(ptr interface{}) { o.ResumeIndex = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ResumeIndex, _s_lpResumeIndex, _ptr_lpResumeIndex); err != nil {
+		_m_lpResumeIndex := func() { o.NullMask |= EnumServiceGroupWNullMaskResumeIndex }
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -20298,16 +20532,20 @@ func (o *xxx_EnumServiceGroupWOperation) MarshalNDRResponse(ctx context.Context,
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ResumeIndex); err != nil {
+		if o.NullMask&EnumServiceGroupWNullMaskResumeIndex == 0 {
+			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ResumeIndex); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -20365,7 +20603,8 @@ func (o *xxx_EnumServiceGroupWOperation) UnmarshalNDRResponse(ctx context.Contex
 			return nil
 		})
 		_s_lpResumeIndex := func(ptr interface{}) { o.ResumeIndex = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ResumeIndex, _s_lpResumeIndex, _ptr_lpResumeIndex); err != nil {
+		_m_lpResumeIndex := func() { o.NullMask |= EnumServiceGroupWNullMaskResumeIndex }
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -20383,6 +20622,10 @@ func (o *xxx_EnumServiceGroupWOperation) UnmarshalNDRResponse(ctx context.Contex
 
 // EnumServiceGroupWRequest structure represents the REnumServiceGroupW operation request
 type EnumServiceGroupWRequest struct {
+
+	// EnumServiceGroupWNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServiceGroupWNullMask
+
 	// hSCManager: An SC_RPC_HANDLE (section 2.2.4) data type that defines the handle to
 	// the SCM created using one of the open methods specified in section 3.1.4. The SC_MANAGER_ENUMERATE_SERVICE
 	// access right MUST have been granted to the caller when the RPC context handle was
@@ -20456,6 +20699,7 @@ func (o *EnumServiceGroupWRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumSer
 	op.BufferLength = o.BufferLength
 	op.ResumeIndex = o.ResumeIndex
 	op.GroupName = o.GroupName
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -20469,6 +20713,7 @@ func (o *EnumServiceGroupWRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumS
 	o.BufferLength = op.BufferLength
 	o.ResumeIndex = op.ResumeIndex
 	o.GroupName = op.GroupName
+	o.NullMask = EnumServiceGroupWNullMask(op.NullMask) & EnumServiceGroupWNullMaskRequestAll
 }
 func (o *EnumServiceGroupWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -20500,6 +20745,10 @@ func (o *EnumServiceGroupWRequest) OpName() string { return "/svcctl/v2/REnumSer
 
 // EnumServiceGroupWResponse structure represents the REnumServiceGroupW operation response
 type EnumServiceGroupWResponse struct {
+
+	// EnumServiceGroupWNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServiceGroupWNullMask
+
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 
@@ -20541,6 +20790,7 @@ func (o *EnumServiceGroupWResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumSe
 	op.ServicesReturned = o.ServicesReturned
 	op.ResumeIndex = o.ResumeIndex
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -20556,6 +20806,7 @@ func (o *EnumServiceGroupWResponse) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	o.ServicesReturned = op.ServicesReturned
 	o.ResumeIndex = op.ResumeIndex
 	o.Return = op.Return
+	o.NullMask = EnumServiceGroupWNullMask(op.NullMask) & EnumServiceGroupWNullMaskResponseAll
 }
 func (o *EnumServiceGroupWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -21922,8 +22173,27 @@ func (o *QueryServiceStatusExResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+type EnumServicesStatusExANullMask ndr.NullMask
+
+var (
+	EnumServicesStatusExANullMaskResumeIndex EnumServicesStatusExANullMask = 1 << 0
+
+	EnumServicesStatusExANullMaskRequestAll  EnumServicesStatusExANullMask = 0 | EnumServicesStatusExANullMaskResumeIndex
+	EnumServicesStatusExANullMaskResponseAll EnumServicesStatusExANullMask = 0 | EnumServicesStatusExANullMaskResumeIndex
+)
+
+func (o EnumServicesStatusExANullMask) IsSet(v EnumServicesStatusExANullMask) bool { return o&v != 0 }
+
+func (o EnumServicesStatusExANullMask) Set(v EnumServicesStatusExANullMask) EnumServicesStatusExANullMask {
+	return o | v
+}
+
 // xxx_EnumServicesStatusExAOperation structure represents the REnumServicesStatusExA operation
 type xxx_EnumServicesStatusExAOperation struct {
+
+	// EnumServicesStatusExANullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServicesStatusExANullMask
+
 	ServiceManager    *Handle  `idl:"name:hSCManager" json:"service_manager"`
 	InfoLevel         EnumType `idl:"name:InfoLevel" json:"info_level"`
 	ServiceType       uint32   `idl:"name:dwServiceType" json:"service_type"`
@@ -22002,16 +22272,20 @@ func (o *xxx_EnumServicesStatusExAOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ResumeIndex); err != nil {
+		if o.NullMask&EnumServicesStatusExANullMaskResumeIndex == 0 {
+			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ResumeIndex); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -22084,7 +22358,8 @@ func (o *xxx_EnumServicesStatusExAOperation) UnmarshalNDRRequest(ctx context.Con
 			return nil
 		})
 		_s_lpResumeIndex := func(ptr interface{}) { o.ResumeIndex = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ResumeIndex, _s_lpResumeIndex, _ptr_lpResumeIndex); err != nil {
+		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusExANullMaskResumeIndex }
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -22161,16 +22436,20 @@ func (o *xxx_EnumServicesStatusExAOperation) MarshalNDRResponse(ctx context.Cont
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ResumeIndex); err != nil {
+		if o.NullMask&EnumServicesStatusExANullMaskResumeIndex == 0 {
+			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ResumeIndex); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -22228,7 +22507,8 @@ func (o *xxx_EnumServicesStatusExAOperation) UnmarshalNDRResponse(ctx context.Co
 			return nil
 		})
 		_s_lpResumeIndex := func(ptr interface{}) { o.ResumeIndex = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ResumeIndex, _s_lpResumeIndex, _ptr_lpResumeIndex); err != nil {
+		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusExANullMaskResumeIndex }
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -22246,6 +22526,10 @@ func (o *xxx_EnumServicesStatusExAOperation) UnmarshalNDRResponse(ctx context.Co
 
 // EnumServicesStatusExARequest structure represents the REnumServicesStatusExA operation request
 type EnumServicesStatusExARequest struct {
+
+	// EnumServicesStatusExANullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServicesStatusExANullMask
+
 	// hSCManager: An SC_RPC_HANDLE (section 2.2.4) data type that defines the handle to
 	// the SCM database that MUST have been created previously, using one of the open methods
 	// specified in section 3.1.4. The SC_MANAGER_ENUMERATE_SERVICE access right MUST have
@@ -22322,6 +22606,7 @@ func (o *EnumServicesStatusExARequest) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	op.BufferLength = o.BufferLength
 	op.ResumeIndex = o.ResumeIndex
 	op.GroupName = o.GroupName
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -22336,6 +22621,7 @@ func (o *EnumServicesStatusExARequest) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.BufferLength = op.BufferLength
 	o.ResumeIndex = op.ResumeIndex
 	o.GroupName = op.GroupName
+	o.NullMask = EnumServicesStatusExANullMask(op.NullMask) & EnumServicesStatusExANullMaskRequestAll
 }
 func (o *EnumServicesStatusExARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -22367,6 +22653,10 @@ func (o *EnumServicesStatusExARequest) OpName() string { return "/svcctl/v2/REnu
 
 // EnumServicesStatusExAResponse structure represents the REnumServicesStatusExA operation response
 type EnumServicesStatusExAResponse struct {
+
+	// EnumServicesStatusExANullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServicesStatusExANullMask
+
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 
@@ -22407,6 +22697,7 @@ func (o *EnumServicesStatusExAResponse) xxx_ToOp(ctx context.Context, op *xxx_En
 	op.ServicesReturned = o.ServicesReturned
 	op.ResumeIndex = o.ResumeIndex
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -22422,6 +22713,7 @@ func (o *EnumServicesStatusExAResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.ServicesReturned = op.ServicesReturned
 	o.ResumeIndex = op.ResumeIndex
 	o.Return = op.Return
+	o.NullMask = EnumServicesStatusExANullMask(op.NullMask) & EnumServicesStatusExANullMaskResponseAll
 }
 func (o *EnumServicesStatusExAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -22435,8 +22727,27 @@ func (o *EnumServicesStatusExAResponse) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+type EnumServicesStatusExWNullMask ndr.NullMask
+
+var (
+	EnumServicesStatusExWNullMaskResumeIndex EnumServicesStatusExWNullMask = 1 << 0
+
+	EnumServicesStatusExWNullMaskRequestAll  EnumServicesStatusExWNullMask = 0 | EnumServicesStatusExWNullMaskResumeIndex
+	EnumServicesStatusExWNullMaskResponseAll EnumServicesStatusExWNullMask = 0 | EnumServicesStatusExWNullMaskResumeIndex
+)
+
+func (o EnumServicesStatusExWNullMask) IsSet(v EnumServicesStatusExWNullMask) bool { return o&v != 0 }
+
+func (o EnumServicesStatusExWNullMask) Set(v EnumServicesStatusExWNullMask) EnumServicesStatusExWNullMask {
+	return o | v
+}
+
 // xxx_EnumServicesStatusExWOperation structure represents the REnumServicesStatusExW operation
 type xxx_EnumServicesStatusExWOperation struct {
+
+	// EnumServicesStatusExWNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServicesStatusExWNullMask
+
 	ServiceManager    *Handle  `idl:"name:hSCManager" json:"service_manager"`
 	InfoLevel         EnumType `idl:"name:InfoLevel" json:"info_level"`
 	ServiceType       uint32   `idl:"name:dwServiceType" json:"service_type"`
@@ -22515,16 +22826,20 @@ func (o *xxx_EnumServicesStatusExWOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ResumeIndex); err != nil {
+		if o.NullMask&EnumServicesStatusExWNullMaskResumeIndex == 0 {
+			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ResumeIndex); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -22597,7 +22912,8 @@ func (o *xxx_EnumServicesStatusExWOperation) UnmarshalNDRRequest(ctx context.Con
 			return nil
 		})
 		_s_lpResumeIndex := func(ptr interface{}) { o.ResumeIndex = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ResumeIndex, _s_lpResumeIndex, _ptr_lpResumeIndex); err != nil {
+		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusExWNullMaskResumeIndex }
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -22674,16 +22990,20 @@ func (o *xxx_EnumServicesStatusExWOperation) MarshalNDRResponse(ctx context.Cont
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_default_null([cond]) attribute.
-		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.ResumeIndex); err != nil {
+		if o.NullMask&EnumServicesStatusExWNullMaskResumeIndex == 0 {
+			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.ResumeIndex); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.ResumeIndex, _ptr_lpResumeIndex); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -22741,7 +23061,8 @@ func (o *xxx_EnumServicesStatusExWOperation) UnmarshalNDRResponse(ctx context.Co
 			return nil
 		})
 		_s_lpResumeIndex := func(ptr interface{}) { o.ResumeIndex = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.ResumeIndex, _s_lpResumeIndex, _ptr_lpResumeIndex); err != nil {
+		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusExWNullMaskResumeIndex }
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -22759,6 +23080,10 @@ func (o *xxx_EnumServicesStatusExWOperation) UnmarshalNDRResponse(ctx context.Co
 
 // EnumServicesStatusExWRequest structure represents the REnumServicesStatusExW operation request
 type EnumServicesStatusExWRequest struct {
+
+	// EnumServicesStatusExWNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServicesStatusExWNullMask
+
 	// hSCManager: An SC_RPC_HANDLE (section 2.2.4) data type that defines the handle to
 	// the SCM database that MUST have been created previously, using one of the open methods
 	// specified in section 3.1.4. The SC_MANAGER_ENUMERATE_SERVICE access right MUST have
@@ -22835,6 +23160,7 @@ func (o *EnumServicesStatusExWRequest) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	op.BufferLength = o.BufferLength
 	op.ResumeIndex = o.ResumeIndex
 	op.GroupName = o.GroupName
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -22849,6 +23175,7 @@ func (o *EnumServicesStatusExWRequest) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.BufferLength = op.BufferLength
 	o.ResumeIndex = op.ResumeIndex
 	o.GroupName = op.GroupName
+	o.NullMask = EnumServicesStatusExWNullMask(op.NullMask) & EnumServicesStatusExWNullMaskRequestAll
 }
 func (o *EnumServicesStatusExWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -22880,6 +23207,10 @@ func (o *EnumServicesStatusExWRequest) OpName() string { return "/svcctl/v2/REnu
 
 // EnumServicesStatusExWResponse structure represents the REnumServicesStatusExW operation response
 type EnumServicesStatusExWResponse struct {
+
+	// EnumServicesStatusExWNullMask is used to carry information on null-valued primitive values.
+	NullMask EnumServicesStatusExWNullMask
+
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 
@@ -22921,6 +23252,7 @@ func (o *EnumServicesStatusExWResponse) xxx_ToOp(ctx context.Context, op *xxx_En
 	op.ServicesReturned = o.ServicesReturned
 	op.ResumeIndex = o.ResumeIndex
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -22936,6 +23268,7 @@ func (o *EnumServicesStatusExWResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.ServicesReturned = op.ServicesReturned
 	o.ResumeIndex = op.ResumeIndex
 	o.Return = op.Return
+	o.NullMask = EnumServicesStatusExWNullMask(op.NullMask) & EnumServicesStatusExWNullMaskResponseAll
 }
 func (o *EnumServicesStatusExWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -22949,8 +23282,27 @@ func (o *EnumServicesStatusExWResponse) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
+type CreateServiceWOW64ANullMask ndr.NullMask
+
+var (
+	CreateServiceWOW64ANullMaskTagID CreateServiceWOW64ANullMask = 1 << 0
+
+	CreateServiceWOW64ANullMaskRequestAll  CreateServiceWOW64ANullMask = 0 | CreateServiceWOW64ANullMaskTagID
+	CreateServiceWOW64ANullMaskResponseAll CreateServiceWOW64ANullMask = 0 | CreateServiceWOW64ANullMaskTagID
+)
+
+func (o CreateServiceWOW64ANullMask) IsSet(v CreateServiceWOW64ANullMask) bool { return o&v != 0 }
+
+func (o CreateServiceWOW64ANullMask) Set(v CreateServiceWOW64ANullMask) CreateServiceWOW64ANullMask {
+	return o | v
+}
+
 // xxx_CreateServiceWOW64AOperation structure represents the RCreateServiceWOW64A operation
 type xxx_CreateServiceWOW64AOperation struct {
+
+	// CreateServiceWOW64ANullMask is used to carry information on null-valued primitive values.
+	NullMask CreateServiceWOW64ANullMask
+
 	ServiceManager   *Handle `idl:"name:hSCManager" json:"service_manager"`
 	ServiceName      string  `idl:"name:lpServiceName;string" json:"service_name"`
 	DisplayName      string  `idl:"name:lpDisplayName;string;pointer:unique" json:"display_name"`
@@ -23108,7 +23460,7 @@ func (o *xxx_CreateServiceWOW64AOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWOW64ANullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -23328,7 +23680,8 @@ func (o *xxx_CreateServiceWOW64AOperation) UnmarshalNDRRequest(ctx context.Conte
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= CreateServiceWOW64ANullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -23443,7 +23796,7 @@ func (o *xxx_CreateServiceWOW64AOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWOW64ANullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -23493,7 +23846,8 @@ func (o *xxx_CreateServiceWOW64AOperation) UnmarshalNDRResponse(ctx context.Cont
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= CreateServiceWOW64ANullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -23520,6 +23874,10 @@ func (o *xxx_CreateServiceWOW64AOperation) UnmarshalNDRResponse(ctx context.Cont
 
 // CreateServiceWOW64ARequest structure represents the RCreateServiceWOW64A operation request
 type CreateServiceWOW64ARequest struct {
+
+	// CreateServiceWOW64ANullMask is used to carry information on null-valued primitive values.
+	NullMask CreateServiceWOW64ANullMask
+
 	// hSCManager: An SC_RPC_HANDLE (section 2.2.4) data type that defines the handle to
 	// the SCM database that MUST have been created previously, using one of the open methods
 	// specified in section 3.1.4. The SC_MANAGER_CREATE_SERVICE access right MUST have
@@ -23659,6 +24017,7 @@ func (o *CreateServiceWOW64ARequest) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	op.ServiceStartName = o.ServiceStartName
 	op.Password = o.Password
 	op.PasswordSize = o.PasswordSize
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -23681,6 +24040,7 @@ func (o *CreateServiceWOW64ARequest) xxx_FromOp(ctx context.Context, op *xxx_Cre
 	o.ServiceStartName = op.ServiceStartName
 	o.Password = op.Password
 	o.PasswordSize = op.PasswordSize
+	o.NullMask = CreateServiceWOW64ANullMask(op.NullMask) & CreateServiceWOW64ANullMaskRequestAll
 }
 func (o *CreateServiceWOW64ARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -23707,6 +24067,10 @@ func (o *CreateServiceWOW64ARequest) OpName() string { return "/svcctl/v2/RCreat
 
 // CreateServiceWOW64AResponse structure represents the RCreateServiceWOW64A operation response
 type CreateServiceWOW64AResponse struct {
+
+	// CreateServiceWOW64ANullMask is used to carry information on null-valued primitive values.
+	NullMask CreateServiceWOW64ANullMask
+
 	// lpdwTagId: A pointer to a variable that receives a tag value. The value is unique
 	// to the group specified in the lpLoadOrderGroup parameter.
 	TagID uint32 `idl:"name:lpdwTagId;pointer:unique" json:"tag_id"`
@@ -23727,6 +24091,7 @@ func (o *CreateServiceWOW64AResponse) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	op.TagID = o.TagID
 	op.Service = o.Service
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -23737,6 +24102,7 @@ func (o *CreateServiceWOW64AResponse) xxx_FromOp(ctx context.Context, op *xxx_Cr
 	o.TagID = op.TagID
 	o.Service = op.Service
 	o.Return = op.Return
+	o.NullMask = CreateServiceWOW64ANullMask(op.NullMask) & CreateServiceWOW64ANullMaskResponseAll
 }
 func (o *CreateServiceWOW64AResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -23750,8 +24116,27 @@ func (o *CreateServiceWOW64AResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
+type CreateServiceWOW64WNullMask ndr.NullMask
+
+var (
+	CreateServiceWOW64WNullMaskTagID CreateServiceWOW64WNullMask = 1 << 0
+
+	CreateServiceWOW64WNullMaskRequestAll  CreateServiceWOW64WNullMask = 0 | CreateServiceWOW64WNullMaskTagID
+	CreateServiceWOW64WNullMaskResponseAll CreateServiceWOW64WNullMask = 0 | CreateServiceWOW64WNullMaskTagID
+)
+
+func (o CreateServiceWOW64WNullMask) IsSet(v CreateServiceWOW64WNullMask) bool { return o&v != 0 }
+
+func (o CreateServiceWOW64WNullMask) Set(v CreateServiceWOW64WNullMask) CreateServiceWOW64WNullMask {
+	return o | v
+}
+
 // xxx_CreateServiceWOW64WOperation structure represents the RCreateServiceWOW64W operation
 type xxx_CreateServiceWOW64WOperation struct {
+
+	// CreateServiceWOW64WNullMask is used to carry information on null-valued primitive values.
+	NullMask CreateServiceWOW64WNullMask
+
 	ServiceManager   *Handle `idl:"name:hSCManager" json:"service_manager"`
 	ServiceName      string  `idl:"name:lpServiceName;string" json:"service_name"`
 	DisplayName      string  `idl:"name:lpDisplayName;string;pointer:unique" json:"display_name"`
@@ -23909,7 +24294,7 @@ func (o *xxx_CreateServiceWOW64WOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWOW64WNullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -24129,7 +24514,8 @@ func (o *xxx_CreateServiceWOW64WOperation) UnmarshalNDRRequest(ctx context.Conte
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= CreateServiceWOW64WNullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -24244,7 +24630,7 @@ func (o *xxx_CreateServiceWOW64WOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWOW64WNullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -24294,7 +24680,8 @@ func (o *xxx_CreateServiceWOW64WOperation) UnmarshalNDRResponse(ctx context.Cont
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= CreateServiceWOW64WNullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -24321,6 +24708,10 @@ func (o *xxx_CreateServiceWOW64WOperation) UnmarshalNDRResponse(ctx context.Cont
 
 // CreateServiceWOW64WRequest structure represents the RCreateServiceWOW64W operation request
 type CreateServiceWOW64WRequest struct {
+
+	// CreateServiceWOW64WNullMask is used to carry information on null-valued primitive values.
+	NullMask CreateServiceWOW64WNullMask
+
 	// hSCManager: An SC_RPC_HANDLE (section 2.2.4) data type that defines the handle to
 	// the SCM database created using one of the open methods specified in section 3.1.4.
 	// The SC_MANAGER_CREATE_SERVICE access right MUST have been granted to the caller when
@@ -24463,6 +24854,7 @@ func (o *CreateServiceWOW64WRequest) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	op.ServiceStartName = o.ServiceStartName
 	op.Password = o.Password
 	op.PasswordSize = o.PasswordSize
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -24485,6 +24877,7 @@ func (o *CreateServiceWOW64WRequest) xxx_FromOp(ctx context.Context, op *xxx_Cre
 	o.ServiceStartName = op.ServiceStartName
 	o.Password = op.Password
 	o.PasswordSize = op.PasswordSize
+	o.NullMask = CreateServiceWOW64WNullMask(op.NullMask) & CreateServiceWOW64WNullMaskRequestAll
 }
 func (o *CreateServiceWOW64WRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -24511,6 +24904,10 @@ func (o *CreateServiceWOW64WRequest) OpName() string { return "/svcctl/v2/RCreat
 
 // CreateServiceWOW64WResponse structure represents the RCreateServiceWOW64W operation response
 type CreateServiceWOW64WResponse struct {
+
+	// CreateServiceWOW64WNullMask is used to carry information on null-valued primitive values.
+	NullMask CreateServiceWOW64WNullMask
+
 	// lpdwTagId: A pointer to a variable that receives a tag value. The value is unique
 	// to the group specified in the lpLoadOrderGroup parameter.
 	TagID uint32 `idl:"name:lpdwTagId;pointer:unique" json:"tag_id"`
@@ -24531,6 +24928,7 @@ func (o *CreateServiceWOW64WResponse) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	op.TagID = o.TagID
 	op.Service = o.Service
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -24541,6 +24939,7 @@ func (o *CreateServiceWOW64WResponse) xxx_FromOp(ctx context.Context, op *xxx_Cr
 	o.TagID = op.TagID
 	o.Service = op.Service
 	o.Return = op.Return
+	o.NullMask = CreateServiceWOW64WNullMask(op.NullMask) & CreateServiceWOW64WNullMaskResponseAll
 }
 func (o *CreateServiceWOW64WResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
@@ -26227,8 +26626,27 @@ func (o *QueryServiceConfigExResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
+type CreateWOWServiceNullMask ndr.NullMask
+
+var (
+	CreateWOWServiceNullMaskTagID CreateWOWServiceNullMask = 1 << 0
+
+	CreateWOWServiceNullMaskRequestAll  CreateWOWServiceNullMask = 0 | CreateWOWServiceNullMaskTagID
+	CreateWOWServiceNullMaskResponseAll CreateWOWServiceNullMask = 0 | CreateWOWServiceNullMaskTagID
+)
+
+func (o CreateWOWServiceNullMask) IsSet(v CreateWOWServiceNullMask) bool { return o&v != 0 }
+
+func (o CreateWOWServiceNullMask) Set(v CreateWOWServiceNullMask) CreateWOWServiceNullMask {
+	return o | v
+}
+
 // xxx_CreateWOWServiceOperation structure represents the RCreateWowService operation
 type xxx_CreateWOWServiceOperation struct {
+
+	// CreateWOWServiceNullMask is used to carry information on null-valued primitive values.
+	NullMask CreateWOWServiceNullMask
+
 	ServiceManager   *Handle `idl:"name:hSCManager" json:"service_manager"`
 	ServiceName      string  `idl:"name:lpServiceName;string" json:"service_name"`
 	DisplayName      string  `idl:"name:lpDisplayName;string;pointer:unique" json:"display_name"`
@@ -26387,7 +26805,7 @@ func (o *xxx_CreateWOWServiceOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateWOWServiceNullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -26613,7 +27031,8 @@ func (o *xxx_CreateWOWServiceOperation) UnmarshalNDRRequest(ctx context.Context,
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= CreateWOWServiceNullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -26734,7 +27153,7 @@ func (o *xxx_CreateWOWServiceOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateWOWServiceNullMaskTagID == 0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -26784,7 +27203,8 @@ func (o *xxx_CreateWOWServiceOperation) UnmarshalNDRResponse(ctx context.Context
 			return nil
 		})
 		_s_lpdwTagId := func(ptr interface{}) { o.TagID = *ptr.(*uint32) }
-		if err := w.ReadPointer(&o.TagID, _s_lpdwTagId, _ptr_lpdwTagId); err != nil {
+		_m_lpdwTagId := func() { o.NullMask |= CreateWOWServiceNullMaskTagID }
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -26811,6 +27231,10 @@ func (o *xxx_CreateWOWServiceOperation) UnmarshalNDRResponse(ctx context.Context
 
 // CreateWOWServiceRequest structure represents the RCreateWowService operation request
 type CreateWOWServiceRequest struct {
+
+	// CreateWOWServiceNullMask is used to carry information on null-valued primitive values.
+	NullMask CreateWOWServiceNullMask
+
 	// hSCManager: An SC_RPC_HANDLE (section 2.2.4) data type that defines the handle to
 	// the SCM database created using one of the open methods specified in section 3.1.4.
 	// The SC_MANAGER_CREATE_SERVICE access right MUST have been granted to the caller when
@@ -27030,6 +27454,7 @@ func (o *CreateWOWServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateWO
 	op.Password = o.Password
 	op.PasswordSize = o.PasswordSize
 	op.ServiceWOWType = o.ServiceWOWType
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -27053,6 +27478,7 @@ func (o *CreateWOWServiceRequest) xxx_FromOp(ctx context.Context, op *xxx_Create
 	o.Password = op.Password
 	o.PasswordSize = op.PasswordSize
 	o.ServiceWOWType = op.ServiceWOWType
+	o.NullMask = CreateWOWServiceNullMask(op.NullMask) & CreateWOWServiceNullMaskRequestAll
 }
 func (o *CreateWOWServiceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -27079,6 +27505,10 @@ func (o *CreateWOWServiceRequest) OpName() string { return "/svcctl/v2/RCreateWo
 
 // CreateWOWServiceResponse structure represents the RCreateWowService operation response
 type CreateWOWServiceResponse struct {
+
+	// CreateWOWServiceNullMask is used to carry information on null-valued primitive values.
+	NullMask CreateWOWServiceNullMask
+
 	// lpdwTagId: A pointer to a variable that receives a tag value. The value is unique
 	// to the group specified in the lpLoadOrderGroup parameter.
 	TagID uint32 `idl:"name:lpdwTagId;pointer:unique" json:"tag_id"`
@@ -27099,6 +27529,7 @@ func (o *CreateWOWServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateW
 	op.TagID = o.TagID
 	op.Service = o.Service
 	op.Return = o.Return
+	op.NullMask = o.NullMask
 	return op
 }
 
@@ -27109,6 +27540,7 @@ func (o *CreateWOWServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_Creat
 	o.TagID = op.TagID
 	o.Service = op.Service
 	o.Return = op.Return
+	o.NullMask = CreateWOWServiceNullMask(op.NullMask) & CreateWOWServiceNullMaskResponseAll
 }
 func (o *CreateWOWServiceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
