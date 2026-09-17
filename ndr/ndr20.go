@@ -467,10 +467,17 @@ func (w *ndr20) WriteData(d any) error {
 	return nil
 }
 
+type PointerHook struct {
+	// OnSet declares an action for setting already unmarshaled pointer.
+	OnSet func(any)
+	// OnNull declares an action for null-pointer.
+	OnNull func()
+}
+
 // ReadPointer function reads the pointer value and defers the actual data read
-// until the ReadDeferred is called. The `setter` value is used in case of the
-// pointer aliasing.
-func (w *ndr20) ReadPointer(ptr Pointer, setter func(interface{}), mrs ...Unmarshaler) error {
+// until the ReadDeferred is called. The `hook` value is used in case of the
+// pointer aliasing or null-pointers.
+func (w *ndr20) ReadPointerWithHook(ptr Pointer, hook PointerHook, mrs ...Unmarshaler) error {
 
 	if w.err != nil {
 		return w.err
@@ -493,6 +500,9 @@ func (w *ndr20) ReadPointer(ptr Pointer, setter func(interface{}), mrs ...Unmars
 	}
 
 	if pptr == 0 {
+		if hook.OnNull != nil {
+			hook.OnNull()
+		}
 		return nil
 	}
 
@@ -502,12 +512,21 @@ func (w *ndr20) ReadPointer(ptr Pointer, setter func(interface{}), mrs ...Unmars
 	}
 
 	if ptr, ok := w.ptrs[uint64(pptr)]; ok {
-		setter(interface{}(ptr))
+		if hook.OnSet != nil {
+			hook.OnSet((any)(ptr))
+		}
 		return nil
 	}
 
 	w.ptrs[uint64(pptr)], w.rdeferred = ptr, append(w.rdeferred, mrs...)
 	return nil
+}
+
+// ReadPointer function reads the pointer value and defers the actual data read
+// until the ReadDeferred is called. The `setter` value is used in case of the
+// pointer aliasing.
+func (w *ndr20) ReadPointer(ptr Pointer, setter func(interface{}), mrs ...Unmarshaler) error {
+	return w.ReadPointerWithHook(ptr, PointerHook{setter, nil}, mrs...)
 }
 
 // WritePointer function writes the pointer to the data and defers the
