@@ -6810,6 +6810,10 @@ var (
 
 func (o PortInfo255NullMask) IsSet(v PortInfo255NullMask) bool { return o&v != 0 }
 
+func (o PortInfo255NullMask) Set(v PortInfo255NullMask) PortInfo255NullMask { return o | v }
+
+func (o PortInfo255NullMask) Unset(v PortInfo255NullMask) PortInfo255NullMask { return o &^ v }
+
 type PortInfo255 struct {
 
 	// PortInfo255NullMask is used to carry information on null-valued primitive values.
@@ -6860,7 +6864,7 @@ func (o *PortInfo255) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.MonitorDataLength); err != nil {
 		return err
 	}
-	if o.NullMask&PortInfo255NullMaskMonitorData == 0 {
+	if o.NullMask&PortInfo255NullMaskMonitorData == 0 || o.MonitorData != uint8(0) {
 		_ptr_pMonitorData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.MonitorData); err != nil {
 				return err

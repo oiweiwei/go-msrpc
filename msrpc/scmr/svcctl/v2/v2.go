@@ -11528,6 +11528,10 @@ func (o ChangeServiceConfigWNullMask) Set(v ChangeServiceConfigWNullMask) Change
 	return o | v
 }
 
+func (o ChangeServiceConfigWNullMask) Unset(v ChangeServiceConfigWNullMask) ChangeServiceConfigWNullMask {
+	return o &^ v
+}
+
 // xxx_ChangeServiceConfigWOperation structure represents the RChangeServiceConfigW operation
 type xxx_ChangeServiceConfigWOperation struct {
 
@@ -11669,7 +11673,7 @@ func (o *xxx_ChangeServiceConfigWOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&ChangeServiceConfigWNullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&ChangeServiceConfigWNullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -12024,7 +12028,7 @@ func (o *xxx_ChangeServiceConfigWOperation) MarshalNDRResponse(ctx context.Conte
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&ChangeServiceConfigWNullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&ChangeServiceConfigWNullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -12345,6 +12349,8 @@ func (o CreateServiceWNullMask) IsSet(v CreateServiceWNullMask) bool { return o&
 
 func (o CreateServiceWNullMask) Set(v CreateServiceWNullMask) CreateServiceWNullMask { return o | v }
 
+func (o CreateServiceWNullMask) Unset(v CreateServiceWNullMask) CreateServiceWNullMask { return o &^ v }
+
 // xxx_CreateServiceWOperation structure represents the RCreateServiceW operation
 type xxx_CreateServiceWOperation struct {
 
@@ -12508,7 +12514,7 @@ func (o *xxx_CreateServiceWOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWNullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWNullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -12844,7 +12850,7 @@ func (o *xxx_CreateServiceWOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWNullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWNullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -13515,6 +13521,10 @@ func (o EnumServicesStatusWNullMask) Set(v EnumServicesStatusWNullMask) EnumServ
 	return o | v
 }
 
+func (o EnumServicesStatusWNullMask) Unset(v EnumServicesStatusWNullMask) EnumServicesStatusWNullMask {
+	return o &^ v
+}
+
 // xxx_EnumServicesStatusWOperation structure represents the REnumServicesStatusW operation
 type xxx_EnumServicesStatusWOperation struct {
 
@@ -13586,7 +13596,7 @@ func (o *xxx_EnumServicesStatusWOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		if o.NullMask&EnumServicesStatusWNullMaskResumeIndex == 0 {
+		if o.NullMask&EnumServicesStatusWNullMaskResumeIndex == 0 || o.ResumeIndex != uint32(0) {
 			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ResumeIndex); err != nil {
 					return err
@@ -13707,7 +13717,7 @@ func (o *xxx_EnumServicesStatusWOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		if o.NullMask&EnumServicesStatusWNullMaskResumeIndex == 0 {
+		if o.NullMask&EnumServicesStatusWNullMaskResumeIndex == 0 || o.ResumeIndex != uint32(0) {
 			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ResumeIndex); err != nil {
 					return err
@@ -15916,6 +15926,10 @@ func (o ChangeServiceConfigANullMask) Set(v ChangeServiceConfigANullMask) Change
 	return o | v
 }
 
+func (o ChangeServiceConfigANullMask) Unset(v ChangeServiceConfigANullMask) ChangeServiceConfigANullMask {
+	return o &^ v
+}
+
 // xxx_ChangeServiceConfigAOperation structure represents the RChangeServiceConfigA operation
 type xxx_ChangeServiceConfigAOperation struct {
 
@@ -16057,7 +16071,7 @@ func (o *xxx_ChangeServiceConfigAOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&ChangeServiceConfigANullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&ChangeServiceConfigANullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -16412,7 +16426,7 @@ func (o *xxx_ChangeServiceConfigAOperation) MarshalNDRResponse(ctx context.Conte
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&ChangeServiceConfigANullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&ChangeServiceConfigANullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -16732,6 +16746,8 @@ func (o CreateServiceANullMask) IsSet(v CreateServiceANullMask) bool { return o&
 
 func (o CreateServiceANullMask) Set(v CreateServiceANullMask) CreateServiceANullMask { return o | v }
 
+func (o CreateServiceANullMask) Unset(v CreateServiceANullMask) CreateServiceANullMask { return o &^ v }
+
 // xxx_CreateServiceAOperation structure represents the RCreateServiceA operation
 type xxx_CreateServiceAOperation struct {
 
@@ -16895,7 +16911,7 @@ func (o *xxx_CreateServiceAOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&CreateServiceANullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceANullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -17231,7 +17247,7 @@ func (o *xxx_CreateServiceAOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&CreateServiceANullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceANullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -17906,6 +17922,10 @@ func (o EnumServicesStatusANullMask) Set(v EnumServicesStatusANullMask) EnumServ
 	return o | v
 }
 
+func (o EnumServicesStatusANullMask) Unset(v EnumServicesStatusANullMask) EnumServicesStatusANullMask {
+	return o &^ v
+}
+
 // xxx_EnumServicesStatusAOperation structure represents the REnumServicesStatusA operation
 type xxx_EnumServicesStatusAOperation struct {
 
@@ -17977,7 +17997,7 @@ func (o *xxx_EnumServicesStatusAOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		if o.NullMask&EnumServicesStatusANullMaskResumeIndex == 0 {
+		if o.NullMask&EnumServicesStatusANullMaskResumeIndex == 0 || o.ResumeIndex != uint32(0) {
 			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ResumeIndex); err != nil {
 					return err
@@ -18098,7 +18118,7 @@ func (o *xxx_EnumServicesStatusAOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		if o.NullMask&EnumServicesStatusANullMaskResumeIndex == 0 {
+		if o.NullMask&EnumServicesStatusANullMaskResumeIndex == 0 || o.ResumeIndex != uint32(0) {
 			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ResumeIndex); err != nil {
 					return err
@@ -20299,6 +20319,10 @@ func (o EnumServiceGroupWNullMask) Set(v EnumServiceGroupWNullMask) EnumServiceG
 	return o | v
 }
 
+func (o EnumServiceGroupWNullMask) Unset(v EnumServiceGroupWNullMask) EnumServiceGroupWNullMask {
+	return o &^ v
+}
+
 // xxx_EnumServiceGroupWOperation structure represents the REnumServiceGroupW operation
 type xxx_EnumServiceGroupWOperation struct {
 
@@ -20374,7 +20398,7 @@ func (o *xxx_EnumServiceGroupWOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		if o.NullMask&EnumServiceGroupWNullMaskResumeIndex == 0 {
+		if o.NullMask&EnumServiceGroupWNullMaskResumeIndex == 0 || o.ResumeIndex != uint32(0) {
 			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ResumeIndex); err != nil {
 					return err
@@ -20532,7 +20556,7 @@ func (o *xxx_EnumServiceGroupWOperation) MarshalNDRResponse(ctx context.Context,
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		if o.NullMask&EnumServiceGroupWNullMaskResumeIndex == 0 {
+		if o.NullMask&EnumServiceGroupWNullMaskResumeIndex == 0 || o.ResumeIndex != uint32(0) {
 			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ResumeIndex); err != nil {
 					return err
@@ -22188,6 +22212,10 @@ func (o EnumServicesStatusExANullMask) Set(v EnumServicesStatusExANullMask) Enum
 	return o | v
 }
 
+func (o EnumServicesStatusExANullMask) Unset(v EnumServicesStatusExANullMask) EnumServicesStatusExANullMask {
+	return o &^ v
+}
+
 // xxx_EnumServicesStatusExAOperation structure represents the REnumServicesStatusExA operation
 type xxx_EnumServicesStatusExAOperation struct {
 
@@ -22272,7 +22300,7 @@ func (o *xxx_EnumServicesStatusExAOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		if o.NullMask&EnumServicesStatusExANullMaskResumeIndex == 0 {
+		if o.NullMask&EnumServicesStatusExANullMaskResumeIndex == 0 || o.ResumeIndex != uint32(0) {
 			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ResumeIndex); err != nil {
 					return err
@@ -22436,7 +22464,7 @@ func (o *xxx_EnumServicesStatusExAOperation) MarshalNDRResponse(ctx context.Cont
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		if o.NullMask&EnumServicesStatusExANullMaskResumeIndex == 0 {
+		if o.NullMask&EnumServicesStatusExANullMaskResumeIndex == 0 || o.ResumeIndex != uint32(0) {
 			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ResumeIndex); err != nil {
 					return err
@@ -22742,6 +22770,10 @@ func (o EnumServicesStatusExWNullMask) Set(v EnumServicesStatusExWNullMask) Enum
 	return o | v
 }
 
+func (o EnumServicesStatusExWNullMask) Unset(v EnumServicesStatusExWNullMask) EnumServicesStatusExWNullMask {
+	return o &^ v
+}
+
 // xxx_EnumServicesStatusExWOperation structure represents the REnumServicesStatusExW operation
 type xxx_EnumServicesStatusExWOperation struct {
 
@@ -22826,7 +22858,7 @@ func (o *xxx_EnumServicesStatusExWOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		if o.NullMask&EnumServicesStatusExWNullMaskResumeIndex == 0 {
+		if o.NullMask&EnumServicesStatusExWNullMaskResumeIndex == 0 || o.ResumeIndex != uint32(0) {
 			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ResumeIndex); err != nil {
 					return err
@@ -22990,7 +23022,7 @@ func (o *xxx_EnumServicesStatusExWOperation) MarshalNDRResponse(ctx context.Cont
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
-		if o.NullMask&EnumServicesStatusExWNullMaskResumeIndex == 0 {
+		if o.NullMask&EnumServicesStatusExWNullMaskResumeIndex == 0 || o.ResumeIndex != uint32(0) {
 			_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ResumeIndex); err != nil {
 					return err
@@ -23297,6 +23329,10 @@ func (o CreateServiceWOW64ANullMask) Set(v CreateServiceWOW64ANullMask) CreateSe
 	return o | v
 }
 
+func (o CreateServiceWOW64ANullMask) Unset(v CreateServiceWOW64ANullMask) CreateServiceWOW64ANullMask {
+	return o &^ v
+}
+
 // xxx_CreateServiceWOW64AOperation structure represents the RCreateServiceWOW64A operation
 type xxx_CreateServiceWOW64AOperation struct {
 
@@ -23460,7 +23496,7 @@ func (o *xxx_CreateServiceWOW64AOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWOW64ANullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWOW64ANullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -23796,7 +23832,7 @@ func (o *xxx_CreateServiceWOW64AOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWOW64ANullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWOW64ANullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -24131,6 +24167,10 @@ func (o CreateServiceWOW64WNullMask) Set(v CreateServiceWOW64WNullMask) CreateSe
 	return o | v
 }
 
+func (o CreateServiceWOW64WNullMask) Unset(v CreateServiceWOW64WNullMask) CreateServiceWOW64WNullMask {
+	return o &^ v
+}
+
 // xxx_CreateServiceWOW64WOperation structure represents the RCreateServiceWOW64W operation
 type xxx_CreateServiceWOW64WOperation struct {
 
@@ -24294,7 +24334,7 @@ func (o *xxx_CreateServiceWOW64WOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWOW64WNullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWOW64WNullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -24630,7 +24670,7 @@ func (o *xxx_CreateServiceWOW64WOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWOW64WNullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateServiceWOW64WNullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -26641,6 +26681,10 @@ func (o CreateWOWServiceNullMask) Set(v CreateWOWServiceNullMask) CreateWOWServi
 	return o | v
 }
 
+func (o CreateWOWServiceNullMask) Unset(v CreateWOWServiceNullMask) CreateWOWServiceNullMask {
+	return o &^ v
+}
+
 // xxx_CreateWOWServiceOperation structure represents the RCreateWowService operation
 type xxx_CreateWOWServiceOperation struct {
 
@@ -26805,7 +26849,7 @@ func (o *xxx_CreateWOWServiceOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&CreateWOWServiceNullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateWOWServiceNullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -27153,7 +27197,7 @@ func (o *xxx_CreateWOWServiceOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.TagID != uint32(0) && (o.NullMask&CreateWOWServiceNullMaskTagID == 0) {
+		if o.TagID != uint32(0) && (o.NullMask&CreateWOWServiceNullMaskTagID == 0 || o.TagID != uint32(0)) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err

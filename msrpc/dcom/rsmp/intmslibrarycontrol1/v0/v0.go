@@ -599,7 +599,7 @@ type xxx_EjectNTMSMediaOperation struct {
 }
 
 // OpNum returns the operation number of EjectNtmsMedia operation.
-func (o *xxx_EjectNTMSMediaOperation) OpNum() int { return 0 }
+func (o *xxx_EjectNTMSMediaOperation) OpNum() int { return 3 }
 
 // OpName returns the operation name of EjectNtmsMedia operation.
 func (o *xxx_EjectNTMSMediaOperation) OpName() string {
@@ -886,7 +886,7 @@ func (o *EjectNTMSMediaRequest) MakeResponse() *EjectNTMSMediaResponse {
 }
 
 // OpNum returns the operation number of EjectNtmsMedia operation.
-func (o *EjectNTMSMediaRequest) OpNum() int { return 0 }
+func (o *EjectNTMSMediaRequest) OpNum() int { return 3 }
 
 // OpName returns the operation name of EjectNtmsMedia operation.
 func (o *EjectNTMSMediaRequest) OpName() string { return "/INtmsLibraryControl1/v0/EjectNtmsMedia" }
@@ -946,7 +946,7 @@ type xxx_InjectNTMSMediaOperation struct {
 }
 
 // OpNum returns the operation number of InjectNtmsMedia operation.
-func (o *xxx_InjectNTMSMediaOperation) OpNum() int { return 1 }
+func (o *xxx_InjectNTMSMediaOperation) OpNum() int { return 4 }
 
 // OpName returns the operation name of InjectNtmsMedia operation.
 func (o *xxx_InjectNTMSMediaOperation) OpName() string {
@@ -1225,7 +1225,7 @@ func (o *InjectNTMSMediaRequest) MakeResponse() *InjectNTMSMediaResponse {
 }
 
 // OpNum returns the operation number of InjectNtmsMedia operation.
-func (o *InjectNTMSMediaRequest) OpNum() int { return 1 }
+func (o *InjectNTMSMediaRequest) OpNum() int { return 4 }
 
 // OpName returns the operation name of InjectNtmsMedia operation.
 func (o *InjectNTMSMediaRequest) OpName() string { return "/INtmsLibraryControl1/v0/InjectNtmsMedia" }
@@ -1292,7 +1292,7 @@ type xxx_AccessNTMSLibraryDoorOperation struct {
 }
 
 // OpNum returns the operation number of AccessNtmsLibraryDoor operation.
-func (o *xxx_AccessNTMSLibraryDoorOperation) OpNum() int { return 2 }
+func (o *xxx_AccessNTMSLibraryDoorOperation) OpNum() int { return 5 }
 
 // OpName returns the operation name of AccessNtmsLibraryDoor operation.
 func (o *xxx_AccessNTMSLibraryDoorOperation) OpName() string {
@@ -1511,7 +1511,7 @@ func (o *AccessNTMSLibraryDoorRequest) MakeResponse() *AccessNTMSLibraryDoorResp
 }
 
 // OpNum returns the operation number of AccessNtmsLibraryDoor operation.
-func (o *AccessNTMSLibraryDoorRequest) OpNum() int { return 2 }
+func (o *AccessNTMSLibraryDoorRequest) OpNum() int { return 5 }
 
 // OpName returns the operation name of AccessNtmsLibraryDoor operation.
 func (o *AccessNTMSLibraryDoorRequest) OpName() string {
@@ -1566,7 +1566,7 @@ type xxx_CleanNTMSDriveOperation struct {
 }
 
 // OpNum returns the operation number of CleanNtmsDrive operation.
-func (o *xxx_CleanNTMSDriveOperation) OpNum() int { return 3 }
+func (o *xxx_CleanNTMSDriveOperation) OpNum() int { return 6 }
 
 // OpName returns the operation name of CleanNtmsDrive operation.
 func (o *xxx_CleanNTMSDriveOperation) OpName() string {
@@ -1774,7 +1774,7 @@ func (o *CleanNTMSDriveRequest) MakeResponse() *CleanNTMSDriveResponse {
 }
 
 // OpNum returns the operation number of CleanNtmsDrive operation.
-func (o *CleanNTMSDriveRequest) OpNum() int { return 3 }
+func (o *CleanNTMSDriveRequest) OpNum() int { return 6 }
 
 // OpName returns the operation name of CleanNtmsDrive operation.
 func (o *CleanNTMSDriveRequest) OpName() string { return "/INtmsLibraryControl1/v0/CleanNtmsDrive" }
@@ -1827,7 +1827,7 @@ type xxx_DismountNTMSDriveOperation struct {
 }
 
 // OpNum returns the operation number of DismountNtmsDrive operation.
-func (o *xxx_DismountNTMSDriveOperation) OpNum() int { return 4 }
+func (o *xxx_DismountNTMSDriveOperation) OpNum() int { return 7 }
 
 // OpName returns the operation name of DismountNtmsDrive operation.
 func (o *xxx_DismountNTMSDriveOperation) OpName() string {
@@ -2035,7 +2035,7 @@ func (o *DismountNTMSDriveRequest) MakeResponse() *DismountNTMSDriveResponse {
 }
 
 // OpNum returns the operation number of DismountNtmsDrive operation.
-func (o *DismountNTMSDriveRequest) OpNum() int { return 4 }
+func (o *DismountNTMSDriveRequest) OpNum() int { return 7 }
 
 // OpName returns the operation name of DismountNtmsDrive operation.
 func (o *DismountNTMSDriveRequest) OpName() string {
@@ -2091,7 +2091,7 @@ type xxx_InventoryNTMSLibraryOperation struct {
 }
 
 // OpNum returns the operation number of InventoryNtmsLibrary operation.
-func (o *xxx_InventoryNTMSLibraryOperation) OpNum() int { return 5 }
+func (o *xxx_InventoryNTMSLibraryOperation) OpNum() int { return 8 }
 
 // OpName returns the operation name of InventoryNtmsLibrary operation.
 func (o *xxx_InventoryNTMSLibraryOperation) OpName() string {
@@ -2309,7 +2309,7 @@ func (o *InventoryNTMSLibraryRequest) MakeResponse() *InventoryNTMSLibraryRespon
 }
 
 // OpNum returns the operation number of InventoryNtmsLibrary operation.
-func (o *InventoryNTMSLibraryRequest) OpNum() int { return 5 }
+func (o *InventoryNTMSLibraryRequest) OpNum() int { return 8 }
 
 // OpName returns the operation name of InventoryNtmsLibrary operation.
 func (o *InventoryNTMSLibraryRequest) OpName() string {
@@ -2363,7 +2363,7 @@ type xxx_LibraryControl1LocalOnlyOpnum09Operation struct {
 }
 
 // OpNum returns the operation number of INtmsLibraryControl1_LocalOnlyOpnum09 operation.
-func (o *xxx_LibraryControl1LocalOnlyOpnum09Operation) OpNum() int { return 6 }
+func (o *xxx_LibraryControl1LocalOnlyOpnum09Operation) OpNum() int { return 9 }
 
 // OpName returns the operation name of INtmsLibraryControl1_LocalOnlyOpnum09 operation.
 func (o *xxx_LibraryControl1LocalOnlyOpnum09Operation) OpName() string {
@@ -2517,7 +2517,7 @@ func (o *LibraryControl1LocalOnlyOpnum09Request) MakeResponse() *LibraryControl1
 }
 
 // OpNum returns the operation number of INtmsLibraryControl1_LocalOnlyOpnum09 operation.
-func (o *LibraryControl1LocalOnlyOpnum09Request) OpNum() int { return 6 }
+func (o *LibraryControl1LocalOnlyOpnum09Request) OpNum() int { return 9 }
 
 // OpName returns the operation name of INtmsLibraryControl1_LocalOnlyOpnum09 operation.
 func (o *LibraryControl1LocalOnlyOpnum09Request) OpName() string {
@@ -2572,7 +2572,7 @@ type xxx_CancelNTMSLibraryRequestOperation struct {
 }
 
 // OpNum returns the operation number of CancelNtmsLibraryRequest operation.
-func (o *xxx_CancelNTMSLibraryRequestOperation) OpNum() int { return 7 }
+func (o *xxx_CancelNTMSLibraryRequestOperation) OpNum() int { return 10 }
 
 // OpName returns the operation name of CancelNtmsLibraryRequest operation.
 func (o *xxx_CancelNTMSLibraryRequestOperation) OpName() string {
@@ -2767,7 +2767,7 @@ func (o *CancelNTMSLibraryRequestRequest) MakeResponse() *CancelNTMSLibraryReque
 }
 
 // OpNum returns the operation number of CancelNtmsLibraryRequest operation.
-func (o *CancelNTMSLibraryRequestRequest) OpNum() int { return 7 }
+func (o *CancelNTMSLibraryRequestRequest) OpNum() int { return 10 }
 
 // OpName returns the operation name of CancelNtmsLibraryRequest operation.
 func (o *CancelNTMSLibraryRequestRequest) OpName() string {
@@ -2823,7 +2823,7 @@ type xxx_ReserveNTMSCleanerSlotOperation struct {
 }
 
 // OpNum returns the operation number of ReserveNtmsCleanerSlot operation.
-func (o *xxx_ReserveNTMSCleanerSlotOperation) OpNum() int { return 8 }
+func (o *xxx_ReserveNTMSCleanerSlotOperation) OpNum() int { return 11 }
 
 // OpName returns the operation name of ReserveNtmsCleanerSlot operation.
 func (o *xxx_ReserveNTMSCleanerSlotOperation) OpName() string {
@@ -3053,7 +3053,7 @@ func (o *ReserveNTMSCleanerSlotRequest) MakeResponse() *ReserveNTMSCleanerSlotRe
 }
 
 // OpNum returns the operation number of ReserveNtmsCleanerSlot operation.
-func (o *ReserveNTMSCleanerSlotRequest) OpNum() int { return 8 }
+func (o *ReserveNTMSCleanerSlotRequest) OpNum() int { return 11 }
 
 // OpName returns the operation name of ReserveNtmsCleanerSlot operation.
 func (o *ReserveNTMSCleanerSlotRequest) OpName() string {
@@ -3108,7 +3108,7 @@ type xxx_ReleaseNTMSCleanerSlotOperation struct {
 }
 
 // OpNum returns the operation number of ReleaseNtmsCleanerSlot operation.
-func (o *xxx_ReleaseNTMSCleanerSlotOperation) OpNum() int { return 9 }
+func (o *xxx_ReleaseNTMSCleanerSlotOperation) OpNum() int { return 12 }
 
 // OpName returns the operation name of ReleaseNtmsCleanerSlot operation.
 func (o *xxx_ReleaseNTMSCleanerSlotOperation) OpName() string {
@@ -3307,7 +3307,7 @@ func (o *ReleaseNTMSCleanerSlotRequest) MakeResponse() *ReleaseNTMSCleanerSlotRe
 }
 
 // OpNum returns the operation number of ReleaseNtmsCleanerSlot operation.
-func (o *ReleaseNTMSCleanerSlotRequest) OpNum() int { return 9 }
+func (o *ReleaseNTMSCleanerSlotRequest) OpNum() int { return 12 }
 
 // OpName returns the operation name of ReleaseNtmsCleanerSlot operation.
 func (o *ReleaseNTMSCleanerSlotRequest) OpName() string {
@@ -3365,7 +3365,7 @@ type xxx_InjectNTMSCleanerOperation struct {
 }
 
 // OpNum returns the operation number of InjectNtmsCleaner operation.
-func (o *xxx_InjectNTMSCleanerOperation) OpNum() int { return 10 }
+func (o *xxx_InjectNTMSCleanerOperation) OpNum() int { return 13 }
 
 // OpName returns the operation name of InjectNtmsCleaner operation.
 func (o *xxx_InjectNTMSCleanerOperation) OpName() string {
@@ -3658,7 +3658,7 @@ func (o *InjectNTMSCleanerRequest) MakeResponse() *InjectNTMSCleanerResponse {
 }
 
 // OpNum returns the operation number of InjectNtmsCleaner operation.
-func (o *InjectNTMSCleanerRequest) OpNum() int { return 10 }
+func (o *InjectNTMSCleanerRequest) OpNum() int { return 13 }
 
 // OpName returns the operation name of InjectNtmsCleaner operation.
 func (o *InjectNTMSCleanerRequest) OpName() string {
@@ -3722,7 +3722,7 @@ type xxx_EjectNTMSCleanerOperation struct {
 }
 
 // OpNum returns the operation number of EjectNtmsCleaner operation.
-func (o *xxx_EjectNTMSCleanerOperation) OpNum() int { return 11 }
+func (o *xxx_EjectNTMSCleanerOperation) OpNum() int { return 14 }
 
 // OpName returns the operation name of EjectNtmsCleaner operation.
 func (o *xxx_EjectNTMSCleanerOperation) OpName() string {
@@ -3995,7 +3995,7 @@ func (o *EjectNTMSCleanerRequest) MakeResponse() *EjectNTMSCleanerResponse {
 }
 
 // OpNum returns the operation number of EjectNtmsCleaner operation.
-func (o *EjectNTMSCleanerRequest) OpNum() int { return 11 }
+func (o *EjectNTMSCleanerRequest) OpNum() int { return 14 }
 
 // OpName returns the operation name of EjectNtmsCleaner operation.
 func (o *EjectNTMSCleanerRequest) OpName() string { return "/INtmsLibraryControl1/v0/EjectNtmsCleaner" }
@@ -4055,7 +4055,7 @@ type xxx_DeleteNTMSLibraryOperation struct {
 }
 
 // OpNum returns the operation number of DeleteNtmsLibrary operation.
-func (o *xxx_DeleteNTMSLibraryOperation) OpNum() int { return 12 }
+func (o *xxx_DeleteNTMSLibraryOperation) OpNum() int { return 15 }
 
 // OpName returns the operation name of DeleteNtmsLibrary operation.
 func (o *xxx_DeleteNTMSLibraryOperation) OpName() string {
@@ -4257,7 +4257,7 @@ func (o *DeleteNTMSLibraryRequest) MakeResponse() *DeleteNTMSLibraryResponse {
 }
 
 // OpNum returns the operation number of DeleteNtmsLibrary operation.
-func (o *DeleteNTMSLibraryRequest) OpNum() int { return 12 }
+func (o *DeleteNTMSLibraryRequest) OpNum() int { return 15 }
 
 // OpName returns the operation name of DeleteNtmsLibrary operation.
 func (o *DeleteNTMSLibraryRequest) OpName() string {
@@ -4312,7 +4312,7 @@ type xxx_DeleteNTMSDriveOperation struct {
 }
 
 // OpNum returns the operation number of DeleteNtmsDrive operation.
-func (o *xxx_DeleteNTMSDriveOperation) OpNum() int { return 13 }
+func (o *xxx_DeleteNTMSDriveOperation) OpNum() int { return 16 }
 
 // OpName returns the operation name of DeleteNtmsDrive operation.
 func (o *xxx_DeleteNTMSDriveOperation) OpName() string {
@@ -4514,7 +4514,7 @@ func (o *DeleteNTMSDriveRequest) MakeResponse() *DeleteNTMSDriveResponse {
 }
 
 // OpNum returns the operation number of DeleteNtmsDrive operation.
-func (o *DeleteNTMSDriveRequest) OpNum() int { return 13 }
+func (o *DeleteNTMSDriveRequest) OpNum() int { return 16 }
 
 // OpName returns the operation name of DeleteNtmsDrive operation.
 func (o *DeleteNTMSDriveRequest) OpName() string { return "/INtmsLibraryControl1/v0/DeleteNtmsDrive" }
@@ -4568,7 +4568,7 @@ type xxx_GetNTMSRequestOrderOperation struct {
 }
 
 // OpNum returns the operation number of GetNtmsRequestOrder operation.
-func (o *xxx_GetNTMSRequestOrderOperation) OpNum() int { return 14 }
+func (o *xxx_GetNTMSRequestOrderOperation) OpNum() int { return 17 }
 
 // OpName returns the operation name of GetNtmsRequestOrder operation.
 func (o *xxx_GetNTMSRequestOrderOperation) OpName() string {
@@ -4759,7 +4759,7 @@ func (o *GetNTMSRequestOrderRequest) MakeResponse() *GetNTMSRequestOrderResponse
 }
 
 // OpNum returns the operation number of GetNtmsRequestOrder operation.
-func (o *GetNTMSRequestOrderRequest) OpNum() int { return 14 }
+func (o *GetNTMSRequestOrderRequest) OpNum() int { return 17 }
 
 // OpName returns the operation name of GetNtmsRequestOrder operation.
 func (o *GetNTMSRequestOrderRequest) OpName() string {
@@ -4838,7 +4838,7 @@ type xxx_SetNTMSRequestOrderOperation struct {
 }
 
 // OpNum returns the operation number of SetNtmsRequestOrder operation.
-func (o *xxx_SetNTMSRequestOrderOperation) OpNum() int { return 15 }
+func (o *xxx_SetNTMSRequestOrderOperation) OpNum() int { return 18 }
 
 // OpName returns the operation name of SetNtmsRequestOrder operation.
 func (o *xxx_SetNTMSRequestOrderOperation) OpName() string {
@@ -5052,7 +5052,7 @@ func (o *SetNTMSRequestOrderRequest) MakeResponse() *SetNTMSRequestOrderResponse
 }
 
 // OpNum returns the operation number of SetNtmsRequestOrder operation.
-func (o *SetNTMSRequestOrderRequest) OpNum() int { return 15 }
+func (o *SetNTMSRequestOrderRequest) OpNum() int { return 18 }
 
 // OpName returns the operation name of SetNtmsRequestOrder operation.
 func (o *SetNTMSRequestOrderRequest) OpName() string {
@@ -5109,7 +5109,7 @@ type xxx_DeleteNTMSRequestsOperation struct {
 }
 
 // OpNum returns the operation number of DeleteNtmsRequests operation.
-func (o *xxx_DeleteNTMSRequestsOperation) OpNum() int { return 16 }
+func (o *xxx_DeleteNTMSRequestsOperation) OpNum() int { return 19 }
 
 // OpName returns the operation name of DeleteNtmsRequests operation.
 func (o *xxx_DeleteNTMSRequestsOperation) OpName() string {
@@ -5373,7 +5373,7 @@ func (o *DeleteNTMSRequestsRequest) MakeResponse() *DeleteNTMSRequestsResponse {
 }
 
 // OpNum returns the operation number of DeleteNtmsRequests operation.
-func (o *DeleteNTMSRequestsRequest) OpNum() int { return 16 }
+func (o *DeleteNTMSRequestsRequest) OpNum() int { return 19 }
 
 // OpName returns the operation name of DeleteNtmsRequests operation.
 func (o *DeleteNTMSRequestsRequest) OpName() string {
@@ -5428,7 +5428,7 @@ type xxx_BeginNTMSDeviceChangeDetectionOperation struct {
 }
 
 // OpNum returns the operation number of BeginNtmsDeviceChangeDetection operation.
-func (o *xxx_BeginNTMSDeviceChangeDetectionOperation) OpNum() int { return 17 }
+func (o *xxx_BeginNTMSDeviceChangeDetectionOperation) OpNum() int { return 20 }
 
 // OpName returns the operation name of BeginNtmsDeviceChangeDetection operation.
 func (o *xxx_BeginNTMSDeviceChangeDetectionOperation) OpName() string {
@@ -5594,7 +5594,7 @@ func (o *BeginNTMSDeviceChangeDetectionRequest) MakeResponse() *BeginNTMSDeviceC
 }
 
 // OpNum returns the operation number of BeginNtmsDeviceChangeDetection operation.
-func (o *BeginNTMSDeviceChangeDetectionRequest) OpNum() int { return 17 }
+func (o *BeginNTMSDeviceChangeDetectionRequest) OpNum() int { return 20 }
 
 // OpName returns the operation name of BeginNtmsDeviceChangeDetection operation.
 func (o *BeginNTMSDeviceChangeDetectionRequest) OpName() string {
@@ -5683,7 +5683,7 @@ type xxx_SetNTMSDeviceChangeDetectionOperation struct {
 }
 
 // OpNum returns the operation number of SetNtmsDeviceChangeDetection operation.
-func (o *xxx_SetNTMSDeviceChangeDetectionOperation) OpNum() int { return 18 }
+func (o *xxx_SetNTMSDeviceChangeDetectionOperation) OpNum() int { return 21 }
 
 // OpName returns the operation name of SetNtmsDeviceChangeDetection operation.
 func (o *xxx_SetNTMSDeviceChangeDetectionOperation) OpName() string {
@@ -5993,7 +5993,7 @@ func (o *SetNTMSDeviceChangeDetectionRequest) MakeResponse() *SetNTMSDeviceChang
 }
 
 // OpNum returns the operation number of SetNtmsDeviceChangeDetection operation.
-func (o *SetNTMSDeviceChangeDetectionRequest) OpNum() int { return 18 }
+func (o *SetNTMSDeviceChangeDetectionRequest) OpNum() int { return 21 }
 
 // OpName returns the operation name of SetNtmsDeviceChangeDetection operation.
 func (o *SetNTMSDeviceChangeDetectionRequest) OpName() string {
@@ -6048,7 +6048,7 @@ type xxx_EndNTMSDeviceChangeDetectionOperation struct {
 }
 
 // OpNum returns the operation number of EndNtmsDeviceChangeDetection operation.
-func (o *xxx_EndNTMSDeviceChangeDetectionOperation) OpNum() int { return 19 }
+func (o *xxx_EndNTMSDeviceChangeDetectionOperation) OpNum() int { return 22 }
 
 // OpName returns the operation name of EndNtmsDeviceChangeDetection operation.
 func (o *xxx_EndNTMSDeviceChangeDetectionOperation) OpName() string {
@@ -6242,7 +6242,7 @@ func (o *EndNTMSDeviceChangeDetectionRequest) MakeResponse() *EndNTMSDeviceChang
 }
 
 // OpNum returns the operation number of EndNtmsDeviceChangeDetection operation.
-func (o *EndNTMSDeviceChangeDetectionRequest) OpNum() int { return 19 }
+func (o *EndNTMSDeviceChangeDetectionRequest) OpNum() int { return 22 }
 
 // OpName returns the operation name of EndNtmsDeviceChangeDetection operation.
 func (o *EndNTMSDeviceChangeDetectionRequest) OpName() string {

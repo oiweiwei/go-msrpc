@@ -75,8 +75,12 @@ func NewObjectManagement1ServerHandle(o ObjectManagement1Server) dcerpc.ServerHa
 }
 
 func ObjectManagement1ServerHandle(ctx context.Context, o ObjectManagement1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+	if opNum < 3 {
+		// IUnknown base method.
+		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
+	}
 	switch opNum {
-	case 0: // GetNtmsObjectSecurity
+	case 3: // GetNtmsObjectSecurity
 		op := &xxx_GetNTMSObjectSecurityOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -85,7 +89,7 @@ func ObjectManagement1ServerHandle(ctx context.Context, o ObjectManagement1Serve
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.GetNTMSObjectSecurity(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 1: // SetNtmsObjectSecurity
+	case 4: // SetNtmsObjectSecurity
 		op := &xxx_SetNTMSObjectSecurityOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -94,7 +98,7 @@ func ObjectManagement1ServerHandle(ctx context.Context, o ObjectManagement1Serve
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SetNTMSObjectSecurity(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 2: // GetNtmsObjectAttributeA
+	case 5: // GetNtmsObjectAttributeA
 		op := &xxx_GetNTMSObjectAttributeAOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -103,7 +107,7 @@ func ObjectManagement1ServerHandle(ctx context.Context, o ObjectManagement1Serve
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.GetNTMSObjectAttributeA(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 3: // GetNtmsObjectAttributeW
+	case 6: // GetNtmsObjectAttributeW
 		op := &xxx_GetNTMSObjectAttributeWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -112,7 +116,7 @@ func ObjectManagement1ServerHandle(ctx context.Context, o ObjectManagement1Serve
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.GetNTMSObjectAttributeW(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 4: // SetNtmsObjectAttributeA
+	case 7: // SetNtmsObjectAttributeA
 		op := &xxx_SetNTMSObjectAttributeAOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -121,7 +125,7 @@ func ObjectManagement1ServerHandle(ctx context.Context, o ObjectManagement1Serve
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SetNTMSObjectAttributeA(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 5: // SetNtmsObjectAttributeW
+	case 8: // SetNtmsObjectAttributeW
 		op := &xxx_SetNTMSObjectAttributeWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -130,7 +134,7 @@ func ObjectManagement1ServerHandle(ctx context.Context, o ObjectManagement1Serve
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SetNTMSObjectAttributeW(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 6: // EnumerateNtmsObject
+	case 9: // EnumerateNtmsObject
 		op := &xxx_EnumerateNTMSObjectOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -139,7 +143,7 @@ func ObjectManagement1ServerHandle(ctx context.Context, o ObjectManagement1Serve
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.EnumerateNTMSObject(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 7: // DisableNtmsObject
+	case 10: // DisableNtmsObject
 		op := &xxx_DisableNTMSObjectOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -148,7 +152,7 @@ func ObjectManagement1ServerHandle(ctx context.Context, o ObjectManagement1Serve
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.DisableNTMSObject(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 8: // EnableNtmsObject
+	case 11: // EnableNtmsObject
 		op := &xxx_EnableNTMSObjectOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err

@@ -174,7 +174,7 @@ type xxx_GetNTMSObjectAttributeAROperation struct {
 }
 
 // OpNum returns the operation number of GetNtmsObjectAttributeAR operation.
-func (o *xxx_GetNTMSObjectAttributeAROperation) OpNum() int { return 14 }
+func (o *xxx_GetNTMSObjectAttributeAROperation) OpNum() int { return 17 }
 
 // OpName returns the operation name of GetNtmsObjectAttributeAR operation.
 func (o *xxx_GetNTMSObjectAttributeAROperation) OpName() string {
@@ -499,7 +499,7 @@ func (o *GetNTMSObjectAttributeARRequest) MakeResponse() *GetNTMSObjectAttribute
 }
 
 // OpNum returns the operation number of GetNtmsObjectAttributeAR operation.
-func (o *GetNTMSObjectAttributeARRequest) OpNum() int { return 14 }
+func (o *GetNTMSObjectAttributeARRequest) OpNum() int { return 17 }
 
 // OpName returns the operation name of GetNtmsObjectAttributeAR operation.
 func (o *GetNTMSObjectAttributeARRequest) OpName() string {
@@ -637,7 +637,7 @@ type xxx_GetNTMSObjectAttributeWROperation struct {
 }
 
 // OpNum returns the operation number of GetNtmsObjectAttributeWR operation.
-func (o *xxx_GetNTMSObjectAttributeWROperation) OpNum() int { return 15 }
+func (o *xxx_GetNTMSObjectAttributeWROperation) OpNum() int { return 18 }
 
 // OpName returns the operation name of GetNtmsObjectAttributeWR operation.
 func (o *xxx_GetNTMSObjectAttributeWROperation) OpName() string {
@@ -962,7 +962,7 @@ func (o *GetNTMSObjectAttributeWRRequest) MakeResponse() *GetNTMSObjectAttribute
 }
 
 // OpNum returns the operation number of GetNtmsObjectAttributeWR operation.
-func (o *GetNTMSObjectAttributeWRRequest) OpNum() int { return 15 }
+func (o *GetNTMSObjectAttributeWRRequest) OpNum() int { return 18 }
 
 // OpName returns the operation name of GetNtmsObjectAttributeWR operation.
 func (o *GetNTMSObjectAttributeWRRequest) OpName() string {

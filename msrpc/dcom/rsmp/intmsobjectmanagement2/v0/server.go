@@ -63,12 +63,12 @@ func NewObjectManagement2ServerHandle(o ObjectManagement2Server) dcerpc.ServerHa
 }
 
 func ObjectManagement2ServerHandle(ctx context.Context, o ObjectManagement2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-	if opNum < 9 {
+	if opNum < 12 {
 		// INtmsObjectManagement1 base method.
 		return intmsobjectmanagement1.ObjectManagement1ServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
-	case 9: // EnumerateNtmsObjectR
+	case 12: // EnumerateNtmsObjectR
 		op := &xxx_EnumerateNTMSObjectROperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -77,7 +77,7 @@ func ObjectManagement2ServerHandle(ctx context.Context, o ObjectManagement2Serve
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.EnumerateNTMSObjectR(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 10: // GetNtmsUIOptionsA
+	case 13: // GetNtmsUIOptionsA
 		op := &xxx_GetNTMSUIOptionsAOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -86,7 +86,7 @@ func ObjectManagement2ServerHandle(ctx context.Context, o ObjectManagement2Serve
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.GetNTMSUIOptionsA(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 11: // GetNtmsUIOptionsW
+	case 14: // GetNtmsUIOptionsW
 		op := &xxx_GetNTMSUIOptionsWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -95,7 +95,7 @@ func ObjectManagement2ServerHandle(ctx context.Context, o ObjectManagement2Serve
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.GetNTMSUIOptionsW(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 12: // SetNtmsUIOptionsA
+	case 15: // SetNtmsUIOptionsA
 		op := &xxx_SetNTMSUIOptionsAOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -104,7 +104,7 @@ func ObjectManagement2ServerHandle(ctx context.Context, o ObjectManagement2Serve
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SetNTMSUIOptionsA(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 13: // SetNtmsUIOptionsW
+	case 16: // SetNtmsUIOptionsW
 		op := &xxx_SetNTMSUIOptionsWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err

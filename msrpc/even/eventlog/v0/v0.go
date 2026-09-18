@@ -3524,6 +3524,8 @@ func (o ReportEventWNullMask) IsSet(v ReportEventWNullMask) bool { return o&v !=
 
 func (o ReportEventWNullMask) Set(v ReportEventWNullMask) ReportEventWNullMask { return o | v }
 
+func (o ReportEventWNullMask) Unset(v ReportEventWNullMask) ReportEventWNullMask { return o &^ v }
+
 // xxx_ReportEventWOperation structure represents the ElfrReportEventW operation
 type xxx_ReportEventWOperation struct {
 
@@ -3760,7 +3762,7 @@ func (o *xxx_ReportEventWOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventWNullMaskRecordNumber == 0 {
+		if o.NullMask&ReportEventWNullMaskRecordNumber == 0 || o.RecordNumber != uint32(0) {
 			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.RecordNumber); err != nil {
 					return err
@@ -3781,7 +3783,7 @@ func (o *xxx_ReportEventWOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// TimeWritten {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventWNullMaskTimeWritten == 0 {
+		if o.NullMask&ReportEventWNullMaskTimeWritten == 0 || o.TimeWritten != uint32(0) {
 			_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TimeWritten); err != nil {
 					return err
@@ -4003,7 +4005,7 @@ func (o *xxx_ReportEventWOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventWNullMaskRecordNumber == 0 {
+		if o.NullMask&ReportEventWNullMaskRecordNumber == 0 || o.RecordNumber != uint32(0) {
 			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.RecordNumber); err != nil {
 					return err
@@ -4024,7 +4026,7 @@ func (o *xxx_ReportEventWOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// TimeWritten {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventWNullMaskTimeWritten == 0 {
+		if o.NullMask&ReportEventWNullMaskTimeWritten == 0 || o.TimeWritten != uint32(0) {
 			_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TimeWritten); err != nil {
 					return err
@@ -5980,6 +5982,8 @@ func (o ReportEventANullMask) IsSet(v ReportEventANullMask) bool { return o&v !=
 
 func (o ReportEventANullMask) Set(v ReportEventANullMask) ReportEventANullMask { return o | v }
 
+func (o ReportEventANullMask) Unset(v ReportEventANullMask) ReportEventANullMask { return o &^ v }
+
 // xxx_ReportEventAOperation structure represents the ElfrReportEventA operation
 type xxx_ReportEventAOperation struct {
 
@@ -6216,7 +6220,7 @@ func (o *xxx_ReportEventAOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventANullMaskRecordNumber == 0 {
+		if o.NullMask&ReportEventANullMaskRecordNumber == 0 || o.RecordNumber != uint32(0) {
 			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.RecordNumber); err != nil {
 					return err
@@ -6237,7 +6241,7 @@ func (o *xxx_ReportEventAOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// TimeWritten {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventANullMaskTimeWritten == 0 {
+		if o.NullMask&ReportEventANullMaskTimeWritten == 0 || o.TimeWritten != uint32(0) {
 			_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TimeWritten); err != nil {
 					return err
@@ -6459,7 +6463,7 @@ func (o *xxx_ReportEventAOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventANullMaskRecordNumber == 0 {
+		if o.NullMask&ReportEventANullMaskRecordNumber == 0 || o.RecordNumber != uint32(0) {
 			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.RecordNumber); err != nil {
 					return err
@@ -6480,7 +6484,7 @@ func (o *xxx_ReportEventAOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// TimeWritten {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventANullMaskTimeWritten == 0 {
+		if o.NullMask&ReportEventANullMaskTimeWritten == 0 || o.TimeWritten != uint32(0) {
 			_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TimeWritten); err != nil {
 					return err
@@ -7028,6 +7032,10 @@ func (o ReportEventAndSourceWNullMask) Set(v ReportEventAndSourceWNullMask) Repo
 	return o | v
 }
 
+func (o ReportEventAndSourceWNullMask) Unset(v ReportEventAndSourceWNullMask) ReportEventAndSourceWNullMask {
+	return o &^ v
+}
+
 // xxx_ReportEventAndSourceWOperation structure represents the ElfrReportEventAndSourceW operation
 type xxx_ReportEventAndSourceWOperation struct {
 
@@ -7282,7 +7290,7 @@ func (o *xxx_ReportEventAndSourceWOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventAndSourceWNullMaskRecordNumber == 0 {
+		if o.NullMask&ReportEventAndSourceWNullMaskRecordNumber == 0 || o.RecordNumber != uint32(0) {
 			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.RecordNumber); err != nil {
 					return err
@@ -7303,7 +7311,7 @@ func (o *xxx_ReportEventAndSourceWOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// TimeWritten {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventAndSourceWNullMaskTimeWritten == 0 {
+		if o.NullMask&ReportEventAndSourceWNullMaskTimeWritten == 0 || o.TimeWritten != uint32(0) {
 			_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TimeWritten); err != nil {
 					return err
@@ -7537,7 +7545,7 @@ func (o *xxx_ReportEventAndSourceWOperation) MarshalNDRResponse(ctx context.Cont
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventAndSourceWNullMaskRecordNumber == 0 {
+		if o.NullMask&ReportEventAndSourceWNullMaskRecordNumber == 0 || o.RecordNumber != uint32(0) {
 			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.RecordNumber); err != nil {
 					return err
@@ -7558,7 +7566,7 @@ func (o *xxx_ReportEventAndSourceWOperation) MarshalNDRResponse(ctx context.Cont
 	}
 	// TimeWritten {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventAndSourceWNullMaskTimeWritten == 0 {
+		if o.NullMask&ReportEventAndSourceWNullMaskTimeWritten == 0 || o.TimeWritten != uint32(0) {
 			_ptr_TimeWritten := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TimeWritten); err != nil {
 					return err
@@ -7821,6 +7829,8 @@ func (o ReportEventExWNullMask) IsSet(v ReportEventExWNullMask) bool { return o&
 
 func (o ReportEventExWNullMask) Set(v ReportEventExWNullMask) ReportEventExWNullMask { return o | v }
 
+func (o ReportEventExWNullMask) Unset(v ReportEventExWNullMask) ReportEventExWNullMask { return o &^ v }
+
 // xxx_ReportEventExWOperation structure represents the ElfrReportEventExW operation
 type xxx_ReportEventExWOperation struct {
 
@@ -8062,7 +8072,7 @@ func (o *xxx_ReportEventExWOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventExWNullMaskRecordNumber == 0 {
+		if o.NullMask&ReportEventExWNullMaskRecordNumber == 0 || o.RecordNumber != uint32(0) {
 			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.RecordNumber); err != nil {
 					return err
@@ -8270,7 +8280,7 @@ func (o *xxx_ReportEventExWOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventExWNullMaskRecordNumber == 0 {
+		if o.NullMask&ReportEventExWNullMaskRecordNumber == 0 || o.RecordNumber != uint32(0) {
 			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.RecordNumber); err != nil {
 					return err
@@ -8502,6 +8512,8 @@ var (
 func (o ReportEventExANullMask) IsSet(v ReportEventExANullMask) bool { return o&v != 0 }
 
 func (o ReportEventExANullMask) Set(v ReportEventExANullMask) ReportEventExANullMask { return o | v }
+
+func (o ReportEventExANullMask) Unset(v ReportEventExANullMask) ReportEventExANullMask { return o &^ v }
 
 // xxx_ReportEventExAOperation structure represents the ElfrReportEventExA operation
 type xxx_ReportEventExAOperation struct {
@@ -8744,7 +8756,7 @@ func (o *xxx_ReportEventExAOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventExANullMaskRecordNumber == 0 {
+		if o.NullMask&ReportEventExANullMaskRecordNumber == 0 || o.RecordNumber != uint32(0) {
 			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.RecordNumber); err != nil {
 					return err
@@ -8952,7 +8964,7 @@ func (o *xxx_ReportEventExAOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// RecordNumber {in, out} (1:{pointer=unique}*(1)(uint32))
 	{
-		if o.NullMask&ReportEventExANullMaskRecordNumber == 0 {
+		if o.NullMask&ReportEventExANullMaskRecordNumber == 0 || o.RecordNumber != uint32(0) {
 			_ptr_RecordNumber := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.RecordNumber); err != nil {
 					return err

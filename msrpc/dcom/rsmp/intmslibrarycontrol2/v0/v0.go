@@ -144,7 +144,7 @@ type xxx_IdentifyNTMSSlotOperation struct {
 }
 
 // OpNum returns the operation number of IdentifyNtmsSlot operation.
-func (o *xxx_IdentifyNTMSSlotOperation) OpNum() int { return 20 }
+func (o *xxx_IdentifyNTMSSlotOperation) OpNum() int { return 23 }
 
 // OpName returns the operation name of IdentifyNtmsSlot operation.
 func (o *xxx_IdentifyNTMSSlotOperation) OpName() string {
@@ -358,7 +358,7 @@ func (o *IdentifyNTMSSlotRequest) MakeResponse() *IdentifyNTMSSlotResponse {
 }
 
 // OpNum returns the operation number of IdentifyNtmsSlot operation.
-func (o *IdentifyNTMSSlotRequest) OpNum() int { return 20 }
+func (o *IdentifyNTMSSlotRequest) OpNum() int { return 23 }
 
 // OpName returns the operation name of IdentifyNtmsSlot operation.
 func (o *IdentifyNTMSSlotRequest) OpName() string { return "/INtmsLibraryControl2/v0/IdentifyNtmsSlot" }

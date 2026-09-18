@@ -46,12 +46,12 @@ func NewLibraryControl2ServerHandle(o LibraryControl2Server) dcerpc.ServerHandle
 }
 
 func LibraryControl2ServerHandle(ctx context.Context, o LibraryControl2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-	if opNum < 20 {
+	if opNum < 23 {
 		// INtmsLibraryControl1 base method.
 		return intmslibrarycontrol1.LibraryControl1ServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
-	case 20: // IdentifyNtmsSlot
+	case 23: // IdentifyNtmsSlot
 		op := &xxx_IdentifyNTMSSlotOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err

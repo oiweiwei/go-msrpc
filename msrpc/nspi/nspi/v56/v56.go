@@ -5772,6 +5772,8 @@ func (o UpdateStatNullMask) IsSet(v UpdateStatNullMask) bool { return o&v != 0 }
 
 func (o UpdateStatNullMask) Set(v UpdateStatNullMask) UpdateStatNullMask { return o | v }
 
+func (o UpdateStatNullMask) Unset(v UpdateStatNullMask) UpdateStatNullMask { return o &^ v }
+
 // xxx_UpdateStatOperation structure represents the NspiUpdateStat operation
 type xxx_UpdateStatOperation struct {
 
@@ -5837,7 +5839,7 @@ func (o *xxx_UpdateStatOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	}
 	// plDelta {in, out} (1:{pointer=unique}*(1)(int32))
 	{
-		if o.NullMask&UpdateStatNullMaskDelta == 0 {
+		if o.NullMask&UpdateStatNullMaskDelta == 0 || o.Delta != int32(0) {
 			_ptr_plDelta := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Delta); err != nil {
 					return err
@@ -5933,7 +5935,7 @@ func (o *xxx_UpdateStatOperation) MarshalNDRResponse(ctx context.Context, w ndr.
 	}
 	// plDelta {in, out} (1:{pointer=unique}*(1)(int32))
 	{
-		if o.NullMask&UpdateStatNullMaskDelta == 0 {
+		if o.NullMask&UpdateStatNullMaskDelta == 0 || o.Delta != int32(0) {
 			_ptr_plDelta := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Delta); err != nil {
 					return err

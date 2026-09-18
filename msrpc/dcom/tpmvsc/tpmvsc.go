@@ -656,3 +656,6 @@ func (o *VirtualSmartCardManagerStatusCallback) UnmarshalNDR(ctx context.Context
 	}
 	return nil
 }
+
+// TpmVirtualSmartCardManagers class identifier 1c60a923-2d86-46aa-928a-e7f3e37577af
+var TpmVirtualSmartCardManagersLibraryID = &dcom.ClassID{Data1: 0x1c60a923, Data2: 0x2d86, Data3: 0x46aa, Data4: []byte{0x92, 0x8a, 0xe7, 0xf3, 0xe3, 0x75, 0x77, 0xaf}}

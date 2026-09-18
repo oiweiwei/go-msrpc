@@ -733,6 +733,8 @@ func (o JobEnumNullMask) IsSet(v JobEnumNullMask) bool { return o&v != 0 }
 
 func (o JobEnumNullMask) Set(v JobEnumNullMask) JobEnumNullMask { return o | v }
 
+func (o JobEnumNullMask) Unset(v JobEnumNullMask) JobEnumNullMask { return o &^ v }
+
 // xxx_JobEnumOperation structure represents the NetrJobEnum operation
 type xxx_JobEnumOperation struct {
 
@@ -810,7 +812,7 @@ func (o *xxx_JobEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// pResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&JobEnumNullMaskResume == 0 {
+		if o.NullMask&JobEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_pResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -923,7 +925,7 @@ func (o *xxx_JobEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 	}
 	// pResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&JobEnumNullMaskResume == 0 {
+		if o.NullMask&JobEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_pResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err

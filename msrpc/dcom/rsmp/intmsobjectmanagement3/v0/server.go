@@ -51,12 +51,12 @@ func NewObjectManagement3ServerHandle(o ObjectManagement3Server) dcerpc.ServerHa
 }
 
 func ObjectManagement3ServerHandle(ctx context.Context, o ObjectManagement3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-	if opNum < 14 {
+	if opNum < 17 {
 		// INtmsObjectManagement2 base method.
 		return intmsobjectmanagement2.ObjectManagement2ServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
-	case 14: // GetNtmsObjectAttributeAR
+	case 17: // GetNtmsObjectAttributeAR
 		op := &xxx_GetNTMSObjectAttributeAROperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -65,7 +65,7 @@ func ObjectManagement3ServerHandle(ctx context.Context, o ObjectManagement3Serve
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.GetNTMSObjectAttributeAR(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 15: // GetNtmsObjectAttributeWR
+	case 18: // GetNtmsObjectAttributeWR
 		op := &xxx_GetNTMSObjectAttributeWROperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err

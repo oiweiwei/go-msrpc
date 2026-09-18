@@ -120,8 +120,12 @@ func NewLibraryControl1ServerHandle(o LibraryControl1Server) dcerpc.ServerHandle
 }
 
 func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+	if opNum < 3 {
+		// IUnknown base method.
+		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
+	}
 	switch opNum {
-	case 0: // EjectNtmsMedia
+	case 3: // EjectNtmsMedia
 		op := &xxx_EjectNTMSMediaOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -130,7 +134,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.EjectNTMSMedia(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 1: // InjectNtmsMedia
+	case 4: // InjectNtmsMedia
 		op := &xxx_InjectNTMSMediaOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -139,7 +143,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.InjectNTMSMedia(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 2: // AccessNtmsLibraryDoor
+	case 5: // AccessNtmsLibraryDoor
 		op := &xxx_AccessNTMSLibraryDoorOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -148,7 +152,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.AccessNTMSLibraryDoor(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 3: // CleanNtmsDrive
+	case 6: // CleanNtmsDrive
 		op := &xxx_CleanNTMSDriveOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -157,7 +161,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.CleanNTMSDrive(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 4: // DismountNtmsDrive
+	case 7: // DismountNtmsDrive
 		op := &xxx_DismountNTMSDriveOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -166,7 +170,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.DismountNTMSDrive(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 5: // InventoryNtmsLibrary
+	case 8: // InventoryNtmsLibrary
 		op := &xxx_InventoryNTMSLibraryOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -175,7 +179,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.InventoryNTMSLibrary(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 6: // INtmsLibraryControl1_LocalOnlyOpnum09
+	case 9: // INtmsLibraryControl1_LocalOnlyOpnum09
 		op := &xxx_LibraryControl1LocalOnlyOpnum09Operation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -184,7 +188,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.LibraryControl1LocalOnlyOpnum09(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 7: // CancelNtmsLibraryRequest
+	case 10: // CancelNtmsLibraryRequest
 		op := &xxx_CancelNTMSLibraryRequestOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -193,7 +197,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.CancelNTMSLibraryRequest(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 8: // ReserveNtmsCleanerSlot
+	case 11: // ReserveNtmsCleanerSlot
 		op := &xxx_ReserveNTMSCleanerSlotOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -202,7 +206,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.ReserveNTMSCleanerSlot(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 9: // ReleaseNtmsCleanerSlot
+	case 12: // ReleaseNtmsCleanerSlot
 		op := &xxx_ReleaseNTMSCleanerSlotOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -211,7 +215,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.ReleaseNTMSCleanerSlot(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 10: // InjectNtmsCleaner
+	case 13: // InjectNtmsCleaner
 		op := &xxx_InjectNTMSCleanerOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -220,7 +224,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.InjectNTMSCleaner(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 11: // EjectNtmsCleaner
+	case 14: // EjectNtmsCleaner
 		op := &xxx_EjectNTMSCleanerOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -229,7 +233,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.EjectNTMSCleaner(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 12: // DeleteNtmsLibrary
+	case 15: // DeleteNtmsLibrary
 		op := &xxx_DeleteNTMSLibraryOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -238,7 +242,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.DeleteNTMSLibrary(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 13: // DeleteNtmsDrive
+	case 16: // DeleteNtmsDrive
 		op := &xxx_DeleteNTMSDriveOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -247,7 +251,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.DeleteNTMSDrive(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 14: // GetNtmsRequestOrder
+	case 17: // GetNtmsRequestOrder
 		op := &xxx_GetNTMSRequestOrderOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -256,7 +260,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.GetNTMSRequestOrder(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 15: // SetNtmsRequestOrder
+	case 18: // SetNtmsRequestOrder
 		op := &xxx_SetNTMSRequestOrderOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -265,7 +269,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SetNTMSRequestOrder(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 16: // DeleteNtmsRequests
+	case 19: // DeleteNtmsRequests
 		op := &xxx_DeleteNTMSRequestsOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -274,7 +278,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.DeleteNTMSRequests(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 17: // BeginNtmsDeviceChangeDetection
+	case 20: // BeginNtmsDeviceChangeDetection
 		op := &xxx_BeginNTMSDeviceChangeDetectionOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -283,7 +287,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.BeginNTMSDeviceChangeDetection(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 18: // SetNtmsDeviceChangeDetection
+	case 21: // SetNtmsDeviceChangeDetection
 		op := &xxx_SetNTMSDeviceChangeDetectionOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -292,7 +296,7 @@ func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, o
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SetNTMSDeviceChangeDetection(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 19: // EndNtmsDeviceChangeDetection
+	case 22: // EndNtmsDeviceChangeDetection
 		op := &xxx_EndNTMSDeviceChangeDetectionOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err

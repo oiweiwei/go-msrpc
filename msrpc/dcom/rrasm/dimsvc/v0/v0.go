@@ -2312,6 +2312,8 @@ func (o ConnectionEnumNullMask) IsSet(v ConnectionEnumNullMask) bool { return o&
 
 func (o ConnectionEnumNullMask) Set(v ConnectionEnumNullMask) ConnectionEnumNullMask { return o | v }
 
+func (o ConnectionEnumNullMask) Unset(v ConnectionEnumNullMask) ConnectionEnumNullMask { return o &^ v }
+
 // xxx_ConnectionEnumOperation structure represents the RRasAdminConnectionEnum operation
 type xxx_ConnectionEnumOperation struct {
 
@@ -2375,7 +2377,7 @@ func (o *xxx_ConnectionEnumOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ConnectionEnumNullMaskResume == 0 {
+		if o.NullMask&ConnectionEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -2484,7 +2486,7 @@ func (o *xxx_ConnectionEnumOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ConnectionEnumNullMaskResume == 0 {
+		if o.NullMask&ConnectionEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -3152,6 +3154,8 @@ func (o PortEnumNullMask) IsSet(v PortEnumNullMask) bool { return o&v != 0 }
 
 func (o PortEnumNullMask) Set(v PortEnumNullMask) PortEnumNullMask { return o | v }
 
+func (o PortEnumNullMask) Unset(v PortEnumNullMask) PortEnumNullMask { return o &^ v }
+
 // xxx_PortEnumOperation structure represents the RRasAdminPortEnum operation
 type xxx_PortEnumOperation struct {
 
@@ -3222,7 +3226,7 @@ func (o *xxx_PortEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wri
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&PortEnumNullMaskResume == 0 {
+		if o.NullMask&PortEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -3337,7 +3341,7 @@ func (o *xxx_PortEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wr
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&PortEnumNullMaskResume == 0 {
+		if o.NullMask&PortEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -7200,6 +7204,10 @@ func (o RouterInterfaceEnumNullMask) Set(v RouterInterfaceEnumNullMask) RouterIn
 	return o | v
 }
 
+func (o RouterInterfaceEnumNullMask) Unset(v RouterInterfaceEnumNullMask) RouterInterfaceEnumNullMask {
+	return o &^ v
+}
+
 // xxx_RouterInterfaceEnumOperation structure represents the RRouterInterfaceEnum operation
 type xxx_RouterInterfaceEnumOperation struct {
 
@@ -7263,7 +7271,7 @@ func (o *xxx_RouterInterfaceEnumOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&RouterInterfaceEnumNullMaskResume == 0 {
+		if o.NullMask&RouterInterfaceEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -7372,7 +7380,7 @@ func (o *xxx_RouterInterfaceEnumOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&RouterInterfaceEnumNullMaskResume == 0 {
+		if o.NullMask&RouterInterfaceEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -13463,6 +13471,10 @@ func (o ConnectionEnumExNullMask) Set(v ConnectionEnumExNullMask) ConnectionEnum
 	return o | v
 }
 
+func (o ConnectionEnumExNullMask) Unset(v ConnectionEnumExNullMask) ConnectionEnumExNullMask {
+	return o &^ v
+}
+
 // xxx_ConnectionEnumExOperation structure represents the RRasAdminConnectionEnumEx operation
 type xxx_ConnectionEnumExOperation struct {
 
@@ -13519,7 +13531,7 @@ func (o *xxx_ConnectionEnumExOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ConnectionEnumExNullMaskResume == 0 {
+		if o.NullMask&ConnectionEnumExNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -13652,7 +13664,7 @@ func (o *xxx_ConnectionEnumExOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpdwResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ConnectionEnumExNullMaskResume == 0 {
+		if o.NullMask&ConnectionEnumExNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_lpdwResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err

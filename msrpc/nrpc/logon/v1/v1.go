@@ -19540,6 +19540,14 @@ func (o OutChainSetClientAttributesV1NullMask) IsSet(v OutChainSetClientAttribut
 	return o&v != 0
 }
 
+func (o OutChainSetClientAttributesV1NullMask) Set(v OutChainSetClientAttributesV1NullMask) OutChainSetClientAttributesV1NullMask {
+	return o | v
+}
+
+func (o OutChainSetClientAttributesV1NullMask) Unset(v OutChainSetClientAttributesV1NullMask) OutChainSetClientAttributesV1NullMask {
+	return o &^ v
+}
+
 type OutChainSetClientAttributesV1 struct {
 
 	// OutChainSetClientAttributesV1NullMask is used to carry information on null-valued primitive values.
@@ -19620,7 +19628,7 @@ func (o *OutChainSetClientAttributesV1) MarshalNDR(ctx context.Context, w ndr.Wr
 			return err
 		}
 	}
-	if o.NullMask&OutChainSetClientAttributesV1NullMaskSupportedEncTypes == 0 {
+	if o.NullMask&OutChainSetClientAttributesV1NullMaskSupportedEncTypes == 0 || o.SupportedEncTypes != uint32(0) {
 		_ptr_SupportedEncTypes := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.SupportedEncTypes); err != nil {
 				return err

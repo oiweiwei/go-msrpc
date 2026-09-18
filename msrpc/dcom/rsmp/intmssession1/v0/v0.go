@@ -498,7 +498,7 @@ type xxx_OpenNTMSServerSessionWOperation struct {
 }
 
 // OpNum returns the operation number of OpenNtmsServerSessionW operation.
-func (o *xxx_OpenNTMSServerSessionWOperation) OpNum() int { return 0 }
+func (o *xxx_OpenNTMSServerSessionWOperation) OpNum() int { return 3 }
 
 // OpName returns the operation name of OpenNtmsServerSessionW operation.
 func (o *xxx_OpenNTMSServerSessionWOperation) OpName() string {
@@ -805,7 +805,7 @@ func (o *OpenNTMSServerSessionWRequest) MakeResponse() *OpenNTMSServerSessionWRe
 }
 
 // OpNum returns the operation number of OpenNtmsServerSessionW operation.
-func (o *OpenNTMSServerSessionWRequest) OpNum() int { return 0 }
+func (o *OpenNTMSServerSessionWRequest) OpNum() int { return 3 }
 
 // OpName returns the operation name of OpenNtmsServerSessionW operation.
 func (o *OpenNTMSServerSessionWRequest) OpName() string {
@@ -864,7 +864,7 @@ type xxx_OpenNTMSServerSessionAOperation struct {
 }
 
 // OpNum returns the operation number of OpenNtmsServerSessionA operation.
-func (o *xxx_OpenNTMSServerSessionAOperation) OpNum() int { return 1 }
+func (o *xxx_OpenNTMSServerSessionAOperation) OpNum() int { return 4 }
 
 // OpName returns the operation name of OpenNtmsServerSessionA operation.
 func (o *xxx_OpenNTMSServerSessionAOperation) OpName() string {
@@ -1170,7 +1170,7 @@ func (o *OpenNTMSServerSessionARequest) MakeResponse() *OpenNTMSServerSessionARe
 }
 
 // OpNum returns the operation number of OpenNtmsServerSessionA operation.
-func (o *OpenNTMSServerSessionARequest) OpNum() int { return 1 }
+func (o *OpenNTMSServerSessionARequest) OpNum() int { return 4 }
 
 // OpName returns the operation name of OpenNtmsServerSessionA operation.
 func (o *OpenNTMSServerSessionARequest) OpName() string {
@@ -1224,7 +1224,7 @@ type xxx_CloseNTMSSessionOperation struct {
 }
 
 // OpNum returns the operation number of CloseNtmsSession operation.
-func (o *xxx_CloseNTMSSessionOperation) OpNum() int { return 2 }
+func (o *xxx_CloseNTMSSessionOperation) OpNum() int { return 5 }
 
 // OpName returns the operation name of CloseNtmsSession operation.
 func (o *xxx_CloseNTMSSessionOperation) OpName() string { return "/INtmsSession1/v0/CloseNtmsSession" }
@@ -1376,7 +1376,7 @@ func (o *CloseNTMSSessionRequest) MakeResponse() *CloseNTMSSessionResponse {
 }
 
 // OpNum returns the operation number of CloseNtmsSession operation.
-func (o *CloseNTMSSessionRequest) OpNum() int { return 2 }
+func (o *CloseNTMSSessionRequest) OpNum() int { return 5 }
 
 // OpName returns the operation name of CloseNtmsSession operation.
 func (o *CloseNTMSSessionRequest) OpName() string { return "/INtmsSession1/v0/CloseNtmsSession" }
@@ -1433,7 +1433,7 @@ type xxx_SubmitNTMSOperatorRequestWOperation struct {
 }
 
 // OpNum returns the operation number of SubmitNtmsOperatorRequestW operation.
-func (o *xxx_SubmitNTMSOperatorRequestWOperation) OpNum() int { return 3 }
+func (o *xxx_SubmitNTMSOperatorRequestWOperation) OpNum() int { return 6 }
 
 // OpName returns the operation name of SubmitNtmsOperatorRequestW operation.
 func (o *xxx_SubmitNTMSOperatorRequestWOperation) OpName() string {
@@ -1805,7 +1805,7 @@ func (o *SubmitNTMSOperatorRequestWRequest) MakeResponse() *SubmitNTMSOperatorRe
 }
 
 // OpNum returns the operation number of SubmitNtmsOperatorRequestW operation.
-func (o *SubmitNTMSOperatorRequestWRequest) OpNum() int { return 3 }
+func (o *SubmitNTMSOperatorRequestWRequest) OpNum() int { return 6 }
 
 // OpName returns the operation name of SubmitNtmsOperatorRequestW operation.
 func (o *SubmitNTMSOperatorRequestWRequest) OpName() string {
@@ -1893,7 +1893,7 @@ type xxx_SubmitNTMSOperatorRequestAOperation struct {
 }
 
 // OpNum returns the operation number of SubmitNtmsOperatorRequestA operation.
-func (o *xxx_SubmitNTMSOperatorRequestAOperation) OpNum() int { return 4 }
+func (o *xxx_SubmitNTMSOperatorRequestAOperation) OpNum() int { return 7 }
 
 // OpName returns the operation name of SubmitNtmsOperatorRequestA operation.
 func (o *xxx_SubmitNTMSOperatorRequestAOperation) OpName() string {
@@ -2265,7 +2265,7 @@ func (o *SubmitNTMSOperatorRequestARequest) MakeResponse() *SubmitNTMSOperatorRe
 }
 
 // OpNum returns the operation number of SubmitNtmsOperatorRequestA operation.
-func (o *SubmitNTMSOperatorRequestARequest) OpNum() int { return 4 }
+func (o *SubmitNTMSOperatorRequestARequest) OpNum() int { return 7 }
 
 // OpName returns the operation name of SubmitNtmsOperatorRequestA operation.
 func (o *SubmitNTMSOperatorRequestARequest) OpName() string {
@@ -2350,7 +2350,7 @@ type xxx_WaitForNTMSOperatorRequestOperation struct {
 }
 
 // OpNum returns the operation number of WaitForNtmsOperatorRequest operation.
-func (o *xxx_WaitForNTMSOperatorRequestOperation) OpNum() int { return 5 }
+func (o *xxx_WaitForNTMSOperatorRequestOperation) OpNum() int { return 8 }
 
 // OpName returns the operation name of WaitForNtmsOperatorRequest operation.
 func (o *xxx_WaitForNTMSOperatorRequestOperation) OpName() string {
@@ -2570,7 +2570,7 @@ func (o *WaitForNTMSOperatorRequestRequest) MakeResponse() *WaitForNTMSOperatorR
 }
 
 // OpNum returns the operation number of WaitForNtmsOperatorRequest operation.
-func (o *WaitForNTMSOperatorRequestRequest) OpNum() int { return 5 }
+func (o *WaitForNTMSOperatorRequestRequest) OpNum() int { return 8 }
 
 // OpName returns the operation name of WaitForNtmsOperatorRequest operation.
 func (o *WaitForNTMSOperatorRequestRequest) OpName() string {
@@ -2625,7 +2625,7 @@ type xxx_CancelNTMSOperatorRequestOperation struct {
 }
 
 // OpNum returns the operation number of CancelNtmsOperatorRequest operation.
-func (o *xxx_CancelNTMSOperatorRequestOperation) OpNum() int { return 6 }
+func (o *xxx_CancelNTMSOperatorRequestOperation) OpNum() int { return 9 }
 
 // OpName returns the operation name of CancelNtmsOperatorRequest operation.
 func (o *xxx_CancelNTMSOperatorRequestOperation) OpName() string {
@@ -2824,7 +2824,7 @@ func (o *CancelNTMSOperatorRequestRequest) MakeResponse() *CancelNTMSOperatorReq
 }
 
 // OpNum returns the operation number of CancelNtmsOperatorRequest operation.
-func (o *CancelNTMSOperatorRequestRequest) OpNum() int { return 6 }
+func (o *CancelNTMSOperatorRequestRequest) OpNum() int { return 9 }
 
 // OpName returns the operation name of CancelNtmsOperatorRequest operation.
 func (o *CancelNTMSOperatorRequestRequest) OpName() string {
@@ -2879,7 +2879,7 @@ type xxx_SatisfyNTMSOperatorRequestOperation struct {
 }
 
 // OpNum returns the operation number of SatisfyNtmsOperatorRequest operation.
-func (o *xxx_SatisfyNTMSOperatorRequestOperation) OpNum() int { return 7 }
+func (o *xxx_SatisfyNTMSOperatorRequestOperation) OpNum() int { return 10 }
 
 // OpName returns the operation name of SatisfyNtmsOperatorRequest operation.
 func (o *xxx_SatisfyNTMSOperatorRequestOperation) OpName() string {
@@ -3076,7 +3076,7 @@ func (o *SatisfyNTMSOperatorRequestRequest) MakeResponse() *SatisfyNTMSOperatorR
 }
 
 // OpNum returns the operation number of SatisfyNtmsOperatorRequest operation.
-func (o *SatisfyNTMSOperatorRequestRequest) OpNum() int { return 7 }
+func (o *SatisfyNTMSOperatorRequestRequest) OpNum() int { return 10 }
 
 // OpName returns the operation name of SatisfyNtmsOperatorRequest operation.
 func (o *SatisfyNTMSOperatorRequestRequest) OpName() string {
@@ -3130,7 +3130,7 @@ type xxx_ImportNTMSDatabaseOperation struct {
 }
 
 // OpNum returns the operation number of ImportNtmsDatabase operation.
-func (o *xxx_ImportNTMSDatabaseOperation) OpNum() int { return 8 }
+func (o *xxx_ImportNTMSDatabaseOperation) OpNum() int { return 11 }
 
 // OpName returns the operation name of ImportNtmsDatabase operation.
 func (o *xxx_ImportNTMSDatabaseOperation) OpName() string {
@@ -3284,7 +3284,7 @@ func (o *ImportNTMSDatabaseRequest) MakeResponse() *ImportNTMSDatabaseResponse {
 }
 
 // OpNum returns the operation number of ImportNtmsDatabase operation.
-func (o *ImportNTMSDatabaseRequest) OpNum() int { return 8 }
+func (o *ImportNTMSDatabaseRequest) OpNum() int { return 11 }
 
 // OpName returns the operation name of ImportNtmsDatabase operation.
 func (o *ImportNTMSDatabaseRequest) OpName() string { return "/INtmsSession1/v0/ImportNtmsDatabase" }
@@ -3336,7 +3336,7 @@ type xxx_ExportNTMSDatabaseOperation struct {
 }
 
 // OpNum returns the operation number of ExportNtmsDatabase operation.
-func (o *xxx_ExportNTMSDatabaseOperation) OpNum() int { return 9 }
+func (o *xxx_ExportNTMSDatabaseOperation) OpNum() int { return 12 }
 
 // OpName returns the operation name of ExportNtmsDatabase operation.
 func (o *xxx_ExportNTMSDatabaseOperation) OpName() string {
@@ -3490,7 +3490,7 @@ func (o *ExportNTMSDatabaseRequest) MakeResponse() *ExportNTMSDatabaseResponse {
 }
 
 // OpNum returns the operation number of ExportNtmsDatabase operation.
-func (o *ExportNTMSDatabaseRequest) OpNum() int { return 9 }
+func (o *ExportNTMSDatabaseRequest) OpNum() int { return 12 }
 
 // OpName returns the operation name of ExportNtmsDatabase operation.
 func (o *ExportNTMSDatabaseRequest) OpName() string { return "/INtmsSession1/v0/ExportNtmsDatabase" }
@@ -3543,7 +3543,7 @@ type xxx_AddNotificationOperation struct {
 }
 
 // OpNum returns the operation number of AddNotification operation.
-func (o *xxx_AddNotificationOperation) OpNum() int { return 11 }
+func (o *xxx_AddNotificationOperation) OpNum() int { return 14 }
 
 // OpName returns the operation name of AddNotification operation.
 func (o *xxx_AddNotificationOperation) OpName() string { return "/INtmsSession1/v0/AddNotification" }
@@ -3721,7 +3721,7 @@ func (o *AddNotificationRequest) MakeResponse() *AddNotificationResponse {
 }
 
 // OpNum returns the operation number of AddNotification operation.
-func (o *AddNotificationRequest) OpNum() int { return 11 }
+func (o *AddNotificationRequest) OpNum() int { return 14 }
 
 // OpName returns the operation name of AddNotification operation.
 func (o *AddNotificationRequest) OpName() string { return "/INtmsSession1/v0/AddNotification" }
@@ -3774,7 +3774,7 @@ type xxx_RemoveNotificationOperation struct {
 }
 
 // OpNum returns the operation number of RemoveNotification operation.
-func (o *xxx_RemoveNotificationOperation) OpNum() int { return 12 }
+func (o *xxx_RemoveNotificationOperation) OpNum() int { return 15 }
 
 // OpName returns the operation name of RemoveNotification operation.
 func (o *xxx_RemoveNotificationOperation) OpName() string {
@@ -3956,7 +3956,7 @@ func (o *RemoveNotificationRequest) MakeResponse() *RemoveNotificationResponse {
 }
 
 // OpNum returns the operation number of RemoveNotification operation.
-func (o *RemoveNotificationRequest) OpNum() int { return 12 }
+func (o *RemoveNotificationRequest) OpNum() int { return 15 }
 
 // OpName returns the operation name of RemoveNotification operation.
 func (o *RemoveNotificationRequest) OpName() string { return "/INtmsSession1/v0/RemoveNotification" }
@@ -4011,7 +4011,7 @@ type xxx_DispatchNotificationOperation struct {
 }
 
 // OpNum returns the operation number of DispatchNotification operation.
-func (o *xxx_DispatchNotificationOperation) OpNum() int { return 13 }
+func (o *xxx_DispatchNotificationOperation) OpNum() int { return 16 }
 
 // OpName returns the operation name of DispatchNotification operation.
 func (o *xxx_DispatchNotificationOperation) OpName() string {
@@ -4236,7 +4236,7 @@ func (o *DispatchNotificationRequest) MakeResponse() *DispatchNotificationRespon
 }
 
 // OpNum returns the operation number of DispatchNotification operation.
-func (o *DispatchNotificationRequest) OpNum() int { return 13 }
+func (o *DispatchNotificationRequest) OpNum() int { return 16 }
 
 // OpName returns the operation name of DispatchNotification operation.
 func (o *DispatchNotificationRequest) OpName() string {

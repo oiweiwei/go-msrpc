@@ -697,6 +697,14 @@ var (
 
 func (o TransferBufferV1NullMask) IsSet(v TransferBufferV1NullMask) bool { return o&v != 0 }
 
+func (o TransferBufferV1NullMask) Set(v TransferBufferV1NullMask) TransferBufferV1NullMask {
+	return o | v
+}
+
+func (o TransferBufferV1NullMask) Unset(v TransferBufferV1NullMask) TransferBufferV1NullMask {
+	return o &^ v
+}
+
 type TransferBufferV1 struct {
 
 	// TransferBufferV1NullMask is used to carry information on null-valued primitive values.
@@ -1296,7 +1304,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskClass == 0 {
+	if o.NullMask&TransferBufferV1NullMaskClass == 0 || o.Class != uint16(0) {
 		_ptr_pClass := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Class); err != nil {
 				return err
@@ -1401,7 +1409,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskSentTime == 0 {
+	if o.NullMask&TransferBufferV1NullMaskSentTime == 0 || o.SentTime != uint32(0) {
 		_ptr_pSentTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.SentTime); err != nil {
 				return err
@@ -1416,7 +1424,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskArrivedTime == 0 {
+	if o.NullMask&TransferBufferV1NullMaskArrivedTime == 0 || o.ArrivedTime != uint32(0) {
 		_ptr_pArrivedTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ArrivedTime); err != nil {
 				return err
@@ -1431,7 +1439,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskPriority == 0 {
+	if o.NullMask&TransferBufferV1NullMaskPriority == 0 || o.Priority != uint8(0) {
 		_ptr_pPriority := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Priority); err != nil {
 				return err
@@ -1446,7 +1454,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskDelivery == 0 {
+	if o.NullMask&TransferBufferV1NullMaskDelivery == 0 || o.Delivery != uint8(0) {
 		_ptr_pDelivery := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Delivery); err != nil {
 				return err
@@ -1461,7 +1469,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskAcknowledge == 0 {
+	if o.NullMask&TransferBufferV1NullMaskAcknowledge == 0 || o.Acknowledge != uint8(0) {
 		_ptr_pAcknowledge := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Acknowledge); err != nil {
 				return err
@@ -1476,7 +1484,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskAuditing == 0 {
+	if o.NullMask&TransferBufferV1NullMaskAuditing == 0 || o.Auditing != uint8(0) {
 		_ptr_pAuditing := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Auditing); err != nil {
 				return err
@@ -1491,7 +1499,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskApplicationTag == 0 {
+	if o.NullMask&TransferBufferV1NullMaskApplicationTag == 0 || o.ApplicationTag != uint32(0) {
 		_ptr_pApplicationTag := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ApplicationTag); err != nil {
 				return err
@@ -1569,7 +1577,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.AllocBodyBufferInBytes); err != nil {
 		return err
 	}
-	if o.NullMask&TransferBufferV1NullMaskBodySize == 0 {
+	if o.NullMask&TransferBufferV1NullMaskBodySize == 0 || o.BodySize != uint32(0) {
 		_ptr_pBodySize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.BodySize); err != nil {
 				return err
@@ -1648,7 +1656,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.TitleBufferSizeInWchars); err != nil {
 		return err
 	}
-	if o.NullMask&TransferBufferV1NullMaskActualTitleBufferSizeInWchars == 0 {
+	if o.NullMask&TransferBufferV1NullMaskActualTitleBufferSizeInWchars == 0 || o.ActualTitleBufferSizeInWchars != uint32(0) {
 		_ptr_pulTitleBufferSizeInWCHARs := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ActualTitleBufferSizeInWchars); err != nil {
 				return err
@@ -1666,7 +1674,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.AbsoluteTimeToQueue); err != nil {
 		return err
 	}
-	if o.NullMask&TransferBufferV1NullMaskActualRelativeTimeToQueue == 0 {
+	if o.NullMask&TransferBufferV1NullMaskActualRelativeTimeToQueue == 0 || o.ActualRelativeTimeToQueue != uint32(0) {
 		_ptr_pulRelativeTimeToQueue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ActualRelativeTimeToQueue); err != nil {
 				return err
@@ -1684,7 +1692,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.RelativeTimeToLive); err != nil {
 		return err
 	}
-	if o.NullMask&TransferBufferV1NullMaskActualRelativeTimeToLive == 0 {
+	if o.NullMask&TransferBufferV1NullMaskActualRelativeTimeToLive == 0 || o.ActualRelativeTimeToLive != uint32(0) {
 		_ptr_pulRelativeTimeToLive := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ActualRelativeTimeToLive); err != nil {
 				return err
@@ -1699,7 +1707,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskTrace == 0 {
+	if o.NullMask&TransferBufferV1NullMaskTrace == 0 || o.Trace != uint8(0) {
 		_ptr_pTrace := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Trace); err != nil {
 				return err
@@ -1714,7 +1722,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskSenderIDType == 0 {
+	if o.NullMask&TransferBufferV1NullMaskSenderIDType == 0 || o.SenderIDType != uint32(0) {
 		_ptr_pulSenderIDType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.SenderIDType); err != nil {
 				return err
@@ -1774,7 +1782,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskSenderIDLengthProperty == 0 {
+	if o.NullMask&TransferBufferV1NullMaskSenderIDLengthProperty == 0 || o.SenderIDLengthProperty != uint32(0) {
 		_ptr_pulSenderIDLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.SenderIDLengthProperty); err != nil {
 				return err
@@ -1789,7 +1797,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskPrivacyLevel == 0 {
+	if o.NullMask&TransferBufferV1NullMaskPrivacyLevel == 0 || o.PrivacyLevel != uint32(0) {
 		_ptr_pulPrivLevel := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.PrivacyLevel); err != nil {
 				return err
@@ -1807,7 +1815,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.AuthLevel); err != nil {
 		return err
 	}
-	if o.NullMask&TransferBufferV1NullMaskAuthenticated == 0 {
+	if o.NullMask&TransferBufferV1NullMaskAuthenticated == 0 || o.Authenticated != uint8(0) {
 		_ptr_pAuthenticated := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Authenticated); err != nil {
 				return err
@@ -1822,7 +1830,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskHashAlgorithm == 0 {
+	if o.NullMask&TransferBufferV1NullMaskHashAlgorithm == 0 || o.HashAlgorithm != uint32(0) {
 		_ptr_pulHashAlg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.HashAlgorithm); err != nil {
 				return err
@@ -1837,7 +1845,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskEncryptAlgorithm == 0 {
+	if o.NullMask&TransferBufferV1NullMaskEncryptAlgorithm == 0 || o.EncryptAlgorithm != uint32(0) {
 		_ptr_pulEncryptAlg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.EncryptAlgorithm); err != nil {
 				return err
@@ -1900,7 +1908,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SenderCertLength); err != nil {
 		return err
 	}
-	if o.NullMask&TransferBufferV1NullMaskSenderCertLengthProperty == 0 {
+	if o.NullMask&TransferBufferV1NullMaskSenderCertLengthProperty == 0 || o.SenderCertLengthProperty != uint32(0) {
 		_ptr_pulSenderCertLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.SenderCertLengthProperty); err != nil {
 				return err
@@ -1967,7 +1975,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.ProviderNameLength); err != nil {
 		return err
 	}
-	if o.NullMask&TransferBufferV1NullMaskAuthProviderNameLengthProperty == 0 {
+	if o.NullMask&TransferBufferV1NullMaskAuthProviderNameLengthProperty == 0 || o.AuthProviderNameLengthProperty != uint32(0) {
 		_ptr_pulAuthProvNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.AuthProviderNameLengthProperty); err != nil {
 				return err
@@ -1982,7 +1990,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskProviderType == 0 {
+	if o.NullMask&TransferBufferV1NullMaskProviderType == 0 || o.ProviderType != uint32(0) {
 		_ptr_pulProvType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ProviderType); err != nil {
 				return err
@@ -2048,7 +2056,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SymmetricKeysSize); err != nil {
 		return err
 	}
-	if o.NullMask&TransferBufferV1NullMaskSymmetricKeysSizeProperty == 0 {
+	if o.NullMask&TransferBufferV1NullMaskSymmetricKeysSizeProperty == 0 || o.SymmetricKeysSizeProperty != uint32(0) {
 		_ptr_pulSymmKeysSizeProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.SymmetricKeysSizeProperty); err != nil {
 				return err
@@ -2120,7 +2128,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SignatureSize); err != nil {
 		return err
 	}
-	if o.NullMask&TransferBufferV1NullMaskSignatureSizeProperty == 0 {
+	if o.NullMask&TransferBufferV1NullMaskSignatureSizeProperty == 0 || o.SignatureSizeProperty != uint32(0) {
 		_ptr_pulSignatureSizeProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.SignatureSizeProperty); err != nil {
 				return err
@@ -2249,7 +2257,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.MessageExtensionBufferInBytes); err != nil {
 		return err
 	}
-	if o.NullMask&TransferBufferV1NullMaskMessageExtensionSize == 0 {
+	if o.NullMask&TransferBufferV1NullMaskMessageExtensionSize == 0 || o.MessageExtensionSize != uint32(0) {
 		_ptr_pMsgExtensionSize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.MessageExtensionSize); err != nil {
 				return err
@@ -2297,7 +2305,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskBodyType == 0 {
+	if o.NullMask&TransferBufferV1NullMaskBodyType == 0 || o.BodyType != uint32(0) {
 		_ptr_pulBodyType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.BodyType); err != nil {
 				return err
@@ -2312,7 +2320,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1NullMaskVersion == 0 {
+	if o.NullMask&TransferBufferV1NullMaskVersion == 0 || o.Version != uint32(0) {
 		_ptr_pulVersion := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Version); err != nil {
 				return err
@@ -3444,6 +3452,14 @@ func (o TransferBufferV1_TransferBufferV1_ReceiveNullMask) IsSet(v TransferBuffe
 	return o&v != 0
 }
 
+func (o TransferBufferV1_TransferBufferV1_ReceiveNullMask) Set(v TransferBufferV1_TransferBufferV1_ReceiveNullMask) TransferBufferV1_TransferBufferV1_ReceiveNullMask {
+	return o | v
+}
+
+func (o TransferBufferV1_TransferBufferV1_ReceiveNullMask) Unset(v TransferBufferV1_TransferBufferV1_ReceiveNullMask) TransferBufferV1_TransferBufferV1_ReceiveNullMask {
+	return o &^ v
+}
+
 type TransferBufferV1_TransferBufferV1_Receive struct {
 
 	// TransferBufferV1_TransferBufferV1_ReceiveNullMask is used to carry information on null-valued primitive values.
@@ -3635,7 +3651,7 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) MarshalNDR(ctx context.Conte
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1_TransferBufferV1_ReceiveNullMaskResponseFormatNameLengthProperty == 0 {
+	if o.NullMask&TransferBufferV1_TransferBufferV1_ReceiveNullMaskResponseFormatNameLengthProperty == 0 || o.ResponseFormatNameLengthProperty != uint32(0) {
 		_ptr_pulResponseFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResponseFormatNameLengthProperty); err != nil {
 				return err
@@ -3702,7 +3718,7 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) MarshalNDR(ctx context.Conte
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1_TransferBufferV1_ReceiveNullMaskAdminFormatNameLengthProperty == 0 {
+	if o.NullMask&TransferBufferV1_TransferBufferV1_ReceiveNullMaskAdminFormatNameLengthProperty == 0 || o.AdminFormatNameLengthProperty != uint32(0) {
 		_ptr_pulAdminFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.AdminFormatNameLengthProperty); err != nil {
 				return err
@@ -3769,7 +3785,7 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) MarshalNDR(ctx context.Conte
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1_TransferBufferV1_ReceiveNullMaskDestinationFormatNameLengthProperty == 0 {
+	if o.NullMask&TransferBufferV1_TransferBufferV1_ReceiveNullMaskDestinationFormatNameLengthProperty == 0 || o.DestinationFormatNameLengthProperty != uint32(0) {
 		_ptr_pulDestFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.DestinationFormatNameLengthProperty); err != nil {
 				return err
@@ -3836,7 +3852,7 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) MarshalNDR(ctx context.Conte
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV1_TransferBufferV1_ReceiveNullMaskOrderingFormatNameLengthProperty == 0 {
+	if o.NullMask&TransferBufferV1_TransferBufferV1_ReceiveNullMaskOrderingFormatNameLengthProperty == 0 || o.OrderingFormatNameLengthProperty != uint32(0) {
 		_ptr_pulOrderingFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.OrderingFormatNameLengthProperty); err != nil {
 				return err
@@ -4137,6 +4153,14 @@ var (
 
 func (o TransferBufferV2NullMask) IsSet(v TransferBufferV2NullMask) bool { return o&v != 0 }
 
+func (o TransferBufferV2NullMask) Set(v TransferBufferV2NullMask) TransferBufferV2NullMask {
+	return o | v
+}
+
+func (o TransferBufferV2NullMask) Unset(v TransferBufferV2NullMask) TransferBufferV2NullMask {
+	return o &^ v
+}
+
 type TransferBufferV2 struct {
 
 	// TransferBufferV2NullMask is used to carry information on null-valued primitive values.
@@ -4185,7 +4209,7 @@ func (o *TransferBufferV2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV2NullMaskFirstInTransaction == 0 {
+	if o.NullMask&TransferBufferV2NullMaskFirstInTransaction == 0 || o.FirstInTransaction != uint8(0) {
 		_ptr_pbFirstInXact := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.FirstInTransaction); err != nil {
 				return err
@@ -4200,7 +4224,7 @@ func (o *TransferBufferV2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.NullMask&TransferBufferV2NullMaskLastInTransaction == 0 {
+	if o.NullMask&TransferBufferV2NullMaskLastInTransaction == 0 || o.LastInTransaction != uint8(0) {
 		_ptr_pbLastInXact := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.LastInTransaction); err != nil {
 				return err
