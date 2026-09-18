@@ -18361,6 +18361,14 @@ var (
 
 func (o MessageMoveReplyV1NullMask) IsSet(v MessageMoveReplyV1NullMask) bool { return o&v != 0 }
 
+func (o MessageMoveReplyV1NullMask) Set(v MessageMoveReplyV1NullMask) MessageMoveReplyV1NullMask {
+	return o | v
+}
+
+func (o MessageMoveReplyV1NullMask) Unset(v MessageMoveReplyV1NullMask) MessageMoveReplyV1NullMask {
+	return o &^ v
+}
+
 type MessageMoveReplyV1 struct {
 
 	// MessageMoveReplyV1NullMask is used to carry information on null-valued primitive values.
@@ -18433,7 +18441,7 @@ func (o *MessageMoveReplyV1) MarshalNDR(ctx context.Context, w ndr.Writer) error
 			return err
 		}
 	}
-	if o.NullMask&MessageMoveReplyV1NullMaskError == 0 {
+	if o.NullMask&MessageMoveReplyV1NullMaskError == 0 || o.Error != uint32(0) {
 		_ptr_pError := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Error); err != nil {
 				return err

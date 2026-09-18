@@ -51,12 +51,12 @@ func NewRobustNTMSMediaServices1ServerHandle(o RobustNTMSMediaServices1Server) d
 }
 
 func RobustNTMSMediaServices1ServerHandle(ctx context.Context, o RobustNTMSMediaServices1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-	if opNum < 18 {
+	if opNum < 21 {
 		// INtmsMediaServices1 base method.
 		return intmsmediaservices1.MediaServices1ServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
-	case 18: // GetNtmsMediaPoolNameAR
+	case 21: // GetNtmsMediaPoolNameAR
 		op := &xxx_GetNTMSMediaPoolNameAROperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -65,7 +65,7 @@ func RobustNTMSMediaServices1ServerHandle(ctx context.Context, o RobustNTMSMedia
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.GetNTMSMediaPoolNameAR(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 19: // GetNtmsMediaPoolNameWR
+	case 22: // GetNtmsMediaPoolNameWR
 		op := &xxx_GetNTMSMediaPoolNameWROperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err

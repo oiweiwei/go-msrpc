@@ -11681,6 +11681,8 @@ func (o AccessCheckNullMask) IsSet(v AccessCheckNullMask) bool { return o&v != 0
 
 func (o AccessCheckNullMask) Set(v AccessCheckNullMask) AccessCheckNullMask { return o | v }
 
+func (o AccessCheckNullMask) Unset(v AccessCheckNullMask) AccessCheckNullMask { return o &^ v }
+
 // xxx_AccessCheckOperation structure represents the FAX_AccessCheck operation
 type xxx_AccessCheckOperation struct {
 
@@ -11720,7 +11722,7 @@ func (o *xxx_AccessCheckOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&AccessCheckNullMaskRights == 0 {
+		if o.NullMask&AccessCheckNullMaskRights == 0 || o.Rights != uint32(0) {
 			_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Rights); err != nil {
 					return err
@@ -11796,7 +11798,7 @@ func (o *xxx_AccessCheckOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&AccessCheckNullMaskRights == 0 {
+		if o.NullMask&AccessCheckNullMaskRights == 0 || o.Rights != uint32(0) {
 			_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Rights); err != nil {
 					return err
@@ -12110,6 +12112,10 @@ func (o CheckServerProtocolSeqNullMask) Set(v CheckServerProtocolSeqNullMask) Ch
 	return o | v
 }
 
+func (o CheckServerProtocolSeqNullMask) Unset(v CheckServerProtocolSeqNullMask) CheckServerProtocolSeqNullMask {
+	return o &^ v
+}
+
 // xxx_CheckServerProtocolSeqOperation structure represents the FAX_CheckServerProtSeq operation
 type xxx_CheckServerProtocolSeqOperation struct {
 
@@ -12143,7 +12149,7 @@ func (o *xxx_CheckServerProtocolSeqOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// lpdwProtSeq {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&CheckServerProtocolSeqNullMaskProtocolSeq == 0 {
+		if o.NullMask&CheckServerProtocolSeqNullMaskProtocolSeq == 0 || o.ProtocolSeq != uint32(0) {
 			_ptr_lpdwProtSeq := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ProtocolSeq); err != nil {
 					return err
@@ -12201,7 +12207,7 @@ func (o *xxx_CheckServerProtocolSeqOperation) MarshalNDRResponse(ctx context.Con
 	}
 	// lpdwProtSeq {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&CheckServerProtocolSeqNullMaskProtocolSeq == 0 {
+		if o.NullMask&CheckServerProtocolSeqNullMaskProtocolSeq == 0 || o.ProtocolSeq != uint32(0) {
 			_ptr_lpdwProtSeq := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ProtocolSeq); err != nil {
 					return err
@@ -12392,6 +12398,8 @@ func (o SendDocumentExNullMask) IsSet(v SendDocumentExNullMask) bool { return o&
 
 func (o SendDocumentExNullMask) Set(v SendDocumentExNullMask) SendDocumentExNullMask { return o | v }
 
+func (o SendDocumentExNullMask) Unset(v SendDocumentExNullMask) SendDocumentExNullMask { return o &^ v }
+
 // xxx_SendDocumentExOperation structure represents the FAX_SendDocumentEx operation
 type xxx_SendDocumentExOperation struct {
 
@@ -12575,7 +12583,7 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwJobId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&SendDocumentExNullMaskJobID == 0 {
+		if o.NullMask&SendDocumentExNullMaskJobID == 0 || o.JobID != uint32(0) {
 			_ptr_lpdwJobId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.JobID); err != nil {
 					return err
@@ -12741,7 +12749,7 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwJobId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&SendDocumentExNullMaskJobID == 0 {
+		if o.NullMask&SendDocumentExNullMaskJobID == 0 || o.JobID != uint32(0) {
 			_ptr_lpdwJobId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.JobID); err != nil {
 					return err
@@ -29486,6 +29494,8 @@ func (o AccessCheckEx2NullMask) IsSet(v AccessCheckEx2NullMask) bool { return o&
 
 func (o AccessCheckEx2NullMask) Set(v AccessCheckEx2NullMask) AccessCheckEx2NullMask { return o | v }
 
+func (o AccessCheckEx2NullMask) Unset(v AccessCheckEx2NullMask) AccessCheckEx2NullMask { return o &^ v }
+
 // xxx_AccessCheckEx2Operation structure represents the FAX_AccessCheckEx2 operation
 type xxx_AccessCheckEx2Operation struct {
 
@@ -29525,7 +29535,7 @@ func (o *xxx_AccessCheckEx2Operation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&AccessCheckEx2NullMaskRights == 0 {
+		if o.NullMask&AccessCheckEx2NullMaskRights == 0 || o.Rights != uint32(0) {
 			_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Rights); err != nil {
 					return err
@@ -29601,7 +29611,7 @@ func (o *xxx_AccessCheckEx2Operation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&AccessCheckEx2NullMaskRights == 0 {
+		if o.NullMask&AccessCheckEx2NullMaskRights == 0 || o.Rights != uint32(0) {
 			_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Rights); err != nil {
 					return err

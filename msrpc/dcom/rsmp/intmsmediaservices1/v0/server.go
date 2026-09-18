@@ -111,8 +111,12 @@ func NewMediaServices1ServerHandle(o MediaServices1Server) dcerpc.ServerHandle {
 }
 
 func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+	if opNum < 3 {
+		// IUnknown base method.
+		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
+	}
 	switch opNum {
-	case 0: // MountNtmsMedia
+	case 3: // MountNtmsMedia
 		op := &xxx_MountNTMSMediaOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -121,7 +125,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.MountNTMSMedia(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 1: // DismountNtmsMedia
+	case 4: // DismountNtmsMedia
 		op := &xxx_DismountNTMSMediaOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -130,10 +134,10 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.DismountNTMSMedia(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 2: // Opnum5NotUsedOnWire
+	case 5: // Opnum5NotUsedOnWire
 		// Opnum5NotUsedOnWire
 		return nil, nil
-	case 3: // AllocateNtmsMedia
+	case 6: // AllocateNtmsMedia
 		op := &xxx_AllocateNTMSMediaOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -142,7 +146,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.AllocateNTMSMedia(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 4: // DeallocateNtmsMedia
+	case 7: // DeallocateNtmsMedia
 		op := &xxx_DeallocateNTMSMediaOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -151,7 +155,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.DeallocateNTMSMedia(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 5: // SwapNtmsMedia
+	case 8: // SwapNtmsMedia
 		op := &xxx_SwapNTMSMediaOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -160,7 +164,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SwapNTMSMedia(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 6: // DecommissionNtmsMedia
+	case 9: // DecommissionNtmsMedia
 		op := &xxx_DecommissionNTMSMediaOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -169,7 +173,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.DecommissionNTMSMedia(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 7: // SetNtmsMediaComplete
+	case 10: // SetNtmsMediaComplete
 		op := &xxx_SetNTMSMediaCompleteOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -178,7 +182,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SetNTMSMediaComplete(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 8: // DeleteNtmsMedia
+	case 11: // DeleteNtmsMedia
 		op := &xxx_DeleteNTMSMediaOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -187,7 +191,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.DeleteNTMSMedia(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 9: // CreateNtmsMediaPoolA
+	case 12: // CreateNtmsMediaPoolA
 		op := &xxx_CreateNTMSMediaPoolAOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -196,7 +200,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.CreateNTMSMediaPoolA(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 10: // CreateNtmsMediaPoolW
+	case 13: // CreateNtmsMediaPoolW
 		op := &xxx_CreateNTMSMediaPoolWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -205,7 +209,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.CreateNTMSMediaPoolW(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 11: // GetNtmsMediaPoolNameA
+	case 14: // GetNtmsMediaPoolNameA
 		op := &xxx_GetNTMSMediaPoolNameAOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -214,7 +218,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.GetNTMSMediaPoolNameA(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 12: // GetNtmsMediaPoolNameW
+	case 15: // GetNtmsMediaPoolNameW
 		op := &xxx_GetNTMSMediaPoolNameWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -223,7 +227,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.GetNTMSMediaPoolNameW(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 13: // MoveToNtmsMediaPool
+	case 16: // MoveToNtmsMediaPool
 		op := &xxx_MoveToNTMSMediaPoolOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -232,7 +236,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.MoveToNTMSMediaPool(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 14: // DeleteNtmsMediaPool
+	case 17: // DeleteNtmsMediaPool
 		op := &xxx_DeleteNTMSMediaPoolOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -241,7 +245,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.DeleteNTMSMediaPool(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 15: // AddNtmsMediaType
+	case 18: // AddNtmsMediaType
 		op := &xxx_AddNTMSMediaTypeOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -250,7 +254,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.AddNTMSMediaType(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 16: // DeleteNtmsMediaType
+	case 19: // DeleteNtmsMediaType
 		op := &xxx_DeleteNTMSMediaTypeOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -259,7 +263,7 @@ func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opN
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.DeleteNTMSMediaType(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 17: // ChangeNtmsMediaType
+	case 20: // ChangeNtmsMediaType
 		op := &xxx_ChangeNTMSMediaTypeOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err

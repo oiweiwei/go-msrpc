@@ -269,7 +269,7 @@ type xxx_GetNTMSServerObjectInformationAOperation struct {
 }
 
 // OpNum returns the operation number of GetNtmsServerObjectInformationA operation.
-func (o *xxx_GetNTMSServerObjectInformationAOperation) OpNum() int { return 0 }
+func (o *xxx_GetNTMSServerObjectInformationAOperation) OpNum() int { return 3 }
 
 // OpName returns the operation name of GetNtmsServerObjectInformationA operation.
 func (o *xxx_GetNTMSServerObjectInformationAOperation) OpName() string {
@@ -543,7 +543,7 @@ func (o *GetNTMSServerObjectInformationARequest) MakeResponse() *GetNTMSServerOb
 }
 
 // OpNum returns the operation number of GetNtmsServerObjectInformationA operation.
-func (o *GetNTMSServerObjectInformationARequest) OpNum() int { return 0 }
+func (o *GetNTMSServerObjectInformationARequest) OpNum() int { return 3 }
 
 // OpName returns the operation name of GetNtmsServerObjectInformationA operation.
 func (o *GetNTMSServerObjectInformationARequest) OpName() string {
@@ -606,7 +606,7 @@ type xxx_GetNTMSServerObjectInformationWOperation struct {
 }
 
 // OpNum returns the operation number of GetNtmsServerObjectInformationW operation.
-func (o *xxx_GetNTMSServerObjectInformationWOperation) OpNum() int { return 1 }
+func (o *xxx_GetNTMSServerObjectInformationWOperation) OpNum() int { return 4 }
 
 // OpName returns the operation name of GetNtmsServerObjectInformationW operation.
 func (o *xxx_GetNTMSServerObjectInformationWOperation) OpName() string {
@@ -855,7 +855,7 @@ func (o *GetNTMSServerObjectInformationWRequest) MakeResponse() *GetNTMSServerOb
 }
 
 // OpNum returns the operation number of GetNtmsServerObjectInformationW operation.
-func (o *GetNTMSServerObjectInformationWRequest) OpNum() int { return 1 }
+func (o *GetNTMSServerObjectInformationWRequest) OpNum() int { return 4 }
 
 // OpName returns the operation name of GetNtmsServerObjectInformationW operation.
 func (o *GetNTMSServerObjectInformationWRequest) OpName() string {
@@ -916,7 +916,7 @@ type xxx_SetNTMSObjectInformationAOperation struct {
 }
 
 // OpNum returns the operation number of SetNtmsObjectInformationA operation.
-func (o *xxx_SetNTMSObjectInformationAOperation) OpNum() int { return 2 }
+func (o *xxx_SetNTMSObjectInformationAOperation) OpNum() int { return 5 }
 
 // OpName returns the operation name of SetNtmsObjectInformationA operation.
 func (o *xxx_SetNTMSObjectInformationAOperation) OpName() string {
@@ -1140,7 +1140,7 @@ func (o *SetNTMSObjectInformationARequest) MakeResponse() *SetNTMSObjectInformat
 }
 
 // OpNum returns the operation number of SetNtmsObjectInformationA operation.
-func (o *SetNTMSObjectInformationARequest) OpNum() int { return 2 }
+func (o *SetNTMSObjectInformationARequest) OpNum() int { return 5 }
 
 // OpName returns the operation name of SetNtmsObjectInformationA operation.
 func (o *SetNTMSObjectInformationARequest) OpName() string {
@@ -1196,7 +1196,7 @@ type xxx_SetNTMSObjectInformationWOperation struct {
 }
 
 // OpNum returns the operation number of SetNtmsObjectInformationW operation.
-func (o *xxx_SetNTMSObjectInformationWOperation) OpNum() int { return 3 }
+func (o *xxx_SetNTMSObjectInformationWOperation) OpNum() int { return 6 }
 
 // OpName returns the operation name of SetNtmsObjectInformationW operation.
 func (o *xxx_SetNTMSObjectInformationWOperation) OpName() string {
@@ -1420,7 +1420,7 @@ func (o *SetNTMSObjectInformationWRequest) MakeResponse() *SetNTMSObjectInformat
 }
 
 // OpNum returns the operation number of SetNtmsObjectInformationW operation.
-func (o *SetNTMSObjectInformationWRequest) OpNum() int { return 3 }
+func (o *SetNTMSObjectInformationWRequest) OpNum() int { return 6 }
 
 // OpName returns the operation name of SetNtmsObjectInformationW operation.
 func (o *SetNTMSObjectInformationWRequest) OpName() string {
@@ -1479,7 +1479,7 @@ type xxx_CreateNTMSMediaAOperation struct {
 }
 
 // OpNum returns the operation number of CreateNtmsMediaA operation.
-func (o *xxx_CreateNTMSMediaAOperation) OpNum() int { return 4 }
+func (o *xxx_CreateNTMSMediaAOperation) OpNum() int { return 7 }
 
 // OpName returns the operation name of CreateNtmsMediaA operation.
 func (o *xxx_CreateNTMSMediaAOperation) OpName() string {
@@ -1934,7 +1934,7 @@ func (o *CreateNTMSMediaARequest) MakeResponse() *CreateNTMSMediaAResponse {
 }
 
 // OpNum returns the operation number of CreateNtmsMediaA operation.
-func (o *CreateNTMSMediaARequest) OpNum() int { return 4 }
+func (o *CreateNTMSMediaARequest) OpNum() int { return 7 }
 
 // OpName returns the operation name of CreateNtmsMediaA operation.
 func (o *CreateNTMSMediaARequest) OpName() string { return "/INtmsObjectInfo1/v0/CreateNtmsMediaA" }
@@ -2018,7 +2018,7 @@ type xxx_CreateNTMSMediaWOperation struct {
 }
 
 // OpNum returns the operation number of CreateNtmsMediaW operation.
-func (o *xxx_CreateNTMSMediaWOperation) OpNum() int { return 5 }
+func (o *xxx_CreateNTMSMediaWOperation) OpNum() int { return 8 }
 
 // OpName returns the operation name of CreateNtmsMediaW operation.
 func (o *xxx_CreateNTMSMediaWOperation) OpName() string {
@@ -2473,7 +2473,7 @@ func (o *CreateNTMSMediaWRequest) MakeResponse() *CreateNTMSMediaWResponse {
 }
 
 // OpNum returns the operation number of CreateNtmsMediaW operation.
-func (o *CreateNTMSMediaWRequest) OpNum() int { return 5 }
+func (o *CreateNTMSMediaWRequest) OpNum() int { return 8 }
 
 // OpName returns the operation name of CreateNtmsMediaW operation.
 func (o *CreateNTMSMediaWRequest) OpName() string { return "/INtmsObjectInfo1/v0/CreateNtmsMediaW" }

@@ -145,7 +145,7 @@ type xxx_OnNotifyOperation struct {
 }
 
 // OpNum returns the operation number of OnNotify operation.
-func (o *xxx_OnNotifyOperation) OpNum() int { return 0 }
+func (o *xxx_OnNotifyOperation) OpNum() int { return 3 }
 
 // OpName returns the operation name of OnNotify operation.
 func (o *xxx_OnNotifyOperation) OpName() string { return "/IClientSink/v0/OnNotify" }
@@ -351,7 +351,7 @@ func (o *OnNotifyRequest) MakeResponse() *OnNotifyResponse {
 }
 
 // OpNum returns the operation number of OnNotify operation.
-func (o *OnNotifyRequest) OpNum() int { return 0 }
+func (o *OnNotifyRequest) OpNum() int { return 3 }
 
 // OpName returns the operation name of OnNotify operation.
 func (o *OnNotifyRequest) OpName() string { return "/IClientSink/v0/OnNotify" }

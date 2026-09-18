@@ -1404,6 +1404,10 @@ func (o MessageNameEnumNullMask) IsSet(v MessageNameEnumNullMask) bool { return 
 
 func (o MessageNameEnumNullMask) Set(v MessageNameEnumNullMask) MessageNameEnumNullMask { return o | v }
 
+func (o MessageNameEnumNullMask) Unset(v MessageNameEnumNullMask) MessageNameEnumNullMask {
+	return o &^ v
+}
+
 // xxx_MessageNameEnumOperation structure represents the NetrMessageNameEnum operation
 type xxx_MessageNameEnumOperation struct {
 
@@ -1481,7 +1485,7 @@ func (o *xxx_MessageNameEnumOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&MessageNameEnumNullMaskResume == 0 {
+		if o.NullMask&MessageNameEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -1594,7 +1598,7 @@ func (o *xxx_MessageNameEnumOperation) MarshalNDRResponse(ctx context.Context, w
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&MessageNameEnumNullMaskResume == 0 {
+		if o.NullMask&MessageNameEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err

@@ -46,8 +46,12 @@ func NewClientSinkServerHandle(o ClientSinkServer) dcerpc.ServerHandle {
 }
 
 func ClientSinkServerHandle(ctx context.Context, o ClientSinkServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+	if opNum < 3 {
+		// IUnknown base method.
+		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
+	}
 	switch opNum {
-	case 0: // OnNotify
+	case 3: // OnNotify
 		op := &xxx_OnNotifyOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err

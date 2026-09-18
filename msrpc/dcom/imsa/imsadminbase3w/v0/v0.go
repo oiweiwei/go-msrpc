@@ -187,6 +187,8 @@ func (o GetChildPathsNullMask) IsSet(v GetChildPathsNullMask) bool { return o&v 
 
 func (o GetChildPathsNullMask) Set(v GetChildPathsNullMask) GetChildPathsNullMask { return o | v }
 
+func (o GetChildPathsNullMask) Unset(v GetChildPathsNullMask) GetChildPathsNullMask { return o &^ v }
+
 // xxx_GetChildPathsOperation structure represents the GetChildPaths operation
 type xxx_GetChildPathsOperation struct {
 
@@ -318,7 +320,7 @@ func (o *xxx_GetChildPathsOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// pcchMDRequiredBufferSize {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&GetChildPathsNullMaskRequiredBufferSize == 0 {
+		if o.NullMask&GetChildPathsNullMaskRequiredBufferSize == 0 || o.RequiredBufferSize != uint32(0) {
 			_ptr_pcchMDRequiredBufferSize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.RequiredBufferSize); err != nil {
 					return err
@@ -507,7 +509,7 @@ func (o *xxx_GetChildPathsOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// pcchMDRequiredBufferSize {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&GetChildPathsNullMaskRequiredBufferSize == 0 {
+		if o.NullMask&GetChildPathsNullMaskRequiredBufferSize == 0 || o.RequiredBufferSize != uint32(0) {
 			_ptr_pcchMDRequiredBufferSize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.RequiredBufferSize); err != nil {
 					return err

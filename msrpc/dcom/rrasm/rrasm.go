@@ -18286,6 +18286,10 @@ var (
 
 func (o Interface2NullMask) IsSet(v Interface2NullMask) bool { return o&v != 0 }
 
+func (o Interface2NullMask) Set(v Interface2NullMask) Interface2NullMask { return o | v }
+
+func (o Interface2NullMask) Unset(v Interface2NullMask) Interface2NullMask { return o &^ v }
+
 type Interface2 struct {
 
 	// Interface2NullMask is used to carry information on null-valued primitive values.
@@ -18940,7 +18944,7 @@ func (o *Interface2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.CustomAuthDataSize); err != nil {
 		return err
 	}
-	if o.NullMask&Interface2NullMaskCustomAuthData == 0 {
+	if o.NullMask&Interface2NullMaskCustomAuthData == 0 || o.CustomAuthData != uint8(0) {
 		_ptr_lpbCustomAuthData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.CustomAuthData); err != nil {
 				return err
@@ -19249,6 +19253,10 @@ var (
 )
 
 func (o Interface3NullMask) IsSet(v Interface3NullMask) bool { return o&v != 0 }
+
+func (o Interface3NullMask) Set(v Interface3NullMask) Interface3NullMask { return o | v }
+
+func (o Interface3NullMask) Unset(v Interface3NullMask) Interface3NullMask { return o &^ v }
 
 type Interface3 struct {
 
@@ -19876,7 +19884,7 @@ func (o *Interface3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.CustomAuthDataSize); err != nil {
 		return err
 	}
-	if o.NullMask&Interface3NullMaskCustomAuthData == 0 {
+	if o.NullMask&Interface3NullMaskCustomAuthData == 0 || o.CustomAuthData != uint8(0) {
 		_ptr_lpbCustomAuthData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.CustomAuthData); err != nil {
 				return err

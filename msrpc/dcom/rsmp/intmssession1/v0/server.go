@@ -157,8 +157,12 @@ func NewSession1ServerHandle(o Session1Server) dcerpc.ServerHandle {
 }
 
 func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+	if opNum < 3 {
+		// IUnknown base method.
+		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
+	}
 	switch opNum {
-	case 0: // OpenNtmsServerSessionW
+	case 3: // OpenNtmsServerSessionW
 		op := &xxx_OpenNTMSServerSessionWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -167,7 +171,7 @@ func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.OpenNTMSServerSessionW(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 1: // OpenNtmsServerSessionA
+	case 4: // OpenNtmsServerSessionA
 		op := &xxx_OpenNTMSServerSessionAOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -176,7 +180,7 @@ func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.OpenNTMSServerSessionA(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 2: // CloseNtmsSession
+	case 5: // CloseNtmsSession
 		op := &xxx_CloseNTMSSessionOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -185,7 +189,7 @@ func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.CloseNTMSSession(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 3: // SubmitNtmsOperatorRequestW
+	case 6: // SubmitNtmsOperatorRequestW
 		op := &xxx_SubmitNTMSOperatorRequestWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -194,7 +198,7 @@ func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SubmitNTMSOperatorRequestW(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 4: // SubmitNtmsOperatorRequestA
+	case 7: // SubmitNtmsOperatorRequestA
 		op := &xxx_SubmitNTMSOperatorRequestAOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -203,7 +207,7 @@ func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SubmitNTMSOperatorRequestA(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 5: // WaitForNtmsOperatorRequest
+	case 8: // WaitForNtmsOperatorRequest
 		op := &xxx_WaitForNTMSOperatorRequestOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -212,7 +216,7 @@ func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.WaitForNTMSOperatorRequest(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 6: // CancelNtmsOperatorRequest
+	case 9: // CancelNtmsOperatorRequest
 		op := &xxx_CancelNTMSOperatorRequestOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -221,7 +225,7 @@ func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.CancelNTMSOperatorRequest(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 7: // SatisfyNtmsOperatorRequest
+	case 10: // SatisfyNtmsOperatorRequest
 		op := &xxx_SatisfyNTMSOperatorRequestOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -230,7 +234,7 @@ func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SatisfyNTMSOperatorRequest(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 8: // ImportNtmsDatabase
+	case 11: // ImportNtmsDatabase
 		op := &xxx_ImportNTMSDatabaseOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -239,7 +243,7 @@ func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.ImportNTMSDatabase(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 9: // ExportNtmsDatabase
+	case 12: // ExportNtmsDatabase
 		op := &xxx_ExportNTMSDatabaseOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -248,10 +252,10 @@ func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.ExportNTMSDatabase(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 10: // Opnum13NotUsedOnWire
+	case 13: // Opnum13NotUsedOnWire
 		// Opnum13NotUsedOnWire
 		return nil, nil
-	case 11: // AddNotification
+	case 14: // AddNotification
 		op := &xxx_AddNotificationOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -260,7 +264,7 @@ func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.AddNotification(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 12: // RemoveNotification
+	case 15: // RemoveNotification
 		op := &xxx_RemoveNotificationOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -269,7 +273,7 @@ func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r nd
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.RemoveNotification(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 13: // DispatchNotification
+	case 16: // DispatchNotification
 		op := &xxx_DispatchNotificationOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err

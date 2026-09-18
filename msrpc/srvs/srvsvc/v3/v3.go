@@ -19507,6 +19507,8 @@ func (o ConnectionEnumNullMask) IsSet(v ConnectionEnumNullMask) bool { return o&
 
 func (o ConnectionEnumNullMask) Set(v ConnectionEnumNullMask) ConnectionEnumNullMask { return o | v }
 
+func (o ConnectionEnumNullMask) Unset(v ConnectionEnumNullMask) ConnectionEnumNullMask { return o &^ v }
+
 // xxx_ConnectionEnumOperation structure represents the NetrConnectionEnum operation
 type xxx_ConnectionEnumOperation struct {
 
@@ -19606,7 +19608,7 @@ func (o *xxx_ConnectionEnumOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ConnectionEnumNullMaskResume == 0 {
+		if o.NullMask&ConnectionEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -19735,7 +19737,7 @@ func (o *xxx_ConnectionEnumOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ConnectionEnumNullMaskResume == 0 {
+		if o.NullMask&ConnectionEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -19970,6 +19972,8 @@ func (o FileEnumNullMask) IsSet(v FileEnumNullMask) bool { return o&v != 0 }
 
 func (o FileEnumNullMask) Set(v FileEnumNullMask) FileEnumNullMask { return o | v }
 
+func (o FileEnumNullMask) Unset(v FileEnumNullMask) FileEnumNullMask { return o &^ v }
+
 // xxx_FileEnumOperation structure represents the NetrFileEnum operation
 type xxx_FileEnumOperation struct {
 
@@ -20091,7 +20095,7 @@ func (o *xxx_FileEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wri
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&FileEnumNullMaskResume == 0 {
+		if o.NullMask&FileEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -20236,7 +20240,7 @@ func (o *xxx_FileEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wr
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&FileEnumNullMaskResume == 0 {
+		if o.NullMask&FileEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -20962,6 +20966,8 @@ func (o SessionEnumNullMask) IsSet(v SessionEnumNullMask) bool { return o&v != 0
 
 func (o SessionEnumNullMask) Set(v SessionEnumNullMask) SessionEnumNullMask { return o | v }
 
+func (o SessionEnumNullMask) Unset(v SessionEnumNullMask) SessionEnumNullMask { return o &^ v }
+
 // xxx_SessionEnumOperation structure represents the NetrSessionEnum operation
 type xxx_SessionEnumOperation struct {
 
@@ -21083,7 +21089,7 @@ func (o *xxx_SessionEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&SessionEnumNullMaskResume == 0 {
+		if o.NullMask&SessionEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -21228,7 +21234,7 @@ func (o *xxx_SessionEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&SessionEnumNullMaskResume == 0 {
+		if o.NullMask&SessionEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -21741,6 +21747,8 @@ func (o ShareAddNullMask) IsSet(v ShareAddNullMask) bool { return o&v != 0 }
 
 func (o ShareAddNullMask) Set(v ShareAddNullMask) ShareAddNullMask { return o | v }
 
+func (o ShareAddNullMask) Unset(v ShareAddNullMask) ShareAddNullMask { return o &^ v }
+
 // xxx_ShareAddOperation structure represents the NetrShareAdd operation
 type xxx_ShareAddOperation struct {
 
@@ -21818,7 +21826,7 @@ func (o *xxx_ShareAddOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wri
 	}
 	// ParmErr {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ShareAddNullMaskParameterError == 0 {
+		if o.NullMask&ShareAddNullMaskParameterError == 0 || o.ParameterError != uint32(0) {
 			_ptr_ParmErr := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ParameterError); err != nil {
 					return err
@@ -21911,7 +21919,7 @@ func (o *xxx_ShareAddOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wr
 	}
 	// ParmErr {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ShareAddNullMaskParameterError == 0 {
+		if o.NullMask&ShareAddNullMaskParameterError == 0 || o.ParameterError != uint32(0) {
 			_ptr_ParmErr := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ParameterError); err != nil {
 					return err
@@ -22111,6 +22119,8 @@ func (o ShareEnumNullMask) IsSet(v ShareEnumNullMask) bool { return o&v != 0 }
 
 func (o ShareEnumNullMask) Set(v ShareEnumNullMask) ShareEnumNullMask { return o | v }
 
+func (o ShareEnumNullMask) Unset(v ShareEnumNullMask) ShareEnumNullMask { return o &^ v }
+
 // xxx_ShareEnumOperation structure represents the NetrShareEnum operation
 type xxx_ShareEnumOperation struct {
 
@@ -22188,7 +22198,7 @@ func (o *xxx_ShareEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ShareEnumNullMaskResume == 0 {
+		if o.NullMask&ShareEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -22301,7 +22311,7 @@ func (o *xxx_ShareEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ShareEnumNullMaskResume == 0 {
+		if o.NullMask&ShareEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -22824,6 +22834,8 @@ func (o ShareSetInfoNullMask) IsSet(v ShareSetInfoNullMask) bool { return o&v !=
 
 func (o ShareSetInfoNullMask) Set(v ShareSetInfoNullMask) ShareSetInfoNullMask { return o | v }
 
+func (o ShareSetInfoNullMask) Unset(v ShareSetInfoNullMask) ShareSetInfoNullMask { return o &^ v }
+
 // xxx_ShareSetInfoOperation structure represents the NetrShareSetInfo operation
 type xxx_ShareSetInfoOperation struct {
 
@@ -22908,7 +22920,7 @@ func (o *xxx_ShareSetInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// ParmErr {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ShareSetInfoNullMaskParameterError == 0 {
+		if o.NullMask&ShareSetInfoNullMaskParameterError == 0 || o.ParameterError != uint32(0) {
 			_ptr_ParmErr := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ParameterError); err != nil {
 					return err
@@ -23007,7 +23019,7 @@ func (o *xxx_ShareSetInfoOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// ParmErr {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ShareSetInfoNullMaskParameterError == 0 {
+		if o.NullMask&ShareSetInfoNullMaskParameterError == 0 || o.ParameterError != uint32(0) {
 			_ptr_ParmErr := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ParameterError); err != nil {
 					return err
@@ -24155,6 +24167,8 @@ func (o SetInfoNullMask) IsSet(v SetInfoNullMask) bool { return o&v != 0 }
 
 func (o SetInfoNullMask) Set(v SetInfoNullMask) SetInfoNullMask { return o | v }
 
+func (o SetInfoNullMask) Unset(v SetInfoNullMask) SetInfoNullMask { return o &^ v }
+
 // xxx_SetInfoOperation structure represents the NetrServerSetInfo operation
 type xxx_SetInfoOperation struct {
 
@@ -24232,7 +24246,7 @@ func (o *xxx_SetInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// ParmErr {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&SetInfoNullMaskParameterError == 0 {
+		if o.NullMask&SetInfoNullMaskParameterError == 0 || o.ParameterError != uint32(0) {
 			_ptr_ParmErr := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ParameterError); err != nil {
 					return err
@@ -24325,7 +24339,7 @@ func (o *xxx_SetInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 	}
 	// ParmErr {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&SetInfoNullMaskParameterError == 0 {
+		if o.NullMask&SetInfoNullMaskParameterError == 0 || o.ParameterError != uint32(0) {
 			_ptr_ParmErr := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.ParameterError); err != nil {
 					return err
@@ -24619,6 +24633,8 @@ func (o DiskEnumNullMask) IsSet(v DiskEnumNullMask) bool { return o&v != 0 }
 
 func (o DiskEnumNullMask) Set(v DiskEnumNullMask) DiskEnumNullMask { return o | v }
 
+func (o DiskEnumNullMask) Unset(v DiskEnumNullMask) DiskEnumNullMask { return o &^ v }
+
 // xxx_DiskEnumOperation structure represents the NetrServerDiskEnum operation
 type xxx_DiskEnumOperation struct {
 
@@ -24703,7 +24719,7 @@ func (o *xxx_DiskEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wri
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&DiskEnumNullMaskResume == 0 {
+		if o.NullMask&DiskEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -24822,7 +24838,7 @@ func (o *xxx_DiskEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wr
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&DiskEnumNullMaskResume == 0 {
+		if o.NullMask&DiskEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -25593,6 +25609,8 @@ func (o TransportEnumNullMask) IsSet(v TransportEnumNullMask) bool { return o&v 
 
 func (o TransportEnumNullMask) Set(v TransportEnumNullMask) TransportEnumNullMask { return o | v }
 
+func (o TransportEnumNullMask) Unset(v TransportEnumNullMask) TransportEnumNullMask { return o &^ v }
+
 // xxx_TransportEnumOperation structure represents the NetrServerTransportEnum operation
 type xxx_TransportEnumOperation struct {
 
@@ -25670,7 +25688,7 @@ func (o *xxx_TransportEnumOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&TransportEnumNullMaskResume == 0 {
+		if o.NullMask&TransportEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -25783,7 +25801,7 @@ func (o *xxx_TransportEnumOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&TransportEnumNullMaskResume == 0 {
+		if o.NullMask&TransportEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -28216,6 +28234,10 @@ func (o ShareEnumStickyNullMask) IsSet(v ShareEnumStickyNullMask) bool { return 
 
 func (o ShareEnumStickyNullMask) Set(v ShareEnumStickyNullMask) ShareEnumStickyNullMask { return o | v }
 
+func (o ShareEnumStickyNullMask) Unset(v ShareEnumStickyNullMask) ShareEnumStickyNullMask {
+	return o &^ v
+}
+
 // xxx_ShareEnumStickyOperation structure represents the NetrShareEnumSticky operation
 type xxx_ShareEnumStickyOperation struct {
 
@@ -28293,7 +28315,7 @@ func (o *xxx_ShareEnumStickyOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ShareEnumStickyNullMaskResume == 0 {
+		if o.NullMask&ShareEnumStickyNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -28406,7 +28428,7 @@ func (o *xxx_ShareEnumStickyOperation) MarshalNDRResponse(ctx context.Context, w
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&ShareEnumStickyNullMaskResume == 0 {
+		if o.NullMask&ShareEnumStickyNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -32983,6 +33005,8 @@ func (o AliasEnumNullMask) IsSet(v AliasEnumNullMask) bool { return o&v != 0 }
 
 func (o AliasEnumNullMask) Set(v AliasEnumNullMask) AliasEnumNullMask { return o | v }
 
+func (o AliasEnumNullMask) Unset(v AliasEnumNullMask) AliasEnumNullMask { return o &^ v }
+
 // xxx_AliasEnumOperation structure represents the NetrServerAliasEnum operation
 type xxx_AliasEnumOperation struct {
 
@@ -33060,7 +33084,7 @@ func (o *xxx_AliasEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&AliasEnumNullMaskResume == 0 {
+		if o.NullMask&AliasEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -33173,7 +33197,7 @@ func (o *xxx_AliasEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&AliasEnumNullMaskResume == 0 {
+		if o.NullMask&AliasEnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err

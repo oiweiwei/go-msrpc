@@ -536,7 +536,7 @@ type xxx_MountNTMSMediaOperation struct {
 }
 
 // OpNum returns the operation number of MountNtmsMedia operation.
-func (o *xxx_MountNTMSMediaOperation) OpNum() int { return 0 }
+func (o *xxx_MountNTMSMediaOperation) OpNum() int { return 3 }
 
 // OpName returns the operation name of MountNtmsMedia operation.
 func (o *xxx_MountNTMSMediaOperation) OpName() string {
@@ -1058,7 +1058,7 @@ func (o *MountNTMSMediaRequest) MakeResponse() *MountNTMSMediaResponse {
 }
 
 // OpNum returns the operation number of MountNtmsMedia operation.
-func (o *MountNTMSMediaRequest) OpNum() int { return 0 }
+func (o *MountNTMSMediaRequest) OpNum() int { return 3 }
 
 // OpName returns the operation name of MountNtmsMedia operation.
 func (o *MountNTMSMediaRequest) OpName() string { return "/INtmsMediaServices1/v0/MountNtmsMedia" }
@@ -1183,7 +1183,7 @@ type xxx_DismountNTMSMediaOperation struct {
 }
 
 // OpNum returns the operation number of DismountNtmsMedia operation.
-func (o *xxx_DismountNTMSMediaOperation) OpNum() int { return 1 }
+func (o *xxx_DismountNTMSMediaOperation) OpNum() int { return 4 }
 
 // OpName returns the operation name of DismountNtmsMedia operation.
 func (o *xxx_DismountNTMSMediaOperation) OpName() string {
@@ -1464,7 +1464,7 @@ func (o *DismountNTMSMediaRequest) MakeResponse() *DismountNTMSMediaResponse {
 }
 
 // OpNum returns the operation number of DismountNtmsMedia operation.
-func (o *DismountNTMSMediaRequest) OpNum() int { return 1 }
+func (o *DismountNTMSMediaRequest) OpNum() int { return 4 }
 
 // OpName returns the operation name of DismountNtmsMedia operation.
 func (o *DismountNTMSMediaRequest) OpName() string {
@@ -1524,7 +1524,7 @@ type xxx_AllocateNTMSMediaOperation struct {
 }
 
 // OpNum returns the operation number of AllocateNtmsMedia operation.
-func (o *xxx_AllocateNTMSMediaOperation) OpNum() int { return 3 }
+func (o *xxx_AllocateNTMSMediaOperation) OpNum() int { return 6 }
 
 // OpName returns the operation name of AllocateNtmsMedia operation.
 func (o *xxx_AllocateNTMSMediaOperation) OpName() string {
@@ -1932,7 +1932,7 @@ func (o *AllocateNTMSMediaRequest) MakeResponse() *AllocateNTMSMediaResponse {
 }
 
 // OpNum returns the operation number of AllocateNtmsMedia operation.
-func (o *AllocateNTMSMediaRequest) OpNum() int { return 3 }
+func (o *AllocateNTMSMediaRequest) OpNum() int { return 6 }
 
 // OpName returns the operation name of AllocateNtmsMedia operation.
 func (o *AllocateNTMSMediaRequest) OpName() string {
@@ -2033,7 +2033,7 @@ type xxx_DeallocateNTMSMediaOperation struct {
 }
 
 // OpNum returns the operation number of DeallocateNtmsMedia operation.
-func (o *xxx_DeallocateNTMSMediaOperation) OpNum() int { return 4 }
+func (o *xxx_DeallocateNTMSMediaOperation) OpNum() int { return 7 }
 
 // OpName returns the operation name of DeallocateNtmsMedia operation.
 func (o *xxx_DeallocateNTMSMediaOperation) OpName() string {
@@ -2249,7 +2249,7 @@ func (o *DeallocateNTMSMediaRequest) MakeResponse() *DeallocateNTMSMediaResponse
 }
 
 // OpNum returns the operation number of DeallocateNtmsMedia operation.
-func (o *DeallocateNTMSMediaRequest) OpNum() int { return 4 }
+func (o *DeallocateNTMSMediaRequest) OpNum() int { return 7 }
 
 // OpName returns the operation name of DeallocateNtmsMedia operation.
 func (o *DeallocateNTMSMediaRequest) OpName() string {
@@ -2305,7 +2305,7 @@ type xxx_SwapNTMSMediaOperation struct {
 }
 
 // OpNum returns the operation number of SwapNtmsMedia operation.
-func (o *xxx_SwapNTMSMediaOperation) OpNum() int { return 5 }
+func (o *xxx_SwapNTMSMediaOperation) OpNum() int { return 8 }
 
 // OpName returns the operation name of SwapNtmsMedia operation.
 func (o *xxx_SwapNTMSMediaOperation) OpName() string { return "/INtmsMediaServices1/v0/SwapNtmsMedia" }
@@ -2533,7 +2533,7 @@ func (o *SwapNTMSMediaRequest) MakeResponse() *SwapNTMSMediaResponse {
 }
 
 // OpNum returns the operation number of SwapNtmsMedia operation.
-func (o *SwapNTMSMediaRequest) OpNum() int { return 5 }
+func (o *SwapNTMSMediaRequest) OpNum() int { return 8 }
 
 // OpName returns the operation name of SwapNtmsMedia operation.
 func (o *SwapNTMSMediaRequest) OpName() string { return "/INtmsMediaServices1/v0/SwapNtmsMedia" }
@@ -2586,7 +2586,7 @@ type xxx_DecommissionNTMSMediaOperation struct {
 }
 
 // OpNum returns the operation number of DecommissionNtmsMedia operation.
-func (o *xxx_DecommissionNTMSMediaOperation) OpNum() int { return 6 }
+func (o *xxx_DecommissionNTMSMediaOperation) OpNum() int { return 9 }
 
 // OpName returns the operation name of DecommissionNtmsMedia operation.
 func (o *xxx_DecommissionNTMSMediaOperation) OpName() string {
@@ -2789,7 +2789,7 @@ func (o *DecommissionNTMSMediaRequest) MakeResponse() *DecommissionNTMSMediaResp
 }
 
 // OpNum returns the operation number of DecommissionNtmsMedia operation.
-func (o *DecommissionNTMSMediaRequest) OpNum() int { return 6 }
+func (o *DecommissionNTMSMediaRequest) OpNum() int { return 9 }
 
 // OpName returns the operation name of DecommissionNtmsMedia operation.
 func (o *DecommissionNTMSMediaRequest) OpName() string {
@@ -2844,7 +2844,7 @@ type xxx_SetNTMSMediaCompleteOperation struct {
 }
 
 // OpNum returns the operation number of SetNtmsMediaComplete operation.
-func (o *xxx_SetNTMSMediaCompleteOperation) OpNum() int { return 7 }
+func (o *xxx_SetNTMSMediaCompleteOperation) OpNum() int { return 10 }
 
 // OpName returns the operation name of SetNtmsMediaComplete operation.
 func (o *xxx_SetNTMSMediaCompleteOperation) OpName() string {
@@ -3049,7 +3049,7 @@ func (o *SetNTMSMediaCompleteRequest) MakeResponse() *SetNTMSMediaCompleteRespon
 }
 
 // OpNum returns the operation number of SetNtmsMediaComplete operation.
-func (o *SetNTMSMediaCompleteRequest) OpNum() int { return 7 }
+func (o *SetNTMSMediaCompleteRequest) OpNum() int { return 10 }
 
 // OpName returns the operation name of SetNtmsMediaComplete operation.
 func (o *SetNTMSMediaCompleteRequest) OpName() string {
@@ -3104,7 +3104,7 @@ type xxx_DeleteNTMSMediaOperation struct {
 }
 
 // OpNum returns the operation number of DeleteNtmsMedia operation.
-func (o *xxx_DeleteNTMSMediaOperation) OpNum() int { return 8 }
+func (o *xxx_DeleteNTMSMediaOperation) OpNum() int { return 11 }
 
 // OpName returns the operation name of DeleteNtmsMedia operation.
 func (o *xxx_DeleteNTMSMediaOperation) OpName() string {
@@ -3309,7 +3309,7 @@ func (o *DeleteNTMSMediaRequest) MakeResponse() *DeleteNTMSMediaResponse {
 }
 
 // OpNum returns the operation number of DeleteNtmsMedia operation.
-func (o *DeleteNTMSMediaRequest) OpNum() int { return 8 }
+func (o *DeleteNTMSMediaRequest) OpNum() int { return 11 }
 
 // OpName returns the operation name of DeleteNtmsMedia operation.
 func (o *DeleteNTMSMediaRequest) OpName() string { return "/INtmsMediaServices1/v0/DeleteNtmsMedia" }
@@ -3366,7 +3366,7 @@ type xxx_CreateNTMSMediaPoolAOperation struct {
 }
 
 // OpNum returns the operation number of CreateNtmsMediaPoolA operation.
-func (o *xxx_CreateNTMSMediaPoolAOperation) OpNum() int { return 9 }
+func (o *xxx_CreateNTMSMediaPoolAOperation) OpNum() int { return 12 }
 
 // OpName returns the operation name of CreateNtmsMediaPoolA operation.
 func (o *xxx_CreateNTMSMediaPoolAOperation) OpName() string {
@@ -3679,7 +3679,7 @@ func (o *CreateNTMSMediaPoolARequest) MakeResponse() *CreateNTMSMediaPoolARespon
 }
 
 // OpNum returns the operation number of CreateNtmsMediaPoolA operation.
-func (o *CreateNTMSMediaPoolARequest) OpNum() int { return 9 }
+func (o *CreateNTMSMediaPoolARequest) OpNum() int { return 12 }
 
 // OpName returns the operation name of CreateNtmsMediaPoolA operation.
 func (o *CreateNTMSMediaPoolARequest) OpName() string {
@@ -3769,7 +3769,7 @@ type xxx_CreateNTMSMediaPoolWOperation struct {
 }
 
 // OpNum returns the operation number of CreateNtmsMediaPoolW operation.
-func (o *xxx_CreateNTMSMediaPoolWOperation) OpNum() int { return 10 }
+func (o *xxx_CreateNTMSMediaPoolWOperation) OpNum() int { return 13 }
 
 // OpName returns the operation name of CreateNtmsMediaPoolW operation.
 func (o *xxx_CreateNTMSMediaPoolWOperation) OpName() string {
@@ -4083,7 +4083,7 @@ func (o *CreateNTMSMediaPoolWRequest) MakeResponse() *CreateNTMSMediaPoolWRespon
 }
 
 // OpNum returns the operation number of CreateNtmsMediaPoolW operation.
-func (o *CreateNTMSMediaPoolWRequest) OpNum() int { return 10 }
+func (o *CreateNTMSMediaPoolWRequest) OpNum() int { return 13 }
 
 // OpName returns the operation name of CreateNtmsMediaPoolW operation.
 func (o *CreateNTMSMediaPoolWRequest) OpName() string {
@@ -4172,7 +4172,7 @@ type xxx_GetNTMSMediaPoolNameAOperation struct {
 }
 
 // OpNum returns the operation number of GetNtmsMediaPoolNameA operation.
-func (o *xxx_GetNTMSMediaPoolNameAOperation) OpNum() int { return 11 }
+func (o *xxx_GetNTMSMediaPoolNameAOperation) OpNum() int { return 14 }
 
 // OpName returns the operation name of GetNtmsMediaPoolNameA operation.
 func (o *xxx_GetNTMSMediaPoolNameAOperation) OpName() string {
@@ -4450,7 +4450,7 @@ func (o *GetNTMSMediaPoolNameARequest) MakeResponse() *GetNTMSMediaPoolNameAResp
 }
 
 // OpNum returns the operation number of GetNtmsMediaPoolNameA operation.
-func (o *GetNTMSMediaPoolNameARequest) OpNum() int { return 11 }
+func (o *GetNTMSMediaPoolNameARequest) OpNum() int { return 14 }
 
 // OpName returns the operation name of GetNtmsMediaPoolNameA operation.
 func (o *GetNTMSMediaPoolNameARequest) OpName() string {
@@ -4547,7 +4547,7 @@ type xxx_GetNTMSMediaPoolNameWOperation struct {
 }
 
 // OpNum returns the operation number of GetNtmsMediaPoolNameW operation.
-func (o *xxx_GetNTMSMediaPoolNameWOperation) OpNum() int { return 12 }
+func (o *xxx_GetNTMSMediaPoolNameWOperation) OpNum() int { return 15 }
 
 // OpName returns the operation name of GetNtmsMediaPoolNameW operation.
 func (o *xxx_GetNTMSMediaPoolNameWOperation) OpName() string {
@@ -4832,7 +4832,7 @@ func (o *GetNTMSMediaPoolNameWRequest) MakeResponse() *GetNTMSMediaPoolNameWResp
 }
 
 // OpNum returns the operation number of GetNtmsMediaPoolNameW operation.
-func (o *GetNTMSMediaPoolNameWRequest) OpNum() int { return 12 }
+func (o *GetNTMSMediaPoolNameWRequest) OpNum() int { return 15 }
 
 // OpName returns the operation name of GetNtmsMediaPoolNameW operation.
 func (o *GetNTMSMediaPoolNameWRequest) OpName() string {
@@ -4927,7 +4927,7 @@ type xxx_MoveToNTMSMediaPoolOperation struct {
 }
 
 // OpNum returns the operation number of MoveToNtmsMediaPool operation.
-func (o *xxx_MoveToNTMSMediaPoolOperation) OpNum() int { return 13 }
+func (o *xxx_MoveToNTMSMediaPoolOperation) OpNum() int { return 16 }
 
 // OpName returns the operation name of MoveToNtmsMediaPool operation.
 func (o *xxx_MoveToNTMSMediaPoolOperation) OpName() string {
@@ -5161,7 +5161,7 @@ func (o *MoveToNTMSMediaPoolRequest) MakeResponse() *MoveToNTMSMediaPoolResponse
 }
 
 // OpNum returns the operation number of MoveToNtmsMediaPool operation.
-func (o *MoveToNTMSMediaPoolRequest) OpNum() int { return 13 }
+func (o *MoveToNTMSMediaPoolRequest) OpNum() int { return 16 }
 
 // OpName returns the operation name of MoveToNtmsMediaPool operation.
 func (o *MoveToNTMSMediaPoolRequest) OpName() string {
@@ -5216,7 +5216,7 @@ type xxx_DeleteNTMSMediaPoolOperation struct {
 }
 
 // OpNum returns the operation number of DeleteNtmsMediaPool operation.
-func (o *xxx_DeleteNTMSMediaPoolOperation) OpNum() int { return 14 }
+func (o *xxx_DeleteNTMSMediaPoolOperation) OpNum() int { return 17 }
 
 // OpName returns the operation name of DeleteNtmsMediaPool operation.
 func (o *xxx_DeleteNTMSMediaPoolOperation) OpName() string {
@@ -5423,7 +5423,7 @@ func (o *DeleteNTMSMediaPoolRequest) MakeResponse() *DeleteNTMSMediaPoolResponse
 }
 
 // OpNum returns the operation number of DeleteNtmsMediaPool operation.
-func (o *DeleteNTMSMediaPoolRequest) OpNum() int { return 14 }
+func (o *DeleteNTMSMediaPoolRequest) OpNum() int { return 17 }
 
 // OpName returns the operation name of DeleteNtmsMediaPool operation.
 func (o *DeleteNTMSMediaPoolRequest) OpName() string {
@@ -5479,7 +5479,7 @@ type xxx_AddNTMSMediaTypeOperation struct {
 }
 
 // OpNum returns the operation number of AddNtmsMediaType operation.
-func (o *xxx_AddNTMSMediaTypeOperation) OpNum() int { return 15 }
+func (o *xxx_AddNTMSMediaTypeOperation) OpNum() int { return 18 }
 
 // OpName returns the operation name of AddNtmsMediaType operation.
 func (o *xxx_AddNTMSMediaTypeOperation) OpName() string {
@@ -5719,7 +5719,7 @@ func (o *AddNTMSMediaTypeRequest) MakeResponse() *AddNTMSMediaTypeResponse {
 }
 
 // OpNum returns the operation number of AddNtmsMediaType operation.
-func (o *AddNTMSMediaTypeRequest) OpNum() int { return 15 }
+func (o *AddNTMSMediaTypeRequest) OpNum() int { return 18 }
 
 // OpName returns the operation name of AddNtmsMediaType operation.
 func (o *AddNTMSMediaTypeRequest) OpName() string { return "/INtmsMediaServices1/v0/AddNtmsMediaType" }
@@ -5773,7 +5773,7 @@ type xxx_DeleteNTMSMediaTypeOperation struct {
 }
 
 // OpNum returns the operation number of DeleteNtmsMediaType operation.
-func (o *xxx_DeleteNTMSMediaTypeOperation) OpNum() int { return 16 }
+func (o *xxx_DeleteNTMSMediaTypeOperation) OpNum() int { return 19 }
 
 // OpName returns the operation name of DeleteNtmsMediaType operation.
 func (o *xxx_DeleteNTMSMediaTypeOperation) OpName() string {
@@ -6002,7 +6002,7 @@ func (o *DeleteNTMSMediaTypeRequest) MakeResponse() *DeleteNTMSMediaTypeResponse
 }
 
 // OpNum returns the operation number of DeleteNtmsMediaType operation.
-func (o *DeleteNTMSMediaTypeRequest) OpNum() int { return 16 }
+func (o *DeleteNTMSMediaTypeRequest) OpNum() int { return 19 }
 
 // OpName returns the operation name of DeleteNtmsMediaType operation.
 func (o *DeleteNTMSMediaTypeRequest) OpName() string {
@@ -6058,7 +6058,7 @@ type xxx_ChangeNTMSMediaTypeOperation struct {
 }
 
 // OpNum returns the operation number of ChangeNtmsMediaType operation.
-func (o *xxx_ChangeNTMSMediaTypeOperation) OpNum() int { return 17 }
+func (o *xxx_ChangeNTMSMediaTypeOperation) OpNum() int { return 20 }
 
 // OpName returns the operation name of ChangeNtmsMediaType operation.
 func (o *xxx_ChangeNTMSMediaTypeOperation) OpName() string {
@@ -6286,7 +6286,7 @@ func (o *ChangeNTMSMediaTypeRequest) MakeResponse() *ChangeNTMSMediaTypeResponse
 }
 
 // OpNum returns the operation number of ChangeNtmsMediaType operation.
-func (o *ChangeNTMSMediaTypeRequest) OpNum() int { return 17 }
+func (o *ChangeNTMSMediaTypeRequest) OpNum() int { return 20 }
 
 // OpName returns the operation name of ChangeNtmsMediaType operation.
 func (o *ChangeNTMSMediaTypeRequest) OpName() string {

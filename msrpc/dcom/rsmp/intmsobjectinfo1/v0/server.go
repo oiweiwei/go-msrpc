@@ -67,8 +67,12 @@ func NewObjectInfo1ServerHandle(o ObjectInfo1Server) dcerpc.ServerHandle {
 }
 
 func ObjectInfo1ServerHandle(ctx context.Context, o ObjectInfo1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+	if opNum < 3 {
+		// IUnknown base method.
+		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
+	}
 	switch opNum {
-	case 0: // GetNtmsServerObjectInformationA
+	case 3: // GetNtmsServerObjectInformationA
 		op := &xxx_GetNTMSServerObjectInformationAOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -77,7 +81,7 @@ func ObjectInfo1ServerHandle(ctx context.Context, o ObjectInfo1Server, opNum int
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.GetNTMSServerObjectInformationA(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 1: // GetNtmsServerObjectInformationW
+	case 4: // GetNtmsServerObjectInformationW
 		op := &xxx_GetNTMSServerObjectInformationWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -86,7 +90,7 @@ func ObjectInfo1ServerHandle(ctx context.Context, o ObjectInfo1Server, opNum int
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.GetNTMSServerObjectInformationW(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 2: // SetNtmsObjectInformationA
+	case 5: // SetNtmsObjectInformationA
 		op := &xxx_SetNTMSObjectInformationAOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -95,7 +99,7 @@ func ObjectInfo1ServerHandle(ctx context.Context, o ObjectInfo1Server, opNum int
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SetNTMSObjectInformationA(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 3: // SetNtmsObjectInformationW
+	case 6: // SetNtmsObjectInformationW
 		op := &xxx_SetNTMSObjectInformationWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -104,7 +108,7 @@ func ObjectInfo1ServerHandle(ctx context.Context, o ObjectInfo1Server, opNum int
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.SetNTMSObjectInformationW(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 4: // CreateNtmsMediaA
+	case 7: // CreateNtmsMediaA
 		op := &xxx_CreateNTMSMediaAOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -113,7 +117,7 @@ func ObjectInfo1ServerHandle(ctx context.Context, o ObjectInfo1Server, opNum int
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.CreateNTMSMediaA(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 5: // CreateNtmsMediaW
+	case 8: // CreateNtmsMediaW
 		op := &xxx_CreateNTMSMediaWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err

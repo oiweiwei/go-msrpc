@@ -24369,6 +24369,14 @@ var (
 
 func (o HypervVmConfigValue0NullMask) IsSet(v HypervVmConfigValue0NullMask) bool { return o&v != 0 }
 
+func (o HypervVmConfigValue0NullMask) Set(v HypervVmConfigValue0NullMask) HypervVmConfigValue0NullMask {
+	return o | v
+}
+
+func (o HypervVmConfigValue0NullMask) Unset(v HypervVmConfigValue0NullMask) HypervVmConfigValue0NullMask {
+	return o &^ v
+}
+
 type HypervVmConfigValue0 struct {
 
 	// HypervVmConfigValue0NullMask is used to carry information on null-valued primitive values.
@@ -24393,7 +24401,7 @@ func (o *HypervVmConfigValue0) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	if err := w.WriteAlign(6); err != nil {
 		return err
 	}
-	if o.NullMask&HypervVmConfigValue0NullMaskValue == 0 {
+	if o.NullMask&HypervVmConfigValue0NullMaskValue == 0 || o.Value != uint32(0) {
 		_ptr_pdwVal := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Value); err != nil {
 				return err

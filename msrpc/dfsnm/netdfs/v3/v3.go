@@ -9500,6 +9500,8 @@ func (o EnumNullMask) IsSet(v EnumNullMask) bool { return o&v != 0 }
 
 func (o EnumNullMask) Set(v EnumNullMask) EnumNullMask { return o | v }
 
+func (o EnumNullMask) Unset(v EnumNullMask) EnumNullMask { return o &^ v }
+
 // xxx_EnumOperation structure represents the NetrDfsEnum operation
 type xxx_EnumOperation struct {
 
@@ -9573,7 +9575,7 @@ func (o *xxx_EnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&EnumNullMaskResume == 0 {
+		if o.NullMask&EnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -9689,7 +9691,7 @@ func (o *xxx_EnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&EnumNullMaskResume == 0 {
+		if o.NullMask&EnumNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -13413,6 +13415,8 @@ func (o EnumExNullMask) IsSet(v EnumExNullMask) bool { return o&v != 0 }
 
 func (o EnumExNullMask) Set(v EnumExNullMask) EnumExNullMask { return o | v }
 
+func (o EnumExNullMask) Unset(v EnumExNullMask) EnumExNullMask { return o &^ v }
+
 // xxx_EnumExOperation structure represents the NetrDfsEnumEx operation
 type xxx_EnumExOperation struct {
 
@@ -13493,7 +13497,7 @@ func (o *xxx_EnumExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&EnumExNullMaskResume == 0 {
+		if o.NullMask&EnumExNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err
@@ -13615,7 +13619,7 @@ func (o *xxx_EnumExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&EnumExNullMaskResume == 0 {
+		if o.NullMask&EnumExNullMaskResume == 0 || o.Resume != uint32(0) {
 			_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Resume); err != nil {
 					return err

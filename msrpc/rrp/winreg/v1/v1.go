@@ -3200,6 +3200,10 @@ func (o BaseRegCreateKeyNullMask) Set(v BaseRegCreateKeyNullMask) BaseRegCreateK
 	return o | v
 }
 
+func (o BaseRegCreateKeyNullMask) Unset(v BaseRegCreateKeyNullMask) BaseRegCreateKeyNullMask {
+	return o &^ v
+}
+
 // xxx_BaseRegCreateKeyOperation structure represents the BaseRegCreateKey operation
 type xxx_BaseRegCreateKeyOperation struct {
 
@@ -3319,7 +3323,7 @@ func (o *xxx_BaseRegCreateKeyOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpdwDisposition {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegCreateKeyNullMaskDisposition == 0 {
+		if o.NullMask&BaseRegCreateKeyNullMaskDisposition == 0 || o.Disposition != uint32(0) {
 			_ptr_lpdwDisposition := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Disposition); err != nil {
 					return err
@@ -3453,7 +3457,7 @@ func (o *xxx_BaseRegCreateKeyOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpdwDisposition {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegCreateKeyNullMaskDisposition == 0 {
+		if o.NullMask&BaseRegCreateKeyNullMaskDisposition == 0 || o.Disposition != uint32(0) {
 			_ptr_lpdwDisposition := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Disposition); err != nil {
 					return err
@@ -4580,6 +4584,10 @@ func (o BaseRegEnumValueNullMask) Set(v BaseRegEnumValueNullMask) BaseRegEnumVal
 	return o | v
 }
 
+func (o BaseRegEnumValueNullMask) Unset(v BaseRegEnumValueNullMask) BaseRegEnumValueNullMask {
+	return o &^ v
+}
+
 // xxx_BaseRegEnumValueOperation structure represents the BaseRegEnumValue operation
 type xxx_BaseRegEnumValueOperation struct {
 
@@ -4660,7 +4668,7 @@ func (o *xxx_BaseRegEnumValueOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpType {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegEnumValueNullMaskType == 0 {
+		if o.NullMask&BaseRegEnumValueNullMaskType == 0 || o.Type != uint32(0) {
 			_ptr_lpType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Type); err != nil {
 					return err
@@ -4732,7 +4740,7 @@ func (o *xxx_BaseRegEnumValueOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpcbData {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegEnumValueNullMaskDataLength == 0 {
+		if o.NullMask&BaseRegEnumValueNullMaskDataLength == 0 || o.DataLength != uint32(0) {
 			_ptr_lpcbData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.DataLength); err != nil {
 					return err
@@ -4753,7 +4761,7 @@ func (o *xxx_BaseRegEnumValueOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpcbLen {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegEnumValueNullMaskLength == 0 {
+		if o.NullMask&BaseRegEnumValueNullMaskLength == 0 || o.Length != uint32(0) {
 			_ptr_lpcbLen := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Length); err != nil {
 					return err
@@ -4935,7 +4943,7 @@ func (o *xxx_BaseRegEnumValueOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpType {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegEnumValueNullMaskType == 0 {
+		if o.NullMask&BaseRegEnumValueNullMaskType == 0 || o.Type != uint32(0) {
 			_ptr_lpType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Type); err != nil {
 					return err
@@ -5007,7 +5015,7 @@ func (o *xxx_BaseRegEnumValueOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpcbData {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegEnumValueNullMaskDataLength == 0 {
+		if o.NullMask&BaseRegEnumValueNullMaskDataLength == 0 || o.DataLength != uint32(0) {
 			_ptr_lpcbData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.DataLength); err != nil {
 					return err
@@ -5028,7 +5036,7 @@ func (o *xxx_BaseRegEnumValueOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpcbLen {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegEnumValueNullMaskLength == 0 {
+		if o.NullMask&BaseRegEnumValueNullMaskLength == 0 || o.Length != uint32(0) {
 			_ptr_lpcbLen := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Length); err != nil {
 					return err
@@ -6679,6 +6687,10 @@ func (o BaseRegQueryValueNullMask) Set(v BaseRegQueryValueNullMask) BaseRegQuery
 	return o | v
 }
 
+func (o BaseRegQueryValueNullMask) Unset(v BaseRegQueryValueNullMask) BaseRegQueryValueNullMask {
+	return o &^ v
+}
+
 // xxx_BaseRegQueryValueOperation structure represents the BaseRegQueryValue operation
 type xxx_BaseRegQueryValueOperation struct {
 
@@ -6751,7 +6763,7 @@ func (o *xxx_BaseRegQueryValueOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// lpType {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegQueryValueNullMaskType == 0 {
+		if o.NullMask&BaseRegQueryValueNullMaskType == 0 || o.Type != uint32(0) {
 			_ptr_lpType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Type); err != nil {
 					return err
@@ -6823,7 +6835,7 @@ func (o *xxx_BaseRegQueryValueOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// lpcbData {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegQueryValueNullMaskDataLength == 0 {
+		if o.NullMask&BaseRegQueryValueNullMaskDataLength == 0 || o.DataLength != uint32(0) {
 			_ptr_lpcbData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.DataLength); err != nil {
 					return err
@@ -6844,7 +6856,7 @@ func (o *xxx_BaseRegQueryValueOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// lpcbLen {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegQueryValueNullMaskLength == 0 {
+		if o.NullMask&BaseRegQueryValueNullMaskLength == 0 || o.Length != uint32(0) {
 			_ptr_lpcbLen := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Length); err != nil {
 					return err
@@ -7005,7 +7017,7 @@ func (o *xxx_BaseRegQueryValueOperation) MarshalNDRResponse(ctx context.Context,
 	}
 	// lpType {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegQueryValueNullMaskType == 0 {
+		if o.NullMask&BaseRegQueryValueNullMaskType == 0 || o.Type != uint32(0) {
 			_ptr_lpType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Type); err != nil {
 					return err
@@ -7077,7 +7089,7 @@ func (o *xxx_BaseRegQueryValueOperation) MarshalNDRResponse(ctx context.Context,
 	}
 	// lpcbData {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegQueryValueNullMaskDataLength == 0 {
+		if o.NullMask&BaseRegQueryValueNullMaskDataLength == 0 || o.DataLength != uint32(0) {
 			_ptr_lpcbData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.DataLength); err != nil {
 					return err
@@ -7098,7 +7110,7 @@ func (o *xxx_BaseRegQueryValueOperation) MarshalNDRResponse(ctx context.Context,
 	}
 	// lpcbLen {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if o.NullMask&BaseRegQueryValueNullMaskLength == 0 {
+		if o.NullMask&BaseRegQueryValueNullMaskLength == 0 || o.Length != uint32(0) {
 			_ptr_lpcbLen := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.Length); err != nil {
 					return err

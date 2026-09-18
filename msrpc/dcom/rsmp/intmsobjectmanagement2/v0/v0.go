@@ -246,7 +246,7 @@ type xxx_EnumerateNTMSObjectROperation struct {
 }
 
 // OpNum returns the operation number of EnumerateNtmsObjectR operation.
-func (o *xxx_EnumerateNTMSObjectROperation) OpNum() int { return 9 }
+func (o *xxx_EnumerateNTMSObjectROperation) OpNum() int { return 12 }
 
 // OpName returns the operation name of EnumerateNtmsObjectR operation.
 func (o *xxx_EnumerateNTMSObjectROperation) OpName() string {
@@ -634,7 +634,7 @@ func (o *EnumerateNTMSObjectRRequest) MakeResponse() *EnumerateNTMSObjectRRespon
 }
 
 // OpNum returns the operation number of EnumerateNtmsObjectR operation.
-func (o *EnumerateNTMSObjectRRequest) OpNum() int { return 9 }
+func (o *EnumerateNTMSObjectRRequest) OpNum() int { return 12 }
 
 // OpName returns the operation name of EnumerateNtmsObjectR operation.
 func (o *EnumerateNTMSObjectRRequest) OpName() string {
@@ -719,7 +719,7 @@ type xxx_GetNTMSUIOptionsAOperation struct {
 }
 
 // OpNum returns the operation number of GetNtmsUIOptionsA operation.
-func (o *xxx_GetNTMSUIOptionsAOperation) OpNum() int { return 10 }
+func (o *xxx_GetNTMSUIOptionsAOperation) OpNum() int { return 13 }
 
 // OpName returns the operation name of GetNtmsUIOptionsA operation.
 func (o *xxx_GetNTMSUIOptionsAOperation) OpName() string {
@@ -1054,7 +1054,7 @@ func (o *GetNTMSUIOptionsARequest) MakeResponse() *GetNTMSUIOptionsAResponse {
 }
 
 // OpNum returns the operation number of GetNtmsUIOptionsA operation.
-func (o *GetNTMSUIOptionsARequest) OpNum() int { return 10 }
+func (o *GetNTMSUIOptionsARequest) OpNum() int { return 13 }
 
 // OpName returns the operation name of GetNtmsUIOptionsA operation.
 func (o *GetNTMSUIOptionsARequest) OpName() string {
@@ -1159,7 +1159,7 @@ type xxx_GetNTMSUIOptionsWOperation struct {
 }
 
 // OpNum returns the operation number of GetNtmsUIOptionsW operation.
-func (o *xxx_GetNTMSUIOptionsWOperation) OpNum() int { return 11 }
+func (o *xxx_GetNTMSUIOptionsWOperation) OpNum() int { return 14 }
 
 // OpName returns the operation name of GetNtmsUIOptionsW operation.
 func (o *xxx_GetNTMSUIOptionsWOperation) OpName() string {
@@ -1500,7 +1500,7 @@ func (o *GetNTMSUIOptionsWRequest) MakeResponse() *GetNTMSUIOptionsWResponse {
 }
 
 // OpNum returns the operation number of GetNtmsUIOptionsW operation.
-func (o *GetNTMSUIOptionsWRequest) OpNum() int { return 11 }
+func (o *GetNTMSUIOptionsWRequest) OpNum() int { return 14 }
 
 // OpName returns the operation name of GetNtmsUIOptionsW operation.
 func (o *GetNTMSUIOptionsWRequest) OpName() string {
@@ -1603,7 +1603,7 @@ type xxx_SetNTMSUIOptionsAOperation struct {
 }
 
 // OpNum returns the operation number of SetNtmsUIOptionsA operation.
-func (o *xxx_SetNTMSUIOptionsAOperation) OpNum() int { return 12 }
+func (o *xxx_SetNTMSUIOptionsAOperation) OpNum() int { return 15 }
 
 // OpName returns the operation name of SetNtmsUIOptionsA operation.
 func (o *xxx_SetNTMSUIOptionsAOperation) OpName() string {
@@ -1876,7 +1876,7 @@ func (o *SetNTMSUIOptionsARequest) MakeResponse() *SetNTMSUIOptionsAResponse {
 }
 
 // OpNum returns the operation number of SetNtmsUIOptionsA operation.
-func (o *SetNTMSUIOptionsARequest) OpNum() int { return 12 }
+func (o *SetNTMSUIOptionsARequest) OpNum() int { return 15 }
 
 // OpName returns the operation name of SetNtmsUIOptionsA operation.
 func (o *SetNTMSUIOptionsARequest) OpName() string {
@@ -1934,7 +1934,7 @@ type xxx_SetNTMSUIOptionsWOperation struct {
 }
 
 // OpNum returns the operation number of SetNtmsUIOptionsW operation.
-func (o *xxx_SetNTMSUIOptionsWOperation) OpNum() int { return 13 }
+func (o *xxx_SetNTMSUIOptionsWOperation) OpNum() int { return 16 }
 
 // OpName returns the operation name of SetNtmsUIOptionsW operation.
 func (o *xxx_SetNTMSUIOptionsWOperation) OpName() string {
@@ -2234,7 +2234,7 @@ func (o *SetNTMSUIOptionsWRequest) MakeResponse() *SetNTMSUIOptionsWResponse {
 }
 
 // OpNum returns the operation number of SetNtmsUIOptionsW operation.
-func (o *SetNTMSUIOptionsWRequest) OpNum() int { return 13 }
+func (o *SetNTMSUIOptionsWRequest) OpNum() int { return 16 }
 
 // OpName returns the operation name of SetNtmsUIOptionsW operation.
 func (o *SetNTMSUIOptionsWRequest) OpName() string {

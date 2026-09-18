@@ -337,7 +337,7 @@ type xxx_GetNTMSObjectSecurityOperation struct {
 }
 
 // OpNum returns the operation number of GetNtmsObjectSecurity operation.
-func (o *xxx_GetNTMSObjectSecurityOperation) OpNum() int { return 0 }
+func (o *xxx_GetNTMSObjectSecurityOperation) OpNum() int { return 3 }
 
 // OpName returns the operation name of GetNtmsObjectSecurity operation.
 func (o *xxx_GetNTMSObjectSecurityOperation) OpName() string {
@@ -628,7 +628,7 @@ func (o *GetNTMSObjectSecurityRequest) MakeResponse() *GetNTMSObjectSecurityResp
 }
 
 // OpNum returns the operation number of GetNtmsObjectSecurity operation.
-func (o *GetNTMSObjectSecurityRequest) OpNum() int { return 0 }
+func (o *GetNTMSObjectSecurityRequest) OpNum() int { return 3 }
 
 // OpName returns the operation name of GetNtmsObjectSecurity operation.
 func (o *GetNTMSObjectSecurityRequest) OpName() string {
@@ -729,7 +729,7 @@ type xxx_SetNTMSObjectSecurityOperation struct {
 }
 
 // OpNum returns the operation number of SetNtmsObjectSecurity operation.
-func (o *xxx_SetNTMSObjectSecurityOperation) OpNum() int { return 1 }
+func (o *xxx_SetNTMSObjectSecurityOperation) OpNum() int { return 4 }
 
 // OpName returns the operation name of SetNtmsObjectSecurity operation.
 func (o *xxx_SetNTMSObjectSecurityOperation) OpName() string {
@@ -1031,7 +1031,7 @@ func (o *SetNTMSObjectSecurityRequest) MakeResponse() *SetNTMSObjectSecurityResp
 }
 
 // OpNum returns the operation number of SetNtmsObjectSecurity operation.
-func (o *SetNTMSObjectSecurityRequest) OpNum() int { return 1 }
+func (o *SetNTMSObjectSecurityRequest) OpNum() int { return 4 }
 
 // OpName returns the operation name of SetNtmsObjectSecurity operation.
 func (o *SetNTMSObjectSecurityRequest) OpName() string {
@@ -1091,7 +1091,7 @@ type xxx_GetNTMSObjectAttributeAOperation struct {
 }
 
 // OpNum returns the operation number of GetNtmsObjectAttributeA operation.
-func (o *xxx_GetNTMSObjectAttributeAOperation) OpNum() int { return 2 }
+func (o *xxx_GetNTMSObjectAttributeAOperation) OpNum() int { return 5 }
 
 // OpName returns the operation name of GetNtmsObjectAttributeA operation.
 func (o *xxx_GetNTMSObjectAttributeAOperation) OpName() string {
@@ -1408,7 +1408,7 @@ func (o *GetNTMSObjectAttributeARequest) MakeResponse() *GetNTMSObjectAttributeA
 }
 
 // OpNum returns the operation number of GetNtmsObjectAttributeA operation.
-func (o *GetNTMSObjectAttributeARequest) OpNum() int { return 2 }
+func (o *GetNTMSObjectAttributeARequest) OpNum() int { return 5 }
 
 // OpName returns the operation name of GetNtmsObjectAttributeA operation.
 func (o *GetNTMSObjectAttributeARequest) OpName() string {
@@ -1515,7 +1515,7 @@ type xxx_GetNTMSObjectAttributeWOperation struct {
 }
 
 // OpNum returns the operation number of GetNtmsObjectAttributeW operation.
-func (o *xxx_GetNTMSObjectAttributeWOperation) OpNum() int { return 3 }
+func (o *xxx_GetNTMSObjectAttributeWOperation) OpNum() int { return 6 }
 
 // OpName returns the operation name of GetNtmsObjectAttributeW operation.
 func (o *xxx_GetNTMSObjectAttributeWOperation) OpName() string {
@@ -1832,7 +1832,7 @@ func (o *GetNTMSObjectAttributeWRequest) MakeResponse() *GetNTMSObjectAttributeW
 }
 
 // OpNum returns the operation number of GetNtmsObjectAttributeW operation.
-func (o *GetNTMSObjectAttributeWRequest) OpNum() int { return 3 }
+func (o *GetNTMSObjectAttributeWRequest) OpNum() int { return 6 }
 
 // OpName returns the operation name of GetNtmsObjectAttributeW operation.
 func (o *GetNTMSObjectAttributeWRequest) OpName() string {
@@ -1936,7 +1936,7 @@ type xxx_SetNTMSObjectAttributeAOperation struct {
 }
 
 // OpNum returns the operation number of SetNtmsObjectAttributeA operation.
-func (o *xxx_SetNTMSObjectAttributeAOperation) OpNum() int { return 4 }
+func (o *xxx_SetNTMSObjectAttributeAOperation) OpNum() int { return 7 }
 
 // OpName returns the operation name of SetNtmsObjectAttributeA operation.
 func (o *xxx_SetNTMSObjectAttributeAOperation) OpName() string {
@@ -2242,7 +2242,7 @@ func (o *SetNTMSObjectAttributeARequest) MakeResponse() *SetNTMSObjectAttributeA
 }
 
 // OpNum returns the operation number of SetNtmsObjectAttributeA operation.
-func (o *SetNTMSObjectAttributeARequest) OpNum() int { return 4 }
+func (o *SetNTMSObjectAttributeARequest) OpNum() int { return 7 }
 
 // OpName returns the operation name of SetNtmsObjectAttributeA operation.
 func (o *SetNTMSObjectAttributeARequest) OpName() string {
@@ -2301,7 +2301,7 @@ type xxx_SetNTMSObjectAttributeWOperation struct {
 }
 
 // OpNum returns the operation number of SetNtmsObjectAttributeW operation.
-func (o *xxx_SetNTMSObjectAttributeWOperation) OpNum() int { return 5 }
+func (o *xxx_SetNTMSObjectAttributeWOperation) OpNum() int { return 8 }
 
 // OpName returns the operation name of SetNtmsObjectAttributeW operation.
 func (o *xxx_SetNTMSObjectAttributeWOperation) OpName() string {
@@ -2607,7 +2607,7 @@ func (o *SetNTMSObjectAttributeWRequest) MakeResponse() *SetNTMSObjectAttributeW
 }
 
 // OpNum returns the operation number of SetNtmsObjectAttributeW operation.
-func (o *SetNTMSObjectAttributeWRequest) OpNum() int { return 5 }
+func (o *SetNTMSObjectAttributeWRequest) OpNum() int { return 8 }
 
 // OpName returns the operation name of SetNtmsObjectAttributeW operation.
 func (o *SetNTMSObjectAttributeWRequest) OpName() string {
@@ -2667,7 +2667,7 @@ type xxx_EnumerateNTMSObjectOperation struct {
 }
 
 // OpNum returns the operation number of EnumerateNtmsObject operation.
-func (o *xxx_EnumerateNTMSObjectOperation) OpNum() int { return 6 }
+func (o *xxx_EnumerateNTMSObjectOperation) OpNum() int { return 9 }
 
 // OpName returns the operation name of EnumerateNtmsObject operation.
 func (o *xxx_EnumerateNTMSObjectOperation) OpName() string {
@@ -3040,7 +3040,7 @@ func (o *EnumerateNTMSObjectRequest) MakeResponse() *EnumerateNTMSObjectResponse
 }
 
 // OpNum returns the operation number of EnumerateNtmsObject operation.
-func (o *EnumerateNTMSObjectRequest) OpNum() int { return 6 }
+func (o *EnumerateNTMSObjectRequest) OpNum() int { return 9 }
 
 // OpName returns the operation name of EnumerateNtmsObject operation.
 func (o *EnumerateNTMSObjectRequest) OpName() string {
@@ -3115,7 +3115,7 @@ type xxx_DisableNTMSObjectOperation struct {
 }
 
 // OpNum returns the operation number of DisableNtmsObject operation.
-func (o *xxx_DisableNTMSObjectOperation) OpNum() int { return 7 }
+func (o *xxx_DisableNTMSObjectOperation) OpNum() int { return 10 }
 
 // OpName returns the operation name of DisableNtmsObject operation.
 func (o *xxx_DisableNTMSObjectOperation) OpName() string {
@@ -3333,7 +3333,7 @@ func (o *DisableNTMSObjectRequest) MakeResponse() *DisableNTMSObjectResponse {
 }
 
 // OpNum returns the operation number of DisableNtmsObject operation.
-func (o *DisableNTMSObjectRequest) OpNum() int { return 7 }
+func (o *DisableNTMSObjectRequest) OpNum() int { return 10 }
 
 // OpName returns the operation name of DisableNtmsObject operation.
 func (o *DisableNTMSObjectRequest) OpName() string {
@@ -3389,7 +3389,7 @@ type xxx_EnableNTMSObjectOperation struct {
 }
 
 // OpNum returns the operation number of EnableNtmsObject operation.
-func (o *xxx_EnableNTMSObjectOperation) OpNum() int { return 8 }
+func (o *xxx_EnableNTMSObjectOperation) OpNum() int { return 11 }
 
 // OpName returns the operation name of EnableNtmsObject operation.
 func (o *xxx_EnableNTMSObjectOperation) OpName() string {
@@ -3607,7 +3607,7 @@ func (o *EnableNTMSObjectRequest) MakeResponse() *EnableNTMSObjectResponse {
 }
 
 // OpNum returns the operation number of EnableNtmsObject operation.
-func (o *EnableNTMSObjectRequest) OpNum() int { return 8 }
+func (o *EnableNTMSObjectRequest) OpNum() int { return 11 }
 
 // OpName returns the operation name of EnableNtmsObject operation.
 func (o *EnableNTMSObjectRequest) OpName() string {
