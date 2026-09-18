@@ -1,2 +1,8 @@
 // stub.
 import "ms-oaut.idl";
+
+typedef CLSID *REFCLSID;
+
+typedef WCHAR OLECHAR;
+
+typedef unsigned short VARTYPE;
