@@ -208,9 +208,11 @@ func (m *AuthMessage) Unmarshal(b []byte) error {
 	}
 
 	if m.Flags.IsSet(NegFlagNetBIOSComputerNameUTF8) {
-		if m.NetBIOSComputerName, err = readNBName(r, false); err != nil {
+		// the UTF-8 computer name is a compressed (RFC 1035) string, like the DNS names.
+		if m.NetBIOSComputerName, err = readDNSName(r); err != nil {
 			return err
 		}
+		m.NetBIOSComputerName = strings.TrimSuffix(m.NetBIOSComputerName, ".")
 	}
 
 	return nil
