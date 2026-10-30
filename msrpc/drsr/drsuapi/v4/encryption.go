@@ -15,7 +15,7 @@ import (
 func DecryptData(ctx context.Context, b []byte) ([]byte, error) {
 	key, ok := gssapi.GetAttribute(ctx, gssapi.AttributeSessionKey)
 	if !ok {
-		return nil, fmt.Errorf("unable to get session key")
+		return nil, fmt.Errorf("decrypt data: unable to get session key")
 	}
 	bkey, _ := key.([]byte)
 	return DecryptDataWithKey(ctx, bkey, b)
@@ -25,14 +25,16 @@ func DecryptData(ctx context.Context, b []byte) ([]byte, error) {
 func DecryptDataWithKey(ctx context.Context, key []byte, b []byte) ([]byte, error) {
 
 	if len(key) == 0 {
-		return nil, fmt.Errorf("unable to get session key")
+		return nil, fmt.Errorf("decrypt data: unable to get session key")
 	}
 
 	payload := EncryptedPayload{}
 
 	if err := ndr.Unmarshal(b, &payload, ndr.Opaque); err != nil {
-		return nil, fmt.Errorf("unmarshal encrypted payload: %w", err)
+		return nil, fmt.Errorf("decrypt data: unmarshal encrypted payload: %w", err)
 	}
+
+	// payload.Salt is 16 bytes after unmarshaling (see EncryptedPayload.UnmarshalNDR).
 
 	h := md5.New()
 	h.Write(key)
@@ -44,7 +46,7 @@ func DecryptDataWithKey(ctx context.Context, key []byte, b []byte) ([]byte, erro
 
 	cipher, err := rc4.NewCipher(key)
 	if err != nil {
-		return nil, fmt.Errorf("init cipher: %w", err)
+		return nil, fmt.Errorf("decrypt data: init cipher: %w", err)
 	}
 	cipher.XORKeyStream(data, data)
 
@@ -57,7 +59,10 @@ func DecryptHash(ctx context.Context, rid uint32, b []byte) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	return crypto.DES_ECB_LM(rid, b)
+	if b, err = crypto.DES_ECB_LM(rid, b); err != nil {
+		return nil, fmt.Errorf("decrypt hash: %w", err)
+	}
+	return b, nil
 }
 
 // DecryptHashWithKey decrypts the hash using the provided key and rid.
@@ -66,5 +71,8 @@ func DecryptHashWithKey(ctx context.Context, key []byte, rid uint32, b []byte) (
 	if err != nil {
 		return nil, err
 	}
-	return crypto.DES_ECB_LM(rid, b)
+	if b, err = crypto.DES_ECB_LM(rid, b); err != nil {
+		return nil, fmt.Errorf("decrypt hash with key: %w", err)
+	}
+	return b, nil
 }
