@@ -3,6 +3,7 @@ package ntlm
 import (
 	"context"
 	"encoding/binary"
+	"fmt"
 
 	"github.com/oiweiwei/go-msrpc/ssp/ntlm/internal"
 	"github.com/oiweiwei/go-msrpc/text/encoding/utf16le"
@@ -233,8 +234,14 @@ func (v *Value) UnmarshalAttr(ctx context.Context, attrID AttrValueID, b []byte)
 	case AttrDNSTreeName:
 		v.DNSTreeName, err = utf16le.Decode(b)
 	case AttrFlags:
+		if len(b) < 4 {
+			return fmt.Errorf("invalid length for flags attribute: %d", len(b))
+		}
 		v.Flag = (AttrFlag)(binary.LittleEndian.Uint32(b))
 	case AttrTimestamp:
+		if len(b) < 8 {
+			return fmt.Errorf("invalid length for timestamp attribute: %d", len(b))
+		}
 		v.Timestamp = Filetime(binary.LittleEndian.Uint64(b))
 	case AttrSingleHost:
 		v.SingleHostData = &SingleHostData{}
