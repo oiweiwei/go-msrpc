@@ -309,7 +309,18 @@ func (o *xxx_GetImportTargetOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppwszIscsiName := func(ptr interface{}) { o.ISCSIName = *ptr.(*string) }
+		_s_ppwszIscsiName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ISCSIName = ""
+				} else {
+					o.ISCSIName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ISCSIName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ISCSIName, _s_ppwszIscsiName, _ptr_ppwszIscsiName); err != nil {
 			return err
 		}
@@ -508,7 +519,18 @@ func (o *xxx_SetImportTargetOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pwszIscsiName := func(ptr interface{}) { o.ISCSIName = *ptr.(*string) }
+		_s_pwszIscsiName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ISCSIName = ""
+				} else {
+					o.ISCSIName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ISCSIName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ISCSIName, _s_pwszIscsiName, _ptr_pwszIscsiName); err != nil {
 			return err
 		}

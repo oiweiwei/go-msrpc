@@ -241,7 +241,18 @@ func (o *xxx_GetKeyOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pRootKeyID := func(ptr interface{}) { o.RootKeyID = *ptr.(**dtyp.GUID) }
+		_s_pRootKeyID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.RootKeyID = nil
+				} else {
+					o.RootKeyID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RootKeyID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RootKeyID, _s_pRootKeyID, _ptr_pRootKeyID); err != nil {
 			return err
 		}
@@ -370,7 +381,18 @@ func (o *xxx_GetKeyOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ppbOut := func(ptr interface{}) { o.Out = *ptr.(*[]byte) }
+		_s_ppbOut := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Out = nil
+				} else {
+					o.Out = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Out", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Out, _s_ppbOut, _ptr_ppbOut); err != nil {
 			return err
 		}

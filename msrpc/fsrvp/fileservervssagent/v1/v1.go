@@ -453,7 +453,18 @@ func (o *ShareMapping1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_ShareNameUNC := func(ptr interface{}) { o.ShareNameUNC = *ptr.(*string) }
+	_s_ShareNameUNC := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ShareNameUNC = ""
+			} else {
+				o.ShareNameUNC = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ShareNameUNC", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ShareNameUNC, _s_ShareNameUNC, _ptr_ShareNameUNC); err != nil {
 		return err
 	}
@@ -463,7 +474,18 @@ func (o *ShareMapping1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_ShadowCopyShareName := func(ptr interface{}) { o.ShadowCopyShareName = *ptr.(*string) }
+	_s_ShadowCopyShareName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ShadowCopyShareName = ""
+			} else {
+				o.ShadowCopyShareName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ShadowCopyShareName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ShadowCopyShareName, _s_ShadowCopyShareName, _ptr_ShadowCopyShareName); err != nil {
 		return err
 	}
@@ -609,7 +631,18 @@ func (o *ShareMapping_1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_ShareMapping1 := func(ptr interface{}) { o.ShareMapping1 = *ptr.(**ShareMapping1) }
+	_s_ShareMapping1 := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ShareMapping1:
+			if ptr == nil {
+				o.ShareMapping1 = nil
+			} else {
+				o.ShareMapping1 = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ShareMapping1", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ShareMapping1, _s_ShareMapping1, _ptr_ShareMapping1); err != nil {
 		return err
 	}
@@ -2413,7 +2446,18 @@ func (o *xxx_IsPathSupportedOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_OwnerMachineName := func(ptr interface{}) { o.OwnerMachineName = *ptr.(*string) }
+		_s_OwnerMachineName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.OwnerMachineName = ""
+				} else {
+					o.OwnerMachineName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OwnerMachineName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OwnerMachineName, _s_OwnerMachineName, _ptr_OwnerMachineName); err != nil {
 			return err
 		}

@@ -582,7 +582,18 @@ func (o *xxx_GetMailFromOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_mailFrom := func(ptr interface{}) { o.MailFrom = *ptr.(**oaut.String) }
+		_s_mailFrom := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailFrom = nil
+				} else {
+					o.MailFrom = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailFrom", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailFrom, _s_mailFrom, _ptr_mailFrom); err != nil {
 			return err
 		}
@@ -783,7 +794,18 @@ func (o *xxx_SetMailFromOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_mailFrom := func(ptr interface{}) { o.MailFrom = *ptr.(**oaut.String) }
+		_s_mailFrom := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailFrom = nil
+				} else {
+					o.MailFrom = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailFrom", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailFrom, _s_mailFrom, _ptr_mailFrom); err != nil {
 			return err
 		}
@@ -1090,7 +1112,18 @@ func (o *xxx_GetMailReplyToOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_mailReplyTo := func(ptr interface{}) { o.MailReplyTo = *ptr.(**oaut.String) }
+		_s_mailReplyTo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailReplyTo = nil
+				} else {
+					o.MailReplyTo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailReplyTo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailReplyTo, _s_mailReplyTo, _ptr_mailReplyTo); err != nil {
 			return err
 		}
@@ -1291,7 +1324,18 @@ func (o *xxx_SetMailReplyToOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_mailReplyTo := func(ptr interface{}) { o.MailReplyTo = *ptr.(**oaut.String) }
+		_s_mailReplyTo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailReplyTo = nil
+				} else {
+					o.MailReplyTo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailReplyTo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailReplyTo, _s_mailReplyTo, _ptr_mailReplyTo); err != nil {
 			return err
 		}
@@ -1598,7 +1642,18 @@ func (o *xxx_GetMailToOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_mailTo := func(ptr interface{}) { o.MailTo = *ptr.(**oaut.String) }
+		_s_mailTo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailTo = nil
+				} else {
+					o.MailTo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailTo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailTo, _s_mailTo, _ptr_mailTo); err != nil {
 			return err
 		}
@@ -1799,7 +1854,18 @@ func (o *xxx_SetMailToOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_mailTo := func(ptr interface{}) { o.MailTo = *ptr.(**oaut.String) }
+		_s_mailTo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailTo = nil
+				} else {
+					o.MailTo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailTo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailTo, _s_mailTo, _ptr_mailTo); err != nil {
 			return err
 		}
@@ -2106,7 +2172,18 @@ func (o *xxx_GetMailCCOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_mailCc := func(ptr interface{}) { o.MailCC = *ptr.(**oaut.String) }
+		_s_mailCc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailCC = nil
+				} else {
+					o.MailCC = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailCC", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailCC, _s_mailCc, _ptr_mailCc); err != nil {
 			return err
 		}
@@ -2307,7 +2384,18 @@ func (o *xxx_SetMailCCOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_mailCc := func(ptr interface{}) { o.MailCC = *ptr.(**oaut.String) }
+		_s_mailCc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailCC = nil
+				} else {
+					o.MailCC = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailCC", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailCC, _s_mailCc, _ptr_mailCc); err != nil {
 			return err
 		}
@@ -2614,7 +2702,18 @@ func (o *xxx_GetMailBCCOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_mailBcc := func(ptr interface{}) { o.MailBCC = *ptr.(**oaut.String) }
+		_s_mailBcc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailBCC = nil
+				} else {
+					o.MailBCC = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailBCC", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailBCC, _s_mailBcc, _ptr_mailBcc); err != nil {
 			return err
 		}
@@ -2815,7 +2914,18 @@ func (o *xxx_SetMailBCCOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_mailBcc := func(ptr interface{}) { o.MailBCC = *ptr.(**oaut.String) }
+		_s_mailBcc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailBCC = nil
+				} else {
+					o.MailBCC = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailBCC", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailBCC, _s_mailBcc, _ptr_mailBcc); err != nil {
 			return err
 		}
@@ -3122,7 +3232,18 @@ func (o *xxx_GetMailSubjectOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_mailSubject := func(ptr interface{}) { o.MailSubject = *ptr.(**oaut.String) }
+		_s_mailSubject := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailSubject = nil
+				} else {
+					o.MailSubject = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailSubject", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailSubject, _s_mailSubject, _ptr_mailSubject); err != nil {
 			return err
 		}
@@ -3323,7 +3444,18 @@ func (o *xxx_SetMailSubjectOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_mailSubject := func(ptr interface{}) { o.MailSubject = *ptr.(**oaut.String) }
+		_s_mailSubject := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailSubject = nil
+				} else {
+					o.MailSubject = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailSubject", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailSubject, _s_mailSubject, _ptr_mailSubject); err != nil {
 			return err
 		}
@@ -3630,7 +3762,18 @@ func (o *xxx_GetMessageTextOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_messageText := func(ptr interface{}) { o.MessageText = *ptr.(**oaut.String) }
+		_s_messageText := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MessageText = nil
+				} else {
+					o.MessageText = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MessageText", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MessageText, _s_messageText, _ptr_messageText); err != nil {
 			return err
 		}
@@ -3831,7 +3974,18 @@ func (o *xxx_SetMessageTextOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_messageText := func(ptr interface{}) { o.MessageText = *ptr.(**oaut.String) }
+		_s_messageText := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MessageText = nil
+				} else {
+					o.MessageText = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MessageText", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MessageText, _s_messageText, _ptr_messageText); err != nil {
 			return err
 		}

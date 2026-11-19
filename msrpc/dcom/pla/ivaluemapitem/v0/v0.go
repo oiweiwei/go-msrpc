@@ -498,7 +498,18 @@ func (o *xxx_GetDescriptionOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_description := func(ptr interface{}) { o.Description = *ptr.(**oaut.String) }
+		_s_description := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Description = nil
+				} else {
+					o.Description = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Description", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Description, _s_description, _ptr_description); err != nil {
 			return err
 		}
@@ -699,7 +710,18 @@ func (o *xxx_SetDescriptionOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_description := func(ptr interface{}) { o.Description = *ptr.(**oaut.String) }
+		_s_description := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Description = nil
+				} else {
+					o.Description = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Description", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Description, _s_description, _ptr_description); err != nil {
 			return err
 		}
@@ -1446,7 +1468,18 @@ func (o *xxx_GetKeyOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_key := func(ptr interface{}) { o.Key = *ptr.(**oaut.String) }
+		_s_key := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Key = nil
+				} else {
+					o.Key = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Key", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Key, _s_key, _ptr_key); err != nil {
 			return err
 		}
@@ -1647,7 +1680,18 @@ func (o *xxx_SetKeyOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_key := func(ptr interface{}) { o.Key = *ptr.(**oaut.String) }
+		_s_key := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Key = nil
+				} else {
+					o.Key = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Key", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Key, _s_key, _ptr_key); err != nil {
 			return err
 		}
@@ -1954,7 +1998,18 @@ func (o *xxx_GetValueOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_Value := func(ptr interface{}) { o.Value = *ptr.(**oaut.Variant) }
+		_s_Value := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_Value, _ptr_Value); err != nil {
 			return err
 		}

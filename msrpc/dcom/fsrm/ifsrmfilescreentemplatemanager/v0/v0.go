@@ -379,7 +379,18 @@ func (o *xxx_CreateTemplateOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_fileScreenTemplate := func(ptr interface{}) { o.FileScreenTemplate = *ptr.(**fsrm.FileScreenTemplate) }
+		_s_fileScreenTemplate := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.FileScreenTemplate:
+				if ptr == nil {
+					o.FileScreenTemplate = nil
+				} else {
+					o.FileScreenTemplate = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreenTemplate", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreenTemplate, _s_fileScreenTemplate, _ptr_fileScreenTemplate); err != nil {
 			return err
 		}
@@ -585,7 +596,18 @@ func (o *xxx_GetTemplateOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_name := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_name := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 			return err
 		}
@@ -684,7 +706,18 @@ func (o *xxx_GetTemplateOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_fileScreenTemplate := func(ptr interface{}) { o.FileScreenTemplate = *ptr.(**fsrm.FileScreenTemplate) }
+		_s_fileScreenTemplate := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.FileScreenTemplate:
+				if ptr == nil {
+					o.FileScreenTemplate = nil
+				} else {
+					o.FileScreenTemplate = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreenTemplate", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreenTemplate, _s_fileScreenTemplate, _ptr_fileScreenTemplate); err != nil {
 			return err
 		}
@@ -956,7 +989,18 @@ func (o *xxx_EnumTemplatesOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_fileScreenTemplates := func(ptr interface{}) { o.FileScreenTemplates = *ptr.(**fsrm.CommittableCollection) }
+		_s_fileScreenTemplates := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.CommittableCollection:
+				if ptr == nil {
+					o.FileScreenTemplates = nil
+				} else {
+					o.FileScreenTemplates = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreenTemplates", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreenTemplates, _s_fileScreenTemplates, _ptr_fileScreenTemplates); err != nil {
 			return err
 		}
@@ -1165,7 +1209,18 @@ func (o *xxx_ExportTemplatesOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_fileScreenTemplateNamesArray := func(ptr interface{}) { o.FileScreenTemplateNamesArray = *ptr.(**oaut.Variant) }
+		_s_fileScreenTemplateNamesArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.FileScreenTemplateNamesArray = nil
+				} else {
+					o.FileScreenTemplateNamesArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreenTemplateNamesArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreenTemplateNamesArray, _s_fileScreenTemplateNamesArray, _ptr_fileScreenTemplateNamesArray); err != nil {
 			return err
 		}
@@ -1264,7 +1319,18 @@ func (o *xxx_ExportTemplatesOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_serializedFileScreenTemplates := func(ptr interface{}) { o.SerializedFileScreenTemplates = *ptr.(**oaut.String) }
+		_s_serializedFileScreenTemplates := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SerializedFileScreenTemplates = nil
+				} else {
+					o.SerializedFileScreenTemplates = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SerializedFileScreenTemplates", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SerializedFileScreenTemplates, _s_serializedFileScreenTemplates, _ptr_serializedFileScreenTemplates); err != nil {
 			return err
 		}
@@ -1501,7 +1567,18 @@ func (o *xxx_ImportTemplatesOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_serializedFileScreenTemplates := func(ptr interface{}) { o.SerializedFileScreenTemplates = *ptr.(**oaut.String) }
+		_s_serializedFileScreenTemplates := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SerializedFileScreenTemplates = nil
+				} else {
+					o.SerializedFileScreenTemplates = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SerializedFileScreenTemplates", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SerializedFileScreenTemplates, _s_serializedFileScreenTemplates, _ptr_serializedFileScreenTemplates); err != nil {
 			return err
 		}
@@ -1520,7 +1597,18 @@ func (o *xxx_ImportTemplatesOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_fileScreenTemplateNamesArray := func(ptr interface{}) { o.FileScreenTemplateNamesArray = *ptr.(**oaut.Variant) }
+		_s_fileScreenTemplateNamesArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.FileScreenTemplateNamesArray = nil
+				} else {
+					o.FileScreenTemplateNamesArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreenTemplateNamesArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreenTemplateNamesArray, _s_fileScreenTemplateNamesArray, _ptr_fileScreenTemplateNamesArray); err != nil {
 			return err
 		}
@@ -1619,7 +1707,18 @@ func (o *xxx_ImportTemplatesOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_fileScreenTemplates := func(ptr interface{}) { o.FileScreenTemplates = *ptr.(**fsrm.CommittableCollection) }
+		_s_fileScreenTemplates := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.CommittableCollection:
+				if ptr == nil {
+					o.FileScreenTemplates = nil
+				} else {
+					o.FileScreenTemplates = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreenTemplates", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreenTemplates, _s_fileScreenTemplates, _ptr_fileScreenTemplates); err != nil {
 			return err
 		}

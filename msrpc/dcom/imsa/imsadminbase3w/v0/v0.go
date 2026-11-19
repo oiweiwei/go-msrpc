@@ -369,7 +369,18 @@ func (o *xxx_GetChildPathsOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -408,7 +419,18 @@ func (o *xxx_GetChildPathsOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			o.Buffer = strings.TrimRight(string(utf16.Decode(_Buffer_buf)), ndr.ZeroString)
 			return nil
 		})
-		_s_pszBuffer := func(ptr interface{}) { o.Buffer = *ptr.(*string) }
+		_s_pszBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Buffer = ""
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_pszBuffer, _ptr_pszBuffer); err != nil {
 			return err
 		}
@@ -424,7 +446,18 @@ func (o *xxx_GetChildPathsOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pcchMDRequiredBufferSize := func(ptr interface{}) { o.RequiredBufferSize = *ptr.(*uint32) }
+		_s_pcchMDRequiredBufferSize := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *uint32:
+				if ptr == nil {
+					o.RequiredBufferSize = uint32(0)
+				} else {
+					o.RequiredBufferSize = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RequiredBufferSize", ptr))
+			}
+		}
 		_m_pcchMDRequiredBufferSize := func() { o.NullMask |= GetChildPathsNullMaskRequiredBufferSize }
 		if err := w.ReadPointerWithHook(&o.RequiredBufferSize, ndr.PointerHook{_s_pcchMDRequiredBufferSize, _m_pcchMDRequiredBufferSize}, _ptr_pcchMDRequiredBufferSize); err != nil {
 			return err
@@ -575,7 +608,18 @@ func (o *xxx_GetChildPathsOperation) UnmarshalNDRResponse(ctx context.Context, w
 			o.Buffer = strings.TrimRight(string(utf16.Decode(_Buffer_buf)), ndr.ZeroString)
 			return nil
 		})
-		_s_pszBuffer := func(ptr interface{}) { o.Buffer = *ptr.(*string) }
+		_s_pszBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Buffer = ""
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_pszBuffer, _ptr_pszBuffer); err != nil {
 			return err
 		}
@@ -591,7 +635,18 @@ func (o *xxx_GetChildPathsOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pcchMDRequiredBufferSize := func(ptr interface{}) { o.RequiredBufferSize = *ptr.(*uint32) }
+		_s_pcchMDRequiredBufferSize := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *uint32:
+				if ptr == nil {
+					o.RequiredBufferSize = uint32(0)
+				} else {
+					o.RequiredBufferSize = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RequiredBufferSize", ptr))
+			}
+		}
 		_m_pcchMDRequiredBufferSize := func() { o.NullMask |= GetChildPathsNullMaskRequiredBufferSize }
 		if err := w.ReadPointerWithHook(&o.RequiredBufferSize, ndr.PointerHook{_s_pcchMDRequiredBufferSize, _m_pcchMDRequiredBufferSize}, _ptr_pcchMDRequiredBufferSize); err != nil {
 			return err

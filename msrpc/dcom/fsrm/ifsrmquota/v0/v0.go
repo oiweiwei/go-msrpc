@@ -445,7 +445,18 @@ func (o *xxx_GetQuotaUsedOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_used := func(ptr interface{}) { o.Used = *ptr.(**oaut.Variant) }
+		_s_used := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Used = nil
+				} else {
+					o.Used = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Used", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Used, _s_used, _ptr_used); err != nil {
 			return err
 		}
@@ -701,7 +712,18 @@ func (o *xxx_GetQuotaPeakUsageOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_peakUsage := func(ptr interface{}) { o.PeakUsage = *ptr.(**oaut.Variant) }
+		_s_peakUsage := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.PeakUsage = nil
+				} else {
+					o.PeakUsage = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PeakUsage", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PeakUsage, _s_peakUsage, _ptr_peakUsage); err != nil {
 			return err
 		}

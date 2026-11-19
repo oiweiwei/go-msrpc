@@ -412,7 +412,18 @@ func (o *xxx_CreateConfigurationOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_bstrConfigurationName := func(ptr interface{}) { o.ConfigurationName = *ptr.(**oaut.String) }
+		_s_bstrConfigurationName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ConfigurationName = nil
+				} else {
+					o.ConfigurationName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigurationName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigurationName, _s_bstrConfigurationName, _ptr_bstrConfigurationName); err != nil {
 			return err
 		}
@@ -443,7 +454,18 @@ func (o *xxx_CreateConfigurationOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_bstrDependencies := func(ptr interface{}) { o.Dependencies = *ptr.(**oaut.String) }
+		_s_bstrDependencies := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Dependencies = nil
+				} else {
+					o.Dependencies = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Dependencies", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Dependencies, _s_bstrDependencies, _ptr_bstrDependencies); err != nil {
 			return err
 		}
@@ -462,7 +484,18 @@ func (o *xxx_CreateConfigurationOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_bstrRunAs := func(ptr interface{}) { o.RunAs = *ptr.(**oaut.String) }
+		_s_bstrRunAs := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.RunAs = nil
+				} else {
+					o.RunAs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RunAs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RunAs, _s_bstrRunAs, _ptr_bstrRunAs); err != nil {
 			return err
 		}
@@ -481,7 +514,18 @@ func (o *xxx_CreateConfigurationOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_bstrPassword := func(ptr interface{}) { o.Password = *ptr.(**oaut.String) }
+		_s_bstrPassword := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Password = nil
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_bstrPassword, _ptr_bstrPassword); err != nil {
 			return err
 		}

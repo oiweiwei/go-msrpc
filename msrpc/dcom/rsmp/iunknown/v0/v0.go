@@ -319,7 +319,18 @@ func (o *xxx_QueryInterfaceOperation) UnmarshalNDRResponse(ctx context.Context, 
 			// FIXME: unknown type ppvObject
 			return nil
 		})
-		_s_ppvObject := func(ptr interface{}) { o.Object = *ptr.(*[]byte) }
+		_s_ppvObject := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Object = nil
+				} else {
+					o.Object = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Object", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Object, _s_ppvObject, _ptr_ppvObject); err != nil {
 			return err
 		}

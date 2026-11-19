@@ -145,7 +145,18 @@ func (o *ANSIString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pString := func(ptr interface{}) { o.String = *ptr.(*[]byte) }
+	_s_pString := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.String = nil
+			} else {
+				o.String = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.String", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.String, _s_pString, _ptr_pString); err != nil {
 		return err
 	}
@@ -252,7 +263,18 @@ func (o *UnicodeString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pString := func(ptr interface{}) { o.String = *ptr.(*[]uint16) }
+	_s_pString := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]uint16:
+			if ptr == nil {
+				o.String = nil
+			} else {
+				o.String = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.String", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.String, _s_pString, _ptr_pString); err != nil {
 		return err
 	}
@@ -358,7 +380,18 @@ func (o *BinaryInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pBlob := func(ptr interface{}) { o.Blob = *ptr.(*[]byte) }
+	_s_pBlob := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Blob = nil
+			} else {
+				o.Blob = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Blob", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Blob, _s_pBlob, _ptr_pBlob); err != nil {
 		return err
 	}
@@ -1290,7 +1323,18 @@ func (o *ExtendedErrorInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_Next := func(ptr interface{}) { o.Next = *ptr.(**ExtendedErrorInfo) }
+	_s_Next := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ExtendedErrorInfo:
+			if ptr == nil {
+				o.Next = nil
+			} else {
+				o.Next = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Next", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Next, _s_Next, _ptr_Next); err != nil {
 		return err
 	}

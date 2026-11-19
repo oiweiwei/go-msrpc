@@ -314,7 +314,18 @@ func (o *xxx_GetComponentInfoOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_infoArray := func(ptr interface{}) { o.InfoArray = *ptr.(**oaut.SafeArray) }
+		_s_infoArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.InfoArray = nil
+				} else {
+					o.InfoArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InfoArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InfoArray, _s_infoArray, _ptr_infoArray); err != nil {
 			return err
 		}

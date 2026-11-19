@@ -208,7 +208,7 @@ var (
 )
 
 // Pointer interface represents the generic pointer.
-type Pointer interface{}
+type Pointer any
 
 // Int3264 type ...
 type Int3264 int64

@@ -1472,7 +1472,18 @@ func (o *xxx_QueryConglomerationPasswordOperation) UnmarshalNDRResponse(ctx cont
 			}
 			return nil
 		})
-		_s_ppvPassword := func(ptr interface{}) { o.Password = *ptr.(*[]byte) }
+		_s_ppvPassword := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Password = nil
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_ppvPassword, _ptr_ppvPassword); err != nil {
 			return err
 		}
@@ -1740,7 +1751,18 @@ func (o *xxx_CreateReplicationDirOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppwszBaseReplicationDir := func(ptr interface{}) { o.BaseReplicationDir = *ptr.(*string) }
+		_s_ppwszBaseReplicationDir := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.BaseReplicationDir = ""
+				} else {
+					o.BaseReplicationDir = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BaseReplicationDir", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BaseReplicationDir, _s_ppwszBaseReplicationDir, _ptr_ppwszBaseReplicationDir); err != nil {
 			return err
 		}

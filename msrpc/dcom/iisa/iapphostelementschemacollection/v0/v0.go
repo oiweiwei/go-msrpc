@@ -556,7 +556,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppElementSchema := func(ptr interface{}) { o.ElementSchema = *ptr.(**iisa.AppHostElementSchema) }
+		_s_ppElementSchema := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElementSchema:
+				if ptr == nil {
+					o.ElementSchema = nil
+				} else {
+					o.ElementSchema = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ElementSchema", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ElementSchema, _s_ppElementSchema, _ptr_ppElementSchema); err != nil {
 			return err
 		}

@@ -220,13 +220,35 @@ func (o *xxx_GetNewDSAOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 				}
 				return nil
 			})
-			_s_ppszUnused := func(ptr interface{}) { _ppszUnused = *ptr.(*string) }
+			_s_ppszUnused := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case *string:
+					if ptr == nil {
+						_ppszUnused = ""
+					} else {
+						_ppszUnused = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field _ppszUnused", ptr))
+				}
+			}
 			if err := w.ReadPointer(&_ppszUnused, _s_ppszUnused, _ptr_ppszUnused); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppszUnused := func(ptr interface{}) { _ppszUnused = *ptr.(*string) }
+		_s_ppszUnused := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					_ppszUnused = ""
+				} else {
+					_ppszUnused = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field _ppszUnused", ptr))
+			}
+		}
 		if err := w.ReadPointer(&_ppszUnused, _s_ppszUnused, _ptr_ppszUnused); err != nil {
 			return err
 		}
@@ -243,13 +265,35 @@ func (o *xxx_GetNewDSAOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 				}
 				return nil
 			})
-			_s_ppszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+			_s_ppszServer := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case *string:
+					if ptr == nil {
+						o.Server = ""
+					} else {
+						o.Server = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Server, _s_ppszServer, _ptr_ppszServer); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_ppszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_ppszServer, _ptr_ppszServer); err != nil {
 			return err
 		}
@@ -337,13 +381,35 @@ func (o *xxx_GetNewDSAOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 				}
 				return nil
 			})
-			_s_ppszUnused := func(ptr interface{}) { _ppszUnused = *ptr.(*string) }
+			_s_ppszUnused := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case *string:
+					if ptr == nil {
+						_ppszUnused = ""
+					} else {
+						_ppszUnused = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field _ppszUnused", ptr))
+				}
+			}
 			if err := w.ReadPointer(&_ppszUnused, _s_ppszUnused, _ptr_ppszUnused); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppszUnused := func(ptr interface{}) { _ppszUnused = *ptr.(*string) }
+		_s_ppszUnused := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					_ppszUnused = ""
+				} else {
+					_ppszUnused = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field _ppszUnused", ptr))
+			}
+		}
 		if err := w.ReadPointer(&_ppszUnused, _s_ppszUnused, _ptr_ppszUnused); err != nil {
 			return err
 		}
@@ -360,13 +426,35 @@ func (o *xxx_GetNewDSAOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 				}
 				return nil
 			})
-			_s_ppszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+			_s_ppszServer := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case *string:
+					if ptr == nil {
+						o.Server = ""
+					} else {
+						o.Server = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Server, _s_ppszServer, _ptr_ppszServer); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_ppszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_ppszServer, _ptr_ppszServer); err != nil {
 			return err
 		}
@@ -672,7 +760,18 @@ func (o *xxx_GetFQDNFromServerDNOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ppszServerFQDN := func(ptr interface{}) { o.ServerFQDN = *ptr.(*string) }
+		_s_ppszServerFQDN := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerFQDN = ""
+				} else {
+					o.ServerFQDN = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerFQDN", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerFQDN, _s_ppszServerFQDN, _ptr_ppszServerFQDN); err != nil {
 			return err
 		}

@@ -245,7 +245,18 @@ func (o *xxx_SetClientInfoOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_wszClientMachine := func(ptr interface{}) { o.ClientMachine = *ptr.(*string) }
+		_s_wszClientMachine := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ClientMachine = ""
+				} else {
+					o.ClientMachine = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientMachine", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientMachine, _s_wszClientMachine, _ptr_wszClientMachine); err != nil {
 			return err
 		}

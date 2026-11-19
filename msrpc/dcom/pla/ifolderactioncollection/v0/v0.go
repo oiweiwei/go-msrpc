@@ -698,7 +698,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_Action := func(ptr interface{}) { o.Action = *ptr.(**pla.FolderAction) }
+		_s_Action := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.FolderAction:
+				if ptr == nil {
+					o.Action = nil
+				} else {
+					o.Action = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Action", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Action, _s_Action, _ptr_Action); err != nil {
 			return err
 		}
@@ -955,7 +966,18 @@ func (o *xxx_Get_NewEnumOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_Enum := func(ptr interface{}) { o.Enum = *ptr.(**dcom.Unknown) }
+		_s_Enum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_Enum, _ptr_Enum); err != nil {
 			return err
 		}
@@ -1156,7 +1178,18 @@ func (o *xxx_AddOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader
 			}
 			return nil
 		})
-		_s_Action := func(ptr interface{}) { o.Action = *ptr.(**pla.FolderAction) }
+		_s_Action := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.FolderAction:
+				if ptr == nil {
+					o.Action = nil
+				} else {
+					o.Action = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Action", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Action, _s_Action, _ptr_Action); err != nil {
 			return err
 		}
@@ -1849,7 +1882,18 @@ func (o *xxx_AddRangeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_Actions := func(ptr interface{}) { o.Actions = *ptr.(**pla.FolderActionCollection) }
+		_s_Actions := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.FolderActionCollection:
+				if ptr == nil {
+					o.Actions = nil
+				} else {
+					o.Actions = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Actions", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Actions, _s_Actions, _ptr_Actions); err != nil {
 			return err
 		}
@@ -2158,7 +2202,18 @@ func (o *xxx_CreateFolderActionOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_FolderAction := func(ptr interface{}) { o.FolderAction = *ptr.(**pla.FolderAction) }
+		_s_FolderAction := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.FolderAction:
+				if ptr == nil {
+					o.FolderAction = nil
+				} else {
+					o.FolderAction = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FolderAction", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FolderAction, _s_FolderAction, _ptr_FolderAction); err != nil {
 			return err
 		}

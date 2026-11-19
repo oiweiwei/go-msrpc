@@ -300,7 +300,18 @@ func (o *xxx_GetNoviceUserInfoOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_szName := func(ptr interface{}) { o.Name = *ptr.(*string) }
+		_s_szName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Name = ""
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_szName, _ptr_szName); err != nil {
 			return err
 		}
@@ -390,7 +401,18 @@ func (o *xxx_GetNoviceUserInfoOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_szName := func(ptr interface{}) { o.Name = *ptr.(*string) }
+		_s_szName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Name = ""
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_szName, _ptr_szName); err != nil {
 			return err
 		}
@@ -605,7 +627,18 @@ func (o *xxx_GetSessionInfoOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_UserNames := func(ptr interface{}) { o.UserNames = *ptr.(**oaut.SafeArray) }
+		_s_UserNames := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.UserNames = nil
+				} else {
+					o.UserNames = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UserNames", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.UserNames, _s_UserNames, _ptr_UserNames); err != nil {
 			return err
 		}
@@ -716,7 +749,18 @@ func (o *xxx_GetSessionInfoOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_UserNames := func(ptr interface{}) { o.UserNames = *ptr.(**oaut.SafeArray) }
+		_s_UserNames := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.UserNames = nil
+				} else {
+					o.UserNames = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UserNames", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.UserNames, _s_UserNames, _ptr_UserNames); err != nil {
 			return err
 		}

@@ -173,7 +173,18 @@ func (o *WrappedCapidSet) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		}
 		return nil
 	})
-	_s_SidInfo := func(ptr interface{}) { o.SIDInfo = *ptr.(*[]*lsarpc.SIDInformation) }
+	_s_SidInfo := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*lsarpc.SIDInformation:
+			if ptr == nil {
+				o.SIDInfo = nil
+			} else {
+				o.SIDInfo = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SIDInfo", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SIDInfo, _s_SidInfo, _ptr_SidInfo); err != nil {
 		return err
 	}

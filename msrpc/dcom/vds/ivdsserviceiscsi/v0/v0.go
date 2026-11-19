@@ -352,7 +352,18 @@ func (o *xxx_GetInitiatorNameOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ppwszIscsiName := func(ptr interface{}) { o.ISCSIName = *ptr.(*string) }
+		_s_ppwszIscsiName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ISCSIName = ""
+				} else {
+					o.ISCSIName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ISCSIName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ISCSIName, _s_ppwszIscsiName, _ptr_ppwszIscsiName); err != nil {
 			return err
 		}
@@ -610,7 +621,18 @@ func (o *xxx_QueryInitiatorAdaptersOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**vds.EnumObject) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.EnumObject:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}
@@ -832,7 +854,18 @@ func (o *xxx_SetInitiatorSharedSecretOperation) UnmarshalNDRRequest(ctx context.
 			}
 			return nil
 		})
-		_s_pInitiatorSharedSecret := func(ptr interface{}) { o.InitiatorSharedSecret = *ptr.(**vds.ISCSISharedSecret) }
+		_s_pInitiatorSharedSecret := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.ISCSISharedSecret:
+				if ptr == nil {
+					o.InitiatorSharedSecret = nil
+				} else {
+					o.InitiatorSharedSecret = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InitiatorSharedSecret", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InitiatorSharedSecret, _s_pInitiatorSharedSecret, _ptr_pInitiatorSharedSecret); err != nil {
 			return err
 		}

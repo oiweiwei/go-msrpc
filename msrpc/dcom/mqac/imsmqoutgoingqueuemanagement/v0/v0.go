@@ -852,7 +852,18 @@ func (o *xxx_GetNextHopsOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pvNextHops := func(ptr interface{}) { o.NextHops = *ptr.(**oaut.Variant) }
+		_s_pvNextHops := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.NextHops = nil
+				} else {
+					o.NextHops = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NextHops", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NextHops, _s_pvNextHops, _ptr_pvNextHops); err != nil {
 			return err
 		}
@@ -1109,7 +1120,18 @@ func (o *xxx_EODGetSendInfoOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ppCollection := func(ptr interface{}) { o.Collection = *ptr.(**mqac.Collection) }
+		_s_ppCollection := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Collection:
+				if ptr == nil {
+					o.Collection = nil
+				} else {
+					o.Collection = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Collection", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Collection, _s_ppCollection, _ptr_ppCollection); err != nil {
 			return err
 		}

@@ -1766,7 +1766,18 @@ func (o *xxx_GetSendCabToOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pbstrDestination := func(ptr interface{}) { o.Destination = *ptr.(**oaut.String) }
+		_s_pbstrDestination := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Destination = nil
+				} else {
+					o.Destination = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Destination", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Destination, _s_pbstrDestination, _ptr_pbstrDestination); err != nil {
 			return err
 		}
@@ -1967,7 +1978,18 @@ func (o *xxx_SetSendCabToOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_bstrDestination := func(ptr interface{}) { o.Destination = *ptr.(**oaut.String) }
+		_s_bstrDestination := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Destination = nil
+				} else {
+					o.Destination = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Destination", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Destination, _s_bstrDestination, _ptr_bstrDestination); err != nil {
 			return err
 		}

@@ -814,7 +814,18 @@ func (o *xxx_WaitAsyncNotificationOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_SessionChange := func(ptr interface{}) { o.SessionChange = *ptr.(*[]*tsts.SessionChange) }
+		_s_SessionChange := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*tsts.SessionChange:
+				if ptr == nil {
+					o.SessionChange = nil
+				} else {
+					o.SessionChange = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SessionChange", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SessionChange, _s_SessionChange, _ptr_SessionChange); err != nil {
 			return err
 		}

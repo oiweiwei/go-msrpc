@@ -198,7 +198,18 @@ func (o *xxx_ExchangePublicKeysOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ClientKey := func(ptr interface{}) { o.ClientKey = *ptr.(*[]byte) }
+		_s_ClientKey := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.ClientKey = nil
+				} else {
+					o.ClientKey = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientKey", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientKey, _s_ClientKey, _ptr_ClientKey); err != nil {
 			return err
 		}
@@ -309,7 +320,18 @@ func (o *xxx_ExchangePublicKeysOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pServerKey := func(ptr interface{}) { o.ServerKey = *ptr.(*[]byte) }
+		_s_pServerKey := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.ServerKey = nil
+				} else {
+					o.ServerKey = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerKey", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerKey, _s_pServerKey, _ptr_pServerKey); err != nil {
 			return err
 		}

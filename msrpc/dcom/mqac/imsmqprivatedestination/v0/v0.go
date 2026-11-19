@@ -306,7 +306,18 @@ func (o *xxx_GetHandleOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_pvarHandle := func(ptr interface{}) { o.Handle = *ptr.(**oaut.Variant) }
+		_s_pvarHandle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Handle = nil
+				} else {
+					o.Handle = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Handle", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Handle, _s_pvarHandle, _ptr_pvarHandle); err != nil {
 			return err
 		}

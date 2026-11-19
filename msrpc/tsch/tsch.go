@@ -172,7 +172,18 @@ func (o *ATEnum) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_Command := func(ptr interface{}) { o.Command = *ptr.(*string) }
+	_s_Command := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Command = ""
+			} else {
+				o.Command = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Command", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Command, _s_Command, _ptr_Command); err != nil {
 		return err
 	}
@@ -359,7 +370,18 @@ func (o *ATInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_Command := func(ptr interface{}) { o.Command = *ptr.(*string) }
+	_s_Command := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Command = ""
+			} else {
+				o.Command = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Command", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Command, _s_Command, _ptr_Command); err != nil {
 		return err
 	}

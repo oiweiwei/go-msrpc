@@ -556,7 +556,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppPropertySchema := func(ptr interface{}) { o.PropertySchema = *ptr.(**iisa.AppHostPropertySchema) }
+		_s_ppPropertySchema := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostPropertySchema:
+				if ptr == nil {
+					o.PropertySchema = nil
+				} else {
+					o.PropertySchema = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertySchema", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PropertySchema, _s_ppPropertySchema, _ptr_ppPropertySchema); err != nil {
 			return err
 		}

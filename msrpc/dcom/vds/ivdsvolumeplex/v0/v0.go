@@ -595,7 +595,18 @@ func (o *xxx_GetVolumeOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_ppVolume := func(ptr interface{}) { o.Volume = *ptr.(**vds.Volume) }
+		_s_ppVolume := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Volume:
+				if ptr == nil {
+					o.Volume = nil
+				} else {
+					o.Volume = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Volume", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Volume, _s_ppVolume, _ptr_ppVolume); err != nil {
 			return err
 		}
@@ -895,7 +906,18 @@ func (o *xxx_QueryExtentsOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ppExtentArray := func(ptr interface{}) { o.ExtentArray = *ptr.(*[]*vds.DiskExtent) }
+		_s_ppExtentArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*vds.DiskExtent:
+				if ptr == nil {
+					o.ExtentArray = nil
+				} else {
+					o.ExtentArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExtentArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ExtentArray, _s_ppExtentArray, _ptr_ppExtentArray); err != nil {
 			return err
 		}
@@ -1229,7 +1251,18 @@ func (o *xxx_RepairOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}

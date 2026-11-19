@@ -424,7 +424,18 @@ func (o *xxx_Get_NewEnumOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ppUnkEnum := func(ptr interface{}) { o.UnknownEnum = *ptr.(**dcom.Unknown) }
+		_s_ppUnkEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.UnknownEnum = nil
+				} else {
+					o.UnknownEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UnknownEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.UnknownEnum, _s_ppUnkEnum, _ptr_ppUnkEnum); err != nil {
 			return err
 		}
@@ -628,7 +639,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_objectID := func(ptr interface{}) { o.ObjectID = *ptr.(**oaut.String) }
+		_s_objectID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ObjectID = nil
+				} else {
+					o.ObjectID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectID, _s_objectID, _ptr_objectID); err != nil {
 			return err
 		}
@@ -727,7 +749,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pItem := func(ptr interface{}) { o.Item = *ptr.(**oaut.Variant) }
+		_s_pItem := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Item = nil
+				} else {
+					o.Item = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Item", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Item, _s_pItem, _ptr_pItem); err != nil {
 			return err
 		}
@@ -999,7 +1032,18 @@ func (o *xxx_GetNewEnumOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**comev.EnumEventObject) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **comev.EnumEventObject:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}
@@ -1453,7 +1497,18 @@ func (o *xxx_AddOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader
 			}
 			return nil
 		})
-		_s_item := func(ptr interface{}) { o.Item = *ptr.(**oaut.Variant) }
+		_s_item := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Item = nil
+				} else {
+					o.Item = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Item", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Item, _s_item, _ptr_item); err != nil {
 			return err
 		}
@@ -1472,7 +1527,18 @@ func (o *xxx_AddOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader
 			}
 			return nil
 		})
-		_s_objectID := func(ptr interface{}) { o.ObjectID = *ptr.(**oaut.String) }
+		_s_objectID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ObjectID = nil
+				} else {
+					o.ObjectID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectID, _s_objectID, _ptr_objectID); err != nil {
 			return err
 		}
@@ -1742,7 +1808,18 @@ func (o *xxx_RemoveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_objectID := func(ptr interface{}) { o.ObjectID = *ptr.(**oaut.String) }
+		_s_objectID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ObjectID = nil
+				} else {
+					o.ObjectID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectID, _s_objectID, _ptr_objectID); err != nil {
 			return err
 		}

@@ -546,7 +546,18 @@ func (o *xxx_CreateApplicationOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_szMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_szMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_szMDPath, _ptr_szMDPath); err != nil {
 			return err
 		}
@@ -568,7 +579,18 @@ func (o *xxx_CreateApplicationOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_szAppPoolId := func(ptr interface{}) { o.AppPoolID = *ptr.(*string) }
+		_s_szAppPoolId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.AppPoolID = ""
+				} else {
+					o.AppPoolID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AppPoolID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AppPoolID, _s_szAppPoolId, _ptr_szAppPoolId); err != nil {
 			return err
 		}
@@ -869,7 +891,18 @@ func (o *xxx_DeleteApplicationOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_szMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_szMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_szMDPath, _ptr_szMDPath); err != nil {
 			return err
 		}
@@ -1133,7 +1166,18 @@ func (o *xxx_CreateApplicationPoolOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_szPool := func(ptr interface{}) { o.Pool = *ptr.(*string) }
+		_s_szPool := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Pool = ""
+				} else {
+					o.Pool = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Pool", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Pool, _s_szPool, _ptr_szPool); err != nil {
 			return err
 		}
@@ -1384,7 +1428,18 @@ func (o *xxx_DeleteApplicationPoolOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_szPool := func(ptr interface{}) { o.Pool = *ptr.(*string) }
+		_s_szPool := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Pool = ""
+				} else {
+					o.Pool = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Pool", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Pool, _s_szPool, _ptr_szPool); err != nil {
 			return err
 		}
@@ -1636,7 +1691,18 @@ func (o *xxx_EnumerateApplicationsInPoolOperation) UnmarshalNDRRequest(ctx conte
 			}
 			return nil
 		})
-		_s_szPool := func(ptr interface{}) { o.Pool = *ptr.(*string) }
+		_s_szPool := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Pool = ""
+				} else {
+					o.Pool = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Pool", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Pool, _s_szPool, _ptr_szPool); err != nil {
 			return err
 		}
@@ -1735,7 +1801,18 @@ func (o *xxx_EnumerateApplicationsInPoolOperation) UnmarshalNDRResponse(ctx cont
 			}
 			return nil
 		})
-		_s_bstrBuffer := func(ptr interface{}) { o.Buffer = *ptr.(**oaut.String) }
+		_s_bstrBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Buffer = nil
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_bstrBuffer, _ptr_bstrBuffer); err != nil {
 			return err
 		}
@@ -1940,7 +2017,18 @@ func (o *xxx_RecycleApplicationPoolOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_szPool := func(ptr interface{}) { o.Pool = *ptr.(*string) }
+		_s_szPool := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Pool = ""
+				} else {
+					o.Pool = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Pool", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Pool, _s_szPool, _ptr_szPool); err != nil {
 			return err
 		}

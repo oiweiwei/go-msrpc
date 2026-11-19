@@ -850,7 +850,18 @@ func (o *xxx_GetPropertyAffectedOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_property := func(ptr interface{}) { o.Property = *ptr.(**oaut.String) }
+		_s_property := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Property = nil
+				} else {
+					o.Property = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Property", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Property, _s_property, _ptr_property); err != nil {
 			return err
 		}
@@ -1055,7 +1066,18 @@ func (o *xxx_SetPropertyAffectedOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_property := func(ptr interface{}) { o.Property = *ptr.(**oaut.String) }
+		_s_property := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Property = nil
+				} else {
+					o.Property = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Property", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Property, _s_property, _ptr_property); err != nil {
 			return err
 		}
@@ -1364,7 +1386,18 @@ func (o *xxx_GetValueOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_value := func(ptr interface{}) { o.Value = *ptr.(**oaut.String) }
+		_s_value := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_value, _ptr_value); err != nil {
 			return err
 		}
@@ -1565,7 +1598,18 @@ func (o *xxx_SetValueOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_value := func(ptr interface{}) { o.Value = *ptr.(**oaut.String) }
+		_s_value := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_value, _ptr_value); err != nil {
 			return err
 		}

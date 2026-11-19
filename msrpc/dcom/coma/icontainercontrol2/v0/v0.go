@@ -1529,7 +1529,18 @@ func (o *xxx_GetRunningContainersOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppContainers := func(ptr interface{}) { o.Containers = *ptr.(*[]*coma.InstanceContainer) }
+		_s_ppContainers := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*coma.InstanceContainer:
+				if ptr == nil {
+					o.Containers = nil
+				} else {
+					o.Containers = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Containers", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Containers, _s_ppContainers, _ptr_ppContainers); err != nil {
 			return err
 		}
@@ -1816,7 +1827,18 @@ func (o *xxx_GetContainerIDFromProcessIDOperation) UnmarshalNDRResponse(ctx cont
 			}
 			return nil
 		})
-		_s_pbstrContainerID := func(ptr interface{}) { o.ContainerID = *ptr.(**oaut.String) }
+		_s_pbstrContainerID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ContainerID = nil
+				} else {
+					o.ContainerID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ContainerID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ContainerID, _s_pbstrContainerID, _ptr_pbstrContainerID); err != nil {
 			return err
 		}

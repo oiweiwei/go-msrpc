@@ -331,7 +331,18 @@ func (o *xxx_GetPathOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -587,7 +598,18 @@ func (o *xxx_GetAllowedFileGroupsOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_allowList := func(ptr interface{}) { o.AllowList = *ptr.(**fsrm.MutableCollection) }
+		_s_allowList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.MutableCollection:
+				if ptr == nil {
+					o.AllowList = nil
+				} else {
+					o.AllowList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AllowList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AllowList, _s_allowList, _ptr_allowList); err != nil {
 			return err
 		}
@@ -792,7 +814,18 @@ func (o *xxx_SetAllowedFileGroupsOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_allowList := func(ptr interface{}) { o.AllowList = *ptr.(**fsrm.MutableCollection) }
+		_s_allowList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.MutableCollection:
+				if ptr == nil {
+					o.AllowList = nil
+				} else {
+					o.AllowList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AllowList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AllowList, _s_allowList, _ptr_allowList); err != nil {
 			return err
 		}

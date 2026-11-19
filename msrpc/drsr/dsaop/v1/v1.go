@@ -166,7 +166,18 @@ func (o *MessageExecuteScriptRequestV1) UnmarshalNDR(ctx context.Context, w ndr.
 		}
 		return nil
 	})
-	_s_pbPassword := func(ptr interface{}) { o.Password = *ptr.(*[]byte) }
+	_s_pbPassword := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Password = nil
+			} else {
+				o.Password = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Password, _s_pbPassword, _ptr_pbPassword); err != nil {
 		return err
 	}
@@ -357,7 +368,18 @@ func (o *MessageExecuteScriptReplyV1) UnmarshalNDR(ctx context.Context, w ndr.Re
 		}
 		return nil
 	})
-	_s_pwErrMessage := func(ptr interface{}) { o.ErrorMessage = *ptr.(*string) }
+	_s_pwErrMessage := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ErrorMessage = ""
+			} else {
+				o.ErrorMessage = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ErrorMessage", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ErrorMessage, _s_pwErrMessage, _ptr_pwErrMessage); err != nil {
 		return err
 	}
@@ -852,7 +874,18 @@ func (o *MessagePrepareScriptReplyV1) UnmarshalNDR(ctx context.Context, w ndr.Re
 		}
 		return nil
 	})
-	_s_pwErrMessage := func(ptr interface{}) { o.ErrorMessage = *ptr.(*string) }
+	_s_pwErrMessage := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ErrorMessage = ""
+			} else {
+				o.ErrorMessage = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ErrorMessage", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ErrorMessage, _s_pwErrMessage, _ptr_pwErrMessage); err != nil {
 		return err
 	}
@@ -884,7 +917,18 @@ func (o *MessagePrepareScriptReplyV1) UnmarshalNDR(ctx context.Context, w ndr.Re
 		}
 		return nil
 	})
-	_s_pbPassword := func(ptr interface{}) { o.Password = *ptr.(*[]byte) }
+	_s_pbPassword := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Password = nil
+			} else {
+				o.Password = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Password, _s_pbPassword, _ptr_pbPassword); err != nil {
 		return err
 	}
@@ -916,7 +960,18 @@ func (o *MessagePrepareScriptReplyV1) UnmarshalNDR(ctx context.Context, w ndr.Re
 		}
 		return nil
 	})
-	_s_pbHashBody := func(ptr interface{}) { o.HashBody = *ptr.(*[]byte) }
+	_s_pbHashBody := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.HashBody = nil
+			} else {
+				o.HashBody = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.HashBody", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.HashBody, _s_pbHashBody, _ptr_pbHashBody); err != nil {
 		return err
 	}
@@ -948,7 +1003,18 @@ func (o *MessagePrepareScriptReplyV1) UnmarshalNDR(ctx context.Context, w ndr.Re
 		}
 		return nil
 	})
-	_s_pbHashSignature := func(ptr interface{}) { o.HashSignature = *ptr.(*[]byte) }
+	_s_pbHashSignature := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.HashSignature = nil
+			} else {
+				o.HashSignature = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.HashSignature", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.HashSignature, _s_pbHashSignature, _ptr_pbHashSignature); err != nil {
 		return err
 	}

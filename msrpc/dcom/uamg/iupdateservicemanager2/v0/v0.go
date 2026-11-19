@@ -452,7 +452,18 @@ func (o *xxx_GetClientApplicationIDOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**oaut.String) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}
@@ -666,7 +677,18 @@ func (o *xxx_SetClientApplicationIDOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_value := func(ptr interface{}) { o.Value = *ptr.(**oaut.String) }
+		_s_value := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_value, _ptr_value); err != nil {
 			return err
 		}
@@ -930,7 +952,18 @@ func (o *xxx_QueryServiceRegistrationOperation) UnmarshalNDRRequest(ctx context.
 			}
 			return nil
 		})
-		_s_serviceID := func(ptr interface{}) { o.ServiceID = *ptr.(**oaut.String) }
+		_s_serviceID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ServiceID = nil
+				} else {
+					o.ServiceID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServiceID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServiceID, _s_serviceID, _ptr_serviceID); err != nil {
 			return err
 		}
@@ -1029,7 +1062,18 @@ func (o *xxx_QueryServiceRegistrationOperation) UnmarshalNDRResponse(ctx context
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**uamg.UpdateServiceRegistration) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **uamg.UpdateServiceRegistration:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}
@@ -1273,7 +1317,18 @@ func (o *xxx_AddService2Operation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_serviceID := func(ptr interface{}) { o.ServiceID = *ptr.(**oaut.String) }
+		_s_serviceID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ServiceID = nil
+				} else {
+					o.ServiceID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServiceID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServiceID, _s_serviceID, _ptr_serviceID); err != nil {
 			return err
 		}
@@ -1298,7 +1353,18 @@ func (o *xxx_AddService2Operation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_authorizationCabPath := func(ptr interface{}) { o.AuthorizationCabPath = *ptr.(**oaut.String) }
+		_s_authorizationCabPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.AuthorizationCabPath = nil
+				} else {
+					o.AuthorizationCabPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AuthorizationCabPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AuthorizationCabPath, _s_authorizationCabPath, _ptr_authorizationCabPath); err != nil {
 			return err
 		}
@@ -1397,7 +1463,18 @@ func (o *xxx_AddService2Operation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**uamg.UpdateServiceRegistration) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **uamg.UpdateServiceRegistration:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}

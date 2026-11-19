@@ -2224,7 +2224,18 @@ func (o *SecurityDescriptor) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		}
 		return nil
 	})
-	_s_lpSecurityDescriptor := func(ptr interface{}) { o.SecurityDescriptor = *ptr.(*[]byte) }
+	_s_lpSecurityDescriptor := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.SecurityDescriptor = nil
+			} else {
+				o.SecurityDescriptor = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SecurityDescriptor", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SecurityDescriptor, _s_lpSecurityDescriptor, _ptr_lpSecurityDescriptor); err != nil {
 		return err
 	}
@@ -2859,7 +2870,18 @@ func (o *EnumEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_Name := func(ptr interface{}) { o.Name = *ptr.(*string) }
+	_s_Name := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Name = ""
+			} else {
+				o.Name = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Name, _s_Name, _ptr_Name); err != nil {
 		return err
 	}
@@ -3169,7 +3191,18 @@ func (o *GroupEnumEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_Name := func(ptr interface{}) { o.Name = *ptr.(*string) }
+	_s_Name := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Name = ""
+			} else {
+				o.Name = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Name, _s_Name, _ptr_Name); err != nil {
 		return err
 	}
@@ -3179,7 +3212,18 @@ func (o *GroupEnumEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_Id := func(ptr interface{}) { o.ID = *ptr.(*string) }
+	_s_Id := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ID = ""
+			} else {
+				o.ID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ID, _s_Id, _ptr_Id); err != nil {
 		return err
 	}
@@ -3192,7 +3236,18 @@ func (o *GroupEnumEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_Owner := func(ptr interface{}) { o.Owner = *ptr.(*string) }
+	_s_Owner := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Owner = ""
+			} else {
+				o.Owner = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Owner", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Owner, _s_Owner, _ptr_Owner); err != nil {
 		return err
 	}
@@ -3227,7 +3282,18 @@ func (o *GroupEnumEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_Properties := func(ptr interface{}) { o.Properties = *ptr.(*[]byte) }
+	_s_Properties := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Properties = nil
+			} else {
+				o.Properties = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Properties", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Properties, _s_Properties, _ptr_Properties); err != nil {
 		return err
 	}
@@ -3259,7 +3325,18 @@ func (o *GroupEnumEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_RoProperties := func(ptr interface{}) { o.ReadOnlyProperties = *ptr.(*[]byte) }
+	_s_RoProperties := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.ReadOnlyProperties = nil
+			} else {
+				o.ReadOnlyProperties = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReadOnlyProperties", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ReadOnlyProperties, _s_RoProperties, _ptr_RoProperties); err != nil {
 		return err
 	}
@@ -3456,7 +3533,18 @@ func (o *ResourceEnumEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_Name := func(ptr interface{}) { o.Name = *ptr.(*string) }
+	_s_Name := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Name = ""
+			} else {
+				o.Name = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Name, _s_Name, _ptr_Name); err != nil {
 		return err
 	}
@@ -3466,7 +3554,18 @@ func (o *ResourceEnumEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_Id := func(ptr interface{}) { o.ID = *ptr.(*string) }
+	_s_Id := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ID = ""
+			} else {
+				o.ID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ID, _s_Id, _ptr_Id); err != nil {
 		return err
 	}
@@ -3476,7 +3575,18 @@ func (o *ResourceEnumEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_OwnerName := func(ptr interface{}) { o.OwnerName = *ptr.(*string) }
+	_s_OwnerName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.OwnerName = ""
+			} else {
+				o.OwnerName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OwnerName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.OwnerName, _s_OwnerName, _ptr_OwnerName); err != nil {
 		return err
 	}
@@ -3486,7 +3596,18 @@ func (o *ResourceEnumEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_OwnerId := func(ptr interface{}) { o.OwnerID = *ptr.(*string) }
+	_s_OwnerId := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.OwnerID = ""
+			} else {
+				o.OwnerID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OwnerID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.OwnerID, _s_OwnerId, _ptr_OwnerId); err != nil {
 		return err
 	}
@@ -3518,7 +3639,18 @@ func (o *ResourceEnumEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_Properties := func(ptr interface{}) { o.Properties = *ptr.(*[]byte) }
+	_s_Properties := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Properties = nil
+			} else {
+				o.Properties = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Properties", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Properties, _s_Properties, _ptr_Properties); err != nil {
 		return err
 	}
@@ -3550,7 +3682,18 @@ func (o *ResourceEnumEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_RoProperties := func(ptr interface{}) { o.ReadOnlyProperties = *ptr.(*[]byte) }
+	_s_RoProperties := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.ReadOnlyProperties = nil
+			} else {
+				o.ReadOnlyProperties = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReadOnlyProperties", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ReadOnlyProperties, _s_RoProperties, _ptr_RoProperties); err != nil {
 		return err
 	}
@@ -4090,7 +4233,18 @@ func (o *NotificationDataRPC) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		}
 		return nil
 	})
-	_s_buffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+	_s_buffer := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Buffer = nil
+			} else {
+				o.Buffer = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Buffer, _s_buffer, _ptr_buffer); err != nil {
 		return err
 	}
@@ -4103,7 +4257,18 @@ func (o *NotificationDataRPC) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		}
 		return nil
 	})
-	_s_ObjectId := func(ptr interface{}) { o.ObjectID = *ptr.(*string) }
+	_s_ObjectId := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ObjectID = ""
+			} else {
+				o.ObjectID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ObjectID, _s_ObjectId, _ptr_ObjectId); err != nil {
 		return err
 	}
@@ -4113,7 +4278,18 @@ func (o *NotificationDataRPC) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		}
 		return nil
 	})
-	_s_ParentId := func(ptr interface{}) { o.ParentID = *ptr.(*string) }
+	_s_ParentId := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ParentID = ""
+			} else {
+				o.ParentID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ParentID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ParentID, _s_ParentId, _ptr_ParentId); err != nil {
 		return err
 	}
@@ -4123,7 +4299,18 @@ func (o *NotificationDataRPC) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		}
 		return nil
 	})
-	_s_Name := func(ptr interface{}) { o.Name = *ptr.(*string) }
+	_s_Name := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Name = ""
+			} else {
+				o.Name = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Name, _s_Name, _ptr_Name); err != nil {
 		return err
 	}
@@ -4133,7 +4320,18 @@ func (o *NotificationDataRPC) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		}
 		return nil
 	})
-	_s_Type := func(ptr interface{}) { o.Type = *ptr.(*string) }
+	_s_Type := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Type = ""
+			} else {
+				o.Type = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Type", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Type, _s_Type, _ptr_Type); err != nil {
 		return err
 	}
@@ -4285,7 +4483,18 @@ func (o *NotificationDataAsyncRPC) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		}
 		return nil
 	})
-	_s_Name := func(ptr interface{}) { o.Name = *ptr.(*string) }
+	_s_Name := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Name = ""
+			} else {
+				o.Name = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Name, _s_Name, _ptr_Name); err != nil {
 		return err
 	}
@@ -7383,7 +7592,18 @@ func (o *xxx_GetClusterNameOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ClusterName := func(ptr interface{}) { o.ClusterName = *ptr.(*string) }
+		_s_ClusterName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ClusterName = ""
+				} else {
+					o.ClusterName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClusterName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClusterName, _s_ClusterName, _ptr_ClusterName); err != nil {
 			return err
 		}
@@ -7399,7 +7619,18 @@ func (o *xxx_GetClusterNameOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_NodeName := func(ptr interface{}) { o.NodeName = *ptr.(*string) }
+		_s_NodeName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.NodeName = ""
+				} else {
+					o.NodeName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NodeName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NodeName, _s_NodeName, _ptr_NodeName); err != nil {
 			return err
 		}
@@ -7644,7 +7875,18 @@ func (o *xxx_GetClusterVersionOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_lpszVendorId := func(ptr interface{}) { o.VendorID = *ptr.(*string) }
+		_s_lpszVendorId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.VendorID = ""
+				} else {
+					o.VendorID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VendorID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VendorID, _s_lpszVendorId, _ptr_lpszVendorId); err != nil {
 			return err
 		}
@@ -7660,7 +7902,18 @@ func (o *xxx_GetClusterVersionOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_lpszCSDVersion := func(ptr interface{}) { o.CSDVersion = *ptr.(*string) }
+		_s_lpszCSDVersion := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.CSDVersion = ""
+				} else {
+					o.CSDVersion = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CSDVersion", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CSDVersion, _s_lpszCSDVersion, _ptr_lpszCSDVersion); err != nil {
 			return err
 		}
@@ -7889,7 +8142,18 @@ func (o *xxx_GetQuorumResourceOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_lpszResourceName := func(ptr interface{}) { o.ResourceName = *ptr.(*string) }
+		_s_lpszResourceName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ResourceName = ""
+				} else {
+					o.ResourceName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResourceName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResourceName, _s_lpszResourceName, _ptr_lpszResourceName); err != nil {
 			return err
 		}
@@ -7905,7 +8169,18 @@ func (o *xxx_GetQuorumResourceOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_lpszDeviceName := func(ptr interface{}) { o.DeviceName = *ptr.(*string) }
+		_s_lpszDeviceName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.DeviceName = ""
+				} else {
+					o.DeviceName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DeviceName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DeviceName, _s_lpszDeviceName, _ptr_lpszDeviceName); err != nil {
 			return err
 		}
@@ -8349,7 +8624,18 @@ func (o *xxx_CreateEnumOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ReturnEnum := func(ptr interface{}) { o.ReturnEnum = *ptr.(**EnumList) }
+		_s_ReturnEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EnumList:
+				if ptr == nil {
+					o.ReturnEnum = nil
+				} else {
+					o.ReturnEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnEnum, _s_ReturnEnum, _ptr_ReturnEnum); err != nil {
 			return err
 		}
@@ -9427,7 +9713,18 @@ func (o *xxx_GetResourceStateOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_NodeName := func(ptr interface{}) { o.NodeName = *ptr.(*string) }
+		_s_NodeName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.NodeName = ""
+				} else {
+					o.NodeName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NodeName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NodeName, _s_NodeName, _ptr_NodeName); err != nil {
 			return err
 		}
@@ -9443,7 +9740,18 @@ func (o *xxx_GetResourceStateOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_GroupName := func(ptr interface{}) { o.GroupName = *ptr.(*string) }
+		_s_GroupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.GroupName = ""
+				} else {
+					o.GroupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GroupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.GroupName, _s_GroupName, _ptr_GroupName); err != nil {
 			return err
 		}
@@ -9868,7 +10176,18 @@ func (o *xxx_GetResourceIDOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pGuid := func(ptr interface{}) { o.GUID = *ptr.(*string) }
+		_s_pGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.GUID = ""
+				} else {
+					o.GUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.GUID, _s_pGuid, _ptr_pGuid); err != nil {
 			return err
 		}
@@ -10090,7 +10409,18 @@ func (o *xxx_GetResourceTypeOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_lpszResourceType := func(ptr interface{}) { o.ResourceType = *ptr.(*string) }
+		_s_lpszResourceType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ResourceType = ""
+				} else {
+					o.ResourceType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResourceType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResourceType, _s_lpszResourceType, _ptr_lpszResourceType); err != nil {
 			return err
 		}
@@ -11507,7 +11837,18 @@ func (o *xxx_CreateRestrictionEnumOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_ReturnEnum := func(ptr interface{}) { o.ReturnEnum = *ptr.(**EnumList) }
+		_s_ReturnEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EnumList:
+				if ptr == nil {
+					o.ReturnEnum = nil
+				} else {
+					o.ReturnEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnEnum, _s_ReturnEnum, _ptr_ReturnEnum); err != nil {
 			return err
 		}
@@ -12981,7 +13322,18 @@ func (o *xxx_CreateKeyOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_lpSecurityAttributes := func(ptr interface{}) { o.SecurityAttributes = *ptr.(**SecurityAttributes) }
+		_s_lpSecurityAttributes := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **SecurityAttributes:
+				if ptr == nil {
+					o.SecurityAttributes = nil
+				} else {
+					o.SecurityAttributes = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SecurityAttributes", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SecurityAttributes, _s_lpSecurityAttributes, _ptr_lpSecurityAttributes); err != nil {
 			return err
 		}
@@ -13547,7 +13899,18 @@ func (o *xxx_EnumKeyOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_KeyName := func(ptr interface{}) { o.KeyName = *ptr.(*string) }
+		_s_KeyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.KeyName = ""
+				} else {
+					o.KeyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.KeyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.KeyName, _s_KeyName, _ptr_KeyName); err != nil {
 			return err
 		}
@@ -14843,7 +15206,18 @@ func (o *xxx_EnumValueOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_lpValueName := func(ptr interface{}) { o.ValueName = *ptr.(*string) }
+		_s_lpValueName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ValueName = ""
+				} else {
+					o.ValueName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ValueName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ValueName, _s_lpValueName, _ptr_lpValueName); err != nil {
 			return err
 		}
@@ -16900,7 +17274,18 @@ func (o *xxx_GetGroupStateOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_NodeName := func(ptr interface{}) { o.NodeName = *ptr.(*string) }
+		_s_NodeName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.NodeName = ""
+				} else {
+					o.NodeName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NodeName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NodeName, _s_NodeName, _ptr_NodeName); err != nil {
 			return err
 		}
@@ -17322,7 +17707,18 @@ func (o *xxx_GetGroupIDOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_pGuid := func(ptr interface{}) { o.GUID = *ptr.(*string) }
+		_s_pGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.GUID = ""
+				} else {
+					o.GUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.GUID, _s_pGuid, _ptr_pGuid); err != nil {
 			return err
 		}
@@ -17544,7 +17940,18 @@ func (o *xxx_GetNodeIDOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_pGuid := func(ptr interface{}) { o.GUID = *ptr.(*string) }
+		_s_pGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.GUID = ""
+				} else {
+					o.GUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.GUID, _s_pGuid, _ptr_pGuid); err != nil {
 			return err
 		}
@@ -18539,7 +18946,18 @@ func (o *xxx_CreateGroupResourceEnumOperation) UnmarshalNDRResponse(ctx context.
 			}
 			return nil
 		})
-		_s_ReturnEnum := func(ptr interface{}) { o.ReturnEnum = *ptr.(**EnumList) }
+		_s_ReturnEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EnumList:
+				if ptr == nil {
+					o.ReturnEnum = nil
+				} else {
+					o.ReturnEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnEnum, _s_ReturnEnum, _ptr_ReturnEnum); err != nil {
 			return err
 		}
@@ -18788,7 +19206,18 @@ func (o *xxx_SetGroupNodeListOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_multiSzNodeList := func(ptr interface{}) { o.NodeList = *ptr.(*[]string) }
+		_s_multiSzNodeList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]string:
+				if ptr == nil {
+					o.NodeList = nil
+				} else {
+					o.NodeList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NodeList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NodeList, _s_multiSzNodeList, _ptr_multiSzNodeList); err != nil {
 			return err
 		}
@@ -21486,7 +21915,18 @@ func (o *xxx_GetNotifyOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_Name := func(ptr interface{}) { o.Name = *ptr.(*string) }
+		_s_Name := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Name = ""
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_Name, _ptr_Name); err != nil {
 			return err
 		}
@@ -22901,7 +23341,18 @@ func (o *xxx_NodeResourceControlOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -23330,7 +23781,18 @@ func (o *xxx_ResourceControlOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -23793,7 +24255,18 @@ func (o *xxx_NodeResourceTypeControlOperation) UnmarshalNDRRequest(ctx context.C
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -24242,7 +24715,18 @@ func (o *xxx_ResourceTypeControlOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -24693,7 +25177,18 @@ func (o *xxx_NodeGroupControlOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -25122,7 +25617,18 @@ func (o *xxx_GroupControlOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -25570,7 +26076,18 @@ func (o *xxx_NodeNodeControlOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -25999,7 +26516,18 @@ func (o *xxx_NodeControlOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -27193,7 +27721,18 @@ func (o *xxx_CreateNetworkEnumOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ReturnEnum := func(ptr interface{}) { o.ReturnEnum = *ptr.(**EnumList) }
+		_s_ReturnEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EnumList:
+				if ptr == nil {
+					o.ReturnEnum = nil
+				} else {
+					o.ReturnEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnEnum, _s_ReturnEnum, _ptr_ReturnEnum); err != nil {
 			return err
 		}
@@ -27418,7 +27957,18 @@ func (o *xxx_GetNetworkIDOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pGuid := func(ptr interface{}) { o.GUID = *ptr.(*string) }
+		_s_pGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.GUID = ""
+				} else {
+					o.GUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.GUID, _s_pGuid, _ptr_pGuid); err != nil {
 			return err
 		}
@@ -27639,7 +28189,18 @@ func (o *xxx_SetNetworkPriorityOrderOperation) UnmarshalNDRRequest(ctx context.C
 				}
 				return nil
 			})
-			_s_NetworkIdList := func(ptr interface{}) { o.NetworkIDList[i1] = *ptr.(*string) }
+			_s_NetworkIdList := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case *string:
+					if ptr == nil {
+						o.NetworkIDList[i1] = ""
+					} else {
+						o.NetworkIDList[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NetworkIDList[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.NetworkIDList[i1], _s_NetworkIdList, _ptr_NetworkIdList); err != nil {
 				return err
 			}
@@ -27954,7 +28515,18 @@ func (o *xxx_NodeNetworkControlOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -28383,7 +28955,18 @@ func (o *xxx_NetworkControlOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -29874,7 +30457,18 @@ func (o *xxx_GetNetInterfaceOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_lppszInterfaceName := func(ptr interface{}) { o.InterfaceName = *ptr.(*string) }
+		_s_lppszInterfaceName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.InterfaceName = ""
+				} else {
+					o.InterfaceName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InterfaceName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InterfaceName, _s_lppszInterfaceName, _ptr_lppszInterfaceName); err != nil {
 			return err
 		}
@@ -30099,7 +30693,18 @@ func (o *xxx_GetNetInterfaceIDOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pGuid := func(ptr interface{}) { o.GUID = *ptr.(*string) }
+		_s_pGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.GUID = ""
+				} else {
+					o.GUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.GUID, _s_pGuid, _ptr_pGuid); err != nil {
 			return err
 		}
@@ -30379,7 +30984,18 @@ func (o *xxx_NodeNetInterfaceControlOperation) UnmarshalNDRRequest(ctx context.C
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -30812,7 +31428,18 @@ func (o *xxx_NetInterfaceControlOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -31742,7 +32369,18 @@ func (o *xxx_CreateNodeEnumOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ReturnEnum := func(ptr interface{}) { o.ReturnEnum = *ptr.(**EnumList) }
+		_s_ReturnEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EnumList:
+				if ptr == nil {
+					o.ReturnEnum = nil
+				} else {
+					o.ReturnEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnEnum, _s_ReturnEnum, _ptr_ReturnEnum); err != nil {
 			return err
 		}
@@ -32036,7 +32674,18 @@ func (o *xxx_GetClusterVersion2Operation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_lpszVendorId := func(ptr interface{}) { o.VendorID = *ptr.(*string) }
+		_s_lpszVendorId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.VendorID = ""
+				} else {
+					o.VendorID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VendorID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VendorID, _s_lpszVendorId, _ptr_lpszVendorId); err != nil {
 			return err
 		}
@@ -32052,7 +32701,18 @@ func (o *xxx_GetClusterVersion2Operation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_lpszCSDVersion := func(ptr interface{}) { o.CSDVersion = *ptr.(*string) }
+		_s_lpszCSDVersion := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.CSDVersion = ""
+				} else {
+					o.CSDVersion = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CSDVersion", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CSDVersion, _s_lpszCSDVersion, _ptr_lpszCSDVersion); err != nil {
 			return err
 		}
@@ -32071,7 +32731,18 @@ func (o *xxx_GetClusterVersion2Operation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ppClusterOpVerInfo := func(ptr interface{}) { o.ClusterOperationVerInfo = *ptr.(**ClusterOperationalVersionInfo) }
+		_s_ppClusterOpVerInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **ClusterOperationalVersionInfo:
+				if ptr == nil {
+					o.ClusterOperationVerInfo = nil
+				} else {
+					o.ClusterOperationVerInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClusterOperationVerInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClusterOperationVerInfo, _s_ppClusterOpVerInfo, _ptr_ppClusterOpVerInfo); err != nil {
 			return err
 		}
@@ -32320,7 +32991,18 @@ func (o *xxx_CreateRestrictionTypeEnumOperation) UnmarshalNDRResponse(ctx contex
 			}
 			return nil
 		})
-		_s_ReturnEnum := func(ptr interface{}) { o.ReturnEnum = *ptr.(**EnumList) }
+		_s_ReturnEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EnumList:
+				if ptr == nil {
+					o.ReturnEnum = nil
+				} else {
+					o.ReturnEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnEnum, _s_ReturnEnum, _ptr_ReturnEnum); err != nil {
 			return err
 		}
@@ -32781,7 +33463,18 @@ func (o *xxx_NodeClusterControlOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -33210,7 +33903,18 @@ func (o *xxx_ClusterControlOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -34063,7 +34767,18 @@ func (o *xxx_SetResourceDependencyExpressionOperation) UnmarshalNDRRequest(ctx c
 			}
 			return nil
 		})
-		_s_lpszDependencyExpression := func(ptr interface{}) { o.DependencyExpression = *ptr.(*string) }
+		_s_lpszDependencyExpression := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.DependencyExpression = ""
+				} else {
+					o.DependencyExpression = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DependencyExpression", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DependencyExpression, _s_lpszDependencyExpression, _ptr_lpszDependencyExpression); err != nil {
 			return err
 		}
@@ -34330,7 +35045,18 @@ func (o *xxx_GetResourceDependencyExpressionOperation) UnmarshalNDRResponse(ctx 
 			}
 			return nil
 		})
-		_s_lpszDependencyExpression := func(ptr interface{}) { o.DependencyExpression = *ptr.(*string) }
+		_s_lpszDependencyExpression := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.DependencyExpression = ""
+				} else {
+					o.DependencyExpression = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DependencyExpression", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DependencyExpression, _s_lpszDependencyExpression, _ptr_lpszDependencyExpression); err != nil {
 			return err
 		}
@@ -34567,7 +35293,18 @@ func (o *xxx_GetResourceNetworkNameOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_lpszName := func(ptr interface{}) { o.Name = *ptr.(*string) }
+		_s_lpszName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Name = ""
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_lpszName, _ptr_lpszName); err != nil {
 			return err
 		}
@@ -35347,7 +36084,18 @@ func (o *xxx_GetBatchNotificationOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_lpData := func(ptr interface{}) { o.Data = *ptr.(*[]byte) }
+		_s_lpData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Data = nil
+				} else {
+					o.Data = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Data, _s_lpData, _ptr_lpData); err != nil {
 			return err
 		}
@@ -37641,7 +38389,18 @@ func (o *xxx_CreateNodeEnumExOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ReturnIdEnum := func(ptr interface{}) { o.ReturnIDEnum = *ptr.(**EnumList) }
+		_s_ReturnIdEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EnumList:
+				if ptr == nil {
+					o.ReturnIDEnum = nil
+				} else {
+					o.ReturnIDEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnIDEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnIDEnum, _s_ReturnIdEnum, _ptr_ReturnIdEnum); err != nil {
 			return err
 		}
@@ -37660,7 +38419,18 @@ func (o *xxx_CreateNodeEnumExOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ReturnNameEnum := func(ptr interface{}) { o.ReturnNameEnum = *ptr.(**EnumList) }
+		_s_ReturnNameEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EnumList:
+				if ptr == nil {
+					o.ReturnNameEnum = nil
+				} else {
+					o.ReturnNameEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnNameEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnNameEnum, _s_ReturnNameEnum, _ptr_ReturnNameEnum); err != nil {
 			return err
 		}
@@ -37996,7 +38766,18 @@ func (o *xxx_CreateEnumExOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ReturnIdEnum := func(ptr interface{}) { o.ReturnIDEnum = *ptr.(**EnumList) }
+		_s_ReturnIdEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EnumList:
+				if ptr == nil {
+					o.ReturnIDEnum = nil
+				} else {
+					o.ReturnIDEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnIDEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnIDEnum, _s_ReturnIdEnum, _ptr_ReturnIdEnum); err != nil {
 			return err
 		}
@@ -38015,7 +38796,18 @@ func (o *xxx_CreateEnumExOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ReturnNameEnum := func(ptr interface{}) { o.ReturnNameEnum = *ptr.(**EnumList) }
+		_s_ReturnNameEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EnumList:
+				if ptr == nil {
+					o.ReturnNameEnum = nil
+				} else {
+					o.ReturnNameEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnNameEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnNameEnum, _s_ReturnNameEnum, _ptr_ReturnNameEnum); err != nil {
 			return err
 		}
@@ -38980,7 +39772,18 @@ func (o *xxx_CreateGroupExOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pGroupInfo := func(ptr interface{}) { o.GroupInfo = *ptr.(**ClusterCreateGroupInfoRPC) }
+		_s_pGroupInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **ClusterCreateGroupInfoRPC:
+				if ptr == nil {
+					o.GroupInfo = nil
+				} else {
+					o.GroupInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GroupInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.GroupInfo, _s_pGroupInfo, _ptr_pGroupInfo); err != nil {
 			return err
 		}
@@ -42061,7 +42864,18 @@ func (o *xxx_GetNotifyV2Operation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_Notifications := func(ptr interface{}) { o.Notifications = *ptr.(*[]*NotificationRPC) }
+		_s_Notifications := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*NotificationRPC:
+				if ptr == nil {
+					o.Notifications = nil
+				} else {
+					o.Notifications = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Notifications", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Notifications, _s_Notifications, _ptr_Notifications); err != nil {
 			return err
 		}
@@ -42770,7 +43584,18 @@ func (o *xxx_CreateGroupEnumOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pProperties := func(ptr interface{}) { o.Properties = *ptr.(*[]byte) }
+		_s_pProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Properties = nil
+				} else {
+					o.Properties = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Properties", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Properties, _s_pProperties, _ptr_pProperties); err != nil {
 			return err
 		}
@@ -42807,7 +43632,18 @@ func (o *xxx_CreateGroupEnumOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pRoProperties := func(ptr interface{}) { o.ReadOnlyProperties = *ptr.(*[]byte) }
+		_s_pRoProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.ReadOnlyProperties = nil
+				} else {
+					o.ReadOnlyProperties = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReadOnlyProperties", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReadOnlyProperties, _s_pRoProperties, _ptr_pRoProperties); err != nil {
 			return err
 		}
@@ -42891,7 +43727,18 @@ func (o *xxx_CreateGroupEnumOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppResultList := func(ptr interface{}) { o.ResultList = *ptr.(**GroupEnumList) }
+		_s_ppResultList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **GroupEnumList:
+				if ptr == nil {
+					o.ResultList = nil
+				} else {
+					o.ResultList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResultList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResultList, _s_ppResultList, _ptr_ppResultList); err != nil {
 			return err
 		}
@@ -43219,7 +44066,18 @@ func (o *xxx_CreateResourceEnumOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pProperties := func(ptr interface{}) { o.Properties = *ptr.(*[]byte) }
+		_s_pProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Properties = nil
+				} else {
+					o.Properties = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Properties", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Properties, _s_pProperties, _ptr_pProperties); err != nil {
 			return err
 		}
@@ -43256,7 +44114,18 @@ func (o *xxx_CreateResourceEnumOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pRoProperties := func(ptr interface{}) { o.ReadOnlyProperties = *ptr.(*[]byte) }
+		_s_pRoProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.ReadOnlyProperties = nil
+				} else {
+					o.ReadOnlyProperties = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReadOnlyProperties", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReadOnlyProperties, _s_pRoProperties, _ptr_pRoProperties); err != nil {
 			return err
 		}
@@ -43340,7 +44209,18 @@ func (o *xxx_CreateResourceEnumOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ppResultList := func(ptr interface{}) { o.ResultList = *ptr.(**ResourceEnumList) }
+		_s_ppResultList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **ResourceEnumList:
+				if ptr == nil {
+					o.ResultList = nil
+				} else {
+					o.ResultList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResultList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResultList, _s_ppResultList, _ptr_ppResultList); err != nil {
 			return err
 		}
@@ -43715,7 +44595,18 @@ func (o *xxx_ExecuteReadBatchOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_lpOutData := func(ptr interface{}) { o.OutData = *ptr.(*[]byte) }
+		_s_lpOutData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.OutData = nil
+				} else {
+					o.OutData = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OutData", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OutData, _s_lpOutData, _ptr_lpOutData); err != nil {
 			return err
 		}
@@ -44197,7 +45088,18 @@ func (o *xxx_GetNotifyAsyncOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_Notifications := func(ptr interface{}) { o.Notifications = *ptr.(*[]*NotificationDataAsyncRPC) }
+		_s_Notifications := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*NotificationDataAsyncRPC:
+				if ptr == nil {
+					o.Notifications = nil
+				} else {
+					o.Notifications = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Notifications", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Notifications, _s_Notifications, _ptr_Notifications); err != nil {
 			return err
 		}
@@ -44944,7 +45846,18 @@ func (o *xxx_ExecuteReadBatchExOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_lpOutData := func(ptr interface{}) { o.OutData = *ptr.(*[]byte) }
+		_s_lpOutData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.OutData = nil
+				} else {
+					o.OutData = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OutData", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OutData, _s_lpOutData, _ptr_lpOutData); err != nil {
 			return err
 		}
@@ -47024,7 +47937,18 @@ func (o *xxx_NodeGroupSetControlOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -47456,7 +48380,18 @@ func (o *xxx_GroupSetControlOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_lpInBuffer := func(ptr interface{}) { o.InBuffer = *ptr.(*[]byte) }
+		_s_lpInBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InBuffer = nil
+				} else {
+					o.InBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InBuffer, _s_lpInBuffer, _ptr_lpInBuffer); err != nil {
 			return err
 		}
@@ -48891,7 +49826,18 @@ func (o *xxx_CreateGroupSetEnumOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ReturnEnum := func(ptr interface{}) { o.ReturnEnum = *ptr.(**EnumList) }
+		_s_ReturnEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EnumList:
+				if ptr == nil {
+					o.ReturnEnum = nil
+				} else {
+					o.ReturnEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnEnum, _s_ReturnEnum, _ptr_ReturnEnum); err != nil {
 			return err
 		}
@@ -49150,7 +50096,18 @@ func (o *xxx_CreateNetInterfaceEnumOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_ReturnEnum := func(ptr interface{}) { o.ReturnEnum = *ptr.(**EnumList) }
+		_s_ReturnEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EnumList:
+				if ptr == nil {
+					o.ReturnEnum = nil
+				} else {
+					o.ReturnEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnEnum, _s_ReturnEnum, _ptr_ReturnEnum); err != nil {
 			return err
 		}

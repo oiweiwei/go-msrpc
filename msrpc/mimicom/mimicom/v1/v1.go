@@ -211,7 +211,18 @@ func (o *PublicKey) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pbPublicKey := func(ptr interface{}) { o.PublicKey = *ptr.(*[]byte) }
+	_s_pbPublicKey := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.PublicKey = nil
+			} else {
+				o.PublicKey = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PublicKey", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PublicKey, _s_pbPublicKey, _ptr_pbPublicKey); err != nil {
 		return err
 	}
@@ -824,7 +835,18 @@ func (o *xxx_CommandOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_encCommand := func(ptr interface{}) { o.EncCommand = *ptr.(*[]byte) }
+		_s_encCommand := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.EncCommand = nil
+				} else {
+					o.EncCommand = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EncCommand", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EncCommand, _s_encCommand, _ptr_encCommand); err != nil {
 			return err
 		}
@@ -935,7 +957,18 @@ func (o *xxx_CommandOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_encResult := func(ptr interface{}) { o.EncResult = *ptr.(*[]byte) }
+		_s_encResult := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.EncResult = nil
+				} else {
+					o.EncResult = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EncResult", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EncResult, _s_encResult, _ptr_encResult); err != nil {
 			return err
 		}

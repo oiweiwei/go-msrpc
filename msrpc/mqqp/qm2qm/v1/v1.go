@@ -706,7 +706,18 @@ func (o *RemoteReadDesc) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpBuffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+	_s_lpBuffer := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Buffer = nil
+			} else {
+				o.Buffer = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Buffer, _s_lpBuffer, _ptr_lpBuffer); err != nil {
 		return err
 	}
@@ -781,7 +792,18 @@ func (o *RemoteReadDesc2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		}
 		return nil
 	})
-	_s_pRemoteReadDesc := func(ptr interface{}) { o.RemoteReadDesc = *ptr.(**RemoteReadDesc) }
+	_s_pRemoteReadDesc := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **RemoteReadDesc:
+			if ptr == nil {
+				o.RemoteReadDesc = nil
+			} else {
+				o.RemoteReadDesc = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RemoteReadDesc", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.RemoteReadDesc, _s_pRemoteReadDesc, _ptr_pRemoteReadDesc); err != nil {
 		return err
 	}

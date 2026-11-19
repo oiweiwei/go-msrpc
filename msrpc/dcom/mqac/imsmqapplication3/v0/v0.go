@@ -638,7 +638,18 @@ func (o *xxx_ActiveQueuesOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pvActiveQueues := func(ptr interface{}) { o.ActiveQueues = *ptr.(**oaut.Variant) }
+		_s_pvActiveQueues := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ActiveQueues = nil
+				} else {
+					o.ActiveQueues = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ActiveQueues", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ActiveQueues, _s_pvActiveQueues, _ptr_pvActiveQueues); err != nil {
 			return err
 		}
@@ -893,7 +904,18 @@ func (o *xxx_GetPrivateQueuesOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_pvPrivateQueues := func(ptr interface{}) { o.PrivateQueues = *ptr.(**oaut.Variant) }
+		_s_pvPrivateQueues := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.PrivateQueues = nil
+				} else {
+					o.PrivateQueues = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PrivateQueues", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PrivateQueues, _s_pvPrivateQueues, _ptr_pvPrivateQueues); err != nil {
 			return err
 		}
@@ -1150,7 +1172,18 @@ func (o *xxx_GetDirectoryServiceServerOperation) UnmarshalNDRResponse(ctx contex
 			}
 			return nil
 		})
-		_s_pbstrDirectoryServiceServer := func(ptr interface{}) { o.DirectoryServiceServer = *ptr.(**oaut.String) }
+		_s_pbstrDirectoryServiceServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DirectoryServiceServer = nil
+				} else {
+					o.DirectoryServiceServer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DirectoryServiceServer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DirectoryServiceServer, _s_pbstrDirectoryServiceServer, _ptr_pbstrDirectoryServiceServer); err != nil {
 			return err
 		}
@@ -1648,7 +1681,18 @@ func (o *xxx_GetBytesInAllQueuesOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_pvBytesInAllQueues := func(ptr interface{}) { o.BytesInAllQueues = *ptr.(**oaut.Variant) }
+		_s_pvBytesInAllQueues := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.BytesInAllQueues = nil
+				} else {
+					o.BytesInAllQueues = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BytesInAllQueues", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BytesInAllQueues, _s_pvBytesInAllQueues, _ptr_pvBytesInAllQueues); err != nil {
 			return err
 		}
@@ -1852,7 +1896,18 @@ func (o *xxx_SetMachineOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_bstrMachine := func(ptr interface{}) { o.Machine = *ptr.(**oaut.String) }
+		_s_bstrMachine := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Machine = nil
+				} else {
+					o.Machine = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Machine", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Machine, _s_bstrMachine, _ptr_bstrMachine); err != nil {
 			return err
 		}
@@ -2159,7 +2214,18 @@ func (o *xxx_GetMachineOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_pbstrMachine := func(ptr interface{}) { o.Machine = *ptr.(**oaut.String) }
+		_s_pbstrMachine := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Machine = nil
+				} else {
+					o.Machine = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Machine", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Machine, _s_pbstrMachine, _ptr_pbstrMachine); err != nil {
 			return err
 		}

@@ -5309,7 +5309,18 @@ func (o *xxx_GetGlobalConfigOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pBuffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+		_s_pBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Buffer = nil
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_pBuffer, _ptr_pBuffer); err != nil {
 			return err
 		}
@@ -5452,7 +5463,18 @@ func (o *xxx_GetGlobalConfigOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pBuffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+		_s_pBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Buffer = nil
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_pBuffer, _ptr_pBuffer); err != nil {
 			return err
 		}
@@ -5775,7 +5797,18 @@ func (o *xxx_SetGlobalConfigOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_lpBuffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+		_s_lpBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Buffer = nil
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_lpBuffer, _ptr_lpBuffer); err != nil {
 			return err
 		}
@@ -6865,7 +6898,18 @@ func (o *xxx_EnumFirewallRulesOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule20) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule20:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -7192,7 +7236,18 @@ func (o *xxx_GetConfigOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_pBuffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+		_s_pBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Buffer = nil
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_pBuffer, _ptr_pBuffer); err != nil {
 			return err
 		}
@@ -7335,7 +7390,18 @@ func (o *xxx_GetConfigOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_pBuffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+		_s_pBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Buffer = nil
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_pBuffer, _ptr_pBuffer); err != nil {
 			return err
 		}
@@ -8711,7 +8777,18 @@ func (o *xxx_EnumConnectionSecurityRulesOperation) UnmarshalNDRResponse(ctx cont
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.CSRule20) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.CSRule20:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -9816,7 +9893,18 @@ func (o *xxx_EnumAuthenticationSetsOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_ppAuth := func(ptr interface{}) { o.Auth = *ptr.(**fasp.AuthSet210) }
+		_s_ppAuth := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.AuthSet210:
+				if ptr == nil {
+					o.Auth = nil
+				} else {
+					o.Auth = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Auth", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Auth, _s_ppAuth, _ptr_ppAuth); err != nil {
 			return err
 		}
@@ -10908,7 +10996,18 @@ func (o *xxx_EnumCryptoSetsOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ppCryptoSets := func(ptr interface{}) { o.CryptoSets = *ptr.(**fasp.CryptoSet) }
+		_s_ppCryptoSets := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.CryptoSet:
+				if ptr == nil {
+					o.CryptoSets = nil
+				} else {
+					o.CryptoSets = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CryptoSets", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CryptoSets, _s_ppCryptoSets, _ptr_ppCryptoSets); err != nil {
 			return err
 		}
@@ -11124,7 +11223,18 @@ func (o *xxx_EnumPhase1SAsOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pEndpoints := func(ptr interface{}) { o.Endpoints = *ptr.(**fasp.Endpoints) }
+		_s_pEndpoints := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Endpoints:
+				if ptr == nil {
+					o.Endpoints = nil
+				} else {
+					o.Endpoints = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Endpoints", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Endpoints, _s_pEndpoints, _ptr_pEndpoints); err != nil {
 			return err
 		}
@@ -11244,7 +11354,18 @@ func (o *xxx_EnumPhase1SAsOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppSAs := func(ptr interface{}) { o.SAs = *ptr.(*[]*fasp.Phase1SADetails) }
+		_s_ppSAs := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*fasp.Phase1SADetails:
+				if ptr == nil {
+					o.SAs = nil
+				} else {
+					o.SAs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SAs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SAs, _s_ppSAs, _ptr_ppSAs); err != nil {
 			return err
 		}
@@ -11449,7 +11570,18 @@ func (o *xxx_EnumPhase2SAsOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pEndpoints := func(ptr interface{}) { o.Endpoints = *ptr.(**fasp.Endpoints) }
+		_s_pEndpoints := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Endpoints:
+				if ptr == nil {
+					o.Endpoints = nil
+				} else {
+					o.Endpoints = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Endpoints", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Endpoints, _s_pEndpoints, _ptr_pEndpoints); err != nil {
 			return err
 		}
@@ -11569,7 +11701,18 @@ func (o *xxx_EnumPhase2SAsOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppSAs := func(ptr interface{}) { o.SAs = *ptr.(*[]*fasp.Phase2SADetails) }
+		_s_ppSAs := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*fasp.Phase2SADetails:
+				if ptr == nil {
+					o.SAs = nil
+				} else {
+					o.SAs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SAs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SAs, _s_ppSAs, _ptr_ppSAs); err != nil {
 			return err
 		}
@@ -11773,7 +11916,18 @@ func (o *xxx_DeletePhase1SAsOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pEndpoints := func(ptr interface{}) { o.Endpoints = *ptr.(**fasp.Endpoints) }
+		_s_pEndpoints := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Endpoints:
+				if ptr == nil {
+					o.Endpoints = nil
+				} else {
+					o.Endpoints = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Endpoints", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Endpoints, _s_pEndpoints, _ptr_pEndpoints); err != nil {
 			return err
 		}
@@ -11993,7 +12147,18 @@ func (o *xxx_DeletePhase2SAsOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pEndpoints := func(ptr interface{}) { o.Endpoints = *ptr.(**fasp.Endpoints) }
+		_s_pEndpoints := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Endpoints:
+				if ptr == nil {
+					o.Endpoints = nil
+				} else {
+					o.Endpoints = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Endpoints", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Endpoints, _s_pEndpoints, _ptr_pEndpoints); err != nil {
 			return err
 		}
@@ -12288,7 +12453,18 @@ func (o *xxx_EnumProductsOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ppProducts := func(ptr interface{}) { o.Products = *ptr.(*[]*fasp.Product) }
+		_s_ppProducts := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*fasp.Product:
+				if ptr == nil {
+					o.Products = nil
+				} else {
+					o.Products = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Products", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Products, _s_ppProducts, _ptr_ppProducts); err != nil {
 			return err
 		}
@@ -13355,7 +13531,18 @@ func (o *xxx_EnumMainModeRulesOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ppMMRules := func(ptr interface{}) { o.MMRules = *ptr.(**fasp.MMRule) }
+		_s_ppMMRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.MMRule:
+				if ptr == nil {
+					o.MMRules = nil
+				} else {
+					o.MMRules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MMRules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MMRules, _s_ppMMRules, _ptr_ppMMRules); err != nil {
 			return err
 		}
@@ -13653,7 +13840,18 @@ func (o *xxx_QueryFirewallRulesOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule210) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule210:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -13941,7 +14139,18 @@ func (o *xxx_QueryConnectionSecurityRules210Operation) UnmarshalNDRResponse(ctx 
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.CSRule210) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.CSRule210:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -14233,7 +14442,18 @@ func (o *xxx_QueryMainModeRulesOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ppMMRules := func(ptr interface{}) { o.MMRules = *ptr.(**fasp.MMRule) }
+		_s_ppMMRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.MMRule:
+				if ptr == nil {
+					o.MMRules = nil
+				} else {
+					o.MMRules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MMRules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MMRules, _s_ppMMRules, _ptr_ppMMRules); err != nil {
 			return err
 		}
@@ -14539,7 +14759,18 @@ func (o *xxx_QueryAuthenticationSetsOperation) UnmarshalNDRResponse(ctx context.
 			}
 			return nil
 		})
-		_s_ppAuthSets := func(ptr interface{}) { o.AuthSets = *ptr.(**fasp.AuthSet210) }
+		_s_ppAuthSets := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.AuthSet210:
+				if ptr == nil {
+					o.AuthSets = nil
+				} else {
+					o.AuthSets = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AuthSets", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AuthSets, _s_ppAuthSets, _ptr_ppAuthSets); err != nil {
 			return err
 		}
@@ -14850,7 +15081,18 @@ func (o *xxx_QueryCryptoSetsOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppCryptoSets := func(ptr interface{}) { o.CryptoSets = *ptr.(**fasp.CryptoSet) }
+		_s_ppCryptoSets := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.CryptoSet:
+				if ptr == nil {
+					o.CryptoSets = nil
+				} else {
+					o.CryptoSets = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CryptoSets", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CryptoSets, _s_ppCryptoSets, _ptr_ppCryptoSets); err != nil {
 			return err
 		}
@@ -15138,7 +15380,18 @@ func (o *xxx_EnumNetworksOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ppNetworks := func(ptr interface{}) { o.Networks = *ptr.(*[]*fasp.Network) }
+		_s_ppNetworks := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*fasp.Network:
+				if ptr == nil {
+					o.Networks = nil
+				} else {
+					o.Networks = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Networks", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Networks, _s_ppNetworks, _ptr_ppNetworks); err != nil {
 			return err
 		}
@@ -15409,7 +15662,18 @@ func (o *xxx_EnumAdaptersOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ppAdapters := func(ptr interface{}) { o.Adapters = *ptr.(*[]*fasp.Adapter) }
+		_s_ppAdapters := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*fasp.Adapter:
+				if ptr == nil {
+					o.Adapters = nil
+				} else {
+					o.Adapters = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Adapters", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Adapters, _s_ppAdapters, _ptr_ppAdapters); err != nil {
 			return err
 		}
@@ -15706,7 +15970,18 @@ func (o *xxx_GetGlobalConfig210Operation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pBuffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+		_s_pBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Buffer = nil
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_pBuffer, _ptr_pBuffer); err != nil {
 			return err
 		}
@@ -15855,7 +16130,18 @@ func (o *xxx_GetGlobalConfig210Operation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pBuffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+		_s_pBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Buffer = nil
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_pBuffer, _ptr_pBuffer); err != nil {
 			return err
 		}
@@ -16239,7 +16525,18 @@ func (o *xxx_GetConfig210Operation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pBuffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+		_s_pBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Buffer = nil
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_pBuffer, _ptr_pBuffer); err != nil {
 			return err
 		}
@@ -16388,7 +16685,18 @@ func (o *xxx_GetConfig210Operation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pBuffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+		_s_pBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Buffer = nil
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_pBuffer, _ptr_pBuffer); err != nil {
 			return err
 		}
@@ -17189,7 +17497,18 @@ func (o *xxx_EnumFirewallRules210Operation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule210) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule210:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -17938,7 +18257,18 @@ func (o *xxx_EnumConnectionSecurityRules210Operation) UnmarshalNDRResponse(ctx c
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.CSRule210) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.CSRule210:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -18684,7 +19014,18 @@ func (o *xxx_EnumAuthenticationSets210Operation) UnmarshalNDRResponse(ctx contex
 			}
 			return nil
 		})
-		_s_ppAuth := func(ptr interface{}) { o.Auth = *ptr.(**fasp.AuthSet210) }
+		_s_ppAuth := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.AuthSet210:
+				if ptr == nil {
+					o.Auth = nil
+				} else {
+					o.Auth = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Auth", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Auth, _s_ppAuth, _ptr_ppAuth); err != nil {
 			return err
 		}
@@ -19420,7 +19761,18 @@ func (o *xxx_EnumCryptoSets210Operation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ppCryptoSets := func(ptr interface{}) { o.CryptoSets = *ptr.(**fasp.CryptoSet) }
+		_s_ppCryptoSets := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.CryptoSet:
+				if ptr == nil {
+					o.CryptoSets = nil
+				} else {
+					o.CryptoSets = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CryptoSets", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CryptoSets, _s_ppCryptoSets, _ptr_ppCryptoSets); err != nil {
 			return err
 		}
@@ -20165,7 +20517,18 @@ func (o *xxx_EnumConnectionSecurityRules220Operation) UnmarshalNDRResponse(ctx c
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.CSRule) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.CSRule:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -20468,7 +20831,18 @@ func (o *xxx_QueryConnectionSecurityRules220Operation) UnmarshalNDRResponse(ctx 
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.CSRule) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.CSRule:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -21203,7 +21577,18 @@ func (o *xxx_EnumAuthenticationSets220Operation) UnmarshalNDRResponse(ctx contex
 			}
 			return nil
 		})
-		_s_ppAuth := func(ptr interface{}) { o.Auth = *ptr.(**fasp.AuthSet) }
+		_s_ppAuth := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.AuthSet:
+				if ptr == nil {
+					o.Auth = nil
+				} else {
+					o.Auth = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Auth", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Auth, _s_ppAuth, _ptr_ppAuth); err != nil {
 			return err
 		}
@@ -21518,7 +21903,18 @@ func (o *xxx_QueryAuthenticationSets220Operation) UnmarshalNDRResponse(ctx conte
 			}
 			return nil
 		})
-		_s_ppAuthSets := func(ptr interface{}) { o.AuthSets = *ptr.(**fasp.AuthSet) }
+		_s_ppAuthSets := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.AuthSet:
+				if ptr == nil {
+					o.AuthSets = nil
+				} else {
+					o.AuthSets = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AuthSets", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AuthSets, _s_ppAuthSets, _ptr_ppAuthSets); err != nil {
 			return err
 		}
@@ -22255,7 +22651,18 @@ func (o *xxx_EnumFirewallRules220Operation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule220) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule220:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -22558,7 +22965,18 @@ func (o *xxx_QueryFirewallRules220Operation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule220) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule220:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -23292,7 +23710,18 @@ func (o *xxx_EnumFirewallRules224Operation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule224) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule224:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -23596,7 +24025,18 @@ func (o *xxx_QueryFirewallRules224Operation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule224) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule224:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -24336,7 +24776,18 @@ func (o *xxx_EnumFirewallRules225Operation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule225) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule225:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -24640,7 +25091,18 @@ func (o *xxx_QueryFirewallRules225Operation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule225) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule225:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -25378,7 +25840,18 @@ func (o *xxx_EnumFirewallRules226Operation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule226) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule226:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -25682,7 +26155,18 @@ func (o *xxx_QueryFirewallRules226Operation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule226) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule226:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -26422,7 +26906,18 @@ func (o *xxx_EnumFirewallRules227Operation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule227) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule227:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -26726,7 +27221,18 @@ func (o *xxx_QueryFirewallRules227Operation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule227) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule227:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -27466,7 +27972,18 @@ func (o *xxx_EnumFirewallRules231Operation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule231) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule231:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -27770,7 +28287,18 @@ func (o *xxx_QueryFirewallRules231Operation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule231) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule231:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -28510,7 +29038,18 @@ func (o *xxx_EnumFirewallRules233Operation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}
@@ -28814,7 +29353,18 @@ func (o *xxx_QueryFirewallRules233Operation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_ppRules := func(ptr interface{}) { o.Rules = *ptr.(**fasp.Rule) }
+		_s_ppRules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fasp.Rule:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_ppRules, _ptr_ppRules); err != nil {
 			return err
 		}

@@ -256,7 +256,18 @@ func (o *xxx_SetAccountInformationOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_Handle := func(ptr interface{}) { o.Handle = *ptr.(*string) }
+		_s_Handle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Handle = ""
+				} else {
+					o.Handle = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Handle", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Handle, _s_Handle, _ptr_Handle); err != nil {
 			return err
 		}
@@ -284,7 +295,18 @@ func (o *xxx_SetAccountInformationOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_pwszPassword := func(ptr interface{}) { o.Password = *ptr.(*string) }
+		_s_pwszPassword := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Password = ""
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_pwszPassword, _ptr_pwszPassword); err != nil {
 			return err
 		}
@@ -561,7 +583,18 @@ func (o *xxx_SetNSAccountInformationOperation) UnmarshalNDRRequest(ctx context.C
 			}
 			return nil
 		})
-		_s_Handle := func(ptr interface{}) { o.Handle = *ptr.(*string) }
+		_s_Handle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Handle = ""
+				} else {
+					o.Handle = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Handle", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Handle, _s_Handle, _ptr_Handle); err != nil {
 			return err
 		}
@@ -577,7 +610,18 @@ func (o *xxx_SetNSAccountInformationOperation) UnmarshalNDRRequest(ctx context.C
 			}
 			return nil
 		})
-		_s_pwszAccount := func(ptr interface{}) { o.Account = *ptr.(*string) }
+		_s_pwszAccount := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Account = ""
+				} else {
+					o.Account = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Account", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Account, _s_pwszAccount, _ptr_pwszAccount); err != nil {
 			return err
 		}
@@ -593,7 +637,18 @@ func (o *xxx_SetNSAccountInformationOperation) UnmarshalNDRRequest(ctx context.C
 			}
 			return nil
 		})
-		_s_pwszPassword := func(ptr interface{}) { o.Password = *ptr.(*string) }
+		_s_pwszPassword := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Password = ""
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_pwszPassword, _ptr_pwszPassword); err != nil {
 			return err
 		}
@@ -832,7 +887,18 @@ func (o *xxx_GetNSAccountInformationOperation) UnmarshalNDRRequest(ctx context.C
 			}
 			return nil
 		})
-		_s_Handle := func(ptr interface{}) { o.Handle = *ptr.(*string) }
+		_s_Handle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Handle = ""
+				} else {
+					o.Handle = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Handle", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Handle, _s_Handle, _ptr_Handle); err != nil {
 			return err
 		}
@@ -1184,7 +1250,18 @@ func (o *xxx_GetAccountInformationOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_Handle := func(ptr interface{}) { o.Handle = *ptr.(*string) }
+		_s_Handle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Handle = ""
+				} else {
+					o.Handle = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Handle", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Handle, _s_Handle, _ptr_Handle); err != nil {
 			return err
 		}

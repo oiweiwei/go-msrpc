@@ -794,7 +794,18 @@ func (o *xxx_GetMessageTextOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_messageText := func(ptr interface{}) { o.MessageText = *ptr.(**oaut.String) }
+		_s_messageText := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MessageText = nil
+				} else {
+					o.MessageText = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MessageText", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MessageText, _s_messageText, _ptr_messageText); err != nil {
 			return err
 		}
@@ -995,7 +1006,18 @@ func (o *xxx_SetMessageTextOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_messageText := func(ptr interface{}) { o.MessageText = *ptr.(**oaut.String) }
+		_s_messageText := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MessageText = nil
+				} else {
+					o.MessageText = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MessageText", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MessageText, _s_messageText, _ptr_messageText); err != nil {
 			return err
 		}

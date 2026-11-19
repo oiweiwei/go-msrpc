@@ -212,7 +212,18 @@ func (o *StorageStat) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pwcsName := func(ptr interface{}) { o.Name = *ptr.(*string) }
+	_s_pwcsName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Name = ""
+			} else {
+				o.Name = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Name, _s_pwcsName, _ptr_pwcsName); err != nil {
 		return err
 	}

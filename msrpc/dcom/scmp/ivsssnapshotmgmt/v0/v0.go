@@ -443,7 +443,18 @@ func (o *xxx_GetProviderManagementInterfaceOperation) UnmarshalNDRResponse(ctx c
 			}
 			return nil
 		})
-		_s_ppItf := func(ptr interface{}) { o.Interface = *ptr.(**dcom.Unknown) }
+		_s_ppItf := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.Interface = nil
+				} else {
+					o.Interface = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Interface", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Interface, _s_ppItf, _ptr_ppItf); err != nil {
 			return err
 		}
@@ -749,7 +760,18 @@ func (o *xxx_QueryVolumesSupportedForSnapshotsOperation) UnmarshalNDRResponse(ct
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.EnumManagementObject) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **scmp.EnumManagementObject:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}
@@ -987,7 +1009,18 @@ func (o *xxx_QuerySnapshotsByVolumeOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_pwszVolumeName := func(ptr interface{}) { o.VolumeName = *ptr.(*string) }
+		_s_pwszVolumeName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.VolumeName = ""
+				} else {
+					o.VolumeName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VolumeName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VolumeName, _s_pwszVolumeName, _ptr_pwszVolumeName); err != nil {
 			return err
 		}
@@ -1095,7 +1128,18 @@ func (o *xxx_QuerySnapshotsByVolumeOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.EnumObject) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **scmp.EnumObject:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}

@@ -844,7 +844,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_value := func(ptr interface{}) { o.Value = *ptr.(**pla.ValueMapItem) }
+		_s_value := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.ValueMapItem:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_value, _ptr_value); err != nil {
 			return err
 		}
@@ -1101,7 +1112,18 @@ func (o *xxx_Get_NewEnumOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_retVal := func(ptr interface{}) { o.ReturnValue = *ptr.(**dcom.Unknown) }
+		_s_retVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retVal, _ptr_retVal); err != nil {
 			return err
 		}
@@ -1355,7 +1377,18 @@ func (o *xxx_GetDescriptionOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_description := func(ptr interface{}) { o.Description = *ptr.(**oaut.String) }
+		_s_description := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Description = nil
+				} else {
+					o.Description = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Description", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Description, _s_description, _ptr_description); err != nil {
 			return err
 		}
@@ -1556,7 +1589,18 @@ func (o *xxx_SetDescriptionOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_description := func(ptr interface{}) { o.Description = *ptr.(**oaut.String) }
+		_s_description := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Description = nil
+				} else {
+					o.Description = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Description", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Description, _s_description, _ptr_description); err != nil {
 			return err
 		}
@@ -1863,7 +1907,18 @@ func (o *xxx_GetValueOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_Value := func(ptr interface{}) { o.Value = *ptr.(**oaut.Variant) }
+		_s_Value := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_Value, _ptr_Value); err != nil {
 			return err
 		}
@@ -3413,7 +3468,18 @@ func (o *xxx_AddRangeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_map := func(ptr interface{}) { o.Map = *ptr.(**pla.ValueMap) }
+		_s_map := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.ValueMap:
+				if ptr == nil {
+					o.Map = nil
+				} else {
+					o.Map = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Map", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Map, _s_map, _ptr_map); err != nil {
 			return err
 		}
@@ -3720,7 +3786,18 @@ func (o *xxx_CreateValueMapItemOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_Item := func(ptr interface{}) { o.Item = *ptr.(**pla.ValueMapItem) }
+		_s_Item := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.ValueMapItem:
+				if ptr == nil {
+					o.Item = nil
+				} else {
+					o.Item = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Item", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Item, _s_Item, _ptr_Item); err != nil {
 			return err
 		}

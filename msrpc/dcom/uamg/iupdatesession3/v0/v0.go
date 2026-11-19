@@ -340,7 +340,18 @@ func (o *xxx_CreateUpdateServiceManagerOperation) UnmarshalNDRResponse(ctx conte
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**uamg.UpdateServiceManager2) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **uamg.UpdateServiceManager2:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}
@@ -559,7 +570,18 @@ func (o *xxx_QueryHistoryOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_criteria := func(ptr interface{}) { o.Criteria = *ptr.(**oaut.String) }
+		_s_criteria := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Criteria = nil
+				} else {
+					o.Criteria = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Criteria", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Criteria, _s_criteria, _ptr_criteria); err != nil {
 			return err
 		}
@@ -670,7 +692,18 @@ func (o *xxx_QueryHistoryOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**uamg.UpdateHistoryEntryCollection) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **uamg.UpdateHistoryEntryCollection:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}

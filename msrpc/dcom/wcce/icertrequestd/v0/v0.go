@@ -350,7 +350,18 @@ func (o *xxx_RequestOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_pwszAuthority := func(ptr interface{}) { o.Authority = *ptr.(*string) }
+		_s_pwszAuthority := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Authority = ""
+				} else {
+					o.Authority = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Authority", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Authority, _s_pwszAuthority, _ptr_pwszAuthority); err != nil {
 			return err
 		}
@@ -372,7 +383,18 @@ func (o *xxx_RequestOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_pwszAttributes := func(ptr interface{}) { o.Attributes = *ptr.(*string) }
+		_s_pwszAttributes := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Attributes = ""
+				} else {
+					o.Attributes = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Attributes", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Attributes, _s_pwszAttributes, _ptr_pwszAttributes); err != nil {
 			return err
 		}
@@ -817,7 +839,18 @@ func (o *xxx_GetCACertOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_pwszAuthority := func(ptr interface{}) { o.Authority = *ptr.(*string) }
+		_s_pwszAuthority := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Authority = ""
+				} else {
+					o.Authority = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Authority", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Authority, _s_pwszAuthority, _ptr_pwszAuthority); err != nil {
 			return err
 		}
@@ -1102,7 +1135,18 @@ func (o *xxx_PingOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_pwszAuthority := func(ptr interface{}) { o.Authority = *ptr.(*string) }
+		_s_pwszAuthority := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Authority = ""
+				} else {
+					o.Authority = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Authority", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Authority, _s_pwszAuthority, _ptr_pwszAuthority); err != nil {
 			return err
 		}

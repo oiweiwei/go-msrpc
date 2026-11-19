@@ -515,7 +515,18 @@ func (o *xxx_NextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_ppqinfoNext := func(ptr interface{}) { o.Next = *ptr.(**mqac.QueueInfo) }
+		_s_ppqinfoNext := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.QueueInfo:
+				if ptr == nil {
+					o.Next = nil
+				} else {
+					o.Next = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Next", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Next, _s_ppqinfoNext, _ptr_ppqinfoNext); err != nil {
 			return err
 		}

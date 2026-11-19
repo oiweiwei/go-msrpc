@@ -290,7 +290,18 @@ func (o *xxx_GetITransactionOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pvarITransaction := func(ptr interface{}) { o.ITransaction = *ptr.(**oaut.Variant) }
+		_s_pvarITransaction := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ITransaction = nil
+				} else {
+					o.ITransaction = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ITransaction", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ITransaction, _s_pvarITransaction, _ptr_pvarITransaction); err != nil {
 			return err
 		}

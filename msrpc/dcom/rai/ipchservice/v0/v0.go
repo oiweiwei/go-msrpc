@@ -416,7 +416,18 @@ func (o *xxx_RemoteConnectionParametersOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_bstrUserName := func(ptr interface{}) { o.UserName = *ptr.(**oaut.String) }
+		_s_bstrUserName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.UserName = nil
+				} else {
+					o.UserName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UserName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.UserName, _s_bstrUserName, _ptr_bstrUserName); err != nil {
 			return err
 		}
@@ -435,7 +446,18 @@ func (o *xxx_RemoteConnectionParametersOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_bstrDomainName := func(ptr interface{}) { o.DomainName = *ptr.(**oaut.String) }
+		_s_bstrDomainName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DomainName = nil
+				} else {
+					o.DomainName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DomainName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DomainName, _s_bstrDomainName, _ptr_bstrDomainName); err != nil {
 			return err
 		}
@@ -460,7 +482,18 @@ func (o *xxx_RemoteConnectionParametersOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_bstrUserHelpBlob := func(ptr interface{}) { o.UserHelpBlob = *ptr.(**oaut.String) }
+		_s_bstrUserHelpBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.UserHelpBlob = nil
+				} else {
+					o.UserHelpBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UserHelpBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.UserHelpBlob, _s_bstrUserHelpBlob, _ptr_bstrUserHelpBlob); err != nil {
 			return err
 		}
@@ -559,7 +592,18 @@ func (o *xxx_RemoteConnectionParametersOperation) UnmarshalNDRResponse(ctx conte
 			}
 			return nil
 		})
-		_s_pbstrConnectionString := func(ptr interface{}) { o.ConnectionString = *ptr.(**oaut.String) }
+		_s_pbstrConnectionString := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ConnectionString = nil
+				} else {
+					o.ConnectionString = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConnectionString", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConnectionString, _s_pbstrConnectionString, _ptr_pbstrConnectionString); err != nil {
 			return err
 		}
@@ -851,7 +895,18 @@ func (o *xxx_RemoteUserSessionInfoOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_pVal := func(ptr interface{}) { o.Value = *ptr.(**rai.PCHCollection) }
+		_s_pVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rai.PCHCollection:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_pVal, _ptr_pVal); err != nil {
 			return err
 		}

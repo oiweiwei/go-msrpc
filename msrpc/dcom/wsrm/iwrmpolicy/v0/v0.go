@@ -913,7 +913,18 @@ func (o *xxx_GetPolicyInfoOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_bstrPolicyName := func(ptr interface{}) { o.PolicyName = *ptr.(**oaut.String) }
+		_s_bstrPolicyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyName = nil
+				} else {
+					o.PolicyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyName, _s_bstrPolicyName, _ptr_bstrPolicyName); err != nil {
 			return err
 		}
@@ -1012,7 +1023,18 @@ func (o *xxx_GetPolicyInfoOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pbstrPolicyInfo := func(ptr interface{}) { o.PolicyInfo = *ptr.(**oaut.String) }
+		_s_pbstrPolicyInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyInfo = nil
+				} else {
+					o.PolicyInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyInfo, _s_pbstrPolicyInfo, _ptr_pbstrPolicyInfo); err != nil {
 			return err
 		}
@@ -1226,7 +1248,18 @@ func (o *xxx_CreatePolicyOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_bstrPolicyInfo := func(ptr interface{}) { o.PolicyInfo = *ptr.(**oaut.String) }
+		_s_bstrPolicyInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyInfo = nil
+				} else {
+					o.PolicyInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyInfo, _s_bstrPolicyInfo, _ptr_bstrPolicyInfo); err != nil {
 			return err
 		}
@@ -1498,7 +1531,18 @@ func (o *xxx_ModifyPolicyOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_bstrPolicyInfo := func(ptr interface{}) { o.PolicyInfo = *ptr.(**oaut.String) }
+		_s_bstrPolicyInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyInfo = nil
+				} else {
+					o.PolicyInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyInfo, _s_bstrPolicyInfo, _ptr_bstrPolicyInfo); err != nil {
 			return err
 		}
@@ -1787,7 +1831,18 @@ func (o *xxx_DeletePolicyOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_bstrPolicyName := func(ptr interface{}) { o.PolicyName = *ptr.(**oaut.String) }
+		_s_bstrPolicyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyName = nil
+				} else {
+					o.PolicyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyName, _s_bstrPolicyName, _ptr_bstrPolicyName); err != nil {
 			return err
 		}
@@ -2074,7 +2129,18 @@ func (o *xxx_RenameAllocationPolicyOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_bstrNewPolicyName := func(ptr interface{}) { o.NewPolicyName = *ptr.(**oaut.String) }
+		_s_bstrNewPolicyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.NewPolicyName = nil
+				} else {
+					o.NewPolicyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NewPolicyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NewPolicyName, _s_bstrNewPolicyName, _ptr_bstrNewPolicyName); err != nil {
 			return err
 		}
@@ -2093,7 +2159,18 @@ func (o *xxx_RenameAllocationPolicyOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_bstrOldPolicyName := func(ptr interface{}) { o.OldPolicyName = *ptr.(**oaut.String) }
+		_s_bstrOldPolicyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.OldPolicyName = nil
+				} else {
+					o.OldPolicyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OldPolicyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OldPolicyName, _s_bstrOldPolicyName, _ptr_bstrOldPolicyName); err != nil {
 			return err
 		}
@@ -2418,7 +2495,18 @@ func (o *xxx_MoveBeforeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_bstrPolicyName := func(ptr interface{}) { o.PolicyName = *ptr.(**oaut.String) }
+		_s_bstrPolicyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyName = nil
+				} else {
+					o.PolicyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyName, _s_bstrPolicyName, _ptr_bstrPolicyName); err != nil {
 			return err
 		}
@@ -2437,7 +2525,18 @@ func (o *xxx_MoveBeforeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_bstrResourceGroupName := func(ptr interface{}) { o.ResourceGroupName = *ptr.(**oaut.String) }
+		_s_bstrResourceGroupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ResourceGroupName = nil
+				} else {
+					o.ResourceGroupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResourceGroupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResourceGroupName, _s_bstrResourceGroupName, _ptr_bstrResourceGroupName); err != nil {
 			return err
 		}
@@ -2456,7 +2555,18 @@ func (o *xxx_MoveBeforeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_bstrRefResourceGroupName := func(ptr interface{}) { o.ReferenceResourceGroupName = *ptr.(**oaut.String) }
+		_s_bstrRefResourceGroupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReferenceResourceGroupName = nil
+				} else {
+					o.ReferenceResourceGroupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReferenceResourceGroupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReferenceResourceGroupName, _s_bstrRefResourceGroupName, _ptr_bstrRefResourceGroupName); err != nil {
 			return err
 		}
@@ -2779,7 +2889,18 @@ func (o *xxx_MoveAfterOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_bstrPolicyName := func(ptr interface{}) { o.PolicyName = *ptr.(**oaut.String) }
+		_s_bstrPolicyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyName = nil
+				} else {
+					o.PolicyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyName, _s_bstrPolicyName, _ptr_bstrPolicyName); err != nil {
 			return err
 		}
@@ -2798,7 +2919,18 @@ func (o *xxx_MoveAfterOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_bstrResourceGroupName := func(ptr interface{}) { o.ResourceGroupName = *ptr.(**oaut.String) }
+		_s_bstrResourceGroupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ResourceGroupName = nil
+				} else {
+					o.ResourceGroupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResourceGroupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResourceGroupName, _s_bstrResourceGroupName, _ptr_bstrResourceGroupName); err != nil {
 			return err
 		}
@@ -2817,7 +2949,18 @@ func (o *xxx_MoveAfterOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_bstrRefResourceGroupName := func(ptr interface{}) { o.ReferenceResourceGroupName = *ptr.(**oaut.String) }
+		_s_bstrRefResourceGroupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReferenceResourceGroupName = nil
+				} else {
+					o.ReferenceResourceGroupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReferenceResourceGroupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReferenceResourceGroupName, _s_bstrRefResourceGroupName, _ptr_bstrRefResourceGroupName); err != nil {
 			return err
 		}
@@ -3086,7 +3229,18 @@ func (o *xxx_SetCALDefaultPolicyNameOperation) UnmarshalNDRRequest(ctx context.C
 			}
 			return nil
 		})
-		_s_bstrDefaultPolicyName := func(ptr interface{}) { o.DefaultPolicyName = *ptr.(**oaut.String) }
+		_s_bstrDefaultPolicyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DefaultPolicyName = nil
+				} else {
+					o.DefaultPolicyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DefaultPolicyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DefaultPolicyName, _s_bstrDefaultPolicyName, _ptr_bstrDefaultPolicyName); err != nil {
 			return err
 		}
@@ -3400,7 +3554,18 @@ func (o *xxx_GetCALDefaultPolicyNameOperation) UnmarshalNDRResponse(ctx context.
 			}
 			return nil
 		})
-		_s_pbstrDefaultPolicyName := func(ptr interface{}) { o.DefaultPolicyName = *ptr.(**oaut.String) }
+		_s_pbstrDefaultPolicyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DefaultPolicyName = nil
+				} else {
+					o.DefaultPolicyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DefaultPolicyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DefaultPolicyName, _s_pbstrDefaultPolicyName, _ptr_pbstrDefaultPolicyName); err != nil {
 			return err
 		}
@@ -3605,7 +3770,18 @@ func (o *xxx_GetProcessListOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrPolicyName := func(ptr interface{}) { o.PolicyName = *ptr.(**oaut.String) }
+		_s_bstrPolicyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyName = nil
+				} else {
+					o.PolicyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyName, _s_bstrPolicyName, _ptr_bstrPolicyName); err != nil {
 			return err
 		}
@@ -3704,7 +3880,18 @@ func (o *xxx_GetProcessListOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pbstrProcessList := func(ptr interface{}) { o.ProcessList = *ptr.(**oaut.String) }
+		_s_pbstrProcessList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ProcessList = nil
+				} else {
+					o.ProcessList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProcessList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProcessList, _s_pbstrProcessList, _ptr_pbstrProcessList); err != nil {
 			return err
 		}
@@ -3974,7 +4161,18 @@ func (o *xxx_GetCurrentPolicyOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_pbstrCurrentPolicyInfo := func(ptr interface{}) { o.CurrentPolicyInfo = *ptr.(**oaut.String) }
+		_s_pbstrCurrentPolicyInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.CurrentPolicyInfo = nil
+				} else {
+					o.CurrentPolicyInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CurrentPolicyInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CurrentPolicyInfo, _s_pbstrCurrentPolicyInfo, _ptr_pbstrCurrentPolicyInfo); err != nil {
 			return err
 		}
@@ -4198,7 +4396,18 @@ func (o *xxx_SetCurrentPolicyOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_bstrPolicyName := func(ptr interface{}) { o.PolicyName = *ptr.(**oaut.String) }
+		_s_bstrPolicyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyName = nil
+				} else {
+					o.PolicyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyName, _s_bstrPolicyName, _ptr_bstrPolicyName); err != nil {
 			return err
 		}
@@ -4530,7 +4739,18 @@ func (o *xxx_GetCurrentStateAndActivePolicyNameOperation) UnmarshalNDRResponse(c
 			}
 			return nil
 		})
-		_s_pbstrCurrentPolicyName := func(ptr interface{}) { o.CurrentPolicyName = *ptr.(**oaut.String) }
+		_s_pbstrCurrentPolicyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.CurrentPolicyName = nil
+				} else {
+					o.CurrentPolicyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CurrentPolicyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CurrentPolicyName, _s_pbstrCurrentPolicyName, _ptr_pbstrCurrentPolicyName); err != nil {
 			return err
 		}
@@ -4749,7 +4969,18 @@ func (o *xxx_GetConditionalPolicyOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_bstrPolicyName := func(ptr interface{}) { o.PolicyName = *ptr.(**oaut.String) }
+		_s_bstrPolicyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyName = nil
+				} else {
+					o.PolicyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyName, _s_bstrPolicyName, _ptr_bstrPolicyName); err != nil {
 			return err
 		}
@@ -4848,7 +5079,18 @@ func (o *xxx_GetConditionalPolicyOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_pbstrPolicyInfo := func(ptr interface{}) { o.PolicyInfo = *ptr.(**oaut.String) }
+		_s_pbstrPolicyInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyInfo = nil
+				} else {
+					o.PolicyInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyInfo, _s_pbstrPolicyInfo, _ptr_pbstrPolicyInfo); err != nil {
 			return err
 		}
@@ -5059,7 +5301,18 @@ func (o *xxx_SetConditionalPolicyOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_bstrPolicyInfo := func(ptr interface{}) { o.PolicyInfo = *ptr.(**oaut.String) }
+		_s_bstrPolicyInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyInfo = nil
+				} else {
+					o.PolicyInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyInfo, _s_bstrPolicyInfo, _ptr_bstrPolicyInfo); err != nil {
 			return err
 		}

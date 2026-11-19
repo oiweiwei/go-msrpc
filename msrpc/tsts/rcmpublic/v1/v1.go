@@ -1129,7 +1129,18 @@ func (o *xxx_GetClientDataOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppBuff := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+		_s_ppBuff := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Buffer = nil
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_ppBuff, _ptr_ppBuff); err != nil {
 			return err
 		}
@@ -1382,7 +1393,18 @@ func (o *xxx_GetConfigDataOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppBuff := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+		_s_ppBuff := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Buffer = nil
+				} else {
+					o.Buffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Buffer, _s_ppBuff, _ptr_ppBuff); err != nil {
 			return err
 		}
@@ -1649,7 +1671,18 @@ func (o *xxx_GetProtocolStatusOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ppProtoStatus := func(ptr interface{}) { o.ProtoStatus = *ptr.(*[]byte) }
+		_s_ppProtoStatus := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.ProtoStatus = nil
+				} else {
+					o.ProtoStatus = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProtoStatus", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProtoStatus, _s_ppProtoStatus, _ptr_ppProtoStatus); err != nil {
 			return err
 		}
@@ -2275,7 +2308,18 @@ func (o *xxx_GetAllListenersOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppListeners := func(ptr interface{}) { o.Listeners = *ptr.(*[]*Listenerenum) }
+		_s_ppListeners := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*Listenerenum:
+				if ptr == nil {
+					o.Listeners = nil
+				} else {
+					o.Listeners = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Listeners", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Listeners, _s_ppListeners, _ptr_ppListeners); err != nil {
 			return err
 		}
@@ -2551,7 +2595,18 @@ func (o *xxx_GetSessionProtocolLastInputTimeOperation) UnmarshalNDRResponse(ctx 
 			}
 			return nil
 		})
-		_s_ppProtoStatus := func(ptr interface{}) { o.ProtoStatus = *ptr.(*[]byte) }
+		_s_ppProtoStatus := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.ProtoStatus = nil
+				} else {
+					o.ProtoStatus = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProtoStatus", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProtoStatus, _s_ppProtoStatus, _ptr_ppProtoStatus); err != nil {
 			return err
 		}
@@ -2838,7 +2893,18 @@ func (o *xxx_GetUserCertificatesOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ppbCerts := func(ptr interface{}) { o.Certs = *ptr.(*[]byte) }
+		_s_ppbCerts := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Certs = nil
+				} else {
+					o.Certs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Certs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Certs, _s_ppbCerts, _ptr_ppbCerts); err != nil {
 			return err
 		}
@@ -3097,7 +3163,18 @@ func (o *xxx_QuerySessionDataOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pbInputData := func(ptr interface{}) { o.InputData = *ptr.(*[]byte) }
+		_s_pbInputData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InputData = nil
+				} else {
+					o.InputData = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InputData", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InputData, _s_pbInputData, _ptr_pbInputData); err != nil {
 			return err
 		}

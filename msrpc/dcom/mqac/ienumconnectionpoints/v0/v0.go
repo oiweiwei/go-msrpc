@@ -432,7 +432,18 @@ func (o *xxx_NextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 				}
 				return nil
 			})
-			_s_ppCP := func(ptr interface{}) { o.ConnectionPoint[i1] = *ptr.(**mqac.ConnectionPoint) }
+			_s_ppCP := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **mqac.ConnectionPoint:
+					if ptr == nil {
+						o.ConnectionPoint[i1] = nil
+					} else {
+						o.ConnectionPoint[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConnectionPoint[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.ConnectionPoint[i1], _s_ppCP, _ptr_ppCP); err != nil {
 				return err
 			}
@@ -1139,7 +1150,18 @@ func (o *xxx_CloneOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**mqac.EnumConnectionPoints) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.EnumConnectionPoints:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}

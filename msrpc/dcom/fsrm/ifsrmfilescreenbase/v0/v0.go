@@ -428,7 +428,18 @@ func (o *xxx_GetBlockedFileGroupsOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_blockList := func(ptr interface{}) { o.BlockList = *ptr.(**fsrm.MutableCollection) }
+		_s_blockList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.MutableCollection:
+				if ptr == nil {
+					o.BlockList = nil
+				} else {
+					o.BlockList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BlockList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BlockList, _s_blockList, _ptr_blockList); err != nil {
 			return err
 		}
@@ -633,7 +644,18 @@ func (o *xxx_SetBlockedFileGroupsOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_blockList := func(ptr interface{}) { o.BlockList = *ptr.(**fsrm.MutableCollection) }
+		_s_blockList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.MutableCollection:
+				if ptr == nil {
+					o.BlockList = nil
+				} else {
+					o.BlockList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BlockList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BlockList, _s_blockList, _ptr_blockList); err != nil {
 			return err
 		}
@@ -1399,7 +1421,18 @@ func (o *xxx_CreateActionOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_action := func(ptr interface{}) { o.Action = *ptr.(**fsrm.Action) }
+		_s_action := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Action:
+				if ptr == nil {
+					o.Action = nil
+				} else {
+					o.Action = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Action", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Action, _s_action, _ptr_action); err != nil {
 			return err
 		}
@@ -1660,7 +1693,18 @@ func (o *xxx_EnumActionsOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_actions := func(ptr interface{}) { o.Actions = *ptr.(**fsrm.Collection) }
+		_s_actions := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Collection:
+				if ptr == nil {
+					o.Actions = nil
+				} else {
+					o.Actions = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Actions", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Actions, _s_actions, _ptr_actions); err != nil {
 			return err
 		}

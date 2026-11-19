@@ -1200,7 +1200,18 @@ func (o *xxx_GetClassificationReportFormatsOperation) UnmarshalNDRResponse(ctx c
 			}
 			return nil
 		})
-		_s_formats := func(ptr interface{}) { o.Formats = *ptr.(**oaut.SafeArray) }
+		_s_formats := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Formats = nil
+				} else {
+					o.Formats = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Formats", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Formats, _s_formats, _ptr_formats); err != nil {
 			return err
 		}
@@ -1405,7 +1416,18 @@ func (o *xxx_SetClassificationReportFormatsOperation) UnmarshalNDRRequest(ctx co
 			}
 			return nil
 		})
-		_s_formats := func(ptr interface{}) { o.Formats = *ptr.(**oaut.SafeArray) }
+		_s_formats := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Formats = nil
+				} else {
+					o.Formats = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Formats", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Formats, _s_formats, _ptr_formats); err != nil {
 			return err
 		}
@@ -2156,7 +2178,18 @@ func (o *xxx_GetClassificationReportMailToOperation) UnmarshalNDRResponse(ctx co
 			}
 			return nil
 		})
-		_s_mailTo := func(ptr interface{}) { o.MailTo = *ptr.(**oaut.String) }
+		_s_mailTo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailTo = nil
+				} else {
+					o.MailTo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailTo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailTo, _s_mailTo, _ptr_mailTo); err != nil {
 			return err
 		}
@@ -2361,7 +2394,18 @@ func (o *xxx_SetClassificationReportMailToOperation) UnmarshalNDRRequest(ctx con
 			}
 			return nil
 		})
-		_s_mailTo := func(ptr interface{}) { o.MailTo = *ptr.(**oaut.String) }
+		_s_mailTo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MailTo = nil
+				} else {
+					o.MailTo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MailTo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MailTo, _s_mailTo, _ptr_mailTo); err != nil {
 			return err
 		}
@@ -3120,7 +3164,18 @@ func (o *xxx_GetClassificationLastReportPathWithoutExtensionOperation) Unmarshal
 			}
 			return nil
 		})
-		_s_lastReportPath := func(ptr interface{}) { o.LastReportPath = *ptr.(**oaut.String) }
+		_s_lastReportPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LastReportPath = nil
+				} else {
+					o.LastReportPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LastReportPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LastReportPath, _s_lastReportPath, _ptr_lastReportPath); err != nil {
 			return err
 		}
@@ -3381,7 +3436,18 @@ func (o *xxx_GetClassificationLastErrorOperation) UnmarshalNDRResponse(ctx conte
 			}
 			return nil
 		})
-		_s_lastError := func(ptr interface{}) { o.LastError = *ptr.(**oaut.String) }
+		_s_lastError := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LastError = nil
+				} else {
+					o.LastError = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LastError", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LastError, _s_lastError, _ptr_lastError); err != nil {
 			return err
 		}
@@ -3880,7 +3946,18 @@ func (o *xxx_EnumPropertyDefinitionsOperation) UnmarshalNDRResponse(ctx context.
 			}
 			return nil
 		})
-		_s_propertyDefinitions := func(ptr interface{}) { o.PropertyDefinitions = *ptr.(**fsrm.Collection) }
+		_s_propertyDefinitions := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Collection:
+				if ptr == nil {
+					o.PropertyDefinitions = nil
+				} else {
+					o.PropertyDefinitions = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertyDefinitions", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PropertyDefinitions, _s_propertyDefinitions, _ptr_propertyDefinitions); err != nil {
 			return err
 		}
@@ -4146,7 +4223,18 @@ func (o *xxx_CreatePropertyDefinitionOperation) UnmarshalNDRResponse(ctx context
 			}
 			return nil
 		})
-		_s_propertyDefinition := func(ptr interface{}) { o.PropertyDefinition = *ptr.(**fsrm.PropertyDefinition) }
+		_s_propertyDefinition := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.PropertyDefinition:
+				if ptr == nil {
+					o.PropertyDefinition = nil
+				} else {
+					o.PropertyDefinition = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertyDefinition", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PropertyDefinition, _s_propertyDefinition, _ptr_propertyDefinition); err != nil {
 			return err
 		}
@@ -4357,7 +4445,18 @@ func (o *xxx_GetPropertyDefinitionOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_propertyName := func(ptr interface{}) { o.PropertyName = *ptr.(**oaut.String) }
+		_s_propertyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PropertyName = nil
+				} else {
+					o.PropertyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PropertyName, _s_propertyName, _ptr_propertyName); err != nil {
 			return err
 		}
@@ -4456,7 +4555,18 @@ func (o *xxx_GetPropertyDefinitionOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_propertyDefinition := func(ptr interface{}) { o.PropertyDefinition = *ptr.(**fsrm.PropertyDefinition) }
+		_s_propertyDefinition := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.PropertyDefinition:
+				if ptr == nil {
+					o.PropertyDefinition = nil
+				} else {
+					o.PropertyDefinition = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertyDefinition", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PropertyDefinition, _s_propertyDefinition, _ptr_propertyDefinition); err != nil {
 			return err
 		}
@@ -4747,7 +4857,18 @@ func (o *xxx_EnumRulesOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_Rules := func(ptr interface{}) { o.Rules = *ptr.(**fsrm.Collection) }
+		_s_Rules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Collection:
+				if ptr == nil {
+					o.Rules = nil
+				} else {
+					o.Rules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rules, _s_Rules, _ptr_Rules); err != nil {
 			return err
 		}
@@ -5028,7 +5149,18 @@ func (o *xxx_CreateRuleOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_Rule := func(ptr interface{}) { o.Rule = *ptr.(**fsrm.Rule) }
+		_s_Rule := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Rule:
+				if ptr == nil {
+					o.Rule = nil
+				} else {
+					o.Rule = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rule", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rule, _s_Rule, _ptr_Rule); err != nil {
 			return err
 		}
@@ -5246,7 +5378,18 @@ func (o *xxx_GetRuleOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ruleName := func(ptr interface{}) { o.RuleName = *ptr.(**oaut.String) }
+		_s_ruleName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.RuleName = nil
+				} else {
+					o.RuleName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RuleName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RuleName, _s_ruleName, _ptr_ruleName); err != nil {
 			return err
 		}
@@ -5351,7 +5494,18 @@ func (o *xxx_GetRuleOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_Rule := func(ptr interface{}) { o.Rule = *ptr.(**fsrm.Rule) }
+		_s_Rule := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Rule:
+				if ptr == nil {
+					o.Rule = nil
+				} else {
+					o.Rule = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Rule", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Rule, _s_Rule, _ptr_Rule); err != nil {
 			return err
 		}
@@ -5645,7 +5799,18 @@ func (o *xxx_EnumModuleDefinitionsOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_moduleDefinitions := func(ptr interface{}) { o.ModuleDefinitions = *ptr.(**fsrm.Collection) }
+		_s_moduleDefinitions := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Collection:
+				if ptr == nil {
+					o.ModuleDefinitions = nil
+				} else {
+					o.ModuleDefinitions = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ModuleDefinitions", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ModuleDefinitions, _s_moduleDefinitions, _ptr_moduleDefinitions); err != nil {
 			return err
 		}
@@ -5930,7 +6095,18 @@ func (o *xxx_CreateModuleDefinitionOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_moduleDefinition := func(ptr interface{}) { o.ModuleDefinition = *ptr.(**fsrm.PipelineModuleDefinition) }
+		_s_moduleDefinition := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.PipelineModuleDefinition:
+				if ptr == nil {
+					o.ModuleDefinition = nil
+				} else {
+					o.ModuleDefinition = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ModuleDefinition", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ModuleDefinition, _s_moduleDefinition, _ptr_moduleDefinition); err != nil {
 			return err
 		}
@@ -6154,7 +6330,18 @@ func (o *xxx_GetModuleDefinitionOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_moduleName := func(ptr interface{}) { o.ModuleName = *ptr.(**oaut.String) }
+		_s_moduleName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ModuleName = nil
+				} else {
+					o.ModuleName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ModuleName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ModuleName, _s_moduleName, _ptr_moduleName); err != nil {
 			return err
 		}
@@ -6259,7 +6446,18 @@ func (o *xxx_GetModuleDefinitionOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_moduleDefinition := func(ptr interface{}) { o.ModuleDefinition = *ptr.(**fsrm.PipelineModuleDefinition) }
+		_s_moduleDefinition := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.PipelineModuleDefinition:
+				if ptr == nil {
+					o.ModuleDefinition = nil
+				} else {
+					o.ModuleDefinition = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ModuleDefinition", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ModuleDefinition, _s_moduleDefinition, _ptr_moduleDefinition); err != nil {
 			return err
 		}
@@ -6474,7 +6672,18 @@ func (o *xxx_RunClassificationOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_reserved := func(ptr interface{}) { _reserved = *ptr.(**oaut.String) }
+		_s_reserved := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					_reserved = nil
+				} else {
+					_reserved = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field _reserved", ptr))
+			}
+		}
 		if err := w.ReadPointer(&_reserved, _s_reserved, _ptr_reserved); err != nil {
 			return err
 		}
@@ -7193,7 +7402,18 @@ func (o *xxx_EnumFilePropertiesOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_filePath := func(ptr interface{}) { o.FilePath = *ptr.(**oaut.String) }
+		_s_filePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.FilePath = nil
+				} else {
+					o.FilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FilePath, _s_filePath, _ptr_filePath); err != nil {
 			return err
 		}
@@ -7298,7 +7518,18 @@ func (o *xxx_EnumFilePropertiesOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_fileProperties := func(ptr interface{}) { o.FileProperties = *ptr.(**fsrm.Collection) }
+		_s_fileProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Collection:
+				if ptr == nil {
+					o.FileProperties = nil
+				} else {
+					o.FileProperties = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileProperties", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileProperties, _s_fileProperties, _ptr_fileProperties); err != nil {
 			return err
 		}
@@ -7555,7 +7786,18 @@ func (o *xxx_GetFilePropertyOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_filePath := func(ptr interface{}) { o.FilePath = *ptr.(**oaut.String) }
+		_s_filePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.FilePath = nil
+				} else {
+					o.FilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FilePath, _s_filePath, _ptr_filePath); err != nil {
 			return err
 		}
@@ -7574,7 +7816,18 @@ func (o *xxx_GetFilePropertyOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_propertyName := func(ptr interface{}) { o.PropertyName = *ptr.(**oaut.String) }
+		_s_propertyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PropertyName = nil
+				} else {
+					o.PropertyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PropertyName, _s_propertyName, _ptr_propertyName); err != nil {
 			return err
 		}
@@ -7679,7 +7932,18 @@ func (o *xxx_GetFilePropertyOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_property := func(ptr interface{}) { o.Property = *ptr.(**fsrm.Property) }
+		_s_property := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Property:
+				if ptr == nil {
+					o.Property = nil
+				} else {
+					o.Property = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Property", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Property, _s_property, _ptr_property); err != nil {
 			return err
 		}
@@ -7958,7 +8222,18 @@ func (o *xxx_SetFilePropertyOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_filePath := func(ptr interface{}) { o.FilePath = *ptr.(**oaut.String) }
+		_s_filePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.FilePath = nil
+				} else {
+					o.FilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FilePath, _s_filePath, _ptr_filePath); err != nil {
 			return err
 		}
@@ -7977,7 +8252,18 @@ func (o *xxx_SetFilePropertyOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_propertyName := func(ptr interface{}) { o.PropertyName = *ptr.(**oaut.String) }
+		_s_propertyName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PropertyName = nil
+				} else {
+					o.PropertyName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertyName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PropertyName, _s_propertyName, _ptr_propertyName); err != nil {
 			return err
 		}
@@ -7996,7 +8282,18 @@ func (o *xxx_SetFilePropertyOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_propertyValue := func(ptr interface{}) { o.PropertyValue = *ptr.(**oaut.String) }
+		_s_propertyValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PropertyValue = nil
+				} else {
+					o.PropertyValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertyValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PropertyValue, _s_propertyValue, _ptr_propertyValue); err != nil {
 			return err
 		}
@@ -8294,7 +8591,18 @@ func (o *xxx_ClearFilePropertyOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_filePath := func(ptr interface{}) { o.FilePath = *ptr.(**oaut.String) }
+		_s_filePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.FilePath = nil
+				} else {
+					o.FilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FilePath, _s_filePath, _ptr_filePath); err != nil {
 			return err
 		}
@@ -8313,7 +8621,18 @@ func (o *xxx_ClearFilePropertyOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_property := func(ptr interface{}) { o.Property = *ptr.(**oaut.String) }
+		_s_property := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Property = nil
+				} else {
+					o.Property = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Property", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Property, _s_property, _ptr_property); err != nil {
 			return err
 		}

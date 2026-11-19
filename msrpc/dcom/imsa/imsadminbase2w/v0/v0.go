@@ -547,7 +547,18 @@ func (o *xxx_BackupWithPasswordOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pszMDBackupName := func(ptr interface{}) { o.BackupName = *ptr.(*string) }
+		_s_pszMDBackupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.BackupName = ""
+				} else {
+					o.BackupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BackupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BackupName, _s_pszMDBackupName, _ptr_pszMDBackupName); err != nil {
 			return err
 		}
@@ -575,7 +586,18 @@ func (o *xxx_BackupWithPasswordOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pszPasswd := func(ptr interface{}) { o.Password = *ptr.(*string) }
+		_s_pszPasswd := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Password = ""
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_pszPasswd, _ptr_pszPasswd); err != nil {
 			return err
 		}
@@ -901,7 +923,18 @@ func (o *xxx_RestoreWithPasswordOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pszMDBackupName := func(ptr interface{}) { o.BackupName = *ptr.(*string) }
+		_s_pszMDBackupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.BackupName = ""
+				} else {
+					o.BackupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BackupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BackupName, _s_pszMDBackupName, _ptr_pszMDBackupName); err != nil {
 			return err
 		}
@@ -929,7 +962,18 @@ func (o *xxx_RestoreWithPasswordOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pszPasswd := func(ptr interface{}) { o.Password = *ptr.(*string) }
+		_s_pszPasswd := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Password = ""
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_pszPasswd, _ptr_pszPasswd); err != nil {
 			return err
 		}
@@ -1252,7 +1296,18 @@ func (o *xxx_ExportOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pszPasswd := func(ptr interface{}) { o.Password = *ptr.(*string) }
+		_s_pszPasswd := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Password = ""
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_pszPasswd, _ptr_pszPasswd); err != nil {
 			return err
 		}
@@ -1268,7 +1323,18 @@ func (o *xxx_ExportOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pszFileName := func(ptr interface{}) { o.FileName = *ptr.(*string) }
+		_s_pszFileName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.FileName = ""
+				} else {
+					o.FileName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileName, _s_pszFileName, _ptr_pszFileName); err != nil {
 			return err
 		}
@@ -1284,7 +1350,18 @@ func (o *xxx_ExportOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pszSourcePath := func(ptr interface{}) { o.SourcePath = *ptr.(*string) }
+		_s_pszSourcePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.SourcePath = ""
+				} else {
+					o.SourcePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SourcePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SourcePath, _s_pszSourcePath, _ptr_pszSourcePath); err != nil {
 			return err
 		}
@@ -1637,7 +1714,18 @@ func (o *xxx_ImportOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pszPasswd := func(ptr interface{}) { o.Password = *ptr.(*string) }
+		_s_pszPasswd := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Password = ""
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_pszPasswd, _ptr_pszPasswd); err != nil {
 			return err
 		}
@@ -1653,7 +1741,18 @@ func (o *xxx_ImportOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pszFileName := func(ptr interface{}) { o.FileName = *ptr.(*string) }
+		_s_pszFileName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.FileName = ""
+				} else {
+					o.FileName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileName, _s_pszFileName, _ptr_pszFileName); err != nil {
 			return err
 		}
@@ -1669,7 +1768,18 @@ func (o *xxx_ImportOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pszSourcePath := func(ptr interface{}) { o.SourcePath = *ptr.(*string) }
+		_s_pszSourcePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.SourcePath = ""
+				} else {
+					o.SourcePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SourcePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SourcePath, _s_pszSourcePath, _ptr_pszSourcePath); err != nil {
 			return err
 		}
@@ -1685,7 +1795,18 @@ func (o *xxx_ImportOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pszDestPath := func(ptr interface{}) { o.DestinationPath = *ptr.(*string) }
+		_s_pszDestPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.DestinationPath = ""
+				} else {
+					o.DestinationPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DestinationPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DestinationPath, _s_pszDestPath, _ptr_pszDestPath); err != nil {
 			return err
 		}
@@ -2000,7 +2121,18 @@ func (o *xxx_RestoreHistoryOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pszMDHistoryLocation := func(ptr interface{}) { o.HistoryLocation = *ptr.(*string) }
+		_s_pszMDHistoryLocation := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.HistoryLocation = ""
+				} else {
+					o.HistoryLocation = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.HistoryLocation", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.HistoryLocation, _s_pszMDHistoryLocation, _ptr_pszMDHistoryLocation); err != nil {
 			return err
 		}

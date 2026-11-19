@@ -405,7 +405,18 @@ func (o *xxx_QueryVDisksOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**vds.EnumObject) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.EnumObject:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}
@@ -714,7 +725,18 @@ func (o *xxx_CreateVDiskOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_pStringSecurityDescriptor := func(ptr interface{}) { o.StringSecurityDescriptor = *ptr.(*string) }
+		_s_pStringSecurityDescriptor := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.StringSecurityDescriptor = ""
+				} else {
+					o.StringSecurityDescriptor = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StringSecurityDescriptor", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.StringSecurityDescriptor, _s_pStringSecurityDescriptor, _ptr_pStringSecurityDescriptor); err != nil {
 			return err
 		}
@@ -766,13 +788,35 @@ func (o *xxx_CreateVDiskOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 				}
 				return nil
 			})
-			_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+			_s_ppAsync := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **vds.Async:
+					if ptr == nil {
+						o.Async = nil
+					} else {
+						o.Async = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}
@@ -884,13 +928,35 @@ func (o *xxx_CreateVDiskOperation) UnmarshalNDRResponse(ctx context.Context, w n
 				}
 				return nil
 			})
-			_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+			_s_ppAsync := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **vds.Async:
+					if ptr == nil {
+						o.Async = nil
+					} else {
+						o.Async = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}
@@ -1220,7 +1286,18 @@ func (o *xxx_AddVDiskOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_ppVDisk := func(ptr interface{}) { o.VDisk = *ptr.(**vds.VDisk) }
+		_s_ppVDisk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.VDisk:
+				if ptr == nil {
+					o.VDisk = nil
+				} else {
+					o.VDisk = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VDisk", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VDisk, _s_ppVDisk, _ptr_ppVDisk); err != nil {
 			return err
 		}
@@ -1432,7 +1509,18 @@ func (o *xxx_GetDiskFromVDiskOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pVDisk := func(ptr interface{}) { o.VDisk = *ptr.(**vds.VDisk) }
+		_s_pVDisk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.VDisk:
+				if ptr == nil {
+					o.VDisk = nil
+				} else {
+					o.VDisk = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VDisk", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VDisk, _s_pVDisk, _ptr_pVDisk); err != nil {
 			return err
 		}
@@ -1531,7 +1619,18 @@ func (o *xxx_GetDiskFromVDiskOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ppDisk := func(ptr interface{}) { o.Disk = *ptr.(**vds.Disk) }
+		_s_ppDisk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Disk:
+				if ptr == nil {
+					o.Disk = nil
+				} else {
+					o.Disk = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Disk", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Disk, _s_ppDisk, _ptr_ppDisk); err != nil {
 			return err
 		}
@@ -1737,7 +1836,18 @@ func (o *xxx_GetVDiskFromDiskOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pDisk := func(ptr interface{}) { o.Disk = *ptr.(**vds.Disk) }
+		_s_pDisk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Disk:
+				if ptr == nil {
+					o.Disk = nil
+				} else {
+					o.Disk = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Disk", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Disk, _s_pDisk, _ptr_pDisk); err != nil {
 			return err
 		}
@@ -1836,7 +1946,18 @@ func (o *xxx_GetVDiskFromDiskOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ppVDisk := func(ptr interface{}) { o.VDisk = *ptr.(**vds.VDisk) }
+		_s_ppVDisk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.VDisk:
+				if ptr == nil {
+					o.VDisk = nil
+				} else {
+					o.VDisk = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VDisk", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VDisk, _s_ppVDisk, _ptr_ppVDisk); err != nil {
 			return err
 		}

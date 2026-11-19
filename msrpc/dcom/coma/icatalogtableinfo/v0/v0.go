@@ -398,7 +398,18 @@ func (o *xxx_GetClientTableInfoOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pQueryCellArray := func(ptr interface{}) { o.QueryCellArray = *ptr.(*[]byte) }
+		_s_pQueryCellArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.QueryCellArray = nil
+				} else {
+					o.QueryCellArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QueryCellArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QueryCellArray, _s_pQueryCellArray, _ptr_pQueryCellArray); err != nil {
 			return err
 		}
@@ -435,7 +446,18 @@ func (o *xxx_GetClientTableInfoOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pQueryComparison := func(ptr interface{}) { o.QueryComparison = *ptr.(*[]byte) }
+		_s_pQueryComparison := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.QueryComparison = nil
+				} else {
+					o.QueryComparison = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QueryComparison", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QueryComparison, _s_pQueryComparison, _ptr_pQueryComparison); err != nil {
 			return err
 		}
@@ -727,7 +749,18 @@ func (o *xxx_GetClientTableInfoOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ppReserved1 := func(ptr interface{}) { _ppReserved1 = *ptr.(*[]byte) }
+		_s_ppReserved1 := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					_ppReserved1 = nil
+				} else {
+					_ppReserved1 = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field _ppReserved1", ptr))
+			}
+		}
 		if err := w.ReadPointer(&_ppReserved1, _s_ppReserved1, _ptr_ppReserved1); err != nil {
 			return err
 		}
@@ -769,7 +802,18 @@ func (o *xxx_GetClientTableInfoOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ppAuxiliaryGuid := func(ptr interface{}) { o.AuxiliaryGUID = *ptr.(*[]*dtyp.GUID) }
+		_s_ppAuxiliaryGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dtyp.GUID:
+				if ptr == nil {
+					o.AuxiliaryGUID = nil
+				} else {
+					o.AuxiliaryGUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AuxiliaryGUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AuxiliaryGUID, _s_ppAuxiliaryGuid, _ptr_ppAuxiliaryGuid); err != nil {
 			return err
 		}
@@ -809,7 +853,18 @@ func (o *xxx_GetClientTableInfoOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ppPropertyMeta := func(ptr interface{}) { o.PropertyMeta = *ptr.(*[]*coma.PropertyMeta) }
+		_s_ppPropertyMeta := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*coma.PropertyMeta:
+				if ptr == nil {
+					o.PropertyMeta = nil
+				} else {
+					o.PropertyMeta = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertyMeta", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PropertyMeta, _s_ppPropertyMeta, _ptr_ppPropertyMeta); err != nil {
 			return err
 		}
@@ -838,7 +893,18 @@ func (o *xxx_GetClientTableInfoOperation) UnmarshalNDRResponse(ctx context.Conte
 			// FIXME: unknown type pItf
 			return nil
 		})
-		_s_pItf := func(ptr interface{}) { o.Interface = *ptr.(*[]byte) }
+		_s_pItf := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Interface = nil
+				} else {
+					o.Interface = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Interface", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Interface, _s_pItf, _ptr_pItf); err != nil {
 			return err
 		}
@@ -871,7 +937,18 @@ func (o *xxx_GetClientTableInfoOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ppReserved2 := func(ptr interface{}) { _ppReserved2 = *ptr.(*[]byte) }
+		_s_ppReserved2 := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					_ppReserved2 = nil
+				} else {
+					_ppReserved2 = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field _ppReserved2", ptr))
+			}
+		}
 		if err := w.ReadPointer(&_ppReserved2, _s_ppReserved2, _ptr_ppReserved2); err != nil {
 			return err
 		}

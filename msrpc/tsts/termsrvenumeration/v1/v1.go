@@ -718,7 +718,18 @@ func (o *SessionEnumLevel3) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_pProtocolData := func(ptr interface{}) { o.ProtocolData = *ptr.(*[]byte) }
+	_s_pProtocolData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.ProtocolData = nil
+			} else {
+				o.ProtocolData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProtocolData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ProtocolData, _s_pProtocolData, _ptr_pProtocolData); err != nil {
 		return err
 	}
@@ -2144,7 +2155,18 @@ func (o *ExecEnvDataExLevel1) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		o.SessionName = strings.TrimRight(string(utf16.Decode(_SessionName_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_pszSessionName := func(ptr interface{}) { o.SessionName = *ptr.(*string) }
+	_s_pszSessionName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.SessionName = ""
+			} else {
+				o.SessionName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SessionName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SessionName, _s_pszSessionName, _ptr_pszSessionName); err != nil {
 		return err
 	}
@@ -2179,7 +2201,18 @@ func (o *ExecEnvDataExLevel1) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		o.HostName = strings.TrimRight(string(utf16.Decode(_HostName_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_pszHostName := func(ptr interface{}) { o.HostName = *ptr.(*string) }
+	_s_pszHostName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.HostName = ""
+			} else {
+				o.HostName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.HostName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.HostName, _s_pszHostName, _ptr_pszHostName); err != nil {
 		return err
 	}
@@ -2214,7 +2247,18 @@ func (o *ExecEnvDataExLevel1) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		o.UserName = strings.TrimRight(string(utf16.Decode(_UserName_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_pszUserName := func(ptr interface{}) { o.UserName = *ptr.(*string) }
+	_s_pszUserName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.UserName = ""
+			} else {
+				o.UserName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UserName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.UserName, _s_pszUserName, _ptr_pszUserName); err != nil {
 		return err
 	}
@@ -2249,7 +2293,18 @@ func (o *ExecEnvDataExLevel1) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		o.DomainName = strings.TrimRight(string(utf16.Decode(_DomainName_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_pszDomainName := func(ptr interface{}) { o.DomainName = *ptr.(*string) }
+	_s_pszDomainName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.DomainName = ""
+			} else {
+				o.DomainName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DomainName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DomainName, _s_pszDomainName, _ptr_pszDomainName); err != nil {
 		return err
 	}
@@ -2284,7 +2339,18 @@ func (o *ExecEnvDataExLevel1) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		o.FarmName = strings.TrimRight(string(utf16.Decode(_FarmName_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_pszFarmName := func(ptr interface{}) { o.FarmName = *ptr.(*string) }
+	_s_pszFarmName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.FarmName = ""
+			} else {
+				o.FarmName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FarmName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.FarmName, _s_pszFarmName, _ptr_pszFarmName); err != nil {
 		return err
 	}
@@ -3752,7 +3818,18 @@ func (o *xxx_GetEnumResultOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppSessionEnumResult := func(ptr interface{}) { o.SessionEnumResult = *ptr.(*[]*SessionEnum) }
+		_s_ppSessionEnumResult := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*SessionEnum:
+				if ptr == nil {
+					o.SessionEnumResult = nil
+				} else {
+					o.SessionEnumResult = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SessionEnumResult", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SessionEnumResult, _s_ppSessionEnumResult, _ptr_ppSessionEnumResult); err != nil {
 			return err
 		}
@@ -4227,7 +4304,18 @@ func (o *xxx_GetSessionIDsOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pSessionIds := func(ptr interface{}) { o.SessionIDs = *ptr.(*[]int32) }
+		_s_pSessionIds := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]int32:
+				if ptr == nil {
+					o.SessionIDs = nil
+				} else {
+					o.SessionIDs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SessionIDs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SessionIDs, _s_pSessionIds, _ptr_pSessionIds); err != nil {
 			return err
 		}
@@ -4519,7 +4607,18 @@ func (o *xxx_GetEnumResultExOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppSessionEnumResult := func(ptr interface{}) { o.SessionEnumResult = *ptr.(*[]*SessionEnumEx) }
+		_s_ppSessionEnumResult := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*SessionEnumEx:
+				if ptr == nil {
+					o.SessionEnumResult = nil
+				} else {
+					o.SessionEnumResult = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SessionEnumResult", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SessionEnumResult, _s_ppSessionEnumResult, _ptr_ppSessionEnumResult); err != nil {
 			return err
 		}
@@ -4815,7 +4914,18 @@ func (o *xxx_GetAllSessionsOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ppSessionData := func(ptr interface{}) { o.SessionData = *ptr.(*[]*ExecEnvData) }
+		_s_ppSessionData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*ExecEnvData:
+				if ptr == nil {
+					o.SessionData = nil
+				} else {
+					o.SessionData = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SessionData", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SessionData, _s_ppSessionData, _ptr_ppSessionData); err != nil {
 			return err
 		}
@@ -5113,7 +5223,18 @@ func (o *xxx_GetAllSessionsExOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ppSessionData := func(ptr interface{}) { o.SessionData = *ptr.(*[]*ExecEnvDataEx) }
+		_s_ppSessionData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*ExecEnvDataEx:
+				if ptr == nil {
+					o.SessionData = nil
+				} else {
+					o.SessionData = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SessionData", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SessionData, _s_ppSessionData, _ptr_ppSessionData); err != nil {
 			return err
 		}

@@ -517,7 +517,18 @@ func (o *xxx_LookupQueueV2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_QueueGuid := func(ptr interface{}) { o.QueueGUID = *ptr.(**oaut.Variant) }
+		_s_QueueGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.QueueGUID = nil
+				} else {
+					o.QueueGUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QueueGUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QueueGUID, _s_QueueGuid, _ptr_QueueGuid); err != nil {
 			return err
 		}
@@ -536,7 +547,18 @@ func (o *xxx_LookupQueueV2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ServiceTypeGuid := func(ptr interface{}) { o.ServiceTypeGUID = *ptr.(**oaut.Variant) }
+		_s_ServiceTypeGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ServiceTypeGUID = nil
+				} else {
+					o.ServiceTypeGUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServiceTypeGUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServiceTypeGUID, _s_ServiceTypeGuid, _ptr_ServiceTypeGuid); err != nil {
 			return err
 		}
@@ -555,7 +577,18 @@ func (o *xxx_LookupQueueV2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_Label := func(ptr interface{}) { o.Label = *ptr.(**oaut.Variant) }
+		_s_Label := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Label = nil
+				} else {
+					o.Label = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Label", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Label, _s_Label, _ptr_Label); err != nil {
 			return err
 		}
@@ -574,7 +607,18 @@ func (o *xxx_LookupQueueV2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_CreateTime := func(ptr interface{}) { o.CreateTime = *ptr.(**oaut.Variant) }
+		_s_CreateTime := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.CreateTime = nil
+				} else {
+					o.CreateTime = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CreateTime", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CreateTime, _s_CreateTime, _ptr_CreateTime); err != nil {
 			return err
 		}
@@ -593,7 +637,18 @@ func (o *xxx_LookupQueueV2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ModifyTime := func(ptr interface{}) { o.ModifyTime = *ptr.(**oaut.Variant) }
+		_s_ModifyTime := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ModifyTime = nil
+				} else {
+					o.ModifyTime = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ModifyTime", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ModifyTime, _s_ModifyTime, _ptr_ModifyTime); err != nil {
 			return err
 		}
@@ -612,7 +667,18 @@ func (o *xxx_LookupQueueV2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_RelServiceType := func(ptr interface{}) { o.RelationServiceType = *ptr.(**oaut.Variant) }
+		_s_RelServiceType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.RelationServiceType = nil
+				} else {
+					o.RelationServiceType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RelationServiceType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RelationServiceType, _s_RelServiceType, _ptr_RelServiceType); err != nil {
 			return err
 		}
@@ -631,7 +697,18 @@ func (o *xxx_LookupQueueV2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_RelLabel := func(ptr interface{}) { o.RelationLabel = *ptr.(**oaut.Variant) }
+		_s_RelLabel := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.RelationLabel = nil
+				} else {
+					o.RelationLabel = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RelationLabel", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RelationLabel, _s_RelLabel, _ptr_RelLabel); err != nil {
 			return err
 		}
@@ -650,7 +727,18 @@ func (o *xxx_LookupQueueV2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_RelCreateTime := func(ptr interface{}) { o.RelationCreateTime = *ptr.(**oaut.Variant) }
+		_s_RelCreateTime := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.RelationCreateTime = nil
+				} else {
+					o.RelationCreateTime = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RelationCreateTime", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RelationCreateTime, _s_RelCreateTime, _ptr_RelCreateTime); err != nil {
 			return err
 		}
@@ -669,7 +757,18 @@ func (o *xxx_LookupQueueV2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_RelModifyTime := func(ptr interface{}) { o.RelationModifyTime = *ptr.(**oaut.Variant) }
+		_s_RelModifyTime := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.RelationModifyTime = nil
+				} else {
+					o.RelationModifyTime = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RelationModifyTime", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RelationModifyTime, _s_RelModifyTime, _ptr_RelModifyTime); err != nil {
 			return err
 		}
@@ -768,7 +867,18 @@ func (o *xxx_LookupQueueV2Operation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppqinfos := func(ptr interface{}) { o.S = *ptr.(**mqac.QueueInfos4) }
+		_s_ppqinfos := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.QueueInfos4:
+				if ptr == nil {
+					o.S = nil
+				} else {
+					o.S = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.S", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.S, _s_ppqinfos, _ptr_ppqinfos); err != nil {
 			return err
 		}
@@ -1088,7 +1198,18 @@ func (o *xxx_GetPropertiesOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppcolProperties := func(ptr interface{}) { o.Properties = *ptr.(**oaut.Dispatch) }
+		_s_ppcolProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Dispatch:
+				if ptr == nil {
+					o.Properties = nil
+				} else {
+					o.Properties = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Properties", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Properties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
 			return err
 		}
@@ -1570,7 +1691,18 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_QueueGuid := func(ptr interface{}) { o.QueueGUID = *ptr.(**oaut.Variant) }
+		_s_QueueGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.QueueGUID = nil
+				} else {
+					o.QueueGUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QueueGUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QueueGUID, _s_QueueGuid, _ptr_QueueGuid); err != nil {
 			return err
 		}
@@ -1589,7 +1721,18 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ServiceTypeGuid := func(ptr interface{}) { o.ServiceTypeGUID = *ptr.(**oaut.Variant) }
+		_s_ServiceTypeGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ServiceTypeGUID = nil
+				} else {
+					o.ServiceTypeGUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServiceTypeGUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServiceTypeGUID, _s_ServiceTypeGuid, _ptr_ServiceTypeGuid); err != nil {
 			return err
 		}
@@ -1608,7 +1751,18 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_Label := func(ptr interface{}) { o.Label = *ptr.(**oaut.Variant) }
+		_s_Label := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Label = nil
+				} else {
+					o.Label = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Label", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Label, _s_Label, _ptr_Label); err != nil {
 			return err
 		}
@@ -1627,7 +1781,18 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_CreateTime := func(ptr interface{}) { o.CreateTime = *ptr.(**oaut.Variant) }
+		_s_CreateTime := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.CreateTime = nil
+				} else {
+					o.CreateTime = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CreateTime", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CreateTime, _s_CreateTime, _ptr_CreateTime); err != nil {
 			return err
 		}
@@ -1646,7 +1811,18 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ModifyTime := func(ptr interface{}) { o.ModifyTime = *ptr.(**oaut.Variant) }
+		_s_ModifyTime := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ModifyTime = nil
+				} else {
+					o.ModifyTime = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ModifyTime", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ModifyTime, _s_ModifyTime, _ptr_ModifyTime); err != nil {
 			return err
 		}
@@ -1665,7 +1841,18 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_RelServiceType := func(ptr interface{}) { o.RelationServiceType = *ptr.(**oaut.Variant) }
+		_s_RelServiceType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.RelationServiceType = nil
+				} else {
+					o.RelationServiceType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RelationServiceType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RelationServiceType, _s_RelServiceType, _ptr_RelServiceType); err != nil {
 			return err
 		}
@@ -1684,7 +1871,18 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_RelLabel := func(ptr interface{}) { o.RelationLabel = *ptr.(**oaut.Variant) }
+		_s_RelLabel := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.RelationLabel = nil
+				} else {
+					o.RelationLabel = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RelationLabel", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RelationLabel, _s_RelLabel, _ptr_RelLabel); err != nil {
 			return err
 		}
@@ -1703,7 +1901,18 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_RelCreateTime := func(ptr interface{}) { o.RelationCreateTime = *ptr.(**oaut.Variant) }
+		_s_RelCreateTime := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.RelationCreateTime = nil
+				} else {
+					o.RelationCreateTime = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RelationCreateTime", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RelationCreateTime, _s_RelCreateTime, _ptr_RelCreateTime); err != nil {
 			return err
 		}
@@ -1722,7 +1931,18 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_RelModifyTime := func(ptr interface{}) { o.RelationModifyTime = *ptr.(**oaut.Variant) }
+		_s_RelModifyTime := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.RelationModifyTime = nil
+				} else {
+					o.RelationModifyTime = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RelationModifyTime", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RelationModifyTime, _s_RelModifyTime, _ptr_RelModifyTime); err != nil {
 			return err
 		}
@@ -1741,7 +1961,18 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_MulticastAddress := func(ptr interface{}) { o.MulticastAddress = *ptr.(**oaut.Variant) }
+		_s_MulticastAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.MulticastAddress = nil
+				} else {
+					o.MulticastAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MulticastAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MulticastAddress, _s_MulticastAddress, _ptr_MulticastAddress); err != nil {
 			return err
 		}
@@ -1760,7 +1991,18 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_RelMulticastAddress := func(ptr interface{}) { o.RelationMulticastAddress = *ptr.(**oaut.Variant) }
+		_s_RelMulticastAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.RelationMulticastAddress = nil
+				} else {
+					o.RelationMulticastAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RelationMulticastAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RelationMulticastAddress, _s_RelMulticastAddress, _ptr_RelMulticastAddress); err != nil {
 			return err
 		}
@@ -1859,7 +2101,18 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ppqinfos := func(ptr interface{}) { o.S = *ptr.(**mqac.QueueInfos4) }
+		_s_ppqinfos := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.QueueInfos4:
+				if ptr == nil {
+					o.S = nil
+				} else {
+					o.S = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.S", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.S, _s_ppqinfos, _ptr_ppqinfos); err != nil {
 			return err
 		}

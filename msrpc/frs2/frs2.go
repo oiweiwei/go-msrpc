@@ -2519,7 +2519,18 @@ func (o *AsyncVersionVectorResponse) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		}
 		return nil
 	})
-	_s_versionVector := func(ptr interface{}) { o.VersionVector = *ptr.(*[]*VersionVector) }
+	_s_versionVector := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*VersionVector:
+			if ptr == nil {
+				o.VersionVector = nil
+			} else {
+				o.VersionVector = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VersionVector", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.VersionVector, _s_versionVector, _ptr_versionVector); err != nil {
 		return err
 	}
@@ -2554,7 +2565,18 @@ func (o *AsyncVersionVectorResponse) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		}
 		return nil
 	})
-	_s_epoqueVector := func(ptr interface{}) { o.EpoqueVector = *ptr.(*[]*EpoqueVector) }
+	_s_epoqueVector := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*EpoqueVector:
+			if ptr == nil {
+				o.EpoqueVector = nil
+			} else {
+				o.EpoqueVector = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EpoqueVector", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.EpoqueVector, _s_epoqueVector, _ptr_epoqueVector); err != nil {
 		return err
 	}

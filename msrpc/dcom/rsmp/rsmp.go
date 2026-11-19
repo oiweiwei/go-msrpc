@@ -646,7 +646,18 @@ func (o *SecurityAttributesNTMS) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		}
 		return nil
 	})
-	_s_lpSecurityDescriptor := func(ptr interface{}) { o.SecurityDescriptor = *ptr.(*[]byte) }
+	_s_lpSecurityDescriptor := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.SecurityDescriptor = nil
+			} else {
+				o.SecurityDescriptor = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SecurityDescriptor", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SecurityDescriptor, _s_lpSecurityDescriptor, _ptr_lpSecurityDescriptor); err != nil {
 		return err
 	}
@@ -730,7 +741,18 @@ func (o *AllocationInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		}
 		return nil
 	})
-	_s_lpReserved := func(ptr interface{}) { _lpReserved = *ptr.(*uint8) }
+	_s_lpReserved := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *uint8:
+			if ptr == nil {
+				_lpReserved = uint8(0)
+			} else {
+				_lpReserved = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field _lpReserved", ptr))
+		}
+	}
 	if err := w.ReadPointer(&_lpReserved, _s_lpReserved, _ptr_lpReserved); err != nil {
 		return err
 	}
@@ -915,7 +937,18 @@ func (o *MountInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_lpReserved := func(ptr interface{}) { _lpReserved = *ptr.(**AsyncIO) }
+	_s_lpReserved := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **AsyncIO:
+			if ptr == nil {
+				_lpReserved = nil
+			} else {
+				_lpReserved = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field _lpReserved", ptr))
+		}
+	}
 	if err := w.ReadPointer(&_lpReserved, _s_lpReserved, _ptr_lpReserved); err != nil {
 		return err
 	}
@@ -5541,7 +5574,18 @@ func (o *RSMMessage) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpguidOperation := func(ptr interface{}) { o.LpguidOperation = *ptr.(**dtyp.GUID) }
+	_s_lpguidOperation := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **dtyp.GUID:
+			if ptr == nil {
+				o.LpguidOperation = nil
+			} else {
+				o.LpguidOperation = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LpguidOperation", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.LpguidOperation, _s_lpguidOperation, _ptr_lpguidOperation); err != nil {
 		return err
 	}
@@ -5566,7 +5610,18 @@ func (o *RSMMessage) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpszComputerName := func(ptr interface{}) { o.ComputerName = *ptr.(*string) }
+	_s_lpszComputerName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ComputerName = ""
+			} else {
+				o.ComputerName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ComputerName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ComputerName, _s_lpszComputerName, _ptr_lpszComputerName); err != nil {
 		return err
 	}
@@ -5576,7 +5631,18 @@ func (o *RSMMessage) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpszApplication := func(ptr interface{}) { o.Application = *ptr.(*string) }
+	_s_lpszApplication := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Application = ""
+			} else {
+				o.Application = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Application", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Application, _s_lpszApplication, _ptr_lpszApplication); err != nil {
 		return err
 	}
@@ -5586,7 +5652,18 @@ func (o *RSMMessage) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpszUser := func(ptr interface{}) { o.User = *ptr.(*string) }
+	_s_lpszUser := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.User = ""
+			} else {
+				o.User = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.User", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.User, _s_lpszUser, _ptr_lpszUser); err != nil {
 		return err
 	}
@@ -5596,7 +5673,18 @@ func (o *RSMMessage) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpszTimeSubmitted := func(ptr interface{}) { o.TimeSubmitted = *ptr.(*string) }
+	_s_lpszTimeSubmitted := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.TimeSubmitted = ""
+			} else {
+				o.TimeSubmitted = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TimeSubmitted", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.TimeSubmitted, _s_lpszTimeSubmitted, _ptr_lpszTimeSubmitted); err != nil {
 		return err
 	}
@@ -5606,7 +5694,18 @@ func (o *RSMMessage) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpszMessage := func(ptr interface{}) { o.Message = *ptr.(*string) }
+	_s_lpszMessage := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Message = ""
+			} else {
+				o.Message = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Message, _s_lpszMessage, _ptr_lpszMessage); err != nil {
 		return err
 	}

@@ -434,7 +434,18 @@ func (o *xxx_RegisterCertificateOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_Flags := func(ptr interface{}) { o.Flags = *ptr.(**oaut.Variant) }
+		_s_Flags := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Flags = nil
+				} else {
+					o.Flags = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Flags", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Flags, _s_Flags, _ptr_Flags); err != nil {
 			return err
 		}
@@ -453,7 +464,18 @@ func (o *xxx_RegisterCertificateOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ExternalCertificate := func(ptr interface{}) { o.ExternalCertificate = *ptr.(**oaut.Variant) }
+		_s_ExternalCertificate := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ExternalCertificate = nil
+				} else {
+					o.ExternalCertificate = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExternalCertificate", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ExternalCertificate, _s_ExternalCertificate, _ptr_ExternalCertificate); err != nil {
 			return err
 		}
@@ -741,7 +763,18 @@ func (o *xxx_MachineNameOfMachineIDOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_bstrGuid := func(ptr interface{}) { o.GUID = *ptr.(**oaut.String) }
+		_s_bstrGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.GUID = nil
+				} else {
+					o.GUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.GUID, _s_bstrGuid, _ptr_bstrGuid); err != nil {
 			return err
 		}
@@ -840,7 +873,18 @@ func (o *xxx_MachineNameOfMachineIDOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_pbstrMachineName := func(ptr interface{}) { o.MachineName = *ptr.(**oaut.String) }
+		_s_pbstrMachineName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineName = nil
+				} else {
+					o.MachineName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineName, _s_pbstrMachineName, _ptr_pbstrMachineName); err != nil {
 			return err
 		}
@@ -2009,7 +2053,18 @@ func (o *xxx_GetPropertiesOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppcolProperties := func(ptr interface{}) { o.Properties = *ptr.(**oaut.Dispatch) }
+		_s_ppcolProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Dispatch:
+				if ptr == nil {
+					o.Properties = nil
+				} else {
+					o.Properties = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Properties", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Properties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
 			return err
 		}

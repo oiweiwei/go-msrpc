@@ -1062,7 +1062,18 @@ func (o *xxx_CloneOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_ppenum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.EnumManagementObject) }
+		_s_ppenum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **scmp.EnumManagementObject:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppenum, _ptr_ppenum); err != nil {
 			return err
 		}
@@ -1161,7 +1172,18 @@ func (o *xxx_CloneOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ppenum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.EnumManagementObject) }
+		_s_ppenum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **scmp.EnumManagementObject:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppenum, _ptr_ppenum); err != nil {
 			return err
 		}

@@ -462,7 +462,18 @@ func (o *xxx_GetReportOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_referenceMember := func(ptr interface{}) { o.ReferenceMember = *ptr.(**oaut.String) }
+		_s_referenceMember := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReferenceMember = nil
+				} else {
+					o.ReferenceMember = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReferenceMember", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReferenceMember, _s_referenceMember, _ptr_referenceMember); err != nil {
 			return err
 		}
@@ -482,13 +493,35 @@ func (o *xxx_GetReportOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 				}
 				return nil
 			})
-			_s_referenceVersionVectors := func(ptr interface{}) { o.ReferenceVersionVectors = *ptr.(**oaut.SafeArray) }
+			_s_referenceVersionVectors := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **oaut.SafeArray:
+					if ptr == nil {
+						o.ReferenceVersionVectors = nil
+					} else {
+						o.ReferenceVersionVectors = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReferenceVersionVectors", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.ReferenceVersionVectors, _s_referenceVersionVectors, _ptr_referenceVersionVectors); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_referenceVersionVectors := func(ptr interface{}) { o.ReferenceVersionVectors = *ptr.(**oaut.SafeArray) }
+		_s_referenceVersionVectors := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.ReferenceVersionVectors = nil
+				} else {
+					o.ReferenceVersionVectors = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReferenceVersionVectors", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReferenceVersionVectors, _s_referenceVersionVectors, _ptr_referenceVersionVectors); err != nil {
 			return err
 		}
@@ -633,13 +666,35 @@ func (o *xxx_GetReportOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 				}
 				return nil
 			})
-			_s_memberVersionVectors := func(ptr interface{}) { o.MemberVersionVectors = *ptr.(**oaut.SafeArray) }
+			_s_memberVersionVectors := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **oaut.SafeArray:
+					if ptr == nil {
+						o.MemberVersionVectors = nil
+					} else {
+						o.MemberVersionVectors = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MemberVersionVectors", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.MemberVersionVectors, _s_memberVersionVectors, _ptr_memberVersionVectors); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_memberVersionVectors := func(ptr interface{}) { o.MemberVersionVectors = *ptr.(**oaut.SafeArray) }
+		_s_memberVersionVectors := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.MemberVersionVectors = nil
+				} else {
+					o.MemberVersionVectors = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MemberVersionVectors", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MemberVersionVectors, _s_memberVersionVectors, _ptr_memberVersionVectors); err != nil {
 			return err
 		}
@@ -658,7 +713,18 @@ func (o *xxx_GetReportOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_reportXML := func(ptr interface{}) { o.ReportXML = *ptr.(**oaut.String) }
+		_s_reportXML := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReportXML = nil
+				} else {
+					o.ReportXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReportXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReportXML, _s_reportXML, _ptr_reportXML); err != nil {
 			return err
 		}
@@ -982,7 +1048,18 @@ func (o *xxx_GetCompressedReportOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_referenceMember := func(ptr interface{}) { o.ReferenceMember = *ptr.(**oaut.String) }
+		_s_referenceMember := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReferenceMember = nil
+				} else {
+					o.ReferenceMember = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReferenceMember", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReferenceMember, _s_referenceMember, _ptr_referenceMember); err != nil {
 			return err
 		}
@@ -1002,13 +1079,35 @@ func (o *xxx_GetCompressedReportOperation) UnmarshalNDRRequest(ctx context.Conte
 				}
 				return nil
 			})
-			_s_referenceVersionVectors := func(ptr interface{}) { o.ReferenceVersionVectors = *ptr.(**oaut.SafeArray) }
+			_s_referenceVersionVectors := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **oaut.SafeArray:
+					if ptr == nil {
+						o.ReferenceVersionVectors = nil
+					} else {
+						o.ReferenceVersionVectors = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReferenceVersionVectors", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.ReferenceVersionVectors, _s_referenceVersionVectors, _ptr_referenceVersionVectors); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_referenceVersionVectors := func(ptr interface{}) { o.ReferenceVersionVectors = *ptr.(**oaut.SafeArray) }
+		_s_referenceVersionVectors := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.ReferenceVersionVectors = nil
+				} else {
+					o.ReferenceVersionVectors = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReferenceVersionVectors", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReferenceVersionVectors, _s_referenceVersionVectors, _ptr_referenceVersionVectors); err != nil {
 			return err
 		}
@@ -1159,13 +1258,35 @@ func (o *xxx_GetCompressedReportOperation) UnmarshalNDRResponse(ctx context.Cont
 				}
 				return nil
 			})
-			_s_memberVersionVectors := func(ptr interface{}) { o.MemberVersionVectors = *ptr.(**oaut.SafeArray) }
+			_s_memberVersionVectors := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **oaut.SafeArray:
+					if ptr == nil {
+						o.MemberVersionVectors = nil
+					} else {
+						o.MemberVersionVectors = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MemberVersionVectors", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.MemberVersionVectors, _s_memberVersionVectors, _ptr_memberVersionVectors); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_memberVersionVectors := func(ptr interface{}) { o.MemberVersionVectors = *ptr.(**oaut.SafeArray) }
+		_s_memberVersionVectors := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.MemberVersionVectors = nil
+				} else {
+					o.MemberVersionVectors = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MemberVersionVectors", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MemberVersionVectors, _s_memberVersionVectors, _ptr_memberVersionVectors); err != nil {
 			return err
 		}
@@ -1184,7 +1305,18 @@ func (o *xxx_GetCompressedReportOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_reportCompressed := func(ptr interface{}) { o.ReportCompressed = *ptr.(**oaut.String) }
+		_s_reportCompressed := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReportCompressed = nil
+				} else {
+					o.ReportCompressed = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReportCompressed", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReportCompressed, _s_reportCompressed, _ptr_reportCompressed); err != nil {
 			return err
 		}
@@ -1470,13 +1602,35 @@ func (o *xxx_GetRawReportExOperation) UnmarshalNDRRequest(ctx context.Context, w
 				}
 				return nil
 			})
-			_s_reportOptions := func(ptr interface{}) { o.ReportOptions = *ptr.(**oaut.SafeArray) }
+			_s_reportOptions := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **oaut.SafeArray:
+					if ptr == nil {
+						o.ReportOptions = nil
+					} else {
+						o.ReportOptions = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReportOptions", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.ReportOptions, _s_reportOptions, _ptr_reportOptions); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_reportOptions := func(ptr interface{}) { o.ReportOptions = *ptr.(**oaut.SafeArray) }
+		_s_reportOptions := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.ReportOptions = nil
+				} else {
+					o.ReportOptions = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReportOptions", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReportOptions, _s_reportOptions, _ptr_reportOptions); err != nil {
 			return err
 		}
@@ -1588,13 +1742,35 @@ func (o *xxx_GetRawReportExOperation) UnmarshalNDRResponse(ctx context.Context, 
 				}
 				return nil
 			})
-			_s_report := func(ptr interface{}) { o.Report = *ptr.(**oaut.SafeArray) }
+			_s_report := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **oaut.SafeArray:
+					if ptr == nil {
+						o.Report = nil
+					} else {
+						o.Report = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Report", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Report, _s_report, _ptr_report); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_report := func(ptr interface{}) { o.Report = *ptr.(**oaut.SafeArray) }
+		_s_report := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Report = nil
+				} else {
+					o.Report = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Report", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Report, _s_report, _ptr_report); err != nil {
 			return err
 		}
@@ -1894,13 +2070,35 @@ func (o *xxx_GetReferenceVersionVectorsOperation) UnmarshalNDRResponse(ctx conte
 				}
 				return nil
 			})
-			_s_referenceVersionVectors := func(ptr interface{}) { o.ReferenceVersionVectors = *ptr.(**oaut.SafeArray) }
+			_s_referenceVersionVectors := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **oaut.SafeArray:
+					if ptr == nil {
+						o.ReferenceVersionVectors = nil
+					} else {
+						o.ReferenceVersionVectors = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReferenceVersionVectors", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.ReferenceVersionVectors, _s_referenceVersionVectors, _ptr_referenceVersionVectors); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_referenceVersionVectors := func(ptr interface{}) { o.ReferenceVersionVectors = *ptr.(**oaut.SafeArray) }
+		_s_referenceVersionVectors := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.ReferenceVersionVectors = nil
+				} else {
+					o.ReferenceVersionVectors = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReferenceVersionVectors", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReferenceVersionVectors, _s_referenceVersionVectors, _ptr_referenceVersionVectors); err != nil {
 			return err
 		}
@@ -2127,13 +2325,35 @@ func (o *xxx_GetReferenceBacklogCountsOperation) UnmarshalNDRRequest(ctx context
 				}
 				return nil
 			})
-			_s_flatMemberVersionVectors := func(ptr interface{}) { o.FlatMemberVersionVectors = *ptr.(**oaut.SafeArray) }
+			_s_flatMemberVersionVectors := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **oaut.SafeArray:
+					if ptr == nil {
+						o.FlatMemberVersionVectors = nil
+					} else {
+						o.FlatMemberVersionVectors = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FlatMemberVersionVectors", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.FlatMemberVersionVectors, _s_flatMemberVersionVectors, _ptr_flatMemberVersionVectors); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_flatMemberVersionVectors := func(ptr interface{}) { o.FlatMemberVersionVectors = *ptr.(**oaut.SafeArray) }
+		_s_flatMemberVersionVectors := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.FlatMemberVersionVectors = nil
+				} else {
+					o.FlatMemberVersionVectors = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FlatMemberVersionVectors", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FlatMemberVersionVectors, _s_flatMemberVersionVectors, _ptr_flatMemberVersionVectors); err != nil {
 			return err
 		}
@@ -2245,13 +2465,35 @@ func (o *xxx_GetReferenceBacklogCountsOperation) UnmarshalNDRResponse(ctx contex
 				}
 				return nil
 			})
-			_s_backlogCounts := func(ptr interface{}) { o.BacklogCounts = *ptr.(**oaut.SafeArray) }
+			_s_backlogCounts := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **oaut.SafeArray:
+					if ptr == nil {
+						o.BacklogCounts = nil
+					} else {
+						o.BacklogCounts = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BacklogCounts", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.BacklogCounts, _s_backlogCounts, _ptr_backlogCounts); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_backlogCounts := func(ptr interface{}) { o.BacklogCounts = *ptr.(**oaut.SafeArray) }
+		_s_backlogCounts := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.BacklogCounts = nil
+				} else {
+					o.BacklogCounts = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BacklogCounts", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BacklogCounts, _s_backlogCounts, _ptr_backlogCounts); err != nil {
 			return err
 		}

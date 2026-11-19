@@ -433,7 +433,18 @@ func (o *MetadataRecord) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pbMDData := func(ptr interface{}) { o.Data = *ptr.(*[]byte) }
+	_s_pbMDData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Data = nil
+			} else {
+				o.Data = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Data, _s_pbMDData, _ptr_pbMDData); err != nil {
 		return err
 	}

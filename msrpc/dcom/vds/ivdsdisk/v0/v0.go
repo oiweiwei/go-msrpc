@@ -669,7 +669,18 @@ func (o *xxx_GetPackOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppPack := func(ptr interface{}) { o.Pack = *ptr.(**vds.Pack) }
+		_s_ppPack := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Pack:
+				if ptr == nil {
+					o.Pack = nil
+				} else {
+					o.Pack = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Pack", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Pack, _s_ppPack, _ptr_ppPack); err != nil {
 			return err
 		}
@@ -1205,7 +1216,18 @@ func (o *xxx_QueryExtentsOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ppExtentArray := func(ptr interface{}) { o.ExtentArray = *ptr.(*[]*vds.DiskExtent) }
+		_s_ppExtentArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*vds.DiskExtent:
+				if ptr == nil {
+					o.ExtentArray = nil
+				} else {
+					o.ExtentArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExtentArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ExtentArray, _s_ppExtentArray, _ptr_ppExtentArray); err != nil {
 			return err
 		}

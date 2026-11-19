@@ -2018,7 +2018,18 @@ func (o *xxx_GetFilesOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_Files := func(ptr interface{}) { o.Files = *ptr.(**oaut.SafeArray) }
+		_s_Files := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Files = nil
+				} else {
+					o.Files = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Files", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Files, _s_Files, _ptr_Files); err != nil {
 			return err
 		}
@@ -2219,7 +2230,18 @@ func (o *xxx_SetFilesOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_Files := func(ptr interface{}) { o.Files = *ptr.(**oaut.SafeArray) }
+		_s_Files := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Files = nil
+				} else {
+					o.Files = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Files", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Files, _s_Files, _ptr_Files); err != nil {
 			return err
 		}
@@ -2528,7 +2550,18 @@ func (o *xxx_GetManagementQueriesOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_Queries := func(ptr interface{}) { o.Queries = *ptr.(**oaut.SafeArray) }
+		_s_Queries := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Queries = nil
+				} else {
+					o.Queries = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Queries", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Queries, _s_Queries, _ptr_Queries); err != nil {
 			return err
 		}
@@ -2733,7 +2766,18 @@ func (o *xxx_SetManagementQueriesOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_Queries := func(ptr interface{}) { o.Queries = *ptr.(**oaut.SafeArray) }
+		_s_Queries := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Queries = nil
+				} else {
+					o.Queries = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Queries", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Queries, _s_Queries, _ptr_Queries); err != nil {
 			return err
 		}
@@ -3492,7 +3536,18 @@ func (o *xxx_GetRegistryKeysOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_query := func(ptr interface{}) { o.Query = *ptr.(**oaut.SafeArray) }
+		_s_query := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Query = nil
+				} else {
+					o.Query = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Query", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Query, _s_query, _ptr_query); err != nil {
 			return err
 		}
@@ -3697,7 +3752,18 @@ func (o *xxx_SetRegistryKeysOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_query := func(ptr interface{}) { o.Query = *ptr.(**oaut.SafeArray) }
+		_s_query := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Query = nil
+				} else {
+					o.Query = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Query", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Query, _s_query, _ptr_query); err != nil {
 			return err
 		}
@@ -4456,7 +4522,18 @@ func (o *xxx_GetSystemStateFileOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_FileName := func(ptr interface{}) { o.FileName = *ptr.(**oaut.String) }
+		_s_FileName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.FileName = nil
+				} else {
+					o.FileName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileName, _s_FileName, _ptr_FileName); err != nil {
 			return err
 		}
@@ -4661,7 +4738,18 @@ func (o *xxx_SetSystemStateFileOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_FileName := func(ptr interface{}) { o.FileName = *ptr.(**oaut.String) }
+		_s_FileName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.FileName = nil
+				} else {
+					o.FileName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileName, _s_FileName, _ptr_FileName); err != nil {
 			return err
 		}

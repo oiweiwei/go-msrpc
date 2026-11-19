@@ -280,7 +280,18 @@ func (o *xxx_MessageOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pbReplyPacket := func(ptr interface{}) { o.ReplyPacket = *ptr.(*[]byte) }
+		_s_pbReplyPacket := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.ReplyPacket = nil
+				} else {
+					o.ReplyPacket = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReplyPacket", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReplyPacket, _s_pbReplyPacket, _ptr_pbReplyPacket); err != nil {
 			return err
 		}

@@ -289,7 +289,18 @@ func (o *xxx_FormatPartitionEx2Operation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pwszFileSystemTypeName := func(ptr interface{}) { o.FileSystemTypeName = *ptr.(*string) }
+		_s_pwszFileSystemTypeName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.FileSystemTypeName = ""
+				} else {
+					o.FileSystemTypeName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileSystemTypeName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileSystemTypeName, _s_pwszFileSystemTypeName, _ptr_pwszFileSystemTypeName); err != nil {
 			return err
 		}
@@ -317,7 +328,18 @@ func (o *xxx_FormatPartitionEx2Operation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pwszLabel := func(ptr interface{}) { o.Label = *ptr.(*string) }
+		_s_pwszLabel := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Label = ""
+				} else {
+					o.Label = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Label", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Label, _s_pwszLabel, _ptr_pwszLabel); err != nil {
 			return err
 		}
@@ -422,7 +444,18 @@ func (o *xxx_FormatPartitionEx2Operation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}

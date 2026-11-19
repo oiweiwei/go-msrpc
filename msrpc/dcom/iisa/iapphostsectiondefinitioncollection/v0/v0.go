@@ -649,7 +649,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppConfigSection := func(ptr interface{}) { o.ConfigSection = *ptr.(**iisa.AppHostSectionDefinition) }
+		_s_ppConfigSection := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostSectionDefinition:
+				if ptr == nil {
+					o.ConfigSection = nil
+				} else {
+					o.ConfigSection = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigSection", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigSection, _s_ppConfigSection, _ptr_ppConfigSection); err != nil {
 			return err
 		}
@@ -856,7 +867,18 @@ func (o *xxx_AddSectionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_bstrSectionName := func(ptr interface{}) { o.SectionName = *ptr.(**oaut.String) }
+		_s_bstrSectionName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SectionName = nil
+				} else {
+					o.SectionName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SectionName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SectionName, _s_bstrSectionName, _ptr_bstrSectionName); err != nil {
 			return err
 		}
@@ -955,7 +977,18 @@ func (o *xxx_AddSectionOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ppConfigSection := func(ptr interface{}) { o.ConfigSection = *ptr.(**iisa.AppHostSectionDefinition) }
+		_s_ppConfigSection := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostSectionDefinition:
+				if ptr == nil {
+					o.ConfigSection = nil
+				} else {
+					o.ConfigSection = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigSection", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigSection, _s_ppConfigSection, _ptr_ppConfigSection); err != nil {
 			return err
 		}

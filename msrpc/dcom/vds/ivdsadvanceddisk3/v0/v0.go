@@ -538,7 +538,18 @@ func (o *xxx_GetUniqueIDOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ppwszId := func(ptr interface{}) { o.ID = *ptr.(*string) }
+		_s_ppwszId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ID = ""
+				} else {
+					o.ID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ID, _s_ppwszId, _ptr_ppwszId); err != nil {
 			return err
 		}

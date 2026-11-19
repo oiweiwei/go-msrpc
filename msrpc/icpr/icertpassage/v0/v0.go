@@ -215,7 +215,18 @@ func (o *xxx_CertServerRequestOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_pwszAuthority := func(ptr interface{}) { o.Authority = *ptr.(*string) }
+		_s_pwszAuthority := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Authority = ""
+				} else {
+					o.Authority = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Authority", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Authority, _s_pwszAuthority, _ptr_pwszAuthority); err != nil {
 			return err
 		}

@@ -656,7 +656,18 @@ func (o *Blob) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_bData := func(ptr interface{}) { o.Data = *ptr.(*[]byte) }
+	_s_bData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Data = nil
+			} else {
+				o.Data = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Data, _s_bData, _ptr_bData); err != nil {
 		return err
 	}
@@ -807,7 +818,18 @@ func (o *HashBlob) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_bData := func(ptr interface{}) { o.Data = *ptr.(*[]byte) }
+	_s_bData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Data = nil
+			} else {
+				o.Data = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Data, _s_bData, _ptr_bData); err != nil {
 		return err
 	}
@@ -928,7 +950,18 @@ func (o *EncryptionCertificateHash) UnmarshalNDR(ctx context.Context, w ndr.Read
 		}
 		return nil
 	})
-	_s_UserSid := func(ptr interface{}) { o.UserSID = *ptr.(**dtyp.SID) }
+	_s_UserSid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **dtyp.SID:
+			if ptr == nil {
+				o.UserSID = nil
+			} else {
+				o.UserSID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UserSID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.UserSID, _s_UserSid, _ptr_UserSid); err != nil {
 		return err
 	}
@@ -941,7 +974,18 @@ func (o *EncryptionCertificateHash) UnmarshalNDR(ctx context.Context, w ndr.Read
 		}
 		return nil
 	})
-	_s_Hash := func(ptr interface{}) { o.Hash = *ptr.(**HashBlob) }
+	_s_Hash := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **HashBlob:
+			if ptr == nil {
+				o.Hash = nil
+			} else {
+				o.Hash = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Hash", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Hash, _s_Hash, _ptr_Hash); err != nil {
 		return err
 	}
@@ -951,7 +995,18 @@ func (o *EncryptionCertificateHash) UnmarshalNDR(ctx context.Context, w ndr.Read
 		}
 		return nil
 	})
-	_s_lpDisplayInformation := func(ptr interface{}) { o.DisplayInformation = *ptr.(*string) }
+	_s_lpDisplayInformation := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.DisplayInformation = ""
+			} else {
+				o.DisplayInformation = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DisplayInformation", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DisplayInformation, _s_lpDisplayInformation, _ptr_lpDisplayInformation); err != nil {
 		return err
 	}
@@ -1083,14 +1138,36 @@ func (o *EncryptionCertificateHashList) UnmarshalNDR(ctx context.Context, w ndr.
 				}
 				return nil
 			})
-			_s_Users := func(ptr interface{}) { o.Users[i1] = *ptr.(**EncryptionCertificateHash) }
+			_s_Users := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **EncryptionCertificateHash:
+					if ptr == nil {
+						o.Users[i1] = nil
+					} else {
+						o.Users[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Users[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Users[i1], _s_Users, _ptr_Users); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_Users := func(ptr interface{}) { o.Users = *ptr.(*[]*EncryptionCertificateHash) }
+	_s_Users := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*EncryptionCertificateHash:
+			if ptr == nil {
+				o.Users = nil
+			} else {
+				o.Users = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Users", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Users, _s_Users, _ptr_Users); err != nil {
 		return err
 	}
@@ -1223,7 +1300,18 @@ func (o *CertificateBlob) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		}
 		return nil
 	})
-	_s_bData := func(ptr interface{}) { o.Data = *ptr.(*[]byte) }
+	_s_bData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Data = nil
+			} else {
+				o.Data = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Data, _s_bData, _ptr_bData); err != nil {
 		return err
 	}
@@ -1316,7 +1404,18 @@ func (o *EncryptionCertificate) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		}
 		return nil
 	})
-	_s_UserSid := func(ptr interface{}) { o.UserSID = *ptr.(**dtyp.SID) }
+	_s_UserSid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **dtyp.SID:
+			if ptr == nil {
+				o.UserSID = nil
+			} else {
+				o.UserSID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UserSID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.UserSID, _s_UserSid, _ptr_UserSid); err != nil {
 		return err
 	}
@@ -1329,7 +1428,18 @@ func (o *EncryptionCertificate) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		}
 		return nil
 	})
-	_s_CertBlob := func(ptr interface{}) { o.CertBlob = *ptr.(**CertificateBlob) }
+	_s_CertBlob := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **CertificateBlob:
+			if ptr == nil {
+				o.CertBlob = nil
+			} else {
+				o.CertBlob = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CertBlob", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.CertBlob, _s_CertBlob, _ptr_CertBlob); err != nil {
 		return err
 	}
@@ -1455,14 +1565,36 @@ func (o *EncryptionCertificateList) UnmarshalNDR(ctx context.Context, w ndr.Read
 				}
 				return nil
 			})
-			_s_Users := func(ptr interface{}) { o.Users[i1] = *ptr.(**EncryptionCertificate) }
+			_s_Users := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **EncryptionCertificate:
+					if ptr == nil {
+						o.Users[i1] = nil
+					} else {
+						o.Users[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Users[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Users[i1], _s_Users, _ptr_Users); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_Users := func(ptr interface{}) { o.Users = *ptr.(*[]*EncryptionCertificate) }
+	_s_Users := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*EncryptionCertificate:
+			if ptr == nil {
+				o.Users = nil
+			} else {
+				o.Users = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Users", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Users, _s_Users, _ptr_Users); err != nil {
 		return err
 	}
@@ -1605,7 +1737,18 @@ func (o *EncryptedFileMetadataSignature) UnmarshalNDR(ctx context.Context, w ndr
 		}
 		return nil
 	})
-	_s_CertificatesAdded := func(ptr interface{}) { o.CertificatesAdded = *ptr.(**EncryptionCertificateHashList) }
+	_s_CertificatesAdded := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **EncryptionCertificateHashList:
+			if ptr == nil {
+				o.CertificatesAdded = nil
+			} else {
+				o.CertificatesAdded = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CertificatesAdded", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.CertificatesAdded, _s_CertificatesAdded, _ptr_CertificatesAdded); err != nil {
 		return err
 	}
@@ -1618,7 +1761,18 @@ func (o *EncryptedFileMetadataSignature) UnmarshalNDR(ctx context.Context, w ndr
 		}
 		return nil
 	})
-	_s_EncryptionCertificate := func(ptr interface{}) { o.EncryptionCertificate = *ptr.(**EncryptionCertificate) }
+	_s_EncryptionCertificate := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **EncryptionCertificate:
+			if ptr == nil {
+				o.EncryptionCertificate = nil
+			} else {
+				o.EncryptionCertificate = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EncryptionCertificate", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.EncryptionCertificate, _s_EncryptionCertificate, _ptr_EncryptionCertificate); err != nil {
 		return err
 	}
@@ -1631,7 +1785,18 @@ func (o *EncryptedFileMetadataSignature) UnmarshalNDR(ctx context.Context, w ndr
 		}
 		return nil
 	})
-	_s_EfsStreamSignature := func(ptr interface{}) { o.StreamSignature = *ptr.(**Blob) }
+	_s_EfsStreamSignature := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **Blob:
+			if ptr == nil {
+				o.StreamSignature = nil
+			} else {
+				o.StreamSignature = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StreamSignature", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.StreamSignature, _s_EfsStreamSignature, _ptr_EfsStreamSignature); err != nil {
 		return err
 	}
@@ -1906,7 +2071,18 @@ func (o *EncryptionProtector) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		}
 		return nil
 	})
-	_s_UserSid := func(ptr interface{}) { o.UserSID = *ptr.(**dtyp.SID) }
+	_s_UserSid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **dtyp.SID:
+			if ptr == nil {
+				o.UserSID = nil
+			} else {
+				o.UserSID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UserSID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.UserSID, _s_UserSid, _ptr_UserSid); err != nil {
 		return err
 	}
@@ -1916,7 +2092,18 @@ func (o *EncryptionProtector) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		}
 		return nil
 	})
-	_s_lpProtectorDescriptor := func(ptr interface{}) { o.ProtectorDescriptor = *ptr.(*string) }
+	_s_lpProtectorDescriptor := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ProtectorDescriptor = ""
+			} else {
+				o.ProtectorDescriptor = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProtectorDescriptor", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ProtectorDescriptor, _s_lpProtectorDescriptor, _ptr_lpProtectorDescriptor); err != nil {
 		return err
 	}
@@ -2039,14 +2226,36 @@ func (o *EncryptionProtectorList) UnmarshalNDR(ctx context.Context, w ndr.Reader
 				}
 				return nil
 			})
-			_s_pProtectors := func(ptr interface{}) { o.Protectors[i1] = *ptr.(**EncryptionProtector) }
+			_s_pProtectors := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **EncryptionProtector:
+					if ptr == nil {
+						o.Protectors[i1] = nil
+					} else {
+						o.Protectors[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Protectors[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Protectors[i1], _s_pProtectors, _ptr_pProtectors); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_pProtectors := func(ptr interface{}) { o.Protectors = *ptr.(*[]*EncryptionProtector) }
+	_s_pProtectors := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*EncryptionProtector:
+			if ptr == nil {
+				o.Protectors = nil
+			} else {
+				o.Protectors = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Protectors", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Protectors, _s_pProtectors, _ptr_pProtectors); err != nil {
 		return err
 	}
@@ -3655,7 +3864,18 @@ func (o *xxx_QueryUsersOnFileOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_Users := func(ptr interface{}) { o.Users = *ptr.(**EncryptionCertificateHashList) }
+		_s_Users := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EncryptionCertificateHashList:
+				if ptr == nil {
+					o.Users = nil
+				} else {
+					o.Users = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Users", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Users, _s_Users, _ptr_Users); err != nil {
 			return err
 		}
@@ -3863,7 +4083,18 @@ func (o *xxx_QueryRecoveryAgentsOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_RecoveryAgents := func(ptr interface{}) { o.RecoveryAgents = *ptr.(**EncryptionCertificateHashList) }
+		_s_RecoveryAgents := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EncryptionCertificateHashList:
+				if ptr == nil {
+					o.RecoveryAgents = nil
+				} else {
+					o.RecoveryAgents = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RecoveryAgents", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RecoveryAgents, _s_RecoveryAgents, _ptr_RecoveryAgents); err != nil {
 			return err
 		}
@@ -4472,7 +4703,18 @@ func (o *xxx_NotSupportedOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_Reserved := func(ptr interface{}) { _Reserved = *ptr.(**Blob) }
+		_s_Reserved := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Blob:
+				if ptr == nil {
+					_Reserved = nil
+				} else {
+					_Reserved = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field _Reserved", ptr))
+			}
+		}
 		if err := w.ReadPointer(&_Reserved, _s_Reserved, _ptr_Reserved); err != nil {
 			return err
 		}
@@ -4722,7 +4964,18 @@ func (o *xxx_FileKeyInfoOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_KeyInfo := func(ptr interface{}) { o.KeyInfo = *ptr.(**Blob) }
+		_s_KeyInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Blob:
+				if ptr == nil {
+					o.KeyInfo = nil
+				} else {
+					o.KeyInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.KeyInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.KeyInfo, _s_KeyInfo, _ptr_KeyInfo); err != nil {
 			return err
 		}
@@ -4994,7 +5247,18 @@ func (o *xxx_DuplicateEncryptionInfoFileOperation) UnmarshalNDRRequest(ctx conte
 			}
 			return nil
 		})
-		_s_RelativeSD := func(ptr interface{}) { o.RelativeSecurityDescriptor = *ptr.(**Blob) }
+		_s_RelativeSD := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Blob:
+				if ptr == nil {
+					o.RelativeSecurityDescriptor = nil
+				} else {
+					o.RelativeSecurityDescriptor = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RelativeSecurityDescriptor", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RelativeSecurityDescriptor, _s_RelativeSD, _ptr_RelativeSD); err != nil {
 			return err
 		}
@@ -5272,7 +5536,18 @@ func (o *xxx_AddUsersToFileExOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_Reserved := func(ptr interface{}) { _Reserved = *ptr.(**Blob) }
+		_s_Reserved := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Blob:
+				if ptr == nil {
+					_Reserved = nil
+				} else {
+					_Reserved = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field _Reserved", ptr))
+			}
+		}
 		if err := w.ReadPointer(&_Reserved, _s_Reserved, _ptr_Reserved); err != nil {
 			return err
 		}
@@ -5517,7 +5792,18 @@ func (o *xxx_FileKeyInfoExOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_Reserved := func(ptr interface{}) { _Reserved = *ptr.(**Blob) }
+		_s_Reserved := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Blob:
+				if ptr == nil {
+					_Reserved = nil
+				} else {
+					_Reserved = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field _Reserved", ptr))
+			}
+		}
 		if err := w.ReadPointer(&_Reserved, _s_Reserved, _ptr_Reserved); err != nil {
 			return err
 		}
@@ -5601,7 +5887,18 @@ func (o *xxx_FileKeyInfoExOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_KeyInfo := func(ptr interface{}) { o.KeyInfo = *ptr.(**Blob) }
+		_s_KeyInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Blob:
+				if ptr == nil {
+					o.KeyInfo = nil
+				} else {
+					o.KeyInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.KeyInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.KeyInfo, _s_KeyInfo, _ptr_KeyInfo); err != nil {
 			return err
 		}
@@ -5821,7 +6118,18 @@ func (o *xxx_GetEncryptedFileMetadataOperation) UnmarshalNDRResponse(ctx context
 			}
 			return nil
 		})
-		_s_EfsStreamBlob := func(ptr interface{}) { o.StreamBlob = *ptr.(**Blob) }
+		_s_EfsStreamBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Blob:
+				if ptr == nil {
+					o.StreamBlob = nil
+				} else {
+					o.StreamBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StreamBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.StreamBlob, _s_EfsStreamBlob, _ptr_EfsStreamBlob); err != nil {
 			return err
 		}
@@ -6051,7 +6359,18 @@ func (o *xxx_SetEncryptedFileMetadataOperation) UnmarshalNDRRequest(ctx context.
 			}
 			return nil
 		})
-		_s_OldEfsStreamBlob := func(ptr interface{}) { o.OldEFSStreamBlob = *ptr.(**Blob) }
+		_s_OldEfsStreamBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Blob:
+				if ptr == nil {
+					o.OldEFSStreamBlob = nil
+				} else {
+					o.OldEFSStreamBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OldEFSStreamBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OldEFSStreamBlob, _s_OldEfsStreamBlob, _ptr_OldEfsStreamBlob); err != nil {
 			return err
 		}
@@ -6082,7 +6401,18 @@ func (o *xxx_SetEncryptedFileMetadataOperation) UnmarshalNDRRequest(ctx context.
 			}
 			return nil
 		})
-		_s_NewEfsSignature := func(ptr interface{}) { o.NewEFSSignature = *ptr.(**EncryptedFileMetadataSignature) }
+		_s_NewEfsSignature := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EncryptedFileMetadataSignature:
+				if ptr == nil {
+					o.NewEFSSignature = nil
+				} else {
+					o.NewEFSSignature = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NewEFSSignature", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NewEFSSignature, _s_NewEfsSignature, _ptr_NewEfsSignature); err != nil {
 			return err
 		}
@@ -6443,7 +6773,18 @@ func (o *xxx_EncryptFileExServerOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ProtectorDescriptor := func(ptr interface{}) { o.ProtectorDescriptor = *ptr.(*string) }
+		_s_ProtectorDescriptor := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ProtectorDescriptor = ""
+				} else {
+					o.ProtectorDescriptor = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProtectorDescriptor", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProtectorDescriptor, _s_ProtectorDescriptor, _ptr_ProtectorDescriptor); err != nil {
 			return err
 		}
@@ -6697,13 +7038,35 @@ func (o *xxx_QueryProtectorsOperation) UnmarshalNDRResponse(ctx context.Context,
 				}
 				return nil
 			})
-			_s_ppProtectorList := func(ptr interface{}) { o.ProtectorList = *ptr.(**EncryptionProtectorList) }
+			_s_ppProtectorList := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **EncryptionProtectorList:
+					if ptr == nil {
+						o.ProtectorList = nil
+					} else {
+						o.ProtectorList = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProtectorList", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.ProtectorList, _s_ppProtectorList, _ptr_ppProtectorList); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppProtectorList := func(ptr interface{}) { o.ProtectorList = *ptr.(**EncryptionProtectorList) }
+		_s_ppProtectorList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **EncryptionProtectorList:
+				if ptr == nil {
+					o.ProtectorList = nil
+				} else {
+					o.ProtectorList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProtectorList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProtectorList, _s_ppProtectorList, _ptr_ppProtectorList); err != nil {
 			return err
 		}

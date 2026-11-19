@@ -293,7 +293,18 @@ func (o *xxx_ItemOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_Index := func(ptr interface{}) { o.Index = *ptr.(**oaut.Variant) }
+		_s_Index := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Index = nil
+				} else {
+					o.Index = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Index", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Index, _s_Index, _ptr_Index); err != nil {
 			return err
 		}
@@ -392,7 +403,18 @@ func (o *xxx_ItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_pvarRet := func(ptr interface{}) { o.Result = *ptr.(**oaut.Variant) }
+		_s_pvarRet := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Result = nil
+				} else {
+					o.Result = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Result", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Result, _s_pvarRet, _ptr_pvarRet); err != nil {
 			return err
 		}
@@ -875,7 +897,18 @@ func (o *xxx__NewEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_ppunk := func(ptr interface{}) { o.Unknown = *ptr.(**dcom.Unknown) }
+		_s_ppunk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.Unknown = nil
+				} else {
+					o.Unknown = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Unknown", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Unknown, _s_ppunk, _ptr_ppunk); err != nil {
 			return err
 		}

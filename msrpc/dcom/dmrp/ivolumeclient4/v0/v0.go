@@ -592,7 +592,18 @@ func (o *xxx_GetVolumeDeviceNameOperation) UnmarshalNDRResponse(ctx context.Cont
 			o.VolumeDevice = strings.TrimRight(string(utf16.Decode(_VolumeDevice_buf)), ndr.ZeroString)
 			return nil
 		})
-		_s_pwszVolumeDevice := func(ptr interface{}) { o.VolumeDevice = *ptr.(*string) }
+		_s_pwszVolumeDevice := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.VolumeDevice = ""
+				} else {
+					o.VolumeDevice = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VolumeDevice", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VolumeDevice, _s_pwszVolumeDevice, _ptr_pwszVolumeDevice); err != nil {
 			return err
 		}

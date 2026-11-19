@@ -446,7 +446,18 @@ func (o *xxx_GetStartDateOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_start := func(ptr interface{}) { o.Start = *ptr.(**oaut.Variant) }
+		_s_start := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Start = nil
+				} else {
+					o.Start = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Start", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Start, _s_start, _ptr_start); err != nil {
 			return err
 		}
@@ -935,7 +946,18 @@ func (o *xxx_GetEndDateOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_end := func(ptr interface{}) { o.End = *ptr.(**oaut.Variant) }
+		_s_end := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.End = nil
+				} else {
+					o.End = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.End", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.End, _s_end, _ptr_end); err != nil {
 			return err
 		}
@@ -1424,7 +1446,18 @@ func (o *xxx_GetStartTimeOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_start := func(ptr interface{}) { o.Start = *ptr.(**oaut.Variant) }
+		_s_start := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Start = nil
+				} else {
+					o.Start = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Start", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Start, _s_start, _ptr_start); err != nil {
 			return err
 		}

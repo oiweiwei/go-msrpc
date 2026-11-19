@@ -352,7 +352,18 @@ func (o *xxx_GetNameOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pbstrName := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_pbstrName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_pbstrName, _ptr_pbstrName); err != nil {
 			return err
 		}
@@ -606,7 +617,18 @@ func (o *xxx_GetSchemaOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_ppMethodSchema := func(ptr interface{}) { o.MethodSchema = *ptr.(**iisa.AppHostMethodSchema) }
+		_s_ppMethodSchema := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostMethodSchema:
+				if ptr == nil {
+					o.MethodSchema = nil
+				} else {
+					o.MethodSchema = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MethodSchema", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MethodSchema, _s_ppMethodSchema, _ptr_ppMethodSchema); err != nil {
 			return err
 		}
@@ -860,7 +882,18 @@ func (o *xxx_CreateInstanceOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ppMethodInstance := func(ptr interface{}) { o.MethodInstance = *ptr.(**iisa.AppHostMethodInstance) }
+		_s_ppMethodInstance := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostMethodInstance:
+				if ptr == nil {
+					o.MethodInstance = nil
+				} else {
+					o.MethodInstance = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MethodInstance", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MethodInstance, _s_ppMethodInstance, _ptr_ppMethodInstance); err != nil {
 			return err
 		}

@@ -299,7 +299,18 @@ func (o *xxx_GetDiskObjectOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppDiskUnk := func(ptr interface{}) { o.DiskUnknown = *ptr.(**dcom.Unknown) }
+		_s_ppDiskUnk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.DiskUnknown = nil
+				} else {
+					o.DiskUnknown = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DiskUnknown", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DiskUnknown, _s_ppDiskUnk, _ptr_ppDiskUnk); err != nil {
 			return err
 		}

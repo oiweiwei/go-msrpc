@@ -452,7 +452,18 @@ func (o *xxx_GetPathOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pbstrLocationPath := func(ptr interface{}) { o.LocationPath = *ptr.(**oaut.String) }
+		_s_pbstrLocationPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LocationPath = nil
+				} else {
+					o.LocationPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LocationPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LocationPath, _s_pbstrLocationPath, _ptr_pbstrLocationPath); err != nil {
 			return err
 		}
@@ -956,7 +967,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppSection := func(ptr interface{}) { o.Section = *ptr.(**iisa.AppHostElement) }
+		_s_ppSection := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElement:
+				if ptr == nil {
+					o.Section = nil
+				} else {
+					o.Section = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Section", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Section, _s_ppSection, _ptr_ppSection); err != nil {
 			return err
 		}
@@ -1163,7 +1185,18 @@ func (o *xxx_AddConfigSectionOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_bstrSectionName := func(ptr interface{}) { o.SectionName = *ptr.(**oaut.String) }
+		_s_bstrSectionName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SectionName = nil
+				} else {
+					o.SectionName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SectionName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SectionName, _s_bstrSectionName, _ptr_bstrSectionName); err != nil {
 			return err
 		}
@@ -1262,7 +1295,18 @@ func (o *xxx_AddConfigSectionOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ppAdminElement := func(ptr interface{}) { o.AdminElement = *ptr.(**iisa.AppHostElement) }
+		_s_ppAdminElement := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElement:
+				if ptr == nil {
+					o.AdminElement = nil
+				} else {
+					o.AdminElement = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AdminElement", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AdminElement, _s_ppAdminElement, _ptr_ppAdminElement); err != nil {
 			return err
 		}

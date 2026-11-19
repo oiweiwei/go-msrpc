@@ -460,7 +460,18 @@ func (o *xxx_AddObjectToRefresherOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_pContext := func(ptr interface{}) { o.Context = *ptr.(**wmi.Context) }
+		_s_pContext := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **wmi.Context:
+				if ptr == nil {
+					o.Context = nil
+				} else {
+					o.Context = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Context", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Context, _s_pContext, _ptr_pContext); err != nil {
 			return err
 		}
@@ -869,7 +880,18 @@ func (o *xxx_AddObjectToRefresherByTemplateOperation) UnmarshalNDRRequest(ctx co
 			}
 			return nil
 		})
-		_s_pTemplate := func(ptr interface{}) { o.Template = *ptr.(**wmi.ClassObject) }
+		_s_pTemplate := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **wmi.ClassObject:
+				if ptr == nil {
+					o.Template = nil
+				} else {
+					o.Template = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Template", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Template, _s_pTemplate, _ptr_pTemplate); err != nil {
 			return err
 		}
@@ -894,7 +916,18 @@ func (o *xxx_AddObjectToRefresherByTemplateOperation) UnmarshalNDRRequest(ctx co
 			}
 			return nil
 		})
-		_s_pContext := func(ptr interface{}) { o.Context = *ptr.(**wmi.Context) }
+		_s_pContext := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **wmi.Context:
+				if ptr == nil {
+					o.Context = nil
+				} else {
+					o.Context = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Context", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Context, _s_pContext, _ptr_pContext); err != nil {
 			return err
 		}
@@ -1295,7 +1328,18 @@ func (o *xxx_AddEnumToRefresherOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pContext := func(ptr interface{}) { o.Context = *ptr.(**wmi.Context) }
+		_s_pContext := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **wmi.Context:
+				if ptr == nil {
+					o.Context = nil
+				} else {
+					o.Context = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Context", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Context, _s_pContext, _ptr_pContext); err != nil {
 			return err
 		}
@@ -2072,7 +2116,18 @@ func (o *xxx_GetRemoteRefresherOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ppRemRefresher := func(ptr interface{}) { o.RemoteRefresher = *ptr.(**wmi.RemoteRefresher) }
+		_s_ppRemRefresher := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **wmi.RemoteRefresher:
+				if ptr == nil {
+					o.RemoteRefresher = nil
+				} else {
+					o.RemoteRefresher = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RemoteRefresher", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RemoteRefresher, _s_ppRemRefresher, _ptr_ppRemRefresher); err != nil {
 			return err
 		}

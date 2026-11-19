@@ -361,7 +361,18 @@ func (o *xxx_ResolveOXIDOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ppdsaOxidBindings := func(ptr interface{}) { o.OXIDBindings = *ptr.(**dcom.DualStringArray) }
+		_s_ppdsaOxidBindings := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.DualStringArray:
+				if ptr == nil {
+					o.OXIDBindings = nil
+				} else {
+					o.OXIDBindings = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OXIDBindings", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OXIDBindings, _s_ppdsaOxidBindings, _ptr_ppdsaOxidBindings); err != nil {
 			return err
 		}
@@ -849,7 +860,18 @@ func (o *xxx_ComplexPingOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_AddToSet := func(ptr interface{}) { o.AddToSet = *ptr.(*[]uint64) }
+		_s_AddToSet := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]uint64:
+				if ptr == nil {
+					o.AddToSet = nil
+				} else {
+					o.AddToSet = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AddToSet", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AddToSet, _s_AddToSet, _ptr_AddToSet); err != nil {
 			return err
 		}
@@ -880,7 +902,18 @@ func (o *xxx_ComplexPingOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_DelFromSet := func(ptr interface{}) { o.DeleteFromSet = *ptr.(*[]uint64) }
+		_s_DelFromSet := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]uint64:
+				if ptr == nil {
+					o.DeleteFromSet = nil
+				} else {
+					o.DeleteFromSet = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DeleteFromSet", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DeleteFromSet, _s_DelFromSet, _ptr_DelFromSet); err != nil {
 			return err
 		}
@@ -1406,7 +1439,18 @@ func (o *xxx_ResolveOxid2Operation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ppdsaOxidBindings := func(ptr interface{}) { o.OXIDBindings = *ptr.(**dcom.DualStringArray) }
+		_s_ppdsaOxidBindings := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.DualStringArray:
+				if ptr == nil {
+					o.OXIDBindings = nil
+				} else {
+					o.OXIDBindings = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OXIDBindings", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OXIDBindings, _s_ppdsaOxidBindings, _ptr_ppdsaOxidBindings); err != nil {
 			return err
 		}
@@ -1683,7 +1727,18 @@ func (o *xxx_ServerAlive2Operation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ppdsaOrBindings := func(ptr interface{}) { o.ObjectResolverBindings = *ptr.(**dcom.DualStringArray) }
+		_s_ppdsaOrBindings := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.DualStringArray:
+				if ptr == nil {
+					o.ObjectResolverBindings = nil
+				} else {
+					o.ObjectResolverBindings = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectResolverBindings", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectResolverBindings, _s_ppdsaOrBindings, _ptr_ppdsaOrBindings); err != nil {
 			return err
 		}

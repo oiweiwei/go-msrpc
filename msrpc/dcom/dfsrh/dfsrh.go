@@ -282,7 +282,18 @@ func (o *ADAttributeData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		}
 		return nil
 	})
-	_s_attributeName := func(ptr interface{}) { o.AttributeName = *ptr.(**oaut.String) }
+	_s_attributeName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **oaut.String:
+			if ptr == nil {
+				o.AttributeName = nil
+			} else {
+				o.AttributeName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AttributeName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AttributeName, _s_attributeName, _ptr_attributeName); err != nil {
 		return err
 	}
@@ -295,7 +306,18 @@ func (o *ADAttributeData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		}
 		return nil
 	})
-	_s_attributeValue := func(ptr interface{}) { o.AttributeValue = *ptr.(**oaut.String) }
+	_s_attributeValue := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **oaut.String:
+			if ptr == nil {
+				o.AttributeValue = nil
+			} else {
+				o.AttributeValue = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AttributeValue", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AttributeValue, _s_attributeValue, _ptr_attributeValue); err != nil {
 		return err
 	}
@@ -447,7 +469,18 @@ func (o *VersionVectorData) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_contentSetGuid := func(ptr interface{}) { o.ContentSetGUID = *ptr.(**oaut.String) }
+	_s_contentSetGuid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **oaut.String:
+			if ptr == nil {
+				o.ContentSetGUID = nil
+			} else {
+				o.ContentSetGUID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ContentSetGUID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ContentSetGUID, _s_contentSetGuid, _ptr_contentSetGuid); err != nil {
 		return err
 	}
@@ -460,7 +493,18 @@ func (o *VersionVectorData) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_versionVector := func(ptr interface{}) { o.VersionVector = *ptr.(**oaut.Variant) }
+	_s_versionVector := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **oaut.Variant:
+			if ptr == nil {
+				o.VersionVector = nil
+			} else {
+				o.VersionVector = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VersionVector", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.VersionVector, _s_versionVector, _ptr_versionVector); err != nil {
 		return err
 	}

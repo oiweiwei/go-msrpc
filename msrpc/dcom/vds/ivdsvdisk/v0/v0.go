@@ -408,7 +408,18 @@ func (o *xxx_OpenOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_ppOpenVDisk := func(ptr interface{}) { o.OpenVDisk = *ptr.(**vds.OpenVDisk) }
+		_s_ppOpenVDisk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.OpenVDisk:
+				if ptr == nil {
+					o.OpenVDisk = nil
+				} else {
+					o.OpenVDisk = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OpenVDisk", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OpenVDisk, _s_ppOpenVDisk, _ptr_ppOpenVDisk); err != nil {
 			return err
 		}
@@ -918,7 +929,18 @@ func (o *xxx_GetHostVolumeOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppVolume := func(ptr interface{}) { o.Volume = *ptr.(**vds.Volume) }
+		_s_ppVolume := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Volume:
+				if ptr == nil {
+					o.Volume = nil
+				} else {
+					o.Volume = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Volume", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Volume, _s_ppVolume, _ptr_ppVolume); err != nil {
 			return err
 		}
@@ -1163,7 +1185,18 @@ func (o *xxx_GetDeviceNameOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppDeviceName := func(ptr interface{}) { o.DeviceName = *ptr.(*string) }
+		_s_ppDeviceName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.DeviceName = ""
+				} else {
+					o.DeviceName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DeviceName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DeviceName, _s_ppDeviceName, _ptr_ppDeviceName); err != nil {
 			return err
 		}

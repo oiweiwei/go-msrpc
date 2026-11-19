@@ -463,7 +463,18 @@ func (o *xxx_CreateFileGroupOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_fileGroup := func(ptr interface{}) { o.FileGroup = *ptr.(**fsrm.FileGroup) }
+		_s_fileGroup := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.FileGroup:
+				if ptr == nil {
+					o.FileGroup = nil
+				} else {
+					o.FileGroup = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileGroup", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileGroup, _s_fileGroup, _ptr_fileGroup); err != nil {
 			return err
 		}
@@ -670,7 +681,18 @@ func (o *xxx_GetFileGroupOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_name := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_name := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 			return err
 		}
@@ -769,7 +791,18 @@ func (o *xxx_GetFileGroupOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_fileGroup := func(ptr interface{}) { o.FileGroup = *ptr.(**fsrm.FileGroup) }
+		_s_fileGroup := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.FileGroup:
+				if ptr == nil {
+					o.FileGroup = nil
+				} else {
+					o.FileGroup = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileGroup", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileGroup, _s_fileGroup, _ptr_fileGroup); err != nil {
 			return err
 		}
@@ -1046,7 +1079,18 @@ func (o *xxx_EnumFileGroupsOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_fileGroups := func(ptr interface{}) { o.FileGroups = *ptr.(**fsrm.CommittableCollection) }
+		_s_fileGroups := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.CommittableCollection:
+				if ptr == nil {
+					o.FileGroups = nil
+				} else {
+					o.FileGroups = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileGroups", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileGroups, _s_fileGroups, _ptr_fileGroups); err != nil {
 			return err
 		}
@@ -1258,7 +1302,18 @@ func (o *xxx_ExportFileGroupsOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_fileGroupNamesArray := func(ptr interface{}) { o.FileGroupNamesArray = *ptr.(**oaut.Variant) }
+		_s_fileGroupNamesArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.FileGroupNamesArray = nil
+				} else {
+					o.FileGroupNamesArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileGroupNamesArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileGroupNamesArray, _s_fileGroupNamesArray, _ptr_fileGroupNamesArray); err != nil {
 			return err
 		}
@@ -1357,7 +1412,18 @@ func (o *xxx_ExportFileGroupsOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_serializedFileGroups := func(ptr interface{}) { o.SerializedFileGroups = *ptr.(**oaut.String) }
+		_s_serializedFileGroups := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SerializedFileGroups = nil
+				} else {
+					o.SerializedFileGroups = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SerializedFileGroups", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SerializedFileGroups, _s_serializedFileGroups, _ptr_serializedFileGroups); err != nil {
 			return err
 		}
@@ -1598,7 +1664,18 @@ func (o *xxx_ImportFileGroupsOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_serializedFileGroups := func(ptr interface{}) { o.SerializedFileGroups = *ptr.(**oaut.String) }
+		_s_serializedFileGroups := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SerializedFileGroups = nil
+				} else {
+					o.SerializedFileGroups = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SerializedFileGroups", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SerializedFileGroups, _s_serializedFileGroups, _ptr_serializedFileGroups); err != nil {
 			return err
 		}
@@ -1617,7 +1694,18 @@ func (o *xxx_ImportFileGroupsOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_fileGroupNamesArray := func(ptr interface{}) { o.FileGroupNamesArray = *ptr.(**oaut.Variant) }
+		_s_fileGroupNamesArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.FileGroupNamesArray = nil
+				} else {
+					o.FileGroupNamesArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileGroupNamesArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileGroupNamesArray, _s_fileGroupNamesArray, _ptr_fileGroupNamesArray); err != nil {
 			return err
 		}
@@ -1716,7 +1804,18 @@ func (o *xxx_ImportFileGroupsOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_fileGroups := func(ptr interface{}) { o.FileGroups = *ptr.(**fsrm.CommittableCollection) }
+		_s_fileGroups := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.CommittableCollection:
+				if ptr == nil {
+					o.FileGroups = nil
+				} else {
+					o.FileGroups = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileGroups", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileGroups, _s_fileGroups, _ptr_fileGroups); err != nil {
 			return err
 		}

@@ -568,7 +568,18 @@ func (o *xxx_GetCommitPathOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pbstrCommitPath := func(ptr interface{}) { o.CommitPath = *ptr.(**oaut.String) }
+		_s_pbstrCommitPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.CommitPath = nil
+				} else {
+					o.CommitPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CommitPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CommitPath, _s_pbstrCommitPath, _ptr_pbstrCommitPath); err != nil {
 			return err
 		}
@@ -771,7 +782,18 @@ func (o *xxx_SetCommitPathOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_bstrCommitPath := func(ptr interface{}) { o.CommitPath = *ptr.(**oaut.String) }
+		_s_bstrCommitPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.CommitPath = nil
+				} else {
+					o.CommitPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CommitPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CommitPath, _s_bstrCommitPath, _ptr_bstrCommitPath); err != nil {
 			return err
 		}

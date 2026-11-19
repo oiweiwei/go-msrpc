@@ -502,7 +502,18 @@ func (o *xxx_GetSeqAndTxViaExportOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_prgbExportCookie := func(ptr interface{}) { o.ExportCookie = *ptr.(*[]byte) }
+		_s_prgbExportCookie := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.ExportCookie = nil
+				} else {
+					o.ExportCookie = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExportCookie", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ExportCookie, _s_prgbExportCookie, _ptr_prgbExportCookie); err != nil {
 			return err
 		}
@@ -850,7 +861,18 @@ func (o *xxx_GetSeqAndTxViaTransmitterOperation) UnmarshalNDRResponse(ctx contex
 			}
 			return nil
 		})
-		_s_prgbTransmitterBuffer := func(ptr interface{}) { o.TransmitterBuffer = *ptr.(*[]byte) }
+		_s_prgbTransmitterBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.TransmitterBuffer = nil
+				} else {
+					o.TransmitterBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TransmitterBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TransmitterBuffer, _s_prgbTransmitterBuffer, _ptr_prgbTransmitterBuffer); err != nil {
 			return err
 		}
@@ -1234,7 +1256,18 @@ func (o *xxx_GetTxViaExportOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_prgbExportCookie := func(ptr interface{}) { o.ExportCookie = *ptr.(*[]byte) }
+		_s_prgbExportCookie := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.ExportCookie = nil
+				} else {
+					o.ExportCookie = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExportCookie", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ExportCookie, _s_prgbExportCookie, _ptr_prgbExportCookie); err != nil {
 			return err
 		}
@@ -1562,7 +1595,18 @@ func (o *xxx_GetTxViaTransmitterOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_prgbTransmitterBuffer := func(ptr interface{}) { o.TransmitterBuffer = *ptr.(*[]byte) }
+		_s_prgbTransmitterBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.TransmitterBuffer = nil
+				} else {
+					o.TransmitterBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TransmitterBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TransmitterBuffer, _s_prgbTransmitterBuffer, _ptr_prgbTransmitterBuffer); err != nil {
 			return err
 		}

@@ -836,7 +836,18 @@ func (o *xxx_LoadOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_pimkName := func(ptr interface{}) { o.Name = *ptr.(**urlmon.Moniker) }
+		_s_pimkName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_pimkName, _ptr_pimkName); err != nil {
 			return err
 		}
@@ -855,7 +866,18 @@ func (o *xxx_LoadOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_pibc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		_s_pibc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.BindContext:
+				if ptr == nil {
+					o.BindContext = nil
+				} else {
+					o.BindContext = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BindContext", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BindContext, _s_pibc, _ptr_pibc); err != nil {
 			return err
 		}
@@ -1165,7 +1187,18 @@ func (o *xxx_SaveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_pimkName := func(ptr interface{}) { o.Name = *ptr.(**urlmon.Moniker) }
+		_s_pimkName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_pimkName, _ptr_pimkName); err != nil {
 			return err
 		}
@@ -1184,7 +1217,18 @@ func (o *xxx_SaveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		_s_pbc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.BindContext:
+				if ptr == nil {
+					o.BindContext = nil
+				} else {
+					o.BindContext = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BindContext", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
@@ -1480,7 +1524,18 @@ func (o *xxx_SaveCompletedOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pimkName := func(ptr interface{}) { o.Name = *ptr.(**urlmon.Moniker) }
+		_s_pimkName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_pimkName, _ptr_pimkName); err != nil {
 			return err
 		}
@@ -1499,7 +1554,18 @@ func (o *xxx_SaveCompletedOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pibc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		_s_pibc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.BindContext:
+				if ptr == nil {
+					o.BindContext = nil
+				} else {
+					o.BindContext = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BindContext", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BindContext, _s_pibc, _ptr_pibc); err != nil {
 			return err
 		}
@@ -1809,7 +1875,18 @@ func (o *xxx_GetCurMonikerOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppimkName := func(ptr interface{}) { o.Name = *ptr.(**urlmon.Moniker) }
+		_s_ppimkName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_ppimkName, _ptr_ppimkName); err != nil {
 			return err
 		}

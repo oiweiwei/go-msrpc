@@ -1087,7 +1087,18 @@ func (o *xxx_CloneOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_collection := func(ptr interface{}) { o.Collection = *ptr.(**fsrm.MutableCollection) }
+		_s_collection := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.MutableCollection:
+				if ptr == nil {
+					o.Collection = nil
+				} else {
+					o.Collection = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Collection", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Collection, _s_collection, _ptr_collection); err != nil {
 			return err
 		}

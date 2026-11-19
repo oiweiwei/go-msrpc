@@ -244,7 +244,18 @@ func (o *xxx_AppCreate2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_szMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_szMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_szMDPath, _ptr_szMDPath); err != nil {
 			return err
 		}

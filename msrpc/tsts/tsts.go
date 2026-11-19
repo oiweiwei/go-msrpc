@@ -228,7 +228,18 @@ func (o *ProcessInformationNT4) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		// FIXME: unknown type ProcessSid
 		return nil
 	})
-	_s_ProcessSid := func(ptr interface{}) { o.ProcessSID = *ptr.(*[]byte) }
+	_s_ProcessSid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.ProcessSID = nil
+			} else {
+				o.ProcessSID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProcessSID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ProcessSID, _s_ProcessSid, _ptr_ProcessSid); err != nil {
 		return err
 	}
@@ -376,7 +387,18 @@ func (o *UnicodeString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.Buffer = strings.TrimRight(string(utf16.Decode(_Buffer_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_Buffer := func(ptr interface{}) { o.Buffer = *ptr.(*string) }
+	_s_Buffer := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Buffer = ""
+			} else {
+				o.Buffer = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Buffer, _s_Buffer, _ptr_Buffer); err != nil {
 		return err
 	}
@@ -802,7 +824,18 @@ func (o *AllProcessesInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_pTsProcessInfo := func(ptr interface{}) { o.ProcessInfo = *ptr.(**SystemProcessInformation) }
+	_s_pTsProcessInfo := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SystemProcessInformation:
+			if ptr == nil {
+				o.ProcessInfo = nil
+			} else {
+				o.ProcessInfo = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProcessInfo", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ProcessInfo, _s_pTsProcessInfo, _ptr_pTsProcessInfo); err != nil {
 		return err
 	}
@@ -834,7 +867,18 @@ func (o *AllProcessesInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_pSid := func(ptr interface{}) { o.SID = *ptr.(*[]byte) }
+	_s_pSid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_pSid, _ptr_pSid); err != nil {
 		return err
 	}
@@ -975,7 +1019,18 @@ func (o *NT6UnicodeString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		o.Buffer = strings.TrimRight(string(utf16.Decode(_Buffer_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_Buffer := func(ptr interface{}) { o.Buffer = *ptr.(*string) }
+	_s_Buffer := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Buffer = ""
+			} else {
+				o.Buffer = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Buffer, _s_Buffer, _ptr_Buffer); err != nil {
 		return err
 	}
@@ -1403,7 +1458,18 @@ func (o *AllProcessesInfoNT6) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		}
 		return nil
 	})
-	_s_pTsProcessInfo := func(ptr interface{}) { o.ProcessInfo = *ptr.(**SystemProcessInformationNT6) }
+	_s_pTsProcessInfo := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SystemProcessInformationNT6:
+			if ptr == nil {
+				o.ProcessInfo = nil
+			} else {
+				o.ProcessInfo = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProcessInfo", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ProcessInfo, _s_pTsProcessInfo, _ptr_pTsProcessInfo); err != nil {
 		return err
 	}
@@ -1435,7 +1501,18 @@ func (o *AllProcessesInfoNT6) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		}
 		return nil
 	})
-	_s_pSid := func(ptr interface{}) { o.SID = *ptr.(*[]byte) }
+	_s_pSid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_pSid, _ptr_pSid); err != nil {
 		return err
 	}
@@ -2569,7 +2646,18 @@ func (o *ClientID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		// FIXME: unknown type UniqueProcess
 		return nil
 	})
-	_s_UniqueProcess := func(ptr interface{}) { o.UniqueProcess = *ptr.(*[]byte) }
+	_s_UniqueProcess := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.UniqueProcess = nil
+			} else {
+				o.UniqueProcess = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UniqueProcess", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.UniqueProcess, _s_UniqueProcess, _ptr_UniqueProcess); err != nil {
 		return err
 	}
@@ -2577,7 +2665,18 @@ func (o *ClientID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		// FIXME: unknown type UniqueThread
 		return nil
 	})
-	_s_UniqueThread := func(ptr interface{}) { o.UniqueThread = *ptr.(*[]byte) }
+	_s_UniqueThread := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.UniqueThread = nil
+			} else {
+				o.UniqueThread = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UniqueThread", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.UniqueThread, _s_UniqueThread, _ptr_UniqueThread); err != nil {
 		return err
 	}
@@ -2730,7 +2829,18 @@ func (o *SystemThreadInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		// FIXME: unknown type StartAddress
 		return nil
 	})
-	_s_StartAddress := func(ptr interface{}) { o.StartAddress = *ptr.(*[]byte) }
+	_s_StartAddress := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.StartAddress = nil
+			} else {
+				o.StartAddress = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StartAddress", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.StartAddress, _s_StartAddress, _ptr_StartAddress); err != nil {
 		return err
 	}

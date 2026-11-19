@@ -449,7 +449,18 @@ func (o *xxx_CreateObjectOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_domainControllerName := func(ptr interface{}) { o.DomainControllerName = *ptr.(**oaut.String) }
+		_s_domainControllerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DomainControllerName = nil
+				} else {
+					o.DomainControllerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DomainControllerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DomainControllerName, _s_domainControllerName, _ptr_domainControllerName); err != nil {
 			return err
 		}
@@ -468,7 +479,18 @@ func (o *xxx_CreateObjectOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_distinguishedName := func(ptr interface{}) { o.DistinguishedName = *ptr.(**oaut.String) }
+		_s_distinguishedName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DistinguishedName = nil
+				} else {
+					o.DistinguishedName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DistinguishedName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DistinguishedName, _s_distinguishedName, _ptr_distinguishedName); err != nil {
 			return err
 		}
@@ -488,13 +510,35 @@ func (o *xxx_CreateObjectOperation) UnmarshalNDRRequest(ctx context.Context, w n
 				}
 				return nil
 			})
-			_s_attributes := func(ptr interface{}) { o.Attributes = *ptr.(**oaut.SafeArray) }
+			_s_attributes := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **oaut.SafeArray:
+					if ptr == nil {
+						o.Attributes = nil
+					} else {
+						o.Attributes = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Attributes", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Attributes, _s_attributes, _ptr_attributes); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_attributes := func(ptr interface{}) { o.Attributes = *ptr.(**oaut.SafeArray) }
+		_s_attributes := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Attributes = nil
+				} else {
+					o.Attributes = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Attributes", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Attributes, _s_attributes, _ptr_attributes); err != nil {
 			return err
 		}
@@ -513,7 +557,18 @@ func (o *xxx_CreateObjectOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_verifyNameDomainControllerName := func(ptr interface{}) { o.VerifyNameDomainControllerName = *ptr.(**oaut.String) }
+		_s_verifyNameDomainControllerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.VerifyNameDomainControllerName = nil
+				} else {
+					o.VerifyNameDomainControllerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VerifyNameDomainControllerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VerifyNameDomainControllerName, _s_verifyNameDomainControllerName, _ptr_verifyNameDomainControllerName); err != nil {
 			return err
 		}
@@ -820,7 +875,18 @@ func (o *xxx_DeleteObjectOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_domainControllerName := func(ptr interface{}) { o.DomainControllerName = *ptr.(**oaut.String) }
+		_s_domainControllerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DomainControllerName = nil
+				} else {
+					o.DomainControllerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DomainControllerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DomainControllerName, _s_domainControllerName, _ptr_domainControllerName); err != nil {
 			return err
 		}
@@ -839,7 +905,18 @@ func (o *xxx_DeleteObjectOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_distinguishedName := func(ptr interface{}) { o.DistinguishedName = *ptr.(**oaut.String) }
+		_s_distinguishedName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DistinguishedName = nil
+				} else {
+					o.DistinguishedName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DistinguishedName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DistinguishedName, _s_distinguishedName, _ptr_distinguishedName); err != nil {
 			return err
 		}
@@ -1177,7 +1254,18 @@ func (o *xxx_ModifyObjectOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_domainControllerName := func(ptr interface{}) { o.DomainControllerName = *ptr.(**oaut.String) }
+		_s_domainControllerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DomainControllerName = nil
+				} else {
+					o.DomainControllerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DomainControllerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DomainControllerName, _s_domainControllerName, _ptr_domainControllerName); err != nil {
 			return err
 		}
@@ -1196,7 +1284,18 @@ func (o *xxx_ModifyObjectOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_distinguishedName := func(ptr interface{}) { o.DistinguishedName = *ptr.(**oaut.String) }
+		_s_distinguishedName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DistinguishedName = nil
+				} else {
+					o.DistinguishedName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DistinguishedName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DistinguishedName, _s_distinguishedName, _ptr_distinguishedName); err != nil {
 			return err
 		}
@@ -1216,13 +1315,35 @@ func (o *xxx_ModifyObjectOperation) UnmarshalNDRRequest(ctx context.Context, w n
 				}
 				return nil
 			})
-			_s_attributes := func(ptr interface{}) { o.Attributes = *ptr.(**oaut.SafeArray) }
+			_s_attributes := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **oaut.SafeArray:
+					if ptr == nil {
+						o.Attributes = nil
+					} else {
+						o.Attributes = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Attributes", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Attributes, _s_attributes, _ptr_attributes); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_attributes := func(ptr interface{}) { o.Attributes = *ptr.(**oaut.SafeArray) }
+		_s_attributes := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Attributes = nil
+				} else {
+					o.Attributes = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Attributes", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Attributes, _s_attributes, _ptr_attributes); err != nil {
 			return err
 		}

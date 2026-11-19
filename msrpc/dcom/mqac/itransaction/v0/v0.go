@@ -572,7 +572,18 @@ func (o *xxx_AbortOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_pboidReason := func(ptr interface{}) { o.Reason = *ptr.(**mqac.BOID) }
+		_s_pboidReason := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.BOID:
+				if ptr == nil {
+					o.Reason = nil
+				} else {
+					o.Reason = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Reason", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Reason, _s_pboidReason, _ptr_pboidReason); err != nil {
 			return err
 		}

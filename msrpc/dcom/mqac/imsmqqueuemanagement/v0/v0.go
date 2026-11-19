@@ -627,7 +627,18 @@ func (o *xxx_GetBytesInJournalOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pvBytesInJournal := func(ptr interface{}) { o.BytesInJournal = *ptr.(**oaut.Variant) }
+		_s_pvBytesInJournal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.BytesInJournal = nil
+				} else {
+					o.BytesInJournal = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BytesInJournal", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BytesInJournal, _s_pvBytesInJournal, _ptr_pvBytesInJournal); err != nil {
 			return err
 		}
@@ -886,7 +897,18 @@ func (o *xxx_EODGetReceiveInfoOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pvCollection := func(ptr interface{}) { o.Collection = *ptr.(**oaut.Variant) }
+		_s_pvCollection := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Collection = nil
+				} else {
+					o.Collection = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Collection", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Collection, _s_pvCollection, _ptr_pvCollection); err != nil {
 			return err
 		}

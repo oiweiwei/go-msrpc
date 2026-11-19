@@ -444,7 +444,18 @@ func (o *xxx_GetPublisherIDOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pbstrPublisherID := func(ptr interface{}) { o.PublisherID = *ptr.(**oaut.String) }
+		_s_pbstrPublisherID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PublisherID = nil
+				} else {
+					o.PublisherID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PublisherID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PublisherID, _s_pbstrPublisherID, _ptr_pbstrPublisherID); err != nil {
 			return err
 		}
@@ -645,7 +656,18 @@ func (o *xxx_SetPublisherIDOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrPublisherID := func(ptr interface{}) { o.PublisherID = *ptr.(**oaut.String) }
+		_s_bstrPublisherID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PublisherID = nil
+				} else {
+					o.PublisherID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PublisherID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PublisherID, _s_bstrPublisherID, _ptr_bstrPublisherID); err != nil {
 			return err
 		}
@@ -954,7 +976,18 @@ func (o *xxx_GetMultiInterfacePublisherFilterClassIDOperation) UnmarshalNDRRespo
 			}
 			return nil
 		})
-		_s_pbstrPubFilCLSID := func(ptr interface{}) { o.PublisherFilterClassID = *ptr.(**oaut.String) }
+		_s_pbstrPubFilCLSID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PublisherFilterClassID = nil
+				} else {
+					o.PublisherFilterClassID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PublisherFilterClassID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PublisherFilterClassID, _s_pbstrPubFilCLSID, _ptr_pbstrPubFilCLSID); err != nil {
 			return err
 		}
@@ -1159,7 +1192,18 @@ func (o *xxx_SetMultiInterfacePublisherFilterClassIDOperation) UnmarshalNDRReque
 			}
 			return nil
 		})
-		_s_bstrPubFilCLSID := func(ptr interface{}) { o.PublisherFilterClassID = *ptr.(**oaut.String) }
+		_s_bstrPubFilCLSID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PublisherFilterClassID = nil
+				} else {
+					o.PublisherFilterClassID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PublisherFilterClassID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PublisherFilterClassID, _s_bstrPubFilCLSID, _ptr_bstrPubFilCLSID); err != nil {
 			return err
 		}

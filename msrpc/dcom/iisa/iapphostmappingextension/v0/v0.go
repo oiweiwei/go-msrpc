@@ -443,7 +443,18 @@ func (o *xxx_GetSiteNameFromSiteIDOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_pbstrSiteName := func(ptr interface{}) { o.SiteName = *ptr.(**oaut.String) }
+		_s_pbstrSiteName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SiteName = nil
+				} else {
+					o.SiteName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SiteName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SiteName, _s_pbstrSiteName, _ptr_pbstrSiteName); err != nil {
 			return err
 		}
@@ -656,7 +667,18 @@ func (o *xxx_GetSiteIDFromSiteNameOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_bstrSiteName := func(ptr interface{}) { o.SiteName = *ptr.(**oaut.String) }
+		_s_bstrSiteName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SiteName = nil
+				} else {
+					o.SiteName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SiteName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SiteName, _s_bstrSiteName, _ptr_bstrSiteName); err != nil {
 			return err
 		}
@@ -998,7 +1020,18 @@ func (o *xxx_GetSiteElementFromSiteIDOperation) UnmarshalNDRResponse(ctx context
 			}
 			return nil
 		})
-		_s_ppSiteElement := func(ptr interface{}) { o.SiteElement = *ptr.(**iisa.AppHostElement) }
+		_s_ppSiteElement := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElement:
+				if ptr == nil {
+					o.SiteElement = nil
+				} else {
+					o.SiteElement = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SiteElement", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SiteElement, _s_ppSiteElement, _ptr_ppSiteElement); err != nil {
 			return err
 		}
@@ -1238,7 +1271,18 @@ func (o *xxx_MapPathOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_bstrSiteName := func(ptr interface{}) { o.SiteName = *ptr.(**oaut.String) }
+		_s_bstrSiteName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SiteName = nil
+				} else {
+					o.SiteName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SiteName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SiteName, _s_bstrSiteName, _ptr_bstrSiteName); err != nil {
 			return err
 		}
@@ -1257,7 +1301,18 @@ func (o *xxx_MapPathOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_bstrVirtualPath := func(ptr interface{}) { o.VirtualPath = *ptr.(**oaut.String) }
+		_s_bstrVirtualPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.VirtualPath = nil
+				} else {
+					o.VirtualPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VirtualPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VirtualPath, _s_bstrVirtualPath, _ptr_bstrVirtualPath); err != nil {
 			return err
 		}
@@ -1410,7 +1465,18 @@ func (o *xxx_MapPathOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pbstrPhysicalPath := func(ptr interface{}) { o.PhysicalPath = *ptr.(**oaut.String) }
+		_s_pbstrPhysicalPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PhysicalPath = nil
+				} else {
+					o.PhysicalPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PhysicalPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PhysicalPath, _s_pbstrPhysicalPath, _ptr_pbstrPhysicalPath); err != nil {
 			return err
 		}
@@ -1429,7 +1495,18 @@ func (o *xxx_MapPathOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppVirtualDirectoryElement := func(ptr interface{}) { o.VirtualDirectoryElement = *ptr.(**iisa.AppHostElement) }
+		_s_ppVirtualDirectoryElement := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElement:
+				if ptr == nil {
+					o.VirtualDirectoryElement = nil
+				} else {
+					o.VirtualDirectoryElement = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VirtualDirectoryElement", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VirtualDirectoryElement, _s_ppVirtualDirectoryElement, _ptr_ppVirtualDirectoryElement); err != nil {
 			return err
 		}
@@ -1448,7 +1525,18 @@ func (o *xxx_MapPathOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppApplicationElement := func(ptr interface{}) { o.ApplicationElement = *ptr.(**iisa.AppHostElement) }
+		_s_ppApplicationElement := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElement:
+				if ptr == nil {
+					o.ApplicationElement = nil
+				} else {
+					o.ApplicationElement = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ApplicationElement", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ApplicationElement, _s_ppApplicationElement, _ptr_ppApplicationElement); err != nil {
 			return err
 		}

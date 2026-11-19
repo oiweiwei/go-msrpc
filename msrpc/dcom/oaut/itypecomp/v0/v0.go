@@ -486,7 +486,18 @@ func (o *xxx_BindOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_ppTInfo := func(ptr interface{}) { o.TypeInfo = *ptr.(**oaut.TypeInfo) }
+		_s_ppTInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.TypeInfo:
+				if ptr == nil {
+					o.TypeInfo = nil
+				} else {
+					o.TypeInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TypeInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TypeInfo, _s_ppTInfo, _ptr_ppTInfo); err != nil {
 			return err
 		}
@@ -511,7 +522,18 @@ func (o *xxx_BindOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_ppFuncDesc := func(ptr interface{}) { o.FuncDesc = *ptr.(**oaut.FuncDesc) }
+		_s_ppFuncDesc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.FuncDesc:
+				if ptr == nil {
+					o.FuncDesc = nil
+				} else {
+					o.FuncDesc = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FuncDesc", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FuncDesc, _s_ppFuncDesc, _ptr_ppFuncDesc); err != nil {
 			return err
 		}
@@ -530,7 +552,18 @@ func (o *xxx_BindOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_ppVarDesc := func(ptr interface{}) { o.VarDesc = *ptr.(**oaut.VarDesc) }
+		_s_ppVarDesc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.VarDesc:
+				if ptr == nil {
+					o.VarDesc = nil
+				} else {
+					o.VarDesc = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VarDesc", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VarDesc, _s_ppVarDesc, _ptr_ppVarDesc); err != nil {
 			return err
 		}
@@ -549,7 +582,18 @@ func (o *xxx_BindOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_ppTypeComp := func(ptr interface{}) { o.TypeComp = *ptr.(**oaut.TypeComp) }
+		_s_ppTypeComp := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.TypeComp:
+				if ptr == nil {
+					o.TypeComp = nil
+				} else {
+					o.TypeComp = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TypeComp", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TypeComp, _s_ppTypeComp, _ptr_ppTypeComp); err != nil {
 			return err
 		}
@@ -906,7 +950,18 @@ func (o *xxx_BindTypeOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_ppTInfo := func(ptr interface{}) { o.TypeInfo = *ptr.(**oaut.TypeInfo) }
+		_s_ppTInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.TypeInfo:
+				if ptr == nil {
+					o.TypeInfo = nil
+				} else {
+					o.TypeInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TypeInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TypeInfo, _s_ppTInfo, _ptr_ppTInfo); err != nil {
 			return err
 		}

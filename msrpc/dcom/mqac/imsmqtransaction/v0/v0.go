@@ -557,7 +557,18 @@ func (o *xxx_CommitOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_fRetaining := func(ptr interface{}) { o.Retaining = *ptr.(**oaut.Variant) }
+		_s_fRetaining := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Retaining = nil
+				} else {
+					o.Retaining = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Retaining", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Retaining, _s_fRetaining, _ptr_fRetaining); err != nil {
 			return err
 		}
@@ -576,7 +587,18 @@ func (o *xxx_CommitOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_grfTC := func(ptr interface{}) { o.TC = *ptr.(**oaut.Variant) }
+		_s_grfTC := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.TC = nil
+				} else {
+					o.TC = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TC", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TC, _s_grfTC, _ptr_grfTC); err != nil {
 			return err
 		}
@@ -595,7 +617,18 @@ func (o *xxx_CommitOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_grfRM := func(ptr interface{}) { o.RM = *ptr.(**oaut.Variant) }
+		_s_grfRM := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.RM = nil
+				} else {
+					o.RM = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RM", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RM, _s_grfRM, _ptr_grfRM); err != nil {
 			return err
 		}
@@ -883,7 +916,18 @@ func (o *xxx_AbortOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_fRetaining := func(ptr interface{}) { o.Retaining = *ptr.(**oaut.Variant) }
+		_s_fRetaining := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Retaining = nil
+				} else {
+					o.Retaining = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Retaining", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Retaining, _s_fRetaining, _ptr_fRetaining); err != nil {
 			return err
 		}
@@ -902,7 +946,18 @@ func (o *xxx_AbortOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_fAsync := func(ptr interface{}) { o.Async = *ptr.(**oaut.Variant) }
+		_s_fAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_fAsync, _ptr_fAsync); err != nil {
 			return err
 		}

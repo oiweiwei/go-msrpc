@@ -1565,7 +1565,18 @@ func (o *xxx_CopyToOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pstm := func(ptr interface{}) { o.Stream = *ptr.(**urlmon.Stream) }
+		_s_pstm := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Stream:
+				if ptr == nil {
+					o.Stream = nil
+				} else {
+					o.Stream = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Stream", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Stream, _s_pstm, _ptr_pstm); err != nil {
 			return err
 		}
@@ -3147,7 +3158,18 @@ func (o *xxx_CloneOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ppstm := func(ptr interface{}) { o.Stream = *ptr.(**urlmon.Stream) }
+		_s_ppstm := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Stream:
+				if ptr == nil {
+					o.Stream = nil
+				} else {
+					o.Stream = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Stream", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Stream, _s_ppstm, _ptr_ppstm); err != nil {
 			return err
 		}

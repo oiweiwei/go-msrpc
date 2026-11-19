@@ -398,7 +398,18 @@ func (o *xxx_CloneOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ppInterface := func(ptr interface{}) { o.Interface = *ptr.(**comev.EnumEventObject) }
+		_s_ppInterface := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **comev.EnumEventObject:
+				if ptr == nil {
+					o.Interface = nil
+				} else {
+					o.Interface = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Interface", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Interface, _s_ppInterface, _ptr_ppInterface); err != nil {
 			return err
 		}
@@ -729,7 +740,18 @@ func (o *xxx_NextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 				}
 				return nil
 			})
-			_s_ppInterface := func(ptr interface{}) { o.Interface[i1] = *ptr.(**dcom.Unknown) }
+			_s_ppInterface := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **dcom.Unknown:
+					if ptr == nil {
+						o.Interface[i1] = nil
+					} else {
+						o.Interface[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Interface[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Interface[i1], _s_ppInterface, _ptr_ppInterface); err != nil {
 				return err
 			}

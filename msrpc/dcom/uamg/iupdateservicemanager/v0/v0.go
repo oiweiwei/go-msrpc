@@ -461,7 +461,18 @@ func (o *xxx_GetServicesOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**uamg.UpdateServiceCollection) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **uamg.UpdateServiceCollection:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}
@@ -665,7 +676,18 @@ func (o *xxx_RegisterServiceWithAUOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_serviceID := func(ptr interface{}) { o.ServiceID = *ptr.(**oaut.String) }
+		_s_serviceID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ServiceID = nil
+				} else {
+					o.ServiceID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServiceID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServiceID, _s_serviceID, _ptr_serviceID); err != nil {
 			return err
 		}
@@ -925,7 +947,18 @@ func (o *xxx_RemoveServiceOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_serviceID := func(ptr interface{}) { o.ServiceID = *ptr.(**oaut.String) }
+		_s_serviceID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ServiceID = nil
+				} else {
+					o.ServiceID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServiceID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServiceID, _s_serviceID, _ptr_serviceID); err != nil {
 			return err
 		}
@@ -1218,7 +1251,18 @@ func (o *xxx_AddScanPackageServiceOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_serviceName := func(ptr interface{}) { o.ServiceName = *ptr.(**oaut.String) }
+		_s_serviceName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ServiceName = nil
+				} else {
+					o.ServiceName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServiceName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServiceName, _s_serviceName, _ptr_serviceName); err != nil {
 			return err
 		}
@@ -1237,7 +1281,18 @@ func (o *xxx_AddScanPackageServiceOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_scanFileLocation := func(ptr interface{}) { o.ScanFileLocation = *ptr.(**oaut.String) }
+		_s_scanFileLocation := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ScanFileLocation = nil
+				} else {
+					o.ScanFileLocation = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ScanFileLocation", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ScanFileLocation, _s_scanFileLocation, _ptr_scanFileLocation); err != nil {
 			return err
 		}
@@ -1342,7 +1397,18 @@ func (o *xxx_AddScanPackageServiceOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_ppService := func(ptr interface{}) { o.Service = *ptr.(**uamg.UpdateService) }
+		_s_ppService := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **uamg.UpdateService:
+				if ptr == nil {
+					o.Service = nil
+				} else {
+					o.Service = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Service", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Service, _s_ppService, _ptr_ppService); err != nil {
 			return err
 		}
@@ -1575,7 +1641,18 @@ func (o *xxx_SetOptionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_optionName := func(ptr interface{}) { o.OptionName = *ptr.(**oaut.String) }
+		_s_optionName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.OptionName = nil
+				} else {
+					o.OptionName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OptionName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OptionName, _s_optionName, _ptr_optionName); err != nil {
 			return err
 		}

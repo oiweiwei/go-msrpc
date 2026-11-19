@@ -556,7 +556,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppMethod := func(ptr interface{}) { o.Method = *ptr.(**iisa.AppHostMethod) }
+		_s_ppMethod := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostMethod:
+				if ptr == nil {
+					o.Method = nil
+				} else {
+					o.Method = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Method", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Method, _s_ppMethod, _ptr_ppMethod); err != nil {
 			return err
 		}

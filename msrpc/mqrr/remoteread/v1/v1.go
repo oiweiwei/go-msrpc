@@ -790,7 +790,18 @@ func (o *SectionBuffer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pSectionBuffer := func(ptr interface{}) { o.SectionBuffer = *ptr.(*[]byte) }
+	_s_pSectionBuffer := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.SectionBuffer = nil
+			} else {
+				o.SectionBuffer = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SectionBuffer", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SectionBuffer, _s_pSectionBuffer, _ptr_pSectionBuffer); err != nil {
 		return err
 	}
@@ -2572,7 +2583,18 @@ func (o *xxx_StartReceiveOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ppPacketSections := func(ptr interface{}) { o.PacketSections = *ptr.(*[]*SectionBuffer) }
+		_s_ppPacketSections := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*SectionBuffer:
+				if ptr == nil {
+					o.PacketSections = nil
+				} else {
+					o.PacketSections = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketSections", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PacketSections, _s_ppPacketSections, _ptr_ppPacketSections); err != nil {
 			return err
 		}
@@ -4536,7 +4558,18 @@ func (o *xxx_StartTransactionalReceiveOperation) UnmarshalNDRResponse(ctx contex
 			}
 			return nil
 		})
-		_s_ppPacketSections := func(ptr interface{}) { o.PacketSections = *ptr.(*[]*SectionBuffer) }
+		_s_ppPacketSections := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*SectionBuffer:
+				if ptr == nil {
+					o.PacketSections = nil
+				} else {
+					o.PacketSections = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketSections", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PacketSections, _s_ppPacketSections, _ptr_ppPacketSections); err != nil {
 			return err
 		}

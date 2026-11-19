@@ -378,7 +378,18 @@ func (o *xxx_GetInvalidValueOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pbstrValue := func(ptr interface{}) { o.Value = *ptr.(**oaut.String) }
+		_s_pbstrValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_pbstrValue, _ptr_pbstrValue); err != nil {
 			return err
 		}
@@ -635,7 +646,18 @@ func (o *xxx_GetValidationFailureReasonOperation) UnmarshalNDRResponse(ctx conte
 			}
 			return nil
 		})
-		_s_pbstrValidationReason := func(ptr interface{}) { o.ValidationReason = *ptr.(**oaut.String) }
+		_s_pbstrValidationReason := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ValidationReason = nil
+				} else {
+					o.ValidationReason = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ValidationReason", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ValidationReason, _s_pbstrValidationReason, _ptr_pbstrValidationReason); err != nil {
 			return err
 		}
@@ -894,7 +916,18 @@ func (o *xxx_GetValidationFailureParametersOperation) UnmarshalNDRResponse(ctx c
 			}
 			return nil
 		})
-		_s_pParameterArray := func(ptr interface{}) { o.ParameterArray = *ptr.(**oaut.SafeArray) }
+		_s_pParameterArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.ParameterArray = nil
+				} else {
+					o.ParameterArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ParameterArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ParameterArray, _s_pParameterArray, _ptr_pParameterArray); err != nil {
 			return err
 		}

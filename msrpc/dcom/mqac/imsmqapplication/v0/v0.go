@@ -238,7 +238,18 @@ func (o *xxx_MachineIDOfMachineNameOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_MachineName := func(ptr interface{}) { o.MachineName = *ptr.(**oaut.String) }
+		_s_MachineName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineName = nil
+				} else {
+					o.MachineName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineName, _s_MachineName, _ptr_MachineName); err != nil {
 			return err
 		}
@@ -337,7 +348,18 @@ func (o *xxx_MachineIDOfMachineNameOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_pbstrGuid := func(ptr interface{}) { o.GUID = *ptr.(**oaut.String) }
+		_s_pbstrGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.GUID = nil
+				} else {
+					o.GUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.GUID, _s_pbstrGuid, _ptr_pbstrGuid); err != nil {
 			return err
 		}

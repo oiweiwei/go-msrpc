@@ -1004,7 +1004,18 @@ func (o *xxx_CreateAccountingDBOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrServerName := func(ptr interface{}) { o.ServerName = *ptr.(**oaut.String) }
+		_s_bstrServerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ServerName = nil
+				} else {
+					o.ServerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerName, _s_bstrServerName, _ptr_bstrServerName); err != nil {
 			return err
 		}
@@ -1031,7 +1042,18 @@ func (o *xxx_CreateAccountingDBOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrUserName := func(ptr interface{}) { o.UserName = *ptr.(**oaut.String) }
+		_s_bstrUserName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.UserName = nil
+				} else {
+					o.UserName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UserName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.UserName, _s_bstrUserName, _ptr_bstrUserName); err != nil {
 			return err
 		}
@@ -1050,7 +1072,18 @@ func (o *xxx_CreateAccountingDBOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrPasswd := func(ptr interface{}) { o.Password = *ptr.(**oaut.String) }
+		_s_bstrPasswd := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Password = nil
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_bstrPasswd, _ptr_bstrPasswd); err != nil {
 			return err
 		}
@@ -1372,7 +1405,18 @@ func (o *xxx_GetAccountingMetadataOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_pbstrMetaData := func(ptr interface{}) { o.Metadata = *ptr.(**oaut.String) }
+		_s_pbstrMetaData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Metadata = nil
+				} else {
+					o.Metadata = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Metadata", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Metadata, _s_pbstrMetaData, _ptr_pbstrMetaData); err != nil {
 			return err
 		}
@@ -1637,7 +1681,18 @@ func (o *xxx_ExecuteAccountingQueryOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_bstrAccountingQuery := func(ptr interface{}) { o.AccountingQuery = *ptr.(**oaut.String) }
+		_s_bstrAccountingQuery := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.AccountingQuery = nil
+				} else {
+					o.AccountingQuery = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AccountingQuery", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AccountingQuery, _s_bstrAccountingQuery, _ptr_bstrAccountingQuery); err != nil {
 			return err
 		}
@@ -1656,7 +1711,18 @@ func (o *xxx_ExecuteAccountingQueryOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_bstrStartingDate := func(ptr interface{}) { o.StartingDate = *ptr.(**oaut.String) }
+		_s_bstrStartingDate := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.StartingDate = nil
+				} else {
+					o.StartingDate = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StartingDate", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.StartingDate, _s_bstrStartingDate, _ptr_bstrStartingDate); err != nil {
 			return err
 		}
@@ -1675,7 +1741,18 @@ func (o *xxx_ExecuteAccountingQueryOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_bstrEndingDate := func(ptr interface{}) { o.EndingDate = *ptr.(**oaut.String) }
+		_s_bstrEndingDate := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.EndingDate = nil
+				} else {
+					o.EndingDate = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EndingDate", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EndingDate, _s_bstrEndingDate, _ptr_bstrEndingDate); err != nil {
 			return err
 		}
@@ -1786,7 +1863,18 @@ func (o *xxx_ExecuteAccountingQueryOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_pbstrResult := func(ptr interface{}) { o.Result = *ptr.(**oaut.String) }
+		_s_pbstrResult := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Result = nil
+				} else {
+					o.Result = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Result", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Result, _s_pbstrResult, _ptr_pbstrResult); err != nil {
 			return err
 		}
@@ -2086,7 +2174,18 @@ func (o *xxx_GetRawAccountingDataOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_bstrStartingDate := func(ptr interface{}) { o.StartingDate = *ptr.(**oaut.String) }
+		_s_bstrStartingDate := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.StartingDate = nil
+				} else {
+					o.StartingDate = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StartingDate", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.StartingDate, _s_bstrStartingDate, _ptr_bstrStartingDate); err != nil {
 			return err
 		}
@@ -2105,7 +2204,18 @@ func (o *xxx_GetRawAccountingDataOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_bstrEndingDate := func(ptr interface{}) { o.EndingDate = *ptr.(**oaut.String) }
+		_s_bstrEndingDate := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.EndingDate = nil
+				} else {
+					o.EndingDate = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EndingDate", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EndingDate, _s_bstrEndingDate, _ptr_bstrEndingDate); err != nil {
 			return err
 		}
@@ -2124,7 +2234,18 @@ func (o *xxx_GetRawAccountingDataOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_bstrMachineName := func(ptr interface{}) { o.MachineName = *ptr.(**oaut.String) }
+		_s_bstrMachineName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineName = nil
+				} else {
+					o.MachineName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineName, _s_bstrMachineName, _ptr_bstrMachineName); err != nil {
 			return err
 		}
@@ -2235,7 +2356,18 @@ func (o *xxx_GetRawAccountingDataOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_pbstrResult := func(ptr interface{}) { o.Result = *ptr.(**oaut.String) }
+		_s_pbstrResult := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Result = nil
+				} else {
+					o.Result = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Result", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Result, _s_pbstrResult, _ptr_pbstrResult); err != nil {
 			return err
 		}
@@ -2626,7 +2758,18 @@ func (o *xxx_GetNextAccountingDataBatchOperation) UnmarshalNDRResponse(ctx conte
 			}
 			return nil
 		})
-		_s_pbstrResult := func(ptr interface{}) { o.Result = *ptr.(**oaut.String) }
+		_s_pbstrResult := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Result = nil
+				} else {
+					o.Result = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Result", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Result, _s_pbstrResult, _ptr_pbstrResult); err != nil {
 			return err
 		}
@@ -2901,7 +3044,18 @@ func (o *xxx_DeleteAccountingDataOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_bstrStartingDate := func(ptr interface{}) { o.StartingDate = *ptr.(**oaut.String) }
+		_s_bstrStartingDate := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.StartingDate = nil
+				} else {
+					o.StartingDate = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StartingDate", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.StartingDate, _s_bstrStartingDate, _ptr_bstrStartingDate); err != nil {
 			return err
 		}
@@ -2920,7 +3074,18 @@ func (o *xxx_DeleteAccountingDataOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_bstrEndingDate := func(ptr interface{}) { o.EndingDate = *ptr.(**oaut.String) }
+		_s_bstrEndingDate := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.EndingDate = nil
+				} else {
+					o.EndingDate = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EndingDate", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EndingDate, _s_bstrEndingDate, _ptr_bstrEndingDate); err != nil {
 			return err
 		}
@@ -2939,7 +3104,18 @@ func (o *xxx_DeleteAccountingDataOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_bstrMachineName := func(ptr interface{}) { o.MachineName = *ptr.(**oaut.String) }
+		_s_bstrMachineName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineName = nil
+				} else {
+					o.MachineName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineName, _s_bstrMachineName, _ptr_bstrMachineName); err != nil {
 			return err
 		}
@@ -3649,7 +3825,18 @@ func (o *xxx_RegisterAccountingClientOperation) UnmarshalNDRRequest(ctx context.
 			}
 			return nil
 		})
-		_s_bstrClientId := func(ptr interface{}) { o.ClientID = *ptr.(**oaut.String) }
+		_s_bstrClientId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ClientID = nil
+				} else {
+					o.ClientID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientID, _s_bstrClientId, _ptr_bstrClientId); err != nil {
 			return err
 		}
@@ -3910,7 +4097,18 @@ func (o *xxx_DumpAccountingDataOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrAccountingData := func(ptr interface{}) { o.AccountingData = *ptr.(**oaut.String) }
+		_s_bstrAccountingData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.AccountingData = nil
+				} else {
+					o.AccountingData = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AccountingData", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AccountingData, _s_bstrAccountingData, _ptr_bstrAccountingData); err != nil {
 			return err
 		}
@@ -4223,7 +4421,18 @@ func (o *xxx_GetAccountingClientsOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_pbstrClientIds := func(ptr interface{}) { o.ClientIDs = *ptr.(**oaut.String) }
+		_s_pbstrClientIds := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ClientIDs = nil
+				} else {
+					o.ClientIDs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientIDs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientIDs, _s_pbstrClientIds, _ptr_pbstrClientIds); err != nil {
 			return err
 		}
@@ -4430,7 +4639,18 @@ func (o *xxx_SetAccountingClientStatusOperation) UnmarshalNDRRequest(ctx context
 			}
 			return nil
 		})
-		_s_bstrClientIds := func(ptr interface{}) { o.ClientIDs = *ptr.(**oaut.String) }
+		_s_bstrClientIds := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ClientIDs = nil
+				} else {
+					o.ClientIDs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientIDs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientIDs, _s_bstrClientIds, _ptr_bstrClientIds); err != nil {
 			return err
 		}
@@ -4915,7 +5135,18 @@ func (o *xxx_SetClientPermissionsOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_bstrClientId := func(ptr interface{}) { o.ClientID = *ptr.(**oaut.String) }
+		_s_bstrClientId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ClientID = nil
+				} else {
+					o.ClientID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientID, _s_bstrClientId, _ptr_bstrClientId); err != nil {
 			return err
 		}
