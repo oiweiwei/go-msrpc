@@ -544,7 +544,18 @@ func (o *xxx_GetConfigPathOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pbstrConfigPath := func(ptr interface{}) { o.ConfigPath = *ptr.(**oaut.String) }
+		_s_pbstrConfigPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ConfigPath = nil
+				} else {
+					o.ConfigPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigPath, _s_pbstrConfigPath, _ptr_pbstrConfigPath); err != nil {
 			return err
 		}
@@ -798,7 +809,18 @@ func (o *xxx_GetFilePathOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pbstrFilePath := func(ptr interface{}) { o.FilePath = *ptr.(**oaut.String) }
+		_s_pbstrFilePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.FilePath = nil
+				} else {
+					o.FilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FilePath, _s_pbstrFilePath, _ptr_pbstrFilePath); err != nil {
 			return err
 		}
@@ -1053,7 +1075,18 @@ func (o *xxx_GetLocationsOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ppLocations := func(ptr interface{}) { o.Locations = *ptr.(**iisa.AppHostConfigLocationCollection) }
+		_s_ppLocations := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostConfigLocationCollection:
+				if ptr == nil {
+					o.Locations = nil
+				} else {
+					o.Locations = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Locations", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Locations, _s_ppLocations, _ptr_ppLocations); err != nil {
 			return err
 		}
@@ -1287,7 +1320,18 @@ func (o *xxx_GetAdminSectionOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_bstrSectionName := func(ptr interface{}) { o.SectionName = *ptr.(**oaut.String) }
+		_s_bstrSectionName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SectionName = nil
+				} else {
+					o.SectionName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SectionName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SectionName, _s_bstrSectionName, _ptr_bstrSectionName); err != nil {
 			return err
 		}
@@ -1306,7 +1350,18 @@ func (o *xxx_GetAdminSectionOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_bstrPath := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_bstrPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_bstrPath, _ptr_bstrPath); err != nil {
 			return err
 		}
@@ -1405,7 +1460,18 @@ func (o *xxx_GetAdminSectionOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppAdminSection := func(ptr interface{}) { o.AdminSection = *ptr.(**iisa.AppHostElement) }
+		_s_ppAdminSection := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElement:
+				if ptr == nil {
+					o.AdminSection = nil
+				} else {
+					o.AdminSection = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AdminSection", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AdminSection, _s_ppAdminSection, _ptr_ppAdminSection); err != nil {
 			return err
 		}
@@ -1613,7 +1679,18 @@ func (o *xxx_GetMetadataOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_bstrMetadataType := func(ptr interface{}) { o.MetadataType = *ptr.(**oaut.String) }
+		_s_bstrMetadataType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MetadataType = nil
+				} else {
+					o.MetadataType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MetadataType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MetadataType, _s_bstrMetadataType, _ptr_bstrMetadataType); err != nil {
 			return err
 		}
@@ -1712,7 +1789,18 @@ func (o *xxx_GetMetadataOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pValue := func(ptr interface{}) { o.Value = *ptr.(**oaut.Variant) }
+		_s_pValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_pValue, _ptr_pValue); err != nil {
 			return err
 		}
@@ -1932,7 +2020,18 @@ func (o *xxx_SetMetadataOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_bstrMetadataType := func(ptr interface{}) { o.MetadataType = *ptr.(**oaut.String) }
+		_s_bstrMetadataType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MetadataType = nil
+				} else {
+					o.MetadataType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MetadataType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MetadataType, _s_bstrMetadataType, _ptr_bstrMetadataType); err != nil {
 			return err
 		}
@@ -2464,7 +2563,18 @@ func (o *xxx_GetRootSectionGroupOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ppSectionGroups := func(ptr interface{}) { o.SectionGroups = *ptr.(**iisa.AppHostSectionGroup) }
+		_s_ppSectionGroups := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostSectionGroup:
+				if ptr == nil {
+					o.SectionGroups = nil
+				} else {
+					o.SectionGroups = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SectionGroups", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SectionGroups, _s_ppSectionGroups, _ptr_ppSectionGroups); err != nil {
 			return err
 		}

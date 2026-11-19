@@ -400,7 +400,18 @@ func (o *xxx_GetNameOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_name := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_name := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 			return err
 		}
@@ -601,7 +612,18 @@ func (o *xxx_SetNameOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_name := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_name := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 			return err
 		}
@@ -908,7 +930,18 @@ func (o *xxx_GetMembersOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_members := func(ptr interface{}) { o.Members = *ptr.(**fsrm.MutableCollection) }
+		_s_members := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.MutableCollection:
+				if ptr == nil {
+					o.Members = nil
+				} else {
+					o.Members = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Members", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Members, _s_members, _ptr_members); err != nil {
 			return err
 		}
@@ -1109,7 +1142,18 @@ func (o *xxx_SetMembersOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_members := func(ptr interface{}) { o.Members = *ptr.(**fsrm.MutableCollection) }
+		_s_members := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.MutableCollection:
+				if ptr == nil {
+					o.Members = nil
+				} else {
+					o.Members = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Members", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Members, _s_members, _ptr_members); err != nil {
 			return err
 		}
@@ -1416,7 +1460,18 @@ func (o *xxx_GetNonMembersOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_nonMembers := func(ptr interface{}) { o.NonMembers = *ptr.(**fsrm.MutableCollection) }
+		_s_nonMembers := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.MutableCollection:
+				if ptr == nil {
+					o.NonMembers = nil
+				} else {
+					o.NonMembers = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NonMembers", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NonMembers, _s_nonMembers, _ptr_nonMembers); err != nil {
 			return err
 		}
@@ -1617,7 +1672,18 @@ func (o *xxx_SetNonMembersOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_nonMembers := func(ptr interface{}) { o.NonMembers = *ptr.(**fsrm.MutableCollection) }
+		_s_nonMembers := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.MutableCollection:
+				if ptr == nil {
+					o.NonMembers = nil
+				} else {
+					o.NonMembers = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NonMembers", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NonMembers, _s_nonMembers, _ptr_nonMembers); err != nil {
 			return err
 		}

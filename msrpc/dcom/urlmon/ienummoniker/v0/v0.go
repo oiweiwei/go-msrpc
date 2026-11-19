@@ -404,7 +404,18 @@ func (o *xxx_NextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 				}
 				return nil
 			})
-			_s_rgelt := func(ptr interface{}) { o.Entries[i1] = *ptr.(**urlmon.Moniker) }
+			_s_rgelt := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **urlmon.Moniker:
+					if ptr == nil {
+						o.Entries[i1] = nil
+					} else {
+						o.Entries[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Entries[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Entries[i1], _s_rgelt, _ptr_rgelt); err != nil {
 				return err
 			}
@@ -1111,7 +1122,18 @@ func (o *xxx_CloneOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ppenum := func(ptr interface{}) { o.Enum = *ptr.(**urlmon.EnumMoniker) }
+		_s_ppenum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.EnumMoniker:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppenum, _ptr_ppenum); err != nil {
 			return err
 		}

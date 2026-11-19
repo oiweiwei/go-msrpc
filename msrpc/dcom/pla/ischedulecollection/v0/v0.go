@@ -698,7 +698,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppSchedule := func(ptr interface{}) { o.Schedule = *ptr.(**pla.Schedule) }
+		_s_ppSchedule := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.Schedule:
+				if ptr == nil {
+					o.Schedule = nil
+				} else {
+					o.Schedule = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Schedule", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Schedule, _s_ppSchedule, _ptr_ppSchedule); err != nil {
 			return err
 		}
@@ -955,7 +966,18 @@ func (o *xxx_Get_NewEnumOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_retVal := func(ptr interface{}) { o.ReturnValue = *ptr.(**dcom.Unknown) }
+		_s_retVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retVal, _ptr_retVal); err != nil {
 			return err
 		}
@@ -1156,7 +1178,18 @@ func (o *xxx_AddOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader
 			}
 			return nil
 		})
-		_s_pSchedule := func(ptr interface{}) { o.Schedule = *ptr.(**pla.Schedule) }
+		_s_pSchedule := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.Schedule:
+				if ptr == nil {
+					o.Schedule = nil
+				} else {
+					o.Schedule = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Schedule", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Schedule, _s_pSchedule, _ptr_pSchedule); err != nil {
 			return err
 		}
@@ -1849,7 +1882,18 @@ func (o *xxx_AddRangeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pSchedules := func(ptr interface{}) { o.Schedules = *ptr.(**pla.ScheduleCollection) }
+		_s_pSchedules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.ScheduleCollection:
+				if ptr == nil {
+					o.Schedules = nil
+				} else {
+					o.Schedules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Schedules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Schedules, _s_pSchedules, _ptr_pSchedules); err != nil {
 			return err
 		}
@@ -2158,7 +2202,18 @@ func (o *xxx_CreateScheduleOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_Schedule := func(ptr interface{}) { o.Schedule = *ptr.(**pla.Schedule) }
+		_s_Schedule := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.Schedule:
+				if ptr == nil {
+					o.Schedule = nil
+				} else {
+					o.Schedule = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Schedule", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Schedule, _s_Schedule, _ptr_Schedule); err != nil {
 			return err
 		}

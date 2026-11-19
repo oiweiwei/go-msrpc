@@ -410,7 +410,18 @@ func (o *xxx_RemoteRefreshOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_paObjects := func(ptr interface{}) { o.Objects = *ptr.(*[]*wmi.RefreshedObject) }
+		_s_paObjects := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*wmi.RefreshedObject:
+				if ptr == nil {
+					o.Objects = nil
+				} else {
+					o.Objects = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Objects", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Objects, _s_paObjects, _ptr_paObjects); err != nil {
 			return err
 		}

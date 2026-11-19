@@ -677,7 +677,18 @@ func (o *xxx_SendRTMessageOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_SourceIPAddress := func(ptr interface{}) { o.SourceIPAddress = *ptr.(**oaut.String) }
+		_s_SourceIPAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SourceIPAddress = nil
+				} else {
+					o.SourceIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SourceIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SourceIPAddress, _s_SourceIPAddress, _ptr_SourceIPAddress); err != nil {
 			return err
 		}
@@ -696,7 +707,18 @@ func (o *xxx_SendRTMessageOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_DestIPAddress := func(ptr interface{}) { o.DestinationIPAddress = *ptr.(**oaut.String) }
+		_s_DestIPAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DestinationIPAddress = nil
+				} else {
+					o.DestinationIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DestinationIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DestinationIPAddress, _s_DestIPAddress, _ptr_DestIPAddress); err != nil {
 			return err
 		}
@@ -1392,7 +1414,18 @@ func (o *xxx_GetIPConfigSerializedOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_Data := func(ptr interface{}) { o.Data = *ptr.(**oaut.SafeArray) }
+		_s_Data := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Data = nil
+				} else {
+					o.Data = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Data, _s_Data, _ptr_Data); err != nil {
 			return err
 		}

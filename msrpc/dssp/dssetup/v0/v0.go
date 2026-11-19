@@ -485,7 +485,18 @@ func (o *PrimaryDomainInfoBasic) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		}
 		return nil
 	})
-	_s_DomainNameFlat := func(ptr interface{}) { o.DomainNameFlat = *ptr.(*string) }
+	_s_DomainNameFlat := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.DomainNameFlat = ""
+			} else {
+				o.DomainNameFlat = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DomainNameFlat", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DomainNameFlat, _s_DomainNameFlat, _ptr_DomainNameFlat); err != nil {
 		return err
 	}
@@ -495,7 +506,18 @@ func (o *PrimaryDomainInfoBasic) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		}
 		return nil
 	})
-	_s_DomainNameDns := func(ptr interface{}) { o.DomainNameDNS = *ptr.(*string) }
+	_s_DomainNameDns := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.DomainNameDNS = ""
+			} else {
+				o.DomainNameDNS = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DomainNameDNS", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DomainNameDNS, _s_DomainNameDns, _ptr_DomainNameDns); err != nil {
 		return err
 	}
@@ -505,7 +527,18 @@ func (o *PrimaryDomainInfoBasic) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		}
 		return nil
 	})
-	_s_DomainForestName := func(ptr interface{}) { o.DomainForestName = *ptr.(*string) }
+	_s_DomainForestName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.DomainForestName = ""
+			} else {
+				o.DomainForestName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DomainForestName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DomainForestName, _s_DomainForestName, _ptr_DomainForestName); err != nil {
 		return err
 	}
@@ -891,7 +924,18 @@ func (o *xxx_GetPrimaryDomainInformationOperation) UnmarshalNDRResponse(ctx cont
 			}
 			return nil
 		})
-		_s_DomainInfo := func(ptr interface{}) { o.DomainInfo = *ptr.(**PrimaryDomainInformation) }
+		_s_DomainInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **PrimaryDomainInformation:
+				if ptr == nil {
+					o.DomainInfo = nil
+				} else {
+					o.DomainInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DomainInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DomainInfo, _s_DomainInfo, _ptr_DomainInfo); err != nil {
 			return err
 		}

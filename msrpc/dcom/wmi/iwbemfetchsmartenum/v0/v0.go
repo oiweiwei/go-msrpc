@@ -290,7 +290,18 @@ func (o *xxx_GetSmartEnumOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ppSmartEnum := func(ptr interface{}) { o.SmartEnum = *ptr.(**wmi.WCOSmartEnum) }
+		_s_ppSmartEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **wmi.WCOSmartEnum:
+				if ptr == nil {
+					o.SmartEnum = nil
+				} else {
+					o.SmartEnum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SmartEnum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SmartEnum, _s_ppSmartEnum, _ptr_ppSmartEnum); err != nil {
 			return err
 		}

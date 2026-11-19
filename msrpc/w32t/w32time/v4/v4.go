@@ -786,7 +786,18 @@ func (o *xxx_QueryProviderStatusOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_pProviderInfo := func(ptr interface{}) { o.ProviderInfo = *ptr.(**w32t.ProviderInfo) }
+		_s_pProviderInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **w32t.ProviderInfo:
+				if ptr == nil {
+					o.ProviderInfo = nil
+				} else {
+					o.ProviderInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProviderInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProviderInfo, _s_pProviderInfo, _ptr_pProviderInfo); err != nil {
 			return err
 		}
@@ -979,7 +990,18 @@ func (o *xxx_QuerySourceOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pwszSource := func(ptr interface{}) { o.Source = *ptr.(*string) }
+		_s_pwszSource := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Source = ""
+				} else {
+					o.Source = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Source", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Source, _s_pwszSource, _ptr_pwszSource); err != nil {
 			return err
 		}
@@ -1202,7 +1224,18 @@ func (o *xxx_QueryProviderConfigurationOperation) UnmarshalNDRResponse(ctx conte
 			}
 			return nil
 		})
-		_s_pConfigurationProviderInfo := func(ptr interface{}) { o.ConfigurationProviderInfo = *ptr.(**w32t.ConfigurationProvider) }
+		_s_pConfigurationProviderInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **w32t.ConfigurationProvider:
+				if ptr == nil {
+					o.ConfigurationProviderInfo = nil
+				} else {
+					o.ConfigurationProviderInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigurationProviderInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigurationProviderInfo, _s_pConfigurationProviderInfo, _ptr_pConfigurationProviderInfo); err != nil {
 			return err
 		}
@@ -1407,7 +1440,18 @@ func (o *xxx_QueryConfigurationOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pConfigurationInfo := func(ptr interface{}) { o.ConfigurationInfo = *ptr.(**w32t.ConfigurationInfo) }
+		_s_pConfigurationInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **w32t.ConfigurationInfo:
+				if ptr == nil {
+					o.ConfigurationInfo = nil
+				} else {
+					o.ConfigurationInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigurationInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigurationInfo, _s_pConfigurationInfo, _ptr_pConfigurationInfo); err != nil {
 			return err
 		}
@@ -1599,7 +1643,18 @@ func (o *xxx_QueryStatusOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pStatusInfo := func(ptr interface{}) { o.StatusInfo = *ptr.(**w32t.StatusInfo) }
+		_s_pStatusInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **w32t.StatusInfo:
+				if ptr == nil {
+					o.StatusInfo = nil
+				} else {
+					o.StatusInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StatusInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.StatusInfo, _s_pStatusInfo, _ptr_pStatusInfo); err != nil {
 			return err
 		}

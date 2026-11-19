@@ -1478,7 +1478,18 @@ func (o *xxx_GetExePathOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_exepath := func(ptr interface{}) { o.ExePath = *ptr.(**oaut.String) }
+		_s_exepath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ExePath = nil
+				} else {
+					o.ExePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ExePath, _s_exepath, _ptr_exepath); err != nil {
 			return err
 		}
@@ -1679,7 +1690,18 @@ func (o *xxx_SetExePathOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_exepath := func(ptr interface{}) { o.ExePath = *ptr.(**oaut.String) }
+		_s_exepath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ExePath = nil
+				} else {
+					o.ExePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ExePath, _s_exepath, _ptr_exepath); err != nil {
 			return err
 		}
@@ -1988,7 +2010,18 @@ func (o *xxx_GetLogFilePathOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_logfilepath := func(ptr interface{}) { o.Logfilepath = *ptr.(**oaut.String) }
+		_s_logfilepath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Logfilepath = nil
+				} else {
+					o.Logfilepath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Logfilepath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Logfilepath, _s_logfilepath, _ptr_logfilepath); err != nil {
 			return err
 		}
@@ -2191,7 +2224,18 @@ func (o *xxx_SetLogFilePathOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_logfilepath := func(ptr interface{}) { o.Logfilepath = *ptr.(**oaut.String) }
+		_s_logfilepath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Logfilepath = nil
+				} else {
+					o.Logfilepath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Logfilepath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Logfilepath, _s_logfilepath, _ptr_logfilepath); err != nil {
 			return err
 		}
@@ -2500,7 +2544,18 @@ func (o *xxx_GetIncludeModulesOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_includemodules := func(ptr interface{}) { o.IncludeModules = *ptr.(**oaut.SafeArray) }
+		_s_includemodules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.IncludeModules = nil
+				} else {
+					o.IncludeModules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.IncludeModules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.IncludeModules, _s_includemodules, _ptr_includemodules); err != nil {
 			return err
 		}
@@ -2705,7 +2760,18 @@ func (o *xxx_SetIncludeModulesOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_includemodules := func(ptr interface{}) { o.IncludeModules = *ptr.(**oaut.SafeArray) }
+		_s_includemodules := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.IncludeModules = nil
+				} else {
+					o.IncludeModules = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.IncludeModules", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.IncludeModules, _s_includemodules, _ptr_includemodules); err != nil {
 			return err
 		}
@@ -3016,7 +3082,18 @@ func (o *xxx_GetIncludeAPIsOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_includeapis := func(ptr interface{}) { o.IncludeAPIs = *ptr.(**oaut.SafeArray) }
+		_s_includeapis := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.IncludeAPIs = nil
+				} else {
+					o.IncludeAPIs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.IncludeAPIs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.IncludeAPIs, _s_includeapis, _ptr_includeapis); err != nil {
 			return err
 		}
@@ -3219,7 +3296,18 @@ func (o *xxx_SetIncludeAPIsOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_includeapis := func(ptr interface{}) { o.IncludeAPIs = *ptr.(**oaut.SafeArray) }
+		_s_includeapis := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.IncludeAPIs = nil
+				} else {
+					o.IncludeAPIs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.IncludeAPIs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.IncludeAPIs, _s_includeapis, _ptr_includeapis); err != nil {
 			return err
 		}
@@ -3528,7 +3616,18 @@ func (o *xxx_GetExcludeAPIsOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_excludeapis := func(ptr interface{}) { o.ExcludeAPIs = *ptr.(**oaut.SafeArray) }
+		_s_excludeapis := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.ExcludeAPIs = nil
+				} else {
+					o.ExcludeAPIs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExcludeAPIs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ExcludeAPIs, _s_excludeapis, _ptr_excludeapis); err != nil {
 			return err
 		}
@@ -3731,7 +3830,18 @@ func (o *xxx_SetExcludeAPIsOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_excludeapis := func(ptr interface{}) { o.ExcludeAPIs = *ptr.(**oaut.SafeArray) }
+		_s_excludeapis := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.ExcludeAPIs = nil
+				} else {
+					o.ExcludeAPIs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExcludeAPIs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ExcludeAPIs, _s_excludeapis, _ptr_excludeapis); err != nil {
 			return err
 		}

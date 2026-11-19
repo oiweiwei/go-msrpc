@@ -457,7 +457,18 @@ func (o *xxx_NextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 				}
 				return nil
 			})
-			_s_ppObjectArray := func(ptr interface{}) { o.ObjectArray[i1] = *ptr.(**dcom.Unknown) }
+			_s_ppObjectArray := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **dcom.Unknown:
+					if ptr == nil {
+						o.ObjectArray[i1] = nil
+					} else {
+						o.ObjectArray[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectArray[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.ObjectArray[i1], _s_ppObjectArray, _ptr_ppObjectArray); err != nil {
 				return err
 			}
@@ -1173,7 +1184,18 @@ func (o *xxx_CloneOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**vds.EnumObject) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.EnumObject:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}

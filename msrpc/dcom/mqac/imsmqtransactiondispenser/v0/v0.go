@@ -285,7 +285,18 @@ func (o *xxx_BeginTransactionOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ptransaction := func(ptr interface{}) { o.Transaction = *ptr.(**mqac.Transaction) }
+		_s_ptransaction := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Transaction:
+				if ptr == nil {
+					o.Transaction = nil
+				} else {
+					o.Transaction = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Transaction", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Transaction, _s_ptransaction, _ptr_ptransaction); err != nil {
 			return err
 		}

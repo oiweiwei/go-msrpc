@@ -425,7 +425,18 @@ func (o *xxx_GetActionVariablesOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_variables := func(ptr interface{}) { o.Variables = *ptr.(**oaut.SafeArray) }
+		_s_variables := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Variables = nil
+				} else {
+					o.Variables = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Variables", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Variables, _s_variables, _ptr_variables); err != nil {
 			return err
 		}
@@ -683,7 +694,18 @@ func (o *xxx_GetActionVariableDescriptionsOperation) UnmarshalNDRResponse(ctx co
 			}
 			return nil
 		})
-		_s_descriptions := func(ptr interface{}) { o.Descriptions = *ptr.(**oaut.SafeArray) }
+		_s_descriptions := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Descriptions = nil
+				} else {
+					o.Descriptions = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Descriptions", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Descriptions, _s_descriptions, _ptr_descriptions); err != nil {
 			return err
 		}
@@ -954,7 +976,18 @@ func (o *xxx_EnumFileManagementJobsOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_fileManagementJobs := func(ptr interface{}) { o.FileManagementJobs = *ptr.(**fsrm.Collection) }
+		_s_fileManagementJobs := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Collection:
+				if ptr == nil {
+					o.FileManagementJobs = nil
+				} else {
+					o.FileManagementJobs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileManagementJobs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileManagementJobs, _s_fileManagementJobs, _ptr_fileManagementJobs); err != nil {
 			return err
 		}
@@ -1220,7 +1253,18 @@ func (o *xxx_CreateFileManagementJobOperation) UnmarshalNDRResponse(ctx context.
 			}
 			return nil
 		})
-		_s_fileManagementJob := func(ptr interface{}) { o.FileManagementJob = *ptr.(**fsrm.FileManagementJob) }
+		_s_fileManagementJob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.FileManagementJob:
+				if ptr == nil {
+					o.FileManagementJob = nil
+				} else {
+					o.FileManagementJob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileManagementJob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileManagementJob, _s_fileManagementJob, _ptr_fileManagementJob); err != nil {
 			return err
 		}
@@ -1431,7 +1475,18 @@ func (o *xxx_GetFileManagementJobOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_name := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_name := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 			return err
 		}
@@ -1530,7 +1585,18 @@ func (o *xxx_GetFileManagementJobOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_fileManagementJob := func(ptr interface{}) { o.FileManagementJob = *ptr.(**fsrm.FileManagementJob) }
+		_s_fileManagementJob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.FileManagementJob:
+				if ptr == nil {
+					o.FileManagementJob = nil
+				} else {
+					o.FileManagementJob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileManagementJob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileManagementJob, _s_fileManagementJob, _ptr_fileManagementJob); err != nil {
 			return err
 		}

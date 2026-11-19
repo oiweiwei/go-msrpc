@@ -265,7 +265,18 @@ func (o *xxx_OnSectionChangesOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_bstrSectionName := func(ptr interface{}) { o.SectionName = *ptr.(**oaut.String) }
+		_s_bstrSectionName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SectionName = nil
+				} else {
+					o.SectionName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SectionName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SectionName, _s_bstrSectionName, _ptr_bstrSectionName); err != nil {
 			return err
 		}
@@ -284,7 +295,18 @@ func (o *xxx_OnSectionChangesOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_bstrConfigPath := func(ptr interface{}) { o.ConfigPath = *ptr.(**oaut.String) }
+		_s_bstrConfigPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ConfigPath = nil
+				} else {
+					o.ConfigPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigPath, _s_bstrConfigPath, _ptr_bstrConfigPath); err != nil {
 			return err
 		}

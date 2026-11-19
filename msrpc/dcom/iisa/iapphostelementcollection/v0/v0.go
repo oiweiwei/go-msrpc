@@ -748,7 +748,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppElement := func(ptr interface{}) { o.Element = *ptr.(**iisa.AppHostElement) }
+		_s_ppElement := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElement:
+				if ptr == nil {
+					o.Element = nil
+				} else {
+					o.Element = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Element", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Element, _s_ppElement, _ptr_ppElement); err != nil {
 			return err
 		}
@@ -959,7 +970,18 @@ func (o *xxx_AddElementOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_pElement := func(ptr interface{}) { o.Element = *ptr.(**iisa.AppHostElement) }
+		_s_pElement := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElement:
+				if ptr == nil {
+					o.Element = nil
+				} else {
+					o.Element = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Element", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Element, _s_pElement, _ptr_pElement); err != nil {
 			return err
 		}
@@ -1675,7 +1697,18 @@ func (o *xxx_CreateNewElementOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_bstrElementName := func(ptr interface{}) { o.ElementName = *ptr.(**oaut.String) }
+		_s_bstrElementName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ElementName = nil
+				} else {
+					o.ElementName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ElementName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ElementName, _s_bstrElementName, _ptr_bstrElementName); err != nil {
 			return err
 		}
@@ -1774,7 +1807,18 @@ func (o *xxx_CreateNewElementOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ppElement := func(ptr interface{}) { o.Element = *ptr.(**iisa.AppHostElement) }
+		_s_ppElement := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElement:
+				if ptr == nil {
+					o.Element = nil
+				} else {
+					o.Element = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Element", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Element, _s_ppElement, _ptr_ppElement); err != nil {
 			return err
 		}
@@ -2035,7 +2079,18 @@ func (o *xxx_GetSchemaOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_ppSchema := func(ptr interface{}) { o.Schema = *ptr.(**iisa.AppHostCollectionSchema) }
+		_s_ppSchema := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostCollectionSchema:
+				if ptr == nil {
+					o.Schema = nil
+				} else {
+					o.Schema = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Schema", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Schema, _s_ppSchema, _ptr_ppSchema); err != nil {
 			return err
 		}

@@ -1878,7 +1878,18 @@ func (o *xxx_GetCustomDataOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pVarVal := func(ptr interface{}) { o.VarValue = *ptr.(**oaut.Variant) }
+		_s_pVarVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.VarValue = nil
+				} else {
+					o.VarValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VarValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VarValue, _s_pVarVal, _ptr_pVarVal); err != nil {
 			return err
 		}
@@ -2180,7 +2191,18 @@ func (o *xxx_GetFuncCustomDataOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pVarVal := func(ptr interface{}) { o.VarValue = *ptr.(**oaut.Variant) }
+		_s_pVarVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.VarValue = nil
+				} else {
+					o.VarValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VarValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VarValue, _s_pVarVal, _ptr_pVarVal); err != nil {
 			return err
 		}
@@ -2495,7 +2517,18 @@ func (o *xxx_GetParamCustomDataOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pVarVal := func(ptr interface{}) { o.VarValue = *ptr.(**oaut.Variant) }
+		_s_pVarVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.VarValue = nil
+				} else {
+					o.VarValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VarValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VarValue, _s_pVarVal, _ptr_pVarVal); err != nil {
 			return err
 		}
@@ -2804,7 +2837,18 @@ func (o *xxx_GetVarCustomDataOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_pVarVal := func(ptr interface{}) { o.VarValue = *ptr.(**oaut.Variant) }
+		_s_pVarVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.VarValue = nil
+				} else {
+					o.VarValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VarValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VarValue, _s_pVarVal, _ptr_pVarVal); err != nil {
 			return err
 		}
@@ -3108,7 +3152,18 @@ func (o *xxx_GetImplTypeCustomDataOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_pVarVal := func(ptr interface{}) { o.VarValue = *ptr.(**oaut.Variant) }
+		_s_pVarVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.VarValue = nil
+				} else {
+					o.VarValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VarValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VarValue, _s_pVarVal, _ptr_pVarVal); err != nil {
 			return err
 		}
@@ -3449,7 +3504,18 @@ func (o *xxx_GetDocumentation2Operation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pbstrHelpString := func(ptr interface{}) { o.HelpString = *ptr.(**oaut.String) }
+		_s_pbstrHelpString := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.HelpString = nil
+				} else {
+					o.HelpString = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.HelpString", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.HelpString, _s_pbstrHelpString, _ptr_pbstrHelpString); err != nil {
 			return err
 		}
@@ -3474,7 +3540,18 @@ func (o *xxx_GetDocumentation2Operation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pbstrHelpStringDll := func(ptr interface{}) { o.HelpStringDLL = *ptr.(**oaut.String) }
+		_s_pbstrHelpStringDll := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.HelpStringDLL = nil
+				} else {
+					o.HelpStringDLL = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.HelpStringDLL", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.HelpStringDLL, _s_pbstrHelpStringDll, _ptr_pbstrHelpStringDll); err != nil {
 			return err
 		}

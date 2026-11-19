@@ -354,7 +354,18 @@ func (o *xxx_GetNameOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_name := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_name := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 			return err
 		}
@@ -555,7 +566,18 @@ func (o *xxx_SetNameOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_name := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_name := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 			return err
 		}
@@ -809,7 +831,18 @@ func (o *xxx_CopyTemplateOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_quotaTemplateName := func(ptr interface{}) { o.QuotaTemplateName = *ptr.(**oaut.String) }
+		_s_quotaTemplateName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.QuotaTemplateName = nil
+				} else {
+					o.QuotaTemplateName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QuotaTemplateName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QuotaTemplateName, _s_quotaTemplateName, _ptr_quotaTemplateName); err != nil {
 			return err
 		}
@@ -1144,7 +1177,18 @@ func (o *xxx_CommitAndUpdateDerivedOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_derivedObjectsResult := func(ptr interface{}) { o.DerivedObjectsResult = *ptr.(**fsrm.DerivedObjectsResult) }
+		_s_derivedObjectsResult := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.DerivedObjectsResult:
+				if ptr == nil {
+					o.DerivedObjectsResult = nil
+				} else {
+					o.DerivedObjectsResult = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DerivedObjectsResult", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DerivedObjectsResult, _s_derivedObjectsResult, _ptr_derivedObjectsResult); err != nil {
 			return err
 		}

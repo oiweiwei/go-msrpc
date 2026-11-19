@@ -510,7 +510,18 @@ func (o *CommPacket) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_Pkt := func(ptr interface{}) { o.Packet = *ptr.(*[]byte) }
+	_s_Pkt := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Packet = nil
+			} else {
+				o.Packet = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Packet", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Packet, _s_Pkt, _ptr_Pkt); err != nil {
 		return err
 	}
@@ -901,7 +912,18 @@ func (o *xxx_VerifyPromotionParentOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_ParentAccount := func(ptr interface{}) { o.ParentAccount = *ptr.(*string) }
+		_s_ParentAccount := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ParentAccount = ""
+				} else {
+					o.ParentAccount = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ParentAccount", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ParentAccount, _s_ParentAccount, _ptr_ParentAccount); err != nil {
 			return err
 		}
@@ -917,7 +939,18 @@ func (o *xxx_VerifyPromotionParentOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_ParentPassword := func(ptr interface{}) { o.ParentPassword = *ptr.(*string) }
+		_s_ParentPassword := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ParentPassword = ""
+				} else {
+					o.ParentPassword = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ParentPassword", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ParentPassword, _s_ParentPassword, _ptr_ParentPassword); err != nil {
 			return err
 		}
@@ -933,7 +966,18 @@ func (o *xxx_VerifyPromotionParentOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_ReplicaSetName := func(ptr interface{}) { o.SetNameReplica = *ptr.(*string) }
+		_s_ReplicaSetName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.SetNameReplica = ""
+				} else {
+					o.SetNameReplica = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SetNameReplica", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SetNameReplica, _s_ReplicaSetName, _ptr_ReplicaSetName); err != nil {
 			return err
 		}
@@ -949,7 +993,18 @@ func (o *xxx_VerifyPromotionParentOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_ReplicaSetType := func(ptr interface{}) { o.SetTypeReplica = *ptr.(*string) }
+		_s_ReplicaSetType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.SetTypeReplica = ""
+				} else {
+					o.SetTypeReplica = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SetTypeReplica", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SetTypeReplica, _s_ReplicaSetType, _ptr_ReplicaSetType); err != nil {
 			return err
 		}
@@ -1454,7 +1509,18 @@ func (o *xxx_StartPromotionParentOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ParentAccount := func(ptr interface{}) { o.ParentAccount = *ptr.(*string) }
+		_s_ParentAccount := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ParentAccount = ""
+				} else {
+					o.ParentAccount = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ParentAccount", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ParentAccount, _s_ParentAccount, _ptr_ParentAccount); err != nil {
 			return err
 		}
@@ -1470,7 +1536,18 @@ func (o *xxx_StartPromotionParentOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ParentPassword := func(ptr interface{}) { o.ParentPassword = *ptr.(*string) }
+		_s_ParentPassword := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ParentPassword = ""
+				} else {
+					o.ParentPassword = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ParentPassword", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ParentPassword, _s_ParentPassword, _ptr_ParentPassword); err != nil {
 			return err
 		}
@@ -1486,7 +1563,18 @@ func (o *xxx_StartPromotionParentOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ReplicaSetName := func(ptr interface{}) { o.SetNameReplica = *ptr.(*string) }
+		_s_ReplicaSetName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.SetNameReplica = ""
+				} else {
+					o.SetNameReplica = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SetNameReplica", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SetNameReplica, _s_ReplicaSetName, _ptr_ReplicaSetName); err != nil {
 			return err
 		}
@@ -1502,7 +1590,18 @@ func (o *xxx_StartPromotionParentOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ReplicaSetType := func(ptr interface{}) { o.SetTypeReplica = *ptr.(*string) }
+		_s_ReplicaSetType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.SetTypeReplica = ""
+				} else {
+					o.SetTypeReplica = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SetTypeReplica", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SetTypeReplica, _s_ReplicaSetType, _ptr_ReplicaSetType); err != nil {
 			return err
 		}
@@ -1518,7 +1617,18 @@ func (o *xxx_StartPromotionParentOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_CxtionName := func(ptr interface{}) { o.CxtionName = *ptr.(*string) }
+		_s_CxtionName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.CxtionName = ""
+				} else {
+					o.CxtionName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CxtionName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CxtionName, _s_CxtionName, _ptr_CxtionName); err != nil {
 			return err
 		}
@@ -1534,7 +1644,18 @@ func (o *xxx_StartPromotionParentOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_PartnerName := func(ptr interface{}) { o.PartnerName = *ptr.(*string) }
+		_s_PartnerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.PartnerName = ""
+				} else {
+					o.PartnerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PartnerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PartnerName, _s_PartnerName, _ptr_PartnerName); err != nil {
 			return err
 		}
@@ -1550,7 +1671,18 @@ func (o *xxx_StartPromotionParentOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_PartnerPrincName := func(ptr interface{}) { o.PartnerPrincName = *ptr.(*string) }
+		_s_PartnerPrincName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.PartnerPrincName = ""
+				} else {
+					o.PartnerPrincName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PartnerPrincName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PartnerPrincName, _s_PartnerPrincName, _ptr_PartnerPrincName); err != nil {
 			return err
 		}
@@ -1593,7 +1725,18 @@ func (o *xxx_StartPromotionParentOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_CxtionGuid := func(ptr interface{}) { o.CxtionGUID = *ptr.(*[]byte) }
+		_s_CxtionGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.CxtionGUID = nil
+				} else {
+					o.CxtionGUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CxtionGUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CxtionGUID, _s_CxtionGuid, _ptr_CxtionGuid); err != nil {
 			return err
 		}
@@ -1624,7 +1767,18 @@ func (o *xxx_StartPromotionParentOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_PartnerGuid := func(ptr interface{}) { o.PartnerGUID = *ptr.(*[]byte) }
+		_s_PartnerGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.PartnerGUID = nil
+				} else {
+					o.PartnerGUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PartnerGUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PartnerGUID, _s_PartnerGuid, _ptr_PartnerGuid); err != nil {
 			return err
 		}
@@ -1655,7 +1809,18 @@ func (o *xxx_StartPromotionParentOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ParentGuid := func(ptr interface{}) { o.ParentGUID = *ptr.(*[]byte) }
+		_s_ParentGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.ParentGUID = nil
+				} else {
+					o.ParentGUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ParentGUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ParentGUID, _s_ParentGuid, _ptr_ParentGuid); err != nil {
 			return err
 		}
@@ -1751,7 +1916,18 @@ func (o *xxx_StartPromotionParentOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ParentGuid := func(ptr interface{}) { o.ParentGUID = *ptr.(*[]byte) }
+		_s_ParentGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.ParentGUID = nil
+				} else {
+					o.ParentGUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ParentGUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ParentGUID, _s_ParentGuid, _ptr_ParentGuid); err != nil {
 			return err
 		}

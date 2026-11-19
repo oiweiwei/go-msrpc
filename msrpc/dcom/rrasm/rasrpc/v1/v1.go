@@ -1501,7 +1501,18 @@ func (o *xxx_SubmitRequestOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pReqBuffer := func(ptr interface{}) { o.RequestBuffer = *ptr.(*[]byte) }
+		_s_pReqBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.RequestBuffer = nil
+				} else {
+					o.RequestBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RequestBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RequestBuffer, _s_pReqBuffer, _ptr_pReqBuffer); err != nil {
 			return err
 		}
@@ -1603,7 +1614,18 @@ func (o *xxx_SubmitRequestOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pReqBuffer := func(ptr interface{}) { o.RequestBuffer = *ptr.(*[]byte) }
+		_s_pReqBuffer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.RequestBuffer = nil
+				} else {
+					o.RequestBuffer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RequestBuffer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RequestBuffer, _s_pReqBuffer, _ptr_pReqBuffer); err != nil {
 			return err
 		}

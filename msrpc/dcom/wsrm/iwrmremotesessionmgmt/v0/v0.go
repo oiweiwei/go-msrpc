@@ -386,7 +386,18 @@ func (o *xxx_GetRemoteUserCategoriesOperation) UnmarshalNDRResponse(ctx context.
 			}
 			return nil
 		})
-		_s_pbstrRemoteUserCategoriesInfo := func(ptr interface{}) { o.RemoteUserCategoriesInfo = *ptr.(**oaut.String) }
+		_s_pbstrRemoteUserCategoriesInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.RemoteUserCategoriesInfo = nil
+				} else {
+					o.RemoteUserCategoriesInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RemoteUserCategoriesInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RemoteUserCategoriesInfo, _s_pbstrRemoteUserCategoriesInfo, _ptr_pbstrRemoteUserCategoriesInfo); err != nil {
 			return err
 		}
@@ -593,7 +604,18 @@ func (o *xxx_SetRemoteUserCategoriesOperation) UnmarshalNDRRequest(ctx context.C
 			}
 			return nil
 		})
-		_s_bstrRemoteUserCategoriesInfo := func(ptr interface{}) { o.RemoteUserCategoriesInfo = *ptr.(**oaut.String) }
+		_s_bstrRemoteUserCategoriesInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.RemoteUserCategoriesInfo = nil
+				} else {
+					o.RemoteUserCategoriesInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RemoteUserCategoriesInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RemoteUserCategoriesInfo, _s_bstrRemoteUserCategoriesInfo, _ptr_bstrRemoteUserCategoriesInfo); err != nil {
 			return err
 		}
@@ -868,7 +890,18 @@ func (o *xxx_RefreshRemoteSessionWeightsOperation) UnmarshalNDRRequest(ctx conte
 			}
 			return nil
 		})
-		_s_bstrTaregetUserSessions := func(ptr interface{}) { o.TaregetUserSessions = *ptr.(**oaut.String) }
+		_s_bstrTaregetUserSessions := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.TaregetUserSessions = nil
+				} else {
+					o.TaregetUserSessions = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TaregetUserSessions", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TaregetUserSessions, _s_bstrTaregetUserSessions, _ptr_bstrTaregetUserSessions); err != nil {
 			return err
 		}

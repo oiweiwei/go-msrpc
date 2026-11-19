@@ -365,7 +365,18 @@ func (o *xxx_GetNameOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_name := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_name := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 			return err
 		}
@@ -621,7 +632,18 @@ func (o *xxx_GetDisplayNameOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_displayName := func(ptr interface{}) { o.DisplayName = *ptr.(**oaut.String) }
+		_s_displayName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DisplayName = nil
+				} else {
+					o.DisplayName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DisplayName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DisplayName, _s_displayName, _ptr_displayName); err != nil {
 			return err
 		}
@@ -879,7 +901,18 @@ func (o *xxx_GetDescriptionOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_description := func(ptr interface{}) { o.Description = *ptr.(**oaut.String) }
+		_s_description := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Description = nil
+				} else {
+					o.Description = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Description", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Description, _s_description, _ptr_description); err != nil {
 			return err
 		}
@@ -1137,7 +1170,18 @@ func (o *xxx_GetUniqueIDOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_uniqueID := func(ptr interface{}) { o.UniqueID = *ptr.(**oaut.String) }
+		_s_uniqueID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.UniqueID = nil
+				} else {
+					o.UniqueID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UniqueID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.UniqueID, _s_uniqueID, _ptr_uniqueID); err != nil {
 			return err
 		}

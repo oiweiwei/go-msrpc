@@ -1102,7 +1102,18 @@ func (o *xxx_LoadOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_pStm := func(ptr interface{}) { o.Stream = *ptr.(**urlmon.Stream) }
+		_s_pStm := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Stream:
+				if ptr == nil {
+					o.Stream = nil
+				} else {
+					o.Stream = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Stream", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Stream, _s_pStm, _ptr_pStm); err != nil {
 			return err
 		}
@@ -1369,7 +1380,18 @@ func (o *xxx_SaveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_pStm := func(ptr interface{}) { o.Stream = *ptr.(**urlmon.Stream) }
+		_s_pStm := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Stream:
+				if ptr == nil {
+					o.Stream = nil
+				} else {
+					o.Stream = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Stream", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Stream, _s_pStm, _ptr_pStm); err != nil {
 			return err
 		}
@@ -1905,7 +1927,18 @@ func (o *xxx_BindToObjectOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		_s_pbc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.BindContext:
+				if ptr == nil {
+					o.BindContext = nil
+				} else {
+					o.BindContext = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BindContext", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
@@ -1924,7 +1957,18 @@ func (o *xxx_BindToObjectOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		_s_pmkToLeft := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.ToLeft = nil
+				} else {
+					o.ToLeft = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ToLeft", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
 			return err
 		}
@@ -2019,7 +2063,18 @@ func (o *xxx_BindToObjectOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			// FIXME: unknown type ppvResult
 			return nil
 		})
-		_s_ppvResult := func(ptr interface{}) { o.Result = *ptr.(*[]byte) }
+		_s_ppvResult := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Result = nil
+				} else {
+					o.Result = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Result", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Result, _s_ppvResult, _ptr_ppvResult); err != nil {
 			return err
 		}
@@ -2271,7 +2326,18 @@ func (o *xxx_BindToStorageOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		_s_pbc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.BindContext:
+				if ptr == nil {
+					o.BindContext = nil
+				} else {
+					o.BindContext = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BindContext", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
@@ -2290,7 +2356,18 @@ func (o *xxx_BindToStorageOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		_s_pmkToLeft := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.ToLeft = nil
+				} else {
+					o.ToLeft = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ToLeft", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
 			return err
 		}
@@ -2385,7 +2462,18 @@ func (o *xxx_BindToStorageOperation) UnmarshalNDRResponse(ctx context.Context, w
 			// FIXME: unknown type ppvObj
 			return nil
 		})
-		_s_ppvObj := func(ptr interface{}) { o.Object = *ptr.(*[]byte) }
+		_s_ppvObj := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Object = nil
+				} else {
+					o.Object = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Object", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Object, _s_ppvObj, _ptr_ppvObj); err != nil {
 			return err
 		}
@@ -2631,7 +2719,18 @@ func (o *xxx_ReduceOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		_s_pbc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.BindContext:
+				if ptr == nil {
+					o.BindContext = nil
+				} else {
+					o.BindContext = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BindContext", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
@@ -2656,7 +2755,18 @@ func (o *xxx_ReduceOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ppmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		_s_ppmkToLeft := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.ToLeft = nil
+				} else {
+					o.ToLeft = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ToLeft", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ToLeft, _s_ppmkToLeft, _ptr_ppmkToLeft); err != nil {
 			return err
 		}
@@ -2782,7 +2892,18 @@ func (o *xxx_ReduceOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ppmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		_s_ppmkToLeft := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.ToLeft = nil
+				} else {
+					o.ToLeft = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ToLeft", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ToLeft, _s_ppmkToLeft, _ptr_ppmkToLeft); err != nil {
 			return err
 		}
@@ -2801,7 +2922,18 @@ func (o *xxx_ReduceOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ppmkReduced := func(ptr interface{}) { o.Reduced = *ptr.(**urlmon.Moniker) }
+		_s_ppmkReduced := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.Reduced = nil
+				} else {
+					o.Reduced = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Reduced", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Reduced, _s_ppmkReduced, _ptr_ppmkReduced); err != nil {
 			return err
 		}
@@ -3028,7 +3160,18 @@ func (o *xxx_ComposeWithOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_pmkRight := func(ptr interface{}) { o.Right = *ptr.(**urlmon.Moniker) }
+		_s_pmkRight := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.Right = nil
+				} else {
+					o.Right = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Right", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Right, _s_pmkRight, _ptr_pmkRight); err != nil {
 			return err
 		}
@@ -3135,7 +3278,18 @@ func (o *xxx_ComposeWithOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ppmkComposite := func(ptr interface{}) { o.Composite = *ptr.(**urlmon.Moniker) }
+		_s_ppmkComposite := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.Composite = nil
+				} else {
+					o.Composite = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Composite", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Composite, _s_ppmkComposite, _ptr_ppmkComposite); err != nil {
 			return err
 		}
@@ -3416,7 +3570,18 @@ func (o *xxx_EnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_ppenumMoniker := func(ptr interface{}) { o.Moniker = *ptr.(**urlmon.EnumMoniker) }
+		_s_ppenumMoniker := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.EnumMoniker:
+				if ptr == nil {
+					o.Moniker = nil
+				} else {
+					o.Moniker = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Moniker", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Moniker, _s_ppenumMoniker, _ptr_ppenumMoniker); err != nil {
 			return err
 		}
@@ -3620,7 +3785,18 @@ func (o *xxx_IsEqualOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_pmkOtherMoniker := func(ptr interface{}) { o.OtherMoniker = *ptr.(**urlmon.Moniker) }
+		_s_pmkOtherMoniker := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.OtherMoniker = nil
+				} else {
+					o.OtherMoniker = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OtherMoniker", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OtherMoniker, _s_pmkOtherMoniker, _ptr_pmkOtherMoniker); err != nil {
 			return err
 		}
@@ -4150,7 +4326,18 @@ func (o *xxx_IsRunningOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		_s_pbc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.BindContext:
+				if ptr == nil {
+					o.BindContext = nil
+				} else {
+					o.BindContext = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BindContext", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
@@ -4169,7 +4356,18 @@ func (o *xxx_IsRunningOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_pmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		_s_pmkToLeft := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.ToLeft = nil
+				} else {
+					o.ToLeft = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ToLeft", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
 			return err
 		}
@@ -4188,7 +4386,18 @@ func (o *xxx_IsRunningOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_pmkNewlyRunning := func(ptr interface{}) { o.NewlyRunning = *ptr.(**urlmon.Moniker) }
+		_s_pmkNewlyRunning := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.NewlyRunning = nil
+				} else {
+					o.NewlyRunning = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NewlyRunning", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NewlyRunning, _s_pmkNewlyRunning, _ptr_pmkNewlyRunning); err != nil {
 			return err
 		}
@@ -4477,7 +4686,18 @@ func (o *xxx_GetTimeOfLastChangeOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		_s_pbc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.BindContext:
+				if ptr == nil {
+					o.BindContext = nil
+				} else {
+					o.BindContext = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BindContext", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
@@ -4496,7 +4716,18 @@ func (o *xxx_GetTimeOfLastChangeOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		_s_pmkToLeft := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.ToLeft = nil
+				} else {
+					o.ToLeft = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ToLeft", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
 			return err
 		}
@@ -4830,7 +5061,18 @@ func (o *xxx_InverseOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppmk := func(ptr interface{}) { o.Moniker = *ptr.(**urlmon.Moniker) }
+		_s_ppmk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.Moniker = nil
+				} else {
+					o.Moniker = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Moniker", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Moniker, _s_ppmk, _ptr_ppmk); err != nil {
 			return err
 		}
@@ -5032,7 +5274,18 @@ func (o *xxx_CommonPrefixWithOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pmkOther := func(ptr interface{}) { o.Other = *ptr.(**urlmon.Moniker) }
+		_s_pmkOther := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.Other = nil
+				} else {
+					o.Other = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Other", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Other, _s_pmkOther, _ptr_pmkOther); err != nil {
 			return err
 		}
@@ -5131,7 +5384,18 @@ func (o *xxx_CommonPrefixWithOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ppmkPrefix := func(ptr interface{}) { o.Prefix = *ptr.(**urlmon.Moniker) }
+		_s_ppmkPrefix := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.Prefix = nil
+				} else {
+					o.Prefix = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Prefix", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Prefix, _s_ppmkPrefix, _ptr_ppmkPrefix); err != nil {
 			return err
 		}
@@ -5336,7 +5600,18 @@ func (o *xxx_RelativePathToOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pmkOther := func(ptr interface{}) { o.Other = *ptr.(**urlmon.Moniker) }
+		_s_pmkOther := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.Other = nil
+				} else {
+					o.Other = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Other", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Other, _s_pmkOther, _ptr_pmkOther); err != nil {
 			return err
 		}
@@ -5435,7 +5710,18 @@ func (o *xxx_RelativePathToOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ppmkRelPath := func(ptr interface{}) { o.RelationPath = *ptr.(**urlmon.Moniker) }
+		_s_ppmkRelPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.RelationPath = nil
+				} else {
+					o.RelationPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RelationPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RelationPath, _s_ppmkRelPath, _ptr_ppmkRelPath); err != nil {
 			return err
 		}
@@ -5668,7 +5954,18 @@ func (o *xxx_GetDisplayNameOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		_s_pbc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.BindContext:
+				if ptr == nil {
+					o.BindContext = nil
+				} else {
+					o.BindContext = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BindContext", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
@@ -5687,7 +5984,18 @@ func (o *xxx_GetDisplayNameOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		_s_pmkToLeft := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.ToLeft = nil
+				} else {
+					o.ToLeft = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ToLeft", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
 			return err
 		}
@@ -5777,7 +6085,18 @@ func (o *xxx_GetDisplayNameOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ppszDisplayName := func(ptr interface{}) { o.DisplayName = *ptr.(*string) }
+		_s_ppszDisplayName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.DisplayName = ""
+				} else {
+					o.DisplayName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DisplayName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DisplayName, _s_ppszDisplayName, _ptr_ppszDisplayName); err != nil {
 			return err
 		}
@@ -6021,7 +6340,18 @@ func (o *xxx_ParseDisplayNameOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		_s_pbc := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.BindContext:
+				if ptr == nil {
+					o.BindContext = nil
+				} else {
+					o.BindContext = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BindContext", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
@@ -6040,7 +6370,18 @@ func (o *xxx_ParseDisplayNameOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		_s_pmkToLeft := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.ToLeft = nil
+				} else {
+					o.ToLeft = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ToLeft", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
 			return err
 		}
@@ -6157,7 +6498,18 @@ func (o *xxx_ParseDisplayNameOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ppmkOut := func(ptr interface{}) { o.Out = *ptr.(**urlmon.Moniker) }
+		_s_ppmkOut := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.Out = nil
+				} else {
+					o.Out = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Out", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Out, _s_ppmkOut, _ptr_ppmkOut); err != nil {
 			return err
 		}

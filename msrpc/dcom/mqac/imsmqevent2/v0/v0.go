@@ -283,7 +283,18 @@ func (o *xxx_GetPropertiesOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppcolProperties := func(ptr interface{}) { o.Properties = *ptr.(**oaut.Dispatch) }
+		_s_ppcolProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Dispatch:
+				if ptr == nil {
+					o.Properties = nil
+				} else {
+					o.Properties = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Properties", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Properties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
 			return err
 		}

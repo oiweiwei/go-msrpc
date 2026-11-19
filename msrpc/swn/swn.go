@@ -239,7 +239,18 @@ func (o *ResponseAsyncNotify) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		}
 		return nil
 	})
-	_s_MessageBuffer := func(ptr interface{}) { o.MessageBuffer = *ptr.(*[]byte) }
+	_s_MessageBuffer := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.MessageBuffer = nil
+			} else {
+				o.MessageBuffer = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MessageBuffer", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.MessageBuffer, _s_MessageBuffer, _ptr_MessageBuffer); err != nil {
 		return err
 	}
@@ -495,7 +506,18 @@ func (o *InterfaceList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_InterfaceInfo := func(ptr interface{}) { o.InterfaceInfo = *ptr.(*[]*InterfaceInfo) }
+	_s_InterfaceInfo := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*InterfaceInfo:
+			if ptr == nil {
+				o.InterfaceInfo = nil
+			} else {
+				o.InterfaceInfo = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InterfaceInfo", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.InterfaceInfo, _s_InterfaceInfo, _ptr_InterfaceInfo); err != nil {
 		return err
 	}

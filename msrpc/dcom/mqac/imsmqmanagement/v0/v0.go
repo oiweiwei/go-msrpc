@@ -626,7 +626,18 @@ func (o *xxx_InitOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_Machine := func(ptr interface{}) { o.Machine = *ptr.(**oaut.Variant) }
+		_s_Machine := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Machine = nil
+				} else {
+					o.Machine = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Machine", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Machine, _s_Machine, _ptr_Machine); err != nil {
 			return err
 		}
@@ -645,7 +656,18 @@ func (o *xxx_InitOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_Pathname := func(ptr interface{}) { o.PathName = *ptr.(**oaut.Variant) }
+		_s_Pathname := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.PathName = nil
+				} else {
+					o.PathName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PathName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PathName, _s_Pathname, _ptr_Pathname); err != nil {
 			return err
 		}
@@ -664,7 +686,18 @@ func (o *xxx_InitOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_FormatName := func(ptr interface{}) { o.FormatName = *ptr.(**oaut.Variant) }
+		_s_FormatName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.FormatName = nil
+				} else {
+					o.FormatName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FormatName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FormatName, _s_FormatName, _ptr_FormatName); err != nil {
 			return err
 		}
@@ -984,7 +1017,18 @@ func (o *xxx_GetFormatNameOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pbstrFormatName := func(ptr interface{}) { o.FormatName = *ptr.(**oaut.String) }
+		_s_pbstrFormatName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.FormatName = nil
+				} else {
+					o.FormatName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FormatName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FormatName, _s_pbstrFormatName, _ptr_pbstrFormatName); err != nil {
 			return err
 		}
@@ -1238,7 +1282,18 @@ func (o *xxx_GetMachineOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_pbstrMachine := func(ptr interface{}) { o.Machine = *ptr.(**oaut.String) }
+		_s_pbstrMachine := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Machine = nil
+				} else {
+					o.Machine = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Machine", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Machine, _s_pbstrMachine, _ptr_pbstrMachine); err != nil {
 			return err
 		}
@@ -2656,7 +2711,18 @@ func (o *xxx_GetBytesInQueueOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pvBytesInQueue := func(ptr interface{}) { o.BytesInQueue = *ptr.(**oaut.Variant) }
+		_s_pvBytesInQueue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.BytesInQueue = nil
+				} else {
+					o.BytesInQueue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BytesInQueue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BytesInQueue, _s_pvBytesInQueue, _ptr_pvBytesInQueue); err != nil {
 			return err
 		}

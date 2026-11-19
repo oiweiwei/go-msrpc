@@ -313,7 +313,18 @@ func (o *xxx_BackupKeyOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_ppDataOut := func(ptr interface{}) { o.DataOut = *ptr.(*[]byte) }
+		_s_ppDataOut := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.DataOut = nil
+				} else {
+					o.DataOut = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DataOut", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DataOut, _s_ppDataOut, _ptr_ppDataOut); err != nil {
 			return err
 		}

@@ -653,7 +653,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppLocation := func(ptr interface{}) { o.Location = *ptr.(**iisa.AppHostConfigLocation) }
+		_s_ppLocation := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostConfigLocation:
+				if ptr == nil {
+					o.Location = nil
+				} else {
+					o.Location = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Location", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Location, _s_ppLocation, _ptr_ppLocation); err != nil {
 			return err
 		}
@@ -860,7 +871,18 @@ func (o *xxx_AddLocationOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_bstrLocationPath := func(ptr interface{}) { o.LocationPath = *ptr.(**oaut.String) }
+		_s_bstrLocationPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LocationPath = nil
+				} else {
+					o.LocationPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LocationPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LocationPath, _s_bstrLocationPath, _ptr_bstrLocationPath); err != nil {
 			return err
 		}
@@ -959,7 +981,18 @@ func (o *xxx_AddLocationOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ppNewLocation := func(ptr interface{}) { o.NewLocation = *ptr.(**iisa.AppHostConfigLocation) }
+		_s_ppNewLocation := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostConfigLocation:
+				if ptr == nil {
+					o.NewLocation = nil
+				} else {
+					o.NewLocation = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NewLocation", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NewLocation, _s_ppNewLocation, _ptr_ppNewLocation); err != nil {
 			return err
 		}

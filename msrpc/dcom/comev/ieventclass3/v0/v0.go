@@ -354,7 +354,18 @@ func (o *xxx_GetEventClassPartitionIDOperation) UnmarshalNDRResponse(ctx context
 			}
 			return nil
 		})
-		_s_pbstrEventClassPartitionID := func(ptr interface{}) { o.EventClassPartitionID = *ptr.(**oaut.String) }
+		_s_pbstrEventClassPartitionID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.EventClassPartitionID = nil
+				} else {
+					o.EventClassPartitionID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EventClassPartitionID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EventClassPartitionID, _s_pbstrEventClassPartitionID, _ptr_pbstrEventClassPartitionID); err != nil {
 			return err
 		}
@@ -559,7 +570,18 @@ func (o *xxx_SetEventClassPartitionIDOperation) UnmarshalNDRRequest(ctx context.
 			}
 			return nil
 		})
-		_s_bstrEventClassPartitionID := func(ptr interface{}) { o.EventClassPartitionID = *ptr.(**oaut.String) }
+		_s_bstrEventClassPartitionID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.EventClassPartitionID = nil
+				} else {
+					o.EventClassPartitionID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EventClassPartitionID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EventClassPartitionID, _s_bstrEventClassPartitionID, _ptr_bstrEventClassPartitionID); err != nil {
 			return err
 		}
@@ -870,7 +892,18 @@ func (o *xxx_GetEventClassApplicationIDOperation) UnmarshalNDRResponse(ctx conte
 			}
 			return nil
 		})
-		_s_pbstrEventClassApplicationID := func(ptr interface{}) { o.EventClassApplicationID = *ptr.(**oaut.String) }
+		_s_pbstrEventClassApplicationID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.EventClassApplicationID = nil
+				} else {
+					o.EventClassApplicationID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EventClassApplicationID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EventClassApplicationID, _s_pbstrEventClassApplicationID, _ptr_pbstrEventClassApplicationID); err != nil {
 			return err
 		}
@@ -1075,7 +1108,18 @@ func (o *xxx_SetEventClassApplicationIDOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_bstrEventClassApplicationID := func(ptr interface{}) { o.EventClassApplicationID = *ptr.(**oaut.String) }
+		_s_bstrEventClassApplicationID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.EventClassApplicationID = nil
+				} else {
+					o.EventClassApplicationID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EventClassApplicationID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EventClassApplicationID, _s_bstrEventClassApplicationID, _ptr_bstrEventClassApplicationID); err != nil {
 			return err
 		}

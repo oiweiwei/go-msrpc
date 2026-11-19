@@ -354,7 +354,18 @@ func (o *xxx_GetFilterCriteriaOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pbstrFilterCriteria := func(ptr interface{}) { o.FilterCriteria = *ptr.(**oaut.String) }
+		_s_pbstrFilterCriteria := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.FilterCriteria = nil
+				} else {
+					o.FilterCriteria = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FilterCriteria", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FilterCriteria, _s_pbstrFilterCriteria, _ptr_pbstrFilterCriteria); err != nil {
 			return err
 		}
@@ -557,7 +568,18 @@ func (o *xxx_SetFilterCriteriaOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_bstrFilterCriteria := func(ptr interface{}) { o.FilterCriteria = *ptr.(**oaut.String) }
+		_s_bstrFilterCriteria := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.FilterCriteria = nil
+				} else {
+					o.FilterCriteria = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FilterCriteria", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FilterCriteria, _s_bstrFilterCriteria, _ptr_bstrFilterCriteria); err != nil {
 			return err
 		}
@@ -866,7 +888,18 @@ func (o *xxx_GetSubscriberMonikerOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_pbstrMoniker := func(ptr interface{}) { o.Moniker = *ptr.(**oaut.String) }
+		_s_pbstrMoniker := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Moniker = nil
+				} else {
+					o.Moniker = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Moniker", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Moniker, _s_pbstrMoniker, _ptr_pbstrMoniker); err != nil {
 			return err
 		}
@@ -1071,7 +1104,18 @@ func (o *xxx_SetSubscriberMonikerOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_bstrMoniker := func(ptr interface{}) { o.Moniker = *ptr.(**oaut.String) }
+		_s_bstrMoniker := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Moniker = nil
+				} else {
+					o.Moniker = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Moniker", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Moniker, _s_bstrMoniker, _ptr_bstrMoniker); err != nil {
 			return err
 		}

@@ -863,7 +863,18 @@ func (o *xxx_FormatOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}
@@ -1482,14 +1493,36 @@ func (o *xxx_QueryAccessPathsOperation) UnmarshalNDRResponse(ctx context.Context
 					}
 					return nil
 				})
-				_s_pwszPathArray := func(ptr interface{}) { o.PathArray[i1] = *ptr.(*string) }
+				_s_pwszPathArray := func(ptr any) {
+					switch ptr := ptr.(type) {
+					case *string:
+						if ptr == nil {
+							o.PathArray[i1] = ""
+						} else {
+							o.PathArray[i1] = *ptr
+						}
+					default:
+						w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PathArray[i1]", ptr))
+					}
+				}
 				if err := w.ReadPointer(&o.PathArray[i1], _s_pwszPathArray, _ptr_pwszPathArray); err != nil {
 					return err
 				}
 			}
 			return nil
 		})
-		_s_pwszPathArray := func(ptr interface{}) { o.PathArray = *ptr.(*[]string) }
+		_s_pwszPathArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]string:
+				if ptr == nil {
+					o.PathArray = nil
+				} else {
+					o.PathArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PathArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PathArray, _s_pwszPathArray, _ptr_pwszPathArray); err != nil {
 			return err
 		}
@@ -1801,7 +1834,18 @@ func (o *xxx_QueryReparsePointsOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ppReparsePointProps := func(ptr interface{}) { o.ReparsePointProperties = *ptr.(*[]*vds.ReparsePointProperty) }
+		_s_ppReparsePointProps := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*vds.ReparsePointProperty:
+				if ptr == nil {
+					o.ReparsePointProperties = nil
+				} else {
+					o.ReparsePointProperties = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReparsePointProperties", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReparsePointProperties, _s_ppReparsePointProps, _ptr_ppReparsePointProps); err != nil {
 			return err
 		}

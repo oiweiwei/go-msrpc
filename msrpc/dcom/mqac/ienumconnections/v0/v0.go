@@ -140,7 +140,18 @@ func (o *ConnectData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pUnk := func(ptr interface{}) { o.Unknown = *ptr.(**dcom.Unknown) }
+	_s_pUnk := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **dcom.Unknown:
+			if ptr == nil {
+				o.Unknown = nil
+			} else {
+				o.Unknown = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Unknown", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Unknown, _s_pUnk, _ptr_pUnk); err != nil {
 		return err
 	}
@@ -1197,7 +1208,18 @@ func (o *xxx_CloneOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**mqac.EnumConnections) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.EnumConnections:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}

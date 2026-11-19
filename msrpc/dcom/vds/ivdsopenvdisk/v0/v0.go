@@ -387,7 +387,18 @@ func (o *xxx_AttachOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pStringSecurityDescriptor := func(ptr interface{}) { o.StringSecurityDescriptor = *ptr.(*string) }
+		_s_pStringSecurityDescriptor := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.StringSecurityDescriptor = ""
+				} else {
+					o.StringSecurityDescriptor = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StringSecurityDescriptor", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.StringSecurityDescriptor, _s_pStringSecurityDescriptor, _ptr_pStringSecurityDescriptor); err != nil {
 			return err
 		}
@@ -504,7 +515,18 @@ func (o *xxx_AttachOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}
@@ -1294,7 +1316,18 @@ func (o *xxx_CompactOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}
@@ -1582,7 +1615,18 @@ func (o *xxx_MergeOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}
@@ -1880,7 +1924,18 @@ func (o *xxx_ExpandOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}

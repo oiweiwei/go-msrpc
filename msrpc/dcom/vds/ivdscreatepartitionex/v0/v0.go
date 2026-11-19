@@ -359,7 +359,18 @@ func (o *xxx_CreatePartitionExOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}

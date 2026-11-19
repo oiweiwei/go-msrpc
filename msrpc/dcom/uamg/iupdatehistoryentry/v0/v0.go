@@ -1725,7 +1725,18 @@ func (o *xxx_GetUpdateIdentityOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**uamg.UpdateIdentity) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **uamg.UpdateIdentity:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}
@@ -1980,7 +1991,18 @@ func (o *xxx_GetTitleOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**oaut.String) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}
@@ -2239,7 +2261,18 @@ func (o *xxx_GetDescriptionOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**oaut.String) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}
@@ -2731,7 +2764,18 @@ func (o *xxx_GetClientApplicationIDOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**oaut.String) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}
@@ -3224,7 +3268,18 @@ func (o *xxx_GetServiceIDOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**oaut.String) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}
@@ -3489,7 +3544,18 @@ func (o *xxx_GetUninstallationStepsOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**uamg.StringCollection) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **uamg.StringCollection:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}
@@ -3756,7 +3822,18 @@ func (o *xxx_GetUninstallationNotesOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**oaut.String) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}
@@ -4019,7 +4096,18 @@ func (o *xxx_GetSupportURLOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**oaut.String) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}

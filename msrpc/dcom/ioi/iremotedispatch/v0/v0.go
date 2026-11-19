@@ -266,7 +266,18 @@ func (o *xxx_RemoteDispatchAutoDoneOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_s := func(ptr interface{}) { o.String = *ptr.(**oaut.String) }
+		_s_s := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.String = nil
+				} else {
+					o.String = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.String", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.String, _s_s, _ptr_s); err != nil {
 			return err
 		}
@@ -365,7 +376,18 @@ func (o *xxx_RemoteDispatchAutoDoneOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_pRetVal := func(ptr interface{}) { o.ReturnValue = *ptr.(**oaut.String) }
+		_s_pRetVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_pRetVal, _ptr_pRetVal); err != nil {
 			return err
 		}
@@ -582,7 +604,18 @@ func (o *xxx_RemoteDispatchNotAutoDoneOperation) UnmarshalNDRRequest(ctx context
 			}
 			return nil
 		})
-		_s_s := func(ptr interface{}) { o.String = *ptr.(**oaut.String) }
+		_s_s := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.String = nil
+				} else {
+					o.String = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.String", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.String, _s_s, _ptr_s); err != nil {
 			return err
 		}
@@ -681,7 +714,18 @@ func (o *xxx_RemoteDispatchNotAutoDoneOperation) UnmarshalNDRResponse(ctx contex
 			}
 			return nil
 		})
-		_s_pRetVal := func(ptr interface{}) { o.ReturnValue = *ptr.(**oaut.String) }
+		_s_pRetVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_pRetVal, _ptr_pRetVal); err != nil {
 			return err
 		}

@@ -850,7 +850,18 @@ func (o *xxx_GetTypeInfoOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ppTInfo := func(ptr interface{}) { o.TypeInfo = *ptr.(**oaut.TypeInfo) }
+		_s_ppTInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.TypeInfo:
+				if ptr == nil {
+					o.TypeInfo = nil
+				} else {
+					o.TypeInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TypeInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TypeInfo, _s_ppTInfo, _ptr_ppTInfo); err != nil {
 			return err
 		}
@@ -1386,7 +1397,18 @@ func (o *xxx_GetTypeInfoOfGUIDOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ppTInfo := func(ptr interface{}) { o.TypeInfo = *ptr.(**oaut.TypeInfo) }
+		_s_ppTInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.TypeInfo:
+				if ptr == nil {
+					o.TypeInfo = nil
+				} else {
+					o.TypeInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TypeInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TypeInfo, _s_ppTInfo, _ptr_ppTInfo); err != nil {
 			return err
 		}
@@ -1656,7 +1678,18 @@ func (o *xxx_GetLibAttributeOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppTLibAttr := func(ptr interface{}) { o.LibAttribute = *ptr.(**oaut.TypeLibAttribute) }
+		_s_ppTLibAttr := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.TypeLibAttribute:
+				if ptr == nil {
+					o.LibAttribute = nil
+				} else {
+					o.LibAttribute = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LibAttribute", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LibAttribute, _s_ppTLibAttr, _ptr_ppTLibAttr); err != nil {
 			return err
 		}
@@ -1920,7 +1953,18 @@ func (o *xxx_GetTypeCompOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ppTComp := func(ptr interface{}) { o.Comp = *ptr.(**oaut.TypeComp) }
+		_s_ppTComp := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.TypeComp:
+				if ptr == nil {
+					o.Comp = nil
+				} else {
+					o.Comp = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Comp", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Comp, _s_ppTComp, _ptr_ppTComp); err != nil {
 			return err
 		}
@@ -2269,7 +2313,18 @@ func (o *xxx_GetDocumentationOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_pBstrName := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_pBstrName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_pBstrName, _ptr_pBstrName); err != nil {
 			return err
 		}
@@ -2288,7 +2343,18 @@ func (o *xxx_GetDocumentationOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_pBstrDocString := func(ptr interface{}) { o.DocString = *ptr.(**oaut.String) }
+		_s_pBstrDocString := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DocString = nil
+				} else {
+					o.DocString = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DocString", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DocString, _s_pBstrDocString, _ptr_pBstrDocString); err != nil {
 			return err
 		}
@@ -2313,7 +2379,18 @@ func (o *xxx_GetDocumentationOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_pBstrHelpFile := func(ptr interface{}) { o.HelpFile = *ptr.(**oaut.String) }
+		_s_pBstrHelpFile := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.HelpFile = nil
+				} else {
+					o.HelpFile = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.HelpFile", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.HelpFile, _s_pBstrHelpFile, _ptr_pBstrHelpFile); err != nil {
 			return err
 		}
@@ -2711,7 +2788,18 @@ func (o *xxx_IsNameOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_pBstrNameInLibrary := func(ptr interface{}) { o.NameInLibrary = *ptr.(**oaut.String) }
+		_s_pBstrNameInLibrary := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.NameInLibrary = nil
+				} else {
+					o.NameInLibrary = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NameInLibrary", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NameInLibrary, _s_pBstrNameInLibrary, _ptr_pBstrNameInLibrary); err != nil {
 			return err
 		}
@@ -3159,7 +3247,18 @@ func (o *xxx_FindNameOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 				}
 				return nil
 			})
-			_s_ppTInfo := func(ptr interface{}) { o.TypeInfo[i1] = *ptr.(**oaut.TypeInfo) }
+			_s_ppTInfo := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **oaut.TypeInfo:
+					if ptr == nil {
+						o.TypeInfo[i1] = nil
+					} else {
+						o.TypeInfo[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TypeInfo[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.TypeInfo[i1], _s_ppTInfo, _ptr_ppTInfo); err != nil {
 				return err
 			}
@@ -3214,7 +3313,18 @@ func (o *xxx_FindNameOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_pBstrNameInLibrary := func(ptr interface{}) { o.NameInLibrary = *ptr.(**oaut.String) }
+		_s_pBstrNameInLibrary := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.NameInLibrary = nil
+				} else {
+					o.NameInLibrary = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NameInLibrary", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NameInLibrary, _s_pBstrNameInLibrary, _ptr_pBstrNameInLibrary); err != nil {
 			return err
 		}

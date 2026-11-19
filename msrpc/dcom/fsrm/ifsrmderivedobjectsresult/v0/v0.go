@@ -334,7 +334,18 @@ func (o *xxx_GetDerivedObjectsOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_derivedObjects := func(ptr interface{}) { o.DerivedObjects = *ptr.(**fsrm.Collection) }
+		_s_derivedObjects := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Collection:
+				if ptr == nil {
+					o.DerivedObjects = nil
+				} else {
+					o.DerivedObjects = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DerivedObjects", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DerivedObjects, _s_derivedObjects, _ptr_derivedObjects); err != nil {
 			return err
 		}
@@ -594,7 +605,18 @@ func (o *xxx_GetResultsOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_results := func(ptr interface{}) { o.Results = *ptr.(**fsrm.Collection) }
+		_s_results := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Collection:
+				if ptr == nil {
+					o.Results = nil
+				} else {
+					o.Results = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Results", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Results, _s_results, _ptr_results); err != nil {
 			return err
 		}

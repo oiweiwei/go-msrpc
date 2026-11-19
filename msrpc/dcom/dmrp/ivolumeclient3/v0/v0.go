@@ -1916,7 +1916,18 @@ func (o *xxx_EnumDisksExOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_diskList := func(ptr interface{}) { o.DiskList = *ptr.(*[]*dmrp.DiskInfoEx) }
+		_s_diskList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.DiskInfoEx:
+				if ptr == nil {
+					o.DiskList = nil
+				} else {
+					o.DiskList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DiskList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DiskList, _s_diskList, _ptr_diskList); err != nil {
 			return err
 		}
@@ -2251,7 +2262,18 @@ func (o *xxx_EnumDiskRegionsExOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_regionList := func(ptr interface{}) { o.RegionList = *ptr.(*[]*dmrp.RegionInfoEx) }
+		_s_regionList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.RegionInfoEx:
+				if ptr == nil {
+					o.RegionList = nil
+				} else {
+					o.RegionList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RegionList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RegionList, _s_regionList, _ptr_regionList); err != nil {
 			return err
 		}
@@ -4676,7 +4698,18 @@ func (o *xxx_FTEnumVolumesOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ftVolumeList := func(ptr interface{}) { o.VolumeList = *ptr.(*[]*dmrp.VolumeInfo) }
+		_s_ftVolumeList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.VolumeInfo:
+				if ptr == nil {
+					o.VolumeList = nil
+				} else {
+					o.VolumeList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VolumeList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VolumeList, _s_ftVolumeList, _ptr_ftVolumeList); err != nil {
 			return err
 		}
@@ -5003,7 +5036,18 @@ func (o *xxx_FTEnumLogicalDiskMembersOperation) UnmarshalNDRResponse(ctx context
 			}
 			return nil
 		})
-		_s_memberList := func(ptr interface{}) { o.MemberList = *ptr.(*[]int64) }
+		_s_memberList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]int64:
+				if ptr == nil {
+					o.MemberList = nil
+				} else {
+					o.MemberList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MemberList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MemberList, _s_memberList, _ptr_memberList); err != nil {
 			return err
 		}
@@ -7099,7 +7143,18 @@ func (o *xxx_EnumDriveLettersOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_driveLetterList := func(ptr interface{}) { o.DriveLetterList = *ptr.(*[]*dmrp.DriveLetterInfo) }
+		_s_driveLetterList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.DriveLetterInfo:
+				if ptr == nil {
+					o.DriveLetterList = nil
+				} else {
+					o.DriveLetterList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DriveLetterList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DriveLetterList, _s_driveLetterList, _ptr_driveLetterList); err != nil {
 			return err
 		}
@@ -8030,7 +8085,18 @@ func (o *xxx_EnumLocalFileSystemsOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_fileSystemList := func(ptr interface{}) { o.FileSystemList = *ptr.(*[]*dmrp.FileSystemInfo) }
+		_s_fileSystemList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.FileSystemInfo:
+				if ptr == nil {
+					o.FileSystemList = nil
+				} else {
+					o.FileSystemList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileSystemList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileSystemList, _s_fileSystemList, _ptr_fileSystemList); err != nil {
 			return err
 		}
@@ -8340,7 +8406,18 @@ func (o *xxx_GetInstalledFileSystemsOperation) UnmarshalNDRResponse(ctx context.
 			}
 			return nil
 		})
-		_s_fsList := func(ptr interface{}) { o.FSList = *ptr.(*[]*dmrp.InstalledFileSystemInfo) }
+		_s_fsList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.InstalledFileSystemInfo:
+				if ptr == nil {
+					o.FSList = nil
+				} else {
+					o.FSList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FSList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FSList, _s_fsList, _ptr_fsList); err != nil {
 			return err
 		}
@@ -8984,7 +9061,18 @@ func (o *xxx_EnumVolumesOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_LdmVolumeList := func(ptr interface{}) { o.LDMVolumeList = *ptr.(*[]*dmrp.VolumeInfo) }
+		_s_LdmVolumeList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.VolumeInfo:
+				if ptr == nil {
+					o.LDMVolumeList = nil
+				} else {
+					o.LDMVolumeList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LDMVolumeList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LDMVolumeList, _s_LdmVolumeList, _ptr_LdmVolumeList); err != nil {
 			return err
 		}
@@ -9311,7 +9399,18 @@ func (o *xxx_EnumVolumeMembersOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_memberList := func(ptr interface{}) { o.MemberList = *ptr.(*[]int64) }
+		_s_memberList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]int64:
+				if ptr == nil {
+					o.MemberList = nil
+				} else {
+					o.MemberList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MemberList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MemberList, _s_memberList, _ptr_memberList); err != nil {
 			return err
 		}
@@ -10884,7 +10983,18 @@ func (o *xxx_GetVolumeMountNameOperation) UnmarshalNDRResponse(ctx context.Conte
 			o.MountName = strings.TrimRight(string(utf16.Decode(_MountName_buf)), ndr.ZeroString)
 			return nil
 		})
-		_s_mountName := func(ptr interface{}) { o.MountName = *ptr.(*string) }
+		_s_mountName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.MountName = ""
+				} else {
+					o.MountName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MountName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MountName, _s_mountName, _ptr_mountName); err != nil {
 			return err
 		}
@@ -14918,7 +15028,18 @@ func (o *xxx_DiskMergeQueryOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_merge_dm_rids := func(ptr interface{}) { o.MergeDMRIDs = *ptr.(*[]int64) }
+		_s_merge_dm_rids := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]int64:
+				if ptr == nil {
+					o.MergeDMRIDs = nil
+				} else {
+					o.MergeDMRIDs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MergeDMRIDs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MergeDMRIDs, _s_merge_dm_rids, _ptr_merge_dm_rids); err != nil {
 			return err
 		}
@@ -14958,7 +15079,18 @@ func (o *xxx_DiskMergeQueryOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_mergeObjectInfo := func(ptr interface{}) { o.MergeObjectInfo = *ptr.(*[]*dmrp.MergeObjectInfo) }
+		_s_mergeObjectInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.MergeObjectInfo:
+				if ptr == nil {
+					o.MergeObjectInfo = nil
+				} else {
+					o.MergeObjectInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MergeObjectInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MergeObjectInfo, _s_mergeObjectInfo, _ptr_mergeObjectInfo); err != nil {
 			return err
 		}
@@ -16829,7 +16961,18 @@ func (o *xxx_GetEncapsulateDiskInfoExOperation) UnmarshalNDRResponse(ctx context
 			}
 			return nil
 		})
-		_s_affectedDiskList := func(ptr interface{}) { o.AffectedDiskList = *ptr.(*[]*dmrp.DiskInfoEx) }
+		_s_affectedDiskList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.DiskInfoEx:
+				if ptr == nil {
+					o.AffectedDiskList = nil
+				} else {
+					o.AffectedDiskList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AffectedDiskList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AffectedDiskList, _s_affectedDiskList, _ptr_affectedDiskList); err != nil {
 			return err
 		}
@@ -16860,7 +17003,18 @@ func (o *xxx_GetEncapsulateDiskInfoExOperation) UnmarshalNDRResponse(ctx context
 			}
 			return nil
 		})
-		_s_affectedDiskFlags := func(ptr interface{}) { o.AffectedDiskFlags = *ptr.(*[]uint32) }
+		_s_affectedDiskFlags := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]uint32:
+				if ptr == nil {
+					o.AffectedDiskFlags = nil
+				} else {
+					o.AffectedDiskFlags = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AffectedDiskFlags", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AffectedDiskFlags, _s_affectedDiskFlags, _ptr_affectedDiskFlags); err != nil {
 			return err
 		}
@@ -16900,7 +17054,18 @@ func (o *xxx_GetEncapsulateDiskInfoExOperation) UnmarshalNDRResponse(ctx context
 			}
 			return nil
 		})
-		_s_affectedVolumeList := func(ptr interface{}) { o.AffectedVolumeList = *ptr.(*[]*dmrp.VolumeInfo) }
+		_s_affectedVolumeList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.VolumeInfo:
+				if ptr == nil {
+					o.AffectedVolumeList = nil
+				} else {
+					o.AffectedVolumeList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AffectedVolumeList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AffectedVolumeList, _s_affectedVolumeList, _ptr_affectedVolumeList); err != nil {
 			return err
 		}
@@ -16940,7 +17105,18 @@ func (o *xxx_GetEncapsulateDiskInfoExOperation) UnmarshalNDRResponse(ctx context
 			}
 			return nil
 		})
-		_s_affectedRegionList := func(ptr interface{}) { o.AffectedRegionList = *ptr.(*[]*dmrp.RegionInfoEx) }
+		_s_affectedRegionList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.RegionInfoEx:
+				if ptr == nil {
+					o.AffectedRegionList = nil
+				} else {
+					o.AffectedRegionList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AffectedRegionList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AffectedRegionList, _s_affectedRegionList, _ptr_affectedRegionList); err != nil {
 			return err
 		}
@@ -18821,7 +18997,18 @@ func (o *xxx_EnumTasksOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_taskList := func(ptr interface{}) { o.TaskList = *ptr.(*[]*dmrp.TaskInfo) }
+		_s_taskList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.TaskInfo:
+				if ptr == nil {
+					o.TaskList = nil
+				} else {
+					o.TaskList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TaskList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TaskList, _s_taskList, _ptr_taskList); err != nil {
 			return err
 		}
@@ -19663,14 +19850,36 @@ func (o *xxx_HResultGetErrorDataOperation) UnmarshalNDRResponse(ctx context.Cont
 					}
 					return nil
 				})
-				_s_prgszw := func(ptr interface{}) { o.Data[i1] = *ptr.(*string) }
+				_s_prgszw := func(ptr any) {
+					switch ptr := ptr.(type) {
+					case *string:
+						if ptr == nil {
+							o.Data[i1] = ""
+						} else {
+							o.Data[i1] = *ptr
+						}
+					default:
+						w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data[i1]", ptr))
+					}
+				}
 				if err := w.ReadPointer(&o.Data[i1], _s_prgszw, _ptr_prgszw); err != nil {
 					return err
 				}
 			}
 			return nil
 		})
-		_s_prgszw := func(ptr interface{}) { o.Data = *ptr.(*[]string) }
+		_s_prgszw := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]string:
+				if ptr == nil {
+					o.Data = nil
+				} else {
+					o.Data = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Data, _s_prgszw, _ptr_prgszw); err != nil {
 			return err
 		}
@@ -19893,7 +20102,18 @@ func (o *xxx_InitializeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_notificationInterface := func(ptr interface{}) { o.NotificationInterface = *ptr.(**dcom.Unknown) }
+		_s_notificationInterface := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.NotificationInterface = nil
+				} else {
+					o.NotificationInterface = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NotificationInterface", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NotificationInterface, _s_notificationInterface, _ptr_notificationInterface); err != nil {
 			return err
 		}
@@ -21543,7 +21763,18 @@ func (o *xxx_EnumAccessPathOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_paths := func(ptr interface{}) { o.Paths = *ptr.(*[]*dmrp.CountedString) }
+		_s_paths := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.CountedString:
+				if ptr == nil {
+					o.Paths = nil
+				} else {
+					o.Paths = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Paths", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Paths, _s_paths, _ptr_paths); err != nil {
 			return err
 		}
@@ -21879,7 +22110,18 @@ func (o *xxx_EnumAccessPathForVolumeOperation) UnmarshalNDRResponse(ctx context.
 			}
 			return nil
 		})
-		_s_paths := func(ptr interface{}) { o.Paths = *ptr.(*[]*dmrp.CountedString) }
+		_s_paths := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dmrp.CountedString:
+				if ptr == nil {
+					o.Paths = nil
+				} else {
+					o.Paths = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Paths", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Paths, _s_paths, _ptr_paths); err != nil {
 			return err
 		}

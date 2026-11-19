@@ -379,7 +379,18 @@ func (o *xxx_CreateTemplateOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_quotaTemplate := func(ptr interface{}) { o.QuotaTemplate = *ptr.(**fsrm.QuotaTemplate) }
+		_s_quotaTemplate := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.QuotaTemplate:
+				if ptr == nil {
+					o.QuotaTemplate = nil
+				} else {
+					o.QuotaTemplate = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QuotaTemplate", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QuotaTemplate, _s_quotaTemplate, _ptr_quotaTemplate); err != nil {
 			return err
 		}
@@ -585,7 +596,18 @@ func (o *xxx_GetTemplateOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_name := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_name := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 			return err
 		}
@@ -684,7 +706,18 @@ func (o *xxx_GetTemplateOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_quotaTemplate := func(ptr interface{}) { o.QuotaTemplate = *ptr.(**fsrm.QuotaTemplate) }
+		_s_quotaTemplate := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.QuotaTemplate:
+				if ptr == nil {
+					o.QuotaTemplate = nil
+				} else {
+					o.QuotaTemplate = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QuotaTemplate", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QuotaTemplate, _s_quotaTemplate, _ptr_quotaTemplate); err != nil {
 			return err
 		}
@@ -956,7 +989,18 @@ func (o *xxx_EnumTemplatesOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_quotaTemplates := func(ptr interface{}) { o.QuotaTemplates = *ptr.(**fsrm.CommittableCollection) }
+		_s_quotaTemplates := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.CommittableCollection:
+				if ptr == nil {
+					o.QuotaTemplates = nil
+				} else {
+					o.QuotaTemplates = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QuotaTemplates", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QuotaTemplates, _s_quotaTemplates, _ptr_quotaTemplates); err != nil {
 			return err
 		}
@@ -1163,7 +1207,18 @@ func (o *xxx_ExportTemplatesOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_quotaTemplateNamesArray := func(ptr interface{}) { o.QuotaTemplateNamesArray = *ptr.(**oaut.Variant) }
+		_s_quotaTemplateNamesArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.QuotaTemplateNamesArray = nil
+				} else {
+					o.QuotaTemplateNamesArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QuotaTemplateNamesArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QuotaTemplateNamesArray, _s_quotaTemplateNamesArray, _ptr_quotaTemplateNamesArray); err != nil {
 			return err
 		}
@@ -1262,7 +1317,18 @@ func (o *xxx_ExportTemplatesOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_serializedQuotaTemplates := func(ptr interface{}) { o.SerializedQuotaTemplates = *ptr.(**oaut.String) }
+		_s_serializedQuotaTemplates := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SerializedQuotaTemplates = nil
+				} else {
+					o.SerializedQuotaTemplates = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SerializedQuotaTemplates", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SerializedQuotaTemplates, _s_serializedQuotaTemplates, _ptr_serializedQuotaTemplates); err != nil {
 			return err
 		}
@@ -1499,7 +1565,18 @@ func (o *xxx_ImportTemplatesOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_serializedQuotaTemplates := func(ptr interface{}) { o.SerializedQuotaTemplates = *ptr.(**oaut.String) }
+		_s_serializedQuotaTemplates := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SerializedQuotaTemplates = nil
+				} else {
+					o.SerializedQuotaTemplates = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SerializedQuotaTemplates", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SerializedQuotaTemplates, _s_serializedQuotaTemplates, _ptr_serializedQuotaTemplates); err != nil {
 			return err
 		}
@@ -1518,7 +1595,18 @@ func (o *xxx_ImportTemplatesOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_quotaTemplateNamesArray := func(ptr interface{}) { o.QuotaTemplateNamesArray = *ptr.(**oaut.Variant) }
+		_s_quotaTemplateNamesArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.QuotaTemplateNamesArray = nil
+				} else {
+					o.QuotaTemplateNamesArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QuotaTemplateNamesArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QuotaTemplateNamesArray, _s_quotaTemplateNamesArray, _ptr_quotaTemplateNamesArray); err != nil {
 			return err
 		}
@@ -1617,7 +1705,18 @@ func (o *xxx_ImportTemplatesOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_quotaTemplates := func(ptr interface{}) { o.QuotaTemplates = *ptr.(**fsrm.CommittableCollection) }
+		_s_quotaTemplates := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.CommittableCollection:
+				if ptr == nil {
+					o.QuotaTemplates = nil
+				} else {
+					o.QuotaTemplates = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QuotaTemplates", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QuotaTemplates, _s_quotaTemplates, _ptr_quotaTemplates); err != nil {
 			return err
 		}

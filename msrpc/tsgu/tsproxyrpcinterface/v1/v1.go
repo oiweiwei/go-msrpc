@@ -935,14 +935,36 @@ func (o *EndpointInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 				}
 				return nil
 			})
-			_s_resourceName := func(ptr interface{}) { o.ResourceName[i1] = *ptr.(*string) }
+			_s_resourceName := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case *string:
+					if ptr == nil {
+						o.ResourceName[i1] = ""
+					} else {
+						o.ResourceName[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResourceName[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.ResourceName[i1], _s_resourceName, _ptr_resourceName); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_resourceName := func(ptr interface{}) { o.ResourceName = *ptr.(*[]string) }
+	_s_resourceName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]string:
+			if ptr == nil {
+				o.ResourceName = nil
+			} else {
+				o.ResourceName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResourceName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ResourceName, _s_resourceName, _ptr_resourceName); err != nil {
 		return err
 	}
@@ -974,14 +996,36 @@ func (o *EndpointInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 				}
 				return nil
 			})
-			_s_alternateResourceNames := func(ptr interface{}) { o.AlternateResourceNames[i1] = *ptr.(*string) }
+			_s_alternateResourceNames := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case *string:
+					if ptr == nil {
+						o.AlternateResourceNames[i1] = ""
+					} else {
+						o.AlternateResourceNames[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AlternateResourceNames[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.AlternateResourceNames[i1], _s_alternateResourceNames, _ptr_alternateResourceNames); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_alternateResourceNames := func(ptr interface{}) { o.AlternateResourceNames = *ptr.(*[]string) }
+	_s_alternateResourceNames := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]string:
+			if ptr == nil {
+				o.AlternateResourceNames = nil
+			} else {
+				o.AlternateResourceNames = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AlternateResourceNames", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AlternateResourceNames, _s_alternateResourceNames, _ptr_alternateResourceNames); err != nil {
 		return err
 	}
@@ -1494,7 +1538,18 @@ func (o *PacketVersionCaps) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_TSGCaps := func(ptr interface{}) { o.Caps = *ptr.(*[]*PacketCapabilities) }
+	_s_TSGCaps := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*PacketCapabilities:
+			if ptr == nil {
+				o.Caps = nil
+			} else {
+				o.Caps = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Caps", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Caps, _s_TSGCaps, _ptr_TSGCaps); err != nil {
 		return err
 	}
@@ -1749,7 +1804,18 @@ func (o *PacketQuarantineRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		o.MachineName = strings.TrimRight(string(utf16.Decode(_MachineName_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_machineName := func(ptr interface{}) { o.MachineName = *ptr.(*string) }
+	_s_machineName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.MachineName = ""
+			} else {
+				o.MachineName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.MachineName, _s_machineName, _ptr_machineName); err != nil {
 		return err
 	}
@@ -1781,7 +1847,18 @@ func (o *PacketQuarantineRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		}
 		return nil
 	})
-	_s_data := func(ptr interface{}) { o.Data = *ptr.(*[]byte) }
+	_s_data := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Data = nil
+			} else {
+				o.Data = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Data, _s_data, _ptr_data); err != nil {
 		return err
 	}
@@ -2200,7 +2277,18 @@ func (o *PacketResponse) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_responseData := func(ptr interface{}) { o.ResponseData = *ptr.(*[]byte) }
+	_s_responseData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.ResponseData = nil
+			} else {
+				o.ResponseData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResponseData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ResponseData, _s_responseData, _ptr_responseData); err != nil {
 		return err
 	}
@@ -2400,7 +2488,18 @@ func (o *PacketQuarantineEncResponse) UnmarshalNDR(ctx context.Context, w ndr.Re
 		o.CertChainData = strings.TrimRight(string(utf16.Decode(_CertChainData_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_certChainData := func(ptr interface{}) { o.CertChainData = *ptr.(*string) }
+	_s_certChainData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.CertChainData = ""
+			} else {
+				o.CertChainData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CertChainData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.CertChainData, _s_certChainData, _ptr_certChainData); err != nil {
 		return err
 	}
@@ -2419,7 +2518,18 @@ func (o *PacketQuarantineEncResponse) UnmarshalNDR(ctx context.Context, w ndr.Re
 		}
 		return nil
 	})
-	_s_versionCaps := func(ptr interface{}) { o.VersionCaps = *ptr.(**PacketVersionCaps) }
+	_s_versionCaps := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketVersionCaps:
+			if ptr == nil {
+				o.VersionCaps = nil
+			} else {
+				o.VersionCaps = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VersionCaps", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.VersionCaps, _s_versionCaps, _ptr_versionCaps); err != nil {
 		return err
 	}
@@ -2602,7 +2712,18 @@ func (o *PacketStringMessage) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		o.MessageBuffer = strings.TrimRight(string(utf16.Decode(_MessageBuffer_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_msgBuffer := func(ptr interface{}) { o.MessageBuffer = *ptr.(*string) }
+	_s_msgBuffer := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.MessageBuffer = ""
+			} else {
+				o.MessageBuffer = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MessageBuffer", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.MessageBuffer, _s_msgBuffer, _ptr_msgBuffer); err != nil {
 		return err
 	}
@@ -2828,7 +2949,18 @@ func (o *PacketTypeMessageUnion_ConsentMessage) UnmarshalNDR(ctx context.Context
 		}
 		return nil
 	})
-	_s_consentMessage := func(ptr interface{}) { o.ConsentMessage = *ptr.(**PacketStringMessage) }
+	_s_consentMessage := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketStringMessage:
+			if ptr == nil {
+				o.ConsentMessage = nil
+			} else {
+				o.ConsentMessage = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConsentMessage", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ConsentMessage, _s_consentMessage, _ptr_consentMessage); err != nil {
 		return err
 	}
@@ -2878,7 +3010,18 @@ func (o *PacketTypeMessageUnion_ServiceMessage) UnmarshalNDR(ctx context.Context
 		}
 		return nil
 	})
-	_s_serviceMessage := func(ptr interface{}) { o.ServiceMessage = *ptr.(**PacketStringMessage) }
+	_s_serviceMessage := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketStringMessage:
+			if ptr == nil {
+				o.ServiceMessage = nil
+			} else {
+				o.ServiceMessage = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServiceMessage", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ServiceMessage, _s_serviceMessage, _ptr_serviceMessage); err != nil {
 		return err
 	}
@@ -2928,7 +3071,18 @@ func (o *PacketTypeMessageUnion_ReauthMessage) UnmarshalNDR(ctx context.Context,
 		}
 		return nil
 	})
-	_s_reauthMessage := func(ptr interface{}) { o.ReauthMessage = *ptr.(**PacketReauthMessage) }
+	_s_reauthMessage := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketReauthMessage:
+			if ptr == nil {
+				o.ReauthMessage = nil
+			} else {
+				o.ReauthMessage = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReauthMessage", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ReauthMessage, _s_reauthMessage, _ptr_reauthMessage); err != nil {
 		return err
 	}
@@ -3221,7 +3375,18 @@ func (o *PacketAuth) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_cookie := func(ptr interface{}) { o.Cookie = *ptr.(*[]byte) }
+	_s_cookie := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Cookie = nil
+			} else {
+				o.Cookie = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Cookie", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Cookie, _s_cookie, _ptr_cookie); err != nil {
 		return err
 	}
@@ -3382,7 +3547,18 @@ func (o *InitialPacketTypeUnion_PacketVersionCaps) UnmarshalNDR(ctx context.Cont
 		}
 		return nil
 	})
-	_s_packetVersionCaps := func(ptr interface{}) { o.PacketVersionCaps = *ptr.(**PacketVersionCaps) }
+	_s_packetVersionCaps := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketVersionCaps:
+			if ptr == nil {
+				o.PacketVersionCaps = nil
+			} else {
+				o.PacketVersionCaps = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketVersionCaps", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PacketVersionCaps, _s_packetVersionCaps, _ptr_packetVersionCaps); err != nil {
 		return err
 	}
@@ -3432,7 +3608,18 @@ func (o *InitialPacketTypeUnion_PacketAuth) UnmarshalNDR(ctx context.Context, w 
 		}
 		return nil
 	})
-	_s_packetAuth := func(ptr interface{}) { o.PacketAuth = *ptr.(**PacketAuth) }
+	_s_packetAuth := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketAuth:
+			if ptr == nil {
+				o.PacketAuth = nil
+			} else {
+				o.PacketAuth = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketAuth", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PacketAuth, _s_packetAuth, _ptr_packetAuth); err != nil {
 		return err
 	}
@@ -3893,7 +4080,18 @@ func (o *PacketTypeUnion_PacketHeader) UnmarshalNDR(ctx context.Context, w ndr.R
 		}
 		return nil
 	})
-	_s_packetHeader := func(ptr interface{}) { o.PacketHeader = *ptr.(**PacketHeader) }
+	_s_packetHeader := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketHeader:
+			if ptr == nil {
+				o.PacketHeader = nil
+			} else {
+				o.PacketHeader = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketHeader", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PacketHeader, _s_packetHeader, _ptr_packetHeader); err != nil {
 		return err
 	}
@@ -3944,7 +4142,18 @@ func (o *PacketTypeUnion_PacketVersionCaps) UnmarshalNDR(ctx context.Context, w 
 		}
 		return nil
 	})
-	_s_packetVersionCaps := func(ptr interface{}) { o.PacketVersionCaps = *ptr.(**PacketVersionCaps) }
+	_s_packetVersionCaps := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketVersionCaps:
+			if ptr == nil {
+				o.PacketVersionCaps = nil
+			} else {
+				o.PacketVersionCaps = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketVersionCaps", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PacketVersionCaps, _s_packetVersionCaps, _ptr_packetVersionCaps); err != nil {
 		return err
 	}
@@ -3996,7 +4205,18 @@ func (o *PacketTypeUnion_PacketQuarantineConfigRequest) UnmarshalNDR(ctx context
 		}
 		return nil
 	})
-	_s_packetQuarConfigRequest := func(ptr interface{}) { o.PacketQuarantineConfigRequest = *ptr.(**PacketQuarantineConfigRequest) }
+	_s_packetQuarConfigRequest := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketQuarantineConfigRequest:
+			if ptr == nil {
+				o.PacketQuarantineConfigRequest = nil
+			} else {
+				o.PacketQuarantineConfigRequest = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketQuarantineConfigRequest", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PacketQuarantineConfigRequest, _s_packetQuarConfigRequest, _ptr_packetQuarConfigRequest); err != nil {
 		return err
 	}
@@ -4047,7 +4267,18 @@ func (o *PacketTypeUnion_PacketQuarantineRequest) UnmarshalNDR(ctx context.Conte
 		}
 		return nil
 	})
-	_s_packetQuarRequest := func(ptr interface{}) { o.PacketQuarantineRequest = *ptr.(**PacketQuarantineRequest) }
+	_s_packetQuarRequest := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketQuarantineRequest:
+			if ptr == nil {
+				o.PacketQuarantineRequest = nil
+			} else {
+				o.PacketQuarantineRequest = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketQuarantineRequest", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PacketQuarantineRequest, _s_packetQuarRequest, _ptr_packetQuarRequest); err != nil {
 		return err
 	}
@@ -4098,7 +4329,18 @@ func (o *PacketTypeUnion_PacketResponse) UnmarshalNDR(ctx context.Context, w ndr
 		}
 		return nil
 	})
-	_s_packetResponse := func(ptr interface{}) { o.PacketResponse = *ptr.(**PacketResponse) }
+	_s_packetResponse := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketResponse:
+			if ptr == nil {
+				o.PacketResponse = nil
+			} else {
+				o.PacketResponse = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketResponse", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PacketResponse, _s_packetResponse, _ptr_packetResponse); err != nil {
 		return err
 	}
@@ -4149,7 +4391,18 @@ func (o *PacketTypeUnion_PacketQuarantineEncResponse) UnmarshalNDR(ctx context.C
 		}
 		return nil
 	})
-	_s_packetQuarEncResponse := func(ptr interface{}) { o.PacketQuarantineEncResponse = *ptr.(**PacketQuarantineEncResponse) }
+	_s_packetQuarEncResponse := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketQuarantineEncResponse:
+			if ptr == nil {
+				o.PacketQuarantineEncResponse = nil
+			} else {
+				o.PacketQuarantineEncResponse = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketQuarantineEncResponse", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PacketQuarantineEncResponse, _s_packetQuarEncResponse, _ptr_packetQuarEncResponse); err != nil {
 		return err
 	}
@@ -4200,7 +4453,18 @@ func (o *PacketTypeUnion_PacketCapsResponse) UnmarshalNDR(ctx context.Context, w
 		}
 		return nil
 	})
-	_s_packetCapsResponse := func(ptr interface{}) { o.PacketCapsResponse = *ptr.(**PacketCapsResponse) }
+	_s_packetCapsResponse := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketCapsResponse:
+			if ptr == nil {
+				o.PacketCapsResponse = nil
+			} else {
+				o.PacketCapsResponse = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketCapsResponse", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PacketCapsResponse, _s_packetCapsResponse, _ptr_packetCapsResponse); err != nil {
 		return err
 	}
@@ -4251,7 +4515,18 @@ func (o *PacketTypeUnion_PacketMessageRequest) UnmarshalNDR(ctx context.Context,
 		}
 		return nil
 	})
-	_s_packetMsgRequest := func(ptr interface{}) { o.PacketMessageRequest = *ptr.(**PacketMessageRequest) }
+	_s_packetMsgRequest := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketMessageRequest:
+			if ptr == nil {
+				o.PacketMessageRequest = nil
+			} else {
+				o.PacketMessageRequest = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketMessageRequest", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PacketMessageRequest, _s_packetMsgRequest, _ptr_packetMsgRequest); err != nil {
 		return err
 	}
@@ -4302,7 +4577,18 @@ func (o *PacketTypeUnion_PacketMessageResponse) UnmarshalNDR(ctx context.Context
 		}
 		return nil
 	})
-	_s_packetMsgResponse := func(ptr interface{}) { o.PacketMessageResponse = *ptr.(**PacketMessageResponse) }
+	_s_packetMsgResponse := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketMessageResponse:
+			if ptr == nil {
+				o.PacketMessageResponse = nil
+			} else {
+				o.PacketMessageResponse = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketMessageResponse", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PacketMessageResponse, _s_packetMsgResponse, _ptr_packetMsgResponse); err != nil {
 		return err
 	}
@@ -4353,7 +4639,18 @@ func (o *PacketTypeUnion_PacketAuth) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		}
 		return nil
 	})
-	_s_packetAuth := func(ptr interface{}) { o.PacketAuth = *ptr.(**PacketAuth) }
+	_s_packetAuth := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketAuth:
+			if ptr == nil {
+				o.PacketAuth = nil
+			} else {
+				o.PacketAuth = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketAuth", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PacketAuth, _s_packetAuth, _ptr_packetAuth); err != nil {
 		return err
 	}
@@ -4404,7 +4701,18 @@ func (o *PacketTypeUnion_PacketReauth) UnmarshalNDR(ctx context.Context, w ndr.R
 		}
 		return nil
 	})
-	_s_packetReauth := func(ptr interface{}) { o.PacketReauth = *ptr.(**PacketReauth) }
+	_s_packetReauth := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **PacketReauth:
+			if ptr == nil {
+				o.PacketReauth = nil
+			} else {
+				o.PacketReauth = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketReauth", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PacketReauth, _s_packetReauth, _ptr_packetReauth); err != nil {
 		return err
 	}
@@ -4742,7 +5050,18 @@ func (o *xxx_CreateTunnelOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_TSGPacketResponse := func(ptr interface{}) { o.PacketResponse = *ptr.(**Packet) }
+		_s_TSGPacketResponse := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Packet:
+				if ptr == nil {
+					o.PacketResponse = nil
+				} else {
+					o.PacketResponse = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketResponse", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PacketResponse, _s_TSGPacketResponse, _ptr_TSGPacketResponse); err != nil {
 			return err
 		}
@@ -5038,7 +5357,18 @@ func (o *xxx_AuthorizeTunnelOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_TSGPacketResponse := func(ptr interface{}) { o.PacketResponse = *ptr.(**Packet) }
+		_s_TSGPacketResponse := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Packet:
+				if ptr == nil {
+					o.PacketResponse = nil
+				} else {
+					o.PacketResponse = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketResponse", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PacketResponse, _s_TSGPacketResponse, _ptr_TSGPacketResponse); err != nil {
 			return err
 		}
@@ -5311,7 +5641,18 @@ func (o *xxx_MakeTunnelCallOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_TSGPacketResponse := func(ptr interface{}) { o.PacketResponse = *ptr.(**Packet) }
+		_s_TSGPacketResponse := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Packet:
+				if ptr == nil {
+					o.PacketResponse = nil
+				} else {
+					o.PacketResponse = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PacketResponse", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PacketResponse, _s_TSGPacketResponse, _ptr_TSGPacketResponse); err != nil {
 			return err
 		}

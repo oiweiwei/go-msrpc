@@ -826,7 +826,18 @@ func (o *RefreshedObject) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		}
 		return nil
 	})
-	_s_m_pbBlob := func(ptr interface{}) { o.Blob = *ptr.(*[]byte) }
+	_s_m_pbBlob := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Blob = nil
+			} else {
+				o.Blob = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Blob", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Blob, _s_m_pbBlob, _ptr_m_pbBlob); err != nil {
 		return err
 	}
@@ -936,7 +947,18 @@ func (o *RefreshInfoRemote) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_m_pRefresher := func(ptr interface{}) { o.Refresher = *ptr.(**RemoteRefresher) }
+	_s_m_pRefresher := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **RemoteRefresher:
+			if ptr == nil {
+				o.Refresher = nil
+			} else {
+				o.Refresher = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Refresher", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Refresher, _s_m_pRefresher, _ptr_m_pRefresher); err != nil {
 		return err
 	}
@@ -949,7 +971,18 @@ func (o *RefreshInfoRemote) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_m_pTemplate := func(ptr interface{}) { o.Template = *ptr.(**ClassObject) }
+	_s_m_pTemplate := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ClassObject:
+			if ptr == nil {
+				o.Template = nil
+			} else {
+				o.Template = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Template", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Template, _s_m_pTemplate, _ptr_m_pTemplate); err != nil {
 		return err
 	}
@@ -1042,7 +1075,18 @@ func (o *RefreshInfoNonHiPerf) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		}
 		return nil
 	})
-	_s_m_wszNamespace := func(ptr interface{}) { o.Namespace = *ptr.(*string) }
+	_s_m_wszNamespace := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Namespace = ""
+			} else {
+				o.Namespace = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Namespace", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Namespace, _s_m_wszNamespace, _ptr_m_wszNamespace); err != nil {
 		return err
 	}
@@ -1055,7 +1099,18 @@ func (o *RefreshInfoNonHiPerf) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		}
 		return nil
 	})
-	_s_m_pTemplate := func(ptr interface{}) { o.Template = *ptr.(**ClassObject) }
+	_s_m_pTemplate := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ClassObject:
+			if ptr == nil {
+				o.Template = nil
+			} else {
+				o.Template = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Template", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Template, _s_m_pTemplate, _ptr_m_pTemplate); err != nil {
 		return err
 	}
@@ -1466,7 +1521,18 @@ func (o *RefresherID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_m_szMachineName := func(ptr interface{}) { o.MachineName = *ptr.(*string) }
+	_s_m_szMachineName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.MachineName = ""
+			} else {
+				o.MachineName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.MachineName, _s_m_szMachineName, _ptr_m_szMachineName); err != nil {
 		return err
 	}
@@ -1574,7 +1640,18 @@ func (o *ReconnectInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_m_pwcsPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+	_s_m_pwcsPath := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Path = ""
+			} else {
+				o.Path = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Path, _s_m_pwcsPath, _ptr_m_pwcsPath); err != nil {
 		return err
 	}

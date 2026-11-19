@@ -324,7 +324,18 @@ func (o *xxx_GetConfigFileOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_bstrConfigPath := func(ptr interface{}) { o.ConfigPath = *ptr.(**oaut.String) }
+		_s_bstrConfigPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ConfigPath = nil
+				} else {
+					o.ConfigPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigPath, _s_bstrConfigPath, _ptr_bstrConfigPath); err != nil {
 			return err
 		}
@@ -423,7 +434,18 @@ func (o *xxx_GetConfigFileOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppConfigFile := func(ptr interface{}) { o.ConfigFile = *ptr.(**iisa.AppHostConfigFile) }
+		_s_ppConfigFile := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostConfigFile:
+				if ptr == nil {
+					o.ConfigFile = nil
+				} else {
+					o.ConfigFile = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigFile", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigFile, _s_ppConfigFile, _ptr_ppConfigFile); err != nil {
 			return err
 		}
@@ -632,7 +654,18 @@ func (o *xxx_GetUniqueConfigPathOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_bstrConfigPath := func(ptr interface{}) { o.ConfigPath = *ptr.(**oaut.String) }
+		_s_bstrConfigPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ConfigPath = nil
+				} else {
+					o.ConfigPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigPath, _s_bstrConfigPath, _ptr_bstrConfigPath); err != nil {
 			return err
 		}
@@ -731,7 +764,18 @@ func (o *xxx_GetUniqueConfigPathOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_pbstrUniquePath := func(ptr interface{}) { o.UniquePath = *ptr.(**oaut.String) }
+		_s_pbstrUniquePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.UniquePath = nil
+				} else {
+					o.UniquePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UniquePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.UniquePath, _s_pbstrUniquePath, _ptr_pbstrUniquePath); err != nil {
 			return err
 		}

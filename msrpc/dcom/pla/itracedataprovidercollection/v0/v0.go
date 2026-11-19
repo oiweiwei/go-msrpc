@@ -754,7 +754,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppProvider := func(ptr interface{}) { o.Provider = *ptr.(**pla.TraceDataProvider) }
+		_s_ppProvider := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.TraceDataProvider:
+				if ptr == nil {
+					o.Provider = nil
+				} else {
+					o.Provider = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Provider", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Provider, _s_ppProvider, _ptr_ppProvider); err != nil {
 			return err
 		}
@@ -1013,7 +1024,18 @@ func (o *xxx_Get_NewEnumOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_retVal := func(ptr interface{}) { o.ReturnValue = *ptr.(**dcom.Unknown) }
+		_s_retVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retVal, _ptr_retVal); err != nil {
 			return err
 		}
@@ -1214,7 +1236,18 @@ func (o *xxx_AddOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader
 			}
 			return nil
 		})
-		_s_pProvider := func(ptr interface{}) { o.Provider = *ptr.(**pla.TraceDataProvider) }
+		_s_pProvider := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.TraceDataProvider:
+				if ptr == nil {
+					o.Provider = nil
+				} else {
+					o.Provider = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Provider", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Provider, _s_pProvider, _ptr_pProvider); err != nil {
 			return err
 		}
@@ -1907,7 +1940,18 @@ func (o *xxx_AddRangeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_providers := func(ptr interface{}) { o.Providers = *ptr.(**pla.TraceDataProviderCollection) }
+		_s_providers := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.TraceDataProviderCollection:
+				if ptr == nil {
+					o.Providers = nil
+				} else {
+					o.Providers = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Providers", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Providers, _s_providers, _ptr_providers); err != nil {
 			return err
 		}
@@ -2216,7 +2260,18 @@ func (o *xxx_CreateTraceDataProviderOperation) UnmarshalNDRResponse(ctx context.
 			}
 			return nil
 		})
-		_s_Provider := func(ptr interface{}) { o.Provider = *ptr.(**pla.TraceDataProvider) }
+		_s_Provider := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.TraceDataProvider:
+				if ptr == nil {
+					o.Provider = nil
+				} else {
+					o.Provider = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Provider", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Provider, _s_Provider, _ptr_Provider); err != nil {
 			return err
 		}
@@ -2422,7 +2477,18 @@ func (o *xxx_GetTraceDataProvidersOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_server := func(ptr interface{}) { o.Server = *ptr.(**oaut.String) }
+		_s_server := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Server = nil
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_server, _ptr_server); err != nil {
 			return err
 		}
@@ -2688,7 +2754,18 @@ func (o *xxx_GetTraceDataProvidersByProcessOperation) UnmarshalNDRRequest(ctx co
 			}
 			return nil
 		})
-		_s_Server := func(ptr interface{}) { o.Server = *ptr.(**oaut.String) }
+		_s_Server := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Server = nil
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_Server, _ptr_Server); err != nil {
 			return err
 		}

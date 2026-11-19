@@ -608,7 +608,18 @@ func (o *xxx_QueryFreeExtentsOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ppFreeExtentArray := func(ptr interface{}) { o.FreeExtentArray = *ptr.(*[]*vds.DiskFreeExtent) }
+		_s_ppFreeExtentArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*vds.DiskFreeExtent:
+				if ptr == nil {
+					o.FreeExtentArray = nil
+				} else {
+					o.FreeExtentArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FreeExtentArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FreeExtentArray, _s_ppFreeExtentArray, _ptr_ppFreeExtentArray); err != nil {
 			return err
 		}

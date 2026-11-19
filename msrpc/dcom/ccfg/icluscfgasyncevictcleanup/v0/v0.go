@@ -295,7 +295,18 @@ func (o *xxx_CleanupNodeOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_bstrEvictedNodeNameIn := func(ptr interface{}) { o.EvictedNodeNameIn = *ptr.(**oaut.String) }
+		_s_bstrEvictedNodeNameIn := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.EvictedNodeNameIn = nil
+				} else {
+					o.EvictedNodeNameIn = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EvictedNodeNameIn", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EvictedNodeNameIn, _s_bstrEvictedNodeNameIn, _ptr_bstrEvictedNodeNameIn); err != nil {
 			return err
 		}

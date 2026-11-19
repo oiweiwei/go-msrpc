@@ -355,7 +355,18 @@ func (o *Binding) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_string := func(ptr interface{}) { o.String = *ptr.(*string) }
+	_s_string := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.String = ""
+			} else {
+				o.String = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.String", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.String, _s_string, _ptr_string); err != nil {
 		return err
 	}
@@ -368,7 +379,18 @@ func (o *Binding) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_entry_name := func(ptr interface{}) { o.EntryName = *ptr.(*string) }
+	_s_entry_name := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.EntryName = ""
+			} else {
+				o.EntryName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EntryName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.EntryName, _s_entry_name, _ptr_entry_name); err != nil {
 		return err
 	}
@@ -615,7 +637,18 @@ func (o *UUIDVector) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 			}
 			return nil
 		})
-		_s_uuid := func(ptr interface{}) { o.UUID[i1] = *ptr.(**dtyp.GUID) }
+		_s_uuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.UUID[i1] = nil
+				} else {
+					o.UUID[i1] = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UUID[i1]", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.UUID[i1], _s_uuid, _ptr_uuid); err != nil {
 			return err
 		}

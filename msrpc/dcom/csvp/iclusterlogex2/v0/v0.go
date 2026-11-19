@@ -469,7 +469,18 @@ func (o *xxx_GenerateLogExOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_LogFilePath := func(ptr interface{}) { o.LogFilePath = *ptr.(**oaut.String) }
+		_s_LogFilePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LogFilePath = nil
+				} else {
+					o.LogFilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LogFilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LogFilePath, _s_LogFilePath, _ptr_LogFilePath); err != nil {
 			return err
 		}
@@ -984,7 +995,18 @@ func (o *xxx_GetLogFilePathOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_LogFilePath := func(ptr interface{}) { o.LogFilePath = *ptr.(**oaut.String) }
+		_s_LogFilePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LogFilePath = nil
+				} else {
+					o.LogFilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LogFilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LogFilePath, _s_LogFilePath, _ptr_LogFilePath); err != nil {
 			return err
 		}

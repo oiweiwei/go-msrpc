@@ -706,7 +706,18 @@ func (o *xxx_EjectNTMSMediaOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_lpMediaId := func(ptr interface{}) { o.MediaID = *ptr.(**dtyp.GUID) }
+		_s_lpMediaId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.MediaID = nil
+				} else {
+					o.MediaID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MediaID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MediaID, _s_lpMediaId, _ptr_lpMediaId); err != nil {
 			return err
 		}

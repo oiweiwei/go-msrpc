@@ -186,7 +186,18 @@ func (o *ATEnumContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		}
 		return nil
 	})
-	_s_Buffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]*tsch.ATEnum) }
+	_s_Buffer := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*tsch.ATEnum:
+			if ptr == nil {
+				o.Buffer = nil
+			} else {
+				o.Buffer = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Buffer, _s_Buffer, _ptr_Buffer); err != nil {
 		return err
 	}
@@ -340,7 +351,18 @@ func (o *xxx_JobAddOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		_s_ServerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerName = ""
+				} else {
+					o.ServerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
 			return err
 		}
@@ -572,7 +594,18 @@ func (o *xxx_JobDeleteOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		_s_ServerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerName = ""
+				} else {
+					o.ServerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
 			return err
 		}
@@ -843,7 +876,18 @@ func (o *xxx_JobEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		_s_ServerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerName = ""
+				} else {
+					o.ServerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
 			return err
 		}
@@ -877,7 +921,18 @@ func (o *xxx_JobEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_pResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
+		_s_pResumeHandle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *uint32:
+				if ptr == nil {
+					o.Resume = uint32(0)
+				} else {
+					o.Resume = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Resume", ptr))
+			}
+		}
 		_m_pResumeHandle := func() { o.NullMask |= JobEnumNullMaskResume }
 		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_pResumeHandle, _m_pResumeHandle}, _ptr_pResumeHandle); err != nil {
 			return err
@@ -980,7 +1035,18 @@ func (o *xxx_JobEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
+		_s_pResumeHandle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *uint32:
+				if ptr == nil {
+					o.Resume = uint32(0)
+				} else {
+					o.Resume = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Resume", ptr))
+			}
+		}
 		_m_pResumeHandle := func() { o.NullMask |= JobEnumNullMaskResume }
 		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_pResumeHandle, _m_pResumeHandle}, _ptr_pResumeHandle); err != nil {
 			return err
@@ -1195,7 +1261,18 @@ func (o *xxx_JobGetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		_s_ServerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerName = ""
+				} else {
+					o.ServerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
 			return err
 		}
@@ -1273,7 +1350,18 @@ func (o *xxx_JobGetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ppAtInfo := func(ptr interface{}) { o.ATInfo = *ptr.(**tsch.ATInfo) }
+		_s_ppAtInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **tsch.ATInfo:
+				if ptr == nil {
+					o.ATInfo = nil
+				} else {
+					o.ATInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ATInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ATInfo, _s_ppAtInfo, _ptr_ppAtInfo); err != nil {
 			return err
 		}

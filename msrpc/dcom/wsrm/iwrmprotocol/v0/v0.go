@@ -300,7 +300,18 @@ func (o *xxx_GetSupportedClientOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pbstrSupportedClients := func(ptr interface{}) { o.SupportedClients = *ptr.(**oaut.String) }
+		_s_pbstrSupportedClients := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SupportedClients = nil
+				} else {
+					o.SupportedClients = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SupportedClients", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SupportedClients, _s_pbstrSupportedClients, _ptr_pbstrSupportedClients); err != nil {
 			return err
 		}

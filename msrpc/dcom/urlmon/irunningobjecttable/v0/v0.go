@@ -412,7 +412,18 @@ func (o *xxx_RegisterOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_punkObject := func(ptr interface{}) { o.Object = *ptr.(**dcom.Unknown) }
+		_s_punkObject := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.Object = nil
+				} else {
+					o.Object = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Object", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Object, _s_punkObject, _ptr_punkObject); err != nil {
 			return err
 		}
@@ -431,7 +442,18 @@ func (o *xxx_RegisterOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pmkObjectName := func(ptr interface{}) { o.ObjectName = *ptr.(**urlmon.Moniker) }
+		_s_pmkObjectName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.ObjectName = nil
+				} else {
+					o.ObjectName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectName, _s_pmkObjectName, _ptr_pmkObjectName); err != nil {
 			return err
 		}
@@ -926,7 +948,18 @@ func (o *xxx_IsRunningOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_pmkObjectName := func(ptr interface{}) { o.ObjectName = *ptr.(**urlmon.Moniker) }
+		_s_pmkObjectName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.ObjectName = nil
+				} else {
+					o.ObjectName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectName, _s_pmkObjectName, _ptr_pmkObjectName); err != nil {
 			return err
 		}
@@ -1181,7 +1214,18 @@ func (o *xxx_GetObjectOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_pmkObjectName := func(ptr interface{}) { o.ObjectName = *ptr.(**urlmon.Moniker) }
+		_s_pmkObjectName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.ObjectName = nil
+				} else {
+					o.ObjectName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectName, _s_pmkObjectName, _ptr_pmkObjectName); err != nil {
 			return err
 		}
@@ -1280,7 +1324,18 @@ func (o *xxx_GetObjectOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_ppunkObject := func(ptr interface{}) { o.Object = *ptr.(**dcom.Unknown) }
+		_s_ppunkObject := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.Object = nil
+				} else {
+					o.Object = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Object", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Object, _s_ppunkObject, _ptr_ppunkObject); err != nil {
 			return err
 		}
@@ -1734,7 +1789,18 @@ func (o *xxx_GetTimeOfLastChangeOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pmkObjectName := func(ptr interface{}) { o.ObjectName = *ptr.(**urlmon.Moniker) }
+		_s_pmkObjectName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.Moniker:
+				if ptr == nil {
+					o.ObjectName = nil
+				} else {
+					o.ObjectName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectName, _s_pmkObjectName, _ptr_pmkObjectName); err != nil {
 			return err
 		}
@@ -2067,7 +2133,18 @@ func (o *xxx_EnumRunningOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ppenumMoniker := func(ptr interface{}) { o.Moniker = *ptr.(**urlmon.EnumMoniker) }
+		_s_ppenumMoniker := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.EnumMoniker:
+				if ptr == nil {
+					o.Moniker = nil
+				} else {
+					o.Moniker = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Moniker", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Moniker, _s_ppenumMoniker, _ptr_ppenumMoniker); err != nil {
 			return err
 		}

@@ -557,7 +557,18 @@ func (o *xxx_QueryInitiatorPortalsOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**vds.EnumObject) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.EnumObject:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}

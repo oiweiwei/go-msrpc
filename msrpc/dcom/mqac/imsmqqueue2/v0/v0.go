@@ -1216,7 +1216,18 @@ func (o *xxx_GetQueueInfoOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ppqinfo := func(ptr interface{}) { o.QueueInfo = *ptr.(**mqac.QueueInfo2) }
+		_s_ppqinfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.QueueInfo2:
+				if ptr == nil {
+					o.QueueInfo = nil
+				} else {
+					o.QueueInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QueueInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QueueInfo, _s_ppqinfo, _ptr_ppqinfo); err != nil {
 			return err
 		}
@@ -2148,7 +2159,18 @@ func (o *xxx_ReceiveV1Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_Transaction := func(ptr interface{}) { o.Transaction = *ptr.(**oaut.Variant) }
+		_s_Transaction := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Transaction = nil
+				} else {
+					o.Transaction = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Transaction", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Transaction, _s_Transaction, _ptr_Transaction); err != nil {
 			return err
 		}
@@ -2167,7 +2189,18 @@ func (o *xxx_ReceiveV1Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_WantDestinationQueue := func(ptr interface{}) { o.WantDestinationQueue = *ptr.(**oaut.Variant) }
+		_s_WantDestinationQueue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantDestinationQueue = nil
+				} else {
+					o.WantDestinationQueue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantDestinationQueue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantDestinationQueue, _s_WantDestinationQueue, _ptr_WantDestinationQueue); err != nil {
 			return err
 		}
@@ -2186,7 +2219,18 @@ func (o *xxx_ReceiveV1Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_WantBody := func(ptr interface{}) { o.WantBody = *ptr.(**oaut.Variant) }
+		_s_WantBody := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantBody = nil
+				} else {
+					o.WantBody = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantBody", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantBody, _s_WantBody, _ptr_WantBody); err != nil {
 			return err
 		}
@@ -2205,7 +2249,18 @@ func (o *xxx_ReceiveV1Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_ReceiveTimeout := func(ptr interface{}) { o.ReceiveTimeout = *ptr.(**oaut.Variant) }
+		_s_ReceiveTimeout := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ReceiveTimeout = nil
+				} else {
+					o.ReceiveTimeout = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReceiveTimeout", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReceiveTimeout, _s_ReceiveTimeout, _ptr_ReceiveTimeout); err != nil {
 			return err
 		}
@@ -2304,7 +2359,18 @@ func (o *xxx_ReceiveV1Operation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message) }
+		_s_ppmsg := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Message:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
@@ -2626,7 +2692,18 @@ func (o *xxx_PeekV1Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_WantDestinationQueue := func(ptr interface{}) { o.WantDestinationQueue = *ptr.(**oaut.Variant) }
+		_s_WantDestinationQueue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantDestinationQueue = nil
+				} else {
+					o.WantDestinationQueue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantDestinationQueue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantDestinationQueue, _s_WantDestinationQueue, _ptr_WantDestinationQueue); err != nil {
 			return err
 		}
@@ -2645,7 +2722,18 @@ func (o *xxx_PeekV1Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_WantBody := func(ptr interface{}) { o.WantBody = *ptr.(**oaut.Variant) }
+		_s_WantBody := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantBody = nil
+				} else {
+					o.WantBody = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantBody", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantBody, _s_WantBody, _ptr_WantBody); err != nil {
 			return err
 		}
@@ -2664,7 +2752,18 @@ func (o *xxx_PeekV1Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ReceiveTimeout := func(ptr interface{}) { o.ReceiveTimeout = *ptr.(**oaut.Variant) }
+		_s_ReceiveTimeout := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ReceiveTimeout = nil
+				} else {
+					o.ReceiveTimeout = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReceiveTimeout", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReceiveTimeout, _s_ReceiveTimeout, _ptr_ReceiveTimeout); err != nil {
 			return err
 		}
@@ -2763,7 +2862,18 @@ func (o *xxx_PeekV1Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message) }
+		_s_ppmsg := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Message:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
@@ -3073,7 +3183,18 @@ func (o *xxx_EnableNotificationOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_Event := func(ptr interface{}) { o.Event = *ptr.(**mqac.Event2) }
+		_s_Event := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Event2:
+				if ptr == nil {
+					o.Event = nil
+				} else {
+					o.Event = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Event", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Event, _s_Event, _ptr_Event); err != nil {
 			return err
 		}
@@ -3092,7 +3213,18 @@ func (o *xxx_EnableNotificationOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_Cursor := func(ptr interface{}) { o.Cursor = *ptr.(**oaut.Variant) }
+		_s_Cursor := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Cursor = nil
+				} else {
+					o.Cursor = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Cursor", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Cursor, _s_Cursor, _ptr_Cursor); err != nil {
 			return err
 		}
@@ -3111,7 +3243,18 @@ func (o *xxx_EnableNotificationOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ReceiveTimeout := func(ptr interface{}) { o.ReceiveTimeout = *ptr.(**oaut.Variant) }
+		_s_ReceiveTimeout := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ReceiveTimeout = nil
+				} else {
+					o.ReceiveTimeout = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReceiveTimeout", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReceiveTimeout, _s_ReceiveTimeout, _ptr_ReceiveTimeout); err != nil {
 			return err
 		}
@@ -3673,7 +3816,18 @@ func (o *xxx_ReceiveCurrentV1Operation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_Transaction := func(ptr interface{}) { o.Transaction = *ptr.(**oaut.Variant) }
+		_s_Transaction := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Transaction = nil
+				} else {
+					o.Transaction = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Transaction", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Transaction, _s_Transaction, _ptr_Transaction); err != nil {
 			return err
 		}
@@ -3692,7 +3846,18 @@ func (o *xxx_ReceiveCurrentV1Operation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_WantDestinationQueue := func(ptr interface{}) { o.WantDestinationQueue = *ptr.(**oaut.Variant) }
+		_s_WantDestinationQueue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantDestinationQueue = nil
+				} else {
+					o.WantDestinationQueue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantDestinationQueue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantDestinationQueue, _s_WantDestinationQueue, _ptr_WantDestinationQueue); err != nil {
 			return err
 		}
@@ -3711,7 +3876,18 @@ func (o *xxx_ReceiveCurrentV1Operation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_WantBody := func(ptr interface{}) { o.WantBody = *ptr.(**oaut.Variant) }
+		_s_WantBody := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantBody = nil
+				} else {
+					o.WantBody = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantBody", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantBody, _s_WantBody, _ptr_WantBody); err != nil {
 			return err
 		}
@@ -3730,7 +3906,18 @@ func (o *xxx_ReceiveCurrentV1Operation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ReceiveTimeout := func(ptr interface{}) { o.ReceiveTimeout = *ptr.(**oaut.Variant) }
+		_s_ReceiveTimeout := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ReceiveTimeout = nil
+				} else {
+					o.ReceiveTimeout = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReceiveTimeout", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReceiveTimeout, _s_ReceiveTimeout, _ptr_ReceiveTimeout); err != nil {
 			return err
 		}
@@ -3829,7 +4016,18 @@ func (o *xxx_ReceiveCurrentV1Operation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message) }
+		_s_ppmsg := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Message:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
@@ -4151,7 +4349,18 @@ func (o *xxx_PeekNextV1Operation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_WantDestinationQueue := func(ptr interface{}) { o.WantDestinationQueue = *ptr.(**oaut.Variant) }
+		_s_WantDestinationQueue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantDestinationQueue = nil
+				} else {
+					o.WantDestinationQueue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantDestinationQueue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantDestinationQueue, _s_WantDestinationQueue, _ptr_WantDestinationQueue); err != nil {
 			return err
 		}
@@ -4170,7 +4379,18 @@ func (o *xxx_PeekNextV1Operation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_WantBody := func(ptr interface{}) { o.WantBody = *ptr.(**oaut.Variant) }
+		_s_WantBody := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantBody = nil
+				} else {
+					o.WantBody = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantBody", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantBody, _s_WantBody, _ptr_WantBody); err != nil {
 			return err
 		}
@@ -4189,7 +4409,18 @@ func (o *xxx_PeekNextV1Operation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_ReceiveTimeout := func(ptr interface{}) { o.ReceiveTimeout = *ptr.(**oaut.Variant) }
+		_s_ReceiveTimeout := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ReceiveTimeout = nil
+				} else {
+					o.ReceiveTimeout = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReceiveTimeout", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReceiveTimeout, _s_ReceiveTimeout, _ptr_ReceiveTimeout); err != nil {
 			return err
 		}
@@ -4288,7 +4519,18 @@ func (o *xxx_PeekNextV1Operation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message) }
+		_s_ppmsg := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Message:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
@@ -4597,7 +4839,18 @@ func (o *xxx_PeekCurrentV1Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_WantDestinationQueue := func(ptr interface{}) { o.WantDestinationQueue = *ptr.(**oaut.Variant) }
+		_s_WantDestinationQueue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantDestinationQueue = nil
+				} else {
+					o.WantDestinationQueue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantDestinationQueue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantDestinationQueue, _s_WantDestinationQueue, _ptr_WantDestinationQueue); err != nil {
 			return err
 		}
@@ -4616,7 +4869,18 @@ func (o *xxx_PeekCurrentV1Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_WantBody := func(ptr interface{}) { o.WantBody = *ptr.(**oaut.Variant) }
+		_s_WantBody := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantBody = nil
+				} else {
+					o.WantBody = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantBody", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantBody, _s_WantBody, _ptr_WantBody); err != nil {
 			return err
 		}
@@ -4635,7 +4899,18 @@ func (o *xxx_PeekCurrentV1Operation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ReceiveTimeout := func(ptr interface{}) { o.ReceiveTimeout = *ptr.(**oaut.Variant) }
+		_s_ReceiveTimeout := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ReceiveTimeout = nil
+				} else {
+					o.ReceiveTimeout = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReceiveTimeout", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReceiveTimeout, _s_ReceiveTimeout, _ptr_ReceiveTimeout); err != nil {
 			return err
 		}
@@ -4734,7 +5009,18 @@ func (o *xxx_PeekCurrentV1Operation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message) }
+		_s_ppmsg := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Message:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
@@ -5099,7 +5385,18 @@ func (o *xxx_ReceiveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_Transaction := func(ptr interface{}) { o.Transaction = *ptr.(**oaut.Variant) }
+		_s_Transaction := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Transaction = nil
+				} else {
+					o.Transaction = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Transaction", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Transaction, _s_Transaction, _ptr_Transaction); err != nil {
 			return err
 		}
@@ -5118,7 +5415,18 @@ func (o *xxx_ReceiveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_WantDestinationQueue := func(ptr interface{}) { o.WantDestinationQueue = *ptr.(**oaut.Variant) }
+		_s_WantDestinationQueue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantDestinationQueue = nil
+				} else {
+					o.WantDestinationQueue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantDestinationQueue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantDestinationQueue, _s_WantDestinationQueue, _ptr_WantDestinationQueue); err != nil {
 			return err
 		}
@@ -5137,7 +5445,18 @@ func (o *xxx_ReceiveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_WantBody := func(ptr interface{}) { o.WantBody = *ptr.(**oaut.Variant) }
+		_s_WantBody := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantBody = nil
+				} else {
+					o.WantBody = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantBody", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantBody, _s_WantBody, _ptr_WantBody); err != nil {
 			return err
 		}
@@ -5156,7 +5475,18 @@ func (o *xxx_ReceiveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ReceiveTimeout := func(ptr interface{}) { o.ReceiveTimeout = *ptr.(**oaut.Variant) }
+		_s_ReceiveTimeout := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ReceiveTimeout = nil
+				} else {
+					o.ReceiveTimeout = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReceiveTimeout", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReceiveTimeout, _s_ReceiveTimeout, _ptr_ReceiveTimeout); err != nil {
 			return err
 		}
@@ -5175,7 +5505,18 @@ func (o *xxx_ReceiveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_WantConnectorType := func(ptr interface{}) { o.WantConnectorType = *ptr.(**oaut.Variant) }
+		_s_WantConnectorType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantConnectorType = nil
+				} else {
+					o.WantConnectorType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantConnectorType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantConnectorType, _s_WantConnectorType, _ptr_WantConnectorType); err != nil {
 			return err
 		}
@@ -5274,7 +5615,18 @@ func (o *xxx_ReceiveOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message2) }
+		_s_ppmsg := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Message2:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
@@ -5643,7 +5995,18 @@ func (o *xxx_PeekOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_WantDestinationQueue := func(ptr interface{}) { o.WantDestinationQueue = *ptr.(**oaut.Variant) }
+		_s_WantDestinationQueue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantDestinationQueue = nil
+				} else {
+					o.WantDestinationQueue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantDestinationQueue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantDestinationQueue, _s_WantDestinationQueue, _ptr_WantDestinationQueue); err != nil {
 			return err
 		}
@@ -5662,7 +6025,18 @@ func (o *xxx_PeekOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_WantBody := func(ptr interface{}) { o.WantBody = *ptr.(**oaut.Variant) }
+		_s_WantBody := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantBody = nil
+				} else {
+					o.WantBody = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantBody", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantBody, _s_WantBody, _ptr_WantBody); err != nil {
 			return err
 		}
@@ -5681,7 +6055,18 @@ func (o *xxx_PeekOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_ReceiveTimeout := func(ptr interface{}) { o.ReceiveTimeout = *ptr.(**oaut.Variant) }
+		_s_ReceiveTimeout := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ReceiveTimeout = nil
+				} else {
+					o.ReceiveTimeout = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReceiveTimeout", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReceiveTimeout, _s_ReceiveTimeout, _ptr_ReceiveTimeout); err != nil {
 			return err
 		}
@@ -5700,7 +6085,18 @@ func (o *xxx_PeekOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_WantConnectorType := func(ptr interface{}) { o.WantConnectorType = *ptr.(**oaut.Variant) }
+		_s_WantConnectorType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantConnectorType = nil
+				} else {
+					o.WantConnectorType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantConnectorType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantConnectorType, _s_WantConnectorType, _ptr_WantConnectorType); err != nil {
 			return err
 		}
@@ -5799,7 +6195,18 @@ func (o *xxx_PeekOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message2) }
+		_s_ppmsg := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Message2:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
@@ -6184,7 +6591,18 @@ func (o *xxx_ReceiveCurrentOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_Transaction := func(ptr interface{}) { o.Transaction = *ptr.(**oaut.Variant) }
+		_s_Transaction := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Transaction = nil
+				} else {
+					o.Transaction = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Transaction", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Transaction, _s_Transaction, _ptr_Transaction); err != nil {
 			return err
 		}
@@ -6203,7 +6621,18 @@ func (o *xxx_ReceiveCurrentOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_WantDestinationQueue := func(ptr interface{}) { o.WantDestinationQueue = *ptr.(**oaut.Variant) }
+		_s_WantDestinationQueue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantDestinationQueue = nil
+				} else {
+					o.WantDestinationQueue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantDestinationQueue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantDestinationQueue, _s_WantDestinationQueue, _ptr_WantDestinationQueue); err != nil {
 			return err
 		}
@@ -6222,7 +6651,18 @@ func (o *xxx_ReceiveCurrentOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_WantBody := func(ptr interface{}) { o.WantBody = *ptr.(**oaut.Variant) }
+		_s_WantBody := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantBody = nil
+				} else {
+					o.WantBody = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantBody", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantBody, _s_WantBody, _ptr_WantBody); err != nil {
 			return err
 		}
@@ -6241,7 +6681,18 @@ func (o *xxx_ReceiveCurrentOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ReceiveTimeout := func(ptr interface{}) { o.ReceiveTimeout = *ptr.(**oaut.Variant) }
+		_s_ReceiveTimeout := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ReceiveTimeout = nil
+				} else {
+					o.ReceiveTimeout = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReceiveTimeout", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReceiveTimeout, _s_ReceiveTimeout, _ptr_ReceiveTimeout); err != nil {
 			return err
 		}
@@ -6260,7 +6711,18 @@ func (o *xxx_ReceiveCurrentOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_WantConnectorType := func(ptr interface{}) { o.WantConnectorType = *ptr.(**oaut.Variant) }
+		_s_WantConnectorType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantConnectorType = nil
+				} else {
+					o.WantConnectorType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantConnectorType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantConnectorType, _s_WantConnectorType, _ptr_WantConnectorType); err != nil {
 			return err
 		}
@@ -6359,7 +6821,18 @@ func (o *xxx_ReceiveCurrentOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message2) }
+		_s_ppmsg := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Message2:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
@@ -6728,7 +7201,18 @@ func (o *xxx_PeekNextOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_WantDestinationQueue := func(ptr interface{}) { o.WantDestinationQueue = *ptr.(**oaut.Variant) }
+		_s_WantDestinationQueue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantDestinationQueue = nil
+				} else {
+					o.WantDestinationQueue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantDestinationQueue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantDestinationQueue, _s_WantDestinationQueue, _ptr_WantDestinationQueue); err != nil {
 			return err
 		}
@@ -6747,7 +7231,18 @@ func (o *xxx_PeekNextOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_WantBody := func(ptr interface{}) { o.WantBody = *ptr.(**oaut.Variant) }
+		_s_WantBody := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantBody = nil
+				} else {
+					o.WantBody = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantBody", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantBody, _s_WantBody, _ptr_WantBody); err != nil {
 			return err
 		}
@@ -6766,7 +7261,18 @@ func (o *xxx_PeekNextOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ReceiveTimeout := func(ptr interface{}) { o.ReceiveTimeout = *ptr.(**oaut.Variant) }
+		_s_ReceiveTimeout := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ReceiveTimeout = nil
+				} else {
+					o.ReceiveTimeout = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReceiveTimeout", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReceiveTimeout, _s_ReceiveTimeout, _ptr_ReceiveTimeout); err != nil {
 			return err
 		}
@@ -6785,7 +7291,18 @@ func (o *xxx_PeekNextOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_WantConnectorType := func(ptr interface{}) { o.WantConnectorType = *ptr.(**oaut.Variant) }
+		_s_WantConnectorType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantConnectorType = nil
+				} else {
+					o.WantConnectorType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantConnectorType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantConnectorType, _s_WantConnectorType, _ptr_WantConnectorType); err != nil {
 			return err
 		}
@@ -6884,7 +7401,18 @@ func (o *xxx_PeekNextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message2) }
+		_s_ppmsg := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Message2:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
@@ -7241,7 +7769,18 @@ func (o *xxx_PeekCurrentOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_WantDestinationQueue := func(ptr interface{}) { o.WantDestinationQueue = *ptr.(**oaut.Variant) }
+		_s_WantDestinationQueue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantDestinationQueue = nil
+				} else {
+					o.WantDestinationQueue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantDestinationQueue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantDestinationQueue, _s_WantDestinationQueue, _ptr_WantDestinationQueue); err != nil {
 			return err
 		}
@@ -7260,7 +7799,18 @@ func (o *xxx_PeekCurrentOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_WantBody := func(ptr interface{}) { o.WantBody = *ptr.(**oaut.Variant) }
+		_s_WantBody := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantBody = nil
+				} else {
+					o.WantBody = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantBody", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantBody, _s_WantBody, _ptr_WantBody); err != nil {
 			return err
 		}
@@ -7279,7 +7829,18 @@ func (o *xxx_PeekCurrentOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ReceiveTimeout := func(ptr interface{}) { o.ReceiveTimeout = *ptr.(**oaut.Variant) }
+		_s_ReceiveTimeout := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.ReceiveTimeout = nil
+				} else {
+					o.ReceiveTimeout = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReceiveTimeout", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReceiveTimeout, _s_ReceiveTimeout, _ptr_ReceiveTimeout); err != nil {
 			return err
 		}
@@ -7298,7 +7859,18 @@ func (o *xxx_PeekCurrentOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_WantConnectorType := func(ptr interface{}) { o.WantConnectorType = *ptr.(**oaut.Variant) }
+		_s_WantConnectorType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.WantConnectorType = nil
+				} else {
+					o.WantConnectorType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WantConnectorType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WantConnectorType, _s_WantConnectorType, _ptr_WantConnectorType); err != nil {
 			return err
 		}
@@ -7397,7 +7969,18 @@ func (o *xxx_PeekCurrentOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message2) }
+		_s_ppmsg := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Message2:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
@@ -7722,7 +8305,18 @@ func (o *xxx_GetPropertiesOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppcolProperties := func(ptr interface{}) { o.Properties = *ptr.(**oaut.Dispatch) }
+		_s_ppcolProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Dispatch:
+				if ptr == nil {
+					o.Properties = nil
+				} else {
+					o.Properties = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Properties", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Properties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
 			return err
 		}

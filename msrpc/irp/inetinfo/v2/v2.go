@@ -724,7 +724,18 @@ func (o *Capabilities) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_CapFlags := func(ptr interface{}) { o.CapFlags = *ptr.(*[]*CapFlags) }
+	_s_CapFlags := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*CapFlags:
+			if ptr == nil {
+				o.CapFlags = nil
+			} else {
+				o.CapFlags = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CapFlags", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.CapFlags, _s_CapFlags, _ptr_CapFlags); err != nil {
 		return err
 	}
@@ -1253,7 +1264,18 @@ func (o *VirtualRootEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_pszRoot := func(ptr interface{}) { o.Root = *ptr.(*string) }
+	_s_pszRoot := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Root = ""
+			} else {
+				o.Root = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Root", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Root, _s_pszRoot, _ptr_pszRoot); err != nil {
 		return err
 	}
@@ -1263,7 +1285,18 @@ func (o *VirtualRootEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_pszAddress := func(ptr interface{}) { o.Address = *ptr.(*string) }
+	_s_pszAddress := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Address = ""
+			} else {
+				o.Address = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Address", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Address, _s_pszAddress, _ptr_pszAddress); err != nil {
 		return err
 	}
@@ -1273,7 +1306,18 @@ func (o *VirtualRootEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_pszDirectory := func(ptr interface{}) { o.Directory = *ptr.(*string) }
+	_s_pszDirectory := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Directory = ""
+			} else {
+				o.Directory = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Directory", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Directory, _s_pszDirectory, _ptr_pszDirectory); err != nil {
 		return err
 	}
@@ -1286,7 +1330,18 @@ func (o *VirtualRootEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_pszAccountName := func(ptr interface{}) { o.AccountName = *ptr.(*string) }
+	_s_pszAccountName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.AccountName = ""
+			} else {
+				o.AccountName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AccountName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AccountName, _s_pszAccountName, _ptr_pszAccountName); err != nil {
 		return err
 	}
@@ -1796,7 +1851,18 @@ func (o *ConfigInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpszAdminName := func(ptr interface{}) { o.AdminName = *ptr.(*string) }
+	_s_lpszAdminName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.AdminName = ""
+			} else {
+				o.AdminName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AdminName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AdminName, _s_lpszAdminName, _ptr_lpszAdminName); err != nil {
 		return err
 	}
@@ -1806,7 +1872,18 @@ func (o *ConfigInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpszAdminEmail := func(ptr interface{}) { o.AdminEmail = *ptr.(*string) }
+	_s_lpszAdminEmail := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.AdminEmail = ""
+			} else {
+				o.AdminEmail = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AdminEmail", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AdminEmail, _s_lpszAdminEmail, _ptr_lpszAdminEmail); err != nil {
 		return err
 	}
@@ -1816,7 +1893,18 @@ func (o *ConfigInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpszServerComment := func(ptr interface{}) { o.ServerComment = *ptr.(*string) }
+	_s_lpszServerComment := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ServerComment = ""
+			} else {
+				o.ServerComment = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerComment", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ServerComment, _s_lpszServerComment, _ptr_lpszServerComment); err != nil {
 		return err
 	}
@@ -1829,7 +1917,18 @@ func (o *ConfigInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpLogConfig := func(ptr interface{}) { o.LogConfig = *ptr.(**InetLogConfiguration) }
+	_s_lpLogConfig := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **InetLogConfiguration:
+			if ptr == nil {
+				o.LogConfig = nil
+			} else {
+				o.LogConfig = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LogConfig", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.LogConfig, _s_lpLogConfig, _ptr_lpLogConfig); err != nil {
 		return err
 	}
@@ -1862,7 +1961,18 @@ func (o *ConfigInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpszAnonUserName := func(ptr interface{}) { o.AnonUserName = *ptr.(*string) }
+	_s_lpszAnonUserName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.AnonUserName = ""
+			} else {
+				o.AnonUserName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AnonUserName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AnonUserName, _s_lpszAnonUserName, _ptr_lpszAnonUserName); err != nil {
 		return err
 	}
@@ -1888,7 +1998,18 @@ func (o *ConfigInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_DenyIPList := func(ptr interface{}) { o.DenyIPList = *ptr.(**IPsecList) }
+	_s_DenyIPList := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **IPsecList:
+			if ptr == nil {
+				o.DenyIPList = nil
+			} else {
+				o.DenyIPList = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DenyIPList", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DenyIPList, _s_DenyIPList, _ptr_DenyIPList); err != nil {
 		return err
 	}
@@ -1901,7 +2022,18 @@ func (o *ConfigInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_GrantIPList := func(ptr interface{}) { o.GrantIPList = *ptr.(**IPsecList) }
+	_s_GrantIPList := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **IPsecList:
+			if ptr == nil {
+				o.GrantIPList = nil
+			} else {
+				o.GrantIPList = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GrantIPList", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.GrantIPList, _s_GrantIPList, _ptr_GrantIPList); err != nil {
 		return err
 	}
@@ -1914,7 +2046,18 @@ func (o *ConfigInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_VirtualRoots := func(ptr interface{}) { o.VirtualRoots = *ptr.(**VirtualRootList) }
+	_s_VirtualRoots := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **VirtualRootList:
+			if ptr == nil {
+				o.VirtualRoots = nil
+			} else {
+				o.VirtualRoots = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VirtualRoots", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.VirtualRoots, _s_VirtualRoots, _ptr_VirtualRoots); err != nil {
 		return err
 	}
@@ -1985,7 +2128,18 @@ func (o *SiteEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pszComment := func(ptr interface{}) { o.Comment = *ptr.(*string) }
+	_s_pszComment := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Comment = ""
+			} else {
+				o.Comment = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Comment", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Comment, _s_pszComment, _ptr_pszComment); err != nil {
 		return err
 	}
@@ -2727,7 +2881,18 @@ func (o *StatisticsInfo_InetStats0) UnmarshalNDR(ctx context.Context, w ndr.Read
 		}
 		return nil
 	})
-	_s_InetStats0 := func(ptr interface{}) { o.InetStats0 = *ptr.(**Statistics0) }
+	_s_InetStats0 := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **Statistics0:
+			if ptr == nil {
+				o.InetStats0 = nil
+			} else {
+				o.InetStats0 = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InetStats0", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.InetStats0, _s_InetStats0, _ptr_InetStats0); err != nil {
 		return err
 	}
@@ -3376,7 +3541,18 @@ func (o *W3Statistics_StatInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		}
 		return nil
 	})
-	_s_StatInfo1 := func(ptr interface{}) { o.StatInfo1 = *ptr.(**W3Statistics1) }
+	_s_StatInfo1 := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **W3Statistics1:
+			if ptr == nil {
+				o.StatInfo1 = nil
+			} else {
+				o.StatInfo1 = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StatInfo1", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.StatInfo1, _s_StatInfo1, _ptr_StatInfo1); err != nil {
 		return err
 	}
@@ -3746,7 +3922,18 @@ func (o *FTPStatistics_StatInfo0) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		}
 		return nil
 	})
-	_s_StatInfo0 := func(ptr interface{}) { o.StatInfo0 = *ptr.(**FTPStatistics0) }
+	_s_StatInfo0 := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **FTPStatistics0:
+			if ptr == nil {
+				o.StatInfo0 = nil
+			} else {
+				o.StatInfo0 = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StatInfo0", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.StatInfo0, _s_StatInfo0, _ptr_StatInfo0); err != nil {
 		return err
 	}
@@ -3851,7 +4038,18 @@ func (o *IISUserInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pszUser := func(ptr interface{}) { o.User = *ptr.(*string) }
+	_s_pszUser := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.User = ""
+			} else {
+				o.User = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.User", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.User, _s_pszUser, _ptr_pszUser); err != nil {
 		return err
 	}
@@ -3983,7 +4181,18 @@ func (o *IISUserInfo1Container) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		}
 		return nil
 	})
-	_s_Buffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]*IISUserInfo1) }
+	_s_Buffer := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*IISUserInfo1:
+			if ptr == nil {
+				o.Buffer = nil
+			} else {
+				o.Buffer = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Buffer, _s_Buffer, _ptr_Buffer); err != nil {
 		return err
 	}
@@ -4188,7 +4397,18 @@ func (o *IISUserEnum_ConfigInfo_Level1) UnmarshalNDR(ctx context.Context, w ndr.
 		}
 		return nil
 	})
-	_s_Level1 := func(ptr interface{}) { o.Level1 = *ptr.(**IISUserInfo1Container) }
+	_s_Level1 := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **IISUserInfo1Container:
+			if ptr == nil {
+				o.Level1 = nil
+			} else {
+				o.Level1 = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Level1", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Level1, _s_Level1, _ptr_Level1); err != nil {
 		return err
 	}
@@ -4490,7 +4710,18 @@ func (o *xxx_GetVersionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -4709,7 +4940,18 @@ func (o *xxx_GetAdminInformationOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -4787,7 +5029,18 @@ func (o *xxx_GetAdminInformationOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ppConfig := func(ptr interface{}) { o.Config = *ptr.(**ConfigInfo) }
+		_s_ppConfig := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **ConfigInfo:
+				if ptr == nil {
+					o.Config = nil
+				} else {
+					o.Config = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Config", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Config, _s_ppConfig, _ptr_ppConfig); err != nil {
 			return err
 		}
@@ -4964,7 +5217,18 @@ func (o *xxx_GetSitesOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -5042,7 +5306,18 @@ func (o *xxx_GetSitesOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_ppSites := func(ptr interface{}) { o.Sites = *ptr.(**SiteList) }
+		_s_ppSites := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **SiteList:
+				if ptr == nil {
+					o.Sites = nil
+				} else {
+					o.Sites = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Sites", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Sites, _s_ppSites, _ptr_ppSites); err != nil {
 			return err
 		}
@@ -5234,7 +5509,18 @@ func (o *xxx_SetAdminInformationOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -5458,7 +5744,18 @@ func (o *xxx_GetGlobalAdminInformationOperation) UnmarshalNDRRequest(ctx context
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -5536,7 +5833,18 @@ func (o *xxx_GetGlobalAdminInformationOperation) UnmarshalNDRResponse(ctx contex
 			}
 			return nil
 		})
-		_s_ppConfig := func(ptr interface{}) { o.Config = *ptr.(**GlobalConfigInfo) }
+		_s_ppConfig := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **GlobalConfigInfo:
+				if ptr == nil {
+					o.Config = nil
+				} else {
+					o.Config = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Config", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Config, _s_ppConfig, _ptr_ppConfig); err != nil {
 			return err
 		}
@@ -5725,7 +6033,18 @@ func (o *xxx_SetGlobalAdminInformationOperation) UnmarshalNDRRequest(ctx context
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -5951,7 +6270,18 @@ func (o *xxx_QueryStatisticsOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -6216,7 +6546,18 @@ func (o *xxx_ClearStatisticsOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -6419,7 +6760,18 @@ func (o *xxx_FlushMemoryCacheOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -6624,7 +6976,18 @@ func (o *xxx_GetServerCapabilitiesOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -6704,7 +7067,18 @@ func (o *xxx_GetServerCapabilitiesOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_ppCap := func(ptr interface{}) { o.Cap = *ptr.(**Capabilities) }
+		_s_ppCap := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Capabilities:
+				if ptr == nil {
+					o.Cap = nil
+				} else {
+					o.Cap = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Cap", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Cap, _s_ppCap, _ptr_ppCap); err != nil {
 			return err
 		}
@@ -6891,7 +7265,18 @@ func (o *xxx_W3QueryStatistics2Operation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -7172,7 +7557,18 @@ func (o *xxx_W3ClearStatistics2Operation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -7391,7 +7787,18 @@ func (o *xxx_FTPQueryStatistics2Operation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -7674,7 +8081,18 @@ func (o *xxx_FTPClearStatistics2Operation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -7898,7 +8316,18 @@ func (o *xxx_IISEnumerateUsersOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}
@@ -8173,7 +8602,18 @@ func (o *xxx_IISDisconnectUserOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_pszServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_pszServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_pszServer, _ptr_pszServer); err != nil {
 			return err
 		}

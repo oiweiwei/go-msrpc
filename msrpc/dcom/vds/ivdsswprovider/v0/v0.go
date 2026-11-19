@@ -316,7 +316,18 @@ func (o *xxx_QueryPacksOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**vds.EnumObject) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.EnumObject:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}
@@ -574,7 +585,18 @@ func (o *xxx_CreatePackOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ppPack := func(ptr interface{}) { o.Pack = *ptr.(**vds.Pack) }
+		_s_ppPack := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Pack:
+				if ptr == nil {
+					o.Pack = nil
+				} else {
+					o.Pack = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Pack", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Pack, _s_ppPack, _ptr_ppPack); err != nil {
 			return err
 		}

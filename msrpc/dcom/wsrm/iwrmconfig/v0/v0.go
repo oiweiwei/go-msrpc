@@ -699,7 +699,18 @@ func (o *xxx_GetConfigOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_pbstrConfigInfo := func(ptr interface{}) { o.ConfigInfo = *ptr.(**oaut.String) }
+		_s_pbstrConfigInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ConfigInfo = nil
+				} else {
+					o.ConfigInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigInfo, _s_pbstrConfigInfo, _ptr_pbstrConfigInfo); err != nil {
 			return err
 		}
@@ -930,7 +941,18 @@ func (o *xxx_SetConfigOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_bstrConfigInfo := func(ptr interface{}) { o.ConfigInfo = *ptr.(**oaut.String) }
+		_s_bstrConfigInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ConfigInfo = nil
+				} else {
+					o.ConfigInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigInfo, _s_bstrConfigInfo, _ptr_bstrConfigInfo); err != nil {
 			return err
 		}
@@ -1792,7 +1814,18 @@ func (o *xxx_GetExclusionListOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_pbstrExclusionList := func(ptr interface{}) { o.ExclusionList = *ptr.(**oaut.String) }
+		_s_pbstrExclusionList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ExclusionList = nil
+				} else {
+					o.ExclusionList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExclusionList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ExclusionList, _s_pbstrExclusionList, _ptr_pbstrExclusionList); err != nil {
 			return err
 		}
@@ -2001,7 +2034,18 @@ func (o *xxx_SetExclusionListOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_bstrExclusionList := func(ptr interface{}) { o.ExclusionList = *ptr.(**oaut.String) }
+		_s_bstrExclusionList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ExclusionList = nil
+				} else {
+					o.ExclusionList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExclusionList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ExclusionList, _s_bstrExclusionList, _ptr_bstrExclusionList); err != nil {
 			return err
 		}

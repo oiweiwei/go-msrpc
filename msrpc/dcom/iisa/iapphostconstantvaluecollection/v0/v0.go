@@ -556,7 +556,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppConstantValue := func(ptr interface{}) { o.ConstantValue = *ptr.(**iisa.AppHostConstantValue) }
+		_s_ppConstantValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostConstantValue:
+				if ptr == nil {
+					o.ConstantValue = nil
+				} else {
+					o.ConstantValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConstantValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConstantValue, _s_ppConstantValue, _ptr_ppConstantValue); err != nil {
 			return err
 		}

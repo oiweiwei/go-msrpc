@@ -554,7 +554,18 @@ func (o *xxx_GetInitiatorAdapterOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ppInitiatorAdapter := func(ptr interface{}) { o.InitiatorAdapter = *ptr.(**vds.ISCSIInitiatorAdapter) }
+		_s_ppInitiatorAdapter := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.ISCSIInitiatorAdapter:
+				if ptr == nil {
+					o.InitiatorAdapter = nil
+				} else {
+					o.InitiatorAdapter = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InitiatorAdapter", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InitiatorAdapter, _s_ppInitiatorAdapter, _ptr_ppInitiatorAdapter); err != nil {
 			return err
 		}

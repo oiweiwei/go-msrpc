@@ -1259,7 +1259,18 @@ func (o *Multistring) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_Value := func(ptr interface{}) { o.Value = *ptr.(*string) }
+	_s_Value := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Value = ""
+			} else {
+				o.Value = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Value, _s_Value, _ptr_Value); err != nil {
 		return err
 	}
@@ -1409,7 +1420,18 @@ func (o *UnicodeString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.Buffer = strings.TrimRight(string(utf16.Decode(_Buffer_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_Buffer := func(ptr interface{}) { o.Buffer = *ptr.(*string) }
+	_s_Buffer := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Buffer = ""
+			} else {
+				o.Buffer = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Buffer, _s_Buffer, _ptr_Buffer); err != nil {
 		return err
 	}
@@ -1495,7 +1517,18 @@ func (o *ServerInfo100) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_sv100_name := func(ptr interface{}) { o.Name = *ptr.(*string) }
+	_s_sv100_name := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Name = ""
+			} else {
+				o.Name = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Name, _s_sv100_name, _ptr_sv100_name); err != nil {
 		return err
 	}
@@ -1723,7 +1756,18 @@ func (o *ServerInfo101) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_sv101_name := func(ptr interface{}) { o.Name = *ptr.(*string) }
+	_s_sv101_name := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Name = ""
+			} else {
+				o.Name = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Name, _s_sv101_name, _ptr_sv101_name); err != nil {
 		return err
 	}
@@ -1742,7 +1786,18 @@ func (o *ServerInfo101) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_sv101_comment := func(ptr interface{}) { o.Comment = *ptr.(*string) }
+	_s_sv101_comment := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Comment = ""
+			} else {
+				o.Comment = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Comment", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Comment, _s_sv101_comment, _ptr_sv101_comment); err != nil {
 		return err
 	}
@@ -2071,7 +2126,18 @@ func (o *ObjectTypeList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_ObjectType := func(ptr interface{}) { o.ObjectType = *ptr.(**GUID) }
+	_s_ObjectType := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **GUID:
+			if ptr == nil {
+				o.ObjectType = nil
+			} else {
+				o.ObjectType = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectType", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ObjectType, _s_ObjectType, _ptr_ObjectType); err != nil {
 		return err
 	}
@@ -2331,7 +2397,18 @@ func (o *AccessAllowedACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -2549,7 +2626,18 @@ func (o *AccessAllowedObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		}
 		return nil
 	})
-	_s_ObjectType := func(ptr interface{}) { o.ObjectType = *ptr.(**ACEGUID) }
+	_s_ObjectType := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACEGUID:
+			if ptr == nil {
+				o.ObjectType = nil
+			} else {
+				o.ObjectType = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectType", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ObjectType, _s_ObjectType, _ptr_ObjectType); err != nil {
 		return err
 	}
@@ -2563,7 +2651,18 @@ func (o *AccessAllowedObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		}
 		return nil
 	})
-	_s_InheritedObjectType := func(ptr interface{}) { o.InheritedObjectType = *ptr.(**ACEGUID) }
+	_s_InheritedObjectType := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACEGUID:
+			if ptr == nil {
+				o.InheritedObjectType = nil
+			} else {
+				o.InheritedObjectType = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InheritedObjectType", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.InheritedObjectType, _s_InheritedObjectType, _ptr_InheritedObjectType); err != nil {
 		return err
 	}
@@ -2576,7 +2675,18 @@ func (o *AccessAllowedObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -2792,7 +2902,18 @@ func (o *AccessDeniedACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -3010,7 +3131,18 @@ func (o *AccessDeniedObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		}
 		return nil
 	})
-	_s_ObjectType := func(ptr interface{}) { o.ObjectType = *ptr.(**ACEGUID) }
+	_s_ObjectType := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACEGUID:
+			if ptr == nil {
+				o.ObjectType = nil
+			} else {
+				o.ObjectType = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectType", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ObjectType, _s_ObjectType, _ptr_ObjectType); err != nil {
 		return err
 	}
@@ -3024,7 +3156,18 @@ func (o *AccessDeniedObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		}
 		return nil
 	})
-	_s_InheritedObjectType := func(ptr interface{}) { o.InheritedObjectType = *ptr.(**ACEGUID) }
+	_s_InheritedObjectType := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACEGUID:
+			if ptr == nil {
+				o.InheritedObjectType = nil
+			} else {
+				o.InheritedObjectType = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InheritedObjectType", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.InheritedObjectType, _s_InheritedObjectType, _ptr_InheritedObjectType); err != nil {
 		return err
 	}
@@ -3037,7 +3180,18 @@ func (o *AccessDeniedObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -3154,7 +3308,18 @@ func (o *AccessAllowedCallbackACE) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -3168,7 +3333,18 @@ func (o *AccessAllowedCallbackACE) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		}
 		return nil
 	})
-	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	_s_ApplicationData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.ApplicationData = nil
+			} else {
+				o.ApplicationData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ApplicationData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
 		return err
 	}
@@ -3285,7 +3461,18 @@ func (o *AccessDeniedCallbackACE) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -3299,7 +3486,18 @@ func (o *AccessDeniedCallbackACE) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		}
 		return nil
 	})
-	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	_s_ApplicationData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.ApplicationData = nil
+			} else {
+				o.ApplicationData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ApplicationData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
 		return err
 	}
@@ -3533,7 +3731,18 @@ func (o *AccessAllowedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr
 		}
 		return nil
 	})
-	_s_ObjectType := func(ptr interface{}) { o.ObjectType = *ptr.(**ACEGUID) }
+	_s_ObjectType := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACEGUID:
+			if ptr == nil {
+				o.ObjectType = nil
+			} else {
+				o.ObjectType = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectType", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ObjectType, _s_ObjectType, _ptr_ObjectType); err != nil {
 		return err
 	}
@@ -3547,7 +3756,18 @@ func (o *AccessAllowedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr
 		}
 		return nil
 	})
-	_s_InheritedObjectType := func(ptr interface{}) { o.InheritedObjectType = *ptr.(**ACEGUID) }
+	_s_InheritedObjectType := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACEGUID:
+			if ptr == nil {
+				o.InheritedObjectType = nil
+			} else {
+				o.InheritedObjectType = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InheritedObjectType", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.InheritedObjectType, _s_InheritedObjectType, _ptr_InheritedObjectType); err != nil {
 		return err
 	}
@@ -3560,7 +3780,18 @@ func (o *AccessAllowedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -3574,7 +3805,18 @@ func (o *AccessAllowedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr
 		}
 		return nil
 	})
-	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	_s_ApplicationData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.ApplicationData = nil
+			} else {
+				o.ApplicationData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ApplicationData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
 		return err
 	}
@@ -3808,7 +4050,18 @@ func (o *AccessDeniedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.
 		}
 		return nil
 	})
-	_s_ObjectType := func(ptr interface{}) { o.ObjectType = *ptr.(**ACEGUID) }
+	_s_ObjectType := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACEGUID:
+			if ptr == nil {
+				o.ObjectType = nil
+			} else {
+				o.ObjectType = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectType", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ObjectType, _s_ObjectType, _ptr_ObjectType); err != nil {
 		return err
 	}
@@ -3822,7 +4075,18 @@ func (o *AccessDeniedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.
 		}
 		return nil
 	})
-	_s_InheritedObjectType := func(ptr interface{}) { o.InheritedObjectType = *ptr.(**ACEGUID) }
+	_s_InheritedObjectType := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACEGUID:
+			if ptr == nil {
+				o.InheritedObjectType = nil
+			} else {
+				o.InheritedObjectType = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InheritedObjectType", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.InheritedObjectType, _s_InheritedObjectType, _ptr_InheritedObjectType); err != nil {
 		return err
 	}
@@ -3835,7 +4099,18 @@ func (o *AccessDeniedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -3849,7 +4124,18 @@ func (o *AccessDeniedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.
 		}
 		return nil
 	})
-	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	_s_ApplicationData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.ApplicationData = nil
+			} else {
+				o.ApplicationData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ApplicationData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
 		return err
 	}
@@ -3946,7 +4232,18 @@ func (o *SystemAuditACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -4090,7 +4387,18 @@ func (o *SystemAuditObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		}
 		return nil
 	})
-	_s_ObjectType := func(ptr interface{}) { o.ObjectType = *ptr.(**ACEGUID) }
+	_s_ObjectType := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACEGUID:
+			if ptr == nil {
+				o.ObjectType = nil
+			} else {
+				o.ObjectType = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectType", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ObjectType, _s_ObjectType, _ptr_ObjectType); err != nil {
 		return err
 	}
@@ -4104,7 +4412,18 @@ func (o *SystemAuditObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		}
 		return nil
 	})
-	_s_InheritedObjectType := func(ptr interface{}) { o.InheritedObjectType = *ptr.(**ACEGUID) }
+	_s_InheritedObjectType := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACEGUID:
+			if ptr == nil {
+				o.InheritedObjectType = nil
+			} else {
+				o.InheritedObjectType = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InheritedObjectType", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.InheritedObjectType, _s_InheritedObjectType, _ptr_InheritedObjectType); err != nil {
 		return err
 	}
@@ -4117,7 +4436,18 @@ func (o *SystemAuditObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -4131,7 +4461,18 @@ func (o *SystemAuditObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		}
 		return nil
 	})
-	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	_s_ApplicationData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.ApplicationData = nil
+			} else {
+				o.ApplicationData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ApplicationData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
 		return err
 	}
@@ -4253,7 +4594,18 @@ func (o *SystemAuditCallbackACE) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -4267,7 +4619,18 @@ func (o *SystemAuditCallbackACE) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		}
 		return nil
 	})
-	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	_s_ApplicationData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.ApplicationData = nil
+			} else {
+				o.ApplicationData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ApplicationData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
 		return err
 	}
@@ -4402,7 +4765,18 @@ func (o *SystemMandatoryLabelACE) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -4546,7 +4920,18 @@ func (o *SystemAuditCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.R
 		}
 		return nil
 	})
-	_s_ObjectType := func(ptr interface{}) { o.ObjectType = *ptr.(**ACEGUID) }
+	_s_ObjectType := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACEGUID:
+			if ptr == nil {
+				o.ObjectType = nil
+			} else {
+				o.ObjectType = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectType", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ObjectType, _s_ObjectType, _ptr_ObjectType); err != nil {
 		return err
 	}
@@ -4560,7 +4945,18 @@ func (o *SystemAuditCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.R
 		}
 		return nil
 	})
-	_s_InheritedObjectType := func(ptr interface{}) { o.InheritedObjectType = *ptr.(**ACEGUID) }
+	_s_InheritedObjectType := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACEGUID:
+			if ptr == nil {
+				o.InheritedObjectType = nil
+			} else {
+				o.InheritedObjectType = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InheritedObjectType", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.InheritedObjectType, _s_InheritedObjectType, _ptr_InheritedObjectType); err != nil {
 		return err
 	}
@@ -4573,7 +4969,18 @@ func (o *SystemAuditCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.R
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -4587,7 +4994,18 @@ func (o *SystemAuditCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.R
 		}
 		return nil
 	})
-	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	_s_ApplicationData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.ApplicationData = nil
+			} else {
+				o.ApplicationData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ApplicationData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
 		return err
 	}
@@ -4701,7 +5119,18 @@ func (o *SystemResourceAttributeACE) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -4715,7 +5144,18 @@ func (o *SystemResourceAttributeACE) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		}
 		return nil
 	})
-	_s_AttributeData := func(ptr interface{}) { o.AttributeData = *ptr.(*[]byte) }
+	_s_AttributeData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.AttributeData = nil
+			} else {
+				o.AttributeData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AttributeData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AttributeData, _s_AttributeData, _ptr_AttributeData); err != nil {
 		return err
 	}
@@ -4808,7 +5248,18 @@ func (o *SystemScopedPolicyIDACE) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		}
 		return nil
 	})
-	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	_s_Sid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.SID = nil
+			} else {
+				o.SID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
@@ -4870,7 +5321,18 @@ func (o *RawACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_RawData := func(ptr interface{}) { o.RawData = *ptr.(*[]byte) }
+	_s_RawData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.RawData = nil
+			} else {
+				o.RawData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RawData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.RawData, _s_RawData, _ptr_RawData); err != nil {
 		return err
 	}
@@ -5078,7 +5540,18 @@ func (o *ACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 				}
 				return nil
 			})
-			_s_AceData := func(ptr interface{}) { o.ACEData = *ptr.(**ACEData) }
+			_s_AceData := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **ACEData:
+					if ptr == nil {
+						o.ACEData = nil
+					} else {
+						o.ACEData = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ACEData", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.ACEData, _s_AceData, _ptr_AceData); err != nil {
 				return err
 			}
@@ -5091,7 +5564,18 @@ func (o *ACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_Data := func(ptr interface{}) { o.Data = *ptr.(*[]byte) }
+	_s_Data := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Data = nil
+			} else {
+				o.Data = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Data, _s_Data, _ptr_Data); err != nil {
 		return err
 	}
@@ -5572,7 +6056,18 @@ func (o *ACEData_AccessAllowedACE) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		}
 		return nil
 	})
-	_s_AccessAllowedAce := func(ptr interface{}) { o.AccessAllowedACE = *ptr.(**AccessAllowedACE) }
+	_s_AccessAllowedAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **AccessAllowedACE:
+			if ptr == nil {
+				o.AccessAllowedACE = nil
+			} else {
+				o.AccessAllowedACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AccessAllowedACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AccessAllowedACE, _s_AccessAllowedAce, _ptr_AccessAllowedAce); err != nil {
 		return err
 	}
@@ -5622,7 +6117,18 @@ func (o *ACEData_AccessDeniedACE) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		}
 		return nil
 	})
-	_s_AccessDeniedAce := func(ptr interface{}) { o.AccessDeniedACE = *ptr.(**AccessDeniedACE) }
+	_s_AccessDeniedAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **AccessDeniedACE:
+			if ptr == nil {
+				o.AccessDeniedACE = nil
+			} else {
+				o.AccessDeniedACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AccessDeniedACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AccessDeniedACE, _s_AccessDeniedAce, _ptr_AccessDeniedAce); err != nil {
 		return err
 	}
@@ -5672,7 +6178,18 @@ func (o *ACEData_SystemAuditACE) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		}
 		return nil
 	})
-	_s_SystemAuditAce := func(ptr interface{}) { o.SystemAuditACE = *ptr.(**SystemAuditACE) }
+	_s_SystemAuditAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SystemAuditACE:
+			if ptr == nil {
+				o.SystemAuditACE = nil
+			} else {
+				o.SystemAuditACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SystemAuditACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SystemAuditACE, _s_SystemAuditAce, _ptr_SystemAuditAce); err != nil {
 		return err
 	}
@@ -5722,7 +6239,18 @@ func (o *ACEData_AccessAllowedObjectACE) UnmarshalNDR(ctx context.Context, w ndr
 		}
 		return nil
 	})
-	_s_AccessAllowedObjectAce := func(ptr interface{}) { o.AccessAllowedObjectACE = *ptr.(**AccessAllowedObjectACE) }
+	_s_AccessAllowedObjectAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **AccessAllowedObjectACE:
+			if ptr == nil {
+				o.AccessAllowedObjectACE = nil
+			} else {
+				o.AccessAllowedObjectACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AccessAllowedObjectACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AccessAllowedObjectACE, _s_AccessAllowedObjectAce, _ptr_AccessAllowedObjectAce); err != nil {
 		return err
 	}
@@ -5772,7 +6300,18 @@ func (o *ACEData_AccessDeniedObjectACE) UnmarshalNDR(ctx context.Context, w ndr.
 		}
 		return nil
 	})
-	_s_AccessDeniedObjectAce := func(ptr interface{}) { o.AccessDeniedObjectACE = *ptr.(**AccessDeniedObjectACE) }
+	_s_AccessDeniedObjectAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **AccessDeniedObjectACE:
+			if ptr == nil {
+				o.AccessDeniedObjectACE = nil
+			} else {
+				o.AccessDeniedObjectACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AccessDeniedObjectACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AccessDeniedObjectACE, _s_AccessDeniedObjectAce, _ptr_AccessDeniedObjectAce); err != nil {
 		return err
 	}
@@ -5822,7 +6361,18 @@ func (o *ACEData_SystemAuditObjectACE) UnmarshalNDR(ctx context.Context, w ndr.R
 		}
 		return nil
 	})
-	_s_SystemAuditObjectAce := func(ptr interface{}) { o.SystemAuditObjectACE = *ptr.(**SystemAuditObjectACE) }
+	_s_SystemAuditObjectAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SystemAuditObjectACE:
+			if ptr == nil {
+				o.SystemAuditObjectACE = nil
+			} else {
+				o.SystemAuditObjectACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SystemAuditObjectACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SystemAuditObjectACE, _s_SystemAuditObjectAce, _ptr_SystemAuditObjectAce); err != nil {
 		return err
 	}
@@ -5872,7 +6422,18 @@ func (o *ACEData_AccessAllowedCallbackACE) UnmarshalNDR(ctx context.Context, w n
 		}
 		return nil
 	})
-	_s_AccessAllowedCallbackAce := func(ptr interface{}) { o.AccessAllowedCallbackACE = *ptr.(**AccessAllowedCallbackACE) }
+	_s_AccessAllowedCallbackAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **AccessAllowedCallbackACE:
+			if ptr == nil {
+				o.AccessAllowedCallbackACE = nil
+			} else {
+				o.AccessAllowedCallbackACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AccessAllowedCallbackACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AccessAllowedCallbackACE, _s_AccessAllowedCallbackAce, _ptr_AccessAllowedCallbackAce); err != nil {
 		return err
 	}
@@ -5922,7 +6483,18 @@ func (o *ACEData_AccessDeniedCallbackACE) UnmarshalNDR(ctx context.Context, w nd
 		}
 		return nil
 	})
-	_s_AccessDeniedCallbackAce := func(ptr interface{}) { o.AccessDeniedCallbackACE = *ptr.(**AccessDeniedCallbackACE) }
+	_s_AccessDeniedCallbackAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **AccessDeniedCallbackACE:
+			if ptr == nil {
+				o.AccessDeniedCallbackACE = nil
+			} else {
+				o.AccessDeniedCallbackACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AccessDeniedCallbackACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AccessDeniedCallbackACE, _s_AccessDeniedCallbackAce, _ptr_AccessDeniedCallbackAce); err != nil {
 		return err
 	}
@@ -5972,7 +6544,18 @@ func (o *ACEData_AccessAllowedCallbackObjectACE) UnmarshalNDR(ctx context.Contex
 		}
 		return nil
 	})
-	_s_AccessAllowedCallbackObjectAce := func(ptr interface{}) { o.AccessAllowedCallbackObjectACE = *ptr.(**AccessAllowedCallbackObjectACE) }
+	_s_AccessAllowedCallbackObjectAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **AccessAllowedCallbackObjectACE:
+			if ptr == nil {
+				o.AccessAllowedCallbackObjectACE = nil
+			} else {
+				o.AccessAllowedCallbackObjectACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AccessAllowedCallbackObjectACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AccessAllowedCallbackObjectACE, _s_AccessAllowedCallbackObjectAce, _ptr_AccessAllowedCallbackObjectAce); err != nil {
 		return err
 	}
@@ -6022,7 +6605,18 @@ func (o *ACEData_AccessDeniedCallbackObjectACE) UnmarshalNDR(ctx context.Context
 		}
 		return nil
 	})
-	_s_AccessDeniedCallbackObjectAce := func(ptr interface{}) { o.AccessDeniedCallbackObjectACE = *ptr.(**AccessDeniedCallbackObjectACE) }
+	_s_AccessDeniedCallbackObjectAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **AccessDeniedCallbackObjectACE:
+			if ptr == nil {
+				o.AccessDeniedCallbackObjectACE = nil
+			} else {
+				o.AccessDeniedCallbackObjectACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AccessDeniedCallbackObjectACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AccessDeniedCallbackObjectACE, _s_AccessDeniedCallbackObjectAce, _ptr_AccessDeniedCallbackObjectAce); err != nil {
 		return err
 	}
@@ -6072,7 +6666,18 @@ func (o *ACEData_SystemAuditCallbackACE) UnmarshalNDR(ctx context.Context, w ndr
 		}
 		return nil
 	})
-	_s_SystemAuditCallbackAce := func(ptr interface{}) { o.SystemAuditCallbackACE = *ptr.(**SystemAuditCallbackACE) }
+	_s_SystemAuditCallbackAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SystemAuditCallbackACE:
+			if ptr == nil {
+				o.SystemAuditCallbackACE = nil
+			} else {
+				o.SystemAuditCallbackACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SystemAuditCallbackACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SystemAuditCallbackACE, _s_SystemAuditCallbackAce, _ptr_SystemAuditCallbackAce); err != nil {
 		return err
 	}
@@ -6122,7 +6727,18 @@ func (o *ACEData_SystemAuditCallbackObjectACE) UnmarshalNDR(ctx context.Context,
 		}
 		return nil
 	})
-	_s_SystemAuditCallbackObjectAce := func(ptr interface{}) { o.SystemAuditCallbackObjectACE = *ptr.(**SystemAuditCallbackObjectACE) }
+	_s_SystemAuditCallbackObjectAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SystemAuditCallbackObjectACE:
+			if ptr == nil {
+				o.SystemAuditCallbackObjectACE = nil
+			} else {
+				o.SystemAuditCallbackObjectACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SystemAuditCallbackObjectACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SystemAuditCallbackObjectACE, _s_SystemAuditCallbackObjectAce, _ptr_SystemAuditCallbackObjectAce); err != nil {
 		return err
 	}
@@ -6172,7 +6788,18 @@ func (o *ACEData_SystemMandatoryLabelACE) UnmarshalNDR(ctx context.Context, w nd
 		}
 		return nil
 	})
-	_s_SystemMandatoryLabelAce := func(ptr interface{}) { o.SystemMandatoryLabelACE = *ptr.(**SystemMandatoryLabelACE) }
+	_s_SystemMandatoryLabelAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SystemMandatoryLabelACE:
+			if ptr == nil {
+				o.SystemMandatoryLabelACE = nil
+			} else {
+				o.SystemMandatoryLabelACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SystemMandatoryLabelACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SystemMandatoryLabelACE, _s_SystemMandatoryLabelAce, _ptr_SystemMandatoryLabelAce); err != nil {
 		return err
 	}
@@ -6222,7 +6849,18 @@ func (o *ACEData_SystemResourceAttributeACE) UnmarshalNDR(ctx context.Context, w
 		}
 		return nil
 	})
-	_s_SystemResourceAttributeAce := func(ptr interface{}) { o.SystemResourceAttributeACE = *ptr.(**SystemResourceAttributeACE) }
+	_s_SystemResourceAttributeAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SystemResourceAttributeACE:
+			if ptr == nil {
+				o.SystemResourceAttributeACE = nil
+			} else {
+				o.SystemResourceAttributeACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SystemResourceAttributeACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SystemResourceAttributeACE, _s_SystemResourceAttributeAce, _ptr_SystemResourceAttributeAce); err != nil {
 		return err
 	}
@@ -6272,7 +6910,18 @@ func (o *ACEData_SystemScopedPolicyIDACE) UnmarshalNDR(ctx context.Context, w nd
 		}
 		return nil
 	})
-	_s_SystemScopedPolicyIdAce := func(ptr interface{}) { o.SystemScopedPolicyIDACE = *ptr.(**SystemScopedPolicyIDACE) }
+	_s_SystemScopedPolicyIdAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SystemScopedPolicyIDACE:
+			if ptr == nil {
+				o.SystemScopedPolicyIDACE = nil
+			} else {
+				o.SystemScopedPolicyIDACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SystemScopedPolicyIDACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SystemScopedPolicyIDACE, _s_SystemScopedPolicyIdAce, _ptr_SystemScopedPolicyIdAce); err != nil {
 		return err
 	}
@@ -6320,7 +6969,18 @@ func (o *ACEData_RawACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_RawAce := func(ptr interface{}) { o.RawACE = *ptr.(**RawACE) }
+	_s_RawAce := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **RawACE:
+			if ptr == nil {
+				o.RawACE = nil
+			} else {
+				o.RawACE = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RawACE", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.RawACE, _s_RawAce, _ptr_RawAce); err != nil {
 		return err
 	}
@@ -7102,7 +7762,18 @@ func (o *ACL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 			}
 			return nil
 		})
-		_s_AceEntries := func(ptr interface{}) { o.ACEEntries[i1] = *ptr.(**ACE) }
+		_s_AceEntries := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **ACE:
+				if ptr == nil {
+					o.ACEEntries[i1] = nil
+				} else {
+					o.ACEEntries[i1] = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ACEEntries[i1]", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ACEEntries[i1], _s_AceEntries, _ptr_AceEntries); err != nil {
 			return err
 		}
@@ -7425,7 +8096,18 @@ func (o *SecurityDescriptor) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		}
 		return nil
 	})
-	_s_Owner := func(ptr interface{}) { o.Owner = *ptr.(**SID) }
+	_s_Owner := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.Owner = nil
+			} else {
+				o.Owner = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Owner", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Owner, _s_Owner, _ptr_Owner); err != nil {
 		return err
 	}
@@ -7438,7 +8120,18 @@ func (o *SecurityDescriptor) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		}
 		return nil
 	})
-	_s_Group := func(ptr interface{}) { o.Group = *ptr.(**SID) }
+	_s_Group := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SID:
+			if ptr == nil {
+				o.Group = nil
+			} else {
+				o.Group = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Group", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Group, _s_Group, _ptr_Group); err != nil {
 		return err
 	}
@@ -7451,7 +8144,18 @@ func (o *SecurityDescriptor) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		}
 		return nil
 	})
-	_s_Sacl := func(ptr interface{}) { o.SACL = *ptr.(**ACL) }
+	_s_Sacl := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACL:
+			if ptr == nil {
+				o.SACL = nil
+			} else {
+				o.SACL = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SACL", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SACL, _s_Sacl, _ptr_Sacl); err != nil {
 		return err
 	}
@@ -7464,7 +8168,18 @@ func (o *SecurityDescriptor) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		}
 		return nil
 	})
-	_s_Dacl := func(ptr interface{}) { o.DACL = *ptr.(**ACL) }
+	_s_Dacl := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ACL:
+			if ptr == nil {
+				o.DACL = nil
+			} else {
+				o.DACL = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DACL", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DACL, _s_Dacl, _ptr_Dacl); err != nil {
 		return err
 	}

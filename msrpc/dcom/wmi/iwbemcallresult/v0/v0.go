@@ -400,7 +400,18 @@ func (o *xxx_GetResultObjectOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppResultObject := func(ptr interface{}) { o.ResultObject = *ptr.(**wmi.ClassObject) }
+		_s_ppResultObject := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **wmi.ClassObject:
+				if ptr == nil {
+					o.ResultObject = nil
+				} else {
+					o.ResultObject = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResultObject", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResultObject, _s_ppResultObject, _ptr_ppResultObject); err != nil {
 			return err
 		}
@@ -684,7 +695,18 @@ func (o *xxx_GetResultStringOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pstrResultString := func(ptr interface{}) { o.ResultString = *ptr.(**oaut.String) }
+		_s_pstrResultString := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ResultString = nil
+				} else {
+					o.ResultString = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResultString", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResultString, _s_pstrResultString, _ptr_pstrResultString); err != nil {
 			return err
 		}
@@ -966,7 +988,18 @@ func (o *xxx_GetResultServicesOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ppServices := func(ptr interface{}) { o.Services = *ptr.(**wmi.Services) }
+		_s_ppServices := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **wmi.Services:
+				if ptr == nil {
+					o.Services = nil
+				} else {
+					o.Services = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Services", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Services, _s_ppServices, _ptr_ppServices); err != nil {
 			return err
 		}

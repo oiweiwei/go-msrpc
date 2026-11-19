@@ -877,7 +877,18 @@ func (o *xxx_RegisterClientOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pName := func(ptr interface{}) { o.Name = *ptr.(*string) }
+		_s_pName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Name = ""
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_pName, _ptr_pName); err != nil {
 			return err
 		}
@@ -961,7 +972,18 @@ func (o *xxx_RegisterClientOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ppRmtServerReferral := func(ptr interface{}) { o.RemoteServerReferral = *ptr.(*string) }
+		_s_ppRmtServerReferral := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.RemoteServerReferral = ""
+				} else {
+					o.RemoteServerReferral = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RemoteServerReferral", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RemoteServerReferral, _s_ppRmtServerReferral, _ptr_ppRmtServerReferral); err != nil {
 			return err
 		}
@@ -1446,7 +1468,18 @@ func (o *xxx_GetNewChannelOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppChannelCtxt := func(ptr interface{}) { o.ChannelContext = *ptr.(*[]*NotifyObject) }
+		_s_ppChannelCtxt := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*NotifyObject:
+				if ptr == nil {
+					o.ChannelContext = nil
+				} else {
+					o.ChannelContext = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ChannelContext", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ChannelContext, _s_ppChannelCtxt, _ptr_ppChannelCtxt); err != nil {
 			return err
 		}
@@ -1709,7 +1742,18 @@ func (o *xxx_GetNotificationSendResponseOperation) UnmarshalNDRRequest(ctx conte
 			}
 			return nil
 		})
-		_s_pInNotificationType := func(ptr interface{}) { o.InNotificationType = *ptr.(**NotificationType) }
+		_s_pInNotificationType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **NotificationType:
+				if ptr == nil {
+					o.InNotificationType = nil
+				} else {
+					o.InNotificationType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InNotificationType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InNotificationType, _s_pInNotificationType, _ptr_pInNotificationType); err != nil {
 			return err
 		}
@@ -1746,7 +1790,18 @@ func (o *xxx_GetNotificationSendResponseOperation) UnmarshalNDRRequest(ctx conte
 			}
 			return nil
 		})
-		_s_pInNotificationData := func(ptr interface{}) { o.InNotificationData = *ptr.(*[]byte) }
+		_s_pInNotificationData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.InNotificationData = nil
+				} else {
+					o.InNotificationData = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InNotificationData", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InNotificationData, _s_pInNotificationData, _ptr_pInNotificationData); err != nil {
 			return err
 		}
@@ -1887,7 +1942,18 @@ func (o *xxx_GetNotificationSendResponseOperation) UnmarshalNDRResponse(ctx cont
 			}
 			return nil
 		})
-		_s_ppOutNotificationType := func(ptr interface{}) { o.OutNotificationType = *ptr.(**NotificationType) }
+		_s_ppOutNotificationType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **NotificationType:
+				if ptr == nil {
+					o.OutNotificationType = nil
+				} else {
+					o.OutNotificationType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OutNotificationType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OutNotificationType, _s_ppOutNotificationType, _ptr_ppOutNotificationType); err != nil {
 			return err
 		}
@@ -1924,7 +1990,18 @@ func (o *xxx_GetNotificationSendResponseOperation) UnmarshalNDRResponse(ctx cont
 			}
 			return nil
 		})
-		_s_ppOutNotificationData := func(ptr interface{}) { o.OutNotificationData = *ptr.(*[]byte) }
+		_s_ppOutNotificationData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.OutNotificationData = nil
+				} else {
+					o.OutNotificationData = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OutNotificationData", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OutNotificationData, _s_ppOutNotificationData, _ptr_ppOutNotificationData); err != nil {
 			return err
 		}
@@ -2262,7 +2339,18 @@ func (o *xxx_GetNotificationOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppOutNotificationType := func(ptr interface{}) { o.OutNotificationType = *ptr.(**NotificationType) }
+		_s_ppOutNotificationType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **NotificationType:
+				if ptr == nil {
+					o.OutNotificationType = nil
+				} else {
+					o.OutNotificationType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OutNotificationType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OutNotificationType, _s_ppOutNotificationType, _ptr_ppOutNotificationType); err != nil {
 			return err
 		}
@@ -2299,7 +2387,18 @@ func (o *xxx_GetNotificationOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppOutNotificationData := func(ptr interface{}) { o.OutNotificationData = *ptr.(*[]byte) }
+		_s_ppOutNotificationData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.OutNotificationData = nil
+				} else {
+					o.OutNotificationData = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OutNotificationData", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OutNotificationData, _s_ppOutNotificationData, _ptr_ppOutNotificationData); err != nil {
 			return err
 		}
@@ -2573,7 +2672,18 @@ func (o *xxx_CloseChannelOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pReason := func(ptr interface{}) { o.Reason = *ptr.(*[]byte) }
+		_s_pReason := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Reason = nil
+				} else {
+					o.Reason = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Reason", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Reason, _s_pReason, _ptr_pReason); err != nil {
 			return err
 		}

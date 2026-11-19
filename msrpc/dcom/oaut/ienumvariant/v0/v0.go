@@ -493,7 +493,18 @@ func (o *xxx_NextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 				}
 				return nil
 			})
-			_s_rgVar := func(ptr interface{}) { o.Var[i1] = *ptr.(**oaut.Variant) }
+			_s_rgVar := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **oaut.Variant:
+					if ptr == nil {
+						o.Var[i1] = nil
+					} else {
+						o.Var[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Var[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Var[i1], _s_rgVar, _ptr_rgVar); err != nil {
 				return err
 			}
@@ -1208,7 +1219,18 @@ func (o *xxx_CloneOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**oaut.EnumVariant) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.EnumVariant:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}

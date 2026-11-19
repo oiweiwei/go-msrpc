@@ -437,7 +437,18 @@ func (o *OldCallSearch) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pSearches := func(ptr interface{}) { o.Searches = *ptr.(*[]*OldFileTrackingInformation) }
+	_s_pSearches := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*OldFileTrackingInformation:
+			if ptr == nil {
+				o.Searches = nil
+			} else {
+				o.Searches = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Searches", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Searches, _s_pSearches, _ptr_pSearches); err != nil {
 		return err
 	}
@@ -556,7 +567,18 @@ func (o *CallSearch) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pSearches := func(ptr interface{}) { o.Searches = *ptr.(*[]*FileTrackingInformation) }
+	_s_pSearches := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*FileTrackingInformation:
+			if ptr == nil {
+				o.Searches = nil
+			} else {
+				o.Searches = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Searches", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Searches, _s_pSearches, _ptr_pSearches); err != nil {
 		return err
 	}
@@ -809,7 +831,18 @@ func (o *CallMoveNotification) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		}
 		return nil
 	})
-	_s_pvolid := func(ptr interface{}) { o.Volume = *ptr.(**dltw.VolumeID) }
+	_s_pvolid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **dltw.VolumeID:
+			if ptr == nil {
+				o.Volume = nil
+			} else {
+				o.Volume = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Volume", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Volume, _s_pvolid, _ptr_pvolid); err != nil {
 		return err
 	}
@@ -841,7 +874,18 @@ func (o *CallMoveNotification) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		}
 		return nil
 	})
-	_s_rgobjidCurrent := func(ptr interface{}) { o.Current = *ptr.(*[]*dltw.ObjectID) }
+	_s_rgobjidCurrent := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*dltw.ObjectID:
+			if ptr == nil {
+				o.Current = nil
+			} else {
+				o.Current = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Current", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Current, _s_rgobjidCurrent, _ptr_rgobjidCurrent); err != nil {
 		return err
 	}
@@ -873,7 +917,18 @@ func (o *CallMoveNotification) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		}
 		return nil
 	})
-	_s_rgdroidBirth := func(ptr interface{}) { o.Birth = *ptr.(*[]*dltw.DomainRelativeObjectID) }
+	_s_rgdroidBirth := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*dltw.DomainRelativeObjectID:
+			if ptr == nil {
+				o.Birth = nil
+			} else {
+				o.Birth = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Birth", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Birth, _s_rgdroidBirth, _ptr_rgdroidBirth); err != nil {
 		return err
 	}
@@ -905,7 +960,18 @@ func (o *CallMoveNotification) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		}
 		return nil
 	})
-	_s_rgdroidNew := func(ptr interface{}) { o.New = *ptr.(*[]*dltw.DomainRelativeObjectID) }
+	_s_rgdroidNew := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*dltw.DomainRelativeObjectID:
+			if ptr == nil {
+				o.New = nil
+			} else {
+				o.New = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.New", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.New, _s_rgdroidNew, _ptr_rgdroidNew); err != nil {
 		return err
 	}
@@ -1081,7 +1147,18 @@ func (o *CallRefresh) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_adroidBirth := func(ptr interface{}) { o.Birth = *ptr.(*[]*dltw.DomainRelativeObjectID) }
+	_s_adroidBirth := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*dltw.DomainRelativeObjectID:
+			if ptr == nil {
+				o.Birth = nil
+			} else {
+				o.Birth = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Birth", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Birth, _s_adroidBirth, _ptr_adroidBirth); err != nil {
 		return err
 	}
@@ -1116,7 +1193,18 @@ func (o *CallRefresh) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_avolid := func(ptr interface{}) { o.Volumes = *ptr.(*[]*dltw.VolumeID) }
+	_s_avolid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*dltw.VolumeID:
+			if ptr == nil {
+				o.Volumes = nil
+			} else {
+				o.Volumes = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Volumes", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Volumes, _s_avolid, _ptr_avolid); err != nil {
 		return err
 	}
@@ -1283,7 +1371,18 @@ func (o *CallDelete) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_adroidBirth := func(ptr interface{}) { o.Birth = *ptr.(*[]*dltw.DomainRelativeObjectID) }
+	_s_adroidBirth := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*dltw.DomainRelativeObjectID:
+			if ptr == nil {
+				o.Birth = nil
+			} else {
+				o.Birth = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Birth", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Birth, _s_adroidBirth, _ptr_adroidBirth); err != nil {
 		return err
 	}
@@ -1318,7 +1417,18 @@ func (o *CallDelete) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pVolumes := func(ptr interface{}) { o.Volumes = *ptr.(*[]*dltw.VolumeID) }
+	_s_pVolumes := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*dltw.VolumeID:
+			if ptr == nil {
+				o.Volumes = nil
+			} else {
+				o.Volumes = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Volumes", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Volumes, _s_pVolumes, _ptr_pVolumes); err != nil {
 		return err
 	}
@@ -1653,7 +1763,18 @@ func (o *CallSyncVolumes) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		}
 		return nil
 	})
-	_s_pVolumes := func(ptr interface{}) { o.Volumes = *ptr.(*[]*SyncVolume) }
+	_s_pVolumes := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*SyncVolume:
+			if ptr == nil {
+				o.Volumes = nil
+			} else {
+				o.Volumes = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Volumes", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Volumes, _s_pVolumes, _ptr_pVolumes); err != nil {
 		return err
 	}
@@ -2384,7 +2505,18 @@ func (o *MessageUnion) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_ptszMachineID := func(ptr interface{}) { o.MachineID = *ptr.(*string) }
+	_s_ptszMachineID := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.MachineID = ""
+			} else {
+				o.MachineID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.MachineID, _s_ptszMachineID, _ptr_ptszMachineID); err != nil {
 		return err
 	}

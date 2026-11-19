@@ -321,7 +321,18 @@ func (o *xxx_BaseInitiateSystemShutdownOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		_s_ServerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerName = ""
+				} else {
+					o.ServerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
 			return err
 		}
@@ -340,7 +351,18 @@ func (o *xxx_BaseInitiateSystemShutdownOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_lpMessage := func(ptr interface{}) { o.Message = *ptr.(**rsp.UnicodeString) }
+		_s_lpMessage := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rsp.UnicodeString:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_lpMessage, _ptr_lpMessage); err != nil {
 			return err
 		}
@@ -562,7 +584,18 @@ func (o *xxx_BaseAbortSystemShutdownOperation) UnmarshalNDRRequest(ctx context.C
 			}
 			return nil
 		})
-		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		_s_ServerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerName = ""
+				} else {
+					o.ServerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
 			return err
 		}
@@ -802,7 +835,18 @@ func (o *xxx_BaseInitiateSystemShutdownExOperation) UnmarshalNDRRequest(ctx cont
 			}
 			return nil
 		})
-		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		_s_ServerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerName = ""
+				} else {
+					o.ServerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
 			return err
 		}
@@ -821,7 +865,18 @@ func (o *xxx_BaseInitiateSystemShutdownExOperation) UnmarshalNDRRequest(ctx cont
 			}
 			return nil
 		})
-		_s_lpMessage := func(ptr interface{}) { o.Message = *ptr.(**rsp.UnicodeString) }
+		_s_lpMessage := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rsp.UnicodeString:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_lpMessage, _ptr_lpMessage); err != nil {
 			return err
 		}

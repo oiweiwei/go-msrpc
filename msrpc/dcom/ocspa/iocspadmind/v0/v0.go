@@ -528,7 +528,18 @@ func (o *xxx_GetOCSPPropertyOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pEntryValue := func(ptr interface{}) { o.EntryValue = *ptr.(**oaut.Variant) }
+		_s_pEntryValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.EntryValue = nil
+				} else {
+					o.EntryValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EntryValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EntryValue, _s_pEntryValue, _ptr_pEntryValue); err != nil {
 			return err
 		}
@@ -897,7 +908,18 @@ func (o *xxx_SetOCSPPropertyOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pEntryValue := func(ptr interface{}) { o.EntryValue = *ptr.(**oaut.Variant) }
+		_s_pEntryValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.EntryValue = nil
+				} else {
+					o.EntryValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EntryValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EntryValue, _s_pEntryValue, _ptr_pEntryValue); err != nil {
 			return err
 		}
@@ -1234,7 +1256,18 @@ func (o *xxx_GetCAConfigInformationOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_pEntryValue := func(ptr interface{}) { o.EntryValue = *ptr.(**oaut.Variant) }
+		_s_pEntryValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.EntryValue = nil
+				} else {
+					o.EntryValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EntryValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EntryValue, _s_pEntryValue, _ptr_pEntryValue); err != nil {
 			return err
 		}
@@ -1468,7 +1501,18 @@ func (o *xxx_SetCAConfigInformationOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_pEntryValue := func(ptr interface{}) { o.EntryValue = *ptr.(**oaut.Variant) }
+		_s_pEntryValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.EntryValue = nil
+				} else {
+					o.EntryValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EntryValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EntryValue, _s_pEntryValue, _ptr_pEntryValue); err != nil {
 			return err
 		}
@@ -2213,7 +2257,18 @@ func (o *xxx_GetSigningCertificatesOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_pCAVar := func(ptr interface{}) { o.CAVar = *ptr.(**oaut.Variant) }
+		_s_pCAVar := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.CAVar = nil
+				} else {
+					o.CAVar = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CAVar", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CAVar, _s_pCAVar, _ptr_pCAVar); err != nil {
 			return err
 		}
@@ -2312,7 +2367,18 @@ func (o *xxx_GetSigningCertificatesOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_pSigningCertificates := func(ptr interface{}) { o.SigningCertificates = *ptr.(**oaut.Variant) }
+		_s_pSigningCertificates := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.SigningCertificates = nil
+				} else {
+					o.SigningCertificates = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SigningCertificates", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SigningCertificates, _s_pSigningCertificates, _ptr_pSigningCertificates); err != nil {
 			return err
 		}
@@ -2595,7 +2661,18 @@ func (o *xxx_GetHashAlgorithmsOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pHashAlgorithms := func(ptr interface{}) { o.HashAlgorithms = *ptr.(**oaut.Variant) }
+		_s_pHashAlgorithms := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.HashAlgorithms = nil
+				} else {
+					o.HashAlgorithms = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.HashAlgorithms", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.HashAlgorithms, _s_pHashAlgorithms, _ptr_pHashAlgorithms); err != nil {
 			return err
 		}

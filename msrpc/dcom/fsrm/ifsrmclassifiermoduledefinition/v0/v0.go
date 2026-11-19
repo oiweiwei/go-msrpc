@@ -400,7 +400,18 @@ func (o *xxx_GetPropertiesAffectedOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_propertiesAffected := func(ptr interface{}) { o.PropertiesAffected = *ptr.(**oaut.SafeArray) }
+		_s_propertiesAffected := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.PropertiesAffected = nil
+				} else {
+					o.PropertiesAffected = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertiesAffected", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PropertiesAffected, _s_propertiesAffected, _ptr_propertiesAffected); err != nil {
 			return err
 		}
@@ -605,7 +616,18 @@ func (o *xxx_SetPropertiesAffectedOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_propertiesAffected := func(ptr interface{}) { o.PropertiesAffected = *ptr.(**oaut.SafeArray) }
+		_s_propertiesAffected := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.PropertiesAffected = nil
+				} else {
+					o.PropertiesAffected = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertiesAffected", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PropertiesAffected, _s_propertiesAffected, _ptr_propertiesAffected); err != nil {
 			return err
 		}
@@ -916,7 +938,18 @@ func (o *xxx_GetPropertiesUsedOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_propertiesUsed := func(ptr interface{}) { o.PropertiesUsed = *ptr.(**oaut.SafeArray) }
+		_s_propertiesUsed := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.PropertiesUsed = nil
+				} else {
+					o.PropertiesUsed = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertiesUsed", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PropertiesUsed, _s_propertiesUsed, _ptr_propertiesUsed); err != nil {
 			return err
 		}
@@ -1121,7 +1154,18 @@ func (o *xxx_SetPropertiesUsedOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_propertiesUsed := func(ptr interface{}) { o.PropertiesUsed = *ptr.(**oaut.SafeArray) }
+		_s_propertiesUsed := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.PropertiesUsed = nil
+				} else {
+					o.PropertiesUsed = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertiesUsed", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PropertiesUsed, _s_propertiesUsed, _ptr_propertiesUsed); err != nil {
 			return err
 		}

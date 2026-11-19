@@ -234,7 +234,18 @@ func (o *ServerInfo100Container) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		}
 		return nil
 	})
-	_s_Buffer := func(ptr interface{}) { o.Buffer = *ptr.(*[]*dtyp.ServerInfo100) }
+	_s_Buffer := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*dtyp.ServerInfo100:
+			if ptr == nil {
+				o.Buffer = nil
+			} else {
+				o.Buffer = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Buffer, _s_Buffer, _ptr_Buffer); err != nil {
 		return err
 	}
@@ -442,7 +453,18 @@ func (o *ServerInfo_Level100) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		}
 		return nil
 	})
-	_s_Level100 := func(ptr interface{}) { o.Level100 = *ptr.(**ServerInfo100Container) }
+	_s_Level100 := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ServerInfo100Container:
+			if ptr == nil {
+				o.Level100 = nil
+			} else {
+				o.Level100 = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Level100", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Level100, _s_Level100, _ptr_Level100); err != nil {
 		return err
 	}
@@ -559,7 +581,18 @@ func (o *xxx_QueryOtherDomainsOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_ServerName := func(ptr interface{}) { o.ServerName = *ptr.(*string) }
+		_s_ServerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerName = ""
+				} else {
+					o.ServerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerName, _s_ServerName, _ptr_ServerName); err != nil {
 			return err
 		}

@@ -591,7 +591,18 @@ func (o *xxx_GetActionVariablesOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_variables := func(ptr interface{}) { o.Variables = *ptr.(**oaut.SafeArray) }
+		_s_variables := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Variables = nil
+				} else {
+					o.Variables = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Variables", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Variables, _s_variables, _ptr_variables); err != nil {
 			return err
 		}
@@ -849,7 +860,18 @@ func (o *xxx_GetActionVariableDescriptionsOperation) UnmarshalNDRResponse(ctx co
 			}
 			return nil
 		})
-		_s_descriptions := func(ptr interface{}) { o.Descriptions = *ptr.(**oaut.SafeArray) }
+		_s_descriptions := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Descriptions = nil
+				} else {
+					o.Descriptions = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Descriptions", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Descriptions, _s_descriptions, _ptr_descriptions); err != nil {
 			return err
 		}
@@ -1055,7 +1077,18 @@ func (o *xxx_CreateFileScreenOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -1154,7 +1187,18 @@ func (o *xxx_CreateFileScreenOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_fileScreen := func(ptr interface{}) { o.FileScreen = *ptr.(**fsrm.FileScreen) }
+		_s_fileScreen := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.FileScreen:
+				if ptr == nil {
+					o.FileScreen = nil
+				} else {
+					o.FileScreen = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreen", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreen, _s_fileScreen, _ptr_fileScreen); err != nil {
 			return err
 		}
@@ -1369,7 +1413,18 @@ func (o *xxx_GetFileScreenOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -1468,7 +1523,18 @@ func (o *xxx_GetFileScreenOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_fileScreen := func(ptr interface{}) { o.FileScreen = *ptr.(**fsrm.FileScreen) }
+		_s_fileScreen := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.FileScreen:
+				if ptr == nil {
+					o.FileScreen = nil
+				} else {
+					o.FileScreen = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreen", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreen, _s_fileScreen, _ptr_fileScreen); err != nil {
 			return err
 		}
@@ -1686,7 +1752,18 @@ func (o *xxx_EnumFileScreensOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -1791,7 +1868,18 @@ func (o *xxx_EnumFileScreensOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_fileScreens := func(ptr interface{}) { o.FileScreens = *ptr.(**fsrm.CommittableCollection) }
+		_s_fileScreens := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.CommittableCollection:
+				if ptr == nil {
+					o.FileScreens = nil
+				} else {
+					o.FileScreens = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreens", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreens, _s_fileScreens, _ptr_fileScreens); err != nil {
 			return err
 		}
@@ -2008,7 +2096,18 @@ func (o *xxx_CreateFileScreenExceptionOperation) UnmarshalNDRRequest(ctx context
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -2107,7 +2206,18 @@ func (o *xxx_CreateFileScreenExceptionOperation) UnmarshalNDRResponse(ctx contex
 			}
 			return nil
 		})
-		_s_fileScreenException := func(ptr interface{}) { o.FileScreenException = *ptr.(**fsrm.FileScreenException) }
+		_s_fileScreenException := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.FileScreenException:
+				if ptr == nil {
+					o.FileScreenException = nil
+				} else {
+					o.FileScreenException = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreenException", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreenException, _s_fileScreenException, _ptr_fileScreenException); err != nil {
 			return err
 		}
@@ -2322,7 +2432,18 @@ func (o *xxx_GetFileScreenExceptionOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -2421,7 +2542,18 @@ func (o *xxx_GetFileScreenExceptionOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_fileScreenException := func(ptr interface{}) { o.FileScreenException = *ptr.(**fsrm.FileScreenException) }
+		_s_fileScreenException := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.FileScreenException:
+				if ptr == nil {
+					o.FileScreenException = nil
+				} else {
+					o.FileScreenException = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreenException", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreenException, _s_fileScreenException, _ptr_fileScreenException); err != nil {
 			return err
 		}
@@ -2642,7 +2774,18 @@ func (o *xxx_EnumFileScreenExceptionsOperation) UnmarshalNDRRequest(ctx context.
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -2747,7 +2890,18 @@ func (o *xxx_EnumFileScreenExceptionsOperation) UnmarshalNDRResponse(ctx context
 			}
 			return nil
 		})
-		_s_fileScreenExceptions := func(ptr interface{}) { o.FileScreenExceptions = *ptr.(**fsrm.CommittableCollection) }
+		_s_fileScreenExceptions := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.CommittableCollection:
+				if ptr == nil {
+					o.FileScreenExceptions = nil
+				} else {
+					o.FileScreenExceptions = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreenExceptions", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreenExceptions, _s_fileScreenExceptions, _ptr_fileScreenExceptions); err != nil {
 			return err
 		}
@@ -3019,7 +3173,18 @@ func (o *xxx_CreateFileScreenCollectionOperation) UnmarshalNDRResponse(ctx conte
 			}
 			return nil
 		})
-		_s_collection := func(ptr interface{}) { o.Collection = *ptr.(**fsrm.CommittableCollection) }
+		_s_collection := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.CommittableCollection:
+				if ptr == nil {
+					o.Collection = nil
+				} else {
+					o.Collection = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Collection", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Collection, _s_collection, _ptr_collection); err != nil {
 			return err
 		}

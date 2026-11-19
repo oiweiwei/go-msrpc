@@ -467,7 +467,18 @@ func (o *xxx_GetNameOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pbstrName := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_pbstrName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_pbstrName, _ptr_pbstrName); err != nil {
 			return err
 		}
@@ -721,7 +732,18 @@ func (o *xxx_GetTypeOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pbstrType := func(ptr interface{}) { o.Type = *ptr.(**oaut.String) }
+		_s_pbstrType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Type = nil
+				} else {
+					o.Type = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Type", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Type, _s_pbstrType, _ptr_pbstrType); err != nil {
 			return err
 		}
@@ -922,7 +944,18 @@ func (o *xxx_SetTypeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_bstrType := func(ptr interface{}) { o.Type = *ptr.(**oaut.String) }
+		_s_bstrType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Type = nil
+				} else {
+					o.Type = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Type", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Type, _s_bstrType, _ptr_bstrType); err != nil {
 			return err
 		}
@@ -1231,7 +1264,18 @@ func (o *xxx_GetOverrideModeDefaultOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_pbstrOverrideModeDefault := func(ptr interface{}) { o.OverrideModeDefault = *ptr.(**oaut.String) }
+		_s_pbstrOverrideModeDefault := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.OverrideModeDefault = nil
+				} else {
+					o.OverrideModeDefault = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OverrideModeDefault", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OverrideModeDefault, _s_pbstrOverrideModeDefault, _ptr_pbstrOverrideModeDefault); err != nil {
 			return err
 		}
@@ -1436,7 +1480,18 @@ func (o *xxx_SetOverrideModeDefaultOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_bstrOverrideModeDefault := func(ptr interface{}) { o.OverrideModeDefault = *ptr.(**oaut.String) }
+		_s_bstrOverrideModeDefault := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.OverrideModeDefault = nil
+				} else {
+					o.OverrideModeDefault = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OverrideModeDefault", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OverrideModeDefault, _s_bstrOverrideModeDefault, _ptr_bstrOverrideModeDefault); err != nil {
 			return err
 		}
@@ -1747,7 +1802,18 @@ func (o *xxx_GetAllowDefinitionOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pbstrAllowDefinition := func(ptr interface{}) { o.AllowDefinition = *ptr.(**oaut.String) }
+		_s_pbstrAllowDefinition := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.AllowDefinition = nil
+				} else {
+					o.AllowDefinition = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AllowDefinition", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AllowDefinition, _s_pbstrAllowDefinition, _ptr_pbstrAllowDefinition); err != nil {
 			return err
 		}
@@ -1952,7 +2018,18 @@ func (o *xxx_SetAllowDefinitionOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrAllowDefinition := func(ptr interface{}) { o.AllowDefinition = *ptr.(**oaut.String) }
+		_s_bstrAllowDefinition := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.AllowDefinition = nil
+				} else {
+					o.AllowDefinition = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AllowDefinition", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AllowDefinition, _s_bstrAllowDefinition, _ptr_bstrAllowDefinition); err != nil {
 			return err
 		}
@@ -2263,7 +2340,18 @@ func (o *xxx_GetAllowLocationOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_pbstrAllowLocation := func(ptr interface{}) { o.AllowLocation = *ptr.(**oaut.String) }
+		_s_pbstrAllowLocation := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.AllowLocation = nil
+				} else {
+					o.AllowLocation = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AllowLocation", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AllowLocation, _s_pbstrAllowLocation, _ptr_pbstrAllowLocation); err != nil {
 			return err
 		}
@@ -2468,7 +2556,18 @@ func (o *xxx_SetAllowLocationOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_bstrAllowLocation := func(ptr interface{}) { o.AllowLocation = *ptr.(**oaut.String) }
+		_s_bstrAllowLocation := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.AllowLocation = nil
+				} else {
+					o.AllowLocation = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AllowLocation", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AllowLocation, _s_bstrAllowLocation, _ptr_bstrAllowLocation); err != nil {
 			return err
 		}

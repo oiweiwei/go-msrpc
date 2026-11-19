@@ -553,7 +553,18 @@ func (o *SnapshotProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_m_pwszSnapshotDeviceObject := func(ptr interface{}) { o.SnapshotDeviceObject = *ptr.(*string) }
+	_s_m_pwszSnapshotDeviceObject := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.SnapshotDeviceObject = ""
+			} else {
+				o.SnapshotDeviceObject = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SnapshotDeviceObject", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SnapshotDeviceObject, _s_m_pwszSnapshotDeviceObject, _ptr_m_pwszSnapshotDeviceObject); err != nil {
 		return err
 	}
@@ -563,7 +574,18 @@ func (o *SnapshotProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_m_pwszOriginalVolumeName := func(ptr interface{}) { o.OriginalVolumeName = *ptr.(*string) }
+	_s_m_pwszOriginalVolumeName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.OriginalVolumeName = ""
+			} else {
+				o.OriginalVolumeName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OriginalVolumeName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.OriginalVolumeName, _s_m_pwszOriginalVolumeName, _ptr_m_pwszOriginalVolumeName); err != nil {
 		return err
 	}
@@ -573,7 +595,18 @@ func (o *SnapshotProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_m_pwszOriginatingMachine := func(ptr interface{}) { o.OriginatingMachine = *ptr.(*string) }
+	_s_m_pwszOriginatingMachine := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.OriginatingMachine = ""
+			} else {
+				o.OriginatingMachine = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OriginatingMachine", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.OriginatingMachine, _s_m_pwszOriginatingMachine, _ptr_m_pwszOriginatingMachine); err != nil {
 		return err
 	}
@@ -583,7 +616,18 @@ func (o *SnapshotProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_m_pwszServiceMachine := func(ptr interface{}) { o.ServiceMachine = *ptr.(*string) }
+	_s_m_pwszServiceMachine := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ServiceMachine = ""
+			} else {
+				o.ServiceMachine = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServiceMachine", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ServiceMachine, _s_m_pwszServiceMachine, _ptr_m_pwszServiceMachine); err != nil {
 		return err
 	}
@@ -593,7 +637,18 @@ func (o *SnapshotProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_m_pwszExposedName := func(ptr interface{}) { o.ExposedName = *ptr.(*string) }
+	_s_m_pwszExposedName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ExposedName = ""
+			} else {
+				o.ExposedName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExposedName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ExposedName, _s_m_pwszExposedName, _ptr_m_pwszExposedName); err != nil {
 		return err
 	}
@@ -603,7 +658,18 @@ func (o *SnapshotProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_m_pwszExposedPath := func(ptr interface{}) { o.ExposedPath = *ptr.(*string) }
+	_s_m_pwszExposedPath := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ExposedPath = ""
+			} else {
+				o.ExposedPath = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExposedPath", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ExposedPath, _s_m_pwszExposedPath, _ptr_m_pwszExposedPath); err != nil {
 		return err
 	}
@@ -739,7 +805,18 @@ func (o *ProviderProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_m_pwszProviderName := func(ptr interface{}) { o.ProviderName = *ptr.(*string) }
+	_s_m_pwszProviderName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ProviderName = ""
+			} else {
+				o.ProviderName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProviderName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ProviderName, _s_m_pwszProviderName, _ptr_m_pwszProviderName); err != nil {
 		return err
 	}
@@ -752,7 +829,18 @@ func (o *ProviderProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_m_pwszProviderVersion := func(ptr interface{}) { o.ProviderVersion = *ptr.(*string) }
+	_s_m_pwszProviderVersion := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ProviderVersion = ""
+			} else {
+				o.ProviderVersion = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProviderVersion", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ProviderVersion, _s_m_pwszProviderVersion, _ptr_m_pwszProviderVersion); err != nil {
 		return err
 	}
@@ -1084,7 +1172,18 @@ func (o *VolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_m_pwszVolumeName := func(ptr interface{}) { o.VolumeName = *ptr.(*string) }
+	_s_m_pwszVolumeName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.VolumeName = ""
+			} else {
+				o.VolumeName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VolumeName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.VolumeName, _s_m_pwszVolumeName, _ptr_m_pwszVolumeName); err != nil {
 		return err
 	}
@@ -1094,7 +1193,18 @@ func (o *VolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_m_pwszVolumeDisplayName := func(ptr interface{}) { o.VolumeDisplayName = *ptr.(*string) }
+	_s_m_pwszVolumeDisplayName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.VolumeDisplayName = ""
+			} else {
+				o.VolumeDisplayName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VolumeDisplayName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.VolumeDisplayName, _s_m_pwszVolumeDisplayName, _ptr_m_pwszVolumeDisplayName); err != nil {
 		return err
 	}
@@ -1183,7 +1293,18 @@ func (o *DiffVolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		}
 		return nil
 	})
-	_s_m_pwszVolumeName := func(ptr interface{}) { o.VolumeName = *ptr.(*string) }
+	_s_m_pwszVolumeName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.VolumeName = ""
+			} else {
+				o.VolumeName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VolumeName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.VolumeName, _s_m_pwszVolumeName, _ptr_m_pwszVolumeName); err != nil {
 		return err
 	}
@@ -1193,7 +1314,18 @@ func (o *DiffVolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		}
 		return nil
 	})
-	_s_m_pwszVolumeDisplayName := func(ptr interface{}) { o.VolumeDisplayName = *ptr.(*string) }
+	_s_m_pwszVolumeDisplayName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.VolumeDisplayName = ""
+			} else {
+				o.VolumeDisplayName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VolumeDisplayName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.VolumeDisplayName, _s_m_pwszVolumeDisplayName, _ptr_m_pwszVolumeDisplayName); err != nil {
 		return err
 	}
@@ -1296,7 +1428,18 @@ func (o *DiffAreaProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_m_pwszVolumeName := func(ptr interface{}) { o.VolumeName = *ptr.(*string) }
+	_s_m_pwszVolumeName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.VolumeName = ""
+			} else {
+				o.VolumeName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VolumeName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.VolumeName, _s_m_pwszVolumeName, _ptr_m_pwszVolumeName); err != nil {
 		return err
 	}
@@ -1306,7 +1449,18 @@ func (o *DiffAreaProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 		return nil
 	})
-	_s_m_pwszDiffAreaVolumeName := func(ptr interface{}) { o.DiffAreaVolumeName = *ptr.(*string) }
+	_s_m_pwszDiffAreaVolumeName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.DiffAreaVolumeName = ""
+			} else {
+				o.DiffAreaVolumeName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DiffAreaVolumeName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DiffAreaVolumeName, _s_m_pwszDiffAreaVolumeName, _ptr_m_pwszDiffAreaVolumeName); err != nil {
 		return err
 	}

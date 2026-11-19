@@ -2669,7 +2669,18 @@ func (o *xxx_RequestRecordsOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_compressedRecords := func(ptr interface{}) { o.CompressedRecords = *ptr.(*[]byte) }
+		_s_compressedRecords := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.CompressedRecords = nil
+				} else {
+					o.CompressedRecords = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CompressedRecords", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CompressedRecords, _s_compressedRecords, _ptr_compressedRecords); err != nil {
 			return err
 		}
@@ -4734,7 +4745,18 @@ func (o *xxx_InitializeFileTransferAsyncOperation) UnmarshalNDRResponse(ctx cont
 			}
 			return nil
 		})
-		_s_rdcFileInfo := func(ptr interface{}) { o.FileInfo = *ptr.(**frs2.FileInfo) }
+		_s_rdcFileInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **frs2.FileInfo:
+				if ptr == nil {
+					o.FileInfo = nil
+				} else {
+					o.FileInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileInfo, _s_rdcFileInfo, _ptr_rdcFileInfo); err != nil {
 			return err
 		}

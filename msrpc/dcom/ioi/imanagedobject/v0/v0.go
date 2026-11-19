@@ -341,7 +341,18 @@ func (o *xxx_GetSerializedBufferOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_pBSTR := func(ptr interface{}) { o.String = *ptr.(**oaut.String) }
+		_s_pBSTR := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.String = nil
+				} else {
+					o.String = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.String", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.String, _s_pBSTR, _ptr_pBSTR); err != nil {
 			return err
 		}
@@ -611,7 +622,18 @@ func (o *xxx_GetObjectIdentityOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pBSTRGUID := func(ptr interface{}) { o.GUID = *ptr.(**oaut.String) }
+		_s_pBSTRGUID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.GUID = nil
+				} else {
+					o.GUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.GUID, _s_pBSTRGUID, _ptr_pBSTRGUID); err != nil {
 			return err
 		}

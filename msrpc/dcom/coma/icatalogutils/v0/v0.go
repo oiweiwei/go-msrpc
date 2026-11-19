@@ -333,7 +333,18 @@ func (o *xxx_ValidateUserOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pwszPrincipalName := func(ptr interface{}) { o.PrincipalName = *ptr.(*string) }
+		_s_pwszPrincipalName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.PrincipalName = ""
+				} else {
+					o.PrincipalName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PrincipalName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PrincipalName, _s_pwszPrincipalName, _ptr_pwszPrincipalName); err != nil {
 			return err
 		}
@@ -349,7 +360,18 @@ func (o *xxx_ValidateUserOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pwszPassword := func(ptr interface{}) { o.Password = *ptr.(*string) }
+		_s_pwszPassword := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Password = ""
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_pwszPassword, _ptr_pwszPassword); err != nil {
 			return err
 		}
@@ -809,7 +831,18 @@ func (o *xxx_GetEventClassesForIIDOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_wszIID := func(ptr interface{}) { o.IID = *ptr.(*string) }
+		_s_wszIID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.IID = ""
+				} else {
+					o.IID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.IID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.IID, _s_wszIID, _ptr_wszIID); err != nil {
 			return err
 		}
@@ -1067,14 +1100,36 @@ func (o *xxx_GetEventClassesForIIDOperation) UnmarshalNDRResponse(ctx context.Co
 					}
 					return nil
 				})
-				_s_pawszCLSIDs := func(ptr interface{}) { o.ClassIDs[i1] = *ptr.(*string) }
+				_s_pawszCLSIDs := func(ptr any) {
+					switch ptr := ptr.(type) {
+					case *string:
+						if ptr == nil {
+							o.ClassIDs[i1] = ""
+						} else {
+							o.ClassIDs[i1] = *ptr
+						}
+					default:
+						w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClassIDs[i1]", ptr))
+					}
+				}
 				if err := w.ReadPointer(&o.ClassIDs[i1], _s_pawszCLSIDs, _ptr_pawszCLSIDs); err != nil {
 					return err
 				}
 			}
 			return nil
 		})
-		_s_pawszCLSIDs := func(ptr interface{}) { o.ClassIDs = *ptr.(*[]string) }
+		_s_pawszCLSIDs := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]string:
+				if ptr == nil {
+					o.ClassIDs = nil
+				} else {
+					o.ClassIDs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClassIDs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClassIDs, _s_pawszCLSIDs, _ptr_pawszCLSIDs); err != nil {
 			return err
 		}
@@ -1105,14 +1160,36 @@ func (o *xxx_GetEventClassesForIIDOperation) UnmarshalNDRResponse(ctx context.Co
 					}
 					return nil
 				})
-				_s_pawszProgIDs := func(ptr interface{}) { o.ProgIDs[i1] = *ptr.(*string) }
+				_s_pawszProgIDs := func(ptr any) {
+					switch ptr := ptr.(type) {
+					case *string:
+						if ptr == nil {
+							o.ProgIDs[i1] = ""
+						} else {
+							o.ProgIDs[i1] = *ptr
+						}
+					default:
+						w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProgIDs[i1]", ptr))
+					}
+				}
 				if err := w.ReadPointer(&o.ProgIDs[i1], _s_pawszProgIDs, _ptr_pawszProgIDs); err != nil {
 					return err
 				}
 			}
 			return nil
 		})
-		_s_pawszProgIDs := func(ptr interface{}) { o.ProgIDs = *ptr.(*[]string) }
+		_s_pawszProgIDs := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]string:
+				if ptr == nil {
+					o.ProgIDs = nil
+				} else {
+					o.ProgIDs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProgIDs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProgIDs, _s_pawszProgIDs, _ptr_pawszProgIDs); err != nil {
 			return err
 		}
@@ -1143,14 +1220,36 @@ func (o *xxx_GetEventClassesForIIDOperation) UnmarshalNDRResponse(ctx context.Co
 					}
 					return nil
 				})
-				_s_pawszDescriptions := func(ptr interface{}) { o.Descriptions[i1] = *ptr.(*string) }
+				_s_pawszDescriptions := func(ptr any) {
+					switch ptr := ptr.(type) {
+					case *string:
+						if ptr == nil {
+							o.Descriptions[i1] = ""
+						} else {
+							o.Descriptions[i1] = *ptr
+						}
+					default:
+						w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Descriptions[i1]", ptr))
+					}
+				}
 				if err := w.ReadPointer(&o.Descriptions[i1], _s_pawszDescriptions, _ptr_pawszDescriptions); err != nil {
 					return err
 				}
 			}
 			return nil
 		})
-		_s_pawszDescriptions := func(ptr interface{}) { o.Descriptions = *ptr.(*[]string) }
+		_s_pawszDescriptions := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]string:
+				if ptr == nil {
+					o.Descriptions = nil
+				} else {
+					o.Descriptions = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Descriptions", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Descriptions, _s_pawszDescriptions, _ptr_pawszDescriptions); err != nil {
 			return err
 		}

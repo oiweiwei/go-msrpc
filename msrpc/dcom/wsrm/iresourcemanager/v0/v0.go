@@ -688,7 +688,18 @@ func (o *xxx_RetrieveEventListOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pbstrEventList := func(ptr interface{}) { o.EventList = *ptr.(**oaut.String) }
+		_s_pbstrEventList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.EventList = nil
+				} else {
+					o.EventList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EventList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EventList, _s_pbstrEventList, _ptr_pbstrEventList); err != nil {
 			return err
 		}
@@ -1199,7 +1210,18 @@ func (o *xxx_ImportXMLFilesOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrPMCXml := func(ptr interface{}) { o.PMCXML = *ptr.(**oaut.String) }
+		_s_bstrPMCXml := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PMCXML = nil
+				} else {
+					o.PMCXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PMCXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PMCXML, _s_bstrPMCXml, _ptr_bstrPMCXml); err != nil {
 			return err
 		}
@@ -1218,7 +1240,18 @@ func (o *xxx_ImportXMLFilesOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrPolicyXml := func(ptr interface{}) { o.PolicyXML = *ptr.(**oaut.String) }
+		_s_bstrPolicyXml := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyXML = nil
+				} else {
+					o.PolicyXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyXML, _s_bstrPolicyXml, _ptr_bstrPolicyXml); err != nil {
 			return err
 		}
@@ -1237,7 +1270,18 @@ func (o *xxx_ImportXMLFilesOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrCalendarXml := func(ptr interface{}) { o.CalendarXML = *ptr.(**oaut.String) }
+		_s_bstrCalendarXml := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.CalendarXML = nil
+				} else {
+					o.CalendarXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CalendarXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CalendarXML, _s_bstrCalendarXml, _ptr_bstrCalendarXml); err != nil {
 			return err
 		}
@@ -1256,7 +1300,18 @@ func (o *xxx_ImportXMLFilesOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrConditionalXml := func(ptr interface{}) { o.ConditionalXML = *ptr.(**oaut.String) }
+		_s_bstrConditionalXml := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ConditionalXML = nil
+				} else {
+					o.ConditionalXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConditionalXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConditionalXML, _s_bstrConditionalXml, _ptr_bstrConditionalXml); err != nil {
 			return err
 		}
@@ -1669,7 +1724,18 @@ func (o *xxx_ExportXMLFilesOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pbstrPMCXml := func(ptr interface{}) { o.PMCXML = *ptr.(**oaut.String) }
+		_s_pbstrPMCXml := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PMCXML = nil
+				} else {
+					o.PMCXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PMCXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PMCXML, _s_pbstrPMCXml, _ptr_pbstrPMCXml); err != nil {
 			return err
 		}
@@ -1688,7 +1754,18 @@ func (o *xxx_ExportXMLFilesOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pbstrPolicyXml := func(ptr interface{}) { o.PolicyXML = *ptr.(**oaut.String) }
+		_s_pbstrPolicyXml := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PolicyXML = nil
+				} else {
+					o.PolicyXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PolicyXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PolicyXML, _s_pbstrPolicyXml, _ptr_pbstrPolicyXml); err != nil {
 			return err
 		}
@@ -1707,7 +1784,18 @@ func (o *xxx_ExportXMLFilesOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pbstrCalendarXml := func(ptr interface{}) { o.CalendarXML = *ptr.(**oaut.String) }
+		_s_pbstrCalendarXml := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.CalendarXML = nil
+				} else {
+					o.CalendarXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CalendarXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CalendarXML, _s_pbstrCalendarXml, _ptr_pbstrCalendarXml); err != nil {
 			return err
 		}
@@ -1726,7 +1814,18 @@ func (o *xxx_ExportXMLFilesOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pbstrConditionalXml := func(ptr interface{}) { o.ConditionalXML = *ptr.(**oaut.String) }
+		_s_pbstrConditionalXml := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ConditionalXML = nil
+				} else {
+					o.ConditionalXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConditionalXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConditionalXML, _s_pbstrConditionalXml, _ptr_pbstrConditionalXml); err != nil {
 			return err
 		}
@@ -2178,7 +2277,18 @@ func (o *xxx_GetDependenciesOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_bstrObjectName := func(ptr interface{}) { o.ObjectName = *ptr.(**oaut.String) }
+		_s_bstrObjectName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ObjectName = nil
+				} else {
+					o.ObjectName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectName, _s_bstrObjectName, _ptr_bstrObjectName); err != nil {
 			return err
 		}
@@ -2283,7 +2393,18 @@ func (o *xxx_GetDependenciesOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pbstrDependencyList := func(ptr interface{}) { o.DependencyList = *ptr.(**oaut.String) }
+		_s_pbstrDependencyList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DependencyList = nil
+				} else {
+					o.DependencyList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DependencyList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DependencyList, _s_pbstrDependencyList, _ptr_pbstrDependencyList); err != nil {
 			return err
 		}
@@ -2554,7 +2675,18 @@ func (o *xxx_GetServiceListOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pbstrServiceList := func(ptr interface{}) { o.ServiceList = *ptr.(**oaut.String) }
+		_s_pbstrServiceList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ServiceList = nil
+				} else {
+					o.ServiceList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServiceList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServiceList, _s_pbstrServiceList, _ptr_pbstrServiceList); err != nil {
 			return err
 		}
@@ -2840,7 +2972,18 @@ func (o *xxx_GetIISAppPoolNamesOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pbstrIISAppPoolList := func(ptr interface{}) { o.IISAppPoolList = *ptr.(**oaut.String) }
+		_s_pbstrIISAppPoolList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.IISAppPoolList = nil
+				} else {
+					o.IISAppPoolList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.IISAppPoolList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.IISAppPoolList, _s_pbstrIISAppPoolList, _ptr_pbstrIISAppPoolList); err != nil {
 			return err
 		}
@@ -2859,7 +3002,18 @@ func (o *xxx_GetIISAppPoolNamesOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pbstrSystemDirectory := func(ptr interface{}) { o.SystemDirectory = *ptr.(**oaut.String) }
+		_s_pbstrSystemDirectory := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SystemDirectory = nil
+				} else {
+					o.SystemDirectory = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SystemDirectory", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SystemDirectory, _s_pbstrSystemDirectory, _ptr_pbstrSystemDirectory); err != nil {
 			return err
 		}
@@ -3120,7 +3274,18 @@ func (o *xxx_GetServerNameOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pbstrServerName := func(ptr interface{}) { o.ServerName = *ptr.(**oaut.String) }
+		_s_pbstrServerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ServerName = nil
+				} else {
+					o.ServerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerName, _s_pbstrServerName, _ptr_pbstrServerName); err != nil {
 			return err
 		}

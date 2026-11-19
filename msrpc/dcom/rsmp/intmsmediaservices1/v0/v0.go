@@ -1673,7 +1673,18 @@ func (o *xxx_AllocateNTMSMediaOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_lpPartition := func(ptr interface{}) { o.Partition = *ptr.(**dtyp.GUID) }
+		_s_lpPartition := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.Partition = nil
+				} else {
+					o.Partition = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Partition", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Partition, _s_lpPartition, _ptr_lpPartition); err != nil {
 			return err
 		}
@@ -3500,7 +3511,18 @@ func (o *xxx_CreateNTMSMediaPoolAOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_lpMediaType := func(ptr interface{}) { o.MediaType = *ptr.(**dtyp.GUID) }
+		_s_lpMediaType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.MediaType = nil
+				} else {
+					o.MediaType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MediaType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MediaType, _s_lpMediaType, _ptr_lpMediaType); err != nil {
 			return err
 		}
@@ -3525,7 +3547,18 @@ func (o *xxx_CreateNTMSMediaPoolAOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_lpSecurityAttributes := func(ptr interface{}) { o.SecurityAttributes = *ptr.(**rsmp.SecurityAttributesNTMS) }
+		_s_lpSecurityAttributes := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rsmp.SecurityAttributesNTMS:
+				if ptr == nil {
+					o.SecurityAttributes = nil
+				} else {
+					o.SecurityAttributes = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SecurityAttributes", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SecurityAttributes, _s_lpSecurityAttributes, _ptr_lpSecurityAttributes); err != nil {
 			return err
 		}
@@ -3903,7 +3936,18 @@ func (o *xxx_CreateNTMSMediaPoolWOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_lpMediaType := func(ptr interface{}) { o.MediaType = *ptr.(**dtyp.GUID) }
+		_s_lpMediaType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.MediaType = nil
+				} else {
+					o.MediaType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MediaType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MediaType, _s_lpMediaType, _ptr_lpMediaType); err != nil {
 			return err
 		}
@@ -3928,7 +3972,18 @@ func (o *xxx_CreateNTMSMediaPoolWOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_lpSecurityAttributes := func(ptr interface{}) { o.SecurityAttributes = *ptr.(**rsmp.SecurityAttributesNTMS) }
+		_s_lpSecurityAttributes := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rsmp.SecurityAttributesNTMS:
+				if ptr == nil {
+					o.SecurityAttributes = nil
+				} else {
+					o.SecurityAttributes = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SecurityAttributes", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SecurityAttributes, _s_lpSecurityAttributes, _ptr_lpSecurityAttributes); err != nil {
 			return err
 		}

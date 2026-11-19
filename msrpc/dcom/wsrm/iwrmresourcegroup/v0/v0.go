@@ -477,7 +477,18 @@ func (o *xxx_GetResourceGroupInfoOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_bstrResourceGroupName := func(ptr interface{}) { o.ResourceGroupName = *ptr.(**oaut.String) }
+		_s_bstrResourceGroupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ResourceGroupName = nil
+				} else {
+					o.ResourceGroupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResourceGroupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResourceGroupName, _s_bstrResourceGroupName, _ptr_bstrResourceGroupName); err != nil {
 			return err
 		}
@@ -576,7 +587,18 @@ func (o *xxx_GetResourceGroupInfoOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_pbstrResourceGroupInfo := func(ptr interface{}) { o.ResourceGroupInfo = *ptr.(**oaut.String) }
+		_s_pbstrResourceGroupInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ResourceGroupInfo = nil
+				} else {
+					o.ResourceGroupInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResourceGroupInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResourceGroupInfo, _s_pbstrResourceGroupInfo, _ptr_pbstrResourceGroupInfo); err != nil {
 			return err
 		}
@@ -807,7 +829,18 @@ func (o *xxx_ModifyResourceGroupOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_bstrResourceGroupInfo := func(ptr interface{}) { o.ResourceGroupInfo = *ptr.(**oaut.String) }
+		_s_bstrResourceGroupInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ResourceGroupInfo = nil
+				} else {
+					o.ResourceGroupInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResourceGroupInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResourceGroupInfo, _s_bstrResourceGroupInfo, _ptr_bstrResourceGroupInfo); err != nil {
 			return err
 		}
@@ -1099,7 +1132,18 @@ func (o *xxx_CreateResourceGroupOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_bstrResourceGroupInfo := func(ptr interface{}) { o.ResourceGroupInfo = *ptr.(**oaut.String) }
+		_s_bstrResourceGroupInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ResourceGroupInfo = nil
+				} else {
+					o.ResourceGroupInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResourceGroupInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResourceGroupInfo, _s_bstrResourceGroupInfo, _ptr_bstrResourceGroupInfo); err != nil {
 			return err
 		}
@@ -1362,7 +1406,18 @@ func (o *xxx_DeleteResourceGroupOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_bstrResourceGroupName := func(ptr interface{}) { o.ResourceGroupName = *ptr.(**oaut.String) }
+		_s_bstrResourceGroupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ResourceGroupName = nil
+				} else {
+					o.ResourceGroupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResourceGroupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResourceGroupName, _s_bstrResourceGroupName, _ptr_bstrResourceGroupName); err != nil {
 			return err
 		}
@@ -1652,7 +1707,18 @@ func (o *xxx_RenameResourceGroupOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_bstrNewResourceGroupName := func(ptr interface{}) { o.NewResourceGroupName = *ptr.(**oaut.String) }
+		_s_bstrNewResourceGroupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.NewResourceGroupName = nil
+				} else {
+					o.NewResourceGroupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NewResourceGroupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NewResourceGroupName, _s_bstrNewResourceGroupName, _ptr_bstrNewResourceGroupName); err != nil {
 			return err
 		}
@@ -1671,7 +1737,18 @@ func (o *xxx_RenameResourceGroupOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_bstrOldResourceGroupName := func(ptr interface{}) { o.OldResourceGroupName = *ptr.(**oaut.String) }
+		_s_bstrOldResourceGroupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.OldResourceGroupName = nil
+				} else {
+					o.OldResourceGroupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OldResourceGroupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OldResourceGroupName, _s_bstrOldResourceGroupName, _ptr_bstrOldResourceGroupName); err != nil {
 			return err
 		}

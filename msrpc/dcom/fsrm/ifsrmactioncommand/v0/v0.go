@@ -586,7 +586,18 @@ func (o *xxx_GetExecutablePathOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_executablePath := func(ptr interface{}) { o.ExecutablePath = *ptr.(**oaut.String) }
+		_s_executablePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ExecutablePath = nil
+				} else {
+					o.ExecutablePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExecutablePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ExecutablePath, _s_executablePath, _ptr_executablePath); err != nil {
 			return err
 		}
@@ -789,7 +800,18 @@ func (o *xxx_SetExecutablePathOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_executablePath := func(ptr interface{}) { o.ExecutablePath = *ptr.(**oaut.String) }
+		_s_executablePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ExecutablePath = nil
+				} else {
+					o.ExecutablePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ExecutablePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ExecutablePath, _s_executablePath, _ptr_executablePath); err != nil {
 			return err
 		}
@@ -1096,7 +1118,18 @@ func (o *xxx_GetArgumentsOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_arguments := func(ptr interface{}) { o.Arguments = *ptr.(**oaut.String) }
+		_s_arguments := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Arguments = nil
+				} else {
+					o.Arguments = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Arguments", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Arguments, _s_arguments, _ptr_arguments); err != nil {
 			return err
 		}
@@ -1297,7 +1330,18 @@ func (o *xxx_SetArgumentsOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_arguments := func(ptr interface{}) { o.Arguments = *ptr.(**oaut.String) }
+		_s_arguments := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Arguments = nil
+				} else {
+					o.Arguments = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Arguments", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Arguments, _s_arguments, _ptr_arguments); err != nil {
 			return err
 		}
@@ -2046,7 +2090,18 @@ func (o *xxx_GetWorkingDirectoryOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_workingDirectory := func(ptr interface{}) { o.WorkingDirectory = *ptr.(**oaut.String) }
+		_s_workingDirectory := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.WorkingDirectory = nil
+				} else {
+					o.WorkingDirectory = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WorkingDirectory", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WorkingDirectory, _s_workingDirectory, _ptr_workingDirectory); err != nil {
 			return err
 		}
@@ -2251,7 +2306,18 @@ func (o *xxx_SetWorkingDirectoryOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_workingDirectory := func(ptr interface{}) { o.WorkingDirectory = *ptr.(**oaut.String) }
+		_s_workingDirectory := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.WorkingDirectory = nil
+				} else {
+					o.WorkingDirectory = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WorkingDirectory", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WorkingDirectory, _s_workingDirectory, _ptr_workingDirectory); err != nil {
 			return err
 		}

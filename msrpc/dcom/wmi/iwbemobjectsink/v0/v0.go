@@ -328,7 +328,18 @@ func (o *xxx_IndicateOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 				}
 				return nil
 			})
-			_s_apObjArray := func(ptr interface{}) { o.ObjectArray[i1] = *ptr.(**wmi.ClassObject) }
+			_s_apObjArray := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **wmi.ClassObject:
+					if ptr == nil {
+						o.ObjectArray[i1] = nil
+					} else {
+						o.ObjectArray[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectArray[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.ObjectArray[i1], _s_apObjArray, _ptr_apObjArray); err != nil {
 				return err
 			}
@@ -643,7 +654,18 @@ func (o *xxx_SetStatusOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_strParam := func(ptr interface{}) { o.Param = *ptr.(**oaut.String) }
+		_s_strParam := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Param = nil
+				} else {
+					o.Param = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Param", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Param, _s_strParam, _ptr_strParam); err != nil {
 			return err
 		}
@@ -662,7 +684,18 @@ func (o *xxx_SetStatusOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_pObjParam := func(ptr interface{}) { o.ObjectParam = *ptr.(**wmi.ClassObject) }
+		_s_pObjParam := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **wmi.ClassObject:
+				if ptr == nil {
+					o.ObjectParam = nil
+				} else {
+					o.ObjectParam = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectParam", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectParam, _s_pObjParam, _ptr_pObjParam); err != nil {
 			return err
 		}

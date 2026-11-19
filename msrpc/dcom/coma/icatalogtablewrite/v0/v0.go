@@ -529,7 +529,18 @@ func (o *xxx_WriteTableOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_pQueryCellArray := func(ptr interface{}) { o.QueryCellArray = *ptr.(*[]byte) }
+		_s_pQueryCellArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.QueryCellArray = nil
+				} else {
+					o.QueryCellArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QueryCellArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QueryCellArray, _s_pQueryCellArray, _ptr_pQueryCellArray); err != nil {
 			return err
 		}
@@ -566,7 +577,18 @@ func (o *xxx_WriteTableOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_pQueryComparison := func(ptr interface{}) { o.QueryComparison = *ptr.(*[]byte) }
+		_s_pQueryComparison := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.QueryComparison = nil
+				} else {
+					o.QueryComparison = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QueryComparison", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QueryComparison, _s_pQueryComparison, _ptr_pQueryComparison); err != nil {
 			return err
 		}
@@ -857,7 +879,18 @@ func (o *xxx_WriteTableOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ppTableDetailedErrors := func(ptr interface{}) { o.TableDetailedErrors = *ptr.(*[]byte) }
+		_s_ppTableDetailedErrors := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.TableDetailedErrors = nil
+				} else {
+					o.TableDetailedErrors = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TableDetailedErrors", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TableDetailedErrors, _s_ppTableDetailedErrors, _ptr_ppTableDetailedErrors); err != nil {
 			return err
 		}

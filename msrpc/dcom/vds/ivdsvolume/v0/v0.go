@@ -785,7 +785,18 @@ func (o *xxx_GetPackOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppPack := func(ptr interface{}) { o.Pack = *ptr.(**vds.Pack) }
+		_s_ppPack := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Pack:
+				if ptr == nil {
+					o.Pack = nil
+				} else {
+					o.Pack = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Pack", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Pack, _s_ppPack, _ptr_ppPack); err != nil {
 			return err
 		}
@@ -1039,7 +1050,18 @@ func (o *xxx_QueryPlexesOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**vds.EnumObject) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.EnumObject:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}
@@ -1288,7 +1310,18 @@ func (o *xxx_ExtendOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pInputDiskArray := func(ptr interface{}) { o.InputDiskArray = *ptr.(*[]*vds.InputDisk) }
+		_s_pInputDiskArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*vds.InputDisk:
+				if ptr == nil {
+					o.InputDiskArray = nil
+				} else {
+					o.InputDiskArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InputDiskArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InputDiskArray, _s_pInputDiskArray, _ptr_pInputDiskArray); err != nil {
 			return err
 		}
@@ -1393,7 +1426,18 @@ func (o *xxx_ExtendOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}
@@ -1674,7 +1718,18 @@ func (o *xxx_ShrinkOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}
@@ -1953,7 +2008,18 @@ func (o *xxx_AddPlexOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}
@@ -2236,7 +2302,18 @@ func (o *xxx_BreakPlexOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}
@@ -2522,7 +2599,18 @@ func (o *xxx_RemovePlexOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}

@@ -606,7 +606,18 @@ func (o *xxx_GetDescriptionOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_description := func(ptr interface{}) { o.Description = *ptr.(**oaut.String) }
+		_s_description := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Description = nil
+				} else {
+					o.Description = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Description", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Description, _s_description, _ptr_description); err != nil {
 			return err
 		}
@@ -807,7 +818,18 @@ func (o *xxx_SetDescriptionOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_description := func(ptr interface{}) { o.Description = *ptr.(**oaut.String) }
+		_s_description := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Description = nil
+				} else {
+					o.Description = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Description", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Description, _s_description, _ptr_description); err != nil {
 			return err
 		}

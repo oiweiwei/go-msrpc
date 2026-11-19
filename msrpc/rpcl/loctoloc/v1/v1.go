@@ -398,7 +398,18 @@ func (o *xxx_LookupBeginOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_entry_name := func(ptr interface{}) { o.EntryName = *ptr.(*string) }
+		_s_entry_name := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.EntryName = ""
+				} else {
+					o.EntryName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EntryName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EntryName, _s_entry_name, _ptr_entry_name); err != nil {
 			return err
 		}
@@ -417,7 +428,18 @@ func (o *xxx_LookupBeginOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_interfaceid := func(ptr interface{}) { o.InterfaceID = *ptr.(**rpcl.SyntaxID) }
+		_s_interfaceid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rpcl.SyntaxID:
+				if ptr == nil {
+					o.InterfaceID = nil
+				} else {
+					o.InterfaceID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InterfaceID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InterfaceID, _s_interfaceid, _ptr_interfaceid); err != nil {
 			return err
 		}
@@ -436,7 +458,18 @@ func (o *xxx_LookupBeginOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_xfersyntax := func(ptr interface{}) { o.TransferSyntax = *ptr.(**rpcl.SyntaxID) }
+		_s_xfersyntax := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rpcl.SyntaxID:
+				if ptr == nil {
+					o.TransferSyntax = nil
+				} else {
+					o.TransferSyntax = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TransferSyntax", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TransferSyntax, _s_xfersyntax, _ptr_xfersyntax); err != nil {
 			return err
 		}
@@ -455,7 +488,18 @@ func (o *xxx_LookupBeginOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_obj_uuid := func(ptr interface{}) { o.ObjectUUID = *ptr.(**dtyp.GUID) }
+		_s_obj_uuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.ObjectUUID = nil
+				} else {
+					o.ObjectUUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectUUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectUUID, _s_obj_uuid, _ptr_obj_uuid); err != nil {
 			return err
 		}
@@ -973,7 +1017,18 @@ func (o *xxx_LookupNextOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_binding_vector := func(ptr interface{}) { o.BindingVector = *ptr.(**rpcl.BindingVector) }
+		_s_binding_vector := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rpcl.BindingVector:
+				if ptr == nil {
+					o.BindingVector = nil
+				} else {
+					o.BindingVector = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BindingVector", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BindingVector, _s_binding_vector, _ptr_binding_vector); err != nil {
 			return err
 		}
@@ -1215,7 +1270,18 @@ func (o *xxx_EntryObjectInquireNextOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_uuid_vec := func(ptr interface{}) { o.Vector = *ptr.(**rpcl.UUIDVector) }
+		_s_uuid_vec := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rpcl.UUIDVector:
+				if ptr == nil {
+					o.Vector = nil
+				} else {
+					o.Vector = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Vector", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Vector, _s_uuid_vec, _ptr_uuid_vec); err != nil {
 			return err
 		}
@@ -1743,7 +1809,18 @@ func (o *xxx_EntryObjectInquireBeginOperation) UnmarshalNDRRequest(ctx context.C
 			}
 			return nil
 		})
-		_s_EntryName := func(ptr interface{}) { o.EntryName = *ptr.(*string) }
+		_s_EntryName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.EntryName = ""
+				} else {
+					o.EntryName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EntryName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EntryName, _s_EntryName, _ptr_EntryName); err != nil {
 			return err
 		}

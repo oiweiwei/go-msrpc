@@ -441,7 +441,18 @@ func (o *xxx_QueryOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_progID := func(ptr interface{}) { o.ProgID = *ptr.(**oaut.String) }
+		_s_progID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ProgID = nil
+				} else {
+					o.ProgID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProgID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProgID, _s_progID, _ptr_progID); err != nil {
 			return err
 		}
@@ -460,7 +471,18 @@ func (o *xxx_QueryOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_queryCriteria := func(ptr interface{}) { o.QueryCriteria = *ptr.(**oaut.String) }
+		_s_queryCriteria := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.QueryCriteria = nil
+				} else {
+					o.QueryCriteria = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QueryCriteria", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QueryCriteria, _s_queryCriteria, _ptr_queryCriteria); err != nil {
 			return err
 		}
@@ -571,7 +593,18 @@ func (o *xxx_QueryOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ppInterface := func(ptr interface{}) { o.Interface = *ptr.(**dcom.Unknown) }
+		_s_ppInterface := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.Interface = nil
+				} else {
+					o.Interface = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Interface", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Interface, _s_ppInterface, _ptr_ppInterface); err != nil {
 			return err
 		}
@@ -831,7 +864,18 @@ func (o *xxx_StoreOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_ProgID := func(ptr interface{}) { o.ProgID = *ptr.(**oaut.String) }
+		_s_ProgID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ProgID = nil
+				} else {
+					o.ProgID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProgID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProgID, _s_ProgID, _ptr_ProgID); err != nil {
 			return err
 		}
@@ -850,7 +894,18 @@ func (o *xxx_StoreOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_pInterface := func(ptr interface{}) { o.Interface = *ptr.(**dcom.Unknown) }
+		_s_pInterface := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.Interface = nil
+				} else {
+					o.Interface = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Interface", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Interface, _s_pInterface, _ptr_pInterface); err != nil {
 			return err
 		}
@@ -1153,7 +1208,18 @@ func (o *xxx_RemoveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_progID := func(ptr interface{}) { o.ProgID = *ptr.(**oaut.String) }
+		_s_progID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ProgID = nil
+				} else {
+					o.ProgID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProgID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProgID, _s_progID, _ptr_progID); err != nil {
 			return err
 		}
@@ -1172,7 +1238,18 @@ func (o *xxx_RemoveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_queryCriteria := func(ptr interface{}) { o.QueryCriteria = *ptr.(**oaut.String) }
+		_s_queryCriteria := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.QueryCriteria = nil
+				} else {
+					o.QueryCriteria = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QueryCriteria", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QueryCriteria, _s_queryCriteria, _ptr_queryCriteria); err != nil {
 			return err
 		}
@@ -1499,7 +1576,18 @@ func (o *xxx_GetEventObjectChangeEventClassIDOperation) UnmarshalNDRResponse(ctx
 			}
 			return nil
 		})
-		_s_pbstrEventClassID := func(ptr interface{}) { o.EventClassID = *ptr.(**oaut.String) }
+		_s_pbstrEventClassID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.EventClassID = nil
+				} else {
+					o.EventClassID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EventClassID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EventClassID, _s_pbstrEventClassID, _ptr_pbstrEventClassID); err != nil {
 			return err
 		}
@@ -1735,7 +1823,18 @@ func (o *xxx_QuerySOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_progID := func(ptr interface{}) { o.ProgID = *ptr.(**oaut.String) }
+		_s_progID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ProgID = nil
+				} else {
+					o.ProgID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProgID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProgID, _s_progID, _ptr_progID); err != nil {
 			return err
 		}
@@ -1754,7 +1853,18 @@ func (o *xxx_QuerySOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_queryCriteria := func(ptr interface{}) { o.QueryCriteria = *ptr.(**oaut.String) }
+		_s_queryCriteria := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.QueryCriteria = nil
+				} else {
+					o.QueryCriteria = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QueryCriteria", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QueryCriteria, _s_queryCriteria, _ptr_queryCriteria); err != nil {
 			return err
 		}
@@ -1853,7 +1963,18 @@ func (o *xxx_QuerySOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_ppInterface := func(ptr interface{}) { o.Interface = *ptr.(**dcom.Unknown) }
+		_s_ppInterface := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.Interface = nil
+				} else {
+					o.Interface = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Interface", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Interface, _s_ppInterface, _ptr_ppInterface); err != nil {
 			return err
 		}
@@ -2106,7 +2227,18 @@ func (o *xxx_RemoveSOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_progID := func(ptr interface{}) { o.ProgID = *ptr.(**oaut.String) }
+		_s_progID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ProgID = nil
+				} else {
+					o.ProgID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProgID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProgID, _s_progID, _ptr_progID); err != nil {
 			return err
 		}
@@ -2125,7 +2257,18 @@ func (o *xxx_RemoveSOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_queryCriteria := func(ptr interface{}) { o.QueryCriteria = *ptr.(**oaut.String) }
+		_s_queryCriteria := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.QueryCriteria = nil
+				} else {
+					o.QueryCriteria = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QueryCriteria", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QueryCriteria, _s_queryCriteria, _ptr_queryCriteria); err != nil {
 			return err
 		}

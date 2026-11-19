@@ -391,7 +391,18 @@ func (o *xxx_Request2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pwszAuthority := func(ptr interface{}) { o.Authority = *ptr.(*string) }
+		_s_pwszAuthority := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Authority = ""
+				} else {
+					o.Authority = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Authority", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Authority, _s_pwszAuthority, _ptr_pwszAuthority); err != nil {
 			return err
 		}
@@ -413,7 +424,18 @@ func (o *xxx_Request2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pwszSerialNumber := func(ptr interface{}) { o.SerialNumber = *ptr.(*string) }
+		_s_pwszSerialNumber := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.SerialNumber = ""
+				} else {
+					o.SerialNumber = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SerialNumber", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SerialNumber, _s_pwszSerialNumber, _ptr_pwszSerialNumber); err != nil {
 			return err
 		}
@@ -435,7 +457,18 @@ func (o *xxx_Request2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pwszAttributes := func(ptr interface{}) { o.Attributes = *ptr.(*string) }
+		_s_pwszAttributes := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Attributes = ""
+				} else {
+					o.Attributes = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Attributes", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Attributes, _s_pwszAttributes, _ptr_pwszAttributes); err != nil {
 			return err
 		}
@@ -876,7 +909,18 @@ func (o *xxx_GetCAPropertyOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pwszAuthority := func(ptr interface{}) { o.Authority = *ptr.(*string) }
+		_s_pwszAuthority := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Authority = ""
+				} else {
+					o.Authority = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Authority", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Authority, _s_pwszAuthority, _ptr_pwszAuthority); err != nil {
 			return err
 		}
@@ -1364,7 +1408,18 @@ func (o *xxx_GetCAPropertyInfoOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_pwszAuthority := func(ptr interface{}) { o.Authority = *ptr.(*string) }
+		_s_pwszAuthority := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Authority = ""
+				} else {
+					o.Authority = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Authority", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Authority, _s_pwszAuthority, _ptr_pwszAuthority); err != nil {
 			return err
 		}
@@ -1662,7 +1717,18 @@ func (o *xxx_Ping2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_pwszAuthority := func(ptr interface{}) { o.Authority = *ptr.(*string) }
+		_s_pwszAuthority := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Authority = ""
+				} else {
+					o.Authority = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Authority", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Authority, _s_pwszAuthority, _ptr_pwszAuthority); err != nil {
 			return err
 		}

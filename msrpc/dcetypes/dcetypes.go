@@ -442,7 +442,18 @@ func (o *InterfaceIDVector) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 			}
 			return nil
 		})
-		_s_if_id := func(ptr interface{}) { o.InterfaceID[i1] = *ptr.(**InterfaceID) }
+		_s_if_id := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **InterfaceID:
+				if ptr == nil {
+					o.InterfaceID[i1] = nil
+				} else {
+					o.InterfaceID[i1] = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InterfaceID[i1]", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InterfaceID[i1], _s_if_id, _ptr_if_id); err != nil {
 			return err
 		}

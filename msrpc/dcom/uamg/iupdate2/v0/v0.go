@@ -824,7 +824,18 @@ func (o *xxx_GetCveIDsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**uamg.StringCollection) }
+		_s_retval := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **uamg.StringCollection:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
 			return err
 		}

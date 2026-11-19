@@ -1716,7 +1716,18 @@ func (o *xxx_AddKeyOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -1981,7 +1992,18 @@ func (o *xxx_DeleteKeyOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -2247,7 +2269,18 @@ func (o *xxx_DeleteChildKeysOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -2520,7 +2553,18 @@ func (o *xxx_EnumKeysOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -2907,7 +2951,18 @@ func (o *xxx_CopyKeyOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_pszMDSourcePath := func(ptr interface{}) { o.SourcePath = *ptr.(*string) }
+		_s_pszMDSourcePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.SourcePath = ""
+				} else {
+					o.SourcePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SourcePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SourcePath, _s_pszMDSourcePath, _ptr_pszMDSourcePath); err != nil {
 			return err
 		}
@@ -2929,7 +2984,18 @@ func (o *xxx_CopyKeyOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_pszMDDestPath := func(ptr interface{}) { o.DestinationPath = *ptr.(*string) }
+		_s_pszMDDestPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.DestinationPath = ""
+				} else {
+					o.DestinationPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DestinationPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DestinationPath, _s_pszMDDestPath, _ptr_pszMDDestPath); err != nil {
 			return err
 		}
@@ -3257,7 +3323,18 @@ func (o *xxx_RenameKeyOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -3273,7 +3350,18 @@ func (o *xxx_RenameKeyOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_pszMDNewName := func(ptr interface{}) { o.NewName = *ptr.(*string) }
+		_s_pszMDNewName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.NewName = ""
+				} else {
+					o.NewName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NewName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NewName, _s_pszMDNewName, _ptr_pszMDNewName); err != nil {
 			return err
 		}
@@ -3558,7 +3646,18 @@ func (o *xxx_SetDataOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -3857,7 +3956,18 @@ func (o *xxx_GetDataOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -4007,7 +4117,18 @@ func (o *xxx_GetDataOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppDataBlob := func(ptr interface{}) { o.DataBlob = *ptr.(**imsa.IISCryptoBlob) }
+		_s_ppDataBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **imsa.IISCryptoBlob:
+				if ptr == nil {
+					o.DataBlob = nil
+				} else {
+					o.DataBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DataBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DataBlob, _s_ppDataBlob, _ptr_ppDataBlob); err != nil {
 			return err
 		}
@@ -4253,7 +4374,18 @@ func (o *xxx_DeleteDataOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -4587,7 +4719,18 @@ func (o *xxx_EnumDataOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -4743,7 +4886,18 @@ func (o *xxx_EnumDataOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_ppDataBlob := func(ptr interface{}) { o.DataBlob = *ptr.(**imsa.IISCryptoBlob) }
+		_s_ppDataBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **imsa.IISCryptoBlob:
+				if ptr == nil {
+					o.DataBlob = nil
+				} else {
+					o.DataBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DataBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DataBlob, _s_ppDataBlob, _ptr_ppDataBlob); err != nil {
 			return err
 		}
@@ -5011,7 +5165,18 @@ func (o *xxx_GetAllDataOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -5170,7 +5335,18 @@ func (o *xxx_GetAllDataOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ppDataBlob := func(ptr interface{}) { o.DataBlob = *ptr.(**imsa.IISCryptoBlob) }
+		_s_ppDataBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **imsa.IISCryptoBlob:
+				if ptr == nil {
+					o.DataBlob = nil
+				} else {
+					o.DataBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DataBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DataBlob, _s_ppDataBlob, _ptr_ppDataBlob); err != nil {
 			return err
 		}
@@ -5478,7 +5654,18 @@ func (o *xxx_DeleteAllDataOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -5868,7 +6055,18 @@ func (o *xxx_CopyDataOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pszMDSourcePath := func(ptr interface{}) { o.SourcePath = *ptr.(*string) }
+		_s_pszMDSourcePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.SourcePath = ""
+				} else {
+					o.SourcePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SourcePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SourcePath, _s_pszMDSourcePath, _ptr_pszMDSourcePath); err != nil {
 			return err
 		}
@@ -5890,7 +6088,18 @@ func (o *xxx_CopyDataOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pszMDDestPath := func(ptr interface{}) { o.DestinationPath = *ptr.(*string) }
+		_s_pszMDDestPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.DestinationPath = ""
+				} else {
+					o.DestinationPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DestinationPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DestinationPath, _s_pszMDDestPath, _ptr_pszMDDestPath); err != nil {
 			return err
 		}
@@ -6274,7 +6483,18 @@ func (o *xxx_GetDataPathsOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -6700,7 +6920,18 @@ func (o *xxx_OpenKeyOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -8188,7 +8419,18 @@ func (o *xxx_GetDataSetNumberOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -8499,7 +8741,18 @@ func (o *xxx_SetLastChangeTimeOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -8807,7 +9060,18 @@ func (o *xxx_GetLastChangeTimeOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_pszMDPath := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_pszMDPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_pszMDPath, _ptr_pszMDPath); err != nil {
 			return err
 		}
@@ -9140,7 +9404,18 @@ func (o *xxx_KeyExchangePhase1Operation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_pClientKeyExchangeKeyBlob := func(ptr interface{}) { o.ClientKeyExchangeKeyBlob = *ptr.(**imsa.IISCryptoBlob) }
+		_s_pClientKeyExchangeKeyBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **imsa.IISCryptoBlob:
+				if ptr == nil {
+					o.ClientKeyExchangeKeyBlob = nil
+				} else {
+					o.ClientKeyExchangeKeyBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientKeyExchangeKeyBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientKeyExchangeKeyBlob, _s_pClientKeyExchangeKeyBlob, _ptr_pClientKeyExchangeKeyBlob); err != nil {
 			return err
 		}
@@ -9159,7 +9434,18 @@ func (o *xxx_KeyExchangePhase1Operation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_pClientSignatureKeyBlob := func(ptr interface{}) { o.ClientSignatureKeyBlob = *ptr.(**imsa.IISCryptoBlob) }
+		_s_pClientSignatureKeyBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **imsa.IISCryptoBlob:
+				if ptr == nil {
+					o.ClientSignatureKeyBlob = nil
+				} else {
+					o.ClientSignatureKeyBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientSignatureKeyBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientSignatureKeyBlob, _s_pClientSignatureKeyBlob, _ptr_pClientSignatureKeyBlob); err != nil {
 			return err
 		}
@@ -9312,7 +9598,18 @@ func (o *xxx_KeyExchangePhase1Operation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ppServerKeyExchangeKeyBlob := func(ptr interface{}) { o.ServerKeyExchangeKeyBlob = *ptr.(**imsa.IISCryptoBlob) }
+		_s_ppServerKeyExchangeKeyBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **imsa.IISCryptoBlob:
+				if ptr == nil {
+					o.ServerKeyExchangeKeyBlob = nil
+				} else {
+					o.ServerKeyExchangeKeyBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerKeyExchangeKeyBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerKeyExchangeKeyBlob, _s_ppServerKeyExchangeKeyBlob, _ptr_ppServerKeyExchangeKeyBlob); err != nil {
 			return err
 		}
@@ -9331,7 +9628,18 @@ func (o *xxx_KeyExchangePhase1Operation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ppServerSignatureKeyBlob := func(ptr interface{}) { o.ServerSignatureKeyBlob = *ptr.(**imsa.IISCryptoBlob) }
+		_s_ppServerSignatureKeyBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **imsa.IISCryptoBlob:
+				if ptr == nil {
+					o.ServerSignatureKeyBlob = nil
+				} else {
+					o.ServerSignatureKeyBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerSignatureKeyBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerSignatureKeyBlob, _s_ppServerSignatureKeyBlob, _ptr_ppServerSignatureKeyBlob); err != nil {
 			return err
 		}
@@ -9350,7 +9658,18 @@ func (o *xxx_KeyExchangePhase1Operation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ppServerSessionKeyBlob := func(ptr interface{}) { o.ServerSessionKeyBlob = *ptr.(**imsa.IISCryptoBlob) }
+		_s_ppServerSessionKeyBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **imsa.IISCryptoBlob:
+				if ptr == nil {
+					o.ServerSessionKeyBlob = nil
+				} else {
+					o.ServerSessionKeyBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerSessionKeyBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerSessionKeyBlob, _s_ppServerSessionKeyBlob, _ptr_ppServerSessionKeyBlob); err != nil {
 			return err
 		}
@@ -9604,7 +9923,18 @@ func (o *xxx_KeyExchangePhase2Operation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_pClientSessionKeyBlob := func(ptr interface{}) { o.ClientSessionKeyBlob = *ptr.(**imsa.IISCryptoBlob) }
+		_s_pClientSessionKeyBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **imsa.IISCryptoBlob:
+				if ptr == nil {
+					o.ClientSessionKeyBlob = nil
+				} else {
+					o.ClientSessionKeyBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientSessionKeyBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientSessionKeyBlob, _s_pClientSessionKeyBlob, _ptr_pClientSessionKeyBlob); err != nil {
 			return err
 		}
@@ -9623,7 +9953,18 @@ func (o *xxx_KeyExchangePhase2Operation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_pClientHashBlob := func(ptr interface{}) { o.ClientHashBlob = *ptr.(**imsa.IISCryptoBlob) }
+		_s_pClientHashBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **imsa.IISCryptoBlob:
+				if ptr == nil {
+					o.ClientHashBlob = nil
+				} else {
+					o.ClientHashBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientHashBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientHashBlob, _s_pClientHashBlob, _ptr_pClientHashBlob); err != nil {
 			return err
 		}
@@ -9722,7 +10063,18 @@ func (o *xxx_KeyExchangePhase2Operation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ppServerHashBlob := func(ptr interface{}) { o.ServerHashBlob = *ptr.(**imsa.IISCryptoBlob) }
+		_s_ppServerHashBlob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **imsa.IISCryptoBlob:
+				if ptr == nil {
+					o.ServerHashBlob = nil
+				} else {
+					o.ServerHashBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerHashBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerHashBlob, _s_ppServerHashBlob, _ptr_ppServerHashBlob); err != nil {
 			return err
 		}
@@ -9940,7 +10292,18 @@ func (o *xxx_BackupOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pszMDBackupName := func(ptr interface{}) { o.BackupName = *ptr.(*string) }
+		_s_pszMDBackupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.BackupName = ""
+				} else {
+					o.BackupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BackupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BackupName, _s_pszMDBackupName, _ptr_pszMDBackupName); err != nil {
 			return err
 		}
@@ -10247,7 +10610,18 @@ func (o *xxx_RestoreOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_pszMDBackupName := func(ptr interface{}) { o.BackupName = *ptr.(*string) }
+		_s_pszMDBackupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.BackupName = ""
+				} else {
+					o.BackupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BackupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BackupName, _s_pszMDBackupName, _ptr_pszMDBackupName); err != nil {
 			return err
 		}
@@ -10914,7 +11288,18 @@ func (o *xxx_DeleteBackupOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pszMDBackupName := func(ptr interface{}) { o.BackupName = *ptr.(*string) }
+		_s_pszMDBackupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.BackupName = ""
+				} else {
+					o.BackupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BackupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BackupName, _s_pszMDBackupName, _ptr_pszMDBackupName); err != nil {
 			return err
 		}
@@ -11244,7 +11629,18 @@ func (o *xxx_UnmarshalInterfaceOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_piadmbwInterface := func(ptr interface{}) { o.Interface = *ptr.(**imsa.IMSAdminBaseW) }
+		_s_piadmbwInterface := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **imsa.IMSAdminBaseW:
+				if ptr == nil {
+					o.Interface = nil
+				} else {
+					o.Interface = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Interface", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Interface, _s_piadmbwInterface, _ptr_piadmbwInterface); err != nil {
 			return err
 		}

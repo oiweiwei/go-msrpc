@@ -233,7 +233,18 @@ func (o *xxx_OnNewTrackingInfoOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_pToplevelCollection := func(ptr interface{}) { o.ToplevelCollection = *ptr.(**dcom.Unknown) }
+		_s_pToplevelCollection := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.ToplevelCollection = nil
+				} else {
+					o.ToplevelCollection = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ToplevelCollection", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ToplevelCollection, _s_pToplevelCollection, _ptr_pToplevelCollection); err != nil {
 			return err
 		}

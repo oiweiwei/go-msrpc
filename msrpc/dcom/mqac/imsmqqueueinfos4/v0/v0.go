@@ -540,7 +540,18 @@ func (o *xxx_NextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_ppqinfoNext := func(ptr interface{}) { o.Next = *ptr.(**mqac.QueueInfo4) }
+		_s_ppqinfoNext := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.QueueInfo4:
+				if ptr == nil {
+					o.Next = nil
+				} else {
+					o.Next = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Next", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Next, _s_ppqinfoNext, _ptr_ppqinfoNext); err != nil {
 			return err
 		}
@@ -797,7 +808,18 @@ func (o *xxx_GetPropertiesOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppcolProperties := func(ptr interface{}) { o.Properties = *ptr.(**oaut.Dispatch) }
+		_s_ppcolProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Dispatch:
+				if ptr == nil {
+					o.Properties = nil
+				} else {
+					o.Properties = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Properties", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Properties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
 			return err
 		}

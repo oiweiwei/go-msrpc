@@ -255,7 +255,18 @@ func (o *xxx_SendMessageOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_lpRsmMessage := func(ptr interface{}) { o.RSMMessage = *ptr.(**rsmp.RSMMessage) }
+		_s_lpRsmMessage := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rsmp.RSMMessage:
+				if ptr == nil {
+					o.RSMMessage = nil
+				} else {
+					o.RSMMessage = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RSMMessage", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RSMMessage, _s_lpRsmMessage, _ptr_lpRsmMessage); err != nil {
 			return err
 		}

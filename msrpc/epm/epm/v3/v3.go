@@ -174,7 +174,18 @@ func (o *Entry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_tower := func(ptr interface{}) { o.Tower = *ptr.(**dcetypes.Tower) }
+	_s_tower := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **dcetypes.Tower:
+			if ptr == nil {
+				o.Tower = nil
+			} else {
+				o.Tower = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Tower", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Tower, _s_tower, _ptr_tower); err != nil {
 		return err
 	}
@@ -950,7 +961,18 @@ func (o *xxx_LookupOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_object := func(ptr interface{}) { o.Object = *ptr.(**dtyp.GUID) }
+		_s_object := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.Object = nil
+				} else {
+					o.Object = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Object", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Object, _s_object, _ptr_object); err != nil {
 			return err
 		}
@@ -969,7 +991,18 @@ func (o *xxx_LookupOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_interface_id := func(ptr interface{}) { o.InterfaceID = *ptr.(**dcetypes.InterfaceID) }
+		_s_interface_id := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcetypes.InterfaceID:
+				if ptr == nil {
+					o.InterfaceID = nil
+				} else {
+					o.InterfaceID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InterfaceID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InterfaceID, _s_interface_id, _ptr_interface_id); err != nil {
 			return err
 		}
@@ -1385,7 +1418,18 @@ func (o *xxx_MapOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader
 			}
 			return nil
 		})
-		_s_object := func(ptr interface{}) { o.Object = *ptr.(**dtyp.GUID) }
+		_s_object := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.Object = nil
+				} else {
+					o.Object = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Object", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Object, _s_object, _ptr_object); err != nil {
 			return err
 		}
@@ -1404,7 +1448,18 @@ func (o *xxx_MapOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader
 			}
 			return nil
 		})
-		_s_map_tower := func(ptr interface{}) { o.MapTower = *ptr.(**dcetypes.Tower) }
+		_s_map_tower := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcetypes.Tower:
+				if ptr == nil {
+					o.MapTower = nil
+				} else {
+					o.MapTower = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MapTower", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MapTower, _s_map_tower, _ptr_map_tower); err != nil {
 			return err
 		}
@@ -1579,7 +1634,18 @@ func (o *xxx_MapOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reade
 				}
 				return nil
 			})
-			_s_towers := func(ptr interface{}) { o.Towers[i1] = *ptr.(**dcetypes.Tower) }
+			_s_towers := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **dcetypes.Tower:
+					if ptr == nil {
+						o.Towers[i1] = nil
+					} else {
+						o.Towers[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Towers[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Towers[i1], _s_towers, _ptr_towers); err != nil {
 				return err
 			}
@@ -2178,7 +2244,18 @@ func (o *xxx_ManagementDeleteOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_object := func(ptr interface{}) { o.Object = *ptr.(**dtyp.GUID) }
+		_s_object := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.Object = nil
+				} else {
+					o.Object = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Object", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Object, _s_object, _ptr_object); err != nil {
 			return err
 		}
@@ -2197,7 +2274,18 @@ func (o *xxx_ManagementDeleteOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_tower := func(ptr interface{}) { o.Tower = *ptr.(**dcetypes.Tower) }
+		_s_tower := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcetypes.Tower:
+				if ptr == nil {
+					o.Tower = nil
+				} else {
+					o.Tower = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Tower", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Tower, _s_tower, _ptr_tower); err != nil {
 			return err
 		}

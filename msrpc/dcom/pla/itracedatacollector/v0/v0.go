@@ -7115,7 +7115,18 @@ func (o *xxx_GetSessionNameOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_name := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_name := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 			return err
 		}
@@ -7316,7 +7327,18 @@ func (o *xxx_SetSessionNameOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_name := func(ptr interface{}) { o.Name = *ptr.(**oaut.String) }
+		_s_name := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 			return err
 		}
@@ -8288,7 +8310,18 @@ func (o *xxx_GetTraceDataProvidersOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_providers := func(ptr interface{}) { o.Providers = *ptr.(**pla.TraceDataProviderCollection) }
+		_s_providers := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.TraceDataProviderCollection:
+				if ptr == nil {
+					o.Providers = nil
+				} else {
+					o.Providers = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Providers", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Providers, _s_providers, _ptr_providers); err != nil {
 			return err
 		}

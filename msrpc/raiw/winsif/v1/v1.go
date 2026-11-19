@@ -952,7 +952,18 @@ func (o *xxx_RecordActionOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ppRecAction := func(ptr interface{}) { o.RecordAction = *ptr.(**raiw.RecordAction) }
+		_s_ppRecAction := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **raiw.RecordAction:
+				if ptr == nil {
+					o.RecordAction = nil
+				} else {
+					o.RecordAction = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RecordAction", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RecordAction, _s_ppRecAction, _ptr_ppRecAction); err != nil {
 			return err
 		}
@@ -1024,7 +1035,18 @@ func (o *xxx_RecordActionOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ppRecAction := func(ptr interface{}) { o.RecordAction = *ptr.(**raiw.RecordAction) }
+		_s_ppRecAction := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **raiw.RecordAction:
+				if ptr == nil {
+					o.RecordAction = nil
+				} else {
+					o.RecordAction = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RecordAction", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RecordAction, _s_ppRecAction, _ptr_ppRecAction); err != nil {
 			return err
 		}
@@ -1878,7 +1900,18 @@ func (o *xxx_DoStaticInitOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pDataFilePath := func(ptr interface{}) { o.DataFilePath = *ptr.(*string) }
+		_s_pDataFilePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.DataFilePath = ""
+				} else {
+					o.DataFilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DataFilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DataFilePath, _s_pDataFilePath, _ptr_pDataFilePath); err != nil {
 			return err
 		}
@@ -4770,7 +4803,18 @@ func (o *xxx_GetDBRecordsByNameOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pWinsAdd := func(ptr interface{}) { o.WINSAddr = *ptr.(**raiw.Addr) }
+		_s_pWinsAdd := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **raiw.Addr:
+				if ptr == nil {
+					o.WINSAddr = nil
+				} else {
+					o.WINSAddr = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WINSAddr", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WINSAddr, _s_pWinsAdd, _ptr_pWinsAdd); err != nil {
 			return err
 		}
@@ -4807,7 +4851,18 @@ func (o *xxx_GetDBRecordsByNameOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pName := func(ptr interface{}) { o.Name = *ptr.(*[]byte) }
+		_s_pName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Name = nil
+				} else {
+					o.Name = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Name, _s_pName, _ptr_pName); err != nil {
 			return err
 		}

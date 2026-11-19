@@ -771,7 +771,18 @@ func (o *xxx_GetFileNameOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pbstrFileName := func(ptr interface{}) { o.FileName = *ptr.(**oaut.String) }
+		_s_pbstrFileName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.FileName = nil
+				} else {
+					o.FileName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileName, _s_pbstrFileName, _ptr_pbstrFileName); err != nil {
 			return err
 		}
@@ -1026,7 +1037,18 @@ func (o *xxx_GetConfigPathOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pbstrConfigPath := func(ptr interface{}) { o.ConfigPath = *ptr.(**oaut.String) }
+		_s_pbstrConfigPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ConfigPath = nil
+				} else {
+					o.ConfigPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigPath, _s_pbstrConfigPath, _ptr_pbstrConfigPath); err != nil {
 			return err
 		}
@@ -1280,7 +1302,18 @@ func (o *xxx_GetErrorLineOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pbstrErrorLine := func(ptr interface{}) { o.ErrorLine = *ptr.(**oaut.String) }
+		_s_pbstrErrorLine := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ErrorLine = nil
+				} else {
+					o.ErrorLine = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ErrorLine", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ErrorLine, _s_pbstrErrorLine, _ptr_pbstrErrorLine); err != nil {
 			return err
 		}
@@ -1537,7 +1570,18 @@ func (o *xxx_GetPreErrorLineOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pbstrPreErrorLine := func(ptr interface{}) { o.PreErrorLine = *ptr.(**oaut.String) }
+		_s_pbstrPreErrorLine := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PreErrorLine = nil
+				} else {
+					o.PreErrorLine = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PreErrorLine", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PreErrorLine, _s_pbstrPreErrorLine, _ptr_pbstrPreErrorLine); err != nil {
 			return err
 		}
@@ -1794,7 +1838,18 @@ func (o *xxx_GetPostErrorLineOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_pbstrPostErrorLine := func(ptr interface{}) { o.PostErrorLine = *ptr.(**oaut.String) }
+		_s_pbstrPostErrorLine := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.PostErrorLine = nil
+				} else {
+					o.PostErrorLine = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PostErrorLine", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PostErrorLine, _s_pbstrPostErrorLine, _ptr_pbstrPostErrorLine); err != nil {
 			return err
 		}
@@ -2051,7 +2106,18 @@ func (o *xxx_GetErrorStringOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pbstrErrorString := func(ptr interface{}) { o.ErrorString = *ptr.(**oaut.String) }
+		_s_pbstrErrorString := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ErrorString = nil
+				} else {
+					o.ErrorString = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ErrorString", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ErrorString, _s_pbstrErrorString, _ptr_pbstrErrorString); err != nil {
 			return err
 		}

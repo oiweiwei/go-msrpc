@@ -1274,7 +1274,18 @@ func (o *xxx_RegisterModule2Operation) UnmarshalNDRRequest(ctx context.Context, 
 				}
 				return nil
 			})
-			_s_ppModules := func(ptr interface{}) { o.Modules[i1] = *ptr.(*string) }
+			_s_ppModules := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case *string:
+					if ptr == nil {
+						o.Modules[i1] = ""
+					} else {
+						o.Modules[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Modules[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Modules[i1], _s_ppModules, _ptr_ppModules); err != nil {
 				return err
 			}
@@ -1321,7 +1332,18 @@ func (o *xxx_RegisterModule2Operation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pRequestedCLSIDs := func(ptr interface{}) { o.RequestedClassIDs = *ptr.(*[]*dtyp.GUID) }
+		_s_pRequestedCLSIDs := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dtyp.GUID:
+				if ptr == nil {
+					o.RequestedClassIDs = nil
+				} else {
+					o.RequestedClassIDs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RequestedClassIDs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RequestedClassIDs, _s_pRequestedCLSIDs, _ptr_pRequestedCLSIDs); err != nil {
 			return err
 		}
@@ -1642,7 +1664,18 @@ func (o *xxx_RegisterModule2Operation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppModuleFlags := func(ptr interface{}) { o.ModuleFlags = *ptr.(*[]uint32) }
+		_s_ppModuleFlags := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]uint32:
+				if ptr == nil {
+					o.ModuleFlags = nil
+				} else {
+					o.ModuleFlags = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ModuleFlags", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ModuleFlags, _s_ppModuleFlags, _ptr_ppModuleFlags); err != nil {
 			return err
 		}
@@ -1682,7 +1715,18 @@ func (o *xxx_RegisterModule2Operation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppResultCLSIDs := func(ptr interface{}) { o.ResultClassIDs = *ptr.(*[]*dtyp.GUID) }
+		_s_ppResultCLSIDs := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dtyp.GUID:
+				if ptr == nil {
+					o.ResultClassIDs = nil
+				} else {
+					o.ResultClassIDs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResultClassIDs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResultClassIDs, _s_ppResultCLSIDs, _ptr_ppResultCLSIDs); err != nil {
 			return err
 		}
@@ -1713,14 +1757,36 @@ func (o *xxx_RegisterModule2Operation) UnmarshalNDRResponse(ctx context.Context,
 					}
 					return nil
 				})
-				_s_ppResultNames := func(ptr interface{}) { o.ResultNames[i1] = *ptr.(*string) }
+				_s_ppResultNames := func(ptr any) {
+					switch ptr := ptr.(type) {
+					case *string:
+						if ptr == nil {
+							o.ResultNames[i1] = ""
+						} else {
+							o.ResultNames[i1] = *ptr
+						}
+					default:
+						w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResultNames[i1]", ptr))
+					}
+				}
 				if err := w.ReadPointer(&o.ResultNames[i1], _s_ppResultNames, _ptr_ppResultNames); err != nil {
 					return err
 				}
 			}
 			return nil
 		})
-		_s_ppResultNames := func(ptr interface{}) { o.ResultNames = *ptr.(*[]string) }
+		_s_ppResultNames := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]string:
+				if ptr == nil {
+					o.ResultNames = nil
+				} else {
+					o.ResultNames = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResultNames", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResultNames, _s_ppResultNames, _ptr_ppResultNames); err != nil {
 			return err
 		}
@@ -1751,7 +1817,18 @@ func (o *xxx_RegisterModule2Operation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppResultFlags := func(ptr interface{}) { o.ResultFlags = *ptr.(*[]uint32) }
+		_s_ppResultFlags := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]uint32:
+				if ptr == nil {
+					o.ResultFlags = nil
+				} else {
+					o.ResultFlags = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResultFlags", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResultFlags, _s_ppResultFlags, _ptr_ppResultFlags); err != nil {
 			return err
 		}
@@ -1782,7 +1859,18 @@ func (o *xxx_RegisterModule2Operation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppResultHRs := func(ptr interface{}) { o.ResultHRs = *ptr.(*[]int32) }
+		_s_ppResultHRs := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]int32:
+				if ptr == nil {
+					o.ResultHRs = nil
+				} else {
+					o.ResultHRs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ResultHRs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ResultHRs, _s_ppResultHRs, _ptr_ppResultHRs); err != nil {
 			return err
 		}

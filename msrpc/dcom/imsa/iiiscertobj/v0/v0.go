@@ -576,7 +576,18 @@ func (o *xxx_SetInstanceNameOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_newVal := func(ptr interface{}) { o.NewValue = *ptr.(**oaut.String) }
+		_s_newVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.NewValue = nil
+				} else {
+					o.NewValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NewValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NewValue, _s_newVal, _ptr_newVal); err != nil {
 			return err
 		}
@@ -1328,7 +1339,18 @@ func (o *xxx_GetCertInfoRemoteOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_BinaryVariant := func(ptr interface{}) { o.BinaryVariant = *ptr.(**oaut.Variant) }
+		_s_BinaryVariant := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.BinaryVariant = nil
+				} else {
+					o.BinaryVariant = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BinaryVariant", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BinaryVariant, _s_BinaryVariant, _ptr_BinaryVariant); err != nil {
 			return err
 		}
@@ -1637,7 +1659,18 @@ func (o *xxx_ImportFromBlobOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_InstanceName := func(ptr interface{}) { o.InstanceName = *ptr.(**oaut.String) }
+		_s_InstanceName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.InstanceName = nil
+				} else {
+					o.InstanceName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InstanceName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InstanceName, _s_InstanceName, _ptr_InstanceName); err != nil {
 			return err
 		}
@@ -1656,7 +1689,18 @@ func (o *xxx_ImportFromBlobOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_Password := func(ptr interface{}) { o.Password = *ptr.(**oaut.String) }
+		_s_Password := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Password = nil
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_Password, _ptr_Password); err != nil {
 			return err
 		}
@@ -2102,7 +2146,18 @@ func (o *xxx_ImportFromBlobGetHashOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_InstanceName := func(ptr interface{}) { o.InstanceName = *ptr.(**oaut.String) }
+		_s_InstanceName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.InstanceName = nil
+				} else {
+					o.InstanceName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InstanceName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InstanceName, _s_InstanceName, _ptr_InstanceName); err != nil {
 			return err
 		}
@@ -2121,7 +2176,18 @@ func (o *xxx_ImportFromBlobGetHashOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_Password := func(ptr interface{}) { o.Password = *ptr.(**oaut.String) }
+		_s_Password := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Password = nil
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_Password, _ptr_Password); err != nil {
 			return err
 		}
@@ -2314,7 +2380,18 @@ func (o *xxx_ImportFromBlobGetHashOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_pCertHash := func(ptr interface{}) { o.CertHash = *ptr.(*[]byte) }
+		_s_pCertHash := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.CertHash = nil
+				} else {
+					o.CertHash = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CertHash", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CertHash, _s_pCertHash, _ptr_pCertHash); err != nil {
 			return err
 		}
@@ -2629,7 +2706,18 @@ func (o *xxx_ExportToBlobOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_InstanceName := func(ptr interface{}) { o.InstanceName = *ptr.(**oaut.String) }
+		_s_InstanceName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.InstanceName = nil
+				} else {
+					o.InstanceName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InstanceName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InstanceName, _s_InstanceName, _ptr_InstanceName); err != nil {
 			return err
 		}
@@ -2648,7 +2736,18 @@ func (o *xxx_ExportToBlobOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_Password := func(ptr interface{}) { o.Password = *ptr.(**oaut.String) }
+		_s_Password := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Password = nil
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_Password, _ptr_Password); err != nil {
 			return err
 		}
@@ -2682,7 +2781,18 @@ func (o *xxx_ExportToBlobOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pBlobBinary := func(ptr interface{}) { o.BlobBinary = *ptr.(*string) }
+		_s_pBlobBinary := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.BlobBinary = ""
+				} else {
+					o.BlobBinary = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BlobBinary", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BlobBinary, _s_pBlobBinary, _ptr_pBlobBinary); err != nil {
 			return err
 		}
@@ -2784,7 +2894,18 @@ func (o *xxx_ExportToBlobOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pBlobBinary := func(ptr interface{}) { o.BlobBinary = *ptr.(*string) }
+		_s_pBlobBinary := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.BlobBinary = ""
+				} else {
+					o.BlobBinary = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BlobBinary", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BlobBinary, _s_pBlobBinary, _ptr_pBlobBinary); err != nil {
 			return err
 		}

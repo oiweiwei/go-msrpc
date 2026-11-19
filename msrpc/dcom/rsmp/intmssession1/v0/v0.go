@@ -617,7 +617,18 @@ func (o *xxx_OpenNTMSServerSessionWOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_lpServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_lpServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_lpServer, _ptr_lpServer); err != nil {
 			return err
 		}
@@ -633,7 +644,18 @@ func (o *xxx_OpenNTMSServerSessionWOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_lpApplication := func(ptr interface{}) { o.Application = *ptr.(*string) }
+		_s_lpApplication := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Application = ""
+				} else {
+					o.Application = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Application", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Application, _s_lpApplication, _ptr_lpApplication); err != nil {
 			return err
 		}
@@ -983,7 +1005,18 @@ func (o *xxx_OpenNTMSServerSessionAOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_lpServer := func(ptr interface{}) { o.Server = *ptr.(*string) }
+		_s_lpServer := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Server = ""
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_lpServer, _ptr_lpServer); err != nil {
 			return err
 		}
@@ -999,7 +1032,18 @@ func (o *xxx_OpenNTMSServerSessionAOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_lpApplication := func(ptr interface{}) { o.Application = *ptr.(*string) }
+		_s_lpApplication := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Application = ""
+				} else {
+					o.Application = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Application", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Application, _s_lpApplication, _ptr_lpApplication); err != nil {
 			return err
 		}
@@ -1579,7 +1623,18 @@ func (o *xxx_SubmitNTMSOperatorRequestWOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_lpMessage := func(ptr interface{}) { o.Message = *ptr.(*string) }
+		_s_lpMessage := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Message = ""
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_lpMessage, _ptr_lpMessage); err != nil {
 			return err
 		}
@@ -1598,7 +1653,18 @@ func (o *xxx_SubmitNTMSOperatorRequestWOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_lpArg1Id := func(ptr interface{}) { o.Arg1ID = *ptr.(**dtyp.GUID) }
+		_s_lpArg1Id := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.Arg1ID = nil
+				} else {
+					o.Arg1ID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Arg1ID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Arg1ID, _s_lpArg1Id, _ptr_lpArg1Id); err != nil {
 			return err
 		}
@@ -1617,7 +1683,18 @@ func (o *xxx_SubmitNTMSOperatorRequestWOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_lpArg2Id := func(ptr interface{}) { o.Arg2ID = *ptr.(**dtyp.GUID) }
+		_s_lpArg2Id := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.Arg2ID = nil
+				} else {
+					o.Arg2ID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Arg2ID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Arg2ID, _s_lpArg2Id, _ptr_lpArg2Id); err != nil {
 			return err
 		}
@@ -2039,7 +2116,18 @@ func (o *xxx_SubmitNTMSOperatorRequestAOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_lpMessage := func(ptr interface{}) { o.Message = *ptr.(*string) }
+		_s_lpMessage := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Message = ""
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_lpMessage, _ptr_lpMessage); err != nil {
 			return err
 		}
@@ -2058,7 +2146,18 @@ func (o *xxx_SubmitNTMSOperatorRequestAOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_lpArg1Id := func(ptr interface{}) { o.Arg1ID = *ptr.(**dtyp.GUID) }
+		_s_lpArg1Id := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.Arg1ID = nil
+				} else {
+					o.Arg1ID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Arg1ID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Arg1ID, _s_lpArg1Id, _ptr_lpArg1Id); err != nil {
 			return err
 		}
@@ -2077,7 +2176,18 @@ func (o *xxx_SubmitNTMSOperatorRequestAOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_lpArg2Id := func(ptr interface{}) { o.Arg2ID = *ptr.(**dtyp.GUID) }
+		_s_lpArg2Id := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.Arg2ID = nil
+				} else {
+					o.Arg2ID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Arg2ID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Arg2ID, _s_lpArg2Id, _ptr_lpArg2Id); err != nil {
 			return err
 		}

@@ -317,7 +317,18 @@ func (o *xxx_ConnectCallbackOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pUnkCP := func(ptr interface{}) { o.ConnectionPoint = *ptr.(**rsmp.Unknown) }
+		_s_pUnkCP := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rsmp.Unknown:
+				if ptr == nil {
+					o.ConnectionPoint = nil
+				} else {
+					o.ConnectionPoint = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConnectionPoint", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConnectionPoint, _s_pUnkCP, _ptr_pUnkCP); err != nil {
 			return err
 		}
@@ -336,7 +347,18 @@ func (o *xxx_ConnectCallbackOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pUnkSink := func(ptr interface{}) { o.Sink = *ptr.(**rsmp.Unknown) }
+		_s_pUnkSink := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rsmp.Unknown:
+				if ptr == nil {
+					o.Sink = nil
+				} else {
+					o.Sink = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Sink", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Sink, _s_pUnkSink, _ptr_pUnkSink); err != nil {
 			return err
 		}

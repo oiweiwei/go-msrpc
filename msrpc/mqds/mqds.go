@@ -363,7 +363,18 @@ func (o *Restriction) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_paPropRes := func(ptr interface{}) { o.PropertyRestriction = *ptr.(*[]*PropertyRestriction) }
+	_s_paPropRes := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*PropertyRestriction:
+			if ptr == nil {
+				o.PropertyRestriction = nil
+			} else {
+				o.PropertyRestriction = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PropertyRestriction", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.PropertyRestriction, _s_paPropRes, _ptr_paPropRes); err != nil {
 		return err
 	}
@@ -476,7 +487,18 @@ func (o *ColumnSet) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_aCol := func(ptr interface{}) { o.Columns = *ptr.(*[]uint32) }
+	_s_aCol := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]uint32:
+			if ptr == nil {
+				o.Columns = nil
+			} else {
+				o.Columns = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Columns", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Columns, _s_aCol, _ptr_aCol); err != nil {
 		return err
 	}
@@ -658,7 +680,18 @@ func (o *SortSet) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_aCol := func(ptr interface{}) { o.Columns = *ptr.(*[]*SortKey) }
+	_s_aCol := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*SortKey:
+			if ptr == nil {
+				o.Columns = nil
+			} else {
+				o.Columns = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Columns", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Columns, _s_aCol, _ptr_aCol); err != nil {
 		return err
 	}

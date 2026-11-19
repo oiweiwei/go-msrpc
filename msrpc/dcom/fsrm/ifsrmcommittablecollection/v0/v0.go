@@ -296,7 +296,18 @@ func (o *xxx_CommitOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_results := func(ptr interface{}) { o.Results = *ptr.(**fsrm.Collection) }
+		_s_results := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Collection:
+				if ptr == nil {
+					o.Results = nil
+				} else {
+					o.Results = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Results", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Results, _s_results, _ptr_results); err != nil {
 			return err
 		}

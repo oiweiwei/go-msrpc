@@ -224,7 +224,18 @@ func (o *xxx_InitiateShutdownOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_lpMessage := func(ptr interface{}) { o.Message = *ptr.(**rsp.UnicodeString) }
+		_s_lpMessage := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rsp.UnicodeString:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_lpMessage, _ptr_lpMessage); err != nil {
 			return err
 		}
@@ -261,7 +272,18 @@ func (o *xxx_InitiateShutdownOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_lpClientHint := func(ptr interface{}) { o.ClientHint = *ptr.(**rsp.UnicodeString) }
+		_s_lpClientHint := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rsp.UnicodeString:
+				if ptr == nil {
+					o.ClientHint = nil
+				} else {
+					o.ClientHint = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientHint", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientHint, _s_lpClientHint, _ptr_lpClientHint); err != nil {
 			return err
 		}
@@ -517,7 +539,18 @@ func (o *xxx_AbortShutdownOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_lpClientHint := func(ptr interface{}) { o.ClientHint = *ptr.(**rsp.UnicodeString) }
+		_s_lpClientHint := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **rsp.UnicodeString:
+				if ptr == nil {
+					o.ClientHint = nil
+				} else {
+					o.ClientHint = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientHint", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientHint, _s_lpClientHint, _ptr_lpClientHint); err != nil {
 			return err
 		}

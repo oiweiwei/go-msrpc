@@ -458,7 +458,18 @@ func (o *xxx_RemoteQueryInterface2Operation) UnmarshalNDRResponse(ctx context.Co
 				}
 				return nil
 			})
-			_s_ppMIF := func(ptr interface{}) { o.Interface[i1] = *ptr.(**dcom.InterfacePointer) }
+			_s_ppMIF := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **dcom.InterfacePointer:
+					if ptr == nil {
+						o.Interface[i1] = nil
+					} else {
+						o.Interface[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Interface[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Interface[i1], _s_ppMIF, _ptr_ppMIF); err != nil {
 				return err
 			}

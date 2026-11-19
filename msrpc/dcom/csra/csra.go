@@ -186,7 +186,18 @@ func (o *CertTransportBlob) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_pb := func(ptr interface{}) { o.Buffer = *ptr.(*[]byte) }
+	_s_pb := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Buffer = nil
+			} else {
+				o.Buffer = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Buffer", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Buffer, _s_pb, _ptr_pb); err != nil {
 		return err
 	}
@@ -880,7 +891,18 @@ func (o *CertViewRestriction) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		}
 		return nil
 	})
-	_s_pbValue := func(ptr interface{}) { o.Value = *ptr.(*[]byte) }
+	_s_pbValue := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Value = nil
+			} else {
+				o.Value = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Value, _s_pbValue, _ptr_pbValue); err != nil {
 		return err
 	}

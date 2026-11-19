@@ -512,7 +512,18 @@ func (o *xxx_CreateVirtualSmartCardOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_pbAdminKcv := func(ptr interface{}) { o.AdminKCV = *ptr.(*[]byte) }
+		_s_pbAdminKcv := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.AdminKCV = nil
+				} else {
+					o.AdminKCV = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AdminKCV", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AdminKCV, _s_pbAdminKcv, _ptr_pbAdminKcv); err != nil {
 			return err
 		}
@@ -549,7 +560,18 @@ func (o *xxx_CreateVirtualSmartCardOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_pbPuk := func(ptr interface{}) { o.PUK = *ptr.(*[]byte) }
+		_s_pbPuk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.PUK = nil
+				} else {
+					o.PUK = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PUK", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PUK, _s_pbPuk, _ptr_pbPuk); err != nil {
 			return err
 		}
@@ -607,7 +629,18 @@ func (o *xxx_CreateVirtualSmartCardOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_pStatusCallback := func(ptr interface{}) { o.StatusCallback = *ptr.(**tpmvsc.VirtualSmartCardManagerStatusCallback) }
+		_s_pStatusCallback := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **tpmvsc.VirtualSmartCardManagerStatusCallback:
+				if ptr == nil {
+					o.StatusCallback = nil
+				} else {
+					o.StatusCallback = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StatusCallback", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.StatusCallback, _s_pStatusCallback, _ptr_pStatusCallback); err != nil {
 			return err
 		}
@@ -703,7 +736,18 @@ func (o *xxx_CreateVirtualSmartCardOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_ppszInstanceId := func(ptr interface{}) { o.InstanceID = *ptr.(*string) }
+		_s_ppszInstanceId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.InstanceID = ""
+				} else {
+					o.InstanceID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.InstanceID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.InstanceID, _s_ppszInstanceId, _ptr_ppszInstanceId); err != nil {
 			return err
 		}
@@ -997,7 +1041,18 @@ func (o *xxx_DestroyVirtualSmartCardOperation) UnmarshalNDRRequest(ctx context.C
 			}
 			return nil
 		})
-		_s_pStatusCallback := func(ptr interface{}) { o.StatusCallback = *ptr.(**tpmvsc.VirtualSmartCardManagerStatusCallback) }
+		_s_pStatusCallback := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **tpmvsc.VirtualSmartCardManagerStatusCallback:
+				if ptr == nil {
+					o.StatusCallback = nil
+				} else {
+					o.StatusCallback = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StatusCallback", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.StatusCallback, _s_pStatusCallback, _ptr_pStatusCallback); err != nil {
 			return err
 		}

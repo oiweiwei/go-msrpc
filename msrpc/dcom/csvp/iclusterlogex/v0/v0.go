@@ -546,7 +546,18 @@ func (o *xxx_GenerateClusterLogOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_LogFilePath := func(ptr interface{}) { o.LogFilePath = *ptr.(**oaut.String) }
+		_s_LogFilePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LogFilePath = nil
+				} else {
+					o.LogFilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LogFilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LogFilePath, _s_LogFilePath, _ptr_LogFilePath); err != nil {
 			return err
 		}
@@ -841,7 +852,18 @@ func (o *xxx_GenerateClusterHealthLogOperation) UnmarshalNDRResponse(ctx context
 			}
 			return nil
 		})
-		_s_LogFilePath := func(ptr interface{}) { o.LogFilePath = *ptr.(**oaut.String) }
+		_s_LogFilePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LogFilePath = nil
+				} else {
+					o.LogFilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LogFilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LogFilePath, _s_LogFilePath, _ptr_LogFilePath); err != nil {
 			return err
 		}
@@ -1137,7 +1159,18 @@ func (o *xxx_GenerateClusterSetLogOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_LogFilePath := func(ptr interface{}) { o.LogFilePath = *ptr.(**oaut.String) }
+		_s_LogFilePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LogFilePath = nil
+				} else {
+					o.LogFilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LogFilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LogFilePath, _s_LogFilePath, _ptr_LogFilePath); err != nil {
 			return err
 		}
@@ -1446,7 +1479,18 @@ func (o *xxx_GenerateClusterNetworkLogOperation) UnmarshalNDRResponse(ctx contex
 			}
 			return nil
 		})
-		_s_LogFilePath := func(ptr interface{}) { o.LogFilePath = *ptr.(**oaut.String) }
+		_s_LogFilePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LogFilePath = nil
+				} else {
+					o.LogFilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LogFilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LogFilePath, _s_LogFilePath, _ptr_LogFilePath); err != nil {
 			return err
 		}
@@ -1696,7 +1740,18 @@ func (o *xxx_ExportClusterPerformanceHistoryOperation) UnmarshalNDRRequest(ctx c
 			}
 			return nil
 		})
-		_s_Pattern := func(ptr interface{}) { o.Pattern = *ptr.(**oaut.String) }
+		_s_Pattern := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Pattern = nil
+				} else {
+					o.Pattern = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Pattern", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Pattern, _s_Pattern, _ptr_Pattern); err != nil {
 			return err
 		}
@@ -1715,7 +1770,18 @@ func (o *xxx_ExportClusterPerformanceHistoryOperation) UnmarshalNDRRequest(ctx c
 			}
 			return nil
 		})
-		_s_StreamName := func(ptr interface{}) { o.StreamName = *ptr.(**oaut.String) }
+		_s_StreamName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.StreamName = nil
+				} else {
+					o.StreamName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StreamName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.StreamName, _s_StreamName, _ptr_StreamName); err != nil {
 			return err
 		}
@@ -1820,7 +1886,18 @@ func (o *xxx_ExportClusterPerformanceHistoryOperation) UnmarshalNDRResponse(ctx 
 			}
 			return nil
 		})
-		_s_LogFilePath := func(ptr interface{}) { o.LogFilePath = *ptr.(**oaut.String) }
+		_s_LogFilePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LogFilePath = nil
+				} else {
+					o.LogFilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LogFilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LogFilePath, _s_LogFilePath, _ptr_LogFilePath); err != nil {
 			return err
 		}
@@ -2115,7 +2192,18 @@ func (o *xxx_GenerateNetFTLogOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_LogFilePath := func(ptr interface{}) { o.LogFilePath = *ptr.(**oaut.String) }
+		_s_LogFilePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LogFilePath = nil
+				} else {
+					o.LogFilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LogFilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LogFilePath, _s_LogFilePath, _ptr_LogFilePath); err != nil {
 			return err
 		}

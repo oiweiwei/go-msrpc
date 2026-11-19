@@ -663,7 +663,18 @@ func (o *xxx_CreateMachineGroupOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrParentMachineGroupId := func(ptr interface{}) { o.ParentMachineGroupID = *ptr.(**oaut.String) }
+		_s_bstrParentMachineGroupId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ParentMachineGroupID = nil
+				} else {
+					o.ParentMachineGroupID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ParentMachineGroupID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ParentMachineGroupID, _s_bstrParentMachineGroupId, _ptr_bstrParentMachineGroupId); err != nil {
 			return err
 		}
@@ -682,7 +693,18 @@ func (o *xxx_CreateMachineGroupOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrMachineGroupInfo := func(ptr interface{}) { o.MachineGroupInfo = *ptr.(**oaut.String) }
+		_s_bstrMachineGroupInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineGroupInfo = nil
+				} else {
+					o.MachineGroupInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineGroupInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineGroupInfo, _s_bstrMachineGroupInfo, _ptr_bstrMachineGroupInfo); err != nil {
 			return err
 		}
@@ -951,7 +973,18 @@ func (o *xxx_GetMachineGroupInfoOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_bstrMachineGroupId := func(ptr interface{}) { o.MachineGroupID = *ptr.(**oaut.String) }
+		_s_bstrMachineGroupId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineGroupID = nil
+				} else {
+					o.MachineGroupID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineGroupID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineGroupID, _s_bstrMachineGroupId, _ptr_bstrMachineGroupId); err != nil {
 			return err
 		}
@@ -1050,7 +1083,18 @@ func (o *xxx_GetMachineGroupInfoOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_pbstrMachineGroupInfo := func(ptr interface{}) { o.MachineGroupInfo = *ptr.(**oaut.String) }
+		_s_pbstrMachineGroupInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineGroupInfo = nil
+				} else {
+					o.MachineGroupInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineGroupInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineGroupInfo, _s_pbstrMachineGroupInfo, _ptr_pbstrMachineGroupInfo); err != nil {
 			return err
 		}
@@ -1297,7 +1341,18 @@ func (o *xxx_ModifyMachineGroupOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrMachineGroupId := func(ptr interface{}) { o.MachineGroupID = *ptr.(**oaut.String) }
+		_s_bstrMachineGroupId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineGroupID = nil
+				} else {
+					o.MachineGroupID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineGroupID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineGroupID, _s_bstrMachineGroupId, _ptr_bstrMachineGroupId); err != nil {
 			return err
 		}
@@ -1316,7 +1371,18 @@ func (o *xxx_ModifyMachineGroupOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrMachineGroupInfo := func(ptr interface{}) { o.MachineGroupInfo = *ptr.(**oaut.String) }
+		_s_bstrMachineGroupInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineGroupInfo = nil
+				} else {
+					o.MachineGroupInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineGroupInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineGroupInfo, _s_bstrMachineGroupInfo, _ptr_bstrMachineGroupInfo); err != nil {
 			return err
 		}
@@ -1594,7 +1660,18 @@ func (o *xxx_DeleteMachineGroupOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrMachineGroupId := func(ptr interface{}) { o.MachineGroupID = *ptr.(**oaut.String) }
+		_s_bstrMachineGroupId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineGroupID = nil
+				} else {
+					o.MachineGroupID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineGroupID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineGroupID, _s_bstrMachineGroupId, _ptr_bstrMachineGroupId); err != nil {
 			return err
 		}
@@ -1882,7 +1959,18 @@ func (o *xxx_RenameMachineGroupOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrOldMachineGroupName := func(ptr interface{}) { o.OldMachineGroupName = *ptr.(**oaut.String) }
+		_s_bstrOldMachineGroupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.OldMachineGroupName = nil
+				} else {
+					o.OldMachineGroupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OldMachineGroupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OldMachineGroupName, _s_bstrOldMachineGroupName, _ptr_bstrOldMachineGroupName); err != nil {
 			return err
 		}
@@ -1901,7 +1989,18 @@ func (o *xxx_RenameMachineGroupOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrNewMachineGroupName := func(ptr interface{}) { o.NewMachineGroupName = *ptr.(**oaut.String) }
+		_s_bstrNewMachineGroupName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.NewMachineGroupName = nil
+				} else {
+					o.NewMachineGroupName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NewMachineGroupName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NewMachineGroupName, _s_bstrNewMachineGroupName, _ptr_bstrNewMachineGroupName); err != nil {
 			return err
 		}
@@ -2194,7 +2293,18 @@ func (o *xxx_AddMachineOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_bstrParentMachineGroupId := func(ptr interface{}) { o.ParentMachineGroupID = *ptr.(**oaut.String) }
+		_s_bstrParentMachineGroupId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ParentMachineGroupID = nil
+				} else {
+					o.ParentMachineGroupID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ParentMachineGroupID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ParentMachineGroupID, _s_bstrParentMachineGroupId, _ptr_bstrParentMachineGroupId); err != nil {
 			return err
 		}
@@ -2213,7 +2323,18 @@ func (o *xxx_AddMachineOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_bstrMachineInfo := func(ptr interface{}) { o.MachineInfo = *ptr.(**oaut.String) }
+		_s_bstrMachineInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineInfo = nil
+				} else {
+					o.MachineInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineInfo, _s_bstrMachineInfo, _ptr_bstrMachineInfo); err != nil {
 			return err
 		}
@@ -2477,7 +2598,18 @@ func (o *xxx_GetMachineInfoOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrMachineId := func(ptr interface{}) { o.MachineID = *ptr.(**oaut.String) }
+		_s_bstrMachineId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineID = nil
+				} else {
+					o.MachineID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineID, _s_bstrMachineId, _ptr_bstrMachineId); err != nil {
 			return err
 		}
@@ -2576,7 +2708,18 @@ func (o *xxx_GetMachineInfoOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_pbstrMachineInfo := func(ptr interface{}) { o.MachineInfo = *ptr.(**oaut.String) }
+		_s_pbstrMachineInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineInfo = nil
+				} else {
+					o.MachineInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineInfo, _s_pbstrMachineInfo, _ptr_pbstrMachineInfo); err != nil {
 			return err
 		}
@@ -2844,7 +2987,18 @@ func (o *xxx_ModifyMachineInfoOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_bstrParentMachineGroupId := func(ptr interface{}) { o.ParentMachineGroupID = *ptr.(**oaut.String) }
+		_s_bstrParentMachineGroupId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ParentMachineGroupID = nil
+				} else {
+					o.ParentMachineGroupID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ParentMachineGroupID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ParentMachineGroupID, _s_bstrParentMachineGroupId, _ptr_bstrParentMachineGroupId); err != nil {
 			return err
 		}
@@ -2863,7 +3017,18 @@ func (o *xxx_ModifyMachineInfoOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_bstrMachineId := func(ptr interface{}) { o.MachineID = *ptr.(**oaut.String) }
+		_s_bstrMachineId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineID = nil
+				} else {
+					o.MachineID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineID, _s_bstrMachineId, _ptr_bstrMachineId); err != nil {
 			return err
 		}
@@ -2882,7 +3047,18 @@ func (o *xxx_ModifyMachineInfoOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_bstrMachineInfo := func(ptr interface{}) { o.MachineInfo = *ptr.(**oaut.String) }
+		_s_bstrMachineInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineInfo = nil
+				} else {
+					o.MachineInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineInfo, _s_bstrMachineInfo, _ptr_bstrMachineInfo); err != nil {
 			return err
 		}
@@ -3194,7 +3370,18 @@ func (o *xxx_DeleteMachineOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_bstrParentMachineGroupId := func(ptr interface{}) { o.ParentMachineGroupID = *ptr.(**oaut.String) }
+		_s_bstrParentMachineGroupId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ParentMachineGroupID = nil
+				} else {
+					o.ParentMachineGroupID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ParentMachineGroupID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ParentMachineGroupID, _s_bstrParentMachineGroupId, _ptr_bstrParentMachineGroupId); err != nil {
 			return err
 		}
@@ -3213,7 +3400,18 @@ func (o *xxx_DeleteMachineOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_bstrMachineId := func(ptr interface{}) { o.MachineID = *ptr.(**oaut.String) }
+		_s_bstrMachineId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MachineID = nil
+				} else {
+					o.MachineID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineID, _s_bstrMachineId, _ptr_bstrMachineId); err != nil {
 			return err
 		}

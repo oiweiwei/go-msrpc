@@ -637,7 +637,18 @@ func (o *xxx_GetConnectionPointContainerOperation) UnmarshalNDRResponse(ctx cont
 			}
 			return nil
 		})
-		_s_ppCPC := func(ptr interface{}) { o.CPC = *ptr.(**mqac.ConnectionPointContainer) }
+		_s_ppCPC := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.ConnectionPointContainer:
+				if ptr == nil {
+					o.CPC = nil
+				} else {
+					o.CPC = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CPC", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CPC, _s_ppCPC, _ptr_ppCPC); err != nil {
 			return err
 		}
@@ -843,7 +854,18 @@ func (o *xxx_AdviseOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pUnkSink := func(ptr interface{}) { o.Sink = *ptr.(**dcom.Unknown) }
+		_s_pUnkSink := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.Sink = nil
+				} else {
+					o.Sink = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Sink", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Sink, _s_pUnkSink, _ptr_pUnkSink); err != nil {
 			return err
 		}
@@ -1392,7 +1414,18 @@ func (o *xxx_EnumConnectionsOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**mqac.EnumConnections) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.EnumConnections:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}

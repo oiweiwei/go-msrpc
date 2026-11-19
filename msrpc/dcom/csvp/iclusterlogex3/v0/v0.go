@@ -399,7 +399,18 @@ func (o *xxx_GenerateLogEx2Operation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_LongFilePath := func(ptr interface{}) { o.LongFilePath = *ptr.(**oaut.String) }
+		_s_LongFilePath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LongFilePath = nil
+				} else {
+					o.LongFilePath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LongFilePath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LongFilePath, _s_LongFilePath, _ptr_LongFilePath); err != nil {
 			return err
 		}
@@ -418,7 +429,18 @@ func (o *xxx_GenerateLogEx2Operation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_SemicolonSeperatedLogFilesPath := func(ptr interface{}) { o.SemicolonSeperatedLogFilesPath = *ptr.(**oaut.String) }
+		_s_SemicolonSeperatedLogFilesPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SemicolonSeperatedLogFilesPath = nil
+				} else {
+					o.SemicolonSeperatedLogFilesPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SemicolonSeperatedLogFilesPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SemicolonSeperatedLogFilesPath, _s_SemicolonSeperatedLogFilesPath, _ptr_SemicolonSeperatedLogFilesPath); err != nil {
 			return err
 		}

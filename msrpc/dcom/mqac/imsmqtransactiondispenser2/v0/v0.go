@@ -310,7 +310,18 @@ func (o *xxx_BeginTransactionOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ptransaction := func(ptr interface{}) { o.Transaction = *ptr.(**mqac.Transaction2) }
+		_s_ptransaction := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Transaction2:
+				if ptr == nil {
+					o.Transaction = nil
+				} else {
+					o.Transaction = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Transaction", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Transaction, _s_ptransaction, _ptr_ptransaction); err != nil {
 			return err
 		}
@@ -568,7 +579,18 @@ func (o *xxx_GetPropertiesOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppcolProperties := func(ptr interface{}) { o.Properties = *ptr.(**oaut.Dispatch) }
+		_s_ppcolProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Dispatch:
+				if ptr == nil {
+					o.Properties = nil
+				} else {
+					o.Properties = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Properties", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Properties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
 			return err
 		}

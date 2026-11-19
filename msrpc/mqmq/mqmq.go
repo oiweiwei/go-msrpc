@@ -195,7 +195,18 @@ func (o *Blob) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pBlobData := func(ptr interface{}) { o.BlobData = *ptr.(*[]byte) }
+	_s_pBlobData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.BlobData = nil
+			} else {
+				o.BlobData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BlobData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.BlobData, _s_pBlobData, _ptr_pBlobData); err != nil {
 		return err
 	}
@@ -301,7 +312,18 @@ func (o *ByteArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pElems := func(ptr interface{}) { o.Elems = *ptr.(*[]byte) }
+	_s_pElems := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Elems = nil
+			} else {
+				o.Elems = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Elems", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Elems, _s_pElems, _ptr_pElems); err != nil {
 		return err
 	}
@@ -407,7 +429,18 @@ func (o *UshortArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pElems := func(ptr interface{}) { o.Elems = *ptr.(*[]uint16) }
+	_s_pElems := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]uint16:
+			if ptr == nil {
+				o.Elems = nil
+			} else {
+				o.Elems = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Elems", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Elems, _s_pElems, _ptr_pElems); err != nil {
 		return err
 	}
@@ -513,7 +546,18 @@ func (o *LongArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pElems := func(ptr interface{}) { o.Elems = *ptr.(*[]int32) }
+	_s_pElems := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]int32:
+			if ptr == nil {
+				o.Elems = nil
+			} else {
+				o.Elems = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Elems", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Elems, _s_pElems, _ptr_pElems); err != nil {
 		return err
 	}
@@ -619,7 +663,18 @@ func (o *Uint32Array) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pElems := func(ptr interface{}) { o.Elems = *ptr.(*[]uint32) }
+	_s_pElems := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]uint32:
+			if ptr == nil {
+				o.Elems = nil
+			} else {
+				o.Elems = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Elems", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Elems, _s_pElems, _ptr_pElems); err != nil {
 		return err
 	}
@@ -734,7 +789,18 @@ func (o *UlargeIntegerArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		}
 		return nil
 	})
-	_s_pElems := func(ptr interface{}) { o.Elems = *ptr.(*[]*dtyp.UlargeInteger) }
+	_s_pElems := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*dtyp.UlargeInteger:
+			if ptr == nil {
+				o.Elems = nil
+			} else {
+				o.Elems = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Elems", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Elems, _s_pElems, _ptr_pElems); err != nil {
 		return err
 	}
@@ -850,7 +916,18 @@ func (o *ClassIDArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pElems := func(ptr interface{}) { o.Elems = *ptr.(*[]*dtyp.GUID) }
+	_s_pElems := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*dtyp.GUID:
+			if ptr == nil {
+				o.Elems = nil
+			} else {
+				o.Elems = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Elems", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Elems, _s_pElems, _ptr_pElems); err != nil {
 		return err
 	}
@@ -968,14 +1045,36 @@ func (o *UnicodeStringArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 				}
 				return nil
 			})
-			_s_pElems := func(ptr interface{}) { o.Elems[i1] = *ptr.(*string) }
+			_s_pElems := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case *string:
+					if ptr == nil {
+						o.Elems[i1] = ""
+					} else {
+						o.Elems[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Elems[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Elems[i1], _s_pElems, _ptr_pElems); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_pElems := func(ptr interface{}) { o.Elems = *ptr.(*[]string) }
+	_s_pElems := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]string:
+			if ptr == nil {
+				o.Elems = nil
+			} else {
+				o.Elems = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Elems", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Elems, _s_pElems, _ptr_pElems); err != nil {
 		return err
 	}
@@ -1091,7 +1190,18 @@ func (o *PropertyVariantArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		}
 		return nil
 	})
-	_s_pElems := func(ptr interface{}) { o.Elems = *ptr.(*[]*PropertyVariant) }
+	_s_pElems := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*PropertyVariant:
+			if ptr == nil {
+				o.Elems = nil
+			} else {
+				o.Elems = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Elems", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Elems, _s_pElems, _ptr_pElems); err != nil {
 		return err
 	}
@@ -2085,7 +2195,18 @@ func (o *PropertyVariant_VarUnion_UUID) UnmarshalNDR(ctx context.Context, w ndr.
 		}
 		return nil
 	})
-	_s_puuid := func(ptr interface{}) { o.UUID = *ptr.(**dtyp.GUID) }
+	_s_puuid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **dtyp.GUID:
+			if ptr == nil {
+				o.UUID = nil
+			} else {
+				o.UUID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UUID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.UUID, _s_puuid, _ptr_puuid); err != nil {
 		return err
 	}
@@ -2157,7 +2278,18 @@ func (o *PropertyVariant_VarUnion_UnicodeString) UnmarshalNDR(ctx context.Contex
 		}
 		return nil
 	})
-	_s_pwszVal := func(ptr interface{}) { o.UnicodeString = *ptr.(*string) }
+	_s_pwszVal := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.UnicodeString = ""
+			} else {
+				o.UnicodeString = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UnicodeString", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.UnicodeString, _s_pwszVal, _ptr_pwszVal); err != nil {
 		return err
 	}
@@ -2482,7 +2614,18 @@ func (o *DLID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_m_pwzDomain := func(ptr interface{}) { o.Domain = *ptr.(*string) }
+	_s_m_pwzDomain := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Domain = ""
+			} else {
+				o.Domain = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Domain", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Domain, _s_m_pwzDomain, _ptr_m_pwzDomain); err != nil {
 		return err
 	}
@@ -3162,7 +3305,18 @@ func (o *QueueFormat_DirectID) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		}
 		return nil
 	})
-	_s_m_pDirectID := func(ptr interface{}) { o.DirectID = *ptr.(*string) }
+	_s_m_pDirectID := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.DirectID = ""
+			} else {
+				o.DirectID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DirectID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DirectID, _s_m_pDirectID, _ptr_m_pDirectID); err != nil {
 		return err
 	}
@@ -3342,7 +3496,18 @@ func (o *QueueFormat_DirectSubqueueID) UnmarshalNDR(ctx context.Context, w ndr.R
 		}
 		return nil
 	})
-	_s_m_pDirectSubqueueID := func(ptr interface{}) { o.DirectSubqueueID = *ptr.(*string) }
+	_s_m_pDirectSubqueueID := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.DirectSubqueueID = ""
+			} else {
+				o.DirectSubqueueID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DirectSubqueueID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DirectSubqueueID, _s_m_pDirectSubqueueID, _ptr_m_pDirectSubqueueID); err != nil {
 		return err
 	}

@@ -437,7 +437,18 @@ func (o *xxx_RegisterObjectBoundOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_punk := func(ptr interface{}) { o.Unknown = *ptr.(**dcom.Unknown) }
+		_s_punk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.Unknown = nil
+				} else {
+					o.Unknown = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Unknown", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Unknown, _s_punk, _ptr_punk); err != nil {
 			return err
 		}
@@ -691,7 +702,18 @@ func (o *xxx_RevokeObjectBoundOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_punk := func(ptr interface{}) { o.Unknown = *ptr.(**dcom.Unknown) }
+		_s_punk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.Unknown = nil
+				} else {
+					o.Unknown = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Unknown", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Unknown, _s_punk, _ptr_punk); err != nil {
 			return err
 		}
@@ -1686,7 +1708,18 @@ func (o *xxx_GetRunningObjectTableOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_pprot := func(ptr interface{}) { o.RunningObjectTable = *ptr.(**urlmon.RunningObjectTable) }
+		_s_pprot := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.RunningObjectTable:
+				if ptr == nil {
+					o.RunningObjectTable = nil
+				} else {
+					o.RunningObjectTable = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RunningObjectTable", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RunningObjectTable, _s_pprot, _ptr_pprot); err != nil {
 			return err
 		}
@@ -1900,7 +1933,18 @@ func (o *xxx_RegisterObjectParamOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_punk := func(ptr interface{}) { o.Unknown = *ptr.(**dcom.Unknown) }
+		_s_punk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.Unknown = nil
+				} else {
+					o.Unknown = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Unknown", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Unknown, _s_punk, _ptr_punk); err != nil {
 			return err
 		}
@@ -2223,7 +2267,18 @@ func (o *xxx_GetObjectParamOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ppunk := func(ptr interface{}) { o.Unknown = *ptr.(**dcom.Unknown) }
+		_s_ppunk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.Unknown = nil
+				} else {
+					o.Unknown = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Unknown", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Unknown, _s_ppunk, _ptr_ppunk); err != nil {
 			return err
 		}
@@ -2480,7 +2535,18 @@ func (o *xxx_EnumObjectParamOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppenum := func(ptr interface{}) { o.Enum = *ptr.(**urlmon.EnumString) }
+		_s_ppenum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **urlmon.EnumString:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppenum, _ptr_ppenum); err != nil {
 			return err
 		}

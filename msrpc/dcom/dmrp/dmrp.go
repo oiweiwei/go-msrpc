@@ -1727,7 +1727,18 @@ func (o *DiskInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.Name = strings.TrimRight(string(utf16.Decode(_Name_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_name := func(ptr interface{}) { o.Name = *ptr.(*string) }
+	_s_name := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Name = ""
+			} else {
+				o.Name = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 		return err
 	}
@@ -1758,7 +1769,18 @@ func (o *DiskInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.Vendor = strings.TrimRight(string(utf16.Decode(_Vendor_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_vendor := func(ptr interface{}) { o.Vendor = *ptr.(*string) }
+	_s_vendor := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Vendor = ""
+			} else {
+				o.Vendor = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Vendor", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Vendor, _s_vendor, _ptr_vendor); err != nil {
 		return err
 	}
@@ -1787,7 +1809,18 @@ func (o *DiskInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_dgid := func(ptr interface{}) { o.DiskGroupID = *ptr.(*[]byte) }
+	_s_dgid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.DiskGroupID = nil
+			} else {
+				o.DiskGroupID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DiskGroupID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DiskGroupID, _s_dgid, _ptr_dgid); err != nil {
 		return err
 	}
@@ -1818,7 +1851,18 @@ func (o *DiskInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.AdapterName = strings.TrimRight(string(utf16.Decode(_AdapterName_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_adapterName := func(ptr interface{}) { o.AdapterName = *ptr.(*string) }
+	_s_adapterName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.AdapterName = ""
+			} else {
+				o.AdapterName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AdapterName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AdapterName, _s_adapterName, _ptr_adapterName); err != nil {
 		return err
 	}
@@ -1849,7 +1893,18 @@ func (o *DiskInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.DiskGroupName = strings.TrimRight(string(utf16.Decode(_DiskGroupName_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_dgName := func(ptr interface{}) { o.DiskGroupName = *ptr.(*string) }
+	_s_dgName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.DiskGroupName = ""
+			} else {
+				o.DiskGroupName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DiskGroupName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DiskGroupName, _s_dgName, _ptr_dgName); err != nil {
 		return err
 	}
@@ -2478,7 +2533,18 @@ func (o *FileSystemInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.Label = strings.TrimRight(string(utf16.Decode(_Label_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_label := func(ptr interface{}) { o.Label = *ptr.(*string) }
+	_s_label := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Label = ""
+			} else {
+				o.Label = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Label", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Label, _s_label, _ptr_label); err != nil {
 		return err
 	}
@@ -2746,7 +2812,18 @@ func (o *InstalledFileSystemInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		o.LabelCharSet = strings.TrimRight(string(utf16.Decode(_LabelCharSet_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_iLabelChSet := func(ptr interface{}) { o.LabelCharSet = *ptr.(*string) }
+	_s_iLabelChSet := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.LabelCharSet = ""
+			} else {
+				o.LabelCharSet = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LabelCharSet", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.LabelCharSet, _s_iLabelChSet, _ptr_iLabelChSet); err != nil {
 		return err
 	}
@@ -2998,7 +3075,18 @@ func (o *CountedString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.String = strings.TrimRight(string(utf16.Decode(_String_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_sstring := func(ptr interface{}) { o.String = *ptr.(*string) }
+	_s_sstring := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.String = ""
+			} else {
+				o.String = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.String", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.String, _s_sstring, _ptr_sstring); err != nil {
 		return err
 	}
@@ -3791,7 +3879,18 @@ func (o *DiskInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.Name = strings.TrimRight(string(utf16.Decode(_Name_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_name := func(ptr interface{}) { o.Name = *ptr.(*string) }
+	_s_name := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Name = ""
+			} else {
+				o.Name = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 		return err
 	}
@@ -3822,7 +3921,18 @@ func (o *DiskInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.Vendor = strings.TrimRight(string(utf16.Decode(_Vendor_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_vendor := func(ptr interface{}) { o.Vendor = *ptr.(*string) }
+	_s_vendor := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Vendor = ""
+			} else {
+				o.Vendor = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Vendor", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Vendor, _s_vendor, _ptr_vendor); err != nil {
 		return err
 	}
@@ -3851,7 +3961,18 @@ func (o *DiskInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_dgid := func(ptr interface{}) { o.DiskGroupID = *ptr.(*[]byte) }
+	_s_dgid := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.DiskGroupID = nil
+			} else {
+				o.DiskGroupID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DiskGroupID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DiskGroupID, _s_dgid, _ptr_dgid); err != nil {
 		return err
 	}
@@ -3882,7 +4003,18 @@ func (o *DiskInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.AdapterName = strings.TrimRight(string(utf16.Decode(_AdapterName_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_adapterName := func(ptr interface{}) { o.AdapterName = *ptr.(*string) }
+	_s_adapterName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.AdapterName = ""
+			} else {
+				o.AdapterName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AdapterName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.AdapterName, _s_adapterName, _ptr_adapterName); err != nil {
 		return err
 	}
@@ -3913,7 +4045,18 @@ func (o *DiskInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.DiskGroupName = strings.TrimRight(string(utf16.Decode(_DiskGroupName_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_dgName := func(ptr interface{}) { o.DiskGroupName = *ptr.(*string) }
+	_s_dgName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.DiskGroupName = ""
+			} else {
+				o.DiskGroupName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DiskGroupName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DiskGroupName, _s_dgName, _ptr_dgName); err != nil {
 		return err
 	}
@@ -3944,7 +4087,18 @@ func (o *DiskInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.DevInstanceID = strings.TrimRight(string(utf16.Decode(_DevInstanceID_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_devInstId := func(ptr interface{}) { o.DevInstanceID = *ptr.(*string) }
+	_s_devInstId := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.DevInstanceID = ""
+			} else {
+				o.DevInstanceID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DevInstanceID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DevInstanceID, _s_devInstId, _ptr_devInstId); err != nil {
 		return err
 	}
@@ -4473,7 +4627,18 @@ func (o *RegionInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.Name = strings.TrimRight(string(utf16.Decode(_Name_buf)), ndr.ZeroString)
 		return nil
 	})
-	_s_name := func(ptr interface{}) { o.Name = *ptr.(*string) }
+	_s_name := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.Name = ""
+			} else {
+				o.Name = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Name", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
 		return err
 	}

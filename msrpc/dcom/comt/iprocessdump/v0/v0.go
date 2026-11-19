@@ -503,7 +503,18 @@ func (o *xxx_DumpProcessOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_bstrContainerID := func(ptr interface{}) { o.ContainerID = *ptr.(**oaut.String) }
+		_s_bstrContainerID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ContainerID = nil
+				} else {
+					o.ContainerID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ContainerID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ContainerID, _s_bstrContainerID, _ptr_bstrContainerID); err != nil {
 			return err
 		}
@@ -522,7 +533,18 @@ func (o *xxx_DumpProcessOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_bstrDirectory := func(ptr interface{}) { o.Directory = *ptr.(**oaut.String) }
+		_s_bstrDirectory := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Directory = nil
+				} else {
+					o.Directory = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Directory", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Directory, _s_bstrDirectory, _ptr_bstrDirectory); err != nil {
 			return err
 		}
@@ -627,7 +649,18 @@ func (o *xxx_DumpProcessOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pbstrDumpFile := func(ptr interface{}) { o.DumpFile = *ptr.(**oaut.String) }
+		_s_pbstrDumpFile := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DumpFile = nil
+				} else {
+					o.DumpFile = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DumpFile", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DumpFile, _s_pbstrDumpFile, _ptr_pbstrDumpFile); err != nil {
 			return err
 		}

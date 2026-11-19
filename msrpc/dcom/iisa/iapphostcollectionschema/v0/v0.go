@@ -560,7 +560,18 @@ func (o *xxx_GetAddElementNamesOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pbstrElementName := func(ptr interface{}) { o.ElementName = *ptr.(**oaut.String) }
+		_s_pbstrElementName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ElementName = nil
+				} else {
+					o.ElementName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ElementName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ElementName, _s_pbstrElementName, _ptr_pbstrElementName); err != nil {
 			return err
 		}
@@ -769,7 +780,18 @@ func (o *xxx_GetAddElementSchemaOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_bstrElementName := func(ptr interface{}) { o.ElementName = *ptr.(**oaut.String) }
+		_s_bstrElementName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ElementName = nil
+				} else {
+					o.ElementName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ElementName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ElementName, _s_bstrElementName, _ptr_bstrElementName); err != nil {
 			return err
 		}
@@ -868,7 +890,18 @@ func (o *xxx_GetAddElementSchemaOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ppSchema := func(ptr interface{}) { o.Schema = *ptr.(**iisa.AppHostElementSchema) }
+		_s_ppSchema := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElementSchema:
+				if ptr == nil {
+					o.Schema = nil
+				} else {
+					o.Schema = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Schema", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Schema, _s_ppSchema, _ptr_ppSchema); err != nil {
 			return err
 		}
@@ -1133,7 +1166,18 @@ func (o *xxx_GetRemoveElementSchemaOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_ppSchema := func(ptr interface{}) { o.Schema = *ptr.(**iisa.AppHostElementSchema) }
+		_s_ppSchema := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElementSchema:
+				if ptr == nil {
+					o.Schema = nil
+				} else {
+					o.Schema = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Schema", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Schema, _s_ppSchema, _ptr_ppSchema); err != nil {
 			return err
 		}
@@ -1393,7 +1437,18 @@ func (o *xxx_GetClearElementSchemaOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_ppSchema := func(ptr interface{}) { o.Schema = *ptr.(**iisa.AppHostElementSchema) }
+		_s_ppSchema := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElementSchema:
+				if ptr == nil {
+					o.Schema = nil
+				} else {
+					o.Schema = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Schema", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Schema, _s_ppSchema, _ptr_ppSchema); err != nil {
 			return err
 		}
@@ -1824,7 +1879,18 @@ func (o *xxx_GetMetadataOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_bstrMetadataType := func(ptr interface{}) { o.MetadataType = *ptr.(**oaut.String) }
+		_s_bstrMetadataType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MetadataType = nil
+				} else {
+					o.MetadataType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MetadataType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MetadataType, _s_bstrMetadataType, _ptr_bstrMetadataType); err != nil {
 			return err
 		}
@@ -1923,7 +1989,18 @@ func (o *xxx_GetMetadataOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pValue := func(ptr interface{}) { o.Value = *ptr.(**oaut.Variant) }
+		_s_pValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_pValue, _ptr_pValue); err != nil {
 			return err
 		}

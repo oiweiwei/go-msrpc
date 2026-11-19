@@ -398,7 +398,18 @@ func (o *xxx_GetPathOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -654,7 +665,18 @@ func (o *xxx_GetSourceTemplateNameOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_fileScreenTemplateName := func(ptr interface{}) { o.FileScreenTemplateName = *ptr.(**oaut.String) }
+		_s_fileScreenTemplateName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.FileScreenTemplateName = nil
+				} else {
+					o.FileScreenTemplateName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreenTemplateName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreenTemplateName, _s_fileScreenTemplateName, _ptr_fileScreenTemplateName); err != nil {
 			return err
 		}
@@ -1134,7 +1156,18 @@ func (o *xxx_GetUserSIDOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_userSid := func(ptr interface{}) { o.UserSID = *ptr.(**oaut.String) }
+		_s_userSid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.UserSID = nil
+				} else {
+					o.UserSID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UserSID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.UserSID, _s_userSid, _ptr_userSid); err != nil {
 			return err
 		}
@@ -1388,7 +1421,18 @@ func (o *xxx_GetUserAccountOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_userAccount := func(ptr interface{}) { o.UserAccount = *ptr.(**oaut.String) }
+		_s_userAccount := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.UserAccount = nil
+				} else {
+					o.UserAccount = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UserAccount", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.UserAccount, _s_userAccount, _ptr_userAccount); err != nil {
 			return err
 		}
@@ -1589,7 +1633,18 @@ func (o *xxx_ApplyTemplateOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_fileScreenTemplateName := func(ptr interface{}) { o.FileScreenTemplateName = *ptr.(**oaut.String) }
+		_s_fileScreenTemplateName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.FileScreenTemplateName = nil
+				} else {
+					o.FileScreenTemplateName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileScreenTemplateName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileScreenTemplateName, _s_fileScreenTemplateName, _ptr_fileScreenTemplateName); err != nil {
 			return err
 		}

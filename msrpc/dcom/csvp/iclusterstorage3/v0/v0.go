@@ -1180,7 +1180,18 @@ func (o *xxx_GetUniqueIDs3Operation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppbDeviceIdHeader := func(ptr interface{}) { o.DeviceIDHeader = *ptr.(*[]byte) }
+		_s_ppbDeviceIdHeader := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.DeviceIDHeader = nil
+				} else {
+					o.DeviceIDHeader = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DeviceIDHeader", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DeviceIDHeader, _s_ppbDeviceIdHeader, _ptr_ppbDeviceIdHeader); err != nil {
 			return err
 		}
@@ -1217,7 +1228,18 @@ func (o *xxx_GetUniqueIDs3Operation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ppDeviceDescriptor := func(ptr interface{}) { o.DeviceDescriptor = *ptr.(*[]byte) }
+		_s_ppDeviceDescriptor := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.DeviceDescriptor = nil
+				} else {
+					o.DeviceDescriptor = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DeviceDescriptor", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DeviceDescriptor, _s_ppDeviceDescriptor, _ptr_ppDeviceDescriptor); err != nil {
 			return err
 		}
@@ -2234,14 +2256,36 @@ func (o *xxx_CreateNewSMBShares3Operation) UnmarshalNDRResponse(ctx context.Cont
 					}
 					return nil
 				})
-				_s_ppwszSharePaths := func(ptr interface{}) { o.SharePaths[i1] = *ptr.(*string) }
+				_s_ppwszSharePaths := func(ptr any) {
+					switch ptr := ptr.(type) {
+					case *string:
+						if ptr == nil {
+							o.SharePaths[i1] = ""
+						} else {
+							o.SharePaths[i1] = *ptr
+						}
+					default:
+						w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SharePaths[i1]", ptr))
+					}
+				}
 				if err := w.ReadPointer(&o.SharePaths[i1], _s_ppwszSharePaths, _ptr_ppwszSharePaths); err != nil {
 					return err
 				}
 			}
 			return nil
 		})
-		_s_ppwszSharePaths := func(ptr interface{}) { o.SharePaths = *ptr.(*[]string) }
+		_s_ppwszSharePaths := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]string:
+				if ptr == nil {
+					o.SharePaths = nil
+				} else {
+					o.SharePaths = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SharePaths", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SharePaths, _s_ppwszSharePaths, _ptr_ppwszSharePaths); err != nil {
 			return err
 		}
@@ -2492,7 +2536,18 @@ func (o *xxx_ConnectToNewSMBShares3Operation) UnmarshalNDRRequest(ctx context.Co
 				}
 				return nil
 			})
-			_s_ppwszSharePaths := func(ptr interface{}) { o.SharePaths[i1] = *ptr.(*string) }
+			_s_ppwszSharePaths := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case *string:
+					if ptr == nil {
+						o.SharePaths[i1] = ""
+					} else {
+						o.SharePaths[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SharePaths[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.SharePaths[i1], _s_ppwszSharePaths, _ptr_ppwszSharePaths); err != nil {
 				return err
 			}

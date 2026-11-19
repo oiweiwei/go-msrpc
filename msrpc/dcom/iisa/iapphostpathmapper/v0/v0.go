@@ -259,7 +259,18 @@ func (o *xxx_MapPathOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_bstrConfigPath := func(ptr interface{}) { o.ConfigPath = *ptr.(**oaut.String) }
+		_s_bstrConfigPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ConfigPath = nil
+				} else {
+					o.ConfigPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigPath, _s_bstrConfigPath, _ptr_bstrConfigPath); err != nil {
 			return err
 		}
@@ -278,7 +289,18 @@ func (o *xxx_MapPathOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_bstrMappedPhysicalPath := func(ptr interface{}) { o.MappedPhysicalPath = *ptr.(**oaut.String) }
+		_s_bstrMappedPhysicalPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MappedPhysicalPath = nil
+				} else {
+					o.MappedPhysicalPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MappedPhysicalPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MappedPhysicalPath, _s_bstrMappedPhysicalPath, _ptr_bstrMappedPhysicalPath); err != nil {
 			return err
 		}
@@ -377,7 +399,18 @@ func (o *xxx_MapPathOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_pbstrNewPhysicalPath := func(ptr interface{}) { o.NewPhysicalPath = *ptr.(**oaut.String) }
+		_s_pbstrNewPhysicalPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.NewPhysicalPath = nil
+				} else {
+					o.NewPhysicalPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NewPhysicalPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NewPhysicalPath, _s_pbstrNewPhysicalPath, _ptr_pbstrNewPhysicalPath); err != nil {
 			return err
 		}

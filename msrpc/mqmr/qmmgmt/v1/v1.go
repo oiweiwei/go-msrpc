@@ -378,7 +378,18 @@ func (o *ManagementObject_QueueFormat) UnmarshalNDR(ctx context.Context, w ndr.R
 		}
 		return nil
 	})
-	_s_pQueueFormat := func(ptr interface{}) { o.QueueFormat = *ptr.(**mqmq.QueueFormat) }
+	_s_pQueueFormat := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **mqmq.QueueFormat:
+			if ptr == nil {
+				o.QueueFormat = nil
+			} else {
+				o.QueueFormat = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QueueFormat", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.QueueFormat, _s_pQueueFormat, _ptr_pQueueFormat); err != nil {
 		return err
 	}

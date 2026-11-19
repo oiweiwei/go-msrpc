@@ -2432,7 +2432,18 @@ func (o *xxx_ConnectionEnumOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
+		_s_lpdwResumeHandle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *uint32:
+				if ptr == nil {
+					o.Resume = uint32(0)
+				} else {
+					o.Resume = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Resume", ptr))
+			}
+		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= ConnectionEnumNullMaskResume }
 		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
@@ -2547,7 +2558,18 @@ func (o *xxx_ConnectionEnumOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
+		_s_lpdwResumeHandle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *uint32:
+				if ptr == nil {
+					o.Resume = uint32(0)
+				} else {
+					o.Resume = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Resume", ptr))
+			}
+		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= ConnectionEnumNullMaskResume }
 		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
@@ -3287,7 +3309,18 @@ func (o *xxx_PortEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
+		_s_lpdwResumeHandle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *uint32:
+				if ptr == nil {
+					o.Resume = uint32(0)
+				} else {
+					o.Resume = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Resume", ptr))
+			}
+		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= PortEnumNullMaskResume }
 		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
@@ -3402,7 +3435,18 @@ func (o *xxx_PortEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
+		_s_lpdwResumeHandle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *uint32:
+				if ptr == nil {
+					o.Resume = uint32(0)
+				} else {
+					o.Resume = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Resume", ptr))
+			}
+		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= PortEnumNullMaskResume }
 		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
@@ -7326,7 +7370,18 @@ func (o *xxx_RouterInterfaceEnumOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
+		_s_lpdwResumeHandle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *uint32:
+				if ptr == nil {
+					o.Resume = uint32(0)
+				} else {
+					o.Resume = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Resume", ptr))
+			}
+		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= RouterInterfaceEnumNullMaskResume }
 		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
@@ -7441,7 +7496,18 @@ func (o *xxx_RouterInterfaceEnumOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
+		_s_lpdwResumeHandle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *uint32:
+				if ptr == nil {
+					o.Resume = uint32(0)
+				} else {
+					o.Resume = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Resume", ptr))
+			}
+		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= RouterInterfaceEnumNullMaskResume }
 		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
@@ -13577,7 +13643,18 @@ func (o *xxx_ConnectionEnumExOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
+		_s_lpdwResumeHandle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *uint32:
+				if ptr == nil {
+					o.Resume = uint32(0)
+				} else {
+					o.Resume = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Resume", ptr))
+			}
+		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= ConnectionEnumExNullMaskResume }
 		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
@@ -13731,7 +13808,18 @@ func (o *xxx_ConnectionEnumExOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_pRasConections := func(ptr interface{}) { o.RASConections = *ptr.(*[]*rrasm.RASConnectionExIDL) }
+		_s_pRasConections := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*rrasm.RASConnectionExIDL:
+				if ptr == nil {
+					o.RASConections = nil
+				} else {
+					o.RASConections = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RASConections", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.RASConections, _s_pRasConections, _ptr_pRasConections); err != nil {
 			return err
 		}
@@ -13747,7 +13835,18 @@ func (o *xxx_ConnectionEnumExOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_lpdwResumeHandle := func(ptr interface{}) { o.Resume = *ptr.(*uint32) }
+		_s_lpdwResumeHandle := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *uint32:
+				if ptr == nil {
+					o.Resume = uint32(0)
+				} else {
+					o.Resume = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Resume", ptr))
+			}
+		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= ConnectionEnumExNullMaskResume }
 		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
@@ -14854,7 +14953,18 @@ func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) UnmarshalNDRResponse(c
 			}
 			return nil
 		})
-		_s_lpwsUserName := func(ptr interface{}) { o.UserName = *ptr.(*string) }
+		_s_lpwsUserName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.UserName = ""
+				} else {
+					o.UserName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.UserName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.UserName, _s_lpwsUserName, _ptr_lpwsUserName); err != nil {
 			return err
 		}
@@ -14870,7 +14980,18 @@ func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) UnmarshalNDRResponse(c
 			}
 			return nil
 		})
-		_s_lpwsDomainName := func(ptr interface{}) { o.DomainName = *ptr.(*string) }
+		_s_lpwsDomainName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.DomainName = ""
+				} else {
+					o.DomainName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DomainName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DomainName, _s_lpwsDomainName, _ptr_lpwsDomainName); err != nil {
 			return err
 		}
@@ -14886,7 +15007,18 @@ func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) UnmarshalNDRResponse(c
 			}
 			return nil
 		})
-		_s_lpwsPassword := func(ptr interface{}) { o.Password = *ptr.(*string) }
+		_s_lpwsPassword := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Password = ""
+				} else {
+					o.Password = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Password", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Password, _s_lpwsPassword, _ptr_lpwsPassword); err != nil {
 			return err
 		}

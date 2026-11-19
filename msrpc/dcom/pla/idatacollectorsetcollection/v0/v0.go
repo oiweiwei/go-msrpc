@@ -720,7 +720,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_set := func(ptr interface{}) { o.Set = *ptr.(**pla.DataCollectorSet) }
+		_s_set := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.DataCollectorSet:
+				if ptr == nil {
+					o.Set = nil
+				} else {
+					o.Set = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Set", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Set, _s_set, _ptr_set); err != nil {
 			return err
 		}
@@ -977,7 +988,18 @@ func (o *xxx_Get_NewEnumOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_retVal := func(ptr interface{}) { o.ReturnValue = *ptr.(**dcom.Unknown) }
+		_s_retVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retVal, _ptr_retVal); err != nil {
 			return err
 		}
@@ -1178,7 +1200,18 @@ func (o *xxx_AddOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader
 			}
 			return nil
 		})
-		_s_set := func(ptr interface{}) { o.Set = *ptr.(**pla.DataCollectorSet) }
+		_s_set := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.DataCollectorSet:
+				if ptr == nil {
+					o.Set = nil
+				} else {
+					o.Set = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Set", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Set, _s_set, _ptr_set); err != nil {
 			return err
 		}
@@ -1871,7 +1904,18 @@ func (o *xxx_AddRangeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_sets := func(ptr interface{}) { o.Sets = *ptr.(**pla.DataCollectorSetCollection) }
+		_s_sets := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.DataCollectorSetCollection:
+				if ptr == nil {
+					o.Sets = nil
+				} else {
+					o.Sets = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Sets", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Sets, _s_sets, _ptr_sets); err != nil {
 			return err
 		}
@@ -2155,7 +2199,18 @@ func (o *xxx_GetDataCollectorSetsOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_server := func(ptr interface{}) { o.Server = *ptr.(**oaut.String) }
+		_s_server := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Server = nil
+				} else {
+					o.Server = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Server", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Server, _s_server, _ptr_server); err != nil {
 			return err
 		}
@@ -2174,7 +2229,18 @@ func (o *xxx_GetDataCollectorSetsOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_filter := func(ptr interface{}) { o.Filter = *ptr.(**oaut.String) }
+		_s_filter := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Filter = nil
+				} else {
+					o.Filter = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Filter", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Filter, _s_filter, _ptr_filter); err != nil {
 			return err
 		}

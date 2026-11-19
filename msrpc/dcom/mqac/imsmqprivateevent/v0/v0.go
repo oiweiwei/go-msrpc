@@ -524,7 +524,18 @@ func (o *xxx_FireArrivedEventOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pq := func(ptr interface{}) { o.Queue = *ptr.(**mqac.Queue) }
+		_s_pq := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Queue:
+				if ptr == nil {
+					o.Queue = nil
+				} else {
+					o.Queue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Queue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Queue, _s_pq, _ptr_pq); err != nil {
 			return err
 		}
@@ -809,7 +820,18 @@ func (o *xxx_FireArrivedErrorEventOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_pq := func(ptr interface{}) { o.Queue = *ptr.(**mqac.Queue) }
+		_s_pq := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqac.Queue:
+				if ptr == nil {
+					o.Queue = nil
+				} else {
+					o.Queue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Queue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Queue, _s_pq, _ptr_pq); err != nil {
 			return err
 		}

@@ -729,7 +729,18 @@ func (o *xxx_ConfigServiceSecretOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_SecretBLOB := func(ptr interface{}) { o.SecretBlob = *ptr.(**oaut.String) }
+		_s_SecretBLOB := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SecretBlob = nil
+				} else {
+					o.SecretBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SecretBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SecretBlob, _s_SecretBLOB, _ptr_SecretBLOB); err != nil {
 			return err
 		}
@@ -1040,7 +1051,18 @@ func (o *xxx_RetrieveServiceSecretOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_SecretBLOB := func(ptr interface{}) { o.SecretBlob = *ptr.(**oaut.String) }
+		_s_SecretBLOB := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SecretBlob = nil
+				} else {
+					o.SecretBlob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SecretBlob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SecretBlob, _s_SecretBLOB, _ptr_SecretBLOB); err != nil {
 			return err
 		}
@@ -1297,7 +1319,18 @@ func (o *xxx_RetrieveHostLabelOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_HostLabel := func(ptr interface{}) { o.HostLabel = *ptr.(**oaut.String) }
+		_s_HostLabel := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.HostLabel = nil
+				} else {
+					o.HostLabel = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.HostLabel", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.HostLabel, _s_HostLabel, _ptr_HostLabel); err != nil {
 			return err
 		}

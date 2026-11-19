@@ -247,7 +247,18 @@ func (o *SRPLevelInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_wszFriendlyName := func(ptr interface{}) { o.FriendlyName = *ptr.(*string) }
+	_s_wszFriendlyName := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.FriendlyName = ""
+			} else {
+				o.FriendlyName = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FriendlyName", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.FriendlyName, _s_wszFriendlyName, _ptr_wszFriendlyName); err != nil {
 		return err
 	}

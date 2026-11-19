@@ -1372,7 +1372,18 @@ func (o *xxx_QueryProvidersOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**vds.EnumObject) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.EnumObject:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}
@@ -1638,7 +1649,18 @@ func (o *xxx_QueryUnallocatedDisksOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**vds.EnumObject) }
+		_s_ppEnum := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.EnumObject:
+				if ptr == nil {
+					o.Enum = nil
+				} else {
+					o.Enum = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Enum", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}
@@ -1933,7 +1955,18 @@ func (o *xxx_GetObjectOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_ppObjectUnk := func(ptr interface{}) { o.ObjectUnknown = *ptr.(**dcom.Unknown) }
+		_s_ppObjectUnk := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.ObjectUnknown = nil
+				} else {
+					o.ObjectUnknown = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectUnknown", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectUnknown, _s_ppObjectUnk, _ptr_ppObjectUnk); err != nil {
 			return err
 		}
@@ -2562,7 +2595,18 @@ func (o *xxx_QueryFileSystemTypesOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppFileSystemTypeProps := func(ptr interface{}) { o.FileSystemTypeProperties = *ptr.(*[]*vds.FileSystemTypeProperty) }
+		_s_ppFileSystemTypeProps := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*vds.FileSystemTypeProperty:
+				if ptr == nil {
+					o.FileSystemTypeProperties = nil
+				} else {
+					o.FileSystemTypeProperties = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FileSystemTypeProperties", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FileSystemTypeProperties, _s_ppFileSystemTypeProps, _ptr_ppFileSystemTypeProps); err != nil {
 			return err
 		}
@@ -3394,7 +3438,18 @@ func (o *xxx_AdviseOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_pSink := func(ptr interface{}) { o.Sink = *ptr.(**vds.AdviseSink) }
+		_s_pSink := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.AdviseSink:
+				if ptr == nil {
+					o.Sink = nil
+				} else {
+					o.Sink = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Sink", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Sink, _s_pSink, _ptr_pSink); err != nil {
 			return err
 		}

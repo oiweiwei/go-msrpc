@@ -589,7 +589,18 @@ func (o *xxx_GetQuotaLimitOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_quotaLimit := func(ptr interface{}) { o.QuotaLimit = *ptr.(**oaut.Variant) }
+		_s_quotaLimit := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.QuotaLimit = nil
+				} else {
+					o.QuotaLimit = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QuotaLimit", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QuotaLimit, _s_quotaLimit, _ptr_quotaLimit); err != nil {
 			return err
 		}
@@ -1518,7 +1529,18 @@ func (o *xxx_GetThresholdsOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_thresholds := func(ptr interface{}) { o.Thresholds = *ptr.(**oaut.SafeArray) }
+		_s_thresholds := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Thresholds = nil
+				} else {
+					o.Thresholds = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Thresholds", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Thresholds, _s_thresholds, _ptr_thresholds); err != nil {
 			return err
 		}
@@ -2483,7 +2505,18 @@ func (o *xxx_CreateThresholdActionOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_action := func(ptr interface{}) { o.Action = *ptr.(**fsrm.Action) }
+		_s_action := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Action:
+				if ptr == nil {
+					o.Action = nil
+				} else {
+					o.Action = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Action", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Action, _s_action, _ptr_action); err != nil {
 			return err
 		}
@@ -2765,7 +2798,18 @@ func (o *xxx_EnumThresholdActionsOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_actions := func(ptr interface{}) { o.Actions = *ptr.(**fsrm.Collection) }
+		_s_actions := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Collection:
+				if ptr == nil {
+					o.Actions = nil
+				} else {
+					o.Actions = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Actions", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Actions, _s_actions, _ptr_actions); err != nil {
 			return err
 		}

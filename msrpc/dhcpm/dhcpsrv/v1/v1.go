@@ -2346,7 +2346,18 @@ func (o *xxx_CreateSubnetOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -2587,7 +2598,18 @@ func (o *xxx_SetSubnetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -2814,7 +2836,18 @@ func (o *xxx_GetSubnetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -2892,7 +2925,18 @@ func (o *xxx_GetSubnetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_SubnetInfo := func(ptr interface{}) { o.SubnetInfo = *ptr.(**dhcpm.SubnetInfo) }
+		_s_SubnetInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.SubnetInfo:
+				if ptr == nil {
+					o.SubnetInfo = nil
+				} else {
+					o.SubnetInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SubnetInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SubnetInfo, _s_SubnetInfo, _ptr_SubnetInfo); err != nil {
 			return err
 		}
@@ -3075,7 +3119,18 @@ func (o *xxx_EnumSubnetsOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -3183,7 +3238,18 @@ func (o *xxx_EnumSubnetsOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_EnumInfo := func(ptr interface{}) { o.EnumInfo = *ptr.(**dhcpm.IPArray) }
+		_s_EnumInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.IPArray:
+				if ptr == nil {
+					o.EnumInfo = nil
+				} else {
+					o.EnumInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EnumInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EnumInfo, _s_EnumInfo, _ptr_EnumInfo); err != nil {
 			return err
 		}
@@ -3418,7 +3484,18 @@ func (o *xxx_AddSubnetElementOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -3662,7 +3739,18 @@ func (o *xxx_EnumSubnetElementsOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -3782,7 +3870,18 @@ func (o *xxx_EnumSubnetElementsOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_EnumElementInfo := func(ptr interface{}) { o.EnumElementInfo = *ptr.(**dhcpm.SubnetElementInfoArray) }
+		_s_EnumElementInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.SubnetElementInfoArray:
+				if ptr == nil {
+					o.EnumElementInfo = nil
+				} else {
+					o.EnumElementInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EnumElementInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EnumElementInfo, _s_EnumElementInfo, _ptr_EnumElementInfo); err != nil {
 			return err
 		}
@@ -4040,7 +4139,18 @@ func (o *xxx_RemoveSubnetElementOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -4278,7 +4388,18 @@ func (o *xxx_DeleteSubnetOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -4510,7 +4631,18 @@ func (o *xxx_CreateOptionOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -4743,7 +4875,18 @@ func (o *xxx_SetOptionInfoOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -4961,7 +5104,18 @@ func (o *xxx_GetOptionInfoOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -5039,7 +5193,18 @@ func (o *xxx_GetOptionInfoOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_OptionInfo := func(ptr interface{}) { o.OptionInfo = *ptr.(**dhcpm.Option) }
+		_s_OptionInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.Option:
+				if ptr == nil {
+					o.OptionInfo = nil
+				} else {
+					o.OptionInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OptionInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OptionInfo, _s_OptionInfo, _ptr_OptionInfo); err != nil {
 			return err
 		}
@@ -5211,7 +5376,18 @@ func (o *xxx_RemoveOptionOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -5443,7 +5619,18 @@ func (o *xxx_SetOptionValueOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -5696,7 +5883,18 @@ func (o *xxx_GetOptionValueOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -5786,7 +5984,18 @@ func (o *xxx_GetOptionValueOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_OptionValue := func(ptr interface{}) { o.OptionValue = *ptr.(**dhcpm.OptionValue) }
+		_s_OptionValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.OptionValue:
+				if ptr == nil {
+					o.OptionValue = nil
+				} else {
+					o.OptionValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OptionValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OptionValue, _s_OptionValue, _ptr_OptionValue); err != nil {
 			return err
 		}
@@ -5992,7 +6201,18 @@ func (o *xxx_EnumOptionValuesOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -6112,7 +6332,18 @@ func (o *xxx_EnumOptionValuesOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_OptionValues := func(ptr interface{}) { o.OptionValues = *ptr.(**dhcpm.OptionValueArray) }
+		_s_OptionValues := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.OptionValueArray:
+				if ptr == nil {
+					o.OptionValues = nil
+				} else {
+					o.OptionValues = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OptionValues", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OptionValues, _s_OptionValues, _ptr_OptionValues); err != nil {
 			return err
 		}
@@ -6359,7 +6590,18 @@ func (o *xxx_RemoveOptionValueOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -6586,7 +6828,18 @@ func (o *xxx_CreateClientInfoOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -6806,7 +7059,18 @@ func (o *xxx_SetClientInfoOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -7028,7 +7292,18 @@ func (o *xxx_GetClientInfoOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -7112,7 +7387,18 @@ func (o *xxx_GetClientInfoOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ClientInfo := func(ptr interface{}) { o.ClientInfo = *ptr.(**dhcpm.ClientInfo) }
+		_s_ClientInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.ClientInfo:
+				if ptr == nil {
+					o.ClientInfo = nil
+				} else {
+					o.ClientInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientInfo, _s_ClientInfo, _ptr_ClientInfo); err != nil {
 			return err
 		}
@@ -7298,7 +7584,18 @@ func (o *xxx_DeleteClientInfoOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -7527,7 +7824,18 @@ func (o *xxx_EnumSubnetClientsOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -7641,7 +7949,18 @@ func (o *xxx_EnumSubnetClientsOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ClientInfo := func(ptr interface{}) { o.ClientInfo = *ptr.(**dhcpm.ClientInfoArray) }
+		_s_ClientInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.ClientInfoArray:
+				if ptr == nil {
+					o.ClientInfo = nil
+				} else {
+					o.ClientInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientInfo, _s_ClientInfo, _ptr_ClientInfo); err != nil {
 			return err
 		}
@@ -7871,7 +8190,18 @@ func (o *xxx_GetClientOptionsOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -7955,7 +8285,18 @@ func (o *xxx_GetClientOptionsOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ClientOptions := func(ptr interface{}) { o.ClientOptions = *ptr.(**dhcpm.OptionList) }
+		_s_ClientOptions := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.OptionList:
+				if ptr == nil {
+					o.ClientOptions = nil
+				} else {
+					o.ClientOptions = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientOptions", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientOptions, _s_ClientOptions, _ptr_ClientOptions); err != nil {
 			return err
 		}
@@ -8129,7 +8470,18 @@ func (o *xxx_GetMIBInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -8201,7 +8553,18 @@ func (o *xxx_GetMIBInfoOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_MibInfo := func(ptr interface{}) { o.MIBInfo = *ptr.(**dhcpm.MIBInfo) }
+		_s_MibInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.MIBInfo:
+				if ptr == nil {
+					o.MIBInfo = nil
+				} else {
+					o.MIBInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MIBInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MIBInfo, _s_MibInfo, _ptr_MibInfo); err != nil {
 			return err
 		}
@@ -8379,7 +8742,18 @@ func (o *xxx_EnumOptionsOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -8487,7 +8861,18 @@ func (o *xxx_EnumOptionsOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_Options := func(ptr interface{}) { o.Options = *ptr.(**dhcpm.OptionArray) }
+		_s_Options := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.OptionArray:
+				if ptr == nil {
+					o.Options = nil
+				} else {
+					o.Options = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Options", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Options, _s_Options, _ptr_Options); err != nil {
 			return err
 		}
@@ -8733,7 +9118,18 @@ func (o *xxx_SetOptionValuesOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -8974,7 +9370,18 @@ func (o *xxx_ServerSetConfigOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -9230,7 +9637,18 @@ func (o *xxx_ServerGetConfigOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -9302,7 +9720,18 @@ func (o *xxx_ServerGetConfigOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ConfigInfo := func(ptr interface{}) { o.ConfigInfo = *ptr.(**dhcpm.ServerConfigInfo) }
+		_s_ConfigInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.ServerConfigInfo:
+				if ptr == nil {
+					o.ConfigInfo = nil
+				} else {
+					o.ConfigInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigInfo, _s_ConfigInfo, _ptr_ConfigInfo); err != nil {
 			return err
 		}
@@ -9479,7 +9908,18 @@ func (o *xxx_ScanDatabaseOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -9563,7 +10003,18 @@ func (o *xxx_ScanDatabaseOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_ScanList := func(ptr interface{}) { o.ScanList = *ptr.(**dhcpm.ScanList) }
+		_s_ScanList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.ScanList:
+				if ptr == nil {
+					o.ScanList = nil
+				} else {
+					o.ScanList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ScanList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ScanList, _s_ScanList, _ptr_ScanList); err != nil {
 			return err
 		}
@@ -9739,7 +10190,18 @@ func (o *xxx_GetVersionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -9982,7 +10444,18 @@ func (o *xxx_AddSubnetElementV4Operation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -10226,7 +10699,18 @@ func (o *xxx_EnumSubnetElementsV4Operation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -10346,7 +10830,18 @@ func (o *xxx_EnumSubnetElementsV4Operation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_EnumElementInfo := func(ptr interface{}) { o.EnumElementInfo = *ptr.(**dhcpm.SubnetElementInfoArrayV4) }
+		_s_EnumElementInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.SubnetElementInfoArrayV4:
+				if ptr == nil {
+					o.EnumElementInfo = nil
+				} else {
+					o.EnumElementInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EnumElementInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EnumElementInfo, _s_EnumElementInfo, _ptr_EnumElementInfo); err != nil {
 			return err
 		}
@@ -10607,7 +11102,18 @@ func (o *xxx_RemoveSubnetElementV4Operation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -10852,7 +11358,18 @@ func (o *xxx_CreateClientInfoV4Operation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -11072,7 +11589,18 @@ func (o *xxx_SetClientInfoV4Operation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -11293,7 +11821,18 @@ func (o *xxx_GetClientInfoV4Operation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -11377,7 +11916,18 @@ func (o *xxx_GetClientInfoV4Operation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ClientInfo := func(ptr interface{}) { o.ClientInfo = *ptr.(**dhcpm.ClientInfoV4) }
+		_s_ClientInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.ClientInfoV4:
+				if ptr == nil {
+					o.ClientInfo = nil
+				} else {
+					o.ClientInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientInfo, _s_ClientInfo, _ptr_ClientInfo); err != nil {
 			return err
 		}
@@ -11574,7 +12124,18 @@ func (o *xxx_EnumSubnetClientsV4Operation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -11688,7 +12249,18 @@ func (o *xxx_EnumSubnetClientsV4Operation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ClientInfo := func(ptr interface{}) { o.ClientInfo = *ptr.(**dhcpm.ClientInfoArrayV4) }
+		_s_ClientInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.ClientInfoArrayV4:
+				if ptr == nil {
+					o.ClientInfo = nil
+				} else {
+					o.ClientInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientInfo, _s_ClientInfo, _ptr_ClientInfo); err != nil {
 			return err
 		}
@@ -11945,7 +12517,18 @@ func (o *xxx_SetSuperScopeV4Operation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -11967,7 +12550,18 @@ func (o *xxx_SetSuperScopeV4Operation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_SuperScopeName := func(ptr interface{}) { o.SuperScopeName = *ptr.(*string) }
+		_s_SuperScopeName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.SuperScopeName = ""
+				} else {
+					o.SuperScopeName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SuperScopeName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SuperScopeName, _s_SuperScopeName, _ptr_SuperScopeName); err != nil {
 			return err
 		}
@@ -12177,7 +12771,18 @@ func (o *xxx_GetSuperScopeInfoV4Operation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -12249,7 +12854,18 @@ func (o *xxx_GetSuperScopeInfoV4Operation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_SuperScopeTable := func(ptr interface{}) { o.SuperScopeTable = *ptr.(**dhcpm.SuperScopeTable) }
+		_s_SuperScopeTable := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.SuperScopeTable:
+				if ptr == nil {
+					o.SuperScopeTable = nil
+				} else {
+					o.SuperScopeTable = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SuperScopeTable", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SuperScopeTable, _s_SuperScopeTable, _ptr_SuperScopeTable); err != nil {
 			return err
 		}
@@ -12419,7 +13035,18 @@ func (o *xxx_DeleteSuperScopeV4Operation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -12637,7 +13264,18 @@ func (o *xxx_ServerSetConfigV4Operation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -12901,7 +13539,18 @@ func (o *xxx_ServerGetConfigV4Operation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -12973,7 +13622,18 @@ func (o *xxx_ServerGetConfigV4Operation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ConfigInfo := func(ptr interface{}) { o.ConfigInfo = *ptr.(**dhcpm.ServerConfigInfoV4) }
+		_s_ConfigInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.ServerConfigInfoV4:
+				if ptr == nil {
+					o.ConfigInfo = nil
+				} else {
+					o.ConfigInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigInfo, _s_ConfigInfo, _ptr_ConfigInfo); err != nil {
 			return err
 		}
@@ -13160,7 +13820,18 @@ func (o *xxx_ServerSetConfigVQOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -13426,7 +14097,18 @@ func (o *xxx_ServerGetConfigVQOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -13498,7 +14180,18 @@ func (o *xxx_ServerGetConfigVQOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ConfigInfo := func(ptr interface{}) { o.ConfigInfo = *ptr.(**dhcpm.ServerConfigInfoVQ) }
+		_s_ConfigInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.ServerConfigInfoVQ:
+				if ptr == nil {
+					o.ConfigInfo = nil
+				} else {
+					o.ConfigInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigInfo, _s_ConfigInfo, _ptr_ConfigInfo); err != nil {
 			return err
 		}
@@ -13661,7 +14354,18 @@ func (o *xxx_GetMIBInfoVQOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -13733,7 +14437,18 @@ func (o *xxx_GetMIBInfoVQOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_MibInfo := func(ptr interface{}) { o.MIBInfo = *ptr.(**dhcpm.MIBInfoVQ) }
+		_s_MibInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.MIBInfoVQ:
+				if ptr == nil {
+					o.MIBInfo = nil
+				} else {
+					o.MIBInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MIBInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MIBInfo, _s_MibInfo, _ptr_MibInfo); err != nil {
 			return err
 		}
@@ -13912,7 +14627,18 @@ func (o *xxx_CreateClientInfoVQOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -14132,7 +14858,18 @@ func (o *xxx_SetClientInfoVQOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -14353,7 +15090,18 @@ func (o *xxx_GetClientInfoVQOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -14437,7 +15185,18 @@ func (o *xxx_GetClientInfoVQOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ClientInfo := func(ptr interface{}) { o.ClientInfo = *ptr.(**dhcpm.ClientInfoVQ) }
+		_s_ClientInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.ClientInfoVQ:
+				if ptr == nil {
+					o.ClientInfo = nil
+				} else {
+					o.ClientInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientInfo, _s_ClientInfo, _ptr_ClientInfo); err != nil {
 			return err
 		}
@@ -14634,7 +15393,18 @@ func (o *xxx_EnumSubnetClientsVQOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -14748,7 +15518,18 @@ func (o *xxx_EnumSubnetClientsVQOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_ClientInfo := func(ptr interface{}) { o.ClientInfo = *ptr.(**dhcpm.ClientInfoArrayVQ) }
+		_s_ClientInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.ClientInfoArrayVQ:
+				if ptr == nil {
+					o.ClientInfo = nil
+				} else {
+					o.ClientInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClientInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ClientInfo, _s_ClientInfo, _ptr_ClientInfo); err != nil {
 			return err
 		}
@@ -14986,7 +15767,18 @@ func (o *xxx_CreateSubnetVQOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -15207,7 +15999,18 @@ func (o *xxx_GetSubnetInfoVQOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}
@@ -15285,7 +16088,18 @@ func (o *xxx_GetSubnetInfoVQOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_SubnetInfoVQ := func(ptr interface{}) { o.SubnetInfoVQ = *ptr.(**dhcpm.SubnetInfoVQ) }
+		_s_SubnetInfoVQ := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dhcpm.SubnetInfoVQ:
+				if ptr == nil {
+					o.SubnetInfoVQ = nil
+				} else {
+					o.SubnetInfoVQ = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SubnetInfoVQ", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SubnetInfoVQ, _s_SubnetInfoVQ, _ptr_SubnetInfoVQ); err != nil {
 			return err
 		}
@@ -15474,7 +16288,18 @@ func (o *xxx_SetSubnetInfoVQOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ServerIpAddress := func(ptr interface{}) { o.ServerIPAddress = *ptr.(*string) }
+		_s_ServerIpAddress := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ServerIPAddress = ""
+				} else {
+					o.ServerIPAddress = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ServerIPAddress", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ServerIPAddress, _s_ServerIpAddress, _ptr_ServerIpAddress); err != nil {
 			return err
 		}

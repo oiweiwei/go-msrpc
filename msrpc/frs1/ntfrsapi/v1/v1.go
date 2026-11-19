@@ -794,7 +794,18 @@ func (o *xxx_InfoWOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 			}
 			return nil
 		})
-		_s_Blob := func(ptr interface{}) { o.Blob = *ptr.(*[]byte) }
+		_s_Blob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Blob = nil
+				} else {
+					o.Blob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Blob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Blob, _s_Blob, _ptr_Blob); err != nil {
 			return err
 		}
@@ -890,7 +901,18 @@ func (o *xxx_InfoWOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_Blob := func(ptr interface{}) { o.Blob = *ptr.(*[]byte) }
+		_s_Blob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.Blob = nil
+				} else {
+					o.Blob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Blob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Blob, _s_Blob, _ptr_Blob); err != nil {
 			return err
 		}
@@ -1105,7 +1127,18 @@ func (o *xxx_IsPathReplicatedOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_Path := func(ptr interface{}) { o.Path = *ptr.(*string) }
+		_s_Path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.Path = ""
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_Path, _ptr_Path); err != nil {
 			return err
 		}
@@ -1688,7 +1721,18 @@ func (o *xxx_ForceReplicationOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ReplicaSetGuid := func(ptr interface{}) { o.SetGUIDReplica = *ptr.(**dtyp.GUID) }
+		_s_ReplicaSetGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.SetGUIDReplica = nil
+				} else {
+					o.SetGUIDReplica = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SetGUIDReplica", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SetGUIDReplica, _s_ReplicaSetGuid, _ptr_ReplicaSetGuid); err != nil {
 			return err
 		}
@@ -1707,7 +1751,18 @@ func (o *xxx_ForceReplicationOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_CxtionGuid := func(ptr interface{}) { o.CxtionGUID = *ptr.(**dtyp.GUID) }
+		_s_CxtionGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.CxtionGUID = nil
+				} else {
+					o.CxtionGUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CxtionGUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CxtionGUID, _s_CxtionGuid, _ptr_CxtionGuid); err != nil {
 			return err
 		}
@@ -1723,7 +1778,18 @@ func (o *xxx_ForceReplicationOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ReplicaSetName := func(ptr interface{}) { o.SetNameReplica = *ptr.(*string) }
+		_s_ReplicaSetName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.SetNameReplica = ""
+				} else {
+					o.SetNameReplica = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SetNameReplica", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SetNameReplica, _s_ReplicaSetName, _ptr_ReplicaSetName); err != nil {
 			return err
 		}
@@ -1739,7 +1805,18 @@ func (o *xxx_ForceReplicationOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_PartnerDnsName := func(ptr interface{}) { o.PartnerDNSName = *ptr.(*string) }
+		_s_PartnerDnsName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.PartnerDNSName = ""
+				} else {
+					o.PartnerDNSName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PartnerDNSName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PartnerDNSName, _s_PartnerDnsName, _ptr_PartnerDnsName); err != nil {
 			return err
 		}

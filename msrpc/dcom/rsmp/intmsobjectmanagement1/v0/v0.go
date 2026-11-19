@@ -2774,7 +2774,18 @@ func (o *xxx_EnumerateNTMSObjectOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_lpContainerId := func(ptr interface{}) { o.ContainerID = *ptr.(**dtyp.GUID) }
+		_s_lpContainerId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.ContainerID = nil
+				} else {
+					o.ContainerID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ContainerID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ContainerID, _s_lpContainerId, _ptr_lpContainerId); err != nil {
 			return err
 		}

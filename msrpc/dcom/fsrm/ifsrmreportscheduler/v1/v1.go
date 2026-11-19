@@ -377,7 +377,18 @@ func (o *xxx_VerifyNamespacesOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_namespacesSafeArray := func(ptr interface{}) { o.NamespacesSafeArray = *ptr.(**oaut.Variant) }
+		_s_namespacesSafeArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.NamespacesSafeArray = nil
+				} else {
+					o.NamespacesSafeArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NamespacesSafeArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NamespacesSafeArray, _s_namespacesSafeArray, _ptr_namespacesSafeArray); err != nil {
 			return err
 		}
@@ -694,7 +705,18 @@ func (o *xxx_CreateScheduleTaskOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_taskName := func(ptr interface{}) { o.TaskName = *ptr.(**oaut.String) }
+		_s_taskName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.TaskName = nil
+				} else {
+					o.TaskName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TaskName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TaskName, _s_taskName, _ptr_taskName); err != nil {
 			return err
 		}
@@ -713,7 +735,18 @@ func (o *xxx_CreateScheduleTaskOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_namespacesSafeArray := func(ptr interface{}) { o.NamespacesSafeArray = *ptr.(**oaut.Variant) }
+		_s_namespacesSafeArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.NamespacesSafeArray = nil
+				} else {
+					o.NamespacesSafeArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NamespacesSafeArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NamespacesSafeArray, _s_namespacesSafeArray, _ptr_namespacesSafeArray); err != nil {
 			return err
 		}
@@ -732,7 +765,18 @@ func (o *xxx_CreateScheduleTaskOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_serializedTask := func(ptr interface{}) { o.SerializedTask = *ptr.(**oaut.String) }
+		_s_serializedTask := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SerializedTask = nil
+				} else {
+					o.SerializedTask = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SerializedTask", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SerializedTask, _s_serializedTask, _ptr_serializedTask); err != nil {
 			return err
 		}
@@ -1058,7 +1102,18 @@ func (o *xxx_ModifyScheduleTaskOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_taskName := func(ptr interface{}) { o.TaskName = *ptr.(**oaut.String) }
+		_s_taskName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.TaskName = nil
+				} else {
+					o.TaskName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TaskName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TaskName, _s_taskName, _ptr_taskName); err != nil {
 			return err
 		}
@@ -1077,7 +1132,18 @@ func (o *xxx_ModifyScheduleTaskOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_namespacesSafeArray := func(ptr interface{}) { o.NamespacesSafeArray = *ptr.(**oaut.Variant) }
+		_s_namespacesSafeArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.NamespacesSafeArray = nil
+				} else {
+					o.NamespacesSafeArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NamespacesSafeArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NamespacesSafeArray, _s_namespacesSafeArray, _ptr_namespacesSafeArray); err != nil {
 			return err
 		}
@@ -1096,7 +1162,18 @@ func (o *xxx_ModifyScheduleTaskOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_serializedTask := func(ptr interface{}) { o.SerializedTask = *ptr.(**oaut.String) }
+		_s_serializedTask := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SerializedTask = nil
+				} else {
+					o.SerializedTask = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SerializedTask", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SerializedTask, _s_serializedTask, _ptr_serializedTask); err != nil {
 			return err
 		}
@@ -1366,7 +1443,18 @@ func (o *xxx_DeleteScheduleTaskOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_taskName := func(ptr interface{}) { o.TaskName = *ptr.(**oaut.String) }
+		_s_taskName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.TaskName = nil
+				} else {
+					o.TaskName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TaskName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TaskName, _s_taskName, _ptr_taskName); err != nil {
 			return err
 		}

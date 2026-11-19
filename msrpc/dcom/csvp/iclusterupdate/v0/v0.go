@@ -368,7 +368,18 @@ func (o *xxx_GetUpdatesOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_updates := func(ptr interface{}) { o.Updates = *ptr.(**oaut.String) }
+		_s_updates := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Updates = nil
+				} else {
+					o.Updates = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Updates", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Updates, _s_updates, _ptr_updates); err != nil {
 			return err
 		}

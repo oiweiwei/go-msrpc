@@ -317,7 +317,18 @@ func (o *xxx_QMSendMessageInternalExOperation) UnmarshalNDRRequest(ctx context.C
 			}
 			return nil
 		})
-		_s_pMessageID := func(ptr interface{}) { o.MessageID = *ptr.(**mqmq.ObjectID) }
+		_s_pMessageID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqmq.ObjectID:
+				if ptr == nil {
+					o.MessageID = nil
+				} else {
+					o.MessageID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MessageID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MessageID, _s_pMessageID, _ptr_pMessageID); err != nil {
 			return err
 		}
@@ -389,7 +400,18 @@ func (o *xxx_QMSendMessageInternalExOperation) UnmarshalNDRResponse(ctx context.
 			}
 			return nil
 		})
-		_s_pMessageID := func(ptr interface{}) { o.MessageID = *ptr.(**mqmq.ObjectID) }
+		_s_pMessageID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqmq.ObjectID:
+				if ptr == nil {
+					o.MessageID = nil
+				} else {
+					o.MessageID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MessageID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MessageID, _s_pMessageID, _ptr_pMessageID); err != nil {
 			return err
 		}
@@ -625,7 +647,18 @@ func (o *xxx_SendMessageExOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_pMessageID := func(ptr interface{}) { o.MessageID = *ptr.(**mqmq.ObjectID) }
+		_s_pMessageID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqmq.ObjectID:
+				if ptr == nil {
+					o.MessageID = nil
+				} else {
+					o.MessageID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MessageID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MessageID, _s_pMessageID, _ptr_pMessageID); err != nil {
 			return err
 		}
@@ -697,7 +730,18 @@ func (o *xxx_SendMessageExOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pMessageID := func(ptr interface{}) { o.MessageID = *ptr.(**mqmq.ObjectID) }
+		_s_pMessageID := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **mqmq.ObjectID:
+				if ptr == nil {
+					o.MessageID = nil
+				} else {
+					o.MessageID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MessageID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MessageID, _s_pMessageID, _ptr_pMessageID); err != nil {
 			return err
 		}

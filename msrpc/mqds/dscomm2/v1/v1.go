@@ -353,7 +353,18 @@ func (o *xxx_GetComputerSitesOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pwcsPathName := func(ptr interface{}) { o.PathName = *ptr.(*string) }
+		_s_pwcsPathName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.PathName = ""
+				} else {
+					o.PathName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PathName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PathName, _s_pwcsPathName, _ptr_pwcsPathName); err != nil {
 			return err
 		}
@@ -544,7 +555,18 @@ func (o *xxx_GetComputerSitesOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ppguidSites := func(ptr interface{}) { o.Sites = *ptr.(*[]*dtyp.GUID) }
+		_s_ppguidSites := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dtyp.GUID:
+				if ptr == nil {
+					o.Sites = nil
+				} else {
+					o.Sites = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Sites", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Sites, _s_ppguidSites, _ptr_ppguidSites); err != nil {
 			return err
 		}
@@ -1417,7 +1439,18 @@ func (o *xxx_GetPropertiesGUIDExOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pGuid := func(ptr interface{}) { o.GUID = *ptr.(**dtyp.GUID) }
+		_s_pGuid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.GUID = nil
+				} else {
+					o.GUID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GUID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.GUID, _s_pGuid, _ptr_pGuid); err != nil {
 			return err
 		}
@@ -2616,7 +2649,18 @@ func (o *xxx_GetGCListInDomainOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_lpwszComputerName := func(ptr interface{}) { o.ComputerName = *ptr.(*string) }
+		_s_lpwszComputerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.ComputerName = ""
+				} else {
+					o.ComputerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ComputerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ComputerName, _s_lpwszComputerName, _ptr_lpwszComputerName); err != nil {
 			return err
 		}
@@ -2632,7 +2676,18 @@ func (o *xxx_GetGCListInDomainOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_lpwszDomainName := func(ptr interface{}) { o.DomainName = *ptr.(*string) }
+		_s_lpwszDomainName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.DomainName = ""
+				} else {
+					o.DomainName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DomainName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DomainName, _s_lpwszDomainName, _ptr_lpwszDomainName); err != nil {
 			return err
 		}
@@ -2743,7 +2798,18 @@ func (o *xxx_GetGCListInDomainOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_lplpwszGCList := func(ptr interface{}) { o.GCList = *ptr.(*string) }
+		_s_lplpwszGCList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.GCList = ""
+				} else {
+					o.GCList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GCList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.GCList, _s_lplpwszGCList, _ptr_lplpwszGCList); err != nil {
 			return err
 		}

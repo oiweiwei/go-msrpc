@@ -250,7 +250,18 @@ func (o *xxx_GetSharePathsForLocalPathOperation) UnmarshalNDRRequest(ctx context
 			}
 			return nil
 		})
-		_s_localPath := func(ptr interface{}) { o.LocalPath = *ptr.(**oaut.String) }
+		_s_localPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.LocalPath = nil
+				} else {
+					o.LocalPath = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LocalPath", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LocalPath, _s_localPath, _ptr_localPath); err != nil {
 			return err
 		}
@@ -349,7 +360,18 @@ func (o *xxx_GetSharePathsForLocalPathOperation) UnmarshalNDRResponse(ctx contex
 			}
 			return nil
 		})
-		_s_sharePaths := func(ptr interface{}) { o.SharePaths = *ptr.(**oaut.SafeArray) }
+		_s_sharePaths := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.SharePaths = nil
+				} else {
+					o.SharePaths = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SharePaths", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SharePaths, _s_sharePaths, _ptr_sharePaths); err != nil {
 			return err
 		}

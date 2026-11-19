@@ -400,7 +400,18 @@ func (o *xxx_GetContainerDataOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_aContainerData := func(ptr interface{}) { o.ContainerData = *ptr.(*[]*comt.ContainerData) }
+		_s_aContainerData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*comt.ContainerData:
+				if ptr == nil {
+					o.ContainerData = nil
+				} else {
+					o.ContainerData = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ContainerData", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ContainerData, _s_aContainerData, _ptr_aContainerData); err != nil {
 			return err
 		}
@@ -726,7 +737,18 @@ func (o *xxx_GetComponentDataByContainerOperation) UnmarshalNDRResponse(ctx cont
 			}
 			return nil
 		})
-		_s_aComponentData := func(ptr interface{}) { o.ComponentData = *ptr.(*[]*comt.ComponentData) }
+		_s_aComponentData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*comt.ComponentData:
+				if ptr == nil {
+					o.ComponentData = nil
+				} else {
+					o.ComponentData = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ComponentData", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ComponentData, _s_aComponentData, _ptr_aComponentData); err != nil {
 			return err
 		}
@@ -1031,7 +1053,18 @@ func (o *xxx_GetComponentDataByContainerAndClassIDOperation) UnmarshalNDRRespons
 			}
 			return nil
 		})
-		_s_ppComponentData := func(ptr interface{}) { o.ComponentData = *ptr.(**comt.ComponentData) }
+		_s_ppComponentData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **comt.ComponentData:
+				if ptr == nil {
+					o.ComponentData = nil
+				} else {
+					o.ComponentData = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ComponentData", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ComponentData, _s_ppComponentData, _ptr_ppComponentData); err != nil {
 			return err
 		}

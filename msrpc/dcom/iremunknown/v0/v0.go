@@ -473,7 +473,18 @@ func (o *xxx_RemoteQueryInterfaceOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppQIResults := func(ptr interface{}) { o.QueryInterfaceResults = *ptr.(*[]*dcom.RemoteQueryInterfaceResult) }
+		_s_ppQIResults := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*dcom.RemoteQueryInterfaceResult:
+				if ptr == nil {
+					o.QueryInterfaceResults = nil
+				} else {
+					o.QueryInterfaceResults = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QueryInterfaceResults", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QueryInterfaceResults, _s_ppQIResults, _ptr_ppQIResults); err != nil {
 			return err
 		}

@@ -333,7 +333,18 @@ func (o *xxx_GetExcludeFoldersOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_folders := func(ptr interface{}) { o.Folders = *ptr.(**oaut.SafeArray) }
+		_s_folders := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Folders = nil
+				} else {
+					o.Folders = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Folders", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Folders, _s_folders, _ptr_folders); err != nil {
 			return err
 		}
@@ -536,7 +547,18 @@ func (o *xxx_SetExcludeFoldersOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_folders := func(ptr interface{}) { o.Folders = *ptr.(**oaut.SafeArray) }
+		_s_folders := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Folders = nil
+				} else {
+					o.Folders = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Folders", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Folders, _s_folders, _ptr_folders); err != nil {
 			return err
 		}
@@ -871,7 +893,18 @@ func (o *xxx_CommitAndUpdateDerivedOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_derivedObjectsResult := func(ptr interface{}) { o.DerivedObjectsResult = *ptr.(**fsrm.DerivedObjectsResult) }
+		_s_derivedObjectsResult := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.DerivedObjectsResult:
+				if ptr == nil {
+					o.DerivedObjectsResult = nil
+				} else {
+					o.DerivedObjectsResult = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DerivedObjectsResult", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DerivedObjectsResult, _s_derivedObjectsResult, _ptr_derivedObjectsResult); err != nil {
 			return err
 		}

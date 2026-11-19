@@ -871,7 +871,18 @@ func (o *xxx_QueryPartitionsOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppPartitionPropArray := func(ptr interface{}) { o.PartitionPropertyArray = *ptr.(*[]*vds.PartitionProperty) }
+		_s_ppPartitionPropArray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*vds.PartitionProperty:
+				if ptr == nil {
+					o.PartitionPropertyArray = nil
+				} else {
+					o.PartitionPropertyArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PartitionPropertyArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.PartitionPropertyArray, _s_ppPartitionPropArray, _ptr_ppPartitionPropArray); err != nil {
 			return err
 		}
@@ -1186,7 +1197,18 @@ func (o *xxx_CreatePartitionOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}
@@ -2792,7 +2814,18 @@ func (o *xxx_FormatPartitionOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}
@@ -3125,7 +3158,18 @@ func (o *xxx_CleanOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_ppAsync := func(ptr interface{}) { o.Async = *ptr.(**vds.Async) }
+		_s_ppAsync := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **vds.Async:
+				if ptr == nil {
+					o.Async = nil
+				} else {
+					o.Async = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Async", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Async, _s_ppAsync, _ptr_ppAsync); err != nil {
 			return err
 		}

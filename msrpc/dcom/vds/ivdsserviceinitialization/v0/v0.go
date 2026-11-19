@@ -224,7 +224,18 @@ func (o *xxx_InitializeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_pwszMachineName := func(ptr interface{}) { o.MachineName = *ptr.(*string) }
+		_s_pwszMachineName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.MachineName = ""
+				} else {
+					o.MachineName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MachineName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MachineName, _s_pwszMachineName, _ptr_pwszMachineName); err != nil {
 			return err
 		}

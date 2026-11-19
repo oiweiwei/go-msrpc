@@ -712,7 +712,18 @@ func (o *xxx_GetActionVariablesOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_variables := func(ptr interface{}) { o.Variables = *ptr.(**oaut.SafeArray) }
+		_s_variables := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Variables = nil
+				} else {
+					o.Variables = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Variables", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Variables, _s_variables, _ptr_variables); err != nil {
 			return err
 		}
@@ -968,7 +979,18 @@ func (o *xxx_GetActionVariableDescriptionsOperation) UnmarshalNDRResponse(ctx co
 			}
 			return nil
 		})
-		_s_descriptions := func(ptr interface{}) { o.Descriptions = *ptr.(**oaut.SafeArray) }
+		_s_descriptions := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Descriptions = nil
+				} else {
+					o.Descriptions = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Descriptions", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Descriptions, _s_descriptions, _ptr_descriptions); err != nil {
 			return err
 		}
@@ -1172,7 +1194,18 @@ func (o *xxx_CreateQuotaOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -1271,7 +1304,18 @@ func (o *xxx_CreateQuotaOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_quota := func(ptr interface{}) { o.Quota = *ptr.(**fsrm.Quota) }
+		_s_quota := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Quota:
+				if ptr == nil {
+					o.Quota = nil
+				} else {
+					o.Quota = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Quota", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Quota, _s_quota, _ptr_quota); err != nil {
 			return err
 		}
@@ -1516,7 +1560,18 @@ func (o *xxx_CreateAutoApplyQuotaOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_quotaTemplateName := func(ptr interface{}) { o.QuotaTemplateName = *ptr.(**oaut.String) }
+		_s_quotaTemplateName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.QuotaTemplateName = nil
+				} else {
+					o.QuotaTemplateName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.QuotaTemplateName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.QuotaTemplateName, _s_quotaTemplateName, _ptr_quotaTemplateName); err != nil {
 			return err
 		}
@@ -1535,7 +1590,18 @@ func (o *xxx_CreateAutoApplyQuotaOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -1634,7 +1700,18 @@ func (o *xxx_CreateAutoApplyQuotaOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_quota := func(ptr interface{}) { o.Quota = *ptr.(**fsrm.AutoApplyQuota) }
+		_s_quota := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.AutoApplyQuota:
+				if ptr == nil {
+					o.Quota = nil
+				} else {
+					o.Quota = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Quota", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Quota, _s_quota, _ptr_quota); err != nil {
 			return err
 		}
@@ -1857,7 +1934,18 @@ func (o *xxx_GetQuotaOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -1956,7 +2044,18 @@ func (o *xxx_GetQuotaOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_quota := func(ptr interface{}) { o.Quota = *ptr.(**fsrm.Quota) }
+		_s_quota := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Quota:
+				if ptr == nil {
+					o.Quota = nil
+				} else {
+					o.Quota = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Quota", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Quota, _s_quota, _ptr_quota); err != nil {
 			return err
 		}
@@ -2167,7 +2266,18 @@ func (o *xxx_GetAutoApplyQuotaOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -2266,7 +2376,18 @@ func (o *xxx_GetAutoApplyQuotaOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_quota := func(ptr interface{}) { o.Quota = *ptr.(**fsrm.AutoApplyQuota) }
+		_s_quota := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.AutoApplyQuota:
+				if ptr == nil {
+					o.Quota = nil
+				} else {
+					o.Quota = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Quota", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Quota, _s_quota, _ptr_quota); err != nil {
 			return err
 		}
@@ -2477,7 +2598,18 @@ func (o *xxx_GetRestrictiveQuotaOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -2576,7 +2708,18 @@ func (o *xxx_GetRestrictiveQuotaOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_quota := func(ptr interface{}) { o.Quota = *ptr.(**fsrm.Quota) }
+		_s_quota := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Quota:
+				if ptr == nil {
+					o.Quota = nil
+				} else {
+					o.Quota = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Quota", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Quota, _s_quota, _ptr_quota); err != nil {
 			return err
 		}
@@ -2795,7 +2938,18 @@ func (o *xxx_EnumQuotasOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -2900,7 +3054,18 @@ func (o *xxx_EnumQuotasOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_quotas := func(ptr interface{}) { o.Quotas = *ptr.(**fsrm.CommittableCollection) }
+		_s_quotas := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.CommittableCollection:
+				if ptr == nil {
+					o.Quotas = nil
+				} else {
+					o.Quotas = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Quotas", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Quotas, _s_quotas, _ptr_quotas); err != nil {
 			return err
 		}
@@ -3124,7 +3289,18 @@ func (o *xxx_EnumAutoApplyQuotasOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -3229,7 +3405,18 @@ func (o *xxx_EnumAutoApplyQuotasOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_quotas := func(ptr interface{}) { o.Quotas = *ptr.(**fsrm.CommittableCollection) }
+		_s_quotas := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.CommittableCollection:
+				if ptr == nil {
+					o.Quotas = nil
+				} else {
+					o.Quotas = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Quotas", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Quotas, _s_quotas, _ptr_quotas); err != nil {
 			return err
 		}
@@ -3455,7 +3642,18 @@ func (o *xxx_EnumEffectiveQuotasOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -3560,7 +3758,18 @@ func (o *xxx_EnumEffectiveQuotasOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_quotas := func(ptr interface{}) { o.Quotas = *ptr.(**fsrm.CommittableCollection) }
+		_s_quotas := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.CommittableCollection:
+				if ptr == nil {
+					o.Quotas = nil
+				} else {
+					o.Quotas = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Quotas", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Quotas, _s_quotas, _ptr_quotas); err != nil {
 			return err
 		}
@@ -3776,7 +3985,18 @@ func (o *xxx_ScanOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_strPath := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_strPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_strPath, _ptr_strPath); err != nil {
 			return err
 		}
@@ -4087,7 +4307,18 @@ func (o *xxx_CreateQuotaCollectionOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 			return nil
 		})
-		_s_collection := func(ptr interface{}) { o.Collection = *ptr.(**fsrm.CommittableCollection) }
+		_s_collection := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.CommittableCollection:
+				if ptr == nil {
+					o.Collection = nil
+				} else {
+					o.Collection = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Collection", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Collection, _s_collection, _ptr_collection); err != nil {
 			return err
 		}

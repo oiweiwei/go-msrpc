@@ -353,7 +353,18 @@ func (o *xxx_EnumerateNTMSObjectROperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_lpContainerId := func(ptr interface{}) { o.ContainerID = *ptr.(**dtyp.GUID) }
+		_s_lpContainerId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.ContainerID = nil
+				} else {
+					o.ContainerID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ContainerID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ContainerID, _s_lpContainerId, _ptr_lpContainerId); err != nil {
 			return err
 		}
@@ -820,7 +831,18 @@ func (o *xxx_GetNTMSUIOptionsAOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_lpObjectId := func(ptr interface{}) { o.ObjectID = *ptr.(**dtyp.GUID) }
+		_s_lpObjectId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.ObjectID = nil
+				} else {
+					o.ObjectID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectID, _s_lpObjectId, _ptr_lpObjectId); err != nil {
 			return err
 		}
@@ -1260,7 +1282,18 @@ func (o *xxx_GetNTMSUIOptionsWOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_lpObjectId := func(ptr interface{}) { o.ObjectID = *ptr.(**dtyp.GUID) }
+		_s_lpObjectId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.ObjectID = nil
+				} else {
+					o.ObjectID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectID, _s_lpObjectId, _ptr_lpObjectId); err != nil {
 			return err
 		}
@@ -1710,7 +1743,18 @@ func (o *xxx_SetNTMSUIOptionsAOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_lpObjectId := func(ptr interface{}) { o.ObjectID = *ptr.(**dtyp.GUID) }
+		_s_lpObjectId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.ObjectID = nil
+				} else {
+					o.ObjectID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectID, _s_lpObjectId, _ptr_lpObjectId); err != nil {
 			return err
 		}
@@ -2041,7 +2085,18 @@ func (o *xxx_SetNTMSUIOptionsWOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_lpObjectId := func(ptr interface{}) { o.ObjectID = *ptr.(**dtyp.GUID) }
+		_s_lpObjectId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.ObjectID = nil
+				} else {
+					o.ObjectID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectID, _s_lpObjectId, _ptr_lpObjectId); err != nil {
 			return err
 		}

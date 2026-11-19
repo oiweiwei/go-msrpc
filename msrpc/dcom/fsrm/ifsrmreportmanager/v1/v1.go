@@ -660,7 +660,18 @@ func (o *xxx_EnumReportJobsOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_reportJobs := func(ptr interface{}) { o.ReportJobs = *ptr.(**fsrm.Collection) }
+		_s_reportJobs := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.Collection:
+				if ptr == nil {
+					o.ReportJobs = nil
+				} else {
+					o.ReportJobs = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReportJobs", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReportJobs, _s_reportJobs, _ptr_reportJobs); err != nil {
 			return err
 		}
@@ -924,7 +935,18 @@ func (o *xxx_CreateReportJobOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_reportJob := func(ptr interface{}) { o.ReportJob = *ptr.(**fsrm.ReportJob) }
+		_s_reportJob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.ReportJob:
+				if ptr == nil {
+					o.ReportJob = nil
+				} else {
+					o.ReportJob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReportJob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReportJob, _s_reportJob, _ptr_reportJob); err != nil {
 			return err
 		}
@@ -1131,7 +1153,18 @@ func (o *xxx_GetReportJobOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_taskName := func(ptr interface{}) { o.TaskName = *ptr.(**oaut.String) }
+		_s_taskName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.TaskName = nil
+				} else {
+					o.TaskName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TaskName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TaskName, _s_taskName, _ptr_taskName); err != nil {
 			return err
 		}
@@ -1230,7 +1263,18 @@ func (o *xxx_GetReportJobOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_reportJob := func(ptr interface{}) { o.ReportJob = *ptr.(**fsrm.ReportJob) }
+		_s_reportJob := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **fsrm.ReportJob:
+				if ptr == nil {
+					o.ReportJob = nil
+				} else {
+					o.ReportJob = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReportJob", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReportJob, _s_reportJob, _ptr_reportJob); err != nil {
 			return err
 		}
@@ -1507,7 +1551,18 @@ func (o *xxx_GetOutputDirectoryOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -1732,7 +1787,18 @@ func (o *xxx_SetOutputDirectoryOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_path := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_path := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_path, _ptr_path); err != nil {
 			return err
 		}
@@ -2336,7 +2402,18 @@ func (o *xxx_GetDefaultFilterOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_filterValue := func(ptr interface{}) { o.FilterValue = *ptr.(**oaut.Variant) }
+		_s_filterValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.FilterValue = nil
+				} else {
+					o.FilterValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.FilterValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.FilterValue, _s_filterValue, _ptr_filterValue); err != nil {
 			return err
 		}
@@ -2888,7 +2965,18 @@ func (o *xxx_GetReportSizeLimitOperation) UnmarshalNDRResponse(ctx context.Conte
 			}
 			return nil
 		})
-		_s_limitValue := func(ptr interface{}) { o.LimitValue = *ptr.(**oaut.Variant) }
+		_s_limitValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.LimitValue = nil
+				} else {
+					o.LimitValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LimitValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LimitValue, _s_limitValue, _ptr_limitValue); err != nil {
 			return err
 		}

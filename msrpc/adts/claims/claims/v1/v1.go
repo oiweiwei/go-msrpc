@@ -223,7 +223,18 @@ func (o *ClaimEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_Id := func(ptr interface{}) { o.ID = *ptr.(*string) }
+	_s_Id := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				o.ID = ""
+			} else {
+				o.ID = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ID", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ID, _s_Id, _ptr_Id); err != nil {
 		return err
 	}
@@ -489,7 +500,18 @@ func (o *ClaimEntry_Values_ClaimEntryInt64) UnmarshalNDR(ctx context.Context, w 
 		}
 		return nil
 	})
-	_s_Int64Values := func(ptr interface{}) { o.Int64Values = *ptr.(*[]int64) }
+	_s_Int64Values := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]int64:
+			if ptr == nil {
+				o.Int64Values = nil
+			} else {
+				o.Int64Values = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Int64Values", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Int64Values, _s_Int64Values, _ptr_Int64Values); err != nil {
 		return err
 	}
@@ -589,7 +611,18 @@ func (o *ClaimEntry_Values_ClaimEntryUint64) UnmarshalNDR(ctx context.Context, w
 		}
 		return nil
 	})
-	_s_Uint64Values := func(ptr interface{}) { o.Uint64Values = *ptr.(*[]uint64) }
+	_s_Uint64Values := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]uint64:
+			if ptr == nil {
+				o.Uint64Values = nil
+			} else {
+				o.Uint64Values = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Uint64Values", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Uint64Values, _s_Uint64Values, _ptr_Uint64Values); err != nil {
 		return err
 	}
@@ -701,14 +734,36 @@ func (o *ClaimEntry_Values_ClaimEntryString) UnmarshalNDR(ctx context.Context, w
 				}
 				return nil
 			})
-			_s_StringValues := func(ptr interface{}) { o.StringValues[i1] = *ptr.(*string) }
+			_s_StringValues := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case *string:
+					if ptr == nil {
+						o.StringValues[i1] = ""
+					} else {
+						o.StringValues[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StringValues[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.StringValues[i1], _s_StringValues, _ptr_StringValues); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_StringValues := func(ptr interface{}) { o.StringValues = *ptr.(*[]string) }
+	_s_StringValues := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]string:
+			if ptr == nil {
+				o.StringValues = nil
+			} else {
+				o.StringValues = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StringValues", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.StringValues, _s_StringValues, _ptr_StringValues); err != nil {
 		return err
 	}
@@ -808,7 +863,18 @@ func (o *ClaimEntry_Values_ClaimEntryBoolean) UnmarshalNDR(ctx context.Context, 
 		}
 		return nil
 	})
-	_s_BooleanValues := func(ptr interface{}) { o.BooleanValues = *ptr.(*[]uint64) }
+	_s_BooleanValues := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]uint64:
+			if ptr == nil {
+				o.BooleanValues = nil
+			} else {
+				o.BooleanValues = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BooleanValues", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.BooleanValues, _s_BooleanValues, _ptr_BooleanValues); err != nil {
 		return err
 	}
@@ -933,7 +999,18 @@ func (o *ClaimsArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_ClaimEntries := func(ptr interface{}) { o.ClaimEntries = *ptr.(*[]*ClaimEntry) }
+	_s_ClaimEntries := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*ClaimEntry:
+			if ptr == nil {
+				o.ClaimEntries = nil
+			} else {
+				o.ClaimEntries = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClaimEntries", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ClaimEntries, _s_ClaimEntries, _ptr_ClaimEntries); err != nil {
 		return err
 	}
@@ -1068,7 +1145,18 @@ func (o *ClaimsSet) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_ClaimsArrays := func(ptr interface{}) { o.ClaimsArrays = *ptr.(*[]*ClaimsArray) }
+	_s_ClaimsArrays := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*ClaimsArray:
+			if ptr == nil {
+				o.ClaimsArrays = nil
+			} else {
+				o.ClaimsArrays = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClaimsArrays", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ClaimsArrays, _s_ClaimsArrays, _ptr_ClaimsArrays); err != nil {
 		return err
 	}
@@ -1105,7 +1193,18 @@ func (o *ClaimsSet) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_ReservedField := func(ptr interface{}) { _ReservedField = *ptr.(*[]byte) }
+	_s_ReservedField := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				_ReservedField = nil
+			} else {
+				_ReservedField = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field _ReservedField", ptr))
+		}
+	}
 	if err := w.ReadPointer(&_ReservedField, _s_ReservedField, _ptr_ReservedField); err != nil {
 		return err
 	}
@@ -1245,7 +1344,18 @@ func (o *ClaimsSetMetadata) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_ClaimsSet := func(ptr interface{}) { o.ClaimsSet = *ptr.(*[]byte) }
+	_s_ClaimsSet := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.ClaimsSet = nil
+			} else {
+				o.ClaimsSet = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ClaimsSet", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ClaimsSet, _s_ClaimsSet, _ptr_ClaimsSet); err != nil {
 		return err
 	}
@@ -1288,7 +1398,18 @@ func (o *ClaimsSetMetadata) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		}
 		return nil
 	})
-	_s_ReservedField := func(ptr interface{}) { _ReservedField = *ptr.(*[]byte) }
+	_s_ReservedField := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				_ReservedField = nil
+			} else {
+				_ReservedField = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field _ReservedField", ptr))
+		}
+	}
 	if err := w.ReadPointer(&_ReservedField, _s_ReservedField, _ptr_ReservedField); err != nil {
 		return err
 	}

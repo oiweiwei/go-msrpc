@@ -370,7 +370,18 @@ func (o *xxx_GetNTMSServerObjectInformationAOperation) UnmarshalNDRRequest(ctx c
 			}
 			return nil
 		})
-		_s_lpObjectId := func(ptr interface{}) { o.ObjectID = *ptr.(**dtyp.GUID) }
+		_s_lpObjectId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dtyp.GUID:
+				if ptr == nil {
+					o.ObjectID = nil
+				} else {
+					o.ObjectID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ObjectID, _s_lpObjectId, _ptr_lpObjectId); err != nil {
 			return err
 		}

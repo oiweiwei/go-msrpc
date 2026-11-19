@@ -1611,7 +1611,18 @@ func (o *xxx_DoConnectExOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_szDNPrefix := func(ptr interface{}) { o.DNPrefix = *ptr.(*string) }
+		_s_szDNPrefix := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.DNPrefix = ""
+				} else {
+					o.DNPrefix = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DNPrefix", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DNPrefix, _s_szDNPrefix, _ptr_szDNPrefix); err != nil {
 			return err
 		}
@@ -1627,7 +1638,18 @@ func (o *xxx_DoConnectExOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_szDisplayName := func(ptr interface{}) { o.DisplayName = *ptr.(*string) }
+		_s_szDisplayName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.DisplayName = ""
+				} else {
+					o.DisplayName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DisplayName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DisplayName, _s_szDisplayName, _ptr_szDisplayName); err != nil {
 			return err
 		}

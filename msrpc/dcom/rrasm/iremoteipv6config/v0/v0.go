@@ -401,7 +401,18 @@ func (o *xxx_GetAddressListOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_ppIPV6AddressList := func(ptr interface{}) { o.IPv6AddressList = *ptr.(*[]*IPv6Address) }
+		_s_ppIPV6AddressList := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*IPv6Address:
+				if ptr == nil {
+					o.IPv6AddressList = nil
+				} else {
+					o.IPv6AddressList = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.IPv6AddressList", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.IPv6AddressList, _s_ppIPV6AddressList, _ptr_ppIPV6AddressList); err != nil {
 			return err
 		}

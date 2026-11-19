@@ -1996,7 +1996,18 @@ func (o *Record) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pRecInfo := func(ptr interface{}) { o.RecordInfo = *ptr.(**dcom.InterfacePointer) }
+	_s_pRecInfo := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **dcom.InterfacePointer:
+			if ptr == nil {
+				o.RecordInfo = nil
+			} else {
+				o.RecordInfo = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RecordInfo", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.RecordInfo, _s_pRecInfo, _ptr_pRecInfo); err != nil {
 		return err
 	}
@@ -2025,7 +2036,18 @@ func (o *Record) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pRecord := func(ptr interface{}) { o.Record = *ptr.(*[]byte) }
+	_s_pRecord := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Record = nil
+			} else {
+				o.Record = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Record", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Record, _s_pRecord, _ptr_pRecord); err != nil {
 		return err
 	}
@@ -3224,7 +3246,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_BytePtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_BytePtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3237,7 +3270,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_ShortPtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_ShortPtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3250,7 +3294,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_LongPtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_LongPtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3263,7 +3318,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_LongLongPtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_LongLongPtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3276,7 +3342,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_FloatPtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_FloatPtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3289,7 +3366,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_DoublePtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_DoublePtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3302,7 +3390,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_BoolPtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_BoolPtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3315,7 +3414,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_HResultPtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_HResultPtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3333,7 +3443,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_DatePtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_DatePtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3406,7 +3527,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_CharPtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_CharPtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3419,7 +3551,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_UshortPtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_UshortPtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3432,7 +3575,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_UlongPtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_UlongPtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3445,7 +3599,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_UlongLongPtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_UlongLongPtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3458,7 +3623,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_IntPtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_IntPtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3471,7 +3647,18 @@ func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 			}
 			return nil
 		})
-		_s_o := func(ptr interface{}) { o.Value = *ptr.(**Variant_VarUnion_UintPtr) }
+		_s_o := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant_VarUnion_UintPtr:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_o, _ptr_o); err != nil {
 			return err
 		}
@@ -3762,7 +3949,18 @@ func (o *Variant_VarUnion_BSTR) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		}
 		return nil
 	})
-	_s_bstrVal := func(ptr interface{}) { o.BSTR = *ptr.(**String) }
+	_s_bstrVal := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **String:
+			if ptr == nil {
+				o.BSTR = nil
+			} else {
+				o.BSTR = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BSTR", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.BSTR, _s_bstrVal, _ptr_bstrVal); err != nil {
 		return err
 	}
@@ -3812,7 +4010,18 @@ func (o *Variant_VarUnion_IUnknown) UnmarshalNDR(ctx context.Context, w ndr.Read
 		}
 		return nil
 	})
-	_s_punkVal := func(ptr interface{}) { o.IUnknown = *ptr.(**dcom.Unknown) }
+	_s_punkVal := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **dcom.Unknown:
+			if ptr == nil {
+				o.IUnknown = nil
+			} else {
+				o.IUnknown = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.IUnknown", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.IUnknown, _s_punkVal, _ptr_punkVal); err != nil {
 		return err
 	}
@@ -3862,7 +4071,18 @@ func (o *Variant_VarUnion_IDispatch) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		}
 		return nil
 	})
-	_s_pdispVal := func(ptr interface{}) { o.IDispatch = *ptr.(**Dispatch) }
+	_s_pdispVal := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **Dispatch:
+			if ptr == nil {
+				o.IDispatch = nil
+			} else {
+				o.IDispatch = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.IDispatch", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.IDispatch, _s_pdispVal, _ptr_pdispVal); err != nil {
 		return err
 	}
@@ -3925,13 +4145,35 @@ func (o *Variant_VarUnion_SafeArray) UnmarshalNDR(ctx context.Context, w ndr.Rea
 			}
 			return nil
 		})
-		_s_parray := func(ptr interface{}) { o.SafeArray = *ptr.(**SafeArray) }
+		_s_parray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **SafeArray:
+				if ptr == nil {
+					o.SafeArray = nil
+				} else {
+					o.SafeArray = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SafeArray", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SafeArray, _s_parray, _ptr_parray); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_parray := func(ptr interface{}) { o.SafeArray = *ptr.(**SafeArray) }
+	_s_parray := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SafeArray:
+			if ptr == nil {
+				o.SafeArray = nil
+			} else {
+				o.SafeArray = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SafeArray", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SafeArray, _s_parray, _ptr_parray); err != nil {
 		return err
 	}
@@ -3981,7 +4223,18 @@ func (o *Variant_VarUnion_Brecord) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		}
 		return nil
 	})
-	_s_brecVal := func(ptr interface{}) { o.Brecord = *ptr.(**Record) }
+	_s_brecVal := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **Record:
+			if ptr == nil {
+				o.Brecord = nil
+			} else {
+				o.Brecord = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Brecord", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Brecord, _s_brecVal, _ptr_brecVal); err != nil {
 		return err
 	}
@@ -4207,7 +4460,18 @@ func (o *Variant_VarUnion_CurrencyPtr) UnmarshalNDR(ctx context.Context, w ndr.R
 		}
 		return nil
 	})
-	_s_pcyVal := func(ptr interface{}) { o.CurrencyPtr = *ptr.(**Currency) }
+	_s_pcyVal := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **Currency:
+			if ptr == nil {
+				o.CurrencyPtr = nil
+			} else {
+				o.CurrencyPtr = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CurrencyPtr", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.CurrencyPtr, _s_pcyVal, _ptr_pcyVal); err != nil {
 		return err
 	}
@@ -4292,13 +4556,35 @@ func (o *Variant_VarUnion_BSTRPtr) UnmarshalNDR(ctx context.Context, w ndr.Reade
 			}
 			return nil
 		})
-		_s_pbstrVal := func(ptr interface{}) { o.BSTRPtr = *ptr.(**String) }
+		_s_pbstrVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **String:
+				if ptr == nil {
+					o.BSTRPtr = nil
+				} else {
+					o.BSTRPtr = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BSTRPtr", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.BSTRPtr, _s_pbstrVal, _ptr_pbstrVal); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pbstrVal := func(ptr interface{}) { o.BSTRPtr = *ptr.(**String) }
+	_s_pbstrVal := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **String:
+			if ptr == nil {
+				o.BSTRPtr = nil
+			} else {
+				o.BSTRPtr = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.BSTRPtr", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.BSTRPtr, _s_pbstrVal, _ptr_pbstrVal); err != nil {
 		return err
 	}
@@ -4361,13 +4647,35 @@ func (o *Variant_VarUnion_IUnknownPtr) UnmarshalNDR(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_ppunkVal := func(ptr interface{}) { o.IUnknownPtr = *ptr.(**dcom.Unknown) }
+		_s_ppunkVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.IUnknownPtr = nil
+				} else {
+					o.IUnknownPtr = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.IUnknownPtr", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.IUnknownPtr, _s_ppunkVal, _ptr_ppunkVal); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_ppunkVal := func(ptr interface{}) { o.IUnknownPtr = *ptr.(**dcom.Unknown) }
+	_s_ppunkVal := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **dcom.Unknown:
+			if ptr == nil {
+				o.IUnknownPtr = nil
+			} else {
+				o.IUnknownPtr = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.IUnknownPtr", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.IUnknownPtr, _s_ppunkVal, _ptr_ppunkVal); err != nil {
 		return err
 	}
@@ -4430,13 +4738,35 @@ func (o *Variant_VarUnion_IDispatchPtr) UnmarshalNDR(ctx context.Context, w ndr.
 			}
 			return nil
 		})
-		_s_ppdispVal := func(ptr interface{}) { o.IDispatchPtr = *ptr.(**Dispatch) }
+		_s_ppdispVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Dispatch:
+				if ptr == nil {
+					o.IDispatchPtr = nil
+				} else {
+					o.IDispatchPtr = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.IDispatchPtr", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.IDispatchPtr, _s_ppdispVal, _ptr_ppdispVal); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_ppdispVal := func(ptr interface{}) { o.IDispatchPtr = *ptr.(**Dispatch) }
+	_s_ppdispVal := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **Dispatch:
+			if ptr == nil {
+				o.IDispatchPtr = nil
+			} else {
+				o.IDispatchPtr = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.IDispatchPtr", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.IDispatchPtr, _s_ppdispVal, _ptr_ppdispVal); err != nil {
 		return err
 	}
@@ -4512,19 +4842,52 @@ func (o *Variant_VarUnion_SafeArrayPtr) UnmarshalNDR(ctx context.Context, w ndr.
 				}
 				return nil
 			})
-			_s_pparray := func(ptr interface{}) { o.SafeArrayPtr = *ptr.(**SafeArray) }
+			_s_pparray := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **SafeArray:
+					if ptr == nil {
+						o.SafeArrayPtr = nil
+					} else {
+						o.SafeArrayPtr = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SafeArrayPtr", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.SafeArrayPtr, _s_pparray, _ptr_pparray); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pparray := func(ptr interface{}) { o.SafeArrayPtr = *ptr.(**SafeArray) }
+		_s_pparray := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **SafeArray:
+				if ptr == nil {
+					o.SafeArrayPtr = nil
+				} else {
+					o.SafeArrayPtr = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SafeArrayPtr", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SafeArrayPtr, _s_pparray, _ptr_pparray); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pparray := func(ptr interface{}) { o.SafeArrayPtr = *ptr.(**SafeArray) }
+	_s_pparray := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **SafeArray:
+			if ptr == nil {
+				o.SafeArrayPtr = nil
+			} else {
+				o.SafeArrayPtr = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SafeArrayPtr", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.SafeArrayPtr, _s_pparray, _ptr_pparray); err != nil {
 		return err
 	}
@@ -4587,13 +4950,35 @@ func (o *Variant_VarUnion_VariantPtr) UnmarshalNDR(ctx context.Context, w ndr.Re
 			}
 			return nil
 		})
-		_s_pvarVal := func(ptr interface{}) { o.VariantPtr = *ptr.(**Variant) }
+		_s_pvarVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant:
+				if ptr == nil {
+					o.VariantPtr = nil
+				} else {
+					o.VariantPtr = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VariantPtr", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.VariantPtr, _s_pvarVal, _ptr_pvarVal); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pvarVal := func(ptr interface{}) { o.VariantPtr = *ptr.(**Variant) }
+	_s_pvarVal := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **Variant:
+			if ptr == nil {
+				o.VariantPtr = nil
+			} else {
+				o.VariantPtr = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VariantPtr", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.VariantPtr, _s_pvarVal, _ptr_pvarVal); err != nil {
 		return err
 	}
@@ -4940,7 +5325,18 @@ func (o *Variant_VarUnion_DecimalPtr) UnmarshalNDR(ctx context.Context, w ndr.Re
 		}
 		return nil
 	})
-	_s_pdecVal := func(ptr interface{}) { o.DecimalPtr = *ptr.(**Decimal) }
+	_s_pdecVal := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **Decimal:
+			if ptr == nil {
+				o.DecimalPtr = nil
+			} else {
+				o.DecimalPtr = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DecimalPtr", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.DecimalPtr, _s_pdecVal, _ptr_pdecVal); err != nil {
 		return err
 	}
@@ -5154,14 +5550,36 @@ func (o *SafeArrayString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 				}
 				return nil
 			})
-			_s_aBstr := func(ptr interface{}) { o.String[i1] = *ptr.(**String) }
+			_s_aBstr := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **String:
+					if ptr == nil {
+						o.String[i1] = nil
+					} else {
+						o.String[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.String[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.String[i1], _s_aBstr, _ptr_aBstr); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_aBstr := func(ptr interface{}) { o.String = *ptr.(*[]*String) }
+	_s_aBstr := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*String:
+			if ptr == nil {
+				o.String = nil
+			} else {
+				o.String = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.String", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.String, _s_aBstr, _ptr_aBstr); err != nil {
 		return err
 	}
@@ -5295,14 +5713,36 @@ func (o *SafeArrayUnknown) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 				}
 				return nil
 			})
-			_s_apUnknown := func(ptr interface{}) { o.Unknown[i1] = *ptr.(**dcom.Unknown) }
+			_s_apUnknown := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **dcom.Unknown:
+					if ptr == nil {
+						o.Unknown[i1] = nil
+					} else {
+						o.Unknown[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Unknown[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Unknown[i1], _s_apUnknown, _ptr_apUnknown); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_apUnknown := func(ptr interface{}) { o.Unknown = *ptr.(*[]*dcom.Unknown) }
+	_s_apUnknown := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*dcom.Unknown:
+			if ptr == nil {
+				o.Unknown = nil
+			} else {
+				o.Unknown = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Unknown", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Unknown, _s_apUnknown, _ptr_apUnknown); err != nil {
 		return err
 	}
@@ -5436,14 +5876,36 @@ func (o *SafeArrayDispatch) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 				}
 				return nil
 			})
-			_s_apDispatch := func(ptr interface{}) { o.Dispatch[i1] = *ptr.(**Dispatch) }
+			_s_apDispatch := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **Dispatch:
+					if ptr == nil {
+						o.Dispatch[i1] = nil
+					} else {
+						o.Dispatch[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Dispatch[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Dispatch[i1], _s_apDispatch, _ptr_apDispatch); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_apDispatch := func(ptr interface{}) { o.Dispatch = *ptr.(*[]*Dispatch) }
+	_s_apDispatch := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*Dispatch:
+			if ptr == nil {
+				o.Dispatch = nil
+			} else {
+				o.Dispatch = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Dispatch", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Dispatch, _s_apDispatch, _ptr_apDispatch); err != nil {
 		return err
 	}
@@ -5575,14 +6037,36 @@ func (o *SafeArrayVariant) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 				}
 				return nil
 			})
-			_s_aVariant := func(ptr interface{}) { o.Variant[i1] = *ptr.(**Variant) }
+			_s_aVariant := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **Variant:
+					if ptr == nil {
+						o.Variant[i1] = nil
+					} else {
+						o.Variant[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Variant[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Variant[i1], _s_aVariant, _ptr_aVariant); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_aVariant := func(ptr interface{}) { o.Variant = *ptr.(*[]*Variant) }
+	_s_aVariant := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*Variant:
+			if ptr == nil {
+				o.Variant = nil
+			} else {
+				o.Variant = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Variant", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Variant, _s_aVariant, _ptr_aVariant); err != nil {
 		return err
 	}
@@ -5714,14 +6198,36 @@ func (o *SafeArrayRecord) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 				}
 				return nil
 			})
-			_s_aRecord := func(ptr interface{}) { o.Record[i1] = *ptr.(**Record) }
+			_s_aRecord := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **Record:
+					if ptr == nil {
+						o.Record[i1] = nil
+					} else {
+						o.Record[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Record[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Record[i1], _s_aRecord, _ptr_aRecord); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_aRecord := func(ptr interface{}) { o.Record = *ptr.(*[]*Record) }
+	_s_aRecord := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*Record:
+			if ptr == nil {
+				o.Record = nil
+			} else {
+				o.Record = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Record", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Record, _s_aRecord, _ptr_aRecord); err != nil {
 		return err
 	}
@@ -5869,14 +6375,36 @@ func (o *SafeArrayHaveIID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 				}
 				return nil
 			})
-			_s_apUnknown := func(ptr interface{}) { o.Unknown[i1] = *ptr.(**dcom.Unknown) }
+			_s_apUnknown := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **dcom.Unknown:
+					if ptr == nil {
+						o.Unknown[i1] = nil
+					} else {
+						o.Unknown[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Unknown[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Unknown[i1], _s_apUnknown, _ptr_apUnknown); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_apUnknown := func(ptr interface{}) { o.Unknown = *ptr.(*[]*dcom.Unknown) }
+	_s_apUnknown := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*dcom.Unknown:
+			if ptr == nil {
+				o.Unknown = nil
+			} else {
+				o.Unknown = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Unknown", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Unknown, _s_apUnknown, _ptr_apUnknown); err != nil {
 		return err
 	}
@@ -5996,7 +6524,18 @@ func (o *ByteSizedArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pData := func(ptr interface{}) { o.Data = *ptr.(*[]byte) }
+	_s_pData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]byte:
+			if ptr == nil {
+				o.Data = nil
+			} else {
+				o.Data = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Data, _s_pData, _ptr_pData); err != nil {
 		return err
 	}
@@ -6107,7 +6646,18 @@ func (o *WordSizedArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pData := func(ptr interface{}) { o.Data = *ptr.(*[]uint16) }
+	_s_pData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]uint16:
+			if ptr == nil {
+				o.Data = nil
+			} else {
+				o.Data = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Data, _s_pData, _ptr_pData); err != nil {
 		return err
 	}
@@ -6218,7 +6768,18 @@ func (o *DwordSizedArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		}
 		return nil
 	})
-	_s_pData := func(ptr interface{}) { o.Data = *ptr.(*[]uint32) }
+	_s_pData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]uint32:
+			if ptr == nil {
+				o.Data = nil
+			} else {
+				o.Data = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Data, _s_pData, _ptr_pData); err != nil {
 		return err
 	}
@@ -6329,7 +6890,18 @@ func (o *HyperSizedArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		}
 		return nil
 	})
-	_s_pData := func(ptr interface{}) { o.Data = *ptr.(*[]int64) }
+	_s_pData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]int64:
+			if ptr == nil {
+				o.Data = nil
+			} else {
+				o.Data = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Data, _s_pData, _ptr_pData); err != nil {
 		return err
 	}
@@ -7416,14 +7988,36 @@ func (o *DispatchParams) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 				}
 				return nil
 			})
-			_s_rgvarg := func(ptr interface{}) { o.Args[i1] = *ptr.(**Variant) }
+			_s_rgvarg := func(ptr any) {
+				switch ptr := ptr.(type) {
+				case **Variant:
+					if ptr == nil {
+						o.Args[i1] = nil
+					} else {
+						o.Args[i1] = *ptr
+					}
+				default:
+					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Args[i1]", ptr))
+				}
+			}
 			if err := w.ReadPointer(&o.Args[i1], _s_rgvarg, _ptr_rgvarg); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_rgvarg := func(ptr interface{}) { o.Args = *ptr.(*[]*Variant) }
+	_s_rgvarg := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*Variant:
+			if ptr == nil {
+				o.Args = nil
+			} else {
+				o.Args = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Args", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Args, _s_rgvarg, _ptr_rgvarg); err != nil {
 		return err
 	}
@@ -7452,7 +8046,18 @@ func (o *DispatchParams) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_rgdispidNamedArgs := func(ptr interface{}) { o.NamedArgs = *ptr.(*[]int32) }
+	_s_rgdispidNamedArgs := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]int32:
+			if ptr == nil {
+				o.NamedArgs = nil
+			} else {
+				o.NamedArgs = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NamedArgs", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.NamedArgs, _s_rgdispidNamedArgs, _ptr_rgdispidNamedArgs); err != nil {
 		return err
 	}
@@ -7637,7 +8242,18 @@ func (o *ExceptionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_bstrSource := func(ptr interface{}) { o.Source = *ptr.(**String) }
+	_s_bstrSource := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **String:
+			if ptr == nil {
+				o.Source = nil
+			} else {
+				o.Source = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Source", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Source, _s_bstrSource, _ptr_bstrSource); err != nil {
 		return err
 	}
@@ -7650,7 +8266,18 @@ func (o *ExceptionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_bstrDescription := func(ptr interface{}) { o.Description = *ptr.(**String) }
+	_s_bstrDescription := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **String:
+			if ptr == nil {
+				o.Description = nil
+			} else {
+				o.Description = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Description", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Description, _s_bstrDescription, _ptr_bstrDescription); err != nil {
 		return err
 	}
@@ -7663,7 +8290,18 @@ func (o *ExceptionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_bstrHelpFile := func(ptr interface{}) { o.HelpFile = *ptr.(**String) }
+	_s_bstrHelpFile := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **String:
+			if ptr == nil {
+				o.HelpFile = nil
+			} else {
+				o.HelpFile = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.HelpFile", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.HelpFile, _s_bstrHelpFile, _ptr_bstrHelpFile); err != nil {
 		return err
 	}
@@ -7946,7 +8584,18 @@ func (o *TypeDesc_Union_TypeDesc) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		}
 		return nil
 	})
-	_s_lptdesc := func(ptr interface{}) { o.TypeDesc = *ptr.(**TypeDesc) }
+	_s_lptdesc := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **TypeDesc:
+			if ptr == nil {
+				o.TypeDesc = nil
+			} else {
+				o.TypeDesc = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TypeDesc", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.TypeDesc, _s_lptdesc, _ptr_lptdesc); err != nil {
 		return err
 	}
@@ -7997,7 +8646,18 @@ func (o *TypeDesc_Union_ArrayDesc) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		}
 		return nil
 	})
-	_s_lpadesc := func(ptr interface{}) { o.ArrayDesc = *ptr.(**ArrayDesc) }
+	_s_lpadesc := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ArrayDesc:
+			if ptr == nil {
+				o.ArrayDesc = nil
+			} else {
+				o.ArrayDesc = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ArrayDesc", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ArrayDesc, _s_lpadesc, _ptr_lpadesc); err != nil {
 		return err
 	}
@@ -8231,7 +8891,18 @@ func (o *ParamDescEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_varDefaultValue := func(ptr interface{}) { o.VarDefaultValue = *ptr.(**Variant) }
+	_s_varDefaultValue := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **Variant:
+			if ptr == nil {
+				o.VarDefaultValue = nil
+			} else {
+				o.VarDefaultValue = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.VarDefaultValue", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.VarDefaultValue, _s_varDefaultValue, _ptr_varDefaultValue); err != nil {
 		return err
 	}
@@ -8311,7 +8982,18 @@ func (o *ParamDesc) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_pparamdescex := func(ptr interface{}) { o.ParamDescEx = *ptr.(**ParamDescEx) }
+	_s_pparamdescex := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ParamDescEx:
+			if ptr == nil {
+				o.ParamDescEx = nil
+			} else {
+				o.ParamDescEx = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ParamDescEx", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.ParamDescEx, _s_pparamdescex, _ptr_pparamdescex); err != nil {
 		return err
 	}
@@ -8571,7 +9253,18 @@ func (o *FuncDesc) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lReserved1 := func(ptr interface{}) { _lReserved1 = *ptr.(*[]int32) }
+	_s_lReserved1 := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]int32:
+			if ptr == nil {
+				_lReserved1 = nil
+			} else {
+				_lReserved1 = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field _lReserved1", ptr))
+		}
+	}
 	if err := w.ReadPointer(&_lReserved1, _s_lReserved1, _ptr_lReserved1); err != nil {
 		return err
 	}
@@ -8603,7 +9296,18 @@ func (o *FuncDesc) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lprgelemdescParam := func(ptr interface{}) { o.LprgelemdescParam = *ptr.(*[]*ElemDesc) }
+	_s_lprgelemdescParam := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*ElemDesc:
+			if ptr == nil {
+				o.LprgelemdescParam = nil
+			} else {
+				o.LprgelemdescParam = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LprgelemdescParam", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.LprgelemdescParam, _s_lprgelemdescParam, _ptr_lprgelemdescParam); err != nil {
 		return err
 	}
@@ -8740,7 +9444,18 @@ func (o *VarDesc) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpstrReserved := func(ptr interface{}) { _lpstrReserved = *ptr.(*string) }
+	_s_lpstrReserved := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				_lpstrReserved = ""
+			} else {
+				_lpstrReserved = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field _lpstrReserved", ptr))
+		}
+	}
 	if err := w.ReadPointer(&_lpstrReserved, _s_lpstrReserved, _ptr_lpstrReserved); err != nil {
 		return err
 	}
@@ -8980,13 +9695,35 @@ func (o *VarDesc_Union_Value) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 			}
 			return nil
 		})
-		_s_lpvarValue := func(ptr interface{}) { o.Value = *ptr.(**Variant) }
+		_s_lpvarValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **Variant:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_lpvarValue, _ptr_lpvarValue); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_lpvarValue := func(ptr interface{}) { o.Value = *ptr.(**Variant) }
+	_s_lpvarValue := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **Variant:
+			if ptr == nil {
+				o.Value = nil
+			} else {
+				o.Value = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Value, _s_lpvarValue, _ptr_lpvarValue); err != nil {
 		return err
 	}
@@ -9255,7 +9992,18 @@ func (o *TypeAttribute) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_lpstrReserved4 := func(ptr interface{}) { _lpstrReserved4 = *ptr.(*string) }
+	_s_lpstrReserved4 := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *string:
+			if ptr == nil {
+				_lpstrReserved4 = ""
+			} else {
+				_lpstrReserved4 = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field _lpstrReserved4", ptr))
+		}
+	}
 	if err := w.ReadPointer(&_lpstrReserved4, _s_lpstrReserved4, _ptr_lpstrReserved4); err != nil {
 		return err
 	}
@@ -9500,7 +10248,18 @@ func (o *CustomDataItem) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_varValue := func(ptr interface{}) { o.Value = *ptr.(**Variant) }
+	_s_varValue := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **Variant:
+			if ptr == nil {
+				o.Value = nil
+			} else {
+				o.Value = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.Value, _s_varValue, _ptr_varValue); err != nil {
 		return err
 	}
@@ -9617,7 +10376,18 @@ func (o *CustomData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 		return nil
 	})
-	_s_prgCustData := func(ptr interface{}) { o.CustomData = *ptr.(*[]*CustomDataItem) }
+	_s_prgCustData := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case *[]*CustomDataItem:
+			if ptr == nil {
+				o.CustomData = nil
+			} else {
+				o.CustomData = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CustomData", ptr))
+		}
+	}
 	if err := w.ReadPointer(&o.CustomData, _s_prgCustData, _ptr_prgCustData); err != nil {
 		return err
 	}

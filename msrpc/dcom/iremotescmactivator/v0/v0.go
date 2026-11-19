@@ -209,7 +209,18 @@ func (o *xxx_RemoteGetClassObjectOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_pActProperties := func(ptr interface{}) { o.ActPropertiesIn = *ptr.(**dcom.InterfacePointer) }
+		_s_pActProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.InterfacePointer:
+				if ptr == nil {
+					o.ActPropertiesIn = nil
+				} else {
+					o.ActPropertiesIn = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ActPropertiesIn", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ActPropertiesIn, _s_pActProperties, _ptr_pActProperties); err != nil {
 			return err
 		}
@@ -308,7 +319,18 @@ func (o *xxx_RemoteGetClassObjectOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppActProperties := func(ptr interface{}) { o.ActPropertiesOut = *ptr.(**dcom.InterfacePointer) }
+		_s_ppActProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.InterfacePointer:
+				if ptr == nil {
+					o.ActPropertiesOut = nil
+				} else {
+					o.ActPropertiesOut = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ActPropertiesOut", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ActPropertiesOut, _s_ppActProperties, _ptr_ppActProperties); err != nil {
 			return err
 		}
@@ -599,7 +621,18 @@ func (o *xxx_RemoteCreateInstanceOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_pUnkOuter := func(ptr interface{}) { o.Outer = *ptr.(**dcom.InterfacePointer) }
+		_s_pUnkOuter := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.InterfacePointer:
+				if ptr == nil {
+					o.Outer = nil
+				} else {
+					o.Outer = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Outer", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Outer, _s_pUnkOuter, _ptr_pUnkOuter); err != nil {
 			return err
 		}
@@ -618,7 +651,18 @@ func (o *xxx_RemoteCreateInstanceOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 			return nil
 		})
-		_s_pActProperties := func(ptr interface{}) { o.ActPropertiesIn = *ptr.(**dcom.InterfacePointer) }
+		_s_pActProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.InterfacePointer:
+				if ptr == nil {
+					o.ActPropertiesIn = nil
+				} else {
+					o.ActPropertiesIn = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ActPropertiesIn", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ActPropertiesIn, _s_pActProperties, _ptr_pActProperties); err != nil {
 			return err
 		}
@@ -717,7 +761,18 @@ func (o *xxx_RemoteCreateInstanceOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 			return nil
 		})
-		_s_ppActProperties := func(ptr interface{}) { o.ActPropertiesOut = *ptr.(**dcom.InterfacePointer) }
+		_s_ppActProperties := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.InterfacePointer:
+				if ptr == nil {
+					o.ActPropertiesOut = nil
+				} else {
+					o.ActPropertiesOut = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ActPropertiesOut", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ActPropertiesOut, _s_ppActProperties, _ptr_ppActProperties); err != nil {
 			return err
 		}

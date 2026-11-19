@@ -846,7 +846,18 @@ func (o *xxx_GetCalendarInfoOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_bstrCalendarName := func(ptr interface{}) { o.CalendarName = *ptr.(**oaut.String) }
+		_s_bstrCalendarName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.CalendarName = nil
+				} else {
+					o.CalendarName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CalendarName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CalendarName, _s_bstrCalendarName, _ptr_bstrCalendarName); err != nil {
 			return err
 		}
@@ -945,7 +956,18 @@ func (o *xxx_GetCalendarInfoOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pbstrCalendarXML := func(ptr interface{}) { o.CalendarXML = *ptr.(**oaut.String) }
+		_s_pbstrCalendarXML := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.CalendarXML = nil
+				} else {
+					o.CalendarXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CalendarXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CalendarXML, _s_pbstrCalendarXML, _ptr_pbstrCalendarXML); err != nil {
 			return err
 		}
@@ -1171,7 +1193,18 @@ func (o *xxx_CreateCalendarOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrCalendarXML := func(ptr interface{}) { o.CalendarXML = *ptr.(**oaut.String) }
+		_s_bstrCalendarXML := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.CalendarXML = nil
+				} else {
+					o.CalendarXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CalendarXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CalendarXML, _s_bstrCalendarXML, _ptr_bstrCalendarXML); err != nil {
 			return err
 		}
@@ -1483,7 +1516,18 @@ func (o *xxx_ModifyCalendarOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrCalendarXML := func(ptr interface{}) { o.CalendarXML = *ptr.(**oaut.String) }
+		_s_bstrCalendarXML := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.CalendarXML = nil
+				} else {
+					o.CalendarXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CalendarXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CalendarXML, _s_bstrCalendarXML, _ptr_bstrCalendarXML); err != nil {
 			return err
 		}
@@ -1812,7 +1856,18 @@ func (o *xxx_DeleteCalendarOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrCalendarName := func(ptr interface{}) { o.CalendarName = *ptr.(**oaut.String) }
+		_s_bstrCalendarName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.CalendarName = nil
+				} else {
+					o.CalendarName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CalendarName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CalendarName, _s_bstrCalendarName, _ptr_bstrCalendarName); err != nil {
 			return err
 		}
@@ -2124,7 +2179,18 @@ func (o *xxx_RenameCalendarOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrOldCalendarName := func(ptr interface{}) { o.OldCalendarName = *ptr.(**oaut.String) }
+		_s_bstrOldCalendarName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.OldCalendarName = nil
+				} else {
+					o.OldCalendarName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OldCalendarName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OldCalendarName, _s_bstrOldCalendarName, _ptr_bstrOldCalendarName); err != nil {
 			return err
 		}
@@ -2143,7 +2209,18 @@ func (o *xxx_RenameCalendarOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrNewCalendarName := func(ptr interface{}) { o.NewCalendarName = *ptr.(**oaut.String) }
+		_s_bstrNewCalendarName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.NewCalendarName = nil
+				} else {
+					o.NewCalendarName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NewCalendarName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NewCalendarName, _s_bstrNewCalendarName, _ptr_bstrNewCalendarName); err != nil {
 			return err
 		}
@@ -2448,7 +2525,18 @@ func (o *xxx_ComputeEventsOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_szStartTime := func(ptr interface{}) { o.StartTime = *ptr.(**oaut.String) }
+		_s_szStartTime := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.StartTime = nil
+				} else {
+					o.StartTime = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.StartTime", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.StartTime, _s_szStartTime, _ptr_szStartTime); err != nil {
 			return err
 		}
@@ -2467,7 +2555,18 @@ func (o *xxx_ComputeEventsOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 			return nil
 		})
-		_s_szEndTime := func(ptr interface{}) { o.EndTime = *ptr.(**oaut.String) }
+		_s_szEndTime := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.EndTime = nil
+				} else {
+					o.EndTime = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.EndTime", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.EndTime, _s_szEndTime, _ptr_szEndTime); err != nil {
 			return err
 		}
@@ -2601,7 +2700,18 @@ func (o *xxx_ComputeEventsOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pbstrEvents := func(ptr interface{}) { o.Events = *ptr.(**oaut.String) }
+		_s_pbstrEvents := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Events = nil
+				} else {
+					o.Events = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Events", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Events, _s_pbstrEvents, _ptr_pbstrEvents); err != nil {
 			return err
 		}
@@ -2620,7 +2730,18 @@ func (o *xxx_ComputeEventsOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_pbstrConflicts := func(ptr interface{}) { o.Conflicts = *ptr.(**oaut.String) }
+		_s_pbstrConflicts := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Conflicts = nil
+				} else {
+					o.Conflicts = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Conflicts", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Conflicts, _s_pbstrConflicts, _ptr_pbstrConflicts); err != nil {
 			return err
 		}
@@ -2861,7 +2982,18 @@ func (o *xxx_GetScheduleInfoOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_bstrScheduleName := func(ptr interface{}) { o.ScheduleName = *ptr.(**oaut.String) }
+		_s_bstrScheduleName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ScheduleName = nil
+				} else {
+					o.ScheduleName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ScheduleName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ScheduleName, _s_bstrScheduleName, _ptr_bstrScheduleName); err != nil {
 			return err
 		}
@@ -2960,7 +3092,18 @@ func (o *xxx_GetScheduleInfoOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_pbstrScheduleXML := func(ptr interface{}) { o.ScheduleXML = *ptr.(**oaut.String) }
+		_s_pbstrScheduleXML := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ScheduleXML = nil
+				} else {
+					o.ScheduleXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ScheduleXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ScheduleXML, _s_pbstrScheduleXML, _ptr_pbstrScheduleXML); err != nil {
 			return err
 		}
@@ -3171,7 +3314,18 @@ func (o *xxx_CreateScheduleOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrScheduleXML := func(ptr interface{}) { o.ScheduleXML = *ptr.(**oaut.String) }
+		_s_bstrScheduleXML := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ScheduleXML = nil
+				} else {
+					o.ScheduleXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ScheduleXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ScheduleXML, _s_bstrScheduleXML, _ptr_bstrScheduleXML); err != nil {
 			return err
 		}
@@ -3455,7 +3609,18 @@ func (o *xxx_ModifyScheduleOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrScheduleXML := func(ptr interface{}) { o.ScheduleXML = *ptr.(**oaut.String) }
+		_s_bstrScheduleXML := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ScheduleXML = nil
+				} else {
+					o.ScheduleXML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ScheduleXML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ScheduleXML, _s_bstrScheduleXML, _ptr_bstrScheduleXML); err != nil {
 			return err
 		}
@@ -3772,7 +3937,18 @@ func (o *xxx_DeleteScheduleOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrScheduleName := func(ptr interface{}) { o.ScheduleName = *ptr.(**oaut.String) }
+		_s_bstrScheduleName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ScheduleName = nil
+				} else {
+					o.ScheduleName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ScheduleName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ScheduleName, _s_bstrScheduleName, _ptr_bstrScheduleName); err != nil {
 			return err
 		}
@@ -4057,7 +4233,18 @@ func (o *xxx_RenameScheduleOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrOldScheduleName := func(ptr interface{}) { o.OldScheduleName = *ptr.(**oaut.String) }
+		_s_bstrOldScheduleName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.OldScheduleName = nil
+				} else {
+					o.OldScheduleName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.OldScheduleName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.OldScheduleName, _s_bstrOldScheduleName, _ptr_bstrOldScheduleName); err != nil {
 			return err
 		}
@@ -4076,7 +4263,18 @@ func (o *xxx_RenameScheduleOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 			return nil
 		})
-		_s_bstrNewScheduleName := func(ptr interface{}) { o.NewScheduleName = *ptr.(**oaut.String) }
+		_s_bstrNewScheduleName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.NewScheduleName = nil
+				} else {
+					o.NewScheduleName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.NewScheduleName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.NewScheduleName, _s_bstrNewScheduleName, _ptr_bstrNewScheduleName); err != nil {
 			return err
 		}
@@ -4381,7 +4579,18 @@ func (o *xxx_MoveBeforeCalendarOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrCalendarName := func(ptr interface{}) { o.CalendarName = *ptr.(**oaut.String) }
+		_s_bstrCalendarName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.CalendarName = nil
+				} else {
+					o.CalendarName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CalendarName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CalendarName, _s_bstrCalendarName, _ptr_bstrCalendarName); err != nil {
 			return err
 		}
@@ -4400,7 +4609,18 @@ func (o *xxx_MoveBeforeCalendarOperation) UnmarshalNDRRequest(ctx context.Contex
 			}
 			return nil
 		})
-		_s_bstrRefCalendarName := func(ptr interface{}) { o.ReferenceCalendarName = *ptr.(**oaut.String) }
+		_s_bstrRefCalendarName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReferenceCalendarName = nil
+				} else {
+					o.ReferenceCalendarName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReferenceCalendarName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReferenceCalendarName, _s_bstrRefCalendarName, _ptr_bstrRefCalendarName); err != nil {
 			return err
 		}
@@ -4732,7 +4952,18 @@ func (o *xxx_MoveAfterCalendarOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_bstrCalendarName := func(ptr interface{}) { o.CalendarName = *ptr.(**oaut.String) }
+		_s_bstrCalendarName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.CalendarName = nil
+				} else {
+					o.CalendarName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.CalendarName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.CalendarName, _s_bstrCalendarName, _ptr_bstrCalendarName); err != nil {
 			return err
 		}
@@ -4751,7 +4982,18 @@ func (o *xxx_MoveAfterCalendarOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_bstrRefCalendarName := func(ptr interface{}) { o.ReferenceCalendarName = *ptr.(**oaut.String) }
+		_s_bstrRefCalendarName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.ReferenceCalendarName = nil
+				} else {
+					o.ReferenceCalendarName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReferenceCalendarName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReferenceCalendarName, _s_bstrRefCalendarName, _ptr_bstrRefCalendarName); err != nil {
 			return err
 		}

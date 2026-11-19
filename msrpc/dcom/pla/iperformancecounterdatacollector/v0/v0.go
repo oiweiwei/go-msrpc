@@ -494,7 +494,18 @@ func (o *xxx_GetDataSourceNameOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_dsn := func(ptr interface{}) { o.DSN = *ptr.(**oaut.String) }
+		_s_dsn := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DSN = nil
+				} else {
+					o.DSN = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DSN", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DSN, _s_dsn, _ptr_dsn); err != nil {
 			return err
 		}
@@ -699,7 +710,18 @@ func (o *xxx_SetDataSourceNameOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 			return nil
 		})
-		_s_dsn := func(ptr interface{}) { o.DSN = *ptr.(**oaut.String) }
+		_s_dsn := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.DSN = nil
+				} else {
+					o.DSN = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DSN", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.DSN, _s_dsn, _ptr_dsn); err != nil {
 			return err
 		}
@@ -1010,7 +1032,18 @@ func (o *xxx_GetPerformanceCountersOperation) UnmarshalNDRResponse(ctx context.C
 			}
 			return nil
 		})
-		_s_counters := func(ptr interface{}) { o.Counters = *ptr.(**oaut.SafeArray) }
+		_s_counters := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Counters = nil
+				} else {
+					o.Counters = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Counters", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Counters, _s_counters, _ptr_counters); err != nil {
 			return err
 		}
@@ -1215,7 +1248,18 @@ func (o *xxx_SetPerformanceCountersOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 			return nil
 		})
-		_s_counters := func(ptr interface{}) { o.Counters = *ptr.(**oaut.SafeArray) }
+		_s_counters := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.SafeArray:
+				if ptr == nil {
+					o.Counters = nil
+				} else {
+					o.Counters = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Counters", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Counters, _s_counters, _ptr_counters); err != nil {
 			return err
 		}

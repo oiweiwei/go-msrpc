@@ -355,7 +355,18 @@ func (o *xxx_GetAdminSectionOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_bstrSectionName := func(ptr interface{}) { o.SectionName = *ptr.(**oaut.String) }
+		_s_bstrSectionName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SectionName = nil
+				} else {
+					o.SectionName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SectionName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SectionName, _s_bstrSectionName, _ptr_bstrSectionName); err != nil {
 			return err
 		}
@@ -374,7 +385,18 @@ func (o *xxx_GetAdminSectionOperation) UnmarshalNDRRequest(ctx context.Context, 
 			}
 			return nil
 		})
-		_s_bstrPath := func(ptr interface{}) { o.Path = *ptr.(**oaut.String) }
+		_s_bstrPath := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Path = nil
+				} else {
+					o.Path = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Path", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Path, _s_bstrPath, _ptr_bstrPath); err != nil {
 			return err
 		}
@@ -473,7 +495,18 @@ func (o *xxx_GetAdminSectionOperation) UnmarshalNDRResponse(ctx context.Context,
 			}
 			return nil
 		})
-		_s_ppAdminSection := func(ptr interface{}) { o.AdminSection = *ptr.(**iisa.AppHostElement) }
+		_s_ppAdminSection := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostElement:
+				if ptr == nil {
+					o.AdminSection = nil
+				} else {
+					o.AdminSection = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AdminSection", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AdminSection, _s_ppAdminSection, _ptr_ppAdminSection); err != nil {
 			return err
 		}
@@ -681,7 +714,18 @@ func (o *xxx_GetMetadataOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_bstrMetadataType := func(ptr interface{}) { o.MetadataType = *ptr.(**oaut.String) }
+		_s_bstrMetadataType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MetadataType = nil
+				} else {
+					o.MetadataType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MetadataType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MetadataType, _s_bstrMetadataType, _ptr_bstrMetadataType); err != nil {
 			return err
 		}
@@ -780,7 +824,18 @@ func (o *xxx_GetMetadataOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_pValue := func(ptr interface{}) { o.Value = *ptr.(**oaut.Variant) }
+		_s_pValue := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.Variant:
+				if ptr == nil {
+					o.Value = nil
+				} else {
+					o.Value = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Value, _s_pValue, _ptr_pValue); err != nil {
 			return err
 		}
@@ -1000,7 +1055,18 @@ func (o *xxx_SetMetadataOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 			return nil
 		})
-		_s_bstrMetadataType := func(ptr interface{}) { o.MetadataType = *ptr.(**oaut.String) }
+		_s_bstrMetadataType := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.MetadataType = nil
+				} else {
+					o.MetadataType = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MetadataType", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.MetadataType, _s_bstrMetadataType, _ptr_bstrMetadataType); err != nil {
 			return err
 		}
@@ -1324,7 +1390,18 @@ func (o *xxx_GetConfigManagerOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 			return nil
 		})
-		_s_ppConfigManager := func(ptr interface{}) { o.ConfigManager = *ptr.(**iisa.AppHostConfigManager) }
+		_s_ppConfigManager := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **iisa.AppHostConfigManager:
+				if ptr == nil {
+					o.ConfigManager = nil
+				} else {
+					o.ConfigManager = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ConfigManager", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ConfigManager, _s_ppConfigManager, _ptr_ppConfigManager); err != nil {
 			return err
 		}

@@ -354,7 +354,18 @@ func (o *xxx_GetTelnetSessionsOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 			return nil
 		})
-		_s_pszSessionData := func(ptr interface{}) { o.SessionData = *ptr.(**oaut.String) }
+		_s_pszSessionData := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.SessionData = nil
+				} else {
+					o.SessionData = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SessionData", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.SessionData, _s_pszSessionData, _ptr_pszSessionData); err != nil {
 			return err
 		}
@@ -804,7 +815,18 @@ func (o *xxx_SendMessageToASessionOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 			return nil
 		})
-		_s_szMsg := func(ptr interface{}) { o.Message = *ptr.(**oaut.String) }
+		_s_szMsg := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.Message = nil
+				} else {
+					o.Message = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Message", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Message, _s_szMsg, _ptr_szMsg); err != nil {
 			return err
 		}

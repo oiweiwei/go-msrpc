@@ -2117,7 +2117,18 @@ func (o *xxx_WinStationEnumerateOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 			return nil
 		})
-		_s_pLogonId := func(ptr interface{}) { o.LogonID = *ptr.(*[]byte) }
+		_s_pLogonId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.LogonID = nil
+				} else {
+					o.LogonID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LogonID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LogonID, _s_pLogonId, _ptr_pLogonId); err != nil {
 			return err
 		}
@@ -2264,7 +2275,18 @@ func (o *xxx_WinStationEnumerateOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_pLogonId := func(ptr interface{}) { o.LogonID = *ptr.(*[]byte) }
+		_s_pLogonId := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.LogonID = nil
+				} else {
+					o.LogonID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LogonID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LogonID, _s_pLogonId, _ptr_pLogonId); err != nil {
 			return err
 		}
@@ -2945,7 +2967,18 @@ func (o *xxx_WinStationQueryInformationOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_pWinStationInformation := func(ptr interface{}) { o.WinStationInformation = *ptr.(*[]byte) }
+		_s_pWinStationInformation := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.WinStationInformation = nil
+				} else {
+					o.WinStationInformation = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WinStationInformation", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WinStationInformation, _s_pWinStationInformation, _ptr_pWinStationInformation); err != nil {
 			return err
 		}
@@ -3065,7 +3098,18 @@ func (o *xxx_WinStationQueryInformationOperation) UnmarshalNDRResponse(ctx conte
 			}
 			return nil
 		})
-		_s_pWinStationInformation := func(ptr interface{}) { o.WinStationInformation = *ptr.(*[]byte) }
+		_s_pWinStationInformation := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.WinStationInformation = nil
+				} else {
+					o.WinStationInformation = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WinStationInformation", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WinStationInformation, _s_pWinStationInformation, _ptr_pWinStationInformation); err != nil {
 			return err
 		}
@@ -3545,7 +3589,18 @@ func (o *xxx_WinStationSetInformationOperation) UnmarshalNDRRequest(ctx context.
 			}
 			return nil
 		})
-		_s_pWinStationInformation := func(ptr interface{}) { o.WinStationInformation = *ptr.(*[]byte) }
+		_s_pWinStationInformation := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.WinStationInformation = nil
+				} else {
+					o.WinStationInformation = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WinStationInformation", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WinStationInformation, _s_pWinStationInformation, _ptr_pWinStationInformation); err != nil {
 			return err
 		}
@@ -3659,7 +3714,18 @@ func (o *xxx_WinStationSetInformationOperation) UnmarshalNDRResponse(ctx context
 			}
 			return nil
 		})
-		_s_pWinStationInformation := func(ptr interface{}) { o.WinStationInformation = *ptr.(*[]byte) }
+		_s_pWinStationInformation := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.WinStationInformation = nil
+				} else {
+					o.WinStationInformation = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.WinStationInformation", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.WinStationInformation, _s_pWinStationInformation, _ptr_pWinStationInformation); err != nil {
 			return err
 		}
@@ -6495,7 +6561,18 @@ func (o *xxx_WinStationShadowOperation) UnmarshalNDRRequest(ctx context.Context,
 			o.TargetServerName = strings.TrimRight(string(utf16.Decode(_TargetServerName_buf)), ndr.ZeroString)
 			return nil
 		})
-		_s_pTargetServerName := func(ptr interface{}) { o.TargetServerName = *ptr.(*string) }
+		_s_pTargetServerName := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.TargetServerName = ""
+				} else {
+					o.TargetServerName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TargetServerName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.TargetServerName, _s_pTargetServerName, _ptr_pTargetServerName); err != nil {
 			return err
 		}
@@ -8185,7 +8262,18 @@ func (o *xxx_WinStationGetAllProcessesOperation) UnmarshalNDRResponse(ctx contex
 			}
 			return nil
 		})
-		_s_ppTsAllProcessesInfo := func(ptr interface{}) { o.AllProcessesInfo = *ptr.(*[]*tsts.AllProcessesInfo) }
+		_s_ppTsAllProcessesInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*tsts.AllProcessesInfo:
+				if ptr == nil {
+					o.AllProcessesInfo = nil
+				} else {
+					o.AllProcessesInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AllProcessesInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AllProcessesInfo, _s_ppTsAllProcessesInfo, _ptr_ppTsAllProcessesInfo); err != nil {
 			return err
 		}
@@ -8495,7 +8583,18 @@ func (o *xxx_WinStationGetProcessSIDOperation) UnmarshalNDRRequest(ctx context.C
 			}
 			return nil
 		})
-		_s_pProcessUserSid := func(ptr interface{}) { o.ProcessUserSID = *ptr.(*[]byte) }
+		_s_pProcessUserSid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.ProcessUserSID = nil
+				} else {
+					o.ProcessUserSID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProcessUserSID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProcessUserSID, _s_pProcessUserSid, _ptr_pProcessUserSid); err != nil {
 			return err
 		}
@@ -8621,7 +8720,18 @@ func (o *xxx_WinStationGetProcessSIDOperation) UnmarshalNDRResponse(ctx context.
 			}
 			return nil
 		})
-		_s_pProcessUserSid := func(ptr interface{}) { o.ProcessUserSID = *ptr.(*[]byte) }
+		_s_pProcessUserSid := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]byte:
+				if ptr == nil {
+					o.ProcessUserSID = nil
+				} else {
+					o.ProcessUserSID = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ProcessUserSID", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ProcessUserSID, _s_pProcessUserSid, _ptr_pProcessUserSid); err != nil {
 			return err
 		}
@@ -9613,7 +9723,18 @@ func (o *xxx_WinStationGetLANAdapterNameOperation) UnmarshalNDRResponse(ctx cont
 			o.LanAdapterName = strings.TrimRight(string(utf16.Decode(_LanAdapterName_buf)), ndr.ZeroString)
 			return nil
 		})
-		_s_ppLanAdapter := func(ptr interface{}) { o.LanAdapterName = *ptr.(*string) }
+		_s_ppLanAdapter := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *string:
+				if ptr == nil {
+					o.LanAdapterName = ""
+				} else {
+					o.LanAdapterName = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.LanAdapterName", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.LanAdapterName, _s_ppLanAdapter, _ptr_ppLanAdapter); err != nil {
 			return err
 		}
@@ -11814,7 +11935,18 @@ func (o *xxx_WinStationGetAllProcessesNT6Operation) UnmarshalNDRResponse(ctx con
 			}
 			return nil
 		})
-		_s_ppTsAllProcessesInfo := func(ptr interface{}) { o.AllProcessesInfo = *ptr.(*[]*tsts.AllProcessesInfoNT6) }
+		_s_ppTsAllProcessesInfo := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case *[]*tsts.AllProcessesInfoNT6:
+				if ptr == nil {
+					o.AllProcessesInfo = nil
+				} else {
+					o.AllProcessesInfo = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.AllProcessesInfo", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.AllProcessesInfo, _s_ppTsAllProcessesInfo, _ptr_ppTsAllProcessesInfo); err != nil {
 			return err
 		}

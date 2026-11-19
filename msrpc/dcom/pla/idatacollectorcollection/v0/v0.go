@@ -725,7 +725,18 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_collector := func(ptr interface{}) { o.Collector = *ptr.(**pla.DataCollector) }
+		_s_collector := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.DataCollector:
+				if ptr == nil {
+					o.Collector = nil
+				} else {
+					o.Collector = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Collector", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Collector, _s_collector, _ptr_collector); err != nil {
 			return err
 		}
@@ -982,7 +993,18 @@ func (o *xxx_Get_NewEnumOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 			return nil
 		})
-		_s_retVal := func(ptr interface{}) { o.ReturnValue = *ptr.(**dcom.Unknown) }
+		_s_retVal := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **dcom.Unknown:
+				if ptr == nil {
+					o.ReturnValue = nil
+				} else {
+					o.ReturnValue = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ReturnValue", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.ReturnValue, _s_retVal, _ptr_retVal); err != nil {
 			return err
 		}
@@ -1183,7 +1205,18 @@ func (o *xxx_AddOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader
 			}
 			return nil
 		})
-		_s_collector := func(ptr interface{}) { o.Collector = *ptr.(**pla.DataCollector) }
+		_s_collector := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.DataCollector:
+				if ptr == nil {
+					o.Collector = nil
+				} else {
+					o.Collector = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Collector", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Collector, _s_collector, _ptr_collector); err != nil {
 			return err
 		}
@@ -1876,7 +1909,18 @@ func (o *xxx_AddRangeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 			return nil
 		})
-		_s_collectors := func(ptr interface{}) { o.Collectors = *ptr.(**pla.DataCollectorCollection) }
+		_s_collectors := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.DataCollectorCollection:
+				if ptr == nil {
+					o.Collectors = nil
+				} else {
+					o.Collectors = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Collectors", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Collectors, _s_collectors, _ptr_collectors); err != nil {
 			return err
 		}
@@ -2134,7 +2178,18 @@ func (o *xxx_CreateDataCollectorFromXMLOperation) UnmarshalNDRRequest(ctx contex
 			}
 			return nil
 		})
-		_s_bstrXml := func(ptr interface{}) { o.XML = *ptr.(**oaut.String) }
+		_s_bstrXml := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **oaut.String:
+				if ptr == nil {
+					o.XML = nil
+				} else {
+					o.XML = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.XML", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.XML, _s_bstrXml, _ptr_bstrXml); err != nil {
 			return err
 		}
@@ -2260,7 +2315,18 @@ func (o *xxx_CreateDataCollectorFromXMLOperation) UnmarshalNDRResponse(ctx conte
 			}
 			return nil
 		})
-		_s_pValidation := func(ptr interface{}) { o.Validation = *ptr.(**pla.ValueMap) }
+		_s_pValidation := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.ValueMap:
+				if ptr == nil {
+					o.Validation = nil
+				} else {
+					o.Validation = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Validation", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Validation, _s_pValidation, _ptr_pValidation); err != nil {
 			return err
 		}
@@ -2279,7 +2345,18 @@ func (o *xxx_CreateDataCollectorFromXMLOperation) UnmarshalNDRResponse(ctx conte
 			}
 			return nil
 		})
-		_s_pCollector := func(ptr interface{}) { o.Collector = *ptr.(**pla.DataCollector) }
+		_s_pCollector := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.DataCollector:
+				if ptr == nil {
+					o.Collector = nil
+				} else {
+					o.Collector = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Collector", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Collector, _s_pCollector, _ptr_pCollector); err != nil {
 			return err
 		}
@@ -2578,7 +2655,18 @@ func (o *xxx_CreateDataCollectorOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 			return nil
 		})
-		_s_Collector := func(ptr interface{}) { o.Collector = *ptr.(**pla.DataCollector) }
+		_s_Collector := func(ptr any) {
+			switch ptr := ptr.(type) {
+			case **pla.DataCollector:
+				if ptr == nil {
+					o.Collector = nil
+				} else {
+					o.Collector = *ptr
+				}
+			default:
+				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Collector", ptr))
+			}
+		}
 		if err := w.ReadPointer(&o.Collector, _s_Collector, _ptr_Collector); err != nil {
 			return err
 		}
