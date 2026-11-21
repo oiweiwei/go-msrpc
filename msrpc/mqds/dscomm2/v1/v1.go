@@ -2661,7 +2661,7 @@ func (o *xxx_GetGCListInDomainOperation) UnmarshalNDRRequest(ctx context.Context
 				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ComputerName", ptr))
 			}
 		}
-		if err := w.ReadPointer(&o.ComputerName, _s_lpwszComputerName, _ptr_lpwszComputerName); err != nil {
+		if err := w.ReadFullPointer(&o.ComputerName, _s_lpwszComputerName, _ptr_lpwszComputerName); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2688,7 +2688,7 @@ func (o *xxx_GetGCListInDomainOperation) UnmarshalNDRRequest(ctx context.Context
 				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.DomainName", ptr))
 			}
 		}
-		if err := w.ReadPointer(&o.DomainName, _s_lpwszDomainName, _ptr_lpwszDomainName); err != nil {
+		if err := w.ReadFullPointer(&o.DomainName, _s_lpwszDomainName, _ptr_lpwszDomainName); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {

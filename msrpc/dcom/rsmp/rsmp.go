@@ -949,7 +949,7 @@ func (o *MountInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field _lpReserved", ptr))
 		}
 	}
-	if err := w.ReadPointer(&_lpReserved, _s_lpReserved, _ptr_lpReserved); err != nil {
+	if err := w.ReadFullPointer(&_lpReserved, _s_lpReserved, _ptr_lpReserved); err != nil {
 		return err
 	}
 	return nil

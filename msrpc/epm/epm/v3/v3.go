@@ -973,7 +973,7 @@ func (o *xxx_LookupOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Object", ptr))
 			}
 		}
-		if err := w.ReadPointer(&o.Object, _s_object, _ptr_object); err != nil {
+		if err := w.ReadFullPointer(&o.Object, _s_object, _ptr_object); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1430,7 +1430,7 @@ func (o *xxx_MapOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader
 				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Object", ptr))
 			}
 		}
-		if err := w.ReadPointer(&o.Object, _s_object, _ptr_object); err != nil {
+		if err := w.ReadFullPointer(&o.Object, _s_object, _ptr_object); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1460,7 +1460,7 @@ func (o *xxx_MapOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader
 				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.MapTower", ptr))
 			}
 		}
-		if err := w.ReadPointer(&o.MapTower, _s_map_tower, _ptr_map_tower); err != nil {
+		if err := w.ReadFullPointer(&o.MapTower, _s_map_tower, _ptr_map_tower); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1646,7 +1646,7 @@ func (o *xxx_MapOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reade
 					w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Towers[i1]", ptr))
 				}
 			}
-			if err := w.ReadPointer(&o.Towers[i1], _s_towers, _ptr_towers); err != nil {
+			if err := w.ReadFullPointer(&o.Towers[i1], _s_towers, _ptr_towers); err != nil {
 				return err
 			}
 		}
@@ -2256,7 +2256,7 @@ func (o *xxx_ManagementDeleteOperation) UnmarshalNDRRequest(ctx context.Context,
 				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Object", ptr))
 			}
 		}
-		if err := w.ReadPointer(&o.Object, _s_object, _ptr_object); err != nil {
+		if err := w.ReadFullPointer(&o.Object, _s_object, _ptr_object); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2286,7 +2286,7 @@ func (o *xxx_ManagementDeleteOperation) UnmarshalNDRRequest(ctx context.Context,
 				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Tower", ptr))
 			}
 		}
-		if err := w.ReadPointer(&o.Tower, _s_tower, _ptr_tower); err != nil {
+		if err := w.ReadFullPointer(&o.Tower, _s_tower, _ptr_tower); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {

@@ -6195,7 +6195,7 @@ func (o *xxx_UpdateStatOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 			}
 		}
 		_m_plDelta := func() { o.NullMask |= UpdateStatNullMaskDelta }
-		if err := w.ReadPointerWithHook(&o.Delta, ndr.PointerHook{_s_plDelta, _m_plDelta}, _ptr_plDelta); err != nil {
+		if err := w.ReadPointerWithHook(&o.Delta, ndr.PointerHook{OnSet: _s_plDelta, OnNull: _m_plDelta}, _ptr_plDelta); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6291,7 +6291,7 @@ func (o *xxx_UpdateStatOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 			}
 		}
 		_m_plDelta := func() { o.NullMask |= UpdateStatNullMaskDelta }
-		if err := w.ReadPointerWithHook(&o.Delta, ndr.PointerHook{_s_plDelta, _m_plDelta}, _ptr_plDelta); err != nil {
+		if err := w.ReadPointerWithHook(&o.Delta, ndr.PointerHook{OnSet: _s_plDelta, OnNull: _m_plDelta}, _ptr_plDelta); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {

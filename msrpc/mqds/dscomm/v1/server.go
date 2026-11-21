@@ -351,23 +351,6 @@ type DscommServer interface {
 	// again. The client repeats this sequence until the method call returns an error.
 	CreateServersCache(context.Context, *CreateServersCacheRequest) (*CreateServersCacheResponse, error)
 
-	// This method is a callback method called by the server during a client call to S_DSQMSetMachineProperties.
-	// Through this method, the server provides a challenge that the client must sign to
-	// authenticate itself.
-	//
-	// Return Values:  This method is obsolete. The server SHOULD NOT call this method,
-	// and the client SHOULD return MQ_ERROR_NOT_SUPPORTED (0xC00E03EB).<146> If the method
-	// succeeds, the return value is 0. If the method fails, the return value is an implementation-specific
-	// error code.
-	//
-	// ERROR_SUCCESS (0x00000000)
-	//
-	// MQ_ERROR_NOT_SUPPORTED (0xC00E03EB)
-	//
-	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
-	// RPC extension protocol, as specified in [MS-RPCE].
-	QMSetMachinePropertiesSignProc(context.Context, *QMSetMachinePropertiesSignProcRequest) (*QMSetMachinePropertiesSignProcResponse, error)
-
 	// This method retrieves the security descriptor for a directory object specified by
 	// an object identifier.
 	//
@@ -383,51 +366,6 @@ type DscommServer interface {
 	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
 	// RPC extension protocol, as specified in [MS-RPCE].
 	QMGetObjectSecurity(context.Context, *QMGetObjectSecurityRequest) (*QMGetObjectSecurityResponse, error)
-
-	// S_DSQMGetObjectSecurityChallengeResponceProc is a callback method called by the server
-	// during a client call to S_DSQMGetObjectSecurity. Through this method, the server
-	// provides a challenge that the client must sign to authenticate itself.
-	//
-	// Return Values:  This method is obsolete. The server SHOULD NOT call this method,
-	// and the client SHOULD return MQ_ERROR_NOT_SUPPORTED (0xC00E03EB).<147> If the method
-	// succeeds, the return value is 0. If the method fails, the return value is an implementation-specific
-	// error code.
-	//
-	// ERROR_SUCCESS (0x00000000)
-	//
-	// MQ_ERROR_NOT_SUPPORTED (0xC00E03EB)
-	//
-	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
-	// RPC protocol extension, as specified in [MS-RPCE].
-	QMGetObjectSecurityChallengeResponseProc(context.Context, *QMGetObjectSecurityChallengeResponseProcRequest) (*QMGetObjectSecurityChallengeResponseProcResponse, error)
-
-	// This method is a callback method called by the server during a client call to S_DSValidateServer.
-	// These two methods are used to tunnel a GSS (as specified in [RFC2743]) security negotiation
-	// to provide mutual authentication between the client and server.
-	//
-	// Return Values:  If the method succeeds, and the negotiation is complete, the return
-	// value is 0. If the method succeeds, and the negotiation is not complete, the return
-	// value is SEC_I_CONTINUE_NEEDED (0x00090312). If the method fails, the return value
-	// is an implementation-specific error code.
-	//
-	// ERROR_SUCCESS (0x00000000)
-	//
-	// SEC_I_CONTINUE_NEEDED (0x00090312)
-	//
-	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
-	// RPC extension protocol, as specified in [MS-RPCE].
-	//
-	// The caller MUST supply an input_token in pServerBuff computed through a call to GSS_Accept_sec_context.
-	// The receiver MUST process this input_token through a call to GSS_Init_sec_context,
-	// generating an output_token that MUST be returned in pServerBuff.
-	//
-	// If GSS_Init_sec_context returns GSS_S_CONTINUE_NEEDED, this is a signal that the
-	// negotiation is not complete. The receiver MUST return SEC_I_CONTINUE_NEEDED (0x00090312).
-	//
-	// If GSS_Init_sec_context returns GSS_S_COMPLETE, the negotiation is complete. The
-	// receiver MUST save the output context handle in the GSS security context state associated
-	// with the dwContext parameter. The receiver MUST return SEC_E_OK (0x00000000).
-	InitSecurityContext(context.Context, *InitSecurityContextRequest) (*InitSecurityContextResponse, error)
 
 	// This method performs mutual authentication between the client and server, and establishes
 	// a security context, as specified in [RFC2743]. The server uses the security context
@@ -715,16 +653,7 @@ func DscommServerHandle(ctx context.Context, o DscommServer, opNum int, r ndr.Re
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.CreateServersCache(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 21: // S_DSQMSetMachinePropertiesSignProc
-		op := &xxx_QMSetMachinePropertiesSignProcOperation{}
-		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
-			return nil, err
-		}
-		req := &QMSetMachinePropertiesSignProcRequest{}
-		req.xxx_FromOp(ctx, op)
-		resp, err := o.QMSetMachinePropertiesSignProc(ctx, req)
-		return resp.xxx_ToOp(ctx, op), err
-	case 22: // S_DSQMGetObjectSecurity
+	case 21: // S_DSQMGetObjectSecurity
 		op := &xxx_QMGetObjectSecurityOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -733,25 +662,7 @@ func DscommServerHandle(ctx context.Context, o DscommServer, opNum int, r ndr.Re
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.QMGetObjectSecurity(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 23: // S_DSQMGetObjectSecurityChallengeResponceProc
-		op := &xxx_QMGetObjectSecurityChallengeResponseProcOperation{}
-		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
-			return nil, err
-		}
-		req := &QMGetObjectSecurityChallengeResponseProcRequest{}
-		req.xxx_FromOp(ctx, op)
-		resp, err := o.QMGetObjectSecurityChallengeResponseProc(ctx, req)
-		return resp.xxx_ToOp(ctx, op), err
-	case 24: // S_InitSecCtx
-		op := &xxx_InitSecurityContextOperation{}
-		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
-			return nil, err
-		}
-		req := &InitSecurityContextRequest{}
-		req.xxx_FromOp(ctx, op)
-		resp, err := o.InitSecurityContext(ctx, req)
-		return resp.xxx_ToOp(ctx, op), err
-	case 25: // S_DSValidateServer
+	case 22: // S_DSValidateServer
 		op := &xxx_ValidateServerOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -760,7 +671,7 @@ func DscommServerHandle(ctx context.Context, o DscommServer, opNum int, r ndr.Re
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.ValidateServer(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 26: // S_DSCloseServerHandle
+	case 23: // S_DSCloseServerHandle
 		op := &xxx_CloseServerOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -769,16 +680,16 @@ func DscommServerHandle(ctx context.Context, o DscommServer, opNum int, r ndr.Re
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.CloseServer(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 27: // Opnum24NotUsedOnWire
+	case 24: // Opnum24NotUsedOnWire
 		// Opnum24NotUsedOnWire
 		return nil, nil
-	case 28: // Opnum25NotUsedOnWire
+	case 25: // Opnum25NotUsedOnWire
 		// Opnum25NotUsedOnWire
 		return nil, nil
-	case 29: // Opnum26NotUsedOnWire
+	case 26: // Opnum26NotUsedOnWire
 		// Opnum26NotUsedOnWire
 		return nil, nil
-	case 30: // S_DSGetServerPort
+	case 27: // S_DSGetServerPort
 		op := &xxx_GetServerPortOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
@@ -843,16 +754,7 @@ func (UnimplementedDscommServer) QMSetMachineProperties(context.Context, *QMSetM
 func (UnimplementedDscommServer) CreateServersCache(context.Context, *CreateServersCacheRequest) (*CreateServersCacheResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDscommServer) QMSetMachinePropertiesSignProc(context.Context, *QMSetMachinePropertiesSignProcRequest) (*QMSetMachinePropertiesSignProcResponse, error) {
-	return nil, dcerpc.ErrNotImplemented
-}
 func (UnimplementedDscommServer) QMGetObjectSecurity(context.Context, *QMGetObjectSecurityRequest) (*QMGetObjectSecurityResponse, error) {
-	return nil, dcerpc.ErrNotImplemented
-}
-func (UnimplementedDscommServer) QMGetObjectSecurityChallengeResponseProc(context.Context, *QMGetObjectSecurityChallengeResponseProcRequest) (*QMGetObjectSecurityChallengeResponseProcResponse, error) {
-	return nil, dcerpc.ErrNotImplemented
-}
-func (UnimplementedDscommServer) InitSecurityContext(context.Context, *InitSecurityContextRequest) (*InitSecurityContextResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedDscommServer) ValidateServer(context.Context, *ValidateServerRequest) (*ValidateServerResponse, error) {

@@ -4062,7 +4062,7 @@ func (o *xxx_ReportEventWOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 		}
 		_m_RecordNumber := func() { o.NullMask |= ReportEventWNullMaskRecordNumber }
-		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{OnSet: _s_RecordNumber, OnNull: _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4090,7 +4090,7 @@ func (o *xxx_ReportEventWOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 		}
 		_m_TimeWritten := func() { o.NullMask |= ReportEventWNullMaskTimeWritten }
-		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{_s_TimeWritten, _m_TimeWritten}, _ptr_TimeWritten); err != nil {
+		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{OnSet: _s_TimeWritten, OnNull: _m_TimeWritten}, _ptr_TimeWritten); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4186,7 +4186,7 @@ func (o *xxx_ReportEventWOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 		}
 		_m_RecordNumber := func() { o.NullMask |= ReportEventWNullMaskRecordNumber }
-		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{OnSet: _s_RecordNumber, OnNull: _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4214,7 +4214,7 @@ func (o *xxx_ReportEventWOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 		}
 		_m_TimeWritten := func() { o.NullMask |= ReportEventWNullMaskTimeWritten }
-		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{_s_TimeWritten, _m_TimeWritten}, _ptr_TimeWritten); err != nil {
+		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{OnSet: _s_TimeWritten, OnNull: _m_TimeWritten}, _ptr_TimeWritten); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6641,7 +6641,7 @@ func (o *xxx_ReportEventAOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 		}
 		_m_RecordNumber := func() { o.NullMask |= ReportEventANullMaskRecordNumber }
-		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{OnSet: _s_RecordNumber, OnNull: _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6669,7 +6669,7 @@ func (o *xxx_ReportEventAOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 		}
 		_m_TimeWritten := func() { o.NullMask |= ReportEventANullMaskTimeWritten }
-		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{_s_TimeWritten, _m_TimeWritten}, _ptr_TimeWritten); err != nil {
+		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{OnSet: _s_TimeWritten, OnNull: _m_TimeWritten}, _ptr_TimeWritten); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6765,7 +6765,7 @@ func (o *xxx_ReportEventAOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 		}
 		_m_RecordNumber := func() { o.NullMask |= ReportEventANullMaskRecordNumber }
-		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{OnSet: _s_RecordNumber, OnNull: _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6793,7 +6793,7 @@ func (o *xxx_ReportEventAOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 		}
 		_m_TimeWritten := func() { o.NullMask |= ReportEventANullMaskTimeWritten }
-		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{_s_TimeWritten, _m_TimeWritten}, _ptr_TimeWritten); err != nil {
+		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{OnSet: _s_TimeWritten, OnNull: _m_TimeWritten}, _ptr_TimeWritten); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7800,7 +7800,7 @@ func (o *xxx_ReportEventAndSourceWOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 		}
 		_m_RecordNumber := func() { o.NullMask |= ReportEventAndSourceWNullMaskRecordNumber }
-		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{OnSet: _s_RecordNumber, OnNull: _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7828,7 +7828,7 @@ func (o *xxx_ReportEventAndSourceWOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 		}
 		_m_TimeWritten := func() { o.NullMask |= ReportEventAndSourceWNullMaskTimeWritten }
-		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{_s_TimeWritten, _m_TimeWritten}, _ptr_TimeWritten); err != nil {
+		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{OnSet: _s_TimeWritten, OnNull: _m_TimeWritten}, _ptr_TimeWritten); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7924,7 +7924,7 @@ func (o *xxx_ReportEventAndSourceWOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 		}
 		_m_RecordNumber := func() { o.NullMask |= ReportEventAndSourceWNullMaskRecordNumber }
-		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{OnSet: _s_RecordNumber, OnNull: _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7952,7 +7952,7 @@ func (o *xxx_ReportEventAndSourceWOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 		}
 		_m_TimeWritten := func() { o.NullMask |= ReportEventAndSourceWNullMaskTimeWritten }
-		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{_s_TimeWritten, _m_TimeWritten}, _ptr_TimeWritten); err != nil {
+		if err := w.ReadPointerWithHook(&o.TimeWritten, ndr.PointerHook{OnSet: _s_TimeWritten, OnNull: _m_TimeWritten}, _ptr_TimeWritten); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8629,7 +8629,7 @@ func (o *xxx_ReportEventExWOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 		}
 		_m_RecordNumber := func() { o.NullMask |= ReportEventExWNullMaskRecordNumber }
-		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{OnSet: _s_RecordNumber, OnNull: _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8704,7 +8704,7 @@ func (o *xxx_ReportEventExWOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 		}
 		_m_RecordNumber := func() { o.NullMask |= ReportEventExWNullMaskRecordNumber }
-		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{OnSet: _s_RecordNumber, OnNull: _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -9368,7 +9368,7 @@ func (o *xxx_ReportEventExAOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 		}
 		_m_RecordNumber := func() { o.NullMask |= ReportEventExANullMaskRecordNumber }
-		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{OnSet: _s_RecordNumber, OnNull: _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -9443,7 +9443,7 @@ func (o *xxx_ReportEventExAOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 		}
 		_m_RecordNumber := func() { o.NullMask |= ReportEventExANullMaskRecordNumber }
-		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{_s_RecordNumber, _m_RecordNumber}, _ptr_RecordNumber); err != nil {
+		if err := w.ReadPointerWithHook(&o.RecordNumber, ndr.PointerHook{OnSet: _s_RecordNumber, OnNull: _m_RecordNumber}, _ptr_RecordNumber); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {

@@ -10541,7 +10541,7 @@ func (o *xxx_EnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 			}
 		}
 		_m_ResumeHandle := func() { o.NullMask |= EnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_ResumeHandle, OnNull: _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -10673,7 +10673,7 @@ func (o *xxx_EnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 		}
 		_m_ResumeHandle := func() { o.NullMask |= EnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_ResumeHandle, OnNull: _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -14755,7 +14755,7 @@ func (o *xxx_EnumExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 		}
 		_m_ResumeHandle := func() { o.NullMask |= EnumExNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_ResumeHandle, OnNull: _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -14887,7 +14887,7 @@ func (o *xxx_EnumExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 		}
 		_m_ResumeHandle := func() { o.NullMask |= EnumExNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_ResumeHandle, OnNull: _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {

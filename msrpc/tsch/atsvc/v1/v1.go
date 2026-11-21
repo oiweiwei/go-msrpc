@@ -934,7 +934,7 @@ func (o *xxx_JobEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 		}
 		_m_pResumeHandle := func() { o.NullMask |= JobEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_pResumeHandle, _m_pResumeHandle}, _ptr_pResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_pResumeHandle, OnNull: _m_pResumeHandle}, _ptr_pResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1048,7 +1048,7 @@ func (o *xxx_JobEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 		}
 		_m_pResumeHandle := func() { o.NullMask |= JobEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_pResumeHandle, _m_pResumeHandle}, _ptr_pResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_pResumeHandle, OnNull: _m_pResumeHandle}, _ptr_pResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
