@@ -727,6 +727,8 @@ interface logon
                      PNETLOGON_VALIDATION_SAM_INFO ValidationSam;
               [case(NetlogonValidationSamInfo2)]
                      PNETLOGON_VALIDATION_SAM_INFO2 ValidationSam2;
+              [case(NetlogonValidationGenericInfo)]
+                     PNETLOGON_VALIDATION_GENERIC_INFO2 ValidationGeneric;
               [case(NetlogonValidationGenericInfo2)]
                      PNETLOGON_VALIDATION_GENERIC_INFO2 ValidationGeneric2;
               [case(NetlogonValidationSamInfo4)]

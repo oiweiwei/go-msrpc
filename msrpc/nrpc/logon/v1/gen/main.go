@@ -93,6 +93,12 @@ func (o *xxx_SecureChannelClient) {{ $m }}(ctx context.Context, in *{{ $m }}Requ
 
 	ret, err := o.LogonClient.{{ $m }}(ctx, in, opts...)
 	if err != nil {
+		// the server advances its credential for a call it authenticated also when the call fails (it sends the
+		// return authenticator with the error status), the client has to follow or every later call of the channel
+		// is answered with STATUS_ACCESS_DENIED.
+		if ret != nil && ret.ReturnAuthenticator != nil && ret.ReturnAuthenticator.Credential != nil {
+			_ = o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator)
+		}
 		return nil, err
 	}
 

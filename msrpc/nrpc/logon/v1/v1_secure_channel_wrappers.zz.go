@@ -19,6 +19,12 @@ func (o *xxx_SecureChannelClient) AccountDeltas(ctx context.Context, in *Account
 
 	ret, err := o.LogonClient.AccountDeltas(ctx, in, opts...)
 	if err != nil {
+		// the server advances its credential for a call it authenticated also when the call fails (it sends the
+		// return authenticator with the error status), the client has to follow or every later call of the channel
+		// is answered with STATUS_ACCESS_DENIED.
+		if ret != nil && ret.ReturnAuthenticator != nil && ret.ReturnAuthenticator.Credential != nil {
+			_ = o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator)
+		}
 		return nil, err
 	}
 
@@ -41,6 +47,12 @@ func (o *xxx_SecureChannelClient) AccountSync(ctx context.Context, in *AccountSy
 
 	ret, err := o.LogonClient.AccountSync(ctx, in, opts...)
 	if err != nil {
+		// the server advances its credential for a call it authenticated also when the call fails (it sends the
+		// return authenticator with the error status), the client has to follow or every later call of the channel
+		// is answered with STATUS_ACCESS_DENIED.
+		if ret != nil && ret.ReturnAuthenticator != nil && ret.ReturnAuthenticator.Credential != nil {
+			_ = o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator)
+		}
 		return nil, err
 	}
 
@@ -63,6 +75,12 @@ func (o *xxx_SecureChannelClient) ChainSetClientAttributes(ctx context.Context, 
 
 	ret, err := o.LogonClient.ChainSetClientAttributes(ctx, in, opts...)
 	if err != nil {
+		// the server advances its credential for a call it authenticated also when the call fails (it sends the
+		// return authenticator with the error status), the client has to follow or every later call of the channel
+		// is answered with STATUS_ACCESS_DENIED.
+		if ret != nil && ret.ReturnAuthenticator != nil && ret.ReturnAuthenticator.Credential != nil {
+			_ = o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator)
+		}
 		return nil, err
 	}
 
@@ -85,6 +103,12 @@ func (o *xxx_SecureChannelClient) DatabaseDeltas(ctx context.Context, in *Databa
 
 	ret, err := o.LogonClient.DatabaseDeltas(ctx, in, opts...)
 	if err != nil {
+		// the server advances its credential for a call it authenticated also when the call fails (it sends the
+		// return authenticator with the error status), the client has to follow or every later call of the channel
+		// is answered with STATUS_ACCESS_DENIED.
+		if ret != nil && ret.ReturnAuthenticator != nil && ret.ReturnAuthenticator.Credential != nil {
+			_ = o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator)
+		}
 		return nil, err
 	}
 
@@ -107,6 +131,12 @@ func (o *xxx_SecureChannelClient) DatabaseRedo(ctx context.Context, in *Database
 
 	ret, err := o.LogonClient.DatabaseRedo(ctx, in, opts...)
 	if err != nil {
+		// the server advances its credential for a call it authenticated also when the call fails (it sends the
+		// return authenticator with the error status), the client has to follow or every later call of the channel
+		// is answered with STATUS_ACCESS_DENIED.
+		if ret != nil && ret.ReturnAuthenticator != nil && ret.ReturnAuthenticator.Credential != nil {
+			_ = o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator)
+		}
 		return nil, err
 	}
 
@@ -129,6 +159,12 @@ func (o *xxx_SecureChannelClient) DatabaseSync(ctx context.Context, in *Database
 
 	ret, err := o.LogonClient.DatabaseSync(ctx, in, opts...)
 	if err != nil {
+		// the server advances its credential for a call it authenticated also when the call fails (it sends the
+		// return authenticator with the error status), the client has to follow or every later call of the channel
+		// is answered with STATUS_ACCESS_DENIED.
+		if ret != nil && ret.ReturnAuthenticator != nil && ret.ReturnAuthenticator.Credential != nil {
+			_ = o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator)
+		}
 		return nil, err
 	}
 
@@ -151,6 +187,12 @@ func (o *xxx_SecureChannelClient) DatabaseSync2(ctx context.Context, in *Databas
 
 	ret, err := o.LogonClient.DatabaseSync2(ctx, in, opts...)
 	if err != nil {
+		// the server advances its credential for a call it authenticated also when the call fails (it sends the
+		// return authenticator with the error status), the client has to follow or every later call of the channel
+		// is answered with STATUS_ACCESS_DENIED.
+		if ret != nil && ret.ReturnAuthenticator != nil && ret.ReturnAuthenticator.Credential != nil {
+			_ = o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator)
+		}
 		return nil, err
 	}
 
@@ -173,6 +215,12 @@ func (o *xxx_SecureChannelClient) GetCapabilities(ctx context.Context, in *GetCa
 
 	ret, err := o.LogonClient.GetCapabilities(ctx, in, opts...)
 	if err != nil {
+		// the server advances its credential for a call it authenticated also when the call fails (it sends the
+		// return authenticator with the error status), the client has to follow or every later call of the channel
+		// is answered with STATUS_ACCESS_DENIED.
+		if ret != nil && ret.ReturnAuthenticator != nil && ret.ReturnAuthenticator.Credential != nil {
+			_ = o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator)
+		}
 		return nil, err
 	}
 
@@ -195,6 +243,12 @@ func (o *xxx_SecureChannelClient) GetDomainInfo(ctx context.Context, in *GetDoma
 
 	ret, err := o.LogonClient.GetDomainInfo(ctx, in, opts...)
 	if err != nil {
+		// the server advances its credential for a call it authenticated also when the call fails (it sends the
+		// return authenticator with the error status), the client has to follow or every later call of the channel
+		// is answered with STATUS_ACCESS_DENIED.
+		if ret != nil && ret.ReturnAuthenticator != nil && ret.ReturnAuthenticator.Credential != nil {
+			_ = o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator)
+		}
 		return nil, err
 	}
 
@@ -217,6 +271,12 @@ func (o *xxx_SecureChannelClient) SAMLogoff(ctx context.Context, in *SAMLogoffRe
 
 	ret, err := o.LogonClient.SAMLogoff(ctx, in, opts...)
 	if err != nil {
+		// the server advances its credential for a call it authenticated also when the call fails (it sends the
+		// return authenticator with the error status), the client has to follow or every later call of the channel
+		// is answered with STATUS_ACCESS_DENIED.
+		if ret != nil && ret.ReturnAuthenticator != nil && ret.ReturnAuthenticator.Credential != nil {
+			_ = o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator)
+		}
 		return nil, err
 	}
 
@@ -239,6 +299,12 @@ func (o *xxx_SecureChannelClient) SAMLogon(ctx context.Context, in *SAMLogonRequ
 
 	ret, err := o.LogonClient.SAMLogon(ctx, in, opts...)
 	if err != nil {
+		// the server advances its credential for a call it authenticated also when the call fails (it sends the
+		// return authenticator with the error status), the client has to follow or every later call of the channel
+		// is answered with STATUS_ACCESS_DENIED.
+		if ret != nil && ret.ReturnAuthenticator != nil && ret.ReturnAuthenticator.Credential != nil {
+			_ = o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator)
+		}
 		return nil, err
 	}
 
@@ -261,6 +327,12 @@ func (o *xxx_SecureChannelClient) SAMLogonWithFlags(ctx context.Context, in *SAM
 
 	ret, err := o.LogonClient.SAMLogonWithFlags(ctx, in, opts...)
 	if err != nil {
+		// the server advances its credential for a call it authenticated also when the call fails (it sends the
+		// return authenticator with the error status), the client has to follow or every later call of the channel
+		// is answered with STATUS_ACCESS_DENIED.
+		if ret != nil && ret.ReturnAuthenticator != nil && ret.ReturnAuthenticator.Credential != nil {
+			_ = o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator)
+		}
 		return nil, err
 	}
 
