@@ -8039,7 +8039,7 @@ func (o *PortInfo255) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 	}
 	_m_pMonitorData := func() { o.NullMask |= PortInfo255NullMaskMonitorData }
-	if err := w.ReadPointerWithHook(&o.MonitorData, ndr.PointerHook{_s_pMonitorData, _m_pMonitorData}, _ptr_pMonitorData); err != nil {
+	if err := w.ReadPointerWithHook(&o.MonitorData, ndr.PointerHook{OnSet: _s_pMonitorData, OnNull: _m_pMonitorData}, _ptr_pMonitorData); err != nil {
 		return err
 	}
 	return nil

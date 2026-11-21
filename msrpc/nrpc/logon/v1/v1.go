@@ -13409,6 +13409,7 @@ type Validation struct {
 	//
 	// *Validation_SAM
 	// *Validation_SAM2
+	// *Validation_Generic
 	// *Validation_Generic2
 	// *Validation_SAM4
 	// *Validation_Ticket
@@ -13427,6 +13428,10 @@ func (o *Validation) GetValue() any {
 	case *Validation_SAM2:
 		if value != nil {
 			return value.ValidationSAM2
+		}
+	case *Validation_Generic:
+		if value != nil {
+			return value.ValidationGeneric
 		}
 	case *Validation_Generic2:
 		if value != nil {
@@ -13459,6 +13464,8 @@ func (o *Validation) NDRSwitchValue(sw uint16) uint16 {
 		return uint16(2)
 	case *Validation_SAM2:
 		return uint16(3)
+	case *Validation_Generic:
+		return uint16(4)
 	case *Validation_Generic2:
 		return uint16(5)
 	case *Validation_SAM4:
@@ -13500,6 +13507,17 @@ func (o *Validation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint1
 			}
 		} else {
 			if err := (&Validation_SAM2{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint16(4):
+		_o, _ := o.Value.(*Validation_Generic)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Validation_Generic{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -13560,6 +13578,11 @@ func (o *Validation) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uin
 		}
 	case uint16(3):
 		o.Value = &Validation_SAM2{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(4):
+		o.Value = &Validation_Generic{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -13705,6 +13728,67 @@ func (o *Validation_SAM2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		}
 	}
 	if err := w.ReadPointer(&o.ValidationSAM2, _s_ValidationSam2, _ptr_ValidationSam2); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Validation_Generic structure represents NETLOGON_VALIDATION RPC union arm.
+//
+// It has following labels: 4
+type Validation_Generic struct {
+	ValidationGeneric *ValidationGenericInfo2 `idl:"name:ValidationGeneric" json:"validation_generic"`
+}
+
+func (*Validation_Generic) is_Validation() {}
+
+func (o *Validation_Generic) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.ValidationGeneric != nil {
+		_ptr_ValidationGeneric := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.ValidationGeneric != nil {
+				if err := o.ValidationGeneric.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ValidationGenericInfo2{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ValidationGeneric, _ptr_ValidationGeneric); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Validation_Generic) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_ValidationGeneric := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.ValidationGeneric == nil {
+			o.ValidationGeneric = &ValidationGenericInfo2{}
+		}
+		if err := o.ValidationGeneric.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_ValidationGeneric := func(ptr any) {
+		switch ptr := ptr.(type) {
+		case **ValidationGenericInfo2:
+			if ptr == nil {
+				o.ValidationGeneric = nil
+			} else {
+				o.ValidationGeneric = *ptr
+			}
+		default:
+			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ValidationGeneric", ptr))
+		}
+	}
+	if err := w.ReadPointer(&o.ValidationGeneric, _s_ValidationGeneric, _ptr_ValidationGeneric); err != nil {
 		return err
 	}
 	return nil
@@ -21103,7 +21187,7 @@ func (o *OutChainSetClientAttributesV1) UnmarshalNDR(ctx context.Context, w ndr.
 		}
 	}
 	_m_SupportedEncTypes := func() { o.NullMask |= OutChainSetClientAttributesV1NullMaskSupportedEncTypes }
-	if err := w.ReadPointerWithHook(&o.SupportedEncTypes, ndr.PointerHook{_s_SupportedEncTypes, _m_SupportedEncTypes}, _ptr_SupportedEncTypes); err != nil {
+	if err := w.ReadPointerWithHook(&o.SupportedEncTypes, ndr.PointerHook{OnSet: _s_SupportedEncTypes, OnNull: _m_SupportedEncTypes}, _ptr_SupportedEncTypes); err != nil {
 		return err
 	}
 	return nil

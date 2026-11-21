@@ -19362,7 +19362,7 @@ func (o *Interface2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 	}
 	_m_lpbCustomAuthData := func() { o.NullMask |= Interface2NullMaskCustomAuthData }
-	if err := w.ReadPointerWithHook(&o.CustomAuthData, ndr.PointerHook{_s_lpbCustomAuthData, _m_lpbCustomAuthData}, _ptr_lpbCustomAuthData); err != nil {
+	if err := w.ReadPointerWithHook(&o.CustomAuthData, ndr.PointerHook{OnSet: _s_lpbCustomAuthData, OnNull: _m_lpbCustomAuthData}, _ptr_lpbCustomAuthData); err != nil {
 		return err
 	}
 	if o.ID == nil {
@@ -20363,7 +20363,7 @@ func (o *Interface3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		}
 	}
 	_m_lpbCustomAuthData := func() { o.NullMask |= Interface3NullMaskCustomAuthData }
-	if err := w.ReadPointerWithHook(&o.CustomAuthData, ndr.PointerHook{_s_lpbCustomAuthData, _m_lpbCustomAuthData}, _ptr_lpbCustomAuthData); err != nil {
+	if err := w.ReadPointerWithHook(&o.CustomAuthData, ndr.PointerHook{OnSet: _s_lpbCustomAuthData, OnNull: _m_lpbCustomAuthData}, _ptr_lpbCustomAuthData); err != nil {
 		return err
 	}
 	if o.ID == nil {

@@ -12645,7 +12645,7 @@ func (o *xxx_ChangeServiceConfigWOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= ChangeServiceConfigWNullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -12870,7 +12870,7 @@ func (o *xxx_ChangeServiceConfigWOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= ChangeServiceConfigWNullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -13571,7 +13571,7 @@ func (o *xxx_CreateServiceWOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= CreateServiceWNullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -13781,7 +13781,7 @@ func (o *xxx_CreateServiceWOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= CreateServiceWNullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -14547,7 +14547,7 @@ func (o *xxx_EnumServicesStatusWOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 		}
 		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusWNullMaskResumeIndex }
-		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{OnSet: _s_lpResumeIndex, OnNull: _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -14691,7 +14691,7 @@ func (o *xxx_EnumServicesStatusWOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 		}
 		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusWNullMaskResumeIndex }
-		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{OnSet: _s_lpResumeIndex, OnNull: _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -17263,7 +17263,7 @@ func (o *xxx_ChangeServiceConfigAOperation) UnmarshalNDRRequest(ctx context.Cont
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= ChangeServiceConfigANullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -17488,7 +17488,7 @@ func (o *xxx_ChangeServiceConfigAOperation) UnmarshalNDRResponse(ctx context.Con
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= ChangeServiceConfigANullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -18188,7 +18188,7 @@ func (o *xxx_CreateServiceAOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= CreateServiceANullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -18398,7 +18398,7 @@ func (o *xxx_CreateServiceAOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= CreateServiceANullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -19168,7 +19168,7 @@ func (o *xxx_EnumServicesStatusAOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 		}
 		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusANullMaskResumeIndex }
-		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{OnSet: _s_lpResumeIndex, OnNull: _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -19312,7 +19312,7 @@ func (o *xxx_EnumServicesStatusAOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 		}
 		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusANullMaskResumeIndex }
-		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{OnSet: _s_lpResumeIndex, OnNull: _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -21645,7 +21645,7 @@ func (o *xxx_EnumServiceGroupWOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 		}
 		_m_lpResumeIndex := func() { o.NullMask |= EnumServiceGroupWNullMaskResumeIndex }
-		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{OnSet: _s_lpResumeIndex, OnNull: _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -21816,7 +21816,7 @@ func (o *xxx_EnumServiceGroupWOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 		}
 		_m_lpResumeIndex := func() { o.NullMask |= EnumServiceGroupWNullMaskResumeIndex }
-		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{OnSet: _s_lpResumeIndex, OnNull: _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -23586,7 +23586,7 @@ func (o *xxx_EnumServicesStatusExAOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 		}
 		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusExANullMaskResumeIndex }
-		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{OnSet: _s_lpResumeIndex, OnNull: _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -23757,7 +23757,7 @@ func (o *xxx_EnumServicesStatusExAOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 		}
 		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusExANullMaskResumeIndex }
-		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{OnSet: _s_lpResumeIndex, OnNull: _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -24177,7 +24177,7 @@ func (o *xxx_EnumServicesStatusExWOperation) UnmarshalNDRRequest(ctx context.Con
 			}
 		}
 		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusExWNullMaskResumeIndex }
-		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{OnSet: _s_lpResumeIndex, OnNull: _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -24348,7 +24348,7 @@ func (o *xxx_EnumServicesStatusExWOperation) UnmarshalNDRResponse(ctx context.Co
 			}
 		}
 		_m_lpResumeIndex := func() { o.NullMask |= EnumServicesStatusExWNullMaskResumeIndex }
-		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{_s_lpResumeIndex, _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
+		if err := w.ReadPointerWithHook(&o.ResumeIndex, ndr.PointerHook{OnSet: _s_lpResumeIndex, OnNull: _m_lpResumeIndex}, _ptr_lpResumeIndex); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -25004,7 +25004,7 @@ func (o *xxx_CreateServiceWOW64AOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= CreateServiceWOW64ANullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -25214,7 +25214,7 @@ func (o *xxx_CreateServiceWOW64AOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= CreateServiceWOW64ANullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -25919,7 +25919,7 @@ func (o *xxx_CreateServiceWOW64WOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= CreateServiceWOW64WNullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -26129,7 +26129,7 @@ func (o *xxx_CreateServiceWOW64WOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= CreateServiceWOW64WNullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -28528,7 +28528,7 @@ func (o *xxx_CreateWOWServiceOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= CreateWOWServiceNullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -28744,7 +28744,7 @@ func (o *xxx_CreateWOWServiceOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 		}
 		_m_lpdwTagId := func() { o.NullMask |= CreateWOWServiceNullMaskTagID }
-		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{_s_lpdwTagId, _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
+		if err := w.ReadPointerWithHook(&o.TagID, ndr.PointerHook{OnSet: _s_lpdwTagId, OnNull: _m_lpdwTagId}, _ptr_lpdwTagId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {

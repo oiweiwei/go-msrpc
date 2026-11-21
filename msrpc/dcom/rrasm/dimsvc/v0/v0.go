@@ -2445,7 +2445,7 @@ func (o *xxx_ConnectionEnumOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= ConnectionEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_lpdwResumeHandle, OnNull: _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2571,7 +2571,7 @@ func (o *xxx_ConnectionEnumOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= ConnectionEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_lpdwResumeHandle, OnNull: _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3322,7 +3322,7 @@ func (o *xxx_PortEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= PortEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_lpdwResumeHandle, OnNull: _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3448,7 +3448,7 @@ func (o *xxx_PortEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= PortEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_lpdwResumeHandle, OnNull: _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7383,7 +7383,7 @@ func (o *xxx_RouterInterfaceEnumOperation) UnmarshalNDRRequest(ctx context.Conte
 			}
 		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= RouterInterfaceEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_lpdwResumeHandle, OnNull: _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7509,7 +7509,7 @@ func (o *xxx_RouterInterfaceEnumOperation) UnmarshalNDRResponse(ctx context.Cont
 			}
 		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= RouterInterfaceEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_lpdwResumeHandle, OnNull: _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -13656,7 +13656,7 @@ func (o *xxx_ConnectionEnumExOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= ConnectionEnumExNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_lpdwResumeHandle, OnNull: _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -13848,7 +13848,7 @@ func (o *xxx_ConnectionEnumExOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 		}
 		_m_lpdwResumeHandle := func() { o.NullMask |= ConnectionEnumExNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_lpdwResumeHandle, _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_lpdwResumeHandle, OnNull: _m_lpdwResumeHandle}, _ptr_lpdwResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {

@@ -3530,7 +3530,7 @@ func (o *xxx_BaseRegCreateKeyOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 		}
 		_m_lpdwDisposition := func() { o.NullMask |= BaseRegCreateKeyNullMaskDisposition }
-		if err := w.ReadPointerWithHook(&o.Disposition, ndr.PointerHook{_s_lpdwDisposition, _m_lpdwDisposition}, _ptr_lpdwDisposition); err != nil {
+		if err := w.ReadPointerWithHook(&o.Disposition, ndr.PointerHook{OnSet: _s_lpdwDisposition, OnNull: _m_lpdwDisposition}, _ptr_lpdwDisposition); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3626,7 +3626,7 @@ func (o *xxx_BaseRegCreateKeyOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 		}
 		_m_lpdwDisposition := func() { o.NullMask |= BaseRegCreateKeyNullMaskDisposition }
-		if err := w.ReadPointerWithHook(&o.Disposition, ndr.PointerHook{_s_lpdwDisposition, _m_lpdwDisposition}, _ptr_lpdwDisposition); err != nil {
+		if err := w.ReadPointerWithHook(&o.Disposition, ndr.PointerHook{OnSet: _s_lpdwDisposition, OnNull: _m_lpdwDisposition}, _ptr_lpdwDisposition); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4997,7 +4997,7 @@ func (o *xxx_BaseRegEnumValueOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 		}
 		_m_lpType := func() { o.NullMask |= BaseRegEnumValueNullMaskType }
-		if err := w.ReadPointerWithHook(&o.Type, ndr.PointerHook{_s_lpType, _m_lpType}, _ptr_lpType); err != nil {
+		if err := w.ReadPointerWithHook(&o.Type, ndr.PointerHook{OnSet: _s_lpType, OnNull: _m_lpType}, _ptr_lpType); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5075,7 +5075,7 @@ func (o *xxx_BaseRegEnumValueOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 		}
 		_m_lpcbData := func() { o.NullMask |= BaseRegEnumValueNullMaskDataLength }
-		if err := w.ReadPointerWithHook(&o.DataLength, ndr.PointerHook{_s_lpcbData, _m_lpcbData}, _ptr_lpcbData); err != nil {
+		if err := w.ReadPointerWithHook(&o.DataLength, ndr.PointerHook{OnSet: _s_lpcbData, OnNull: _m_lpcbData}, _ptr_lpcbData); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5103,7 +5103,7 @@ func (o *xxx_BaseRegEnumValueOperation) UnmarshalNDRRequest(ctx context.Context,
 			}
 		}
 		_m_lpcbLen := func() { o.NullMask |= BaseRegEnumValueNullMaskLength }
-		if err := w.ReadPointerWithHook(&o.Length, ndr.PointerHook{_s_lpcbLen, _m_lpcbLen}, _ptr_lpcbLen); err != nil {
+		if err := w.ReadPointerWithHook(&o.Length, ndr.PointerHook{OnSet: _s_lpcbLen, OnNull: _m_lpcbLen}, _ptr_lpcbLen); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5307,7 +5307,7 @@ func (o *xxx_BaseRegEnumValueOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 		}
 		_m_lpType := func() { o.NullMask |= BaseRegEnumValueNullMaskType }
-		if err := w.ReadPointerWithHook(&o.Type, ndr.PointerHook{_s_lpType, _m_lpType}, _ptr_lpType); err != nil {
+		if err := w.ReadPointerWithHook(&o.Type, ndr.PointerHook{OnSet: _s_lpType, OnNull: _m_lpType}, _ptr_lpType); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5385,7 +5385,7 @@ func (o *xxx_BaseRegEnumValueOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 		}
 		_m_lpcbData := func() { o.NullMask |= BaseRegEnumValueNullMaskDataLength }
-		if err := w.ReadPointerWithHook(&o.DataLength, ndr.PointerHook{_s_lpcbData, _m_lpcbData}, _ptr_lpcbData); err != nil {
+		if err := w.ReadPointerWithHook(&o.DataLength, ndr.PointerHook{OnSet: _s_lpcbData, OnNull: _m_lpcbData}, _ptr_lpcbData); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5413,7 +5413,7 @@ func (o *xxx_BaseRegEnumValueOperation) UnmarshalNDRResponse(ctx context.Context
 			}
 		}
 		_m_lpcbLen := func() { o.NullMask |= BaseRegEnumValueNullMaskLength }
-		if err := w.ReadPointerWithHook(&o.Length, ndr.PointerHook{_s_lpcbLen, _m_lpcbLen}, _ptr_lpcbLen); err != nil {
+		if err := w.ReadPointerWithHook(&o.Length, ndr.PointerHook{OnSet: _s_lpcbLen, OnNull: _m_lpcbLen}, _ptr_lpcbLen); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7174,7 +7174,7 @@ func (o *xxx_BaseRegQueryValueOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 		}
 		_m_lpType := func() { o.NullMask |= BaseRegQueryValueNullMaskType }
-		if err := w.ReadPointerWithHook(&o.Type, ndr.PointerHook{_s_lpType, _m_lpType}, _ptr_lpType); err != nil {
+		if err := w.ReadPointerWithHook(&o.Type, ndr.PointerHook{OnSet: _s_lpType, OnNull: _m_lpType}, _ptr_lpType); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7252,7 +7252,7 @@ func (o *xxx_BaseRegQueryValueOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 		}
 		_m_lpcbData := func() { o.NullMask |= BaseRegQueryValueNullMaskDataLength }
-		if err := w.ReadPointerWithHook(&o.DataLength, ndr.PointerHook{_s_lpcbData, _m_lpcbData}, _ptr_lpcbData); err != nil {
+		if err := w.ReadPointerWithHook(&o.DataLength, ndr.PointerHook{OnSet: _s_lpcbData, OnNull: _m_lpcbData}, _ptr_lpcbData); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7280,7 +7280,7 @@ func (o *xxx_BaseRegQueryValueOperation) UnmarshalNDRRequest(ctx context.Context
 			}
 		}
 		_m_lpcbLen := func() { o.NullMask |= BaseRegQueryValueNullMaskLength }
-		if err := w.ReadPointerWithHook(&o.Length, ndr.PointerHook{_s_lpcbLen, _m_lpcbLen}, _ptr_lpcbLen); err != nil {
+		if err := w.ReadPointerWithHook(&o.Length, ndr.PointerHook{OnSet: _s_lpcbLen, OnNull: _m_lpcbLen}, _ptr_lpcbLen); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7457,7 +7457,7 @@ func (o *xxx_BaseRegQueryValueOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 		}
 		_m_lpType := func() { o.NullMask |= BaseRegQueryValueNullMaskType }
-		if err := w.ReadPointerWithHook(&o.Type, ndr.PointerHook{_s_lpType, _m_lpType}, _ptr_lpType); err != nil {
+		if err := w.ReadPointerWithHook(&o.Type, ndr.PointerHook{OnSet: _s_lpType, OnNull: _m_lpType}, _ptr_lpType); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7535,7 +7535,7 @@ func (o *xxx_BaseRegQueryValueOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 		}
 		_m_lpcbData := func() { o.NullMask |= BaseRegQueryValueNullMaskDataLength }
-		if err := w.ReadPointerWithHook(&o.DataLength, ndr.PointerHook{_s_lpcbData, _m_lpcbData}, _ptr_lpcbData); err != nil {
+		if err := w.ReadPointerWithHook(&o.DataLength, ndr.PointerHook{OnSet: _s_lpcbData, OnNull: _m_lpcbData}, _ptr_lpcbData); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7563,7 +7563,7 @@ func (o *xxx_BaseRegQueryValueOperation) UnmarshalNDRResponse(ctx context.Contex
 			}
 		}
 		_m_lpcbLen := func() { o.NullMask |= BaseRegQueryValueNullMaskLength }
-		if err := w.ReadPointerWithHook(&o.Length, ndr.PointerHook{_s_lpcbLen, _m_lpcbLen}, _ptr_lpcbLen); err != nil {
+		if err := w.ReadPointerWithHook(&o.Length, ndr.PointerHook{OnSet: _s_lpcbLen, OnNull: _m_lpcbLen}, _ptr_lpcbLen); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {

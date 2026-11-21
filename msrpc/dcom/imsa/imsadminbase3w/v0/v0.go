@@ -459,7 +459,7 @@ func (o *xxx_GetChildPathsOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 		}
 		_m_pcchMDRequiredBufferSize := func() { o.NullMask |= GetChildPathsNullMaskRequiredBufferSize }
-		if err := w.ReadPointerWithHook(&o.RequiredBufferSize, ndr.PointerHook{_s_pcchMDRequiredBufferSize, _m_pcchMDRequiredBufferSize}, _ptr_pcchMDRequiredBufferSize); err != nil {
+		if err := w.ReadPointerWithHook(&o.RequiredBufferSize, ndr.PointerHook{OnSet: _s_pcchMDRequiredBufferSize, OnNull: _m_pcchMDRequiredBufferSize}, _ptr_pcchMDRequiredBufferSize); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -648,7 +648,7 @@ func (o *xxx_GetChildPathsOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 		}
 		_m_pcchMDRequiredBufferSize := func() { o.NullMask |= GetChildPathsNullMaskRequiredBufferSize }
-		if err := w.ReadPointerWithHook(&o.RequiredBufferSize, ndr.PointerHook{_s_pcchMDRequiredBufferSize, _m_pcchMDRequiredBufferSize}, _ptr_pcchMDRequiredBufferSize); err != nil {
+		if err := w.ReadPointerWithHook(&o.RequiredBufferSize, ndr.PointerHook{OnSet: _s_pcchMDRequiredBufferSize, OnNull: _m_pcchMDRequiredBufferSize}, _ptr_pcchMDRequiredBufferSize); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {

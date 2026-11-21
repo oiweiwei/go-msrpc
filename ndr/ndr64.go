@@ -236,6 +236,17 @@ func (w *ndr64) ReadPointerWithHook(ptr Pointer, hook PointerHook, mrs ...Unmars
 	return nil
 }
 
+// ReadFullPointer function is the same as ReadPointer: NDR64 does not alias pointers.
+func (w *ndr64) ReadFullPointer(ptr Pointer, setter func(any), mrs ...Unmarshaler) error {
+	return w.ReadPointerWithHook(ptr, PointerHook{OnSet: setter, Full: true}, mrs...)
+}
+
+// ReadFullPointerWithHook function is the same as ReadPointerWithHook: NDR64 does not alias pointers.
+func (w *ndr64) ReadFullPointerWithHook(ptr Pointer, hook PointerHook, mrs ...Unmarshaler) error {
+	hook.Full = true
+	return w.ReadPointerWithHook(ptr, hook, mrs...)
+}
+
 // WritePointer function writes the pointer to the data and defers the
 // actual data write until the WriteDeferred is called.
 func (w *ndr64) WritePointer(ptr Pointer, mrs ...Marshaler) error {

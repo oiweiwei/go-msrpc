@@ -95,48 +95,6 @@ type TrksvrServer interface {
 	// the client by using the LnkSvrMessageCallback method. See sections 3.1.4.4 and 3.2.4.1
 	// for more information.
 	ServerMessage(context.Context, *ServerMessageRequest) (*ServerMessageResponse, error)
-
-	// The LnkSvrMessageCallback method is an RPC callback method that provides a means
-	// for the DLT Central Manager server to call back to the client during a LnkSvrMessage
-	// call. As defined in section 3.1.4, this callback only occurs for SYNC_VOLUMES messages
-	// (for an example of this message, see section 3.2.5.3).
-	//
-	// For more details on when this callback is used by the server, see section 3.1.4.4.
-	//
-	// Return Values: The return value is typed as an HRESULT, but for this method, a value
-	// of zero indicates success, and all other values indicate failure. Any nonzero value
-	// MUST be treated identically as a failure value.
-	//
-	// The client MUST respond to this request by executing the steps in section 3.2.4.4
-	// on each of the TRKSVR_SYNC_VOLUME structures in the TRKSVR_CALL_SYNC_VOLUMES structure
-	// within the pMsg parameter. In this way, the client is responding as though it received
-	// the updated structure in the completion of the LnkSvrMessage request.
-	//
-	// If any subrequest indicates a failure—that is, if the hr field of any TRKSVR_SYNC_VOLUME
-	// structure is not zero—the client MUST return to the server with a return value
-	// that indicates failure.
-	//
-	// For example, in a typical case where this callback method is used, processing proceeds
-	// in the following order:
-	//
-	// * The client sends a SYNC_VOLUMES message to the server by calling LnkSvrMessage,
-	// as described, for example, in section 3.2.5.3.
-	//
-	// * The server processes the request, updates the TRKSVR_CALL_SYNC_VOLUMES array in
-	// the request, and calls LnkSvrMessageCallback on the client.
-	//
-	// * The client processes the subrequests in the updated TRKSVR_CALL_SYNC_VOLUMES array,
-	// as defined in section 3.2.4.4.
-	//
-	// * The client returns from the LnkSvrMessageCallback method to the server.
-	//
-	// * The server sets the *cProcessed* field of the TRKSVR_CALL_SYNC_VOLUMES structure
-	// to zero, and returns from the LnkSvrMessage method to the client.
-	//
-	// * The client again performs the processing defined in section 3.2.4.4. But because
-	// the *cProcessed* field has been set to zero, the client takes no additional action,
-	// as defined in that section.
-	ServerMessageCallback(context.Context, *ServerMessageCallbackRequest) (*ServerMessageCallbackResponse, error)
 }
 
 func RegisterTrksvrServer(conn dcerpc.Conn, o TrksvrServer, opts ...dcerpc.Option) {
@@ -160,15 +118,6 @@ func TrksvrServerHandle(ctx context.Context, o TrksvrServer, opNum int, r ndr.Re
 		req.xxx_FromOp(ctx, op)
 		resp, err := o.ServerMessage(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
-	case 1: // LnkSvrMessageCallback
-		op := &xxx_ServerMessageCallbackOperation{}
-		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
-			return nil, err
-		}
-		req := &ServerMessageCallbackRequest{}
-		req.xxx_FromOp(ctx, op)
-		resp, err := o.ServerMessageCallback(ctx, req)
-		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
@@ -178,9 +127,6 @@ type UnimplementedTrksvrServer struct {
 }
 
 func (UnimplementedTrksvrServer) ServerMessage(context.Context, *ServerMessageRequest) (*ServerMessageResponse, error) {
-	return nil, dcerpc.ErrNotImplemented
-}
-func (UnimplementedTrksvrServer) ServerMessageCallback(context.Context, *ServerMessageCallbackRequest) (*ServerMessageCallbackResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 

@@ -7979,7 +7979,7 @@ func (o *xxx_SetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 		}
 		_m_ErrorParameter := func() { o.NullMask |= SetInfoNullMaskErrorParameter }
-		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{_s_ErrorParameter, _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
+		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{OnSet: _s_ErrorParameter, OnNull: _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8054,7 +8054,7 @@ func (o *xxx_SetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 		}
 		_m_ErrorParameter := func() { o.NullMask |= SetInfoNullMaskErrorParameter }
-		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{_s_ErrorParameter, _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
+		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{OnSet: _s_ErrorParameter, OnNull: _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8391,7 +8391,7 @@ func (o *xxx_UserEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 			}
 		}
 		_m_ResumeHandle := func() { o.NullMask |= UserEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_ResumeHandle, OnNull: _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8505,7 +8505,7 @@ func (o *xxx_UserEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 			}
 		}
 		_m_ResumeHandle := func() { o.NullMask |= UserEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_ResumeHandle, OnNull: _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8836,7 +8836,7 @@ func (o *xxx_TransportEnumOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			}
 		}
 		_m_ResumeHandle := func() { o.NullMask |= TransportEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_ResumeHandle, OnNull: _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8950,7 +8950,7 @@ func (o *xxx_TransportEnumOperation) UnmarshalNDRResponse(ctx context.Context, w
 			}
 		}
 		_m_ResumeHandle := func() { o.NullMask |= TransportEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_ResumeHandle, OnNull: _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -9281,7 +9281,7 @@ func (o *xxx_TransportAddOperation) UnmarshalNDRRequest(ctx context.Context, w n
 			}
 		}
 		_m_ErrorParameter := func() { o.NullMask |= TransportAddNullMaskErrorParameter }
-		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{_s_ErrorParameter, _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
+		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{OnSet: _s_ErrorParameter, OnNull: _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -9356,7 +9356,7 @@ func (o *xxx_TransportAddOperation) UnmarshalNDRResponse(ctx context.Context, w 
 			}
 		}
 		_m_ErrorParameter := func() { o.NullMask |= TransportAddNullMaskErrorParameter }
-		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{_s_ErrorParameter, _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
+		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{OnSet: _s_ErrorParameter, OnNull: _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -9955,7 +9955,7 @@ func (o *xxx_UseAddOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 			}
 		}
 		_m_ErrorParameter := func() { o.NullMask |= UseAddNullMaskErrorParameter }
-		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{_s_ErrorParameter, _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
+		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{OnSet: _s_ErrorParameter, OnNull: _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -10030,7 +10030,7 @@ func (o *xxx_UseAddOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 			}
 		}
 		_m_ErrorParameter := func() { o.NullMask |= UseAddNullMaskErrorParameter }
-		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{_s_ErrorParameter, _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
+		if err := w.ReadPointerWithHook(&o.ErrorParameter, ndr.PointerHook{OnSet: _s_ErrorParameter, OnNull: _m_ErrorParameter}, _ptr_ErrorParameter); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -10902,7 +10902,7 @@ func (o *xxx_UseEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 			}
 		}
 		_m_ResumeHandle := func() { o.NullMask |= UseEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_ResumeHandle, OnNull: _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -11016,7 +11016,7 @@ func (o *xxx_UseEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			}
 		}
 		_m_ResumeHandle := func() { o.NullMask |= UseEnumNullMaskResume }
-		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{_s_ResumeHandle, _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
+		if err := w.ReadPointerWithHook(&o.Resume, ndr.PointerHook{OnSet: _s_ResumeHandle, OnNull: _m_ResumeHandle}, _ptr_ResumeHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {

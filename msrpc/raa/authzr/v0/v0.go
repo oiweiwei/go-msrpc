@@ -310,7 +310,7 @@ func (o *AccessRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.PrincipalSelfSID", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.PrincipalSelfSID, _s_PrincipalSelfSid, _ptr_PrincipalSelfSid); err != nil {
+	if err := w.ReadFullPointer(&o.PrincipalSelfSID, _s_PrincipalSelfSid, _ptr_PrincipalSelfSid); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.ObjectTypeListLength); err != nil {
@@ -356,7 +356,7 @@ func (o *AccessRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ObjectTypeList", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.ObjectTypeList, _s_ObjectTypeList, _ptr_ObjectTypeList); err != nil {
+	if err := w.ReadFullPointer(&o.ObjectTypeList, _s_ObjectTypeList, _ptr_ObjectTypeList); err != nil {
 		return err
 	}
 	return nil
@@ -478,7 +478,7 @@ func (o *SelfRelativeSecurityDescriptor) UnmarshalNDR(ctx context.Context, w ndr
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SelfRelativeSecurityDescriptor", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.SelfRelativeSecurityDescriptor, _s_pSrSd, _ptr_pSrSd); err != nil {
+	if err := w.ReadFullPointer(&o.SelfRelativeSecurityDescriptor, _s_pSrSd, _ptr_pSrSd); err != nil {
 		return err
 	}
 	return nil
@@ -640,7 +640,7 @@ func (o *AccessReply) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.GrantedAccessMask", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.GrantedAccessMask, _s_GrantedAccessMask, _ptr_GrantedAccessMask); err != nil {
+	if err := w.ReadFullPointer(&o.GrantedAccessMask, _s_GrantedAccessMask, _ptr_GrantedAccessMask); err != nil {
 		return err
 	}
 	_ptr_Error := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -680,7 +680,7 @@ func (o *AccessReply) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Error", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.Error, _s_Error, _ptr_Error); err != nil {
+	if err := w.ReadFullPointer(&o.Error, _s_Error, _ptr_Error); err != nil {
 		return err
 	}
 	return nil
@@ -851,7 +851,7 @@ func (o *SIDAndAttributes) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SID", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+	if err := w.ReadFullPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Attributes); err != nil {
@@ -1168,7 +1168,7 @@ func (o *SecurityAttributeStringValue) UnmarshalNDR(ctx context.Context, w ndr.R
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.Value, _s_Value, _ptr_Value); err != nil {
+	if err := w.ReadFullPointer(&o.Value, _s_Value, _ptr_Value); err != nil {
 		return err
 	}
 	return nil
@@ -1692,7 +1692,7 @@ func (o *SecurityAttributeV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Value", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.Value, _s_Value, _ptr_Value); err != nil {
+	if err := w.ReadFullPointer(&o.Value, _s_Value, _ptr_Value); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.ValueType); err != nil {
@@ -1749,7 +1749,7 @@ func (o *SecurityAttributeV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Values", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.Values, _s_Values, _ptr_Values); err != nil {
+	if err := w.ReadFullPointer(&o.Values, _s_Values, _ptr_Values); err != nil {
 		return err
 	}
 	return nil
@@ -1901,7 +1901,7 @@ func (o *SecurityAttributesInformation) UnmarshalNDR(ctx context.Context, w ndr.
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Attributes", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.Attributes, _s_Attributes, _ptr_Attributes); err != nil {
+	if err := w.ReadFullPointer(&o.Attributes, _s_Attributes, _ptr_Attributes); err != nil {
 		return err
 	}
 	return nil
@@ -2192,7 +2192,7 @@ func (o *ContextInformation_ContextInfoUnion_TokenUser) UnmarshalNDR(ctx context
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TokenUser", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.TokenUser, _s_pTokenUser, _ptr_pTokenUser); err != nil {
+	if err := w.ReadFullPointer(&o.TokenUser, _s_pTokenUser, _ptr_pTokenUser); err != nil {
 		return err
 	}
 	return nil
@@ -2253,7 +2253,7 @@ func (o *ContextInformation_ContextInfoUnion_TokenGroups) UnmarshalNDR(ctx conte
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TokenGroups", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.TokenGroups, _s_pTokenGroups, _ptr_pTokenGroups); err != nil {
+	if err := w.ReadFullPointer(&o.TokenGroups, _s_pTokenGroups, _ptr_pTokenGroups); err != nil {
 		return err
 	}
 	return nil
@@ -2314,7 +2314,7 @@ func (o *ContextInformation_ContextInfoUnion_TokenClaims) UnmarshalNDR(ctx conte
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.TokenClaims", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.TokenClaims, _s_pTokenClaims, _ptr_pTokenClaims); err != nil {
+	if err := w.ReadFullPointer(&o.TokenClaims, _s_pTokenClaims, _ptr_pTokenClaims); err != nil {
 		return err
 	}
 	return nil
@@ -3765,7 +3765,7 @@ func (o *xxx_GetInformationFromContextOperation) UnmarshalNDRResponse(ctx contex
 				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.ContextInformation", ptr))
 			}
 		}
-		if err := w.ReadPointer(&o.ContextInformation, _s_ppContextInformation, _ptr_ppContextInformation); err != nil {
+		if err := w.ReadFullPointer(&o.ContextInformation, _s_ppContextInformation, _ptr_ppContextInformation); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {

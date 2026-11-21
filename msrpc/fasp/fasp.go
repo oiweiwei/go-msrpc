@@ -27158,7 +27158,7 @@ func (o *HypervVmConfigValue0) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		}
 	}
 	_m_pdwVal := func() { o.NullMask |= HypervVmConfigValue0NullMaskValue }
-	if err := w.ReadPointerWithHook(&o.Value, ndr.PointerHook{_s_pdwVal, _m_pdwVal}, _ptr_pdwVal); err != nil {
+	if err := w.ReadPointerWithHook(&o.Value, ndr.PointerHook{OnSet: _s_pdwVal, OnNull: _m_pdwVal}, _ptr_pdwVal); err != nil {
 		return err
 	}
 	return nil

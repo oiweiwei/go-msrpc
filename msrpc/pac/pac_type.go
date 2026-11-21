@@ -3,6 +3,7 @@ package pac
 import (
 	"bytes"
 	"fmt"
+	"slices"
 
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
 
@@ -148,6 +149,9 @@ func (p *PAC) Unmarshal(b []byte) error {
 	return nil
 }
 
+// IsSignatureBuffer function reports whether the buffer carries a signature of any kind (server (0x6),
+// KDC (0x7), ticket (0x10) or full PAC (0x13) checksum). To compute or verify a particular signature
+// use the more specific helpers, as they zero out different sets of buffers.
 func IsSignatureBuffer(buffer *PACInfoBuffer) bool {
 	if buffer != nil {
 		return buffer.Type == 0x00000006 || buffer.Type == 0x00000007 || buffer.Type == 0x00000010 || buffer.Type == 0x00000013
@@ -178,7 +182,40 @@ func FillInSignatureData(b []byte, sign *PACInfoBuffer, data []byte) ([]byte, er
 	return b, nil
 }
 
-// ZeroOutSignatureData function clears the signature data in the buffer.
+// ZeroOutServerSignatureInput function returns a copy of the PAC bytes prepared for computing or verifying
+// the server signature (MS-PAC 2.8.1): only the Signature fields of the server (0x6) and KDC (0x7)
+// checksum buffers are zeroed. The ticket (0x10) and full PAC (0x13) checksum buffers MUST be left
+// intact, as the KDC fills them in before it computes the server signature.
+func ZeroOutServerSignatureInput(b []byte, buffers []*PACInfoBuffer) ([]byte, error) {
+	return ZeroOutSignatureDataByType(b, buffers, PACInfoBufferTypeServerChecksum, PACInfoBufferTypeKDCChecksum)
+}
+
+// ZeroOutFullChecksumInput function returns a copy of the PAC bytes prepared for computing or verifying
+// the full PAC checksum (0x13): the Signature fields of the server (0x6), KDC (0x7) and full (0x13)
+// checksum buffers are zeroed. The ticket checksum (0x10) is left intact.
+func ZeroOutFullChecksumInput(b []byte, buffers []*PACInfoBuffer) ([]byte, error) {
+	return ZeroOutSignatureDataByType(b, buffers, PACInfoBufferTypeServerChecksum, PACInfoBufferTypeKDCChecksum, PACInfoBufferTypeExtendedKDCChecksum)
+}
+
+// ZeroOutSignatureDataByType function returns a copy of the PAC bytes with the Signature fields
+// of the buffers of the given types zeroed (see ZeroOutServerSignatureInput and
+// ZeroOutFullChecksumInput for the sets the MS-PAC signatures use).
+func ZeroOutSignatureDataByType(b []byte, buffers []*PACInfoBuffer, types ...uint32) ([]byte, error) {
+	b = append([]byte(nil), b...)
+	for _, buf := range buffers {
+		if buf == nil || !slices.Contains(types, buf.Type) {
+			continue
+		}
+		if buf.BufferLength < 4 || uint64(len(b)) < buf.Offset+uint64(buf.BufferLength) {
+			return nil, fmt.Errorf("zero_out_signature_data: buffer too small")
+		}
+		clear(b[buf.Offset+4 : buf.Offset+uint64(buf.BufferLength)])
+	}
+	return b, nil
+}
+
+// ZeroOutSignatureData function clears the signature data in the buffer (in place).
+// Note that it accepts any signature buffer type; see ZeroOutServerSignatureInput.
 func ZeroOutSignatureData(b []byte, sign *PACInfoBuffer) ([]byte, error) {
 
 	if !IsSignatureBuffer(sign) {

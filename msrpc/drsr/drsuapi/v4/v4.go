@@ -8764,7 +8764,7 @@ func (o *DSReplicationValueMetadata) UnmarshalNDR(ctx context.Context, w ndr.Rea
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.Data, _s_pbData, _ptr_pbData); err != nil {
+	if err := w.ReadFullPointer(&o.Data, _s_pbData, _ptr_pbData); err != nil {
 		return err
 	}
 	if o.Deleted == nil {
@@ -9961,7 +9961,7 @@ func (o *DSReplicationValueMetadata2) UnmarshalNDR(ctx context.Context, w ndr.Re
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.Data", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.Data, _s_pbData, _ptr_pbData); err != nil {
+	if err := w.ReadFullPointer(&o.Data, _s_pbData, _ptr_pbData); err != nil {
 		return err
 	}
 	if o.Deleted == nil {
@@ -20091,7 +20091,7 @@ func (o *MessageMoveReplyV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		}
 	}
 	_m_pError := func() { o.NullMask |= MessageMoveReplyV1NullMaskError }
-	if err := w.ReadPointerWithHook(&o.Error, ndr.PointerHook{_s_pError, _m_pError}, _ptr_pError); err != nil {
+	if err := w.ReadPointerWithHook(&o.Error, ndr.PointerHook{OnSet: _s_pError, OnNull: _m_pError}, _ptr_pError); err != nil {
 		return err
 	}
 	return nil
@@ -28556,7 +28556,7 @@ func (o *MessageAddSIDHistoryRequestV1) UnmarshalNDR(ctx context.Context, w ndr.
 			w.SetErr(fmt.Errorf("invalid pointer type %T for field o.SourceDomainController", ptr))
 		}
 	}
-	if err := w.ReadPointer(&o.SourceDomainController, _s_SrcDomainController, _ptr_SrcDomainController); err != nil {
+	if err := w.ReadFullPointer(&o.SourceDomainController, _s_SrcDomainController, _ptr_SrcDomainController); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.SourceCredsUserLength); err != nil {

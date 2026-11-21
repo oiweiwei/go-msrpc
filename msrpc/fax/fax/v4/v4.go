@@ -11981,7 +11981,7 @@ func (o *xxx_AccessCheckOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			}
 		}
 		_m_lpdwRights := func() { o.NullMask |= AccessCheckNullMaskRights }
-		if err := w.ReadPointerWithHook(&o.Rights, ndr.PointerHook{_s_lpdwRights, _m_lpdwRights}, _ptr_lpdwRights); err != nil {
+		if err := w.ReadPointerWithHook(&o.Rights, ndr.PointerHook{OnSet: _s_lpdwRights, OnNull: _m_lpdwRights}, _ptr_lpdwRights); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -12076,7 +12076,7 @@ func (o *xxx_AccessCheckOperation) UnmarshalNDRResponse(ctx context.Context, w n
 			}
 		}
 		_m_lpdwRights := func() { o.NullMask |= AccessCheckNullMaskRights }
-		if err := w.ReadPointerWithHook(&o.Rights, ndr.PointerHook{_s_lpdwRights, _m_lpdwRights}, _ptr_lpdwRights); err != nil {
+		if err := w.ReadPointerWithHook(&o.Rights, ndr.PointerHook{OnSet: _s_lpdwRights, OnNull: _m_lpdwRights}, _ptr_lpdwRights); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -12424,7 +12424,7 @@ func (o *xxx_CheckServerProtocolSeqOperation) UnmarshalNDRRequest(ctx context.Co
 			}
 		}
 		_m_lpdwProtSeq := func() { o.NullMask |= CheckServerProtocolSeqNullMaskProtocolSeq }
-		if err := w.ReadPointerWithHook(&o.ProtocolSeq, ndr.PointerHook{_s_lpdwProtSeq, _m_lpdwProtSeq}, _ptr_lpdwProtSeq); err != nil {
+		if err := w.ReadPointerWithHook(&o.ProtocolSeq, ndr.PointerHook{OnSet: _s_lpdwProtSeq, OnNull: _m_lpdwProtSeq}, _ptr_lpdwProtSeq); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -12499,7 +12499,7 @@ func (o *xxx_CheckServerProtocolSeqOperation) UnmarshalNDRResponse(ctx context.C
 			}
 		}
 		_m_lpdwProtSeq := func() { o.NullMask |= CheckServerProtocolSeqNullMaskProtocolSeq }
-		if err := w.ReadPointerWithHook(&o.ProtocolSeq, ndr.PointerHook{_s_lpdwProtSeq, _m_lpdwProtSeq}, _ptr_lpdwProtSeq); err != nil {
+		if err := w.ReadPointerWithHook(&o.ProtocolSeq, ndr.PointerHook{OnSet: _s_lpdwProtSeq, OnNull: _m_lpdwProtSeq}, _ptr_lpdwProtSeq); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -12746,9 +12746,6 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRRequest(ctx context.Context, w n
 			if uint64(i1) >= sizeInfo[0] {
 				break
 			}
-			// XXX: pointer default mask was not generated as conditions
-			// for automatic generation were not met.
-			// If this behavior is not desired, use goext_default_null([cond]) attribute.
 			if o.SenderProfile[i1] != uint8(0) {
 				_ptr_lpcSenderProfile := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 					if err := w.WriteData(o.SenderProfile[i1]); err != nil {
@@ -13021,7 +13018,7 @@ func (o *xxx_SendDocumentExOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 		}
 		_m_lpdwJobId := func() { o.NullMask |= SendDocumentExNullMaskJobID }
-		if err := w.ReadPointerWithHook(&o.JobID, ndr.PointerHook{_s_lpdwJobId, _m_lpdwJobId}, _ptr_lpdwJobId); err != nil {
+		if err := w.ReadPointerWithHook(&o.JobID, ndr.PointerHook{OnSet: _s_lpdwJobId, OnNull: _m_lpdwJobId}, _ptr_lpdwJobId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -13126,7 +13123,7 @@ func (o *xxx_SendDocumentExOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 		}
 		_m_lpdwJobId := func() { o.NullMask |= SendDocumentExNullMaskJobID }
-		if err := w.ReadPointerWithHook(&o.JobID, ndr.PointerHook{_s_lpdwJobId, _m_lpdwJobId}, _ptr_lpdwJobId); err != nil {
+		if err := w.ReadPointerWithHook(&o.JobID, ndr.PointerHook{OnSet: _s_lpdwJobId, OnNull: _m_lpdwJobId}, _ptr_lpdwJobId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -30256,7 +30253,7 @@ func (o *xxx_AccessCheckEx2Operation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 		}
 		_m_lpdwRights := func() { o.NullMask |= AccessCheckEx2NullMaskRights }
-		if err := w.ReadPointerWithHook(&o.Rights, ndr.PointerHook{_s_lpdwRights, _m_lpdwRights}, _ptr_lpdwRights); err != nil {
+		if err := w.ReadPointerWithHook(&o.Rights, ndr.PointerHook{OnSet: _s_lpdwRights, OnNull: _m_lpdwRights}, _ptr_lpdwRights); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -30351,7 +30348,7 @@ func (o *xxx_AccessCheckEx2Operation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 		}
 		_m_lpdwRights := func() { o.NullMask |= AccessCheckEx2NullMaskRights }
-		if err := w.ReadPointerWithHook(&o.Rights, ndr.PointerHook{_s_lpdwRights, _m_lpdwRights}, _ptr_lpdwRights); err != nil {
+		if err := w.ReadPointerWithHook(&o.Rights, ndr.PointerHook{OnSet: _s_lpdwRights, OnNull: _m_lpdwRights}, _ptr_lpdwRights); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {

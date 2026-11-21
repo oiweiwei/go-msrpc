@@ -2370,7 +2370,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pClass := func() { o.NullMask |= TransferBufferV1NullMaskClass }
-	if err := w.ReadPointerWithHook(&o.Class, ndr.PointerHook{_s_pClass, _m_pClass}, _ptr_pClass); err != nil {
+	if err := w.ReadPointerWithHook(&o.Class, ndr.PointerHook{OnSet: _s_pClass, OnNull: _m_pClass}, _ptr_pClass); err != nil {
 		return err
 	}
 	_ptr_ppMessageID := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2496,7 +2496,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pSentTime := func() { o.NullMask |= TransferBufferV1NullMaskSentTime }
-	if err := w.ReadPointerWithHook(&o.SentTime, ndr.PointerHook{_s_pSentTime, _m_pSentTime}, _ptr_pSentTime); err != nil {
+	if err := w.ReadPointerWithHook(&o.SentTime, ndr.PointerHook{OnSet: _s_pSentTime, OnNull: _m_pSentTime}, _ptr_pSentTime); err != nil {
 		return err
 	}
 	_ptr_pArrivedTime := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2518,7 +2518,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pArrivedTime := func() { o.NullMask |= TransferBufferV1NullMaskArrivedTime }
-	if err := w.ReadPointerWithHook(&o.ArrivedTime, ndr.PointerHook{_s_pArrivedTime, _m_pArrivedTime}, _ptr_pArrivedTime); err != nil {
+	if err := w.ReadPointerWithHook(&o.ArrivedTime, ndr.PointerHook{OnSet: _s_pArrivedTime, OnNull: _m_pArrivedTime}, _ptr_pArrivedTime); err != nil {
 		return err
 	}
 	_ptr_pPriority := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2540,7 +2540,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pPriority := func() { o.NullMask |= TransferBufferV1NullMaskPriority }
-	if err := w.ReadPointerWithHook(&o.Priority, ndr.PointerHook{_s_pPriority, _m_pPriority}, _ptr_pPriority); err != nil {
+	if err := w.ReadPointerWithHook(&o.Priority, ndr.PointerHook{OnSet: _s_pPriority, OnNull: _m_pPriority}, _ptr_pPriority); err != nil {
 		return err
 	}
 	_ptr_pDelivery := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2562,7 +2562,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pDelivery := func() { o.NullMask |= TransferBufferV1NullMaskDelivery }
-	if err := w.ReadPointerWithHook(&o.Delivery, ndr.PointerHook{_s_pDelivery, _m_pDelivery}, _ptr_pDelivery); err != nil {
+	if err := w.ReadPointerWithHook(&o.Delivery, ndr.PointerHook{OnSet: _s_pDelivery, OnNull: _m_pDelivery}, _ptr_pDelivery); err != nil {
 		return err
 	}
 	_ptr_pAcknowledge := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2584,7 +2584,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pAcknowledge := func() { o.NullMask |= TransferBufferV1NullMaskAcknowledge }
-	if err := w.ReadPointerWithHook(&o.Acknowledge, ndr.PointerHook{_s_pAcknowledge, _m_pAcknowledge}, _ptr_pAcknowledge); err != nil {
+	if err := w.ReadPointerWithHook(&o.Acknowledge, ndr.PointerHook{OnSet: _s_pAcknowledge, OnNull: _m_pAcknowledge}, _ptr_pAcknowledge); err != nil {
 		return err
 	}
 	_ptr_pAuditing := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2606,7 +2606,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pAuditing := func() { o.NullMask |= TransferBufferV1NullMaskAuditing }
-	if err := w.ReadPointerWithHook(&o.Auditing, ndr.PointerHook{_s_pAuditing, _m_pAuditing}, _ptr_pAuditing); err != nil {
+	if err := w.ReadPointerWithHook(&o.Auditing, ndr.PointerHook{OnSet: _s_pAuditing, OnNull: _m_pAuditing}, _ptr_pAuditing); err != nil {
 		return err
 	}
 	_ptr_pApplicationTag := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2628,7 +2628,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pApplicationTag := func() { o.NullMask |= TransferBufferV1NullMaskApplicationTag }
-	if err := w.ReadPointerWithHook(&o.ApplicationTag, ndr.PointerHook{_s_pApplicationTag, _m_pApplicationTag}, _ptr_pApplicationTag); err != nil {
+	if err := w.ReadPointerWithHook(&o.ApplicationTag, ndr.PointerHook{OnSet: _s_pApplicationTag, OnNull: _m_pApplicationTag}, _ptr_pApplicationTag); err != nil {
 		return err
 	}
 	_ptr_ppBody := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2718,7 +2718,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pBodySize := func() { o.NullMask |= TransferBufferV1NullMaskBodySize }
-	if err := w.ReadPointerWithHook(&o.BodySize, ndr.PointerHook{_s_pBodySize, _m_pBodySize}, _ptr_pBodySize); err != nil {
+	if err := w.ReadPointerWithHook(&o.BodySize, ndr.PointerHook{OnSet: _s_pBodySize, OnNull: _m_pBodySize}, _ptr_pBodySize); err != nil {
 		return err
 	}
 	_ptr_ppTitle := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2807,7 +2807,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulTitleBufferSizeInWCHARs := func() { o.NullMask |= TransferBufferV1NullMaskActualTitleBufferSizeInWchars }
-	if err := w.ReadPointerWithHook(&o.ActualTitleBufferSizeInWchars, ndr.PointerHook{_s_pulTitleBufferSizeInWCHARs, _m_pulTitleBufferSizeInWCHARs}, _ptr_pulTitleBufferSizeInWCHARs); err != nil {
+	if err := w.ReadPointerWithHook(&o.ActualTitleBufferSizeInWchars, ndr.PointerHook{OnSet: _s_pulTitleBufferSizeInWCHARs, OnNull: _m_pulTitleBufferSizeInWCHARs}, _ptr_pulTitleBufferSizeInWCHARs); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.AbsoluteTimeToQueue); err != nil {
@@ -2832,7 +2832,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulRelativeTimeToQueue := func() { o.NullMask |= TransferBufferV1NullMaskActualRelativeTimeToQueue }
-	if err := w.ReadPointerWithHook(&o.ActualRelativeTimeToQueue, ndr.PointerHook{_s_pulRelativeTimeToQueue, _m_pulRelativeTimeToQueue}, _ptr_pulRelativeTimeToQueue); err != nil {
+	if err := w.ReadPointerWithHook(&o.ActualRelativeTimeToQueue, ndr.PointerHook{OnSet: _s_pulRelativeTimeToQueue, OnNull: _m_pulRelativeTimeToQueue}, _ptr_pulRelativeTimeToQueue); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.RelativeTimeToLive); err != nil {
@@ -2857,7 +2857,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulRelativeTimeToLive := func() { o.NullMask |= TransferBufferV1NullMaskActualRelativeTimeToLive }
-	if err := w.ReadPointerWithHook(&o.ActualRelativeTimeToLive, ndr.PointerHook{_s_pulRelativeTimeToLive, _m_pulRelativeTimeToLive}, _ptr_pulRelativeTimeToLive); err != nil {
+	if err := w.ReadPointerWithHook(&o.ActualRelativeTimeToLive, ndr.PointerHook{OnSet: _s_pulRelativeTimeToLive, OnNull: _m_pulRelativeTimeToLive}, _ptr_pulRelativeTimeToLive); err != nil {
 		return err
 	}
 	_ptr_pTrace := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2879,7 +2879,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pTrace := func() { o.NullMask |= TransferBufferV1NullMaskTrace }
-	if err := w.ReadPointerWithHook(&o.Trace, ndr.PointerHook{_s_pTrace, _m_pTrace}, _ptr_pTrace); err != nil {
+	if err := w.ReadPointerWithHook(&o.Trace, ndr.PointerHook{OnSet: _s_pTrace, OnNull: _m_pTrace}, _ptr_pTrace); err != nil {
 		return err
 	}
 	_ptr_pulSenderIDType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2901,7 +2901,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulSenderIDType := func() { o.NullMask |= TransferBufferV1NullMaskSenderIDType }
-	if err := w.ReadPointerWithHook(&o.SenderIDType, ndr.PointerHook{_s_pulSenderIDType, _m_pulSenderIDType}, _ptr_pulSenderIDType); err != nil {
+	if err := w.ReadPointerWithHook(&o.SenderIDType, ndr.PointerHook{OnSet: _s_pulSenderIDType, OnNull: _m_pulSenderIDType}, _ptr_pulSenderIDType); err != nil {
 		return err
 	}
 	_ptr_ppSenderID := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2981,7 +2981,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulSenderIDLenProp := func() { o.NullMask |= TransferBufferV1NullMaskSenderIDLengthProperty }
-	if err := w.ReadPointerWithHook(&o.SenderIDLengthProperty, ndr.PointerHook{_s_pulSenderIDLenProp, _m_pulSenderIDLenProp}, _ptr_pulSenderIDLenProp); err != nil {
+	if err := w.ReadPointerWithHook(&o.SenderIDLengthProperty, ndr.PointerHook{OnSet: _s_pulSenderIDLenProp, OnNull: _m_pulSenderIDLenProp}, _ptr_pulSenderIDLenProp); err != nil {
 		return err
 	}
 	_ptr_pulPrivLevel := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -3003,7 +3003,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulPrivLevel := func() { o.NullMask |= TransferBufferV1NullMaskPrivacyLevel }
-	if err := w.ReadPointerWithHook(&o.PrivacyLevel, ndr.PointerHook{_s_pulPrivLevel, _m_pulPrivLevel}, _ptr_pulPrivLevel); err != nil {
+	if err := w.ReadPointerWithHook(&o.PrivacyLevel, ndr.PointerHook{OnSet: _s_pulPrivLevel, OnNull: _m_pulPrivLevel}, _ptr_pulPrivLevel); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.AuthLevel); err != nil {
@@ -3028,7 +3028,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pAuthenticated := func() { o.NullMask |= TransferBufferV1NullMaskAuthenticated }
-	if err := w.ReadPointerWithHook(&o.Authenticated, ndr.PointerHook{_s_pAuthenticated, _m_pAuthenticated}, _ptr_pAuthenticated); err != nil {
+	if err := w.ReadPointerWithHook(&o.Authenticated, ndr.PointerHook{OnSet: _s_pAuthenticated, OnNull: _m_pAuthenticated}, _ptr_pAuthenticated); err != nil {
 		return err
 	}
 	_ptr_pulHashAlg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -3050,7 +3050,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulHashAlg := func() { o.NullMask |= TransferBufferV1NullMaskHashAlgorithm }
-	if err := w.ReadPointerWithHook(&o.HashAlgorithm, ndr.PointerHook{_s_pulHashAlg, _m_pulHashAlg}, _ptr_pulHashAlg); err != nil {
+	if err := w.ReadPointerWithHook(&o.HashAlgorithm, ndr.PointerHook{OnSet: _s_pulHashAlg, OnNull: _m_pulHashAlg}, _ptr_pulHashAlg); err != nil {
 		return err
 	}
 	_ptr_pulEncryptAlg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -3072,7 +3072,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulEncryptAlg := func() { o.NullMask |= TransferBufferV1NullMaskEncryptAlgorithm }
-	if err := w.ReadPointerWithHook(&o.EncryptAlgorithm, ndr.PointerHook{_s_pulEncryptAlg, _m_pulEncryptAlg}, _ptr_pulEncryptAlg); err != nil {
+	if err := w.ReadPointerWithHook(&o.EncryptAlgorithm, ndr.PointerHook{OnSet: _s_pulEncryptAlg, OnNull: _m_pulEncryptAlg}, _ptr_pulEncryptAlg); err != nil {
 		return err
 	}
 	_ptr_ppSenderCert := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -3155,7 +3155,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulSenderCertLenProp := func() { o.NullMask |= TransferBufferV1NullMaskSenderCertLengthProperty }
-	if err := w.ReadPointerWithHook(&o.SenderCertLengthProperty, ndr.PointerHook{_s_pulSenderCertLenProp, _m_pulSenderCertLenProp}, _ptr_pulSenderCertLenProp); err != nil {
+	if err := w.ReadPointerWithHook(&o.SenderCertLengthProperty, ndr.PointerHook{OnSet: _s_pulSenderCertLenProp, OnNull: _m_pulSenderCertLenProp}, _ptr_pulSenderCertLenProp); err != nil {
 		return err
 	}
 	_ptr_ppwcsProvName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -3240,7 +3240,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulAuthProvNameLenProp := func() { o.NullMask |= TransferBufferV1NullMaskAuthProviderNameLengthProperty }
-	if err := w.ReadPointerWithHook(&o.AuthProviderNameLengthProperty, ndr.PointerHook{_s_pulAuthProvNameLenProp, _m_pulAuthProvNameLenProp}, _ptr_pulAuthProvNameLenProp); err != nil {
+	if err := w.ReadPointerWithHook(&o.AuthProviderNameLengthProperty, ndr.PointerHook{OnSet: _s_pulAuthProvNameLenProp, OnNull: _m_pulAuthProvNameLenProp}, _ptr_pulAuthProvNameLenProp); err != nil {
 		return err
 	}
 	_ptr_pulProvType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -3262,7 +3262,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulProvType := func() { o.NullMask |= TransferBufferV1NullMaskProviderType }
-	if err := w.ReadPointerWithHook(&o.ProviderType, ndr.PointerHook{_s_pulProvType, _m_pulProvType}, _ptr_pulProvType); err != nil {
+	if err := w.ReadPointerWithHook(&o.ProviderType, ndr.PointerHook{OnSet: _s_pulProvType, OnNull: _m_pulProvType}, _ptr_pulProvType); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.DefaultProvider); err != nil {
@@ -3348,7 +3348,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulSymmKeysSizeProp := func() { o.NullMask |= TransferBufferV1NullMaskSymmetricKeysSizeProperty }
-	if err := w.ReadPointerWithHook(&o.SymmetricKeysSizeProperty, ndr.PointerHook{_s_pulSymmKeysSizeProp, _m_pulSymmKeysSizeProp}, _ptr_pulSymmKeysSizeProp); err != nil {
+	if err := w.ReadPointerWithHook(&o.SymmetricKeysSizeProperty, ndr.PointerHook{OnSet: _s_pulSymmKeysSizeProp, OnNull: _m_pulSymmKeysSizeProp}, _ptr_pulSymmKeysSizeProp); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Encrypted); err != nil {
@@ -3440,7 +3440,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulSignatureSizeProp := func() { o.NullMask |= TransferBufferV1NullMaskSignatureSizeProperty }
-	if err := w.ReadPointerWithHook(&o.SignatureSizeProperty, ndr.PointerHook{_s_pulSignatureSizeProp, _m_pulSignatureSizeProp}, _ptr_pulSignatureSizeProp); err != nil {
+	if err := w.ReadPointerWithHook(&o.SignatureSizeProperty, ndr.PointerHook{OnSet: _s_pulSignatureSizeProp, OnNull: _m_pulSignatureSizeProp}, _ptr_pulSignatureSizeProp); err != nil {
 		return err
 	}
 	_ptr_ppSrcQMID := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -3593,7 +3593,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pMsgExtensionSize := func() { o.NullMask |= TransferBufferV1NullMaskMessageExtensionSize }
-	if err := w.ReadPointerWithHook(&o.MessageExtensionSize, ndr.PointerHook{_s_pMsgExtensionSize, _m_pMsgExtensionSize}, _ptr_pMsgExtensionSize); err != nil {
+	if err := w.ReadPointerWithHook(&o.MessageExtensionSize, ndr.PointerHook{OnSet: _s_pMsgExtensionSize, OnNull: _m_pMsgExtensionSize}, _ptr_pMsgExtensionSize); err != nil {
 		return err
 	}
 	_ptr_ppConnectorType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -3657,7 +3657,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulBodyType := func() { o.NullMask |= TransferBufferV1NullMaskBodyType }
-	if err := w.ReadPointerWithHook(&o.BodyType, ndr.PointerHook{_s_pulBodyType, _m_pulBodyType}, _ptr_pulBodyType); err != nil {
+	if err := w.ReadPointerWithHook(&o.BodyType, ndr.PointerHook{OnSet: _s_pulBodyType, OnNull: _m_pulBodyType}, _ptr_pulBodyType); err != nil {
 		return err
 	}
 	_ptr_pulVersion := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -3679,7 +3679,7 @@ func (o *TransferBufferV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pulVersion := func() { o.NullMask |= TransferBufferV1NullMaskVersion }
-	if err := w.ReadPointerWithHook(&o.Version, ndr.PointerHook{_s_pulVersion, _m_pulVersion}, _ptr_pulVersion); err != nil {
+	if err := w.ReadPointerWithHook(&o.Version, ndr.PointerHook{OnSet: _s_pulVersion, OnNull: _m_pulVersion}, _ptr_pulVersion); err != nil {
 		return err
 	}
 	return nil
@@ -4563,7 +4563,7 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) UnmarshalNDR(ctx context.Con
 	_m_pulResponseFormatNameLenProp := func() {
 		o.NullMask |= TransferBufferV1_TransferBufferV1_ReceiveNullMaskResponseFormatNameLengthProperty
 	}
-	if err := w.ReadPointerWithHook(&o.ResponseFormatNameLengthProperty, ndr.PointerHook{_s_pulResponseFormatNameLenProp, _m_pulResponseFormatNameLenProp}, _ptr_pulResponseFormatNameLenProp); err != nil {
+	if err := w.ReadPointerWithHook(&o.ResponseFormatNameLengthProperty, ndr.PointerHook{OnSet: _s_pulResponseFormatNameLenProp, OnNull: _m_pulResponseFormatNameLenProp}, _ptr_pulResponseFormatNameLenProp); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.AdminFormatNameLength); err != nil {
@@ -4648,7 +4648,7 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) UnmarshalNDR(ctx context.Con
 		}
 	}
 	_m_pulAdminFormatNameLenProp := func() { o.NullMask |= TransferBufferV1_TransferBufferV1_ReceiveNullMaskAdminFormatNameLengthProperty }
-	if err := w.ReadPointerWithHook(&o.AdminFormatNameLengthProperty, ndr.PointerHook{_s_pulAdminFormatNameLenProp, _m_pulAdminFormatNameLenProp}, _ptr_pulAdminFormatNameLenProp); err != nil {
+	if err := w.ReadPointerWithHook(&o.AdminFormatNameLengthProperty, ndr.PointerHook{OnSet: _s_pulAdminFormatNameLenProp, OnNull: _m_pulAdminFormatNameLenProp}, _ptr_pulAdminFormatNameLenProp); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.DestinationFormatNameLength); err != nil {
@@ -4735,7 +4735,7 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) UnmarshalNDR(ctx context.Con
 	_m_pulDestFormatNameLenProp := func() {
 		o.NullMask |= TransferBufferV1_TransferBufferV1_ReceiveNullMaskDestinationFormatNameLengthProperty
 	}
-	if err := w.ReadPointerWithHook(&o.DestinationFormatNameLengthProperty, ndr.PointerHook{_s_pulDestFormatNameLenProp, _m_pulDestFormatNameLenProp}, _ptr_pulDestFormatNameLenProp); err != nil {
+	if err := w.ReadPointerWithHook(&o.DestinationFormatNameLengthProperty, ndr.PointerHook{OnSet: _s_pulDestFormatNameLenProp, OnNull: _m_pulDestFormatNameLenProp}, _ptr_pulDestFormatNameLenProp); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.OrderingFormatNameLength); err != nil {
@@ -4822,7 +4822,7 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) UnmarshalNDR(ctx context.Con
 	_m_pulOrderingFormatNameLenProp := func() {
 		o.NullMask |= TransferBufferV1_TransferBufferV1_ReceiveNullMaskOrderingFormatNameLengthProperty
 	}
-	if err := w.ReadPointerWithHook(&o.OrderingFormatNameLengthProperty, ndr.PointerHook{_s_pulOrderingFormatNameLenProp, _m_pulOrderingFormatNameLenProp}, _ptr_pulOrderingFormatNameLenProp); err != nil {
+	if err := w.ReadPointerWithHook(&o.OrderingFormatNameLengthProperty, ndr.PointerHook{OnSet: _s_pulOrderingFormatNameLenProp, OnNull: _m_pulOrderingFormatNameLenProp}, _ptr_pulOrderingFormatNameLenProp); err != nil {
 		return err
 	}
 	return nil
@@ -5029,7 +5029,7 @@ func (o *TransferBufferV2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pbFirstInXact := func() { o.NullMask |= TransferBufferV2NullMaskFirstInTransaction }
-	if err := w.ReadPointerWithHook(&o.FirstInTransaction, ndr.PointerHook{_s_pbFirstInXact, _m_pbFirstInXact}, _ptr_pbFirstInXact); err != nil {
+	if err := w.ReadPointerWithHook(&o.FirstInTransaction, ndr.PointerHook{OnSet: _s_pbFirstInXact, OnNull: _m_pbFirstInXact}, _ptr_pbFirstInXact); err != nil {
 		return err
 	}
 	_ptr_pbLastInXact := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -5051,7 +5051,7 @@ func (o *TransferBufferV2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		}
 	}
 	_m_pbLastInXact := func() { o.NullMask |= TransferBufferV2NullMaskLastInTransaction }
-	if err := w.ReadPointerWithHook(&o.LastInTransaction, ndr.PointerHook{_s_pbLastInXact, _m_pbLastInXact}, _ptr_pbLastInXact); err != nil {
+	if err := w.ReadPointerWithHook(&o.LastInTransaction, ndr.PointerHook{OnSet: _s_pbLastInXact, OnNull: _m_pbLastInXact}, _ptr_pbLastInXact); err != nil {
 		return err
 	}
 	_ptr_ppXactID := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -5902,7 +5902,7 @@ func (o *xxx_GetRemoteQueueNameOperation) UnmarshalNDRRequest(ctx context.Contex
 				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RemoteQueueName", ptr))
 			}
 		}
-		if err := w.ReadPointer(&o.RemoteQueueName, _s_lplpRemoteQueueName, _ptr_lplpRemoteQueueName); err != nil {
+		if err := w.ReadFullPointer(&o.RemoteQueueName, _s_lplpRemoteQueueName, _ptr_lplpRemoteQueueName); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6006,7 +6006,7 @@ func (o *xxx_GetRemoteQueueNameOperation) UnmarshalNDRResponse(ctx context.Conte
 				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RemoteQueueName", ptr))
 			}
 		}
-		if err := w.ReadPointer(&o.RemoteQueueName, _s_lplpRemoteQueueName, _ptr_lplpRemoteQueueName); err != nil {
+		if err := w.ReadFullPointer(&o.RemoteQueueName, _s_lplpRemoteQueueName, _ptr_lplpRemoteQueueName); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -10522,7 +10522,7 @@ func (o *xxx_OpenQueueInternalOperation) UnmarshalNDRRequest(ctx context.Context
 				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RemoteQueueName", ptr))
 			}
 		}
-		if err := w.ReadPointer(&o.RemoteQueueName, _s_lplpRemoteQueueName, _ptr_lplpRemoteQueueName); err != nil {
+		if err := w.ReadFullPointer(&o.RemoteQueueName, _s_lplpRemoteQueueName, _ptr_lplpRemoteQueueName); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -10677,7 +10677,7 @@ func (o *xxx_OpenQueueInternalOperation) UnmarshalNDRResponse(ctx context.Contex
 				w.SetErr(fmt.Errorf("invalid pointer type %T for field o.RemoteQueueName", ptr))
 			}
 		}
-		if err := w.ReadPointer(&o.RemoteQueueName, _s_lplpRemoteQueueName, _ptr_lplpRemoteQueueName); err != nil {
+		if err := w.ReadFullPointer(&o.RemoteQueueName, _s_lplpRemoteQueueName, _ptr_lplpRemoteQueueName); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {

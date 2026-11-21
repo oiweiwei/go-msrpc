@@ -472,11 +472,15 @@ type PointerHook struct {
 	OnSet func(any)
 	// OnNull declares an action for null-pointer.
 	OnNull func()
+	// Full declares the full ([ptr]) pointer: the repeated referent id aliases
+	// the first pointer with this id (NDR20 only).
+	Full bool
 }
 
-// ReadPointer function reads the pointer value and defers the actual data read
-// until the ReadDeferred is called. The `hook` value is used in case of the
-// pointer aliasing or null-pointers.
+// ReadPointerWithHook function reads the pointer value and defers the actual data read
+// until the ReadDeferred is called. Referent ids are tracked only when `hook.Full` is set
+// (the full [ptr] pointers): the repeated id then calls `hook.OnSet` and reads no data.
+// The unique and ref pointers never alias, whatever id the sender wrote.
 func (w *ndr20) ReadPointerWithHook(ptr Pointer, hook PointerHook, mrs ...Unmarshaler) error {
 
 	if w.err != nil {
@@ -511,6 +515,11 @@ func (w *ndr20) ReadPointerWithHook(ptr Pointer, hook PointerHook, mrs ...Unmars
 		return nil
 	}
 
+	if !hook.Full {
+		w.rdeferred = append(w.rdeferred, mrs...)
+		return nil
+	}
+
 	if ptr, ok := w.ptrs[uint64(pptr)]; ok {
 		if hook.OnSet != nil {
 			hook.OnSet((any)(ptr))
@@ -522,11 +531,21 @@ func (w *ndr20) ReadPointerWithHook(ptr Pointer, hook PointerHook, mrs ...Unmars
 	return nil
 }
 
-// ReadPointer function reads the pointer value and defers the actual data read
-// until the ReadDeferred is called. The `setter` value is used in case of the
-// pointer aliasing.
+// ReadFullPointerWithHook function reads the full ([ptr]) pointer: see PointerHook.Full.
+func (w *ndr20) ReadFullPointerWithHook(ptr Pointer, hook PointerHook, mrs ...Unmarshaler) error {
+	hook.Full = true
+	return w.ReadPointerWithHook(ptr, hook, mrs...)
+}
+
+// ReadFullPointer function is the ReadPointer for the full ([ptr]) pointers.
+func (w *ndr20) ReadFullPointer(ptr Pointer, setter func(interface{}), mrs ...Unmarshaler) error {
+	return w.ReadPointerWithHook(ptr, PointerHook{OnSet: setter, Full: true}, mrs...)
+}
+
+// ReadPointer function reads the non-full pointer value and defers the actual data read
+// until the ReadDeferred is called.
 func (w *ndr20) ReadPointer(ptr Pointer, setter func(interface{}), mrs ...Unmarshaler) error {
-	return w.ReadPointerWithHook(ptr, PointerHook{setter, nil}, mrs...)
+	return w.ReadPointerWithHook(ptr, PointerHook{OnSet: setter}, mrs...)
 }
 
 // WritePointer function writes the pointer to the data and defers the
