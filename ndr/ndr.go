@@ -119,8 +119,16 @@ type Reader interface {
 	// It receives the setter function in case if pointer is not null.
 	ReadPointer(Pointer, func(any), ...Unmarshaler) error
 
-	// ReadPointerWithHook function reads the implementation-specific pointer.
+	// ReadPointerWithHook function reads the implementation-specific pointer;
+	// hook.Full enables the referent id aliasing of the full pointers.
 	ReadPointerWithHook(Pointer, PointerHook, ...Unmarshaler) error
+
+	// ReadFullPointer function reads the full ([ptr]) pointer: ReadPointerWithHook
+	// with PointerHook.Full set.
+	ReadFullPointer(Pointer, func(any), ...Unmarshaler) error
+
+	// ReadFullPointerWithHook is the ReadPointerWithHook with PointerHook.Full set.
+	ReadFullPointerWithHook(Pointer, PointerHook, ...Unmarshaler) error
 
 	// ReadDeferred function reads all the deferred pointers.
 	ReadDeferred() error
